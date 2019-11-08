@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "jsx-a11y"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:compat/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "16.11.0"
+    }
+  },
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": {
+      "globalReturn": false
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "ddb-react",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "fmt": "prettier --config ./.prettierrc --write \"src/**/*.js\"",
+    "lint": "eslint ./src",
+    "clean": "rm -r -f ./dist/*",
+    "build": "concurrently \"yarn clean\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
+    "build:js:dev": "webpack --mode=development --config webpack.config.js",
+    "build:js:prod": "webpack --mode=production --config webpack.config.js",
+    "build:css:dev": "concurrently \"node-sass --recursive --output ./dist /src/apps/**/*.scss\" \"node-sass ./src/components/components.scss ./dist/components.css\"",
+    "build:css:prod": "concurrently \"node-sass --recursive --output-style compressed --output ./dist/apps ./src/apps/**/*.scss\" \"node-sass --output-style compressed ./src/components/components.scss ./dist/components.css\"",
+    "watch:css": "concurrently \"node-sass --recursive --watch --output ./dist /src/apps/**/*.scss\" \"node-sass --watch ./src/components/components.scss ./dist/components.css\"",
+    "start": "yarn dev",
+    "dev": "start-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@storybook/react": "^5.2.5",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "concurrently": "^5.0.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "node-sass": "^4.13.0",
+    "prettier": "^1.18.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@reach/dialog": "^0.5.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "swagger-client": "^3.9.5"
+  }
+}
