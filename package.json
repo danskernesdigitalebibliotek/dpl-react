@@ -2,9 +2,14 @@
   "name": "ddb-react",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "^12.13.0",
+    "yarn": "^1.17.3"
+  },
   "scripts": {
     "fmt": "prettier --config ./.prettierrc --write \"src/**/*.js\"",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "clean": "rm -r -f ./dist/*",
     "build": "concurrently \"yarn clean\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
     "build:js:dev": "webpack --mode=development --config webpack.config.js",
@@ -13,7 +18,8 @@
     "build:css:prod": "concurrently \"node-sass --recursive --output-style compressed --output ./dist/apps ./src/apps/**/*.scss\" \"node-sass --output-style compressed ./src/components/components.scss ./dist/components.css\"",
     "watch:css": "concurrently \"node-sass --recursive --watch --output ./dist /src/apps/**/*.scss\" \"node-sass --watch ./src/components/components.scss ./dist/components.css\"",
     "start": "yarn dev",
-    "dev": "start-storybook"
+    "dev": "start-storybook --port 57021",
+    "test": "cypress run"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -26,10 +32,13 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
+    "cypress": "^3.6.0",
     "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-loader": "^3.0.2",
-    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
@@ -42,7 +51,6 @@
     "@reach/dialog": "^0.5.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "swagger-client": "^3.9.5"
+    "react-dom": "^16.11.0"
   }
 }

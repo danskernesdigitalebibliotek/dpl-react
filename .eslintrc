@@ -1,11 +1,13 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react", "jsx-a11y"],
+  "plugins": ["react", "jsx-a11y", "prettier", "cypress"],
   "extends": [
     "eslint:recommended",
-    "plugin:compat/recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "plugin:cypress/recommended"
   ],
   "settings": {
     "react": {
@@ -13,6 +15,7 @@
     }
   },
   "env": {
+    "es6": true,
     "browser": true
   },
   "parserOptions": {

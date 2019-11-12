@@ -1,5 +1,5 @@
 import React from "react";
-import { string } from 'prop-types'
+import { string } from "prop-types";
 
 /**
  * A simple button that serves as the foundation of all buttons.
@@ -14,6 +14,6 @@ export function Button({ className, ...rest }) {
 
 Button.propTypes = {
   className: string
-}
+};
 
 export default Button;

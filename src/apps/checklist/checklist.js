@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export function Checklist({ items }) {
-  console.log(items)
   return (
     <ul className="list">
       {items.map(item => (

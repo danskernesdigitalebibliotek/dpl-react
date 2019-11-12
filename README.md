@@ -1,3 +1,5 @@
+![https://raw.githubusercontent.com/reload/ddb-react/master/logo.png](https://raw.githubusercontent.com/reload/ddb-react/master/logo.png)
+
 ## Installation
 
 ```bash
