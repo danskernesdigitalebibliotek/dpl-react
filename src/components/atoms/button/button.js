@@ -9,7 +9,9 @@ import { string } from "prop-types";
  * @returns {ReactNode}
  */
 export function Button({ className, ...rest }) {
-  return <button className={`btn ${className}`} {...rest} />;
+  return (
+    <button className={`ddb-btn ${!className ? "" : className}`} {...rest} />
+  );
 }
 
 Button.propTypes = {

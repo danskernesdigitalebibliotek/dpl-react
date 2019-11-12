@@ -6,7 +6,7 @@ import Button from "../../components/atoms/button/button.js";
 export function AddToChecklist({ children }) {
   // Here will also be server requests etc.
   return (
-    <div className="container">
+    <div className="ddb-container">
       <Button>{children}</Button>
     </div>
   );

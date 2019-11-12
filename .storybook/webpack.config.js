@@ -8,7 +8,7 @@ module.exports = async ({ config, mode }) => {
     // We need to make use of css modules in our stories.
     {
       test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
+      use: ["style-loader", "postcss-loader"],
       include: path.resolve(__dirname, "../")
     }
   ];
