@@ -5,7 +5,7 @@ module.exports = (_env, argv) => {
   const production = argv.mode !== "development";
 
   const entry = glob.sync("./src/apps/**/*.mount.js").reduce((acc, path) => {
-    const distPath = path.replace(/src\/apps\/.+\//, 'apps/').replace(".mount.js", "");
+    const distPath = path.replace(/src\/apps\/.+\//, '').replace(".mount.js", "");
     acc[distPath] = path;
     return acc;
   }, {});
