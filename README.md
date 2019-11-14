@@ -16,7 +16,7 @@ yarn dev
 
 1. Create a new application component.
 
-path: `./src/apps/my-new-application/my-new-application.js`
+`./src/apps/my-new-application/my-new-application.js`
 
 ```javascript
 import React from "react";
@@ -41,7 +41,7 @@ export default MyNewApplication;
 
 2. Create the entry component.
 
-path: `./src/apps/my-new-application/my-new-application.entry.js`
+`./src/apps/my-new-application/my-new-application.entry.js`
 
 ```javascript
 import React from "react";
@@ -57,7 +57,7 @@ export default MyNewApplicationEntry;
 
 3. Create the mount.
 
-path: `./src/apps/my-new-application/my-new-application.mount.js`
+`./src/apps/my-new-application/my-new-application.mount.js`
 
 ```javascript
 import init from "../../core/mount.js";
@@ -68,7 +68,7 @@ init({ mountName: "my-new-application", app: MyNewApplication });
 
 4. Add the mount point.
 
-path: `./mount-points.json`
+`./mount-points.json`
 
 ```json
 {
@@ -87,7 +87,7 @@ path: `./mount-points.json`
 
 5. Add a story for local development.
 
-path: `./src/apps/my-new-application/my-new-application.stories.js`
+`./src/apps/my-new-application/my-new-application.stories.js`
 
 ```javascript
 import React from "react";
@@ -120,7 +120,7 @@ export function withoutData() {
 
 1. Create an application specific stylesheet.
 
-path: `./src/apps/my-new-application/my-new-application.scss`
+`./src/apps/my-new-application/my-new-application.scss`
 
 ```scss
 .warm {
@@ -130,7 +130,7 @@ path: `./src/apps/my-new-application/my-new-application.scss`
 
 2. Add the class to your application.
 
-path: `./src/apps/my-new-application/my-new-application.js`
+`./src/apps/my-new-application/my-new-application.js`
 
 
 ```javascript
@@ -156,7 +156,7 @@ export default MyNewApplication;
 
 3. Import the scss into your story.
 
-path: `./src/apps/my-new-application/my-new-application.stories.js`
+`./src/apps/my-new-application/my-new-application.stories.js`
 
 ```javascript
 import React from "react";
@@ -192,7 +192,7 @@ The process when creating an atom or a component is more or less similar, but so
 
 1. Create the atom.
 
-path: `./src/components/atoms/my-new-atom/my-new-atom.js`
+`./src/components/atoms/my-new-atom/my-new-atom.js`
 
 ```javascript
 import React from "react";
@@ -218,7 +218,7 @@ export default MyNewAtom;
 
 2. Create styles for the atom.
 
-path: `./src/components/atoms/my-new-atom/my-new-atom.scss`
+`./src/components/atoms/my-new-atom/my-new-atom.scss`
 
 ```scss
 .btn {
@@ -228,7 +228,7 @@ path: `./src/components/atoms/my-new-atom/my-new-atom.scss`
 
 3. Import the atom's styles into the component stylesheet.
 
-path: `./src/components/components.scss`
+`./src/components/components.scss`
 
 ```scss
 @import 'atoms/button/button.scss';
@@ -237,7 +237,7 @@ path: `./src/components/components.scss`
 
 4. Create a story for your atom.
 
-path: `./src/components/atoms/my-new-atom/my-new-atom.stories.js`
+`./src/components/atoms/my-new-atom/my-new-atom.stories.js`
 
 ```javascript
 import React from "react";
@@ -252,7 +252,7 @@ export function withText() {
 
 5. Import the atom into the applications or other components where you would want to use it.
 
-path: `./src/apps/my-new-application/my-new-application.js`
+`./src/apps/my-new-application/my-new-application.js`
 
 ```javascript
 import React, {Fragment} from "react";
