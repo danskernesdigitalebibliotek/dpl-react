@@ -306,7 +306,7 @@ A simple naive example of the required artifacts needed looks like this:
 </head>
 <body>
     <b>Here be dragons!</b>
-    <div id='add-to-checklist-container-1'></div>
+    <div data-ddb-app='add-to-checklist'></div>
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/apps/add-to-checklist.js"></script>
