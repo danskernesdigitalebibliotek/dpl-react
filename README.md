@@ -287,3 +287,44 @@ export default MyNewApplication;
 Repeat all of the same steps as with an atom but place it in it's own directory inside `components`.
 
 Such as `./src/components/my-new-component/my-new-component.js`
+
+### Naive app mount.
+
+So let's say you wanted to make use of an application in Drupal, WordPress etc.
+A simple naive example of the required artifacts needed looks like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Naive mount</title>
+    <link rel="stylesheet" href="/dist/components.css">
+    <link rel="stylesheet" href="/dist/apps/add-to-checklist.css">
+</head>
+<body>
+    <b>Here be dragons!</b>
+    <div id='add-to-checklist-container-1'></div>
+    <script src="/dist/runtime.js"></script>
+    <script src="/dist/bundle.js"></script>
+    <script src="/dist/apps/add-to-checklist.js"></script>
+</body>
+</html>
+```
+
+As a minimum you will need the `runtime.js` and `bundle.js`.
+For styling of atoms and components you will need to import `components.css`.
+
+Each application also has it's own JavaScript artifact and it might have a css artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
+
+To mount the application you need a html element with the correct data attribute.
+
+```html
+<div data-ddb-app='add-to-checklist'></div>
+```
+
+The name of the data attribute should be `data-ddb-app` and the value should be the name of the application.
+
+The definitive names of each application can be found in `applications.json`.
