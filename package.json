@@ -1,10 +1,10 @@
 {
-  "name": "ddb-react",
+  "name": "@reload/ddb-react",
   "version": "0.0.1-rc.1",
   "license" : "AGPL-3.0-only",
-  "repository": "github:reload/ddb-react",
+  "repository": "git://github.com/reload/ddb-react.git",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry":"https://npm.pkg.github.com/@reload"
   },
   "engines": {
     "node": "^12.13.0",
