@@ -1,4 +1,4 @@
-import init from "../../core/mount.js";
+import mount from "../../core/mount.js";
 import AddToChecklist from "./add-to-checklist.entry.js";
 
-init({ mountName: "add-to-checklist", app: AddToChecklist });
+mount({ appName: "add-to-checklist", app: AddToChecklist });

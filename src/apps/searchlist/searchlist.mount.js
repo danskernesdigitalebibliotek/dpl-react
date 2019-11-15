@@ -1,4 +1,4 @@
-import init from "../../core/mount.js";
-import SearchList from "./searchlist.entry.js";
+import mount from "../../core/mount.js";
+import Searchlist from "./searchlist.entry.js";
 
-init({ mountName: "searchlist", app: SearchList });
+mount({ appName: "searchlist", app: Searchlist });
