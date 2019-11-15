@@ -48,7 +48,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import MyNewApplication from './my-new-application.js'
 
-export function MyNewApplicationEntry() {
+// The props of an entry is all of the data attributes that were
+// set on the DOM element. See the section on "Naive app mount." for
+// an example.
+export function MyNewApplicationEntry(props) {
   return <MyNewApplication text='Might be from a server?' />
 }
 
@@ -60,32 +63,13 @@ export default MyNewApplicationEntry;
 `./src/apps/my-new-application/my-new-application.mount.js`
 
 ```javascript
-import init from "../../core/mount.js";
+import mount from "../../core/mount.js";
 import MyNewApplication from "./mynewapplication.entry.js";
 
-init({ mountName: "my-new-application", app: MyNewApplication });
+mount({ appName: "my-new-application", app: MyNewApplication });
 ```
 
-4. Add the mount point.
-
-`./mount-points.json`
-
-```json
-{
-  "add-to-checklist": [
-    "add-to-checklist-container-1"
-  ],
-  "checklist": [
-    "checklist-container-1"
-  ],
-  "my-new-application": [
-      "the-id-of-the-dom-element",
-      "maybe-another-dom-element-for-a-second-app"
-  ]
-}
-```
-
-5. Add a story for local development.
+4. Add a story for local development.
 
 `./src/apps/my-new-application/my-new-application.stories.js`
 
@@ -108,13 +92,13 @@ export function withoutData() {
 
 ```
 
-6. Run the development environment.
+5. Run the development environment.
 
 ```bash
   yarn dev
 ```
 
-7. Voila! You browser should have opened and a StoryBook environment is ready for you to tinker around.
+6. Voila! You browser should have opened and a StoryBook environment is ready for you to tinker around.
 
 ### Style your application.
 
@@ -302,14 +286,15 @@ A simple naive example of the required artifacts needed looks like this:
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Naive mount</title>
     <link rel="stylesheet" href="/dist/components.css">
-    <link rel="stylesheet" href="/dist/apps/add-to-checklist.css">
+    <link rel="stylesheet" href="/dist/add-to-checklist.css">
 </head>
 <body>
     <b>Here be dragons!</b>
+    <div data-ddb-app='add-to-checklist' data-ddb-whatever-value="Chromatic dragon"></div>
     <div data-ddb-app='add-to-checklist'></div>
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
-    <script src="/dist/apps/add-to-checklist.js"></script>
+    <script src="/dist/add-to-checklist.js"></script>
 </body>
 </html>
 ```
@@ -325,6 +310,4 @@ To mount the application you need a html element with the correct data attribute
 <div data-ddb-app='add-to-checklist'></div>
 ```
 
-The name of the data attribute should be `data-ddb-app` and the value should be the name of the application.
-
-The definitive names of each application can be found in `applications.json`.
+The name of the data attribute should be `data-ddb-app` and the value should be the name of the application. The appName you have assigned it in the applications `.mount.js` file.

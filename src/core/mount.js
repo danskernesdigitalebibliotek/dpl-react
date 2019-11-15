@@ -1,39 +1,23 @@
 import { createElement } from "react";
 import { render } from "react-dom";
-import mountPoints from "../../mount-points.json";
 
 /**
- * An opinionated abstraction on top of react-dom's
- * render function. If we at some point want to change the
- * render target to be some other thing than react-dom we
- * only need to change it here.
- * https://reactjs.org/docs/react-dom.html#render
+ * This is where we actually mount the application into the DOM elements.
+ * If DOM elements exists with corresponding data-ddb-app attribute values
+ * to the appName of the application we will mount it in all the places.
+ * We also want to expose the rest of the data attributes to the react application.
  *
- * @export
- * @param {Object} options
- * @param {ReactNode} options.app - The ReactNode we want to render.
- * @param {string} options.domId - The identifier of the DOM element we want the application to be rendered in.
- * @returns {function}
+ * @param {object} options
+ * @param {string} options.appName - Name of the application. This has to be the same in the DOM as well as in your .mount.js file.
+ * @param {ReactNode} options.app - The React app/component that should be the start point of your application. This should be your applications .entry.js.
  */
-export function mount({ app, domId }) {
-  return render(createElement(app), document.getElementById(domId));
+function mount({ appName, app }) {
+  const appContainers = document.querySelectorAll(
+    `[data-ddb-app="${appName}"]`
+  );
+  appContainers.forEach(function mountApp(container) {
+    render(createElement(app, Object.assign({}, container.dataset)), container);
+  });
 }
 
-/**
- * Allows us to have multiple seperate instances of the same app
- * on each SSR page.
- *
- * @export
- * @param {Object} options
- * @param {string} options.mountName - Name of the actual mount. Not the id but the name that inhibits a collection of mount points.
- * @param {ReactNode} options.app - The ReactNode we want to render.
- */
-export function init({ mountName, app }) {
-  if (mountPoints[mountName]) {
-    mountPoints[mountName].forEach(function initMount(id) {
-      mount({ app, domId: id });
-    });
-  }
-}
-
-export default init;
+export default mount;
