@@ -71,7 +71,7 @@ mount({ appName: "my-new-application", app: MyNewApplication });
 
 4. Add a story for local development.
 
-`./src/apps/my-new-application/my-new-application.stories.js`
+`./src/apps/my-new-application/my-new-application.dev.js`
 
 ```javascript
 import React from "react";
@@ -107,7 +107,7 @@ export function withoutData() {
 `./src/apps/my-new-application/my-new-application.scss`
 
 ```scss
-.warm {
+.ddb-warm {
   color: maroon;
 }
 ```
@@ -140,7 +140,7 @@ export default MyNewApplication;
 
 3. Import the scss into your story.
 
-`./src/apps/my-new-application/my-new-application.stories.js`
+`./src/apps/my-new-application/my-new-application.dev.js`
 
 ```javascript
 import React from "react";
@@ -205,7 +205,7 @@ export default MyNewAtom;
 `./src/components/atoms/my-new-atom/my-new-atom.scss`
 
 ```scss
-.btn {
+.ddb-btn {
     color: blue;
 }
 ```
@@ -221,7 +221,7 @@ export default MyNewAtom;
 
 4. Create a story for your atom.
 
-`./src/components/atoms/my-new-atom/my-new-atom.stories.js`
+`./src/components/atoms/my-new-atom/my-new-atom.dev.js`
 
 ```javascript
 import React from "react";
