@@ -1,5 +1,23 @@
 ![https://raw.githubusercontent.com/reload/ddb-react/master/logo.png](https://raw.githubusercontent.com/reload/ddb-react/master/logo.png)
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Development](#development)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Create a new application](#create-a-new-application)
+  - [Style your application](#style-your-application)
+  - [Cross application components](#cross-application-components)
+    - [Creating an atom](#creating-an-atom)
+    - [Creating a component](#creating-a-component)
+- [Production](#production)
+  - [Naive app mount](#naive-app-mount)
+  - [Access data attributes](#access-data-attributes)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Development
 
 ### Requirements
@@ -14,9 +32,9 @@ make up
 
 When storybook is started, you can access it at: [ddb-react.docker](http://ddb-react.docker)
 
-### Create a new application.
+### Create a new application
 
-1. Create a new application component.
+1. Create a new application component
 
 `./src/apps/my-new-application/my-new-application.js`
 
@@ -41,7 +59,7 @@ MyNewApplication.propTypes = {
 export default MyNewApplication;
 ```
 
-2. Create the entry component.
+2. Create the entry component
 
 `./src/apps/my-new-application/my-new-application.entry.js`
 
@@ -60,7 +78,7 @@ export function MyNewApplicationEntry(props) {
 export default MyNewApplicationEntry;
 ```
 
-3. Create the mount.
+3. Create the mount
 
 `./src/apps/my-new-application/my-new-application.mount.js`
 
@@ -71,7 +89,7 @@ import MyNewApplication from "./mynewapplication.entry.js";
 mount({ appName: "my-new-application", app: MyNewApplication });
 ```
 
-4. Add a story for local development.
+4. Add a story for local development
 
 `./src/apps/my-new-application/my-new-application.dev.js`
 
@@ -94,7 +112,7 @@ export function withoutData() {
 
 ```
 
-5. Run the development environment.
+5. Run the development environment
 
 ```bash
   yarn dev
@@ -102,9 +120,9 @@ export function withoutData() {
 
 6. Voila! You browser should have opened and a StoryBook environment is ready for you to tinker around.
 
-### Style your application.
+### Style your application
 
-1. Create an application specific stylesheet.
+1. Create an application specific stylesheet
 
 `./src/apps/my-new-application/my-new-application.scss`
 
@@ -114,7 +132,7 @@ export function withoutData() {
 }
 ```
 
-2. Add the class to your application.
+2. Add the class to your application
 
 `./src/apps/my-new-application/my-new-application.js`
 
@@ -140,7 +158,7 @@ MyNewApplication.propTypes = {
 export default MyNewApplication;
 ```
 
-3. Import the scss into your story.
+3. Import the scss into your story
 
 `./src/apps/my-new-application/my-new-application.dev.js`
 
@@ -164,9 +182,9 @@ export function withoutData() {
 }
 ```
 
-4. Cowabunga! You now got styling in your application.
+4. Cowabunga! You now got styling in your application
 
-### Create a component for use across applications.
+### Cross application components
 
 If the component is simple enough to be a primitive you would use in multiple occassions it's called an 'atom'. Such as a button or a link.
 If it's more specific that that and to be used across apps we just call it
@@ -174,9 +192,9 @@ a component. An example would be some type of media presented alongside a header
 
 The process when creating an atom or a component is more or less similar, but some structuaral differences might be needed.
 
-#### Creating an atom.
+#### Creating an atom
 
-1. Create the atom.
+1. Create the atom
 
 `./src/components/atoms/my-new-atom/my-new-atom.js`
 
@@ -202,7 +220,7 @@ MyNewAtom.propTypes = {
 export default MyNewAtom;
 ```
 
-2. Create styles for the atom.
+2. Create styles for the atom
 
 `./src/components/atoms/my-new-atom/my-new-atom.scss`
 
@@ -212,7 +230,7 @@ export default MyNewAtom;
 }
 ```
 
-3. Import the atom's styles into the component stylesheet.
+3. Import the atom's styles into the component stylesheet
 
 `./src/components/components.scss`
 
@@ -221,7 +239,7 @@ export default MyNewAtom;
 @import 'atoms/my-new-atom/my-new-atom.scss';
 ```
 
-4. Create a story for your atom.
+4. Create a story for your atom
 
 `./src/components/atoms/my-new-atom/my-new-atom.dev.js`
 
@@ -236,7 +254,7 @@ export function withText() {
 }
 ```
 
-5. Import the atom into the applications or other components where you would want to use it.
+5. Import the atom into the applications or other components where you would want to use it
 
 `./src/apps/my-new-application/my-new-application.js`
 
@@ -266,15 +284,17 @@ MyNewApplication.propTypes = {
 export default MyNewApplication;
 ```
 
-6. Finito! You now know how to share code across applications.
+6. Finito! You now know how to share code across applications
 
-#### Creating a component.
+#### Creating a component
 
 Repeat all of the same steps as with an atom but place it in it's own directory inside `components`.
 
 Such as `./src/components/my-new-component/my-new-component.js`
 
-### Naive app mount.
+## Production
+
+### Naive app mount
 
 So let's say you wanted to make use of an application in Drupal, WordPress etc.
 A simple naive example of the required artifacts needed looks like this:
@@ -315,7 +335,7 @@ To mount the application you need a html element with the correct data attribute
 The name of the data attribute should be `data-ddb-app` and the value should be the name of the application. The appName you have assigned it in the applications `.mount.js` file.
 
 
-#### Access data attributes.
+### Access data attributes
 
 As stated above, every application needs the corresponding `data-ddb-app` attribute to even be mounted and shown on the page.
 Additional data attributes can be passed if neccessary. Examples would be contextuel id's etc.
