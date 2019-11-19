@@ -1,16 +1,18 @@
 ![https://raw.githubusercontent.com/reload/ddb-react/master/logo.png](https://raw.githubusercontent.com/reload/ddb-react/master/logo.png)
 
-## Installation
-
-```bash
-yarn install
-```
-
 ## Development
 
+### Requirements
+* [Docker](https://www.docker.com/products/docker-desktop)
+* [Dory](https://github.com/FreedomBen/dory)
+
+### Installation
+
 ```bash
-yarn dev
+make up
 ```
+
+When storybook is started, you can access it at: [ddb-react.docker](http://ddb-react.docker)
 
 ### Create a new application.
 

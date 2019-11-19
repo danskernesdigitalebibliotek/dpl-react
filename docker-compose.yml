@@ -1,0 +1,20 @@
+version: '3'
+services:
+  node:
+    image: node:12.13.0-alpine
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - root:/home/node/app
+    expose:
+      - 57021
+    command: 'yarn dev'
+    environment:
+      VIRTUAL_HOST: ddb-react.docker
+      VIRTUAL_PORT: 57021
+volumes:
+  root:
+    driver_opts:
+      type: none
+      device: $PWD
+      o: bind
