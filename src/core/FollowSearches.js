@@ -1,3 +1,5 @@
+import { getToken } from "./getToken";
+
 /**
  * @typedef Search
  * @property {string} searchTitle
@@ -10,6 +12,9 @@
  * @class FollowSearches
  */
 class FollowSearches {
+  constructor() {
+    this.token = getToken();
+  }
   /**
    * Get all the users searches.
    *

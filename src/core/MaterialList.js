@@ -1,9 +1,15 @@
+import { getToken } from "./getToken";
+
 /**
  * https://github.com/reload/material-list/blob/develop/spec/material-list-1.0.0.yaml
  *
  * @class MaterialList
  */
 class MaterialList {
+  constructor() {
+    this.token = getToken();
+  }
+
   /**
    * Get list with materials.
    *

@@ -1,3 +1,5 @@
+import { getToken } from "./getToken";
+
 /**
  * @typedef Work
  * In "definitions" look for "Work" to see all the different fields
@@ -7,6 +9,9 @@
  */
 
 class OpenPlatform {
+  constructor() {
+    this.token = getToken();
+  }
   /**
    * The endpoint of OpenPlatform.
    * https://openplatform.dbc.dk/v3/
