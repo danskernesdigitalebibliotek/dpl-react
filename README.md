@@ -313,3 +313,55 @@ To mount the application you need a html element with the correct data attribute
 ```
 
 The name of the data attribute should be `data-ddb-app` and the value should be the name of the application. The appName you have assigned it in the applications `.mount.js` file.
+
+
+#### Access data attributes.
+
+As stated above, every application needs the corresponding `data-ddb-app` attribute to even be mounted and shown on the page.
+Additional data attributes can be passed if neccessary. Examples would be contextuel id's etc.
+Normally these would be passed in by the server ex. Drupal, Wordpress etc.
+
+```html
+<div data-ddb-app='add-to-checklist' data-ddb-id="3A23607387"></div>
+```
+
+The above `ddb-id` would be accessed as such in the entrypoint of an application.
+
+`./src/apps/my-new-application/my-new-application.entry.js`
+
+```javascript
+import React from "react";
+import PropTypes from "prop-types";
+import MyNewApplication from './my-new-application.js'
+
+export function MyNewApplicationEntry(props) {
+  const id = props['ddb-id'] // 3A23607387
+  return <MyNewApplication id={id} />
+}
+
+export default MyNewApplicationEntry;
+```
+
+To fake this in our development environment we need to pass these same data attributes into
+out entrypoint.
+
+`./src/apps/my-new-application/my-new-application.dev.js`
+
+```javascript
+import React from "react";
+import MyNewApplicationEntry from "./my-new-application.entry.js";
+import MyNewApplication from "./my-new-application.js"
+
+export default { title: "Apps|My new application" };
+
+export function entry() {
+  // Testing the version that will be shipped.
+  return <MyNewApplicationEntry ddb-id="3A23607387" />;
+}
+
+export function withoutData() {
+  // Play around with the application itself without server side data.
+  return <MyNewApplication />;
+}
+
+```
