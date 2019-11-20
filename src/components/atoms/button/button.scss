@@ -1,3 +1,5 @@
 .ddb-btn {
+  @extend .ddb-reset;
+  -webkit-appearance: button;
   color: blue;
 }
