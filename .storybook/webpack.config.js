@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs").promises
 const DefinePlugin = require('webpack').DefinePlugin;
+const chalk = require("chalk");
 
 const customWebpack = require("../webpack.config.js");
 
@@ -10,18 +11,10 @@ module.exports = async ({ config }) => {
   try {
     token = await fs.readFile(path.resolve(__dirname, "../.token"), "utf8");
   } catch(err) {
-    console.warn(
-      "-----------------------------------------------\n" +
-      "warn => Could not find the .token file in root" +
-      "\n-----------------------------------------------"
-    );
+    console.warn(chalk.red("warn") + " => Could not find the .token file in root");
   }
   if (!token) {
-    console.warn(
-      "------------------------------------------------------------------\n" +
-      "warn => Token is empty. Requests to external services won't work!" +
-      "\n------------------------------------------------------------------"
-    );
+    console.warn(chalk.red("warn") + " => Token is empty. Requests to external services won't work!");
   }
 
   const custom = customWebpack(undefined, { mode: 'development' })
