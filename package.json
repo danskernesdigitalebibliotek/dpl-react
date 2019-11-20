@@ -17,7 +17,7 @@
     "lint:scss": "stylelint \"./src/**/*.scss\"",
     "lint:scss:fix": "stylelint --fix \"./src/**/*.scss\"",
     "clean": "rm -r -f ./dist/*",
-    "build": "concurrently \"yarn clean\" \"yarn lint:scss:fix\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
+    "build": "concurrently --raw \"yarn clean\" \"yarn lint:scss:fix\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
     "build:js:dev": "webpack --mode=development --config webpack.config.js",
     "build:js:prod": "webpack --mode=production --config webpack.config.js",
     "build:css:dev": "postcss ./src/apps/**/*.scss ./src/components/components.scss --ext css --dir ./dist",
@@ -26,7 +26,7 @@
     "watch:lint:scss": "chokidar \"./src/**/*.scss\" -c \"yarn lint:scss:fix\"",
     "build:doc": "doctoc README.md",
     "start": "yarn dev",
-    "dev": "concurrently \"start-storybook --port 57021\" \"yarn watch:lint:scss\"",
+    "dev": "concurrently --raw \"start-storybook --port 57021\" \"yarn watch:lint:scss\"",
     "test": "cypress run"
   },
   "devDependencies": {
