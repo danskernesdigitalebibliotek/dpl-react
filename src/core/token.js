@@ -9,7 +9,7 @@ const TOKEN_KEY = "ddb-token";
  */
 export function setToken(token) {
   const storedToken = localStorage.getItem(TOKEN_KEY);
-  if (!storedToken) {
+  if (!storedToken && token) {
     localStorage.setItem(TOKEN_KEY, token);
   }
 }
