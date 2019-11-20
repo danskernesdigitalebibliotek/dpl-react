@@ -1,6 +1,6 @@
 import { configure } from '@storybook/react';
 import '../src/components/components.scss';
-import { setToken } from '../src/core/setToken.js'
+import { setToken } from '../src/core/token.js'
 
 /**
  * DDB_TOKEN is set in ".storybook/webpack.config.js"

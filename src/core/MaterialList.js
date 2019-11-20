@@ -1,4 +1,4 @@
-import { getToken } from "./getToken";
+import { getToken } from "./token.js";
 
 /**
  * https://github.com/reload/material-list/blob/develop/spec/material-list-1.0.0.yaml

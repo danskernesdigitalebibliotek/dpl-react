@@ -1,4 +1,4 @@
-import { getToken } from "./getToken";
+import { getToken } from "./token.js";
 
 /**
  * @typedef Work
