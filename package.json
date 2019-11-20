@@ -40,6 +40,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chalk": "^2.4.2",
     "chokidar-cli": "^2.1.0",
     "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
