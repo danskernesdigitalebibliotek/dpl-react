@@ -21,8 +21,10 @@
 ## Development
 
 ### Requirements
+
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
+* `.token` file in the root of the project, containing a valid token for use with MaterialList, OpenPlatform and FollowSearches. ___(optional, you might not need or want live data.)___
 
 ### Installation
 
