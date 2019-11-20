@@ -36,9 +36,8 @@ When storybook is started, you can access it at: [ddb-react.docker](http://ddb-r
 
 1. Create a new application component
 
-`./src/apps/my-new-application/my-new-application.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.js
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -61,9 +60,8 @@ export default MyNewApplication;
 
 2. Create the entry component
 
-`./src/apps/my-new-application/my-new-application.entry.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.entry.js
 import React from "react";
 import PropTypes from "prop-types";
 import MyNewApplication from './my-new-application.js'
@@ -80,9 +78,8 @@ export default MyNewApplicationEntry;
 
 3. Create the mount
 
-`./src/apps/my-new-application/my-new-application.mount.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.mount.js
 import mount from "../../core/mount.js";
 import MyNewApplication from "./mynewapplication.entry.js";
 
@@ -91,9 +88,8 @@ mount({ appName: "my-new-application", app: MyNewApplication });
 
 4. Add a story for local development
 
-`./src/apps/my-new-application/my-new-application.dev.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.dev.js
 import React from "react";
 import MyNewApplicationEntry from "./my-new-application.entry.js";
 import MyNewApplication from "./my-new-application.js"
@@ -124,9 +120,8 @@ export function withoutData() {
 
 1. Create an application specific stylesheet
 
-`./src/apps/my-new-application/my-new-application.scss`
-
 ```scss
+// ./src/apps/my-new-application/my-new-application.scss
 .ddb-warm {
   color: maroon;
 }
@@ -134,10 +129,8 @@ export function withoutData() {
 
 2. Add the class to your application
 
-`./src/apps/my-new-application/my-new-application.js`
-
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.js
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -160,9 +153,8 @@ export default MyNewApplication;
 
 3. Import the scss into your story
 
-`./src/apps/my-new-application/my-new-application.dev.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.dev.js
 import React from "react";
 import MyNewApplicationEntry from "./my-new-application.entry.js";
 import MyNewApplication from "./my-new-application.js"
@@ -196,9 +188,8 @@ The process when creating an atom or a component is more or less similar, but so
 
 1. Create the atom
 
-`./src/components/atoms/my-new-atom/my-new-atom.js`
-
 ```javascript
+// ./src/components/atoms/my-new-atom/my-new-atom.js
 import React from "react";
 import { string } from 'prop-types'
 
@@ -222,9 +213,8 @@ export default MyNewAtom;
 
 2. Create styles for the atom
 
-`./src/components/atoms/my-new-atom/my-new-atom.scss`
-
 ```scss
+// ./src/components/atoms/my-new-atom/my-new-atom.scss
 .ddb-btn {
     color: blue;
 }
@@ -232,18 +222,16 @@ export default MyNewAtom;
 
 3. Import the atom's styles into the component stylesheet
 
-`./src/components/components.scss`
-
 ```scss
+// ./src/components/components.scss
 @import 'atoms/button/button.scss';
 @import 'atoms/my-new-atom/my-new-atom.scss';
 ```
 
 4. Create a story for your atom
 
-`./src/components/atoms/my-new-atom/my-new-atom.dev.js`
-
 ```javascript
+// ./src/components/atoms/my-new-atom/my-new-atom.dev.js
 import React from "react";
 import MyNewAtom from "./my-new-atom.js";
 
@@ -256,9 +244,8 @@ export function withText() {
 
 5. Import the atom into the applications or other components where you would want to use it
 
-`./src/apps/my-new-application/my-new-application.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.js
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
@@ -347,9 +334,8 @@ Normally these would be passed in by the server ex. Drupal, Wordpress etc.
 
 The above `ddb-id` would be accessed as such in the entrypoint of an application.
 
-`./src/apps/my-new-application/my-new-application.entry.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.entry.js
 import React from "react";
 import PropTypes from "prop-types";
 import MyNewApplication from './my-new-application.js'
@@ -365,9 +351,8 @@ export default MyNewApplicationEntry;
 To fake this in our development environment we need to pass these same data attributes into
 out entrypoint.
 
-`./src/apps/my-new-application/my-new-application.dev.js`
-
 ```javascript
+// ./src/apps/my-new-application/my-new-application.dev.js
 import React from "react";
 import MyNewApplicationEntry from "./my-new-application.entry.js";
 import MyNewApplication from "./my-new-application.js"
