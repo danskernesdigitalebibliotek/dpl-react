@@ -116,7 +116,7 @@ export function withoutData() {
   yarn dev
 ```
 
-6. Voila! You browser should have opened and a StoryBook environment is ready for you to tinker around.
+6. Voila! You browser should have opened and a storybook environment is ready for you to tinker around.
 
 ### Style your application
 
