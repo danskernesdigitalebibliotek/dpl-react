@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import AddToChecklist from "./add-to-checklist.js";
 
-export function AddToChecklistEntry(props) {
+function AddToChecklistEntry(props) {
   console.log("Do something with: ", props["ddb-id"]);
   return <AddToChecklist />;
 }

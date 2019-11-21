@@ -1,7 +1,8 @@
 import React from "react";
+
 import Checklist from "./checklist.js";
 
-export function ChecklistEntry() {
+function ChecklistEntry() {
   return <Checklist />;
 }
 

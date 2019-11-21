@@ -1,7 +1,8 @@
 import React from "react";
+
 import Searchlist from "./searchlist.js";
 
-export function SearchlistEntry() {
+function SearchlistEntry() {
   return <Searchlist />;
 }
 

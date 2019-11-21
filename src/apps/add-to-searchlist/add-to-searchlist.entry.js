@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AddToSearchlist from "./add-to-searchlist.js";
 
-export function AddToSearchlistEntry() {
-  // Here will also be server requests etc.
-  return <AddToSearchlist />;
+function AddToSearchlistEntry() {
+  const [clicked, setClicked] = useState(false);
+
+  function onClick() {
+    setClicked(true);
+  }
+
+  return <AddToSearchlist clicked={clicked} onClick={onClick} />;
 }
 
 export default AddToSearchlistEntry;

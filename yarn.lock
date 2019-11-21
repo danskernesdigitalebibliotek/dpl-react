@@ -1176,6 +1176,15 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@reach/alert@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.6.1.tgz#652836322c04500b2b443ed38f8699a3e4d06a08"
+  integrity sha512-OFwzhZ+6GxyAml9odNBzehtgA3lDrKoYikEKWRpupD/jNBR9mMoctr+/IcrFs7gV1Et/66RDIuJqb05bWnUYnw==
+  dependencies:
+    "@reach/utils" "^0.6.1"
+    "@reach/visually-hidden" "^0.6.1"
+    prop-types "^15.7.2"
+
 "@reach/component-component@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@reach/component-component/-/component-component-0.5.0.tgz#db2855a03795566ad301167a33822c7b886cd0fe"
@@ -1216,6 +1225,16 @@
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.5.0.tgz#2a64238a5a3ee57ee9742cf2579cacf41ae3a036"
   integrity sha512-MXYKmCz7BGiCLuZnPI1sBlxQFdpdv3O1Oc13k6oumJGd0eMN3+utGSs20gBH17Ml3IKVqY+9UOLEuqGfyWytHQ==
+
+"@reach/utils@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.6.1.tgz#7345dcd624f92779fb4a0fc4a28ab16d69b53476"
+  integrity sha512-SMGDydSjmvOz3Q4faGGJikdeqHumHmxB1YfYR7XTWrDQxJMod+J7mSkaS12NY4o/uPQ4xOwwL6cXWN+KpFjOQg==
+
+"@reach/visually-hidden@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.6.1.tgz#6ce4e2829c282e3d046495983d2898b439f3ad96"
+  integrity sha512-Y9CXRk5mQ4dm6TRzjcF0qb08KVBYf6tr8ee0TxuAFcA5pV92T+y1SnEd2CuzY9XqsAUyxf4LgVgvkgwzzsO03A==
 
 "@storybook/addons@5.2.6":
   version "5.2.6"
@@ -8842,6 +8861,11 @@ react-draggable@^4.0.3:
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
+
+react-error-boundary@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-1.2.5.tgz#a362cb799d2e58ff8f114f7c4bc25677ce4e4149"
+  integrity sha512-5CPSeLJA2igJNppAgFRwnTL9aK3ojenk65enNzhVyoxYNbHpIJXnChUO7+4vPhkncRA9wvQMXq6Azp2XeXd+iQ==
 
 react-error-overlay@^6.0.3:
   version "6.0.3"

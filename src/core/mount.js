@@ -1,6 +1,9 @@
 import { createElement } from "react";
 import { render } from "react-dom";
 
+import { withErrorBoundary } from "react-error-boundary";
+import ErrorBoundary from "../components/error/error.js";
+
 /**
  * This is where we actually mount the application into the DOM elements.
  * If DOM elements exists with corresponding data-ddb-app attribute values
@@ -16,7 +19,13 @@ function mount({ appName, app }) {
     `[data-ddb-app="${appName}"]`
   );
   appContainers.forEach(function mountApp(container) {
-    render(createElement(app, Object.assign({}, container.dataset)), container);
+    render(
+      createElement(
+        withErrorBoundary(app, ErrorBoundary),
+        Object.assign({}, container.dataset)
+      ),
+      container
+    );
   });
 }
 

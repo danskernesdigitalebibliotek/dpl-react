@@ -1,0 +1,13 @@
+$error-color: rgba(38, 38, 38, 0.54);
+$error-background: #e4e4e4;
+
+.ddb-error {
+  @extend .ddb-reset;
+  display: block;
+  height: 100%;
+  background-color: $error-background;
+  color: $error-color;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 5px;
+}
