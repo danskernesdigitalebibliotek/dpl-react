@@ -8,6 +8,7 @@ import { getToken } from "./token.js";
 class MaterialList {
   constructor() {
     this.token = getToken();
+    this.baseUrl = "https://test.materiallist.dandigbib.org";
   }
 
   /**
@@ -17,22 +18,16 @@ class MaterialList {
    * @returns {Promise<string[]>}
    * @memberof MaterialList
    */
-  getList(listId) {
-    return new Promise((resolve, reject) => {
-      console.info(`Getting list: ${listId}`);
-      try {
-        setTimeout(() => {
-          console.info("The list data is returned.");
-          resolve([
-            "96f46e13-2e38-4a22-b3f0-1d5efcfcd913",
-            "7ac899d6-bad3-4fe7-b654-fc32a085deac",
-            "a9c4538a-0706-4bd9-972f-6d9997854bc9"
-          ]);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async getList(listId = "default") {
+    const rawResponse = await fetch(`${this.baseUrl}/list/${listId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${this.token}`
       }
     });
+    const response = await rawResponse.json();
+    return response.materials;
   }
 
   /**
@@ -44,18 +39,24 @@ class MaterialList {
    * @returns {Promise<boolean>}
    * @memberof MaterialList
    */
-  checkListMaterial({ listId, materialId }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Checking list: ${listId} contains material: ${materialId}`);
-      try {
-        setTimeout(() => {
-          console.info("The material exists on the list.");
-          resolve(true);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async checkListMaterial({ listId = "default", materialId } = {}) {
+    if (!materialId) {
+      console.warn("materialId was not specified.");
+      return;
+    }
+    const rawResponse = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "HEAD",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    const response = await rawResponse.json();
+    return Boolean(response.status === 204);
   }
 
   /**
@@ -67,18 +68,21 @@ class MaterialList {
    * @returns {Promise<boolean>}
    * @memberof MaterialList
    */
-  addListMaterial({ listId, materialId }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Adding to list: ${listId} with material: ${materialId}`);
-      try {
-        setTimeout(() => {
-          console.info("The material was successfully added to the list.");
-          resolve(true);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async addListMaterial({ listId = "default", materialId } = {}) {
+    if (!materialId) {
+      console.warn("materialId was not specified.");
+      return;
+    }
+    const response = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    return Boolean(response.status === 204);
   }
 
   /**
@@ -90,18 +94,23 @@ class MaterialList {
    * @returns {Promise<boolean>}
    * @memberof MaterialList
    */
-  deleteListMaterial({ listId, materialId }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Deleting from list: ${listId} material: ${materialId}`);
-      try {
-        setTimeout(() => {
-          console.info("Successfully removed.");
-          resolve(true);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async deleteListMaterial({ listId = "default", materialId } = {}) {
+    if (!materialId) {
+      console.warn("materialId was not specified.");
+      return;
+    }
+    const response = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    return Boolean(response.status === 204);
   }
 }
 

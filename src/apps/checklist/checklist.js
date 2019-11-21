@@ -1,36 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Skeleton from "../../components/atoms/skeleton/skeleton";
 
-export function Checklist({ items }) {
+export function Checklist({ loading, items, onRemove }) {
+  if (loading === "active") {
+    return (
+      <div>
+        <Skeleton width="50px" />
+        <Skeleton width="30px" />
+        <Skeleton width="80px" />
+        <Skeleton width="40px" />
+      </div>
+    );
+  }
+
+  if (loading === "finished" && items.length === 0) {
+    return <div>No items on the list!</div>;
+  }
+
   return (
     <ul className="list">
       {items.map(item => (
-        <li key={item.id}>{item.text}</li>
+        <li key={item}>
+          {item} <button onClick={() => onRemove(item)}>remove</button>
+        </li>
       ))}
     </ul>
   );
 }
 
 Checklist.defaultProps = {
-  items: [
-    {
-      id: 1,
-      text: "Eragon"
-    },
-    {
-      id: 2,
-      text: "Dragonlance"
-    }
-  ]
+  items: [],
+  loading: "inactive"
 };
 
 Checklist.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      text: PropTypes.string
-    })
-  )
+  loading: PropTypes.oneOf(["inactive", "active", "finished"]),
+  items: PropTypes.arrayOf(PropTypes.string),
+  onRemove: PropTypes.func.isRequired
 };
 
 export default Checklist;
