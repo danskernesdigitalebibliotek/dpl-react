@@ -11,10 +11,10 @@ module.exports = async ({ config }) => {
   try {
     token = await fs.readFile(path.resolve(__dirname, "../.token"), "utf8");
   } catch(err) {
-    console.warn(chalk.red("warn") + " => Could not find the .token file in root");
+    console.warn(chalk.yellow("warn") + " => Could not find the .token file in root");
   }
   if (!token) {
-    console.warn(chalk.red("warn") + " => Token is empty. Requests to external services won't work!");
+    console.warn(chalk.yellow("warn") + " => Token is empty. Requests to external services might not work!");
   }
 
   const custom = customWebpack(undefined, { mode: 'development' })
