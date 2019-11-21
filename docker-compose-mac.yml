@@ -1,4 +1,10 @@
 version: '3'
+services:
+  node:
+    environment:
+      VIRTUAL_HOST: ddb-react.docker
+      VIRTUAL_PORT: 57021
+      CHOKIDAR_USEPOLLING: 1
 volumes:
   root:
     driver: local
