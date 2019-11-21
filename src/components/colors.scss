@@ -1,0 +1,34 @@
+$black: #000;
+$black-overlay: rgba(0, 0, 0, 0.8);
+$black-overlay-dark: rgba(0, 0, 0, 0.9);
+
+$color-standard-text: #474747;
+
+$charcoal: #262626;
+$charcoal-opacity-dark: rgba(38, 38, 38, 0.8);
+$charcoal-opacity-light: rgba(38, 38, 38, 0.2);
+$white: #fff;
+$white-opacity-dark: rgba(255, 255, 255, 0.54);
+$white-opacity-light: rgba(255, 255, 255, 0.2);
+
+$grey-light: #f1f2f2;
+$grey: #e5e5e5;
+$grey-medium: #ccc;
+$grey-dark: #808285;
+$grey-darker: #505050;
+
+$green: #24d273;
+$green-text: darken($green, 10);
+$red: #e22045;
+$red-text: $red;
+$yellow: #ffca5f;
+$yellow-text: darken($yellow, 15);
+
+$color-primary: #4d898e;
+$color-secondary: #f66d70;
+
+$color-text: #262627;
+$color-text-link: #4d898f;
+$color-text-link-on-dark: #4d898d;
+$color-text-on-primary: #fffff1;
+$color-text-on-secondary: #fffff2;
