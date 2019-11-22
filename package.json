@@ -27,6 +27,7 @@
     "build:doc": "doctoc README.md",
     "start": "yarn dev",
     "dev": "concurrently --raw \"start-storybook --port 57021\" \"yarn watch:lint:scss\"",
+    "build:dev": "build-storybook -c .storybook -o dev",
     "test": "cypress run"
   },
   "devDependencies": {
