@@ -6,6 +6,7 @@
 
 - [Development](#development)
   - [Requirements](#requirements)
+    - [Retrieving an access token](#retrieving-an-access-token)
   - [Installation](#installation)
   - [Create a new application](#create-a-new-application)
   - [Style your application](#style-your-application)
