@@ -19,4 +19,14 @@
       color: $color-text-on-secondary;
     }
   }
+
+  &--charcoal {
+    background: $charcoal;
+    color: $white;
+
+    &:hover {
+      background: $grey-dark;
+      color: $white;
+    }
+  }
 }

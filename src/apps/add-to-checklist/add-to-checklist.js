@@ -15,7 +15,7 @@ export function AddToChecklist({ loading, onClick, ...rest }) {
 
   return (
     <div className="ddb-container">
-      <Button className="ddb-btn--secondary" onClick={onClick}>
+      <Button className="ddb-btn--charcoal" onClick={onClick}>
         {rest["ddb-text"]}
       </Button>
     </div>
