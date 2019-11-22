@@ -15,7 +15,9 @@ export function AddToChecklist({ children, loading, onClick }) {
 
   return (
     <div className="ddb-container">
-      <Button onClick={onClick}>{children}</Button>
+      <Button className="ddb-btn--secondary" onClick={onClick}>
+        {children}
+      </Button>
     </div>
   );
 }

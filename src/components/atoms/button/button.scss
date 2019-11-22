@@ -1,5 +1,22 @@
 .ddb-btn {
   @extend .ddb-reset;
-  -webkit-appearance: button;
-  color: blue;
+
+  background: $grey;
+  border-radius: 5px;
+  color: $charcoal-opacity-dark;
+  cursor: pointer;
+  font-family: FaktPro-Normal, sans-serif;
+  font-size: 16px;
+  padding: 20px 15px 14px;
+
+  &:hover {
+    color: $charcoal;
+  }
+
+  &--secondary {
+    &:hover {
+      background: $color-secondary;
+      color: $color-text-on-secondary;
+    }
+  }
 }
