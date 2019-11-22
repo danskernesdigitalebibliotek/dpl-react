@@ -1,0 +1,39 @@
+.ddb-list {
+  &-button,
+  &-cover {
+    margin: 0;
+    float: left;
+    img {
+      height: 82px;
+      width: 63px;
+    }
+  }
+  &-item {
+    background: color("grey");
+    list-style: none;
+    padding: layout(3);
+    &:nth-child(even) {
+      background: color("white");
+    }
+    .ddb-btn {
+      float: right;
+    }
+  }
+  &-inner {
+    display: inline-block;
+    width: 100%;
+  }
+  &-content {
+    margin-left: layout(3);
+    float: left;
+    max-width: 75%;
+    line-break: auto;
+    p {
+      margin: 0;
+    }
+    h2 {
+      font-size: space(5);
+      margin: space(3) 0;
+    }
+  }
+}

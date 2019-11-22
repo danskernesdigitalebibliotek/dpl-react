@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import Checklist from "./checklist";
 import MaterialList from "../../core/MaterialList";
+import OpenPlatform from "../../core/OpenPlatform";
 
 const client = new MaterialList();
 
@@ -14,6 +14,20 @@ function ChecklistEntry() {
     client
       .getList()
       .then(function onResult(result) {
+        const op = new OpenPlatform();
+        return op.getWork({
+          pids: result,
+          fields: [
+            "title",
+            "pid",
+            "coverUrlThumbnail",
+            "creatorAut",
+            "type",
+            "date"
+          ]
+        });
+      })
+      .then(result => {
         setList(result);
       })
       .catch(function onError() {
@@ -28,7 +42,7 @@ function ChecklistEntry() {
     const fallbackList = [...list];
     setList(
       list.filter(function removeMaterial(item) {
-        return item !== materialId;
+        return item.pid !== materialId;
       })
     );
     client.deleteListMaterial({ materialId }).catch(function onError() {

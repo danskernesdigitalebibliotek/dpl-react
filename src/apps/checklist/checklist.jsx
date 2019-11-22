@@ -1,17 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Skeleton from "../../components/atoms/skeleton/skeleton";
+import Button from "../../components/atoms/button/button";
+import UnorderedList from "../../components/atoms/list/list";
 
 function Checklist({ loading, items, onRemove }) {
   if (loading === "active") {
-    return (
-      <div>
-        <Skeleton width="50px" />
-        <Skeleton width="30px" />
-        <Skeleton width="80px" />
-        <Skeleton width="40px" />
-      </div>
-    );
+    const createSkeletons = () => {
+      const skeletons = [];
+
+      for (let i = 0; i < 4; i += 1) {
+        skeletons.push(
+          <li className="ddb-list-item">
+            <section className="ddb-list-inner">
+              <Skeleton
+                borderRadius="0"
+                mb="0"
+                mt="0"
+                height="82px"
+                width="63px"
+                className="ddb-list-cover"
+              />
+              <article className="ddb-list-content">
+                <Skeleton width="45px" mb="12px" />
+                <Skeleton width="145px" mb="12px" />
+                <Skeleton width="95px" />
+              </article>
+              <Skeleton width="103px" className="ddb-btn" />
+            </section>
+          </li>
+        );
+      }
+      return skeletons;
+    };
+
+    return <UnorderedList>{createSkeletons()}</UnorderedList>;
   }
 
   if (loading === "finished" && items.length === 0) {
@@ -19,16 +42,36 @@ function Checklist({ loading, items, onRemove }) {
   }
 
   return (
-    <ul className="list">
+    <UnorderedList>
       {items.map(item => (
-        <li key={item}>
-          {item}{" "}
-          <button type="button" onClick={() => onRemove(item)}>
-            remove
-          </button>
+        <li key={item.pid} className="ddb-list-item">
+          <section className="ddb-list-inner">
+            <figure className="ddb-list-cover">
+              <img src={item.coverUrlThumbnail} alt={item.title} />
+            </figure>
+            <article className="ddb-list-content">
+              <div className="ddb-list-element">{item.type}</div>
+              <div className="ddb-list-element">
+                <h2>{item.title}</h2>
+              </div>
+              <div className="ddb-list-element">
+                <p>
+                  Af {item.creatorAut} ({item.date})
+                </p>
+              </div>
+            </article>
+            <aside className="ddb-list-button__remove">
+              <Button
+                className="ddb-btn--charcoal"
+                onClick={() => onRemove(item.pid)}
+              >
+                Fjern fra listen
+              </Button>
+            </aside>
+          </section>
         </li>
       ))}
-    </ul>
+    </UnorderedList>
   );
 }
 
@@ -39,7 +82,7 @@ Checklist.defaultProps = {
 
 Checklist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished"]),
-  items: PropTypes.arrayOf(PropTypes.string),
+  items: PropTypes.arrayOf(PropTypes.object),
   onRemove: PropTypes.func.isRequired
 };
 
