@@ -27,10 +27,19 @@ function AddToChecklistEntry(props) {
       });
   }
 
-  return <AddToChecklist loading={loading} onClick={addToList} />;
+  console.log(props["ddb-text"]);
+
+  return (
+    <AddToChecklist
+      ddb-text={props["ddb-text"]}
+      loading={loading}
+      onClick={addToList}
+    />
+  );
 }
 
 AddToChecklistEntry.propTypes = {
+  "ddb-text": PropTypes.string,
   "ddb-id": PropTypes.string
 };
 
