@@ -4,7 +4,7 @@ import getToken, { setToken } from '../src/core/token.js'
 
 let token = getToken();
 if (!token) {
-  token = window.prompt("Do you have a token? Input it here.");
+  token = window.prompt("Do you have a token for Adgangsplatformen? Input it here.");
 }
 
 /**
