@@ -1,0 +1,41 @@
+// https://www.carbondesignsystem.com/guidelines/motion/basics/
+
+$durations: (
+  "fast": (
+    70ms,
+    110ms
+  ),
+  "moderate": (
+    150ms,
+    240ms
+  ),
+  "slow": (
+    400ms,
+    700ms
+  )
+);
+
+@function duration($duration: "fast", $index: 1) {
+  $list: map-get($durations, $duration);
+  @return nth($list, $index);
+}
+
+$easings: (
+  "standard": (
+    "productive": cubic-bezier(0.2, 0, 0.38, 0.9),
+    "expressive": cubic-bezier(0.4, 0.14, 0.3, 1)
+  ),
+  "entrance": (
+    "productive": cubic-bezier(0, 0, 0.38, 0.9),
+    "expressive": cubic-bezier(0, 0, 0.3, 1)
+  ),
+  "exit": (
+    "productive": cubic-bezier(0.2, 0, 1, 0.9),
+    "expressive": cubic-bezier(0.4, 0.14, 1, 1)
+  )
+);
+
+@function easing($easing: "standard", $key: "productive") {
+  $map: map-get($easings, $easing);
+  @return map-get($map, $key);
+}

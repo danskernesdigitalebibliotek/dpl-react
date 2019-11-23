@@ -2,12 +2,13 @@
   @extend .ddb-reset;
 
   background: color("grey");
-  border-radius: 5px;
+  border-radius: $border-radius;
   color: color("charcoal", "opacity-dark");
   cursor: pointer;
   font-family: inherit;
-  font-size: 16px;
-  padding: 20px 15px 14px;
+  font-size: space(5);
+  padding: space(5) space(6);
+  transition: background duration("fast", 2) easing();
 
   &:hover {
     color: color("charcoal");
