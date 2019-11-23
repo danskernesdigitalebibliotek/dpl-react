@@ -10,7 +10,7 @@ export default {
 export function entry() {
   return (
     <AddToChecklist
-      ddb-text="Tilføj til den bedste huskeliste"
+      ddb-text={text("Text", "Tilføj til den bedste huskeliste")}
       ddb-id={text("Material ID", "870970-basis:54172613")}
     />
   );
