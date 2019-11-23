@@ -11,14 +11,8 @@ import { getToken } from "./token.js";
 class OpenPlatform {
   constructor() {
     this.token = getToken();
+    this.baseUrl = "https://openplatform.dbc.dk/v3";
   }
-  /**
-   * The endpoint of OpenPlatform.
-   * https://openplatform.dbc.dk/v3/
-   *
-   * @memberof OpenPlatform
-   */
-  baseUrl = "https://openplatform.dbc.dk/v3/";
 
   /**
    * We want a default formatter that more or less just passes the
@@ -43,47 +37,25 @@ class OpenPlatform {
    * @returns {Promise<Work[]>}
    * @memberof OpenPlatform
    */
-  getWork({ pids = [], fields = [], formatter = this.defaultWorkFormatter }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Getting work: ${JSON.stringify(pids)}`);
-      const formattedPids = pids.map(pid => `pids=${pid}`).join("&");
-      const formattedFields = fields.map(field => `fields=${field}`).join("&");
-      const getWorkUrl = `${this.baseUrl}work?${formattedPids}&${formattedFields}`;
-      console.info(`Retrieving work from: ${getWorkUrl}`);
-      try {
-        setTimeout(() => {
-          resolve(
-            formatter([
-              {
-                pid: ["870970"],
-                dcTitleFull: ["Harry Potter og de vises sten"],
-                creatorAut: ["Joanne K. Rowling"],
-                date: ["2018"],
-                type: ["bog"]
-              },
-              {
-                pid: ["710100"],
-                dcTitleFull: ["The way of kings"],
-                creatorAut: ["Brandon Sanderson"],
-                date: ["2011"],
-                type: ["bog"]
-              },
-              {
-                pid: ["510061"],
-                dcTitleFull: [
-                  "The way of kings : The Stormlight Archive Series, Book 1"
-                ],
-                creatorAut: ["Brandon Sanderson"],
-                date: ["2010"],
-                type: ["ebog"]
-              }
-            ])
-          );
-        }, 500);
-      } catch (err) {
-        reject(err);
-      }
+  async getWork({
+    pids = [],
+    fields = ["title"],
+    formatter = this.defaultWorkFormatter
+  }) {
+    const formattedPids = pids.map(encodeURIComponent).join(",") + ",";
+    const formattedFields = fields.map(encodeURIComponent).join(",");
+    const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
+
+    const rawResponse = await fetch(getWorkUrl, {
+      headers: { Accept: "application/json" }
     });
+    if (rawResponse.status !== 200) throw Error(rawResponse.status);
+
+    const response = await rawResponse.json();
+    if (response.statusCode !== 200) throw Error(response.statusCode);
+    if (!response.data) throw Error("data not found");
+
+    return formatter(response.data);
   }
 }
 
