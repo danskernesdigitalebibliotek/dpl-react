@@ -13,5 +13,6 @@
 .ddb-skeleton {
   display: block;
   background-color: #cbcbcb;
-  animation: ddb-skeleton 1.5s ease-in-out infinite;
+  animation: ddb-skeleton duration("slow", 2) easing("standard", "expressive")
+    infinite;
 }
