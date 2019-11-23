@@ -1,32 +1,32 @@
 .ddb-btn {
   @extend .ddb-reset;
 
-  background: $grey;
+  background: color("grey");
   border-radius: 5px;
-  color: $charcoal-opacity-dark;
+  color: color("charcoal", "opacity-dark");
   cursor: pointer;
   font-family: inherit;
   font-size: 16px;
   padding: 20px 15px 14px;
 
   &:hover {
-    color: $charcoal;
+    color: color("charcoal");
   }
 
   &--secondary {
     &:hover {
-      background: $color-secondary;
-      color: $color-text-on-secondary;
+      background: color("secondary");
+      color: color("secondary", text);
     }
   }
 
   &--charcoal {
-    background: $charcoal;
-    color: $white;
+    background: color("charcoal");
+    color: color("white");
 
     &:hover {
-      background: $grey-dark;
-      color: $white;
+      background: color("grey", "dark");
+      color: color("white");
     }
   }
 }
