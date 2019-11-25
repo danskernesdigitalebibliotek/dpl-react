@@ -39,7 +39,7 @@ class OpenPlatform {
    * @returns {Promise<Work[]>}
    * @memberof OpenPlatform
    */
-  async getWork({ pids = [], fields = ["title"] }) {
+  async getWork({ pids = [], fields = ["title"] } = {}) {
     const formattedPids = this.formatPids(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
     const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
@@ -47,10 +47,8 @@ class OpenPlatform {
     const rawResponse = await fetch(getWorkUrl, {
       headers: { Accept: "application/json" }
     });
-    if (rawResponse.status !== 200) throw Error(rawResponse.status);
-
     const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.statusCode);
+    if (response.statusCode !== 200) throw Error(response.error);
     if (!response.data) throw Error("data not found");
 
     return response.data;
