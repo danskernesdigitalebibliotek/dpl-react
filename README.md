@@ -23,6 +23,7 @@
 
 ### Requirements
 
+* [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
 * `.token` file in the root of the project containing a valid Adgangsplatformen token for a patron. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/reload/material-list) and [FollowSearches](https://github.com/reload/follow-searches). ___(optional, you might not need or want live data.)___
@@ -68,7 +69,8 @@ When storybook is started, you can access it at: [ddb-react.docker](http://ddb-r
 
 ### Create a new application
 
-1. Create a new application component
+<details>
+  <summary>1. Create a new application component</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.js
@@ -92,7 +94,10 @@ MyNewApplication.propTypes = {
 export default MyNewApplication;
 ```
 
-2. Create the entry component
+</details>
+
+<details>
+  <summary>2. Create the entry component</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.entry.js
@@ -109,8 +114,10 @@ export function MyNewApplicationEntry(props) {
 
 export default MyNewApplicationEntry;
 ```
+</details>
 
-3. Create the mount
+<details>
+  <summary>3. Create the mount</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.mount.js
@@ -119,8 +126,10 @@ import MyNewApplication from "./mynewapplication.entry.js";
 
 mount({ appName: "my-new-application", app: MyNewApplication });
 ```
+</details>
 
-4. Add a story for local development
+<details>
+  <summary>4. Add a story for local development</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.dev.js
@@ -141,18 +150,22 @@ export function withoutData() {
 }
 
 ```
+</details>
 
-5. Run the development environment
+<details>
+  <summary>5. Run the development environment</summary>
 
 ```bash
   yarn dev
 ```
+</details>
 
-6. Voila! You browser should have opened and a storybook environment is ready for you to tinker around.
+__Voila!__ You browser should have opened and a storybook environment is ready for you to tinker around.
 
 ### Style your application
 
-1. Create an application specific stylesheet
+<details>
+  <summary>1. Create an application specific stylesheet</summary>
 
 ```scss
 // ./src/apps/my-new-application/my-new-application.scss
@@ -160,8 +173,10 @@ export function withoutData() {
   color: maroon;
 }
 ```
+</details>
 
-2. Add the class to your application
+<details>
+  <summary>2. Add the class to your application</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.js
@@ -184,8 +199,10 @@ MyNewApplication.propTypes = {
 
 export default MyNewApplication;
 ```
+</details>
 
-3. Import the scss into your story
+<details>
+  <summary>3. Import the scss into your story</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.dev.js
@@ -207,8 +224,9 @@ export function withoutData() {
   return <MyNewApplication />;
 }
 ```
+</details>
 
-4. Cowabunga! You now got styling in your application
+__Cowabunga!__ You now got styling in your application
 
 ### Cross application components
 
@@ -220,7 +238,8 @@ The process when creating an atom or a component is more or less similar, but so
 
 #### Creating an atom
 
-1. Create the atom
+<details>
+  <summary>1. Create the atom</summary>
 
 ```javascript
 // ./src/components/atoms/my-new-atom/my-new-atom.js
@@ -244,8 +263,10 @@ MyNewAtom.propTypes = {
 
 export default MyNewAtom;
 ```
+</details>
 
-2. Create styles for the atom
+<details>
+  <summary>2. Create styles for the atom</summary>
 
 ```scss
 // ./src/components/atoms/my-new-atom/my-new-atom.scss
@@ -253,16 +274,20 @@ export default MyNewAtom;
     color: blue;
 }
 ```
+</details>
 
-3. Import the atom's styles into the component stylesheet
+<details>
+  <summary>3. Import the atom's styles into the component stylesheet</summary>
 
 ```scss
 // ./src/components/components.scss
 @import 'atoms/button/button.scss';
 @import 'atoms/my-new-atom/my-new-atom.scss';
 ```
+</details>
 
-4. Create a story for your atom
+<details>
+  <summary>4. Create a story for your atom</summary>
 
 ```javascript
 // ./src/components/atoms/my-new-atom/my-new-atom.dev.js
@@ -275,8 +300,10 @@ export function withText() {
   return <MyNewAtom>Cick me!</MyNewAtom>;
 }
 ```
+</details>
 
-5. Import the atom into the applications or other components where you would want to use it
+<details>
+  <summary>5. Import the atom into the applications or other components where you would want to use it</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.js
@@ -304,8 +331,9 @@ MyNewApplication.propTypes = {
 
 export default MyNewApplication;
 ```
+</details>
 
-6. Finito! You now know how to share code across applications
+__Finito!__ You now know how to share code across applications
 
 #### Creating a component
 
@@ -319,6 +347,9 @@ Such as `./src/components/my-new-component/my-new-component.js`
 
 So let's say you wanted to make use of an application in Drupal, WordPress etc.
 A simple naive example of the required artifacts needed looks like this:
+
+<details>
+  <summary>HTML Example</summary>
 
 ```html
 <!DOCTYPE html>
@@ -341,6 +372,7 @@ A simple naive example of the required artifacts needed looks like this:
 </body>
 </html>
 ```
+</details>
 
 As a minimum you will need the `runtime.js` and `bundle.js`.
 For styling of atoms and components you will need to import `components.css`.
@@ -368,6 +400,9 @@ Normally these would be passed in by the server ex. Drupal, Wordpress etc.
 
 The above `data-id` would be accessed as `props.id` in the entrypoint of an application.
 
+<details>
+  <summary>Example</summary>
+
 ```javascript
 // ./src/apps/my-new-application/my-new-application.entry.js
 import React from "react";
@@ -381,9 +416,13 @@ export function MyNewApplicationEntry(props) {
 
 export default MyNewApplicationEntry;
 ```
+</details>
 
 To fake this in our development environment we need to pass these same data attributes into
 out entrypoint.
+
+<details>
+  <summary>Example</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.dev.js
@@ -404,3 +443,4 @@ export function withoutData() {
 }
 
 ```
+</details>
