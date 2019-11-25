@@ -29,13 +29,6 @@
 
 #### Retrieving an access token
 
-We have a make target for retrieving an access token.
-You still need the valid client id and client secret as described below.
-
-```bash
-make token
-```
-
 The [OAuth access token must be retrieved from Adgangsplatformen](https://github.com/DBCDK/hejmdal/blob/master/docs/oauth2.md), a single sign-on solution for public libraries in Denmark. 
 
 Usage of Adgangsplatformen requires a valid client id and secret which must be
@@ -56,6 +49,13 @@ This will return a data structure containing the access token:
     "token_type":"Bearer",
     "expires_in":2591999
 }
+```
+
+We have a make target for retrieving an access token.
+You still need the valid client id and client secret as described above.
+
+```bash
+make token
 ```
 
 ### Installation
