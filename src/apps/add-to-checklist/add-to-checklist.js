@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Button from "../../components/atoms/button/button.js";
 
-export function AddToChecklist({ loading, onClick, ...rest }) {
+export function AddToChecklist({ loading, onClick, text }) {
   // Here will also be server requests etc.
   if (loading === "active") {
     return <div>Tilføjet</div>;
@@ -16,7 +16,7 @@ export function AddToChecklist({ loading, onClick, ...rest }) {
   return (
     <div className="ddb-container">
       <Button className="ddb-btn--charcoal" onClick={onClick}>
-        {rest["ddb-text"]}
+        {text}
       </Button>
     </div>
   );
@@ -30,6 +30,7 @@ AddToChecklist.defaultProps = {
 AddToChecklist.propTypes = {
   ddbText: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
   loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"])
 };
 

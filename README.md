@@ -333,7 +333,7 @@ A simple naive example of the required artifacts needed looks like this:
 </head>
 <body>
     <b>Here be dragons!</b>
-    <div data-ddb-app='add-to-checklist' data-ddb-whatever-value="Chromatic dragon"></div>
+    <div data-ddb-app='add-to-checklist' data-whatever-value="Chromatic dragon"></div>
     <div data-ddb-app='add-to-checklist'></div>
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -363,10 +363,10 @@ Additional data attributes can be passed if neccessary. Examples would be contex
 Normally these would be passed in by the server ex. Drupal, Wordpress etc.
 
 ```html
-<div data-ddb-app='add-to-checklist' data-ddb-id="3A23607387"></div>
+<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613"></div>
 ```
 
-The above `ddb-id` would be accessed as such in the entrypoint of an application.
+The above `data-id` would be accessed as `props.id` in the entrypoint of an application.
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.entry.js
@@ -375,7 +375,7 @@ import PropTypes from "prop-types";
 import MyNewApplication from './my-new-application.js'
 
 export function MyNewApplicationEntry(props) {
-  const id = props['ddb-id'] // 3A23607387
+  const id = props.id // 870970-basis:54172613
   return <MyNewApplication id={id} />
 }
 
@@ -395,7 +395,7 @@ export default { title: "Apps|My new application" };
 
 export function entry() {
   // Testing the version that will be shipped.
-  return <MyNewApplicationEntry ddb-id="3A23607387" />;
+  return <MyNewApplicationEntry id="3A23607387" />;
 }
 
 export function withoutData() {

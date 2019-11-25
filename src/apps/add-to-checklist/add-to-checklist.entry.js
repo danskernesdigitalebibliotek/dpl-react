@@ -12,7 +12,7 @@ function AddToChecklistEntry(props) {
   function addToList() {
     setLoading("active");
     client
-      .addListMaterial({ materialId: props["ddb-id"] })
+      .addListMaterial({ materialId: props.id })
       .then(function onResult(result) {
         console.log(result);
       })
@@ -27,20 +27,16 @@ function AddToChecklistEntry(props) {
       });
   }
 
-  console.log(props["ddb-text"]);
+  console.log(props.text);
 
   return (
-    <AddToChecklist
-      ddb-text={props["ddb-text"]}
-      loading={loading}
-      onClick={addToList}
-    />
+    <AddToChecklist text={props.text} loading={loading} onClick={addToList} />
   );
 }
 
 AddToChecklistEntry.propTypes = {
-  "ddb-text": PropTypes.string,
-  "ddb-id": PropTypes.string
+  text: PropTypes.string,
+  id: PropTypes.string
 };
 
 export default AddToChecklistEntry;
