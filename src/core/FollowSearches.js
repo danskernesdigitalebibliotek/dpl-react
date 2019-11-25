@@ -58,10 +58,10 @@ class FollowSearches {
    * @returns {Promise<boolean>}
    * @memberof FollowSearches
    */
-  addSearch({ listName, search }) {
+  addSearch({ listName = "default", search, title } = {}) {
     return new Promise((resolve, reject) => {
       console.info(
-        `Add search: ${JSON.stringify(search)} to list: ${listName}`
+        `Add search: ${search} to list: ${listName}, with title: ${title}`
       );
       try {
         setTimeout(() => {
