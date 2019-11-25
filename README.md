@@ -395,7 +395,7 @@ export default { title: "Apps|My new application" };
 
 export function entry() {
   // Testing the version that will be shipped.
-  return <MyNewApplicationEntry id="3A23607387" />;
+  return <MyNewApplicationEntry id="870970-basis:54172613" />;
 }
 
 export function withoutData() {
