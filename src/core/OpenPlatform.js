@@ -28,6 +28,21 @@ class OpenPlatform {
   }
 
   /**
+   * A dedicated formatter for pids is required since there are some
+   * quirks to it introduced from the OpenPlatform API.
+   * The final pids query string needs to always have a "comma" at the end
+   * to signify that it's and array of string.
+   * That is not needed for "fields" or anything else I have encountered.
+   * Solely "pids".
+   * @param {string[]} pids
+   * @returns {string} string of pids
+   * @memberof OpenPlatform
+   */
+  formatPids(pids = []) {
+    return pids.map(encodeURIComponent).join(",") + ",";
+  }
+
+  /**
    * Retrieve meta information about creative work(s).
    * In other words, books, cd's etc.
    *
@@ -42,7 +57,7 @@ class OpenPlatform {
     fields = ["title"],
     formatter = this.defaultWorkFormatter
   }) {
-    const formattedPids = pids.map(encodeURIComponent).join(",") + ",";
+    const formattedPids = this.formatPids(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
     const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
 
