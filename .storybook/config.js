@@ -1,6 +1,7 @@
 import { configure } from '@storybook/react';
+import './dev-fonts.scss';
 import '../src/components/components.scss';
-import getToken, { setToken } from '../src/core/token.js'
+import getToken, { setToken } from '../src/core/token.js';
 
 let token = getToken();
 if (!token) {
