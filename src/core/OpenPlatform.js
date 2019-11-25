@@ -15,19 +15,6 @@ class OpenPlatform {
   }
 
   /**
-   * We want a default formatter that more or less just passes the
-   * data through. This allows for the consumer to design their own formatter
-   * and provide it.
-   *
-   * @param {Work[]} work
-   * @returns {object}
-   * @memberof OpenPlatform
-   */
-  defaultWorkFormatter(work) {
-    return work;
-  }
-
-  /**
    * A dedicated formatter for pids is required since there are some
    * quirks to it introduced from the OpenPlatform API.
    * The final pids query string needs to always have a "comma" at the end
@@ -52,11 +39,7 @@ class OpenPlatform {
    * @returns {Promise<Work[]>}
    * @memberof OpenPlatform
    */
-  async getWork({
-    pids = [],
-    fields = ["title"],
-    formatter = this.defaultWorkFormatter
-  }) {
+  async getWork({ pids = [], fields = ["title"] }) {
     const formattedPids = this.formatPids(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
     const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
@@ -70,7 +53,7 @@ class OpenPlatform {
     if (response.statusCode !== 200) throw Error(response.statusCode);
     if (!response.data) throw Error("data not found");
 
-    return formatter(response.data);
+    return response.data;
   }
 }
 
