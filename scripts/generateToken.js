@@ -8,24 +8,29 @@ inquirer
   .prompt([
     {
       name: "username",
-      message: "Username (CPR)"
+      message:
+        "username => Patron id. This could be a CPR number or id card number:"
     },
     {
       name: "password",
-      message: "Password (four digits)",
+      message:
+        "password => Password. This could be the PIN-code of the patron:",
       type: "password"
     },
     {
       name: "agency",
-      message: "Agency"
+      message:
+        "agency => The agency number of the patron library organization. Example: 710100 for Copenhagen libraries:"
     },
     {
       name: "client_id",
-      message: "Client id"
+      message:
+        "client_id => Client id. The id of the client application which is acting on behalf of the patron:"
     },
     {
       name: "client_secret",
-      message: "Client secret",
+      message:
+        "client_secret => Client secret. The secret matching the client id:",
       type: "password"
     }
   ])
