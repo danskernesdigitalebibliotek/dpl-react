@@ -34,14 +34,18 @@ function AddToSearchlist({
 
   return (
     <div>
-      <Button onClick={open}>{text}</Button>
+      <Button className="ddb-btn--charcoal" onClick={open}>
+        {text}
+      </Button>
       <Dialog isOpen={showDialog} onDismiss={close}>
         <TextField
           onChange={e => setName(e.target.value)}
           label={label}
           defaultValue={defaultValue}
         />
-        <Button onClick={submit}>{addButtonLabel}</Button>
+        <Button className="ddb-btn--charcoal" onClick={submit}>
+          {addButtonLabel}
+        </Button>
       </Dialog>
     </div>
   );
