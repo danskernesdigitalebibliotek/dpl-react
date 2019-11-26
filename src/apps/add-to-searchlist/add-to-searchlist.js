@@ -11,13 +11,13 @@ export function AddToSearchlist({
   text,
   label,
   defaultTitle,
-  searchQuery,
   addButtonLabel
 }) {
   const [showDialog, setShowDialog] = useState(false);
+  const [name, setName] = useState(defaultTitle);
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
-  const submit = () => onSubmit(searchQuery);
+  const submit = () => onSubmit(name);
 
   if (state === "finished") {
     return <div>Tilføjet</div>;
@@ -36,7 +36,11 @@ export function AddToSearchlist({
     <div>
       <Button onClick={open}>{text}</Button>
       <Dialog isOpen={showDialog} onDismiss={close}>
-        <TextField label={label} defaultValue={defaultTitle} />
+        <TextField
+          onChange={e => setName(e.target.value)}
+          label={label}
+          defaultValue={defaultTitle}
+        />
         <Button onClick={submit}>{addButtonLabel}</Button>
       </Dialog>
     </div>
@@ -58,7 +62,6 @@ AddToSearchlist.propTypes = {
   text: PropTypes.string,
   label: PropTypes.string,
   defaultTitle: PropTypes.string,
-  searchQuery: PropTypes.string,
   addButtonLabel: PropTypes.string,
   successMessage: PropTypes.string,
   errorMessage: PropTypes.string
