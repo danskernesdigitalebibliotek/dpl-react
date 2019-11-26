@@ -48,12 +48,10 @@ class FollowSearches {
         method: "GET",
         headers: {
           Accept: "application/json",
-
           Authorization: `Bearer ${this.token}`
         }
       }
     );
-
     return raw.json();
   }
 
