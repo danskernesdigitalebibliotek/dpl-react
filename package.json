@@ -27,8 +27,7 @@
     "build:doc": "doctoc README.md",
     "start": "yarn dev",
     "dev": "concurrently --raw \"start-storybook --port 57021\" \"yarn watch:lint:scss\"",
-    "build:dev": "build-storybook -c .storybook -o dev",
-    "test": "cypress run"
+    "build:dev": "build-storybook -c .storybook -o dev"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -47,12 +46,10 @@
     "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
-    "cypress": "^3.6.0",
     "doctoc": "^1.4.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-loader": "^3.0.2",
-    "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
