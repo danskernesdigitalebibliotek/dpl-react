@@ -1,11 +1,14 @@
 import React from "react";
-import { string } from "prop-types";
+import PropTypes from "prop-types";
 
 /**
  * A simple text field with label.
  *
  * @export
  * @param {Object} props
+ * @param {string} props.className
+ * @param {string} props.label
+ * @param {string} props.value
  * @returns {ReactNode}
  */
 export function TextField({ className, label, value, ...rest }) {
@@ -18,9 +21,9 @@ export function TextField({ className, label, value, ...rest }) {
 }
 
 TextField.propTypes = {
-  className: string,
-  label: string,
-  value: string
+  className: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string
 };
 
 export default TextField;
