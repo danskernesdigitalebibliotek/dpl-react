@@ -39,12 +39,12 @@ function AddToSearchlistEntry(props) {
 }
 
 AddToSearchlistEntry.propTypes = {
-  text: PropTypes.string,
-  label: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   "default-title": PropTypes.string,
-  "search-query": PropTypes.string,
-  "success-message": PropTypes.string,
-  "error-message": PropTypes.string
+  "search-query": PropTypes.string.isRequired,
+  "success-message": PropTypes.string.isRequired,
+  "error-message": PropTypes.string.isRequired
 };
 
 export default AddToSearchlistEntry;
