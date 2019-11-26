@@ -9,7 +9,8 @@ module.exports = ctx => {
         // There is not to be any actual output from _system.scss. 
         data: '@import "./src/components/design-system/_system.scss";'
       }),
-      production && require("autoprefixer")
+      production && require("autoprefixer"),
+      production && require("cssnano")
     ]
   };
 };
