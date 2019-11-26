@@ -1,8 +1,9 @@
 import React from "react";
+import { withKnobs, text } from "@storybook/addon-knobs";
 import TextField from "./textfield.js";
 
 export default { title: "Atoms|TextField" };
 
 export function withText() {
-  return <TextField label="Some label" placeholder="Value" />;
+  return <TextField label={text("Field label", "Some label")} value={text("Default value", "Value")} />;
 }
