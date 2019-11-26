@@ -15,6 +15,7 @@ export function Entry() {
       defaultTitle={text("Default title", "Harry Potter")}
       searchQuery={text("Search query", "harry potter")}
       addButtonLabel={text("Add button label", "Add")}
+      helpText={text("Help text", "")}
     />
   );
 }

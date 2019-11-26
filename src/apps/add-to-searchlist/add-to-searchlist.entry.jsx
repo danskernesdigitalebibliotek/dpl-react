@@ -6,7 +6,7 @@ import FollowSearches from "../../core/FollowSearches";
 
 const client = new FollowSearches();
 
-function AddToSearchlistEntry({ text, label, defaultTitle, searchQuery }) {
+function AddToSearchlistEntry({ text, label, defaultValue, searchQuery }) {
   const [state, setState] = useState("inactive");
 
   function addToSearchList(title) {
@@ -30,7 +30,7 @@ function AddToSearchlistEntry({ text, label, defaultTitle, searchQuery }) {
       onSubmit={addToSearchList}
       text={text}
       label={label}
-      defaultTitle={defaultTitle}
+      defaultValue={defaultValue}
       searchQuery={searchQuery}
     />
   );
@@ -39,12 +39,12 @@ function AddToSearchlistEntry({ text, label, defaultTitle, searchQuery }) {
 AddToSearchlistEntry.propTypes = {
   text: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  defaultTitle: PropTypes.string,
+  defaultValue: PropTypes.string,
   searchQuery: PropTypes.string.isRequired
 };
 
 AddToSearchlistEntry.defaultProps = {
-  defaultTitle: ""
+  defaultValue: ""
 };
 
 export default AddToSearchlistEntry;

@@ -11,7 +11,8 @@ function AddToSearchlist({
   text,
   label,
   defaultValue,
-  addButtonLabel
+  addButtonLabel,
+  helpText
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [name, setName] = useState(defaultValue);
@@ -38,6 +39,7 @@ function AddToSearchlist({
         {text}
       </Button>
       <Dialog isOpen={showDialog} onDismiss={close}>
+        {helpText ? <p>{helpText}</p> : null}
         <TextField
           onChange={e => setName(e.target.value)}
           label={label}
@@ -56,7 +58,8 @@ AddToSearchlist.defaultProps = {
   text: "Add to followed searches",
   label: "Search title",
   addButtonLabel: "Add",
-  defaultValue: ""
+  defaultValue: "",
+  helpText: ""
 };
 
 AddToSearchlist.propTypes = {
@@ -65,7 +68,8 @@ AddToSearchlist.propTypes = {
   text: PropTypes.string,
   label: PropTypes.string,
   addButtonLabel: PropTypes.string,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.string,
+  helpText: PropTypes.string
 };
 
 export default AddToSearchlist;
