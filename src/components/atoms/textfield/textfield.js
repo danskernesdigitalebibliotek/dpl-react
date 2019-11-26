@@ -10,7 +10,7 @@ import { string } from "prop-types";
  */
 export function TextField({ className, label, value, ...rest }) {
   return (
-    <label className={`ddb-btn ${!className ? "" : className}`} {...rest}>
+    <label className={!className ? "" : className} {...rest}>
       {label}
       <input value={value} />
     </label>
