@@ -13,9 +13,9 @@ import PropTypes from "prop-types";
  */
 export function TextField({ className, label, value, ...rest }) {
   return (
-    <label className={!className ? "" : className} {...rest}>
+    <label className={`ddb-reset ${!className ? "" : className}`} {...rest}>
       {label}
-      <input value={value} />
+      <input className="ddb-reset" value={value} />
     </label>
   );
 }

@@ -10,7 +10,10 @@ import { string } from "prop-types";
  */
 export function Button({ className, ...rest }) {
   return (
-    <button className={`ddb-btn ${!className ? "" : className}`} {...rest} />
+    <button
+      className={`ddb-reset ddb-btn ${!className ? "" : className}`}
+      {...rest}
+    />
   );
 }
 

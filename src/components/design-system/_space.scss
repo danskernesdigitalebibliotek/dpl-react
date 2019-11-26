@@ -9,5 +9,5 @@ $spaces: 2px, 4px, 8px, 12px, 16px, 24px, 32px, 40px, 48px;
 $layouts: 16px, 24px, 32px, 48px, 64px, 96px, 160px;
 
 @function layout($index: 1) {
-  @return nth($spaces, $index);
+  @return nth($layouts, $index);
 }

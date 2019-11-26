@@ -8,7 +8,7 @@ import React from "react";
  * @returns {ReactNode}
  */
 export function UnorderedList(props) {
-  return <ul className="list" {...props} />;
+  return <ul className="ddb-reset list" {...props} />;
 }
 
 export default UnorderedList;

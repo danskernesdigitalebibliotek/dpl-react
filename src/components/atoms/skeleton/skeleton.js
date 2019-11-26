@@ -26,7 +26,7 @@ export function Skeleton({
 }) {
   return (
     <Component
-      className={`ddb-skeleton`}
+      className="ddb-reset ddb-skeleton"
       style={{
         width,
         height,
