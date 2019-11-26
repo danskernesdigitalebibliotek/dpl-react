@@ -14,16 +14,13 @@ function AddToSearchlistEntry(props) {
     client
       .addSearch({ title: title, search: props["search-query"] })
       .then(function onResult() {
-        // Wolla. What to do here?
+        setState("finished");
       })
       .catch(function onError() {
         setState("failed");
         setTimeout(function onRestore() {
           setState("inactive");
         }, 2000);
-      })
-      .finally(function onEnd() {
-        setState("finished");
       });
   }
 
