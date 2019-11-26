@@ -10,11 +10,11 @@ export default {
 export function entry() {
   return (
     <AddToSearchlist
-      ddb-text={text("Button text", "Add search")}
-      ddb-label={text("Field title", "Search title")}
-      ddb-default-title={text("Default title", "Harry Potter")}
-      ddb-search-query={text("Search query", "harry potter")}
-      ddb-add-button-label={text("Add button label", "Add")}
+      text={text("Button text", "Add search")}
+      label={text("Field title", "Search title")}
+      default-title={text("Default title", "Harry Potter")}
+      search-query={text("Search query", "harry potter")}
+      add-button-label={text("Add button label", "Add")}
     />
   );
 }

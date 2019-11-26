@@ -12,7 +12,7 @@ function AddToSearchlistEntry(props) {
   function addToSearchList(title) {
     setState("requesting");
     client
-      .addSearch({ title: title, search: props["ddb-search-query"] })
+      .addSearch({ title: title, search: props["search-query"] })
       .then(function onResult() {
         // Wolla. What to do here?
       })
@@ -31,23 +31,23 @@ function AddToSearchlistEntry(props) {
     <AddToSearchlist
       state={state}
       onSubmit={addToSearchList}
-      ddbText={props["ddb-text"]}
-      ddbLabel={props["ddb-label"]}
-      ddbDefaultTitle={props["ddb-default-title"]}
-      ddbSearchQuery={props["ddb-search-query"]}
-      ddbSuccessMessage={props["ddb-success-message"]}
-      ddbErrorMessage={props["ddb-error-message"]}
+      text={props["text"]}
+      label={props["label"]}
+      defaultTitle={props["default-title"]}
+      searchQuery={props["search-query"]}
+      successMessage={props["success-message"]}
+      errorMessage={props["error-message"]}
     />
   );
 }
 
 AddToSearchlistEntry.propTypes = {
-  "ddb-text": PropTypes.string,
-  "ddb-label": PropTypes.string,
-  "ddb-default-title": PropTypes.string,
-  "ddb-search-query": PropTypes.string,
-  "ddb-success-message": PropTypes.string,
-  "ddb-error-message": PropTypes.string
+  text: PropTypes.string,
+  label: PropTypes.string,
+  "default-title": PropTypes.string,
+  "search-query": PropTypes.string,
+  "success-message": PropTypes.string,
+  "error-message": PropTypes.string
 };
 
 export default AddToSearchlistEntry;

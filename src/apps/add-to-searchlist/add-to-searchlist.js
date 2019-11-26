@@ -8,16 +8,16 @@ import TextField from "../../components/atoms/textfield/textfield.js";
 export function AddToSearchlist({
   state,
   onSubmit,
-  ddbText,
-  ddbLabel,
-  ddbDefaultTitle,
-  ddbSearchQuery,
-  ddbAddButtonLabel
+  text,
+  label,
+  defaultTitle,
+  searchQuery,
+  addButtonLabel
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
-  const submit = () => onSubmit(ddbSearchQuery);
+  const submit = () => onSubmit(searchQuery);
 
   if (state === "finished") {
     return <div>Tilføjet</div>;
@@ -34,34 +34,34 @@ export function AddToSearchlist({
 
   return (
     <div>
-      <Button onClick={open}>{ddbText}</Button>
+      <Button onClick={open}>{text}</Button>
       <Dialog isOpen={showDialog} onDismiss={close}>
-        <TextField label={ddbLabel} defaultValue={ddbDefaultTitle} />
-        <Button onClick={submit}>{ddbAddButtonLabel}</Button>
+        <TextField label={label} defaultValue={defaultTitle} />
+        <Button onClick={submit}>{addButtonLabel}</Button>
       </Dialog>
     </div>
   );
 }
 
 AddToSearchlist.defaultProps = {
-  ddbText: "Add to followed searches",
-  ddbLabel: "Search title",
-  ddbValue: "",
-  ddbAddButtonLabel: "Add",
-  ddbSuccessMessage: "Success",
-  ddbErrorMessage: "Something when wrong"
+  text: "Add to followed searches",
+  label: "Search title",
+  value: "",
+  addButtonLabel: "Add",
+  successMessage: "Success",
+  errorMessage: "Something when wrong"
 };
 
 AddToSearchlist.propTypes = {
   state: PropTypes.string,
   onSubmit: PropTypes.func,
-  ddbText: PropTypes.string,
-  ddbLabel: PropTypes.string,
-  ddbDefaultTitle: PropTypes.string,
-  ddbSearchQuery: PropTypes.string,
-  ddbAddButtonLabel: PropTypes.string,
-  ddbSuccessMessage: PropTypes.string,
-  ddbErrorMessage: PropTypes.string
+  text: PropTypes.string,
+  label: PropTypes.string,
+  defaultTitle: PropTypes.string,
+  searchQuery: PropTypes.string,
+  addButtonLabel: PropTypes.string,
+  successMessage: PropTypes.string,
+  errorMessage: PropTypes.string
 };
 
 export default AddToSearchlist;
