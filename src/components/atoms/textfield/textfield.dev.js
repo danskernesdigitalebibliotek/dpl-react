@@ -8,8 +8,10 @@ export default {
 };
 
 export function withText() {
-  return <TextField
-           label={text("Field label", "Some label")}
-           value={text("Default value", "Value")}
-         />;
+  return (
+    <TextField
+      label={text("Field label", "Some label")}
+      value={text("Default value", "Value")}
+    />
+  );
 }

@@ -12,7 +12,7 @@ function AddToSearchlistEntry(props) {
   function addToSearchList(title) {
     setState("requesting");
     client
-      .addSearch({ title: title, search: props["search-query"] })
+      .addSearch({ title: title, search: props["searchQuery"] })
       .then(function onResult() {
         setState("finished");
       })
@@ -30,10 +30,10 @@ function AddToSearchlistEntry(props) {
       onSubmit={addToSearchList}
       text={props["text"]}
       label={props["label"]}
-      defaultTitle={props["default-title"]}
-      searchQuery={props["search-query"]}
-      successMessage={props["success-message"]}
-      errorMessage={props["error-message"]}
+      defaultTitle={props["defaultTitle"]}
+      searchQuery={props["searchQuery"]}
+      successMessage={props["successMessage"]}
+      errorMessage={props["errorMessage"]}
     />
   );
 }
@@ -41,10 +41,10 @@ function AddToSearchlistEntry(props) {
 AddToSearchlistEntry.propTypes = {
   text: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  "default-title": PropTypes.string,
-  "search-query": PropTypes.string.isRequired,
-  "success-message": PropTypes.string.isRequired,
-  "error-message": PropTypes.string.isRequired
+  defaultTitle: PropTypes.string,
+  searchQuery: PropTypes.string.isRequired,
+  successMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired
 };
 
 export default AddToSearchlistEntry;
