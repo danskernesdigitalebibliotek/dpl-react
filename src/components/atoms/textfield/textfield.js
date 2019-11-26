@@ -11,14 +11,14 @@ import PropTypes from "prop-types";
  * @param {string} props.value
  * @returns {ReactNode}
  */
-export function TextField({ className, label, defaultValue, ...rest }) {
+export function TextField({ className, label, value, onChange, ...rest }) {
   return (
     <label
       className={`ddb-reset ddb-textfield ${!className ? "" : className}`}
       {...rest}
     >
       {label}
-      <input className="ddb-reset" value={defaultValue} />
+      <input className="ddb-reset" value={value} onChange={onChange} />
     </label>
   );
 }
@@ -26,7 +26,8 @@ export function TextField({ className, label, defaultValue, ...rest }) {
 TextField.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
-  defaultValue: PropTypes.string
+  value: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default TextField;

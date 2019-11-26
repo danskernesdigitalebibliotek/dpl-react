@@ -44,6 +44,7 @@ function AddToSearchlist({
           onChange={e => setName(e.target.value)}
           label={label}
           defaultValue={defaultValue}
+          value={name}
         />
         <Button className="ddb-btn--charcoal" onClick={submit}>
           {addButtonLabel}
