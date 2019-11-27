@@ -16,6 +16,7 @@
     "lint:js:fix": "eslint ./src --fix",
     "lint:scss": "stylelint \"./src/**/*.scss\"",
     "lint:scss:fix": "stylelint --fix \"./src/**/*.scss\"",
+    "lint": "yarn lint:js && yarn lint:scss",
     "clean": "rm -r -f ./dist/*",
     "build": "concurrently --raw \"yarn clean\" \"yarn lint:scss:fix\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
     "build:js:dev": "webpack --mode=development --config webpack.config.js",
