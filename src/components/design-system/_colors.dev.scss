@@ -1,0 +1,108 @@
+.ddb-color-example-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ddb-color-example {
+  height: layout(5);
+  width: layout(5);
+  margin: space(3);
+
+  &--primary-base {
+    background: color("primary");
+  }
+  &--secondary-base {
+    background: color("secondary");
+  }
+  &--black-base {
+    background: color("black");
+  }
+  &--charcoal-base {
+    background: color("charcoal");
+  }
+  &--white-base {
+    border: 1px solid color("grey");
+    background: color("white");
+  }
+  &--grey-base {
+    background: color("grey");
+  }
+  &--green-base {
+    background: color("green");
+  }
+  &--red-base {
+    background: color("red");
+  }
+  &--yellow-base {
+    background: color("yellow");
+  }
+
+  &--black-overlay {
+    background: color("black", "overlay");
+  }
+  &--black-overlay-dark {
+    background: color("black", "overlay-dark");
+  }
+  &--charcoal-opacity-dark {
+    background: color("charcoal", "opacity-dark");
+  }
+  &--charcoal-opacity-light {
+    background: color("charcoal", "opacity-light");
+  }
+  &--white-opacity-dark {
+    border: 1px solid color("grey");
+    background: color("white", "opacity-dark");
+  }
+  &--white-opacity-light {
+    border: 1px solid color("grey");
+    background: color("white", "opacity-light");
+  }
+  &--grey-light {
+    background: color("grey", "light");
+  }
+  &--grey-medium {
+    background: color("grey", "medium");
+  }
+  &--grey-dark {
+    background: color("grey", "dark");
+  }
+  &--grey-darker {
+    background: color("grey", "darker");
+  }
+}
+
+.ddb-color-example-text {
+  padding: space(4);
+  margin: space(4);
+
+  &--primary-text {
+    background: color("primary");
+    color: color("primary", "text");
+  }
+  &--secondary-text {
+    background: color("secondary");
+    color: color("secondary", "text");
+  }
+  &--green-text {
+    color: color("green", "text");
+  }
+  &--red-text {
+    color: color("red", "text");
+  }
+  &--yellow-text {
+    color: color("yellow", "text");
+  }
+  &--text {
+    color: color("text");
+  }
+  &--text-standard {
+    color: color("text", "standard");
+  }
+  &--link {
+    color: color("link");
+  }
+  &--link-dark {
+    color: color("link", "dark");
+  }
+}
