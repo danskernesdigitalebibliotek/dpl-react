@@ -20,10 +20,9 @@ function mount({ appName, app }) {
   );
   appContainers.forEach(function mountApp(container) {
     render(
-      createElement(
-        withErrorBoundary(app, ErrorBoundary),
-        Object.assign({}, container.dataset)
-      ),
+      createElement(withErrorBoundary(app, ErrorBoundary), {
+        ...container.dataset
+      }),
       container
     );
   });

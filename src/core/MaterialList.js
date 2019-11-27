@@ -1,4 +1,4 @@
-import { getToken } from "./token.js";
+import { getToken } from "./token";
 
 /**
  * https://github.com/reload/material-list/blob/develop/spec/material-list-1.0.0.yaml
@@ -41,8 +41,7 @@ class MaterialList {
    */
   async checkListMaterial({ listId = "default", materialId } = {}) {
     if (!materialId) {
-      console.warn("materialId was not specified.");
-      return;
+      throw Error("materialId was not specified.");
     }
     const rawResponse = await fetch(
       `${this.baseUrl}/list/${listId}/${materialId}`,
@@ -70,8 +69,7 @@ class MaterialList {
    */
   async addListMaterial({ listId = "default", materialId } = {}) {
     if (!materialId) {
-      console.warn("materialId was not specified.");
-      return;
+      throw Error("materialId was not specified.");
     }
     const response = await fetch(
       `${this.baseUrl}/list/${listId}/${materialId}`,
@@ -96,8 +94,7 @@ class MaterialList {
    */
   async deleteListMaterial({ listId = "default", materialId } = {}) {
     if (!materialId) {
-      console.warn("materialId was not specified.");
-      return;
+      throw Error("materialId was not specified.");
     }
     const response = await fetch(
       `${this.baseUrl}/list/${listId}/${materialId}`,

@@ -26,7 +26,7 @@ class OpenPlatform {
    * @memberof OpenPlatform
    */
   formatPids(pids = []) {
-    return pids.map(encodeURIComponent).join(",") + ",";
+    return `${pids.map(encodeURIComponent).join(",")},`;
   }
 
   /**

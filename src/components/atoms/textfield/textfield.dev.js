@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import TextField from "./textfield.js";
+import TextField from "./textfield";
 
 export default {
   title: "Atoms|TextField",

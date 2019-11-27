@@ -12,7 +12,7 @@ function AddToSearchlistEntry(props) {
   function addToSearchList(title) {
     setState("requesting");
     client
-      .addSearch({ title: title, search: props["searchQuery"] })
+      .addSearch({ title, search: props.searchQuery })
       .then(function onResult() {
         setState("finished");
       })
@@ -28,12 +28,12 @@ function AddToSearchlistEntry(props) {
     <AddToSearchlist
       state={state}
       onSubmit={addToSearchList}
-      text={props["text"]}
-      label={props["label"]}
-      defaultTitle={props["defaultTitle"]}
-      searchQuery={props["searchQuery"]}
-      successMessage={props["successMessage"]}
-      errorMessage={props["errorMessage"]}
+      text={props.text}
+      label={props.label}
+      defaultTitle={props.defaultTitle}
+      searchQuery={props.searchQuery}
+      successMessage={props.successMessage}
+      errorMessage={props.errorMessage}
     />
   );
 }

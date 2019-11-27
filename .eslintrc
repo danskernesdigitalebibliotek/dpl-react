@@ -1,10 +1,8 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react", "jsx-a11y", "prettier"],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
+    "airbnb",
+    "airbnb/hooks",
     "plugin:prettier/recommended",
     "prettier/react"
   ],
@@ -22,7 +20,18 @@
     "sourceType": "module",
     "allowImportExportEverywhere": false,
     "ecmaFeatures": {
+      "jsx": true,
       "globalReturn": false
     }
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "/**/*.dev.jsx"
+          ]
+        }
+      ]
   }
 }

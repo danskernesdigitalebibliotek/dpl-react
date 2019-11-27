@@ -1,7 +1,7 @@
 import { configure } from '@storybook/react';
 import './dev-fonts.scss';
 import '../src/components/components.scss';
-import getToken, { setToken } from '../src/core/token.js';
+import getToken, { setToken } from '../src/core/token';
 
 let token = getToken();
 if (!token) {
@@ -21,4 +21,4 @@ if (!token) {
  * Look for it in DefinePlugin.
  */
 setToken(token || DDB_TOKEN);
-configure(require.context('../src', true, /\.dev\.js$/), module);
+configure(require.context('../src', true, /\.dev\.jsx$/), module);

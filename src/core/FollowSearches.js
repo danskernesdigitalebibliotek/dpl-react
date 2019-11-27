@@ -15,6 +15,7 @@ class FollowSearches {
   constructor() {
     this.token = getToken();
   }
+
   /**
    * Get all the users searches.
    *
