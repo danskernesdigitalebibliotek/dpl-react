@@ -1,15 +1,10 @@
 .ddb-dialog {
-  @extend .ddb-reset;
-  position: absolute;
-
   background: color("grey");
   border-radius: $border-radius;
   color: color("charcoal", "opacity-dark");
   padding: layout(1);
+}
 
-  .close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+.ddb-dialog__close-button {
+  background: color("grey", "darker");
 }

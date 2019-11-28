@@ -13,14 +13,14 @@ import PropTypes from "prop-types";
  * @returns {ReactNode}
  */
 
-function TextField({ className, label, id, value, onChange }) {
+function TextField({ className, inputClassName, label, id, value, onChange }) {
   return (
-    <label htmlFor={id} className={`ddb-reset ${!className ? "" : className}`}>
+    <label htmlFor={id} className={`ddb-reset ${className}`}>
       {label}
       <input
         id={id}
         type="text"
-        className="ddb-reset"
+        className={`ddb-reset ${inputClassName}`}
         value={value}
         onChange={onChange}
       />
@@ -30,7 +30,8 @@ function TextField({ className, label, id, value, onChange }) {
 
 TextField.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string.isRequired, // We nest AND assign an id because of Comodo Dragon https://github.com/airbnb/javascript/pull/2136
+  inputClassName: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
@@ -38,6 +39,7 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   className: "",
+  inputClassName: "",
   label: undefined,
   value: undefined
 };

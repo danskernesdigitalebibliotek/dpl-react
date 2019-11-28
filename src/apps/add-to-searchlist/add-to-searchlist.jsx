@@ -29,18 +29,24 @@ function AddToSearchlist({
   }
 
   if (state === "requesting" && showDialog) {
-    // Some spinner would be nice too.
-    setShowDialog(false);
+    close();
   }
 
   return (
-    <div>
+    <section className="ddb-add-to-searchlist">
       <Button className="ddb-btn--charcoal" onClick={open}>
         {text}
       </Button>
-      <Dialog isOpen={showDialog} onDismiss={close}>
+      <Dialog
+        label="Tilføj søgning til liste"
+        showCloseButton
+        isOpen={showDialog}
+        onDismiss={close}
+      >
         {helpText ? <p>{helpText}</p> : null}
         <TextField
+          id="add-to-search-input"
+          inputClassName="ddb-add-to-searchlist__input"
           onChange={e => setName(e.target.value)}
           label={label}
           defaultValue={defaultValue}
@@ -50,21 +56,21 @@ function AddToSearchlist({
           {addButtonLabel}
         </Button>
       </Dialog>
-    </div>
+    </section>
   );
 }
 
 AddToSearchlist.defaultProps = {
-  state: "inactive",
   text: "Add to followed searches",
   label: "Search title",
   addButtonLabel: "Add",
   defaultValue: "",
-  helpText: ""
+  helpText: "Help text"
 };
 
 AddToSearchlist.propTypes = {
-  state: PropTypes.string,
+  state: PropTypes.oneOf(["inactive", "requesting", "finished", "failed"])
+    .isRequired,
   onSubmit: PropTypes.func.isRequired,
   text: PropTypes.string,
   label: PropTypes.string,
