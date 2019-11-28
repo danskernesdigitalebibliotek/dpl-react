@@ -45,7 +45,6 @@ function AddToSearchlist({
       >
         {helpText ? <p>{helpText}</p> : null}
         <TextField
-          id="add-to-search-input"
           inputClassName="ddb-add-to-searchlist__input"
           onChange={e => setName(e.target.value)}
           label={label}
