@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useId } from "@reach/auto-id";
 
 /**
  * A simple text field with label.
@@ -14,11 +15,12 @@ import PropTypes from "prop-types";
  */
 
 function TextField({ className, inputClassName, label, id, value, onChange }) {
+  const generatedId = useId(id);
   return (
-    <label htmlFor={id} className={`ddb-reset ${className}`}>
+    <label htmlFor={generatedId} className={`ddb-reset ${className}`}>
       {label}
       <input
-        id={id}
+        id={generatedId}
         type="text"
         className={`ddb-reset ${inputClassName}`}
         value={value}
@@ -31,7 +33,7 @@ function TextField({ className, inputClassName, label, id, value, onChange }) {
 TextField.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
@@ -40,6 +42,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
   className: "",
   inputClassName: "",
+  id: undefined,
   label: undefined,
   value: undefined
 };

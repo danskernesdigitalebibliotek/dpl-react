@@ -91,6 +91,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.4",
     "@reach/alert": "^0.6.1",
+    "@reach/auto-id": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
