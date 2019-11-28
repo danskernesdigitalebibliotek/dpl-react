@@ -10,12 +10,12 @@ function AddToSearchlist({
   onSubmit,
   text,
   label,
-  defaultValue,
+  defaultTitle,
   addButtonLabel,
   helpText
 }) {
   const [showDialog, setShowDialog] = useState(false);
-  const [name, setName] = useState(defaultValue);
+  const [name, setName] = useState(defaultTitle);
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
   const submit = () => onSubmit(name);
@@ -49,7 +49,6 @@ function AddToSearchlist({
           inputClassName="ddb-add-to-searchlist__input"
           onChange={e => setName(e.target.value)}
           label={label}
-          defaultValue={defaultValue}
           value={name}
         />
         <Button className="ddb-btn--charcoal" onClick={submit}>
@@ -64,7 +63,7 @@ AddToSearchlist.defaultProps = {
   text: "Add to followed searches",
   label: "Search title",
   addButtonLabel: "Add",
-  defaultValue: "",
+  defaultTitle: "",
   helpText: "Help text"
 };
 
@@ -75,7 +74,7 @@ AddToSearchlist.propTypes = {
   text: PropTypes.string,
   label: PropTypes.string,
   addButtonLabel: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultTitle: PropTypes.string,
   helpText: PropTypes.string
 };
 

@@ -11,12 +11,12 @@ export default {
 export function Entry() {
   return (
     <AddToSearchlist
-      text={text("Text", "Add search")}
-      label={text("Label", "Search")}
-      defaultValue={text("Default search value", "Harry Potter")}
+      text={text("Text", "Add to followed searches")}
+      label={text("Label", "Name")}
+      defaultTitle={text("Default title", "Harry Potter")}
       searchQuery={text("Search query", "harry potter")}
       addButtonLabel={text("Add button label", "Add")}
-      helpText={text("Help text", "Type your search query here.")}
+      helpText={text("Help text", "Give your search a name.")}
     />
   );
 }
