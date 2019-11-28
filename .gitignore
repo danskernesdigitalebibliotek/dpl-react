@@ -3,5 +3,5 @@ dist
 dev
 index.html
 .token
-dev
+.vscode
 yarn-error.log
