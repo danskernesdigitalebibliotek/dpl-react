@@ -73,7 +73,7 @@ When storybook is started, you can access it at: [ddb-react.docker](http://ddb-r
   <summary>1. Create a new application component</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.js
+// ./src/apps/my-new-application/my-new-application.jsx
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -100,16 +100,16 @@ export default MyNewApplication;
   <summary>2. Create the entry component</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.entry.js
+// ./src/apps/my-new-application/my-new-application.entry.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import MyNewApplication from './my-new-application.js'
+import MyNewApplication from "./my-new-application";
 
 // The props of an entry is all of the data attributes that were
 // set on the DOM element. See the section on "Naive app mount." for
 // an example.
 export function MyNewApplicationEntry(props) {
-  return <MyNewApplication text='Might be from a server?' />
+  return <MyNewApplication text='Might be from a server?' />;
 }
 
 export default MyNewApplicationEntry;
@@ -121,8 +121,8 @@ export default MyNewApplicationEntry;
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.mount.js
-import mount from "../../core/mount.js";
-import MyNewApplication from "./mynewapplication.entry.js";
+import mount from "../../core/mount";
+import MyNewApplication from "./my-new-application.entry";
 
 mount({ appName: "my-new-application", app: MyNewApplication });
 ```
@@ -132,19 +132,19 @@ mount({ appName: "my-new-application", app: MyNewApplication });
   <summary>4. Add a story for local development</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.dev.js
+// ./src/apps/my-new-application/my-new-application.dev.jsx
 import React from "react";
-import MyNewApplicationEntry from "./my-new-application.entry.js";
-import MyNewApplication from "./my-new-application.js"
+import MyNewApplicationEntry from "./my-new-application.entry";
+import MyNewApplication from "./my-new-application";
 
 export default { title: "Apps|My new application" };
 
-export function entry() {
+export function Entry() {
   // Testing the version that will be shipped.
   return <MyNewApplicationEntry />;
 }
 
-export function withoutData() {
+export function WithoutData() {
   // Play around with the application itself without server side data.
   return <MyNewApplication />;
 }
@@ -179,7 +179,7 @@ __Voila!__ You browser should have opened and a storybook environment is ready f
   <summary>2. Add the class to your application</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.js
+// ./src/apps/my-new-application/my-new-application.jsx
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -205,21 +205,21 @@ export default MyNewApplication;
   <summary>3. Import the scss into your story</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.dev.js
+// ./src/apps/my-new-application/my-new-application.dev.jsx
 import React from "react";
-import MyNewApplicationEntry from "./my-new-application.entry.js";
-import MyNewApplication from "./my-new-application.js"
+import MyNewApplicationEntry from "./my-new-application.entry";
+import MyNewApplication from "./my-new-application";
 
-import './my-new-application.scss'
+import './my-new-application.scss';
 
 export default { title: "Apps|My new application" };
 
-export function entry() {
+export function Entry() {
   // Testing the version that will be shipped.
   return <MyNewApplicationEntry />;
 }
 
-export function withoutData() {
+export function WithoutData() {
   // Play around with the application itself without server side data.
   return <MyNewApplication />;
 }
@@ -242,23 +242,28 @@ The process when creating an atom or a component is more or less similar, but so
   <summary>1. Create the atom</summary>
 
 ```javascript
-// ./src/components/atoms/my-new-atom/my-new-atom.js
+// ./src/components/atoms/my-new-atom/my-new-atom.jsx
 import React from "react";
-import { string } from 'prop-types'
+import PropTypes from 'prop-types';
 
 /**
  * A simple button.
  *
  * @export
- * @param {Object} props
+ * @param {object} props
  * @returns {ReactNode}
  */
-export function MyNewAtom({ className, ...rest }) {
-  return <button className={`btn ${className}`} {...rest} />;
+export function MyNewAtom({ className, children }) {
+  return <button className={`btn ${className}`}>{children}</button>;
 }
 
 MyNewAtom.propTypes = {
-  className: string
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
+}
+
+MyNewAtom.defaultProps = {
+  className: ""
 }
 
 export default MyNewAtom;
@@ -290,13 +295,13 @@ export default MyNewAtom;
   <summary>4. Create a story for your atom</summary>
 
 ```javascript
-// ./src/components/atoms/my-new-atom/my-new-atom.dev.js
+// ./src/components/atoms/my-new-atom/my-new-atom.dev.jsx
 import React from "react";
-import MyNewAtom from "./my-new-atom.js";
+import MyNewAtom from "./my-new-atom";
 
 export default { title: "Atoms|My new atom" };
 
-export function withText() {
+export function WithText() {
   return <MyNewAtom>Cick me!</MyNewAtom>;
 }
 ```
@@ -306,11 +311,11 @@ export function withText() {
   <summary>5. Import the atom into the applications or other components where you would want to use it</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.js
+// ./src/apps/my-new-application/my-new-application.jsx
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
-import MyNewAtom from '../../components/atom/my-new-atom/my-new-atom.js'
+import MyNewAtom from "../../components/atom/my-new-atom/my-new-atom"
 
 export function MyNewApplication({ text }) {
   return (
@@ -339,7 +344,7 @@ __Finito!__ You now know how to share code across applications
 
 Repeat all of the same steps as with an atom but place it in it's own directory inside `components`.
 
-Such as `./src/components/my-new-component/my-new-component.js`
+Such as `./src/components/my-new-component/my-new-component.jsx`
 
 ## Production
 
@@ -377,7 +382,7 @@ A simple naive example of the required artifacts needed looks like this:
 As a minimum you will need the `runtime.js` and `bundle.js`.
 For styling of atoms and components you will need to import `components.css`.
 
-Each application also has it's own JavaScript artifact and it might have a css artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
+Each application also has it's own JavaScript artifact and it might have a css artifact as well. Such as `add-to-checklist.jsx` and `add-to-checklist.css`.
 
 To mount the application you need a html element with the correct data attribute.
 
@@ -404,14 +409,17 @@ The above `data-id` would be accessed as `props.id` in the entrypoint of an appl
   <summary>Example</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.entry.js
+// ./src/apps/my-new-application/my-new-application.entry.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import MyNewApplication from './my-new-application.js'
+import MyNewApplication from './my-new-application.jsx';
 
-export function MyNewApplicationEntry(props) {
-  const id = props.id // 870970-basis:54172613
-  return <MyNewApplication id={id} />
+export function MyNewApplicationEntry({ id }) {
+  return (
+    <MyNewApplication
+      // 870970-basis:54172613
+      id={id}
+    />
 }
 
 export default MyNewApplicationEntry;
@@ -425,19 +433,19 @@ out entrypoint.
   <summary>Example</summary>
 
 ```javascript
-// ./src/apps/my-new-application/my-new-application.dev.js
+// ./src/apps/my-new-application/my-new-application.dev.jsx
 import React from "react";
-import MyNewApplicationEntry from "./my-new-application.entry.js";
-import MyNewApplication from "./my-new-application.js"
+import MyNewApplicationEntry from "./my-new-application.entry";
+import MyNewApplication from "./my-new-application";
 
 export default { title: "Apps|My new application" };
 
-export function entry() {
+export function Entry() {
   // Testing the version that will be shipped.
   return <MyNewApplicationEntry id="870970-basis:54172613" />;
 }
 
-export function withoutData() {
+export function WithoutData() {
   // Play around with the application itself without server side data.
   return <MyNewApplication />;
 }
