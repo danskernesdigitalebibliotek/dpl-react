@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { render } from "react-dom";
 
 import { withErrorBoundary } from "react-error-boundary";
-import ErrorBoundary from "../components/error/error.js";
+import ErrorBoundary from "../components/error/error";
 
 /**
  * This is where we actually mount the application into the DOM elements.

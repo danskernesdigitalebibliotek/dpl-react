@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import AddToSearchlist from "./add-to-searchlist.js";
-import FollowSearches from "../../core/FollowSearches.js";
+import AddToSearchlist from "./add-to-searchlist";
+import FollowSearches from "../../core/FollowSearches";
 
 const client = new FollowSearches();
 
-function AddToSearchlistEntry(props) {
+function AddToSearchlistEntry({ text, label, defaultTitle, searchQuery }) {
   const [state, setState] = useState("inactive");
 
   function addToSearchList(title) {
     setState("requesting");
     client
-      .addSearch({ title, search: props.searchQuery })
+      .addSearch({ title, search: searchQuery })
       .then(function onResult() {
         setState("finished");
       })
@@ -28,12 +28,10 @@ function AddToSearchlistEntry(props) {
     <AddToSearchlist
       state={state}
       onSubmit={addToSearchList}
-      text={props.text}
-      label={props.label}
-      defaultTitle={props.defaultTitle}
-      searchQuery={props.searchQuery}
-      successMessage={props.successMessage}
-      errorMessage={props.errorMessage}
+      text={text}
+      label={label}
+      defaultTitle={defaultTitle}
+      searchQuery={searchQuery}
     />
   );
 }
@@ -42,9 +40,11 @@ AddToSearchlistEntry.propTypes = {
   text: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   defaultTitle: PropTypes.string,
-  searchQuery: PropTypes.string.isRequired,
-  successMessage: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string.isRequired
+  searchQuery: PropTypes.string.isRequired
+};
+
+AddToSearchlistEntry.defaultProps = {
+  defaultTitle: ""
 };
 
 export default AddToSearchlistEntry;

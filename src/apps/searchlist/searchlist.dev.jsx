@@ -1,8 +1,8 @@
 import React from "react";
-import Searchlist from "./searchlist.entry.js";
+import Searchlist from "./searchlist.entry";
 
 export default { title: "Apps|Searchlist" };
 
-export function entry() {
+export function Entry() {
   return <Searchlist />;
 }

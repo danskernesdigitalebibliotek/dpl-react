@@ -1,4 +1,4 @@
-import mount from "../../core/mount.js";
-import AddToChecklist from "./add-to-checklist.entry.js";
+import mount from "../../core/mount";
+import AddToChecklist from "./add-to-checklist.entry";
 
 mount({ appName: "add-to-checklist", app: AddToChecklist });

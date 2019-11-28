@@ -1,13 +1,13 @@
 import React from "react";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import AddToSearchlist from "./add-to-searchlist.entry.js";
+import AddToSearchlist from "./add-to-searchlist.entry";
 
 export default {
   title: "Apps|Add to Searchlist",
   decorators: [withKnobs]
 };
 
-export function entry() {
+export function Entry() {
   return (
     <AddToSearchlist
       text={text("Button text", "Add search")}

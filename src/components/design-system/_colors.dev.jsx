@@ -3,7 +3,7 @@ import "./_colors.dev.scss";
 
 export default { title: "Design system|Colors" };
 
-export function bases() {
+export function Bases() {
   return (
     <div className="ddb-color-example-container">
       <div
@@ -46,7 +46,7 @@ export function bases() {
   );
 }
 
-export function alternatives() {
+export function Alternatives() {
   return (
     <div className="ddb-color-example-container">
       <div
@@ -93,7 +93,7 @@ export function alternatives() {
   );
 }
 
-export function text() {
+export function Text() {
   return (
     <div className="ddb-color-example-container">
       <p

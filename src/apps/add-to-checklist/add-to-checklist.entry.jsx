@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import AddToChecklist from "./add-to-checklist.js";
-import MaterialList from "../../core/MaterialList.js";
+import AddToChecklist from "./add-to-checklist";
+import MaterialList from "../../core/MaterialList";
 
 const client = new MaterialList();
 
-function AddToChecklistEntry(props) {
+function AddToChecklistEntry({ text, id }) {
   const [loading, setLoading] = useState("inactive");
 
   function addToList() {
     setLoading("active");
     client
-      .addListMaterial({ materialId: props.id })
-      .then(function onResult(result) {
-        console.log(result);
-      })
+      .addListMaterial({ materialId: id })
+      .then()
       .catch(function onError() {
         setLoading("failed");
         setTimeout(function onRestore() {
@@ -27,16 +25,16 @@ function AddToChecklistEntry(props) {
       });
   }
 
-  console.log(props.text);
-
-  return (
-    <AddToChecklist text={props.text} loading={loading} onClick={addToList} />
-  );
+  return <AddToChecklist text={text} loading={loading} onClick={addToList} />;
 }
 
 AddToChecklistEntry.propTypes = {
   text: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string.isRequired
+};
+
+AddToChecklistEntry.defaultProps = {
+  text: ""
 };
 
 export default AddToChecklistEntry;

@@ -1,4 +1,4 @@
-import mount from "../../core/mount.js";
-import AddToSearchlist from "./add-to-searchlist.entry.js";
+import mount from "../../core/mount";
+import AddToSearchlist from "./add-to-searchlist.entry";
 
 mount({ appName: "add-to-searchlist", app: AddToSearchlist });

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Button from "../../components/atoms/button/button.js";
-import Dialog from "../../components/atoms/dialog/dialog.js";
-import TextField from "../../components/atoms/textfield/textfield.js";
+import Button from "../../components/atoms/button/button";
+import Dialog from "../../components/atoms/dialog/dialog";
+import TextField from "../../components/atoms/textfield/textfield";
 
-export function AddToSearchlist({
+function AddToSearchlist({
   state,
   onSubmit,
   text,
   label,
-  defaultTitle,
+  defaultValue,
   addButtonLabel
 }) {
   const [showDialog, setShowDialog] = useState(false);
-  const [name, setName] = useState(defaultTitle);
+  const [name, setName] = useState(defaultValue);
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
   const submit = () => onSubmit(name);
@@ -39,7 +39,7 @@ export function AddToSearchlist({
         <TextField
           onChange={e => setName(e.target.value)}
           label={label}
-          defaultValue={defaultTitle}
+          defaultValue={defaultValue}
         />
         <Button onClick={submit}>{addButtonLabel}</Button>
       </Dialog>
@@ -48,23 +48,20 @@ export function AddToSearchlist({
 }
 
 AddToSearchlist.defaultProps = {
+  state: "inactive",
   text: "Add to followed searches",
   label: "Search title",
-  value: "",
   addButtonLabel: "Add",
-  successMessage: "Success",
-  errorMessage: "Something when wrong"
+  defaultValue: ""
 };
 
 AddToSearchlist.propTypes = {
   state: PropTypes.string,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
   text: PropTypes.string,
   label: PropTypes.string,
-  defaultTitle: PropTypes.string,
   addButtonLabel: PropTypes.string,
-  successMessage: PropTypes.string,
-  errorMessage: PropTypes.string
+  defaultValue: PropTypes.string
 };
 
 export default AddToSearchlist;

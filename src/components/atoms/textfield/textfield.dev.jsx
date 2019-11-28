@@ -7,7 +7,7 @@ export default {
   decorators: [withKnobs]
 };
 
-export function withText() {
+export function WithText() {
   return (
     <TextField
       label={text("Field label", "Some label")}

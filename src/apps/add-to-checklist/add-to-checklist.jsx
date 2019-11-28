@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Button from "../../components/atoms/button/button.js";
+import Button from "../../components/atoms/button/button";
 
-export function AddToChecklist({ loading, onClick, text }) {
+function AddToChecklist({ loading, onClick, text }) {
   // Here will also be server requests etc.
   if (loading === "active") {
     return <div>Tilføjet</div>;
@@ -22,16 +22,15 @@ export function AddToChecklist({ loading, onClick, text }) {
   );
 }
 
-AddToChecklist.defaultProps = {
-  ddbText: "Tilføj til min huskeliste",
-  loading: "inactive"
+AddToChecklist.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"])
 };
 
-AddToChecklist.propTypes = {
-  ddbText: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
-  text: PropTypes.string,
-  loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"])
+AddToChecklist.defaultProps = {
+  text: "Tilføj til min huskeliste",
+  loading: "inactive"
 };
 
 export default AddToChecklist;

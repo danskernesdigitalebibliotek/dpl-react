@@ -1,9 +1,14 @@
-import { getToken } from "./token.js";
+import { getToken } from "./token";
 
 /**
  * @typedef Search
  * @property {string} searchTitle
  * @property {string} searchQuery
+ */
+
+/**
+ * @typedef Material
+ * @property {string} pid
  */
 
 /**
@@ -14,111 +19,118 @@ import { getToken } from "./token.js";
 class FollowSearches {
   constructor() {
     this.token = getToken();
+    this.baseUrl = "https://stage.followsearches.dandigbib.org";
   }
 
   /**
    * Get all the users searches.
+   * /list/{listName}
    *
-   * @param {string} listName
+   * @param {object} options
+   * @param {string} options.listName
+   * @param {number} options.page min: 1 - Has no effect if not set.
+   * @param {number} options.size min: 1 - If not set returns the full list.
    * @returns {Promise<Search[]>} a list of searches.
    * @memberof FollowSearches
    */
-  getSearches(listName) {
-    return new Promise((resolve, reject) => {
-      console.info(`Getting searches: ${listName}`);
-      try {
-        setTimeout(() => {
-          console.info("The search data is returned.");
-          resolve([
-            {
-              searchTitle: "Harry Potter stuff",
-              searchQuery: "harry potter"
-            },
-            {
-              searchTitle: "Star wars stuff",
-              searchQuery: "star wars"
-            },
-            {
-              searchTitle: "Marvel stuff",
-              searchQuery: "avengers"
-            }
-          ]);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async getSearches({ listName = "default", page, size } = {}) {
+    if (!listName) {
+      throw Error("listName must be provided.");
+    }
+
+    const query = [page && `page=${page}`, size && `size=${size}`]
+      .filter(parameter => parameter)
+      .join("&");
+
+    const raw = await fetch(
+      `${this.baseUrl}/list/${listName}${query ? `?${query}` : ""}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+
+    return raw.json();
   }
 
   /**
    * Add search to the list.
+   * /list/{listName}/add
    *
    * @param {object} options
    * @param {string} options.listName
-   * @param {Search} options.search
-   * @returns {Promise<boolean>}
+   * @param {Search} options.query
+   * @returns {Promise}
    * @memberof FollowSearches
    */
-  addSearch({ listName = "default", search, title } = {}) {
-    return new Promise((resolve, reject) => {
-      console.info(
-        `Add search: ${search} to list: ${listName}, with title: ${title}`
-      );
-      try {
-        setTimeout(() => {
-          console.info("The search was successfully added to the list.");
-          resolve(true);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
-      }
+  async addSearch({ listName = "default", query, title } = {}) {
+    if (!query) {
+      throw Error("query must be provided.");
+    }
+    if (!title) {
+      throw Error("title must be provided");
+    }
+
+    await fetch(`${this.baseUrl}/list/${listName}/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`
+      },
+      body: JSON.stringify({ title, query })
     });
   }
 
   /**
-   * Get the search results for a specific search.
+   * Get the search results (pids) for a specific search.
+   * /list/{listName}/{searchId}
+   *
    * @param {object} options
    * @param {string} options.listName
-   * @param {string} options.searchId
-   * @returns {Promise<Search>} a single search.
+   * @param {number} options.searchId
+   * @returns {Promise<Material[]>} materials pids of the search.
    * @memberof FollowSearches
    */
-  getResultsForSearch({ listName, searchId }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Check search: ${searchId} from list: ${listName}`);
-      try {
-        setTimeout(() => {
-          console.info("The search with the specified ID exists.");
-          resolve({
-            searchTitle: "Marvel stuff",
-            searchQuery: "avengers"
-          });
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async getResultsForSearch({ listName = "default", searchId } = {}) {
+    if (!searchId) {
+      throw Error("searchId must be provided");
+    }
+
+    const raw = await fetch(`${this.baseUrl}/list/${listName}/${searchId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${this.token}`
       }
     });
+
+    const response = await raw.json();
+    return response.materials;
   }
 
   /**
    * Delete search from list.
+   * /list/{listName}/{searchId}
    *
    * @param {object} options
    * @param {string} options.listName
-   * @param {string} options.searchId
-   * @returns {Promise<boolean>}
+   * @param {number} options.searchId
+   * @returns {Promise}
    * @memberof FollowSearches
    */
-  deleteSearch({ listName, searchId }) {
-    return new Promise((resolve, reject) => {
-      console.info(`Delete search: ${searchId} from list: ${listName}`);
-      try {
-        setTimeout(() => {
-          console.info("Successfully removed.");
-          resolve(true);
-        }, 500);
-      } catch (err) {
-        reject("Unspecified error.");
+  async deleteSearch({ listName = "default", searchId }) {
+    if (!searchId) {
+      throw Error("searchId must be provided");
+    }
+
+    await fetch(`${this.baseUrl}/list/${listName}/${searchId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${this.token}`
       }
     });
   }

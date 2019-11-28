@@ -1,5 +1,5 @@
 import React from "react";
-import { string, oneOf } from "prop-types";
+import PropTypes from "prop-types";
 
 // https://reacttraining.com/reach-ui/alert
 import Alert from "@reach/alert";
@@ -13,21 +13,22 @@ import Alert from "@reach/alert";
  * @param {string} message
  * @returns {ReactNode}
  */
-export function Error({ className, message, ...rest }) {
+function Error({ className, message, type }) {
   return (
-    <Alert className={`ddb-error ${!className ? "" : className}`} {...rest}>
+    <Alert className={`ddb-error ${className}`} type={type}>
       {message}
     </Alert>
   );
 }
 
 Error.propTypes = {
-  className: string,
-  message: string,
-  type: oneOf(["assertive", "polite"])
+  className: PropTypes.string,
+  message: PropTypes.string,
+  type: PropTypes.oneOf(["assertive", "polite"])
 };
 
 Error.defaultProps = {
+  className: "",
   message: "Hov, der opstod en fejl!",
   type: "polite"
 };

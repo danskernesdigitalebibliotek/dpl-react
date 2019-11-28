@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-import Checklist from "./checklist.js";
-import MaterialList from "../../core/MaterialList.js";
+import Checklist from "./checklist";
+import MaterialList from "../../core/MaterialList";
 
 const client = new MaterialList();
 
 function ChecklistEntry() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
+
   useEffect(function getList() {
     setLoading("active");
     client
@@ -15,8 +16,7 @@ function ChecklistEntry() {
       .then(function onResult(result) {
         setList(result);
       })
-      .catch(function onError(err) {
-        console.error(err);
+      .catch(function onError() {
         setList([]);
       })
       .finally(function onEnd() {
@@ -31,8 +31,7 @@ function ChecklistEntry() {
         return item !== materialId;
       })
     );
-    client.deleteListMaterial({ materialId }).catch(function onError(err) {
-      console.error(err);
+    client.deleteListMaterial({ materialId }).catch(function onError() {
       setTimeout(function onRestore() {
         setList(fallbackList);
       }, 2000);

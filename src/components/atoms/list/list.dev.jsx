@@ -1,9 +1,9 @@
 import React from "react";
-import List from "./list.js";
+import List from "./list";
 
 export default { title: "Atoms|Unordered list" };
 
-export function withItems() {
+export function WithItems() {
   return (
     <List>
       <li>Agurk</li>

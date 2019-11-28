@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export function Searchlist({ items }) {
+function Searchlist({ items }) {
   return (
     <ul className="list">
       {items.map(item => (

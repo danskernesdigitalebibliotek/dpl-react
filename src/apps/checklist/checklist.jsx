@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Skeleton from "../../components/atoms/skeleton/skeleton";
 
-export function Checklist({ loading, items, onRemove }) {
+function Checklist({ loading, items, onRemove }) {
   if (loading === "active") {
     return (
       <div>
@@ -22,7 +22,10 @@ export function Checklist({ loading, items, onRemove }) {
     <ul className="list">
       {items.map(item => (
         <li key={item}>
-          {item} <button onClick={() => onRemove(item)}>remove</button>
+          {item}{" "}
+          <button type="button" onClick={() => onRemove(item)}>
+            remove
+          </button>
         </li>
       ))}
     </ul>

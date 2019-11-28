@@ -1,13 +1,13 @@
 import React from "react";
-import Skeleton from "./skeleton.js";
+import Skeleton from "./skeleton";
 
 export default { title: "Atoms|Skeleton" };
 
-export function single() {
+export function Single() {
   return <Skeleton />;
 }
 
-export function mediaExample() {
+export function MediaExample() {
   return (
     <>
       <Skeleton mb="10px" height="120px" width="160px" />
