@@ -2,22 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReachDialog from "@reach/dialog";
 
-function Dialog({ isOpen, onDismiss, children }) {
+function Dialog({ className, noClose, children, onDismiss, isOpen }) {
   return (
-    <ReachDialog isOpen={isOpen} onDismiss={onDismiss}>
+    <ReachDialog className={`ddb-dialog ${className}`} isOpen={isOpen}>
+      {noClose ? null : (
+        <button type="button" className="close-button" onClick={onDismiss}>
+          Close
+        </button>
+      )}
       {children}
     </ReachDialog>
   );
 }
 
 Dialog.propTypes = {
-  isOpen: PropTypes.bool,
-  onDismiss: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  noClose: PropTypes.bool,
+  isOpen: PropTypes.bool.isRequired,
+  onDismiss: PropTypes.func.isRequired
 };
 
 Dialog.defaultProps = {
-  isOpen: false
+  className: "",
+  noClose: false
 };
 
 export default Dialog;
