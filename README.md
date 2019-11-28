@@ -13,6 +13,7 @@
   - [Cross application components](#cross-application-components)
     - [Creating an atom](#creating-an-atom)
     - [Creating a component](#creating-a-component)
+  - [Editor example configuration](#editor-example-configuration)
 - [Production](#production)
   - [Naive app mount](#naive-app-mount)
   - [Access data attributes](#access-data-attributes)
@@ -345,6 +346,12 @@ __Finito!__ You now know how to share code across applications
 Repeat all of the same steps as with an atom but place it in it's own directory inside `components`.
 
 Such as `./src/components/my-new-component/my-new-component.jsx`
+
+### Editor example configuration
+
+If you use [Code](https://github.com/microsoft/vscode) we provide some easy to use and nice defaults for this project.
+They are located in `.vscode.example`. Simple rename the directory from `.vscode.example` to `.vscode` and you are good to go.
+This overwrites your global user settings for this workspace and suggests som extensions you might want.
 
 ## Production
 
