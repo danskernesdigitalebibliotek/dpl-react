@@ -1,32 +1,42 @@
+$ddb-list-spacing: layout(1);
+
+@include sm {
+  $ddb-list-spacing: layout(2);
+}
+@include md {
+  $ddb-list-spacing: layout(3);
+}
+
 .ddb-list {
-  &-button,
   &-cover {
+    display: flex;
     margin: 0;
-    float: left;
-    img {
-      height: 82px;
-      width: 63px;
-    }
+    margin-right: $ddb-list-spacing;
+    width: 100px;
   }
   &-item {
     background: color("grey");
     list-style: none;
-    padding: layout(3);
+    padding: $ddb-list-spacing;
     &:nth-child(even) {
       background: color("white");
     }
-    .ddb-btn {
-      float: right;
-    }
+  }
+  &-data {
+    display: flex;
+    flex-direction: column;
   }
   &-inner {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    @include sm {
+      flex-direction: row;
+    }
   }
   &-content {
-    margin-left: layout(3);
-    float: left;
-    max-width: 75%;
+    display: flex;
+    width: 100%;
     line-break: auto;
     p {
       margin: 0;
@@ -34,6 +44,16 @@
     h2 {
       font-size: space(5);
       margin: space(3) 0;
+    }
+  }
+  &-button {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      min-width: 103px;
+    }
+    @include sm {
+      align-self: baseline;
     }
   }
 }

@@ -46,21 +46,19 @@ function Checklist({ loading, items, onRemove }) {
       {items.map(item => (
         <li key={item.pid} className="ddb-list-item">
           <section className="ddb-list-inner">
-            <figure className="ddb-list-cover">
-              <img src={item.coverUrlThumbnail} alt={item.title} />
-            </figure>
             <article className="ddb-list-content">
-              <div className="ddb-list-element">{item.type}</div>
-              <div className="ddb-list-element">
+              <figure className="ddb-list-cover">
+                <img src={item.coverUrlThumbnail} alt={item.title} />
+              </figure>
+              <div className="ddb-list-data">
+                {item.type}
                 <h2>{item.title}</h2>
-              </div>
-              <div className="ddb-list-element">
                 <p>
                   Af {item.creatorAut} ({item.date})
                 </p>
               </div>
             </article>
-            <aside className="ddb-list-button__remove">
+            <aside className="ddb-list-button ddb-list-button__remove">
               <Button
                 className="ddb-btn--charcoal"
                 onClick={() => onRemove(item.pid)}
