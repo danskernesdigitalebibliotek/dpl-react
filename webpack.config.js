@@ -25,6 +25,9 @@ module.exports = (_env, argv) => {
         chunks: "all"
       }
     },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json']
+    },
     module: {
       rules: [
         {
