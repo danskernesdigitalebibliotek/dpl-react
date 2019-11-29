@@ -5,6 +5,25 @@ import OpenPlatform from "../../core/OpenPlatform";
 
 const client = new MaterialList();
 
+function format(result) {
+  return result.map(item => {
+    const newItem = item;
+
+    // Use dcCreator if it exists, otherwise fallback to dcCreator.
+    newItem.creator = item.dcCreator ? item.dcCreator.join(", ") : item.creator;
+    newItem.title = item.dcTitleFull;
+    newItem.type = item.typeBibDKType;
+    newItem.year = item.date;
+
+    // Delete old properties because we use new, more descriptive names.
+    delete newItem.dcTitleFull;
+    delete newItem.typeBibDKType;
+    delete newItem.date;
+
+    return newItem;
+  });
+}
+
 function ChecklistEntry() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
@@ -18,17 +37,18 @@ function ChecklistEntry() {
         return op.getWork({
           pids: result,
           fields: [
-            "title",
+            "dcTitleFull",
             "pid",
             "coverUrlThumbnail",
-            "creatorAut",
-            "type",
+            "dcCreator",
+            "creator",
+            "typeBibDKType",
             "date"
           ]
         });
       })
       .then(result => {
-        setList(result);
+        setList(format(result));
       })
       .catch(function onError() {
         setList([]);

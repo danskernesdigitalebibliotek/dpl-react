@@ -52,7 +52,7 @@ function Checklist({ loading, items, onRemove }) {
                 {item.type}
                 <h2>{item.title}</h2>
                 <p>
-                  Af {item.creatorAut} ({item.date})
+                  Af {item.creator} ({item.year})
                 </p>
               </div>
             </article>
