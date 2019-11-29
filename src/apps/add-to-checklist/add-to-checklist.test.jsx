@@ -9,5 +9,5 @@ test("see success message", () => {
   );
 
   fireEvent.click(queryByText("klik"));
-  expect(queryByText("Tilføjet")).toBeDefined();
+  expect(queryByText("Tilføjet")).toBeInTheDocument();
 });
