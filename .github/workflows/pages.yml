@@ -1,4 +1,4 @@
-name: github pages
+name: GitHub pages
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
     - master
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
+  github-pages:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
 
@@ -29,8 +29,6 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - run: yarn install
-
-    - run: yarn lint
 
     - run: yarn build:dev
 
