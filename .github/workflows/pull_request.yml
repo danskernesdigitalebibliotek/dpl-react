@@ -5,7 +5,7 @@ on: pull_request
 jobs:
 
   stylelint:
-    name: Lint styles
+    name: Lint .scss
     if: '!github.event.deleted'
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
         run: yarn lint:scss
 
   eslint:
-    name: Lint code
+    name: Lint .js and .jsx
     if: '!github.event.deleted'
     runs-on: ubuntu-latest
     steps:
@@ -67,3 +67,28 @@ jobs:
           eslint_flags: '--ext .js --ext .jsx ./src/'
       - name: Lint Javascript
         run: yarn lint:js
+
+  jest:
+    name: Test .js and .jsx
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run test
+        run: yarn test
