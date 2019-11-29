@@ -4,37 +4,35 @@ import Skeleton from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 
+function getList(length) {
+  return Array.from(new Array(length));
+}
+
+function SkeletonElement() {
+  return (
+    <li className="ddb-list-item">
+      <section className="ddb-list-inner">
+        <article className="ddb-list-content">
+          <figure className="ddb-list-cover">
+            <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
+          </figure>
+          <div className="ddb-list-data">
+            <Skeleton width="45px" mb="12px" />
+            <Skeleton width="145px" mb="12px" />
+            <Skeleton width="95px" />
+          </div>
+        </article>
+        <aside className="ddb-list-button ddb-list-button__remove">
+          <Skeleton width="151px" height="50px" className="ddb-btn" />
+        </aside>
+      </section>
+    </li>
+  );
+}
+
 function Checklist({ loading, items, onRemove }) {
   if (loading === "active") {
-    const createSkeletons = () => {
-      const skeletons = [];
-
-      for (let i = 0; i < 4; i += 1) {
-        skeletons.push(
-          <li className="ddb-list-item">
-            <section className="ddb-list-inner">
-              <Skeleton
-                borderRadius="0"
-                mb="0"
-                mt="0"
-                height="82px"
-                width="63px"
-                className="ddb-list-cover"
-              />
-              <article className="ddb-list-content">
-                <Skeleton width="45px" mb="12px" />
-                <Skeleton width="145px" mb="12px" />
-                <Skeleton width="95px" />
-              </article>
-              <Skeleton width="103px" className="ddb-btn" />
-            </section>
-          </li>
-        );
-      }
-      return skeletons;
-    };
-
-    return <UnorderedList>{createSkeletons()}</UnorderedList>;
+    return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
 
   if (loading === "finished" && items.length === 0) {
