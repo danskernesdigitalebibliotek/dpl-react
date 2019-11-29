@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Skeleton from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
+import Error from "../../components/error/error";
 
 function getList(length) {
   return Array.from(new Array(length));
@@ -36,7 +37,7 @@ function Checklist({ loading, items, onRemove }) {
   }
 
   if (loading === "finished" && items.length === 0) {
-    return <div>No items on the list!</div>;
+    return <Error type="polite" message="No items on the list!" />;
   }
 
   return (
