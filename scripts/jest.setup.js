@@ -1,6 +1,6 @@
-// this is just a little hack to silence a warning that we'll get until we
-// upgrade to 16.9: https://github.com/facebook/react/pull/14853
-// eslint-disable-next-line
+// this is just a little hack to silence a warning.
+// Some of our UI is optimistic and returns responses besides the order of async/await.
+// Therefore we want to quell some errors that isn't really valid.
 const originalError = console.error;
 beforeAll(() => {
   // eslint-disable-next-line
