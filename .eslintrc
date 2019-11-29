@@ -4,7 +4,9 @@
     "airbnb",
     "airbnb/hooks",
     "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier/react",
+    "plugin:jest/recommended",
+    "plugin:testing-library/recommended"
   ],
   "settings": {
     "react": {
@@ -29,7 +31,9 @@
         "error",
         {
           "devDependencies": [
-            "/**/*.dev.jsx"
+            "/**/*.dev.jsx",
+            "/**/*.test.js",
+            "/**/*.test.jsx"
           ]
         }
       ]
