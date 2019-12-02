@@ -1,23 +1,36 @@
-$ddb-list-spacing: layout(1);
-
-@include sm {
-  $ddb-list-spacing: layout(2);
-}
-@include md {
-  $ddb-list-spacing: layout(3);
-}
-
 .ddb-list {
   &-cover {
     display: flex;
     margin: 0;
-    margin-right: $ddb-list-spacing;
+    margin-right: layout(1);
     width: 100px;
+    @include sm {
+      margin-right: layout(2);
+    }
+    @include md {
+      margin-right: layout(3);
+    }
   }
   &-item {
+    a {
+      color: color("primary");
+      text-decoration: none;
+      h2 {
+        color: color("charcoal");
+      }
+      &:hover {
+        color: color("charcoal");
+      }
+    }
     background: color("grey");
     list-style: none;
-    padding: $ddb-list-spacing;
+    padding: layout(1);
+    @include sm {
+      padding: layout(2);
+    }
+    @include md {
+      padding: layout(3);
+    }
     &:nth-child(even) {
       background: color("white");
     }
