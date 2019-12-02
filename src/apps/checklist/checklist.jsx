@@ -11,19 +11,19 @@ function getList(length) {
 
 function SkeletonElement() {
   return (
-    <li className="ddb-list-item">
-      <section className="ddb-list-inner">
-        <article className="ddb-list-content">
-          <figure className="ddb-list-cover">
+    <li className="ddb-list__item">
+      <section className="ddb-list__inner">
+        <article className="ddb-list__content">
+          <figure className="ddb-list__cover">
             <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
           </figure>
-          <div className="ddb-list-data">
+          <div className="ddb-list__data">
             <Skeleton width="45px" mb="12px" />
             <Skeleton width="145px" mb="12px" />
             <Skeleton width="95px" />
           </div>
         </article>
-        <aside className="ddb-list-button ddb-list-button__remove">
+        <aside className="ddb-list__button ddb-list__button--remove">
           <Skeleton width="151px" height="50px" className="ddb-btn" />
         </aside>
       </section>
@@ -47,27 +47,27 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
   return (
     <UnorderedList>
       {items.map(item => (
-        <li key={item.pid} className="ddb-list-item">
-          <section className="ddb-list-inner">
-            <article className="ddb-list-content">
-              <figure className="ddb-list-cover">
+        <li key={item.pid} className="ddb-list__item">
+          <section className="ddb-list__inner">
+            <article className="ddb-list__content">
+              <figure className="ddb-list__cover">
                 <a href={`${materialUrl.replace(":pid", item.pid)}`}>
                   <img src={item.coverUrlThumbnail} alt={item.title} />
                 </a>
               </figure>
-              <div className="ddb-list-data">
+              <div className="ddb-list__data">
                 {item.type}
                 <a href={`${materialUrl.replace(":pid", item.pid)}`}>
                   <h2>{item.title}</h2>
                 </a>
                 <p>
-                  {item.creator.map((creator, i) => {
+                  {item.creator.map((creator, index) => {
                     return (
                       <span>
                         <a href={`${authorUrl.replace(":author", creator)}`}>
                           {creator}
                         </a>
-                        {item.creator[i + 1] ? ", " : " "}
+                        {item.creator[index + 1] ? ", " : " "}
                       </span>
                     );
                   })}
@@ -75,7 +75,7 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
                 </p>
               </div>
             </article>
-            <aside className="ddb-list-button ddb-list-button__remove">
+            <aside className="ddb-list__button ddb-list__button--remove">
               <Button
                 className="ddb-btn--charcoal"
                 onClick={() => onRemove(item.pid)}

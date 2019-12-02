@@ -1,5 +1,5 @@
 .ddb-list {
-  &-cover {
+  &__cover {
     display: flex;
     margin: 0;
     margin-right: layout(1);
@@ -11,7 +11,7 @@
       margin-right: layout(3);
     }
   }
-  &-content {
+  &__content {
     display: flex;
     width: 100%;
     line-break: auto;
@@ -23,7 +23,7 @@
       margin: space(3) 0;
     }
   }
-  &-item {
+  &__item {
     a {
       color: color("primary");
       text-decoration: none;
@@ -47,11 +47,11 @@
       background: color("white");
     }
   }
-  &-data {
+  &__data {
     display: flex;
     flex-direction: column;
   }
-  &-inner {
+  &__inner {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -59,7 +59,7 @@
       flex-direction: row;
     }
   }
-  &-button {
+  &__button {
     display: flex;
     justify-content: flex-end;
     button {
