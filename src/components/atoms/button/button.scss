@@ -1,6 +1,4 @@
 .ddb-btn {
-  background: color("grey");
-  color: color("text", "standard");
   border-radius: $border-radius;
   cursor: pointer;
   font-family: inherit;
@@ -8,15 +6,19 @@
   padding: space(5) space(6);
   transition: background duration("fast", 2) easing();
 
-  &:hover,
-  &:active {
-    background: color("grey", "dark");
-    color: color("white");
-  }
-
   &:focus {
     outline: 2px solid color("grey", "dark");
     outline-offset: 1px;
+  }
+
+  &--grey {
+    background: color("grey");
+    color: color("text", "standard");
+    &:hover,
+    &:active {
+      background: color("grey", "dark");
+      color: color("white");
+    }
   }
 
   &--black {

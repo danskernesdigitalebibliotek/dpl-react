@@ -12,9 +12,7 @@ function Button({ className, variant, onClick, children }) {
   return (
     <button
       type="button"
-      className={`ddb-reset ddb-btn ${
-        variant ? `ddb-btn--${variant}` : ""
-      } ${className}`}
+      className={`ddb-reset ddb-btn ddb-btn--${variant} ${className}`}
       onClick={onClick}
     >
       {children}
@@ -23,7 +21,7 @@ function Button({ className, variant, onClick, children }) {
 }
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["black"]),
+  variant: PropTypes.oneOf(["black", "grey", "secondary", "charcoal"]),
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
