@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Skeleton from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
-import AlertBox from "../../components/alert/alert";
+import Alert from "../../components/alert/alert";
 
 function getList(length) {
   return Array.from(new Array(length));
@@ -41,7 +41,7 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
   }
 
   if (loading === "finished" && items.length === 0) {
-    return <AlertBox type="polite" message="No items on the list!" />;
+    return <Alert type="polite" message="No items on the list!" />;
   }
 
   return (
