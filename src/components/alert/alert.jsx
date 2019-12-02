@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // https://reacttraining.com/reach-ui/alert
-import Alert from "@reach/alert";
+import ReactAlert from "@reach/alert";
 
 /**
- * A simple error that serves as the foundation of all errors.
+ * A simple alert that serves as the foundation of all alerts.
  *
  * @export
  * @param {object} props
@@ -13,24 +13,24 @@ import Alert from "@reach/alert";
  * @param {string} message
  * @returns {ReactNode}
  */
-function Error({ className, message, type }) {
+function Alert({ className, message, type }) {
   return (
-    <Alert className={`ddb-error ${className}`} type={type}>
+    <ReactAlert className={`ddb-alert ${className}`} type={type}>
       {message}
-    </Alert>
+    </ReactAlert>
   );
 }
 
-Error.propTypes = {
+Alert.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   type: PropTypes.oneOf(["assertive", "polite"])
 };
 
-Error.defaultProps = {
+Alert.defaultProps = {
   className: "",
   message: "Hov, der opstod en fejl!",
   type: "polite"
 };
 
-export default Error;
+export default Alert;
