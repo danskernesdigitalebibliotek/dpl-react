@@ -15,8 +15,10 @@
   background-color: #cbcbcb;
   animation: ddb-skeleton duration("slow", 2) easing("standard", "expressive")
     infinite;
-}
 
-li {
-  list-style: none;
+  &-wrapper {
+    li {
+      list-style: none;
+    }
+  }
 }

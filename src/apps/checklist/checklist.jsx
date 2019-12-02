@@ -33,7 +33,11 @@ function SkeletonElement() {
 
 function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
   if (loading === "active") {
-    return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
+    return (
+      <UnorderedList className="ddb-skeleton-wrapper">
+        {getList(4).map(SkeletonElement)}
+      </UnorderedList>
+    );
   }
 
   if (loading === "finished" && items.length === 0) {
