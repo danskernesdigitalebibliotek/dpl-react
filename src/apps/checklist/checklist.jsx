@@ -31,7 +31,7 @@ function SkeletonElement() {
   );
 }
 
-function Checklist({ loading, items, onRemove }) {
+function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
   if (loading === "active") {
     return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
@@ -47,13 +47,27 @@ function Checklist({ loading, items, onRemove }) {
           <section className="ddb-list-inner">
             <article className="ddb-list-content">
               <figure className="ddb-list-cover">
-                <img src={item.coverUrlThumbnail} alt={item.title} />
+                <a href={`${materialUrl.replace(":pid", item.pid)}`}>
+                  <img src={item.coverUrlThumbnail} alt={item.title} />
+                </a>
               </figure>
               <div className="ddb-list-data">
                 {item.type}
-                <h2>{item.title}</h2>
+                <a href={`${materialUrl.replace(":pid", item.pid)}`}>
+                  <h2>{item.title}</h2>
+                </a>
                 <p>
-                  Af {item.creator} ({item.year})
+                  {item.creator.map((creator, i) => {
+                    return (
+                      <span>
+                        <a href={`${authorUrl.replace(":author", creator)}`}>
+                          {creator}
+                        </a>
+                        {item.creator[i + 1] ? ", " : " "}
+                      </span>
+                    );
+                  })}
+                  ({item.year})
                 </p>
               </div>
             </article>
@@ -80,7 +94,9 @@ Checklist.defaultProps = {
 Checklist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished"]),
   items: PropTypes.arrayOf(PropTypes.object),
-  onRemove: PropTypes.func.isRequired
+  onRemove: PropTypes.func.isRequired,
+  materialUrl: PropTypes.string.isRequired,
+  authorUrl: PropTypes.string.isRequired
 };
 
 export default Checklist;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Checklist from "./checklist";
 import MaterialList from "../../core/MaterialList";
 import OpenPlatform from "../../core/OpenPlatform";
@@ -10,7 +11,7 @@ function format(result) {
     const newItem = item;
 
     // Use dcCreator if it exists, otherwise fallback to dcCreator.
-    newItem.creator = item.dcCreator ? item.dcCreator.join(", ") : item.creator;
+    newItem.creator = item.dcCreator ? item.dcCreator : item.creator;
     newItem.title = item.dcTitleFull;
     newItem.type = item.typeBibDKType;
     newItem.year = item.date;
@@ -24,7 +25,7 @@ function format(result) {
   });
 }
 
-function ChecklistEntry() {
+function ChecklistEntry({ materialUrl, authorUrl }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
 
@@ -71,7 +72,20 @@ function ChecklistEntry() {
       }, 2000);
     });
   }
-  return <Checklist loading={loading} items={list} onRemove={onRemove} />;
+  return (
+    <Checklist
+      loading={loading}
+      items={list}
+      onRemove={onRemove}
+      materialUrl={materialUrl}
+      authorUrl={authorUrl}
+    />
+  );
 }
+
+ChecklistEntry.propTypes = {
+  materialUrl: PropTypes.string.isRequired,
+  authorUrl: PropTypes.string.isRequired
+};
 
 export default ChecklistEntry;
