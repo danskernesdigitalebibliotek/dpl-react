@@ -8,6 +8,8 @@ export function WithText() {
     <>
       <Button>Grey</Button>
       <Button variant="black">Black</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="charcoal">Charcoal</Button>
     </>
   );
 }
