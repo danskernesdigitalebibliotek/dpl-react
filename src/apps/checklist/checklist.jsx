@@ -97,7 +97,14 @@ Checklist.defaultProps = {
 
 Checklist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished"]),
-  items: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      creator: PropTypes.string,
+      title: PropTypes.string,
+      type: PropTypes.string,
+      year: PropTypes.number
+    })
+  ),
   onRemove: PropTypes.func.isRequired,
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired
