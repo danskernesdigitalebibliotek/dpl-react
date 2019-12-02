@@ -6,25 +6,25 @@ import OpenPlatform from "../../core/OpenPlatform";
 
 const client = new MaterialList();
 
-function format(result) {
-  return result.map(item => {
-    const newItem = item;
-
-    // Use dcCreator if it exists, otherwise fallback to dcCreator.
-    newItem.creator = item.dcCreator ? item.dcCreator : item.creator;
-    newItem.title = item.dcTitleFull;
-    newItem.type = item.typeBibDKType;
-    newItem.year = item.date;
-
-    // Delete old properties because we use new, more descriptive names.
-    delete newItem.dcTitleFull;
-    delete newItem.typeBibDKType;
-    delete newItem.date;
-
-    return newItem;
-  });
+/**
+ *
+ * @param {object} item - the OpenPlatform item (i.e. material info)
+ * @memberof ChecklistEntry
+ */
+function formatResult(item) {
+  return {
+    ...item,
+    creator: item.dcCreator ? item.dcCreator : item.creator,
+    title: item.dcTitleFull,
+    type: item.typeBibDKType,
+    year: item.date
+  };
 }
 
+/**
+ * @param {object} - object with the URL for the material and author URL.
+ * @memberof ChecklistEntry
+ */
 function ChecklistEntry({ materialUrl, authorUrl }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
@@ -49,7 +49,7 @@ function ChecklistEntry({ materialUrl, authorUrl }) {
         });
       })
       .then(result => {
-        setList(format(result));
+        setList(result.map(formatResult));
       })
       .catch(function onError() {
         setList([]);
@@ -59,6 +59,11 @@ function ChecklistEntry({ materialUrl, authorUrl }) {
       });
   }, []);
 
+  /**
+   *
+   * @param {string} materialId - the material ID / pid.
+   * @memberof ChecklistEntry
+   */
   function onRemove(materialId) {
     const fallbackList = [...list];
     setList(
