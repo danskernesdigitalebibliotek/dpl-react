@@ -20,7 +20,7 @@
     "clean": "rm -r -f ./dist/*",
     "build": "concurrently --raw \"yarn clean\" \"yarn lint:scss:fix\" \"yarn build:js:prod\" \"yarn build:css:prod\"",
     "build:js:dev": "webpack --mode=development --config webpack.config.js",
-    "build:js:prod": "webpack --mode=production --config webpack.config.js",
+    "build:js:prod": "NODE_ENV=production webpack --mode=production --config webpack.config.js",
     "build:css:dev": "postcss ./src/apps/**/*.scss ./src/components/components.scss --ext css --dir ./dist",
     "build:css:prod": "postcss ./src/apps/**/*.scss ./src/components/components.scss --no-map --ext css --dir ./dist --env production",
     "watch:css": "postcss ./src/apps/**/*.scss ./src/components/components.scss --ext css --dir ./dist --watch",

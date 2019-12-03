@@ -16,6 +16,7 @@ module.exports = (_env, argv) => {
       filename: "[name].js",
       path: path.resolve(__dirname, "dist")
     },
+    mode: argv.mode,
     devtool: production ? "source-map" : "inline-source-map",
     optimization: {
       runtimeChunk: "single",
