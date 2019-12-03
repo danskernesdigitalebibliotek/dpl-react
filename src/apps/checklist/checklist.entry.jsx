@@ -7,9 +7,9 @@ import OpenPlatform from "../../core/OpenPlatform";
 const client = new MaterialList();
 
 /**
- *
  * @param {object} item - the OpenPlatform item (i.e. material info)
  * @memberof ChecklistEntry
+ * @returns {object} - the item data with modified values and property names.
  */
 function formatResult(item) {
   return {
@@ -24,6 +24,7 @@ function formatResult(item) {
 /**
  * @param {object} - object with the URL for the material and author URL.
  * @memberof ChecklistEntry
+ * @returns {ReactNode}
  */
 function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
   const [list, setList] = useState([]);
@@ -60,6 +61,7 @@ function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
   }, []);
 
   /**
+   * Function to remove a material from the list.
    *
    * @param {string} materialId - the material ID / pid.
    * @memberof ChecklistEntry
