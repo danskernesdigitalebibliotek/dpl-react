@@ -10,7 +10,7 @@ const client = new MaterialList();
  * @param {object} item - the OpenPlatform item (i.e. material info)
  * @memberof ChecklistEntry
  * @returns {object} item - the item data with modified values and property names.
- * @returns {string|array} item.creator - authors/creators of the material.
+ * @returns {string|string[]} item.creator - authors/creators of the material.
  * @returns {string} - item.title - the title of the material.
  * @returns {string} - item.type - the type of material (book, movie, etc.)
  * @returns {string} - item.year - the year the material was published.
