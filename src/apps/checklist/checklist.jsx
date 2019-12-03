@@ -4,6 +4,7 @@ import Skeleton from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 import Alert from "../../components/alert/alert";
+import createPath from "../../core/createPath";
 
 function getList(length) {
   return Array.from(new Array(length));
@@ -51,20 +52,38 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
           <section className="ddb-list__inner">
             <article className="ddb-list__content">
               <figure className="ddb-list__cover">
-                <a href={`${materialUrl.replace(":pid", item.pid)}`}>
+                <a
+                  href={createPath({
+                    url: materialUrl,
+                    property: ":pid",
+                    value: item.pid
+                  })}
+                >
                   <img src={item.coverUrlThumbnail} alt={item.title} />
                 </a>
               </figure>
               <div className="ddb-list__data">
                 {item.type}
-                <a href={`${materialUrl.replace(":pid", item.pid)}`}>
+                <a
+                  href={createPath({
+                    url: materialUrl,
+                    property: ":pid",
+                    value: item.pid
+                  })}
+                >
                   <h2>{item.title}</h2>
                 </a>
                 <p>
                   {item.creator.map((creator, index) => {
                     return (
                       <span>
-                        <a href={`${authorUrl.replace(":author", creator)}`}>
+                        <a
+                          href={createPath({
+                            url: authorUrl,
+                            property: ":author",
+                            value: creator
+                          })}
+                        >
                           {creator}
                         </a>
                         {item.creator[index + 1] ? ", " : " "}
