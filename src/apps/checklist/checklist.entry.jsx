@@ -25,7 +25,7 @@ function formatResult(item) {
  * @param {object} - object with the URL for the material and author URL.
  * @memberof ChecklistEntry
  */
-function ChecklistEntry({ materialUrl, authorUrl }) {
+function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
 
@@ -84,13 +84,19 @@ function ChecklistEntry({ materialUrl, authorUrl }) {
       onRemove={onRemove}
       materialUrl={materialUrl}
       authorUrl={authorUrl}
+      removeButtonText={removeButtonText}
     />
   );
 }
 
 ChecklistEntry.propTypes = {
   materialUrl: PropTypes.string.isRequired,
-  authorUrl: PropTypes.string.isRequired
+  authorUrl: PropTypes.string.isRequired,
+  removeButtonText: PropTypes.string
+};
+
+ChecklistEntry.defaultProps = {
+  removeButtonText: "Fjern fra listen"
 };
 
 export default ChecklistEntry;

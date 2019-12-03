@@ -32,7 +32,14 @@ function SkeletonElement() {
   );
 }
 
-function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
+function Checklist({
+  loading,
+  items,
+  onRemove,
+  materialUrl,
+  authorUrl,
+  removeButtonText
+}) {
   if (loading === "active") {
     return (
       <UnorderedList className="ddb-skeleton-wrapper">
@@ -99,7 +106,7 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
                 className="ddb-btn--charcoal"
                 onClick={() => onRemove(item.pid)}
               >
-                Fjern fra listen
+                {removeButtonText}
               </Button>
             </aside>
           </section>
@@ -111,7 +118,8 @@ function Checklist({ loading, items, onRemove, materialUrl, authorUrl }) {
 
 Checklist.defaultProps = {
   items: [],
-  loading: "inactive"
+  loading: "inactive",
+  removeButtonText: "Fjern fra listen"
 };
 
 Checklist.propTypes = {
@@ -126,7 +134,8 @@ Checklist.propTypes = {
   ),
   onRemove: PropTypes.func.isRequired,
   materialUrl: PropTypes.string.isRequired,
-  authorUrl: PropTypes.string.isRequired
+  authorUrl: PropTypes.string.isRequired,
+  removeButtonText: PropTypes.string
 };
 
 export default Checklist;

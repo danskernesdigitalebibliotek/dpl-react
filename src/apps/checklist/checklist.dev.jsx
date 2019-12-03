@@ -19,6 +19,7 @@ export function Entry() {
         "Author URL",
         'https://lollandbib.dk/search/ting/phrase.creator=":author"'
       )}
+      removeButtonText={text("Remove button text", "Fjern fra listen")}
     />
   );
 }
