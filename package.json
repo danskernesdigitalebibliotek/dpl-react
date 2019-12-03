@@ -32,11 +32,14 @@
     "test": "jest"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./scripts/jest.setup.js"]
+    "setupFilesAfterEnv": [
+      "./scripts/jest.setup.js"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.7.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@namics/stylelint-bem": "^6.1.0",
@@ -86,6 +89,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@babel/runtime": "^7.7.4",
     "@reach/alert": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "prop-types": "^15.7.2",
