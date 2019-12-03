@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Button from "../../components/atoms/button/button";
+import Alert from "../../components/alert/alert";
 
 function AddToChecklist({ loading, onClick, text }) {
   // Here will also be server requests etc.
   if (loading === "active") {
-    return <div>Tilføjet</div>;
+    return <Alert message="Tilføjet" type="polite" variant="success" />;
   }
 
   if (loading === "failed") {
-    return <div>Noget gik galt</div>;
+    return <Alert message="Noget gik galt" type="polite" variant="warning" />;
   }
 
   return (

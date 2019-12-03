@@ -11,11 +11,16 @@ import ReactAlert from "@reach/alert";
  * @param {object} props
  * @param {string} className
  * @param {string} message
+ * @param {string} type
+ * @param {string} variant
  * @returns {ReactNode}
  */
-function Alert({ className, message, type }) {
+function Alert({ className, message, type, variant }) {
   return (
-    <ReactAlert className={`ddb-alert ${className}`} type={type}>
+    <ReactAlert
+      className={`ddb-alert ddb-alert--${variant} ${className}`}
+      type={type}
+    >
       {message}
     </ReactAlert>
   );
@@ -24,13 +29,15 @@ function Alert({ className, message, type }) {
 Alert.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
-  type: PropTypes.oneOf(["assertive", "polite"])
+  type: PropTypes.oneOf(["assertive", "polite"]),
+  variant: PropTypes.string
 };
 
 Alert.defaultProps = {
   className: "",
   message: "Hov, der opstod en fejl!",
-  type: "polite"
+  type: "polite",
+  variant: ""
 };
 
 export default Alert;
