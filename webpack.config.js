@@ -36,6 +36,9 @@ module.exports = (_env, argv) => {
     stats: {
       entrypoints: false,
       modules: false
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json']
     }
   };
 };
