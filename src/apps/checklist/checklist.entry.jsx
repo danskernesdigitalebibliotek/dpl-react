@@ -47,19 +47,22 @@ function ChecklistEntry({
     client
       .getList()
       .then(function onResult(result) {
-        const op = new OpenPlatform();
-        return op.getWork({
-          pids: result,
-          fields: [
-            "dcTitleFull",
-            "pid",
-            "coverUrlThumbnail",
-            "dcCreator",
-            "creator",
-            "typeBibDKType",
-            "date"
-          ]
-        });
+        if (result && result.length) {
+          const op = new OpenPlatform();
+          return op.getWork({
+            pids: result,
+            fields: [
+              "dcTitleFull",
+              "pid",
+              "coverUrlThumbnail",
+              "dcCreator",
+              "creator",
+              "typeBibDKType",
+              "date"
+            ]
+          });
+        }
+        return [];
       })
       .then(result => {
         setList(result.map(formatResult));
