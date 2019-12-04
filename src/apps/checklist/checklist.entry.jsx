@@ -19,7 +19,7 @@ function formatResult(item) {
   return {
     ...item,
     pid: item.pid?.[0],
-    creator: item.dcCreator ? item.dcCreator : item.creator,
+    creators: item.dcCreator ? item.dcCreator : item.creator,
     title: item.dcTitleFull?.[0],
     type: item.typeBibDKType?.[0],
     year: item.date?.[0],

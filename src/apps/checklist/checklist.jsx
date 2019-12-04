@@ -87,7 +87,7 @@ function Checklist({
                   <h2>{item.title}</h2>
                 </a>
                 <p>
-                  {item.creator.map((creator, index) => {
+                  {item.creators.map((creator, index) => {
                     return (
                       <span key={creator}>
                         <a
@@ -132,7 +132,7 @@ Checklist.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       pid: PropTypes.string,
-      creator: PropTypes.arrayOf(PropTypes.string),
+      creators: PropTypes.arrayOf(PropTypes.string),
       title: PropTypes.string,
       type: PropTypes.string,
       year: PropTypes.string,
