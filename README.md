@@ -122,10 +122,10 @@ export default MyNewApplicationEntry;
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.mount.js
-import mount from "../../core/mount";
+import addMount from "../../core/addMount";
 import MyNewApplication from "./my-new-application.entry";
 
-mount({ appName: "my-new-application", app: MyNewApplication });
+addMount({ appName: "my-new-application", app: MyNewApplication });
 ```
 </details>
 
@@ -372,15 +372,23 @@ A simple naive example of the required artifacts needed looks like this:
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Naive mount</title>
     <link rel="stylesheet" href="/dist/components.css">
-    <link rel="stylesheet" href="/dist/add-to-checklist.css">
 </head>
 <body>
     <b>Here be dragons!</b>
-    <div data-ddb-app='add-to-checklist' data-whatever-value="Chromatic dragon"></div>
-    <div data-ddb-app='add-to-checklist'></div>
+    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"></div>
+    <div data-ddb-app='a-none-existing-app '></div>
+    
+    <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/add-to-checklist.js"></script>
+    <script src="/dist/mount.js"></script>
+    <script>
+      // If this function isn't called no apps will display.
+      // An app will only be displayed if there is a container for it
+      // and a corresonding application loaded.
+      window.mountDdbApps(document);
+    </script>
 </body>
 </html>
 ```
