@@ -122,7 +122,7 @@ ChecklistEntry.propTypes = {
 ChecklistEntry.defaultProps = {
   removeButtonText: "Fjern fra listen",
   emptyListText: "Listen er tom",
-  errorText: "Noget git galt"
+  errorText: "Noget gik galt"
 };
 
 export default ChecklistEntry;
