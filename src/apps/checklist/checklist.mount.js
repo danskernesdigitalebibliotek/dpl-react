@@ -1,4 +1,4 @@
-import mount from "../../core/mount";
+import addMount from "../../core/addMount";
 import Checklist from "./checklist.entry";
 
-mount({ appName: "checklist", app: Checklist });
+addMount({ appName: "checklist", app: Checklist });

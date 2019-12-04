@@ -1,4 +1,4 @@
-import mount from "../../core/mount";
+import addMount from "../../core/addMount";
 import Searchlist from "./searchlist.entry";
 
-mount({ appName: "searchlist", app: Searchlist });
+addMount({ appName: "searchlist", app: Searchlist });
