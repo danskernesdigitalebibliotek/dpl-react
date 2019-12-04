@@ -10,9 +10,9 @@ function getList(length) {
   return Array.from(new Array(length));
 }
 
-function SkeletonElement() {
+function SkeletonElement(_, index) {
   return (
-    <li className="ddb-list__item">
+    <li key={index} className="ddb-list__item">
       <section className="ddb-list__inner">
         <article className="ddb-list__content">
           <figure className="ddb-list__cover">
@@ -89,7 +89,7 @@ function Checklist({
                 <p>
                   {item.creator.map((creator, index) => {
                     return (
-                      <span>
+                      <span key={creator}>
                         <a
                           href={createPath({
                             url: authorUrl,
