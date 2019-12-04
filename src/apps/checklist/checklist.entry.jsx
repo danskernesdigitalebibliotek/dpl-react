@@ -34,7 +34,8 @@ function ChecklistEntry({
   materialUrl,
   authorUrl,
   removeButtonText,
-  emptyListText
+  emptyListText,
+  errorText
 }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
@@ -62,7 +63,11 @@ function ChecklistEntry({
         setList(result.map(formatResult));
       })
       .catch(function onError() {
-        setList([]);
+        setLoading("failed");
+        setTimeout(() => {
+          setLoading("inactive");
+          setList([]);
+        }, 2000);
       })
       .finally(function onEnd() {
         setLoading("finished");
@@ -83,7 +88,9 @@ function ChecklistEntry({
       })
     );
     client.deleteListMaterial({ materialId }).catch(function onError() {
+      setLoading("failed");
       setTimeout(function onRestore() {
+        setLoading("inactive");
         setList(fallbackList);
       }, 2000);
     });
@@ -97,6 +104,7 @@ function ChecklistEntry({
       authorUrl={authorUrl}
       removeButtonText={removeButtonText}
       emptyListText={emptyListText}
+      errorText={errorText}
     />
   );
 }
@@ -105,12 +113,14 @@ ChecklistEntry.propTypes = {
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string,
-  emptyListText: PropTypes.string
+  emptyListText: PropTypes.string,
+  errorText: PropTypes.string
 };
 
 ChecklistEntry.defaultProps = {
   removeButtonText: "Fjern fra listen",
-  emptyListText: "Listen er tom"
+  emptyListText: "Listen er tom",
+  errorText: "Noget git galt"
 };
 
 export default ChecklistEntry;

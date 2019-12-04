@@ -21,6 +21,7 @@ export function Entry() {
       )}
       removeButtonText={text("Remove button text", "Fjern fra listen")}
       emptyListText={text("Empty list text", "Ingen elementer på listen")}
+      errorText={text("Error text", "Et eller andet git galt.")}
     />
   );
 }

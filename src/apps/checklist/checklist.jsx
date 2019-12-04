@@ -39,8 +39,13 @@ function Checklist({
   materialUrl,
   authorUrl,
   removeButtonText,
-  emptyListText
+  emptyListText,
+  errorText
 }) {
+  if (loading === "failed") {
+    return <Alert type="assertive" message={errorText} />;
+  }
+
   if (loading === "active") {
     return (
       <UnorderedList className="ddb-skeleton-wrapper">
@@ -123,7 +128,7 @@ Checklist.defaultProps = {
 };
 
 Checklist.propTypes = {
-  loading: PropTypes.oneOf(["inactive", "active", "finished"]),
+  loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       creator: PropTypes.string,
@@ -136,7 +141,8 @@ Checklist.propTypes = {
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
-  emptyListText: PropTypes.string.isRequired
+  emptyListText: PropTypes.string.isRequired,
+  errorText: PropTypes.string.isRequired
 };
 
 export default Checklist;
