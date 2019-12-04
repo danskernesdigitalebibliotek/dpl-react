@@ -376,7 +376,7 @@ A simple naive example of the required artifacts needed looks like this:
 <body>
     <b>Here be dragons!</b>
     <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"></div>
-    <div data-ddb-app='a-none-existing-app '></div>
+    <div data-ddb-app='a-none-existing-app'></div>
     
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
