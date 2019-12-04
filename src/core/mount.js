@@ -5,27 +5,44 @@ import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundary from "../components/alert/alert";
 
 /**
- * This is where we actually mount the application into the DOM elements.
- * If DOM elements exists with corresponding data-ddb-app attribute values
- * to the appName of the application we will mount it in all the places.
- * We also want to expose the rest of the data attributes to the react application.
+ * We look for containers and corresponding applications.
+ * Thereafter we mount them if a corresponding container and application can be found.
  *
- * @param {object} options
- * @param {string} options.appName - Name of the application. This has to be the same in the DOM as well as in your .mount.js file.
- * @param {ReactNode} options.app - The React app/component that should be the start point of your application. This should be your applications .entry.js.
+ * @param {HTMLElement} context - The HTML element you want to search for app containers in.
  */
-function mount({ appName, app }) {
-  const appContainers = document.querySelectorAll(
-    `[data-ddb-app="${appName}"]`
-  );
+function mount(context) {
+  if (!context) return;
+  const appContainers = context.querySelectorAll("[data-ddb-app]");
   appContainers.forEach(function mountApp(container) {
-    render(
-      createElement(withErrorBoundary(app, ErrorBoundary), {
-        ...container.dataset
-      }),
-      container
-    );
+    const appName = container?.dataset?.ddbApp;
+    const app = window.ddbApps?.[appName];
+    // Ensure that the application exists and that the container isn't already populated.
+    const isValidMount = app && !container.innerHTML;
+    if (isValidMount) {
+      render(
+        createElement(withErrorBoundary(app, ErrorBoundary), {
+          ...container.dataset
+        }),
+        container
+      );
+    }
   });
 }
 
-export default mount;
+/**
+ * If you want to remove all ddb apps in a certain context.
+ *
+ * @param {HTMLElement} context - The HTML element you want to search for app containers in.
+ */
+function unMount(context) {
+  if (!context) return;
+  const appContainers = context.querySelectorAll("[data-ddb-app]");
+  appContainers.forEach(function unMountApp(container) {
+    const appContainerToUnmount = container;
+    appContainerToUnmount.innerHTML = "";
+  });
+}
+
+// Inject the function(s) into the global namespace for third party access.
+window.mountDdbApps = mount;
+window.unMountDdbApps = unMount;

@@ -11,7 +11,10 @@ module.exports = (_env, argv) => {
   }, {});
 
   return {
-    entry,
+    entry: {
+      ...entry,
+      mount: "./src/core/mount.js"
+    },
     output: {
       filename: "[name].js",
       path: path.resolve(__dirname, "dist")
