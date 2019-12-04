@@ -6916,6 +6916,11 @@ is-typedarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
+is-url@^1.2.2:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
+
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
@@ -12239,6 +12244,13 @@ url-parse@^1.4.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+url-prop-type@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/url-prop-type/-/url-prop-type-1.2.3.tgz#de6881670925570ea566cfa58ae1d3833a57aab7"
+  integrity sha512-ln+PDureVz9UNBCLo0krQJJ6h+1mmF6nB/gyc8V/Lpd1tK/rHb2BI2sVlSTMJb55E7WL6cuIxyYWgfLaa+JVbA==
+  dependencies:
+    is-url "^1.2.2"
 
 url@^0.11.0:
   version "0.11.0"

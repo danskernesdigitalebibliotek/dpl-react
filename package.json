@@ -95,6 +95,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-error-boundary": "^1.2.5"
+    "react-error-boundary": "^1.2.5",
+    "url-prop-type": "^1.2.3"
   }
 }

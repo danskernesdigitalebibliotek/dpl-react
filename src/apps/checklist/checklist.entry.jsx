@@ -23,7 +23,7 @@ function formatResult(item) {
     title: item.dcTitleFull?.[0],
     type: item.typeBibDKType?.[0],
     year: item.date?.[0],
-    cover: item.coverUrlThumbnail?.[0]
+    coverUrl: item.coverUrlThumbnail?.[0]
   };
 }
 

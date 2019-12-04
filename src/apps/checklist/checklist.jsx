@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import urlPropType from "url-prop-type";
 import Skeleton from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
@@ -72,7 +73,7 @@ function Checklist({
                     value: item.pid
                   })}
                 >
-                  <img src={item.cover} alt={item.title} />
+                  <img src={item.coverUrl} alt={item.title} />
                 </a>
               </figure>
               <div className="ddb-list__data">
@@ -136,7 +137,7 @@ Checklist.propTypes = {
       title: PropTypes.string,
       type: PropTypes.string,
       year: PropTypes.string,
-      cover: PropTypes.string
+      coverUrl: urlPropType
     })
   ),
   onRemove: PropTypes.func.isRequired,
