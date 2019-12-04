@@ -72,7 +72,7 @@ function Checklist({
                     value: item.pid
                   })}
                 >
-                  <img src={item.coverUrlThumbnail} alt={item.title} />
+                  <img src={item.cover} alt={item.title} />
                 </a>
               </figure>
               <div className="ddb-list__data">
@@ -131,10 +131,12 @@ Checklist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      creator: PropTypes.string,
+      pid: PropTypes.string,
+      creator: PropTypes.arrayOf(PropTypes.string),
       title: PropTypes.string,
       type: PropTypes.string,
-      year: PropTypes.number
+      year: PropTypes.string,
+      cover: PropTypes.string
     })
   ),
   onRemove: PropTypes.func.isRequired,

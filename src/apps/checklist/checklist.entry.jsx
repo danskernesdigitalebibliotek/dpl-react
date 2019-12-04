@@ -18,10 +18,12 @@ const client = new MaterialList();
 function formatResult(item) {
   return {
     ...item,
+    pid: item.pid?.[0],
     creator: item.dcCreator ? item.dcCreator : item.creator,
-    title: item.dcTitleFull,
-    type: item.typeBibDKType,
-    year: item.date
+    title: item.dcTitleFull?.[0],
+    type: item.typeBibDKType?.[0],
+    year: item.date?.[0],
+    cover: item.coverUrlThumbnail?.[0]
   };
 }
 
