@@ -30,7 +30,12 @@ function formatResult(item) {
  * @memberof ChecklistEntry
  * @returns {ReactNode}
  */
-function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
+function ChecklistEntry({
+  materialUrl,
+  authorUrl,
+  removeButtonText,
+  emptyListText
+}) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
 
@@ -91,6 +96,7 @@ function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
       materialUrl={materialUrl}
       authorUrl={authorUrl}
       removeButtonText={removeButtonText}
+      emptyListText={emptyListText}
     />
   );
 }
@@ -98,11 +104,13 @@ function ChecklistEntry({ materialUrl, authorUrl, removeButtonText }) {
 ChecklistEntry.propTypes = {
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired,
-  removeButtonText: PropTypes.string
+  removeButtonText: PropTypes.string,
+  emptyListText: PropTypes.string
 };
 
 ChecklistEntry.defaultProps = {
-  removeButtonText: "Fjern fra listen"
+  removeButtonText: "Fjern fra listen",
+  emptyListText: "Listen er tom"
 };
 
 export default ChecklistEntry;

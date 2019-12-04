@@ -38,7 +38,8 @@ function Checklist({
   onRemove,
   materialUrl,
   authorUrl,
-  removeButtonText
+  removeButtonText,
+  emptyListText
 }) {
   if (loading === "active") {
     return (
@@ -49,7 +50,7 @@ function Checklist({
   }
 
   if (loading === "finished" && items.length === 0) {
-    return <Alert type="polite" message="No items on the list!" />;
+    return <Alert type="polite" message={emptyListText} />;
   }
 
   return (
@@ -118,8 +119,7 @@ function Checklist({
 
 Checklist.defaultProps = {
   items: [],
-  loading: "inactive",
-  removeButtonText: "Fjern fra listen"
+  loading: "inactive"
 };
 
 Checklist.propTypes = {
@@ -135,7 +135,8 @@ Checklist.propTypes = {
   onRemove: PropTypes.func.isRequired,
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired,
-  removeButtonText: PropTypes.string
+  removeButtonText: PropTypes.string.isRequired,
+  emptyListText: PropTypes.string.isRequired
 };
 
 export default Checklist;

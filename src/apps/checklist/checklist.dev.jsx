@@ -20,6 +20,7 @@ export function Entry() {
         'https://lollandbib.dk/search/ting/phrase.creator=":author"'
       )}
       removeButtonText={text("Remove button text", "Fjern fra listen")}
+      emptyListText={text("Empty list text", "Ingen elementer på listen")}
     />
   );
 }
