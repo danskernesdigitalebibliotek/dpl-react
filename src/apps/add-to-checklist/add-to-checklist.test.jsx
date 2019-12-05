@@ -5,9 +5,14 @@ import AddToChecklistEntry from "./add-to-checklist.entry";
 
 test("see success message", () => {
   const { queryByText } = render(
-    <AddToChecklistEntry text="klik" id="870970-basis:54172613" />
+    <AddToChecklistEntry
+      id="870970-basis:54172613"
+      text="klik"
+      errorText="This is an error"
+      successText="What a success"
+    />
   );
 
   fireEvent.click(queryByText("klik"));
-  expect(queryByText("Tilføjet")).toBeInTheDocument();
+  expect(queryByText("What a success")).toBeInTheDocument();
 });
