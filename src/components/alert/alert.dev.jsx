@@ -8,9 +8,9 @@ export function Info() {
 }
 
 export function Warning() {
-  return <Alert variant="warning" />;
+  return <Alert variant="warning" message="Noget git galt" />;
 }
 
 export function Success() {
-  return <Alert variant="success" />;
+  return <Alert variant="success" message="Det lykkedes" />;
 }
