@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../../components/atoms/button/button";
 import Dialog from "../../components/atoms/dialog/dialog";
 import TextField from "../../components/atoms/textfield/textfield";
+import Alert from "../../components/alert/alert";
 
 function AddToSearchlist({
   state,
@@ -12,7 +13,9 @@ function AddToSearchlist({
   label,
   defaultTitle,
   addButtonLabel,
-  helpText
+  helpText,
+  errorText,
+  successText
 }) {
   const [showDialog, setShowDialog] = useState(false);
   const [name, setName] = useState(defaultTitle);
@@ -21,11 +24,11 @@ function AddToSearchlist({
   const submit = () => onSubmit(name);
 
   if (state === "finished") {
-    return <div>Tilføjet</div>;
+    return <Alert message={successText} type="polite" variant="success" />;
   }
 
   if (state === "failed") {
-    return <div>Noget gik galt</div>;
+    return <Alert message={errorText} type="assertive" variant="warning" />;
   }
 
   if (state === "requesting" && showDialog) {
@@ -71,6 +74,8 @@ AddToSearchlist.propTypes = {
     .isRequired,
   onSubmit: PropTypes.func.isRequired,
   text: PropTypes.string,
+  errorText: PropTypes.string.isRequired,
+  successText: PropTypes.string.isRequired,
   label: PropTypes.string,
   addButtonLabel: PropTypes.string,
   defaultTitle: PropTypes.string,
