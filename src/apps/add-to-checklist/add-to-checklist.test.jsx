@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import AddToChecklistEntry from "./add-to-checklist.entry";
 
-test("see success message", () => {
+test("Successful addition to list", () => {
   const { queryByText } = render(
     <AddToChecklistEntry
       id="870970-basis:54172613"
