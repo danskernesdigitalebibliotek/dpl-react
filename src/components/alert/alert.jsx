@@ -30,7 +30,7 @@ Alert.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   type: PropTypes.oneOf(["assertive", "polite"]),
-  variant: PropTypes.oneOf("info", "success", "warning")
+  variant: PropTypes.oneOf(["info", "success", "warning"])
 };
 
 Alert.defaultProps = {
