@@ -9,10 +9,10 @@ import ReachAlert from "@reach/alert";
  *
  * @export
  * @param {object} props
- * @param {string} className
- * @param {string} message
- * @param {string} type
- * @param {string} variant
+ * @param {string} props.className
+ * @param {string} props.message
+ * @param {string} props.type
+ * @param {string} props.variant
  * @returns {ReactNode}
  */
 function Alert({ className, message, type, variant }) {
@@ -30,7 +30,7 @@ Alert.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   type: PropTypes.oneOf(["assertive", "polite"]),
-  variant: PropTypes.string
+  variant: PropTypes.oneOf("info", "success", "warning")
 };
 
 Alert.defaultProps = {
