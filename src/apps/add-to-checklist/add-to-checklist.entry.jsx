@@ -13,15 +13,14 @@ function AddToChecklistEntry({ text, successText, errorText, id }) {
     setLoading("active");
     client
       .addListMaterial({ materialId: id })
-      .then()
+      .then(function onSuccess() {
+        setLoading("finished");
+      })
       .catch(function onError() {
         setLoading("failed");
         setTimeout(function onRestore() {
           setLoading("inactive");
         }, 2000);
-      })
-      .finally(function onEnd() {
-        setLoading("finished");
       });
   }
 
