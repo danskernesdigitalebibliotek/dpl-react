@@ -5,7 +5,6 @@ import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
 
 function AddToChecklist({ loading, onClick, text, errorText, successText }) {
-  // Here will also be server requests etc.
   if (loading === "active") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
