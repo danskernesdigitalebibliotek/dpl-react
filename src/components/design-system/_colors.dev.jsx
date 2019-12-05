@@ -127,12 +127,6 @@ export function Text() {
         yellow, text
       </p>
       <p
-        title="yellow, text"
-        className="ddb-color-example-text ddb-color-example-text--yellow-text"
-      >
-        yellow, text
-      </p>
-      <p
         title="text"
         className="ddb-color-example-text ddb-color-example-text--text"
       >
