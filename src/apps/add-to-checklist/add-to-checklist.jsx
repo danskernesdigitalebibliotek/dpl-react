@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
 
-function AddToChecklist({ loading, onClick, text }) {
+function AddToChecklist({ loading, onClick, text, errorText, successText }) {
   // Here will also be server requests etc.
   if (loading === "active") {
-    return <Alert message="Tilføjet" type="polite" variant="success" />;
+    return <Alert message={successText} type="polite" variant="success" />;
   }
 
   if (loading === "failed") {
-    return <Alert message="Noget gik galt" type="polite" variant="warning" />;
+    return <Alert message={errorText} type="polite" variant="warning" />;
   }
 
   return (
@@ -24,13 +24,14 @@ function AddToChecklist({ loading, onClick, text }) {
 }
 
 AddToChecklist.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  errorText: PropTypes.string.isRequired,
+  successText: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"])
 };
 
 AddToChecklist.defaultProps = {
-  text: "Tilføj til min huskeliste",
   loading: "inactive"
 };
 
