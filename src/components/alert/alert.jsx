@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // https://reacttraining.com/reach-ui/alert
-import ReactAlert from "@reach/alert";
+import ReachAlert from "@reach/alert";
 
 /**
  * A simple alert that serves as the foundation of all alerts.
@@ -17,12 +17,12 @@ import ReactAlert from "@reach/alert";
  */
 function Alert({ className, message, type, variant }) {
   return (
-    <ReactAlert
+    <ReachAlert
       className={`ddb-alert ddb-alert--${variant} ${className}`}
       type={type}
     >
       {message}
-    </ReactAlert>
+    </ReachAlert>
   );
 }
 
@@ -37,7 +37,7 @@ Alert.defaultProps = {
   className: "",
   message: "Hov, der opstod en fejl!",
   type: "polite",
-  variant: ""
+  variant: "info"
 };
 
 export default Alert;
