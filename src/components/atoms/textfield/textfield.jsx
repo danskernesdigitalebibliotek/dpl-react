@@ -14,19 +14,36 @@ import { useId } from "@reach/auto-id";
  * @returns {ReactNode}
  */
 
-function TextField({ className, inputClassName, label, id, value, onChange }) {
+function TextField({
+  className,
+  inputClassName,
+  hideLabel,
+  label,
+  placeholder,
+  id,
+  value,
+  onChange
+}) {
   const generatedId = useId(id);
   return (
-    <label htmlFor={generatedId} className={`ddb-reset ${className}`}>
-      {label}
+    <>
+      <label
+        htmlFor={generatedId}
+        className={`ddb-reset ddb-textfield__label ${
+          hideLabel ? "ddb-textfield__label--hidden" : ""
+        } ${className}`}
+      >
+        {label}
+      </label>
       <input
         id={generatedId}
         type="text"
         className={`ddb-reset ${inputClassName}`}
         value={value}
+        placeholder={placeholder || label}
         onChange={onChange}
       />
-    </label>
+    </>
   );
 }
 
@@ -34,7 +51,9 @@ TextField.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  hideLabel: PropTypes.bool,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
@@ -43,8 +62,9 @@ TextField.defaultProps = {
   className: "",
   inputClassName: "",
   id: undefined,
-  label: undefined,
-  value: undefined
+  value: undefined,
+  placeholder: undefined,
+  hideLabel: true
 };
 
 export default TextField;
