@@ -6,45 +6,75 @@ import FollowSearches from "../../core/FollowSearches";
 
 const client = new FollowSearches();
 
-function AddToSearchlistEntry({ text, label, defaultValue, searchQuery }) {
-  const [state, setState] = useState("inactive");
+function AddToSearchlistEntry({
+  searchQuery,
+  buttonText,
+  labelText,
+  defaultTitle,
+  helpText,
+  successText,
+  errorText,
+  addButtonText
+}) {
+  const [appState, setAppState] = useState("inactive");
+  const openDialog = () => setAppState("active");
+  const closeDialog = () => setAppState("inactive");
 
   function addToSearchList(title) {
-    setState("requesting");
+    setAppState("requesting");
     client
-      .addSearch({ title, search: searchQuery })
-      .then(function onResult() {
-        setState("finished");
+      .addSearch({ title, query: searchQuery })
+      .then(function onSuccess() {
+        setTimeout(() => {
+          setAppState("inactive");
+        }, 2000);
       })
       .catch(function onError() {
-        setState("failed");
-        setTimeout(function onRestore() {
-          setState("inactive");
+        setAppState("failed");
+        setTimeout(() => {
+          setAppState("active");
         }, 2000);
       });
   }
 
   return (
     <AddToSearchlist
-      state={state}
+      appState={appState}
       onSubmit={addToSearchList}
-      text={text}
-      label={label}
-      defaultValue={defaultValue}
+      openDialog={openDialog}
+      closeDialog={closeDialog}
       searchQuery={searchQuery}
+      buttonText={buttonText}
+      labelText={labelText}
+      defaultTitle={defaultTitle || searchQuery}
+      errorText={errorText}
+      successText={successText}
+      addButtonText={addButtonText}
+      helpText={helpText}
     />
   );
 }
 
 AddToSearchlistEntry.propTypes = {
-  text: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string,
+  buttonText: PropTypes.string,
+  errorText: PropTypes.string,
+  successText: PropTypes.string,
+  labelText: PropTypes.string,
+  addButtonText: PropTypes.string,
+  defaultTitle: PropTypes.string,
+  helpText: PropTypes.string,
   searchQuery: PropTypes.string.isRequired
 };
 
 AddToSearchlistEntry.defaultProps = {
-  defaultValue: ""
+  buttonText: "Tilføj til mine søgninger",
+  labelText: "Søgetitel",
+  errorText: "Noget gik galt",
+  successText: "Tilføjet",
+  addButtonText: "Gem",
+  defaultTitle: "",
+  helpText:
+    "Gem en søgning her og giv den en title så du let kan finde den igen."
 };
 
 export default AddToSearchlistEntry;

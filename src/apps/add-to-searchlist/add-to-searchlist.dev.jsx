@@ -11,12 +11,17 @@ export default {
 export function Entry() {
   return (
     <AddToSearchlist
-      text={text("Text", "Add to followed searches")}
-      label={text("Label", "Name")}
-      defaultTitle={text("Default title", "Harry Potter")}
-      searchQuery={text("Search query", "harry potter")}
-      addButtonLabel={text("Add button label", "Add")}
-      helpText={text("Help text", "Give your search a name.")}
+      searchQuery={text("Search query", "star wars")}
+      buttonText={text("Button text", "Tilføj til mine søgninger")}
+      labelText={text("Label text", "Søgetitel")}
+      defaultTitle={text("Default title", "Star Wars søgning")}
+      errorText={text("Error text", "Det gik galt")}
+      successText={text("Success text", "Tilføjet")}
+      addButtonText={text("Add button text", "Gem")}
+      helpText={text(
+        "Help text",
+        "Gem en søgning her og giv den en title så du let kan finde den igen."
+      )}
     />
   );
 }
