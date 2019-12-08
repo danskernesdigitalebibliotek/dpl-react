@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useId } from "@reach/auto-id";
 import Alert from "@reach/alert";
-import Close from "../icons/close";
+import Cross from "../icons/cross";
 
 /**
  * A simple text field with label.
@@ -62,7 +62,7 @@ const TextField = React.forwardRef(
               required={required}
             />
             <div className="ddb-textfield__icon">
-              {error && <Close variant="red" />}
+              {error && <Cross variant="red" />}
             </div>
           </section>
           <section className="ddb-textfield__error">

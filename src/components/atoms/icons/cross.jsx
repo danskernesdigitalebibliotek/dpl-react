@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Close({ className, variant, size }) {
+function Cross({ className, variant, size }) {
   return (
     <svg
       height={`${size}px`}
@@ -21,16 +21,16 @@ function Close({ className, variant, size }) {
   );
 }
 
-Close.defaultProps = {
+Cross.defaultProps = {
   variant: "grey",
   className: "",
   size: 18
 };
 
-Close.propTypes = {
+Cross.propTypes = {
   variant: PropTypes.oneOf(["grey", "red"]),
   className: PropTypes.string,
   size: PropTypes.number
 };
 
-export default Close;
+export default Cross;

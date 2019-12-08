@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 import Button from "../button/button";
-import Close from "../icons/close";
+import Cross from "../icons/cross";
 
 function Dialog({
   className,
@@ -32,7 +32,7 @@ function Dialog({
               tabIndex="-1" // escape is available for exciting the form.
               onClick={onDismiss}
             >
-              <Close className="ddb-dialog__close" />
+              <Cross className="ddb-dialog__close" />
             </Button>
           </section>
         )}
