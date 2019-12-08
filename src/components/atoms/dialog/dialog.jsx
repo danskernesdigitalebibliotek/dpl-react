@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReachDialog from "@reach/dialog";
+import { DialogOverlay, DialogContent } from "@reach/dialog";
 import Button from "../button/button";
+import Close from "../icons/close";
 
 function Dialog({
   className,
@@ -9,24 +10,35 @@ function Dialog({
   showCloseButton,
   children,
   onDismiss,
+  dropDown,
   isOpen
 }) {
   return (
-    <ReachDialog
-      aria-label={label}
-      className={`ddb-dialog ${className}`}
+    <DialogOverlay
+      className="ddb-dialog__overlay"
       isOpen={isOpen}
+      onDismiss={onDismiss}
     >
-      {children}
-      {showCloseButton && (
-        <Button
-          className="ddb-btn--charcoal ddb-dialog__close-button"
-          onClick={onDismiss}
-        >
-          Close
-        </Button>
-      )}
-    </ReachDialog>
+      <DialogContent
+        aria-label={label}
+        className={`ddb-dialog__content ${
+          dropDown ? "ddb-dialog__content--dropdown" : ""
+        } ${className}`}
+      >
+        {showCloseButton && (
+          <section className="ddb-dialog__header">
+            <Button
+              variant="blank"
+              tabIndex="-1" // escape is available for exciting the form.
+              onClick={onDismiss}
+            >
+              <Close className="ddb-dialog__close" />
+            </Button>
+          </section>
+        )}
+        {children}
+      </DialogContent>
+    </DialogOverlay>
   );
 }
 
@@ -35,13 +47,15 @@ Dialog.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
   showCloseButton: PropTypes.bool,
+  dropDown: PropTypes.bool,
   onDismiss: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired
 };
 
 Dialog.defaultProps = {
   className: "",
-  showCloseButton: true
+  showCloseButton: true,
+  dropDown: false
 };
 
 export default Dialog;

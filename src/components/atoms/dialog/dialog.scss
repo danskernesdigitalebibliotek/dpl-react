@@ -1,10 +1,42 @@
-.ddb-dialog {
-  background: color("grey");
-  border-radius: $border-radius;
-  color: color("charcoal", "opacity-dark");
-  padding: layout(1);
+.ddb-dialog__overlay {
+  background: color("charcoal", "opacity-light");
 }
 
-.ddb-dialog__close-button {
-  background: color("grey", "darker");
+.ddb-dialog__content {
+  background: color("grey", "light");
+  border-radius: $border-radius;
+  color: color("charcoal", "opacity-dark");
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes ddb-dialog-dropdown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.ddb-dialog__content--dropdown {
+  border-radius: 0px;
+  width: unset;
+  margin: unset;
+  padding: space(5) space(6);
+  transition: transform duration() easing("entrance", "productive");
+  animation: ddb-dialog-dropdown duration("moderate", 2)
+    easing("entrance", "productive") forwards;
+  box-shadow: 0 space(3) space(5) 0 rgba(0, 0, 0, 0.3);
+}
+
+.ddb-dialog__header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: space(6);
+}
+.ddb-dialog__close {
+  padding: space(5);
+  margin-right: -#{space(5)};
+  margin-top: -#{space(5)};
 }
