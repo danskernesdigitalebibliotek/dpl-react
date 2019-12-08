@@ -1,4 +1,7 @@
 .ddb-icon {
+  &--black {
+    fill: color("black");
+  }
   &--grey {
     fill: color("grey", "dark");
   }

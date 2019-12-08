@@ -6,6 +6,7 @@ import Button from "../../components/atoms/button/button";
 import Dialog from "../../components/atoms/dialog/dialog";
 import TextField from "../../components/atoms/textfield/textfield";
 import Alert from "../../components/alert/alert";
+import Star from "../../components/atoms/icons/star";
 
 function AddToSearchlist({
   appState,
@@ -37,8 +38,13 @@ function AddToSearchlist({
 
   return (
     <section className="ddb-add-to-searchlist">
-      <Button className="ddb-btn--charcoal" onClick={openDialog}>
-        {buttonText}
+      <Button
+        className="ddb-add-to-searchlist__add"
+        label={buttonText}
+        variant="blank"
+        onClick={openDialog}
+      >
+        <Star className="ddb-add-to-searchlist__star" />
       </Button>
       <Dialog
         label="Tilføj søgning til liste"
