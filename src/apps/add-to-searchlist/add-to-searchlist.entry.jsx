@@ -14,7 +14,9 @@ function AddToSearchlistEntry({
   helpText,
   successText,
   errorText,
-  addButtonText
+  addButtonText,
+  errorRequiredMessage,
+  errorMaxLengthMessage
 }) {
   const [appState, setAppState] = useState("inactive");
   const openDialog = () => setAppState("active");
@@ -46,11 +48,13 @@ function AddToSearchlistEntry({
       searchQuery={searchQuery}
       buttonText={buttonText}
       labelText={labelText}
-      defaultTitle={defaultTitle || searchQuery}
+      defaultTitle={defaultTitle}
       errorText={errorText}
       successText={successText}
       addButtonText={addButtonText}
       helpText={helpText}
+      errorRequiredMessage={errorRequiredMessage}
+      errorMaxLengthMessage={errorMaxLengthMessage}
     />
   );
 }
@@ -62,6 +66,8 @@ AddToSearchlistEntry.propTypes = {
   labelText: PropTypes.string,
   addButtonText: PropTypes.string,
   defaultTitle: PropTypes.string,
+  errorRequiredMessage: PropTypes.string,
+  errorMaxLengthMessage: PropTypes.string,
   helpText: PropTypes.string,
   searchQuery: PropTypes.string.isRequired
 };
@@ -71,10 +77,12 @@ AddToSearchlistEntry.defaultProps = {
   labelText: "Søgetitel",
   errorText: "Noget gik galt",
   successText: "Tilføjet",
+  errorRequiredMessage: "En titel er påkrævet.",
+  errorMaxLengthMessage: "Titlen må ikke være længere end 255 tegn.",
   addButtonText: "Gem",
   defaultTitle: "",
   helpText:
-    "Gem en søgning her og giv den en title så du let kan finde den igen."
+    "Gem en søgning her og giv den en titel så du nemt kan kende forskel på alle dine mange gemte søgninger."
 };
 
 export default AddToSearchlistEntry;

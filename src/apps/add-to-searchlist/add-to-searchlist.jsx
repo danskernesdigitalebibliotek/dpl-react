@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import useForm from "react-hook-form";
 
 import Button from "../../components/atoms/button/button";
 import Dialog from "../../components/atoms/dialog/dialog";
@@ -17,10 +18,15 @@ function AddToSearchlist({
   addButtonText,
   helpText,
   errorText,
-  successText
+  successText,
+  errorRequiredMessage,
+  errorMaxLengthMessage
 }) {
-  const [name, setName] = useState(defaultTitle);
-  const submit = () => onSubmit(name);
+  const { register, handleSubmit, errors } = useForm();
+  const submit = (data, event) => {
+    event.target.reset();
+    onSubmit(data.title);
+  };
   if (appState === "requesting") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
@@ -37,24 +43,43 @@ function AddToSearchlist({
       <Dialog
         label="Tilføj søgning til liste"
         showCloseButton
+        dropDown
         isOpen={appState === "active"}
         onDismiss={closeDialog}
       >
-        {helpText && (
-          <p className="ddb-reset ddb-add-to-searchlist__help-text">
-            {helpText}
-          </p>
-        )}
-        <TextField
-          inputClassName="ddb-add-to-searchlist__input"
-          onChange={event => setName(event.target.value)}
-          label={labelText}
-          hideLabel={false}
-          value={name}
-        />
-        <Button variant="charcoal" onClick={submit}>
-          {addButtonText}
-        </Button>
+        <section className="ddb-add-to-searchlist__content">
+          <section className="ddb-add-to-searchlist__info">
+            <p className="ddb-reset ddb-add-to-searchlist__help">{helpText}</p>
+          </section>
+          <form
+            onSubmit={handleSubmit(submit)}
+            className="ddb-add-to-searchlist__action"
+          >
+            <TextField
+              name="title"
+              ref={register({
+                required: errorRequiredMessage,
+                maxLength: {
+                  value: 255,
+                  message: errorMaxLengthMessage
+                }
+              })}
+              inputClass="ddb-add-to-searchlist__input"
+              containerClass="ddb-add-to-searchlist__input-container"
+              label={labelText}
+              defaultValue={defaultTitle}
+              error={errors?.title?.message}
+            />
+            <Button
+              type="submit"
+              className="ddb-add-to-searchlist__button"
+              variant="charcoal"
+              align="left"
+            >
+              {addButtonText}
+            </Button>
+          </form>
+        </section>
       </Dialog>
     </section>
   );
@@ -74,6 +99,8 @@ AddToSearchlist.propTypes = {
   buttonText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
+  errorRequiredMessage: PropTypes.string.isRequired,
+  errorMaxLengthMessage: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   addButtonText: PropTypes.string.isRequired,
   defaultTitle: PropTypes.string.isRequired,

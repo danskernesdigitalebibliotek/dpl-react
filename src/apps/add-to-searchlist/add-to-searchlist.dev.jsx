@@ -14,13 +14,13 @@ export function Entry() {
       searchQuery={text("Search query", "star wars")}
       buttonText={text("Button text", "Tilføj til mine søgninger")}
       labelText={text("Label text", "Søgetitel")}
-      defaultTitle={text("Default title", "Star Wars søgning")}
+      defaultTitle={text("Default title", "")}
       errorText={text("Error text", "Det gik galt")}
       successText={text("Success text", "Tilføjet")}
       addButtonText={text("Add button text", "Gem")}
       helpText={text(
         "Help text",
-        "Gem en søgning her og giv den en title så du let kan finde den igen."
+        "Gem en søgning her og giv den en titel så du nemt kan kende forskel på alle dine mange gemte søgninger."
       )}
     />
   );
