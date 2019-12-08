@@ -8,12 +8,26 @@ import PropTypes from "prop-types";
  * @param {Object} props
  * @returns {ReactNode}
  */
-function Button({ className, variant, onClick, children }) {
+function Button({
+  className,
+  type,
+  variant,
+  align,
+  onClick,
+  tabIndex,
+  children
+}) {
   return (
+    /*
+     * JSX line disabled for ESLint due to questionable rule implementation
+     * https://github.com/yannickcr/eslint-plugin-react/issues/1555
+     */
+    // eslint-disable-next-line react/button-has-type
     <button
-      type="button"
-      className={`ddb-reset ddb-btn ddb-btn--${variant} ${className}`}
+      type={type}
+      className={`ddb-reset ddb-btn ddb-btn--${variant} ddb-btn--align-${align} ${className}`}
       onClick={onClick}
+      tabIndex={tabIndex}
     >
       {children}
     </button>
@@ -21,15 +35,22 @@ function Button({ className, variant, onClick, children }) {
 }
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["black", "grey", "secondary", "charcoal"]),
+  variant: PropTypes.oneOf(["blank", "black", "grey", "secondary", "charcoal"]),
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  tabIndex: PropTypes.string,
+  align: PropTypes.oneOf(["left", "center", "right"]),
+  type: PropTypes.oneOf(["button", "submit"])
 };
 
 Button.defaultProps = {
   className: "",
-  variant: "grey"
+  variant: "grey",
+  align: "center",
+  onClick: undefined,
+  tabIndex: "0",
+  type: "button"
 };
 
 export default Button;

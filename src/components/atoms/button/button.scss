@@ -1,15 +1,36 @@
 .ddb-btn {
+  -webkit-appearance: none;
   border-radius: $border-radius;
   text-align: center;
   cursor: pointer;
-  font-family: inherit;
-  font-size: space(5);
+  font-size: 14px; //inherited from existing ddb site.
   padding: space(5) space(6);
   transition: background duration("fast", 2) easing();
 
   &:focus {
     outline: 2px solid color("grey", "dark");
-    outline-offset: 1px;
+    outline-offset: 0px;
+  }
+
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+
+  &--blank {
+    background: transparent;
+    padding: 0;
+    &:hover,
+    &:active {
+      background: transparent;
+    }
   }
 
   &--grey {
