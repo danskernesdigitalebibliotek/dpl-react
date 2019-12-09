@@ -63,7 +63,7 @@ Button.defaultProps = {
   onClick: undefined,
   tabIndex: "0",
   type: "button",
-  label: "",
+  label: undefined,
   id: undefined
 };
 
