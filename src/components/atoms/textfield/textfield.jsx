@@ -45,8 +45,8 @@ const TextField = React.forwardRef(
         >
           {label}
         </label>
-        <section className={`ddb-textfield__container ${containerClass}`}>
-          <section className="ddb-textfield__action">
+        <div className={`ddb-textfield__container ${containerClass}`}>
+          <div className="ddb-textfield__action">
             <input
               id={generatedId}
               name={name}
@@ -64,11 +64,11 @@ const TextField = React.forwardRef(
             <div className="ddb-textfield__icon">
               {error && <Cross variant="red" />}
             </div>
-          </section>
-          <section className="ddb-textfield__error">
+          </div>
+          <div className="ddb-textfield__error">
             {error && <Alert type="polite">{error}</Alert>}
-          </section>
-        </section>
+          </div>
+        </div>
       </>
     );
   }

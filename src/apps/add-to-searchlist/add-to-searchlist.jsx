@@ -45,10 +45,10 @@ function AddToSearchlist({
         isOpen={appState === "active"}
         onDismiss={closeDialog}
       >
-        <section className="ddb-add-to-searchlist__content">
-          <section className="ddb-add-to-searchlist__info">
+        <div className="ddb-add-to-searchlist__content">
+          <div className="ddb-add-to-searchlist__info">
             <p className="ddb-reset ddb-add-to-searchlist__help">{helpText}</p>
-          </section>
+          </div>
           <form
             onSubmit={handleSubmit(submit)}
             className="ddb-add-to-searchlist__action"
@@ -77,7 +77,7 @@ function AddToSearchlist({
               {addButtonText}
             </Button>
           </form>
-        </section>
+        </div>
       </Dialog>
     </section>
   );

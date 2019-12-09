@@ -26,7 +26,7 @@ function Dialog({
         } ${className}`}
       >
         {showCloseButton && (
-          <section className="ddb-dialog__header">
+          <div className="ddb-dialog__header">
             <Button
               variant="blank"
               tabIndex="-1" // escape is available for exciting the form.
@@ -34,7 +34,7 @@ function Dialog({
             >
               <Cross className="ddb-dialog__close" />
             </Button>
-          </section>
+          </div>
         )}
         {children}
       </DialogContent>
