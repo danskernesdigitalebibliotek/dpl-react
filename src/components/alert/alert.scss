@@ -5,6 +5,14 @@
   text-align: center;
   border-radius: $border-radius;
 
+  &--blank {
+    display: block;
+    height: unset;
+    padding: unset;
+    text-align: unset;
+    border-radius: unset;
+  }
+
   &--info {
     background-color: color("grey");
     color: color("grey", "dark");
