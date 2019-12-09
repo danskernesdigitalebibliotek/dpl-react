@@ -16,7 +16,9 @@ export function Entry() {
       labelText={text("Label text", "Søgetitel")}
       defaultTitle={text("Default title", "")}
       errorText={text("Error text", "Det gik galt")}
-      successText={text("Success text", "Tilføjet")}
+      successText={text("Success text", "Tilføjet til dine gemte søgninger.")}
+      successLink={text("Success link", "/?path=/story/apps-searchlist--entry")}
+      successLinkText={text("Success link text", "Se dine gemte søgnigner.")}
       addButtonText={text("Add button text", "Gem")}
       helpText={text(
         "Help text",

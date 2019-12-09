@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import urlPropType from "url-prop-type";
 
 import AddToSearchlist from "./add-to-searchlist";
 import FollowSearches from "../../core/FollowSearches";
@@ -13,6 +14,8 @@ function AddToSearchlistEntry({
   defaultTitle,
   helpText,
   successText,
+  successLink,
+  successLinkText,
   errorText,
   addButtonText,
   errorRequiredMessage,
@@ -29,7 +32,7 @@ function AddToSearchlistEntry({
       .then(function onSuccess() {
         setTimeout(() => {
           setAppState("inactive");
-        }, 2000);
+        }, 10000);
       })
       .catch(function onError() {
         setAppState("failed");
@@ -38,7 +41,6 @@ function AddToSearchlistEntry({
         }, 2000);
       });
   }
-
   return (
     <AddToSearchlist
       appState={appState}
@@ -51,6 +53,8 @@ function AddToSearchlistEntry({
       defaultTitle={defaultTitle}
       errorText={errorText}
       successText={successText}
+      successLink={successLink}
+      successLinkText={successLinkText}
       addButtonText={addButtonText}
       helpText={helpText}
       errorRequiredMessage={errorRequiredMessage}
@@ -63,6 +67,8 @@ AddToSearchlistEntry.propTypes = {
   buttonText: PropTypes.string,
   errorText: PropTypes.string,
   successText: PropTypes.string,
+  successLink: urlPropType,
+  successLinkText: PropTypes.string,
   labelText: PropTypes.string,
   addButtonText: PropTypes.string,
   defaultTitle: PropTypes.string,
@@ -76,7 +82,9 @@ AddToSearchlistEntry.defaultProps = {
   buttonText: "Tilføj til mine søgninger",
   labelText: "Søgetitel",
   errorText: "Noget gik galt",
-  successText: "Tilføjet",
+  successText: "Tilføjet til dine gemte søgninger.",
+  successLink: undefined,
+  successLinkText: "Se dine gemte søgnigner.",
   errorRequiredMessage: "En titel er påkrævet.",
   errorMaxLengthMessage: "Titlen må ikke være længere end 255 tegn.",
   addButtonText: "Gem",
