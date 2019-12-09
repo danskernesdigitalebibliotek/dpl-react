@@ -79,7 +79,12 @@ function AddToSearchlist({
 
   return (
     <section className="ddb-add-to-searchlist">
-      <Button onClick={openDialog}>{buttonText}</Button>
+      <Button
+        className="ddb-add-to-searchlist__open-dialog-btn"
+        onClick={openDialog}
+      >
+        {buttonText}
+      </Button>
       <Dialog
         label="Tilføj søgning til liste"
         showCloseButton
