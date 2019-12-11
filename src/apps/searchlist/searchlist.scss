@@ -1,0 +1,22 @@
+.ddb-searchlist {
+  &__container {
+    flex-direction: column;
+  }
+
+  &__new-button {
+    margin: 0 space(4) 0 0;
+  }
+
+  &__header {
+    margin: 0 0 space(2);
+  }
+
+  &__query {
+    color: rgba(color("text"), 0.8);
+    margin: 0 0 space(4);
+  }
+
+  &__status {
+    margin: 0 0 space(5);
+  }
+}
