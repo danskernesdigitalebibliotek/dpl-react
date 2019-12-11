@@ -1,16 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
-import Skeleton from "../../components/atoms/skeleton/skeleton";
+import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 import Alert from "../../components/alert/alert";
 import createPath from "../../core/createPath";
 import ListItem from "../../components/list-item/list-item";
-
-function getList(length) {
-  return Array.from(new Array(length));
-}
 
 function SkeletonElement(_, index) {
   return (

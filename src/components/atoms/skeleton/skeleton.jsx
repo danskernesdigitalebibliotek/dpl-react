@@ -2,6 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /**
+ * Creates a list of a certain length with undefined items in it.
+ * Mostly used for skeleton creation.
+ *
+ * @export
+ * @param {number} length - length of array with undefined items.
+ * @returns {undefined[]}
+ */
+export function getList(length) {
+  return Array.from(new Array(length));
+}
+
+/**
  * Loader that is to be composed for the individual components and
  * apps loading states.
  *
