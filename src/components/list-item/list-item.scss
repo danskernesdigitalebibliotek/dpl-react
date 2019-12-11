@@ -1,5 +1,5 @@
 .ddb-list-item {
-  background: color("grey");
+  background: color("grey", "light");
   list-style: none;
   padding: layout(1);
   @include sm {
