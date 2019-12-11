@@ -1,0 +1,34 @@
+.ddb-list-item {
+  background: color("grey");
+  list-style: none;
+  padding: layout(1);
+  @include sm {
+    padding: layout(2);
+  }
+  @include md {
+    padding: layout(3);
+  }
+  &:nth-child(even) {
+    background: color("white");
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include sm {
+      flex-direction: row;
+    }
+  }
+  &__children {
+    display: flex;
+    width: 100%;
+    line-break: auto;
+  }
+  &__aside {
+    display: flex;
+    justify-content: flex-end;
+    @include sm {
+      align-self: baseline;
+    }
+  }
+}

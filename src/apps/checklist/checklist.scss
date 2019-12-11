@@ -1,4 +1,4 @@
-.ddb-list {
+.ddb-checklist {
   &__cover {
     display: flex;
     margin: 0;
@@ -11,63 +11,28 @@
       margin-right: layout(3);
     }
   }
-  &__content {
+  &__data {
     display: flex;
-    width: 100%;
-    line-break: auto;
-    flex: 1;
+    flex-direction: column;
+    a {
+      text-decoration: none;
+    }
     p {
       margin: 0;
     }
     h2 {
       font-size: space(5);
       margin: space(3) 0;
-    }
-  }
-  &__item {
-    a {
-      color: color("primary");
-      text-decoration: none;
-      h2 {
-        color: color("charcoal");
-      }
+      color: color("charcoal");
       &:hover {
         color: color("charcoal");
       }
     }
-    background: color("grey");
-    list-style: none;
-    padding: layout(1);
-    @include sm {
-      padding: layout(2);
-    }
-    @include md {
-      padding: layout(3);
-    }
-    &:nth-child(even) {
-      background: color("white");
-    }
-  }
-  &__data {
-    display: flex;
-    flex-direction: column;
-  }
-  &__inner {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    @include sm {
-      flex-direction: row;
-    }
   }
   &__button {
-    display: flex;
-    justify-content: flex-end;
-    button {
-      min-width: 103px;
-    }
-    @include sm {
-      align-self: baseline;
-    }
+    min-width: 103px;
+  }
+  &__author-year {
+    color: rgba(color("text"), 0.5);
   }
 }

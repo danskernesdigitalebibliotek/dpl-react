@@ -6,6 +6,7 @@ import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 import Alert from "../../components/alert/alert";
 import createPath from "../../core/createPath";
+import ListItem from "../../components/list-item/list-item";
 
 function getList(length) {
   return Array.from(new Array(length));
@@ -13,23 +14,16 @@ function getList(length) {
 
 function SkeletonElement(_, index) {
   return (
-    <li key={index} className="ddb-list__item">
-      <section className="ddb-list__inner">
-        <article className="ddb-list__content">
-          <figure className="ddb-list__cover">
-            <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
-          </figure>
-          <div className="ddb-list__data">
-            <Skeleton width="45px" mb="12px" />
-            <Skeleton width="145px" mb="12px" />
-            <Skeleton width="95px" />
-          </div>
-        </article>
-        <aside className="ddb-list__button ddb-list__button--remove">
-          <Skeleton width="151px" height="50px" className="ddb-btn" />
-        </aside>
-      </section>
-    </li>
+    <ListItem key={index} aside={<Skeleton width="151px" height="50px" />}>
+      <figure className="ddb-checklist__cover">
+        <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
+      </figure>
+      <div className="ddb-checklist__data">
+        <Skeleton width="45px" mb="12px" />
+        <Skeleton width="145px" mb="12px" />
+        <Skeleton width="95px" />
+      </div>
+    </ListItem>
   );
 }
 
@@ -48,11 +42,7 @@ function Checklist({
   }
 
   if (loading === "active") {
-    return (
-      <UnorderedList className="ddb-skeleton-wrapper">
-        {getList(4).map(SkeletonElement)}
-      </UnorderedList>
-    );
+    return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
 
   if (loading === "finished" && items.length === 0) {
@@ -62,62 +52,61 @@ function Checklist({
   return (
     <UnorderedList>
       {items.map(item => (
-        <li key={item.pid} className="ddb-list__item">
-          <section className="ddb-list__inner">
-            <article className="ddb-list__content">
-              <figure className="ddb-list__cover">
-                <a
-                  href={createPath({
-                    url: materialUrl,
-                    property: ":pid",
-                    value: item.pid
-                  })}
-                >
-                  <img src={item.coverUrl} alt={item.title} />
-                </a>
-              </figure>
-              <div className="ddb-list__data">
-                {item.type}
-                <a
-                  href={createPath({
-                    url: materialUrl,
-                    property: ":pid",
-                    value: item.pid
-                  })}
-                >
-                  <h2>{item.title}</h2>
-                </a>
-                <p>
-                  {item.creators.map((creator, index) => {
-                    return (
-                      <span key={creator}>
-                        <a
-                          href={createPath({
-                            url: authorUrl,
-                            property: ":author",
-                            value: creator
-                          })}
-                        >
-                          {creator}
-                        </a>
-                        {item.creator[index + 1] ? ", " : " "}
-                      </span>
-                    );
-                  })}
-                  ({item.year})
-                </p>
-              </div>
-            </article>
-            <aside className="ddb-list__button ddb-list__button--remove">
-              <Button
-                className="ddb-btn--charcoal"
-                onClick={() => onRemove(item.pid)}
-              >
-                {removeButtonText}
-              </Button>
-            </aside>
-          </section>
-        </li>
+        <ListItem
+          aside={
+            <Button
+              className="ddb-checklist__button"
+              variant="charcoal"
+              onClick={() => onRemove(item.pid)}
+            >
+              {removeButtonText}
+            </Button>
+          }
+        >
+          <figure className="ddb-checklist__cover">
+            <a
+              href={createPath({
+                url: materialUrl,
+                property: ":pid",
+                value: item.pid
+              })}
+            >
+              <img src={item.coverUrl} alt={item.title} />
+            </a>
+          </figure>
+          <div className="ddb-checklist__data">
+            {item.type}
+            <a
+              href={createPath({
+                url: materialUrl,
+                property: ":pid",
+                value: item.pid
+              })}
+            >
+              <h2>{item.title}</h2>
+            </a>
+            <p className="ddb-checklist__author-year">
+              {`Af `}
+              {item.creators.map((creator, index) => {
+                return (
+                  <span key={creator}>
+                    <a
+                      href={createPath({
+                        url: authorUrl,
+                        property: ":author",
+                        value: creator
+                      })}
+                    >
+                      {creator}
+                    </a>
+                    {item.creator[index + 1] ? ", " : " "}
+                  </span>
+                );
+              })}
+              ({item.year})
+            </p>
+          </div>
+        </ListItem>
       ))}
     </UnorderedList>
   );
