@@ -384,6 +384,11 @@ A simple naive example of the required artifacts needed looks like this:
     <script src="/dist/add-to-checklist.js"></script>
     <script src="/dist/mount.js"></script>
     <script>
+      // For making successfull requests to the different services we need a valid token
+      // to be stored in localStorage of the client browser.
+      // The key should be "ddb-token".
+      window.localStorage.setItem("ddb-token", "XXXXXXXXXXXXXXXXXXXXXX");
+
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
       // and a corresonding application loaded.
