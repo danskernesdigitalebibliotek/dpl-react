@@ -22,13 +22,15 @@
   &__children {
     display: flex;
     width: 100%;
-    line-break: auto;
+    flex: 1;
   }
   &__aside {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     @include sm {
-      align-self: baseline;
+      flex-direction: column;
+      justify-content: flex-start;
     }
   }
 }
