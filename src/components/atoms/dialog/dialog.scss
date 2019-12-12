@@ -1,5 +1,6 @@
 .ddb-dialog__overlay {
   background: color("charcoal", "opacity-light");
+  z-index: 902; // The top menu of ddb is at 901.
 }
 
 .ddb-dialog__content {
