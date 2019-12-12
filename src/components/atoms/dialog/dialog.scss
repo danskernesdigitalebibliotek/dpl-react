@@ -35,6 +35,9 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: space(6);
+  // Everything get's reset to border-box on ddb.
+  // If this isn't content-box the icon inside will collapse.
+  box-sizing: content-box;
 }
 .ddb-dialog__close {
   padding: space(5);
