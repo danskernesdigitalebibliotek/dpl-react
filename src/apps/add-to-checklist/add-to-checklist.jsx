@@ -15,7 +15,7 @@ function AddToChecklist({ loading, onClick, text, errorText, successText }) {
 
   return (
     <div className="ddb-container">
-      <Button className="ddb-btn--charcoal" onClick={onClick}>
+      <Button variant="black" align="left" onClick={onClick}>
         {text}
       </Button>
     </div>

@@ -10,7 +10,7 @@ export default {
 export function Entry() {
   return (
     <AddToChecklist
-      text={text("Text", "Tilføj til den bedste huskeliste")}
+      text={text("Text", "Tilføj til din huskeliste")}
       errorText={text("Error text", "Der opstod en fejl")}
       successText={text("Success text", "Tilføjet")}
       id={text("Material ID", "870970-basis:54172613")}

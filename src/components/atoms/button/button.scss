@@ -3,9 +3,13 @@
   border-radius: $border-radius;
   text-align: center;
   font-family: inherit;
+  font-size: 16px; //inherited from existing ddb site.
+  width: 100%;
+  max-width: 260px;
+  box-sizing: border-box;
+  padding: 20px 80px 14px 15px; //Inherited from existing ddb site.
+  line-height: 20px;
   cursor: pointer;
-  font-size: 14px; //inherited from existing ddb site.
-  padding: space(5) space(6);
   transition: background duration("fast", 2) easing();
 
   &:focus {
