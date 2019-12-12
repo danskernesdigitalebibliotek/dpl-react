@@ -48,7 +48,7 @@ SearchlistEntry.propTypes = {
 SearchlistEntry.defaultProps = {
   newButtonText: "Nye materialer",
   removeButtonText: "Fjern fra listen",
-  statusText: ":hit_count nye materialer siden den",
+  statusText: ":hit_count nye materialer siden",
   searchUrl: "https://lollandbib.dk/search/ting/:query"
 };
 
