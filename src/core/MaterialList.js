@@ -63,12 +63,18 @@ class MaterialList {
     if (!materialId) {
       throw Error("materialId must be specified");
     }
-    await fetch(`${this.baseUrl}/list/${listId}/${materialId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${this.token}`
+    const response = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    if (response.status !== 201) {
+      throw Error(response.status);
+    }
   }
 
   /**

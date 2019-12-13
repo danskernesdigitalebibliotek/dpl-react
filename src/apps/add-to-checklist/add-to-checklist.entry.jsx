@@ -11,17 +11,12 @@ function AddToChecklistEntry({ text, successText, errorText, id }) {
 
   function addToList() {
     setLoading("active");
-    client
-      .addListMaterial({ materialId: id })
-      .then(function onSuccess() {
-        setLoading("finished");
-      })
-      .catch(function onError() {
-        setLoading("failed");
-        setTimeout(function onRestore() {
-          setLoading("inactive");
-        }, 2000);
-      });
+    client.addListMaterial({ materialId: id }).catch(function onError() {
+      setLoading("failed");
+      setTimeout(function onRestore() {
+        setLoading("inactive");
+      }, 4000);
+    });
   }
 
   return (
