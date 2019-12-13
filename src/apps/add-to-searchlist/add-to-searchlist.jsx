@@ -8,7 +8,7 @@ import Dialog from "../../components/atoms/dialog/dialog";
 import TextField from "../../components/atoms/textfield/textfield";
 import Alert from "../../components/alert/alert";
 import User from "../../core/user";
-import replaceTags from "../../core/replaceTags";
+import replacePlaceholders from "../../core/replacePlaceholders";
 
 function AddToSearchlist({
   appState,
@@ -86,7 +86,7 @@ function AddToSearchlist({
       <Button
         href={
           !User.isAuthenticated() &&
-          replaceTags({
+          replacePlaceholders({
             text: loginUrl,
             tags: {
               query: encodeURIComponent(searchQuery)

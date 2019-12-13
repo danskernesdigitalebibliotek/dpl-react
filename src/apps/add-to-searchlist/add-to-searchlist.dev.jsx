@@ -26,6 +26,7 @@ export function Entry() {
       )}
       loginUrl={text(
         "Login URL",
+        "https://lollandbib.dk/ding-list/login-attach/search_query/Star%20Wars?title=Star%20Wars&list_type=user_searches",
         "https://www.aakb.dk/ding-list/login-attach/search_query/:query"
       )}
     />

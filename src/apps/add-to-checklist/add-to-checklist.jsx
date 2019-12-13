@@ -5,7 +5,7 @@ import urlPropType from "url-prop-type";
 import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
 import User from "../../core/user";
-import replaceTags from "../../core/replaceTags";
+import replacePlaceholders from "../../core/replacePlaceholders";
 
 function AddToChecklist({
   loading,
@@ -29,7 +29,7 @@ function AddToChecklist({
       <Button
         href={
           !User.isAuthenticated() &&
-          replaceTags({
+          replacePlaceholders({
             text: loginUrl,
             tags: {
               id: encodeURIComponent(materialId)
