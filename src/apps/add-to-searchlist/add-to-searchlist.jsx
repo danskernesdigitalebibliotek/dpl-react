@@ -7,6 +7,8 @@ import Button from "../../components/atoms/button/button";
 import Dialog from "../../components/atoms/dialog/dialog";
 import TextField from "../../components/atoms/textfield/textfield";
 import Alert from "../../components/alert/alert";
+import User from "../../core/user";
+import replaceTags from "../../core/replaceTags";
 
 function AddToSearchlist({
   appState,
@@ -23,7 +25,9 @@ function AddToSearchlist({
   successLink,
   successLinkText,
   errorRequiredMessage,
-  errorMaxLengthMessage
+  errorMaxLengthMessage,
+  searchQuery,
+  loginUrl
 }) {
   const { register, handleSubmit, errors } = useForm();
   const submit = (data, event) => {
@@ -80,6 +84,15 @@ function AddToSearchlist({
   return (
     <section className="ddb-add-to-searchlist">
       <Button
+        href={
+          !User.isAuthenticated() &&
+          replaceTags({
+            text: loginUrl,
+            tags: {
+              query: encodeURI(searchQuery)
+            }
+          })
+        }
         className="ddb-add-to-searchlist__open-dialog-btn"
         onClick={openDialog}
       >
@@ -119,7 +132,9 @@ AddToSearchlist.propTypes = {
   labelText: PropTypes.string.isRequired,
   addButtonText: PropTypes.string.isRequired,
   defaultTitle: PropTypes.string.isRequired,
-  helpText: PropTypes.string.isRequired
+  helpText: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  loginUrl: urlPropType.isRequired
 };
 
 export default AddToSearchlist;

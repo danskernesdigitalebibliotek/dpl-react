@@ -24,6 +24,10 @@ export function Entry() {
         "Help text",
         "Gem en søgning her og giv den en titel så du nemt kan kende forskel på alle dine mange gemte søgninger."
       )}
+      loginUrl={text(
+        "Login URL",
+        "https://www.aakb.dk/ding-list/login-attach/search_query/:query"
+      )}
     />
   );
 }
