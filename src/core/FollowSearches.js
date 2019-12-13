@@ -12,7 +12,7 @@ import { getToken } from "./token";
  */
 
 /**
- * https://github.com/reload/follow-searches/blob/develop/spec/follow-searches-1.0.0.yaml
+ * https://github.com/reload/follow-searches/blob/develop/spec/follow-searches-1.0.1.yaml
  *
  * @class FollowSearches
  */
