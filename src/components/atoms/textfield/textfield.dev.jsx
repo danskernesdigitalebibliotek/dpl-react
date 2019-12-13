@@ -7,11 +7,21 @@ export default {
   decorators: [withKnobs]
 };
 
-export function WithText() {
+export function Base() {
   return (
     <TextField
       label={text("Field label", "Some label")}
-      value={text("Default value", "Value")}
+      defaultValue={text("Default value", "Value")}
+    />
+  );
+}
+
+export function Error() {
+  return (
+    <TextField
+      label={text("Field label", "Some label")}
+      defaultValue={text("Default value", "Value")}
+      error={text("Error", "Something is wrong")}
     />
   );
 }
