@@ -19,7 +19,8 @@ function AddToSearchlistEntry({
   errorText,
   addButtonText,
   errorRequiredMessage,
-  errorMaxLengthMessage
+  errorMaxLengthMessage,
+  loginUrl
 }) {
   const [appState, setAppState] = useState("inactive");
   const openDialog = () => setAppState("active");
@@ -59,6 +60,7 @@ function AddToSearchlistEntry({
       helpText={helpText}
       errorRequiredMessage={errorRequiredMessage}
       errorMaxLengthMessage={errorMaxLengthMessage}
+      loginUrl={loginUrl}
     />
   );
 }
@@ -75,7 +77,8 @@ AddToSearchlistEntry.propTypes = {
   errorRequiredMessage: PropTypes.string,
   errorMaxLengthMessage: PropTypes.string,
   helpText: PropTypes.string,
-  searchQuery: PropTypes.string.isRequired
+  searchQuery: PropTypes.string.isRequired,
+  loginUrl: urlPropType.isRequired
 };
 
 AddToSearchlistEntry.defaultProps = {
