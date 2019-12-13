@@ -25,6 +25,9 @@ class MaterialList {
         Authorization: `Bearer ${this.token}`
       }
     });
+    if (raw.status !== 200) {
+      throw Error(raw.status);
+    }
     const response = await raw.json();
     return response.materials;
   }
@@ -42,12 +45,18 @@ class MaterialList {
     if (!materialId) {
       throw Error("materialId must be specified");
     }
-    await fetch(`${this.baseUrl}/list/${listId}/${materialId}`, {
-      method: "HEAD",
-      headers: {
-        Authorization: `Bearer ${this.token}`
+    const response = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "HEAD",
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    if (response.status !== 200) {
+      throw Error(response.status);
+    }
   }
 
   /**
@@ -90,12 +99,18 @@ class MaterialList {
     if (!materialId) {
       throw Error("materialId must be specified");
     }
-    await fetch(`${this.baseUrl}/list/${listId}/${materialId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${this.token}`
+    const response = await fetch(
+      `${this.baseUrl}/list/${listId}/${materialId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    if (response.status !== 204) {
+      throw Error(response.status);
+    }
   }
 }
 
