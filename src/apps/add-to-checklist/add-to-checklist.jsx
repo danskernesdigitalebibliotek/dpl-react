@@ -1,10 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import urlPropType from "url-prop-type";
 
 import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
+import User from "../../core/user";
+import replaceTags from "../../core/replaceTags";
 
-function AddToChecklist({ loading, onClick, text, errorText, successText }) {
+function AddToChecklist({
+  loading,
+  onClick,
+  text,
+  errorText,
+  successText,
+  loginUrl,
+  materialId
+}) {
   if (loading === "active") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
@@ -12,10 +23,22 @@ function AddToChecklist({ loading, onClick, text, errorText, successText }) {
   if (loading === "failed") {
     return <Alert message={errorText} type="polite" variant="warning" />;
   }
-
   return (
     <div className="ddb-add-to-checklist__container">
-      <Button variant="black" align="left" onClick={onClick}>
+      <Button
+        href={
+          !User.isAuthenticated() &&
+          replaceTags({
+            text: loginUrl,
+            tags: {
+              id: materialId
+            }
+          })
+        }
+        variant="black"
+        align="left"
+        onClick={onClick}
+      >
         {text}
       </Button>
     </div>
@@ -26,8 +49,10 @@ AddToChecklist.propTypes = {
   text: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
+  loginUrl: urlPropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"])
+  loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"]),
+  materialId: PropTypes.string.isRequired
 };
 
 AddToChecklist.defaultProps = {
