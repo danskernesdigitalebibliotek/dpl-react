@@ -89,7 +89,7 @@ function AddToSearchlist({
           replaceTags({
             text: loginUrl,
             tags: {
-              query: encodeURI(searchQuery)
+              query: encodeURIComponent(searchQuery)
             }
           })
         }

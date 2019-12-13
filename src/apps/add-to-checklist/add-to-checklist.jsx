@@ -23,6 +23,7 @@ function AddToChecklist({
   if (loading === "failed") {
     return <Alert message={errorText} type="polite" variant="warning" />;
   }
+
   return (
     <div className="ddb-add-to-checklist__container">
       <Button
@@ -31,7 +32,7 @@ function AddToChecklist({
           replaceTags({
             text: loginUrl,
             tags: {
-              id: materialId
+              id: encodeURIComponent(materialId)
             }
           })
         }
