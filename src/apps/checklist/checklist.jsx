@@ -11,10 +11,10 @@ import SimpleMaterial from "../../components/simple-material/simple-material";
 function SkeletonElement(_, index) {
   return (
     <ListItem key={index} aside={<Skeleton width="151px" height="50px" />}>
-      <figure className="ddb-checklist__cover">
+      <figure className="ddb-reset">
         <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
       </figure>
-      <div className="ddb-checklist__data">
+      <div>
         <Skeleton width="45px" mb="12px" />
         <Skeleton width="145px" mb="12px" />
         <Skeleton width="95px" />

@@ -34,7 +34,7 @@ function SkeletonElement(_, index) {
         </>
       }
     >
-      <div className="ddb-searchlist__container">
+      <div>
         <Skeleton height="30px" width="95px" mb="12px" />
         <Skeleton width="60px" mb="12px" />
         <Skeleton width="145px" />
