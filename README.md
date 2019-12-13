@@ -375,7 +375,8 @@ A simple naive example of the required artifacts needed looks like this:
 </head>
 <body>
     <b>Here be dragons!</b>
-    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"></div>
+    <!-- Data attributes will be camelCased on the react side aka. props.errorText and props.text -->
+    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon" data-error-text="Minor mistake"></div>
     <div data-ddb-app='a-none-existing-app'></div>
 
     <script>
@@ -430,10 +431,10 @@ Additional data attributes can be passed if neccessary. Examples would be contex
 Normally these would be passed in by the server ex. Drupal, Wordpress etc.
 
 ```html
-<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613"></div>
+<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613" data-error-text="A mistake was made"></div>
 ```
 
-The above `data-id` would be accessed as `props.id` in the entrypoint of an application.
+The above `data-id` would be accessed as `props.id` and `data-error-text` as `props.errorText` in the entrypoint of an application.
 
 <details>
   <summary>Example</summary>
