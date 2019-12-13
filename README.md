@@ -390,7 +390,7 @@ A simple naive example of the required artifacts needed looks like this:
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/mount.js"></script>
-    <!-- After the necesssary scrips you can start loading applications -->
+    <!-- After the necesssary scripts you can start loading applications -->
     <script src="/dist/add-to-checklist.js"></script>
     <script>
       // For making successfull requests to the different services we need a valid token
