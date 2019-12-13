@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import urlPropType from "url-prop-type";
 import PropTypes from "prop-types";
 import Checklist from "./checklist";
 import MaterialList from "../../core/MaterialList";
@@ -37,7 +38,8 @@ function ChecklistEntry({
   authorUrl,
   removeButtonText,
   emptyListText,
-  errorText
+  errorText,
+  ofText
 }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
@@ -104,22 +106,25 @@ function ChecklistEntry({
       removeButtonText={removeButtonText}
       emptyListText={emptyListText}
       errorText={errorText}
+      ofText={ofText}
     />
   );
 }
 
 ChecklistEntry.propTypes = {
-  materialUrl: PropTypes.string.isRequired,
-  authorUrl: PropTypes.string.isRequired,
+  materialUrl: urlPropType.isRequired,
+  authorUrl: urlPropType.isRequired,
   removeButtonText: PropTypes.string,
   emptyListText: PropTypes.string,
-  errorText: PropTypes.string
+  errorText: PropTypes.string,
+  ofText: PropTypes.string
 };
 
 ChecklistEntry.defaultProps = {
   removeButtonText: "Fjern fra listen",
   emptyListText: "Listen er tom",
-  errorText: "Noget gik galt"
+  errorText: "Noget gik galt",
+  ofText: "Af"
 };
 
 export default ChecklistEntry;
