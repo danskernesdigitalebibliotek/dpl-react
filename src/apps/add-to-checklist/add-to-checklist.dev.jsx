@@ -16,7 +16,7 @@ export function Entry() {
       id={text("Material ID", "870970-basis:54172613")}
       loginUrl={text(
         "Login URL",
-        "https://www.aakb.dk/adgangsplatformen/login?destination=ting/object/:id"
+        "https://lollandbib.dk/adgangsplatformen/login?destination=ting/object/:id"
       )}
     />
   );
