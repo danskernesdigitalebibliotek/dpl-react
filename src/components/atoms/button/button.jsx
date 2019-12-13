@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import urlPropType from "url-prop-type";
 import { useId } from "@reach/auto-id";
 
 /**
@@ -12,6 +13,7 @@ import { useId } from "@reach/auto-id";
 function Button({
   className,
   type,
+  href,
   variant,
   align,
   onClick,
@@ -21,30 +23,33 @@ function Button({
   id
 }) {
   const generatedId = useId(id);
+  const Component = href ? "a" : "button";
   return (
     /* * JSX line disabled for ESLint due to questionable rule implementation
      * https://github.com/yannickcr/eslint-plugin-react/issues/1555 */
     <>
-      {label && (
+      {label && !href && (
         <label className="ddb-btn__label" htmlFor={generatedId}>
           {label}
         </label>
       )}
       {/* eslint-disable-next-line react/button-has-type */}
-      <button
+      <Component
         id={generatedId}
-        type={type}
+        href={href}
+        type={!href ? type : undefined}
         className={`ddb-reset ddb-btn ddb-btn--${variant} ddb-btn--align-${align} ${className}`}
-        onClick={onClick}
+        onClick={!href ? onClick : undefined}
         tabIndex={tabIndex}
       >
         {children}
-      </button>
+      </Component>
     </>
   );
 }
 
 Button.propTypes = {
+  href: urlPropType,
   variant: PropTypes.oneOf(["blank", "black", "grey", "secondary", "charcoal"]),
   className: PropTypes.string,
   onClick: PropTypes.func,
@@ -57,6 +62,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  href: undefined,
   className: "",
   variant: "grey",
   align: "center",
