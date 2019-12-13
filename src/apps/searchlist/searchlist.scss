@@ -54,14 +54,13 @@
   &__scroll {
     scrollbar-width: none;
     &::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
+      display: none;
     }
     @include sm {
       scrollbar-width: auto;
       scrollbar-color: color("grey", "darker") color("grey");
       &::-webkit-scrollbar {
-        width: 1em;
+        display: block;
       }
       &::-webkit-scrollbar-track {
         background: color("grey");
