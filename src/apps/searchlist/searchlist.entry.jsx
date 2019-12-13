@@ -11,6 +11,7 @@ function SearchlistEntry({
   newButtonText,
   removeButtonText,
   statusText,
+  goToSearchText,
   searchUrl,
   authorUrl,
   materialUrl
@@ -84,6 +85,7 @@ function SearchlistEntry({
       searchUrl={searchUrl}
       authorUrl={authorUrl}
       materialUrl={materialUrl}
+      goToSearchText={goToSearchText}
     />
   );
 }
@@ -91,6 +93,7 @@ function SearchlistEntry({
 SearchlistEntry.propTypes = {
   newButtonText: PropTypes.string,
   removeButtonText: PropTypes.string,
+  goToSearchText: PropTypes.string,
   statusText: PropTypes.string,
   searchUrl: urlPropType.isRequired,
   materialUrl: urlPropType.isRequired,
@@ -100,7 +103,8 @@ SearchlistEntry.propTypes = {
 SearchlistEntry.defaultProps = {
   newButtonText: "Nye materialer",
   removeButtonText: "Fjern fra listen",
-  statusText: ":hit_count nye materialer siden"
+  statusText: ":hit_count nye materialer siden",
+  goToSearchText: "Vis søgeresultat"
 };
 
 export default SearchlistEntry;

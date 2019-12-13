@@ -17,6 +17,20 @@
 
   &__header {
     margin: 0 0 space(2);
+    line-height: 1;
+    a {
+      text-decoration: none;
+      color: color("grey", "darker");
+      transition: color duration("fast", 2) easing();
+      &:hover {
+        color: color("grey", "dark");
+      }
+    }
+  }
+
+  &__go-to-search {
+    font-size: 0.8rem;
+    text-decoration: underline;
   }
 
   &__query {

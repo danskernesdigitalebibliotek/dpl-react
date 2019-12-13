@@ -29,8 +29,8 @@ function SkeletonElement(_, index) {
       key={index}
       aside={
         <>
-          <Skeleton width="130px" height="50px" />
-          <Skeleton width="130px" height="50px" />
+          <Skeleton width="180px" height="50px" />
+          <Skeleton width="180px" height="50px" />
         </>
       }
     >
@@ -50,6 +50,7 @@ function Searchlist({
   removeButtonText,
   searchUrl,
   statusText,
+  goToSearchText,
   materials,
   onOpenMaterials,
   onCloseMaterials,
@@ -77,6 +78,7 @@ function Searchlist({
               <>
                 {search.hit_count > 0 && (
                   <Button
+                    align="left"
                     className="ddb-searchlist__new-button"
                     variant="charcoal"
                     onClick={onMaterialClick}
@@ -84,7 +86,7 @@ function Searchlist({
                     {newButtonText}
                   </Button>
                 )}
-                <Button>{removeButtonText}</Button>
+                <Button align="left">{removeButtonText}</Button>
               </>
             }
             footerClass="ddb-searchlist__materials"
@@ -123,7 +125,10 @@ function Searchlist({
                   }
                 })}
               >
-                {search.title}
+                {search.title}{" "}
+                <span className="ddb-searchlist__go-to-search">
+                  {goToSearchText}
+                </span>
               </a>
             </h2>
             <p className="ddb-searchlist__query">{search.query}</p>
@@ -161,6 +166,7 @@ Searchlist.propTypes = {
   statusText: PropTypes.string.isRequired,
   newButtonText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
+  goToSearchText: PropTypes.string.isRequired,
   searchUrl: PropTypes.string.isRequired,
   materialUrl: urlPropType.isRequired,
   authorUrl: urlPropType.isRequired,
