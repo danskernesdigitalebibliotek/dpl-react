@@ -44,7 +44,7 @@ function Checklist({
   errorText
 }) {
   if (loading === "failed") {
-    return <Alert type="assertive" message={errorText} />;
+    return <Alert type="assertive" variant="warning" message={errorText} />;
   }
 
   if (loading === "active") {

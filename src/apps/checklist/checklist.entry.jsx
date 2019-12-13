@@ -65,17 +65,11 @@ function ChecklistEntry({
         return [];
       })
       .then(result => {
+        setLoading("finished");
         setList(result.map(formatResult));
       })
       .catch(function onError() {
         setLoading("failed");
-        setTimeout(() => {
-          setLoading("inactive");
-          setList([]);
-        }, 2000);
-      })
-      .finally(function onEnd() {
-        setLoading("finished");
       });
   }, []);
 
