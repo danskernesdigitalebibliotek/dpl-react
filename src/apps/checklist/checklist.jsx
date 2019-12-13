@@ -5,8 +5,8 @@ import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
 import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 import Alert from "../../components/alert/alert";
-import createPath from "../../core/createPath";
 import ListItem from "../../components/list-item/list-item";
+import SimpleMaterial from "../../components/simple-material/simple-material";
 
 function SkeletonElement(_, index) {
   return (
@@ -31,7 +31,8 @@ function Checklist({
   authorUrl,
   removeButtonText,
   emptyListText,
-  errorText
+  errorText,
+  ofText
 }) {
   if (loading === "failed") {
     return <Alert type="assertive" variant="warning" message={errorText} />;
@@ -59,49 +60,13 @@ function Checklist({
             </Button>
           }
         >
-          <figure className="ddb-checklist__cover">
-            <a
-              href={createPath({
-                url: materialUrl,
-                property: ":pid",
-                value: item.pid
-              })}
-            >
-              <img src={item.coverUrl} alt={item.title} />
-            </a>
-          </figure>
-          <div className="ddb-checklist__data">
-            {item.type}
-            <a
-              href={createPath({
-                url: materialUrl,
-                property: ":pid",
-                value: item.pid
-              })}
-            >
-              <h2>{item.title}</h2>
-            </a>
-            <p className="ddb-checklist__author-year">
-              {`Af `}
-              {item.creators.map((creator, index) => {
-                return (
-                  <span key={creator}>
-                    <a
-                      href={createPath({
-                        url: authorUrl,
-                        property: ":author",
-                        value: creator
-                      })}
-                    >
-                      {creator}
-                    </a>
-                    {item.creator[index + 1] ? ", " : " "}
-                  </span>
-                );
-              })}
-              ({item.year})
-            </p>
-          </div>
+          <SimpleMaterial
+            item={item}
+            materialUrl={materialUrl}
+            authorUrl={authorUrl}
+            ofText={ofText}
+            dataClass="ddb-checklist__data"
+          />
         </ListItem>
       ))}
     </UnorderedList>
@@ -130,7 +95,8 @@ Checklist.propTypes = {
   authorUrl: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
   emptyListText: PropTypes.string.isRequired,
-  errorText: PropTypes.string.isRequired
+  errorText: PropTypes.string.isRequired,
+  ofText: PropTypes.string.isRequired
 };
 
 export default Checklist;

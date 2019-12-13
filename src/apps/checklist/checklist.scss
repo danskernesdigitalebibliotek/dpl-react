@@ -1,38 +1,10 @@
 .ddb-checklist {
-  &__cover {
-    display: flex;
-    margin: 0;
-    margin-right: layout(1);
-    width: 100px;
-    @include sm {
-      margin-right: layout(2);
-    }
-    @include md {
-      margin-right: layout(3);
-    }
-  }
-  &__data {
-    display: flex;
-    flex-direction: column;
-    a {
-      text-decoration: none;
-    }
-    p {
-      margin: 0;
-    }
-    h2 {
-      font-size: space(5);
-      margin: space(3) 0;
-      color: color("charcoal");
-      &:hover {
-        color: color("charcoal");
-      }
-    }
-  }
   &__button {
     min-width: 103px;
   }
-  &__author-year {
-    color: rgba(color("text"), 0.5);
+
+  &__data {
+    width: auto;
+    max-width: 300px;
   }
 }
