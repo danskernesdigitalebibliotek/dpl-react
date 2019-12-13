@@ -96,11 +96,14 @@
     "@reach/auto-id": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "dayjs": "^1.8.17",
+    "faker": "^4.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-error-boundary": "^1.2.5",
     "react-hook-form": "^3.28.13",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
     "url-prop-type": "^1.2.3"
   }
 }
