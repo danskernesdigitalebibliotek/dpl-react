@@ -380,7 +380,7 @@ A simple naive example of the required artifacts needed looks like this:
 
     <script>
       // This key is not used for actual validation but merely as a way to adjust the interface accordingly.
-      // Additional key's will be injected into the "ddbReact" container object at a later stage in mount.js.
+      // Additional keys will be injected into the "ddbReact" container object at a later stage in mount.js.
       window.ddbReact = {
         userAuthenticated: true // But only "true" if the user is actually authenticated.
       }
