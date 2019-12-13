@@ -54,6 +54,7 @@ function Searchlist({
   materials,
   onOpenMaterials,
   onCloseMaterials,
+  onRemoveMaterial,
   authorUrl,
   materialUrl
 }) {
@@ -86,7 +87,12 @@ function Searchlist({
                     {newButtonText}
                   </Button>
                 )}
-                <Button align="left">{removeButtonText}</Button>
+                <Button
+                  onClick={() => onRemoveMaterial(search.id)}
+                  align="left"
+                >
+                  {removeButtonText}
+                </Button>
               </>
             }
             footerClass="ddb-searchlist__materials"
@@ -163,6 +169,7 @@ Searchlist.propTypes = {
   ).isRequired,
   onOpenMaterials: PropTypes.func.isRequired,
   onCloseMaterials: PropTypes.func.isRequired,
+  onRemoveMaterial: PropTypes.func.isRequired,
   statusText: PropTypes.string.isRequired,
   newButtonText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,

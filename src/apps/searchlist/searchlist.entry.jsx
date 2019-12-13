@@ -72,6 +72,14 @@ function SearchlistEntry({
     );
   }
 
+  function removeMaterial(id) {
+    const fallback = [...searches];
+    setSearches(searches.filter(search => search.id !== id));
+    client.deleteSearch({ searchId: id }).catch(function onError() {
+      setSearches(fallback);
+    });
+  }
+
   return (
     <Searchlist
       loading={loading}
@@ -79,6 +87,7 @@ function SearchlistEntry({
       materials={materials}
       onOpenMaterials={openMaterials}
       onCloseMaterials={closeMaterials}
+      onRemoveMaterial={removeMaterial}
       newButtonText={newButtonText}
       removeButtonText={removeButtonText}
       statusText={statusText}
