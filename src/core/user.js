@@ -12,7 +12,7 @@ class User {
    * @memberof User
    */
   static isAuthenticated() {
-    return window.ddbReact?.isAuthenticated;
+    return window.ddbReact?.userAuthenticated;
   }
 }
 
