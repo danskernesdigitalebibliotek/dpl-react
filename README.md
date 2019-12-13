@@ -377,22 +377,32 @@ A simple naive example of the required artifacts needed looks like this:
     <b>Here be dragons!</b>
     <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"></div>
     <div data-ddb-app='a-none-existing-app'></div>
+
+    <script>
+      // This key is not used for actual validation but merely as a way to adjust the interface accordingly.
+      // Additional key's will be injected into the "ddbReact" container object at a later stage in mount.js.
+      window.ddbReact = {
+        userAuthenticated: true // But only "true" if the user is actually authenticated.
+      }
+    </script>
     
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
     <script src="/dist/bundle.js"></script>
-    <script src="/dist/add-to-checklist.js"></script>
     <script src="/dist/mount.js"></script>
+    <!-- After the necesssary scrips you can start loading applications -->
+    <script src="/dist/add-to-checklist.js"></script>
     <script>
       // For making successfull requests to the different services we need a valid token
       // to be stored in localStorage of the client browser.
       // The key should be "ddb-token".
+      // This is only for local testing. Not in production environments.
       window.localStorage.setItem("ddb-token", "XXXXXXXXXXXXXXXXXXXXXX");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
       // and a corresonding application loaded.
-      window.mountDdbApps(document);
+      window.ddbReact.mount(document);
     </script>
 </body>
 </html>

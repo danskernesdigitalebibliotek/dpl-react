@@ -15,7 +15,7 @@ function mount(context) {
   const appContainers = context.querySelectorAll("[data-ddb-app]");
   appContainers.forEach(function mountApp(container) {
     const appName = container?.dataset?.ddbApp;
-    const app = window.ddbApps?.[appName];
+    const app = window.ddbReact?.apps?.[appName];
     // Ensure that the application exists and that the container isn't already populated.
     const isValidMount = app && !container.innerHTML;
     if (isValidMount) {
@@ -43,6 +43,17 @@ function unMount(context) {
   });
 }
 
-// Inject the function(s) into the global namespace for third party access.
-window.mountDdbApps = mount;
-window.unMountDdbApps = unMount;
+function init() {
+  const initial = {
+    apps: {},
+    mount,
+    unMount
+  };
+  window.ddbReact = {
+    ...(window.ddbReact || {}),
+    ...initial
+  };
+}
+
+// Inject into the global namespace for third party access.
+init();

@@ -8,10 +8,15 @@
  * @param {ReactNode} options.app - The React app/component that should be the start point of your application. This should be your applications .entry.js.
  */
 function addMount({ appName, app }) {
-  // window.ddbApps is our container for all of our available applications.
-  const apps = window.ddbApps || {};
-  apps[appName] = app;
-  window.ddbApps = apps;
+  // If our global namespace container isn't initialized we want to opt out.
+  if (!window.ddbReact?.apps) {
+    return;
+  }
+  // window.ddbReact.apps is our container for all of our available applications.
+  window.ddbReact.apps = {
+    ...window.ddbReact.apps,
+    [appName]: app
+  };
 }
 
 export default addMount;
