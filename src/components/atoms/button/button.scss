@@ -4,13 +4,18 @@
   border-radius: $border-radius;
   text-align: center;
   font-size: 16px; //inherited from existing ddb site.
-  width: 100%;
+  width: auto;
   max-width: 260px;
+  padding: 20px 20px 14px 15px;
   box-sizing: border-box;
-  padding: 20px 80px 14px 15px; //Inherited from existing ddb site.
   line-height: 20px;
   cursor: pointer;
   transition: background duration("fast", 2) easing();
+
+  @include sm {
+    width: 100%;
+    padding: 20px 80px 14px 15px; //Inherited from existing ddb site.
+  }
 
   &:focus {
     outline: 2px solid color("grey", "dark");
