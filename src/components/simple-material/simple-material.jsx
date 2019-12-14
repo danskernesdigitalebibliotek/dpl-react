@@ -2,6 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import replacePlaceholders from "../../core/replacePlaceholders";
+import Skeleton from "../atoms/skeleton/skeleton";
+
+export function SimpleMaterialSkeleton({ style }) {
+  return (
+    <div className="ddb-simple-material-skeleton" style={style}>
+      <figure className="ddb-reset">
+        <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
+      </figure>
+      <div>
+        <Skeleton width="45px" mb="12px" />
+        <Skeleton width="145px" mb="12px" />
+        <Skeleton width="95px" />
+      </div>
+    </div>
+  );
+}
+
+SimpleMaterialSkeleton.propTypes = {
+  style: PropTypes.objectOf(PropTypes.any)
+};
+
+SimpleMaterialSkeleton.defaultProps = {
+  style: {}
+};
 
 function SimpleMaterial({
   item,
@@ -15,18 +39,18 @@ function SimpleMaterial({
   return (
     <section className={`ddb-simple-material ${className}`} style={style}>
       {item.coverUrl && (
-      <figure className="ddb-simple-material__cover">
-        <a
-          href={replacePlaceholders({
-            text: materialUrl,
-            placeholders: {
-              pid: encodeURIComponent(item.pid)
-            }
-          })}
-        >
-          <img src={item.coverUrl} alt={item.title} />
-        </a>
-      </figure>
+        <figure className="ddb-simple-material__cover">
+          <a
+            href={replacePlaceholders({
+              text: materialUrl,
+              placeholders: {
+                pid: encodeURIComponent(item.pid)
+              }
+            })}
+          >
+            <img src={item.coverUrl} alt={item.title} />
+          </a>
+        </figure>
       )}
       <div className={`ddb-simple-material__data ${dataClass}`}>
         {item.type}
@@ -44,23 +68,23 @@ function SimpleMaterial({
           {item.creators && (
             <>
               <span>{`${ofText} `}</span>
-          {item.creators.map((creator, index) => {
-            return (
-              <span key={creator}>
-                <a
-                  href={replacePlaceholders({
-                    text: authorUrl,
-                    placeholders: {
-                      author: encodeURIComponent(creator)
-                    }
-                  })}
-                >
-                  {creator}
-                </a>
-                {item.creators[index + 1] ? ", " : " "}
-              </span>
-            );
-          })}
+              {item.creators.map((creator, index) => {
+                return (
+                  <span key={creator}>
+                    <a
+                      href={replacePlaceholders({
+                        text: authorUrl,
+                        placeholders: {
+                          author: encodeURIComponent(creator)
+                        }
+                      })}
+                    >
+                      {creator}
+                    </a>
+                    {item.creators[index + 1] ? ", " : " "}
+                  </span>
+                );
+              })}
             </>
           )}
           {item.year && `(${item.year})`}
