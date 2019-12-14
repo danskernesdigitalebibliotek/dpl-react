@@ -54,6 +54,7 @@ function Checklist({
             <Button
               className="ddb-checklist__button"
               variant="charcoal"
+              align="left"
               onClick={() => onRemove(item.pid)}
             >
               {removeButtonText}
