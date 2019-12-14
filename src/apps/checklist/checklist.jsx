@@ -6,19 +6,14 @@ import Button from "../../components/atoms/button/button";
 import UnorderedList from "../../components/atoms/list/list";
 import Alert from "../../components/alert/alert";
 import ListItem from "../../components/list-item/list-item";
-import SimpleMaterial from "../../components/simple-material/simple-material";
+import SimpleMaterial, {
+  SimpleMaterialSkeleton
+} from "../../components/simple-material/simple-material";
 
 function SkeletonElement(_, index) {
   return (
     <ListItem key={index} aside={<Skeleton width="151px" height="50px" />}>
-      <figure className="ddb-reset">
-        <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
-      </figure>
-      <div>
-        <Skeleton width="45px" mb="12px" />
-        <Skeleton width="145px" mb="12px" />
-        <Skeleton width="95px" />
-      </div>
+      <SimpleMaterialSkeleton />
     </ListItem>
   );
 }
@@ -50,6 +45,7 @@ function Checklist({
     <UnorderedList>
       {items.map(item => (
         <ListItem
+          key={item.pid}
           aside={
             <Button
               className="ddb-checklist__button"
