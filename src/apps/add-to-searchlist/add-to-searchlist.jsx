@@ -85,13 +85,14 @@ function AddToSearchlist({
     <section className="ddb-add-to-searchlist">
       <Button
         href={
-          !User.isAuthenticated() &&
-          replacePlaceholders({
-            text: loginUrl,
-            tags: {
-              query: encodeURIComponent(searchQuery)
-            }
-          })
+          !User.isAuthenticated()
+            ? replacePlaceholders({
+                text: loginUrl,
+                tags: {
+                  query: encodeURIComponent(searchQuery)
+                }
+              })
+            : undefined
         }
         className="ddb-add-to-searchlist__open-dialog-btn"
         onClick={openDialog}

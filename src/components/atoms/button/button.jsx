@@ -49,7 +49,7 @@ function Button({
 }
 
 Button.propTypes = {
-  href: urlPropType,
+  href: PropTypes.oneOfType([urlPropType, PropTypes.bool]),
   variant: PropTypes.oneOf(["blank", "black", "grey", "secondary", "charcoal"]),
   className: PropTypes.string,
   onClick: PropTypes.func,

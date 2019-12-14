@@ -28,13 +28,14 @@ function AddToChecklist({
     <div className="ddb-add-to-checklist__container">
       <Button
         href={
-          !User.isAuthenticated() &&
-          replacePlaceholders({
-            text: loginUrl,
-            tags: {
-              id: encodeURIComponent(materialId)
-            }
-          })
+          !User.isAuthenticated()
+            ? replacePlaceholders({
+                text: loginUrl,
+                tags: {
+                  id: encodeURIComponent(materialId)
+                }
+              })
+            : undefined
         }
         variant="black"
         align="left"
