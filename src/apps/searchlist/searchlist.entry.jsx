@@ -4,6 +4,7 @@ import urlPropType from "url-prop-type";
 
 import Searchlist from "./searchlist";
 import FollowSearches from "../../core/FollowSearches";
+import Material from "../../core/Material";
 
 const client = new FollowSearches();
 
@@ -18,7 +19,6 @@ function SearchlistEntry({
 }) {
   const [searches, setSearches] = useState([]);
   const [loading, setLoading] = useState("inactive");
-  const [materials, setMaterials] = useState([]);
   useEffect(function getSearches() {
     setLoading("active");
     client
@@ -33,46 +33,67 @@ function SearchlistEntry({
   }, []);
 
   function openMaterials(id) {
-    const existingMaterial = materials.find(current => current.id === id);
-    if (!existingMaterial) {
-      setMaterials(
-        materials.concat([
-          {
-            id,
+    const hasMaterials = searches.find(function findMaterial(search) {
+      return search.id === id && search.materials;
+    });
+    setSearches(
+      searches.map(function openCurrentMaterial(search) {
+        if (search.id === id) {
+          return {
+            ...search,
             open: true
-          }
-        ])
-      );
-    } else {
-      setMaterials(
-        materials.map(material => {
-          if (existingMaterial.id === material.id) {
-            return {
-              ...material,
-              open: true
-            };
-          }
-          return material;
+          };
+        }
+        return search;
+      })
+    );
+    // Do not make a second request if the materials have already been populated.
+    if (!hasMaterials) {
+      client
+        .getResultsForSearch({
+          searchId: id,
+          fields: [
+            "dcTitleFull",
+            "pid",
+            "coverUrlThumbnail",
+            "dcCreator",
+            "creator",
+            "typeBibDKType",
+            "date"
+          ]
         })
-      );
+        .then(function onResult(result) {
+          setSearches(
+            searches.map(function importMaterials(search) {
+              if (search.id === id) {
+                return {
+                  ...search,
+                  open: true,
+                  materials: result.map(Material.format)
+                };
+              }
+              return search;
+            })
+          );
+        });
     }
   }
 
   function closeMaterials(id) {
-    setMaterials(
-      materials.map(current => {
-        if (current.id === id) {
+    setSearches(
+      searches.map(function findCurrentMaterial(search) {
+        if (search.id === id) {
           return {
-            ...current,
+            ...search,
             open: false
           };
         }
-        return current;
+        return search;
       })
     );
   }
 
-  function removeMaterial(id) {
+  function removeSearch(id) {
     const fallback = [...searches];
     setSearches(searches.filter(search => search.id !== id));
     client.deleteSearch({ searchId: id }).catch(function onError() {
@@ -84,10 +105,9 @@ function SearchlistEntry({
     <Searchlist
       loading={loading}
       searches={searches}
-      materials={materials}
       onOpenMaterials={openMaterials}
       onCloseMaterials={closeMaterials}
-      onRemoveMaterial={removeMaterial}
+      onRemoveSearch={removeSearch}
       newButtonText={newButtonText}
       removeButtonText={removeButtonText}
       statusText={statusText}

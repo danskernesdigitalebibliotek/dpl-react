@@ -2,26 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import dayjs from "dayjs";
-import { FixedSizeList } from "react-window";
+import { VariableSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import faker from "faker";
 import replacePlaceholders from "../../core/replacePlaceholders";
 import ListItem from "../../components/list-item/list-item";
 import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
 import UnorderedList from "../../components/atoms/list/list";
 import Button from "../../components/atoms/button/button";
-import SimpleMaterial from "../../components/simple-material/simple-material";
-
-const fake = getList(10000).map(() => {
-  return {
-    creators: getList(4).map(() => faker.name.findName()),
-    pid: faker.random.uuid(),
-    title: faker.commerce.productName(),
-    type: faker.commerce.productMaterial(),
-    year: faker.date.month(),
-    coverUrl: faker.image.avatar()
-  };
-});
+import SimpleMaterial, {
+  SimpleMaterialSkeleton
+} from "../../components/simple-material/simple-material";
 
 function SkeletonElement(_, index) {
   return (
@@ -51,10 +41,9 @@ function Searchlist({
   searchUrl,
   statusText,
   goToSearchText,
-  materials,
   onOpenMaterials,
   onCloseMaterials,
-  onRemoveMaterial,
+  onRemoveSearch,
   authorUrl,
   materialUrl
 }) {
@@ -64,11 +53,10 @@ function Searchlist({
   return (
     <UnorderedList>
       {searches.map(search => {
-        const isOpen = materials.some(
-          material => material.id === search.id && material.open
-        );
         const onMaterialClick = () =>
-          !isOpen ? onOpenMaterials(search.id) : onCloseMaterials(search.id);
+          !search.open
+            ? onOpenMaterials(search.id)
+            : onCloseMaterials(search.id);
         return (
           <ListItem
             className="ddb-searchlist__item"
@@ -87,36 +75,44 @@ function Searchlist({
                     {newButtonText}
                   </Button>
                 )}
-                <Button
-                  onClick={() => onRemoveMaterial(search.id)}
-                  align="left"
-                >
+                <Button onClick={() => onRemoveSearch(search.id)} align="left">
                   {removeButtonText}
                 </Button>
               </>
             }
             footerClass="ddb-searchlist__materials"
             footer={
-              isOpen && (
+              search.open && (
                 <AutoSizer>
                   {({ width, height }) => (
-                    <FixedSizeList
+                    <VariableSizeList
                       className="ddb-searchlist__scroll"
                       layout="horizontal"
-                      itemCount={fake.length}
-                      itemSize={320}
+                      itemCount={search.materials?.length || 20}
+                      estimatedItemSize={320}
+                      itemSize={index => {
+                        if (search.materials) {
+                          const material = search.materials[index];
+                          return material.coverUrl ? 320 : 220;
+                        }
+                        return 320;
+                      }}
                       height={height}
                       width={width}
                     >
-                      {({ style, index }) => (
-                        <SimpleMaterial
-                          authorUrl={authorUrl}
-                          materialUrl={materialUrl}
-                          style={style}
-                          item={fake[index]}
-                        />
-                      )}
-                    </FixedSizeList>
+                      {({ style, index }) =>
+                        search.materials ? (
+                          <SimpleMaterial
+                            authorUrl={authorUrl}
+                            materialUrl={materialUrl}
+                            style={style}
+                            item={search.materials[index]}
+                          />
+                        ) : (
+                          <SimpleMaterialSkeleton style={style} />
+                        )
+                      }
+                    </VariableSizeList>
                   )}
                 </AutoSizer>
               )
@@ -161,15 +157,9 @@ function Searchlist({
 
 Searchlist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
-  materials: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      open: PropTypes.bool.isRequired
-    })
-  ).isRequired,
   onOpenMaterials: PropTypes.func.isRequired,
   onCloseMaterials: PropTypes.func.isRequired,
-  onRemoveMaterial: PropTypes.func.isRequired,
+  onRemoveSearch: PropTypes.func.isRequired,
   statusText: PropTypes.string.isRequired,
   newButtonText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
