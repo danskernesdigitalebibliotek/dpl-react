@@ -14,6 +14,7 @@ function SimpleMaterial({
 }) {
   return (
     <section className={`ddb-simple-material ${className}`} style={style}>
+      {item.coverUrl && (
       <figure className="ddb-simple-material__cover">
         <a
           href={replacePlaceholders({
@@ -26,6 +27,7 @@ function SimpleMaterial({
           <img src={item.coverUrl} alt={item.title} />
         </a>
       </figure>
+      )}
       <div className={`ddb-simple-material__data ${dataClass}`}>
         {item.type}
         <a
@@ -39,7 +41,9 @@ function SimpleMaterial({
           <h2>{item.title}</h2>
         </a>
         <p className="ddb-simple-material__author-year">
-          {`${ofText} `}
+          {item.creators && (
+            <>
+              <span>{`${ofText} `}</span>
           {item.creators.map((creator, index) => {
             return (
               <span key={creator}>
@@ -57,7 +61,9 @@ function SimpleMaterial({
               </span>
             );
           })}
-          ({item.year})
+            </>
+          )}
+          {item.year && `(${item.year})`}
         </p>
       </div>
     </section>
