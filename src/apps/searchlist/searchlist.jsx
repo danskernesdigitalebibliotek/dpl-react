@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import faker from "faker";
-import replaceTags from "../../core/replaceTags";
+import replacePlaceholders from "../../core/replacePlaceholders";
 import ListItem from "../../components/list-item/list-item";
 import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
 import UnorderedList from "../../components/atoms/list/list";
@@ -124,10 +124,10 @@ function Searchlist({
           >
             <h2 className="ddb-searchlist__header">
               <a
-                href={replaceTags({
+                href={replacePlaceholders({
                   text: searchUrl,
-                  tags: {
-                    query: search.query
+                  placeholders: {
+                    query: encodeURIComponent(search.query)
                   }
                 })}
               >
@@ -140,9 +140,9 @@ function Searchlist({
             <p className="ddb-searchlist__query">{search.query}</p>
             {search.hit_count > 0 && (
               <p className="ddb-searchlist__status">
-                {replaceTags({
+                {replacePlaceholders({
                   text: statusText,
-                  tags: {
+                  placeholders: {
                     hit_count: search.hit_count
                   }
                 })}{" "}

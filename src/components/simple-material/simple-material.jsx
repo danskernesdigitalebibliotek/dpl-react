@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
-import replaceTags from "../../core/replaceTags";
+import replacePlaceholders from "../../core/replacePlaceholders";
 
 function SimpleMaterial({
   item,
@@ -16,10 +16,10 @@ function SimpleMaterial({
     <section className={`ddb-simple-material ${className}`} style={style}>
       <figure className="ddb-simple-material__cover">
         <a
-          href={replaceTags({
+          href={replacePlaceholders({
             text: materialUrl,
-            tags: {
-              pid: item.pid
+            placeholders: {
+              pid: encodeURIComponent(item.pid)
             }
           })}
         >
@@ -29,10 +29,10 @@ function SimpleMaterial({
       <div className={`ddb-simple-material__data ${dataClass}`}>
         {item.type}
         <a
-          href={replaceTags({
+          href={replacePlaceholders({
             text: materialUrl,
-            tags: {
-              pid: item.pid
+            placeholders: {
+              pid: encodeURIComponent(item.pid)
             }
           })}
         >
@@ -44,10 +44,10 @@ function SimpleMaterial({
             return (
               <span key={creator}>
                 <a
-                  href={replaceTags({
+                  href={replacePlaceholders({
                     text: authorUrl,
-                    tags: {
-                      author: creator
+                    placeholders: {
+                      author: encodeURIComponent(creator)
                     }
                   })}
                 >
