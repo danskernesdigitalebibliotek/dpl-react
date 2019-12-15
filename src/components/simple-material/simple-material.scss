@@ -26,13 +26,13 @@
     p {
       margin: 0;
     }
-    h2 {
-      font-size: space(5);
-      margin: space(3) 0;
+  }
+  &__title {
+    font-size: space(5);
+    margin: space(3) 0;
+    color: color("charcoal");
+    &:hover {
       color: color("charcoal");
-      &:hover {
-        color: color("charcoal");
-      }
     }
   }
   &__author-year {
