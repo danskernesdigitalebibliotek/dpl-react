@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
-import useForm from "react-hook-form";
+import useForm from "react-hook-form/dist/react-hook-form.ie11";
 
 import Button from "../../components/atoms/button/button";
 import Dialog from "../../components/atoms/dialog/dialog";
