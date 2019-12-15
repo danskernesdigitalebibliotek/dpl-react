@@ -23,6 +23,7 @@
   border-radius: 0px;
   width: unset;
   margin: unset;
+  min-height: 235px; //IE11 support for not collapsing.
   padding: space(5) space(6);
   transition: transform duration() easing("entrance", "productive");
   animation: ddb-dialog-dropdown duration("moderate", 2)
