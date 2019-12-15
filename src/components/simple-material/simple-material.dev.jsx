@@ -25,6 +25,14 @@ export function Base() {
         year: text("Year", "2016")
       }}
       ofText={text("ofText", "Af")}
+      materialUrl={text(
+        "Material URL",
+        "https://lollandbib.dk/ting/object/:pid"
+      )}
+      authorUrl={text(
+        "Author URL",
+        'https://lollandbib.dk/search/ting/phrase.creator=":author"'
+      )}
     />
   );
 }
