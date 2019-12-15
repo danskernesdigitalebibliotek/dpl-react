@@ -51,7 +51,7 @@ function Searchlist({
   materialUrl
 }) {
   if (loading === "active") {
-    return <UnorderedList>{getList(8).map(SkeletonElement)}</UnorderedList>;
+    return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
   return (
     <UnorderedList>
