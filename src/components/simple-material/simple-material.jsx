@@ -87,7 +87,11 @@ function SimpleMaterial({
               })}
             </span>
           )}
-          {item.year && `(${item.year})`}
+          {item.year && (
+            <time dateTime={item.year} className="ddb-simple-material__year">
+              ({item.year})
+            </time>
+          )}
         </p>
       </div>
     </section>
