@@ -66,8 +66,8 @@ function SimpleMaterial({
         </a>
         <p className="ddb-simple-material__author-year">
           {item.creators && (
-            <>
-              <span>{`${ofText} `}</span>
+            <span className="ddb-simple-material__author">
+              {`${ofText} `}
               {item.creators.map((creator, index) => {
                 return (
                   <span key={creator}>
@@ -85,7 +85,7 @@ function SimpleMaterial({
                   </span>
                 );
               })}
-            </>
+            </span>
           )}
           {item.year && `(${item.year})`}
         </p>
