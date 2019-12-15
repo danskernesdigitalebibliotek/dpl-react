@@ -11,6 +11,11 @@ module.exports = (_env, argv) => {
     return acc;
   }, {});
 
+  const plugins = [];
+  if (process.env.BUNDLE_ANALYZER_TOKEN) {
+    plugins.push(new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN }));
+  }
+
   return {
     entry: {
       ...entry,
@@ -45,6 +50,6 @@ module.exports = (_env, argv) => {
       entrypoints: false,
       modules: false
     },
-    plugins: [new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN })]
+    plugins: plugins
   };
 };
