@@ -11,10 +11,7 @@ export function Base() {
   return (
     <SimpleMaterial
       item={{
-        coverUrl: text(
-          "Cover",
-          "https://bibliotek.kk.dk/sites/koebenhavn.ddbcms.dk/files/styles/ding_primary_large/public/ting/covers/ODcwOTcwLWJhc2lzOjUyODM2OTEz.jpg?itok=CGCNIio-"
-        ),
+        coverUrl: text("Cover", "https://source.unsplash.com/random/165x235"),
         creators: array("Creators", ["Pablo Hidalgo"]),
         pid: text("pid", "870970-basis:52836913"),
         title: text(
