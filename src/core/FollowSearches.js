@@ -97,7 +97,7 @@ class FollowSearches {
   async getResultsForSearch({
     listName = "default",
     searchId,
-    fields = ["pid", "title"]
+    fields = ["pid", "dcTitleFull"]
   } = {}) {
     if (!searchId) {
       throw Error("searchId must be provided");
