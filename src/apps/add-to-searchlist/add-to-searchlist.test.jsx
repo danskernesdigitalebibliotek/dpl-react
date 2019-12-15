@@ -10,7 +10,7 @@ test("Addition to list without token", async () => {
       buttonText="Tilføj til mine søgninger"
       successText="Tilføjet til dine gemte søgninger."
       errorText="Det gik galt."
-      successLink="/?path=/story/apps-searchlist--entry"
+      successLinkUrl="/?path=/story/apps-searchlist--entry"
       successLinkText="Se dine gemte søgnigner."
       labelText="Søgetitel"
       addButtonText="Gem"

@@ -14,7 +14,7 @@ function AddToSearchlistEntry({
   defaultTitle,
   helpText,
   successText,
-  successLink,
+  successLinkUrl,
   successLinkText,
   errorText,
   addButtonText,
@@ -54,7 +54,7 @@ function AddToSearchlistEntry({
       defaultTitle={defaultTitle}
       errorText={errorText}
       successText={successText}
-      successLink={successLink}
+      successLinkUrl={successLinkUrl}
       successLinkText={successLinkText}
       addButtonText={addButtonText}
       helpText={helpText}
@@ -69,7 +69,7 @@ AddToSearchlistEntry.propTypes = {
   buttonText: PropTypes.string,
   errorText: PropTypes.string,
   successText: PropTypes.string,
-  successLink: urlPropType,
+  successLinkUrl: urlPropType,
   successLinkText: PropTypes.string,
   labelText: PropTypes.string,
   addButtonText: PropTypes.string,
@@ -86,7 +86,7 @@ AddToSearchlistEntry.defaultProps = {
   labelText: "Søgetitel",
   errorText: "Noget gik galt",
   successText: "Tilføjet til dine gemte søgninger.",
-  successLink: undefined,
+  successLinkUrl: undefined,
   successLinkText: "Se dine gemte søgnigner.",
   errorRequiredMessage: "En titel er påkrævet.",
   errorMaxLengthMessage: "Titlen må ikke være længere end 255 tegn.",

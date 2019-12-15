@@ -22,7 +22,7 @@ function AddToSearchlist({
   helpText,
   errorText,
   successText,
-  successLink,
+  successLinkUrl,
   successLinkText,
   errorRequiredMessage,
   errorMaxLengthMessage,
@@ -41,7 +41,7 @@ function AddToSearchlist({
   const success = (
     <div className="ddb-add-to-searchlist__success">
       <Alert message={successText} type="polite" variant="blank" />
-      {successLink && <a href={successLink}>{successLinkText}</a>}
+      {successLinkUrl && <a href={successLinkUrl}>{successLinkText}</a>}
     </div>
   );
 
@@ -126,7 +126,7 @@ AddToSearchlist.propTypes = {
   buttonText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
-  successLink: urlPropType.isRequired,
+  successLinkUrl: urlPropType.isRequired,
   successLinkText: PropTypes.string.isRequired,
   errorRequiredMessage: PropTypes.string.isRequired,
   errorMaxLengthMessage: PropTypes.string.isRequired,
