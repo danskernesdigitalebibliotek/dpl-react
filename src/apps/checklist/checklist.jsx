@@ -12,7 +12,7 @@ import SimpleMaterial, {
 
 function SkeletonElement(_, index) {
   return (
-    <ListItem key={index} aside={<Skeleton width="151px" height="50px" />}>
+    <ListItem key={index} aside={<Skeleton width="136px" height="50px" />}>
       <SimpleMaterialSkeleton />
     </ListItem>
   );
@@ -50,7 +50,7 @@ function Checklist({
             <Button
               className="ddb-checklist__button"
               variant="charcoal"
-              align="left"
+              align="center"
               onClick={() => onRemove(item.pid)}
             >
               {removeButtonText}

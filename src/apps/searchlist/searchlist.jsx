@@ -20,8 +20,8 @@ function SkeletonElement(_, index) {
       key={index}
       aside={
         <>
-          <Skeleton width="180px" height="50px" />
-          <Skeleton width="180px" height="50px" />
+          <Skeleton width="140px" height="50px" />
+          <Skeleton width="140px" height="50px" />
         </>
       }
     >
@@ -70,7 +70,7 @@ function Searchlist({
               <>
                 {search.hit_count > 0 && (
                   <Button
-                    align="left"
+                    align="center"
                     className="ddb-searchlist__new-button"
                     variant="charcoal"
                     onClick={onMaterialClick}
@@ -81,7 +81,7 @@ function Searchlist({
                 <Button
                   className="ddb-searchlist__remove-button"
                   onClick={() => onRemoveSearch(search.id)}
-                  align="left"
+                  align="center"
                 >
                   {removeButtonText}
                 </Button>
