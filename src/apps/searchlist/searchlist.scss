@@ -1,7 +1,7 @@
 .ddb-searchlist {
   &__container {
     width: auto;
-    padding: layout(2);
+    padding: layout(4) layout(2);
   }
 
   &__children {
@@ -19,6 +19,7 @@
     margin: 0 0 space(2);
     line-height: 1;
     a {
+      position: relative;
       text-decoration: none;
       color: color("grey", "darker");
       transition: color duration("fast", 2) easing();
@@ -26,6 +27,25 @@
         color: color("grey", "dark");
       }
     }
+  }
+
+  &__new-window-warning {
+    display: none;
+  }
+
+  // https://www.w3.org/TR/WCAG20-TECHS/G201.html
+  &__header a:hover .ddb-searchlist__new-window-warning,
+  &__header a:focus .ddb-searchlist__new-window-warning {
+    display: block;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, -130%);
+    padding: space(3);
+    border-radius: $border-radius;
+    background-color: color("yellow");
+    color: color("text");
   }
 
   &__go-to-search {

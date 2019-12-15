@@ -13,6 +13,7 @@ function SearchlistEntry({
   removeButtonText,
   statusText,
   goToSearchText,
+  newWindowText,
   searchUrl,
   authorUrl,
   materialUrl
@@ -32,21 +33,10 @@ function SearchlistEntry({
       });
   }, []);
 
-  function openMaterials(id) {
+  function fetchMaterials(id) {
     const hasMaterials = searches.find(function findMaterial(search) {
       return search.id === id && search.materials;
     });
-    setSearches(
-      searches.map(function openCurrentMaterial(search) {
-        if (search.id === id) {
-          return {
-            ...search,
-            open: true
-          };
-        }
-        return search;
-      })
-    );
     // Do not make a second request if the materials have already been populated.
     if (!hasMaterials) {
       client
@@ -79,6 +69,21 @@ function SearchlistEntry({
     }
   }
 
+  function openMaterials(id) {
+    setSearches(
+      searches.map(function openCurrentMaterial(search) {
+        if (search.id === id) {
+          return {
+            ...search,
+            open: true
+          };
+        }
+        return search;
+      })
+    );
+    fetchMaterials(id);
+  }
+
   function closeMaterials(id) {
     setSearches(
       searches.map(function findCurrentMaterial(search) {
@@ -108,8 +113,10 @@ function SearchlistEntry({
       onOpenMaterials={openMaterials}
       onCloseMaterials={closeMaterials}
       onRemoveSearch={removeSearch}
+      onSearchLinkClick={fetchMaterials}
       newButtonText={newButtonText}
       removeButtonText={removeButtonText}
+      newWindowText={newWindowText}
       statusText={statusText}
       searchUrl={searchUrl}
       authorUrl={authorUrl}
@@ -122,6 +129,7 @@ function SearchlistEntry({
 SearchlistEntry.propTypes = {
   newButtonText: PropTypes.string,
   removeButtonText: PropTypes.string,
+  newWindowText: PropTypes.string,
   goToSearchText: PropTypes.string,
   statusText: PropTypes.string,
   searchUrl: urlPropType.isRequired,
@@ -132,6 +140,7 @@ SearchlistEntry.propTypes = {
 SearchlistEntry.defaultProps = {
   newButtonText: "Nye materialer",
   removeButtonText: "Fjern fra listen",
+  newWindowText: "Åbner et nyt vindue",
   statusText: ":hit_count nye materialer siden",
   goToSearchText: "Vis søgeresultat"
 };

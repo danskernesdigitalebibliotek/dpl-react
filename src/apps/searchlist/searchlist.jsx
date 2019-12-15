@@ -4,6 +4,7 @@ import urlPropType from "url-prop-type";
 import dayjs from "dayjs";
 import { VariableSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import Alert from "@reach/alert";
 import replacePlaceholders from "../../core/replacePlaceholders";
 import ListItem from "../../components/list-item/list-item";
 import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
@@ -40,9 +41,11 @@ function Searchlist({
   removeButtonText,
   searchUrl,
   statusText,
+  newWindowText,
   goToSearchText,
   onOpenMaterials,
   onCloseMaterials,
+  onSearchLinkClick,
   onRemoveSearch,
   authorUrl,
   materialUrl
@@ -120,6 +123,9 @@ function Searchlist({
           >
             <h2 className="ddb-searchlist__header">
               <a
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => onSearchLinkClick(search.id)}
                 href={replacePlaceholders({
                   text: searchUrl,
                   placeholders: {
@@ -131,6 +137,12 @@ function Searchlist({
                 <span className="ddb-searchlist__go-to-search">
                   {goToSearchText}
                 </span>
+                <Alert
+                  className="ddb-searchlist__new-window-warning"
+                  type="polite"
+                >
+                  {newWindowText}
+                </Alert>
               </a>
             </h2>
             <p className="ddb-searchlist__query">{search.query}</p>
@@ -159,8 +171,10 @@ Searchlist.propTypes = {
   loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
   onOpenMaterials: PropTypes.func.isRequired,
   onCloseMaterials: PropTypes.func.isRequired,
+  onSearchLinkClick: PropTypes.func.isRequired,
   onRemoveSearch: PropTypes.func.isRequired,
   statusText: PropTypes.string.isRequired,
+  newWindowText: PropTypes.string.isRequired,
   newButtonText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
   goToSearchText: PropTypes.string.isRequired,
