@@ -1,3 +1,4 @@
+import fetch from "unfetch";
 import { getToken } from "./token";
 
 /**
