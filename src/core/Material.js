@@ -1,11 +1,13 @@
 class Material {
   /**
-   * @param {object} raw - the OpenPlatform item (i.e. material info)
-   * @returns {object} item - the item data with modified values and property names.
-   * @returns {string[]} item.creators - authors/creators of the material.
-   * @returns {string} item.title - the title of the material.
-   * @returns {string} item.type - the type of material (book, movie, etc.)
-   * @returns {string} item.year - the year the material was published.
+   * @param {object} raw OpenPlatform item (i.e. material info)
+   * @returns {object} item item data with modified values and property names.
+   * @returns {string} item.pid id of the material.
+   * @returns {string[]} item.creators authors/creators of the material.
+   * @returns {string} item.title title of the material.
+   * @returns {string} item.type type of material (book, movie, etc.)
+   * @returns {string} item.year year the material was published.
+   * @returns {string} item.coverUrl cover of the item.
    */
   static format(raw) {
     return {
