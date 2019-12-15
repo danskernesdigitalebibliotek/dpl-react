@@ -78,7 +78,11 @@ function Searchlist({
                     {newButtonText}
                   </Button>
                 )}
-                <Button onClick={() => onRemoveSearch(search.id)} align="left">
+                <Button
+                  className="ddb-searchlist__remove-button"
+                  onClick={() => onRemoveSearch(search.id)}
+                  align="left"
+                >
                   {removeButtonText}
                 </Button>
               </>
