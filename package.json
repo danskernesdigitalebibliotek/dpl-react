@@ -42,6 +42,7 @@
     "@babel/plugin-transform-runtime": "^7.7.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@bundle-analyzer/webpack-plugin": "^0.5.1",
     "@namics/stylelint-bem": "^6.1.0",
     "@storybook/addon-knobs": "^5.2.8",
     "@storybook/react": "^5.2.8",
