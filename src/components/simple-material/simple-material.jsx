@@ -53,7 +53,9 @@ function SimpleMaterial({
         </figure>
       )}
       <div className={`ddb-simple-material__data ${dataClass}`}>
-        {item.type}
+        {item.type && (
+          <span className="ddb-simple-material__type">{item.type}</span>
+        )}
         <a
           href={replacePlaceholders({
             text: materialUrl,
