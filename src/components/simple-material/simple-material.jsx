@@ -62,7 +62,7 @@ function SimpleMaterial({
             }
           })}
         >
-          <h2>{item.title}</h2>
+          <h2 className="ddb-simple-material__title">{item.title}</h2>
         </a>
         <p className="ddb-simple-material__author-year">
           {item.creators && (
