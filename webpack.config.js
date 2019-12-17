@@ -3,7 +3,7 @@ const glob = require("glob");
 const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
 
 module.exports = (_env, argv) => {
-  const production = argv.mode !== "development";
+  const production = argv.mode === "production";
 
   const entry = glob
     .sync("./src/apps/**/*.mount.js")
@@ -11,7 +11,7 @@ module.exports = (_env, argv) => {
       const distPath = entryPath
         .replace(/src\/apps\/.+\//, "")
         .replace(".mount.js", "");
-      acc[distPath] = path;
+      acc[distPath] = entryPath;
       return acc;
     }, {});
 
