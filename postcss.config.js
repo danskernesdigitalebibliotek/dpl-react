@@ -1,16 +1,20 @@
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const nodesass = require("./scripts/postcss-node-sass.js");
+
 module.exports = ctx => {
   const production = ctx.env === "production";
   return {
     parser: "postcss-scss",
     map: ctx.options.map,
     plugins: [
-      require("./scripts/postcss-node-sass.js")({
+      nodesass({
         // We always want to inject all of our variables and mixins.
-        // There is not to be any actual output from _system.scss. 
+        // There is not to be any actual output from _system.scss.
         data: '@import "./src/components/design-system/_system.scss";'
       }),
-      production && require("autoprefixer"),
-      production && require("cssnano")
+      production && autoprefixer,
+      production && cssnano
     ]
   };
 };

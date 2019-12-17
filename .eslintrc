@@ -29,7 +29,13 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["/**/*.dev.jsx", "/**/*.test.js", "/**/*.test.jsx"]
+        "devDependencies": [
+          "/**/*.dev.jsx",
+          "/**/*.test.js",
+          "/**/*.test.jsx",
+          "webpack.config.js",
+          "postcss.config.js"
+        ]
       }
     ]
   }

@@ -1,19 +1,25 @@
 const path = require("path");
 const glob = require("glob");
-const BundleAnalyzerPlugin = require('@bundle-analyzer/webpack-plugin');
+const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
 
 module.exports = (_env, argv) => {
   const production = argv.mode !== "development";
 
-  const entry = glob.sync("./src/apps/**/*.mount.js").reduce((acc, path) => {
-    const distPath = path.replace(/src\/apps\/.+\//, '').replace(".mount.js", "");
-    acc[distPath] = path;
-    return acc;
-  }, {});
+  const entry = glob
+    .sync("./src/apps/**/*.mount.js")
+    .reduce((acc, entryPath) => {
+      const distPath = entryPath
+        .replace(/src\/apps\/.+\//, "")
+        .replace(".mount.js", "");
+      acc[distPath] = path;
+      return acc;
+    }, {});
 
   const plugins = [];
   if (process.env.BUNDLE_ANALYZER_TOKEN) {
-    plugins.push(new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN }));
+    plugins.push(
+      new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN })
+    );
   }
 
   return {
@@ -35,7 +41,7 @@ module.exports = (_env, argv) => {
       }
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json']
+      extensions: [".js", ".jsx", ".json"]
     },
     module: {
       rules: [
@@ -50,6 +56,6 @@ module.exports = (_env, argv) => {
       entrypoints: false,
       modules: false
     },
-    plugins: plugins
+    plugins
   };
 };
