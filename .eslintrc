@@ -5,8 +5,7 @@
     "airbnb/hooks",
     "plugin:prettier/recommended",
     "prettier/react",
-    "plugin:jest/recommended",
-    "plugin:testing-library/recommended"
+    "plugin:cypress/recommended"
   ],
   "settings": {
     "react": {
@@ -28,14 +27,10 @@
   },
   "rules": {
     "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": [
-            "/**/*.dev.jsx",
-            "/**/*.test.js",
-            "/**/*.test.jsx"
-          ]
-        }
-      ]
+      "error",
+      {
+        "devDependencies": ["/**/*.dev.jsx", "/**/*.test.js", "/**/*.test.jsx"]
+      }
+    ]
   }
 }

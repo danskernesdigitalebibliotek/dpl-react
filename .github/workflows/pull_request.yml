@@ -68,8 +68,8 @@ jobs:
       - name: Lint Javascript
         run: yarn lint:js
 
-  jest:
-    name: Test .js and .jsx
+  test:
+    name: Integration test
     if: '!github.event.deleted'
     runs-on: ubuntu-latest
     steps:
@@ -90,5 +90,11 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         run: yarn install
-      - name: Run test
-        run: yarn test
+      - name: Build storybook
+        run: yarn build:dev
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          start: yarn start
+          wait-on: 'http://localhost:57021'
+          browser: chrome
