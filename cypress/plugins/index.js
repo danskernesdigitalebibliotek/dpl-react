@@ -1,3 +1,5 @@
+const task = require("@cypress/code-coverage/task");
+const rc = require("@cypress/code-coverage/use-babelrc");
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -11,8 +13,8 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-// module.exports = (on, config)
-module.exports = () => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+module.exports = (on, config) => {
+  on("task", task);
+  on("file:preprocessor", rc);
+  return config;
 };

@@ -34,7 +34,9 @@
           "/**/*.test.js",
           "/**/*.test.jsx",
           "webpack.config.js",
-          "postcss.config.js"
+          "postcss.config.js",
+          "cypress/plugins/index.js",
+          "cypress/support/index.js"
         ]
       }
     ]
