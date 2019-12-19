@@ -11,8 +11,11 @@ const client = new FollowSearches();
 function SearchlistEntry({
   newButtonText,
   removeButtonText,
+  emptyListText,
+  errorText,
   statusText,
   goToSearchText,
+  errorMaterialsText,
   newWindowText,
   searchUrl,
   authorUrl,
@@ -60,6 +63,20 @@ function SearchlistEntry({
                   ...search,
                   open: true,
                   materials: result.map(Material.format)
+                };
+              }
+              return search;
+            })
+          );
+        })
+        .catch(function onError() {
+          setSearches(
+            searches.map(function importMaterials(search) {
+              if (search.id === id) {
+                return {
+                  ...search,
+                  open: true,
+                  materialsFailed: true
                 };
               }
               return search;
@@ -116,7 +133,10 @@ function SearchlistEntry({
       onSearchLinkClick={fetchMaterials}
       newButtonText={newButtonText}
       removeButtonText={removeButtonText}
+      errorText={errorText}
+      errorMaterialsText={errorMaterialsText}
       newWindowText={newWindowText}
+      emptyListText={emptyListText}
       statusText={statusText}
       searchUrl={searchUrl}
       authorUrl={authorUrl}
@@ -129,8 +149,11 @@ function SearchlistEntry({
 SearchlistEntry.propTypes = {
   newButtonText: PropTypes.string,
   removeButtonText: PropTypes.string,
+  errorText: PropTypes.string,
   newWindowText: PropTypes.string,
+  emptyListText: PropTypes.string,
   goToSearchText: PropTypes.string,
+  errorMaterialsText: PropTypes.string,
   statusText: PropTypes.string,
   searchUrl: urlPropType.isRequired,
   materialUrl: urlPropType.isRequired,
@@ -141,6 +164,9 @@ SearchlistEntry.defaultProps = {
   newButtonText: "Nye materialer",
   removeButtonText: "Fjern fra listen",
   newWindowText: "Åbner et nyt vindue",
+  emptyListText: "Ingen gemte søgninger.",
+  errorText: "Gemte søgninger kunne ikke hentes.",
+  errorMaterialsText: "Materialer kunne ikke hentes.",
   statusText: ":hit_count nye materialer siden",
   goToSearchText: "Vis søgeresultat"
 };

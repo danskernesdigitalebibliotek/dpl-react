@@ -4,7 +4,8 @@ import urlPropType from "url-prop-type";
 import dayjs from "dayjs";
 import { VariableSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import Alert from "@reach/alert";
+import ReachAlert from "@reach/alert";
+import Alert from "../../components/alert/alert";
 import replacePlaceholders from "../../core/replacePlaceholders";
 import ListItem from "../../components/list-item/list-item";
 import Skeleton, { getList } from "../../components/atoms/skeleton/skeleton";
@@ -34,6 +35,26 @@ function SkeletonElement(_, index) {
   );
 }
 
+function MaterialsList(search, authorUrl, materialUrl) {
+  function VariableSizeListItem({ style, index }) {
+    return search.materials ? (
+      <SimpleMaterial
+        authorUrl={authorUrl}
+        materialUrl={materialUrl}
+        style={style}
+        item={search.materials[index]}
+      />
+    ) : (
+      <SimpleMaterialSkeleton style={style} />
+    );
+  }
+  VariableSizeListItem.propTypes = {
+    index: PropTypes.number.isRequired,
+    style: PropTypes.objectOf(PropTypes.any).isRequired
+  };
+  return VariableSizeListItem;
+}
+
 function Searchlist({
   searches,
   loading,
@@ -41,7 +62,10 @@ function Searchlist({
   removeButtonText,
   searchUrl,
   statusText,
+  emptyListText,
   newWindowText,
+  errorText,
+  errorMaterialsText,
   goToSearchText,
   onOpenMaterials,
   onCloseMaterials,
@@ -50,9 +74,18 @@ function Searchlist({
   authorUrl,
   materialUrl
 }) {
+  if (loading === "failed") {
+    return <Alert message={errorText} type="assertive" variant="warning" />;
+  }
+
   if (loading === "active") {
     return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
+
+  if (loading === "finished" && searches.length === 0) {
+    return <Alert message={emptyListText} type="polite" variant="info" />;
+  }
+
   return (
     <UnorderedList>
       {searches.map(search => {
@@ -60,6 +93,7 @@ function Searchlist({
           !search.open
             ? onOpenMaterials(search.id)
             : onCloseMaterials(search.id);
+        const materialsItem = MaterialsList(search, authorUrl, materialUrl);
         return (
           <ListItem
             className="ddb-searchlist__item"
@@ -89,7 +123,8 @@ function Searchlist({
             }
             footerClass="ddb-searchlist__materials"
             footer={
-              search.open && (
+              search.open &&
+              (!search.materialsFailed ? (
                 <AutoSizer>
                   {({ width, height }) => (
                     <VariableSizeList
@@ -107,22 +142,18 @@ function Searchlist({
                       height={height}
                       width={width}
                     >
-                      {({ style, index }) =>
-                        search.materials ? (
-                          <SimpleMaterial
-                            authorUrl={authorUrl}
-                            materialUrl={materialUrl}
-                            style={style}
-                            item={search.materials[index]}
-                          />
-                        ) : (
-                          <SimpleMaterialSkeleton style={style} />
-                        )
-                      }
+                      {materialsItem}
                     </VariableSizeList>
                   )}
                 </AutoSizer>
-              )
+              ) : (
+                <Alert
+                  className="ddb-searchlist__materials-warning"
+                  message={errorMaterialsText}
+                  type="assertive"
+                  variant="warning"
+                />
+              ))
             }
           >
             <h2 className="ddb-searchlist__header">
@@ -141,12 +172,12 @@ function Searchlist({
                 <span className="ddb-searchlist__go-to-search">
                   {goToSearchText}
                 </span>
-                <Alert
+                <ReachAlert
                   className="ddb-searchlist__new-window-warning"
                   type="polite"
                 >
                   {newWindowText}
-                </Alert>
+                </ReachAlert>
               </a>
             </h2>
             <p className="ddb-searchlist__query">{search.query}</p>
@@ -178,6 +209,9 @@ Searchlist.propTypes = {
   onSearchLinkClick: PropTypes.func.isRequired,
   onRemoveSearch: PropTypes.func.isRequired,
   statusText: PropTypes.string.isRequired,
+  emptyListText: PropTypes.string.isRequired,
+  errorText: PropTypes.string.isRequired,
+  errorMaterialsText: PropTypes.string.isRequired,
   newWindowText: PropTypes.string.isRequired,
   newButtonText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,

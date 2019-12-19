@@ -33,6 +33,10 @@
     display: none;
   }
 
+  &__materials-warning {
+    height: auto;
+  }
+
   // https://www.w3.org/TR/WCAG20-TECHS/G201.html
   &__header a:hover .ddb-searchlist__new-window-warning,
   &__header a:focus .ddb-searchlist__new-window-warning {

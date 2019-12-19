@@ -53,6 +53,9 @@ class FollowSearches {
         }
       }
     );
+    if (raw.status !== 200) {
+      throw Error(raw.status);
+    }
     return raw.json();
   }
 
@@ -74,7 +77,7 @@ class FollowSearches {
       throw Error("title must be provided");
     }
 
-    await fetch(`${this.baseUrl}/list/${listName}/add`, {
+    const response = await fetch(`${this.baseUrl}/list/${listName}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,6 +85,9 @@ class FollowSearches {
       },
       body: JSON.stringify({ title, query })
     });
+    if (response.status !== 201) {
+      throw Error(response.status);
+    }
   }
 
   /**
@@ -114,7 +120,9 @@ class FollowSearches {
         }
       }
     );
-
+    if (raw.status !== 200) {
+      throw Error(raw.status);
+    }
     const response = await raw.json();
     return response.materials;
   }
@@ -134,12 +142,18 @@ class FollowSearches {
       throw Error("searchId must be provided");
     }
 
-    await fetch(`${this.baseUrl}/list/${listName}/${searchId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${this.token}`
+    const response = await fetch(
+      `${this.baseUrl}/list/${listName}/${searchId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${this.token}`
+        }
       }
-    });
+    );
+    if (response.status !== 204) {
+      throw Error(response.status);
+    }
   }
 }
 
