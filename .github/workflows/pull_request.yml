@@ -98,6 +98,9 @@ jobs:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'
           browser: chrome
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Upload screenshots
         uses: actions/upload-artifact@v1
         if: failure()

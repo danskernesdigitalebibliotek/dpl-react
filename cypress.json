@@ -1,4 +1,5 @@
 {
+  "projectId": "3xcr7p",
   "baseUrl": "http://localhost:57021",
   "integrationFolder": "./src",
   "testFiles": "**/*.test.js"
