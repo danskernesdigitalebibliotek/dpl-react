@@ -30,7 +30,8 @@ module.exports = async ({ config }) => {
   const plugins = [
     ...config.plugins,
     new DefinePlugin({
-      DDB_TOKEN: JSON.stringify(token)
+      DDB_TOKEN: JSON.stringify(token),
+      ENV: JSON.stringify(process.env.NODE_ENV)
     })
   ]
   return { ...config, plugins, module: { ...config.module, rules } };
