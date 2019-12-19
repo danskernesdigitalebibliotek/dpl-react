@@ -41,8 +41,9 @@ describe("Searchlist", () => {
       response: {}
     });
     cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Star Wars");
     cy.contains("Fjern fra listen").click();
-    cy.get("h2").should("have.length", 1);
+    cy.contains("Star Wars").should("not.be.visible");
   });
   it("Open new materials", () => {
     cy.server();
