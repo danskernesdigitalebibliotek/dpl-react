@@ -23,6 +23,7 @@ describe("Searchlist", () => {
       ]
     });
   });
+
   it("Loads a list of saved searches", () => {
     cy.visit("/iframe.html?id=apps-searchlist--entry");
     cy.contains("Star Wars");
@@ -32,7 +33,42 @@ describe("Searchlist", () => {
     cy.contains("De bedste film i verden");
     cy.contains("into the spider verse");
   });
-  it("Removes a saved search", () => {
+
+  it("Click a saved search", () => {
+    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Vis søgeresultat").click();
+    cy.contains("Vis søgeresultat").should(
+      "have.attr",
+      "href",
+      "https://lollandbib.dk/search/ting/Star%20Wars"
+    );
+  });
+
+  it("The list is empty", () => {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "https://stage.followsearches.dandigbib.org/list/default",
+      status: 200,
+      response: []
+    });
+    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Ingen gemte søgninger.");
+  });
+
+  it("The list failed to load", () => {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "https://stage.followsearches.dandigbib.org/list/default",
+      status: 500,
+      response: {}
+    });
+    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Gemte søgninger kunne ikke hentes.");
+  });
+
+  it("Remove a saved search", () => {
     cy.server();
     cy.route({
       method: "DELETE",
@@ -45,7 +81,21 @@ describe("Searchlist", () => {
     cy.contains("Fjern fra listen").click();
     cy.contains("Star Wars").should("not.be.visible");
   });
-  it("Open new materials", () => {
+
+  it("Fail trying to remove a saved search", () => {
+    cy.server();
+    cy.route({
+      method: "DELETE",
+      url: "https://stage.followsearches.dandigbib.org/list/default/*",
+      status: 500,
+      response: {}
+    });
+    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Fjern fra listen").click();
+    cy.get("h2").should("have.length", 2);
+  });
+
+  it("Open new materials and closes it... and then opens it", () => {
     cy.server();
     cy.route({
       method: "GET",
@@ -70,5 +120,25 @@ describe("Searchlist", () => {
     cy.contains("Star Wars - the last Jedi");
     cy.contains("Jason Fry");
     cy.contains("2018");
+    cy.contains("Nye materialer").click();
+    cy.contains("Star Wars - the last Jedi").should("not.be.visible");
+
+    // This last part qualifies when material is already fetched once
+    // and it shouldn't fetch it again.
+    cy.contains("Nye materialer").click();
+    cy.contains("Star Wars - the last Jedi");
+  });
+
+  it("Fail to open new materials", () => {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "https://stage.followsearches.dandigbib.org/list/default/**",
+      status: 500,
+      response: {}
+    });
+    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.contains("Nye materialer").click();
+    cy.contains("Materialer kunne ikke hentes.");
   });
 });
