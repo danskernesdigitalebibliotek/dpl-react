@@ -11,10 +11,7 @@ describe("Add to Searchlist", () => {
   it("Submit", () => {
     cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.contains("Tilføj til mine søgninger").click();
-    cy.get("form")
-      .find("input")
-      .first()
-      .type("Min søgning");
+    cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Tilføjet til dine gemte søgninger.");
     cy.get(".ddb-dialog__close").click();
@@ -24,10 +21,7 @@ describe("Add to Searchlist", () => {
   it("Submit and wait for auto close", () => {
     cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.contains("Tilføj til mine søgninger").click();
-    cy.get("form")
-      .find("input")
-      .first()
-      .type("Min søgning");
+    cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Tilføjet til dine gemte søgninger.");
     // We want to wait for the timeout to finish.
