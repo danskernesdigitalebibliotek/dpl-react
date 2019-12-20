@@ -90,8 +90,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         run: yarn install
-      - name: Build storybook
-        run: yarn build:storybook
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:

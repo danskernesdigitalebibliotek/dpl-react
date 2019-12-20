@@ -1,0 +1,42 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    branches:
+      - 'master' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Upload Code Coverage
+
+jobs:
+    test:
+    name: Integration test
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.0'
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies
+        run: yarn install
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          start: yarn start:storybook:test
+          wait-on: 'http://localhost:57021'
+          browser: chrome
+      - name: Upload coverage to Codecov  
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
