@@ -30,7 +30,7 @@ jobs:
 
     - run: yarn install
 
-    - run: yarn build:dev
+    - run: yarn build:storybook
 
     - run: touch ./dev/.nojekyll
 
