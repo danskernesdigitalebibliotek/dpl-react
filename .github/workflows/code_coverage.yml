@@ -7,7 +7,7 @@ on:
 name: Upload Code Coverage
 
 jobs:
-    test:
+  test:
     name: Integration test
     if: '!github.event.deleted'
     runs-on: ubuntu-latest
