@@ -41,6 +41,21 @@ class OpenPlatform {
    * @memberof OpenPlatform
    */
   async getWork({ pids = [], fields = ["title"] } = {}) {
+    // OpenPlatform allows retrieval of a maximum of 20 pids per request.
+    // Recursively call this function with a subset respecting the limit and
+    // merge the results.
+    const pidLimit = 20;
+    if (pids.length > pidLimit) {
+      const subset = pids.slice(0, pidLimit);
+      const rest = pids.slice(pidLimit);
+      return Promise.all([
+        this.getWork({ pids: subset, fields }),
+        this.getWork({ pids: rest, fields })
+      ]).then(function mergeResults(results) {
+        return [].concat(...results);
+      });
+    }
+
     const formattedPids = formatPids(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
     const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
