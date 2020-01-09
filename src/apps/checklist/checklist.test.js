@@ -1,3 +1,6 @@
+import range from "lodash/range";
+import chunk from "lodash/chunk";
+
 describe("Checklist", () => {
   it("Loads a saved material", () => {
     cy.server();
@@ -140,5 +143,45 @@ describe("Checklist", () => {
     });
     cy.visit("/iframe.html?id=apps-checklist--entry");
     cy.contains("Et eller andet gik galt.");
+  });
+  it("Handles many materials", () => {
+    // Create a reasonably large set of id-like values.
+    const materialIds = range(0, 99).map(i => `870970-basis:541726${i}`);
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "https://test.materiallist.dandigbib.org/list/default",
+      status: 200,
+      response: {
+        materials: materialIds
+      }
+    });
+    // OpenPlatform supports a maximum of 20 pids per request. To match
+    // requests and responses we have to create multiple corresponding routes.
+    chunk(materialIds, 20).forEach(function materialChunkRoute(ids) {
+      cy.route({
+        method: "GET",
+        // Ids should not be encoded for matching to work. Cypress handles this.
+        url: `https://openplatform.dbc.dk/v3/work**pids=${ids.join(",")}**`,
+        status: 200,
+        response: {
+          statusCode: 200,
+          data: ids.map(function mockMaterial(id) {
+            return {
+              pid: [id.toString()],
+              dcCreator: ["Creator"],
+              // Include id in title so we have something to match against.
+              dcTitleFull: [`Material ${id}`],
+              typeBibDKType: ["Type"],
+              date: ["2018"],
+              coverUrlThumbnail: ["https://source.unsplash.com/random/165x235"]
+            };
+          })
+        }
+      });
+    });
+    cy.visit("/iframe.html?id=apps-checklist--entry");
+    // All ids should be in the output.
+    materialIds.forEach(id => cy.contains(new RegExp(`^Material ${id}$`)));
   });
 });
