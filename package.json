@@ -96,6 +96,7 @@
     "@reach/auto-id": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "dayjs": "^1.8.17",
+    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

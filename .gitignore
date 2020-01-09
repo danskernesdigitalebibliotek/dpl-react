@@ -2,6 +2,7 @@ node_modules
 dist
 dev
 cypress/videos/apps
+cypress/screenshots/apps
 coverage
 .nyc_output
 index.html
