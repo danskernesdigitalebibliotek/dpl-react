@@ -1,3 +1,4 @@
+import chunk from "lodash/chunk";
 import fetch from "unfetch";
 import { getToken } from "./token";
 
@@ -42,16 +43,13 @@ class OpenPlatform {
    */
   async getWork({ pids = [], fields = ["title"] } = {}) {
     // OpenPlatform allows retrieval of a maximum of 20 pids per request.
-    // Recursively call this function with a subset respecting the limit and
-    // merge the results.
+    // Chunk large pid sets and merge the results.
     const pidLimit = 20;
     if (pids.length > pidLimit) {
-      const subset = pids.slice(0, pidLimit);
-      const rest = pids.slice(pidLimit);
-      return Promise.all([
-        this.getWork({ pids: subset, fields }),
-        this.getWork({ pids: rest, fields })
-      ]).then(function mergeResults(results) {
+      const responses = chunk(pids, pidLimit).map(pidChunk =>
+        this.getWork({ pids: pidChunk, fields })
+      );
+      return Promise.all(responses).then(function mergeResults(results) {
         return [].concat(...results);
       });
     }
