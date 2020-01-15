@@ -26,12 +26,10 @@ describe("Searchlist", () => {
 
   it("Loads a list of saved searches", () => {
     cy.visit("/iframe.html?id=apps-searchlist--entry");
-    cy.contains("Star Wars");
     cy.contains("Min favorit søgning");
     cy.contains("Vis søgeresultat");
     cy.contains("200 nye materialer siden 15/12-2019.");
     cy.contains("De bedste film i verden");
-    cy.contains("into the spider verse");
   });
 
   it("Click a saved search", () => {
@@ -77,9 +75,9 @@ describe("Searchlist", () => {
       response: {}
     });
     cy.visit("/iframe.html?id=apps-searchlist--entry");
-    cy.contains("Star Wars");
+    cy.contains("Min favorit søgning");
     cy.contains("Fjern fra listen").click();
-    cy.contains("Star Wars").should("not.be.visible");
+    cy.contains("Min favorit søgning").should("not.be.visible");
   });
 
   it("Fail trying to remove a saved search", () => {

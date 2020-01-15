@@ -21,7 +21,6 @@ function SkeletonElement(_, index) {
     >
       <div>
         <Skeleton height="30px" width="95px" mb="12px" />
-        <Skeleton width="60px" mb="12px" />
       </div>
     </ListItem>
   );
@@ -80,7 +79,6 @@ function Searchlist({
                 {search.title}
               </a>
             </h2>
-            <p className="ddb-searchlist__query">{search.query}</p>
           </ListItem>
         );
       })}
