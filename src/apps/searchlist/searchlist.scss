@@ -1,18 +1,6 @@
 .ddb-searchlist {
-  &__container {
-    width: auto;
-    padding: layout(4) layout(2);
-  }
-
-  &__children {
-    flex-direction: column;
-  }
-
-  &__new-button {
-    margin: 0 space(4) 0 0;
-    @include sm {
-      margin: 0 0 space(4) 0;
-    }
+  &__item {
+    align-items: center;
   }
 
   &__header {
@@ -29,69 +17,12 @@
     }
   }
 
-  &__new-window-warning {
-    display: none;
+  &__buttons {
+    display: flex;
+    flex-direction: row;
   }
 
-  &__materials-warning {
-    height: auto;
-  }
-
-  // https://www.w3.org/TR/WCAG20-TECHS/G201.html
-  &__header a:hover .ddb-searchlist__new-window-warning,
-  &__header a:focus .ddb-searchlist__new-window-warning {
-    display: block;
-    font-size: 0.7rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(0, -130%);
-    padding: space(3);
-    border-radius: $border-radius;
-    background-color: color("yellow");
-    color: color("text");
-  }
-
-  &__go-to-search {
-    font-size: 0.8rem;
-    text-decoration: underline;
-  }
-
-  &__query {
-    color: rgba(color("text"), 0.8);
-    margin: 0 0 space(4);
-  }
-
-  &__status {
-    margin: 0 0 space(5);
-  }
-
-  &__materials {
-    margin-top: layout(3);
-    height: 220px;
-  }
-
-  &__item {
-    padding: 0;
-  }
-
-  &__scroll {
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    @include sm {
-      scrollbar-width: auto;
-      scrollbar-color: color("grey", "darker") color("grey");
-      &::-webkit-scrollbar {
-        display: block;
-      }
-      &::-webkit-scrollbar-track {
-        background: color("grey");
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: color("grey", "darker");
-      }
-    }
+  &__button {
+    flex-basis: content;
   }
 }
