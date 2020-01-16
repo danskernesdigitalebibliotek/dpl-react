@@ -12,6 +12,7 @@ function SkeletonElement(_, index) {
   return (
     <ListItem
       key={index}
+      asideClass="ddb-searchlist__buttons"
       aside={
         <>
           <Skeleton width="140px" height="50px" />
@@ -26,6 +27,15 @@ function SkeletonElement(_, index) {
   );
 }
 
+function fullSearchUrl(searchUrl, query) {
+  return replacePlaceholders({
+    text: searchUrl,
+    placeholders: {
+      query: encodeURIComponent(query)
+    }
+  });
+}
+
 function Searchlist({
   searches,
   loading,
@@ -33,7 +43,8 @@ function Searchlist({
   searchUrl,
   emptyListText,
   errorText,
-  onRemoveSearch
+  onRemoveSearch,
+  goToSearchText
 }) {
   if (loading === "failed") {
     return <Alert message={errorText} type="assertive" variant="warning" />;
@@ -55,27 +66,29 @@ function Searchlist({
             className="ddb-searchlist__item"
             key={search.id}
             childrenClass="ddb-searchlist__children"
+            asideClass="ddb-searchlist__buttons"
             aside={
               <>
                 <Button
-                  className="ddb-searchlist__remove-button"
+                  className="ddb-searchlist__remove-button ddb-searchlist__button"
                   onClick={() => onRemoveSearch(search.id)}
+                  variant="secondary"
                   align="center"
                 >
                   {removeButtonText}
+                </Button>
+                <Button
+                  className="ddb-searchlist__result-button ddb-searchlist__button"
+                  align="center"
+                  href={fullSearchUrl(searchUrl, search.query)}
+                >
+                  {goToSearchText}
                 </Button>
               </>
             }
           >
             <h2 className="ddb-searchlist__header">
-              <a
-                href={replacePlaceholders({
-                  text: searchUrl,
-                  placeholders: {
-                    query: encodeURIComponent(search.query)
-                  }
-                })}
-              >
+              <a href={fullSearchUrl(searchUrl, search.query)}>
                 {search.title}
               </a>
             </h2>
@@ -92,6 +105,7 @@ Searchlist.propTypes = {
   emptyListText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
+  goToSearchText: PropTypes.string.isRequired,
   searchUrl: urlPropType.isRequired,
   searches: PropTypes.arrayOf(
     PropTypes.shape({

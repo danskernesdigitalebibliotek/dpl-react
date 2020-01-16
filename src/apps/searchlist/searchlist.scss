@@ -1,4 +1,8 @@
 .ddb-searchlist {
+  &__item {
+    align-items: center;
+  }
+
   &__header {
     margin: 0 0 space(2);
     line-height: 1;
@@ -11,5 +15,14 @@
         color: color("grey", "dark");
       }
     }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__button {
+    flex-basis: content;
   }
 }

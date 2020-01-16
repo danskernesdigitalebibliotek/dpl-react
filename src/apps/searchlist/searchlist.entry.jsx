@@ -11,6 +11,7 @@ function SearchlistEntry({
   removeButtonText,
   emptyListText,
   errorText,
+  goToSearchText,
   searchUrl
 }) {
   const [searches, setSearches] = useState([]);
@@ -44,6 +45,7 @@ function SearchlistEntry({
       removeButtonText={removeButtonText}
       errorText={errorText}
       emptyListText={emptyListText}
+      goToSearchText={goToSearchText}
       searchUrl={searchUrl}
     />
   );
@@ -53,13 +55,15 @@ SearchlistEntry.propTypes = {
   removeButtonText: PropTypes.string,
   errorText: PropTypes.string,
   emptyListText: PropTypes.string,
+  goToSearchText: PropTypes.string,
   searchUrl: urlPropType.isRequired
 };
 
 SearchlistEntry.defaultProps = {
   removeButtonText: "Fjern fra listen",
   emptyListText: "Ingen gemte søgninger.",
-  errorText: "Gemte søgninger kunne ikke hentes."
+  errorText: "Gemte søgninger kunne ikke hentes.",
+  goToSearchText: "Gå til søgeresultat"
 };
 
 export default SearchlistEntry;

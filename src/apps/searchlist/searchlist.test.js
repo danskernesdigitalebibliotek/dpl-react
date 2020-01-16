@@ -27,19 +27,13 @@ describe("Searchlist", () => {
   it("Loads a list of saved searches", () => {
     cy.visit("/iframe.html?id=apps-searchlist--entry");
     cy.contains("Min favorit søgning");
-    cy.contains("Vis søgeresultat");
-    cy.contains("200 nye materialer siden 15/12-2019.");
-    cy.contains("De bedste film i verden");
-  });
-
-  it("Click a saved search", () => {
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
-    cy.contains("Vis søgeresultat").click();
-    cy.contains("Vis søgeresultat").should(
+    cy.contains("Gå til søgeresultat");
+    cy.contains("Gå til søgeresultat").should(
       "have.attr",
       "href",
       "https://lollandbib.dk/search/ting/Star%20Wars"
     );
+    cy.contains("De bedste film i verden");
   });
 
   it("The list is empty", () => {
