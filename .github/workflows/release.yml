@@ -1,8 +1,9 @@
 on:
   push:
-    # Sequence of patterns matched against refs/tags
     branches:
-      - 'master' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'master'
+    tags:
+      - '*'
 
 name: Upload Release Asset
 
@@ -33,10 +34,20 @@ jobs:
       - name: Zip project
         run: |
           zip -r -j dist.zip dist/
-      - name: Upload Release Asset
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+      - name: Install GHR
         run: |
           curl --fail --silent --location --output ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
           tar -zxf ghr.tar.gz
-          ./ghr_v0.13.0_linux_amd64/ghr -replace -delete -n Latest -c master latest dist.zip
+          echo "::add-path::./ghr_v0.13.0_linux_amd64"
+      - name: Create release with asset
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          ghr -replace -delete -n ${GITHUB_REF:10} -c $GITHUB_SHA ${GITHUB_REF:10} dist.zip
+      - name: Update latest release
+        if: startsWith(github.ref, 'refs/heads/master')
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          ghr -prerelease -replace -delete -n Latest -c master latest dist.zip
