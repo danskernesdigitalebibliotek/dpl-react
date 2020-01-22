@@ -8,6 +8,10 @@ export default { title: "Apps|Searchlist" };
 export function Entry() {
   return (
     <Searchlist
+      followSearchesUrl={text(
+        "FollowSearches URL",
+        "https://stage.followsearches.dandigbib.org"
+      )}
       searchUrl={text("Search URL", "https://lollandbib.dk/search/ting/:query")}
     />
   );

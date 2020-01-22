@@ -10,6 +10,10 @@ export default {
 export function Entry() {
   return (
     <AddToChecklist
+      materialListUrl={text(
+        "MaterialList URL",
+        "https://test.materiallist.dandigbib.org"
+      )}
       text={text("Text", "Tilføj til din huskeliste")}
       errorText={text("Error text", "Der opstod en fejl")}
       successText={text("Success text", "Tilføjet")}

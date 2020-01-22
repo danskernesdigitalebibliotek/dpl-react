@@ -5,9 +5,8 @@ import urlPropType from "url-prop-type";
 import AddToSearchlist from "./add-to-searchlist";
 import FollowSearches from "../../core/FollowSearches";
 
-const client = new FollowSearches();
-
 function AddToSearchlistEntry({
+  followSearchesUrl,
   searchQuery,
   buttonText,
   labelText,
@@ -28,6 +27,8 @@ function AddToSearchlistEntry({
 
   function addToSearchList(title) {
     setAppState("requesting");
+
+    const client = new FollowSearches({ baseUrl: followSearchesUrl });
     client
       .addSearch({ title, query: searchQuery })
       .then(function onSuccess() {
@@ -66,6 +67,7 @@ function AddToSearchlistEntry({
 }
 
 AddToSearchlistEntry.propTypes = {
+  followSearchesUrl: urlPropType,
   buttonText: PropTypes.string,
   errorText: PropTypes.string,
   successText: PropTypes.string,
@@ -82,6 +84,7 @@ AddToSearchlistEntry.propTypes = {
 };
 
 AddToSearchlistEntry.defaultProps = {
+  followSearchesUrl: "https://stage.followsearches.dandigbib.org",
   buttonText: "Tilføj til mine søgninger",
   labelText: "Søgetitel",
   errorText: "Noget gik galt",
