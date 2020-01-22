@@ -10,7 +10,7 @@ jobs:
   test:
     name: Integration test
     if: '!github.event.deleted'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
       - name: Setup Node
@@ -35,7 +35,7 @@ jobs:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'
           browser: chrome
-      - name: Upload coverage to Codecov  
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
