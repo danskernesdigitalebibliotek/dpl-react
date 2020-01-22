@@ -391,6 +391,7 @@ A simple naive example of the required artifacts needed looks like this:
     
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
+    <script src="/dist/polyfills.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/mount.js"></script>
     <!-- After the necesssary scripts you can start loading applications -->
