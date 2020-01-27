@@ -6,8 +6,6 @@
   background: color("grey", "light");
   border-radius: $border-radius;
   color: color("charcoal", "opacity-dark");
-  display: flex;
-  flex-direction: column;
 }
 
 @keyframes ddb-dialog-dropdown {
@@ -21,8 +19,9 @@
 
 .ddb-dialog__content--dropdown {
   border-radius: 0px;
-  width: unset;
-  margin: unset;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
   min-height: 235px; //IE11 support for not collapsing.
   padding: space(5) space(6);
   transition: transform duration() easing("entrance", "productive");
