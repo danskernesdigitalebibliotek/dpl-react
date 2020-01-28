@@ -19,6 +19,10 @@ export function Entry() {
         "Author URL",
         'https://lollandbib.dk/search/ting/phrase.creator=":author"'
       )}
+      coverServiceUrl={text(
+        "Cover Service URL",
+        "https://cover.dandigbib.org/api"
+      )}
       removeButtonText={text("Remove button text", "Fjern fra listen")}
       emptyListText={text("Empty list text", "Ingen materialer på listen")}
       errorText={text("Error text", "Et eller andet gik galt.")}

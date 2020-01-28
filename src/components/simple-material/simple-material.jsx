@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import replacePlaceholders from "../../core/replacePlaceholders";
 import Skeleton from "../atoms/skeleton/skeleton";
+import Cover, { CoverSkeleton, useCover, COVER_EMPTY } from "../cover/cover";
 
 export function SimpleMaterialSkeleton({ style }) {
   return (
     <div className="ddb-simple-material-skeleton" style={style}>
       <figure className="ddb-reset">
-        <Skeleton br="0px" mb="0px" mt="0px" height="154px" width="100px" />
+        <CoverSkeleton />
       </figure>
       <div>
         <Skeleton width="45px" mb="12px" />
@@ -31,14 +32,16 @@ function SimpleMaterial({
   item,
   materialUrl,
   authorUrl,
+  coverServiceUrl,
   ofText,
   className,
   dataClass,
   style
 }) {
+  const coverStatus = useCover({ id: item.pid, coverServiceUrl });
   return (
     <section className={`ddb-simple-material ${className}`} style={style}>
-      {item.coverUrl && (
+      {coverStatus !== COVER_EMPTY && (
         <figure className="ddb-simple-material__cover">
           <a
             href={replacePlaceholders({
@@ -48,7 +51,7 @@ function SimpleMaterial({
               }
             })}
           >
-            <img src={item.coverUrl} alt={item.title} />
+            <Cover src={coverStatus} alt={item.title} />
           </a>
         </figure>
       )}
@@ -106,13 +109,13 @@ SimpleMaterial.propTypes = {
   dataClass: PropTypes.string,
   materialUrl: urlPropType.isRequired,
   authorUrl: urlPropType.isRequired,
+  coverServiceUrl: urlPropType.isRequired,
   item: PropTypes.shape({
     pid: PropTypes.string.isRequired,
     creators: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
     type: PropTypes.string,
-    year: PropTypes.string,
-    coverUrl: urlPropType
+    year: PropTypes.string
   }).isRequired,
   style: PropTypes.objectOf(PropTypes.any)
 };

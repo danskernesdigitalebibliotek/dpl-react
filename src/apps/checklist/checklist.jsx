@@ -24,6 +24,7 @@ function Checklist({
   onRemove,
   materialUrl,
   authorUrl,
+  coverServiceUrl,
   removeButtonText,
   emptyListText,
   errorText,
@@ -61,6 +62,7 @@ function Checklist({
             item={item}
             materialUrl={materialUrl}
             authorUrl={authorUrl}
+            coverServiceUrl={coverServiceUrl}
             ofText={ofText}
             dataClass="ddb-checklist__data"
           />
@@ -90,6 +92,7 @@ Checklist.propTypes = {
   onRemove: PropTypes.func.isRequired,
   materialUrl: PropTypes.string.isRequired,
   authorUrl: PropTypes.string.isRequired,
+  coverServiceUrl: PropTypes.string.isRequired,
   removeButtonText: PropTypes.string.isRequired,
   emptyListText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
