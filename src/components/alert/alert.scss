@@ -7,10 +7,10 @@
 
   &--blank {
     display: block;
-    height: unset;
-    padding: unset;
-    text-align: unset;
-    border-radius: unset;
+    height: auto;
+    padding: 0;
+    text-align: left;
+    border-radius: 0;
   }
 
   &--info {
