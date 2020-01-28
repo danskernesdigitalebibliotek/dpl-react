@@ -16,6 +16,7 @@ const client = new MaterialList();
 function ChecklistEntry({
   materialUrl,
   authorUrl,
+  coverServiceUrl,
   removeButtonText,
   emptyListText,
   errorText,
@@ -83,6 +84,7 @@ function ChecklistEntry({
       onRemove={onRemove}
       materialUrl={materialUrl}
       authorUrl={authorUrl}
+      coverServiceUrl={coverServiceUrl}
       removeButtonText={removeButtonText}
       emptyListText={emptyListText}
       errorText={errorText}
@@ -94,6 +96,7 @@ function ChecklistEntry({
 ChecklistEntry.propTypes = {
   materialUrl: urlPropType.isRequired,
   authorUrl: urlPropType.isRequired,
+  coverServiceUrl: urlPropType.isRequired,
   removeButtonText: PropTypes.string,
   emptyListText: PropTypes.string,
   errorText: PropTypes.string,

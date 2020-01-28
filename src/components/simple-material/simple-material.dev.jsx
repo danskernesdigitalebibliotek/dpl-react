@@ -11,7 +11,6 @@ export function Base() {
   return (
     <SimpleMaterial
       item={{
-        coverUrl: text("Cover", "https://source.unsplash.com/random/165x235"),
         creators: array("Creators", ["Pablo Hidalgo"]),
         pid: text("pid", "870970-basis:52836913"),
         title: text(
@@ -29,6 +28,10 @@ export function Base() {
       authorUrl={text(
         "Author URL",
         'https://lollandbib.dk/search/ting/phrase.creator=":author"'
+      )}
+      coverServiceUrl={text(
+        "Cover Service URL",
+        "https://cover.dandigbib.org/api"
       )}
     />
   );
