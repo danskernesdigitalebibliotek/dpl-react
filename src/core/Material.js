@@ -16,8 +16,7 @@ class Material {
       creators: raw.dcCreator ? raw.dcCreator : raw.creator,
       title: raw.dcTitleFull?.[0],
       type: raw.typeBibDKType?.[0],
-      year: raw.date?.[0],
-      coverUrl: raw.coverUrlThumbnail?.[0]
+      year: raw.date?.[0]
     };
   }
 }
