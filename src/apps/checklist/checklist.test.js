@@ -24,8 +24,7 @@ describe("Checklist", () => {
             dcCreator: ["Jason Fry"],
             dcTitleFull: ["Star Wars - the last Jedi"],
             typeBibDKType: ["Bog"],
-            date: ["2018"],
-            coverUrlThumbnail: ["https://source.unsplash.com/random/165x235"]
+            date: ["2018"]
           }
         ]
       }
@@ -58,8 +57,7 @@ describe("Checklist", () => {
             dcCreator: ["Jason Fry"],
             dcTitleFull: ["Star Wars - the last Jedi"],
             typeBibDKType: ["Bog"],
-            date: ["2018"],
-            coverUrlThumbnail: ["https://source.unsplash.com/random/165x235"]
+            date: ["2018"]
           }
         ]
       }
@@ -97,8 +95,7 @@ describe("Checklist", () => {
             dcCreator: ["Jason Fry"],
             dcTitleFull: ["Star Wars - the last Jedi"],
             typeBibDKType: ["Bog"],
-            date: ["2018"],
-            coverUrlThumbnail: ["https://source.unsplash.com/random/165x235"]
+            date: ["2018"]
           }
         ]
       }
@@ -173,8 +170,7 @@ describe("Checklist", () => {
               // Include id in title so we have something to match against.
               dcTitleFull: [`Material ${id}`],
               typeBibDKType: ["Type"],
-              date: ["2018"],
-              coverUrlThumbnail: ["https://source.unsplash.com/random/165x235"]
+              date: ["2018"]
             };
           })
         }

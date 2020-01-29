@@ -37,7 +37,6 @@ function ChecklistEntry({
             fields: [
               "dcTitleFull",
               "pid",
-              "coverUrlThumbnail",
               "dcCreator",
               "creator",
               "typeBibDKType",
