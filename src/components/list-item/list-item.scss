@@ -4,6 +4,7 @@
   flex-direction: column;
   list-style: none;
   padding: layout(1);
+  min-height: layout(7);
 
   @include sm {
     flex-direction: row;
