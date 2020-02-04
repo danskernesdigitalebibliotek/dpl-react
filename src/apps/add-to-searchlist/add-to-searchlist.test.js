@@ -20,13 +20,12 @@ describe("Add to Searchlist", () => {
 
   it("Submit and wait for auto close", () => {
     cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.clock();
     cy.contains("Tilføj til mine søgninger").click();
     cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Tilføjet til dine gemte søgninger.");
-    // We want to wait for the timeout to finish.
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(10000);
+    cy.tick(10000);
     cy.contains("Tilføj til mine søgninger");
   });
 
@@ -54,6 +53,7 @@ describe("Add to Searchlist", () => {
       response: {}
     });
     cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.clock();
     cy.contains("Tilføj til mine søgninger").click();
     cy.get("form")
       .find("input")
@@ -61,9 +61,7 @@ describe("Add to Searchlist", () => {
       .type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Det gik galt");
-    // We want to wait for the timeout to finish.
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(2000);
+    cy.tick(2000);
     cy.contains("Tilføj til mine søgninger");
   });
 });
