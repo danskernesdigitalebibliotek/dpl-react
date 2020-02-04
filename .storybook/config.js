@@ -1,10 +1,16 @@
 import { configure } from '@storybook/react';
 import './dev-fonts.scss';
 import '../src/components/components.scss';
-import getToken, { setToken } from '../src/core/token';
+import { setToken } from '../src/core/token';
 import "../src/core/mount";
 
-let token = getToken();
+/**
+ * DDB_TOKEN is set in ".storybook/webpack.config.js"
+ * Look for it in DefinePlugin.
+ */
+const tokenKey = "ddb-token";
+let token = localStorage.getItem(tokenKey) || DDB_TOKEN;
+
 if (!token) {
   // We do not want to keep prompting people if they have already cancelled the prompt once.
   const seenKey = 'ddb-token-prompt-seen';
@@ -14,15 +20,13 @@ if (!token) {
     token = window.prompt("Do you have a token for Adgangsplatformen? Input it here.");
     if (token === null) { // which means the prompt has been cancelled
       localStorage.setItem(seenKey, "seen");
+    } else {
+      localStorage.setItem(tokenKey, token);
     }
   }
 }
 
-/**
- * DDB_TOKEN is set in ".storybook/webpack.config.js"
- * Look for it in DefinePlugin.
- */
-setToken(token || DDB_TOKEN);
+setToken(token);
 
 /**
  * This emulates the way we would set from the server that a user is authenticated aka. logged in.

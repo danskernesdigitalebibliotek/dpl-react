@@ -3,6 +3,7 @@ import { render } from "react-dom";
 
 import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundary from "../components/alert/alert";
+import { setToken } from "./token";
 
 /**
  * We look for containers and corresponding applications.
@@ -46,6 +47,7 @@ function unMount(context) {
 function init() {
   const initial = {
     apps: {},
+    setToken,
     mount,
     unMount
   };
