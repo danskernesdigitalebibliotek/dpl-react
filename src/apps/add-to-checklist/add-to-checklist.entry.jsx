@@ -5,13 +5,20 @@ import urlPropType from "url-prop-type";
 import AddToChecklist from "./add-to-checklist";
 import MaterialList from "../../core/MaterialList";
 
-const client = new MaterialList();
-
-function AddToChecklistEntry({ text, successText, errorText, id, loginUrl }) {
+function AddToChecklistEntry({
+  materialListUrl,
+  text,
+  successText,
+  errorText,
+  id,
+  loginUrl
+}) {
   const [loading, setLoading] = useState("inactive");
 
   function addToList() {
     setLoading("active");
+
+    const client = new MaterialList({ baseUrl: materialListUrl });
     client.addListMaterial({ materialId: id }).catch(function onError() {
       setLoading("failed");
       setTimeout(function onRestore() {
@@ -34,6 +41,7 @@ function AddToChecklistEntry({ text, successText, errorText, id, loginUrl }) {
 }
 
 AddToChecklistEntry.propTypes = {
+  materialListUrl: urlPropType,
   text: PropTypes.string,
   errorText: PropTypes.string,
   successText: PropTypes.string,
@@ -42,6 +50,7 @@ AddToChecklistEntry.propTypes = {
 };
 
 AddToChecklistEntry.defaultProps = {
+  materialListUrl: "https://test.materiallist.dandigbib.org",
   text: "Tilføj til min liste",
   errorText: "Det lykkedes ikke at gemme materialet.",
   successText: "Materialet er tilføjet"

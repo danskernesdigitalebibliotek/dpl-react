@@ -11,6 +11,10 @@ export default {
 export function Entry() {
   return (
     <AddToSearchlist
+      followSearchesUrl={text(
+        "FollowSearches URL",
+        "https://stage.followsearches.dandigbib.org"
+      )}
       searchQuery={text("Search query", "star wars")}
       buttonText={text("Button text", "Tilføj til mine søgninger")}
       labelText={text("Label text", "Søgetitel")}

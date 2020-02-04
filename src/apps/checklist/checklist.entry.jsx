@@ -6,14 +6,13 @@ import MaterialList from "../../core/MaterialList";
 import OpenPlatform from "../../core/OpenPlatform";
 import Material from "../../core/Material";
 
-const client = new MaterialList();
-
 /**
  * @param {object} - object with the URL for the material and author URL.
  * @memberof ChecklistEntry
  * @returns {ReactNode}
  */
 function ChecklistEntry({
+  materialListUrl,
   materialUrl,
   authorUrl,
   coverServiceUrl,
@@ -25,35 +24,40 @@ function ChecklistEntry({
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState("inactive");
 
-  useEffect(function getList() {
-    setLoading("active");
-    client
-      .getList()
-      .then(function onResult(result) {
-        if (result && result.length) {
-          const op = new OpenPlatform();
-          return op.getWork({
-            pids: result,
-            fields: [
-              "dcTitleFull",
-              "pid",
-              "dcCreator",
-              "creator",
-              "typeBibDKType",
-              "date"
-            ]
-          });
-        }
-        return [];
-      })
-      .then(result => {
-        setLoading("finished");
-        setList(result.map(Material.format));
-      })
-      .catch(function onError() {
-        setLoading("failed");
-      });
-  }, []);
+  useEffect(
+    function getList() {
+      setLoading("active");
+
+      const client = new MaterialList({ baseUrl: materialListUrl });
+      client
+        .getList()
+        .then(function onResult(result) {
+          if (result && result.length) {
+            const op = new OpenPlatform();
+            return op.getWork({
+              pids: result,
+              fields: [
+                "dcTitleFull",
+                "pid",
+                "dcCreator",
+                "creator",
+                "typeBibDKType",
+                "date"
+              ]
+            });
+          }
+          return [];
+        })
+        .then(result => {
+          setLoading("finished");
+          setList(result.map(Material.format));
+        })
+        .catch(function onError() {
+          setLoading("failed");
+        });
+    },
+    [materialListUrl]
+  );
 
   /**
    * Function to remove a material from the list.
@@ -68,6 +72,7 @@ function ChecklistEntry({
         return item.pid !== materialId;
       })
     );
+    const client = new MaterialList({ baseUrl: materialListUrl });
     client.deleteListMaterial({ materialId }).catch(function onError() {
       setLoading("failed");
       setTimeout(function onRestore() {
@@ -93,6 +98,7 @@ function ChecklistEntry({
 }
 
 ChecklistEntry.propTypes = {
+  materialListUrl: urlPropType,
   materialUrl: urlPropType.isRequired,
   authorUrl: urlPropType.isRequired,
   coverServiceUrl: urlPropType.isRequired,
@@ -103,6 +109,7 @@ ChecklistEntry.propTypes = {
 };
 
 ChecklistEntry.defaultProps = {
+  materialListUrl: "https://test.materiallist.dandigbib.org",
   removeButtonText: "Fjern fra listen",
   emptyListText: "Listen er tom",
   errorText: "Noget gik galt",

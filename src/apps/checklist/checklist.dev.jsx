@@ -11,6 +11,10 @@ export default {
 export function Entry() {
   return (
     <Checklist
+      materialListUrl={text(
+        "MaterialList URL",
+        "https://test.materiallist.dandigbib.org"
+      )}
       materialUrl={text(
         "Material URL",
         "https://lollandbib.dk/ting/object/:pid"

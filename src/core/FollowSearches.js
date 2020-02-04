@@ -18,9 +18,9 @@ import { getToken } from "./token";
  * @class FollowSearches
  */
 class FollowSearches {
-  constructor() {
+  constructor({ baseUrl }) {
     this.token = getToken();
-    this.baseUrl = "https://stage.followsearches.dandigbib.org";
+    this.baseUrl = baseUrl;
   }
 
   /**

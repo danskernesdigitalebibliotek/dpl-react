@@ -7,9 +7,9 @@ import { getToken } from "./token";
  * @class MaterialList
  */
 class MaterialList {
-  constructor() {
+  constructor({ baseUrl }) {
     this.token = getToken();
-    this.baseUrl = "https://test.materiallist.dandigbib.org";
+    this.baseUrl = baseUrl;
   }
 
   /**
