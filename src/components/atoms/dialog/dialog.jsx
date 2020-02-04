@@ -29,7 +29,7 @@ function Dialog({
           <div className="ddb-dialog__header">
             <Button
               variant="blank"
-              tabIndex="-1" // escape is available for exciting the form.
+              tabIndex="-1" // escape is available for exiting the form.
               onClick={onDismiss}
             >
               <Cross className="ddb-dialog__close" />
