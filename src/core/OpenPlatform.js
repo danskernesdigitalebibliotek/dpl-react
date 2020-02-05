@@ -1,4 +1,5 @@
 import chunk from "lodash/chunk";
+import isEmpty from "lodash/isEmpty";
 import fetch from "unfetch";
 import { getToken } from "./token";
 
@@ -65,7 +66,10 @@ class OpenPlatform {
     if (response.statusCode !== 200) throw Error(response.error);
     if (!response.data) throw Error("data not found");
 
-    return response.data;
+    const rawResults = response.data;
+    // Remove empty objects which OpenPlatform may returned for pids which have
+    // no corresponding meta data.
+    return rawResults.filter(result => !isEmpty(result));
   }
 }
 
