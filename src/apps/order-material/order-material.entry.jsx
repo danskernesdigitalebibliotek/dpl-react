@@ -19,7 +19,7 @@ function OrderMaterialEntry({
   pickupBranch,
   expires
 }) {
-  const [loading, setLoading] = useState("inactive");
+  const [loading, setLoading] = useState("checking");
 
   function orderMaterial() {
     setLoading("active");
@@ -42,17 +42,17 @@ function OrderMaterialEntry({
         .then(function onBranchResult(branch) {
           if (branch.willReceiveIll !== "1") {
             setLoading("invalid branch");
+          } else {
+            // Check that the material is available for ILL.
+            client
+              .canBeOrdered(id)
+              .then(function onAvailabilityResult(available) {
+                setLoading(available ? "inactive" : "unavailable");
+              })
+              .catch(function onError() {
+                setLoading("failed");
+              });
           }
-
-          // Check that the material is available for ILL.
-          client
-            .canBeOrdered(id)
-            .then(function onAvailabilityResult(available) {
-              setLoading(available ? "inactive" : "unavailable");
-            })
-            .catch(function onError() {
-              setLoading("failed");
-            });
         })
         .catch(function onError() {
           setLoading("failed");

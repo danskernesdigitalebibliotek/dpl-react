@@ -185,7 +185,7 @@ class OpenPlatform {
 
     // Try to supply the parameters that the library requires for
     // orders. They are listed on the library.
-    const user = this.getUser();
+    const user = await this.getUser();
     const branch = await this.getBranch(pickupBranch);
     branch.orderParameters.forEach(function eachOrderParameter(parameter) {
       switch (parameter) {
@@ -206,7 +206,7 @@ class OpenPlatform {
 
         case "email":
           parameters.push(`email=${user.mail}`);
-          body.email = user.email;
+          body.email = user.mail;
           break;
 
         case "phone":

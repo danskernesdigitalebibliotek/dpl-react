@@ -24,8 +24,8 @@ export function Entry() {
         "Login URL",
         "https://lollandbib.dk/adgangsplatformen/login?destination=ting/object/:id"
       )}
-      pickupBranch={text("Pickup branch", "722300")}
-      expires={text("Order expiry date", "2019-06-24T00:00:00.000Z")}
+      pickupBranch={text("Pickup branch", "790900")}
+      expires={text("Order expiry date", "2021-06-24")}
     />
   );
 }
