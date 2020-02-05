@@ -397,11 +397,8 @@ A simple naive example of the required artifacts needed looks like this:
     <!-- After the necesssary scripts you can start loading applications -->
     <script src="/dist/add-to-checklist.js"></script>
     <script>
-      // For making successfull requests to the different services we need a valid token
-      // to be stored in localStorage of the client browser.
-      // The key should be "ddb-token".
-      // This is only for local testing. Not in production environments.
-      window.localStorage.setItem("ddb-token", "XXXXXXXXXXXXXXXXXXXXXX");
+      // For making successfull requests to the different services we need a valid token.
+     window.ddbReact.setToken("XXXXXXXXXXXXXXXXXXXXXX");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
