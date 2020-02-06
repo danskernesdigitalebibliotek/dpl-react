@@ -148,6 +148,9 @@ class OpenPlatform {
     return this.getAvailability({ pids: [pid] }).then(function getResult(
       response
     ) {
+      // The API says there can be more than one reply, but nobody
+      // defines what that means. So if case there's more than one
+      // reply, only return true if all items are order-able.
       return response.reduce(function getOrderStatus(acc, orderStat) {
         return orderStat.orderPossible && acc;
       }, true);
