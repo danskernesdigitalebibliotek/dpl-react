@@ -185,8 +185,10 @@ class OpenPlatform {
 
     // Try to supply the parameters that the library requires for
     // orders. They are listed on the library.
-    const user = await this.getUser();
-    const branch = await this.getBranch(pickupBranch);
+    const [user, branch] = await Promise.all([
+      this.getUser(),
+      this.getBranch(pickupBranch)
+    ]);
     branch.orderParameters.forEach(function eachOrderParameter(parameter) {
       switch (parameter) {
         case "userId":
