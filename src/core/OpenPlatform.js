@@ -59,6 +59,32 @@ class OpenPlatform {
   }
 
   /**
+   * Do a request against OpenPlatform and return data.
+   *
+   * Unpacks a standard OpenPlatform response and returns the data.
+   * Throws in case of errors.
+   *
+   * @param {string} path - path to request
+   * @param {object} options - additional options for fetch
+   */
+  async request(path, options = {}) {
+    const defaults = {
+      headers: { Accept: "application/json" }
+    };
+
+    const rawResponse = await fetch(`${this.baseUrl}/${path}`, {
+      ...defaults,
+      ...options
+    });
+
+    const response = await rawResponse.json();
+    if (response.statusCode !== 200) throw Error(response.error);
+    if (!response.data) throw Error("data not found");
+
+    return response.data;
+  }
+
+  /**
    * Retrieve meta information about creative work(s).
    * In other words, books, cd's etc.
    *
@@ -83,19 +109,12 @@ class OpenPlatform {
 
     const formattedPids = formatUrlArray(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
-    const getWorkUrl = `${this.baseUrl}/work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
 
-    const rawResponse = await fetch(getWorkUrl, {
-      headers: { Accept: "application/json" }
-    });
-    const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.error);
-    if (!response.data) throw Error("data not found");
+    const works = await this.request(
+      `work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`
+    );
 
-    const rawResults = response.data;
-    // Remove empty objects which OpenPlatform may returned for pids which have
-    // no corresponding meta data.
-    return rawResults.filter(result => !isEmpty(result));
+    return works.filter(result => !isEmpty(result));
   }
 
   /**
@@ -113,17 +132,10 @@ class OpenPlatform {
   }) {
     const formattedPids = formatUrlArray(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
-    const getWorkUrl = `${this.baseUrl}/availability?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`;
 
-    const rawResponse = await fetch(getWorkUrl, {
-      headers: { Accept: "application/json" }
-    });
-
-    const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.error);
-    if (!response.data) throw Error("data not found");
-
-    return response.data;
+    return this.request(
+      `availability?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`
+    );
   }
 
   /**
@@ -223,26 +235,14 @@ class OpenPlatform {
       }
     });
 
-    const rawResponse = await fetch(
-      `${this.baseUrl}/order?${parameters.join("&")}`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      }
-    );
-
-    const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.error);
-    if (!response.data) throw Error("data not found");
-
-    // OpenPlatform doesn't return the order id, as that's created
-    // later. It does return an id from an external system, but that's
-    // pretty useless, so return nothing.
-    return undefined;
+    return this.request(`order?${parameters.join("&")}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
   }
 
   /**
@@ -251,18 +251,7 @@ class OpenPlatform {
    * @returns {User}
    */
   async getUser() {
-    const rawResponse = await fetch(
-      `${this.baseUrl}/user?access_token=${this.token}`,
-      {
-        headers: { Accept: "application/json" }
-      }
-    );
-
-    const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.error);
-    if (!response.data) throw Error("data not found");
-
-    return response.data;
+    return this.request(`user?access_token=${this.token}`);
   }
 
   /**
@@ -284,17 +273,7 @@ class OpenPlatform {
       parameters.push(`branchIds=${formatUrlArray(branchIds)}`);
     }
 
-    const librariesUrl = `${this.baseUrl}/libraries?${parameters.join("&")}`;
-
-    const rawResponse = await fetch(librariesUrl, {
-      headers: { Accept: "application/json" }
-    });
-
-    const response = await rawResponse.json();
-    if (response.statusCode !== 200) throw Error(response.error);
-    if (!response.data) throw Error("data not found");
-
-    return response.data;
+    return this.request(`libraries?${parameters.join("&")}`);
   }
 
   /**
