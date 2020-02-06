@@ -101,7 +101,6 @@ describe("Order material", () => {
     cy.visit("/iframe.html?id=apps-order-material--entry");
 
     cy.contains("Bestil materiale").click();
-    // cy.wait('@orderRequest');
     cy.contains("Bestilt");
   });
 });
