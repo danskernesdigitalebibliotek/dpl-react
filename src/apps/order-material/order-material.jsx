@@ -8,8 +8,9 @@ import User from "../../core/user";
 import replacePlaceholders from "../../core/replacePlaceholders";
 
 function OrderMaterial({
-  loading,
+  status,
   checkingText,
+  progressText,
   unavailableText,
   invalidPickupBranchText,
   onClick,
@@ -19,19 +20,29 @@ function OrderMaterial({
   loginUrl,
   materialId
 }) {
-  if (loading === "checking") {
+  if (status === "initial") {
+    // Don't render anything until we start checking if the material
+    // can be ordered.
+    return <></>;
+  }
+
+  if (status === "checking") {
     return <Alert message={checkingText} type="polite" variant="info" />;
   }
 
-  if (loading === "active") {
+  if (status === "processing") {
+    return <Alert message={progressText} type="polite" variant="info" />;
+  }
+
+  if (status === "finished") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
 
-  if (loading === "unavailable") {
+  if (status === "unavailable") {
     return <Alert message={unavailableText} type="polite" variant="success" />;
   }
 
-  if (loading === "invalid branch") {
+  if (status === "invalid branch") {
     return (
       <Alert
         message={invalidPickupBranchText}
@@ -41,7 +52,7 @@ function OrderMaterial({
     );
   }
 
-  if (loading === "failed") {
+  if (status === "failed") {
     return <Alert message={errorText} type="polite" variant="warning" />;
   }
 
@@ -73,16 +84,18 @@ OrderMaterial.propTypes = {
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
   checkingText: PropTypes.string.isRequired,
+  progressText: PropTypes.string.isRequired,
   unavailableText: PropTypes.string.isRequired,
   invalidPickupBranchText: PropTypes.string.isRequired,
   loginUrl: urlPropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  loading: PropTypes.oneOf([
-    "inactive",
+  status: PropTypes.oneOf([
+    "initial",
     "checking",
     "unavailable",
     "invalid branch",
-    "active",
+    "ready",
+    "processing",
     "failed",
     "finished"
   ]),
@@ -90,7 +103,7 @@ OrderMaterial.propTypes = {
 };
 
 OrderMaterial.defaultProps = {
-  loading: "inactive"
+  status: "initial"
 };
 
 export default OrderMaterial;

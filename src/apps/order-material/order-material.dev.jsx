@@ -13,6 +13,7 @@ export function Entry() {
       text={text("Text", "Bestil materiale")}
       errorText={text("Error text", "Der opstod en fejl")}
       checkingText={text("Checking text", "Undersøger mulighed for fjernlån")}
+      progressText={text("Progress text", "Bestiller materiale")}
       unavailableText={text("Unavaliable text", "Kan ikke fjernlånes")}
       invalidPickupBranchText={text(
         "Invalid pickup branch text",

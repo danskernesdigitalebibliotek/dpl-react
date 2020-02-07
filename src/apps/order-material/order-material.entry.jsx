@@ -12,6 +12,7 @@ function OrderMaterialEntry({
   successText,
   errorText,
   checkingText,
+  progressText,
   unavailableText,
   invalidPickupBranchText,
   id,
@@ -19,43 +20,43 @@ function OrderMaterialEntry({
   pickupBranch,
   expires
 }) {
-  const [loading, setLoading] = useState("checking");
+  const [status, setStatus] = useState("initial");
 
   function orderMaterial() {
-    setLoading("active");
+    setStatus("processing");
     client
       .orderMaterial({ pids: [id], pickupBranch, expires })
+      .then(function materialOrdered() {
+        setStatus("finished");
+      })
       .catch(function onError() {
-        setLoading("failed");
-        setTimeout(function onRestore() {
-          setLoading("inactive");
-        }, 4000);
+        setStatus("failed");
       });
   }
 
   useEffect(
     function getOrderStatus() {
-      setLoading("checking");
+      setStatus("checking");
       // Check that the pickup branch accepts inter-library loans.
       client
         .getBranch(pickupBranch)
         .then(function onBranchResult(branch) {
           if (branch.willReceiveIll !== "1") {
-            setLoading("invalid branch");
+            setStatus("invalid branch");
           } else {
             // Check that the material is available for ILL.
             client
               .canBeOrdered(id)
               .then(function onAvailabilityResult(available) {
-                setLoading(available ? "inactive" : "unavailable");
+                setStatus(available ? "ready" : "unavailable");
               })
               .catch(function onError() {
-                setLoading("failed");
+                setStatus("failed");
               });
           }
         })
         .catch(function onError() {
-          setLoading("failed");
+          setStatus("failed");
         });
     },
     [id, pickupBranch]
@@ -67,9 +68,10 @@ function OrderMaterialEntry({
       errorText={errorText}
       successText={successText}
       checkingText={checkingText}
+      progressText={progressText}
       unavailableText={unavailableText}
       invalidPickupBranchText={invalidPickupBranchText}
-      loading={loading}
+      status={status}
       onClick={orderMaterial}
       loginUrl={loginUrl}
       materialId={id}
@@ -81,6 +83,7 @@ OrderMaterialEntry.propTypes = {
   text: PropTypes.string,
   errorText: PropTypes.string,
   checkingText: PropTypes.string,
+  progressText: PropTypes.string,
   unavailableText: PropTypes.string,
   invalidPickupBranchText: PropTypes.string,
   successText: PropTypes.string,
@@ -93,6 +96,7 @@ OrderMaterialEntry.propTypes = {
 OrderMaterialEntry.defaultProps = {
   text: "Bestil materiale",
   checkingText: "Undersøger mulighed for fjernlån",
+  progressText: "Bestiller materiale",
   unavailableText: "Kan ikke fjernlånes",
   invalidPickupBranchText: "Dit afhentningsbibliotek modtager ikke fjernlån",
   errorText: "Det lykkedes ikke at bestille materialet.",
