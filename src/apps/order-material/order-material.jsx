@@ -23,79 +23,76 @@ function OrderMaterial({
   materialId
 }) {
   const [open, setOpen] = useState(true);
+  const closeDialog = () => setOpen(false);
 
-  if (status === "initial") {
-    // Don't render anything until we start checking if the material
-    // can be ordered.
-    return <></>;
+  switch (status) {
+    case "initial":
+      // Don't render anything until we start checking if the material
+      // can be ordered.
+      return <></>;
+
+    case "checking":
+      return <Alert message={checkingText} type="polite" variant="info" />;
+
+    case "unavailable":
+      return (
+        <Alert message={unavailableText} type="polite" variant="success" />
+      );
+
+    case "invalid branch":
+      return (
+        <Alert
+          message={invalidPickupBranchText}
+          type="polite"
+          variant="warning"
+        />
+      );
+
+    case "processing":
+      return <Alert message={progressText} type="polite" variant="info" />;
+
+    case "finished":
+      return (
+        <>
+          <Alert message={successText} type="polite" variant="success" />
+          <Dialog
+            label="Tilføj søgning til liste"
+            showCloseButton
+            dropDown
+            isOpen={open}
+            onDismiss={closeDialog}
+          >
+            <Alert message={successMessage} type="polite" variant="blank" />
+          </Dialog>
+        </>
+      );
+
+    case "failed":
+      return <Alert message={errorText} type="polite" variant="warning" />;
+
+    default:
+      return (
+        <div className="ddb-order-material__container">
+          <Button
+            href={
+              !User.isAuthenticated()
+                ? replacePlaceholders({
+                    text: loginUrl,
+                    tags: {
+                      id: encodeURIComponent(materialId)
+                    }
+                  })
+                : undefined
+            }
+            variant="black"
+            align="left"
+            onClick={onClick}
+          >
+            {text}
+          </Button>
+        </div>
+      );
   }
-
-  if (status === "checking") {
-    return <Alert message={checkingText} type="polite" variant="info" />;
-  }
-
-  if (status === "processing") {
-    return <Alert message={progressText} type="polite" variant="info" />;
-  }
-
-  if (status === "finished") {
-    const closeDialog = () => setOpen(false);
-
-    return (
-      <>
-        <Alert message={successText} type="polite" variant="success" />
-        <Dialog
-          label="Tilføj søgning til liste"
-          showCloseButton
-          dropDown
-          isOpen={open}
-          onDismiss={closeDialog}
-        >
-          <Alert message={successMessage} type="polite" variant="blank" />
-        </Dialog>
-      </>
-    );
-  }
-
-  if (status === "unavailable") {
-    return <Alert message={unavailableText} type="polite" variant="success" />;
-  }
-
-  if (status === "invalid branch") {
-    return (
-      <Alert
-        message={invalidPickupBranchText}
-        type="polite"
-        variant="warning"
-      />
-    );
-  }
-
-  if (status === "failed") {
-    return <Alert message={errorText} type="polite" variant="warning" />;
-  }
-
-  return (
-    <div className="ddb-order-material__container">
-      <Button
-        href={
-          !User.isAuthenticated()
-            ? replacePlaceholders({
-                text: loginUrl,
-                tags: {
-                  id: encodeURIComponent(materialId)
-                }
-              })
-            : undefined
-        }
-        variant="black"
-        align="left"
-        onClick={onClick}
-      >
-        {text}
-      </Button>
-    </div>
-  );
 }
 
 OrderMaterial.propTypes = {
