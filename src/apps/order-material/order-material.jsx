@@ -29,7 +29,7 @@ function OrderMaterial({
     case "initial":
       // Don't render anything until we start checking if the material
       // can be ordered.
-      return <></>;
+      return null;
 
     case "checking":
       return <Alert message={checkingText} type="polite" variant="info" />;
