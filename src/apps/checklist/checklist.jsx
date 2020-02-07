@@ -19,7 +19,7 @@ function SkeletonElement(_, index) {
 }
 
 function Checklist({
-  loading,
+  status,
   items,
   onRemove,
   materialUrl,
@@ -30,15 +30,15 @@ function Checklist({
   errorText,
   ofText
 }) {
-  if (loading === "failed") {
-    return <Alert type="assertive" variant="warning" message={errorText} />;
-  }
-
-  if (loading === "active") {
+  if (status === "initial") {
     return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
 
-  if (loading === "finished" && items.length === 0) {
+  if (status === "failed") {
+    return <Alert type="assertive" variant="warning" message={errorText} />;
+  }
+
+  if (status === "ready" && items.length === 0) {
     return <Alert type="polite" message={emptyListText} />;
   }
 
@@ -74,11 +74,11 @@ function Checklist({
 
 Checklist.defaultProps = {
   items: [],
-  loading: "inactive"
+  status: "initial"
 };
 
 Checklist.propTypes = {
-  loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
+  status: PropTypes.oneOf(["initial", "ready", "failed"]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       pid: PropTypes.string,

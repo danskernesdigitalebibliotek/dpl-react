@@ -21,34 +21,30 @@ function AddToSearchlistEntry({
   errorMaxLengthMessage,
   loginUrl
 }) {
-  const [appState, setAppState] = useState("inactive");
-  const openDialog = () => setAppState("active");
-  const closeDialog = () => setAppState("inactive");
+  const [status, setStatus] = useState("ready");
 
   function addToSearchList(title) {
-    setAppState("requesting");
+    setStatus("processing");
 
     const client = new FollowSearches({ baseUrl: followSearchesUrl });
     client
       .addSearch({ title, query: searchQuery })
       .then(function onSuccess() {
         setTimeout(() => {
-          setAppState("inactive");
+          setStatus("ready");
         }, 10000);
       })
       .catch(function onError() {
-        setAppState("failed");
+        setStatus("failed");
         setTimeout(() => {
-          setAppState("active");
+          setStatus("ready");
         }, 2000);
       });
   }
   return (
     <AddToSearchlist
-      appState={appState}
+      status={status}
       onSubmit={addToSearchList}
-      openDialog={openDialog}
-      closeDialog={closeDialog}
       searchQuery={searchQuery}
       buttonText={buttonText}
       labelText={labelText}

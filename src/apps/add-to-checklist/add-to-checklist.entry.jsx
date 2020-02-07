@@ -13,16 +13,16 @@ function AddToChecklistEntry({
   id,
   loginUrl
 }) {
-  const [loading, setLoading] = useState("inactive");
+  const [status, setStatus] = useState("ready");
 
   function addToList() {
-    setLoading("active");
+    setStatus("processing");
 
     const client = new MaterialList({ baseUrl: materialListUrl });
     client.addListMaterial({ materialId: id }).catch(function onError() {
-      setLoading("failed");
+      setStatus("failed");
       setTimeout(function onRestore() {
-        setLoading("inactive");
+        setStatus("ready");
       }, 4000);
     });
   }
@@ -32,7 +32,7 @@ function AddToChecklistEntry({
       text={text}
       errorText={errorText}
       successText={successText}
-      loading={loading}
+      status={status}
       onClick={addToList}
       loginUrl={loginUrl}
       materialId={id}

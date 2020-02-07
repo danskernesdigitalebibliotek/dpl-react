@@ -22,12 +22,10 @@ function ChecklistEntry({
   ofText
 }) {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState("inactive");
+  const [status, setStatus] = useState("initial");
 
   useEffect(
     function getList() {
-      setLoading("active");
-
       const client = new MaterialList({ baseUrl: materialListUrl });
       client
         .getList()
@@ -49,11 +47,11 @@ function ChecklistEntry({
           return [];
         })
         .then(result => {
-          setLoading("finished");
+          setStatus("ready");
           setList(result.map(Material.format));
         })
         .catch(function onError() {
-          setLoading("failed");
+          setStatus("failed");
         });
     },
     [materialListUrl]
@@ -74,16 +72,16 @@ function ChecklistEntry({
     );
     const client = new MaterialList({ baseUrl: materialListUrl });
     client.deleteListMaterial({ materialId }).catch(function onError() {
-      setLoading("failed");
+      setStatus("failed");
       setTimeout(function onRestore() {
-        setLoading("inactive");
+        setStatus("ready");
         setList(fallbackList);
       }, 2000);
     });
   }
   return (
     <Checklist
-      loading={loading}
+      status={status}
       items={list}
       onRemove={onRemove}
       materialUrl={materialUrl}
