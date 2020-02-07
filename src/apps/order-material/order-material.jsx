@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 
 import Button from "../../components/atoms/button/button";
+import Dialog from "../../components/atoms/dialog/dialog";
 import Alert from "../../components/alert/alert";
 import User from "../../core/user";
 import replacePlaceholders from "../../core/replacePlaceholders";
@@ -17,9 +18,12 @@ function OrderMaterial({
   text,
   errorText,
   successText,
+  successMessage,
   loginUrl,
   materialId
 }) {
+  const [open, setOpen] = useState(true);
+
   if (status === "initial") {
     // Don't render anything until we start checking if the material
     // can be ordered.
@@ -35,7 +39,22 @@ function OrderMaterial({
   }
 
   if (status === "finished") {
-    return <Alert message={successText} type="polite" variant="success" />;
+    const closeDialog = () => setOpen(false);
+
+    return (
+      <>
+        <Alert message={successText} type="polite" variant="success" />
+        <Dialog
+          label="Tilføj søgning til liste"
+          showCloseButton
+          dropDown
+          isOpen={open}
+          onDismiss={closeDialog}
+        >
+          <Alert message={successMessage} type="polite" variant="blank" />
+        </Dialog>
+      </>
+    );
   }
 
   if (status === "unavailable") {
@@ -83,6 +102,7 @@ OrderMaterial.propTypes = {
   text: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
+  successMessage: PropTypes.string.isRequired,
   checkingText: PropTypes.string.isRequired,
   progressText: PropTypes.string.isRequired,
   unavailableText: PropTypes.string.isRequired,

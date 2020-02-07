@@ -20,6 +20,10 @@ export function Entry() {
         "Dit afhentningsbibliotek modtager ikke fjernlån"
       )}
       successText={text("Success text", "Bestilt")}
+      successMessage={text(
+        "Success message",
+        "Materialet er bestilt, dit bibliotek vil give besked når det er klar til afhentning."
+      )}
       id={text("Material ID", "870970-basis:54172613")}
       loginUrl={text(
         "Login URL",

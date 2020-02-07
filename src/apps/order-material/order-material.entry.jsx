@@ -10,6 +10,7 @@ const client = new OpenPlatform();
 function OrderMaterialEntry({
   text,
   successText,
+  successMessage,
   errorText,
   checkingText,
   progressText,
@@ -67,6 +68,7 @@ function OrderMaterialEntry({
       text={text}
       errorText={errorText}
       successText={successText}
+      successMessage={successMessage}
       checkingText={checkingText}
       progressText={progressText}
       unavailableText={unavailableText}
@@ -87,6 +89,7 @@ OrderMaterialEntry.propTypes = {
   unavailableText: PropTypes.string,
   invalidPickupBranchText: PropTypes.string,
   successText: PropTypes.string,
+  successMessage: PropTypes.string,
   id: PropTypes.string.isRequired,
   loginUrl: urlPropType.isRequired,
   pickupBranch: PropTypes.string.isRequired,
@@ -100,7 +103,9 @@ OrderMaterialEntry.defaultProps = {
   unavailableText: "Kan ikke fjernlånes",
   invalidPickupBranchText: "Dit afhentningsbibliotek modtager ikke fjernlån",
   errorText: "Det lykkedes ikke at bestille materialet.",
-  successText: "Materialet er bestilt"
+  successText: "Materialet er bestilt",
+  successMessage:
+    "Materialet er bestilt, dit bibliotek vil give besked når det er klar til afhentning."
 };
 
 export default OrderMaterialEntry;
