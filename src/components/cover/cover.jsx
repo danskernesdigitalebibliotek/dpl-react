@@ -4,11 +4,23 @@ import urlPropType from "url-prop-type";
 import CoverService from "../../core/CoverService";
 import Skeleton from "../atoms/skeleton/skeleton";
 
+export const COVER_RETRIEVED = "retrieved";
 export const COVER_EMPTY = "empty";
 export const COVER_INITIAL = "initial";
 
 /**
- * A custom hook that retrives a cover image.
+ * @typedef Cover
+ * @property {('initial'|'retrieved'|'empty')} status
+ *   The state of the cover being displayed:
+ *   - "initial": If we do not know whether a cover exists or not.
+ *   - "retrieved": If a cover image has been retrieved from the cover service.
+ *   - "empty": If there is no cover image available.
+ * @property {string} url
+ *   The cover image url.
+ */
+
+/**
+ * A custom hook that retrieves a cover image.
  *
  * @export
  * @param {object} options
@@ -19,7 +31,7 @@ export const COVER_INITIAL = "initial";
  * @param {boolean} options.generic
  * @param {string} options.coverServiceUrl
  *
- * @returns either an "initial", "empty" or actual src status.
+ * @returns Cover
  */
 export function useCover({
   id,
@@ -29,17 +41,17 @@ export function useCover({
   generic = false,
   coverServiceUrl = "https://cover.dandigbib.org/api"
 }) {
-  const [status, setStatus] = useState(COVER_INITIAL);
+  const [status, setStatus] = useState({ status: COVER_INITIAL });
   useEffect(() => {
     const coverClient = new CoverService({
       baseUrl: coverServiceUrl
     });
     coverClient
       .getCover({ id, size: [size], format: [format], idType, generic })
-      .then(response => setStatus(response))
-      .catch(() => setStatus(COVER_EMPTY));
+      .then(response => setStatus({ status: COVER_RETRIEVED, url: response }))
+      .catch(() => setStatus({ status: COVER_EMPTY }));
   }, [id, format, size, idType, generic, coverServiceUrl]);
-  return status || COVER_EMPTY;
+  return status || { status: COVER_EMPTY };
 }
 
 export function CoverSkeleton({ className }) {
@@ -63,28 +75,27 @@ CoverSkeleton.propTypes = {
   className: PropTypes.string
 };
 
-function Cover({ src, alt, coverClassName, className }) {
-  if (src === COVER_INITIAL) {
+function Cover({ status, src, alt, coverClassName, className }) {
+  if (status === COVER_INITIAL) {
     return <CoverSkeleton className={coverClassName} />;
   }
-  if (src === COVER_EMPTY) {
+  if (status === COVER_EMPTY) {
     return null;
   }
   return <img className={className} src={src} alt={alt} />;
 }
 
 Cover.defaultProps = {
+  status: "initial",
+  src: "",
   coverClassName: "",
-  className: "",
-  src: "initial"
+  className: ""
 };
 
 Cover.propTypes = {
+  status: PropTypes.oneOf(["initial", "empty", "retrieved"]),
+  src: urlPropType,
   alt: PropTypes.string.isRequired,
-  src: PropTypes.oneOfType([
-    PropTypes.oneOf(["initial", "empty"]),
-    urlPropType
-  ]),
   className: PropTypes.string,
   coverClassName: PropTypes.string
 };
