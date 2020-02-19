@@ -24,38 +24,41 @@ function ChecklistEntry({
   const [list, setList] = useState([]);
   const [status, setStatus] = useState("initial");
 
-  useEffect(
-    function getList() {
-      const client = new MaterialList({ baseUrl: materialListUrl });
-      client
-        .getList()
-        .then(function onResult(result) {
-          if (result && result.length) {
-            const op = new OpenPlatform();
-            return op.getWork({
-              pids: result,
-              fields: [
-                "dcTitleFull",
-                "pid",
-                "dcCreator",
-                "creator",
-                "typeBibDKType",
-                "date"
-              ]
-            });
-          }
-          return [];
-        })
-        .then(result => {
-          setStatus("ready");
-          setList(result.map(Material.format));
-        })
-        .catch(function onError() {
-          setStatus("failed");
-        });
-    },
-    [materialListUrl]
-  );
+  function getWork(result) {
+    if (result && result.length) {
+      const op = new OpenPlatform();
+      return op.getWork({
+        pids: result,
+        fields: [
+          "dcTitleFull",
+          "pid",
+          "dcCreator",
+          "creator",
+          "typeBibDKType",
+          "date"
+        ]
+      });
+    }
+    return [];
+  }
+
+  function setChecklistReadyStatus(result) {
+    setStatus("ready");
+    setList(result.map(Material.format));
+  }
+
+  function setChecklistFailedStatus() {
+    setStatus("failed");
+  }
+
+  useEffect(() => {
+    const client = new MaterialList({ baseUrl: materialListUrl });
+    client
+      .getList()
+      .then(getWork)
+      .then(setChecklistReadyStatus)
+      .catch(setChecklistFailedStatus);
+  }, [materialListUrl]);
 
   /**
    * Function to remove a material from the list.
@@ -66,18 +69,25 @@ function ChecklistEntry({
   function onRemove(materialId) {
     const fallbackList = [...list];
     setList(
-      list.filter(function removeMaterial(item) {
+      list.filter(item => {
         return item.pid !== materialId;
       })
     );
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client.deleteListMaterial({ materialId }).catch(function onError() {
+
+    function setDeleteMaterialRestoreStatus() {
+      setStatus("ready");
+      setList(fallbackList);
+    }
+
+    function setDeleteMaterialErrorStatus() {
       setStatus("failed");
-      setTimeout(function onRestore() {
-        setStatus("ready");
-        setList(fallbackList);
-      }, 2000);
-    });
+      setTimeout(setDeleteMaterialRestoreStatus, 2000);
+    }
+
+    const client = new MaterialList({ baseUrl: materialListUrl });
+    client
+      .deleteListMaterial({ materialId })
+      .catch(setDeleteMaterialErrorStatus);
   }
   return (
     <Checklist

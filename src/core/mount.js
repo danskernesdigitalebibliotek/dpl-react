@@ -14,7 +14,8 @@ import { setToken } from "./token";
 function mount(context) {
   if (!context) return;
   const appContainers = context.querySelectorAll("[data-ddb-app]");
-  appContainers.forEach(function mountApp(container) {
+
+  function mountApp(container) {
     const appName = container?.dataset?.ddbApp;
     const app = window.ddbReact?.apps?.[appName];
     // Ensure that the application exists and that the container isn't already populated.
@@ -27,7 +28,9 @@ function mount(context) {
         container
       );
     }
-  });
+  }
+
+  appContainers.forEach(mountApp);
 }
 
 /**
@@ -38,10 +41,12 @@ function mount(context) {
 function unmount(context) {
   if (!context) return;
   const appContainers = context.querySelectorAll("[data-ddb-app]");
-  appContainers.forEach(function unMountApp(container) {
+
+  function unMountApp(container) {
     const appContainerToUnmount = container;
     appContainerToUnmount.innerHTML = "";
-  });
+  }
+  appContainers.forEach(unMountApp);
 }
 
 function init() {

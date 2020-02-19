@@ -101,7 +101,7 @@ class OpenPlatform {
       const responses = chunk(pids, pidLimit).map(pidChunk =>
         this.getWork({ pids: pidChunk, fields })
       );
-      return Promise.all(responses).then(function mergeResults(results) {
+      return Promise.all(responses).then(results => {
         return [].concat(...results);
       });
     }
@@ -147,10 +147,10 @@ class OpenPlatform {
    * @returns {Promise<boolean>}
    */
   async canBeOrdered(pids) {
-    return this.getAvailability({ pids }).then(function getResult(response) {
+    return this.getAvailability({ pids }).then(response => {
       // The API returns availability information for each pid. Reduce these to
       // a single value by checking if at least one material can be ordered.
-      return response.some(function orderIsPossible(orderStat) {
+      return response.some(orderStat => {
         return orderStat.orderPossible;
       });
     });
@@ -203,7 +203,7 @@ class OpenPlatform {
       this.getUser(),
       this.getBranch(pickupBranch)
     ]);
-    branch.orderParameters.forEach(function eachOrderParameter(parameter) {
+    function eachOrderParameter(parameter) {
       switch (parameter) {
         case "userId":
         case "pincode":
@@ -235,7 +235,8 @@ class OpenPlatform {
         // Oh bollocks, we have no idea what to do. Try soldiering on
         // and hope the best.
       }
-    });
+    }
+    branch.orderParameters.forEach(eachOrderParameter);
 
     return this.request(`order?${parameters.join("&")}`, {
       method: "POST",

@@ -16,30 +16,37 @@ function SearchlistEntry({
   const [searches, setSearches] = useState([]);
   const [status, setStatus] = useState("initial");
 
-  useEffect(
-    function getSearches() {
-      const client = new FollowSearches({ baseUrl: followSearchesUrl });
-      client
-        .getSearches()
-        .then(function onSuccess(result) {
-          setSearches(result);
-          setStatus("ready");
-        })
-        .catch(function onError() {
-          setStatus("failed");
-        });
-    },
-    [followSearchesUrl]
-  );
+  function setSearchlistFailedStatus() {
+    setStatus("failed");
+  }
+
+  function setSearchlist(result) {
+    setSearches(result);
+    setStatus("ready");
+  }
+
+  useEffect(() => {
+    const client = new FollowSearches({ baseUrl: followSearchesUrl });
+    client
+      .getSearches()
+      .then(setSearchlist)
+      .catch(setSearchlistFailedStatus);
+  }, [followSearchesUrl]);
 
   function removeSearch(id) {
     const fallback = [...searches];
-    setSearches(searches.filter(search => search.id !== id));
+
+    function removeDeletedSearch(search) {
+      return search.id !== id;
+    }
+    setSearches(searches.filter(removeDeletedSearch));
+
+    function setDeleteSearchErrorStatus() {
+      setSearches(fallback);
+    }
 
     const client = new FollowSearches({ baseUrl: followSearchesUrl });
-    client.deleteSearch({ searchId: id }).catch(function onError() {
-      setSearches(fallback);
-    });
+    client.deleteSearch({ searchId: id }).catch(setDeleteSearchErrorStatus);
   }
 
   return (

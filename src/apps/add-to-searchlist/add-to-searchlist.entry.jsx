@@ -23,23 +23,27 @@ function AddToSearchlistEntry({
 }) {
   const [status, setStatus] = useState("ready");
 
+  function setListRestoreStatus() {
+    setStatus("ready");
+  }
+
+  function setListErrorStatus() {
+    setStatus("failed");
+    setTimeout(setListRestoreStatus, 2000);
+  }
+
+  function setListSuccessStatus() {
+    setTimeout(setListRestoreStatus, 10000);
+  }
+
   function addToSearchList(title) {
     setStatus("processing");
 
     const client = new FollowSearches({ baseUrl: followSearchesUrl });
     client
       .addSearch({ title, query: searchQuery })
-      .then(function onSuccess() {
-        setTimeout(() => {
-          setStatus("ready");
-        }, 10000);
-      })
-      .catch(function onError() {
-        setStatus("failed");
-        setTimeout(() => {
-          setStatus("ready");
-        }, 2000);
-      });
+      .then(setListSuccessStatus)
+      .catch(setListErrorStatus);
   }
   return (
     <AddToSearchlist

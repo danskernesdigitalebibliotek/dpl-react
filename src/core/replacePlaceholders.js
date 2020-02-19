@@ -8,13 +8,10 @@
  * @returns {string} text with the values of the placeholders inserted.
  */
 function replacePlaceholders({ text = "", placeholders = {} } = {}) {
-  return Object.keys(placeholders).reduce(function replaceTag(
-    acc,
-    placeholder
-  ) {
+  function replaceTag(acc, placeholder) {
     return acc.replace(`:${placeholder}`, placeholders[placeholder]);
-  },
-  text);
+  }
+  return Object.keys(placeholders).reduce(replaceTag, text);
 }
 
 export default replacePlaceholders;
