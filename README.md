@@ -10,7 +10,11 @@
   - [Requirements](#requirements)
     - [Retrieving an access token](#retrieving-an-access-token)
   - [Installation](#installation)
+  - [Standard and style](#standard-and-style)
+    - [JavaScript + JSX](#javascript--jsx)
+      - [Named functions Vs. Anonymous arrow functions](#named-functions-vs-anonymous-arrow-functions)
   - [Create a new application](#create-a-new-application)
+    - [Application state-machine](#application-state-machine)
   - [Style your application](#style-your-application)
   - [Cross application components](#cross-application-components)
     - [Creating an atom](#creating-an-atom)
@@ -69,6 +73,38 @@ make up
 ```
 
 When storybook is started, you can access it at: [ddb-react.docker](http://ddb-react.docker)
+
+### Standard and style
+
+#### JavaScript + JSX
+
+For static code analysis we make use of the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) and for formatting we make use of [Prettier](https://github.com/prettier/prettier) with the default configuration.
+The above choices have been influenced by a multitude of factors:
+
+- Historically Drupal core have been making use of the Airbnb JavaScript Style Guide.
+- Airbnb's standard is comparatively the [best known](https://github.com/airbnb/javascript/stargazers) and one of the [most used](https://github.com/airbnb/javascript/network/dependents?package_id=UGFja2FnZS0xODIxMTAxOA%3D%3D) in the JavaScript coding standard landscape. 
+
+This makes future adoption easier for onboarding contributors and support is to be expected for a long time.
+
+##### Named functions Vs. Anonymous arrow functions
+
+AirBnB's only guideline towards this is that anonymous arrow function are preferred over the normal anonymous function notation.
+
+When you must use an anonymous function (as when passing an inline callback), use arrow function notation.
+
+> Why? It creates a version of the function that executes in the context of this, which is usually what you want, and is a more concise syntax.
+
+> Why not? If you have a fairly complicated function, you might move that logic out into its own named function expression.
+
+[Reference](https://github.com/airbnb/javascript#arrows--use-them)
+
+This project stick to the above guideline as well. If we need to pass a function as part of a callback or in a promise chain and we on top of that need to pass some contextual variables that is not passed implicit from either the callback or the previous link in the promise chain we want to make use of an anonymous arrow function as our default.
+
+This comes with the build in disclaimer that if an anonymous function isn't required the implementer
+should heavily consider moving the logic out into it's own named function expression.
+
+The named function is primarily desired due to it's easier to debug nature in stacktraces.
+
 
 ### Create a new application
 
