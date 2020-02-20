@@ -38,10 +38,10 @@ function SimpleMaterial({
   dataClass,
   style
 }) {
-  const coverStatus = useCover({ id: item.pid, coverServiceUrl });
+  const cover = useCover({ id: item.pid, coverServiceUrl });
   return (
     <section className={`ddb-simple-material ${className}`} style={style}>
-      {coverStatus !== COVER_EMPTY && (
+      {cover.status !== COVER_EMPTY && (
         <figure className="ddb-simple-material__cover">
           <a
             href={replacePlaceholders({
@@ -51,7 +51,7 @@ function SimpleMaterial({
               }
             })}
           >
-            <Cover src={coverStatus} alt={item.title} />
+            <Cover status={cover.status} src={cover.url} alt={item.title} />
           </a>
         </figure>
       )}
