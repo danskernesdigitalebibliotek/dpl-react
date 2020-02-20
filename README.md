@@ -1,6 +1,6 @@
-![https://raw.githubusercontent.com/reload/ddb-react/master/logo.png](https://raw.githubusercontent.com/reload/ddb-react/master/logo.png)
+![https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png)
 
-[![codecov](https://codecov.io/gh/reload/ddb-react/branch/master/graph/badge.svg)](https://codecov.io/gh/reload/ddb-react)
+[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -29,7 +29,7 @@
 * [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
-* `.token` file in the root of the project containing a valid Adgangsplatformen token for a patron. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/reload/material-list) and [FollowSearches](https://github.com/reload/follow-searches). ___(optional, you might not need or want live data.)___
+* `.token` file in the root of the project containing a valid Adgangsplatformen token for a patron. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/danskernesdigitalebibliotek/material-list) and [FollowSearches](https://github.com/danskernesdigitalebibliotek/follow-searches). ___(optional, you might not need or want live data.)___
 
 #### Retrieving an access token
 
