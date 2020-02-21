@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import useForm from "react-hook-form/dist/react-hook-form.ie11";
@@ -11,10 +11,8 @@ import User from "../../core/user";
 import replacePlaceholders from "../../core/replacePlaceholders";
 
 function AddToSearchlist({
-  appState,
+  status,
   onSubmit,
-  openDialog,
-  closeDialog,
   buttonText,
   labelText,
   defaultTitle,
@@ -29,12 +27,16 @@ function AddToSearchlist({
   searchQuery,
   loginUrl
 }) {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const openDialog = () => setDialogOpen(true);
+  const closeDialog = () => setDialogOpen(false);
+
   const { register, handleSubmit, errors } = useForm();
   const submit = (data, event) => {
     event.target.reset();
     onSubmit(data.title);
   };
-  if (appState === "failed") {
+  if (status === "failed") {
     return <Alert message={errorText} type="assertive" variant="warning" />;
   }
 
@@ -103,26 +105,19 @@ function AddToSearchlist({
         label="Tilføj søgning til liste"
         showCloseButton
         dropDown
-        isOpen={appState === "active" || appState === "requesting"}
+        isOpen={dialogOpen}
         onDismiss={closeDialog}
       >
-        {appState === "requesting" ? success : initial}
+        {status === "processing" ? success : initial}
       </Dialog>
     </section>
   );
 }
 
 AddToSearchlist.propTypes = {
-  appState: PropTypes.oneOf([
-    "inactive",
-    "active",
-    "requesting",
-    "finished",
-    "failed"
-  ]).isRequired,
+  status: PropTypes.oneOf(["ready", "processing", "finished", "failed"])
+    .isRequired,
   onSubmit: PropTypes.func.isRequired,
-  openDialog: PropTypes.func.isRequired,
-  closeDialog: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,

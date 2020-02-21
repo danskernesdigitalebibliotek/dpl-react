@@ -165,6 +165,44 @@ export function WithoutData() {
 
 __Voila!__ You browser should have opened and a storybook environment is ready for you to tinker around.
 
+#### Application state-machine
+
+Most applications will have multiple internal states, so to aid
+consistency, it's recommended to:
+
+``` javascript
+  const [status, setStatus] = useState("<initial state>");
+```
+
+and use the following states where appropriate:
+
+`initial`: Initial state for applications that require some sort of
+initialization, such as making a request to see if a material can be
+ordered, before rendering the order button. Errors in initialization
+can go directly to the failed state, or add custom states for
+communication different error conditions to the user. Should render
+either nothing or as a skeleton/spinner/message.
+
+`ready`: The general "ready state". Applications that doesn't need
+initialization (a generic button for instance) can use `ready` as the
+initial state set in the `useState` call. This is basically the main
+waiting state.
+
+`processing`: The application is taking some action. For buttons this
+will be the state used when the user has clicked the button and the
+application is waiting for reply from the back end. More advanced
+applications may use it while doing backend requests, if reflecting
+the processing in the UI is desired. Applications using optimistic
+feedback will render this state the same as the `finished` state.
+
+`failed`: Processing failed. The application renders an error message.
+
+`finished`: End state for one-shot actions. Communicates success to
+the user.
+
+Applications can use additional states if desired, but prefer the
+above if appropriate.
+
 ### Style your application
 
 <details>

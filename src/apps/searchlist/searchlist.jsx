@@ -38,7 +38,7 @@ function fullSearchUrl(searchUrl, query) {
 
 function Searchlist({
   searches,
-  loading,
+  status,
   removeButtonText,
   searchUrl,
   emptyListText,
@@ -46,15 +46,15 @@ function Searchlist({
   onRemoveSearch,
   goToSearchText
 }) {
-  if (loading === "failed") {
-    return <Alert message={errorText} type="assertive" variant="warning" />;
-  }
-
-  if (loading === "active") {
+  if (status === "initial") {
     return <UnorderedList>{getList(4).map(SkeletonElement)}</UnorderedList>;
   }
 
-  if (loading === "finished" && searches.length === 0) {
+  if (status === "failed") {
+    return <Alert message={errorText} type="assertive" variant="warning" />;
+  }
+
+  if (status === "ready" && searches.length === 0) {
     return <Alert message={emptyListText} type="polite" variant="info" />;
   }
 
@@ -100,7 +100,7 @@ function Searchlist({
 }
 
 Searchlist.propTypes = {
-  loading: PropTypes.oneOf(["inactive", "active", "finished", "failed"]),
+  status: PropTypes.oneOf(["initial", "ready", "failed"]),
   onRemoveSearch: PropTypes.func.isRequired,
   emptyListText: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
@@ -119,7 +119,7 @@ Searchlist.propTypes = {
 };
 
 Searchlist.defaultProps = {
-  loading: "inactive"
+  status: "initial"
 };
 
 export default Searchlist;

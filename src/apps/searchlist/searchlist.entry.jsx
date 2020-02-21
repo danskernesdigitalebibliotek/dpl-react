@@ -14,21 +14,19 @@ function SearchlistEntry({
   searchUrl
 }) {
   const [searches, setSearches] = useState([]);
-  const [loading, setLoading] = useState("inactive");
+  const [status, setStatus] = useState("initial");
 
   useEffect(
     function getSearches() {
-      setLoading("active");
-
       const client = new FollowSearches({ baseUrl: followSearchesUrl });
       client
         .getSearches()
         .then(function onSuccess(result) {
           setSearches(result);
-          setLoading("finished");
+          setStatus("ready");
         })
         .catch(function onError() {
-          setLoading("failed");
+          setStatus("failed");
         });
     },
     [followSearchesUrl]
@@ -46,7 +44,7 @@ function SearchlistEntry({
 
   return (
     <Searchlist
-      loading={loading}
+      status={status}
       searches={searches}
       onRemoveSearch={removeSearch}
       removeButtonText={removeButtonText}

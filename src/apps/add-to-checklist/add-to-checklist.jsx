@@ -8,7 +8,7 @@ import User from "../../core/user";
 import replacePlaceholders from "../../core/replacePlaceholders";
 
 function AddToChecklist({
-  loading,
+  status,
   onClick,
   text,
   errorText,
@@ -16,11 +16,11 @@ function AddToChecklist({
   loginUrl,
   materialId
 }) {
-  if (loading === "active") {
+  if (status === "processing") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
 
-  if (loading === "failed") {
+  if (status === "failed") {
     return <Alert message={errorText} type="polite" variant="warning" />;
   }
 
@@ -53,12 +53,12 @@ AddToChecklist.propTypes = {
   successText: PropTypes.string.isRequired,
   loginUrl: urlPropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  loading: PropTypes.oneOf(["inactive", "active", "failed", "finished"]),
+  status: PropTypes.oneOf(["ready", "processing", "failed", "finished"]),
   materialId: PropTypes.string.isRequired
 };
 
 AddToChecklist.defaultProps = {
-  loading: "inactive"
+  status: "ready"
 };
 
 export default AddToChecklist;
