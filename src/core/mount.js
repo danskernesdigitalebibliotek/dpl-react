@@ -35,7 +35,7 @@ function mount(context) {
  *
  * @param {HTMLElement} context - The HTML element you want to search for app containers in.
  */
-function unMount(context) {
+function unmount(context) {
   if (!context) return;
   const appContainers = context.querySelectorAll("[data-ddb-app]");
   appContainers.forEach(function unMountApp(container) {
@@ -49,7 +49,7 @@ function init() {
     apps: {},
     setToken,
     mount,
-    unMount
+    unmount
   };
   window.ddbReact = {
     ...(window.ddbReact || {}),
