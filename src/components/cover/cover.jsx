@@ -26,7 +26,7 @@ export const COVER_INITIAL = "initial";
  * @param {object} options
  * @param {string} options.id
  * @param {string} options.format
- * @param {string} options.size
+ * @param {('default'|'small'|'medium'|'large'|'original')}  options.size
  * @param {string} options.idType
  * @param {boolean} options.generic
  * @param {string} options.coverServiceUrl
