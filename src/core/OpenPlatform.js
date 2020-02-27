@@ -203,7 +203,7 @@ class OpenPlatform {
       this.getUser(),
       this.getBranch(pickupBranch)
     ]);
-    function eachOrderParameter(parameter) {
+    function constructOrderParameter(parameter) {
       switch (parameter) {
         case "userId":
         case "pincode":
@@ -236,7 +236,7 @@ class OpenPlatform {
         // and hope the best.
       }
     }
-    branch.orderParameters.forEach(eachOrderParameter);
+    branch.orderParameters.forEach(constructOrderParameter);
 
     return this.request(`order?${parameters.join("&")}`, {
       method: "POST",
