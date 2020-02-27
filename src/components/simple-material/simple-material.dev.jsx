@@ -20,6 +20,7 @@ export function Base() {
         type: text("Type", "Bog"),
         year: text("Year", "2016")
       }}
+      coverSize={text("Cover size", "small")}
       ofText={text("ofText", "Af")}
       materialUrl={text(
         "Material URL",

@@ -30,6 +30,7 @@ SimpleMaterialSkeleton.defaultProps = {
 
 function SimpleMaterial({
   item,
+  coverSize,
   materialUrl,
   authorUrl,
   coverServiceUrl,
@@ -38,7 +39,7 @@ function SimpleMaterial({
   dataClass,
   style
 }) {
-  const cover = useCover({ id: item.pid, coverServiceUrl });
+  const cover = useCover({ id: item.pid, size: coverSize, coverServiceUrl });
   return (
     <section className={`ddb-simple-material ${className}`} style={style}>
       {cover.status !== COVER_EMPTY && (
@@ -110,6 +111,13 @@ SimpleMaterial.propTypes = {
   materialUrl: urlPropType.isRequired,
   authorUrl: urlPropType.isRequired,
   coverServiceUrl: urlPropType.isRequired,
+  coverSize: PropTypes.oneOf([
+    "original",
+    "default",
+    "small",
+    "medium",
+    "large"
+  ]),
   item: PropTypes.shape({
     pid: PropTypes.string.isRequired,
     creators: PropTypes.arrayOf(PropTypes.string),
@@ -121,6 +129,7 @@ SimpleMaterial.propTypes = {
 };
 
 SimpleMaterial.defaultProps = {
+  coverSize: "small",
   ofText: "Af",
   className: "",
   dataClass: "",
