@@ -60,6 +60,7 @@ function Checklist({
         >
           <SimpleMaterial
             item={item}
+            coverSize="small"
             materialUrl={materialUrl}
             authorUrl={authorUrl}
             coverServiceUrl={coverServiceUrl}
