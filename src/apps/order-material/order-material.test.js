@@ -17,7 +17,7 @@ describe("Order material", () => {
     cy.contains("Dit afhentningsbibliotek modtager ikke fjernlån");
   });
 
-  it("Should display message if material can't be ordered", () => {
+  it("Should display message if materials can't be ordered", () => {
     cy.server();
     cy.route({
       method: "GET",
@@ -35,7 +35,7 @@ describe("Order material", () => {
       status: 200,
       response: {
         statusCode: 200,
-        data: [{ orderPossible: false }]
+        data: [{ orderPossible: false }, { orderPossible: false }]
       }
     });
 
@@ -84,7 +84,7 @@ describe("Order material", () => {
       status: 200,
       response: {
         statusCode: 200,
-        data: [{ orderPossible: true }]
+        data: [{ orderPossible: true }, { orderPossible: false }]
       }
     });
 
