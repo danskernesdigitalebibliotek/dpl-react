@@ -7,6 +7,19 @@ import OpenPlatform from "../../core/OpenPlatform";
 
 const client = new OpenPlatform();
 
+/**
+ * Transform a set of ids to an array of ids.
+ *
+ * This supports transforming a single string with multiple ids separated by ,
+ * (used in naive app mounts using data attributes as props) to an array of ids.
+ *
+ * @param {string|string[]} One or more ids.
+ * @returns {string[]} Array of ids.
+ */
+function idsArray(ids) {
+  return typeof ids === "string" ? ids.split(",") : ids;
+}
+
 function OrderMaterialEntry({
   text,
   successText,
@@ -16,7 +29,7 @@ function OrderMaterialEntry({
   progressText,
   unavailableText,
   invalidPickupBranchText,
-  id,
+  ids,
   loginUrl,
   pickupBranch,
   expires
@@ -26,7 +39,7 @@ function OrderMaterialEntry({
   function orderMaterial() {
     setStatus("processing");
     client
-      .orderMaterial({ pids: [id], pickupBranch, expires })
+      .orderMaterial({ pids: idsArray(ids), pickupBranch, expires })
       .then(function materialOrdered() {
         setStatus("finished");
       })
@@ -47,7 +60,7 @@ function OrderMaterialEntry({
           } else {
             // Check that the material is available for ILL.
             client
-              .canBeOrdered(id)
+              .canBeOrdered(idsArray(ids))
               .then(function onAvailabilityResult(available) {
                 setStatus(available ? "ready" : "unavailable");
               })
@@ -60,7 +73,7 @@ function OrderMaterialEntry({
           setStatus("failed");
         });
     },
-    [id, pickupBranch]
+    [ids, pickupBranch]
   );
 
   return (
@@ -76,7 +89,7 @@ function OrderMaterialEntry({
       status={status}
       onClick={orderMaterial}
       loginUrl={loginUrl}
-      materialId={id}
+      materialIds={idsArray(ids)}
     />
   );
 }
@@ -90,7 +103,10 @@ OrderMaterialEntry.propTypes = {
   invalidPickupBranchText: PropTypes.string,
   successText: PropTypes.string,
   successMessage: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  ids: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired,
   loginUrl: urlPropType.isRequired,
   pickupBranch: PropTypes.string.isRequired,
   expires: PropTypes.string.isRequired

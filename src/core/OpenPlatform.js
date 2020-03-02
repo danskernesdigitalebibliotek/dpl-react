@@ -139,20 +139,19 @@ class OpenPlatform {
   }
 
   /**
-   * Check if a material can be ordered.
+   * Check if at least one material in a set of materials can be ordered.
    *
-   * @param {string} pid - id of work
+   * The materials represented by the ids are supposed to be equivalent and thus
+   * we only care if at least one of the materials can be ordered.
+   *
+   * @param {string[]} pids - ids of work(s) to check.
    * @returns {Promise<boolean>}
    */
-  async canBeOrdered(pid) {
-    return this.getAvailability({ pids: [pid] }).then(function getResult(
-      response
-    ) {
-      // The API says there can be more than one reply, but nobody
-      // defines what that means. So if case there's more than one
-      // reply, only return true if all items are order-able.
-
-      return response.every(function orderIsPossible(orderStat) {
+  async canBeOrdered(pids) {
+    return this.getAvailability({ pids }).then(function getResult(response) {
+      // The API returns availability information for each pid. Reduce these to
+      // a single value by checking if at least one material can be ordered.
+      return response.some(function orderIsPossible(orderStat) {
         return orderStat.orderPossible;
       });
     });

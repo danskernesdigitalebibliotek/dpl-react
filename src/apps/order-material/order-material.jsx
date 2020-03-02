@@ -20,7 +20,7 @@ function OrderMaterial({
   successText,
   successMessage,
   loginUrl,
-  materialId
+  materialIds
 }) {
   const [open, setOpen] = useState(true);
   const closeDialog = () => setOpen(false);
@@ -79,7 +79,9 @@ function OrderMaterial({
                 ? replacePlaceholders({
                     text: loginUrl,
                     tags: {
-                      id: encodeURIComponent(materialId)
+                      // Urls only support a single material id so assume we
+                      // want to use the first.
+                      id: encodeURIComponent(materialIds.first)
                     }
                   })
                 : undefined
@@ -116,7 +118,7 @@ OrderMaterial.propTypes = {
     "failed",
     "finished"
   ]),
-  materialId: PropTypes.string.isRequired
+  materialIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 OrderMaterial.defaultProps = {

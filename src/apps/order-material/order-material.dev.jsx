@@ -24,7 +24,16 @@ export function Entry() {
         "Success message",
         "Materialet er bestilt, dit bibliotek vil give besked når det er klar til afhentning."
       )}
-      id={text("Material ID", "870970-basis:54172613")}
+      // Prefer text instead of array knob here to simulate a naive mount using
+      // data attributes (text) as props.
+      ids={text(
+        "Material IDs (separate by ,)",
+        [
+          "870970-basis:47092183",
+          "870970-basis:51980190",
+          "870970-basis:23154382"
+        ].join(",")
+      )}
       loginUrl={text(
         "Login URL",
         "https://lollandbib.dk/adgangsplatformen/login?destination=ting/object/:id"
