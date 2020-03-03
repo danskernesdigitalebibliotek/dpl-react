@@ -1,7 +1,7 @@
 import React from "react";
 import "./_colors.dev.scss";
 
-export default { title: "Design system|Colors" };
+export default { title: "Design system/Colors" };
 
 export function Bases() {
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Dialog from "./dialog";
 import Button from "../button/button";
 
-export default { title: "Atoms|Dialog" };
+export default { title: "Atoms/Dialog" };
 
 export function Simple() {
   const [showDialog, setShowDialog] = useState(false);

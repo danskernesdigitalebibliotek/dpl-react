@@ -3,7 +3,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import Cover from "./cover";
 
 export default {
-  title: "Atoms|Cover",
+  title: "Atoms/Cover",
   decorators: [withKnobs]
 };
 

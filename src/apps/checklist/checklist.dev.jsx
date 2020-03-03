@@ -4,7 +4,7 @@ import Checklist from "./checklist.entry";
 import "./checklist.scss";
 
 export default {
-  title: "Apps|Checklist",
+  title: "Apps/Checklist",
   decorators: [withKnobs({ escapeHTML: false })]
 };
 

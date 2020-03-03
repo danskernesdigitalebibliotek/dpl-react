@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import ListItem from "./list-item";
 
 export default {
-  title: "Components|List Item",
+  title: "Components/List Item",
   decorators: [withKnobs]
 };
 
