@@ -76,7 +76,7 @@ Skeleton.defaultProps = {
   component: "div",
   height: "16px",
   width: "100%",
-  br: "5%",
+  br: "5px",
   mt: "5px",
   mb: "5px",
   mr: "5px",
