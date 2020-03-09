@@ -48,7 +48,10 @@ export function useCover({
     });
     coverClient
       .getCover({ id, size: [size], format: [format], idType, generic })
-      .then(response => setStatus({ status: COVER_RETRIEVED, url: response }))
+      .then(cover => {
+        const url = cover?.imageUrls?.[0]?.url;
+        setStatus({ status: url ? COVER_RETRIEVED : COVER_EMPTY, url });
+      })
       .catch(() => setStatus({ status: COVER_EMPTY }));
   }, [id, format, size, idType, generic, coverServiceUrl]);
   return status || { status: COVER_EMPTY };
