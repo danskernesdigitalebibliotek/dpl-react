@@ -296,7 +296,8 @@ class OpenPlatform {
   /**
    * Get Work based upon search criterias.
    *
-   * https://openplatform.dbc.dk/v3/#operations-Search-get_search
+   * https://raw.githubusercontent.com/DBCDK/serviceprovider/master/doc/work-context.jsonld
+   * https://openplatform.dbc.dk/v3/ - Go to getSearch
    * https://opensearch.addi.dk/b3.5_5.2/?showCqlFile
    *
    * @param {string} query subjects, categories and sources to define the resulting works returned.
@@ -308,21 +309,15 @@ class OpenPlatform {
    * @returns {Promise<Work[]>}
    * @memberof OpenPlatform
    */
-  async search(
-    query,
-    {
-      offset = 0,
-      limit = 50,
-      sort = "date_descending",
-      fields = ["dcTitleFull", "pid"]
-    } = {}
-  ) {
+  async search(query, { offset = 0, limit, sort, fields } = {}) {
+    const parameters = [];
+    if (limit) parameters.push(`limit=${limit}`);
+    if (sort) parameters.push(`sort=${sort}`);
+    if (fields) parameters.push(`fields=${formatUrlArray(fields)}`);
     return this.request(
-      `search?access_token=${this.token}&q=${encodeURIComponent(
+      `search?access_token=${getToken()}&q=${encodeURIComponent(
         query
-      )}&offset=${offset}&limit=${limit}&sort=${sort}&fields=${formatUrlArray(
-        fields
-      )}`
+      )}&offset=${offset}&${parameters.join("&")}`
     );
   }
 }
