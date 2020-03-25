@@ -5,8 +5,6 @@ import urlPropType from "url-prop-type";
 import OrderMaterial from "./order-material";
 import OpenPlatform from "../../core/OpenPlatform";
 
-const client = new OpenPlatform();
-
 /**
  * Transform a set of ids to an array of ids.
  *
@@ -38,6 +36,7 @@ function OrderMaterialEntry({
 
   function orderMaterial() {
     setStatus("processing");
+    const client = new OpenPlatform();
     client
       .orderMaterial({ pids: idsArray(ids), pickupBranch, expires })
       .then(function materialOrdered() {
@@ -52,6 +51,7 @@ function OrderMaterialEntry({
     function getOrderStatus() {
       setStatus("checking");
       // Check that the pickup branch accepts inter-library loans.
+      const client = new OpenPlatform();
       client
         .getBranch(pickupBranch)
         .then(function onBranchResult(branch) {
