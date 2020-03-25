@@ -54,7 +54,6 @@ function formatUrlArray(items = []) {
 
 class OpenPlatform {
   constructor() {
-    this.token = getToken();
     this.baseUrl = "https://openplatform.dbc.dk/v3";
   }
 
@@ -111,7 +110,7 @@ class OpenPlatform {
     const formattedFields = fields.map(encodeURIComponent).join(",");
 
     const works = await this.request(
-      `work?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`
+      `work?access_token=${getToken()}&fields=${formattedFields}&pids=${formattedPids}`
     );
 
     return works.filter(result => !isEmpty(result));
@@ -134,7 +133,7 @@ class OpenPlatform {
     const formattedFields = fields.map(encodeURIComponent).join(",");
 
     return this.request(
-      `availability?access_token=${this.token}&fields=${formattedFields}&pids=${formattedPids}`
+      `availability?access_token=${getToken()}&fields=${formattedFields}&pids=${formattedPids}`
     );
   }
 
@@ -181,7 +180,7 @@ class OpenPlatform {
     // that might end up in logs somewhere). But POST is still the
     // most semantically correct method to use.
     const parameters = [
-      `access_token=${this.token}`,
+      `access_token=${getToken()}`,
       "orderType=normal",
       `expires=${expires}`,
       `pickUpBranch="${pickupBranch}"`
@@ -254,7 +253,7 @@ class OpenPlatform {
    * @returns {User}
    */
   async getUser() {
-    return this.request(`user?access_token=${this.token}`);
+    return this.request(`user?access_token=${getToken()}`);
   }
 
   /**
@@ -266,7 +265,7 @@ class OpenPlatform {
    * @returns {Library[]}
    */
   async getLibraries({ agencyIds = [], branchIds = [] }) {
-    const parameters = [`access_token=${this.token}`];
+    const parameters = [`access_token=${getToken()}`];
 
     if (agencyIds.length > 0) {
       parameters.push(`agencyIds=${formatUrlArray(agencyIds)}`);
