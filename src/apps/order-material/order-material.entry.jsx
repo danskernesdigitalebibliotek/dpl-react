@@ -4,6 +4,7 @@ import urlPropType from "url-prop-type";
 
 import OrderMaterial from "./order-material";
 import OpenPlatform from "../../core/OpenPlatform";
+import User from "../../core/user";
 
 /**
  * Transform a set of ids to an array of ids.
@@ -49,6 +50,13 @@ function OrderMaterialEntry({
 
   useEffect(
     function getOrderStatus() {
+      if (!User.isAuthenticated()) {
+        // Ready is the state we use for buttons which require login when
+        // accessed by anonymous users.
+        setStatus("ready");
+        return;
+      }
+
       setStatus("checking");
       // Check that the pickup branch accepts inter-library loans.
       const client = new OpenPlatform();
