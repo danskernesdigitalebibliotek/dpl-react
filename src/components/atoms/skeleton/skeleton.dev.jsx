@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "./skeleton";
 
-export default { title: "Atoms|Skeleton" };
+export default { title: "Atoms/Skeleton" };
 
 export function Single() {
   return <Skeleton />;

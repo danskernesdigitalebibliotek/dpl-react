@@ -3,7 +3,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import OrderMaterial from "./order-material.entry";
 
 export default {
-  title: "Apps|Order material",
+  title: "Apps/Order material",
   decorators: [withKnobs]
 };
 

@@ -3,7 +3,7 @@ import { withKnobs, text, array } from "@storybook/addon-knobs";
 import SimpleMaterial from "./simple-material";
 
 export default {
-  title: "Components|Simple Material",
+  title: "Components/Simple Material",
   decorators: [withKnobs]
 };
 

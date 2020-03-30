@@ -3,7 +3,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import TextField from "./textfield";
 
 export default {
-  title: "Atoms|TextField",
+  title: "Atoms/TextField",
   decorators: [withKnobs]
 };
 

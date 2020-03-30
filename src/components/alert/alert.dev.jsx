@@ -1,7 +1,7 @@
 import React from "react";
 import Alert from "./alert";
 
-export default { title: "Components|Alert" };
+export default { title: "Components/Alert" };
 
 export function Info() {
   return <Alert />;

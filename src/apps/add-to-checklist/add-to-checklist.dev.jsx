@@ -3,7 +3,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import AddToChecklist from "./add-to-checklist.entry";
 
 export default {
-  title: "Apps|Add to Checklist",
+  title: "Apps/Add to Checklist",
   decorators: [withKnobs]
 };
 
