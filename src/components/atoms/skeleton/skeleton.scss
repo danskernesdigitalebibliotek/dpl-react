@@ -12,7 +12,7 @@
 
 .ddb-skeleton {
   display: block;
-  background-color: #cbcbcb;
+  background-color: color("grey", "medium");
   animation: ddb-skeleton duration("slow", 2) easing("standard", "expressive")
     infinite;
 

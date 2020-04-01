@@ -58,15 +58,17 @@ function Skeleton({
   );
 }
 
+const pixelType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
+
 Skeleton.propTypes = {
   component: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
-  mt: PropTypes.string,
-  mb: PropTypes.string,
-  mr: PropTypes.string,
-  ml: PropTypes.string,
-  br: PropTypes.string,
+  height: pixelType,
+  width: pixelType,
+  mt: pixelType,
+  mb: pixelType,
+  mr: pixelType,
+  ml: pixelType,
+  br: pixelType,
   style: PropTypes.objectOf(PropTypes.any) // This is weird? https://github.com/yannickcr/eslint-plugin-react/issues/2079#issuecomment-447358434
 };
 
@@ -74,7 +76,7 @@ Skeleton.defaultProps = {
   component: "div",
   height: "16px",
   width: "100%",
-  br: "5%",
+  br: "5px",
   mt: "5px",
   mb: "5px",
   mr: "5px",
