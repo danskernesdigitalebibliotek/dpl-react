@@ -154,7 +154,7 @@ describe("Checklist", () => {
     });
     // OpenPlatform supports a maximum of 20 pids per request. To match
     // requests and responses we have to create multiple corresponding routes.
-    chunk(materialIds, 20).forEach(function materialChunkRoute(ids) {
+    chunk(materialIds, 20).forEach(ids => {
       cy.route({
         method: "GET",
         // Ids should not be encoded for matching to work. Cypress handles this.
@@ -162,7 +162,7 @@ describe("Checklist", () => {
         status: 200,
         response: {
           statusCode: 200,
-          data: ids.map(function mockMaterial(id) {
+          data: ids.map(id => {
             return {
               pid: [id.toString()],
               dcCreator: ["Creator"],

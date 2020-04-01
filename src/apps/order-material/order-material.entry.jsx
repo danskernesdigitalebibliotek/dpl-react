@@ -40,49 +40,46 @@ function OrderMaterialEntry({
     const client = new OpenPlatform();
     client
       .orderMaterial({ pids: idsArray(ids), pickupBranch, expires })
-      .then(function materialOrdered() {
+      .then(() => {
         setStatus("finished");
       })
-      .catch(function onError() {
+      .catch(() => {
         setStatus("failed");
       });
   }
 
-  useEffect(
-    function getOrderStatus() {
-      if (!User.isAuthenticated()) {
-        // Ready is the state we use for buttons which require login when
-        // accessed by anonymous users.
-        setStatus("ready");
-        return;
-      }
+  useEffect(() => {
+    if (!User.isAuthenticated()) {
+      // Ready is the state we use for buttons which require login when
+      // accessed by anonymous users.
+      setStatus("ready");
+      return;
+    }
 
-      setStatus("checking");
-      // Check that the pickup branch accepts inter-library loans.
-      const client = new OpenPlatform();
-      client
-        .getBranch(pickupBranch)
-        .then(function onBranchResult(branch) {
-          if (branch.willReceiveIll !== "1") {
-            setStatus("invalid branch");
-          } else {
-            // Check that the material is available for ILL.
-            client
-              .canBeOrdered(idsArray(ids))
-              .then(function onAvailabilityResult(available) {
-                setStatus(available ? "ready" : "unavailable");
-              })
-              .catch(function onError() {
-                setStatus("failed");
-              });
-          }
-        })
-        .catch(function onError() {
-          setStatus("failed");
-        });
-    },
-    [ids, pickupBranch]
-  );
+    setStatus("checking");
+    // Check that the pickup branch accepts inter-library loans.
+    const client = new OpenPlatform();
+    client
+      .getBranch(pickupBranch)
+      .then(branch => {
+        if (branch.willReceiveIll !== "1") {
+          setStatus("invalid branch");
+        } else {
+          // Check that the material is available for ILL.
+          client
+            .canBeOrdered(idsArray(ids))
+            .then(available => {
+              setStatus(available ? "ready" : "unavailable");
+            })
+            .catch(() => {
+              setStatus("failed");
+            });
+        }
+      })
+      .catch(() => {
+        setStatus("failed");
+      });
+  }, [ids, pickupBranch]);
 
   return (
     <OrderMaterial

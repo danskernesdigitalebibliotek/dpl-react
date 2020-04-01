@@ -26,6 +26,13 @@
     }
   },
   "rules": {
+    "prefer-arrow-callback": [
+      "error",
+      {
+        "allowNamedFunctions": false,
+        "allowUnboundThis": true
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {

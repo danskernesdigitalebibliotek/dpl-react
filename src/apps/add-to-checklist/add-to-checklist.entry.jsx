@@ -15,16 +15,20 @@ function AddToChecklistEntry({
 }) {
   const [status, setStatus] = useState("ready");
 
+  function setRestoreStatus() {
+    setStatus("ready");
+  }
+
+  function setListErrorStatus() {
+    setStatus("failed");
+    setTimeout(setRestoreStatus, 4000);
+  }
+
   function addToList() {
     setStatus("processing");
 
     const client = new MaterialList({ baseUrl: materialListUrl });
-    client.addListMaterial({ materialId: id }).catch(function onError() {
-      setStatus("failed");
-      setTimeout(function onRestore() {
-        setStatus("ready");
-      }, 4000);
-    });
+    client.addListMaterial({ materialId: id }).catch(setListErrorStatus);
   }
 
   return (
