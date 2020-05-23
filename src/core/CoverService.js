@@ -14,7 +14,7 @@ class CoverService {
    * @memberof CoverService
    */
   constructor({ baseUrl }) {
-    this.token = getToken();
+    this.token = getToken("library");
     this.baseUrl = baseUrl;
   }
 

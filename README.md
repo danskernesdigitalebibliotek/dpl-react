@@ -8,7 +8,9 @@
 
 - [Development](#development)
   - [Requirements](#requirements)
-    - [Retrieving an access token](#retrieving-an-access-token)
+    - [Retrieving access tokens](#retrieving-access-tokens)
+      - [User tokens](#user-tokens)
+      - [Library tokens](#library-tokens)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
     - [JavaScript + JSX](#javascript--jsx)
@@ -33,17 +35,28 @@
 * [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
-* `.token` file in the root of the project containing a valid Adgangsplatformen token for a patron. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/danskernesdigitalebibliotek/material-list) and [FollowSearches](https://github.com/danskernesdigitalebibliotek/follow-searches). ___(optional, you might not need or want live data.)___
+* `.tokens` file in the root of the project containing valid access tokens for a patron and a library. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/danskernesdigitalebibliotek/material-list) and [FollowSearches](https://github.com/danskernesdigitalebibliotek/follow-searches). ___(optional, you might not need or want live data.)___
 
-#### Retrieving an access token
+#### Retrieving access tokens
 
-The [OAuth access token must be retrieved from Adgangsplatformen](https://github.com/DBCDK/hejmdal/blob/master/docs/oauth2.md), a single sign-on solution for public libraries in Denmark. 
+Access token must be retrieved from [Adgangsplatformen](https://github.com/DBCDK/hejmdal/blob/master/docs/oauth2.md), a single sign-on solution for public libraries in Denmark, and [OpenPlatform](https://openplatform.dbc.dk/v3/), an API for danish libraries.
 
-Usage of Adgangsplatformen requires a valid client id and secret which must be
+Usage of these systems require a valid client id and secret which must be
 obtained from your library partner or directly from DBC, the company responsible
-for running Adgangsplatfomen.
+for running Adgangsplatfomen and OpenPlatform.
 
-Example for retrieving an access token using password grant:
+We have a make target for retrieving an access token.
+You still need the valid client id and client secret as described above.
+
+```bash
+make token
+```
+
+The following steps describe how these tokens can be retrieved manually.
+
+##### User tokens
+
+Example for retrieving an user access token from Adgangsplatformen using password grant:
 
 ```bash
 curl -X POST https://login.bib.dk/oauth/token -d 'grant_type=password&password=[patron-password]&username=[patron-username]&agency=[patron-library-agency-id]&client_id=[client-id]&client_secret=[client-secret]'
@@ -59,11 +72,22 @@ This will return a data structure containing the access token:
 }
 ```
 
-We have a make target for retrieving an access token.
-You still need the valid client id and client secret as described above.
+##### Library tokens
+
+Example for retrieving a library access token from OpenPlatform using password grant:
 
 ```bash
-make token
+curl --user "[client-id]:[client-secret]" -X POST https://auth.dbc.dk/oauth/token -d "grant_type=password&username=@DK-[library-agency-id]&password=@DK-[library-agency-id]" 
+```
+
+This will return a data structure containing the access token:
+
+```json
+{
+    "access_token":"abcd1234",
+    "token_type":"Bearer",
+    "expires_in":2591999
+}
 ```
 
 ### Installation
@@ -471,8 +495,9 @@ A simple naive example of the required artifacts needed looks like this:
     <!-- After the necesssary scripts you can start loading applications -->
     <script src="/dist/add-to-checklist.js"></script>
     <script>
-      // For making successfull requests to the different services we need a valid token.
-     window.ddbReact.setToken("XXXXXXXXXXXXXXXXXXXXXX");
+      // For making successfull requests to the different services we need one or more valid tokens.
+     window.ddbReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
+     window.ddbReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it

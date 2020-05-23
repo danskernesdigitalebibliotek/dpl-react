@@ -19,7 +19,7 @@ import { getToken } from "./token";
  */
 class FollowSearches {
   constructor({ baseUrl }) {
-    this.token = getToken();
+    this.token = getToken("user");
     this.baseUrl = baseUrl;
   }
 

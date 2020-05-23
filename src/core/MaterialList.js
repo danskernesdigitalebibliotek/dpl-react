@@ -8,7 +8,7 @@ import { getToken } from "./token";
  */
 class MaterialList {
   constructor({ baseUrl }) {
-    this.token = getToken();
+    this.token = getToken("user");
     this.baseUrl = baseUrl;
   }
 
