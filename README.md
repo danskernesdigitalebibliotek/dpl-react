@@ -478,14 +478,6 @@ A simple naive example of the required artifacts needed looks like this:
     <!-- Data attributes will be camelCased on the react side aka. props.errorText and props.text -->
     <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon" data-error-text="Minor mistake"></div>
     <div data-ddb-app='a-none-existing-app'></div>
-
-    <script>
-      // This key is not used for actual validation but merely as a way to adjust the interface accordingly.
-      // Additional keys will be injected into the "ddbReact" container object at a later stage in mount.js.
-      window.ddbReact = {
-        userAuthenticated: true // But only "true" if the user is actually authenticated.
-      }
-    </script>
     
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>

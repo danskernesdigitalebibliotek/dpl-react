@@ -25,6 +25,16 @@ export function setToken(type, value) {
 }
 
 /**
+ * Returns whether a token has been defined.
+ *
+ * @param {TokenType} type
+ * @returns {boolean}
+ */
+export function hasToken(type) {
+  return type in tokens;
+}
+
+/**
  * Returns a token.
  *
  * @param {TokenType} type
