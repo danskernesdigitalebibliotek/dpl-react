@@ -1,6 +1,6 @@
 const path = require("path");
-const fs = require("fs").promises
-const DefinePlugin = require('webpack').DefinePlugin;
+const fs = require("fs").promises;
+const DefinePlugin = require("webpack").DefinePlugin;
 const chalk = require("chalk");
 
 const customWebpack = require("../webpack.config.js");
@@ -25,7 +25,7 @@ module.exports = async ({ config }) => {
     }
   });
 
-  const custom = customWebpack(undefined, { mode: 'development' })
+  const custom = customWebpack(undefined, { mode: "development" });
   const rules = [
     ...custom.module.rules,
     // We need to make use of css modules in our stories.
@@ -46,6 +46,6 @@ module.exports = async ({ config }) => {
         : null,
       ENV: JSON.stringify(process.env.NODE_ENV)
     })
-  ]
+  ];
   return { ...config, plugins, module: { ...config.module, rules } };
 };
