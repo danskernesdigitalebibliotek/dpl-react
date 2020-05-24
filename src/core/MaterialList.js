@@ -8,7 +8,6 @@ import { getToken } from "./token";
  */
 class MaterialList {
   constructor({ baseUrl }) {
-    this.token = getToken();
     this.baseUrl = baseUrl;
   }
 
@@ -23,7 +22,7 @@ class MaterialList {
     const raw = await fetch(`${this.baseUrl}/list/${listId}`, {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${getToken("user")}`
       }
     });
     if (raw.status !== 200) {
@@ -51,7 +50,7 @@ class MaterialList {
       {
         method: "HEAD",
         headers: {
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );
@@ -78,7 +77,7 @@ class MaterialList {
       {
         method: "PUT",
         headers: {
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );
@@ -105,7 +104,7 @@ class MaterialList {
       {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );

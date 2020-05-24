@@ -108,9 +108,10 @@ class OpenPlatform {
 
     const formattedPids = formatUrlArray(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
+    const token = getToken("library");
 
     const works = await this.request(
-      `work?access_token=${getToken()}&fields=${formattedFields}&pids=${formattedPids}`
+      `work?access_token=${token}&fields=${formattedFields}&pids=${formattedPids}`
     );
 
     return works.filter(result => !isEmpty(result));
@@ -131,9 +132,10 @@ class OpenPlatform {
   }) {
     const formattedPids = formatUrlArray(pids);
     const formattedFields = fields.map(encodeURIComponent).join(",");
+    const token = getToken("library");
 
     return this.request(
-      `availability?access_token=${getToken()}&fields=${formattedFields}&pids=${formattedPids}`
+      `availability?access_token=${token}&fields=${formattedFields}&pids=${formattedPids}`
     );
   }
 
@@ -180,7 +182,7 @@ class OpenPlatform {
     // that might end up in logs somewhere). But POST is still the
     // most semantically correct method to use.
     const parameters = [
-      `access_token=${getToken()}`,
+      `access_token=${getToken("user")}`,
       "orderType=normal",
       `expires=${expires}`,
       `pickUpBranch="${pickupBranch}"`
@@ -254,7 +256,7 @@ class OpenPlatform {
    * @returns {User}
    */
   async getUser() {
-    return this.request(`user?access_token=${getToken()}`);
+    return this.request(`user?access_token=${getToken("user")}`);
   }
 
   /**
@@ -266,7 +268,7 @@ class OpenPlatform {
    * @returns {Library[]}
    */
   async getLibraries({ agencyIds = [], branchIds = [] }) {
-    const parameters = [`access_token=${getToken()}`];
+    const parameters = [`access_token=${getToken("library")}`];
 
     if (agencyIds.length > 0) {
       parameters.push(`agencyIds=${formatUrlArray(agencyIds)}`);
@@ -315,7 +317,7 @@ class OpenPlatform {
     if (sort) parameters.push(`sort=${sort}`);
     if (fields) parameters.push(`fields=${formatUrlArray(fields)}`);
     return this.request(
-      `search?access_token=${getToken()}&q=${encodeURIComponent(
+      `search?access_token=${getToken("library")}&q=${encodeURIComponent(
         query
       )}&offset=${offset}&${parameters.join("&")}`
     );

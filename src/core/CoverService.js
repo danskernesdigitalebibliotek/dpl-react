@@ -14,7 +14,6 @@ class CoverService {
    * @memberof CoverService
    */
   constructor({ baseUrl }) {
-    this.token = getToken();
     this.baseUrl = baseUrl;
   }
 
@@ -52,7 +51,7 @@ class CoverService {
     const raw = await fetch(url, {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${getToken("library")}`
       }
     });
     if (raw.status !== 200) {

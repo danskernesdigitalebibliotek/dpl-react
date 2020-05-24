@@ -19,7 +19,6 @@ import { getToken } from "./token";
  */
 class FollowSearches {
   constructor({ baseUrl }) {
-    this.token = getToken();
     this.baseUrl = baseUrl;
   }
 
@@ -49,7 +48,7 @@ class FollowSearches {
         method: "GET",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );
@@ -81,7 +80,7 @@ class FollowSearches {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${getToken("user")}`
       },
       body: JSON.stringify({ title, query })
     });
@@ -116,7 +115,7 @@ class FollowSearches {
         method: "GET",
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );
@@ -147,7 +146,7 @@ class FollowSearches {
       {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${getToken("user")}`
         }
       }
     );

@@ -3,16 +3,18 @@
  *
  * @class User
  */
+import { hasToken } from "./token";
+
 class User {
   /**
-   * Returns wheter a user is authenticated of not.
+   * Returns whether a user is authenticated of not.
    *
    * @static
    * @returns {boolean}
    * @memberof User
    */
   static isAuthenticated() {
-    return window.ddbReact?.userAuthenticated;
+    return hasToken("user");
   }
 }
 

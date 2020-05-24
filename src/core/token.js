@@ -1,33 +1,48 @@
-let currentToken;
+const tokens = {};
+
+/**
+ * @typedef {"user" | "library"} TokenType
+ *
+ * - library: The token represents the current library organisation. The library
+ *   may also be referred to as the agency.
+ * - user: The token represents the current library user. The user may also
+ *   be referred to as the patron.
+ *   A user token will provide at least the same access as a library token for
+ *   the library of the user but since is provides access to personal
+ *   information about the current user it must only be used for services which
+ *   have an actual need for such information. If not then use the library
+ *   token.
+ */
 
 /**
  * We want to set a token we can use for the different services.
  *
- * @param {string} token
- * @export
+ * @param {TokenType} type
+ * @param {string} value
  */
-export function setToken(token) {
-  currentToken = token;
+export function setToken(type, value) {
+  tokens[type] = value;
 }
 
 /**
- * Initialize the getToken closure.
- * Will return a memorized getToken function that in turn
- * returns a token.
+ * Returns whether a token has been defined.
  *
- * @returns {function}
+ * @param {TokenType} type
+ * @returns {boolean}
  */
-function initToken() {
-  return function getToken() {
-    return currentToken;
-  };
+export function hasToken(type) {
+  return type in tokens;
 }
 
 /**
- * Returns the token.
+ * Returns a token.
+ *
+ * @param {TokenType} type
  *
  * @returns {string} token
  */
-export const getToken = initToken();
+export function getToken(type) {
+  return tokens[type];
+}
 
 export default getToken;
