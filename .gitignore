@@ -6,6 +6,6 @@ cypress/screenshots/apps
 coverage
 .nyc_output
 index.html
-.tokens
+.tokens.json
 .vscode
 yarn-error.log

@@ -9,18 +9,21 @@ const customWebpack = require("../webpack.config.js");
 module.exports = async ({ config }) => {
   let tokens = {};
   try {
-    tokens = await fs.readFile(path.resolve(__dirname, "../.tokens"), "utf8");
+    tokens = await fs.readFile(
+      path.resolve(__dirname, "../.tokens.json"),
+      "utf8"
+    );
     tokens = JSON.parse(tokens);
   } catch (err) {
     console.warn(
-      chalk.yellow("warn") + " => Could not find the .tokens file in root"
+      chalk.yellow("warn") + " => Could not find a .tokens.json file in root"
     );
   }
   ["user", "library"].forEach(type => {
     if (!tokens.hasOwnProperty(type)) {
       console.warn(
         chalk.yellow("warn") +
-          ` => No ${type} entry in .tokens file. Requests to external services might not work!`
+          ` => No ${type} entry in .tokens.json file. Requests to external services might not work!`
       );
     }
   });

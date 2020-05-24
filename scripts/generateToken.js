@@ -82,14 +82,14 @@ inquirer
   })
   .then(function writeTokenFile() {
     return fs.writeFile(
-      path.resolve(__dirname, "../.tokens"),
+      path.resolve(__dirname, "../.tokens.json"),
       JSON.stringify(tokens),
       "utf8"
     );
   })
   .then(function onEnd() {
     console.info(
-      chalk.blue("!") + ".tokens file added to the root of the project."
+      chalk.blue("!") + ".tokens.json file added to the root of the project."
     );
   })
   .catch(function onError(error) {
