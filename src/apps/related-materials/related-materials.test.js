@@ -91,122 +91,122 @@ function getCover(amount = 10) {
     {
       id: "870970-basis:47664705",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580475253/bogportalen.dk/9788772143804.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:46365674",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1575217601/bogportalen.dk/9788762731103.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47714168",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580477087/bogportalen.dk/9788772053264.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47248655",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1575214321/bogportalen.dk/9788741508146.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47593638",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580478413/bogportalen.dk/9788702264524.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47679907",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580475188/bogportalen.dk/9788740661279.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47450527",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1575214074/bogportalen.dk/9788793728233.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47811406",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580475133/bogportalen.dk/9788741510415.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47661927",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580476960/bogportalen.dk/9788772187471.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     },
     {
       id: "870970-basis:47806119",
       type: "pid",
-      imageUrls: [
-        {
+      imageUrls: {
+        large: {
           url:
             "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1580475217/bogportalen.dk/9788758836713.jpg",
           format: "jpeg",
           size: "large"
         }
-      ]
+      }
     }
   ].slice(0, amount);
 }
@@ -255,7 +255,7 @@ describe("Related Materials", () => {
     });
     cy.route({
       method: "GET",
-      url: "https://cover.dandigbib.org/api/cover/pid*",
+      url: "https://cover.dandigbib.org/api/v2/covers*",
       status: 200,
       response: getCover(10)
     });
@@ -281,7 +281,7 @@ describe("Related Materials", () => {
     // Only returns 5 covers
     cy.route({
       method: "GET",
-      url: "https://cover.dandigbib.org/api/cover/pid*",
+      url: "https://cover.dandigbib.org/api/v2/covers*",
       status: 200,
       response: getCover(5)
     });
@@ -307,7 +307,7 @@ describe("Related Materials", () => {
 
     cy.route({
       method: "GET",
-      url: "https://cover.dandigbib.org/api/cover/pid*",
+      url: "https://cover.dandigbib.org/api/v2/covers*",
       status: 400,
       response: {
         type: "https://tools.ietf.org/html/rfc2616#section-10",

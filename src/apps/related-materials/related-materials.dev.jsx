@@ -31,7 +31,7 @@ export function Entry() {
       )}
       coverServiceUrl={text(
         "Cover Service URL",
-        "https://cover.dandigbib.org/api"
+        "https://cover.dandigbib.org/api/v2"
       )}
       titleText={text("Title text", "Forslag")}
       searchText={text("Search text", "Søg")}

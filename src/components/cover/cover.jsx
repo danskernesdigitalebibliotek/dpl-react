@@ -25,21 +25,17 @@ export const COVER_INITIAL = "initial";
  * @export
  * @param {object} options
  * @param {string} options.id
- * @param {string} options.format
  * @param {('default'|'small'|'medium'|'large'|'original')}  options.size
  * @param {string} options.idType
- * @param {boolean} options.generic
  * @param {string} options.coverServiceUrl
  *
  * @returns Cover
  */
 export function useCover({
   id,
-  format = "jpeg",
   size = "default",
   idType = "pid",
-  generic = false,
-  coverServiceUrl = "https://cover.dandigbib.org/api"
+  coverServiceUrl = "https://cover.dandigbib.org/api/v2"
 }) {
   const [status, setStatus] = useState({ status: COVER_INITIAL });
   useEffect(() => {
@@ -47,13 +43,13 @@ export function useCover({
       baseUrl: coverServiceUrl
     });
     coverClient
-      .getCover({ id, size: [size], format: [format], idType, generic })
-      .then(cover => {
-        const url = cover?.imageUrls?.[0]?.url;
+      .getCover({ id, size: [size], idType })
+      .then(covers => {
+        const url = covers?.[0]?.imageUrls?.[size]?.url;
         setStatus({ status: url ? COVER_RETRIEVED : COVER_EMPTY, url });
       })
       .catch(() => setStatus({ status: COVER_EMPTY }));
-  }, [id, format, size, idType, generic, coverServiceUrl]);
+  }, [id, size, idType, coverServiceUrl]);
   return status || { status: COVER_EMPTY };
 }
 

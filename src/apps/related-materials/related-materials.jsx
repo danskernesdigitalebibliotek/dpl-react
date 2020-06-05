@@ -22,7 +22,7 @@ function RelatedMaterial({
   materialUrl
 }) {
   const [imageStatus, setImageStatus] = useState("initial");
-  const coverUrl = cover.imageUrls.find(url => url.size === "large").url;
+  const coverUrl = cover.imageUrls.large.url;
   const formattedCreators = creators.join(", ");
   const alt = `${type} - ${formattedCreators}: ${title} (${year})`;
   return (
@@ -53,8 +53,9 @@ RelatedMaterial.propTypes = {
   year: PropTypes.string.isRequired,
   cover: PropTypes.shape({
     id: PropTypes.string,
-    imageUrls: PropTypes.arrayOf(
-      PropTypes.shape({
+    imageUrls: PropTypes.shape({
+      // We currently only use the large size for displaying related materials.
+      large: PropTypes.shape({
         format: PropTypes.oneOf(["png", "jpeg"]),
         size: PropTypes.oneOf([
           "original",
@@ -64,7 +65,7 @@ RelatedMaterial.propTypes = {
           "large"
         ])
       })
-    ),
+    }),
     type: PropTypes.oneOf(["pid"])
   }).isRequired,
   materialUrl: urlPropType.isRequired

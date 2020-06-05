@@ -32,7 +32,7 @@ export function Base() {
       )}
       coverServiceUrl={text(
         "Cover Service URL",
-        "https://cover.dandigbib.org/api"
+        "https://cover.dandigbib.org/api/v2"
       )}
     />
   );
