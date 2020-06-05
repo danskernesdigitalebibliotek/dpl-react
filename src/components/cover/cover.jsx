@@ -86,7 +86,7 @@ function Cover({ status, src, alt, coverClassName, className }) {
 
 Cover.defaultProps = {
   status: "initial",
-  src: "",
+  src: null,
   coverClassName: "",
   className: ""
 };
