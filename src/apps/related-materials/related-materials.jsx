@@ -56,6 +56,7 @@ RelatedMaterial.propTypes = {
     imageUrls: PropTypes.shape({
       // We currently only use the large size for displaying related materials.
       large: PropTypes.shape({
+        url: urlPropType,
         format: PropTypes.oneOf(["png", "jpeg"]),
         size: PropTypes.oneOf([
           "original",
