@@ -2,13 +2,14 @@ import fetch from "unfetch";
 import { getToken } from "./token";
 
 /**
- * https://cover.dandigbib.org/api/
+ * https://cover.dandigbib.org/api/v2
  *
  * @class CoverService
  */
 class CoverService {
   /**
-   *Creates an instance of CoverService.
+   * Creates an instance of CoverService.
+   *
    * @param {object} options
    * @param {string} options.baseUrl
    * @memberof CoverService
@@ -18,36 +19,41 @@ class CoverService {
   }
 
   /**
+   * @typedef {Object} ImageUrl
+   * @property {string} url - The url for the image
+   * @property {string} format - The format of the image
+   * @property {string} size - The size of the image
+   */
+
+  /**
+   * @typedef {Object} Cover
+   * @property {string} id - The material id
+   * @property {"pid"|"isbn"} type - The material id type
+   * @property {Object<string, ImageUrl>} map from size strings to image urls
+   */
+
+  /**
    * Get a cover for a a material provided it's id.
    *
    * @param {object} options
    * @param {string | string[]} options.id the actual id(s) of the material.
    * @param {string} options.idType a material can have a multitude of id's of different types.
-   * @param {string} options.format which format to return the image in.
-   * @param {string} options.size the relative size of the image to be returned.
-   * @param {boolean} options.generic if placeholders should be returned for the image if no image exists.
+   * @param {string[]} options.size the relative sizes of the images to be returned.
    *
-   * @returns {string} requested cover as an url string
+   * @returns {Cover[]} requested covers
    * @memberof CoverService
    */
-  async getCover({
-    id,
-    idType = "pid",
-    format = ["jpeg"],
-    size = ["default"],
-    generic = true
-  }) {
+  async getCover({ id, idType = "pid", size = ["default"] }) {
     if (!id) {
       throw Error("id must be specified");
     }
-    const multipleIds = Array.isArray(id);
-    const base = `${this.baseUrl}/cover/${idType}`;
-    const withId = multipleIds
-      ? `${base}?id=${id.map(encodeURIComponent).join(",")}&`
-      : `${base}/${encodeURIComponent(id)}?`;
-    const formattedFormat = format.join(",");
+    const ids = Array.isArray(id) ? id : [id];
+    const base = `${this.baseUrl}/covers`;
+    const withId = `${base}?type=${idType}&identifiers=${ids
+      .map(encodeURIComponent)
+      .join(",")}`;
     const formattedSize = size.join(",");
-    const url = `${withId}format=${formattedFormat},&size=${formattedSize},&generic=${generic.toString()}`;
+    const url = `${withId}&sizes=${formattedSize}`;
     const raw = await fetch(url, {
       headers: {
         Accept: "application/json",
@@ -57,8 +63,7 @@ class CoverService {
     if (raw.status !== 200) {
       throw Error(raw.status);
     }
-    const response = await raw.json();
-    return response;
+    return raw.json();
   }
 }
 
