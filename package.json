@@ -89,7 +89,8 @@
     "stylelint-webpack-plugin": "^1.0.3",
     "typescript": "^3.7.3",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-version-file-plugin": "^0.4.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.4",
