@@ -30,7 +30,10 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Build artifacts
-        run: yarn build
+        run: |
+          VERSION_FILE_NAME=$GITHUB_REPOSITORY \
+          VERSION_FILE_VERSION=$(git describe --tags --exclude=latest) \
+          yarn build
       - name: Zip project
         run: |
           zip -r -j dist.zip dist/

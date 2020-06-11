@@ -108,8 +108,30 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
-      - name: Upload coverage to Codecov  
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
+
+  build:
+    name: Build artifacts
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Required to fetch all commits and tags
+          fetch-depth: 0
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build artifacts
+        run: |
+          VERSION_FILE_NAME=$GITHUB_REPOSITORY \
+          VERSION_FILE_VERSION=$(git describe --tags --exclude=latest) \
+          yarn build
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
