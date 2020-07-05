@@ -20,7 +20,8 @@ class CoverService {
 
   /**
    * @typedef {Object} ImageUrl
-   * @property {string} url - The url for the image
+   * @property {?string} url - The url for the image.
+   *   Null if the requested size is larger than the original.
    * @property {string} format - The format of the image
    * @property {string} size - The size of the image
    */
