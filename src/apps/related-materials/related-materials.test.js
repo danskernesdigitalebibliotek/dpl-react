@@ -290,6 +290,40 @@ describe("Related Materials", () => {
     cy.get(".ddb-related-material__skeleton").should("have.length", 5);
   });
 
+  it("Should not show covers without image urls", () => {
+    cy.server();
+    cy.route({
+      method: "GET",
+      url: "https://openplatform.dbc.dk/v3/search*",
+
+      status: 200,
+      response: {
+        statusCode: 200,
+        data: getWork(12),
+        hitCount: 2826,
+        more: true
+      }
+    });
+
+    // Make one cover behave as if no image existed for the large size with
+    // is used by the app.
+    function withNullCover(covers) {
+      const nullCover = covers.shift();
+      nullCover.imageUrls.large.url = null;
+      return [nullCover, ...covers];
+    }
+
+    cy.route({
+      method: "GET",
+      url: "https://cover.dandigbib.org/api/v2/covers*",
+      status: 200,
+      response: withNullCover(getCover(11))
+    });
+    cy.visit("/iframe.html?id=apps-related-materials--entry");
+    cy.get("a.ddb-related-material").should("have.length", 10);
+    cy.get(".ddb-related-material img:not([src])").should("have.length", 0);
+  });
+
   it("Should show a blank screen on failure", () => {
     cy.server();
     cy.route({

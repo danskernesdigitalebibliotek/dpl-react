@@ -41,10 +41,14 @@ async function getRelatedMaterials({
     sort
   });
   const materialIds = materials.map(material => material.pid[0]);
-  const covers = await coverClient.getCover({
+  // This fits our desired cover size the best.
+  const coverSize = "large";
+  const coverData = await coverClient.getCover({
     id: materialIds,
-    size: ["large"] // This fits our desired cover size the best.
+    size: [coverSize]
   });
+  // Remove covers which do not have the requested cover size.
+  const covers = coverData.filter(cover => cover.imageUrls[coverSize]?.url);
 
   function mergeCoverAndMaterials(cover) {
     function locateCoverMaterial(material) {
