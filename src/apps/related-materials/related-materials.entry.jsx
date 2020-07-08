@@ -264,7 +264,7 @@ RelatedMaterialsEntry.propTypes = {
 
 RelatedMaterialsEntry.defaultProps = {
   amount: 10,
-  maxTries: 20,
+  maxTries: 5,
   titleText: "Forslag med samme emner",
   searchText: "Søg på samme emner",
   sort: "date_descending"
