@@ -83,7 +83,7 @@ function getWork(amount = 12) {
       typeBibDKType: ["Lydbog (net)"],
       date: ["2020"]
     }
-  ].slice(0, amount - 1);
+  ].slice(0, amount);
 }
 
 function getCover(amount = 10) {
@@ -333,7 +333,7 @@ describe("Related Materials", () => {
       status: 200,
       response: {
         statusCode: 200,
-        data: [],
+        data: getWork(1),
         hitCount: 2826,
         more: true
       }

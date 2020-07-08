@@ -49,6 +49,12 @@ class CoverService {
       throw Error("id must be specified");
     }
     const ids = Array.isArray(id) ? id : [id];
+    if (ids.length === 0) {
+      // Only try to retrieve covers if provided with actual ids. The Cover
+      // service fails if requested without any ids.
+      return [];
+    }
+
     const base = `${this.baseUrl}/covers`;
     const withId = `${base}?type=${idType}&identifiers=${ids
       .map(encodeURIComponent)
