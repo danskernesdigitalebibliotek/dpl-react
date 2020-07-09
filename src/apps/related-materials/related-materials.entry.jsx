@@ -50,16 +50,17 @@ async function getRelatedMaterials({
   // Remove covers which do not have the requested cover size.
   const covers = coverData.filter(cover => cover.imageUrls[coverSize]?.url);
 
-  function mergeCoverAndMaterials(cover) {
-    function locateCoverMaterial(material) {
+  function mergeMaterialsAndCovers(material) {
+    function locateMaterialCover(cover) {
       return material.pid[0] === cover.id;
     }
-    const material = materials.find(locateCoverMaterial);
+    const cover = covers.find(locateMaterialCover);
     return { ...Material.format(material), cover };
   }
 
-  const coveredMaterials = covers.map(mergeCoverAndMaterials);
-  return coveredMaterials;
+  const coveredMaterials = materials.map(mergeMaterialsAndCovers);
+  // Remove materials without covers.
+  return coveredMaterials.filter(material => material.cover);
 }
 
 /**
