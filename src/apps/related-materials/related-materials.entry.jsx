@@ -108,7 +108,7 @@ function useGetRelatedMaterials({
       const calculatedLimit = Math.ceil(
         missing * (relatedMaterials.tries + 1) * aggressiveOverhead
       );
-      const limit = Math.max(calculatedLimit, maxLimit);
+      const limit = Math.min(calculatedLimit, maxLimit);
       getRelatedMaterials({
         query,
         limit,
@@ -264,7 +264,7 @@ RelatedMaterialsEntry.propTypes = {
 
 RelatedMaterialsEntry.defaultProps = {
   amount: 10,
-  maxTries: 20,
+  maxTries: 5,
   titleText: "Forslag med samme emner",
   searchText: "Søg på samme emner",
   sort: "date_descending"
