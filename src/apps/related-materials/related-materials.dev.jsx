@@ -11,15 +11,21 @@ export default {
 export function Entry() {
   return (
     <RelatedMaterialsEntry
-      subjects={text("Subjects to include in search", "magi troldmænd")}
-      categories={text("Categories to include in search", "børnematerialer")}
+      subjects={text(
+        "Subjects to include in search (separate by ,)",
+        "magi,troldmænd"
+      )}
+      categories={text(
+        "Categories to include in search (separate by ,)",
+        "børnematerialer"
+      )}
       sources={text(
-        "Sources to include in search",
-        "bibliotekskatalog 'ereolen' 'ereolen global' 'comics plus' 'ebook central' 'rbdigital magazines'"
+        "Sources to include in search (separate by ,)",
+        "bibliotekskatalog,ereolen,ereolen global,comics plus,ebook central,rbdigital magazines"
       )}
       excludeTitle={text(
         "Title not to include",
-        "'harry potter og fønixordenen'"
+        "harry potter og fønixordenen"
       )}
       searchUrl={text(
         "Search URL",
