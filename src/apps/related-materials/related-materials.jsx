@@ -80,10 +80,13 @@ function RelatedMaterials({
   searchText,
   titleText
 }) {
-  if (status === "failed") {
-    // We fail discretly since there is no use in showing links or anything since the fail
-    // would mean a lack of works/materials.
+  if (status === "failed" || status === "empty") {
+    // Return discretly.
+    // When a failure occurs there is no use in showing links or anything since
+    // the fail would mean a lack of works/materials.
     // An actual unhandled failure would still result in our error boundary.
+    // At the moment we also do not render anything if there are no materials
+    // to show.
     return null;
   }
   return (

@@ -138,9 +138,11 @@ function useGetRelatedMaterials({
           const finishedMaterials =
             related?.filter(material => material.data)?.length || 0;
           const tries = relatedMaterials.tries + 1;
+          // If we have no materials to show then finish using the empty state.
+          const endStatus = finishedMaterials > 0 ? "finished" : "empty";
           const status =
             finishedMaterials >= amount || tries >= maxTries
-              ? "finished"
+              ? endStatus
               : "processing";
           setRelatedMaterials({
             status,
