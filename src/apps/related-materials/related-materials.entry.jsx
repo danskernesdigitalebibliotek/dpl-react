@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
+import replace from "lodash/replace";
 
 import RelatedMaterials from "./related-materials";
 import OpenPlatform from "../../core/OpenPlatform";
@@ -161,10 +162,52 @@ function useGetRelatedMaterials({
   return relatedMaterials;
 }
 
+/**
+ * Convert a string with values separated by , to an array of strings.
+ *
+ * This is typically used for props coming from a data attribute.
+ *
+ * Use \, to escape commas in values.
+ *
+ * Example: "wizards,rowling\\, j.k." => ["wizards", "rowling, j.k."]
+ *
+ * @param {string} string
+ * @returns string[]
+ */
+function stringToArray(string) {
+  // Detect \, using negative lookbehind.
+  const unescapedParts = string.split(/(?<!\\),/);
+  const escapedParts = unescapedParts.map(part => replace(part, "\\,", ","));
+  // Remove leading and trailing spaces and empty values.
+  const trimmedParts = escapedParts.map(part => part.trim());
+  return trimmedParts.filter(part => part);
+}
+
+/**
+ * Build a search clause.
+ *
+ * Example: phrase.subject=("magic" or "wizards")
+ *
+ * @param {string} The name of the search index to query.
+ * @param {string[]} The values to query for.
+ * @param {object} options
+ * @param {"and|or"?} options.operator The operator to use between multiple values.
+ * @param {bool?} options.negate Whether to negate the values or not.
+ * @returns string
+ */
+function searchClause(index, values, options = {}) {
+  const allOptions = { operator: "or", negate: false, ...options };
+  const valuesString = values
+    .map(subject => `"${subject}"`)
+    .join(` ${allOptions.operator} `);
+  const clause = `${index}=(${valuesString})`;
+  return (allOptions.negate ? "not " : "") + clause;
+}
+
 function RelatedMaterialsEntry({
-  subjects,
-  categories,
-  sources,
+  subjects: subjectString,
+  categories: categoriesString,
+  sources: sourcesString,
   excludeTitle: rawExcludeTitle,
   sort,
   searchUrl: rawSearchUrl,
@@ -180,18 +223,23 @@ function RelatedMaterialsEntry({
   // We may be passed empty strings which will lead to an invalid query.
   // Compile query clauses using only arguments with actual values.
   const includes = [];
-  if (subjects) {
-    includes.push(`term.subject any "${subjects}"`);
+  if (subjectString) {
+    const subjects = stringToArray(subjectString);
+    includes.push(searchClause("phrase.subject", subjects));
   }
-  if (categories) {
-    includes.push(`term.category any "${categories}"`);
+  if (categoriesString) {
+    const categories = stringToArray(categoriesString);
+    includes.push(searchClause("term.category", categories));
   }
-  if (sources) {
-    includes.push(`term.acSource any "${sources}"`);
+  if (sourcesString) {
+    const sources = stringToArray(sourcesString);
+    includes.push(searchClause("term.acSource", sources));
   }
   const excludes = [];
   if (rawExcludeTitle) {
-    excludes.push(`not phrase.title="${rawExcludeTitle}"`);
+    excludes.push(
+      searchClause("phrase.title", [rawExcludeTitle], { negate: true })
+    );
   }
 
   // Use join to get spacing between clauses right. Includes must be separated
