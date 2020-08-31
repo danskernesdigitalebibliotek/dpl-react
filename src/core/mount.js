@@ -1,9 +1,10 @@
 import { createElement } from "react";
 import { render } from "react-dom";
-
 import { withErrorBoundary } from "react-error-boundary";
+
 import ErrorBoundary from "../components/alert/alert";
 import { setToken } from "./token";
+import Store from "../components/store";
 
 /**
  * We look for containers and corresponding applications.
@@ -22,9 +23,13 @@ function mount(context) {
     const isValidMount = app && !container.innerHTML;
     if (isValidMount) {
       render(
-        createElement(withErrorBoundary(app, ErrorBoundary), {
-          ...container.dataset
-        }),
+        createElement(
+          Store,
+          {},
+          createElement(withErrorBoundary(app, ErrorBoundary), {
+            ...container.dataset
+          })
+        ),
         container
       );
     }

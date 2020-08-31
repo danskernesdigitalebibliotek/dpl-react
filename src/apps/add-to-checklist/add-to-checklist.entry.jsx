@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
+import {
+  addToListIntent,
+  addToListAction,
+  resetStatus
+} from "./add-to-checklist.slice";
+import User from "../../core/user";
+import replacePlaceholders from "../../core/replacePlaceholders";
+import { persistor } from "../../core/store";
 
 import AddToChecklist from "./add-to-checklist";
-import MaterialList from "../../core/MaterialList";
 
 function AddToChecklistEntry({
   materialListUrl,
@@ -13,22 +21,15 @@ function AddToChecklistEntry({
   id,
   loginUrl
 }) {
-  const [status, setStatus] = useState("ready");
+  const status = useSelector(state => state.addToChecklist.status[id]);
+  const dispatch = useDispatch();
+  const loggedIn = User.isAuthenticated();
 
-  function setRestoreStatus() {
-    setStatus("ready");
-  }
-
-  function setListErrorStatus() {
-    setStatus("failed");
-    setTimeout(setRestoreStatus, 4000);
-  }
-
-  function addToList() {
-    setStatus("processing");
-
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client.addListMaterial({ materialId: id }).catch(setListErrorStatus);
+  // If we're pending and logged in, then trigger the actual request.
+  if (status === "pending" && loggedIn) {
+    dispatch(addToListAction({ materialListUrl, materialId: id })).then(() =>
+      dispatch(resetStatus({ materialId: id }))
+    );
   }
 
   return (
@@ -37,9 +38,14 @@ function AddToChecklistEntry({
       errorText={errorText}
       successText={successText}
       status={status}
-      onClick={addToList}
-      loginUrl={loginUrl}
-      materialId={id}
+      onClick={() => {
+        // Go into "pending" state.
+        dispatch(addToListIntent({ materialId: id })).then(() => persistor.flush());
+        if (!loggedIn) {
+          // User is not logged in.
+          User.authenticate();
+        }
+      }}
     />
   );
 }

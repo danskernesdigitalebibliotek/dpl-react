@@ -97,6 +97,7 @@
     "@reach/alert": "^0.6.1",
     "@reach/auto-id": "^0.6.1",
     "@reach/dialog": "^0.5.4",
+    "@reduxjs/toolkit": "^1.4.0",
     "@storybook/addon-docs": "^6.0.21",
     "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
@@ -104,7 +105,10 @@
     "react-dom": "^16.11.0",
     "react-error-boundary": "^1.2.5",
     "react-hook-form": "^3.28.13",
+    "react-redux": "^7.2.1",
     "react-window": "^1.8.5",
+    "redux": "^4.0.0",
+    "redux-persist": "^6.0.0",
     "unfetch": "^4.1.0",
     "url-prop-type": "^1.2.3"
   }
