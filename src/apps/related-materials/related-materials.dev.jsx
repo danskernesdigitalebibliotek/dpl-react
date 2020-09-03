@@ -37,5 +37,6 @@ Entry.args = {
   titleText: "Forslag",
   searchText: "Søg",
   amount: 10,
-  maxTries: 5
+  maxTries: 5,
+  agencyId: "736000"
 };
