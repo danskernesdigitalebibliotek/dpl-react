@@ -92,6 +92,17 @@ We could persist the intentions in the URL that is delivered back to the client
 after a page reload. This would still imply some of the architectural decisions described in Decision in regards to having an "intent" state,
 but some of the different status flags etc. would not be needed since state is virtually shared across page loads in the url.
 However this simpler solution cannot handle more complex situations than what can be described in the URL feasibly.
+
+### useContext
+React offers [`useContext()`](https://reactjs.org/docs/hooks-reference.html#usecontext) for state management as an
+alternative to Redux.
+We prefer Redux as it provides a more complete environment when working with state management. There is already a
+community of established practices and libraries which integrate with Redux. One example of this is our need to persist
+actions. When using Redux we can handle this with `redux-persist`. With `useContext()` we would have to roll our own
+implementation.
+Some of the disadvantages of using Redux e.g. the amount of required boilerplate code are addressed by using
+`@reduxjs/toolkit`.
+
 ## Status
 
 Proposed
