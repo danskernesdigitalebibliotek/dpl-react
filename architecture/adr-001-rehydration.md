@@ -114,7 +114,7 @@ Some of the disadvantages of using Redux e.g. the amount of required boilerplate
 
 ## Status
 
-Proposed
+Accepted
 
 ## Consequences
 
