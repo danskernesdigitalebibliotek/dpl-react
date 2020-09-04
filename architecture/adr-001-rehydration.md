@@ -14,11 +14,6 @@ They then get redirected to https://login.bib.dk/login.
 After a successful login they get redirected back to the material page but the material have not been
 added to their checklist.
 
-Alternative solutions could be to persist the intentions in the URL that is delivered back to the client
-after a page reload. This would still imply some of the architectural decisions described in Decision in regards to having an "intent" state,
-but some of the different status flags etc. would not be needed since state is virtually shared across page loads in the url.
-However this simpler solution cannot handle more complex situations than what can be described in the URL feasibly.
-
 ## Decision
 
 After an intent has been stated we want the intention to be executed even though a page reload comes in the way.
@@ -90,6 +85,13 @@ There are some [implementation details](https://redux-toolkit.js.org/usage/usage
 
 Redux is a sufficiently advanced framework to support other uses of application state and even co-locating shared state between applications.
 
+## Alternatives considered
+
+### Persistence in URL
+We could persist the intentions in the URL that is delivered back to the client
+after a page reload. This would still imply some of the architectural decisions described in Decision in regards to having an "intent" state,
+but some of the different status flags etc. would not be needed since state is virtually shared across page loads in the url.
+However this simpler solution cannot handle more complex situations than what can be described in the URL feasibly.
 ## Status
 
 Proposed
