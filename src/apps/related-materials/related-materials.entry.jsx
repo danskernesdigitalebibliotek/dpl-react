@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import replace from "lodash/replace";
@@ -85,7 +85,7 @@ function useGetRelatedMaterials({
   sort,
   coverClient
 } = {}) {
-  const [relatedMaterials, setRelatedMaterials] = useState({
+  const initialState = useRef({
     status: "ready",
     tries: 0,
     offset: 0,
@@ -94,6 +94,14 @@ function useGetRelatedMaterials({
       data: undefined
     }))
   });
+
+  const [relatedMaterials, setRelatedMaterials] = useState({});
+
+  // Whenever the query changes we want to re-initialize the state and re-fetch new materials.
+  useEffect(() => {
+    setRelatedMaterials(initialState.current);
+  }, [initialState, query]);
+
   // This is the amount additional to the desired we want to try and fetch.
   // This is to ensure a better first hit in most instances.
   // The current overhead is based upon our own sampling.
@@ -160,7 +168,16 @@ function useGetRelatedMaterials({
           });
         });
     }
-  }, [amount, maxTries, relatedMaterials, query, fields, sort, coverClient]);
+  }, [
+    amount,
+    coverClient,
+    fields,
+    initialState,
+    maxTries,
+    query,
+    relatedMaterials,
+    sort
+  ]);
   return relatedMaterials;
 }
 
