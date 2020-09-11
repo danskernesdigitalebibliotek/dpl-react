@@ -1,10 +1,8 @@
 import React from "react";
-import { withKnobs } from "@storybook/addon-knobs";
 import ListItem from "./list-item";
 
 export default {
-  title: "Components/List Item",
-  decorators: [withKnobs]
+  title: "Components/List Item"
 };
 
 export function Base() {

@@ -1,27 +1,19 @@
 import React from "react";
-import { withKnobs, text } from "@storybook/addon-knobs";
 import AddToChecklist from "./add-to-checklist.entry";
 
 export default {
-  title: "Apps/Add to Checklist",
-  decorators: [withKnobs]
+  title: "Apps/Add to Checklist"
 };
 
-export function Entry() {
-  return (
-    <AddToChecklist
-      materialListUrl={text(
-        "MaterialList URL",
-        "https://test.materiallist.dandigbib.org"
-      )}
-      text={text("Text", "Tilføj til din huskeliste")}
-      errorText={text("Error text", "Der opstod en fejl")}
-      successText={text("Success text", "Tilføjet")}
-      id={text("Material ID", "870970-basis:54172613")}
-      loginUrl={text(
-        "Login URL",
-        "https://lollandbib.dk/adgangsplatformen/login?destination=ting/object/:id"
-      )}
-    />
-  );
-}
+const Template = args => <AddToChecklist {...args} />;
+
+export const Entry = Template.bind({});
+Entry.args = {
+  materialListUrl: "https://test.materiallist.dandigbib.org",
+  text: "Tilføj til din huskeliste",
+  errorText: "Der opstod en fejl",
+  successText: "Tilføjet",
+  id: "870970-basis:54172613",
+  loginUrl:
+    "https://lollandbib.dk/adgangsplatformen/login?destination=ting/object/:id"
+};
