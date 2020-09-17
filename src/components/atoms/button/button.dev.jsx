@@ -1,7 +1,25 @@
 import React from "react";
 import Button from "./button";
 
-export default { title: "Atoms/Button" };
+export default {
+  title: "Atoms/Button"
+};
+
+const Template = args => <Button {...args}>{args.children}</Button>;
+
+export const Base = Template.bind({});
+Base.args = {
+  children: "Label",
+  align: "center"
+};
+Base.argTypes = {
+  align: {
+    control: {
+      type: "inline-radio",
+      options: ["left", "center", "right"]
+    }
+  }
+};
 
 export function LeftAligned() {
   return (
@@ -20,6 +38,10 @@ export function LeftAligned() {
   );
 }
 
+LeftAligned.parameters = {
+  controls: { hideNoControlsWarning: true }
+};
+
 export function CenterAligned() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -30,3 +52,7 @@ export function CenterAligned() {
     </div>
   );
 }
+
+CenterAligned.parameters = {
+  controls: { hideNoControlsWarning: true }
+};

@@ -48,5 +48,13 @@
         ]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.dev.jsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off",
+      }
+    }
+  ]
 }

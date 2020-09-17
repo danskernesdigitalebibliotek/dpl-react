@@ -1,27 +1,21 @@
 import React from "react";
-import { withKnobs, text } from "@storybook/addon-knobs";
 import TextField from "./textfield";
 
 export default {
-  title: "Atoms/TextField",
-  decorators: [withKnobs]
+  title: "Atoms/TextField"
 };
 
-export function Base() {
-  return (
-    <TextField
-      label={text("Field label", "Some label")}
-      defaultValue={text("Default value", "Value")}
-    />
-  );
-}
+const Template = args => <TextField {...args} />;
 
-export function Error() {
-  return (
-    <TextField
-      label={text("Field label", "Some label")}
-      defaultValue={text("Default value", "Value")}
-      error={text("Error", "Something is wrong")}
-    />
-  );
-}
+export const Base = Template.bind({});
+Base.args = {
+  label: "Some label",
+  defaultValue: "Value"
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  label: "Some label",
+  defaultValue: "Value",
+  error: "Something is wrong"
+};
