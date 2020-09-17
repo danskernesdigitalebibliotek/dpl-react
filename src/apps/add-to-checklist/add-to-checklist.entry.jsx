@@ -5,11 +5,10 @@ import urlPropType from "url-prop-type";
 import {
   addToListIntent,
   addToListAction,
+  addToListAborted,
   resetStatus
 } from "./add-to-checklist.slice";
 import User from "../../core/user";
-import replacePlaceholders from "../../core/replacePlaceholders";
-import { persistor } from "../../core/store";
 
 import AddToChecklist from "./add-to-checklist";
 
@@ -25,11 +24,16 @@ function AddToChecklistEntry({
   const dispatch = useDispatch();
   const loggedIn = User.isAuthenticated();
 
-  // If we're pending and logged in, then trigger the actual request.
-  if (status === "pending" && loggedIn) {
-    dispatch(addToListAction({ materialListUrl, materialId: id })).then(() =>
-      dispatch(resetStatus({ materialId: id }))
-    );
+  if (status === "pending") {
+    if (loggedIn) {
+      // If we're pending and logged in, then trigger the actual request.
+      dispatch(addToListAction({ materialListUrl, materialId: id })).then(() =>
+        dispatch(resetStatus({ materialId: id }))
+      );
+    } else if (User.authenticationFailed()) {
+      // If authentication failed, abort.
+      dispatch(addToListAborted({ materialId: id }));
+    }
   }
 
   return (
@@ -40,10 +44,10 @@ function AddToChecklistEntry({
       status={status}
       onClick={() => {
         // Go into "pending" state.
-        dispatch(addToListIntent({ materialId: id })).then(() => persistor.flush());
+        dispatch(addToListIntent({ materialId: id }));
         if (!loggedIn) {
           // User is not logged in.
-          User.authenticate();
+          User.authenticate(loginUrl);
         }
       }}
     />

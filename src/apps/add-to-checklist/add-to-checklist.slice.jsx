@@ -12,7 +12,7 @@ export const resetStatus = createAsyncThunk(
 );
 
 export const addToListAction = createAsyncThunk(
-  "addToChecklist/requestAddToList",
+  "addToChecklist/addToListAction",
   async ({ materialListUrl, materialId }, { dispatch, rejectWithValue }) => {
     const client = new MaterialList({ baseUrl: materialListUrl });
     try {
@@ -24,20 +24,18 @@ export const addToListAction = createAsyncThunk(
   }
 );
 
-// This thunk doesn't actually do anything but resolve straight away,
-// but this allows us to chain a `.then()` on the action on the caller
-// side.
-export const addToListIntent = createAsyncThunk("addToChecklist/addToList", () =>
-  Promise.resolve()
-);
-
 export const addToChecklistSlice = createSlice({
   name: "addToChecklist",
   initialState: { status: {} },
-  extraReducers: {
-    [addToListIntent.pending]: (state, action) => {
-      state.status[action.meta.arg.materialId] = "pending";
+  reducers: {
+    addToListIntent(state, action) {
+      state.status[action.payload.materialId] = "pending";
     },
+    addToListAborted(state, action) {
+      state.status[action.payload.materialId] = "failed";
+    }
+  },
+  extraReducers: {
     [addToListAction.pending]: (state, action) => {
       state.status[action.meta.arg.materialId] = "processing";
     },
@@ -52,3 +50,10 @@ export const addToChecklistSlice = createSlice({
     }
   }
 });
+
+export const {
+  addToListIntent,
+  addToListAborted
+} = addToChecklistSlice.actions;
+
+export default addToChecklistSlice.reducer;
