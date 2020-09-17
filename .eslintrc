@@ -33,7 +33,6 @@
         "allowUnboundThis": true
       }
     ],
-    "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -49,5 +48,13 @@
         ]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.dev.jsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off",
+      }
+    }
+  ]
 }
