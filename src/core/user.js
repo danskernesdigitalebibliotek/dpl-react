@@ -13,10 +13,10 @@ import {
 
 const selectStatus = state => state.user.status;
 
-// Used to keep track if we started attempting in this page view.
-let attemptingThisRequest = false;
-
 class User {
+  // Used to keep track if we started attempting in this page view.
+  static #attemptingThisRequest = false;
+
   /**
    * Returns whether a user is authenticated of not.
    *
@@ -29,7 +29,7 @@ class User {
     if (state === "unauthenticated" || state === "attempting") {
       if (hasToken("user")) {
         store.dispatch(authenticationSucceeded());
-      } else if (state === "attempting" && !attemptingThisRequest) {
+      } else if (state === "attempting" && !User.#attemptingThisRequest) {
         store.dispatch(authenticationFailed());
       }
     }
@@ -41,7 +41,7 @@ class User {
     // before redirecting.
     store.dispatch(attemptAuthentication()).then(() => persistor.flush());
     // console.log(loginUrl);
-    attemptingThisRequest = true;
+    User.#attemptingThisRequest = true;
     window.location.href = loginUrl;
   }
 
