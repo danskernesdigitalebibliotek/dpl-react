@@ -27,7 +27,13 @@ AddToChecklist.propTypes = {
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  status: PropTypes.oneOf(["ready", "processing", "failed", "finished"])
+  status: PropTypes.oneOf([
+    "pending",
+    "ready",
+    "processing",
+    "failed",
+    "finished"
+  ])
 };
 
 AddToChecklist.defaultProps = {
