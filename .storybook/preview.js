@@ -3,8 +3,10 @@ import "../src/components/components.scss";
 import { setToken } from "../src/core/token";
 import "../src/core/mount";
 import Store from "../src/components/store";
+import { store } from "../src/core/store";
 // Needed for the Store component.
 import React from "react";
+import { updateStatus } from "../src/core/user.slice";
 
 /**
  * Environment variables are set in ".storybook/webpack.config.js:
@@ -45,6 +47,12 @@ tokenConfigs.forEach(function(tokenConfig) {
       } else {
         localStorage.setItem(valueKey, token);
       }
+    }
+    // We want to pretent that the user is authenticated.
+    if (ENV === "test") {
+      store.dispatch(updateStatus({
+        hasToken: true
+      }))
     }
   }
 
