@@ -106,8 +106,8 @@ describe("Checklist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
     cy.clock();
+    cy.visit("/iframe.html?id=apps-checklist--entry");
     cy.contains("Star Wars - the last Jedi");
     cy.contains("Fjern fra listen").click();
     cy.contains("Et eller andet gik galt.");

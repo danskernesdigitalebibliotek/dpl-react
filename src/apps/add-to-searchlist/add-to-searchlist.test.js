@@ -19,8 +19,8 @@ describe("Add to Searchlist", () => {
   });
 
   it("Submit and wait for auto close", () => {
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.clock();
+    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.contains("Tilføj til mine søgninger").click();
     cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
@@ -52,8 +52,8 @@ describe("Add to Searchlist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.clock();
+    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
     cy.contains("Tilføj til mine søgninger").click();
     cy.get("form")
       .find("input")
