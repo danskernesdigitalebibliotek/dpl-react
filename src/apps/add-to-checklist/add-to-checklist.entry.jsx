@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
 import {
-  addToListIntent,
+  addToListPending,
   addToListAction,
   addToListAborted,
   resetStatus
@@ -43,8 +43,7 @@ function AddToChecklistEntry({
       successText={successText}
       status={status}
       onClick={() => {
-        // Go into "pending" state.
-        dispatch(addToListIntent({ materialId: id }));
+        dispatch(addToListPending({ materialId: id }));
         if (!loggedIn) {
           User.authenticate(loginUrl);
         }

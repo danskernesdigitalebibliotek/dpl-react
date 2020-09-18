@@ -27,7 +27,7 @@ export const addToChecklistSlice = createSlice({
   name: "addToChecklist",
   initialState: { status: {} },
   reducers: {
-    addToListIntent(state, action) {
+    addToListPending(state, action) {
       state.status[action.payload.materialId] = "pending";
     },
     addToListAborted(state, action) {
@@ -51,7 +51,7 @@ export const addToChecklistSlice = createSlice({
 });
 
 export const {
-  addToListIntent,
+  addToListPending,
   addToListAborted
 } = addToChecklistSlice.actions;
 
