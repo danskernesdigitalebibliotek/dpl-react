@@ -46,7 +46,6 @@ function AddToChecklistEntry({
         // Go into "pending" state.
         dispatch(addToListIntent({ materialId: id }));
         if (!loggedIn) {
-          // User is not logged in.
           User.authenticate(loginUrl);
         }
       }}
