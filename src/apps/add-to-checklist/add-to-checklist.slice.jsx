@@ -3,8 +3,7 @@ import MaterialList from "../../core/MaterialList";
 
 export const resetStatus = createAsyncThunk(
   "addToChecklist/resetStatus",
-  // eslint-disable-next-line no-unused-vars
-  ({ materialId }) => {
+  () => {
     return new Promise(resolve => {
       setTimeout(() => resolve(), 4000);
     });
