@@ -31,7 +31,7 @@ export function setToken(type, value) {
  * @returns {boolean}
  */
 export function hasToken(type) {
-  return type in tokens && tokens[type];
+  return Boolean(tokens[type]);
 }
 
 /**
