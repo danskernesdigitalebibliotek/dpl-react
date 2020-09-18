@@ -5,11 +5,7 @@
  */
 import { hasToken } from "./token";
 import { store, persistor } from "./store";
-import {
-  authenticationSucceeded,
-  authenticationFailed,
-  attemptAuthentication
-} from "./user.slice";
+import { updateStatus, attemptAuthentication } from "./user.slice";
 
 const selectStatus = state => state.user.status;
 
@@ -25,14 +21,12 @@ class User {
    * @memberof User
    */
   static isAuthenticated() {
-    const state = selectStatus(store.getState());
-    if (state === "unauthenticated" || state === "attempting") {
-      if (hasToken("user")) {
-        store.dispatch(authenticationSucceeded());
-      } else if (state === "attempting" && !User.#attemptingThisRequest) {
-        store.dispatch(authenticationFailed());
-      }
-    }
+    store.dispatch(
+      updateStatus({
+        hasToken: hasToken("user"),
+        doFail: !User.#attemptingThisRequest
+      })
+    );
     return selectStatus(store.getState()) === "authenticated";
   }
 
@@ -40,7 +34,6 @@ class User {
     // Switch state to attempting and flush state to session storage
     // before redirecting.
     store.dispatch(attemptAuthentication()).then(() => persistor.flush());
-    // console.log(loginUrl);
     User.#attemptingThisRequest = true;
     window.location.href = loginUrl;
   }

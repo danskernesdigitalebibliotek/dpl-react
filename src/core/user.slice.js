@@ -12,11 +12,14 @@ const userSlice = createSlice({
   name: "user",
   initialState: { status: "unauthenticated" },
   reducers: {
-    authenticationSucceeded(state) {
-      state.status = "authenticated";
-    },
-    authenticationFailed(state) {
-      state.status = "failed";
+    updateStatus(state, action) {
+      if (state.status === "unauthenticated" || state.status === "attempting") {
+        if (action.payload.hasToken) {
+          state.status = "authenticated";
+        } else if (action.payload.doFail && state.status === "attempting") {
+          state.status = "failed";
+        }
+      }
     }
   },
   extraReducers: {
@@ -26,9 +29,6 @@ const userSlice = createSlice({
   }
 });
 
-export const {
-  authenticationSucceeded,
-  authenticationFailed
-} = userSlice.actions;
+export const { updateStatus } = userSlice.actions;
 
 export default userSlice.reducer;
