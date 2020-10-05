@@ -20,22 +20,33 @@ describe("Order material", () => {
   [
     {
       title: "Should display message if a single material can't be ordered",
-      availability: [{ orderPossible: false }],
+      availability: [{ willLend: true, orderPossible: false }],
+      orderable: false
+    },
+    {
+      title: "Should display message if a single material can't be lent",
+      availability: [{ willLend: false, orderPossible: true }],
       orderable: false
     },
     {
       title: "Should display message if a set of materials can't be ordered",
-      availability: [{ orderPossible: false }, { orderPossible: false }],
+      availability: [
+        { willLend: true, orderPossible: false },
+        { willLend: true, orderPossible: false }
+      ],
       orderable: false
     },
     {
       title: "Should display button if a single material can be ordered",
-      availability: [{ orderPossible: true }],
+      availability: [{ willLend: true, orderPossible: true }],
       orderable: true
     },
     {
       title: "Should display button if a set of materials can be ordered",
-      availability: [{ orderPossible: true }, { orderPossible: false }],
+      availability: [
+        { willLend: true, orderPossible: true },
+        { willLend: true, orderPossible: false }
+      ],
       orderable: true
     }
   ].forEach(scenario => {
@@ -111,7 +122,10 @@ describe("Order material", () => {
       status: 200,
       response: {
         statusCode: 200,
-        data: [{ orderPossible: true }, { orderPossible: false }]
+        data: [
+          { willLend: true, orderPossible: true },
+          { willLend: true, orderPossible: false }
+        ]
       }
     });
 
