@@ -10,7 +10,11 @@ import { updateStatus, attemptAuthentication } from "./user.slice";
 const selectStatus = state => state.user.status;
 
 class User {
-  // Used to keep track if we started attempting in this page view.
+  /**
+   * Used to keep track if we started attempting in this page view.
+   *
+   * @static
+   */
   static #attemptingThisRequest = false;
 
   /**
@@ -30,6 +34,11 @@ class User {
     return selectStatus(store.getState()) === "authenticated";
   }
 
+  /**
+   * Redirect to login.
+   *
+   * @param {string} loginUrl the URL to redirect to.
+   */
   static authenticate(loginUrl) {
     // Switch state to attempting and flush state to session storage
     // before redirecting.
@@ -38,6 +47,13 @@ class User {
     window.location.href = loginUrl;
   }
 
+  /**
+   * Whether authentication failed.
+   *
+   * Will return true if we just tried authenticating and it failed.
+   *
+   * @returns {boolean}
+   */
   static authenticationFailed() {
     // isAuthenticated() will ensure state is up to date.
     return (
