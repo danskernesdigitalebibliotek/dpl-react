@@ -5,7 +5,7 @@ import userReducer from "./user.slice";
 import addToChecklistReducer from "../apps/add-to-checklist/add-to-checklist.slice";
 
 const persistConfig = {
-  key: "root",
+  key: "ddb-react",
   storage
 };
 
