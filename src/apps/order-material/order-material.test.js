@@ -3,6 +3,16 @@ describe("Order material", () => {
     cy.server();
     cy.route({
       method: "GET",
+      url: "https://openplatform.dbc.dk/v3/availability*",
+      status: 200,
+      response: {
+        statusCode: 200,
+        data: [{ willLend: true, orderPossible: true }]
+      }
+    });
+
+    cy.route({
+      method: "GET",
       url: "https://openplatform.dbc.dk/v3/libraries*",
       status: 200,
       response: {

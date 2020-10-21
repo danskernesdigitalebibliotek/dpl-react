@@ -49,31 +49,33 @@ function OrderMaterialEntry({
   }
 
   useEffect(() => {
-    if (!User.isAuthenticated()) {
-      // Ready is the state we use for buttons which require login when
-      // accessed by anonymous users.
-      setStatus("ready");
-      return;
-    }
-
-    setStatus("checking");
-    // Check that the pickup branch accepts inter-library loans.
     const client = new OpenPlatform();
+    // Check that the material is available for ILL.
+    setStatus("checking");
     client
-      .getBranch(pickupBranch)
-      .then(branch => {
-        if (branch.willReceiveIll !== "1") {
-          setStatus("invalid branch");
-        } else {
-          // Check that the material is available for ILL.
+      .canBeOrdered(idsArray(ids))
+      .then(available => {
+        if (!available) {
+          setStatus("unavailable");
+        } else if (User.isAuthenticated()) {
+          // Check that the pickup branch accepts inter-library loans.
           client
-            .canBeOrdered(idsArray(ids))
-            .then(available => {
-              setStatus(available ? "ready" : "unavailable");
+            .getBranch(pickupBranch)
+            .then(branch => {
+              if (branch.willReceiveIll !== "1") {
+                setStatus("invalid branch");
+              } else {
+                setStatus("ready");
+              }
             })
             .catch(() => {
               setStatus("failed");
             });
+        } else {
+          // It's available and we're not logged in, show as available
+          // for order. Ready is the state we use for buttons which
+          // require login when accessed by anonymous users.
+          setStatus("ready");
         }
       })
       .catch(() => {
