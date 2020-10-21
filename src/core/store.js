@@ -16,8 +16,8 @@ export const store = configureStore({
       addToChecklist: addToChecklistReducer,
       user: userReducer
     })
-  )
-  // You may add `devTools: true` here to use Redux debugger.
+  ),
+  devTools: ENV === "development"
 });
 
 export const persistor = persistStore(store);

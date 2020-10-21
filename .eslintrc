@@ -57,5 +57,8 @@
         "react/jsx-props-no-spreading": "off",
       }
     }
-  ]
+  ],
+  "globals": {
+    "ENV": "readonly"
+  }
 }
