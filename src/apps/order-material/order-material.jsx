@@ -35,9 +35,7 @@ function OrderMaterial({
       return <Alert message={checkingText} type="polite" variant="info" />;
 
     case "unavailable":
-      return (
-        <Alert message={unavailableText} type="polite" variant="success" />
-      );
+      return <Alert message={unavailableText} type="polite" variant="info" />;
 
     case "invalid branch":
       return (
