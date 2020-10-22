@@ -235,7 +235,8 @@ function RelatedMaterialsEntry({
   titleText,
   searchText,
   amount,
-  maxTries
+  maxTries,
+  agencyId
 }) {
   const coverClient = new CoverService({ baseUrl: coverServiceUrl });
 
@@ -254,6 +255,10 @@ function RelatedMaterialsEntry({
     const sources = stringToArray(sourcesString);
     includes.push(searchClause("term.acSource", sources));
   }
+  // If we didn't get any criteria, just grab the world.
+  if (includes.length < 1) {
+    includes.push("*");
+  }
   const excludes = [];
   if (rawExcludeTitle) {
     excludes.push(
@@ -262,8 +267,17 @@ function RelatedMaterialsEntry({
   }
 
   // Use join to get spacing between clauses right. Includes must be separated
-  // by "and" while excludes must nut. Excludes should already have "not" prepended.
-  const query = [includes.join(" and "), excludes.join(" ")].join(" ");
+  // by "and" while excludes must not. Excludes should already have "not" prepended.
+  let query = [includes.join(" and "), excludes.join(" ")].join(" ");
+
+  // One would think that we could just add the holdingsitem clause to
+  // includes, but for some reason OpenPlatform does not like it there
+  // and gives us an "Error: 18: Unsupported combination of indexes (,
+  // holdingsitem.agencyId)" error. So we append it here.
+  if (agencyId) {
+    const agencyLimit = searchClause("holdingsitem.agencyid", [agencyId]);
+    query = `${query} and ${agencyLimit}`;
+  }
 
   const searchUrl = `${replacePlaceholders({
     text: rawSearchUrl,
@@ -327,7 +341,8 @@ RelatedMaterialsEntry.propTypes = {
   materialUrl: urlPropType.isRequired,
   coverServiceUrl: urlPropType.isRequired,
   searchText: PropTypes.string,
-  titleText: PropTypes.string
+  titleText: PropTypes.string,
+  agencyId: PropTypes.string
 };
 
 RelatedMaterialsEntry.defaultProps = {
@@ -335,7 +350,8 @@ RelatedMaterialsEntry.defaultProps = {
   maxTries: 5,
   titleText: "Forslag med samme emner",
   searchText: "Søg på samme emner",
-  sort: "date_descending"
+  sort: "date_descending",
+  agencyId: ""
 };
 
 export default RelatedMaterialsEntry;

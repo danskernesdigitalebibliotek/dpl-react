@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fail if any command does.
+set -e
+
 OS=$(uname -s)
 
 if [ $OS = "Darwin" ]; then
