@@ -1,8 +1,10 @@
-const task = require("@cypress/code-coverage/task");
-const rc = require("@cypress/code-coverage/use-babelrc");
-
 module.exports = (on, config) => {
-  on("task", task);
-  on("file:preprocessor", rc);
+  // eslint-disable-next-line global-require
+  require("@cypress/code-coverage/task")(on, config);
+
+  // add other tasks to be registered here
+
+  // IMPORTANT to return the config object
+  // with the any changed environment variables
   return config;
 };
