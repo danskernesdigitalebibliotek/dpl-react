@@ -135,3 +135,16 @@ jobs:
         with:
           name: dist
           path: dist
+
+  validate_docs:
+    name: Validate documentation
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build documentation
+        run: yarn build:doc
+      - name: Validate TOC
+        run: git diff --exit-code
