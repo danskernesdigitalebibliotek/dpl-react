@@ -484,16 +484,16 @@ A simple naive example of the required artifacts needed looks like this:
     <script src="/dist/polyfills.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/mount.js"></script>
-    <!-- After the necesssary scripts you can start loading applications -->
+    <!-- After the necessary scripts you can start loading applications -->
     <script src="/dist/add-to-checklist.js"></script>
     <script>
-      // For making successfull requests to the different services we need one or more valid tokens.
+      // For making successful requests to the different services we need one or more valid tokens.
      window.ddbReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
      window.ddbReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
-      // and a corresonding application loaded.
+      // and a corresponding application loaded.
       window.ddbReact.mount(document);
     </script>
 </body>
@@ -504,9 +504,9 @@ A simple naive example of the required artifacts needed looks like this:
 As a minimum you will need the `runtime.js` and `bundle.js`.
 For styling of atoms and components you will need to import `components.css`.
 
-Each application also has it's own JavaScript artifact and it might have a css artifact as well. Such as `add-to-checklist.jsx` and `add-to-checklist.css`.
+Each application also has its own JavaScript artifact and it might have a CSS artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
 
-To mount the application you need a html element with the correct data attribute.
+To mount the application you need an HTML element with the correct data attribute.
 
 ```html
 <div data-ddb-app='add-to-checklist'></div>
@@ -518,7 +518,7 @@ The name of the data attribute should be `data-ddb-app` and the value should be 
 ### Access data attributes
 
 As stated above, every application needs the corresponding `data-ddb-app` attribute to even be mounted and shown on the page.
-Additional data attributes can be passed if neccessary. Examples would be contextuel id's etc.
+Additional data attributes can be passed if necessary. Examples would be contextual ids etc.
 Normally these would be passed in by the server ex. Drupal, Wordpress etc.
 
 ```html
