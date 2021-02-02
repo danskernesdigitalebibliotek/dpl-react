@@ -26,8 +26,8 @@ A set of React components and applications providing self-service features for D
   - [Editor example configuration](#editor-example-configuration)
 - [Usage](#usage)
   - [Naive app mount](#naive-app-mount)
-  - [Data attributes and props](#data-attributes-and-props)
-- [React components](#react-components)
+    - [Data attributes and props](#data-attributes-and-props)
+  - [React components](#react-components)
 - [Extending the project](#extending-the-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -532,7 +532,7 @@ To mount the application you need an HTML element with the correct data attribut
 The name of the data attribute should be `data-ddb-app` and the value should be the name of the application - the value
 of the `appName` parameter assigned in the application `.mount.js` file.
 
-### Data attributes and props
+#### Data attributes and props
 
 As stated above, every application needs the corresponding `data-ddb-app` attribute to even be mounted and shown on the page.
 Additional data attributes can be passed if necessary. Examples would be contextual ids etc.
@@ -592,7 +592,7 @@ export function WithoutData() {
 ```
 </details>
 
-## React components
+### React components
 
 Applications in the project may also be used within larger React applications.
 
