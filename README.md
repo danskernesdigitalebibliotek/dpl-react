@@ -27,6 +27,7 @@ A set of React components and applications providing self-service features for D
 - [Production](#production)
   - [Naive app mount](#naive-app-mount)
   - [Data attributes and props](#data-attributes-and-props)
+- [Extending the project](#extending-the-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -584,3 +585,32 @@ export function WithoutData() {
 
 ```
 </details>
+
+## Extending the project
+
+If you want to extend this project - either by introducing new components or expand the functionality of the
+existing ones - and your changes can be implemented in a way that is valuable to users in general, please submit pull 
+requests.
+
+Even if that is not the case and you have special needs the infrastructure of the project should also be helpful to you.
+
+In such a situation you should fork this project and extend it to your own needs by
+[implementing new applications](#create-a-new-application). New applications can reuse various levels of infrastructure
+provided by the project such as:
+
+1. [Integration with various webservices](src/core)
+2. [User authentication and token management](src/core)
+3. [Visual atoms or components](#cross-application-components)
+4. Visual representations of [existing applications](src/apps)
+5. [Styling using SCSS](#style-your-application)
+6. Test infrastructure
+7. [Application mounting](src/core)
+
+Once the customization is complete the result can be packaged for distribution by pushing the changes to the forked
+repository:
+
+1. Changes pushed to the `master` branch of the forked repository will automatically update the 
+[Latest release](releases/latest) of the fork.
+2. Tags pushed to the forked repository also will be published as new releases in the fork.
+
+The result can be [used in the same ways as the original project](#usage).
