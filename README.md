@@ -24,7 +24,7 @@
   - [Editor example configuration](#editor-example-configuration)
 - [Production](#production)
   - [Naive app mount](#naive-app-mount)
-  - [Access data attributes](#access-data-attributes)
+  - [Data attributes and props](#data-attributes-and-props)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -457,11 +457,17 @@ This overwrites your global user settings for this workspace and suggests som ex
 
 ### Naive app mount
 
-So let's say you wanted to make use of an application in Drupal, WordPress etc.
-A simple naive example of the required artifacts needed looks like this:
+So let's say you wanted to make use of an application within an existing HTML page such as what might be generated
+serverside by platforms like Drupal, WordPress etc.
+
+For this use case you should download the `dist.zip` package from [the latest release of the project](/danskernesdigitalebibliotek/ddb-react/releases/latest)
+and unzip somewhere within the web root of your project. The package contains a set of artifacts needed to use one or
+more applications within an HTML page.
 
 <details>
   <summary>HTML Example</summary>
+
+A simple example of the required artifacts and how they are used looks like this:
 
 ```html
 <!DOCTYPE html>
@@ -471,6 +477,7 @@ A simple naive example of the required artifacts needed looks like this:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Naive mount</title>
+    <!-- Include CSS files to provide default styling -->
     <link rel="stylesheet" href="/dist/components.css">
 </head>
 <body>
@@ -501,7 +508,8 @@ A simple naive example of the required artifacts needed looks like this:
 ```
 </details>
 
-As a minimum you will need the `runtime.js` and `bundle.js`.
+As a minimum you will need the `runtime.js` and `bundle.js`. `polyfills.js` is needed to support older browsers - 
+primarily Internet Explorer 11.
 For styling of atoms and components you will need to import `components.css`.
 
 Each application also has its own JavaScript artifact and it might have a CSS artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
@@ -512,14 +520,14 @@ To mount the application you need an HTML element with the correct data attribut
 <div data-ddb-app='add-to-checklist'></div>
 ```
 
-The name of the data attribute should be `data-ddb-app` and the value should be the name of the application. The appName you have assigned it in the applications `.mount.js` file.
+The name of the data attribute should be `data-ddb-app` and the value should be the name of the application - the value
+of the `appName` parameter assigned in the application `.mount.js` file.
 
-
-### Access data attributes
+### Data attributes and props
 
 As stated above, every application needs the corresponding `data-ddb-app` attribute to even be mounted and shown on the page.
 Additional data attributes can be passed if necessary. Examples would be contextual ids etc.
-Normally these would be passed in by the server ex. Drupal, Wordpress etc.
+Normally these would be passed in by the serverside platform e.g. Drupal, Wordpress etc.
 
 ```html
 <div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613" data-error-text="A mistake was made"></div>
