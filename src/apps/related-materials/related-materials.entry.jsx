@@ -194,9 +194,10 @@ function useGetRelatedMaterials({
  * @returns string[]
  */
 function stringToArray(string) {
-  // Detect \, using negative lookbehind.
-  const unescapedParts = string.split(/(?<!\\),/);
-  const escapedParts = unescapedParts.map(part => replace(part, "\\,", ","));
+  // Replace escaped commas with newlines (which doesn't make sense in a comma
+  // separated string) so we wont split on them.
+  const unescapedParts = replace(string, "\\,", "\n").split(/(?<!\\),/);
+  const escapedParts = unescapedParts.map(part => replace(part, "\n", ","));
   // Remove leading and trailing spaces and empty values.
   const trimmedParts = escapedParts.map(part => part.trim());
   return trimmedParts.filter(part => part);
