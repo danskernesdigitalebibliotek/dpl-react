@@ -9,7 +9,7 @@ describe("Add to Searchlist", () => {
     });
   });
   it("Submit", () => {
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-add--entry");
     cy.contains("Tilføj til mine søgninger").click();
     cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
@@ -19,7 +19,7 @@ describe("Add to Searchlist", () => {
   });
 
   it("Submit and wait for auto close", () => {
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-add--entry");
     cy.clock();
     cy.contains("Tilføj til mine søgninger").click();
     cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
@@ -30,7 +30,7 @@ describe("Add to Searchlist", () => {
   });
 
   it("Submit with errors", () => {
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-add--entry");
     cy.contains("Tilføj til mine søgninger").click();
     cy.contains("button", "Gem").click();
     cy.contains("En titel er påkrævet.");
@@ -52,7 +52,7 @@ describe("Add to Searchlist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-add-to-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-add--entry");
     cy.clock();
     cy.contains("Tilføj til mine søgninger").click();
     cy.get("form")

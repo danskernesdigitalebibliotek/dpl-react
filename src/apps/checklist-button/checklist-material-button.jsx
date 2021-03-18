@@ -14,7 +14,8 @@ function ChecklistMaterialButton({
   errorText,
   successText,
   loginUrl,
-  materialId
+  materialId,
+  containerClass
 }) {
   if (status === "processing") {
     return <Alert message={successText} type="polite" variant="success" />;
@@ -25,7 +26,7 @@ function ChecklistMaterialButton({
   }
 
   return (
-    <div className="ddb-add-to-checklist__container">
+    <div className={containerClass}>
       <Button
         href={
           !User.isAuthenticated()
@@ -54,11 +55,13 @@ ChecklistMaterialButton.propTypes = {
   loginUrl: urlPropType.isRequired,
   onClick: PropTypes.func.isRequired,
   status: PropTypes.oneOf(["ready", "processing", "failed", "finished"]),
-  materialId: PropTypes.string.isRequired
+  materialId: PropTypes.string.isRequired,
+  containerClass: PropTypes.string
 };
 
 ChecklistMaterialButton.defaultProps = {
-  status: "ready"
+  status: "ready",
+  containerClass: "ddb-checklist-material-button__container"
 };
 
 export default ChecklistMaterialButton;

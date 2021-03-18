@@ -15,7 +15,8 @@ function ChecklistMaterialButtonEntry({
   removeErrorText,
   id,
   loginUrl,
-  initialOnList
+  initialOnList,
+  containerClass
 }) {
   const [status, setStatus] = useState("ready");
   const [onList, setOnList] = useState(initialOnList);
@@ -27,7 +28,9 @@ function ChecklistMaterialButtonEntry({
 
   function setListErrorStatus() {
     setStatus("failed");
-    setTimeout(setRestoreStatus, 4000);
+    setTimeout(() => {
+      setRestoreStatus("unknown");
+    }, 4000);
   }
 
   function addToList() {
@@ -95,6 +98,7 @@ function ChecklistMaterialButtonEntry({
       onClick={onClick}
       loginUrl={loginUrl}
       materialId={id}
+      containerClass={containerClass}
     />
   );
 }
@@ -109,7 +113,8 @@ ChecklistMaterialButtonEntry.propTypes = {
   removeSuccessText: PropTypes.string,
   id: PropTypes.string.isRequired,
   loginUrl: urlPropType.isRequired,
-  initialOnList: PropTypes.oneOf(["unknown", "on", "off"])
+  initialOnList: PropTypes.oneOf(["unknown", "on", "off"]),
+  containerClass: PropTypes.string
 };
 
 ChecklistMaterialButtonEntry.defaultProps = {
@@ -120,7 +125,8 @@ ChecklistMaterialButtonEntry.defaultProps = {
   removeText: "Fjern fra min liste",
   removeErrorText: "Det lykkedes ikke at fjerne materialet.",
   removeSuccessText: "Materialet er fjernet",
-  initialOnList: "unknown"
+  initialOnList: "unknown",
+  containerClass: "ddb-checklist-material-button__container"
 };
 
 export default ChecklistMaterialButtonEntry;

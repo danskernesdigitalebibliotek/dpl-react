@@ -2,7 +2,7 @@ import React from "react";
 import ChecklistMaterialButton from "./checklist-material-button.entry";
 
 export default {
-  title: "Apps/Checklist material button"
+  title: "Apps/Checklist/Material button"
 };
 
 const Template = args => <ChecklistMaterialButton {...args} />;
