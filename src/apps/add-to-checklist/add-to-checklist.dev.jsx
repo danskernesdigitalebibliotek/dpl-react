@@ -2,7 +2,7 @@ import React from "react";
 import AddToChecklist from "./add-to-checklist.entry";
 
 export default {
-  title: "Apps/Add to Checklist"
+  title: "Apps/Add to Checklist (Deprecated)"
 };
 
 const Template = args => <AddToChecklist {...args} />;

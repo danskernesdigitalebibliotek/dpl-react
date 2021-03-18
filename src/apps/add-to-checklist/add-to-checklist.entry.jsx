@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
-
-import AddToChecklist from "./add-to-checklist";
-import MaterialList from "../../core/MaterialList";
+import ChecklistMaterialButtonEntry from "../checklist-button/checklist-material-button.entry";
 
 function AddToChecklistEntry({
   materialListUrl,
@@ -13,33 +11,21 @@ function AddToChecklistEntry({
   id,
   loginUrl
 }) {
-  const [status, setStatus] = useState("ready");
-
-  function setRestoreStatus() {
-    setStatus("ready");
-  }
-
-  function setListErrorStatus() {
-    setStatus("failed");
-    setTimeout(setRestoreStatus, 4000);
-  }
-
-  function addToList() {
-    setStatus("processing");
-
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client.addListMaterial({ materialId: id }).catch(setListErrorStatus);
-  }
+  // eslint-disable-next-line no-console
+  console.warn(
+    "AddToChecklist is deprecated. Please use ChecklistMaterialButton instead."
+  );
 
   return (
-    <AddToChecklist
-      text={text}
-      errorText={errorText}
-      successText={successText}
-      status={status}
-      onClick={addToList}
+    <ChecklistMaterialButtonEntry
+      addText={text}
+      addErrorText={errorText}
+      addSuccessText={successText}
       loginUrl={loginUrl}
-      materialId={id}
+      id={id}
+      materialListUrl={materialListUrl}
+      initialOnList="off"
+      containerClass="ddb-add-to-checklist__container"
     />
   );
 }
