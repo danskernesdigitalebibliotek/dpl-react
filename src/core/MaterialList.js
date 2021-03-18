@@ -38,7 +38,7 @@ class MaterialList {
    * @param {object} options
    * @param {string} options.listId
    * @param {string} options.materialId
-   * @returns {Promise}
+   * @returns {Promise<boolean>}
    * @memberof MaterialList
    */
   async checkListMaterial({ listId = "default", materialId } = {}) {
@@ -54,9 +54,11 @@ class MaterialList {
         }
       }
     );
-    if (response.status !== 200) {
+    if (response.status !== 200 && response.status !== 404) {
       throw Error(response.status);
     }
+
+    return response.status === 200;
   }
 
   /**
