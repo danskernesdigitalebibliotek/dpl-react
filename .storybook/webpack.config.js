@@ -46,8 +46,7 @@ module.exports = async ({ config }) => {
         : null,
       DDB_TOKEN_LIBRARY: tokens.hasOwnProperty("library")
         ? JSON.stringify(tokens.library)
-        : null,
-      ENV: JSON.stringify(process.env.NODE_ENV)
+        : null
     })
   ];
   return { ...config, plugins, module: { ...config.module, rules } };

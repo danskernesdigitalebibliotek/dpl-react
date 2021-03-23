@@ -11,10 +11,12 @@ function AddToChecklistEntry({
   id,
   loginUrl
 }) {
-  // eslint-disable-next-line no-console
-  console.warn(
-    "AddToChecklist is deprecated. Please use ChecklistMaterialButton instead."
-  );
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "AddToChecklist is deprecated. Please use ChecklistMaterialButton instead."
+    );
+  }
 
   return (
     <ChecklistMaterialButtonEntry
