@@ -25,7 +25,7 @@ describe("Searchlist", () => {
   });
 
   it("Loads a list of saved searches", () => {
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-list--entry");
     cy.contains("Min favorit søgning");
     cy.contains("Gå til søgeresultat");
     cy.contains("Gå til søgeresultat").should(
@@ -44,7 +44,7 @@ describe("Searchlist", () => {
       status: 200,
       response: []
     });
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-list--entry");
     cy.contains("Ingen gemte søgninger.");
   });
 
@@ -56,7 +56,7 @@ describe("Searchlist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-list--entry");
     cy.contains("Gemte søgninger kunne ikke hentes.");
   });
 
@@ -68,7 +68,7 @@ describe("Searchlist", () => {
       status: 204,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-list--entry");
     cy.contains("Min favorit søgning");
     cy.contains("Fjern fra listen").click();
     cy.contains("Min favorit søgning").should("not.be.visible");
@@ -82,7 +82,7 @@ describe("Searchlist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-searchlist--entry");
+    cy.visit("/iframe.html?id=apps-searchlist-list--entry");
     cy.contains("Fjern fra listen").click();
     cy.get("h2").should("have.length", 2);
   });

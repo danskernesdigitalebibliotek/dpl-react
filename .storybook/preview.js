@@ -32,7 +32,7 @@ tokenConfigs.forEach(function(tokenConfig) {
     // We do not want to keep prompting people if they have already cancelled the prompt once.
     const seenKey = `ddb-token-${type}-prompt-seen`;
     const promptHasBeenCancelled = localStorage.getItem(seenKey);
-    if (!promptHasBeenCancelled && ENV != "test") {
+    if (!promptHasBeenCancelled && process.env.NODE_ENV !== "test") {
       token = window.prompt(
         `Do you have a ${type} token for Adgangsplatformen? Input it here.`
       );

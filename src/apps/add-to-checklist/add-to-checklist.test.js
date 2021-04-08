@@ -7,7 +7,7 @@ describe("Add to Checklist", () => {
       status: 201,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-add-to-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-add-deprecated--entry");
     cy.contains("Tilføj til din huskeliste").click();
     cy.contains("Tilføjet");
   });
@@ -19,7 +19,7 @@ describe("Add to Checklist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-add-to-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-add-deprecated--entry");
     cy.contains("Tilføj til din huskeliste").click();
     cy.contains("Der opstod en fejl");
     cy.contains("Tilføj til din huskeliste");
