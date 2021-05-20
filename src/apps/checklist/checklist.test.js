@@ -29,7 +29,7 @@ describe("Checklist", () => {
         ]
       }
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     cy.contains("Bog");
     cy.contains("Star Wars - the last Jedi");
     cy.contains("Jason Fry");
@@ -68,7 +68,7 @@ describe("Checklist", () => {
       status: 204,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     cy.contains("Fjern fra listen").click();
     cy.contains("Ingen materialer på listen");
   });
@@ -107,7 +107,7 @@ describe("Checklist", () => {
       response: {}
     });
     cy.clock();
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     cy.contains("Star Wars - the last Jedi");
     cy.contains("Fjern fra listen").click();
     cy.contains("Et eller andet gik galt.");
@@ -126,7 +126,7 @@ describe("Checklist", () => {
         materials: []
       }
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     cy.contains("Ingen materialer på listen");
   });
   it("The list couldn't load", () => {
@@ -137,7 +137,7 @@ describe("Checklist", () => {
       status: 500,
       response: {}
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     cy.contains("Et eller andet gik galt.");
   });
   it("Handles many materials", () => {
@@ -175,7 +175,7 @@ describe("Checklist", () => {
         }
       });
     });
-    cy.visit("/iframe.html?id=apps-checklist--entry");
+    cy.visit("/iframe.html?id=apps-checklist-list--entry");
     // All ids should be in the output.
     materialIds.forEach(id => cy.contains(new RegExp(`^Material ${id}$`)));
   });

@@ -91,7 +91,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'
@@ -135,3 +135,16 @@ jobs:
         with:
           name: dist
           path: dist
+
+  validate_docs:
+    name: Validate documentation
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build documentation
+        run: yarn build:doc
+      - name: Validate TOC
+        run: git diff --exit-code

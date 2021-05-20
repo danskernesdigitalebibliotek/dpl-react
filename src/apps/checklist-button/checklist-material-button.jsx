@@ -4,7 +4,14 @@ import PropTypes from "prop-types";
 import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
 
-function AddToChecklist({ status, onClick, text, errorText, successText }) {
+function ChecklistMaterialButton({
+  status,
+  onClick,
+  text,
+  errorText,
+  successText,
+  containerClass
+}) {
   if (status === "processing" || status === "finished") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
@@ -14,7 +21,7 @@ function AddToChecklist({ status, onClick, text, errorText, successText }) {
   }
 
   return (
-    <div className="ddb-add-to-checklist__container">
+    <div className={containerClass}>
       <Button variant="black" align="left" onClick={onClick}>
         {text}
       </Button>
@@ -22,7 +29,7 @@ function AddToChecklist({ status, onClick, text, errorText, successText }) {
   );
 }
 
-AddToChecklist.propTypes = {
+ChecklistMaterialButton.propTypes = {
   text: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
@@ -33,11 +40,13 @@ AddToChecklist.propTypes = {
     "processing",
     "failed",
     "finished"
-  ])
+  ]),
+  containerClass: PropTypes.string
 };
 
-AddToChecklist.defaultProps = {
-  status: "ready"
+ChecklistMaterialButton.defaultProps = {
+  status: "ready",
+  containerClass: "ddb-checklist-material-button__container"
 };
 
-export default AddToChecklist;
+export default ChecklistMaterialButton;

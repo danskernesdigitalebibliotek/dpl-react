@@ -2,6 +2,7 @@ const path = require("path");
 const glob = require("glob");
 const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
 const VersionFile = require("webpack-version-file-plugin");
+const { EnvironmentPlugin } = require("webpack");
 
 module.exports = (_env, argv) => {
   const production = argv.mode === "production";
@@ -16,7 +17,11 @@ module.exports = (_env, argv) => {
       return acc;
     }, {});
 
-  const plugins = [];
+  const plugins = [
+    new EnvironmentPlugin({
+      NODE_ENV: "development"
+    })
+  ];
   if (process.env.BUNDLE_ANALYZER_TOKEN) {
     plugins.push(
       new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN })

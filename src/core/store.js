@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import userReducer from "./user.slice";
-import addToChecklistReducer from "../apps/add-to-checklist/add-to-checklist.slice";
+import checklistMaterialButtonReducer from "../apps/checklist-button/checklist-material-button.slice";
 
 const persistConfig = {
   key: "ddb-react",
@@ -13,11 +13,11 @@ export const store = configureStore({
   reducer: persistReducer(
     persistConfig,
     combineReducers({
-      addToChecklist: addToChecklistReducer,
+      checklistMaterialButton: checklistMaterialButtonReducer,
       user: userReducer
     })
   ),
-  devTools: ENV === "development"
+  devTools: NODE_ENV === "development"
 });
 
 export const persistor = persistStore(store);

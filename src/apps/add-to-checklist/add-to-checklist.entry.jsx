@@ -1,16 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
-import {
-  addToListPending,
-  addToListAction,
-  addToListAborted,
-  resetStatus
-} from "./add-to-checklist.slice";
-import User from "../../core/user";
-
-import AddToChecklist from "./add-to-checklist";
+import ChecklistMaterialButtonEntry from "../checklist-button/checklist-material-button.entry";
 
 function AddToChecklistEntry({
   materialListUrl,
@@ -20,34 +11,23 @@ function AddToChecklistEntry({
   id,
   loginUrl
 }) {
-  const status = useSelector(state => state.addToChecklist.status[id]);
-  const dispatch = useDispatch();
-  const loggedIn = User.isAuthenticated();
-
-  if (status === "pending") {
-    if (loggedIn) {
-      // If we're pending and logged in, then trigger the actual request.
-      dispatch(addToListAction({ materialListUrl, materialId: id })).then(() =>
-        dispatch(resetStatus({ materialId: id }))
-      );
-    } else if (User.authenticationFailed()) {
-      // If authentication failed, abort.
-      dispatch(addToListAborted({ materialId: id }));
-    }
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "AddToChecklist is deprecated. Please use ChecklistMaterialButton instead."
+    );
   }
 
   return (
-    <AddToChecklist
-      text={text}
-      errorText={errorText}
-      successText={successText}
-      status={status}
-      onClick={() => {
-        dispatch(addToListPending({ materialId: id }));
-        if (!loggedIn) {
-          User.authenticate(loginUrl);
-        }
-      }}
+    <ChecklistMaterialButtonEntry
+      addText={text}
+      addErrorText={errorText}
+      addSuccessText={successText}
+      loginUrl={loginUrl}
+      id={id}
+      materialListUrl={materialListUrl}
+      initialOnList="off"
+      containerClass="ddb-add-to-checklist__container"
     />
   );
 }

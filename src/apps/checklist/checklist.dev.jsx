@@ -3,7 +3,7 @@ import Checklist from "./checklist.entry";
 import "./checklist.scss";
 
 export default {
-  title: "Apps/Checklist"
+  title: "Apps/Checklist/List"
 };
 
 const Template = args => <Checklist {...args} />;

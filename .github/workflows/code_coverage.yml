@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'

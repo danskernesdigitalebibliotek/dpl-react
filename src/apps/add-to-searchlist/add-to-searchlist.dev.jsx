@@ -3,7 +3,7 @@ import AddToSearchlist from "./add-to-searchlist.entry";
 import "./add-to-searchlist.scss";
 
 export default {
-  title: "Apps/Add to Searchlist"
+  title: "Apps/Searchlist/Add"
 };
 
 const Template = args => <AddToSearchlist {...args} />;
