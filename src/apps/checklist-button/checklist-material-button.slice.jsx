@@ -10,6 +10,19 @@ export const resetStatus = createAsyncThunk(
   }
 );
 
+export const checkOnListAction = createAsyncThunk(
+  "checklistMaterial/checkOnListAction",
+  async ({ materialListUrl, materialId }, { dispatch, rejectWithValue }) => {
+    const client = new MaterialList({ baseUrl: materialListUrl });
+    try {
+      return await client.checkListMaterial({ materialId });
+    } catch (err) {
+      dispatch(resetStatus({ materialId }));
+      return rejectWithValue(err);
+    }
+  }
+);
+
 export const addToListAction = createAsyncThunk(
   "checklistMaterial/addToListAction",
   async ({ materialListUrl, materialId }, { dispatch, rejectWithValue }) => {
@@ -40,9 +53,13 @@ export const checklistMaterialButtonSlice = createSlice({
   name: "checklistMaterial",
   initialState: { status: {}, onList: {} },
   reducers: {
+    setInitialStatus(state, action) {
+      state.status[action.payload.materialId] = "ready";
+      state.onList[action.payload.materialId] = action.payload.onList;
+    },
     addToListPending(state, action) {
       state.status[action.payload.materialId] = "pending";
-      state.onList[action.payload.materialId] = "on";
+      state.onList[action.payload.materialId] = "off";
     },
     addToListAborted(state, action) {
       state.status[action.payload.materialId] = "failed";
@@ -50,7 +67,7 @@ export const checklistMaterialButtonSlice = createSlice({
     },
     removeFromListPending(state, action) {
       state.status[action.payload.materialId] = "pending";
-      state.onList[action.payload.materialId] = "off";
+      state.onList[action.payload.materialId] = "on";
     },
     removeFromListAborted(state, action) {
       state.status[action.payload.materialId] = "failed";
@@ -58,13 +75,22 @@ export const checklistMaterialButtonSlice = createSlice({
     }
   },
   extraReducers: {
+    [checkOnListAction.pending]: (state, action) => {
+      state.onList[action.meta.arg.materialId] = "unknown";
+    },
+    [checkOnListAction.fulfilled]: (state, action) => {
+      state.onList[action.meta.arg.materialId] = action.payload ? "on" : "off";
+    },
+    [checkOnListAction.rejected]: (state, action) => {
+      state.onList[action.meta.arg.materialId] = "off";
+    },
     [addToListAction.pending]: (state, action) => {
       state.status[action.meta.arg.materialId] = "processing";
-      state.onList[action.meta.arg.materialId] = "on";
+      state.onList[action.meta.arg.materialId] = "off";
     },
     [addToListAction.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "finished";
-      state.onList[action.meta.arg.materialId] = "on";
+      state.onList[action.meta.arg.materialId] = "off";
     },
     [addToListAction.rejected]: (state, action) => {
       state.status[action.meta.arg.materialId] = "failed";
@@ -76,7 +102,7 @@ export const checklistMaterialButtonSlice = createSlice({
     },
     [removeFromListAction.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "finished";
-      state.onList[action.meta.arg.materialId] = "off";
+      state.onList[action.meta.arg.materialId] = "on";
     },
     [removeFromListAction.rejected]: (state, action) => {
       state.status[action.meta.arg.materialId] = "failed";
@@ -89,6 +115,7 @@ export const checklistMaterialButtonSlice = createSlice({
 });
 
 export const {
+  setInitialStatus,
   addToListPending,
   addToListAborted,
   removeFromListPending,
