@@ -98,7 +98,7 @@
     "@reach/auto-id": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "@storybook/addon-docs": "^6.0.21",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
