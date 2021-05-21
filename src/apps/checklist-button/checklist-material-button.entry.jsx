@@ -117,8 +117,6 @@ function ChecklistMaterialButtonEntry({
       successText={successText}
       status={status}
       onClick={onClick}
-      loginUrl={loginUrl}
-      materialId={id}
       containerClass={containerClass}
     />
   );
