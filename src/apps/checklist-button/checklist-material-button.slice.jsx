@@ -110,6 +110,9 @@ export const checklistMaterialButtonSlice = createSlice({
     },
     [resetStatus.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "ready";
+      if (action.meta.arg.onList) {
+        state.onList[action.meta.arg.materialId] = action.meta.arg.onList;
+      }
     }
   }
 });

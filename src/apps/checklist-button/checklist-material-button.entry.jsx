@@ -10,7 +10,6 @@ import {
   removeFromListPending,
   removeFromListAction,
   removeFromListAborted,
-  setInitialStatus,
   resetStatus
 } from "./checklist-material-button.slice";
 import User from "../../core/user";
@@ -70,14 +69,12 @@ function ChecklistMaterialButtonEntry({
       if (loggedIn) {
         // If we're pending and logged in, then trigger the actual request.
         dispatch(action({ materialListUrl, materialId: id })).then(payload => {
-          dispatch(resetStatus({ materialId: id })).then(() => {
-            dispatch(
-              setInitialStatus({
-                materialId: id,
-                onList: payload?.error ? onList : newOnList
-              })
-            );
-          });
+          dispatch(
+            resetStatus({
+              materialId: id,
+              onList: payload?.error ? onList : newOnList
+            })
+          );
         });
       } else if (User.authenticationFailed()) {
         // If authentication failed, abort.
