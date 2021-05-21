@@ -9,7 +9,7 @@ const Template = args => <ChecklistMaterialButton {...args} />;
 
 export const Entry = Template.bind({});
 Entry.args = {
-  materialListUrl: "http://localhost:8000",
+  materialListUrl: "https://test.materiallist.dandigbib.org",
   addText: "Tilføj til din huskeliste",
   addErrorText: "Der opstod en fejl",
   addSuccessText: "Tilføjet",
