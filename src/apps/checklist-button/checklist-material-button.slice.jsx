@@ -59,25 +59,18 @@ export const checklistMaterialButtonSlice = createSlice({
     },
     addToListPending(state, action) {
       state.status[action.payload.materialId] = "pending";
-      state.onList[action.payload.materialId] = "off";
     },
     addToListAborted(state, action) {
       state.status[action.payload.materialId] = "failed";
-      state.onList[action.payload.materialId] = "off";
     },
     removeFromListPending(state, action) {
       state.status[action.payload.materialId] = "pending";
-      state.onList[action.payload.materialId] = "on";
     },
     removeFromListAborted(state, action) {
       state.status[action.payload.materialId] = "failed";
-      state.onList[action.payload.materialId] = "on";
     }
   },
   extraReducers: {
-    [checkOnListAction.pending]: (state, action) => {
-      state.onList[action.meta.arg.materialId] = "unknown";
-    },
     [checkOnListAction.fulfilled]: (state, action) => {
       state.onList[action.meta.arg.materialId] = action.payload ? "on" : "off";
     },
@@ -86,27 +79,23 @@ export const checklistMaterialButtonSlice = createSlice({
     },
     [addToListAction.pending]: (state, action) => {
       state.status[action.meta.arg.materialId] = "processing";
-      state.onList[action.meta.arg.materialId] = "off";
     },
     [addToListAction.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "finished";
-      state.onList[action.meta.arg.materialId] = "off";
+      state.onList[action.meta.arg.materialId] = "on";
     },
     [addToListAction.rejected]: (state, action) => {
       state.status[action.meta.arg.materialId] = "failed";
-      state.onList[action.meta.arg.materialId] = "off";
     },
     [removeFromListAction.pending]: (state, action) => {
       state.status[action.meta.arg.materialId] = "processing";
-      state.onList[action.meta.arg.materialId] = "on";
     },
     [removeFromListAction.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "finished";
-      state.onList[action.meta.arg.materialId] = "on";
+      state.onList[action.meta.arg.materialId] = "off";
     },
     [removeFromListAction.rejected]: (state, action) => {
       state.status[action.meta.arg.materialId] = "failed";
-      state.onList[action.meta.arg.materialId] = "on";
     },
     [resetStatus.fulfilled]: (state, action) => {
       state.status[action.meta.arg.materialId] = "ready";

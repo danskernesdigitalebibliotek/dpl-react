@@ -37,26 +37,39 @@ function ChecklistMaterialButtonEntry({
 
   const dispatch = useDispatch();
   const loggedIn = User.isAuthenticated();
-  const [pending, action, aborted, text, successText, errorText, newOnList] =
-    onList !== "on"
-      ? [
-          addToListPending,
-          addToListAction,
-          addToListAborted,
-          addText,
-          addSuccessText,
-          addErrorText,
-          "on"
-        ]
-      : [
+  // Perform add-related actions when:
+  const [pending, action, aborted, newOnList] =
+    // 1. The material is not on the list
+    onList === "off" ||
+    // 2. We do not know whether the material is on the list or not. Adding the
+    //    material twice in non-destructive.
+    onList === "unknown" ||
+    // 3. We are in the process of adding the material
+    (onList === "on" && status === "processing")
+      ? [addToListPending, addToListAction, addToListAborted, "on"]
+      : // Otherwise perform remove related actions
+        [
           removeFromListPending,
           removeFromListAction,
           removeFromListAborted,
-          removeText,
-          removeSuccessText,
-          removeErrorText,
           "off"
         ];
+  // Show texts related to adding a material if:
+  const [text, successText, errorText] =
+    // 1.  We do not know whether the material is on the list or not.
+    onList === "unknown" ||
+    // 2. The material is not on the list and we are not in the process of
+    //    adding it.
+    (onList === "off" &&
+      (status === "ready" ||
+        status === "pending" ||
+        status === "processing" ||
+        status === "failed")) ||
+    // 3. The material has been successfully added to the list
+    (onList === "on" && status === "finished")
+      ? [addText, addSuccessText, addErrorText]
+      : [removeText, removeSuccessText, removeErrorText];
+
   const onClick = () => {
     dispatch(pending({ materialId: id }));
     if (!loggedIn) {
