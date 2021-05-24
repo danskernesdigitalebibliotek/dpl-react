@@ -33,6 +33,7 @@
         "allowUnboundThis": true
       }
     ],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -53,7 +54,7 @@
     {
       "files": ["**/*.dev.jsx"],
       "rules": {
-        "react/jsx-props-no-spreading": "off",
+        "react/jsx-props-no-spreading": "off"
       }
     }
   ]

@@ -1,5 +1,8 @@
 describe("Add to Checklist", () => {
   it("Add material to checklist", () => {
+    cy.window().then(win => {
+      win.sessionStorage.clear();
+    });
     cy.server();
     cy.route({
       method: "PUT",
@@ -12,6 +15,9 @@ describe("Add to Checklist", () => {
     cy.contains("Tilføjet");
   });
   it("Fails adding material to checklist", () => {
+    cy.window().then(win => {
+      win.sessionStorage.clear();
+    });
     cy.server();
     cy.route({
       method: "PUT",

@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import urlPropType from "url-prop-type";
 
 import Button from "../../components/atoms/button/button";
 import Alert from "../../components/alert/alert";
-import User from "../../core/user";
-import replacePlaceholders from "../../core/replacePlaceholders";
 
 function ChecklistMaterialButton({
   status,
@@ -13,11 +10,9 @@ function ChecklistMaterialButton({
   text,
   errorText,
   successText,
-  loginUrl,
-  materialId,
   containerClass
 }) {
-  if (status === "processing") {
+  if (status === "processing" || status === "finished") {
     return <Alert message={successText} type="polite" variant="success" />;
   }
 
@@ -27,21 +22,7 @@ function ChecklistMaterialButton({
 
   return (
     <div className={containerClass}>
-      <Button
-        href={
-          !User.isAuthenticated()
-            ? replacePlaceholders({
-                text: loginUrl,
-                tags: {
-                  id: encodeURIComponent(materialId)
-                }
-              })
-            : undefined
-        }
-        variant="black"
-        align="left"
-        onClick={onClick}
-      >
+      <Button variant="black" align="left" onClick={onClick}>
         {text}
       </Button>
     </div>
@@ -52,10 +33,14 @@ ChecklistMaterialButton.propTypes = {
   text: PropTypes.string.isRequired,
   errorText: PropTypes.string.isRequired,
   successText: PropTypes.string.isRequired,
-  loginUrl: urlPropType.isRequired,
   onClick: PropTypes.func.isRequired,
-  status: PropTypes.oneOf(["ready", "processing", "failed", "finished"]),
-  materialId: PropTypes.string.isRequired,
+  status: PropTypes.oneOf([
+    "pending",
+    "ready",
+    "processing",
+    "failed",
+    "finished"
+  ]),
   containerClass: PropTypes.string
 };
 

@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import urlPropType from "url-prop-type";
+import {
+  addToListPending,
+  addToListAction,
+  addToListAborted,
+  checkOnListAction,
+  removeFromListPending,
+  removeFromListAction,
+  removeFromListAborted,
+  resetStatus
+} from "./checklist-material-button.slice";
+import User from "../../core/user";
 
 import ChecklistMaterialButton from "./checklist-material-button";
-import MaterialList from "../../core/MaterialList";
 
 function ChecklistMaterialButtonEntry({
   materialListUrl,
@@ -18,76 +29,92 @@ function ChecklistMaterialButtonEntry({
   initialOnList,
   containerClass
 }) {
-  const [status, setStatus] = useState("ready");
-  const [onList, setOnList] = useState(initialOnList);
+  const status =
+    useSelector(state => state.checklistMaterialButton.status[id]) || "ready";
+  const onList =
+    useSelector(state => state.checklistMaterialButton.onList[id]) ||
+    initialOnList;
 
-  function setRestoreStatus(newOnList) {
-    setOnList(newOnList);
-    setStatus("ready");
-  }
+  const dispatch = useDispatch();
+  const loggedIn = User.isAuthenticated();
+  // Perform add-related actions when:
+  const [pending, action, aborted, newOnList] =
+    // 1. The material is not on the list
+    onList === "off" ||
+    // 2. We do not know whether the material is on the list or not. Adding the
+    //    material twice in non-destructive.
+    onList === "unknown" ||
+    // 3. We are in the process of adding the material
+    (onList === "on" && status === "processing")
+      ? [addToListPending, addToListAction, addToListAborted, "on"]
+      : // Otherwise perform remove related actions
+        [
+          removeFromListPending,
+          removeFromListAction,
+          removeFromListAborted,
+          "off"
+        ];
+  // Show texts related to adding a material if:
+  const [text, successText, errorText] =
+    // 1.  We do not know whether the material is on the list or not.
+    onList === "unknown" ||
+    // 2. The material is not on the list and we are not in the process of
+    //    adding it.
+    (onList === "off" &&
+      (status === "ready" ||
+        status === "pending" ||
+        status === "processing" ||
+        status === "failed")) ||
+    // 3. The material has been successfully added to the list
+    (onList === "on" && status === "finished")
+      ? [addText, addSuccessText, addErrorText]
+      : [removeText, removeSuccessText, removeErrorText];
 
-  function setListErrorStatus() {
-    setStatus("failed");
-    setTimeout(() => {
-      setRestoreStatus("unknown");
-    }, 4000);
-  }
+  const onClick = () => {
+    dispatch(pending({ materialId: id }));
+    if (!loggedIn) {
+      User.authenticate(loginUrl);
+    }
+  };
 
-  function addToList() {
-    setStatus("processing");
+  useEffect(() => {
+    if (status === "pending") {
+      if (loggedIn) {
+        // If we're pending and logged in, then trigger the actual request.
+        dispatch(action({ materialListUrl, materialId: id })).then(payload => {
+          dispatch(
+            resetStatus({
+              materialId: id,
+              onList: payload?.error ? onList : newOnList
+            })
+          );
+        });
+      } else if (User.authenticationFailed()) {
+        // If authentication failed, abort.
+        dispatch(aborted({ materialId: id }));
+        dispatch(
+          resetStatus({
+            materialId: id,
+            onList
+          })
+        );
+      }
+    }
 
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client
-      .addListMaterial({ materialId: id })
-      .then(() => {
-        setTimeout(() => {
-          setRestoreStatus("on");
-        }, 4000);
-      })
-      .catch(setListErrorStatus);
-  }
-
-  function removeFromList() {
-    setStatus("processing");
-
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client
-      .deleteListMaterial({ materialId: id })
-      .then(() => {
-        setTimeout(() => {
-          setRestoreStatus("off");
-        }, 4000);
-      })
-      .catch(setListErrorStatus);
-  }
-
-  let onClick = addToList;
-  let text = addText;
-  let errorText = addErrorText;
-  let successText = addSuccessText;
-  if (onList === "on") {
-    onClick = removeFromList;
-    text = removeText;
-    errorText = removeErrorText;
-    successText = removeSuccessText;
-  }
-
-  if (status === "ready" && onList === "unknown") {
-    const client = new MaterialList({ baseUrl: materialListUrl });
-    client
-      .checkListMaterial({ materialId: id })
-      .then(listMaterial => {
-        setOnList(listMaterial ? "on" : "off");
-      })
-      // eslint-disable-next-line no-unused-vars
-      .catch(err => {
-        // Do nothing. If the call fails then we show the add button by default.
-        // If this is a permanent error then clicking the button will trigger an
-        // error. If this is a temporary error and the user clicks the button
-        // then the material will not be added multiple times and thus cause
-        // further problems.
-      });
-  }
+    if (status === "ready" && onList === "unknown") {
+      dispatch(checkOnListAction({ materialListUrl, materialId: id }));
+    }
+  }, [
+    aborted,
+    action,
+    dispatch,
+    id,
+    loggedIn,
+    materialListUrl,
+    newOnList,
+    onList,
+    status
+  ]);
 
   return (
     <ChecklistMaterialButton
@@ -96,8 +123,6 @@ function ChecklistMaterialButtonEntry({
       successText={successText}
       status={status}
       onClick={onClick}
-      loginUrl={loginUrl}
-      materialId={id}
       containerClass={containerClass}
     />
   );
