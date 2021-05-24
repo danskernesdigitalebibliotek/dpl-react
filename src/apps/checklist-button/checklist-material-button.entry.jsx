@@ -92,6 +92,12 @@ function ChecklistMaterialButtonEntry({
       } else if (User.authenticationFailed()) {
         // If authentication failed, abort.
         dispatch(aborted({ materialId: id }));
+        dispatch(
+          resetStatus({
+            materialId: id,
+            onList
+          })
+        );
       }
     }
 
