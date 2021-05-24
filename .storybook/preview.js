@@ -49,7 +49,7 @@ tokenConfigs.forEach(function(tokenConfig) {
       }
     }
     // We want to pretend that the user is authenticated.
-    if (NODE_ENV === "test") {
+    if (process.env.NODE_ENV === "test") {
       store.dispatch(updateStatus({
         hasToken: true
       }))
