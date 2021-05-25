@@ -5,6 +5,7 @@ import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundary from "../components/alert/alert";
 import { setToken } from "./token";
 import Store from "../components/store";
+import { persistor } from "./store";
 
 /**
  * We look for containers and corresponding applications.
@@ -54,12 +55,22 @@ function unmount(context) {
   appContainers.forEach(unMountApp);
 }
 
+/**
+ * Resets any stored state of all components.
+ *
+ * @returns {Promise<any>}
+ */
+function reset() {
+  return persistor.purge();
+}
+
 function init() {
   const initial = {
     apps: {},
     setToken,
     mount,
-    unmount
+    unmount,
+    reset
   };
   window.ddbReact = {
     ...(window.ddbReact || {}),
