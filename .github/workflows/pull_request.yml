@@ -148,3 +148,16 @@ jobs:
         run: yarn build:doc
       - name: Validate TOC
         run: git diff --exit-code
+
+  markdownlint:
+    name: Lint markdown
+    if: '!github.event.deleted'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: yarn install
+      - name: Install problem matcher
+        uses: xt0rted/markdownlint-problem-matcher@v1
+      - name: Lint markdown
+        run: npx markdownlint-cli2
