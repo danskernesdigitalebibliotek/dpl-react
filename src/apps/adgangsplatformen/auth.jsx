@@ -10,10 +10,6 @@ import {
 const CLIENT_ID = process.env.STORYBOOK_CLIENT_ID;
 const REDIRECT_URL = `${window.location.origin}/?path=/story/adgangsplatformen--sign-in`;
 
-// The Client ID is only pointing towards the URI's below
-// http://ddb-react.docker/?path=/story/adgangsplatformen--sign-in
-// https://danskernesdigitalebibliotek.github.io/ddb-react/?path=/story/adgangsplatformen--sign-in
-
 function Auth() {
   const dispatch = useDispatch();
   const status = useSelector(s => s.user.status);
