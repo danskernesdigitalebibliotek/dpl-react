@@ -13,6 +13,7 @@ services:
     environment:
       VIRTUAL_HOST: ddb-react.docker
       VIRTUAL_PORT: 57021
+      STORYBOOK_CLIENT_ID: bdc1d425-9117-4867-acb9-c7307ddc2e0f
 volumes:
   root:
     driver_opts:

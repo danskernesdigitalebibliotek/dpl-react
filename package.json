@@ -26,9 +26,9 @@
     "watch:css": "postcss ./src/apps/**/*.scss ./src/components/components.scss --ext css --dir ./dist --watch",
     "watch:lint:scss": "chokidar \"./src/**/*.scss\" -c \"yarn lint:scss:fix\"",
     "build:doc": "doctoc README.md",
-    "build:storybook": "STORYBOOK_CLIENT_ID=e4144cc5-7ac3-47bc-bc02-8df430acc642 build-storybook -c .storybook -o dev",
-    "start:storybook:test": "NODE_ENV=test STORYBOOK_CLIENT_ID=bdc1d425-9117-4867-acb9-c7307ddc2e0f start-storybook --port 57021",
-    "start:storybook:dev": "NODE_ENV=development STORYBOOK_CLIENT_ID=bdc1d425-9117-4867-acb9-c7307ddc2e0f start-storybook --port 57021",
+    "build:storybook": "build-storybook -c .storybook -o dev",
+    "start:storybook:test": "NODE_ENV=test start-storybook --port 57021",
+    "start:storybook:dev": "NODE_ENV=development  start-storybook --port 57021",
     "dev": "concurrently --raw \"yarn start:storybook:dev\" \"yarn watch:lint:scss\"",
     "test": "cypress run",
     "cypress:open": "cypress open"
