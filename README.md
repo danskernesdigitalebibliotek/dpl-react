@@ -39,7 +39,7 @@ A set of React components and applications providing self-service features for D
 * [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
-* `.tokens.json` file in the root of the project containing valid access tokens for a patron and a library. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/danskernesdigitalebibliotek/material-list) and [FollowSearches](https://github.com/danskernesdigitalebibliotek/follow-searches). ___(optional, you might not need or want live data.)___
+
 
 #### Retrieving access tokens
 
@@ -49,12 +49,7 @@ Usage of these systems require a valid client id and secret which must be
 obtained from your library partner or directly from DBC, the company responsible
 for running Adgangsplatfomen and OpenPlatform.
 
-We have a make target for retrieving an access token.
-You still need the valid client id and client secret as described above.
-
-```bash
-make token
-```
+You can use the `/auth` story to sign into Adgangsplatformen for the storybook context.
 
 The following steps describe how these tokens can be retrieved manually.
 
