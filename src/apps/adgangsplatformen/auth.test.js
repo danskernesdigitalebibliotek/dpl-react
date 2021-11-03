@@ -29,6 +29,6 @@ describe("Authentication", () => {
     cy.window()
       .its("sessionStorage")
       .invoke("getItem", TOKEN_USER_KEY)
-      .should("exist");
+      .should("eq", "random_token");
   });
 });
