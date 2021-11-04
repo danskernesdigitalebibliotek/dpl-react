@@ -31,6 +31,9 @@ jobs:
     - run: yarn install
 
     - run: yarn build:storybook
+      env:
+        STORYBOOK_CLIENT_ID: ${{ secrets.STORYBOOK_CLIENT_ID }}
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

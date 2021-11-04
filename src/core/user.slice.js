@@ -20,6 +20,12 @@ const userSlice = createSlice({
           state.status = "failed";
         }
       }
+    },
+    setStatusAuthenticated(state) {
+      state.status = "authenticated";
+    },
+    setStatusUnauthenticated(state) {
+      state.status = "unauthenticated";
     }
   },
   extraReducers: {
@@ -29,6 +35,10 @@ const userSlice = createSlice({
   }
 });
 
-export const { updateStatus } = userSlice.actions;
+export const {
+  updateStatus,
+  setStatusAuthenticated,
+  setStatusUnauthenticated
+} = userSlice.actions;
 
 export default userSlice.reducer;

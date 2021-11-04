@@ -1,33 +1,9 @@
 const path = require("path");
-const fs = require("fs").promises;
-const DefinePlugin = require("webpack").DefinePlugin;
-const chalk = require("chalk");
 
 const customWebpack = require("../webpack.config.js");
 
 // https://storybook.js.org/docs/configurations/custom-webpack-config/#full-control-mode
 module.exports = async ({ config }) => {
-  let tokens = {};
-  try {
-    tokens = await fs.readFile(
-      path.resolve(__dirname, "../.tokens.json"),
-      "utf8"
-    );
-    tokens = JSON.parse(tokens);
-  } catch (err) {
-    console.warn(
-      chalk.yellow("warn") + " => Could not find a .tokens.json file in root"
-    );
-  }
-  ["user", "library"].forEach(type => {
-    if (!tokens.hasOwnProperty(type)) {
-      console.warn(
-        chalk.yellow("warn") +
-          ` => No ${type} entry in .tokens.json file. Requests to external services might not work!`
-      );
-    }
-  });
-
   const custom = customWebpack(undefined, { mode: "development" });
   const rules = [
     ...custom.module.rules,
@@ -38,16 +14,6 @@ module.exports = async ({ config }) => {
       include: path.resolve(__dirname, "../")
     }
   ];
-  const plugins = [
-    ...config.plugins,
-    new DefinePlugin({
-      DDB_TOKEN_USER: tokens.hasOwnProperty("user")
-        ? JSON.stringify(tokens.user)
-        : null,
-      DDB_TOKEN_LIBRARY: tokens.hasOwnProperty("library")
-        ? JSON.stringify(tokens.library)
-        : null
-    })
-  ];
+  const plugins = [...config.plugins];
   return { ...config, plugins, module: { ...config.module, rules } };
 };

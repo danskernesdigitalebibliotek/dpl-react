@@ -10,9 +10,7 @@ A set of React components and applications providing self-service features for D
 
 - [Development](#development)
   - [Requirements](#requirements)
-    - [Retrieving access tokens](#retrieving-access-tokens)
-      - [User tokens](#user-tokens)
-      - [Library tokens](#library-tokens)
+    - [Access tokens](#access-tokens)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
     - [JavaScript + JSX](#javascript--jsx)
@@ -39,9 +37,9 @@ A set of React components and applications providing self-service features for D
 * [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Dory](https://github.com/FreedomBen/dory)
-* `.tokens.json` file in the root of the project containing valid access tokens for a patron and a library. This is used in the communication with [OpenPlatform](https://openplatform.dbc.dk/v3/), [MaterialList](https://github.com/danskernesdigitalebibliotek/material-list) and [FollowSearches](https://github.com/danskernesdigitalebibliotek/follow-searches). ___(optional, you might not need or want live data.)___
 
-#### Retrieving access tokens
+
+#### Access tokens
 
 Access token must be retrieved from [Adgangsplatformen](https://github.com/DBCDK/hejmdal/blob/master/docs/oauth2.md), a single sign-on solution for public libraries in Denmark, and [OpenPlatform](https://openplatform.dbc.dk/v3/), an API for danish libraries.
 
@@ -49,50 +47,8 @@ Usage of these systems require a valid client id and secret which must be
 obtained from your library partner or directly from DBC, the company responsible
 for running Adgangsplatfomen and OpenPlatform.
 
-We have a make target for retrieving an access token.
-You still need the valid client id and client secret as described above.
-
-```bash
-make token
-```
-
-The following steps describe how these tokens can be retrieved manually.
-
-##### User tokens
-
-Example for retrieving an user access token from Adgangsplatformen using password grant:
-
-```bash
-curl -X POST https://login.bib.dk/oauth/token -d 'grant_type=password&password=[patron-password]&username=[patron-username]&agency=[patron-library-agency-id]&client_id=[client-id]&client_secret=[client-secret]'
-```
-
-This will return a data structure containing the access token:
-
-```json
-{
-    "access_token":"abcd1234",
-    "token_type":"Bearer",
-    "expires_in":2591999
-}
-```
-
-##### Library tokens
-
-Example for retrieving a library access token from OpenPlatform using password grant:
-
-```bash
-curl --user "[client-id]:[client-secret]" -X POST https://auth.dbc.dk/oauth/token -d "grant_type=password&username=@DK-[library-agency-id]&password=@DK-[library-agency-id]" 
-```
-
-This will return a data structure containing the access token:
-
-```json
-{
-    "access_token":"abcd1234",
-    "token_type":"Bearer",
-    "expires_in":2591999
-}
-```
+This project include a client id that matches the storybook setup which can be used for development purporses.
+You can use the `/auth` story to sign into Adgangsplatformen for the storybook context.
 
 ### Installation
 
