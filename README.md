@@ -10,9 +10,7 @@ A set of React components and applications providing self-service features for D
 
 - [Development](#development)
   - [Requirements](#requirements)
-    - [Retrieving access tokens](#retrieving-access-tokens)
-      - [User tokens](#user-tokens)
-      - [Library tokens](#library-tokens)
+    - [Access tokens](#access-tokens)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
     - [JavaScript + JSX](#javascript--jsx)
