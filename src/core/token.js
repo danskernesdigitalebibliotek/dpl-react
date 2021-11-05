@@ -1,5 +1,8 @@
 const tokens = {};
 
+export const TOKEN_USER_KEY = `user`;
+export const TOKEN_LIBRARY_KEY = `library`;
+
 /**
  * @typedef {"user" | "library"} TokenType
  *
