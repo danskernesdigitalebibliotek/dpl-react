@@ -1,7 +1,12 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fetch from "unfetch";
-import { getToken, TOKEN_USER_KEY } from "../../core/token";
+import {
+  getToken,
+  setToken,
+  TOKEN_LIBRARY_KEY,
+  TOKEN_USER_KEY
+} from "../../core/token";
 import {
   setStatusAuthenticated,
   setStatusUnauthenticated
@@ -58,7 +63,13 @@ function Auth() {
           throw res;
         }
 
+        // We need to make the token available in two contexts:
+        // 1. Subsequent browser reloads. Consequently we set the token into sessionstorage, which are read by preview.js.
         window.sessionStorage.setItem(TOKEN_USER_KEY, res.access_token);
+        // 2. Current storybook context.
+        setToken(TOKEN_USER_KEY, res.access_token);
+        setToken(TOKEN_LIBRARY_KEY, res.access_token);
+
         dispatch(setStatusAuthenticated());
       })
       .catch(err => {
