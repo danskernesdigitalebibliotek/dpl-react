@@ -46,12 +46,16 @@ Danish public libraries.
 - [Dory](https://github.com/FreedomBen/dory)
 
 ## Development - alternative (no docker)
+
 ### Howto
-* Install locally: `yarn install`
-* Install [nginx](https://kirillplatonov.com/posts/simple-reverse-proxy-on-mac-with-nginx/)
-* Update /usr/local/etc/nginx/nginx.conf with content of nginx.conf.example
-* Start nginx service
-* Now story book can be started by yarn
+
+- Run: sudo vim etc/hosts
+- Add as the last line in the doc: 127.0.0.1 ddb-react.docker
+- Now storybook can be started by sudo yarn start:storybook:dev
+
+- Now you need to make sure that your node version is the right one
+  for the project whenever a terminal is opened
+- (it is specified in the package.json file)
 
 #### Access tokens
 
