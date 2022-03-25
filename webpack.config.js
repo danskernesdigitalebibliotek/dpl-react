@@ -68,7 +68,16 @@ module.exports = (_env, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader", "eslint-loader"]
+          use: ["babel-loader"],
+        },
+        // For some reason we need to split up babel-loader and eslint-loader
+        // in order to get rid of eslint warnings like
+        // [these](https://github.com/storybookjs/storybook/issues/10878).
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: ["eslint-loader"],
+          include: path.resolve(__dirname, "./src")
         }
       ]
     },

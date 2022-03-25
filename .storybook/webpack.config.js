@@ -5,6 +5,7 @@ const customWebpack = require("../webpack.config.js");
 // https://storybook.js.org/docs/configurations/custom-webpack-config/#full-control-mode
 module.exports = async ({ config }) => {
   const custom = customWebpack(undefined, { mode: "development" });
+
   const rules = [
     ...custom.module.rules,
     // We need to make use of css modules in our stories.
