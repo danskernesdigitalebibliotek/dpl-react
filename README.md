@@ -13,6 +13,8 @@ Danish public libraries.
 
 - [Development](#development)
   - [Requirements](#requirements)
+- [Development - alternative (no docker)](#development---alternative-no-docker)
+  - [Howto](#howto)
     - [Access tokens](#access-tokens)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
@@ -42,6 +44,18 @@ Danish public libraries.
 - [make](https://www.gnu.org/software/make/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Dory](https://github.com/FreedomBen/dory)
+
+## Development - alternative (no docker)
+
+### Howto
+
+- Run: sudo vim etc/hosts
+- Add as the last line in the doc: 127.0.0.1 ddb-react.docker
+- Now storybook can be started by sudo yarn start:storybook:dev
+
+- Now you need to make sure that your node version is the right one
+  for the project whenever a terminal is opened
+- (it is specified in the package.json file)
 
 #### Access tokens
 
@@ -490,12 +504,12 @@ this:
 </head>
 <body>
     <b>Here be dragons!</b>
-    <!-- Data attributes will be camelCased on the react side aka. 
+    <!-- Data attributes will be camelCased on the react side aka.
          props.errorText and props.text -->
-    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon" 
+    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"
          data-error-text="Minor mistake"></div>
     <div data-ddb-app='a-none-existing-app'></div>
-    
+
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
     <script src="/dist/polyfills.js"></script>
@@ -546,7 +560,7 @@ can be passed if necessary. Examples would be contextual ids etc. Normally these
 would be passed in by the serverside platform e.g. Drupal, Wordpress etc.
 
 ```html
-<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613" 
+<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613"
      data-error-text="A mistake was made"></div>
 ```
 
@@ -636,7 +650,7 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
         <React.StrictMode>
           <b>Here be dragons!</b>
-          <AddToCheckListEntry text="Chromatic dragon" 
+          <AddToCheckListEntry text="Chromatic dragon"
                                errorText="Minor mistake" />
         </React.StrictMode>,
         rootElement
