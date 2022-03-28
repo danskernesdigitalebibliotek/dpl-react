@@ -9,3 +9,4 @@ index.html
 .tokens.json
 .vscode
 yarn-error.log
+.env
