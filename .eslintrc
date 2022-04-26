@@ -25,9 +25,7 @@
     "ecmaFeatures": {
       "jsx": true,
       "globalReturn": false,
-      "useJSXTextNode": true
     },
-    "ecmaVersion": 2018,
     "project": "./tsconfig.json"
   },
   "rules": {
