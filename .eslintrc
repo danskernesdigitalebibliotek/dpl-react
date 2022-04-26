@@ -1,10 +1,13 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
+    "airbnb-typescript",
     "airbnb/hooks",
-    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier/react",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ],
   "settings": {
@@ -13,17 +16,19 @@
     }
   },
   "env": {
-    "es6": true,
-    "node": true,
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
     "ecmaFeatures": {
       "jsx": true,
-      "globalReturn": false
-    }
+      "globalReturn": false,
+      "useJSXTextNode": true
+    },
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
   },
   "rules": {
     "prefer-arrow-callback": [
@@ -33,7 +38,15 @@
         "allowUnboundThis": true
       }
     ],
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -48,14 +61,30 @@
           "src/core/polyfills.js"
         ]
       }
-    ]
+    ],
   },
   "overrides": [
     {
-      "files": ["**/*.dev.jsx"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {
-        "react/jsx-props-no-spreading": "off"
+        // These rules were triggered on the former non-typescript codebase.
+        // We are planning to use only ts/tsx in the future
+        // Therefor we can seperate them by only being ignored on js/jsx files.
+        // Start - ddb-react former code
+        "react/jsx-no-bind": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/function-component-definition": "off",
+        "react/forbid-prop-types": "off",
+        "react/destructuring-assignment": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "@typescript-eslint/return-await": "off",
+        "no-param-reassign": "off",
+        "@typescript-eslint/no-var-requires": "off"
+        // End - ddb-react former code
       }
-    }
+    },
   ]
 }
