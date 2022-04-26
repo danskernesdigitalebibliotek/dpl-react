@@ -11,9 +11,9 @@
     "yarn": ">=1.17.3"
   },
   "scripts": {
-    "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx}\"",
-    "lint:js": "eslint --ext .js --ext .jsx ./src",
-    "lint:js:fix": "eslint --ext .js --ext .jsx --fix ./src",
+    "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:js": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src",
+    "lint:js:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --fix ./src",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2-fix",
     "lint:scss": "stylelint \"./src/**/*.scss\"",
