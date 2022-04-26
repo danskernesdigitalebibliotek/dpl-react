@@ -1,6 +1,7 @@
 {
-    "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "shinnn.stylelint"
-    ]
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "shinnn.stylelint",
+    "editorconfig.editorconfig"
+  ]
 }

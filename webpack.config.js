@@ -3,6 +3,7 @@ const glob = require("glob");
 const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = (_env, argv) => {
   const production = argv.mode === "production";
@@ -20,8 +21,14 @@ module.exports = (_env, argv) => {
   const plugins = [
     new EnvironmentPlugin({
       NODE_ENV: "development"
+    }),
+    new ESLintPlugin({
+      files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      context: path.resolve(__dirname, "./src"),
+      useEslintrc: true
     })
   ];
+
   if (process.env.BUNDLE_ANALYZER_TOKEN) {
     plugins.push(
       new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN })
@@ -61,23 +68,14 @@ module.exports = (_env, argv) => {
       }
     },
     resolve: {
-      extensions: [".js", ".jsx", ".json"]
+      extensions: [".js", ".jsx", ".tsx", ".ts", ".json"]
     },
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"],
-        },
-        // For some reason we need to split up babel-loader and eslint-loader
-        // in order to get rid of eslint warnings like
-        // [these](https://github.com/storybookjs/storybook/issues/10878).
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: ["eslint-loader"],
-          include: path.resolve(__dirname, "./src")
+          use: ["babel-loader"]
         }
       ]
     },
