@@ -2,7 +2,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     branches:
-      - 'master' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'main' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 name: Upload Code Coverage
 
