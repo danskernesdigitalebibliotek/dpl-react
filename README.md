@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-next-line first-line-h1 -->
-![https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png)
+![https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png)
 
-[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react)
+[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react)
 
 A set of React components and applications providing self-service features for
 Danish public libraries.
@@ -50,7 +50,7 @@ Danish public libraries.
 ### Howto
 
 - Run: sudo vim etc/hosts
-- Add as the last line in the doc: 127.0.0.1 ddb-react.docker
+- Add as the last line in the doc: 127.0.0.1 dpl-react.docker
 - Now storybook can be started by sudo yarn start:storybook:dev
 
 - Now you need to make sure that your node version is the right one
@@ -77,7 +77,7 @@ Adgangsplatformen for the storybook context.
 make up
 ```
 
-When storybook is started, you can access it at: [ddb-react.docker](http://ddb-react.docker)
+When storybook is started, you can access it at: [dpl-react.docker](http://dpl-react.docker)
 
 ### Standard and style
 
@@ -481,7 +481,7 @@ page such as what might be generated serverside by platforms like Drupal,
 WordPress etc.
 
 For this use case you should download the `dist.zip` package from
-[the latest release of the project](/danskernesdigitalebibliotek/ddb-react/releases/latest)
+[the latest release of the project](/danskernesdigitalebibliotek/dpl-react/releases/latest)
 and unzip somewhere within the web root of your project. The package contains a
 set of artifacts needed to use one or more applications within an HTML page.
 
@@ -630,8 +630,8 @@ adding `@danskernesdigitalebibliotek:registry=https://npm.pkg.github.com` to the
 `.npmrc` file of your project.
 
 Then you can add the package to your project: `yarn add
-@danskernesdigitalebibliotek/ddb-react` or `npm
-install @danskernesdigitalebibliotek/ddb-react`
+@danskernesdigitalebibliotek/dpl-react` or `npm
+install @danskernesdigitalebibliotek/dpl-react`
 
 Finally you can use the components within your project.
 
@@ -643,8 +643,8 @@ A simple example of how the package can be used looks like this:
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom";
-import { AddToCheckListEntry } from "@danskernesdigitalebibliotek/ddb-react";
-import "@danskernesdigitalebibliotek/ddb-react/components.css";
+import { AddToCheckListEntry } from "@danskernesdigitalebibliotek/dpl-react";
+import "@danskernesdigitalebibliotek/dpl-react/components.css";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

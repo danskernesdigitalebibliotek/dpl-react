@@ -5,7 +5,7 @@ import userReducer from "./user.slice";
 import checklistMaterialButtonReducer from "../apps/checklist-button/checklist-material-button.slice";
 
 const persistConfig = {
-  key: "ddb-react",
+  key: "dpl-react",
   storage
 };
 
