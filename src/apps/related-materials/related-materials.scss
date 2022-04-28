@@ -1,4 +1,4 @@
-.ddb-related-materials {
+.dpl-related-materials {
   position: relative;
   max-width: 1310px;
   min-height: 200px;
@@ -9,11 +9,11 @@
   }
 }
 
-.ddb-related-materials__title {
+.dpl-related-materials__title {
   margin-left: space(5);
 }
 
-.ddb-related-materials__search {
+.dpl-related-materials__search {
   text-decoration: none;
   color: inherit;
   margin-left: space(5);
@@ -32,13 +32,13 @@
   }
 }
 
-.ddb-related-materials__list {
+.dpl-related-materials__list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
 }
 
-.ddb-related-material {
+.dpl-related-material {
   display: flex;
   height: 210px;
   width: 147px;

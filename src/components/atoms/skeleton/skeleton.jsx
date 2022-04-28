@@ -43,7 +43,7 @@ function Skeleton({
 }) {
   return (
     <Component
-      className="ddb-reset ddb-skeleton"
+      className="dpl-reset dpl-skeleton"
       style={{
         width,
         height,

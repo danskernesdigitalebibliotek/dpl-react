@@ -1,4 +1,4 @@
-@keyframes ddb-skeleton {
+@keyframes dpl-skeleton {
   0% {
     opacity: 1;
   }
@@ -10,10 +10,10 @@
   }
 }
 
-.ddb-skeleton {
+.dpl-skeleton {
   display: block;
   background-color: color("grey", "medium");
-  animation: ddb-skeleton duration("slow", 2) easing("standard", "expressive")
+  animation: dpl-skeleton duration("slow", 2) easing("standard", "expressive")
     infinite;
 
   &-wrapper {

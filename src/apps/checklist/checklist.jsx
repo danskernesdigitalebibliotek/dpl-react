@@ -49,7 +49,7 @@ function Checklist({
           key={item.pid}
           aside={
             <Button
-              className="ddb-checklist__button"
+              className="dpl-checklist__button"
               variant="charcoal"
               align="center"
               onClick={() => onRemove(item.pid)}
@@ -65,7 +65,7 @@ function Checklist({
             authorUrl={authorUrl}
             coverServiceUrl={coverServiceUrl}
             ofText={ofText}
-            dataClass="ddb-checklist__data"
+            dataClass="dpl-checklist__data"
           />
         </ListItem>
       ))}

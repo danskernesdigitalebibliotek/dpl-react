@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
  * @returns {ReactNode}
  */
 function UnorderedList({ className, children }) {
-  return <ul className={`ddb-reset list ${className}`}>{children}</ul>;
+  return <ul className={`dpl-reset list ${className}`}>{children}</ul>;
 }
 
 UnorderedList.propTypes = {

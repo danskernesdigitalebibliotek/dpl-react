@@ -1,24 +1,24 @@
-.ddb-add-to-searchlist__add {
+.dpl-add-to-searchlist__add {
   // Trying to hit the actual size on the ddb site.
   height: 25px;
   width: 25px;
 }
 
-.ddb-add-to-searchlist__star {
+.dpl-add-to-searchlist__star {
   width: 100%;
   height: 100%;
   fill: color("black");
 
-  & .ddb-icon__inner-star {
+  & .dpl-icon__inner-star {
     fill: transparent;
   }
 
-  &:hover .ddb-icon__inner-star {
+  &:hover .dpl-icon__inner-star {
     fill: color("black");
   }
 }
 
-.ddb-add-to-searchlist__content {
+.dpl-add-to-searchlist__content {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -28,13 +28,13 @@
   }
 }
 
-.ddb-add-to-searchlist__action {
+.dpl-add-to-searchlist__action {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.ddb-add-to-searchlist__input-container {
+.dpl-add-to-searchlist__input-container {
   margin: space(7) 0 space(5) 0;
   @include sm {
     margin: 0 0 space(5) 0;
@@ -42,16 +42,16 @@
   }
 }
 
-.ddb-add-to-searchlist__button {
+.dpl-add-to-searchlist__button {
   min-width: 190px;
 }
 
-.ddb-add-to-searchlist__info {
+.dpl-add-to-searchlist__info {
   flex: 1;
   margin-right: space(5);
 }
 
-.ddb-add-to-searchlist__help {
+.dpl-add-to-searchlist__help {
   display: block;
   color: color("text", "base");
   font-weight: bold;
@@ -59,7 +59,7 @@
   max-width: 450px;
 }
 
-.ddb-add-to-searchlist__success {
+.dpl-add-to-searchlist__success {
   display: flex;
   flex-direction: column;
 

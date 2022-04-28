@@ -1,10 +1,10 @@
-.ddb-color-example-container {
+.dpl-color-example-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.ddb-color-example {
+.dpl-color-example {
   height: layout(5);
   width: layout(5);
   margin: space(3);
@@ -72,7 +72,7 @@
   }
 }
 
-.ddb-color-example-text {
+.dpl-color-example-text {
   padding: space(4);
   margin: space(4);
 

@@ -15,11 +15,11 @@ import { persistor } from "./store";
  */
 function mount(context) {
   if (!context) return;
-  const appContainers = context.querySelectorAll("[data-ddb-app]");
+  const appContainers = context.querySelectorAll("[data-dpl-app]");
 
   function mountApp(container) {
-    const appName = container?.dataset?.ddbApp;
-    const app = window.ddbReact?.apps?.[appName];
+    const appName = container?.dataset?.dplApp;
+    const app = window.dplReact?.apps?.[appName];
     // Ensure that the application exists and that the container isn't already populated.
     const isValidMount = app && !container.innerHTML;
     if (isValidMount) {
@@ -40,13 +40,13 @@ function mount(context) {
 }
 
 /**
- * If you want to remove all ddb apps in a certain context.
+ * If you want to remove all dpl apps in a certain context.
  *
  * @param {HTMLElement} context - The HTML element you want to search for app containers in.
  */
 function unmount(context) {
   if (!context) return;
-  const appContainers = context.querySelectorAll("[data-ddb-app]");
+  const appContainers = context.querySelectorAll("[data-dpl-app]");
 
   function unMountApp(container) {
     const appContainerToUnmount = container;
@@ -72,8 +72,8 @@ function init() {
     unmount,
     reset
   };
-  window.ddbReact = {
-    ...(window.ddbReact || {}),
+  window.dplReact = {
+    ...(window.dplReact || {}),
     ...initial
   };
 }

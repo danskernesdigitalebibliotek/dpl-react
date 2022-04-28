@@ -3,7 +3,7 @@
   "plugins": ["@namics/stylelint-bem"],
   "rules": {
     "plugin/stylelint-bem-namics": {
-      "namespaces": ["ddb-"],
+      "namespaces": ["dpl-"],
       "patternPrefixes": [],
       "helperPrefixes": []
     }

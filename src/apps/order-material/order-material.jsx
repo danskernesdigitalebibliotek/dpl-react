@@ -70,7 +70,7 @@ function OrderMaterial({
 
     default:
       return (
-        <div className="ddb-order-material__container">
+        <div className="dpl-order-material__container">
           <Button
             href={
               !User.isAuthenticated()

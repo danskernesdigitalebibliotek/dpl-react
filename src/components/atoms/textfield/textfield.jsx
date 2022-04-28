@@ -39,33 +39,33 @@ const TextField = React.forwardRef(
       <>
         <label
           htmlFor={generatedId}
-          className={`ddb-reset ddb-textfield__label ${
-            hideLabel ? "ddb-textfield__label--hidden" : ""
+          className={`dpl-reset dpl-textfield__label ${
+            hideLabel ? "dpl-textfield__label--hidden" : ""
           } ${labelClass}`}
         >
           {label}
         </label>
-        <div className={`ddb-textfield__container ${containerClass}`}>
-          <div className="ddb-textfield__action">
+        <div className={`dpl-textfield__container ${containerClass}`}>
+          <div className="dpl-textfield__action">
             <input
               id={generatedId}
               name={name}
               ref={ref}
               defaultValue={defaultValue}
               type="text"
-              className={`ddb-reset ddb-textfield__input ${
-                error ? "ddb-textfield__input--error" : ""
+              className={`dpl-reset dpl-textfield__input ${
+                error ? "dpl-textfield__input--error" : ""
               } ${inputClass}`}
               value={value}
               placeholder={placeholder || label}
               onChange={onChange}
               required={required}
             />
-            <div className="ddb-textfield__icon">
+            <div className="dpl-textfield__icon">
               {error && <Cross variant="red" />}
             </div>
           </div>
-          <div className="ddb-textfield__error">
+          <div className="dpl-textfield__error">
             {error && <Alert type="polite">{error}</Alert>}
           </div>
         </div>

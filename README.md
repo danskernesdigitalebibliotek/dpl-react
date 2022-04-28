@@ -269,7 +269,7 @@ appropriate.
 
 ```scss
 // ./src/apps/my-new-application/my-new-application.scss
-.ddb-warm {
+.dpl-warm {
   color: maroon;
 }
 ```
@@ -381,7 +381,7 @@ export default MyNewAtom;
 
 ```scss
 // ./src/components/atoms/my-new-atom/my-new-atom.scss
-.ddb-btn {
+.dpl-btn {
     color: blue;
 }
 ```
@@ -506,9 +506,9 @@ this:
     <b>Here be dragons!</b>
     <!-- Data attributes will be camelCased on the react side aka.
          props.errorText and props.text -->
-    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"
+    <div data-dpl-app='add-to-checklist' data-text="Chromatic dragon"
          data-error-text="Minor mistake"></div>
-    <div data-ddb-app='a-none-existing-app'></div>
+    <div data-dpl-app='a-none-existing-app'></div>
 
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
@@ -520,13 +520,13 @@ this:
     <script>
       // For making successful requests to the different services we need one or
       // more valid tokens.
-     window.ddbReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
-     window.ddbReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
+     window.dplReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
+     window.dplReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
       // and a corresponding application loaded.
-      window.ddbReact.mount(document);
+      window.dplReact.mount(document);
     </script>
 </body>
 </html>
@@ -545,22 +545,22 @@ To mount the application you need an HTML element with the correct data
 attribute.
 
 ```html
-<div data-ddb-app='add-to-checklist'></div>
+<div data-dpl-app='add-to-checklist'></div>
 ```
 
-The name of the data attribute should be `data-ddb-app` and the value should be
+The name of the data attribute should be `data-dpl-app` and the value should be
 the name of the application - the value of the `appName` parameter assigned in
 the application `.mount.js` file.
 
 #### Data attributes and props
 
-As stated above, every application needs the corresponding `data-ddb-app`
+As stated above, every application needs the corresponding `data-dpl-app`
 attribute to even be mounted and shown on the page. Additional data attributes
 can be passed if necessary. Examples would be contextual ids etc. Normally these
 would be passed in by the serverside platform e.g. Drupal, Wordpress etc.
 
 ```html
-<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613"
+<div data-dpl-app='add-to-checklist' data-id="870970-basis:54172613"
      data-error-text="A mistake was made"></div>
 ```
 

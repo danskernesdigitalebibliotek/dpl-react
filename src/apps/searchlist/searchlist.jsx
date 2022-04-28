@@ -12,7 +12,7 @@ function SkeletonElement(_, index) {
   return (
     <ListItem
       key={index}
-      asideClass="ddb-searchlist__buttons"
+      asideClass="dpl-searchlist__buttons"
       aside={
         <>
           <Skeleton width="140px" height="50px" />
@@ -63,14 +63,14 @@ function Searchlist({
       {searches.map(search => {
         return (
           <ListItem
-            className="ddb-searchlist__item"
+            className="dpl-searchlist__item"
             key={search.id}
-            childrenClass="ddb-searchlist__children"
-            asideClass="ddb-searchlist__buttons"
+            childrenClass="dpl-searchlist__children"
+            asideClass="dpl-searchlist__buttons"
             aside={
               <>
                 <Button
-                  className="ddb-searchlist__remove-button ddb-searchlist__button"
+                  className="dpl-searchlist__remove-button dpl-searchlist__button"
                   onClick={() => onRemoveSearch(search.id)}
                   variant="secondary"
                   align="center"
@@ -78,7 +78,7 @@ function Searchlist({
                   {removeButtonText}
                 </Button>
                 <Button
-                  className="ddb-searchlist__result-button ddb-searchlist__button"
+                  className="dpl-searchlist__result-button dpl-searchlist__button"
                   align="center"
                   href={fullSearchUrl(searchUrl, search.query)}
                 >
@@ -87,7 +87,7 @@ function Searchlist({
               </>
             }
           >
-            <h2 className="ddb-searchlist__header">
+            <h2 className="dpl-searchlist__header">
               <a href={fullSearchUrl(searchUrl, search.query)}>
                 {search.title}
               </a>

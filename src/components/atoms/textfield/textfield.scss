@@ -1,8 +1,8 @@
-.ddb-textfield__container {
+.dpl-textfield__container {
   width: 100%;
 }
 
-.ddb-textfield__icon {
+.dpl-textfield__icon {
   display: block;
   margin-right: space(5);
   width: 20px;
@@ -10,12 +10,12 @@
   color: color("red");
 }
 
-.ddb-textfield__action {
+.dpl-textfield__action {
   display: flex;
   flex-direction: row-reverse;
 }
 
-.ddb-textfield__error {
+.dpl-textfield__error {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -23,7 +23,7 @@
   height: space(7);
 }
 
-.ddb-textfield__input {
+.dpl-textfield__input {
   background: color("white");
   width: 100%;
   box-sizing: border-box;
@@ -42,7 +42,7 @@
   }
 }
 
-.ddb-textfield__label {
+.dpl-textfield__label {
   margin-bottom: space(3);
   &--hidden {
     display: none;

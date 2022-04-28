@@ -27,7 +27,7 @@ function AddToChecklistEntry({
       id={id}
       materialListUrl={materialListUrl}
       initialOnList="off"
-      containerClass="ddb-add-to-checklist__container"
+      containerClass="dpl-add-to-checklist__container"
     />
   );
 }

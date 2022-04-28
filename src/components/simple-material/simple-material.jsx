@@ -7,8 +7,8 @@ import Cover, { CoverSkeleton, useCover, COVER_EMPTY } from "../cover/cover";
 
 export function SimpleMaterialSkeleton({ style }) {
   return (
-    <div className="ddb-simple-material-skeleton" style={style}>
-      <figure className="ddb-reset">
+    <div className="dpl-simple-material-skeleton" style={style}>
+      <figure className="dpl-reset">
         <CoverSkeleton />
       </figure>
       <div>
@@ -41,9 +41,9 @@ function SimpleMaterial({
 }) {
   const cover = useCover({ id: item.pid, size: coverSize, coverServiceUrl });
   return (
-    <section className={`ddb-simple-material ${className}`} style={style}>
+    <section className={`dpl-simple-material ${className}`} style={style}>
       {cover.status !== COVER_EMPTY && (
-        <figure className="ddb-simple-material__cover">
+        <figure className="dpl-simple-material__cover">
           <a
             href={replacePlaceholders({
               text: materialUrl,
@@ -56,9 +56,9 @@ function SimpleMaterial({
           </a>
         </figure>
       )}
-      <div className={`ddb-simple-material__data ${dataClass}`}>
+      <div className={`dpl-simple-material__data ${dataClass}`}>
         {item.type && (
-          <span className="ddb-simple-material__type">{item.type}</span>
+          <span className="dpl-simple-material__type">{item.type}</span>
         )}
         <a
           href={replacePlaceholders({
@@ -68,11 +68,11 @@ function SimpleMaterial({
             }
           })}
         >
-          <h2 className="ddb-simple-material__title">{item.title}</h2>
+          <h2 className="dpl-simple-material__title">{item.title}</h2>
         </a>
-        <p className="ddb-simple-material__author-year">
+        <p className="dpl-simple-material__author-year">
           {item.creators && (
-            <span className="ddb-simple-material__author">
+            <span className="dpl-simple-material__author">
               {`${ofText} `}
               {item.creators.map((creator, index) => {
                 return (
@@ -94,7 +94,7 @@ function SimpleMaterial({
             </span>
           )}
           {item.year && (
-            <time dateTime={item.year} className="ddb-simple-material__year">
+            <time dateTime={item.year} className="dpl-simple-material__year">
               ({item.year})
             </time>
           )}

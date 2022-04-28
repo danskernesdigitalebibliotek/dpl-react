@@ -6,7 +6,7 @@ import replacePlaceholders from "../../core/replacePlaceholders";
 
 function RelatedMaterialSkeleton() {
   return (
-    <div className="ddb-related-material ddb-related-material__skeleton">
+    <div className="dpl-related-material dpl-related-material__skeleton">
       <Skeleton mr={0} ml={0} mb={0} mt={0} height="100%" width="100%" />
     </div>
   );
@@ -27,8 +27,8 @@ function RelatedMaterial({
   const alt = `${type} - ${formattedCreators}: ${title} (${year})`;
   return (
     <a
-      className={`ddb-related-material ${imageStatus === "finished" &&
-        "ddb-related-material--finished"}`}
+      className={`dpl-related-material ${imageStatus === "finished" &&
+        "dpl-related-material--finished"}`}
       href={replacePlaceholders({
         text: materialUrl,
         placeholders: {
@@ -90,9 +90,9 @@ function RelatedMaterials({
     return null;
   }
   return (
-    <div className="ddb-related-materials">
-      <h2 className="ddb-reset ddb-related-materials__title">{titleText}</h2>
-      <ul className="ddb-reset ddb-related-materials__list">
+    <div className="dpl-related-materials">
+      <h2 className="dpl-reset dpl-related-materials__title">{titleText}</h2>
+      <ul className="dpl-reset dpl-related-materials__list">
         {items.map(item =>
           item.data ? (
             <li key={item.id}>
@@ -113,7 +113,7 @@ function RelatedMaterials({
           )
         )}
       </ul>
-      <a className="ddb-related-materials__search" href={searchUrl}>
+      <a className="dpl-related-materials__search" href={searchUrl}>
         {searchText}
       </a>
     </div>

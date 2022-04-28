@@ -237,7 +237,7 @@ describe("Related Materials", () => {
       }
     });
     cy.visit("/iframe.html?id=apps-related-materials--entry");
-    cy.get(".ddb-related-material__skeleton").should("have.length", 10);
+    cy.get(".dpl-related-material__skeleton").should("have.length", 10);
   });
   it("Should show the requested amount of images and links", () => {
     cy.server();
@@ -260,7 +260,7 @@ describe("Related Materials", () => {
       response: getCover(10)
     });
     cy.visit("/iframe.html?id=apps-related-materials--entry");
-    cy.get("a.ddb-related-material").should("have.length", 10);
+    cy.get("a.dpl-related-material").should("have.length", 10);
   });
 
   it("Should show a subset of requested images and links", () => {
@@ -286,8 +286,8 @@ describe("Related Materials", () => {
       response: getCover(5)
     });
     cy.visit("/iframe.html?id=apps-related-materials--entry");
-    cy.get("a.ddb-related-material").should("have.length", 5);
-    cy.get(".ddb-related-material__skeleton").should("have.length", 5);
+    cy.get("a.dpl-related-material").should("have.length", 5);
+    cy.get(".dpl-related-material__skeleton").should("have.length", 5);
   });
 
   it("Should not show covers without image urls", () => {
@@ -320,8 +320,8 @@ describe("Related Materials", () => {
       response: withNullCover(getCover(11))
     });
     cy.visit("/iframe.html?id=apps-related-materials--entry");
-    cy.get("a.ddb-related-material").should("have.length", 10);
-    cy.get(".ddb-related-material img:not([src])").should("have.length", 0);
+    cy.get("a.dpl-related-material").should("have.length", 10);
+    cy.get(".dpl-related-material img:not([src])").should("have.length", 0);
   });
 
   it("Should show a blank screen on failure", () => {
@@ -350,10 +350,10 @@ describe("Related Materials", () => {
       }
     });
     cy.visit("/iframe.html?id=apps-related-materials--entry");
-    cy.get(".ddb-related-material__skeleton").should("have.length", 10);
+    cy.get(".dpl-related-material__skeleton").should("have.length", 10);
     cy.contains("Søg");
     cy.contains("Forslag");
-    cy.get("a.ddb-related-material").should("have.length", 0);
+    cy.get("a.dpl-related-material").should("have.length", 0);
     cy.contains("Søg").should("not.exist");
     cy.contains("Forslag").should("not.exist");
   });

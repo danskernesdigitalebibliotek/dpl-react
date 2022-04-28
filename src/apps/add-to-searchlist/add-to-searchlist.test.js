@@ -14,7 +14,7 @@ describe("Add to Searchlist", () => {
     cy.get('input[placeholder*="Søgetitel"]').type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Tilføjet til dine gemte søgninger.");
-    cy.get(".ddb-dialog__close").click();
+    cy.get(".dpl-dialog__close").click();
     cy.contains("Tilføj til mine søgninger");
   });
 
@@ -40,7 +40,7 @@ describe("Add to Searchlist", () => {
       .type("Min søgning");
     cy.contains("button", "Gem").click();
     cy.contains("Tilføjet til dine gemte søgninger.");
-    cy.get(".ddb-dialog__close").click();
+    cy.get(".dpl-dialog__close").click();
     cy.contains("Tilføj til mine søgninger");
   });
 

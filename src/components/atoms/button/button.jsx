@@ -29,7 +29,7 @@ function Button({
      * https://github.com/yannickcr/eslint-plugin-react/issues/1555 */
     <>
       {label && !href && (
-        <label className="ddb-btn__label" htmlFor={generatedId}>
+        <label className="dpl-btn__label" htmlFor={generatedId}>
           {label}
         </label>
       )}
@@ -38,7 +38,7 @@ function Button({
         id={generatedId}
         href={href}
         type={!href ? type : undefined}
-        className={`ddb-reset ddb-btn ddb-btn--${variant} ddb-btn--align-${align} ${className}`}
+        className={`dpl-reset dpl-btn dpl-btn--${variant} dpl-btn--align-${align} ${className}`}
         onClick={!href ? onClick : undefined}
         tabIndex={tabIndex}
       >

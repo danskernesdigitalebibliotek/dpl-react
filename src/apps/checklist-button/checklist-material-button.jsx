@@ -46,7 +46,7 @@ ChecklistMaterialButton.propTypes = {
 
 ChecklistMaterialButton.defaultProps = {
   status: "ready",
-  containerClass: "ddb-checklist-material-button__container"
+  containerClass: "dpl-checklist-material-button__container"
 };
 
 export default ChecklistMaterialButton;

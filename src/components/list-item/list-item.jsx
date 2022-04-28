@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 function ListItem({ className, children, childrenClass, aside, asideClass }) {
   return (
-    <li className={`ddb-list-item ${className}`}>
-      <article className={`ddb-list-item__children ${childrenClass}`}>
+    <li className={`dpl-list-item ${className}`}>
+      <article className={`dpl-list-item__children ${childrenClass}`}>
         {children}
       </article>
-      <aside className={`ddb-list-item__aside ${asideClass}`}>{aside}</aside>
+      <aside className={`dpl-list-item__aside ${asideClass}`}>{aside}</aside>
     </li>
   );
 }

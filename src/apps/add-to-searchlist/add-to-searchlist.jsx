@@ -41,20 +41,20 @@ function AddToSearchlist({
   }
 
   const success = (
-    <div className="ddb-add-to-searchlist__success">
+    <div className="dpl-add-to-searchlist__success">
       <Alert message={successText} type="polite" variant="blank" />
       {successLinkUrl && <a href={successLinkUrl}>{successLinkText}</a>}
     </div>
   );
 
   const initial = (
-    <div className="ddb-add-to-searchlist__content">
-      <div className="ddb-add-to-searchlist__info">
-        <p className="ddb-reset ddb-add-to-searchlist__help">{helpText}</p>
+    <div className="dpl-add-to-searchlist__content">
+      <div className="dpl-add-to-searchlist__info">
+        <p className="dpl-reset dpl-add-to-searchlist__help">{helpText}</p>
       </div>
       <form
         onSubmit={handleSubmit(submit)}
-        className="ddb-add-to-searchlist__action"
+        className="dpl-add-to-searchlist__action"
       >
         <TextField
           name="title"
@@ -65,15 +65,15 @@ function AddToSearchlist({
               message: errorMaxLengthMessage
             }
           })}
-          inputClass="ddb-add-to-searchlist__input"
-          containerClass="ddb-add-to-searchlist__input-container"
+          inputClass="dpl-add-to-searchlist__input"
+          containerClass="dpl-add-to-searchlist__input-container"
           label={labelText}
           defaultValue={defaultTitle}
           error={errors?.title?.message}
         />
         <Button
           type="submit"
-          className="ddb-add-to-searchlist__button"
+          className="dpl-add-to-searchlist__button"
           variant="charcoal"
           align="left"
         >
@@ -84,7 +84,7 @@ function AddToSearchlist({
   );
 
   return (
-    <section className="ddb-add-to-searchlist">
+    <section className="dpl-add-to-searchlist">
       <Button
         href={
           !User.isAuthenticated()
@@ -96,7 +96,7 @@ function AddToSearchlist({
               })
             : undefined
         }
-        className="ddb-add-to-searchlist__open-dialog-btn"
+        className="dpl-add-to-searchlist__open-dialog-btn"
         onClick={openDialog}
       >
         {buttonText}

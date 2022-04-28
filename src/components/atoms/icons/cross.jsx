@@ -11,7 +11,7 @@ function Cross({ className, variant, size }) {
       version="1.1"
       viewBox="0 0 100 100"
       xmlSpace="preserve"
-      className={`ddb-icon ddb-icon--${variant} ${className}`}
+      className={`dpl-icon dpl-icon--${variant} ${className}`}
     >
       <g>
         <path d="M93.2,98.8c-1.5,0-3-0.6-4.1-1.7L2.7,11.1C0.4,8.9,0.4,5.2,2.7,3c2.3-2.3,5.9-2.3,8.2,0l86.4,85.9c2.3,2.3,2.3,5.9,0,8.2   C96.2,98.2,94.7,98.8,93.2,98.8z" />

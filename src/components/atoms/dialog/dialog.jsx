@@ -15,24 +15,24 @@ function Dialog({
 }) {
   return (
     <DialogOverlay
-      className="ddb-dialog__overlay"
+      className="dpl-dialog__overlay"
       isOpen={isOpen}
       onDismiss={onDismiss}
     >
       <DialogContent
         aria-label={label}
-        className={`ddb-dialog__content ${
-          dropDown ? "ddb-dialog__content--dropdown" : ""
+        className={`dpl-dialog__content ${
+          dropDown ? "dpl-dialog__content--dropdown" : ""
         } ${className}`}
       >
         {showCloseButton && (
-          <div className="ddb-dialog__header">
+          <div className="dpl-dialog__header">
             <Button
               variant="blank"
               tabIndex="-1" // escape is available for exiting the form.
               onClick={onDismiss}
             >
-              <Cross className="ddb-dialog__close" />
+              <Cross className="dpl-dialog__close" />
             </Button>
           </div>
         )}

@@ -1,14 +1,14 @@
-.ddb-dialog__overlay {
+.dpl-dialog__overlay {
   background: color("charcoal", "opacity-light");
 }
 
-.ddb-dialog__content {
+.dpl-dialog__content {
   background: color("grey", "light");
   border-radius: $border-radius;
   color: color("charcoal", "opacity-dark");
 }
 
-@keyframes ddb-dialog-dropdown {
+@keyframes dpl-dialog-dropdown {
   from {
     transform: translateY(-100%);
   }
@@ -17,7 +17,7 @@
   }
 }
 
-.ddb-dialog__content--dropdown {
+.dpl-dialog__content--dropdown {
   border-radius: 0px;
   box-sizing: border-box;
   width: 100%;
@@ -25,12 +25,12 @@
   min-height: 235px; //IE11 support for not collapsing.
   padding: space(5) space(6);
   transition: transform duration() easing("entrance", "productive");
-  animation: ddb-dialog-dropdown duration("moderate", 2)
+  animation: dpl-dialog-dropdown duration("moderate", 2)
     easing("entrance", "productive") forwards;
   box-shadow: 0 space(3) space(5) 0 rgba(0, 0, 0, 0.3);
 }
 
-.ddb-dialog__header {
+.dpl-dialog__header {
   display: flex;
   justify-content: flex-end;
   margin-bottom: space(6);
@@ -38,7 +38,7 @@
   // If this isn't content-box the icon inside will collapse.
   box-sizing: content-box;
 }
-.ddb-dialog__close {
+.dpl-dialog__close {
   padding: space(5);
   margin-right: -#{space(5)};
   margin-top: -#{space(5)};
