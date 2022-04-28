@@ -30,7 +30,6 @@ Danish public libraries.
 - [Usage](#usage)
   - [Naive app mount](#naive-app-mount)
     - [Data attributes and props](#data-attributes-and-props)
-  - [React components](#react-components)
 - [Extending the project](#extending-the-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -616,54 +615,6 @@ export function WithoutData() {
 ```
 
 </details>
-
-### React components
-
-Applications in the project may also be used within larger React applications.
-
-For this use case the project provides an NPM package containing the React
-components contained within the application as well as a few core classes for
-integrating with related services.
-
-To use the package you must first register the GitHub NPM package registry by
-adding `@danskernesdigitalebibliotek:registry=https://npm.pkg.github.com` to the
-`.npmrc` file of your project.
-
-Then you can add the package to your project: `yarn add
-@danskernesdigitalebibliotek/dpl-react` or `npm
-install @danskernesdigitalebibliotek/dpl-react`
-
-Finally you can use the components within your project.
-
-<details>
-  <summary>React example</summary>
-
-A simple example of how the package can be used looks like this:
-
-```javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import { AddToCheckListEntry } from "@danskernesdigitalebibliotek/dpl-react";
-import "@danskernesdigitalebibliotek/dpl-react/components.css";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-        <React.StrictMode>
-          <b>Here be dragons!</b>
-          <AddToCheckListEntry text="Chromatic dragon"
-                               errorText="Minor mistake" />
-        </React.StrictMode>,
-        rootElement
-);
-```
-
-</details>
-
-In this situation you can either choose to reuse an entire application including
-its behavior by importing the `*Entry` version. In the example above this is
-achieved by importing the `AddToCheckListEntry` application. You can also just
-import the visual representation and provide your own behavior. In the case
-above that would be handled by importing `AddToCheckList`.
 
 ## Extending the project
 
