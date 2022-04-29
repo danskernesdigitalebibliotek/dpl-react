@@ -51,8 +51,7 @@ module.exports = (_env, argv) => {
   return {
     entry: {
       ...entry,
-      mount: "./src/core/mount.js",
-      polyfills: "./src/core/polyfills.js"
+      mount: "./src/core/mount.js"
     },
     output: {
       filename: "[name].js",

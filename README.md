@@ -511,7 +511,6 @@ this:
 
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
-    <script src="/dist/polyfills.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/mount.js"></script>
     <!-- After the necessary scripts you can start loading applications -->
@@ -533,8 +532,7 @@ this:
 
 </details>
 
-As a minimum you will need the `runtime.js` and `bundle.js`. `polyfills.js` is
-needed to support older browsers - primarily Internet Explorer 11. For styling
+As a minimum you will need the `runtime.js` and `bundle.js`. For styling
 of atoms and components you will need to import `components.css`.
 
 Each application also has its own JavaScript artifact and it might have a CSS
