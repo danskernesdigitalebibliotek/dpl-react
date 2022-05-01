@@ -50,6 +50,7 @@
       {
         "devDependencies": [
           "/**/*.dev.jsx",
+          "/**/*.dev.tsx",
           "/**/*.test.js",
           "/**/*.test.jsx",
           "webpack.config.js",
@@ -60,6 +61,10 @@
         ]
       }
     ],
+    // We like to use arrow function syntax also for functional components.
+    "react/function-component-definition": "off",
+    // No complaints about missing trailing comma
+    "@typescript-eslint/comma-dangle": "off"
   },
   "overrides": [
     {
@@ -73,15 +78,34 @@
         // Therefor we can seperate them by only being ignored on js/jsx files.
         // Start - ddb-react former code
         "react/jsx-no-bind": "off",
-        "react/jsx-props-no-spreading": "off",
         "react/function-component-definition": "off",
         "react/forbid-prop-types": "off",
         "react/destructuring-assignment": "off",
-        "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/return-await": "off",
         "no-param-reassign": "off",
         "@typescript-eslint/no-var-requires": "off"
         // End - ddb-react former code
+      }
+    },
+    {
+      "files": [
+        "*.tsx"
+      ],
+      "rules": {
+        // We do not use prop-types in ts.
+        "react/prop-types": "off",
+        "react/require-default-props": "off",
+        "react/no-unused-prop-types": "off"
+      }
+    },
+    {
+      "files": [
+        "*.dev.jsx",
+        "*.dev.tsx"
+      ],
+      "rules": {
+        // We need a simple way of passing args in stories via object spreading.
+        "react/jsx-props-no-spreading": "off"
       }
     },
   ]
