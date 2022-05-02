@@ -20,9 +20,6 @@ const Template: ComponentStory<typeof Hello> = (args: HelloProps) => (
 );
 
 export const HelloWorld = Template.bind({});
-HelloWorld.args = {
-  what: "world"
-};
 
 export const HelloHuman = Template.bind({});
 HelloHuman.args = {

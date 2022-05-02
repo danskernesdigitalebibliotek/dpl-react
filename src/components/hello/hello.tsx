@@ -7,8 +7,8 @@ export interface HelloProps {
   shouldBeEmphasized: boolean;
 }
 
-export const Hello = ({ shouldBeEmphasized, what }: HelloProps) => {
-  return <>Hello {shouldBeEmphasized ? <strong>{what}</strong> : what}!</>;
-};
+export const Hello: React.FC<HelloProps> = ({ shouldBeEmphasized, what }) => (
+  <>Hello {shouldBeEmphasized ? <strong>{what}</strong> : what}!</>
+);
 
 export default Hello;

@@ -9,8 +9,6 @@ export interface HelloWorldEntryProps {
 const HelloWorldEntry: React.FC<HelloWorldEntryProps> = ({
   titleText,
   introductionText
-}) => {
-  return <HelloWorld title={titleText} introduction={introductionText} />;
-};
+}) => <HelloWorld title={titleText} introduction={introductionText} />;
 
 export default HelloWorldEntry;

@@ -4,12 +4,15 @@ import HelloWorld, { HelloWorldEntryProps } from "./hello-world.entry";
 
 export default {
   title: "Hello World",
+  component: HelloWorld,
   argTypes: {
     titleText: {
-      defaultValue: "Greetings"
+      defaultValue: "Greetings",
+      control: { type: "text" }
     },
     introductionText: {
-      defaultValue: "We warmly welcome everybody by saying:"
+      defaultValue: "We warmly welcome everybody by saying:",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof HelloWorld>;
