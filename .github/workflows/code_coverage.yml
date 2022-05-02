@@ -29,15 +29,14 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         run: yarn install
-      # When we have developed some Cypress tests we can reactivate these steps:
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     start: yarn start:storybook:test
-      #     wait-on: 'http://localhost:57021'
-      #     browser: chrome
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     fail_ci_if_error: false
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start:storybook:test
+          wait-on: 'http://localhost:57021'
+          browser: chrome
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
