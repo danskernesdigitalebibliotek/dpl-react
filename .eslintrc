@@ -53,11 +53,12 @@
           "/**/*.dev.tsx",
           "/**/*.test.js",
           "/**/*.test.jsx",
+          "/**/*.test.ts",
+          "/**/*.test.tsx",
           "webpack.config.js",
           "postcss.config.js",
           "cypress/plugins/index.js",
-          "cypress/support/index.js",
-          "src/core/polyfills.js"
+          "cypress/support/index.js"
         ]
       }
     ],
