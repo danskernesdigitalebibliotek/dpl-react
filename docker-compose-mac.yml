@@ -2,7 +2,7 @@ version: '3'
 services:
   node:
     environment:
-      VIRTUAL_HOST: ddb-react.docker
+      VIRTUAL_HOST: dpl-react.docker
       VIRTUAL_PORT: 80
       CHOKIDAR_USEPOLLING: 1
 volumes:

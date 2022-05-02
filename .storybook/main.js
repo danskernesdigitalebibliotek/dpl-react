@@ -1,4 +1,13 @@
 module.exports = {
-  stories: ["../src/**/*.dev.jsx"],
-  addons: ["@storybook/addon-docs", "@storybook/addon-controls"]
+  stories: ["../src/**/*.dev.@(jsx|tsx)"],
+  addons: ["@storybook/addon-docs", "@storybook/addon-controls", { name: "@storybook/preset-typescript" }],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
 };

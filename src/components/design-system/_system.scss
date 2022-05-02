@@ -1,5 +1,17 @@
-@import "_variables.scss";
-@import "_media.scss";
-@import "_space.scss";
-@import "_motion.scss";
-@import "_colors.scss";
+/**
+* This is where various scss files are joined together.
+*
+* Since we are mainly relying on styling form dpl-design-system
+* we don't want to have an extended styling system in dpl-react.
+* That being said there can be cases where we want to style components
+* "locally". Then styling should be added to
+* sass files in src/components/design-system.
+*/
+
+// Here is a suggestion for separating areas of styling into different files:
+
+// @import "_variables.scss";
+// @import "_media.scss";
+// @import "_space.scss";
+// @import "_motion.scss";
+// @import "_colors.scss";

@@ -9,11 +9,11 @@ module.exports = (_env, argv) => {
   const production = argv.mode === "production";
 
   const entry = glob
-    .sync("./src/apps/**/*.mount.js")
+    .sync("./src/apps/**/*.mount.ts")
     .reduce((acc, entryPath) => {
       const distPath = entryPath
         .replace(/src\/apps\/.+\//, "")
-        .replace(".mount.js", "");
+        .replace(".mount.ts", "");
       acc[distPath] = entryPath;
       return acc;
     }, {});
@@ -51,8 +51,7 @@ module.exports = (_env, argv) => {
   return {
     entry: {
       ...entry,
-      mount: "./src/core/mount.js",
-      polyfills: "./src/core/polyfills.js"
+      mount: "./src/core/mount.js"
     },
     output: {
       filename: "[name].js",

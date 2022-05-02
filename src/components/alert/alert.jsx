@@ -18,7 +18,7 @@ import ReachAlert from "@reach/alert";
 function Alert({ className, message, type, variant }) {
   return (
     <ReachAlert
-      className={`ddb-alert ddb-alert--${variant} ${className}`}
+      className={`dpl-alert dpl-alert--${variant} ${className}`}
       type={type}
     >
       {message}

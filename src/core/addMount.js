@@ -9,12 +9,12 @@
  */
 function addMount({ appName, app }) {
   // If our global namespace container isn't initialized we want to opt out.
-  if (!window.ddbReact?.apps) {
+  if (!window.dplReact?.apps) {
     return;
   }
-  // window.ddbReact.apps is our container for all of our available applications.
-  window.ddbReact.apps = {
-    ...window.ddbReact.apps,
+  // window.dplReact.apps is our container for all of our available applications.
+  window.dplReact.apps = {
+    ...window.dplReact.apps,
     [appName]: app
   };
 }

@@ -167,7 +167,7 @@ ones which provide similar functionality. This ensures consistency and avoids
 unnecessary increases in the package size of the project.
 
 The reasoning behind the choice of key dependencies have been documented in
-[the architecture directory](https://github.com/danskernesdigitalebibliotek/ddb-react/tree/master/architecture).
+[the architecture directory](../architecture).
 
 ### Altering third party code
 

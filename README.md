@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-next-line first-line-h1 -->
-![https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-react/master/logo.png)
+![https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png)
 
-[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/ddb-react)
+[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react)
 
 A set of React components and applications providing self-service features for
 Danish public libraries.
@@ -30,7 +30,6 @@ Danish public libraries.
 - [Usage](#usage)
   - [Naive app mount](#naive-app-mount)
     - [Data attributes and props](#data-attributes-and-props)
-  - [React components](#react-components)
 - [Extending the project](#extending-the-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -50,7 +49,7 @@ Danish public libraries.
 ### Howto
 
 - Run: sudo vim etc/hosts
-- Add as the last line in the doc: 127.0.0.1 ddb-react.docker
+- Add as the last line in the doc: 127.0.0.1 dpl-react.docker
 - Now storybook can be started by sudo yarn start:storybook:dev
 
 - Now you need to make sure that your node version is the right one
@@ -77,7 +76,7 @@ Adgangsplatformen for the storybook context.
 make up
 ```
 
-When storybook is started, you can access it at: [ddb-react.docker](http://ddb-react.docker)
+When storybook is started, you can access it at: [dpl-react.docker](http://dpl-react.docker)
 
 ### Standard and style
 
@@ -269,7 +268,7 @@ appropriate.
 
 ```scss
 // ./src/apps/my-new-application/my-new-application.scss
-.ddb-warm {
+.dpl-warm {
   color: maroon;
 }
 ```
@@ -381,7 +380,7 @@ export default MyNewAtom;
 
 ```scss
 // ./src/components/atoms/my-new-atom/my-new-atom.scss
-.ddb-btn {
+.dpl-btn {
     color: blue;
 }
 ```
@@ -481,7 +480,7 @@ page such as what might be generated serverside by platforms like Drupal,
 WordPress etc.
 
 For this use case you should download the `dist.zip` package from
-[the latest release of the project](/danskernesdigitalebibliotek/ddb-react/releases/latest)
+[the latest release of the project](/danskernesdigitalebibliotek/dpl-react/releases/latest)
 and unzip somewhere within the web root of your project. The package contains a
 set of artifacts needed to use one or more applications within an HTML page.
 
@@ -506,13 +505,12 @@ this:
     <b>Here be dragons!</b>
     <!-- Data attributes will be camelCased on the react side aka.
          props.errorText and props.text -->
-    <div data-ddb-app='add-to-checklist' data-text="Chromatic dragon"
+    <div data-dpl-app='add-to-checklist' data-text="Chromatic dragon"
          data-error-text="Minor mistake"></div>
-    <div data-ddb-app='a-none-existing-app'></div>
+    <div data-dpl-app='a-none-existing-app'></div>
 
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
-    <script src="/dist/polyfills.js"></script>
     <script src="/dist/bundle.js"></script>
     <script src="/dist/mount.js"></script>
     <!-- After the necessary scripts you can start loading applications -->
@@ -520,13 +518,13 @@ this:
     <script>
       // For making successful requests to the different services we need one or
       // more valid tokens.
-     window.ddbReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
-     window.ddbReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
+     window.dplReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
+     window.dplReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
       // and a corresponding application loaded.
-      window.ddbReact.mount(document);
+      window.dplReact.mount(document);
     </script>
 </body>
 </html>
@@ -534,8 +532,7 @@ this:
 
 </details>
 
-As a minimum you will need the `runtime.js` and `bundle.js`. `polyfills.js` is
-needed to support older browsers - primarily Internet Explorer 11. For styling
+As a minimum you will need the `runtime.js` and `bundle.js`. For styling
 of atoms and components you will need to import `components.css`.
 
 Each application also has its own JavaScript artifact and it might have a CSS
@@ -545,22 +542,22 @@ To mount the application you need an HTML element with the correct data
 attribute.
 
 ```html
-<div data-ddb-app='add-to-checklist'></div>
+<div data-dpl-app='add-to-checklist'></div>
 ```
 
-The name of the data attribute should be `data-ddb-app` and the value should be
+The name of the data attribute should be `data-dpl-app` and the value should be
 the name of the application - the value of the `appName` parameter assigned in
 the application `.mount.js` file.
 
 #### Data attributes and props
 
-As stated above, every application needs the corresponding `data-ddb-app`
+As stated above, every application needs the corresponding `data-dpl-app`
 attribute to even be mounted and shown on the page. Additional data attributes
 can be passed if necessary. Examples would be contextual ids etc. Normally these
 would be passed in by the serverside platform e.g. Drupal, Wordpress etc.
 
 ```html
-<div data-ddb-app='add-to-checklist' data-id="870970-basis:54172613"
+<div data-dpl-app='add-to-checklist' data-id="870970-basis:54172613"
      data-error-text="A mistake was made"></div>
 ```
 
@@ -616,54 +613,6 @@ export function WithoutData() {
 ```
 
 </details>
-
-### React components
-
-Applications in the project may also be used within larger React applications.
-
-For this use case the project provides an NPM package containing the React
-components contained within the application as well as a few core classes for
-integrating with related services.
-
-To use the package you must first register the GitHub NPM package registry by
-adding `@danskernesdigitalebibliotek:registry=https://npm.pkg.github.com` to the
-`.npmrc` file of your project.
-
-Then you can add the package to your project: `yarn add
-@danskernesdigitalebibliotek/ddb-react` or `npm
-install @danskernesdigitalebibliotek/ddb-react`
-
-Finally you can use the components within your project.
-
-<details>
-  <summary>React example</summary>
-
-A simple example of how the package can be used looks like this:
-
-```javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import { AddToCheckListEntry } from "@danskernesdigitalebibliotek/ddb-react";
-import "@danskernesdigitalebibliotek/ddb-react/components.css";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-        <React.StrictMode>
-          <b>Here be dragons!</b>
-          <AddToCheckListEntry text="Chromatic dragon"
-                               errorText="Minor mistake" />
-        </React.StrictMode>,
-        rootElement
-);
-```
-
-</details>
-
-In this situation you can either choose to reuse an entire application including
-its behavior by importing the `*Entry` version. In the example above this is
-achieved by importing the `AddToCheckListEntry` application. You can also just
-import the visual representation and provide your own behavior. In the case
-above that would be handled by importing `AddToCheckList`.
 
 ## Extending the project
 
