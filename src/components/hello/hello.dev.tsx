@@ -1,9 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Hello, { HelloProps } from "./hello";
+import { Hello, HelloProps } from "./hello";
 
 export default {
   title: "Components/Hello",
+  component: Hello,
   argTypes: {
     what: {
       defaultValue: "world"
