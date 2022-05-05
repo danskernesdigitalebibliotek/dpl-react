@@ -2999,6 +2999,11 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@danskernesdigitalebibliotek/dpl-design-system@^0.0.0-3bd678a68e0854369f27016877773f6878a1cb61":
+  version "0.0.0-3bd678a68e0854369f27016877773f6878a1cb61"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-3bd678a68e0854369f27016877773f6878a1cb61/0f8d03d9c4a1df314f04932f4c8fdf80285539c790953163908aa5d1f3c22fe7#23fd86f6544c189e2bed1978a16d5231135d9cc1"
+  integrity sha512-A0MGgBf156/q+rFBrlrIKLX35McDDVpiqmcBRVfM4LXPZNSnondPaG1AQQVuIeHZDq5C8pVklMBj9eIDLH2ATA==
+
 "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -3385,11 +3390,6 @@
     redux "^4.0.0"
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
-
-"@reload/dpl-design-system@0.0.0-4da50aa9f3541c6c831ab7219f0111f3c767f190":
-  version "0.0.0-4da50aa9f3541c6c831ab7219f0111f3c767f190"
-  resolved "https://npm.pkg.github.com/download/@reload/dpl-design-system/0.0.0-4da50aa9f3541c6c831ab7219f0111f3c767f190/e7b981fcc9963712e7397e217089d27118eed7557510b11269a60ab7cc066909#a9d0db7bce9b4e23efe5014b137d552dc5c067d6"
-  integrity sha512-Oe9izFeGSjDfPgQrJPROoQbmT/1SDiEW042PrTY67lUHFiju0nLJ7NkdFCZbjQLMtyHH2updBWXr5Lsv8KBoIg==
 
 "@storybook/addon-controls@^6.4.19":
   version "6.4.19"
