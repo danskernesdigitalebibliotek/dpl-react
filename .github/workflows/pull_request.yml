@@ -14,6 +14,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '12.22.0'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@reload'
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -58,9 +60,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '12.22.0'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
