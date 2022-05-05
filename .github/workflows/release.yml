@@ -17,9 +17,10 @@ jobs:
           # Required to fetch all commits and tags
           fetch-depth: 0
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '12.22.0'
+          registry-url: 'https://npm.pkg.github.com'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get yarn cache
