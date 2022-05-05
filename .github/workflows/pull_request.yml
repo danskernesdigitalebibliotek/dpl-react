@@ -15,7 +15,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get yarn cache
@@ -64,7 +63,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
@@ -101,7 +99,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get yarn cache
@@ -154,7 +151,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies
@@ -181,7 +177,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies
@@ -202,7 +197,6 @@ jobs:
         with:
           node-version: '12.22.0'
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@reload'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies
