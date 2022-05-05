@@ -107,6 +107,7 @@
     "@reach/alert": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "@reduxjs/toolkit": "^1.4.0",
+    "@reload/dpl-design-system": "0.0.0-4da50aa9f3541c6c831ab7219f0111f3c767f190",
     "@storybook/addon-docs": "^6.4.19",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
