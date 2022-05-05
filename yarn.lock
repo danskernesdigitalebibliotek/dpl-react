@@ -3386,6 +3386,11 @@
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
 
+"@reload/dpl-design-system@^0.0.0-b9323ffc8dd206146e186b30b14943fb9e556df7":
+  version "0.0.0-dd3e8b6c393f5201a4da8d117da0e243183e56c6"
+  resolved "https://npm.pkg.github.com/download/@reload/dpl-design-system/0.0.0-dd3e8b6c393f5201a4da8d117da0e243183e56c6/4206f89206787a18644a900aba52f359d3cb0686c963ef528dd29762f590acea#787cabc70a9302eafc14b92a5af1fe4ee8bfa355"
+  integrity sha512-fWqMCvjqR1OqrtpexM0h5pkonEOnd2U66Y4Bm6E9t8yK9aSsDVCQjwLWCOu5E+3J5eR96k4aMxL3VvG+K4hh8g==
+
 "@storybook/addon-controls@^6.4.19":
   version "6.4.19"
   resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.4.19.tgz#1ebf74f7b0843ea0eccd319f5295dfa48947a975"
