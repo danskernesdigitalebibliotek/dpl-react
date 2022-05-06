@@ -48,13 +48,18 @@ Danish public libraries.
 
 ### Howto
 
-- Run: sudo vim etc/hosts
+- Run: sudo vim /etc/hosts
 - Add as the last line in the doc: 127.0.0.1 dpl-react.docker
 - Now storybook can be started by sudo yarn start:storybook:dev
 
 - Now you need to make sure that your node version is the right one
   for the project whenever a terminal is opened
 - (it is specified in the package.json file)
+- if you then wish to log in through adgangsplatformen, you need to change
+  your url to: <http://ddb-react.docker/> - this avoids getting log in errors
+- (note: if you enter adgangsplatform again after signing it, you will get
+  signed out, and need to log in again. This is not a bug, as you stay logged
+  in otherwise.)
 
 #### Access tokens
 
@@ -218,6 +223,12 @@ export function WithoutData() {
 
 ```bash
   yarn dev
+```
+
+OR depending on your dev environment (docker or not)
+
+```bash
+  sudo yarn dev
 ```
 
 </details>
