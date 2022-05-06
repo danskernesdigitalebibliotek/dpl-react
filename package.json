@@ -107,10 +107,9 @@
   },
   "dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-3bd678a68e0854369f27016877773f6878a1cb61",
-    "@reach/alert": "^0.6.1",
-    "@reach/dialog": "^0.5.4",
-    "@reduxjs/toolkit": "^1.4.0",
-    "@reload/dpl-design-system": "0.0.0-4da50aa9f3541c6c831ab7219f0111f3c767f190",
+    "@reach/alert": "^0.17.0",
+    "@reach/dialog": "^0.17.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "@storybook/addon-docs": "^6.4.19",
     "clsx": "^1.1.1",
     "lodash": "^4.17.21",
@@ -118,10 +117,10 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-error-boundary": "^3.1.4",
-    "react-redux": "^7.2.1",
-    "redux": "^4.0.0",
+    "react-redux": "^8.0.1",
+    "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
-    "unfetch": "^4.1.0",
+    "unfetch": "^4.2.0",
     "url-prop-type": "^1.2.3"
   }
 }
