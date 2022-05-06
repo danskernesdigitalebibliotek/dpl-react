@@ -102,7 +102,11 @@
     "webpack-cli": "^3.3.10",
     "webpack-version-file-plugin": "^0.4.0"
   },
+  "//dependencies": {
+    "@reload/dpl-design-system": "Is being used for being able to see the dpl-design-system styling in Storybook and potentially use icons"
+  },
   "dependencies": {
+    "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-3bd678a68e0854369f27016877773f6878a1cb61",
     "@reach/alert": "^0.6.1",
     "@reach/dialog": "^0.5.4",
     "@reduxjs/toolkit": "^1.4.0",
