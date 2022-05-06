@@ -1,4 +1,4 @@
-import { ComponentStory } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 import {
   AvailabilityLabelProps,
@@ -13,29 +13,29 @@ export default {
   component: AvailabilityLabel,
   argTypes: {
     manifestText: {
-      type: { name: "Manifestation text", required: true },
-      defaultValue: "Bog",
-      control: { type: "text" }
+      name: "Manifestation text"
     },
-    availabilityText: {
-      type: { name: "Availability text", required: true },
-      defaultValue: "Hjemme",
-      control: { type: "text" }
-    },
-    state: {
-      type: { rname: "State", equired: true },
-      description:
-        "To change availaility, select from Storybook Availability Label components",
-      defaultValue: "available",
-      control: { type: null }
-    },
-    link: {
-      type: { name: "Link", required: true },
-      defaultValue: "https://www.google.com",
-      control: { type: "text" }
-    }
+    defaultValue: "Bog",
+    control: { type: "text" }
+  },
+  availabilityText: {
+    name: "Availability text",
+    defaultValue: "Hjemme",
+    control: { type: "text" }
+  },
+  state: {
+    name: "State",
+    description:
+      "To change availaility, select from Storybook Availability Label components",
+    defaultValue: "available",
+    control: { type: null }
+  },
+  link: {
+    name: "Link",
+    defaultValue: "https://www.google.com",
+    control: { type: "text" }
   }
-};
+} as ComponentMeta<typeof AvailabilityLabel>;
 
 const Template: ComponentStory<typeof AvailabilityLabel> = (
   args: AvailabilityLabelProps
