@@ -1,5 +1,5 @@
 import React from "react";
-import CheckIcon from "@reload/dpl-design-system/build/icons/collection/Check.svg";
+import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { Link } from "../utils/link";
 
