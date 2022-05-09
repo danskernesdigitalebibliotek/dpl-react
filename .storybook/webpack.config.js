@@ -17,7 +17,7 @@ module.exports = async ({ config }) => {
     // We need to make use of css modules in our stories.
     {
       test: /\.scss$/,
-      use: ["style-loader", "postcss-loader"],
+      use: ["style-loader", "css-loader", "postcss-loader"],
       include: path.resolve(__dirname, "../")
     },
     // We consume svg files from dpl-design-system package
