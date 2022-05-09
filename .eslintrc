@@ -5,8 +5,7 @@
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "prettier/react",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ],
