@@ -29,7 +29,7 @@ const userSlice = createSlice({
     }
   },
   extraReducers: {
-    [attemptAuthentication.pending]: state => {
+    [attemptAuthentication.pending]: (state) => {
       state.status = "attempting";
     }
   }

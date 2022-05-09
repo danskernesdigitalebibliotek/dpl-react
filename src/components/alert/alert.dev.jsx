@@ -3,7 +3,7 @@ import Alert from "./alert";
 
 export default { title: "Components/Alert" };
 
-const Template = args => <Alert {...args} />;
+const Template = (args) => <Alert {...args} />;
 
 export const Info = Template.bind({});
 
