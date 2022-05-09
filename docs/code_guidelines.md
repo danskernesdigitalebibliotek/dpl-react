@@ -218,7 +218,7 @@ Commit messages must follow these guidelines:
 When creating a pull request the pull request description should not contain any
 information that is not already available in the commit messages.
 
-Developers are encouraged to read [*How to Write a Git Commit Message* by Chris Beams](https://chris.beams.io/posts/git-commit/).
+Developers are encouraged to read [_How to Write a Git Commit Message_ by Chris Beams](https://chris.beams.io/posts/git-commit/).
 
 ## Tool support
 
