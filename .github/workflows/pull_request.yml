@@ -185,4 +185,4 @@ jobs:
       - name: Install problem matcher
         uses: xt0rted/markdownlint-problem-matcher@v1
       - name: Lint markdown
-        run: npx markdownlint-cli2
+        run: yarn lint:markdown
