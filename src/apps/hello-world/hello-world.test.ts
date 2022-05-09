@@ -7,7 +7,6 @@ describe("Hello World", () => {
       .first()
       .should("contain", "We warmly welcome everybody by saying:");
     cy.get("article p").last().should("contain", "Hello world!");
-    expect(true).to.equal(true);
   });
 });
 
