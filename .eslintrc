@@ -58,7 +58,8 @@
           "webpack.config.js",
           "postcss.config.js",
           "cypress/plugins/index.js",
-          "cypress/support/index.js"
+          "cypress/support/index.js",
+          "scripts/postcss-node-sass.js"
         ]
       }
     ],

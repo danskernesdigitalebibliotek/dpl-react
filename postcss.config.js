@@ -1,6 +1,6 @@
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
-const nodesass = require("./scripts/postcss-node-sass.js");
+const nodesass = require("./scripts/postcss-node-sass");
 
 module.exports = ctx => {
   const production = ctx.env === "production";
