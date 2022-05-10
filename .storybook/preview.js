@@ -1,6 +1,6 @@
 import "./dev-fonts.scss";
 import "../src/components/components.scss";
-import "@reload/dpl-design-system/build/css/base.css";
+import "@danskernesdigitalebibliotek/dpl-design-system/build/css/base.css";
 import getToken, {
   setToken,
   TOKEN_LIBRARY_KEY,

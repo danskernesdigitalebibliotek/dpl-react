@@ -5,6 +5,6 @@ export default {
   title: "Adgangsplatformen"
 };
 
-const Template = args => <Auth {...args} />;
+const Template = (args) => <Auth {...args} />;
 
 export const SignIn = Template.bind({});
