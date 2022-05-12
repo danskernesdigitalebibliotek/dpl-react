@@ -34,7 +34,7 @@
     "dev": "concurrently --raw \"yarn start:storybook:dev\" \"yarn watch:lint:scss\"",
     "test": "cypress run",
     "cypress:open": "cypress open",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "CODEGEN_SCHEMA_AGENCY=775100 CODEGEN_SCHEMA_PROFILE=opac graphql-codegen --config codegen.yml",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {

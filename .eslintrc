@@ -58,7 +58,8 @@
           "postcss.config.js",
           "cypress/plugins/index.js",
           "cypress/support/index.js",
-          "scripts/postcss-node-sass.js"
+          "scripts/postcss-node-sass.js",
+          "scripts/post-process-generated-graphql.ts"
         ]
       }
     ],

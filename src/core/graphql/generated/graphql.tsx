@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from "react-query";
-import { fetcher } from "../core/graphql-fetcher";
+import { fetcher } from "../graphql-fetcher";
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
