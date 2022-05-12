@@ -1,4 +1,4 @@
-import { getToken, TOKEN_LIBRARY_KEY } from "./token";
+import { getToken, TOKEN_LIBRARY_KEY } from "../token";
 
 export const fetcher = <TData, TVariables>(
   query: string,

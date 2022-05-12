@@ -1,12 +1,12 @@
 overwrite: true
 schema:
-  - https://next-prototype-gateway.dbc.dk/775100/opac/graphql
+  - "https://next-prototype-gateway.dbc.dk/${CODEGEN_SCHEMA_AGENCY}/${CODEGEN_SCHEMA_PROFILE}/graphql"
 documents: "src/**/*.graphql"
 generates:
-  src/generated/graphql.tsx:
+  src/core/graphql/generated/graphql.tsx:
     config:
       fetcher:
-        func: '../core/graphql-fetcher#fetcher'
+        func: '../graphql-fetcher#fetcher'
       namingConvention:
         typeNames: change-case-all#pascalCase
         transformUnderscore: true
@@ -15,6 +15,10 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-query"
+  src/core/graphql/generated/graphql.schema.json:
+    plugins:
+      - "introspection"
 hooks:
   afterOneFileWrite:
-    - yarn post-process-generated-graphql && yarn eslint --fix src/generated/graphql.tsx
+    - yarn post-process-generated-graphql
+    - yarn eslint --fix
