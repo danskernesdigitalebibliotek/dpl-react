@@ -5,8 +5,7 @@
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "prettier/react",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ],
@@ -58,7 +57,8 @@
           "webpack.config.js",
           "postcss.config.js",
           "cypress/plugins/index.js",
-          "cypress/support/index.js"
+          "cypress/support/index.js",
+          "scripts/postcss-node-sass.js"
         ]
       }
     ],

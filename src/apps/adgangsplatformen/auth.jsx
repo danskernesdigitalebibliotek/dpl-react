@@ -20,7 +20,7 @@ const REDIRECT_URL = `${ORIGIN}${PATHNAME}?path=/story/adgangsplatformen--sign-i
 
 function Auth() {
   const dispatch = useDispatch();
-  const status = useSelector(s => s.user.status);
+  const status = useSelector((s) => s.user.status);
 
   const handleCleanUp = useCallback(() => {
     window.sessionStorage.removeItem(TOKEN_USER_KEY);
@@ -56,8 +56,8 @@ function Auth() {
         redirect_uri: REDIRECT_URL
       })
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         // eslint-disable-next-line camelcase
         if (!res?.access_token) {
           throw res;
@@ -72,7 +72,7 @@ function Auth() {
 
         dispatch(setStatusAuthenticated());
       })
-      .catch(err => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
         console.error(err);
         handleCleanUp();

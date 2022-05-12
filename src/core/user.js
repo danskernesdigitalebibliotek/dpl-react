@@ -7,7 +7,7 @@ import { hasToken } from "./token";
 import { store, persistor } from "./store";
 import { updateStatus, attemptAuthentication } from "./user.slice";
 
-const selectStatus = state => state.user.status;
+const selectStatus = (state) => state.user.status;
 
 class User {
   /**

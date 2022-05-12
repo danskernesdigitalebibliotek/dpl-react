@@ -10,7 +10,7 @@ const { browserifyOptions } = browserify.defaultOptions;
 browserifyOptions.transform[1][1].babelrc = true;
 
 module.exports = (on, config) => {
-  on("task", task);
+  task(on, config);
   on(
     "file:preprocessor",
     browserify({

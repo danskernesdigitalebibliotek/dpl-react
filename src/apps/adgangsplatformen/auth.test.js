@@ -2,7 +2,7 @@ import { TOKEN_USER_KEY } from "../../core/token";
 
 describe("Authentication", () => {
   beforeEach(() => {
-    cy.window().then(win => {
+    cy.window().then((win) => {
       win.sessionStorage.removeItem(TOKEN_USER_KEY);
     });
   });
