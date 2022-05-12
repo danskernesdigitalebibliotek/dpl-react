@@ -1,0 +1,20 @@
+overwrite: true
+schema:
+  - https://next-prototype-gateway.dbc.dk/775100/opac/graphql
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    config:
+      fetcher:
+        func: '../core/graphql-fetcher#fetcher'
+      namingConvention:
+        typeNames: change-case-all#pascalCase
+        transformUnderscore: true
+      defaultScalarType: unknown
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+hooks:
+  afterOneFileWrite:
+    - yarn post-process-generated-graphql && yarn eslint --fix src/generated/graphql.tsx
