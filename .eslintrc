@@ -108,6 +108,6 @@
         // We need a simple way of passing args in stories via object spreading.
         "react/jsx-props-no-spreading": "off"
       }
-    },
+    }
   ]
 }
