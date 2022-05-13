@@ -22,9 +22,11 @@ if (process.env.NODE_ENV === "test") {
 }
 
 if (window.sessionStorage.getItem(TOKEN_USER_KEY)) {
-  // We can use the user token because it atleast provide the same access as a library token.
   setToken(TOKEN_USER_KEY, window.sessionStorage.getItem(TOKEN_USER_KEY));
-  setToken(TOKEN_LIBRARY_KEY, window.sessionStorage.getItem(TOKEN_USER_KEY));
+}
+
+if (window.sessionStorage.getItem(TOKEN_LIBRARY_KEY)) {
+  setToken(TOKEN_LIBRARY_KEY, window.sessionStorage.getItem(TOKEN_LIBRARY_KEY));
 }
 
 // TODO: Using addon-redux would be much nicer, but it doesn't seem to
