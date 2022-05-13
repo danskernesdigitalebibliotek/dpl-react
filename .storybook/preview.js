@@ -21,12 +21,25 @@ if (process.env.NODE_ENV === "test") {
   );
 }
 
-if (window.sessionStorage.getItem(TOKEN_USER_KEY)) {
-  setToken(TOKEN_USER_KEY, window.sessionStorage.getItem(TOKEN_USER_KEY));
+const getSessionStorage = (type) => window.sessionStorage.getItem(type);
+const userToken = getSessionStorage(TOKEN_USER_KEY);
+const libraryToken = getSessionStorage(TOKEN_LIBRARY_KEY);
+
+if (userToken) {
+  setToken(TOKEN_USER_KEY, userToken);
 }
 
-if (window.sessionStorage.getItem(TOKEN_LIBRARY_KEY)) {
-  setToken(TOKEN_LIBRARY_KEY, window.sessionStorage.getItem(TOKEN_LIBRARY_KEY));
+// If the library token has been set manually in the input field in library token story
+// it has been added to session storage and we make sure to set it via setToken()
+// so it is accessible by components that depend on it.
+if (libraryToken) {
+  setToken(TOKEN_LIBRARY_KEY, libraryToken);
+}
+
+// If we have not set the library token manually we use the user token
+// because it at least provide the same access as a library token.
+if (!libraryToken && userToken) {
+  setToken(TOKEN_LIBRARY_KEY, userToken);
 }
 
 // TODO: Using addon-redux would be much nicer, but it doesn't seem to
