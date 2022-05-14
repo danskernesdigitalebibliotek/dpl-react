@@ -47,6 +47,11 @@ const LibraryToken: React.FC = () => {
       <button type="submit" onClick={setLibraryTokenHandler}>
         Save
       </button>
+      <p className="text-small-caption mt-8">
+        In order to test apps for anonymous users,
+        <br />
+        you can insert a library token in this field.
+      </p>
       {shouldShowSuccessMessage && (
         <p className="text-small-caption mt-8">The token was saved</p>
       )}
