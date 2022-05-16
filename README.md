@@ -22,6 +22,7 @@ Danish public libraries.
   - [Create a new application](#create-a-new-application)
     - [Application state-machine](#application-state-machine)
   - [Style your application](#style-your-application)
+  - [Style using the dpl design system library](#style-using-the-dpl-design-system-library)
   - [Cross application components](#cross-application-components)
     - [Creating an atom](#creating-an-atom)
     - [Creating a component](#creating-a-component)
@@ -339,6 +340,31 @@ export function WithoutData() {
 </details>
 
 __Cowabunga!__ You now got styling in your application
+
+### Style using the dpl design system library
+
+If you need to use styling created by this project's sister repository -
+[the design system](https://github.com/danskernesdigitalebibliotek/dpl-design-system)
+-you can run:
+
+```bash
+yarn add @danskernesdigitalebibliotek/dpl-design-system@latest
+```
+
+This command installs the latest released version of the package. Whenever a
+new version of the design system package is released, it is necessary
+to reinstall the package in this project using the same command to get the
+newest styling, because yarn adds a specific version number to the package name
+in package.json.
+
+If you need published but unreleased code from a specific branch, you can also
+use thebranch name, replacing all special characters with dashes (-). For
+example if you want the latest styling from a branch called
+"feature/availability-label", you would run:
+
+```bash
+yarn add @danskernesdigitalebibliotek/dpl-design-system@feature-availability-label
+```
 
 ### Cross application components
 
