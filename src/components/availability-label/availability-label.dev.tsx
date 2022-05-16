@@ -13,27 +13,27 @@ export default {
   component: AvailabilityLabel,
   argTypes: {
     manifestText: {
-      name: "Manifestation text"
+      name: "Manifestation text",
+      defaultValue: "Bog",
+      control: { type: "text" }
     },
-    defaultValue: "Bog",
-    control: { type: "text" }
-  },
-  availabilityText: {
-    name: "Availability text",
-    defaultValue: "Hjemme",
-    control: { type: "text" }
-  },
-  state: {
-    name: "State",
-    description:
-      "To change availaility, select from Storybook Availability Label components",
-    defaultValue: "available",
-    control: { type: null }
-  },
-  link: {
-    name: "Link",
-    defaultValue: "https://www.google.com",
-    control: { type: "text" }
+    availabilityText: {
+      name: "Availability text",
+      defaultValue: "Hjemme",
+      control: { type: "text" }
+    },
+    state: {
+      name: "State",
+      description:
+        "To change availaility, select from Storybook Availability Label components",
+      defaultValue: "available",
+      control: { type: null }
+    },
+    link: {
+      name: "Link",
+      defaultValue: "https://www.google.com",
+      control: { type: "text" }
+    }
   }
 } as ComponentMeta<typeof AvailabilityLabel>;
 
