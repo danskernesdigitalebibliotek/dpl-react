@@ -11,7 +11,7 @@ import { setToken, TOKEN_LIBRARY_KEY } from "../../core/token";
  */
 const LibraryToken: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
-  const [shouldShowSuccessMessage, showSuccessMessage] = useState(false);
+  const [shouldShowSuccessMessage, setShowSuccessMessage] = useState(false);
   const queryClient = useQueryClient();
 
   const setInputValueHandler = useCallback(
@@ -29,7 +29,7 @@ const LibraryToken: React.FC = () => {
     // Set the token so it can be used by other components.
     setToken(TOKEN_LIBRARY_KEY, inputValue);
     // Show that everything went well.
-    showSuccessMessage(true);
+    setShowSuccessMessage(true);
     // To make sure that we get fresh results from the queries
     // we invalidate the entire query cache.
     queryClient.clear();
