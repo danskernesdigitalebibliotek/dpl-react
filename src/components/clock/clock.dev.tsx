@@ -4,12 +4,7 @@ import { Clock } from "./clock";
 
 export default {
   title: "Components/Clock",
-  component: Clock,
-  argTypes: {
-    time: {
-      defaultValue: new Date()
-    }
-  }
+  component: Clock
 } as ComponentMeta<typeof Clock>;
 
 const Template: ComponentStory<typeof Clock> = () => <Clock />;
