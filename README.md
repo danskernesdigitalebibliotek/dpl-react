@@ -73,7 +73,7 @@ obtained from your library partner or directly from DBC, the company responsible
 for running Adgangsplatformen and OpenPlatform.
 
 This project include a client id that matches the storybook setup which can be
-used for development purporses.  You can use the `/auth` story to sign in to
+used for development purposes.  You can use the `/auth` story to sign in to
 Adgangsplatformen for the storybook context.
 
 #### Library token
@@ -89,7 +89,7 @@ Workflow:
 Using go-task to handle the project. Before you can install the project you need to
 create the file `~/.npmrc` to access the github package registry as described
 [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
-using an personal access token.
+using a personal access token.
 
 ```bash
 task dev:start
