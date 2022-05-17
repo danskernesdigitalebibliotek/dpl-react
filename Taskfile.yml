@@ -27,7 +27,7 @@ tasks:
   dev:start:
     summary: Install and run docker compose
     cmds:
-#      - task dev:install
+      - task dev:install
       - docker compose up --detach
 
   dev:stop:
@@ -41,6 +41,11 @@ tasks:
       # DNS proxies such as Dory may hang on to the network for a bit which
       # causes the process to fail. Wait and retry if that is the case
       - docker compose {{ .DOCKER_COMPOSE_FILES }} down --volumes --remove-orphans || (sleep 3 && docker-compose down)
+
+  dev:storybook:
+    summary: Run storybook in development mode
+    cmds:
+      - task dev:cli -- yarn start:storybook:dev
 
   dev:logs:
     summary: Tail docker compose logs for web-pack
