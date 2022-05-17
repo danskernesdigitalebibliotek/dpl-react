@@ -2,12 +2,13 @@ version: '3.7'
 
 services:
   node:
-    image: node:12-alpine
+    image: node:16-alpine
     user: node
     init: true
     working_dir: /home/node/app
     volumes:
       - root:/home/node/app
+      - ~/.npmrc:/home/node/.npmrc
     expose:
       - 80
     command: 'yarn dev'
