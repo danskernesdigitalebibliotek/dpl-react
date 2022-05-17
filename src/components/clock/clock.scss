@@ -1,58 +1,82 @@
-.capitalize {
-	&:first-letter {
-		text-transform: capitalize;
-	}
-}
+.clock-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-.clock {
-	position: relative;
-	border-radius: 50%;
-	border: 3px solid black;
-	box-sizing: border-box;
-	width: 100px;
-	height: 100px;
+	.capitalize {
+		max-width: 80px;
+		display: block;
+		text-align: center;
+		margin-top: 20px;
 
-	* {
-		background-color: black;
+		&::first-letter {
+			text-transform: capitalize;
+		}
 	}
 
-	.mark-12 {
-		width: 2px;
-		height: 6px;
-		left: calc(50% - 1px);
-		position: absolute;
-	}
-	
-	.mark-3 {
-		width: 6px;
-		height: 2px;
-		right: 0%;
-		top: calc(50% - 2px);
-		position: absolute;
-	}
+	$size: 4px;
+	$markIndent: 2px;
+	$markPlacement: $size / 2px;
+	$borderRadius: 10px;
 
-	.mark-6 {
-		width: 2px;
-		height: 6px;
-		left: calc(50% - 1px);
-		bottom: 0%;
-		position: absolute;
-	}
+	.clock {
+		position: relative;
+		border-radius: 50%;
+		border: $size solid black;
+		box-sizing: border-box;
+		width: 100px;
+		height: 100px;
 
-	.mark-9 {
-		width: 6px;
-		height: 2px;
-		left: 0%;
-		top: calc(50% - 2px);
-		position: absolute;
-	}
+		* {
+			background-color: black;
+		}
 
-	.needle {
-		height: 2px;
-		position: absolute;
-		width: 40%;
-		transform-origin: 0;
-		top: calc(50% - 2px);
-		left: 50%;
+		@mixin mark {
+			position: absolute;
+			border-radius: $borderRadius;
+		}
+
+		.mark-12 {
+			@include mark;
+			width: $size;
+			height: $size * 2;
+			left: calc(50% - #{$markPlacement}px);
+			top: $markIndent;
+		}
+
+		.mark-3 {
+			@include mark;
+			width: $size * 2;
+			height: $size;
+			right: $markIndent;
+			top: calc(50% - #{$markPlacement}px);
+		}
+
+		.mark-6 {
+			@include mark;
+			width: $size;
+			height: $size * 2;
+			left: calc(50% - #{$markPlacement}px);
+			bottom: $markIndent;
+		}
+
+		.mark-9 {
+			@include mark;
+			width: $size * 2;
+			height: $size;
+			left: $markIndent;
+			top: calc(50% - #{$markPlacement}px);
+		}
+
+		.needle {
+			height: $size;
+			position: absolute;
+			width: 30%;
+			transform-origin: 0;
+			top: calc(50% - #{$markPlacement}px);
+			left: 50%;
+			border-top-right-radius: $borderRadius;
+			border-bottom-right-radius: $borderRadius;
+		}
 	}
 }

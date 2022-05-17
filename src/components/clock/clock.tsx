@@ -113,7 +113,7 @@ export const Clock: FC = () => {
   if (!dateReady) return <div />;
 
   return (
-    <>
+    <div className="clock-container">
       <div className="clock clock-transition" aria-hidden>
         <div className="mark-12" />
         <div className="mark-3" />
@@ -125,7 +125,7 @@ export const Clock: FC = () => {
       <div className="capitalize">
         {dayjs(time).locale(localeDa).format("dddd, MMMM D")}
       </div>
-    </>
+    </div>
   );
 };
 
