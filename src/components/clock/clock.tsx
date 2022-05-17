@@ -96,7 +96,6 @@ export const Clock: FC = () => {
     // Every minute, the time is updated and the needles move.
     const timer: ReturnType<typeof setInterval> = setInterval(() => {
       setTime(get12HourTime(new Date()));
-      console.log("tick");
       updateTime();
     }, 60000);
 
