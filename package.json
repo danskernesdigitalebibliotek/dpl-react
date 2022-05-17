@@ -111,11 +111,13 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-3bd678a68e0854369f27016877773f6878a1cb61",
+     "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-3bd678a68e0854369f27016877773f6878a1cb61",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
+    "@types/styled-components": "^5.1.25",
     "clsx": "^1.1.1",
+    "dayjs": "^1.11.2",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
@@ -124,6 +126,7 @@
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
+    "styled-components": "^5.3.5",
     "unfetch": "^4.2.0"
   },
   "peerDependencies": {

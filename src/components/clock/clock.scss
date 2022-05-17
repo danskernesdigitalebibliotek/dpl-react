@@ -1,0 +1,55 @@
+.capitalize {
+	&:first-letter {
+		text-transform: capitalize;
+	}
+}
+
+.clock {
+	position: relative;
+	border-radius: 50%;
+	border: 3px solid black;
+	box-sizing: border-box;
+	width: 100px;
+	height: 100px;
+
+	* {
+		background-color: black;
+	}
+
+	.mark-12 {
+		width: 2px;
+		height: 6px;
+		left: calc(50% - 1px);
+		position: absolute;
+	}
+	.mark-3 {
+		width: 6px;
+		height: 2px;
+		right: 0%;
+		top: calc(50% - 2px);
+		position: absolute;
+	}
+	.mark-6 {
+		width: 2px;
+		height: 6px;
+		left: calc(50% - 1px);
+		bottom: 0%;
+		position: absolute;
+	}
+	.mark-9 {
+		width: 6px;
+		height: 2px;
+		left: 0%;
+		top: calc(50% - 2px);
+		position: absolute;
+	}
+
+	.needle {
+		height: 2px;
+		position: absolute;
+		width: 40%;
+		transform-origin: 0;
+		top: calc(50% - 2px);
+		left: 50%;
+	}
+}
