@@ -123,9 +123,7 @@ export const Clock: FC = () => {
         <Hours className="needle" />
       </div>
       <div className="capitalize">
-        {dayjs(time)
-          .locale(localeDa)
-          .format("dddd, MMMM D")}
+        {dayjs(time).locale(localeDa).format("dddd, MMMM D")}
       </div>
     </>
   );
