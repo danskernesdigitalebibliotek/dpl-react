@@ -95,7 +95,8 @@ export const Clock: FC = () => {
 
     // Every minute, the time is updated and the needles move.
     const timer: ReturnType<typeof setInterval> = setInterval(() => {
-      setTime(new Date());
+      setTime(get12HourTime(new Date()));
+      console.log("tick");
       updateTime();
     }, 60000);
 
@@ -123,7 +124,9 @@ export const Clock: FC = () => {
         <Hours className="needle" />
       </div>
       <div className="capitalize">
-        {dayjs(time).locale(localeDa).format("dddd, MMMM D")}
+        {dayjs(time)
+          .locale(localeDa)
+          .format("dddd, MMMM D")}
       </div>
     </>
   );
