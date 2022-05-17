@@ -3,7 +3,7 @@ schema:
   - "https://next-prototype-gateway.dbc.dk/${CODEGEN_SCHEMA_AGENCY}/${CODEGEN_SCHEMA_PROFILE}/graphql"
 documents: "src/**/*.graphql"
 generates:
-  src/core/graphql/generated/graphql.tsx:
+  src/core/dbc-gateway/generated/graphql.tsx:
     config:
       fetcher:
         func: '../graphql-fetcher#fetcher'
@@ -15,7 +15,7 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-query"
-  src/core/graphql/generated/graphql.schema.json:
+  src/core/dbc-gateway/generated/generated/graphql.schema.json:
     plugins:
       - "introspection"
 hooks:

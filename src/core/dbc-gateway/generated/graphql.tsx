@@ -1238,9 +1238,9 @@ export type DraftAccessType = {
 };
 
 export enum DraftAccessTypeCode {
-  Fysisk = "FYSISK",
+  NotSpecified = "NOT_SPECIFIED",
   Online = "ONLINE",
-  Ukendt = "UKENDT"
+  Physical = "PHYSICAL"
 }
 
 export type DraftAudience = {
@@ -1371,6 +1371,26 @@ export type DraftExternalReview = DraftReview & {
   date?: Maybe<Scalars["String"]>;
   rating?: Maybe<Scalars["String"]>;
   urls: Array<DraftUrl>;
+};
+
+export type DraftFacet = {
+  __typename?: "Draft_Facet";
+  facetCategory: Scalars["String"];
+  values: Array<DraftFacetTerm>;
+};
+
+export type DraftFacetResponse = {
+  __typename?: "Draft_FacetResponse";
+  categories: Array<DraftFacet>;
+  popular: Array<DraftFacetTerm>;
+};
+
+export type DraftFacetTerm = {
+  __typename?: "Draft_FacetTerm";
+  count: Scalars["Int"];
+  facetCategory: Scalars["String"];
+  popular: Scalars["Boolean"];
+  term: Scalars["String"];
 };
 
 export type DraftFictionNonfiction = {
@@ -1752,6 +1772,8 @@ export type DraftQuery = {
   manifestations: Array<Maybe<DraftManifestation>>;
   /** Get recommendations based on a pid */
   recommend: DraftRecommendationResponse;
+  /** Search */
+  search: DraftSearchResponse;
   suggest: DraftSuggestResponse;
   work?: Maybe<DraftWork>;
   works: Array<Maybe<DraftWork>>;
@@ -1769,6 +1791,10 @@ export type DraftQueryManifestationsArgs = {
 
 export type DraftQueryRecommendArgs = {
   pid: Scalars["String"];
+};
+
+export type DraftQuerySearchArgs = {
+  q: SearchQuery;
 };
 
 export type DraftQuerySuggestArgs = {
@@ -1849,6 +1875,11 @@ export enum DraftSchoolUseCode {
   ForTeacher = "FOR_TEACHER"
 }
 
+export type DraftSearchResponse = {
+  __typename?: "Draft_SearchResponse";
+  facets?: Maybe<DraftFacetResponse>;
+};
+
 export type DraftSeriesContainer = {
   __typename?: "Draft_SeriesContainer";
   all: Array<DraftGeneralSeries>;
@@ -1857,9 +1888,9 @@ export type DraftSeriesContainer = {
 
 export type DraftShelfmark = {
   __typename?: "Draft_Shelfmark";
-  /** A prefix to the shelfmark */
-  prefix: Scalars["String"];
-  /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found */
+  /** A postfix to the shelfmark, eg. 99.4 Christensen, Inger. f. 1935 */
+  postfix: Scalars["String"];
+  /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found, e.g. 99.4 */
   shelfmark: Scalars["String"];
 };
 
