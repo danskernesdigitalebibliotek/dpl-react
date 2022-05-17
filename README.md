@@ -12,8 +12,8 @@ Danish public libraries.
 
 - [Development](#development)
   - [Requirements](#requirements)
-- [Development - alternative (no docker)](#development---alternative-no-docker)
-  - [Howto](#howto)
+  - [Development - alternative (no docker)](#development---alternative-no-docker)
+    - [Howto](#howto)
     - [Access tokens](#access-tokens)
     - [Library token](#library-token)
   - [Installation](#installation)
