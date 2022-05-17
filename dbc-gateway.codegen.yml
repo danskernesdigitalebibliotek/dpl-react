@@ -15,10 +15,11 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-query"
-  src/core/dbc-gateway/generated/generated/graphql.schema.json:
+    hooks:
+      afterOneFileWrite:
+      - yarn post-process-generated-graphql
+      - yarn eslint --fix
+  src/core/dbc-gateway/generated/graphql.schema.json:
     plugins:
       - "introspection"
-hooks:
-  afterOneFileWrite:
-    - yarn post-process-generated-graphql
-    - yarn eslint --fix
+
