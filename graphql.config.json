@@ -1,0 +1,11 @@
+{
+  "name": "DPL React",
+  "schemaPath": "./src/core/dbc-gateway/generated/graphql.schema.json",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://next-prototype-gateway.dbc.dk/775100/opac/graphql"
+      }
+    }
+  }
+}
