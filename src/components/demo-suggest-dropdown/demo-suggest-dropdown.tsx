@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSuggestionsFromQueryStringQuery } from "../../core/graphql/generated/graphql";
+import { useSuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 
 export interface DemoSuggestDropdownProps {
   q: string;
