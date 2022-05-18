@@ -15,6 +15,7 @@ Danish public libraries.
 - [Development - alternative (no docker)](#development---alternative-no-docker)
   - [Howto](#howto)
     - [Access tokens](#access-tokens)
+    - [Library token](#library-token)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
     - [JavaScript + JSX](#javascript--jsx)
@@ -74,6 +75,15 @@ for running Adgangsplatfomen and OpenPlatform.
 This project include a client id that matches the storybook setup which can be
 used for development purporses.  You can use the `/auth` story to sign into
 Adgangsplatformen for the storybook context.
+
+#### Library token
+
+To test the apps that is indifferent to wether the user is authenticated or not
+it is possible to set a library token via the library component in Storybook.
+Workflow:
+
+- Retrieve a library token via [OpenPlatform](https://openplatform.dbc.dk/v3/)
+- Insert the library token in the Library Token story in storybook
 
 ### Installation
 
