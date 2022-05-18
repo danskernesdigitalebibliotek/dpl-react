@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://next-prototype-gateway.dbc.dk/775100/opac/graphql"
+        "url": "https://next-prototype-gateway.dbc.dk/100200/opac/graphql"
       }
     }
   }

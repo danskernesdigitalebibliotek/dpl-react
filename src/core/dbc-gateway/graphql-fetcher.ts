@@ -17,7 +17,7 @@ export const fetcher = <TData, TVariables>(
       // For now the endpoint is hardcoded.
       // When we get wiser of when the library id and profile is changing
       // we will update it with a dynamic version:
-      "https://next-prototype-gateway.dbc.dk/775100/opac/graphql",
+      "https://next-prototype-gateway.dbc.dk/100200/opac/graphql",
       {
         method: "POST",
         ...{
