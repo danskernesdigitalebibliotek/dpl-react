@@ -7,7 +7,7 @@ describe("Clock tests", () => {
     cy.clock(ElevenThirty);
     cy.visit("/iframe.html?path=/story/components-clock--clock-now");
 
-    cy.get(".needle")
+    cy.get(".dpl-clock-container__needle")
       .first()
       .should(
         "have.css",
@@ -15,9 +15,12 @@ describe("Clock tests", () => {
         "matrix(6.12323e-17, 1, -1, 6.12323e-17, 0, 0)"
       );
 
-    cy.get(".capitalize").should("contain", "mandag, maj 16");
+    cy.get(".dpl-clock-container__capitalize-text").should(
+      "contain",
+      "mandag, maj 16"
+    );
 
-    cy.get(".needle")
+    cy.get(".dpl-clock-container__needle")
       .last()
       .should(
         "have.css",
@@ -33,13 +36,16 @@ describe("Clock tests", () => {
     cy.clock(FifteenFifteen);
     cy.visit("/iframe.html?path=/story/components-clock--clock-now");
 
-    cy.get(".capitalize").should("contain", "tirsdag, maj 17");
+    cy.get(".dpl-clock-container__capitalize-text").should(
+      "contain",
+      "tirsdag, maj 17"
+    );
 
-    cy.get(".needle")
+    cy.get(".dpl-clock-container__needle")
       .first()
       .should("have.css", "transform", "matrix(1, 0, 0, 1, 0, 0)");
 
-    cy.get(".needle")
+    cy.get(".dpl-clock-container__needle")
       .last()
       .should(
         "have.css",

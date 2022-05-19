@@ -4,10 +4,14 @@ import localeDa from "dayjs/locale/da";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import styled, { keyframes } from "styled-components";
 
+export interface ClockProps {
+  ariaLabel: string;
+}
+
 /**
  * A clock, the needles animated from -90 to the current time.
  */
-export const Clock: FC = () => {
+export const Clock: FC<ClockProps> = ({ ariaLabel }) => {
   const [dateReady, setDateReady] = useState<boolean>(false);
   const [minuteDegreeFrom, setMinuteDegreeFrom] = useState<number>(-90);
   const [hourDegreeFrom, setHourDegreeFrom] = useState<number>(-90);
@@ -113,7 +117,7 @@ export const Clock: FC = () => {
   if (!dateReady) return <div />;
 
   return (
-    <div className="clock-container">
+    <div className="clock-container" aria-label={`${ariaLabel} ${dayjs(time).locale(localeDa).format("LLLL")}`}>
       <div className="clock clock-transition" aria-hidden>
         <div className="mark-12" />
         <div className="mark-3" />
