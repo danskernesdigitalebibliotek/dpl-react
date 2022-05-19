@@ -1,82 +1,85 @@
-.clock-container {
+@mixin mark {
+	position: absolute;
+	border-radius: $borderRadius;
+}
+
+$size: 4px;
+$markIndent: 2px;
+$markPlacement: $size / 2px;
+$borderRadius: 10px;
+
+.dpl-clock-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
 
-	.capitalize {
-		max-width: 80px;
-		display: block;
-		text-align: center;
-		margin-top: 20px;
+.dpl-clock-container__capitalize-text {
+	max-width: 80px;
+	display: block;
+	text-align: center;
+	margin-top: 20px;
 
-		&::first-letter {
-			text-transform: capitalize;
-		}
+	&::first-letter {
+		text-transform: capitalize;
+	}
+}
+
+.dpl-clock-container__clock {
+	position: relative;
+	border-radius: 50%;
+	border: $size solid black;
+	box-sizing: border-box;
+	width: 100px;
+	height: 100px;
+
+	* {
+		background-color: black;
 	}
 
-	$size: 4px;
-	$markIndent: 2px;
-	$markPlacement: $size / 2px;
-	$borderRadius: 10px;
 
-	.clock {
-		position: relative;
-		border-radius: 50%;
-		border: $size solid black;
-		box-sizing: border-box;
-		width: 100px;
-		height: 100px;
 
-		* {
-			background-color: black;
-		}
+}
 
-		@mixin mark {
-			position: absolute;
-			border-radius: $borderRadius;
-		}
+.dpl-clock-container__mark-12 {
+	@include mark;
+	width: $size;
+	height: $size * 2;
+	left: calc(50% - #{$markPlacement}px);
+	top: $markIndent;
+}
 
-		.mark-12 {
-			@include mark;
-			width: $size;
-			height: $size * 2;
-			left: calc(50% - #{$markPlacement}px);
-			top: $markIndent;
-		}
+.dpl-clock-container__mark-3 {
+	@include mark;
+	width: $size * 2;
+	height: $size;
+	right: $markIndent;
+	top: calc(50% - #{$markPlacement}px);
+}
 
-		.mark-3 {
-			@include mark;
-			width: $size * 2;
-			height: $size;
-			right: $markIndent;
-			top: calc(50% - #{$markPlacement}px);
-		}
+.dpl-clock-container__mark-6 {
+	@include mark;
+	width: $size;
+	height: $size * 2;
+	left: calc(50% - #{$markPlacement}px);
+	bottom: $markIndent;
+}
 
-		.mark-6 {
-			@include mark;
-			width: $size;
-			height: $size * 2;
-			left: calc(50% - #{$markPlacement}px);
-			bottom: $markIndent;
-		}
+.dpl-clock-container__mark-9 {
+	@include mark;
+	width: $size * 2;
+	height: $size;
+	left: $markIndent;
+	top: calc(50% - #{$markPlacement}px);
+}
 
-		.mark-9 {
-			@include mark;
-			width: $size * 2;
-			height: $size;
-			left: $markIndent;
-			top: calc(50% - #{$markPlacement}px);
-		}
-
-		.needle {
-			height: $size;
-			position: absolute;
-			width: 30%;
-			transform-origin: 0;
-			top: calc(50% - #{$markPlacement}px);
-			left: 50%;
-			border-top-right-radius: $borderRadius;
-			border-bottom-right-radius: $borderRadius;
-		}
-	}
+.dpl-clock-container__needle {
+	height: $size;
+	position: absolute;
+	width: 30%;
+	transform-origin: 0;
+	top: calc(50% - #{$markPlacement}px);
+	left: 50%;
+	border-top-right-radius: $borderRadius;
+	border-bottom-right-radius: $borderRadius;
 }

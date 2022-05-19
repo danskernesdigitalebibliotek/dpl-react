@@ -20,6 +20,12 @@ describe("Clock tests", () => {
       "mandag, maj 16"
     );
 
+    cy.get(".dpl-clock-container").should(
+      "have.attr",
+      "aria-label",
+      "Det er mandag d. 16. maj 2022 kl. 11:30"
+    );
+
     cy.get(".dpl-clock-container__needle")
       .last()
       .should(
@@ -39,6 +45,12 @@ describe("Clock tests", () => {
     cy.get(".dpl-clock-container__capitalize-text").should(
       "contain",
       "tirsdag, maj 17"
+    );
+
+    cy.get(".dpl-clock-container").should(
+      "have.attr",
+      "aria-label",
+      "Det er tirsdag d. 17. maj 2022 kl. 03:15"
     );
 
     cy.get(".dpl-clock-container__needle")

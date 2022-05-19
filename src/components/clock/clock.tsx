@@ -117,19 +117,23 @@ export const Clock: FC<ClockProps> = ({ ariaLabel }) => {
   if (!dateReady) return <div />;
 
   return (
-    <div className="clock-container" aria-label={`${ariaLabel} ${dayjs(time).locale(localeDa).format("LLLL")}`}>
-      <div className="clock clock-transition" aria-hidden>
-        <div className="mark-12" />
-        <div className="mark-3" />
-        <div className="mark-6" />
-        <div className="mark-9" />
-        <Minutes className="needle" />
-        <Hours className="needle" />
+    <div
+      className="dpl-clock-container"
+      aria-label={`${ariaLabel} ${dayjs(time).locale(localeDa).format("LLLL")}`}
+    >
+      <div className="dpl-clock-container__clock" aria-hidden>
+        <div className="dpl-clock-container__mark-12" />
+        <div className="dpl-clock-container__mark-3" />
+        <div className="dpl-clock-container__mark-6" />
+        <div className="dpl-clock-container__mark-9" />
+        <Minutes className="dpl-clock-container__needle" />
+        <Hours className="dpl-clock-container__needle" />
       </div>
-      <div className="capitalize">
+      <div className="dpl-clock-container__capitalize-text">
         {dayjs(time).locale(localeDa).format("dddd, MMMM D")}
       </div>
     </div>
+
   );
 };
 
