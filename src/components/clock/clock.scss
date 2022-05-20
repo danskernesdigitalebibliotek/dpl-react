@@ -80,3 +80,9 @@ $borderRadius: 10px;
 	border-top-right-radius: $borderRadius;
 	border-bottom-right-radius: $borderRadius;
 }
+
+@media screen and (prefers-reduced-motion: reduce) {
+	.dpl-clock-container__needle {
+		animation: none !important;
+	}
+}
