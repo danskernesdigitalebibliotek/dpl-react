@@ -1,5 +1,5 @@
 import * as React from "react";
-import SearchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
+import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
 
 export interface SearchBarProps {
   q: string;
@@ -29,7 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         />
         <input
           type="image"
-          src={SearchIcon}
+          src={searchIcon}
           alt={altText}
           className="header__menu-search-icon"
         />
