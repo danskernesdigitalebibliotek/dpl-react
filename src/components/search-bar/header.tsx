@@ -10,6 +10,13 @@ export interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ children }) => {
+  // the component below is copied from the Design system repository:
+  // https://github.com/danskernesdigitalebibliotek/dpl-design-system
+  // located at -> /src/stories/header
+  // if this component looks different than the one in design system,
+  // please update it to match the design system
+  // NOTE: icons need to be imported here + the search bar needs to be
+  // replaced by {children}
   return (
     <div>
       <header className="header">
