@@ -4,13 +4,17 @@ import SearchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 export interface SearchBarProps {
   q: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
-  searchHeaderUrl: string;
+  searchHeaderUrl?: string;
+  altText?: string;
+  inputPlaceholder?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   q,
   setQuery,
-  searchHeaderUrl
+  searchHeaderUrl = "/search",
+  altText = "search icon",
+  inputPlaceholder = "Search here"
 }) => {
   return (
     <div className="header__menu-second">
@@ -19,14 +23,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
           name="q"
           className="header__menu-search-input text-body-medium-regular"
           type="text"
-          placeholder="Søg blandt bibliotekets materialer"
+          placeholder={inputPlaceholder}
           value={q}
           onChange={(e) => setQuery(e.target.value)}
         />
         <input
           type="image"
           src={SearchIcon}
-          alt="search icon"
+          alt={altText}
           className="header__menu-search-icon"
         />
       </form>
