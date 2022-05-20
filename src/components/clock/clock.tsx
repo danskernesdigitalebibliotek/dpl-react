@@ -3,9 +3,26 @@ import dayjs from "dayjs";
 import localeDa from "dayjs/locale/da";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import styled, { keyframes } from "styled-components";
+import Skeleton from "../skeleton/skeleton";
 
 export interface ClockProps {
   ariaLabel: string;
+}
+
+function ClockSkeleton() {
+  return (
+    <div className="ddb-related-material ddb-related-material__skeleton">
+      <Skeleton
+        mr="0px"
+        ml="0px"
+        mb="0px"
+        mt="0px"
+        br="10px"
+        height="100px"
+        width="100px"
+      />
+    </div>
+  );
 }
 
 /**
@@ -114,10 +131,10 @@ export const Clock: FC<ClockProps> = ({ ariaLabel }) => {
     time
   ]);
 
-  if (!dateReady) return <div />;
+  if (!dateReady) return <ClockSkeleton />;
 
   return (
-    <div
+    <section
       className="dpl-clock-container"
       aria-label={`${ariaLabel} ${dayjs(time).locale(localeDa).format("LLLL")}`}
     >
@@ -132,8 +149,7 @@ export const Clock: FC<ClockProps> = ({ ariaLabel }) => {
       <div className="dpl-clock-container__capitalize-text">
         {dayjs(time).locale(localeDa).format("dddd, MMMM D")}
       </div>
-    </div>
-
+    </section>
   );
 };
 
