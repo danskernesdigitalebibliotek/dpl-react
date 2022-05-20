@@ -29,8 +29,8 @@ export const SearchBarComponent: ComponentStory<typeof SearchBar> = (
   args: SearchBarProps
 ) => {
   // We use the Header component and useState for context to the search
-  // bar. Make sure to update the Header component markup if the design
-  // in design system repository changes.
+  // bar. It is the Header that creates the Search bar's design -
+  // - without it, the Search bar loses its shape.
   const [q, setQ] = useState("");
   return (
     <Header>
