@@ -8,8 +8,18 @@ export default {
   component: SearchBar,
   argTypes: {
     searchHeaderUrl: {
-      name: "Search header URL",
-      defaultValue: "/search",
+      name: "Search header base URL",
+      defaultValue: "https://bibliotek.dk/search",
+      control: { type: "text" }
+    },
+    altText: {
+      name: "Alt text for search button image",
+      defaultValue: "søgeikon",
+      control: { type: "text" }
+    },
+    inputPlaceholder: {
+      name: "Input field placeholder",
+      defaultValue: "Søg blandt bibliotekets materialer",
       control: { type: "text" }
     }
   }

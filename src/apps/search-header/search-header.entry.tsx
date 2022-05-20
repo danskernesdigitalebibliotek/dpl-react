@@ -1,12 +1,16 @@
 import * as React from "react";
-import SearchHeader from "./search-header";
+import SearchHeader, { SearchHeaderProps } from "./search-header";
 
-export interface SearchHeaderEntryProps {
-  searchHeaderUrl?: string;
-}
-
-const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
-  searchHeaderUrl
-}) => <SearchHeader searchHeaderUrl={searchHeaderUrl} />;
+const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
+  searchHeaderUrl,
+  altText,
+  inputPlaceholder
+}) => (
+  <SearchHeader
+    searchHeaderUrl={searchHeaderUrl}
+    altText={altText}
+    inputPlaceholder={inputPlaceholder}
+  />
+);
 
 export default SearchHeaderEntry;
