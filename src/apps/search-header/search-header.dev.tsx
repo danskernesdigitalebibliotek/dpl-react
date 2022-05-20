@@ -4,7 +4,7 @@ import Header from "../../components/search-bar/header";
 import SearchHeader, { SearchHeaderProps } from "./search-header";
 
 export default {
-  title: "Apps / Search Header App",
+  title: "Apps / Search Header",
   component: SearchHeader,
   argTypes: {
     searchUrl: {

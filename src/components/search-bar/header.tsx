@@ -1,9 +1,9 @@
 import * as React from "react";
-import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-menu.svg";
-import ProfileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
-import HeartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-heart.svg";
-import WatchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
-import CrossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
+import menuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-menu.svg";
+import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
+import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-heart.svg";
+import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
+import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
 
 export interface HeaderProps {
   children: React.ReactNode;
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
                   id="header__menu--open"
                 >
                   <div className="pagefold-triangle--small" />
-                  <img src={MenuIcon} alt="List of bookmarks" />
+                  <img src={menuIcon} alt="List of bookmarks" />
                 </div>
                 <div className="header__menu-navigation-logo">
                   <div className="logo-fallback">
@@ -96,12 +96,12 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
             </div>
             <div className="header__menu-profile header__button">
               <a href="/" className="hide-linkstyle">
-                <img src={ProfileIcon} alt="Profile" />
+                <img src={profileIcon} alt="Profile" />
               </a>
             </div>
             <div className="header__menu-bookmarked header__button">
               <a href="/">
-                <img src={HeartIcon} alt="List of bookmarks" />
+                <img src={heartIcon} alt="List of bookmarks" />
               </a>
             </div>
           </nav>
@@ -112,7 +112,7 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
             <div className="pagefold-triangle--medium" />
           </div>
           <div className="header__clock-items">
-            <img src={WatchIcon} className="mb-8" alt="clock icon" />
+            <img src={watchIcon} className="mb-8" alt="clock icon" />
             <span className="text-small-caption">Fredag</span>
             <span className="text-small-caption">28 Maj</span>
           </div>
@@ -120,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
       </header>
       <div id="header__overlay">
         <div className="header__overlay-main">
-          <img id="header__menu--close" src={CrossIcon} alt="close" />
+          <img id="header__menu--close" src={crossIcon} alt="close" />
           <ul className="header__overlay-menu">
             <li className="header__overlay-menu-item">
               <a
