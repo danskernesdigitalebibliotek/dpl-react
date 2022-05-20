@@ -86,8 +86,9 @@ Workflow:
 - Insert the library token in the Library Token story in storybook
 
 ### Installation
-Using go-task to handle the project. Before you can install the project you need to
-create the file `~/.npmrc` to access the github package registry as described
+
+Using go-task to handle the project. Before you can install the project you need
+to create the file `~/.npmrc` to access the github package registry as described
 [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
 using a personal access token.
 
