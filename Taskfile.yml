@@ -65,6 +65,13 @@ tasks:
     cmds:
       - docker compose exec node yarn test
 
+  dev:lint:
+    summary: Run linters
+    cmds:
+      - task dev:cli -- yarn lint:js
+      - task dev:cli -- yarn lint:scss
+      - task dev:cli -- yarn lint:markdown
+
   dev:cli:
     summary: Performs command inside container. Expects parameter(s).
     cmds:
