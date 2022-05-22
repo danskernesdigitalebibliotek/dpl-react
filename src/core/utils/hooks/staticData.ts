@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { getData } from "../../staticData.slice";
-import { store } from "../../store";
+import { RootState, store, useSelector } from "../../store";
 
 export const useStaticData = (
   type: "texts" | "data" = "data"
 ): {
   loading: boolean;
   texts?: { [key: string]: string };
-  data?: { [key: string]: unknown };
+  data?: { [key: string]: unknown } | null;
 } => {
-  const { loading, data } = useSelector((state) => state.staticData);
+  const { loading, data } = useSelector((state: RootState) => state.staticData);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,4 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  TypedUseSelectorHook,
+  useDispatch,
+  useSelector as rawUseSelector
+} from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import staticDataReducer from "./staticData.slice";
@@ -22,3 +27,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export const useSelector: TypedUseSelectorHook<RootState> = rawUseSelector;
