@@ -12,8 +12,8 @@ Danish public libraries.
 
 - [Development](#development)
   - [Requirements](#requirements)
-- [Development - alternative (no docker)](#development---alternative-no-docker)
-  - [Howto](#howto)
+  - [Development - alternative (no docker)](#development---alternative-no-docker)
+    - [Howto](#howto)
     - [Access tokens](#access-tokens)
     - [Library token](#library-token)
   - [Installation](#installation)
@@ -41,13 +41,13 @@ Danish public libraries.
 
 ### Requirements
 
-- [make](https://www.gnu.org/software/make/)
+- [go-task](https://github.com/go-task/task)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Dory](https://github.com/FreedomBen/dory)
 
-## Development - alternative (no docker)
+### Development - alternative (no docker)
 
-### Howto
+#### Howto
 
 - Run: sudo vim /etc/hosts
 - Add as the last line in the doc: 127.0.0.1 dpl-react.docker
@@ -70,10 +70,10 @@ an API for danish libraries.
 
 Usage of these systems require a valid client id and secret which must be
 obtained from your library partner or directly from DBC, the company responsible
-for running Adgangsplatfomen and OpenPlatform.
+for running Adgangsplatformen and OpenPlatform.
 
 This project include a client id that matches the storybook setup which can be
-used for development purporses.  You can use the `/auth` story to sign into
+used for development purposes.  You can use the `/auth` story to sign in to
 Adgangsplatformen for the storybook context.
 
 #### Library token
@@ -87,8 +87,13 @@ Workflow:
 
 ### Installation
 
+Using go-task to handle the project. Before you can install the project you need
+to create the file `~/.npmrc` to access the github package registry as described
+[here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
+using a personal access token.
+
 ```bash
-make up
+task dev:start
 ```
 
 When storybook is started, you can access it at: [dpl-react.docker](http://dpl-react.docker)
