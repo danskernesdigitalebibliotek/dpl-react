@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import Header from "./header.dev.inc";
 import SearchBar, { SearchBarProps } from "./search-bar";
 

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import * as React from "react";
 import Header from "../../components/search-bar/header.dev.inc";
 import SearchHeader, { SearchHeaderProps } from "./search-header";
 
