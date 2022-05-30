@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
-import Header from "./header";
+import Header from "./header.dev.inc";
 import SearchBar, { SearchBarProps } from "./search-bar";
 
 export default {
