@@ -25,7 +25,7 @@ export default {
   }
 } as ComponentMeta<typeof SearchHeader>;
 
-export const SearchHeaderApp: ComponentStory<typeof SearchHeader> = (
+export const Default: ComponentStory<typeof SearchHeader> = (
   args: SearchHeaderProps
 ) => (
   // We use the Header component as context to the search bar.
