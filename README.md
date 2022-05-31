@@ -12,9 +12,10 @@ Danish public libraries.
 
 - [Development](#development)
   - [Requirements](#requirements)
-- [Development - alternative (no docker)](#development---alternative-no-docker)
-  - [Howto](#howto)
+  - [Development - alternative (no docker)](#development---alternative-no-docker)
+    - [Howto](#howto)
     - [Access tokens](#access-tokens)
+    - [Library token](#library-token)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
     - [JavaScript + JSX](#javascript--jsx)
@@ -22,6 +23,7 @@ Danish public libraries.
   - [Create a new application](#create-a-new-application)
     - [Application state-machine](#application-state-machine)
   - [Style your application](#style-your-application)
+  - [Style using the dpl design system library](#style-using-the-dpl-design-system-library)
   - [Cross application components](#cross-application-components)
     - [Creating an atom](#creating-an-atom)
     - [Creating a component](#creating-a-component)
@@ -39,13 +41,13 @@ Danish public libraries.
 
 ### Requirements
 
-- [make](https://www.gnu.org/software/make/)
+- [go-task](https://github.com/go-task/task)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Dory](https://github.com/FreedomBen/dory)
 
-## Development - alternative (no docker)
+### Development - alternative (no docker)
 
-### Howto
+#### Howto
 
 - Run: sudo vim /etc/hosts
 - Add as the last line in the doc: 127.0.0.1 dpl-react.docker
@@ -68,16 +70,30 @@ an API for danish libraries.
 
 Usage of these systems require a valid client id and secret which must be
 obtained from your library partner or directly from DBC, the company responsible
-for running Adgangsplatfomen and OpenPlatform.
+for running Adgangsplatformen and OpenPlatform.
 
 This project include a client id that matches the storybook setup which can be
-used for development purporses.  You can use the `/auth` story to sign into
+used for development purposes.  You can use the `/auth` story to sign in to
 Adgangsplatformen for the storybook context.
+
+#### Library token
+
+To test the apps that is indifferent to wether the user is authenticated or not
+it is possible to set a library token via the library component in Storybook.
+Workflow:
+
+- Retrieve a library token via [OpenPlatform](https://openplatform.dbc.dk/v3/)
+- Insert the library token in the Library Token story in storybook
 
 ### Installation
 
+Using go-task to handle the project. Before you can install the project you need
+to create the file `~/.npmrc` to access the github package registry as described
+[here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
+using a personal access token.
+
 ```bash
-make up
+task dev:start
 ```
 
 When storybook is started, you can access it at: [dpl-react.docker](http://dpl-react.docker)
@@ -339,6 +355,31 @@ export function WithoutData() {
 </details>
 
 __Cowabunga!__ You now got styling in your application
+
+### Style using the dpl design system library
+
+If you need to use styling created by this project's sister repository -
+[the design system](https://github.com/danskernesdigitalebibliotek/dpl-design-system)
+-you can run:
+
+```bash
+yarn add @danskernesdigitalebibliotek/dpl-design-system@latest
+```
+
+This command installs the latest released version of the package. Whenever a
+new version of the design system package is released, it is necessary
+to reinstall the package in this project using the same command to get the
+newest styling, because yarn adds a specific version number to the package name
+in package.json.
+
+If you need published but unreleased code from a specific branch, you can also
+use thebranch name, replacing all special characters with dashes (-). For
+example if you want the latest styling from a branch called
+"feature/availability-label", you would run:
+
+```bash
+yarn add @danskernesdigitalebibliotek/dpl-design-system@feature-availability-label
+```
 
 ### Cross application components
 
