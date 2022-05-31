@@ -75,15 +75,6 @@ module.exports = (_env, argv) => {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: ["babel-loader"]
-        },
-        // We consume svg files from dpl-design-system package
-        {
-          test: /\.svg$/,
-          use: [
-            {
-              loader: "svg-url-loader"
-            }
-          ]
         }
       ]
     },
