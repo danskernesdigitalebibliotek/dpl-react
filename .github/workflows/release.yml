@@ -47,13 +47,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         run: |
           ghr -prerelease -replace -delete -n Latest -c main latest dist.zip
+
+      - name: Build artifacts for branch release
+        run: |
+          VERSION_FILE_NAME=$GITHUB_REPOSITORY \
+          VERSION_FILE_VERSION=${{ github.ref_name }} \
+          yarn build
+      - name: Zip project
+        run: |
+          zip -r -j dist.zip dist/
+
       - name: Release branch
-        if: startsWith(github.ref, 'refs/heads/')
-        uses: "marvinpinto/action-automatic-releases@v1.2.1"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          # Add prefix branch name to avoid duplicate git references.
-          automatic_release_tag: "release-${{ github.ref_name }}"
-          prerelease: true
-          title: ${{ github.ref_name }}
-          files: dist.zip
+        if: startsWith(github.ref, "refs/heads/${{ github.ref_name }}")
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          ghr -prerelease -replace -delete -n "release-${{ github.ref_name }}" -c "${{ github.ref_name }}" "release-${{ github.ref_name }}" dist.zip
