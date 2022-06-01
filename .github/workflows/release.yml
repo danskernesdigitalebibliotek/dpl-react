@@ -1,11 +1,7 @@
-on:
-  push:
-    branches:
-      - 'main'
-    tags:
-      - '*'
-
 name: Upload Release Asset
+
+on:
+  push
 
 jobs:
   build:
@@ -51,3 +47,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         run: |
           ghr -prerelease -replace -delete -n Latest -c main latest dist.zip
+      - name: Release branch
+        if: startsWith(github.ref, 'refs/heads/')
+        uses: "marvinpinto/action-automatic-releases@v1.2.1"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          # Add prefix branch name to avoid duplicate git references.
+          automatic_release_tag: "release-${{ github.ref_name }}"
+          prerelease: true
+          title: ${{ github.ref_name }}
+          files: dist.zip
