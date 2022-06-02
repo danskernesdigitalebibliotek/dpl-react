@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { useState } from "react";
-import Header from "./header.dev.inc";
+import StoryHeader from "./story-header.dev.inc";
 import SearchBar, { SearchBarProps } from "./search-bar";
 
 export default {
@@ -34,8 +34,8 @@ export const Default: ComponentStory<typeof SearchBar> = (
   // - without it, the Search bar loses its shape.
   const [q, setQ] = useState("");
   return (
-    <Header>
+    <StoryHeader>
       <SearchBar {...args} q={q} setQuery={setQ} />
-    </Header>
+    </StoryHeader>
   );
 };

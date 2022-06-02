@@ -5,11 +5,11 @@ import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
 
-export interface HeaderProps {
+export interface StoryHeaderProps {
   children: React.ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
   // the component below is copied from the Design system repository:
   // https://github.com/danskernesdigitalebibliotek/dpl-design-system
   // located at -> /src/stories/header
@@ -170,4 +170,4 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
   );
 };
 
-export default Header;
+export default StoryHeader;
