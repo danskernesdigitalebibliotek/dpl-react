@@ -18,22 +18,24 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <div className="header__menu-second">
-      <form action={searchHeaderUrl} className="header__menu-search">
-        <input
-          name="q"
-          className="header__menu-search-input text-body-medium-regular"
-          type="text"
-          placeholder={inputPlaceholder}
-          value={q}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <input
-          type="image"
-          src={searchIcon}
-          alt={altText}
-          className="header__menu-search-icon"
-        />
-      </form>
+      <div className="header__menu-search">
+        <form action={searchHeaderUrl} className="header__menu-search-form">
+          <input
+            name="q"
+            className="header__menu-search-input text-body-medium-regular"
+            type="text"
+            placeholder={inputPlaceholder}
+            value={q}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <input
+            type="image"
+            src={searchIcon}
+            alt={altText}
+            className="header__menu-search-icon"
+          />
+        </form>
+      </div>
     </div>
   );
 };
