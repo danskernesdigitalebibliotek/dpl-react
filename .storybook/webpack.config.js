@@ -19,18 +19,6 @@ module.exports = async ({ config }) => {
       test: /\.scss$/,
       use: ["style-loader", "css-loader", "postcss-loader"],
       include: path.resolve(__dirname, "../")
-    },
-    // We consume svg files from dpl-design-system package
-    {
-      test: /\.svg$/,
-      use: [
-        {
-          loader: "svg-url-loader",
-          options: {
-            limit: 10000
-          }
-        }
-      ]
     }
   ];
   const plugins = [...config.plugins];
