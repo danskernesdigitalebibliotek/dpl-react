@@ -97,7 +97,15 @@
         // We do not use prop-types in ts.
         "react/prop-types": "off",
         "react/require-default-props": "off",
-        "react/no-unused-prop-types": "off"
+        "react/no-unused-prop-types": "off",
+        "no-underscore-dangle": [
+          "error",
+          {
+            "allow": [
+              "__typename"
+            ]
+          }
+        ]
       }
     },
     {
@@ -107,7 +115,7 @@
       ],
       "rules": {
         // We need a simple way of passing args in stories via object spreading.
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
       }
     }
   ]
