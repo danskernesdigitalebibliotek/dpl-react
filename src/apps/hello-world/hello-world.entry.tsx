@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+import { withText } from "../../core/utils/text";
 import HelloWorld from "./hello-world";
 
 export interface HelloWorldEntryProps {
@@ -6,9 +7,8 @@ export interface HelloWorldEntryProps {
   introductionText: string;
 }
 
-const HelloWorldEntry: React.FC<HelloWorldEntryProps> = ({
-  titleText,
-  introductionText
-}) => <HelloWorld title={titleText} introduction={introductionText} />;
+const HelloWorldEntry: React.FC<HelloWorldEntryProps> = (
+  props: HelloWorldEntryProps
+) => <HelloWorld />;
 
-export default HelloWorldEntry;
+export default withText(HelloWorldEntry);
