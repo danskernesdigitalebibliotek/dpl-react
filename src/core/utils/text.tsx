@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RootState, store, useSelector } from "../store";
-import { setTextEntry } from "../text.slice";
+import { setTextEntries, setTextEntry } from "../text.slice";
 
 export const useText = (): ((key: string) => string) => {
   const { data } = useSelector((state: RootState) => state.text);
@@ -10,28 +10,40 @@ export const useText = (): ((key: string) => string) => {
 
 export const withText = <T,>(Component: React.ComponentType<T>) => {
   return (props: T) => {
+    const [propsWithoutText, setPropsWithoutText] = useState({});
+
     useEffect(() => {
-      // We do this in order to prevent an eslint error later.
-      const values = { ...props };
-      // Match all props that ends with "Text" and put them in redux store.
-      (Object.keys(values) as Array<keyof T>).forEach((prop) => {
-        const pattern = /.*Text$/g;
-        if (String(prop).match(pattern)) {
-          store.dispatch(
-            setTextEntry({
-              key: prop,
-              value: values[prop]
-            })
-          );
-        }
-      });
-    }, [props]);
+      const pattern = /.*Text$/g;
+      // Match all props that ends with "Text".
+      const textEntries = Object.fromEntries(
+        Object.entries(props).filter(([prop]) => {
+          return String(prop).match(pattern);
+        })
+      );
+      // and match all props that do NOT end with "Text".
+      const nonTextEntries = Object.fromEntries(
+        Object.entries(props).filter(([prop]) => {
+          return !String(prop).match(pattern);
+        })
+      );
+      // If we do have props that are not text props
+      // make sure they are set to state so we can use them in the returned component.
+      if (Object.keys(nonTextEntries).length) {
+        setPropsWithoutText(nonTextEntries);
+      }
+      // Put found texts in redux store.
+      store.dispatch(
+        setTextEntries({
+          entries: textEntries
+        })
+      );
+    }, [props, propsWithoutText]);
 
     // Since this is a High Order Functional Component
     // we do not know what props we are dealing with.
     // That is a part of the design.
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return <Component {...(props as T)} />;
+    return <Component {...(propsWithoutText as T)} />;
   };
 };
 
