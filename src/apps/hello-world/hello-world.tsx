@@ -9,7 +9,7 @@ const HelloWorld: React.FC = () => {
       <h2>{t("titleText")}</h2>
       <p>{t("introductionText")}</p>
       <p>
-        <Hello what="world" shouldBeEmphasized />
+        <Hello shouldBeEmphasized />
       </p>
     </article>
   );

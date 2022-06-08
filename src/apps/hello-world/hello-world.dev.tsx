@@ -13,6 +13,10 @@ export default {
     introductionText: {
       defaultValue: "We warmly welcome everybody by saying:",
       control: { type: "text" }
+    },
+    whatText: {
+      defaultValue: "world",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof HelloWorld>;

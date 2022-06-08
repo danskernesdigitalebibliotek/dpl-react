@@ -5,6 +5,7 @@ import HelloWorld from "./hello-world";
 export interface HelloWorldEntryProps {
   titleText: string;
   introductionText: string;
+  whatText: string;
 }
 
 const HelloWorldEntry: React.FC<HelloWorldEntryProps> = (

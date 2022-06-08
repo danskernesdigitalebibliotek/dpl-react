@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RootState, store, useSelector } from "../store";
-import { setTextEntries, setTextEntry } from "../text.slice";
+import { addTextEntries } from "../text.slice";
 
 export const useText = (): ((key: string) => string) => {
   const { data } = useSelector((state: RootState) => state.text);
@@ -33,7 +33,7 @@ export const withText = <T,>(Component: React.ComponentType<T>) => {
       }
       // Put found texts in redux store.
       store.dispatch(
-        setTextEntries({
+        addTextEntries({
           entries: textEntries
         })
       );

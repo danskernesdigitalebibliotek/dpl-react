@@ -10,12 +10,12 @@ export const textSlice = createSlice({
   name: "text",
   initialState,
   reducers: {
-    setTextEntries(state, action) {
+    addTextEntries(state, action) {
       state.data = { ...state.data, ...action.payload.entries };
     }
   }
 });
 
-export const { setTextEntries } = textSlice.actions;
+export const { addTextEntries } = textSlice.actions;
 
 export default textSlice.reducer;
