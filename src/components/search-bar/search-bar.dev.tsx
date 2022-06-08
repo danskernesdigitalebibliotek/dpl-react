@@ -8,11 +8,6 @@ export default {
   title: "Components / Search Bar",
   component: SearchBar,
   argTypes: {
-    searchHeaderUrl: {
-      name: "Search header base URL",
-      defaultValue: "https://bibliotek.dk/search",
-      control: { type: "text" }
-    },
     altText: {
       name: "Alt text for search button image",
       defaultValue: "søgeikon",
@@ -35,7 +30,14 @@ export const Default: ComponentStory<typeof SearchBar> = (
   const [q, setQ] = useState("");
   return (
     <StoryHeader>
-      <SearchBar {...args} q={q} setQuery={setQ} />
+      <div className="header__menu-second">
+        <form
+          action="https://bibliotek.dk/search"
+          className="header__menu-search"
+        >
+          <SearchBar {...args} q={q} setQuery={setQ} />
+        </form>
+      </div>
     </StoryHeader>
   );
 };

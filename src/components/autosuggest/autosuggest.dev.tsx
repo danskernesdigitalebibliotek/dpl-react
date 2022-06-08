@@ -10,6 +10,66 @@ export default {
       name: "Query",
       defaultValue: "Adam",
       control: { type: "text" }
+    },
+    data: {
+      name: "Data",
+      defaultValue: {
+        suggest: {
+          result: [
+            {
+              __typename: "Creator",
+              name: "Adam August"
+            },
+            {
+              __typename: "Creator",
+              name: "Douglas Adams"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam Neutzsky-Wulff"
+            },
+            {
+              __typename: "Creator",
+              name: "Andrew Adamson"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam Wallensten"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam Cooper"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam Sandler"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam McKay"
+            },
+            {
+              __typename: "Creator",
+              name: "Richard Adams"
+            },
+            {
+              __typename: "Creator",
+              name: "Adam Shankman"
+            }
+          ]
+        }
+      },
+      control: { type: "object" }
+    },
+    isLoading: {
+      name: "Is Loading",
+      defaultValue: false,
+      control: { type: "boolean" }
+    },
+    status: {
+      name: "Status of the transaction",
+      defaultValue: "success",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof Autosuggest>;
