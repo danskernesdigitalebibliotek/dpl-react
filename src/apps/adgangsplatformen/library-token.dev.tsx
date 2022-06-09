@@ -3,7 +3,7 @@ import React from "react";
 import LibraryToken from "./library-token";
 
 export default {
-  title: "Set Library Token",
+  title: "SB Utilities / Set Library Token",
   component: LibraryToken
 } as ComponentMeta<typeof LibraryToken>;
 
