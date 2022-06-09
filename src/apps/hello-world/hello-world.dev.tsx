@@ -3,7 +3,7 @@ import React from "react";
 import HelloWorld, { HelloWorldEntryProps } from "./hello-world.entry";
 
 export default {
-  title: "Hello World",
+  title: "Apps / Hello World",
   component: HelloWorld,
   argTypes: {
     titleText: {
