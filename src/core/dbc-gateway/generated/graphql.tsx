@@ -6003,7 +6003,6 @@ export const SuggestionsFromQueryStringDocument = `
         name
       }
       ... on Work {
-        id
         title
         fullTitle
         creators {
