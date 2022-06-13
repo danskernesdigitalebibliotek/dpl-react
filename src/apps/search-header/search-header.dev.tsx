@@ -8,7 +8,7 @@ export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
-    searchUrl: {
+    searchHeaderUrl: {
       name: "Search header base URL",
       defaultValue: "https://bibliotek.dk/search",
       control: { type: "text" }
@@ -18,7 +18,7 @@ export default {
       defaultValue: "søgeikon",
       control: { type: "text" }
     },
-    inputPlaceholder: {
+    inputPlaceholderText: {
       name: "Input field placeholder",
       defaultValue: "Søg blandt bibliotekets materialer",
       control: { type: "text" }

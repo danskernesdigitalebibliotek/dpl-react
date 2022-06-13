@@ -10,13 +10,19 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
   altText?: string;
-  inputPlaceholder?: string;
+  inputPlaceholderText?: string;
+  stringSuggestionAuthorText?: string;
+  stringSuggestionWorkText?: string;
+  stringSuggestionTopicText?: string;
 }
 
 const SearchHeader: React.FC<SearchHeaderProps> = ({
   searchHeaderUrl = "/search",
   altText = "search icon",
-  inputPlaceholder = "Search here"
+  inputPlaceholderText = "Search here",
+  stringSuggestionAuthorText = "Author",
+  stringSuggestionWorkText = "Work",
+  stringSuggestionTopicText = "Topic"
 }) => {
   const [q, setQ] = useState<string | undefined>("");
   const [suggestItems, setsuggestItems] = useState<any[]>([]);
@@ -120,7 +126,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
         <SearchBar
           searchHeaderUrl={searchHeaderUrl}
           altText={altText}
-          inputPlaceholder={inputPlaceholder}
+          inputPlaceholderText={inputPlaceholderText}
           getInputProps={getInputProps}
         />
         <Autosuggest
@@ -132,6 +138,9 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
+          stringSuggestionAuthorText={stringSuggestionAuthorText}
+          stringSuggestionWorkText={stringSuggestionWorkText}
+          stringSuggestionTopicText={stringSuggestionTopicText}
         />
       </form>
     </div>

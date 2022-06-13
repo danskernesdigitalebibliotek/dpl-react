@@ -4,12 +4,18 @@ import SearchHeader, { SearchHeaderProps } from "./search-header";
 const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
   searchHeaderUrl,
   altText,
-  inputPlaceholder
+  inputPlaceholderText,
+  stringSuggestionAuthorText,
+  stringSuggestionWorkText,
+  stringSuggestionTopicText
 }) => (
   <SearchHeader
     searchHeaderUrl={searchHeaderUrl}
     altText={altText}
-    inputPlaceholder={inputPlaceholder}
+    inputPlaceholderText={inputPlaceholderText}
+    stringSuggestionAuthorText={stringSuggestionAuthorText}
+    stringSuggestionWorkText={stringSuggestionWorkText}
+    stringSuggestionTopicText={stringSuggestionTopicText}
   />
 );
 

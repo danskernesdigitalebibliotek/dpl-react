@@ -4,14 +4,12 @@ import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 export interface SearchBarProps {
   searchHeaderUrl?: string;
   altText?: string;
-  inputPlaceholder?: string;
-  // TODO: find out what type this can be from downshifts official types
-  getInputProps?: any;
+  inputPlaceholderText?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   altText = "search icon",
-  inputPlaceholder = "Search here",
+  inputPlaceholderText = "Search here",
   getInputProps
 }) => {
   return (
@@ -24,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         className="header__menu-search-input text-body-medium-regular"
         type="text"
         autoComplete="off"
-        placeholder={inputPlaceholder}
+        placeholder={inputPlaceholderText}
         {...getInputProps()}
       />
       {/* eslint-enable react/jsx-props-no-spreading */}

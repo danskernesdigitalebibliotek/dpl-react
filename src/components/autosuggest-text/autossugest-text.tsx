@@ -4,15 +4,17 @@ import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generate
 export interface AutosuggestTextProps {
   responseData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   currentQ: string | undefined;
-  // TODO: find out what type this can be from downshifts official types
-  highlightedIndex: any;
-  getItemProps: any;
+  stringSuggestionAuthorText?: string;
+  stringSuggestionWorkText?: string;
+  stringSuggestionTopicText?: string;
 }
 
 export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
   responseData,
   highlightedIndex,
-  getItemProps
+  stringSuggestionAuthorText = "author",
+  stringSuggestionWorkText = "work",
+  stringSuggestionTopicText = "topic"
 }) => {
   // now we need to make a string item for downshift
   // @ts-expect-error TODO: objectItem needs a type
@@ -45,13 +47,14 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
               {...getItemProps({ item: itemToString(item), index })}
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
-              {/* eslint-enable react/no-array-index-key */}
               {item.__typename === "Creator"
-                ? `${item.name} (forfatter)`
+                ? `${item.name} (${stringSuggestionAuthorText})`
                 : null}
-              {item.__typename === "Subject" ? `${item.value} (emne)` : null}
+              {item.__typename === "Subject"
+                ? `${item.value} (${stringSuggestionTopicText})`
+                : null}
               {item.__typename === "Work"
-                ? `${item.title} (manifestation)`
+                ? `${item.title} (${stringSuggestionWorkText})`
                 : null}
             </li>
           </>

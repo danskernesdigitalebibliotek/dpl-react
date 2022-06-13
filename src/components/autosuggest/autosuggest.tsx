@@ -6,11 +6,9 @@ export interface AutosuggestProps {
   data: any | undefined;
   isLoading: boolean;
   status: string;
-  // TODO: find out what type this can be from downshifts official types
-  getMenuProps: any;
-  highlightedIndex: any;
-  getItemProps: any;
-  isOpen: any;
+  stringSuggestionAuthorText?: string;
+  stringSuggestionWorkText?: string;
+  stringSuggestionTopicText?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
@@ -21,7 +19,9 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getMenuProps,
   highlightedIndex,
   getItemProps,
-  isOpen
+  stringSuggestionAuthorText = "author",
+  stringSuggestionWorkText = "work",
+  stringSuggestionTopicText = "topic"
 }) => {
   return (
     <>
@@ -45,6 +45,9 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
             currentQ={q}
             highlightedIndex={highlightedIndex}
             getItemProps={getItemProps}
+            stringSuggestionAuthorText={stringSuggestionAuthorText}
+            stringSuggestionWorkText={stringSuggestionWorkText}
+            stringSuggestionTopicText={stringSuggestionTopicText}
           />
         )}
       </ul>
