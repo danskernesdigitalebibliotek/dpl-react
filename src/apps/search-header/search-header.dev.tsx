@@ -21,6 +21,21 @@ export default {
       name: "Input field placeholder",
       defaultValue: "Søg blandt bibliotekets materialer",
       control: { type: "text" }
+    },
+    stringSuggestionAuthorText: {
+      name: "String suggestion spec - author",
+      defaultValue: "forfatter",
+      control: { type: "text" }
+    },
+    stringSuggestionWorkText: {
+      name: "String suggestion spec - work",
+      defaultValue: "materiale",
+      control: { type: "text" }
+    },
+    stringSuggestionTopicText: {
+      name: "String suggestion spec - topic",
+      defaultValue: "emne",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeader>;
