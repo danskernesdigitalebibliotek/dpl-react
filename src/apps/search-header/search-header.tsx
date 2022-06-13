@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useCombobox } from "downshift";
+import {
+  SuggestionsFromQueryStringQuery,
+  useSuggestionsFromQueryStringQuery
+} from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
+import { Autosuggest } from "../../components/autosuggest/autosuggest";
 
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
@@ -12,16 +18,123 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   altText = "search icon",
   inputPlaceholder = "Search here"
 }) => {
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState<string | undefined>("");
+  const [suggestItems, setsuggestItems] = useState<any[]>([]);
+  const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
+  const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+  const {
+    data,
+    isLoading,
+    status
+  }: {
+    data: SuggestionsFromQueryStringQuery | undefined;
+    isLoading: boolean;
+    status: string;
+    // @ts-expect-error TODO: we need to look at types for q
+  } = useSuggestionsFromQueryStringQuery({ q });
+
+  // once the query returns data, we set it into our useSate
+  useEffect(() => {
+    if (data) {
+      const arayOfResults = data.suggest.result;
+      setsuggestItems(arayOfResults);
+    }
+  }, [data]);
+
+  // if there are at least 3 chars in the search-field, we open the autosuggest
+  useEffect(() => {
+    if (q) {
+      if (q.length > 2) {
+        setIsAutosuggestOpen(true);
+      }
+    } else {
+      setIsAutosuggestOpen(false);
+    }
+  }, [q]);
+
+  // @ts-expect-error TODO: objectItem ts error
+  function handleSelectedItemChange({ selectedItem }) {
+    switch (selectedItem.__typename) {
+      case "Creator":
+        setCurrentlySelectedItem(selectedItem.name);
+        break;
+      case "Subject":
+        setCurrentlySelectedItem(selectedItem.value);
+        break;
+      default:
+        setCurrentlySelectedItem(selectedItem.title);
+    }
+  }
+
+  // @ts-expect-error TODO: change ts error
+  function handleHighlightedIndexChange(change) {
+    if (change.highlightedIndex > -1) {
+      const arrayIndex: number = change.highlightedIndex;
+      const currentlyHighlightedObject = suggestItems[arrayIndex];
+      switch (currentlyHighlightedObject.__typename) {
+        case "Creator":
+          setQ(currentlyHighlightedObject.name);
+          break;
+        case "Subject":
+          setQ(currentlyHighlightedObject.value);
+          break;
+        default:
+          setQ(currentlyHighlightedObject.title);
+      }
+    } else {
+      setIsAutosuggestOpen(false);
+    }
+  }
+
+  // here we get all downshift properties for a combobox that we will need
+  const {
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+    getInputProps,
+    getComboboxProps
+  } = useCombobox({
+    isOpen: isAutosuggestOpen,
+    items: suggestItems,
+    inputValue: q,
+    defaultIsOpen: false,
+    onInputValueChange: ({ inputValue }) => {
+      setQ(inputValue);
+    },
+    // @ts-expect-error TODO: onSelectedItemChange needs a type
+    onSelectedItemChange: handleSelectedItemChange,
+    selectedItem: currentlySelectedItem,
+    onHighlightedIndexChange: handleHighlightedIndexChange
+  });
 
   return (
-    <SearchBar
-      q={q}
-      setQuery={setQ}
-      searchHeaderUrl={searchHeaderUrl}
-      altText={altText}
-      inputPlaceholder={inputPlaceholder}
-    />
+    <div className="header__menu-second">
+      {/* eslint-disable react/jsx-props-no-spreading */}
+      {/* The downshift combobox works this way by design */}
+      <form
+        action={searchHeaderUrl}
+        className="header__menu-search"
+        {...getComboboxProps()}
+      >
+        {/* eslint-enable react/jsx-props-no-spreading */}
+        <SearchBar
+          searchHeaderUrl={searchHeaderUrl}
+          altText={altText}
+          inputPlaceholder={inputPlaceholder}
+          getInputProps={getInputProps}
+        />
+        <Autosuggest
+          q={q}
+          data={data}
+          isLoading={isLoading}
+          status={status}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+          isOpen={isAutosuggestOpen}
+        />
+      </form>
+    </div>
   );
 };
 
