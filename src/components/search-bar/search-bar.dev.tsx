@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import { useState } from "react";
+import { useCombobox } from "downshift";
 import StoryHeader from "./story-header.dev.inc";
 import SearchBar, { SearchBarProps } from "./search-bar";
 
@@ -8,11 +9,6 @@ export default {
   title: "Components / Search Bar",
   component: SearchBar,
   argTypes: {
-    searchHeaderUrl: {
-      name: "Search header base URL",
-      defaultValue: "https://bibliotek.dk/search",
-      control: { type: "text" }
-    },
     altText: {
       name: "Alt text for search button image",
       defaultValue: "søgeikon",
@@ -32,10 +28,32 @@ export const Default: ComponentStory<typeof SearchBar> = (
   // We use the Header component and useState for context to the search
   // bar. It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
-  const [q, setQ] = useState("");
+
+  // Downshift also warns in the browser that we forgot to apply menu props
+  // but in this story it's by design, as an autosuggest dropdown isn't present
+
+  const [q, setQ] = useState<string | undefined>("");
+
+  const { getInputProps, getComboboxProps } = useCombobox({
+    items: ["Item 1", "Item 2"],
+    inputValue: q,
+    defaultIsOpen: false,
+    onInputValueChange: ({ inputValue }) => {
+      setQ(inputValue);
+    }
+  });
+
   return (
     <StoryHeader>
-      <SearchBar {...args} q={q} setQuery={setQ} />
+      <div className="header__menu-second">
+        <form
+          action="https://bibliotek.dk/search"
+          className="header__menu-search"
+          {...getComboboxProps()}
+        >
+          <SearchBar {...args} getInputProps={getInputProps} />
+        </form>
+      </div>
     </StoryHeader>
   );
 };
