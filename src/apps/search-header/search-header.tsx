@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useCombobox } from "downshift";
+import { useCombobox, UseComboboxStateChange } from "downshift";
 import {
   SuggestionsFromQueryStringQuery,
   useSuggestionsFromQueryStringQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
+import { Suggestion } from "../../components/autosuggest-text/autossugest-text";
 
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
@@ -24,7 +25,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   stringSuggestionWorkText = "Work",
   stringSuggestionTopicText = "Topic"
 }) => {
-  const [q, setQ] = useState<string | undefined>("");
+  const [q, setQ] = useState<string>("");
   const [suggestItems, setsuggestItems] = useState<any[]>([]);
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
@@ -36,7 +37,6 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     data: SuggestionsFromQueryStringQuery | undefined;
     isLoading: boolean;
     status: string;
-    // @ts-expect-error TODO: we need to look at types for q
   } = useSuggestionsFromQueryStringQuery({ q });
 
   // once the query returns data, we set it into our useSate
@@ -58,24 +58,32 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     }
   }, [q]);
 
-  // @ts-expect-error TODO: objectItem ts error
-  function handleSelectedItemChange({ selectedItem }) {
-    switch (selectedItem.__typename) {
+  function handleSelectedItemChange(
+    changes: UseComboboxStateChange<Suggestion>
+  ) {
+    if (!changes.selectedItem) {
+      return;
+    }
+    switch (changes.selectedItem.__typename) {
       case "Creator":
-        setCurrentlySelectedItem(selectedItem.name);
+        setCurrentlySelectedItem(changes.selectedItem.name);
         break;
       case "Subject":
-        setCurrentlySelectedItem(selectedItem.value);
+        setCurrentlySelectedItem(changes.selectedItem.value);
         break;
       default:
-        setCurrentlySelectedItem(selectedItem.title);
+        setCurrentlySelectedItem(changes.selectedItem.title);
     }
   }
 
-  // @ts-expect-error TODO: change ts error
-  function handleHighlightedIndexChange(change) {
-    if (change.highlightedIndex > -1) {
-      const arrayIndex: number = change.highlightedIndex;
+  function handleHighlightedIndexChange(
+    changes: UseComboboxStateChange<Suggestion>
+  ) {
+    if (!changes.selectedItem || !changes.highlightedIndex) {
+      return;
+    }
+    if (changes.highlightedIndex > -1) {
+      const arrayIndex: number = changes.highlightedIndex;
       const currentlyHighlightedObject = suggestItems[arrayIndex];
       switch (currentlyHighlightedObject.__typename) {
         case "Creator":
@@ -104,10 +112,9 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     items: suggestItems,
     inputValue: q,
     defaultIsOpen: false,
-    onInputValueChange: ({ inputValue }) => {
+    onInputValueChange: ({ inputValue = "" }) => {
       setQ(inputValue);
     },
-    // @ts-expect-error TODO: onSelectedItemChange needs a type
     onSelectedItemChange: handleSelectedItemChange,
     selectedItem: currentlySelectedItem,
     onHighlightedIndexChange: handleHighlightedIndexChange

@@ -1,31 +1,40 @@
+import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import { AutosuggestText } from "../autosuggest-text/autossugest-text";
+import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import {
+  AutosuggestText,
+  Suggestion
+} from "../autosuggest-text/autossugest-text";
 
 export interface AutosuggestProps {
   q: string | undefined;
-  data: any | undefined;
+  data: SuggestionsFromQueryStringQuery | undefined;
   isLoading: boolean;
   status: string;
+  getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
+  highlightedIndex: number;
+  getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
+  isOpen: boolean;
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
-  q = "query",
+  q,
   data,
   isLoading,
   status,
   getMenuProps,
   highlightedIndex,
   getItemProps,
+  isOpen,
   stringSuggestionAuthorText = "author",
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic"
 }) => {
   return (
     <>
-      {/* console.log({ ...getMenuProps() }) */}
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <ul

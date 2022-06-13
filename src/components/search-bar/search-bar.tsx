@@ -1,10 +1,12 @@
 import * as React from "react";
 import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
+import { UseComboboxPropGetters } from "downshift";
 
 export interface SearchBarProps {
   searchHeaderUrl?: string;
   altText?: string;
   inputPlaceholderText?: string;
+  getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -14,7 +16,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <>
-      {/* console.log({ ...getInputProps() }) */}
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <input
