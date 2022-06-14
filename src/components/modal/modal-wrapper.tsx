@@ -45,10 +45,15 @@ function ModalWrapper({
     <div
       className="modal modal-cta modal-padding modal-show"
       aria-describedby={`modal-${modalId}`}
+      role="dialog"
     >
       <div id={`modal-${modalId}`}>{screenReaderModalDescriptionText}</div>
       <button
         type="button"
+        /* I am not sure this is the best way, a focusable element in a modal must have focus when opened, 
+        or else the screen reader will remain on the main page */
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus
         className="btn-ui modal-btn-close"
         style={{
           zIndex: modalIds.indexOf(modalId)
