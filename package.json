@@ -99,6 +99,7 @@
     "mutationobserver-shim": "^0.3.7",
     "node-sass": "^7.0.1",
     "nyc": "15.1.0",
+    "orval": "^6.8.1",
     "postcss": "^8.4.13",
     "postcss-cli": "^9.1.0",
     "postcss-loader": "6.2.1",
