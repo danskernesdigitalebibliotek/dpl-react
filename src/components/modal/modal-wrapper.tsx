@@ -32,7 +32,7 @@ function ModalWrapper({
     return () => {
       searchParams.delete(modalId);
     };
-  }, []);
+  }, [modalId, dispatch]);
 
   // Check if the modal should be open
   if (modalIds && !modalIds.includes(modalId)) {
