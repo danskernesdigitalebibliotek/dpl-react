@@ -47,7 +47,9 @@ function ModalWrapper({
       aria-describedby={`modal-${modalId}`}
       role="dialog"
     >
-      <div id={`modal-${modalId}`}>{screenReaderModalDescriptionText}</div>
+      <div className="modal-screen-reader-description" id={`modal-${modalId}`}>
+        {screenReaderModalDescriptionText}
+      </div>
       <button
         type="button"
         /* I am not sure this is the best way, a focusable element in a modal must have focus when opened, 
