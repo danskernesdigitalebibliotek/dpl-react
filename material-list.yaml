@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  version: '2.0.0'
+  title: 'Collection List'
+  license:
+    name: 'GNU General Public License v3.0'
+    url: 'https://www.gnu.org/licenses/gpl-3.0.html'
+
+servers:
+  - url: https://prod.collectionlist.dandigbib.org
+    description: Production server (uses live data)
+  - url: https://test.collectionlist.dandigbib.org
+    description: Test server (uses test data)
+
+tags:
+  - name: 'List'
+    description: List handling
+  - name: 'Migrate'
+    description: Data migration
+security:
+  - BearerAuth: []
+paths:
+  /list/{listId}:
+    get:
+      operationId: getList
+      tags:
+        - List
+      description: 'Get list with collections.'
+      parameters:
+        - $ref: '#/components/parameters/listId'
+        - $ref: '#/components/parameters/collectionIds'
+      responses:
+        200:
+          description: 'The list data is returned.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        404:
+          description: 'Unknown list.'
+        422:
+          description: 'Invalid collection id.'
+        default:
+          description: 'Unspecified error.'
+
+  /list/{listId}/{itemId}:
+    head:
+      operationId: hasItem
+      tags:
+        - List
+      description: 'Check existence of a collection on a list. To check multiple collections in one request, see the collection_ids query parameter on /list/{listId}.'
+      parameters:
+        - $ref: '#/components/parameters/listId'
+        - $ref: '#/components/parameters/itemId'
+      responses:
+        200:
+          description: 'The collection exists on the list.'
+        404:
+          description: 'The list or collection does not exist.'
+        422:
+          description: 'Invalid collection id.'
+        default:
+          description: 'Unspecified error.'
+    put:
+      operationId: addItem
+      tags:
+        - List
+      description: 'Add collection to the the list.'
+      parameters:
+        - $ref: '#/components/parameters/listId'
+        - $ref: '#/components/parameters/itemId'
+      responses:
+        201:
+          description: 'The collection was successfully added to the list.'
+        404:
+          description: 'Unknown list.'
+        422:
+          description: 'Invalid collection id.'
+        default:
+          description: 'Unspecified error.'
+    delete:
+      operationId: removeItem
+      tags:
+        - List
+      description: 'Delete collection from list.'
+      parameters:
+        - $ref: '#/components/parameters/listId'
+        - $ref: '#/components/parameters/itemId'
+      responses:
+        204:
+          description: 'Successfully removed.'
+        404:
+          description: 'Unknown list or collection.'
+        422:
+          description: 'Invalid collection id.'
+        default:
+          description: 'Unspecified error.'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    listId:
+      name: 'listId'
+      in: 'path'
+      description: 'The identifier of the list to return. Use "default" for the default list.'
+      required: true
+      example: 'default'
+      schema:
+        $ref: '#/components/schemas/ListId'
+    itemId:
+      name: 'itemId'
+      in: 'path'
+      description: 'The identifier of the collection.'
+      required: true
+      example: '870970-basis:54871910'
+      schema:
+        $ref: '#/components/schemas/itemId'
+    collectionIds:
+      name: 'collection_ids'
+      in: 'query'
+      description: 'Filter the list reply down to the given collection identifiers. This is the recommended way to check for existence of multiple collections on the list.'
+      example:
+        - 870970-basis:54871910
+        - 870970-basis:44791668
+      explode: false
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/itemId'
+
+  schemas:
+    ListId:
+      description: 'List identifier. In the initial version, this can only be "default".'
+      type: string
+    itemId:
+      description: 'A collection identifier in the form <digits>-<alphanum>:<alphanum>.'
+      type: string
+      pattern: '^\d+-\w+:\w+$'
+    List:
+      type: object
+      required:
+        - id
+        - collections
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ListId'
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/itemId'
+    LegacyUserId:
+      description: 'Legacy user identifier.'
+      type: string
+      example: '29A10F616FE6CA5C6E06EBF507A9FDC5BB89F8EBCF65726BEAC61C646854E83856D3B1D46BE4696EDCFB3C9F57EEBB6941D8654BC1F4B514D6217141AEA1653C'
