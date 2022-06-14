@@ -1,6 +1,7 @@
 module.exports = {
   stories: ["../src/**/*.dev.@(jsx|tsx)"],
   addons: [
+    '@storybook/addon-queryparams',
     "@storybook/addon-docs",
     "@storybook/addon-controls",
     {
