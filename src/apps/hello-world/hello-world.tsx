@@ -1,19 +1,17 @@
 import * as React from "react";
 import { Hello } from "../../components/hello/hello";
+import { useText } from "../../core/utils/text";
 
-interface HelloWorldProps {
-  title: string;
-  introduction: string;
-}
-
-const HelloWorld: React.FC<HelloWorldProps> = ({ title, introduction }) => (
-  <article>
-    <h2>{title}</h2>
-    <p>{introduction}</p>
-    <p>
-      <Hello what="world" shouldBeEmphasized />
-    </p>
-  </article>
-);
-
+const HelloWorld: React.FC = () => {
+  const t = useText();
+  return (
+    <article>
+      <h2>{t("titleText")}</h2>
+      <p>{t("introductionText")}</p>
+      <p>
+        <Hello shouldBeEmphasized />
+      </p>
+    </article>
+  );
+};
 export default HelloWorld;
