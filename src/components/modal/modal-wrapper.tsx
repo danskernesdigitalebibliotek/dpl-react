@@ -6,7 +6,8 @@ import { closeModal, openModal } from "../../core/modal.slice";
 type ModalWrapperProps = {
   children: ReactNode;
   modalId: string;
-  closeModalAriaLabel: string;
+  closeModalAriaLabelText: string;
+  screenReaderModalDescriptionText: string;
 };
 
 interface ModalIdsProps {
@@ -18,7 +19,8 @@ interface ModalIdsProps {
 function ModalWrapper({
   modalId,
   children,
-  closeModalAriaLabel
+  closeModalAriaLabelText,
+  screenReaderModalDescriptionText
 }: ModalWrapperProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -40,14 +42,18 @@ function ModalWrapper({
   }
 
   return (
-    <div className="modal modal-cta modal-padding modal-show">
+    <div
+      className="modal modal-cta modal-padding modal-show"
+      aria-describedby={`modal-${modalId}`}
+    >
+      <div id={`modal-${modalId}`}>{screenReaderModalDescriptionText}</div>
       <button
         type="button"
         className="btn-ui modal-btn-close"
         style={{
           zIndex: modalIds.indexOf(modalId)
         }}
-        aria-label={closeModalAriaLabel}
+        aria-label={closeModalAriaLabelText}
         onClick={() => {
           dispatch(closeModal({ modalId }));
         }}

@@ -18,6 +18,9 @@ export default {
     },
     ariaLabelModalTwo: {
       defaultValue: "Luk dialog to"
+    },
+    screenReaderModalDescriptionText: {
+      defaultValue: "Denne modal dækker sidens indhold, og er en demo"
     }
   }
 } as ComponentMeta<typeof DemoModal>;

@@ -6,11 +6,13 @@ import { openModal } from "../../core/modal.slice";
 export interface DemoModalProps {
   ariaLabelModalOne: string;
   ariaLabelModalTwo: string;
+  screenReaderModalDescriptionText: string;
 }
 
 const DemoModal: React.FC<DemoModalProps> = ({
   ariaLabelModalOne,
-  ariaLabelModalTwo
+  ariaLabelModalTwo,
+  screenReaderModalDescriptionText
 }) => {
   const dispatch = useDispatch();
   const modalIdOne = "demo-modal-one";
@@ -19,13 +21,15 @@ const DemoModal: React.FC<DemoModalProps> = ({
   return (
     <>
       <ModalWrapper
-        closeModalAriaLabel={ariaLabelModalTwo}
+        closeModalAriaLabelText={ariaLabelModalTwo}
+        screenReaderModalDescriptionText={screenReaderModalDescriptionText}
         modalId={modalIdTwo}
       >
         <h1>{modalIdTwo}</h1>
       </ModalWrapper>
       <ModalWrapper
-        closeModalAriaLabel={ariaLabelModalOne}
+        closeModalAriaLabelText={ariaLabelModalOne}
+        screenReaderModalDescriptionText={screenReaderModalDescriptionText}
         modalId={modalIdOne}
       >
         <h1>{modalIdOne}</h1>
