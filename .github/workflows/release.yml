@@ -1,11 +1,7 @@
-on:
-  push:
-    branches:
-      - 'main'
-    tags:
-      - '*'
-
 name: Upload Release Asset
+
+on:
+  push
 
 jobs:
   build:
@@ -51,3 +47,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         run: |
           ghr -prerelease -replace -delete -n Latest -c main latest dist.zip
+
+      - name: Build artifacts for branch release
+        run: |
+          VERSION_FILE_NAME=$GITHUB_REPOSITORY \
+          VERSION_FILE_VERSION=${{ github.ref_name }} \
+          yarn build
+      - name: Zip project
+        run: |
+          zip -r -j dist.zip dist/
+
+      - name: Release branch
+        if: startsWith(github.ref, "refs/heads/${{ github.ref_name }}")
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        run: |
+          ghr -prerelease -replace -delete -n "release-${{ github.ref_name }}" -c "${{ github.ref_name }}" "release-${{ github.ref_name }}" dist.zip
