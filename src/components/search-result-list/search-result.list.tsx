@@ -3,18 +3,16 @@ import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/grap
 import SearchResultListItem from "./search-result-list-item";
 
 export interface SearchResultListProps {
-  works: SearchWithPaginationQuery["search"]["works"];
+  resultItems: SearchWithPaginationQuery["search"]["works"];
 }
 
-const SearchResultList: React.FC<SearchResultListProps> = ({ works }) => {
-  let num = 0;
+const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
   return (
-    <ul>
-      {works.map((work) => {
-        num += 1;
+    <ul className="search-result-page__list my-32">
+      {resultItems.map((item) => {
         return (
-          <li key={work.id}>
-            <SearchResultListItem title={`${num} - ${work.title}`} />
+          <li key={item.id}>
+            <SearchResultListItem item={item} />
           </li>
         );
       })}
