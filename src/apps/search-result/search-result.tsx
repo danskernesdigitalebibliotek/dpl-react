@@ -37,8 +37,11 @@ const SearchResult: React.FC<SearchResultProps> = ({
     limit: numberOfResultItems
   });
 
+  // The first item of the fetched works.
   const firstWork = data?.search?.works?.[0]?.id;
+  // The first item of the last time we fetched the works.
   const firstPreviousWork = usePrevious(firstWork);
+  // If they differ data has changed ¯\_(ツ)_/¯.
   const dataHasChanged = firstWork !== firstPreviousWork;
 
   useEffect(() => {
