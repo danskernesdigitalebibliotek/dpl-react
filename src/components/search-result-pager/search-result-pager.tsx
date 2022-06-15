@@ -11,16 +11,18 @@ function SearchResultPager({
   hitcount
 }: SearchResultPagerProps) {
   return (
-    <>
-      <div>
+    <div className="search-result-pager">
+      <p className="text-small-caption search-result-pager__title">
         Viser {searchItemsShown} ud af {hitcount} resultater
-      </div>
-      <div>
-        <button type="button" onClick={setPageHandler}>
-          VIS FLERE
-        </button>
-      </div>
-    </>
+      </p>
+      <button
+        type="button"
+        className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+        onClick={setPageHandler}
+      >
+        VIS FLERE
+      </button>
+    </div>
   );
 }
 
