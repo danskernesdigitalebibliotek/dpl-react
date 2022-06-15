@@ -8,7 +8,9 @@ describe("Authentication", () => {
   });
   it("Loads story without auth code", () => {
     cy.server();
-    cy.visit("/iframe.html?path=/story/adgangsplatformen--sign-in");
+    cy.visit(
+      "/iframe.html?path=/story/sb-utilities-adgangsplatformen--sign-in"
+    );
     cy.window()
       .its("sessionStorage")
       .invoke("getItem", TOKEN_USER_KEY)
@@ -25,7 +27,9 @@ describe("Authentication", () => {
         access_token: "random_token"
       }
     });
-    cy.visit("/iframe.html?path=/story/adgangsplatformen--sign-in&code=test");
+    cy.visit(
+      "/iframe.html?path=/story/sb-utilities-adgangsplatformen--sign-in&code=test"
+    );
     cy.window()
       .its("sessionStorage")
       .invoke("getItem", TOKEN_USER_KEY)

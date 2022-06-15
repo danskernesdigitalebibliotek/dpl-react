@@ -1,7 +1,7 @@
 describe("Hello World", () => {
   it("Renders hello-world with expected output", () => {
     cy.server();
-    cy.visit("/iframe.html?path=/story/hello-world--app");
+    cy.visit("/iframe.html?path=/story/apps-hello-world--app");
     cy.get("h2").should("contain", "Greetings");
     cy.get("article p")
       .first()
