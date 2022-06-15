@@ -16,7 +16,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
   q,
   numberOfResultItems
 }) => {
-  const [works, setWorks] = useState<
+  const [resultItems, setResultItems] = useState<
     SearchWithPaginationQuery["search"]["works"] | []
   >([]);
   const [hitcount, setHitCount] = useState<
@@ -52,21 +52,21 @@ const SearchResult: React.FC<SearchResultProps> = ({
         search: { works: resultWorks, hitcount: resultCount }
       } = data;
 
-      setWorks([...works, ...resultWorks]);
+      setResultItems([...resultItems, ...resultWorks]);
 
       if (!hitcount) {
         setHitCount(resultCount);
       }
     }
-  }, [data, isSuccess, works, page, hitcount, dataHasChanged]);
+  }, [data, isSuccess, resultItems, page, hitcount, dataHasChanged]);
 
   const hasSearchItemsLeft = searchItemsShown < hitcount;
-  const worksAreLoaded = Boolean(works.length);
+  const worksAreLoaded = Boolean(resultItems.length);
   const moreWorksToBeLoaded = worksAreLoaded && hasSearchItemsLeft;
 
   return (
     <>
-      {worksAreLoaded && <SearchResultList works={works} />}
+      {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
       {moreWorksToBeLoaded && (
         <SearchResultPager
           searchItemsShown={searchItemsShown}
