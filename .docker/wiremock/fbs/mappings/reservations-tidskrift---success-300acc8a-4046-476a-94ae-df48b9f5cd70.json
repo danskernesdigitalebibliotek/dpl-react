@@ -1,0 +1,28 @@
+{
+  "id" : "300acc8a-4046-476a-94ae-df48b9f5cd70",
+  "name" : "Reservations (tidskrift - success)",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\t\n\t\"reservations\": [\n\t\t{\n\t\t\t\"recordId\": \"20401206\",\n\t\t\t\"periodical\": {\n\t\t\t\t\"volume\": \"\",\n\t\t\t\t\"volumeYear\": \"2018\",\n\t\t\t\t\"volumeNumber\": \"9\"\t\t\n\t\t\t}\n\t\t}\n\t]\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[\n\t{\n\t\t\"reservationId\": 67807688,\n\t\t\"recordId\": \"20401206\",\n\t\t\"state\": \"reserved\",\n\t\t\"pickupBranch\": \"DK-775100\",\n\t\t\"pickupDeadline\": null,\n\t\t\"expiryDate\": \"2022-12-11\",\n\t\t\"dateOfReservation\": \"2022-06-14T10:19:23.429\",\n\t\t\"numberInQueue\": 1,\n\t\t\"periodical\": {\n\t\t\t\"volume\": null,\n\t\t\t\"volumeYear\": \"2018\",\n\t\t\t\"displayText\": \"2018, nr. 9\",\n\t\t\t\"volumeNumber\": \"9\"\n\t\t},\n\t\t\"pickupNumber\": null,\n\t\t\"ilBibliographicRecord\": null,\n\t\t\"loanType\": \"loan\"\n\t}\n]",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "300acc8a-4046-476a-94ae-df48b9f5cd70",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 3,
+  "postServeActions" : [ ]
+}

@@ -1,0 +1,28 @@
+{
+  "id" : "c240e643-d076-4b43-8757-b70ab983b91b",
+  "name" : "Reservations (tidsskrift - failed)",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n    \"reservations\": [\n        {\n            \"recordId\": \"62056371\"\n        },\n\t\t\t\t{\n            \"recordId\": \"20401206\"\n        }\n    ]\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 500,
+    "body" : "{\n\t\"correlationId\": \"2b9aff9d-7123-499d-a462-e98bf5168360\",\n\t\"errorCode\": \"reservationsFailed\",\n\t\"message\": \"Reservations failed: [recordId: 62056371, result: [ALREADY_RESERVED]][recordId: 20401206, result: [PIF_NOT_RESERVABLE]]\",\n\t\"validationErrors\": []\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "c240e643-d076-4b43-8757-b70ab983b91b",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 9,
+  "postServeActions" : [ ]
+}

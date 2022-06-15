@@ -1,0 +1,28 @@
+{
+  "id" : "b96eee78-5ddd-44c2-b849-39fded5f3ff2",
+  "name" : "Reservations (failed)",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n    \"reservations\": [\n        {\n            \"recordId\": \"62056371\"\n        },\n        {\n            \"recordId\": \"2796202\"\n        }\n    ]\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 500,
+    "body" : "{\n  \"correlationId\": \"3ea5b653-26e1-4a5d-9c30-289eb1b10cbd\",\n  \"errorCode\": \"reservationsFailed\",\n  \"message\": \"Reservations failed: [recordId: 62056371, result: [SUCCESS]][recordId: 2796202, result: [NO_RESERVABLE_MATERIALS]]\",\n  \"validationErrors\": []\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "b96eee78-5ddd-44c2-b849-39fded5f3ff2",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 1,
+  "postServeActions" : [ ]
+}
