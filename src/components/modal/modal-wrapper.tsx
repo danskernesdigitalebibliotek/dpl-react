@@ -45,6 +45,9 @@ function ModalWrapper({
     <div
       className="modal modal-cta modal-padding modal-show"
       aria-describedby={`modal-${modalId}`}
+      style={{
+        zIndex: modalIds.indexOf(modalId)
+      }}
       role="dialog"
     >
       <div className="modal-screen-reader-description" id={`modal-${modalId}`}>

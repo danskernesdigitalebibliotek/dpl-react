@@ -25,16 +25,17 @@ const DemoModal: React.FC<DemoModalProps> = ({
         screenReaderModalDescriptionText={screenReaderModalDescriptionText}
         modalId={modalIdTwo}
       >
-        <h1>{modalIdTwo}</h1>
+        <h1 id={`${modalIdTwo}-header`}>{modalIdTwo}</h1>
       </ModalWrapper>
       <ModalWrapper
         closeModalAriaLabelText={ariaLabelModalOne}
         screenReaderModalDescriptionText={screenReaderModalDescriptionText}
         modalId={modalIdOne}
       >
-        <h1>{modalIdOne}</h1>
+        <h1 id={`${modalIdOne}-header`}>{modalIdOne}</h1>
         <button
           type="button"
+          id={`${modalIdTwo}-button`}
           onClick={() => {
             dispatch(openModal({ modalId: modalIdTwo }));
           }}
@@ -44,6 +45,7 @@ const DemoModal: React.FC<DemoModalProps> = ({
       </ModalWrapper>
       <button
         type="button"
+        id={`${modalIdOne}-button`}
         onClick={() => {
           dispatch(openModal({ modalId: modalIdOne }));
         }}
