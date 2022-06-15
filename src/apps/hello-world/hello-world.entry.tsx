@@ -1,6 +1,9 @@
 import * as React from "react";
 import HelloWorld from "./hello-world";
-import { useAddItem, useGetList } from "../../material-list-api/material-list";
+import {
+  useAddItem,
+  useGetList
+} from "../../core/material-list-api/material-list";
 
 export interface HelloWorldEntryProps {
   titleText: string;

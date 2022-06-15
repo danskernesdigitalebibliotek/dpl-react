@@ -2,15 +2,15 @@
 import { defineConfig } from "orval";
 
 export default defineConfig({
-  petstore: {
+  materialList: {
     output: {
       mode: "split",
-      target: "src/material-list-api/material-list.ts",
-      schemas: "src/material-list-api/model",
+      target: "src/core/material-list-api/material-list.ts",
+      schemas: "src/core/material-list-api/model",
       client: "react-query",
       override: {
         mutator: {
-          path: "src/material-list-api/mutator/fetcher.ts",
+          path: "src/core/material-list-api/mutator/fetcher.ts",
           name: "fetcher"
         },
         query: {
@@ -20,7 +20,9 @@ export default defineConfig({
       prettier: true
     },
     input: {
-      target: "./material-list.yaml",
+      target:
+        // This should come from a url that will be updated if there are any changes
+        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-material-list/develop/spec/material-list-2.0.0.yaml",
       converterOptions: {
         indent: 2
       }

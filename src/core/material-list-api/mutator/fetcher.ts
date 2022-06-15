@@ -1,3 +1,4 @@
+import { getToken, TOKEN_USER_KEY } from "../../token";
 const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
@@ -18,13 +19,19 @@ export const fetcher = async <ResponseType>({
     | Record<string, string>
     | URLSearchParams
     | undefined;
+
+  const userToken = getToken(TOKEN_USER_KEY);
+
+  if (!userToken) {
+    throw new Error("User token is missing!");
+  }
   const response = await fetch(
     `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
     {
       method,
       headers: {
         ...data?.headers,
-        Authorization: `Bearer fb80d9b5a5e776bb4cf6106fbd4bcf93ebede495`
+        Authorization: `Bearer ${userToken}`
       },
       ...(data ? { body: JSON.stringify(data) } : {})
     }

@@ -15,7 +15,7 @@ import {
   QueryKey
 } from "react-query";
 import type { List, GetListParams } from "./model";
-import { fetcher, ErrorType } from "./mutator/fetcher";
+import { fetcher, ErrorType, BodyType } from "./mutator/fetcher";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
