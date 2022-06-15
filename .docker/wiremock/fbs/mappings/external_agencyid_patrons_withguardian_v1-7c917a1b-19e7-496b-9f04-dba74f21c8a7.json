@@ -1,0 +1,28 @@
+{
+  "id" : "7c917a1b-19e7-496b-9f04-dba74f21c8a7",
+  "name" : "Patron (create with guardian)",
+  "request" : {
+    "url" : "/external/agencyid/patrons/withGuardian/v1",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n\t\"cprNumber\": \"0101010101\",\n\t\"pincode\": 45123,\n\t\"phoneNumber\": \"optional\",\n\t\"preferredPickupBranch\": \"DK-775100\",\n\t\"name\": \"New Developer\",\n  \"email\": \"jeskr@aarhus.dk\",\n\t\"guardian\": {\n\t\t\"cprNumber\": \"0202020202\",\n\t\t\"phoneNumber\": \"optional\",\n\t\t\"name\": \"Project lead\",\n\t\t\"email\": \"gba@aarhus.dk\"\n\t}\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 403,
+    "body" : "{\n  \"message\": \"token does not include a cpr\"\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "7c917a1b-19e7-496b-9f04-dba74f21c8a7",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 11,
+  "postServeActions" : [ ]
+}

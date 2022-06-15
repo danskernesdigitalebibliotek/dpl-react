@@ -1,0 +1,23 @@
+{
+  "id" : "797c0f4d-3555-4653-ac21-16fab70bf18a",
+  "name" : "Reservations",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations?reservationid=67789640",
+    "method" : "DELETE"
+  },
+  "response" : {
+    "status" : 204,
+    "body" : "",
+    "headers" : {
+      "content-type" : "text/plain; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "797c0f4d-3555-4653-ac21-16fab70bf18a",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 10,
+  "postServeActions" : [ ]
+}

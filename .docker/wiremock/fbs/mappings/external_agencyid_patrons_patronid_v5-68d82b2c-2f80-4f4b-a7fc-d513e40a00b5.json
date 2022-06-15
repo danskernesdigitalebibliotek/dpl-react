@@ -1,0 +1,31 @@
+{
+  "id" : "68d82b2c-2f80-4f4b-a7fc-d513e40a00b5",
+  "name" : "Parton (update)",
+  "request" : {
+    "url" : "/external/agencyid/patrons/patronid/v5",
+    "method" : "PUT",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n\t\"patron\": {\n\t\t\"emailAddress\": \"${json-unit.any-string}\",\n\t\t\"phoneNumber\": \"${json-unit.any-string}\",\n\t\t\"preferredPickupBranch\": \"${json-unit.any-string}\",\n\t\t\"receiveEmail\": \"${json-unit.any-boolean}\",\n\t\t\"receivePostalMail\": \"${json-unit.any-boolean}\",\n\t\t\"receiveSms\": \"${json-unit.any-boolean}\"\n\t},\n\t\"pincodeChange\": {\n\t\t\"pincode\": \"${json-unit.any-number}\"\n\t}\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"authenticateStatus\": \"VALID\",\n  \"patron\": {\n    \"address\": {\n      \"coName\": null,\n      \"street\": \"Hack Kampmanns Plads 2\",\n      \"postalCode\": \"8000\",\n      \"city\": \"Aarhus C\",\n      \"country\": \"DK\"\n    },\n    \"allowBookings\": false,\n    \"birthday\": \"2000-11-19\",\n    \"blockStatus\": null,\n    \"defaultInterestPeriod\": 180,\n    \"emailAddress\": \"{{jsonPath request.body '$.patron.emailAddress'}}\",\n    \"name\": \"Testkort ITK CMS Saturn\",\n    \"notificationProtocols\": [],\n    \"onHold\": null,\n    \"patronId\": 10101010,\n    \"phoneNumber\": null,\n    \"preferredLanguage\": null,\n    \"preferredPickupBranch\": \"DK-775100\",\n    \"receiveEmail\": true,\n    \"receivePostalMail\": false,\n    \"receiveSms\": false,\n    \"resident\": true,\n    \"secondaryAddress\": null\n  }\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "68d82b2c-2f80-4f4b-a7fc-d513e40a00b5",
+  "persistent" : true,
+  "priority" : 5,
+  "scenarioName" : "Patron (default)",
+  "requiredScenarioState" : "Started",
+  "newScenarioState" : "Started",
+  "insertionIndex" : 2,
+  "postServeActions" : [ ]
+}

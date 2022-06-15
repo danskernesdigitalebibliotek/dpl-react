@@ -1,0 +1,28 @@
+{
+  "id" : "9503730a-fc84-421f-be8f-b4497770e4b4",
+  "name" : "Reservations (success) ",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n    \"reservations\": [\n        {\n            \"recordId\": \"62056371\"\n        }\n    ]\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[\n\t{\n\t\t\"reservationId\": 67805370,\n\t\t\"recordId\": \"62056371\",\n\t\t\"state\": \"reserved\",\n\t\t\"pickupBranch\": \"DK-775100\",\n\t\t\"pickupDeadline\": null,\n\t\t\"expiryDate\": \"2022-12-11\",\n\t\t\"dateOfReservation\": \"2022-06-14T09:12:51.985\",\n\t\t\"numberInQueue\": 2,\n\t\t\"periodical\": null,\n\t\t\"pickupNumber\": null,\n\t\t\"ilBibliographicRecord\": null,\n\t\t\"loanType\": \"loan\"\n\t}\n]",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "9503730a-fc84-421f-be8f-b4497770e4b4",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 6,
+  "postServeActions" : [ ]
+}

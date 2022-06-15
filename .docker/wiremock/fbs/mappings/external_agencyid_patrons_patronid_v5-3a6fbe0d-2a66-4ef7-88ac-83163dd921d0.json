@@ -1,0 +1,28 @@
+{
+  "id" : "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
+  "name" : "Patron (update - onHold)",
+  "request" : {
+    "url" : "/external/agencyid/patrons/patronid/v5",
+    "method" : "PUT",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n\t\"patron\": {\n\t\t\"emailAddress\": \"itkdev@mkb.aarhus.dk\",\n\t\t\"phoneNumber\": \"\",\n\t\t\"preferredPickupBranch\": \"DK-775100\",\n\t\t\"receiveEmail\": true,\n\t\t\"receivePostalMail\": false,\n\t\t\"receiveSms\": true,\n\t\t\"onHold\": {\n\t\t\t\"from\": \"2022-06-30\",\n\t\t\t\"to\": \"2022-07-30\"\n\t\t}\n\t},\n\t\"pincodeChange\": {\n\t\t\"pincode\": 54321,\n\t\t\"libraryCardNumber\": \"3208090000\"\n\t}\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"authenticateStatus\": \"VALID\",\n  \"patron\": {\n    \"address\": {\n      \"coName\": null,\n      \"street\": \"Hack Kampmanns Plads 2\",\n      \"postalCode\": \"8000\",\n      \"city\": \"Aarhus C\",\n      \"country\": \"DK\"\n    },\n    \"allowBookings\": false,\n    \"birthday\": \"2000-11-19\",\n    \"blockStatus\": null,\n    \"defaultInterestPeriod\": 180,\n    \"emailAddress\": \"itkdev@mkb.aarhus.dk\",\n    \"name\": \"Testkort ITK CMS Saturn\",\n    \"notificationProtocols\": [],\n    \"onHold\": {\n      \"from\": \"2022-06-30\",\n      \"to\": \"2022-07-30\"\n    },\n    \"patronId\": 10101010,\n    \"phoneNumber\": null,\n    \"preferredLanguage\": null,\n    \"preferredPickupBranch\": \"DK-775100\",\n    \"receiveEmail\": true,\n    \"receivePostalMail\": false,\n    \"receiveSms\": false,\n    \"resident\": true,\n    \"secondaryAddress\": null\n  }\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 5,
+  "postServeActions" : [ ]
+}

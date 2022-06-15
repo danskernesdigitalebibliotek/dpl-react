@@ -1,0 +1,28 @@
+{
+  "id" : "0b2f4f88-b90c-46ec-b5b4-b520e098aa02",
+  "name" : "Patron (create - invalid CPR)",
+  "request" : {
+    "url" : "/external/agencyid/patrons/v4",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n\t\"cprNumber\": \"0101010101\",\n\t\"pincode\": 45123,\n\t\"patron\": {\n\t\t\"emailAddress\": \"test@itkdev.dk\",\n\t\t\"phoneNumber\": \"\",\n\t\t\"preferredPickupBranch\": \"DK-775100\",\n\t\t\"receiveEmail\": true,\n\t\t\"receivePostalMail\": true,\n\t\t\"receiveSms\": false\n\t}\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 404,
+    "body" : "{\n  \"correlationId\": \"47f92934-e4a5-4494-a180-e263a1c565d7\",\n  \"errorCode\": \"dataNotFound\",\n  \"message\": \"Some parts of the data does not exist: Not possible to lookup CPR information\",\n  \"validationErrors\": []\n}",
+    "headers" : {
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "0b2f4f88-b90c-46ec-b5b4-b520e098aa02",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 0,
+  "postServeActions" : [ ]
+}
