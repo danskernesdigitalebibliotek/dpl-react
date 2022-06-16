@@ -23,10 +23,6 @@ export const fetcher = async <ResponseType>({
 
   const userToken = getToken(TOKEN_USER_KEY);
 
-  if (!userToken) {
-    throw new Error("User token is missing!");
-  }
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
   const headers = {
@@ -43,6 +39,10 @@ export const fetcher = async <ResponseType>({
       body
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
 
   try {
     return (await response.json()) as ResponseType;
@@ -61,6 +61,6 @@ export const fetcher = async <ResponseType>({
 
 export default fetcher;
 
-export type ErrorType<ErrorData> = ErrorData;
+export type ErrorType<ErrorData> = ErrorData & { status: number };
 
 export type BodyType<BodyData> = BodyData & { headers?: unknown };

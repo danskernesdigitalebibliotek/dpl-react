@@ -9,7 +9,7 @@ export default {
   component: ButtonFavourite,
 
   argTypes: {
-    id: {
+    materialId: {
       control: "text",
       defaultValue: "870970-basis:45234401"
     }
