@@ -1,4 +1,5 @@
 import { getToken, TOKEN_USER_KEY } from "../../token";
+
 const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
@@ -26,18 +27,28 @@ export const fetcher = async <ResponseType>({
     throw new Error("User token is missing!");
   }
 
+  const additionalHeaders =
+    data?.headers === "object" ? (data?.headers as unknown as object) : {};
+
+  const headers = {
+    Authorization: `Bearer ${userToken}`,
+    ...additionalHeaders
+  };
+
+  const body = data ? JSON.stringify(data) : null;
+
   const response = await fetch(
     `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
     {
       method,
-      headers: {
-        ...data?.headers,
-        Authorization: `Bearer ${userToken}`
-      },
-
-      ...(data ? { body: JSON.stringify(data) } : {})
+      headers,
+      body
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
 
   try {
     return (await response.json()) as ResponseType;
@@ -45,16 +56,17 @@ export const fetcher = async <ResponseType>({
     if (!(e instanceof SyntaxError)) {
       throw e;
     }
-
-    // Do nothing. Some of our responses are intentionally empty and thus
-    // cannot be converted to JSON. Fetch API and TypeScript has no clean
-    // way for us to identify empty responses so instead we swallow
-    // syntax errors during decoding.
   }
+
+  // Do nothing. Some of our responses are intentionally empty and thus
+  // cannot be converted to JSON. Fetch API and TypeScript has no clean
+  // way for us to identify empty responses so instead we swallow
+  // syntax errors during decoding.
+  return null;
 };
 
 export default fetcher;
 
-export type ErrorType<ErrorData> = ErrorData;
+export type ErrorType<ErrorData> = ErrorData & { status: number };
 
-export type BodyType<BodyData> = BodyData & { headers?: any };
+export type BodyType<BodyData> = BodyData & { headers?: unknown };

@@ -2,25 +2,23 @@ import React from "react";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ButtonFavourite } from "./button-favourite";
-
-type ButtonFavouriteProps = typeof ButtonFavourite;
+import ButtonFavourite, { ButtonFavouriteProps } from "./button-favourite";
 
 export default {
   title: "Components  / Button Favourite",
   component: ButtonFavourite,
 
   argTypes: {
-    id: {
+    materialId: {
       control: "text",
       defaultValue: "870970-basis:45234401"
     }
   }
 } as ComponentMeta<typeof ButtonFavourite>;
 
-const Template: ComponentStory<typeof ButtonFavourite> = (args) => (
-  <ButtonFavourite {...args} />
-);
+const Template: ComponentStory<typeof ButtonFavourite> = (
+  args: ButtonFavouriteProps
+) => <ButtonFavourite {...args} />;
 
 export const favourite = Template.bind({});
 favourite.args = {};
