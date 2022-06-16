@@ -3,7 +3,7 @@ import React from "react";
 import HelloWorld, { HelloWorldEntryProps } from "./hello-world.entry";
 
 export default {
-  title: "Hello World",
+  title: "Apps / Hello World",
   component: HelloWorld,
   argTypes: {
     titleText: {
@@ -12,6 +12,10 @@ export default {
     },
     introductionText: {
       defaultValue: "We warmly welcome everybody by saying:",
+      control: { type: "text" }
+    },
+    whatText: {
+      defaultValue: "world",
       control: { type: "text" }
     }
   }

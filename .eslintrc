@@ -109,6 +109,16 @@
         // We need a simple way of passing args in stories via object spreading.
         "react/jsx-props-no-spreading": "off"
       }
+    },
+    {
+      "files": [
+        "*.entry.tsx"
+      ],
+      "rules": {
+        // Since we use High Order Functional Component in entries for text props
+        // and want to show the props being used we disable this rule.
+        "@typescript-eslint/no-unused-vars": "off"
+      }
     }
   ]
 }
