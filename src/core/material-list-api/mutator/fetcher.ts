@@ -25,6 +25,7 @@ export const fetcher = async <ResponseType>({
   if (!userToken) {
     throw new Error("User token is missing!");
   }
+
   const response = await fetch(
     `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
     {
@@ -33,11 +34,23 @@ export const fetcher = async <ResponseType>({
         ...data?.headers,
         Authorization: `Bearer ${userToken}`
       },
+
       ...(data ? { body: JSON.stringify(data) } : {})
     }
   );
 
-  return (await response.json()) as ResponseType;
+  try {
+    return (await response.json()) as ResponseType;
+  } catch (e) {
+    if (!(e instanceof SyntaxError)) {
+      throw e;
+    }
+
+    // Do nothing. Some of our responses are intentionally empty and thus
+    // cannot be converted to JSON. Fetch API and TypeScript has no clean
+    // way for us to identify empty responses so instead we swallow
+    // syntax errors during decoding.
+  }
 };
 
 export default fetcher;
