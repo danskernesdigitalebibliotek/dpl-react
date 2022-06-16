@@ -9,6 +9,9 @@ export interface ButtonFavouriteProps {
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ id }) => {
   const [fillState, setFillState] = useState<boolean>(false);
+  // There is a variety of properties to be used here.
+  // Eg. if you need a loader you can use `isLoading`.
+  // Read more here: https://react-query.tanstack.com/reference/useQuery
   const { data, isSuccess } = useGetList("default");
 
   useEffect(() => {
