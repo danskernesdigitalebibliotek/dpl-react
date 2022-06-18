@@ -4,7 +4,7 @@ import {
   generateItemId,
   Suggestion,
   SuggestionWork
-} from "../autosuggest-text/autossugest-text";
+} from "../autosuggest-text/autosuggest-text";
 
 export interface AutosuggestMaterialProps {
   materialData: SuggestionWork[] | [];

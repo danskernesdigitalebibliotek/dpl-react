@@ -6,7 +6,7 @@ import {
   AutosuggestText,
   Suggestion,
   SuggestionWork
-} from "../autosuggest-text/autossugest-text";
+} from "../autosuggest-text/autosuggest-text";
 
 export interface AutosuggestProps {
   q: string | undefined;
