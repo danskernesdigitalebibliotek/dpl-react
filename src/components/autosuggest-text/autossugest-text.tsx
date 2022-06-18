@@ -12,19 +12,43 @@ export interface AutosuggestTextProps {
   stringSuggestionTopicText?: string;
 }
 
-interface SuggestionCreator {
+export interface SuggestionCreator {
   __typename: "Creator";
   name: string;
 }
-interface SuggestonSubject {
+export interface SuggestonSubject {
   __typename: "Subject";
   value: string;
 }
-interface SuggestionWork {
+export interface SuggestionWork {
   __typename: "Work";
-  title?: string | null;
+  id: string;
+  title?: string | null | undefined;
+  fullTitle?: string | null | undefined;
+  creators: {
+    __typename?: "Creator" | undefined;
+    name: string;
+  }[];
 }
 export type Suggestion = SuggestionCreator | SuggestonSubject | SuggestionWork;
+
+export function itemToString(objectItem: Suggestion) {
+  switch (objectItem.__typename) {
+    case "Creator":
+      return objectItem.name;
+    case "Subject":
+      return objectItem.value;
+    default:
+      return objectItem.title;
+  }
+}
+
+export function generateItemId(objectItem: Suggestion) {
+  const id = `${objectItem.__typename}-${itemToString(
+    objectItem
+  )}-${Math.random().toString(36)}`;
+  return id.replace(/\s+/g, "-");
+}
 
 export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
   responseData,
@@ -34,21 +58,6 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic"
 }) => {
-  function itemToString(objectItem: Suggestion) {
-    switch (objectItem.__typename) {
-      case "Creator":
-        return objectItem.name;
-      case "Subject":
-        return objectItem.value;
-      default:
-        return objectItem.title;
-    }
-  }
-
-  function generateItemId(objectItem: Suggestion) {
-    return `${objectItem.__typename}-${itemToString(objectItem)}`;
-  }
-
   return (
     <>
       {responseData.map((item, index) => {

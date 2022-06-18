@@ -1,9 +1,11 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import {
   AutosuggestText,
-  Suggestion
+  Suggestion,
+  SuggestionWork
 } from "../autosuggest-text/autossugest-text";
 
 export interface AutosuggestProps {
@@ -33,12 +35,30 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic"
 }) => {
+  const originalData = data?.suggest.result;
+  const textData: Suggestion[] | [] = [];
+  const materialData: SuggestionWork[] | [] = [];
+
+  if (originalData) {
+    originalData.forEach((item) => {
+      if (item.__typename === "Work") {
+        if (materialData.length < 3) {
+          // @ts-expect-error TODO: item
+          materialData.push(item);
+          return;
+        }
+      }
+      // @ts-expect-error TODO: item
+      textData.push(item);
+    });
+  }
+
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <ul
-        className="autosuggest-text-container"
+        className="autosuggest pb-16"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
       >
@@ -49,15 +69,23 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         {data && data.suggest.result.length < 1 && null}
 
         {data && status === "success" && isOpen && (
-          <AutosuggestText
-            responseData={data.suggest.result}
-            currentQ={q}
-            highlightedIndex={highlightedIndex}
-            getItemProps={getItemProps}
-            stringSuggestionAuthorText={stringSuggestionAuthorText}
-            stringSuggestionWorkText={stringSuggestionWorkText}
-            stringSuggestionTopicText={stringSuggestionTopicText}
-          />
+          <>
+            <AutosuggestText
+              responseData={textData}
+              currentQ={q}
+              highlightedIndex={highlightedIndex}
+              getItemProps={getItemProps}
+              stringSuggestionAuthorText={stringSuggestionAuthorText}
+              stringSuggestionWorkText={stringSuggestionWorkText}
+              stringSuggestionTopicText={stringSuggestionTopicText}
+            />
+            <AutosuggestMaterial
+              materialData={materialData}
+              getItemProps={getItemProps}
+              highlightedIndex={highlightedIndex}
+              textDataLength={textData.length}
+            />
+          </>
         )}
       </ul>
     </>
