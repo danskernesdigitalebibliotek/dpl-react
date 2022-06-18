@@ -56,21 +56,13 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
           <>
             {/* eslint-disable react/jsx-props-no-spreading */}
             {/* The downshift combobox works this way by design */}
-            {/* the style prop below should be deleted once the new design system
-              npm library is added to the project as we are currently experiencing
-              gh action problems due to issues at github that are out of our hands 
-              -- autosuggest-text-container__item--highlight class does the 
-              highlighting once we have it from the npm package */}
             <li
-              className={`autosuggest-text-container__item text-body-medium-regular ${
+              className={`autosuggest__item--text text-body-medium-regular px-24 ${
                 highlightedIndex === index
-                  ? "autosuggest-text-container__item--highlight"
+                  ? "autosuggest__item--text--highlight"
                   : ""
               }`}
               key={generateItemId(item)}
-              style={
-                highlightedIndex === index ? { backgroundColor: "#EEE9E5" } : {}
-              }
               {...getItemProps({ item, index })}
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
