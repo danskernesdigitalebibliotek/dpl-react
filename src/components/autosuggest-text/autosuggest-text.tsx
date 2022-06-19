@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
@@ -66,11 +67,12 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
             {/* eslint-disable react/jsx-props-no-spreading */}
             {/* The downshift combobox works this way by design */}
             <li
-              className={`autosuggest__item--text text-body-medium-regular px-24 ${
-                highlightedIndex === index
-                  ? "autosuggest__item--text--highlight"
-                  : ""
-              }`}
+              className={`autosuggest__item--text text-body-medium-regular px-24 ${clsx(
+                {
+                  "autosuggest__item--text--highlight":
+                    highlightedIndex === index
+                }
+              )}`}
               key={generateItemId(item)}
               {...getItemProps({ item, index })}
             >
