@@ -59,43 +59,46 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     }
   }, [q]);
 
+  function determinSuggestionType(suggestion: Suggestion): string {
+    switch (suggestion.__typename) {
+      case "Creator":
+        return suggestion.name;
+      case "Subject":
+        return suggestion.value;
+      default:
+        return suggestion.title !== null && suggestion.title !== undefined
+          ? suggestion.title
+          : "incomplete data";
+    }
+  }
+
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
-    if (!changes.selectedItem) {
+    const item = changes.selectedItem;
+    if (!item) {
       return;
     }
-    switch (changes.selectedItem.__typename) {
-      case "Creator":
-        setCurrentlySelectedItem(changes.selectedItem.name);
-        break;
-      case "Subject":
-        setCurrentlySelectedItem(changes.selectedItem.value);
-        break;
-      default:
-        setCurrentlySelectedItem(changes.selectedItem.title);
-    }
+    setCurrentlySelectedItem(determinSuggestionType(item));
   }
 
   function handleHighlightedIndexChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
-    if (!changes.selectedItem || !changes.highlightedIndex) {
+    if (
+      changes.selectedItem === undefined ||
+      changes.selectedItem === null ||
+      changes.highlightedIndex === undefined
+    ) {
       return;
     }
     if (changes.highlightedIndex > -1) {
       const arrayIndex: number = changes.highlightedIndex;
       const currentlyHighlightedObject = suggestItems[arrayIndex];
-      switch (currentlyHighlightedObject.__typename) {
-        case "Creator":
-          setQ(currentlyHighlightedObject.name);
-          break;
-        case "Subject":
-          setQ(currentlyHighlightedObject.value);
-          break;
-        default:
-          setQ(currentlyHighlightedObject.title);
-      }
+      const currentItemValue = determinSuggestionType(
+        currentlyHighlightedObject
+      );
+      setQ(currentItemValue);
     } else {
       setIsAutosuggestOpen(false);
     }
