@@ -26,7 +26,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   stringSuggestionTopicText = "Topic"
 }) => {
   const [q, setQ] = useState<string>("");
-  const [suggestItems, setsuggestItems] = useState<any[]>([]);
+  const [suggestItems, setSuggestItems] = useState<any[]>([]);
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
   const {
@@ -43,11 +43,12 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   useEffect(() => {
     if (data) {
       const arayOfResults = data.suggest.result;
-      setsuggestItems(arayOfResults);
+      setSuggestItems(arayOfResults);
     }
   }, [data]);
 
-  // if there are at least 3 chars in the search-field, we open the autosuggest
+  // if there are at least 3 chars in the search-field we open the autosuggest
+  // by design this is how the autosuggest should work
   useEffect(() => {
     if (q) {
       if (q.length > 2) {
@@ -100,7 +101,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     }
   }
 
-  // here we get all downshift properties for a combobox that we will need
+  // here we get all downshift properties for the dropdown that we will need
   const {
     getMenuProps,
     highlightedIndex,
