@@ -1,10 +1,10 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { generateItemId } from "../autosuggest-text/autosuggest-text";
 import {
-  generateItemId,
   Suggestion,
   SuggestionWork
-} from "../autosuggest-text/autosuggest-text";
+} from "../autosuggest-text/autosuggest-text-item";
 
 export interface AutosuggestMaterialProps {
   materialData: SuggestionWork[] | [];

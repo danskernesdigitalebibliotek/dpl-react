@@ -6,7 +6,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
-import { Suggestion } from "../../components/autosuggest-text/autosuggest-text";
+import { Suggestion } from "../../components/autosuggest-text/autosuggest-text-item";
 
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
