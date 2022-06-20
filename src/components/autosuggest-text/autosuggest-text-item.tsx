@@ -34,7 +34,7 @@ export interface SuggestionWork {
 }
 export type Suggestion = SuggestionCreator | SuggestonSubject | SuggestionWork;
 
-export const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
+const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   classes,
   item,
   index,
