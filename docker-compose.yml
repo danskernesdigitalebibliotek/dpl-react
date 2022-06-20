@@ -8,6 +8,7 @@ services:
     working_dir: /home/node/app
     volumes:
       - root:/home/node/app
+      - cache:/home/node/.cache
       - ~/.npmrc:/home/node/.npmrc
     expose:
       - 80
@@ -22,4 +23,9 @@ volumes:
     driver_opts:
       type: none
       device: $PWD
+      o: bind
+  cache:
+    driver_opts:
+      type: none
+      device: $PWD/.cache
       o: bind
