@@ -10,6 +10,9 @@ export interface ButtonFavouriteProps {
   materialId: string;
 }
 
+// TODO
+// We have to check if user is login and redirect if not
+
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const { mutate } = useHasItem();
@@ -45,7 +48,12 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
   };
 
   return (
-    <button type="button" onClick={handleClick} className="button-favourite">
+    <button
+      type="button"
+      aria-label={fillState ? "Fjern fra favoritter" : "Tilføj til favoritter"}
+      onClick={handleClick}
+      className="button-favourite"
+    >
       <IconFavourite fill={fillState} />
     </button>
   );
