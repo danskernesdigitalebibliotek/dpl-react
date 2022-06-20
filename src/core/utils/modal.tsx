@@ -1,13 +1,13 @@
 import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
-import { closeModal, openModal } from "../../core/modal.slice";
+import { closeModal, openModal } from "../modal.slice";
+import { useText } from "./text";
 
-type ModalWrapperProps = {
+type ModalProps = {
   children: ReactNode;
   modalId: string;
   closeModalAriaLabelText: string;
-  screenReaderModalDescriptionText: string;
 };
 
 interface ModalIdsProps {
@@ -16,12 +16,8 @@ interface ModalIdsProps {
   };
 }
 
-function ModalWrapper({
-  modalId,
-  children,
-  closeModalAriaLabelText,
-  screenReaderModalDescriptionText
-}: ModalWrapperProps) {
+function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
+  const t = useText();
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -44,22 +40,22 @@ function ModalWrapper({
   return (
     <div
       className="modal modal-cta modal-padding modal-show"
-      aria-describedby={`modal-${modalId}`}
       style={{
         zIndex: modalIds.indexOf(modalId)
       }}
       role="dialog"
     >
       <div className="modal-screen-reader-description" id={`modal-${modalId}`}>
-        {screenReaderModalDescriptionText}
+        {t("screenReaderModalDescriptionText")}
       </div>
       <button
         type="button"
-        /* I am not sure this is the best way, a focusable element in a modal must have focus when opened, 
+        /* A focusable element in a modal must have focus when opened, 
         or else the screen reader will remain on the main page */
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         className="btn-ui modal-btn-close"
+        aria-describedby={`modal-${modalId}`}
         style={{
           zIndex: modalIds.indexOf(modalId)
         }}
@@ -68,7 +64,7 @@ function ModalWrapper({
           dispatch(closeModal({ modalId }));
         }}
       >
-        <img src={CloseIcon} alt="" />{" "}
+        <img src={CloseIcon} alt="" />
         {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
       </button>
       <div className="modal-cta__container">{children}</div>
@@ -76,4 +72,4 @@ function ModalWrapper({
   );
 }
 
-export default ModalWrapper;
+export default Modal;

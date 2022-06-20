@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export type ModalId = string;
+
 interface PayloadProps {
   payload: {
-    modalId: string;
+    modalId: ModalId;
   };
 }
 interface StateProps {

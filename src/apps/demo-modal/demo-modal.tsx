@@ -1,36 +1,26 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import ModalWrapper from "../../components/modal/modal-wrapper";
+import Modal from "../../core/utils/modal";
 import { openModal } from "../../core/modal.slice";
+import { useText, withText } from "../../core/utils/text";
 
-export interface DemoModalProps {
-  ariaLabelModalOne: string;
-  ariaLabelModalTwo: string;
-  screenReaderModalDescriptionText: string;
-}
-
-const DemoModal: React.FC<DemoModalProps> = ({
-  ariaLabelModalOne,
-  ariaLabelModalTwo,
-  screenReaderModalDescriptionText
-}) => {
+const DemoModal: React.FC = () => {
   const dispatch = useDispatch();
+  const t = useText();
   const modalIdOne = "demo-modal-one";
   const modalIdTwo = "demo-modal-two";
 
   return (
     <>
-      <ModalWrapper
-        closeModalAriaLabelText={ariaLabelModalTwo}
-        screenReaderModalDescriptionText={screenReaderModalDescriptionText}
+      <Modal
         modalId={modalIdTwo}
+        closeModalAriaLabelText={t("ariaLabelModalTwoText")}
       >
         <h1 id={`${modalIdTwo}-header`}>{modalIdTwo}</h1>
-      </ModalWrapper>
-      <ModalWrapper
-        closeModalAriaLabelText={ariaLabelModalOne}
-        screenReaderModalDescriptionText={screenReaderModalDescriptionText}
+      </Modal>
+      <Modal
         modalId={modalIdOne}
+        closeModalAriaLabelText={t("ariaLabelModalOneText")}
       >
         <h1 id={`${modalIdOne}-header`}>{modalIdOne}</h1>
         <button
@@ -42,7 +32,7 @@ const DemoModal: React.FC<DemoModalProps> = ({
         >
           Show Modal 2
         </button>
-      </ModalWrapper>
+      </Modal>
       <button
         type="button"
         id={`${modalIdOne}-button`}
@@ -56,4 +46,4 @@ const DemoModal: React.FC<DemoModalProps> = ({
   );
 };
 
-export default DemoModal;
+export default withText(DemoModal);

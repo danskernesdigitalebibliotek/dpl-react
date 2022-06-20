@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
-import DemoModal, { DemoModalProps } from "./demo-modal";
+import DemoModal, { DemoModalEntryProps } from "./demo-modal.entry";
 
 export default {
   title: "Demo modal",
@@ -13,10 +13,10 @@ export default {
     }
   },
   argTypes: {
-    ariaLabelModalOne: {
+    ariaLabelModalOneText: {
       defaultValue: "Luk dialog et"
     },
-    ariaLabelModalTwo: {
+    ariaLabelModalTwoText: {
       defaultValue: "Luk dialog to"
     },
     screenReaderModalDescriptionText: {
@@ -26,5 +26,5 @@ export default {
 } as ComponentMeta<typeof DemoModal>;
 
 export const App: ComponentStory<typeof DemoModal> = (
-  props: DemoModalProps
+  props: DemoModalEntryProps
 ) => <DemoModal {...props} />;

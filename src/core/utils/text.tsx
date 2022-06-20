@@ -4,7 +4,6 @@ import { addTextEntries } from "../text.slice";
 
 export const useText = (): ((key: string) => string) => {
   const { data } = useSelector((state: RootState) => state.text);
-
   return (key: string) => data?.[key] ?? key;
 };
 
