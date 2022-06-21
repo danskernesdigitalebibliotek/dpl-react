@@ -21,22 +21,24 @@ export const fetcher = async <ResponseType>({
     | URLSearchParams
     | undefined;
 
-  const userToken = getToken(TOKEN_LIBRARY_KEY);
-
-  if (!userToken) {
-    throw new Error("Library token is missing!");
-  }
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
+
+  const libraryToken = getToken(TOKEN_LIBRARY_KEY);
+  const authHeaders = libraryToken
+    ? ({ Authorization: `Bearer ${libraryToken}` } as object)
+    : {};
+
   const headers = {
-    Authorization: `Bearer ${userToken}`,
+    ...authHeaders,
     ...additionalHeaders
   };
   const body = data ? JSON.stringify(data) : null;
 
   const response = await fetch(
-    `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
+    `${baseURL}${url}${
+      params ? `?${new URLSearchParams(params as FetchParams)}` : ""
+    }`,
     {
       method,
       headers,
@@ -44,11 +46,27 @@ export const fetcher = async <ResponseType>({
     }
   );
 
-  return (await response.json()) as ResponseType;
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+
+  try {
+    return (await response.json()) as ResponseType;
+  } catch (e) {
+    if (!(e instanceof SyntaxError)) {
+      throw e;
+    }
+  }
+
+  // Do nothing. Some of our responses are intentionally empty and thus
+  // cannot be converted to JSON. Fetch API and TypeScript has no clean
+  // way for us to identify empty responses so instead we swallow
+  // syntax errors during decoding.
+  return null;
 };
 
 export default fetcher;
 
-export type ErrorType<ErrorData> = ErrorData;
+export type ErrorType<ErrorData> = ErrorData & { status: number };
 
 export type BodyType<BodyData> = BodyData & { headers?: unknown };
