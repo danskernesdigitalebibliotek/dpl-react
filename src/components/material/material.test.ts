@@ -54,8 +54,6 @@ describe("Material cover", () => {
     cy.visit(
       "/iframe.html?args=materialDescription:description&id=atoms-material--item&viewMode=story"
     );
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(5000);
     cy.get("img[alt='description']");
   });
 
@@ -79,8 +77,6 @@ describe("Material cover", () => {
     cy.visit(
       "/iframe.html?args=materialUrl:%2F&id=atoms-material--item&viewMode=story"
     );
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(5000);
     cy.get("a[href='/']");
   });
 });
