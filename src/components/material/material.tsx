@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 
@@ -47,21 +47,12 @@ export const Material = ({
     )
   };
 
-  // Decide whether image should show with all text or role = "presentation"
-  const materialCover = materialDescription
-    ? data?.[0]?.imageUrls?.[`${size}`]?.url && (
-        <img
-          src={data?.[0]?.imageUrls?.[`${size}`]?.url || ""}
-          alt={materialDescription}
-        />
-      )
-    : data?.[0]?.imageUrls?.[`${size}`]?.url && (
-        // eslint-disable-next-line jsx-a11y/alt-text
-        <img
-          src={data?.[0].imageUrls?.[`${size}`]?.url || ""}
-          role="presentation"
-        />
-      );
+  const materialCover = data?.[0]?.imageUrls?.[`${size}`]?.url && (
+    <img
+      src={data?.[0]?.imageUrls?.[`${size}`]?.url || ""}
+      alt={materialDescription || ""}
+    />
+  );
 
   return (
     <div className="material-container">
