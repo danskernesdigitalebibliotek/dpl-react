@@ -5,8 +5,6 @@ import { Material } from "./material";
 export default {
   title: "Atoms / Material",
   component: Material,
-  argTypes: {},
-  parameters: {},
   args: {
     size: "small",
     animate: true,
