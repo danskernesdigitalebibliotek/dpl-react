@@ -47,16 +47,13 @@ export const Material = ({
     )
   };
 
-  const materialCover = data?.[0]?.imageUrls?.[`${size}`]?.url && (
-    <img
-      src={data?.[0]?.imageUrls?.[`${size}`]?.url || ""}
-      alt={materialDescription || ""}
-    />
+  const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
+  const materialCover = coverUrl && (
+    <img src={coverUrl} alt={materialDescription || ""} />
   );
 
   return (
     <div className="material-container">
-      {/* Decide if material cover should be a link or span */}
       {materialUrl ? (
         <a href={materialUrl} className={classes.wrapper}>
           {materialCover}
