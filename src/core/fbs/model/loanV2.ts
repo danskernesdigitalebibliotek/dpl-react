@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { LoanDetailsV2 } from './loanDetailsV2';
+import type { LoanDetailsV2 } from "./loanDetailsV2";
 
 export interface LoanV2 {
   /** indicates whether this loan is a long term loan */

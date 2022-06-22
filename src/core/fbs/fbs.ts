@@ -13,7 +13,7 @@ import {
   MutationFunction,
   UseQueryResult,
   QueryKey
-} from 'react-query'
+} from "react-query";
 import type {
   AgencyBranch,
   GetBranchesParams,
@@ -38,13 +38,12 @@ import type {
   LoanV2,
   AuthenticatedPatronV6,
   UpdatePatronRequestV4
-} from './model'
-import { fetcher, ErrorType, BodyType } from './mutator/fetcher'
+} from "./model";
+import { fetcher, ErrorType, BodyType } from "./mutator/fetcher";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
-      type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
-
+type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 /**
  * 
@@ -54,83 +53,107 @@ type AwaitedInput<T> = PromiseLike<T> | T;
  * @summary Get branches for an agency.
  */
 export const getBranches = (
-    params?: GetBranchesParams,
- signal?: AbortSignal
+  params?: GetBranchesParams,
+  signal?: AbortSignal
 ) => {
-      return fetcher<AgencyBranch[]>(
-      {url: `/external/v1/agencyid/branches`, method: 'get', signal,
-        params,
-    },
-      );
-    }
-  
+  return fetcher<AgencyBranch[]>({
+    url: `/external/v1/agencyid/branches`,
+    method: "get",
+    signal,
+    params
+  });
+};
 
-export const getGetBranchesQueryKey = (params?: GetBranchesParams,) => [`/external/v1/agencyid/branches`, ...(params ? [params]: [])];
+export const getGetBranchesQueryKey = (params?: GetBranchesParams) => [
+  `/external/v1/agencyid/branches`,
+  ...(params ? [params] : [])
+];
 
-    
-export type GetBranchesQueryResult = NonNullable<Awaited<ReturnType<typeof getBranches>>>
-export type GetBranchesQueryError = ErrorType<void>
+export type GetBranchesQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getBranches>>
+>;
+export type GetBranchesQueryError = ErrorType<void>;
 
-export const useGetBranches = <TData = Awaited<ReturnType<typeof getBranches>>, TError = ErrorType<void>>(
- params?: GetBranchesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getBranches>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetBranches = <
+  TData = Awaited<ReturnType<typeof getBranches>>,
+  TError = ErrorType<void>
+>(
+  params?: GetBranchesParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getBranches>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetBranchesQueryKey(params);
 
-  
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getBranches>>> = ({
+    signal
+  }) => getBranches(params, signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getBranches>>> = ({ signal }) => getBranches(params, signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getBranches>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getBranches>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * @summary Delete existing reservations.
  */
-export const deleteReservations = (
-    params?: DeleteReservationsParams,
- 
-) => {
-      return fetcher<void>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations`, method: 'delete',
-        params,
-    },
-      );
-    }
-  
+export const deleteReservations = (params?: DeleteReservationsParams) => {
+  return fetcher<void>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations`,
+    method: "delete",
+    params
+  });
+};
 
+export type DeleteReservationsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof deleteReservations>>
+>;
 
-    export type DeleteReservationsMutationResult = NonNullable<Awaited<ReturnType<typeof deleteReservations>>>
-    
-    export type DeleteReservationsMutationError = ErrorType<unknown>
+export type DeleteReservationsMutationError = ErrorType<unknown>;
 
-    export const useDeleteReservations = <TError = ErrorType<unknown>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteReservations>>, TError,{params?: DeleteReservationsParams}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+export const useDeleteReservations = <
+  TError = ErrorType<unknown>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof deleteReservations>>,
+    TError,
+    { params?: DeleteReservationsParams },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-      
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof deleteReservations>>,
+    { params?: DeleteReservationsParams }
+  > = (props) => {
+    const { params } = props ?? {};
 
+    return deleteReservations(params);
+  };
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteReservations>>, {params?: DeleteReservationsParams}> = (props) => {
-          const {params} = props ?? {};
+  return useMutation<
+    Awaited<ReturnType<typeof deleteReservations>>,
+    TError,
+    { params?: DeleteReservationsParams },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-          return  deleteReservations(params,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof deleteReservations>>, TError, {params?: DeleteReservationsParams}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of reservation details.
@@ -157,44 +180,52 @@ export const deleteReservations = (
  .</p>
  * @summary Get all unfulfilled reservations made by the patron (DEPRECATED).
  */
-export const getReservations = (
-    
- signal?: AbortSignal
-) => {
-      return fetcher<ReservationDetails[]>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations`, method: 'get', signal
-    },
-      );
-    }
-  
+export const getReservations = (signal?: AbortSignal) => {
+  return fetcher<ReservationDetails[]>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations`,
+    method: "get",
+    signal
+  });
+};
 
-export const getGetReservationsQueryKey = () => [`/external/v1/agencyid/patrons/patronid/reservations`];
+export const getGetReservationsQueryKey = () => [
+  `/external/v1/agencyid/patrons/patronid/reservations`
+];
 
-    
-export type GetReservationsQueryResult = NonNullable<Awaited<ReturnType<typeof getReservations>>>
-export type GetReservationsQueryError = ErrorType<void>
+export type GetReservationsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReservations>>
+>;
+export type GetReservationsQueryError = ErrorType<void>;
 
-export const useGetReservations = <TData = Awaited<ReturnType<typeof getReservations>>, TError = ErrorType<void>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetReservations = <
+  TData = Awaited<ReturnType<typeof getReservations>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getReservations>>,
+    TError,
+    TData
+  >;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetReservationsQueryKey();
 
-  
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReservations>>> = ({
+    signal
+  }) => getReservations(signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReservations>>> = ({ signal }) => getReservations(signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getReservations>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getReservations>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -224,41 +255,53 @@ export const useGetReservations = <TData = Awaited<ReturnType<typeof getReservat
  * @summary Create new reservations for the patron (DEPRECATED).
  */
 export const addReservationsDeprecated = (
-    createReservationBatch: BodyType<CreateReservationBatch>,
- 
+  createReservationBatch: BodyType<CreateReservationBatch>
 ) => {
-      return fetcher<ReservationDetails[]>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations`, method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      data: createReservationBatch
-    },
-      );
-    }
-  
+  return fetcher<ReservationDetails[]>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: createReservationBatch
+  });
+};
 
+export type AddReservationsDeprecatedMutationResult = NonNullable<
+  Awaited<ReturnType<typeof addReservationsDeprecated>>
+>;
+export type AddReservationsDeprecatedMutationBody =
+  BodyType<CreateReservationBatch>;
+export type AddReservationsDeprecatedMutationError = ErrorType<void>;
 
-    export type AddReservationsDeprecatedMutationResult = NonNullable<Awaited<ReturnType<typeof addReservationsDeprecated>>>
-    export type AddReservationsDeprecatedMutationBody = BodyType<CreateReservationBatch>
-    export type AddReservationsDeprecatedMutationError = ErrorType<void>
+export const useAddReservationsDeprecated = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addReservationsDeprecated>>,
+    TError,
+    { data: BodyType<CreateReservationBatch> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useAddReservationsDeprecated = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addReservationsDeprecated>>, TError,{data: BodyType<CreateReservationBatch>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof addReservationsDeprecated>>,
+    { data: BodyType<CreateReservationBatch> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return addReservationsDeprecated(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof addReservationsDeprecated>>,
+    TError,
+    { data: BodyType<CreateReservationBatch> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof addReservationsDeprecated>>, {data: BodyType<CreateReservationBatch>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  addReservationsDeprecated(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof addReservationsDeprecated>>, TError, {data: BodyType<CreateReservationBatch>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of the updated reservation details.
@@ -282,41 +325,52 @@ export const addReservationsDeprecated = (
  * @summary Update existing reservations.
  */
 export const updateReservations = (
-    updateReservationBatch: BodyType<UpdateReservationBatch>,
- 
+  updateReservationBatch: BodyType<UpdateReservationBatch>
 ) => {
-      return fetcher<ReservationDetails[]>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations`, method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      data: updateReservationBatch
-    },
-      );
-    }
-  
+  return fetcher<ReservationDetails[]>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations`,
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    data: updateReservationBatch
+  });
+};
 
+export type UpdateReservationsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateReservations>>
+>;
+export type UpdateReservationsMutationBody = BodyType<UpdateReservationBatch>;
+export type UpdateReservationsMutationError = ErrorType<void>;
 
-    export type UpdateReservationsMutationResult = NonNullable<Awaited<ReturnType<typeof updateReservations>>>
-    export type UpdateReservationsMutationBody = BodyType<UpdateReservationBatch>
-    export type UpdateReservationsMutationError = ErrorType<void>
+export const useUpdateReservations = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateReservations>>,
+    TError,
+    { data: BodyType<UpdateReservationBatch> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useUpdateReservations = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateReservations>>, TError,{data: BodyType<UpdateReservationBatch>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateReservations>>,
+    { data: BodyType<UpdateReservationBatch> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return updateReservations(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof updateReservations>>,
+    TError,
+    { data: BodyType<UpdateReservationBatch> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateReservations>>, {data: BodyType<UpdateReservationBatch>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  updateReservations(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof updateReservations>>, TError, {data: BodyType<UpdateReservationBatch>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of reservation details.
@@ -345,44 +399,52 @@ export const updateReservations = (
  <p>The response contains a transactionId, which links together parallel reservations.</p>
  * @summary Get all unfulfilled reservations made by the patron.
  */
-export const getReservationsV2 = (
-    
- signal?: AbortSignal
-) => {
-      return fetcher<ReservationDetailsV2[]>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations/v2`, method: 'get', signal
-    },
-      );
-    }
-  
+export const getReservationsV2 = (signal?: AbortSignal) => {
+  return fetcher<ReservationDetailsV2[]>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations/v2`,
+    method: "get",
+    signal
+  });
+};
 
-export const getGetReservationsV2QueryKey = () => [`/external/v1/agencyid/patrons/patronid/reservations/v2`];
+export const getGetReservationsV2QueryKey = () => [
+  `/external/v1/agencyid/patrons/patronid/reservations/v2`
+];
 
-    
-export type GetReservationsV2QueryResult = NonNullable<Awaited<ReturnType<typeof getReservationsV2>>>
-export type GetReservationsV2QueryError = ErrorType<void>
+export type GetReservationsV2QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReservationsV2>>
+>;
+export type GetReservationsV2QueryError = ErrorType<void>;
 
-export const useGetReservationsV2 = <TData = Awaited<ReturnType<typeof getReservationsV2>>, TError = ErrorType<void>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getReservationsV2>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetReservationsV2 = <
+  TData = Awaited<ReturnType<typeof getReservationsV2>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getReservationsV2>>,
+    TError,
+    TData
+  >;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetReservationsV2QueryKey();
 
-  
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getReservationsV2>>
+  > = ({ signal }) => getReservationsV2(signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReservationsV2>>> = ({ signal }) => getReservationsV2(signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getReservationsV2>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getReservationsV2>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -443,85 +505,114 @@ export const useGetReservationsV2 = <TData = Awaited<ReturnType<typeof getReserv
  * @summary Create new reservations for the patron.
  */
 export const addReservationsV2 = (
-    createReservationBatchV2: BodyType<CreateReservationBatchV2>,
- 
+  createReservationBatchV2: BodyType<CreateReservationBatchV2>
 ) => {
-      return fetcher<ReservationResponseV2>(
-      {url: `/external/v1/agencyid/patrons/patronid/reservations/v2`, method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      data: createReservationBatchV2
-    },
-      );
-    }
-  
+  return fetcher<ReservationResponseV2>({
+    url: `/external/v1/agencyid/patrons/patronid/reservations/v2`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: createReservationBatchV2
+  });
+};
 
+export type AddReservationsV2MutationResult = NonNullable<
+  Awaited<ReturnType<typeof addReservationsV2>>
+>;
+export type AddReservationsV2MutationBody = BodyType<CreateReservationBatchV2>;
+export type AddReservationsV2MutationError = ErrorType<void>;
 
-    export type AddReservationsV2MutationResult = NonNullable<Awaited<ReturnType<typeof addReservationsV2>>>
-    export type AddReservationsV2MutationBody = BodyType<CreateReservationBatchV2>
-    export type AddReservationsV2MutationError = ErrorType<void>
+export const useAddReservationsV2 = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof addReservationsV2>>,
+    TError,
+    { data: BodyType<CreateReservationBatchV2> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useAddReservationsV2 = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addReservationsV2>>, TError,{data: BodyType<CreateReservationBatchV2>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof addReservationsV2>>,
+    { data: BodyType<CreateReservationBatchV2> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return addReservationsV2(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof addReservationsV2>>,
+    TError,
+    { data: BodyType<CreateReservationBatchV2> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof addReservationsV2>>, {data: BodyType<CreateReservationBatchV2>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  addReservationsV2(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof addReservationsV2>>, TError, {data: BodyType<CreateReservationBatchV2>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of availability for each bibliographical record.
  * @summary Get availability of bibliographical records.
  */
 export const getAvailabilityV3 = (
-    params?: GetAvailabilityV3Params,
- signal?: AbortSignal
+  params?: GetAvailabilityV3Params,
+  signal?: AbortSignal
 ) => {
-      return fetcher<AvailabilityV3[]>(
-      {url: `/external/agencyid/catalog/availability/v3`, method: 'get', signal,
-        params,
-    },
-      );
-    }
-  
+  return fetcher<AvailabilityV3[]>({
+    url: `/external/agencyid/catalog/availability/v3`,
+    method: "get",
+    signal,
+    params
+  });
+};
 
-export const getGetAvailabilityV3QueryKey = (params?: GetAvailabilityV3Params,) => [`/external/agencyid/catalog/availability/v3`, ...(params ? [params]: [])];
+export const getGetAvailabilityV3QueryKey = (
+  params?: GetAvailabilityV3Params
+) => [
+  `/external/agencyid/catalog/availability/v3`,
+  ...(params ? [params] : [])
+];
 
-    
-export type GetAvailabilityV3QueryResult = NonNullable<Awaited<ReturnType<typeof getAvailabilityV3>>>
-export type GetAvailabilityV3QueryError = ErrorType<void>
+export type GetAvailabilityV3QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAvailabilityV3>>
+>;
+export type GetAvailabilityV3QueryError = ErrorType<void>;
 
-export const useGetAvailabilityV3 = <TData = Awaited<ReturnType<typeof getAvailabilityV3>>, TError = ErrorType<void>>(
- params?: GetAvailabilityV3Params, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getAvailabilityV3>>, TError, TData>, }
+export const useGetAvailabilityV3 = <
+  TData = Awaited<ReturnType<typeof getAvailabilityV3>>,
+  TError = ErrorType<void>
+>(
+  params?: GetAvailabilityV3Params,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getAvailabilityV3>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const queryKey =
+    queryOptions?.queryKey ?? getGetAvailabilityV3QueryKey(params);
 
-  const {query: queryOptions} = options ?? {}
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAvailabilityV3>>
+  > = ({ signal }) => getAvailabilityV3(params, signal);
 
-  const queryKey = queryOptions?.queryKey ?? getGetAvailabilityV3QueryKey(params);
-
-  
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getAvailabilityV3>>> = ({ signal }) => getAvailabilityV3(params, signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getAvailabilityV3>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getAvailabilityV3>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -530,44 +621,59 @@ export const useGetAvailabilityV3 = <TData = Awaited<ReturnType<typeof getAvaila
  * @summary Get placement holdings for bibliographical records.
  */
 export const getHoldingsV3 = (
-    params?: GetHoldingsV3Params,
- signal?: AbortSignal
+  params?: GetHoldingsV3Params,
+  signal?: AbortSignal
 ) => {
-      return fetcher<HoldingsForBibliographicalRecordV3[]>(
-      {url: `/external/agencyid/catalog/holdings/v3`, method: 'get', signal,
-        params,
-    },
-      );
-    }
-  
+  return fetcher<HoldingsForBibliographicalRecordV3[]>({
+    url: `/external/agencyid/catalog/holdings/v3`,
+    method: "get",
+    signal,
+    params
+  });
+};
 
-export const getGetHoldingsV3QueryKey = (params?: GetHoldingsV3Params,) => [`/external/agencyid/catalog/holdings/v3`, ...(params ? [params]: [])];
+export const getGetHoldingsV3QueryKey = (params?: GetHoldingsV3Params) => [
+  `/external/agencyid/catalog/holdings/v3`,
+  ...(params ? [params] : [])
+];
 
-    
-export type GetHoldingsV3QueryResult = NonNullable<Awaited<ReturnType<typeof getHoldingsV3>>>
-export type GetHoldingsV3QueryError = ErrorType<void>
+export type GetHoldingsV3QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getHoldingsV3>>
+>;
+export type GetHoldingsV3QueryError = ErrorType<void>;
 
-export const useGetHoldingsV3 = <TData = Awaited<ReturnType<typeof getHoldingsV3>>, TError = ErrorType<void>>(
- params?: GetHoldingsV3Params, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetHoldingsV3 = <
+  TData = Awaited<ReturnType<typeof getHoldingsV3>>,
+  TError = ErrorType<void>
+>(
+  params?: GetHoldingsV3Params,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getHoldingsV3>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetHoldingsV3QueryKey(params);
 
-  
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getHoldingsV3>>> = ({
+    signal
+  }) => getHoldingsV3(params, signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getHoldingsV3>>> = ({ signal }) => getHoldingsV3(params, signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getHoldingsV3>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getHoldingsV3>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -586,45 +692,57 @@ export const useGetHoldingsV3 = <TData = Awaited<ReturnType<typeof getHoldingsV3
  important that unrecognized types are treated as 'other'.</p>
  * @summary List of fees in FBS for the patron with all available information about the fee.
  */
-export const getFeesV2 = (
-    params?: GetFeesV2Params,
- signal?: AbortSignal
-) => {
-      return fetcher<FeeV2[]>(
-      {url: `/external/agencyid/patron/patronid/fees/v2`, method: 'get', signal,
-        params,
-    },
-      );
-    }
-  
+export const getFeesV2 = (params?: GetFeesV2Params, signal?: AbortSignal) => {
+  return fetcher<FeeV2[]>({
+    url: `/external/agencyid/patron/patronid/fees/v2`,
+    method: "get",
+    signal,
+    params
+  });
+};
 
-export const getGetFeesV2QueryKey = (params?: GetFeesV2Params,) => [`/external/agencyid/patron/patronid/fees/v2`, ...(params ? [params]: [])];
+export const getGetFeesV2QueryKey = (params?: GetFeesV2Params) => [
+  `/external/agencyid/patron/patronid/fees/v2`,
+  ...(params ? [params] : [])
+];
 
-    
-export type GetFeesV2QueryResult = NonNullable<Awaited<ReturnType<typeof getFeesV2>>>
-export type GetFeesV2QueryError = ErrorType<void>
+export type GetFeesV2QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getFeesV2>>
+>;
+export type GetFeesV2QueryError = ErrorType<void>;
 
-export const useGetFeesV2 = <TData = Awaited<ReturnType<typeof getFeesV2>>, TError = ErrorType<void>>(
- params?: GetFeesV2Params, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getFeesV2>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetFeesV2 = <
+  TData = Awaited<ReturnType<typeof getFeesV2>>,
+  TError = ErrorType<void>
+>(
+  params?: GetFeesV2Params,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getFeesV2>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetFeesV2QueryKey(params);
 
-  
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getFeesV2>>> = ({
+    signal
+  }) => getFeesV2(params, signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getFeesV2>>> = ({ signal }) => getFeesV2(params, signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getFeesV2>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<Awaited<ReturnType<typeof getFeesV2>>, TError, TData>(
+    queryKey,
+    queryFn,
+    queryOptions
+  );
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -646,41 +764,52 @@ export const useGetFeesV2 = <TData = Awaited<ReturnType<typeof getFeesV2>>, TErr
  * @summary Create a new patron who is a person.
  */
 export const createV4 = (
-    createPatronRequestV3: BodyType<CreatePatronRequestV3>,
- 
+  createPatronRequestV3: BodyType<CreatePatronRequestV3>
 ) => {
-      return fetcher<AuthenticatedPatronV4>(
-      {url: `/external/agencyid/patrons/v4`, method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      data: createPatronRequestV3
-    },
-      );
-    }
-  
+  return fetcher<AuthenticatedPatronV4>({
+    url: `/external/agencyid/patrons/v4`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: createPatronRequestV3
+  });
+};
 
+export type CreateV4MutationResult = NonNullable<
+  Awaited<ReturnType<typeof createV4>>
+>;
+export type CreateV4MutationBody = BodyType<CreatePatronRequestV3>;
+export type CreateV4MutationError = ErrorType<void>;
 
-    export type CreateV4MutationResult = NonNullable<Awaited<ReturnType<typeof createV4>>>
-    export type CreateV4MutationBody = BodyType<CreatePatronRequestV3>
-    export type CreateV4MutationError = ErrorType<void>
+export const useCreateV4 = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof createV4>>,
+    TError,
+    { data: BodyType<CreatePatronRequestV3> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useCreateV4 = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createV4>>, TError,{data: BodyType<CreatePatronRequestV3>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof createV4>>,
+    { data: BodyType<CreatePatronRequestV3> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return createV4(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof createV4>>,
+    TError,
+    { data: BodyType<CreatePatronRequestV3> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createV4>>, {data: BodyType<CreatePatronRequestV3>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  createV4(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof createV4>>, TError, {data: BodyType<CreatePatronRequestV3>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
 
@@ -695,41 +824,53 @@ export const createV4 = (
  * @summary Creates a person patron with a guardian (eg A financial responsible).
  */
 export const createWithGuardian = (
-    patronWithGuardianRequest: BodyType<PatronWithGuardianRequest>,
- 
+  patronWithGuardianRequest: BodyType<PatronWithGuardianRequest>
 ) => {
-      return fetcher<number>(
-      {url: `/external/agencyid/patrons/withGuardian/v1`, method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      data: patronWithGuardianRequest
-    },
-      );
-    }
-  
+  return fetcher<number>({
+    url: `/external/agencyid/patrons/withGuardian/v1`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: patronWithGuardianRequest
+  });
+};
 
+export type CreateWithGuardianMutationResult = NonNullable<
+  Awaited<ReturnType<typeof createWithGuardian>>
+>;
+export type CreateWithGuardianMutationBody =
+  BodyType<PatronWithGuardianRequest>;
+export type CreateWithGuardianMutationError = ErrorType<void>;
 
-    export type CreateWithGuardianMutationResult = NonNullable<Awaited<ReturnType<typeof createWithGuardian>>>
-    export type CreateWithGuardianMutationBody = BodyType<PatronWithGuardianRequest>
-    export type CreateWithGuardianMutationError = ErrorType<void>
+export const useCreateWithGuardian = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof createWithGuardian>>,
+    TError,
+    { data: BodyType<PatronWithGuardianRequest> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useCreateWithGuardian = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createWithGuardian>>, TError,{data: BodyType<PatronWithGuardianRequest>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof createWithGuardian>>,
+    { data: BodyType<PatronWithGuardianRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return createWithGuardian(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof createWithGuardian>>,
+    TError,
+    { data: BodyType<PatronWithGuardianRequest> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createWithGuardian>>, {data: BodyType<PatronWithGuardianRequest>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  createWithGuardian(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof createWithGuardian>>, TError, {data: BodyType<PatronWithGuardianRequest>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  If the person doesn't have a guardian, a new one is created with the information provided.
@@ -744,41 +885,52 @@ export const createWithGuardian = (
  * @summary Updates a person patron's guardian (eg A financial responsible).
  */
 export const updateGuardian = (
-    updateGuardianRequest: BodyType<UpdateGuardianRequest>,
- 
+  updateGuardianRequest: BodyType<UpdateGuardianRequest>
 ) => {
-      return fetcher<number>(
-      {url: `/external/agencyid/patrons/withGuardian/v1`, method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      data: updateGuardianRequest
-    },
-      );
-    }
-  
+  return fetcher<number>({
+    url: `/external/agencyid/patrons/withGuardian/v1`,
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    data: updateGuardianRequest
+  });
+};
 
+export type UpdateGuardianMutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateGuardian>>
+>;
+export type UpdateGuardianMutationBody = BodyType<UpdateGuardianRequest>;
+export type UpdateGuardianMutationError = ErrorType<void>;
 
-    export type UpdateGuardianMutationResult = NonNullable<Awaited<ReturnType<typeof updateGuardian>>>
-    export type UpdateGuardianMutationBody = BodyType<UpdateGuardianRequest>
-    export type UpdateGuardianMutationError = ErrorType<void>
+export const useUpdateGuardian = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateGuardian>>,
+    TError,
+    { data: BodyType<UpdateGuardianRequest> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useUpdateGuardian = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateGuardian>>, TError,{data: BodyType<UpdateGuardianRequest>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateGuardian>>,
+    { data: BodyType<UpdateGuardianRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return updateGuardian(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof updateGuardian>>,
+    TError,
+    { data: BodyType<UpdateGuardianRequest> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateGuardian>>, {data: BodyType<UpdateGuardianRequest>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  updateGuardian(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof updateGuardian>>, TError, {data: BodyType<UpdateGuardianRequest>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of the updated loans.
@@ -811,42 +963,51 @@ export const updateGuardian = (
  </p>
  * @summary Renew loans.
  */
-export const renewLoansV2 = (
-    renewLoansV2Body: number[],
- 
-) => {
-      return fetcher<RenewedLoanV2[]>(
-      {url: `/external/agencyid/patrons/patronid/loans/renew/v2`, method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      data: renewLoansV2Body
-    },
-      );
-    }
-  
+export const renewLoansV2 = (renewLoansV2Body: number[]) => {
+  return fetcher<RenewedLoanV2[]>({
+    url: `/external/agencyid/patrons/patronid/loans/renew/v2`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: renewLoansV2Body
+  });
+};
 
+export type RenewLoansV2MutationResult = NonNullable<
+  Awaited<ReturnType<typeof renewLoansV2>>
+>;
+export type RenewLoansV2MutationBody = BodyType<number[]>;
+export type RenewLoansV2MutationError = ErrorType<void>;
 
-    export type RenewLoansV2MutationResult = NonNullable<Awaited<ReturnType<typeof renewLoansV2>>>
-    export type RenewLoansV2MutationBody = BodyType<number[]>
-    export type RenewLoansV2MutationError = ErrorType<void>
+export const useRenewLoansV2 = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof renewLoansV2>>,
+    TError,
+    { data: BodyType<number[]> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useRenewLoansV2 = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof renewLoansV2>>, TError,{data: BodyType<number[]>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof renewLoansV2>>,
+    { data: BodyType<number[]> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return renewLoansV2(data);
+  };
 
+  return useMutation<
+    Awaited<ReturnType<typeof renewLoansV2>>,
+    TError,
+    { data: BodyType<number[]> },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof renewLoansV2>>, {data: BodyType<number[]>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  renewLoansV2(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof renewLoansV2>>, TError, {data: BodyType<number[]>}, TContext>(mutationFn, mutationOptions)
-    }
-    
 /**
  * 
  Returns an array of loans.
@@ -880,44 +1041,52 @@ export const renewLoansV2 = (
  </p>
  * @summary Get list of current loans by the patron.
  */
-export const getLoansV2 = (
-    
- signal?: AbortSignal
-) => {
-      return fetcher<LoanV2[]>(
-      {url: `/external/agencyid/patrons/patronid/loans/v2`, method: 'get', signal
-    },
-      );
-    }
-  
+export const getLoansV2 = (signal?: AbortSignal) => {
+  return fetcher<LoanV2[]>({
+    url: `/external/agencyid/patrons/patronid/loans/v2`,
+    method: "get",
+    signal
+  });
+};
 
-export const getGetLoansV2QueryKey = () => [`/external/agencyid/patrons/patronid/loans/v2`];
+export const getGetLoansV2QueryKey = () => [
+  `/external/agencyid/patrons/patronid/loans/v2`
+];
 
-    
-export type GetLoansV2QueryResult = NonNullable<Awaited<ReturnType<typeof getLoansV2>>>
-export type GetLoansV2QueryError = ErrorType<void>
+export type GetLoansV2QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getLoansV2>>
+>;
+export type GetLoansV2QueryError = ErrorType<void>;
 
-export const useGetLoansV2 = <TData = Awaited<ReturnType<typeof getLoansV2>>, TError = ErrorType<void>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getLoansV2>>, TError, TData>, }
-
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-
-  const {query: queryOptions} = options ?? {}
+export const useGetLoansV2 = <
+  TData = Awaited<ReturnType<typeof getLoansV2>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getLoansV2>>,
+    TError,
+    TData
+  >;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetLoansV2QueryKey();
 
-  
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getLoansV2>>> = ({
+    signal
+  }) => getLoansV2(signal);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getLoansV2>>> = ({ signal }) => getLoansV2(signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getLoansV2>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<Awaited<ReturnType<typeof getLoansV2>>, TError, TData>(
+    queryKey,
+    queryFn,
+    queryOptions
+  );
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -934,44 +1103,53 @@ export const useGetLoansV2 = <TData = Awaited<ReturnType<typeof getLoansV2>>, TE
  the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
  * @summary Returns the patron details
  */
-export const getPatronInformationByPatronIdV2 = (
-    
- signal?: AbortSignal
-) => {
-      return fetcher<AuthenticatedPatronV6>(
-      {url: `/external/agencyid/patrons/patronid/v2`, method: 'get', signal
-    },
-      );
-    }
-  
+export const getPatronInformationByPatronIdV2 = (signal?: AbortSignal) => {
+  return fetcher<AuthenticatedPatronV6>({
+    url: `/external/agencyid/patrons/patronid/v2`,
+    method: "get",
+    signal
+  });
+};
 
-export const getGetPatronInformationByPatronIdV2QueryKey = () => [`/external/agencyid/patrons/patronid/v2`];
+export const getGetPatronInformationByPatronIdV2QueryKey = () => [
+  `/external/agencyid/patrons/patronid/v2`
+];
 
-    
-export type GetPatronInformationByPatronIdV2QueryResult = NonNullable<Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>>
-export type GetPatronInformationByPatronIdV2QueryError = ErrorType<void>
+export type GetPatronInformationByPatronIdV2QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
+>;
+export type GetPatronInformationByPatronIdV2QueryError = ErrorType<void>;
 
-export const useGetPatronInformationByPatronIdV2 = <TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>, TError = ErrorType<void>>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>, TError, TData>, }
+export const useGetPatronInformationByPatronIdV2 = <
+  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+    TError,
+    TData
+  >;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
 
-  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const queryKey =
+    queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV2QueryKey();
 
-  const {query: queryOptions} = options ?? {}
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
+  > = ({ signal }) => getPatronInformationByPatronIdV2(signal);
 
-  const queryKey = queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV2QueryKey();
-
-  
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>> = ({ signal }) => getPatronInformationByPatronIdV2(signal);
-
-  const query = useQuery<Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
 
   return {
     queryKey,
     ...query
-  }
-}
-
+  };
+};
 
 /**
  * 
@@ -992,38 +1170,48 @@ export const useGetPatronInformationByPatronIdV2 = <TData = Awaited<ReturnType<t
  * @summary Update information about the patron.
  */
 export const updateV5 = (
-    updatePatronRequestV4: BodyType<UpdatePatronRequestV4>,
- 
+  updatePatronRequestV4: BodyType<UpdatePatronRequestV4>
 ) => {
-      return fetcher<AuthenticatedPatronV6>(
-      {url: `/external/agencyid/patrons/patronid/v5`, method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      data: updatePatronRequestV4
-    },
-      );
-    }
-  
+  return fetcher<AuthenticatedPatronV6>({
+    url: `/external/agencyid/patrons/patronid/v5`,
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    data: updatePatronRequestV4
+  });
+};
 
+export type UpdateV5MutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateV5>>
+>;
+export type UpdateV5MutationBody = BodyType<UpdatePatronRequestV4>;
+export type UpdateV5MutationError = ErrorType<void>;
 
-    export type UpdateV5MutationResult = NonNullable<Awaited<ReturnType<typeof updateV5>>>
-    export type UpdateV5MutationBody = BodyType<UpdatePatronRequestV4>
-    export type UpdateV5MutationError = ErrorType<void>
+export const useUpdateV5 = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateV5>>,
+    TError,
+    { data: BodyType<UpdatePatronRequestV4> },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
 
-    export const useUpdateV5 = <TError = ErrorType<void>,
-    
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateV5>>, TError,{data: BodyType<UpdatePatronRequestV4>}, TContext>, }
-) => {
-      const {mutation: mutationOptions} = options ?? {}
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateV5>>,
+    { data: BodyType<UpdatePatronRequestV4> }
+  > = (props) => {
+    const { data } = props ?? {};
 
-      
+    return updateV5(data);
+  };
 
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateV5>>, {data: BodyType<UpdatePatronRequestV4>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  updateV5(data,)
-        }
-
-      return useMutation<Awaited<ReturnType<typeof updateV5>>, TError, {data: BodyType<UpdatePatronRequestV4>}, TContext>(mutationFn, mutationOptions)
-    }
-    
+  return useMutation<
+    Awaited<ReturnType<typeof updateV5>>,
+    TError,
+    { data: BodyType<UpdatePatronRequestV4> },
+    TContext
+  >(mutationFn, mutationOptions);
+};

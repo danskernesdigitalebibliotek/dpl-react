@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { ReservationResultV2 } from './reservationResultV2';
+import type { ReservationResultV2 } from "./reservationResultV2";
 
 export interface ReservationResponseV2 {
   /** Result of each reservation */

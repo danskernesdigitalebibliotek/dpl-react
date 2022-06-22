@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { PeriodicalReservation } from './periodicalReservation';
+import type { PeriodicalReservation } from "./periodicalReservation";
 
 export interface CreateReservation {
   /** The date where the patron is no longer interested in the reserved material.

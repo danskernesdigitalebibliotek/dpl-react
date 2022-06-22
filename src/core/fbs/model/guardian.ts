@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Address } from './address';
+import type { Address } from "./address";
 
 export interface Guardian {
   address?: Address;

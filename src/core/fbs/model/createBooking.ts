@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Period } from './period';
+import type { Period } from "./period";
 
 export interface CreateBooking {
   /** True if automatic forward is active for this booking */

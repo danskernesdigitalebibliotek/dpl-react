@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Guardian } from './guardian';
+import type { Guardian } from "./guardian";
 
 export interface UpdateGuardianRequest {
   /** If patronId is provided, this field will be ignored */

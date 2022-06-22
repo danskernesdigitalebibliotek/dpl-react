@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { PatronV4 } from './patronV4';
+import type { PatronV4 } from "./patronV4";
 
 export interface AuthenticatedPatronV4 {
   /** True if patron successfully authenticated.

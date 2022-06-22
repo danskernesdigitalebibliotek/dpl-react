@@ -36,6 +36,7 @@
     "cypress:open": "cypress open",
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_AGENCY=100200 CODEGEN_SCHEMA_PROFILE=opac graphql-codegen --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
+    "codegen:client:fbs": "orval --project fbsAdapter",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
