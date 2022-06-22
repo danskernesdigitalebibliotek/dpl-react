@@ -32,7 +32,11 @@ describe("Material cover", () => {
       ]
     });
     cy.visit("/iframe.html?args=&id=atoms-material--item&viewMode=story");
-    cy.get("img");
+    cy.get("img").should(
+      "have.attr",
+      "src",
+      "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1605727140/bogportalen.dk/9781848485532.jpg"
+    );
   });
   it("Shows an alt text if there is a materialDescription", () => {
     cy.intercept("GET", "**/api/v2/covers?**", {
@@ -54,7 +58,7 @@ describe("Material cover", () => {
     cy.visit(
       "/iframe.html?args=materialDescription:description&id=atoms-material--item&viewMode=story"
     );
-    cy.get("img[alt='description']");
+    cy.get("img").should("have.attr", "alt", "description");
   });
 
   it("Use <a> if there is a materialUrl", () => {
@@ -77,7 +81,7 @@ describe("Material cover", () => {
     cy.visit(
       "/iframe.html?args=materialUrl:%2F&id=atoms-material--item&viewMode=story"
     );
-    cy.get("a[href='/']");
+    cy.get("a").should("have.attr", "href", "/");
   });
 });
 
