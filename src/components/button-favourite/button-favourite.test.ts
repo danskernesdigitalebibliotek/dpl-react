@@ -1,5 +1,5 @@
 describe("Favorite button", () => {
-  it("Material id is not on user's favorites list", () => {
+  it("Shows that the user does not have the material on the list", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404,
       body: {}
@@ -7,10 +7,14 @@ describe("Favorite button", () => {
     cy.visit(
       "/iframe.html?args=&id=components-button-favourite--favourite&viewMode=story"
     );
-    cy.get('[aria-label="Tilføj til favoritter"]');
+    cy.get(".button-favourite").should(
+      "have.attr",
+      "aria-label",
+      "Tilføj til favoritter"
+    );
   });
 
-  it("Material id is on user's favorites list", () => {
+  it("Shows that the user has the material on the list", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 200,
       body: {}
@@ -18,10 +22,14 @@ describe("Favorite button", () => {
     cy.visit(
       "/iframe.html?args=&id=components-button-favourite--favourite&viewMode=story"
     );
-    cy.get('[aria-label="Fjern fra favoritter"]');
+    cy.get(".button-favourite").should(
+      "have.attr",
+      "aria-label",
+      "Fjern fra favoritter"
+    );
   });
 
-  it("User can add and remove material id from favorite list", () => {
+  it("Adds or remove a material to the favorites list when clicked", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404,
       body: {}
@@ -37,9 +45,15 @@ describe("Favorite button", () => {
     cy.visit(
       "/iframe.html?args=&id=components-button-favourite--favourite&viewMode=story"
     );
-    cy.get('[aria-label="Tilføj til favoritter"]').click();
-    cy.get('[aria-label="Fjern fra favoritter"]').click();
-    cy.get('[aria-label="Tilføj til favoritter"]').click();
+    cy.get(".button-favourite")
+      .should("have.attr", "aria-label", "Tilføj til favoritter")
+      .click();
+    cy.get(".button-favourite")
+      .should("have.attr", "aria-label", "Fjern fra favoritter")
+      .click();
+    cy.get(".button-favourite")
+      .should("have.attr", "aria-label", "Tilføj til favoritter")
+      .click();
   });
 });
 

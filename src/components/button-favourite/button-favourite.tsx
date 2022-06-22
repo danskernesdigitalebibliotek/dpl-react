@@ -10,8 +10,7 @@ export interface ButtonFavouriteProps {
   materialId: string;
 }
 
-// TODO
-// We have to check if user is login and redirect if not
+// TODO We have to check if user is login and redirect if not
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
   const [fillState, setFillState] = useState<boolean>(false);
