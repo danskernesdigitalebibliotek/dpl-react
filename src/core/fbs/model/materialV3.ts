@@ -4,8 +4,8 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { MaterialGroup } from './materialGroup';
-import type { Periodical } from './periodical';
+import type { MaterialGroup } from "./materialGroup";
+import type { Periodical } from "./periodical";
 
 export interface MaterialV3 {
   /** True if material is available on-shelf, false if lent out */

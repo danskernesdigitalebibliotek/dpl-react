@@ -4,9 +4,9 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { ILLBibliographicRecord } from './iLLBibliographicRecord';
-import type { MaterialGroup } from './materialGroup';
-import type { Periodical } from './periodical';
+import type { ILLBibliographicRecord } from "./iLLBibliographicRecord";
+import type { MaterialGroup } from "./materialGroup";
+import type { Periodical } from "./periodical";
 
 export interface LoanDetailsV2 {
   /** The date when the material must be returned */

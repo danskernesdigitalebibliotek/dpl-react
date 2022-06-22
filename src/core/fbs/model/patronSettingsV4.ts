@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Period } from './period';
+import type { Period } from "./period";
 
 export interface PatronSettingsV4 {
   /** Required if patron should receive email notifications

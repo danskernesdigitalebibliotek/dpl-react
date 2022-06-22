@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { FeeMaterialV2 } from './feeMaterialV2';
+import type { FeeMaterialV2 } from "./feeMaterialV2";
 
 export interface FeeV2 {
   /** The amount to pay, in the currency of the agency */

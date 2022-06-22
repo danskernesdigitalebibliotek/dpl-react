@@ -4,8 +4,8 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { PatronSettingsV4 } from './patronSettingsV4';
-import type { PincodeChange } from './pincodeChange';
+import type { PatronSettingsV4 } from "./patronSettingsV4";
+import type { PincodeChange } from "./pincodeChange";
 
 export interface UpdatePatronRequestV4 {
   patron?: PatronSettingsV4;

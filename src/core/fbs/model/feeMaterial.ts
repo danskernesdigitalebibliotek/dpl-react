@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Periodical } from './periodical';
+import type { Periodical } from "./periodical";
 
 export interface FeeMaterial {
   /** Name of the material group that the material belongs to */

@@ -5,4 +5,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetFeesV2Params = { includepaid: boolean; includenonpayable: boolean };
+export type GetFeesV2Params = {
+  includepaid: boolean;
+  includenonpayable: boolean;
+};

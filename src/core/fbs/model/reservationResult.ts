@@ -4,8 +4,8 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { PeriodicalReservation } from './periodicalReservation';
-import type { ReservationDetails } from './reservationDetails';
+import type { PeriodicalReservation } from "./periodicalReservation";
+import type { ReservationDetails } from "./reservationDetails";
 
 export interface ReservationResult {
   periodical?: PeriodicalReservation;

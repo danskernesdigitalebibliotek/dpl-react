@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { CreateReservation } from './createReservation';
+import type { CreateReservation } from "./createReservation";
 
 export interface CreateReservationBatchV2 {
   /** Reservations with duplicate record id's will be removed. */

@@ -4,8 +4,8 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { MaterialGroup } from './materialGroup';
-import type { Periodical } from './periodical';
+import type { MaterialGroup } from "./materialGroup";
+import type { Periodical } from "./periodical";
 
 export interface FeeMaterialV2 {
   materialGroup: MaterialGroup;

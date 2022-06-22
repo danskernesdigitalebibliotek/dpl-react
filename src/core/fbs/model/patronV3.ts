@@ -4,9 +4,9 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { Address } from './address';
-import type { BlockStatus } from './blockStatus';
-import type { Period } from './period';
+import type { Address } from "./address";
+import type { BlockStatus } from "./blockStatus";
+import type { Period } from "./period";
 
 export interface PatronV3 {
   address?: Address;

@@ -4,7 +4,7 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { UpdateReservation } from './updateReservation';
+import type { UpdateReservation } from "./updateReservation";
 
 export interface UpdateReservationBatch {
   reservations: UpdateReservation[];

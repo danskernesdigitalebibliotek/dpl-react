@@ -5,4 +5,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetAvailabilityV3Params = { recordid: string[]; exclude?: string[] };
+export type GetAvailabilityV3Params = {
+  recordid: string[];
+  exclude?: string[];
+};
