@@ -45,7 +45,7 @@ function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
       }}
       role="dialog"
     >
-      <div className="modal-screen-reader-description" id={`modal-${modalId}`}>
+      <div className="modal__screen-reader-description" id={`modal-${modalId}`}>
         {t("screenReaderModalDescriptionText")}
       </div>
       <button
