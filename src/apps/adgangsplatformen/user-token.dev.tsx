@@ -3,7 +3,7 @@ import React from "react";
 import UserToken from "./user-token";
 
 export default {
-  title: "Set User Token",
+  title: "SB Utilities / Set User Token",
   component: UserToken
 } as ComponentMeta<typeof UserToken>;
 
