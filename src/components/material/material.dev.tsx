@@ -5,6 +5,32 @@ import { Material } from "./material";
 export default {
   title: "Atoms / Material",
   component: Material,
+  argTypes: {
+    size: {
+      name: "Image size",
+      control: { type: "radio" }
+    },
+    tint: {
+      name: "Background color tint",
+      control: { type: "radio" }
+    },
+    animate: {
+      name: "Use animation",
+      control: { type: "boolean" }
+    },
+    materialId: {
+      name: "Material ID",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      name: "Material URL",
+      control: { type: "text" }
+    },
+    materialDescription: {
+      name: "Material description",
+      control: { type: "text" }
+    }
+  },
   args: {
     size: "small",
     animate: true,

@@ -48,8 +48,8 @@ export const Material = ({
   };
 
   const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
-  const materialCover = coverUrl && (
-    <img src={coverUrl} alt={materialDescription || ""} />
+  const materialCover = coverUrl && materialDescription && (
+    <img src={coverUrl} alt={materialDescription} />
   );
 
   return (
