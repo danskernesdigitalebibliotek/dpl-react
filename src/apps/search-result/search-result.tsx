@@ -9,13 +9,10 @@ import { usePrevious } from "../../core/utils/helpers";
 
 interface SearchResultProps {
   q: string;
-  numberOfResultItems: number;
+  pageSize: number;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({
-  q,
-  numberOfResultItems
-}) => {
+const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<
     SearchWithPaginationQuery["search"]["works"] | []
   >([]);
@@ -23,18 +20,18 @@ const SearchResult: React.FC<SearchResultProps> = ({
     SearchWithPaginationQuery["search"]["hitcount"] | number
   >(0);
   const [page, setPage] = useState(0);
-  const [searchItemsShown, setSearchItemsShown] = useState(numberOfResultItems);
+  const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
 
   const setPageHandler = () => {
     const currentPage = page + 1;
     setPage(currentPage);
-    setSearchItemsShown((currentPage + 1) * numberOfResultItems);
+    setSearchItemsShown((currentPage + 1) * pageSize);
   };
 
   const { isSuccess, data } = useSearchWithPaginationQuery({
     q: { all: q },
-    offset: page * numberOfResultItems,
-    limit: numberOfResultItems
+    offset: page * pageSize,
+    limit: pageSize
   });
 
   // The first item of the fetched works.
