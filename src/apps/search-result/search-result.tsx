@@ -22,18 +22,18 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const [hitcount, setHitCount] = useState<
     SearchWithPaginationQuery["search"]["hitcount"] | number
   >(0);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [searchItemsShown, setSearchItemsShown] = useState(numberOfResultItems);
 
   const setPageHandler = () => {
     const currentPage = page + 1;
     setPage(currentPage);
-    setSearchItemsShown(currentPage * numberOfResultItems);
+    setSearchItemsShown((currentPage + 1) * numberOfResultItems);
   };
 
   const { isSuccess, data } = useSearchWithPaginationQuery({
     q: { all: q },
-    offset: page === 1 ? 0 : searchItemsShown,
+    offset: page * numberOfResultItems,
     limit: numberOfResultItems
   });
 
@@ -43,6 +43,12 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const firstPreviousWork = usePrevious(firstWork);
   // If they differ data has changed ¯\_(ツ)_/¯.
   const dataHasChanged = firstWork !== firstPreviousWork;
+
+  // If q changes (eg. in Storybook context)
+  //  then make sure that we reset the entire result set.
+  useEffect(() => {
+    setResultItems([]);
+  }, [q]);
 
   useEffect(() => {
     // If new data has not been loaded do nothing.
