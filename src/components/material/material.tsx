@@ -54,7 +54,7 @@ export const Material = ({
 
   return (
     <div className="material-container">
-      {materialUrl ? (
+      {materialUrl && materialDescription ? (
         <a href={materialUrl} className={classes.wrapper}>
           {materialCover}
         </a>
