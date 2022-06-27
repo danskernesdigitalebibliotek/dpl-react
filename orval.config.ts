@@ -45,8 +45,7 @@ export default defineConfig({
       prettier: true
     },
     input: {
-      target:
-        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-cover-service/master/public/spec.yaml",
+      target: "https://cover.dandigbib.org/api/v2/spec.yaml",
       converterOptions: {
         indent: 2
       }
