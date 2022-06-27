@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
 import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";
@@ -8,10 +7,11 @@ import SearchResultEntry, {
 export default {
   title: "Apps / Search Result",
   component: SearchResultEntry,
-  decorators: [withQuery],
-  parameters: {
-    query: {
-      q: "Harry"
+  argTypes: {
+    q: {
+      name: "Search string",
+      defaultValue: "harry",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;
