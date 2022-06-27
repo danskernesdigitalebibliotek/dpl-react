@@ -7,6 +7,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import textReducer from "./text.slice";
 import userReducer from "./user.slice";
+import modalReducer from "./modal.slice";
 
 // TODO: We have planned to get rid of redux-persist.
 // When the step has been made to remove it all the persist setup should go as well.
@@ -21,7 +22,8 @@ export const store = configureStore({
     persistConfig,
     combineReducers({
       user: userReducer,
-      text: textReducer
+      text: textReducer,
+      modal: modalReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"
