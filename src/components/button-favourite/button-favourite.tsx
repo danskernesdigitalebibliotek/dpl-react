@@ -5,6 +5,7 @@ import {
   removeItem,
   useHasItem
 } from "../../core/material-list-api/material-list";
+import { useText } from "../../core/utils/text";
 
 export interface ButtonFavouriteProps {
   materialId: string;
@@ -14,6 +15,8 @@ export interface ButtonFavouriteProps {
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
   const [fillState, setFillState] = useState<boolean>(false);
+  const t = useText();
+
   const { mutate } = useHasItem();
 
   useEffect(() => {
@@ -49,7 +52,9 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
   return (
     <button
       type="button"
-      aria-label={fillState ? "Fjern fra favoritter" : "Tilføj til favoritter"}
+      aria-label={
+        fillState ? t("Remove from favorites") : t("Add to favorites")
+      }
       onClick={handleClick}
       className="button-favourite"
     >

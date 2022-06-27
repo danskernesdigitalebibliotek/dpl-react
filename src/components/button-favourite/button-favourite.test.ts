@@ -10,7 +10,7 @@ describe("Favorite button", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Tilføj til favoritter"
+      "Add to favorites"
     );
   });
 
@@ -25,7 +25,7 @@ describe("Favorite button", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Fjern fra favoritter"
+      "Remove from favorites"
     );
   });
 
@@ -46,13 +46,13 @@ describe("Favorite button", () => {
       "/iframe.html?args=&id=components-button-favourite--favourite&viewMode=story"
     );
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Tilføj til favoritter")
+      .should("have.attr", "aria-label", "Add to favorites")
       .click();
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Fjern fra favoritter")
+      .should("have.attr", "aria-label", "Remove from favorites")
       .click();
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Tilføj til favoritter")
+      .should("have.attr", "aria-label", "Add to favorites")
       .click();
   });
 });
