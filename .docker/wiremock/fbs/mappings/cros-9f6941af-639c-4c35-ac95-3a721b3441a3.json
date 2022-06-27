@@ -1,0 +1,20 @@
+{
+  "id" : "9f6941af-639c-4c35-ac95-3a721b3441a3",
+  "name" : "CROS",
+  "request" : {
+    "urlPathPattern" : "/.*",
+    "method" : "OPTIONS"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "",
+    "headers" : {
+      "Access-Control-Allow-Origin" : "*"
+    }
+  },
+  "uuid" : "9f6941af-639c-4c35-ac95-3a721b3441a3",
+  "persistent" : true,
+  "priority" : 1,
+  "insertionIndex" : 14,
+  "postServeActions" : [ ]
+}

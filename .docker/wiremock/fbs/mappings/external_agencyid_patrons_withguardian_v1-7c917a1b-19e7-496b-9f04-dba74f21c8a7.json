@@ -14,9 +14,10 @@
     "status" : 403,
     "body" : "{\n  \"message\": \"token does not include a cpr\"\n}",
     "headers" : {
-      "content-type" : "application/json; charset=utf-8",
+      "content-type" : [ "application/json; charset=utf-8", "application/json" ],
       "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security" : "max-age=15552000"
+      "strict-transport-security" : "max-age=15552000",
+      "Access-Control-Allow-Origin" : "*"
     },
     "transformers" : [ "response-template" ]
   },
