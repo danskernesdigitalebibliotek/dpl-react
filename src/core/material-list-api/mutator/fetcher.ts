@@ -21,16 +21,16 @@ export const fetcher = async <ResponseType>({
     | URLSearchParams
     | undefined;
 
-  const userToken = getToken(TOKEN_USER_KEY);
-
-  if (!userToken) {
-    throw new Error("User token is missing!");
-  }
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
+
+  const userToken = getToken(TOKEN_USER_KEY);
+  const authHeaders = userToken
+    ? ({ Authorization: `Bearer ${userToken}` } as object)
+    : {};
+
   const headers = {
-    Authorization: `Bearer ${userToken}`,
+    ...authHeaders,
     ...additionalHeaders
   };
   const body = data ? JSON.stringify(data) : null;
@@ -43,6 +43,10 @@ export const fetcher = async <ResponseType>({
       body
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
 
   try {
     return (await response.json()) as ResponseType;
