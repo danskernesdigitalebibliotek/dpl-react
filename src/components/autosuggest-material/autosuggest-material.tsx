@@ -28,7 +28,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {/* The downshift combobox works this way by design */}
           {materialData.map((item, index) => {
             let numberOfAuthors = 0;
-            const authors = [];
             return (
               <li
                 className={`autosuggest__material ${

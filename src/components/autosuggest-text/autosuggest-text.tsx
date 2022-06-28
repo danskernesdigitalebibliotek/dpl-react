@@ -9,9 +9,6 @@ export interface AutosuggestTextProps {
   currentQ: string | undefined;
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
 
 export function itemToString(objectItem: Suggestion) {
@@ -35,10 +32,7 @@ export function generateItemId(objectItem: Suggestion) {
 export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
   responseData,
   highlightedIndex,
-  getItemProps,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  getItemProps
 }) => {
   return (
     <li>
@@ -58,9 +52,6 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
               index={index}
               generateItemId={generateItemId}
               getItemProps={getItemProps}
-              stringSuggestionAuthorText={stringSuggestionAuthorText}
-              stringSuggestionWorkText={stringSuggestionWorkText}
-              stringSuggestionTopicText={stringSuggestionTopicText}
             />
           </ul>
         );
