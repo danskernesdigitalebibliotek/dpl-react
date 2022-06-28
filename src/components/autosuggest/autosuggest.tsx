@@ -17,9 +17,6 @@ export interface AutosuggestProps {
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
@@ -30,10 +27,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getMenuProps,
   highlightedIndex,
   getItemProps,
-  isOpen,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  isOpen
 }) => {
   const originalData = data?.suggest.result;
   const textData: Suggestion[] | [] = [];
@@ -75,9 +69,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
               currentQ={q}
               highlightedIndex={highlightedIndex}
               getItemProps={getItemProps}
-              stringSuggestionAuthorText={stringSuggestionAuthorText}
-              stringSuggestionWorkText={stringSuggestionWorkText}
-              stringSuggestionTopicText={stringSuggestionTopicText}
             />
             <AutosuggestMaterial
               materialData={materialData}

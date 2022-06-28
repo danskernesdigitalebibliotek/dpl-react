@@ -1,5 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { useText } from "../../core/utils/text";
 
 export interface AutosuggestTextItemProps {
   classes: {
@@ -9,9 +10,6 @@ export interface AutosuggestTextItemProps {
   index: number;
   generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
 
 export interface SuggestionCreator {
@@ -39,11 +37,9 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   item,
   index,
   generateItemId,
-  getItemProps,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  getItemProps
 }) => {
+  const t = useText();
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -56,13 +52,13 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         {/* eslint-enable react/jsx-props-no-spreading */}
 
         {item.__typename === "Creator"
-          ? `${item.name} (${stringSuggestionAuthorText})`
+          ? `${item.name} (${t("stringSuggestionAuthorText")})`
           : null}
         {item.__typename === "Subject"
-          ? `${item.value} (${stringSuggestionTopicText})`
+          ? `${item.value} (${t("stringSuggestionTopicText")})`
           : null}
         {item.__typename === "Work"
-          ? `${item.title} (${stringSuggestionWorkText})`
+          ? `${item.title} (${t("stringSuggestionWorkText")})`
           : null}
       </li>
     </>

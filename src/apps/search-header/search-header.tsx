@@ -7,24 +7,10 @@ import {
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../components/autosuggest-text/autosuggest-text-item";
+import { useText } from "../../core/utils/text";
 
-export interface SearchHeaderProps {
-  searchHeaderUrl?: string;
-  altText?: string;
-  inputPlaceholderText?: string;
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
-}
-
-const SearchHeader: React.FC<SearchHeaderProps> = ({
-  searchHeaderUrl = "/search",
-  altText = "search icon",
-  inputPlaceholderText = "Search here",
-  stringSuggestionAuthorText = "Author",
-  stringSuggestionWorkText = "Work",
-  stringSuggestionTopicText = "Topic"
-}) => {
+const SearchHeader: React.FC = () => {
+  const t = useText();
   const [q, setQ] = useState<string>("");
   const [suggestItems, setSuggestItems] = useState<any[]>([]);
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
@@ -132,17 +118,12 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <form
-        action={searchHeaderUrl}
+        action={t("searchHeaderUrlText")}
         className="header__menu-search"
         {...getComboboxProps()}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-        <SearchBar
-          searchHeaderUrl={searchHeaderUrl}
-          altText={altText}
-          inputPlaceholderText={inputPlaceholderText}
-          getInputProps={getInputProps}
-        />
+        <SearchBar getInputProps={getInputProps} />
         <Autosuggest
           q={q}
           data={data}
@@ -152,9 +133,6 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
-          stringSuggestionAuthorText={stringSuggestionAuthorText}
-          stringSuggestionWorkText={stringSuggestionWorkText}
-          stringSuggestionTopicText={stringSuggestionTopicText}
         />
       </form>
     </div>
