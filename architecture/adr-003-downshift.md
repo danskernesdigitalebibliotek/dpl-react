@@ -24,7 +24,7 @@ on [this specific article](https://retool.com/blog/react-autocomplete-libraries/
 In combination with our needs described above in the `context section`, but also
 considering  what it would mean to build this component from scratch without any
 libraries, the decision taken favored a library called
-[`Downshift`](https://www.downshift-js).
+[`Downshift`](https://www.downshift-js.com/).
 
 This library is the second most popular JS library used to handle autsuggest
 dropdowns, multiselects, and select dropdowns with a large following and
