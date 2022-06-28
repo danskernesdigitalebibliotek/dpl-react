@@ -48,12 +48,16 @@ export const Material = ({
   };
 
   const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
-  const materialCover = coverUrl && materialDescription && (
-    <img src={coverUrl} alt={materialDescription} />
+  const materialCover = coverUrl && (
+    <img src={coverUrl} alt={materialDescription || ""} />
   );
 
   return (
     <div className="material-container">
+      {/**
+       * Images inside links must have an non-empty alt text to meet accessibility requirements.
+       * Only render the material as a link if we have both an url and a description.
+       */}
       {materialUrl && materialDescription ? (
         <a href={materialUrl} className={classes.wrapper}>
           {materialCover}
