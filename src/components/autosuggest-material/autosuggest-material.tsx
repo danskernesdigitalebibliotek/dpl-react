@@ -49,6 +49,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                         className="material material--xsmall bg-identity-tint-120 material__animate"
                         href="google.com"
                       >
+                        {/* TODO: once we have the cover service calls, we get use the image covers here. */}
                         <img
                           src="https://imgcdn.saxo.com/_9781616550417/0x500"
                           alt=""
