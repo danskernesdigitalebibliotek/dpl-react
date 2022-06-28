@@ -35,6 +35,7 @@
     "test": "cypress run",
     "cypress:open": "cypress open",
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_AGENCY=775100 CODEGEN_SCHEMA_PROFILE=opac graphql-codegen --config dbc-gateway.codegen.yml",
+    "codegen:rest-services": "orval",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
@@ -59,6 +60,7 @@
     "@storybook/addon-controls": "^6.5.0-beta.7",
     "@storybook/addon-docs": "^6.4.22",
     "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-queryparams": "^6.2.9",
     "@storybook/builder-webpack5": "^6.5.0-beta.7",
     "@storybook/manager-webpack5": "^6.5.0-beta.7",
     "@storybook/preset-typescript": "^3.0.0",
@@ -98,6 +100,7 @@
     "mutationobserver-shim": "^0.3.7",
     "node-sass": "^7.0.1",
     "nyc": "15.1.0",
+    "orval": "^6.8.1",
     "postcss": "^8.4.13",
     "postcss-cli": "^9.1.0",
     "postcss-loader": "6.2.1",
@@ -124,7 +127,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-6a58bdb5076442bf8e4ecdf5be3549cb6db9d67c",
+    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-9d755488ece4131eecb7307560391835b5a302d7",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
@@ -135,6 +138,7 @@
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-error-boundary": "^3.1.4",
     "react-query": "^3.39.0",

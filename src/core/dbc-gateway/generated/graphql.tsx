@@ -5911,6 +5911,31 @@ export type HoldingsItem = {
   localizationPid?: Maybe<Scalars["String"]>;
 };
 
+export type SearchWithPaginationQueryVariables = Exact<{
+  q: SearchQuery;
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+}>;
+
+export type SearchWithPaginationQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      id: string;
+      title?: string | null;
+      creators: Array<{ __typename?: "Creator"; name: string }>;
+      subjects: Array<{
+        __typename?: "Subject";
+        type?: string | null;
+        value: string;
+      }>;
+    }>;
+  };
+};
+
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"];
 }>;
@@ -5933,6 +5958,39 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export const SearchWithPaginationDocument = `
+    query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
+  search(q: $q) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      id
+      title
+      creators {
+        name
+      }
+      subjects {
+        type
+        value
+      }
+    }
+  }
+}
+    `;
+export const useSearchWithPaginationQuery = <
+  TData = SearchWithPaginationQuery,
+  TError = unknown
+>(
+  variables: SearchWithPaginationQueryVariables,
+  options?: UseQueryOptions<SearchWithPaginationQuery, TError, TData>
+) =>
+  useQuery<SearchWithPaginationQuery, TError, TData>(
+    ["searchWithPagination", variables],
+    fetcher<SearchWithPaginationQuery, SearchWithPaginationQueryVariables>(
+      SearchWithPaginationDocument,
+      variables
+    ),
+    options
+  );
 export const SuggestionsFromQueryStringDocument = `
     query suggestionsFromQueryString($q: String!) {
   suggest(q: $q) {

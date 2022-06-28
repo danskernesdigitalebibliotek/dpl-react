@@ -14,7 +14,7 @@ export const fetcher = <TData, TVariables>(
     }
 
     const res = await fetch(
-      // For now the endpoint is hardcoded.
+      // For now the endpoint is hardcoded. (although it is unclear which agency id to use)
       // When we get wiser of when the library id and profile is changing
       // we will update it with a dynamic version:
       "https://next-prototype-gateway.dbc.dk/775100/opac/graphql",

@@ -16,7 +16,7 @@ const ORIGIN = window.location.origin;
 const PATHNAME = window.location.pathname.replace("/iframe.html", "/");
 
 const CLIENT_ID = process.env.STORYBOOK_CLIENT_ID;
-const REDIRECT_URL = `${ORIGIN}${PATHNAME}?path=/story/adgangsplatformen--sign-in`;
+const REDIRECT_URL = `${ORIGIN}${PATHNAME}?path=/story/sb-utilities-adgangsplatformen--sign-in`;
 
 function Auth() {
   const dispatch = useDispatch();
