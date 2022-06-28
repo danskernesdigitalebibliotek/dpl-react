@@ -1,6 +1,6 @@
-import { getToken, TOKEN_USER_KEY } from "../../token";
+import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
 
-const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
+const baseURL = "https://cover.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
   url,
@@ -24,9 +24,9 @@ export const fetcher = async <ResponseType>({
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
 
-  const userToken = getToken(TOKEN_USER_KEY);
-  const authHeaders = userToken
-    ? ({ Authorization: `Bearer ${userToken}` } as object)
+  const libraryToken = getToken(TOKEN_LIBRARY_KEY);
+  const authHeaders = libraryToken
+    ? ({ Authorization: `Bearer ${libraryToken}` } as object)
     : {};
 
   const headers = {
@@ -36,7 +36,9 @@ export const fetcher = async <ResponseType>({
   const body = data ? JSON.stringify(data) : null;
 
   const response = await fetch(
-    `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
+    `${baseURL}${url}${
+      params ? `?${new URLSearchParams(params as FetchParams)}` : ""
+    }`,
     {
       method,
       headers,

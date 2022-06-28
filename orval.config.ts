@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from "orval";
 
 export default defineConfig({
@@ -23,6 +22,30 @@ export default defineConfig({
       target:
         // This should come from a url that will be updated if there are any changes
         "https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-material-list/develop/spec/material-list-2.0.0.yaml",
+      converterOptions: {
+        indent: 2
+      }
+    }
+  },
+  coverService: {
+    output: {
+      mode: "split",
+      target: "src/core/cover-service-api/cover-service.ts",
+      schemas: "src/core/cover-service-api/model",
+      client: "react-query",
+      override: {
+        mutator: {
+          path: "src/core/cover-service-api/mutator/fetcher.ts",
+          name: "fetcher"
+        },
+        query: {
+          useQuery: true
+        }
+      },
+      prettier: true
+    },
+    input: {
+      target: "https://cover.dandigbib.org/api/v2/spec.yaml",
       converterOptions: {
         indent: 2
       }

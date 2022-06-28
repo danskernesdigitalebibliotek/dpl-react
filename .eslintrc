@@ -56,6 +56,7 @@
           "/**/*.test.tsx",
           "webpack.config.js",
           "postcss.config.js",
+          "orval.config.ts",
           "cypress/plugins/index.js",
           "cypress/support/index.js",
           "scripts/postcss-node-sass.js",
