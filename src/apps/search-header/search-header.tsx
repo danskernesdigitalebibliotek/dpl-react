@@ -78,11 +78,11 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
-    const item = changes.selectedItem;
-    if (!item) {
+    const { selectedItem } = changes;
+    if (!selectedItem) {
       return;
     }
-    setCurrentlySelectedItem(determinSuggestionType(item));
+    setCurrentlySelectedItem(determinSuggestionType(selectedItem));
   }
 
   function handleHighlightedIndexChange(
