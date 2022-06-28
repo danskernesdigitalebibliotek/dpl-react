@@ -41,29 +41,31 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
   stringSuggestionTopicText = "topic"
 }) => {
   return (
-    <>
+    <li>
       {responseData.map((item, index) => {
         const classes = {
-          textSuggestion: `autosuggest__item--text text-body-medium-regular px-24 ${clsx(
+          textSuggestion: `autosuggest__text text-body-medium-regular px-24 ${clsx(
             {
-              "autosuggest__item--text--highlight": highlightedIndex === index
+              "autosuggest__text--highlight": highlightedIndex === index
             }
           )}`
         };
         return (
-          <AutosuggestTextItem
-            classes={classes}
-            item={item}
-            index={index}
-            generateItemId={generateItemId}
-            getItemProps={getItemProps}
-            stringSuggestionAuthorText={stringSuggestionAuthorText}
-            stringSuggestionWorkText={stringSuggestionWorkText}
-            stringSuggestionTopicText={stringSuggestionTopicText}
-          />
+          <ul>
+            <AutosuggestTextItem
+              classes={classes}
+              item={item}
+              index={index}
+              generateItemId={generateItemId}
+              getItemProps={getItemProps}
+              stringSuggestionAuthorText={stringSuggestionAuthorText}
+              stringSuggestionWorkText={stringSuggestionWorkText}
+              stringSuggestionTopicText={stringSuggestionTopicText}
+            />
+          </ul>
         );
       })}
-    </>
+    </li>
   );
 };
 

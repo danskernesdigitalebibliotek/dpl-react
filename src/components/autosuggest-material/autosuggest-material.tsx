@@ -21,28 +21,27 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
 }) => {
   return (
     <>
+      <li className="autosuggest__divider" />
       <li>
-        <hr className="autosuggest__divider" />
-      </li>
-      <li>
-        <ul className="autosuggest__item--materials">
+        <ul className="autosuggest__materials">
           {/* eslint-disable react/jsx-props-no-spreading */}
           {/* The downshift combobox works this way by design */}
           {materialData.map((item, index) => {
             let numberOfAuthors = 0;
+            const authors = [];
             return (
               <li
-                className={`autosuggest__item--materials__item ${
+                className={`autosuggest__material ${
                   highlightedIndex === index + textDataLength
-                    ? "autosuggest__item--materials__item--highlight"
+                    ? "autosuggest__material--highlight"
                     : ""
                 }`}
                 key={generateItemId(item)}
                 {...getItemProps({ item, index })}
               >
                 {/* eslint-enable react/jsx-props-no-spreading */}
-                <div className="autosuggest__item--materials__item__content">
-                  <div className="autosuggest__item--materials__item__content--cover">
+                <div className="autosuggest__material__content">
+                  <div className="autosuggest__cover">
                     <div className="material-container">
                       {/* TODO: once we have the material page, we need to link to the specific one from here. */}
                       <a
@@ -57,13 +56,13 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                       </a>
                     </div>
                   </div>
-                  <div className="autosuggest__item--materials__item__content--info">
-                    <div className="text-body-medium-medium autosuggest__item--materials__item__content--info__title">
+                  <div className="autosuggest__info">
+                    <div className="text-body-medium-medium autosuggest__title">
                       {item.fullTitle}
                     </div>
-                    <div className="text-body-small-regular autosuggest__item--materials__item__content--info__author">
+                    <div className="text-body-small-regular autosuggest__author">
                       {item.creators.map((author) => {
-                        if (numberOfAuthors < 3) {
+                        if (numberOfAuthors <= 3) {
                           numberOfAuthors += 1;
                           return author.name;
                         }
