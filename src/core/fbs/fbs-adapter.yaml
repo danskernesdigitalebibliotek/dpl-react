@@ -1,0 +1,1712 @@
+swagger: '2.0'
+info:
+    title: 'FBS Adapter'
+    version: '1.0'
+basePath: /
+paths:
+    /external/v1/agencyid/branches:
+        get:
+            parameters:
+                -
+                    description: 'Identifies the branchIds which are excluded from the result'
+                    in: query
+                    items:
+                        type: string
+                    name: exclude
+                    type: array
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/AgencyBranch'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_v1_agencyid
+            description: "\n Returns array of branches.\n <p>Can be used for giving the patron the option of choosing a preferred branch or where to pick up\n reservations.</p>"
+            operationId: getBranches
+            summary: 'Get branches for an agency.'
+    /external/v1/agencyid/patrons/patronid/reservations:
+        delete:
+            parameters:
+                -
+                    description: 'a list of reservation ids for reservations that are to be deleted'
+                    in: query
+                    items:
+                        type: integer
+                    name: reservationid
+                    required: true
+                    type: array
+            responses:
+                200:
+                    description: 'No response was specified'
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            operationId: deleteReservations
+            summary: 'Delete existing reservations.'
+        get:
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/ReservationDetails'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            description: "\n Returns an array of reservation details.\n <p>When the patron picks up the reserved materials,\n the reservation will no longer be returned.\n Expired or deleted reservations will not be returned.</p>\n\n The response contains reservation state, which can be any of these values:\n <ul>\n     <li>- reserved</li>\n     <li>- readyForPickup</li>\n     <li>- interLibraryReservation</li>\n     <li>- inTransit</li>\n     <li>- other</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'\n .</p>\n The response contains loanType, which can be any of these values:\n <ul>\n     <li>- loan</li>\n     <li>- interLibraryLoan</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'loan'\n .</p>"
+            operationId: getReservations
+            summary: 'Get all unfulfilled reservations made by the patron (DEPRECATED).'
+        post:
+            parameters:
+                -
+                    description: 'the reservations to be created'
+                    in: body
+                    name: createReservationBatch
+                    required: true
+                    schema:
+                        $ref: '#/definitions/CreateReservationBatch'
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/ReservationDetails'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'patron not found'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            description: "\n Returns an array of reservation details for the created reservations.\n <p></p>\n The response contains reservation state, which can be any of these values:\n <ul>\n     <li>- reserved</li>\n     <li>- readyForPickup</li>\n     <li>- interLibraryReservation</li>\n     <li>- inTransit</li>\n     <li>- other</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'.</p>\n The response contains loanType, which can be any of these values:\n <ul>\n     <li>- loan</li>\n     <li>- interLibraryLoan</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'\n .</p>\n <p>\n     When making a reservation of a periodical, the values to put in the PeriodicalReservation structure can be obtained\n     from the periodical information retrieved with the Catalog service.\n </p>\n <p><b>This method has been deprecated use /external/v1/{agencyid}/patrons/{patronid}/reservations/add instead</b></p>"
+            operationId: addReservationsDeprecated
+            summary: 'Create new reservations for the patron (DEPRECATED).'
+        put:
+            parameters:
+                -
+                    description: 'the reservations to be updated'
+                    in: body
+                    name: reservations
+                    required: true
+                    schema:
+                        $ref: '#/definitions/UpdateReservationBatch'
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/ReservationDetails'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            description: "\n Returns an array of the updated reservation details.\n <p></p>\n The response contains reservation state, which can be any of these values:\n <ul>\n     <li>- reserved</li>\n     <li>- readyForPickup</li>\n     <li>- interLibraryReservation</li>\n     <li>- inTransit</li>\n     <li>- other</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'.</p>\n The response contains loanType, which can be any of these values:\n <ul>\n     <li>- loan</li>\n     <li>- interLibraryLoan</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'\n .</p>"
+            operationId: updateReservations
+            summary: 'Update existing reservations.'
+    /external/v1/agencyid/patrons/patronid/reservations/v2:
+        get:
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/ReservationDetailsV2'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            description: "\n Returns an array of reservation details.\n <p>When the patron picks up the reserved materials,\n the reservation will no longer be returned.\n Expired or deleted reservations will not be returned.</p>\n\n The response contains reservation state, which can be any of these values:\n <ul>\n     <li>- reserved</li>\n     <li>- readyForPickup</li>\n     <li>- interLibraryReservation</li>\n     <li>- inTransit</li>\n     <li>- other</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'\n .</p>\n The response contains reservationType, which can be any of these values:\n <ul>\n     <li>- NORMAL</li>\n     <li>- PARALLEL</li>\n     <li>- SERIAL</li>\n     <li>- INTER_LIBRARY</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, iit should be treated as 'normal'</p>\n <p>The response contains a transactionId, which links together parallel reservations.</p>"
+            operationId: getReservationsV2
+            summary: 'Get all unfulfilled reservations made by the patron.'
+        post:
+            parameters:
+                -
+                    description: 'the reservations to be created'
+                    in: body
+                    name: createReservationBatch
+                    required: true
+                    schema:
+                        $ref: '#/definitions/CreateReservationBatchV2'
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        $ref: '#/definitions/ReservationResponseV2'
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'patron not found'
+            tags:
+                - external_v1_agencyid_patrons_patronid_reservations
+            description: "\n <p>Given a CreateReservationBatch, it creates a list of reservations and returns a ReservationResponse.</p>\n <p>The CreateReservationBatch.type indicates the reservation type of the request. If left out the request will be considered of type\n normal. The type can be any of the following values:</p>\n <ul>\n     <li>- normal</li>\n     <li>- parallel</li>\n </ul>\n <p>The values are subject to change.</p>\n\n <p>ReservationResponse.success indicates if the reservations were created sucessfully. If any of the reservations have failed then all\n reservations will be failed and ReservationResponse.success will be false. If all reservations are successfully created ReservationResponse.success will be true.\n\n <p></p>\n\n <p>ReservationResponse.reservationResults contains details about each reservation.\n A ReservationResult.result has the status of a reservation and can be any of the following values:</p>\n <ul>\n     <li>- success</li>\n     <li>- patron_is_blocked</li>\n     <li>- patron_not_found</li>\n     <li>- already_reserved</li>\n     <li>- already_loaned</li>\n     <li>- material_not_loanable</li>\n     <li>- material_not_reservable</li>\n     <li>- material_lost</li>\n     <li>- material_Discarded</li>\n     <li>- loaning_profile_not_found</li>\n     <li>- material_not_found</li>\n     <li>- material_part_of_collection</li>\n     <li>- not_reservable</li>\n     <li>- no_reservable_materials</li>\n     <li>- interlibrary_material_not_reservable</li>\n     <li>- previously_loaned_by_homebound_patron</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as an error.</p>\n\n <p></p>\n\n The reservation detail in the response contains a reservation state, which can be any of these values:\n <ul>\n     <li>- reserved</li>\n     <li>- readyForPickup</li>\n     <li>- interLibraryReservation</li>\n     <li>- inTransit</li>\n     <li>- other</li>\n </ul>\n <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other'.</p>\n\n <p></p>\n\n <p>\n     When making a reservation of a periodical, the values to put in the PeriodicalReservation structure can be obtained\n     from the periodical information retrieved with the Catalog service.\n </p>"
+            operationId: addReservationsV2
+            summary: 'Create new reservations for the patron.'
+    /external/agencyid/catalog/availability/v3:
+        get:
+            parameters:
+                -
+                    description: 'list of record ids'
+                    in: query
+                    items:
+                        type: string
+                    name: recordid
+                    required: true
+                    type: array
+                -
+                    description: 'Identifies the branchIds which are excluded from the result'
+                    in: query
+                    items:
+                        type: string
+                    name: exclude
+                    type: array
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/AvailabilityV3'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_agencyid_catalog
+            description: "\n Returns an array of availability for each bibliographical record."
+            operationId: getAvailabilityV3
+            summary: 'Get availability of bibliographical records.'
+    /external/agencyid/catalog/holdings/v3:
+        get:
+            parameters:
+                -
+                    description: 'Identifies the bibliographical records - The FAUST number.'
+                    in: query
+                    items:
+                        type: string
+                    name: recordid
+                    required: true
+                    type: array
+                -
+                    description: 'Identifies the branchIds which are excluded from the result'
+                    in: query
+                    items:
+                        type: string
+                    name: exclude
+                    type: array
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/HoldingsForBibliographicalRecordV3'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_agencyid_catalog
+            description: "\n Returns an array of holdings for each bibliographical record.\n The holdings lists the materials on each placement, and whether they are available on-shelf or lent out."
+            operationId: getHoldingsV3
+            summary: 'Get placement holdings for bibliographical records.'
+    /external/agencyid/patron/patronid/fees/v2:
+        get:
+            parameters:
+                -
+                    description: "true if all paid/unpaid fees should be included, false if only unpaid fees should\n                    be included; default=false"
+                    in: query
+                    name: includepaid
+                    required: true
+                    type: boolean
+                -
+                    description: "true if fees that are not payable through a CMS system should be included (for read\n                          only access); default=false"
+                    in: query
+                    name: includenonpayable
+                    required: true
+                    type: boolean
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/FeeV2'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_agencyid_patron_patronid
+            description: "\n Returns array of fees.\n <p>If the fee covers loaned materials, information about the materials is returned.\n Each fee in the response includes a 'type', which is used to distinguish between different types of\n fees.</p>\n <p>If the material exists no more, which is the case for fees that are related to closed interlibraryloans,\n then the fee is still returned, but without material information</p>\n The list of available types currently is\n <ul>\n <li>fee</li>\n <li>compensation</li>\n </ul>\n <p>While the type can be used by client systems to look up a suitable display message for the end user, it is\n important that unrecognized types are treated as 'other'.</p>"
+            operationId: getFeesV2
+            summary: 'List of fees in FBS for the patron with all available information about the fee.'
+    /external/agencyid/patrons/v4:
+        post:
+            parameters:
+                -
+                    description: 'the patron to be created'
+                    in: body
+                    name: createPatronRequest
+                    required: true
+                    schema:
+                        $ref: '#/definitions/CreatePatronRequestV3'
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        $ref: '#/definitions/AuthenticatedPatronV4'
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'Data not found'
+            tags:
+                - external_agencyid_patrons
+            description: "\n When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication\n source (e.g NemId), the patron account can be created using this service. Name and address will be automatically\n fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to\n provide information about the patron, then repsonse message 404 will be sent back\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
+            operationId: createV4
+            summary: 'Create a new patron who is a person.'
+    /external/agencyid/patrons/withGuardian/v1:
+        post:
+            parameters:
+                -
+                    description: 'The payload with information for the patron to create'
+                    in: body
+                    name: patronWithGuardianRequest
+                    required: true
+                    schema:
+                        $ref: '#/definitions/PatronWithGuardianRequest'
+            responses:
+                200:
+                    description: Ok
+                    schema:
+                        type: integer
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'Data not found'
+            tags:
+                - external_agencyid_patrons
+            description: "\n\n Returns the id of the patron if the request succeeds.\n Name and address will be automatically fetched from the CPR-Registry.\n <p>If the CPR-Registry is not authorized to provide information about the patron, then response message 404 will be sent back.</p>\n <p>If the supplied cpr number of the patron equals that of the guardian, then response message 400 will be sent back.</p>\n <p>If the email of the guardian is invalid, then response message 400 will be sent back.</p>\n <p>If an email or phone number for the patron is supplied and it is invalid, then response message 400 will be sent back.</p>\n <p>In case of a successful creation of the patron, a confirmation email is sent to the guardian.\n In case of failure an email is sent to guardian stating the creation failed.</p>"
+            operationId: createWithGuardian
+            summary: 'Creates a person patron with a guardian (eg A financial responsible).'
+        put:
+            parameters:
+                -
+                    description: 'The payload with information for the guardian update'
+                    in: body
+                    name: updateGuardianRequest
+                    required: true
+                    schema:
+                        $ref: '#/definitions/UpdateGuardianRequest'
+            responses:
+                200:
+                    description: Ok
+                    schema:
+                        type: integer
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'Data not found'
+            tags:
+                - external_agencyid_patrons
+            description: "\n If the person doesn't have a guardian, a new one is created with the information provided.\n\n Returns the id of the patron if the request succeeds.\n Name and address will be automatically fetched from the CPR-Registry.\n <p>If the CPR-Registry is not authorized to provide information about the patron and guardian, then response message 404 will be sent back.</p>\n <p>If the supplied cpr number of the patron equals that of the guardian, then response message 400 will be sent back.</p>\n <p>If the email of the guardian is invalid, then response message 400 will be sent back.</p>\n <p>In case of a successful update of the guardian, a confirmation email is sent to the guardian.\n In case of failure an email is sent to guardian stating the update failed.</p>"
+            operationId: updateGuardian
+            summary: "Updates a person patron's guardian (eg A financial responsible)."
+    /external/agencyid/patrons/patronid/loans/renew/v2:
+        post:
+            parameters:
+                -
+                    description: 'a list of loanId to be renewed'
+                    in: body
+                    name: materialLoanIds
+                    required: true
+                    schema:
+                        items:
+                            type: integer
+                        type: array
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/RenewedLoanV2'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'patron not found'
+            tags:
+                - external_agencyid_patrons_patronid_loans
+            description: "\n Returns an array of the updated loans.\n <p>\n If the materials could not be renewed, the return date will be unchanged.\n </p>\n\n The response field renewalStatus will contain a list of one or more of these values:\n <ul>\n <li>- renewed</li>\n <li>- deniedReserved</li>\n <li>- deniedMaxRenewalsReached</li>\n <li>- deniedLoanerIsBlocked</li>\n <li>- deniedMaterialIsNotLoanable</li>\n <li>- deniedMaterialIsNotFound</li>\n <li>- deniedLoanerNotFound</li>\n <li>- deniedLoaningProfileNotFound</li>\n <li>- deniedOtherReason</li>\n </ul>\n <p>\n If any other value is encountered then it must be treated as 'deniedOtherReason'.\n </p>\n The response contains the field loanDetails.loanType, which can be any of these values:\n <ul>\n <li>- loan</li>\n <li>- interLibraryLoan</li>\n </ul>\n <p>\n The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other' .\n </p>"
+            operationId: renewLoansV2
+            summary: 'Renew loans.'
+    /external/agencyid/patrons/patronid/loans/v2:
+        get:
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        items:
+                            $ref: '#/definitions/LoanV2'
+                        type: array
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'patron not found'
+            tags:
+                - external_agencyid_patrons_patronid_loans
+            description: "\n Returns an array of loans.\n <p>\n </p>\n If a loan is not renewable then the field renewalStatus will contain a list of one or more of these values:\n <ul>\n <li>- deniedReserved</li>\n <li>- deniedMaxRenewalsReached</li>\n <li>- deniedLoanerIsBlocked</li>\n <li>- deniedMaterialIsNotLoanable</li>\n <li>- deniedMaterialIsNotFound</li>\n <li>- deniedLoanerNotFound</li>\n <li>- deniedLoaningProfileNotFound</li>\n <li>- deniedOtherReason</li>\n </ul>\n <p>\n If any other value is encountered then it must be treated as 'deniedOtherReason'.\n </p>\n The response contains the field loanDetails.loanType, which can be any of these values:\n <ul>\n <li>- loan</li>\n <li>- interLibraryLoan</li>\n </ul>\n <p>\n The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other' .\n </p>\n <p>\n NOTE: Cicero can decide to skip evaluation of the returned loans to minimize response time for loaners with\n many loans. In that case isRenewable will have the value true, as if it were a successful validation.\n </p>"
+            operationId: getLoansV2
+            summary: 'Get list of current loans by the patron.'
+    /external/agencyid/patrons/patronid/v2:
+        get:
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        $ref: '#/definitions/AuthenticatedPatronV6'
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+            tags:
+                - external_agencyid_patrons
+            description: "\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
+            operationId: getPatronInformationByPatronIdV2
+            summary: 'Returns the patron details'
+    /external/agencyid/patrons/patronid/v5:
+        put:
+            parameters:
+                -
+                    description: 'updated information about the patron'
+                    in: body
+                    name: updatePatron
+                    required: true
+                    schema:
+                        $ref: '#/definitions/UpdatePatronRequestV4'
+            responses:
+                200:
+                    description: 'No response was specified'
+                    schema:
+                        $ref: '#/definitions/AuthenticatedPatronV6'
+                400:
+                    description: 'bad request'
+                401:
+                    description: 'client unauthorized'
+                404:
+                    description: 'patron not found'
+            tags:
+                - external_agencyid_patrons
+            description: "\n The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
+            operationId: updateV5
+            summary: 'Update information about the patron.'
+securityDefinitions:
+    oauth:
+        type: oauth2
+        description: 'OAuth 2.0 password Grant'
+        flow: password
+        tokenUrl: 'https://login.bib.dk/oauth/token'
+security:
+    -
+        oauth: []
+tags:
+    -
+        description: 'External Catalog'
+        name: external_agencyid_catalog
+    -
+        description: 'External Payment'
+        name: external_agencyid_patron_patronid
+    -
+        description: 'External Patron'
+        name: external_agencyid_patrons
+    -
+        description: 'External Material Loans'
+        name: external_agencyid_patrons_patronid_loans
+    -
+        description: 'External Placement'
+        name: external_v1_agencyid
+    -
+        description: 'External Reservations'
+        name: external_v1_agencyid_patrons_patronid_reservations
+definitions:
+    Address:
+        properties:
+            city:
+                type: string
+            country:
+                type: string
+            postalCode:
+                type: string
+            street:
+                description: 'Street and number'
+                type: string
+        required:
+            - country
+            - city
+            - street
+            - postalCode
+    AddressV2:
+        properties:
+            city:
+                description: City
+                type: string
+            coName:
+                description: 'c/o name'
+                type: string
+            country:
+                description: Country
+                type: string
+            postalCode:
+                description: 'Postal code'
+                type: string
+            street:
+                description: 'Street and number'
+                type: string
+        required:
+            - country
+            - city
+            - street
+            - coName
+            - postalCode
+    AgencyBranch:
+        properties:
+            branchId:
+                description: 'ISIL of branch (e.g. DK-761501)'
+                type: string
+            title:
+                description: 'Name of branch'
+                type: string
+        required:
+            - branchId
+            - title
+    AgencyDepartment:
+        properties:
+            departmentId:
+                description: 'Department identifier'
+                type: string
+            title:
+                description: 'Name of the department'
+                type: string
+        required:
+            - departmentId
+            - title
+    AgencyLocation:
+        properties:
+            locationId:
+                description: 'Location identifier'
+                type: string
+            title:
+                description: 'Name of the location'
+                type: string
+        required:
+            - locationId
+            - title
+    AgencySublocation:
+        properties:
+            sublocationId:
+                description: 'Sub-location identifier'
+                type: string
+            title:
+                description: 'Name of the sub-location'
+                type: string
+        required:
+            - title
+            - sublocationId
+    AuthenticatedPatronV4:
+        properties:
+            authenticated:
+                description: "True if patron successfully authenticated.\n If false then either the user is not known in the FBS, or an invalid combination of authentication parameters\n has been used."
+                type: boolean
+            patron:
+                $ref: '#/definitions/PatronV4'
+                description: 'Only available if patron exists in FBS and was succesfully authenticated.'
+        required:
+            - authenticated
+    AuthenticatedPatronV6:
+        properties:
+            authenticateStatus:
+                description: "AuthenticateStatus:\n <ul>\n     <li>- 'VALID': successfully authenticated</li>\n     <li>- 'INVALID': either the user is not known in the system, or an invalid combination of authentication parameters has been used.</li>\n     <li>- 'LOANER_LOCKED_OUT': user has been blocked temporary because of too many failed login attempts</li>\n </ul>"
+                enum:
+                    - VALID
+                    - INVALID
+                    - LOANER_LOCKED_OUT
+                type: string
+            patron:
+                $ref: '#/definitions/PatronV5'
+                description: 'Only available if patron exists in FBS and was succesfully authenticated.'
+        required:
+            - authenticateStatus
+    AvailabilityV3:
+        properties:
+            available:
+                description: 'True if materials is available on-shelf at some placement, false if all materials are lent out'
+                type: boolean
+            recordId:
+                description: 'The FAUST number of the Bibliographic record'
+                type: string
+            reservable:
+                description: 'True if materials can be reserved'
+                type: boolean
+            reservations:
+                description: 'Total number of current active reservations of the Bibliographic record'
+                format: int64
+                type: integer
+        required:
+            - recordId
+            - reservations
+            - reservable
+            - available
+    BlockStatus:
+        properties:
+            blockedReason:
+                description: 'Reason code for block'
+                type: string
+            blockedSince:
+                type: string
+            message:
+                description: 'Message about block'
+                type: string
+        required:
+            - blockedReason
+            - blockedSince
+            - message
+    Booking:
+        properties:
+            automaticForwardLoan:
+                description: 'True if automatic forward is active for this booking'
+                type: boolean
+            bookingId:
+                description: 'The booking identifier'
+                type: string
+            deliverBranchId:
+                description: 'The delivery branch identifier'
+                type: string
+            minimumMaterials:
+                description: 'The minimum number of materials'
+                format: int32
+                type: integer
+            note:
+                description: 'Additional information about this booking'
+                type: string
+            patronGroupId:
+                description: 'The patron group ID for this booking'
+                format: int64
+                type: integer
+            period:
+                $ref: '#/definitions/Period'
+                description: 'The booking period information containing the start and the end date'
+            preferredMaterials:
+                description: 'The preferred number of materials'
+                format: int32
+                type: integer
+            recordId:
+                description: 'The record ID'
+                type: string
+            requestedFromBranchId:
+                description: 'The branch that provides the material for booking'
+                type: string
+            state:
+                description: 'The booking state'
+                type: string
+        required:
+            - recordId
+            - preferredMaterials
+            - period
+            - minimumMaterials
+            - patronGroupId
+            - automaticForwardLoan
+            - state
+            - requestedFromBranchId
+            - bookingId
+            - deliverBranchId
+    BookingInfo:
+        properties:
+            period:
+                $ref: '#/definitions/Period'
+                description: 'The booking period information containing the start and the end date'
+            preferredMaterials:
+                description: 'The preferred number of materials'
+                format: int32
+                type: integer
+        required:
+            - preferredMaterials
+            - period
+    CreateBooking:
+        properties:
+            automaticForwardLoan:
+                description: 'True if automatic forward is active for this booking'
+                type: boolean
+            deliverBranchId:
+                description: 'The delivery branch identifier'
+                type: string
+            minimumMaterials:
+                description: 'The minimum number of materials'
+                format: int32
+                type: integer
+            note:
+                description: 'Additional information about this booking'
+                type: string
+            patronGroupId:
+                description: 'The patron group ID for this booking'
+                format: int64
+                type: integer
+            period:
+                $ref: '#/definitions/Period'
+                description: 'The booking period information containing the start and the end date'
+            preferredMaterials:
+                description: 'The preferred number of materials'
+                format: int32
+                type: integer
+            recordId:
+                description: 'The record ID'
+                type: string
+            requestedFromBranchId:
+                description: 'The branch that provides the material for booking'
+                type: string
+        required:
+            - recordId
+            - preferredMaterials
+            - period
+            - minimumMaterials
+            - patronGroupId
+            - automaticForwardLoan
+            - requestedFromBranchId
+            - deliverBranchId
+    CreatePatronRequestV3:
+        properties:
+            cprNumber:
+                type: string
+            patron:
+                $ref: '#/definitions/PatronSettingsV3'
+            pincode:
+                type: string
+        required:
+            - cprNumber
+            - pincode
+            - patron
+    CreateReservation:
+        properties:
+            expiryDate:
+                description: "The date where the patron is no longer interested in the reserved material.\n If not set, a date will be calculated from the agency default interest period"
+                type: string
+            periodical:
+                $ref: '#/definitions/PeriodicalReservation'
+                description: 'Present if making reservation on a periodical'
+            pickupBranch:
+                description: "ISIL-number of pickup branch.\n If not set, will default to patrons preferred pickup branch"
+                type: string
+            recordId:
+                description: 'Identifies the bibliographical record to reserve - The FAUST number'
+                type: string
+        required:
+            - recordId
+    CreateReservationBatch:
+        properties:
+            reservations:
+                description: "Reservations with duplicate record id's will be removed."
+                items:
+                    $ref: '#/definitions/CreateReservation'
+                type: array
+        required:
+            - reservations
+    CreateReservationBatchV2:
+        properties:
+            reservations:
+                description: "Reservations with duplicate record id's will be removed."
+                items:
+                    $ref: '#/definitions/CreateReservation'
+                type: array
+            type:
+                description: 'Will be considered normal if not set'
+                type: string
+        required:
+            - reservations
+    FeeMaterial:
+        properties:
+            materialGroupName:
+                description: 'Name of the material group that the material belongs to'
+                type: string
+            materialItemNumber:
+                description: 'Identifies the exact material covered by the fee'
+                type: string
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            recordId:
+                description: 'The FAUST number of the bibliographic record'
+                type: string
+        required:
+            - recordId
+            - materialGroupName
+            - materialItemNumber
+    FeeMaterialV2:
+        properties:
+            materialGroup:
+                $ref: '#/definitions/MaterialGroup'
+                description: 'The material group that the material belongs to'
+            materialItemNumber:
+                description: 'Identifies the exact material covered by the fee'
+                type: string
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            recordId:
+                description: 'The FAUST number of the bibliographic record'
+                type: string
+        required:
+            - recordId
+            - materialGroup
+            - materialItemNumber
+    FeeV2:
+        properties:
+            amount:
+                description: 'The amount to pay, in the currency of the agency'
+                format: double
+                type: number
+            creationDate:
+                description: 'The date the fee was created'
+                type: string
+            dueDate:
+                description: 'Expected payment due date'
+                type: string
+            feeId:
+                description: 'Identifies the fee, used when registering a payment that covers the fee'
+                format: int64
+                type: integer
+            materials:
+                description: 'Set if fee covers materials'
+                items:
+                    $ref: '#/definitions/FeeMaterialV2'
+                type: array
+            paidDate:
+                description: 'If the fee has been paid in full, this will be set to the date of the final payment, otherwise not set'
+                type: string
+            payableByClient:
+                description: 'true if the client system is allowed to offer payment for the fee, false if not allowed'
+                type: boolean
+            reasonMessage:
+                description: "Human readable free text message about the reason for the fee, presentable to an end user (language is likely\n to be the mother tongue of the agency)"
+                type: string
+            type:
+                description: 'Can be used to distinguish between different types of fees'
+                type: string
+        required:
+            - payableByClient
+            - amount
+            - materials
+            - reasonMessage
+            - type
+            - creationDate
+            - feeId
+    Guardian:
+        properties:
+            address:
+                $ref: '#/definitions/Address'
+            cprNumber:
+                type: string
+            email:
+                description: 'Must be valid'
+                type: string
+            mobilePhoneNumber:
+                type: string
+            name:
+                description: 'The full name of the guardian'
+                type: string
+        required:
+            - cprNumber
+            - name
+            - email
+    Holdings:
+        properties:
+            branch:
+                $ref: '#/definitions/AgencyBranch'
+                description: 'Placement branch'
+            department:
+                $ref: '#/definitions/AgencyDepartment'
+                description: 'Placement department'
+            location:
+                $ref: '#/definitions/AgencyLocation'
+                description: 'Placement location'
+            materials:
+                description: 'Materials that belongs to this placement'
+                items:
+                    $ref: '#/definitions/Material'
+                type: array
+            sublocation:
+                $ref: '#/definitions/AgencySublocation'
+                description: 'Placement sublocation'
+        required:
+            - materials
+            - branch
+    HoldingsForBibliographicalRecordV3:
+        properties:
+            holdings:
+                description: "An array of holdings for the materials matching the bibliographical record, as distributed across branches,\n departments and locations"
+                items:
+                    $ref: '#/definitions/HoldingsV3'
+                type: array
+            recordId:
+                description: "Identifies the bibliographical record for the available materials,\n The FAUST number"
+                type: string
+            reservable:
+                description: 'True if there is any reservable materials'
+                type: boolean
+            reservations:
+                description: 'Total number of current active reservations for the bibliographical record'
+                format: int64
+                type: integer
+        required:
+            - recordId
+            - reservations
+            - reservable
+            - holdings
+    HoldingsV3:
+        properties:
+            branch:
+                $ref: '#/definitions/AgencyBranch'
+                description: 'Placement branch'
+            department:
+                $ref: '#/definitions/AgencyDepartment'
+                description: 'Placement department'
+            location:
+                $ref: '#/definitions/AgencyLocation'
+                description: 'Placement location'
+            materials:
+                description: 'Materials that belongs to this placement'
+                items:
+                    $ref: '#/definitions/MaterialV3'
+                type: array
+            sublocation:
+                $ref: '#/definitions/AgencySublocation'
+                description: 'Placement sublocation'
+        required:
+            - materials
+            - branch
+    ILLBibliographicRecord:
+        properties:
+            author:
+                description: 'The author of the material'
+                type: string
+            bibliographicCategory:
+                description: 'Bibliographic category from danMARC2 008 *t'
+                type: string
+            edition:
+                description: 'Edition-information from the bibliographic record'
+                type: string
+            isbn:
+                description: 'ISBN-information from the bibliographic record'
+                type: string
+            issn:
+                description: 'ISSN-information from the bibliographic record'
+                type: string
+            language:
+                description: 'Language of the requested material.'
+                type: string
+            mediumType:
+                description: 'Type of the requested material - from danMARC2 009 *a+*g (general and specific)'
+                type: string
+            periodicalNumber:
+                description: 'Issue number of a periodical'
+                type: string
+            periodicalVolume:
+                description: 'Volume name of a periodical'
+                type: string
+            placeOfPublication:
+                type: string
+            publicationDate:
+                description: 'Publication date of the requested material.'
+                type: string
+            publicationDateOfComponent:
+                description: 'Publication date of an item component, or article.'
+                type: string
+            publisher:
+                description: 'Publisher of the requested material.'
+                type: string
+            recordId:
+                description: 'The FAUST number'
+                type: string
+            title:
+                description: 'The title of the material'
+                type: string
+        required:
+            - recordId
+            - mediumType
+    LoanDetails:
+        properties:
+            dueDate:
+                description: 'The date when the material must be returned'
+                type: string
+            ilBibliographicRecord:
+                $ref: '#/definitions/ILLBibliographicRecord'
+                description: 'Additional bibliographic information for inter-library loans'
+            loanDate:
+                description: 'The date when the material was picked up'
+                type: string
+            loanId:
+                description: 'Identifies the loan for use when renewing the loan'
+                format: int64
+                type: integer
+            loanType:
+                description: 'The loan type, either <b>loan</b> or <b>interLibraryLoan</b>'
+                type: string
+            materialGroupName:
+                description: 'Name of the material group that the material belongs to'
+                type: string
+            materialItemNumber:
+                description: 'Identifies the exact material that has been loaned'
+                type: string
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            recordId:
+                description: 'The FAUST number of the bibliographic record'
+                type: string
+        required:
+            - recordId
+            - loanType
+            - dueDate
+            - loanDate
+            - materialGroupName
+            - materialItemNumber
+            - loanId
+    LoanDetailsV2:
+        properties:
+            dueDate:
+                description: 'The date when the material must be returned'
+                type: string
+            ilBibliographicRecord:
+                $ref: '#/definitions/ILLBibliographicRecord'
+                description: 'Additional bibliographic information for inter-library loans'
+            loanDate:
+                description: 'The date when the material was picked up'
+                type: string
+            loanId:
+                description: 'Identifies the loan for use when renewing the loan'
+                format: int64
+                type: integer
+            loanType:
+                description: 'The loan type, either <b>loan</b> or <b>interLibraryLoan</b>'
+                type: string
+            materialGroup:
+                $ref: '#/definitions/MaterialGroup'
+                description: 'Material group that the material belongs to'
+            materialItemNumber:
+                description: 'Identifies the exact material that has been loaned'
+                type: string
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            recordId:
+                description: 'The FAUST number of the bibliographic record'
+                type: string
+        required:
+            - recordId
+            - loanType
+            - materialGroup
+            - dueDate
+            - loanDate
+            - materialItemNumber
+            - loanId
+    LoanV2:
+        properties:
+            isLongtermLoan:
+                description: 'indicates whether this loan is a long term loan'
+                type: boolean
+            isRenewable:
+                description: 'indicates whether this loan can be renewed'
+                type: boolean
+            loanDetails:
+                $ref: '#/definitions/LoanDetailsV2'
+                description: 'The loan that was attempted renewed'
+            renewalStatusList:
+                description: 'if isRenewable == false then this states the reasons for denial'
+                items:
+                    type: string
+                type: array
+        required:
+            - isRenewable
+            - loanDetails
+            - isLongtermLoan
+            - renewalStatusList
+    Material:
+        properties:
+            available:
+                description: 'True if material is available on-shelf, false if lent out'
+                type: boolean
+            itemNumber:
+                description: 'Identifies the material'
+                type: string
+            materialGroupName:
+                description: 'Name of the material group that the material belongs to'
+                type: string
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+        required:
+            - itemNumber
+            - available
+            - materialGroupName
+    MaterialGroup:
+        properties:
+            description:
+                description: 'Description of the material group'
+                type: string
+            name:
+                description: 'Name of the material group'
+                type: string
+        required:
+            - name
+    MaterialV3:
+        properties:
+            available:
+                description: 'True if material is available on-shelf, false if lent out'
+                type: boolean
+            itemNumber:
+                description: 'Identifies the material'
+                type: string
+            materialGroup:
+                $ref: '#/definitions/MaterialGroup'
+                description: 'Name of the material group that the material belongs to'
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+        required:
+            - itemNumber
+            - materialGroup
+            - available
+    Patron:
+        properties:
+            address:
+                $ref: '#/definitions/Address'
+            allowBookings:
+                description: 'True if the user is allowed to create bookings.'
+                type: boolean
+            birthday:
+                type: string
+            blockStatus:
+                description: "A list of block statuses -\n if the patron is not blocked then this value is empty or null"
+                items:
+                    $ref: '#/definitions/BlockStatus'
+                type: array
+            coAddress:
+                $ref: '#/definitions/Address'
+            defaultInterestPeriod:
+                description: 'Length of default interest period in days'
+                format: int32
+                type: integer
+            emailAddress:
+                type: string
+            name:
+                type: string
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            patronId:
+                description: 'Patron identifier to be used in subsequent service calls involving the patron'
+                format: int64
+                type: integer
+            phoneNumber:
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                description: 'This field is deprecated and is no longer used'
+                type: boolean
+            receiveSms:
+                type: boolean
+            resident:
+                description: 'True if the user is resident in the same municipality as the library'
+                type: boolean
+        required:
+            - preferredPickupBranch
+            - patronId
+            - receiveEmail
+            - receiveSms
+            - receivePostalMail
+            - defaultInterestPeriod
+            - resident
+    PatronGroup:
+        properties:
+            childGroups:
+                description: 'The array of child groups of this group'
+                items:
+                    $ref: '#/definitions/PatronGroup'
+                type: array
+            description:
+                description: 'The description of the group'
+                type: string
+            membersCount:
+                description: 'The number of all members in this group, including descendants'
+                format: int64
+                type: integer
+            name:
+                description: 'The name of the group'
+                type: string
+            patronGroupId:
+                description: 'The patron group identifier'
+                format: int64
+                type: integer
+        required:
+            - membersCount
+            - patronGroupId
+            - name
+            - description
+    PatronSettings:
+        properties:
+            emailAddress:
+                description: "Required if patron should receive email notifications\n Existing email addresses are overwritten with this value\n If left empty existing email addresses are deleted"
+                type: string
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            phoneNumber:
+                description: "Required if patron should receive SMS notifications\n Existing phonenumbers are overwritten with this value\n If left empty existing phonenumbers are deleted"
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL-number of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                description: 'This field is deprecated and is no longer used'
+                type: boolean
+            receiveSms:
+                type: boolean
+        required:
+            - preferredPickupBranch
+            - receiveEmail
+            - receivePostalMail
+            - receiveSms
+    PatronSettingsV3:
+        properties:
+            emailAddress:
+                description: "Required if patron should receive email notifications\n Existing email addresses are overwritten with this value\n If left empty existing email addresses are deleted"
+                type: string
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            phoneNumber:
+                description: "Required if patron should receive SMS notifications\n Existing phonenumbers are overwritten with this value\n If left empty existing phonenumbers are deleted"
+                type: string
+            preferredLanguage:
+                description: "Language in which the patron prefers the communication with the library to take place\n If left empty default library language will be used"
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL-number of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                type: boolean
+            receiveSms:
+                type: boolean
+        required:
+            - preferredPickupBranch
+            - receiveEmail
+            - receivePostalMail
+            - receiveSms
+    PatronSettingsV4:
+        properties:
+            emailAddress:
+                description: "Required if patron should receive email notifications\n Existing email addresses are overwritten with this value\n If left empty existing email addresses are deleted"
+                type: string
+            notificationProtocols:
+                description: 'Notification protocols that the patron want to receive notification on. SMS and EMAIL are not included.'
+                items:
+                    type: string
+                type: array
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            phoneNumber:
+                description: "Required if patron should receive SMS notifications\n Existing phonenumbers are overwritten with this value\n If left empty existing phonenumbers are deleted"
+                type: string
+            preferredLanguage:
+                description: "Language in which the patron prefers the communication with the library to take place\n If left empty default library language will be used"
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL-number of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                type: boolean
+            receiveSms:
+                type: boolean
+        required:
+            - preferredPickupBranch
+            - receiveEmail
+            - receivePostalMail
+            - receiveSms
+    PatronV3:
+        properties:
+            address:
+                $ref: '#/definitions/Address'
+            allowBookings:
+                description: 'True if the user is allowed to create bookings.'
+                type: boolean
+            birthday:
+                type: string
+            blockStatus:
+                description: "A list of block statuses -\n if the patron is not blocked then this value is empty or null"
+                items:
+                    $ref: '#/definitions/BlockStatus'
+                type: array
+            defaultInterestPeriod:
+                description: 'Length of default interest period in days'
+                format: int32
+                type: integer
+            emailAddress:
+                type: string
+            name:
+                type: string
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            patronId:
+                description: 'Patron identifier to be used in subsequent service calls involving the patron'
+                format: int64
+                type: integer
+            phoneNumber:
+                type: string
+            preferredLanguage:
+                description: 'Language in which the patron prefers the communication with the library to take place'
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                type: boolean
+            receiveSms:
+                type: boolean
+            resident:
+                description: 'True if the user is resident in the same municipality as the library'
+                type: boolean
+            secondaryAddress:
+                $ref: '#/definitions/Address'
+        required:
+            - preferredPickupBranch
+            - patronId
+            - receiveEmail
+            - receiveSms
+            - receivePostalMail
+            - defaultInterestPeriod
+            - resident
+    PatronV4:
+        properties:
+            address:
+                $ref: '#/definitions/AddressV2'
+            allowBookings:
+                description: 'True if the user is allowed to create bookings.'
+                type: boolean
+            birthday:
+                type: string
+            blockStatus:
+                description: "A list of block statuses -\n if the patron is not blocked then this value is empty or null"
+                items:
+                    $ref: '#/definitions/BlockStatus'
+                type: array
+            defaultInterestPeriod:
+                description: 'Length of default interest period in days'
+                format: int32
+                type: integer
+            emailAddress:
+                type: string
+            name:
+                type: string
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            patronId:
+                description: 'Patron identifier to be used in subsequent service calls involving the patron'
+                format: int64
+                type: integer
+            phoneNumber:
+                type: string
+            preferredLanguage:
+                description: 'Language in which the patron prefers the communication with the library to take place'
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                type: boolean
+            receiveSms:
+                type: boolean
+            resident:
+                description: 'True if the user is resident in the same municipality as the library'
+                type: boolean
+            secondaryAddress:
+                $ref: '#/definitions/AddressV2'
+        required:
+            - preferredPickupBranch
+            - patronId
+            - receiveEmail
+            - receiveSms
+            - receivePostalMail
+            - defaultInterestPeriod
+            - resident
+    PatronV5:
+        properties:
+            address:
+                $ref: '#/definitions/AddressV2'
+            allowBookings:
+                description: 'True if the user is allowed to create bookings.'
+                type: boolean
+            birthday:
+                type: string
+            blockStatus:
+                description: "A list of block statuses -\n if the patron is not blocked then this value is empty or null"
+                items:
+                    $ref: '#/definitions/BlockStatus'
+                type: array
+            defaultInterestPeriod:
+                description: 'Length of default interest period in days'
+                format: int32
+                type: integer
+            emailAddress:
+                type: string
+            name:
+                type: string
+            notificationProtocols:
+                description: 'Notification protocols that the patron want to receive notification on. SMS and EMAIL are not included.'
+                items:
+                    type: string
+                type: array
+            onHold:
+                $ref: '#/definitions/Period'
+                description: 'If not set then the patron is not on hold'
+            patronId:
+                description: 'Patron identifier to be used in subsequent service calls involving the patron'
+                format: int64
+                type: integer
+            phoneNumber:
+                type: string
+            preferredLanguage:
+                description: 'Language in which the patron prefers the communication with the library to take place'
+                type: string
+            preferredPickupBranch:
+                description: 'ISIL of preferred pickup branch'
+                type: string
+            receiveEmail:
+                type: boolean
+            receivePostalMail:
+                type: boolean
+            receiveSms:
+                type: boolean
+            resident:
+                description: 'True if the user is resident in the same municipality as the library'
+                type: boolean
+            secondaryAddress:
+                $ref: '#/definitions/AddressV2'
+        required:
+            - preferredPickupBranch
+            - patronId
+            - receiveEmail
+            - receiveSms
+            - receivePostalMail
+            - defaultInterestPeriod
+            - resident
+    PatronWithGuardianRequest:
+        properties:
+            address:
+                $ref: '#/definitions/Address'
+            cprNumber:
+                type: string
+            email:
+                description: 'Must be valid if supplied'
+                type: string
+            guardian:
+                $ref: '#/definitions/Guardian'
+            name:
+                description: 'The full name of the patron'
+                type: string
+            phoneNumber:
+                description: 'Must be valid if supplied'
+                type: string
+            pincode:
+                type: string
+            preferredPickupBranch:
+                description: 'Must be a valid branch id (eg. DK-761501)'
+                type: string
+        required:
+            - cprNumber
+            - pincode
+            - preferredPickupBranch
+            - name
+            - guardian
+    Period:
+        properties:
+            from:
+                description: 'Open-ended if not set'
+                type: string
+            to:
+                description: 'Open-ended if not set'
+                type: string
+    Periodical:
+        properties:
+            displayText:
+                description: 'A representation of the periodica volume information that is suitable for display'
+                type: string
+            volume:
+                type: string
+            volumeNumber:
+                type: string
+            volumeYear:
+                type: string
+        required:
+            - displayText
+    PeriodicalReservation:
+        properties:
+            volume:
+                type: string
+            volumeNumber:
+                type: string
+            volumeYear:
+                type: string
+    PincodeChange:
+        properties:
+            libraryCardNumber:
+                description: "Identifies the libraryCard for which the pincode is to be changed.\n This can be either a physical card or the CPR number, that is used as a libraryCard"
+                type: string
+            pincode:
+                description: 'The new pincode for the libraryCard'
+                type: string
+        required:
+            - pincode
+            - libraryCardNumber
+    RenewedLoanV2:
+        properties:
+            loanDetails:
+                $ref: '#/definitions/LoanDetailsV2'
+                description: 'The loan that was attempted renewed'
+            renewalStatus:
+                description: 'indicates if renewal was succesful or denied - including the reason for denial.'
+                items:
+                    type: string
+                type: array
+        required:
+            - loanDetails
+            - renewalStatus
+    ReservationDetails:
+        properties:
+            dateOfReservation:
+                type: string
+            expiryDate:
+                description: 'The date when the patron is no longer interested in the reserved material'
+                type: string
+            ilBibliographicRecord:
+                $ref: '#/definitions/ILLBibliographicRecord'
+                description: 'Additional bibliographic information for inter-library loans'
+            loanType:
+                type: string
+            numberInQueue:
+                description: 'The number in the reservation queue.'
+                format: int32
+                type: integer
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            pickupBranch:
+                description: 'ISIL-number of pickup branch'
+                type: string
+            pickupDeadline:
+                description: 'Set if reserved material is available for loan'
+                type: string
+            pickupNumber:
+                description: "The reservation number. Will be present if the reservation is ready for pickup (the state is 'readyForPickup')"
+                type: string
+            recordId:
+                description: 'The FAUST number'
+                type: string
+            reservationId:
+                description: 'Identifies the reservation for use when updating or deleting the reservation'
+                format: int64
+                type: integer
+            state:
+                type: string
+        required:
+            - recordId
+            - pickupBranch
+            - expiryDate
+            - reservationId
+            - loanType
+            - dateOfReservation
+            - state
+    ReservationDetailsV2:
+        properties:
+            dateOfReservation:
+                type: string
+            expiryDate:
+                description: 'The date when the patron is no longer interested in the reserved material'
+                type: string
+            ilBibliographicRecord:
+                $ref: '#/definitions/ILLBibliographicRecord'
+                description: 'Additional bibliographic information for inter-library loans'
+            numberInQueue:
+                description: 'The number in the reservation queue.'
+                format: int32
+                type: integer
+            periodical:
+                $ref: '#/definitions/Periodical'
+                description: 'Present if material is a periodical'
+            pickupBranch:
+                description: 'ISIL-number of pickup branch'
+                type: string
+            pickupDeadline:
+                description: 'Set if reserved material is available for loan'
+                type: string
+            pickupNumber:
+                description: "The reservation number. Will be present if the reservation is ready for pickup (the state is 'readyForPickup')"
+                type: string
+            recordId:
+                description: 'The FAUST number'
+                type: string
+            reservationId:
+                description: 'Identifies the reservation for use when updating or deleting the reservation'
+                format: int64
+                type: integer
+            reservationType:
+                type: string
+            state:
+                type: string
+            transactionId:
+                description: 'Identifies the transaction of reservations'
+                type: string
+        required:
+            - pickupBranch
+            - dateOfReservation
+            - transactionId
+            - recordId
+            - expiryDate
+            - reservationId
+            - reservationType
+            - state
+    ReservationResponseV2:
+        properties:
+            reservationResults:
+                description: 'Result of each reservation'
+                items:
+                    $ref: '#/definitions/ReservationResultV2'
+                type: array
+            success:
+                description: 'True if all reservation were create successfully otherwise false'
+                type: boolean
+        required:
+            - success
+            - reservationResults
+    ReservationResult:
+        properties:
+            periodical:
+                $ref: '#/definitions/PeriodicalReservation'
+                description: 'Periodical information of the reservation'
+            recordId:
+                description: 'Recordid of the record to reserve'
+                type: string
+            reservationDetails:
+                $ref: '#/definitions/ReservationDetails'
+                description: 'The reservation data as returned by the create/update operation'
+            result:
+                description: 'The reservation result'
+                type: string
+        required:
+            - recordId
+            - result
+    ReservationResultV2:
+        properties:
+            periodical:
+                $ref: '#/definitions/PeriodicalReservation'
+                description: 'Periodical information of the reservation'
+            recordId:
+                description: 'Recordid of the record to reserve'
+                type: string
+            reservationDetails:
+                $ref: '#/definitions/ReservationDetailsV2'
+                description: 'The reservation data as returned by the create/update operation'
+            result:
+                description: 'The reservation result'
+                type: string
+        required:
+            - recordId
+            - result
+    UpdateGuardianRequest:
+        properties:
+            cprNumber:
+                description: 'If patronId is provided, this field will be ignored'
+                type: string
+            guardian:
+                $ref: '#/definitions/Guardian'
+            patronId:
+                format: int64
+                type: integer
+        required:
+            - guardian
+    UpdatePatronRequestV4:
+        properties:
+            patron:
+                $ref: '#/definitions/PatronSettingsV4'
+                description: 'Set this if patron details are to be changed'
+            pincodeChange:
+                $ref: '#/definitions/PincodeChange'
+                description: 'Set this if pincode is to be changed'
+    UpdateReservation:
+        properties:
+            expiryDate:
+                description: "The date where the patron is no longer interested in the reserved material.\n If not set, a date will be calculated from the libraries default interest period"
+                type: string
+            pickupBranch:
+                description: "ISIL-number of pickup branch.\n If not set, will default to patrons preferred pickup branch"
+                type: string
+            reservationId:
+                description: 'Identifies the reservation'
+                format: int64
+                type: integer
+        required:
+            - reservationId
+    UpdateReservationBatch:
+        properties:
+            reservations:
+                items:
+                    $ref: '#/definitions/UpdateReservation'
+                type: array
+        required:
+            - reservations
