@@ -44,6 +44,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 <div className="autosuggest__item--materials__item__content">
                   <div className="autosuggest__item--materials__item__content--cover">
                     <div className="material-container">
+                      {/* TODO: once we have the material page, we need to link to the specific one from here. */}
                       <a
                         className="material material--xsmall bg-identity-tint-120 material__animate"
                         href="google.com"
