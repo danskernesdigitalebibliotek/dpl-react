@@ -5,7 +5,6 @@ import {
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { usePrevious } from "../../core/utils/helpers";
 
 interface SearchResultProps {
   q: string;
@@ -28,43 +27,35 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setSearchItemsShown((currentPage + 1) * pageSize);
   };
 
-  const { isSuccess, data } = useSearchWithPaginationQuery({
-    q: { all: q },
-    offset: page * pageSize,
-    limit: pageSize
-  });
-
-  // The first item of the fetched works.
-  const firstWork = data?.search?.works?.[0]?.id;
-  // The first item of the last time we fetched the works.
-  const firstPreviousWork = usePrevious(firstWork);
-  // If they differ data has changed ¯\_(ツ)_/¯.
-  const dataHasChanged = firstWork !== firstPreviousWork;
-
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
   useEffect(() => {
     setResultItems([]);
-  }, [q]);
+    setPage(0);
+    setSearchItemsShown(pageSize);
+  }, [q, pageSize]);
 
-  useEffect(() => {
-    // If new data has not been loaded do nothing.
-    if (!dataHasChanged) {
-      return;
-    }
+  useSearchWithPaginationQuery(
+    {
+      q: { all: q },
+      offset: page * pageSize,
+      limit: pageSize
+    },
+    {
+      staleTime: 0,
+      onSuccess: (result) => {
+        const {
+          search: { works: resultWorks, hitcount: resultCount }
+        } = result;
 
-    if (isSuccess && data) {
-      const {
-        search: { works: resultWorks, hitcount: resultCount }
-      } = data;
+        setResultItems([...resultItems, ...resultWorks]);
 
-      setResultItems([...resultItems, ...resultWorks]);
-
-      if (!hitcount) {
-        setHitCount(resultCount);
+        if (!hitcount) {
+          setHitCount(resultCount);
+        }
       }
     }
-  }, [data, isSuccess, resultItems, page, hitcount, dataHasChanged]);
+  );
 
   const hasSearchItemsLeft = searchItemsShown < hitcount;
   const worksAreLoaded = Boolean(resultItems.length);
