@@ -51,8 +51,11 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   // by design this is how the autosuggest should work
   useEffect(() => {
     if (q) {
-      if (q.length > 2) {
+      const minimalLengthQuery = 3;
+      if (q.length >= minimalLengthQuery) {
         setIsAutosuggestOpen(true);
+      } else {
+        setIsAutosuggestOpen(false);
       }
     } else {
       setIsAutosuggestOpen(false);
