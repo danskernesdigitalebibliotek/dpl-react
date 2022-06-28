@@ -3,13 +3,10 @@ import { getUrlQueryParam } from "../../core/utils/helpers";
 import { getPageSize } from "./helpers";
 import SearchResult from "./search-result";
 
-export interface ResultItemsProps {
+export interface SearchResultEntryProps {
+  q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
-}
-
-export interface SearchResultEntryProps extends ResultItemsProps {
-  q?: string;
 }
 
 const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
