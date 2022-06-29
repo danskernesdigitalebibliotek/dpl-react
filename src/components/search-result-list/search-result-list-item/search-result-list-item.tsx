@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import ButtonFavourite from "../../button-favourite/button-favourite";
@@ -27,8 +27,20 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
 
+  // TODO: Redirect to material page.
+  const handleClick = useCallback(() => {
+    console.log("Going to material page!");
+  }, []);
+
   return (
-    <article className="search-result-item arrow arrow__hover--right-small">
+    // We know that it is not prober a11y to have an onclick handler on a noninteractive element.
+    // But since we have a link in the title we should have the right handling.
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <article
+      className="search-result-item arrow arrow__hover--right-small"
+      onClick={handleClick}
+      onKeyUp={handleClick}
+    >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
           materialId={manifestationPid}
@@ -42,9 +54,14 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           <ButtonFavourite materialId={workId} />
           {series && <SearchResultListItemSeries series={series} />}
         </div>
+
         <h2 className="search-result-item__title text-header-h4">
-          {fullTitle}
+          {/* TODO: Remove this little inline style and make a class for it in dpl-design-system. */}
+          <a style={{ textDecoration: "none" }} href="/">
+            {fullTitle}
+          </a>
         </h2>
+
         {author && (
           <p className="text-small-caption">{`Af ${author} (${datePublished})`}</p>
         )}
