@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import ButtonFavourite from "../../button-favourite/button-favourite";
-import { MaterialProps } from "../../material/material";
+import { CoverProps } from "../../cover/cover";
 import {
   creatorsToString,
   flattenCreators,
@@ -14,7 +14,7 @@ import SearchResultListItemSeries from "./search-result-list-item-series";
 
 export interface SearchResultListItemProps {
   item: WorkSimpleFragment;
-  coverTint: MaterialProps["tint"];
+  coverTint: CoverProps["tint"];
 }
 
 // TODO: The material item link should point at something.
@@ -33,8 +33,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   }, []);
 
   return (
-    // We know that it is not prober a11y to have an onclick handler on a noninteractive element.
-    // But since we have a link in the title we should have the right handling.
+    // We know that is not following a11y recommendations to have an onclick handler
+    // on a noninteractive element.
+    // But since we have a link in the title we should be alright.
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       className="search-result-item arrow arrow__hover--right-small"
@@ -44,8 +45,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       <div className="search-result-item__cover">
         <SearchResultListItemCover
           materialId={manifestationPid}
-          materialDescription={String(fullTitle)}
-          materialUrl="/"
+          description={String(fullTitle)}
+          url="/"
           tint={coverTint}
         />
       </div>

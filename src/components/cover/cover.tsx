@@ -2,24 +2,24 @@ import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 
-export type MaterialProps = {
+export type CoverProps = {
   animate: boolean;
   size: "xsmall" | "small" | "medium" | "large" | "original";
   tint?: "20" | "40" | "60" | "80" | "120";
   materialId: string;
-  materialDescription?: string;
-  materialUrl?: string;
+  description?: string;
+  url?: string;
 };
 
-export const Material = ({
-  materialUrl,
-  materialDescription,
+export const Cover = ({
+  url,
+  description,
   size,
   animate,
   tint,
   materialId
-}: MaterialProps) => {
-  let dataSize: MaterialProps["size"];
+}: CoverProps) => {
+  let dataSize: CoverProps["size"];
   if (size === "xsmall") {
     dataSize = "small";
   } else {
@@ -54,9 +54,7 @@ export const Material = ({
   };
 
   const coverUrl = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
-  const materialCover = coverUrl && (
-    <img src={coverUrl} alt={materialDescription || ""} />
-  );
+  const image = coverUrl && <img src={coverUrl} alt={description || ""} />;
 
   return (
     <div className="material-container">
@@ -64,12 +62,12 @@ export const Material = ({
        * Images inside links must have an non-empty alt text to meet accessibility requirements.
        * Only render the material as a link if we have both an url and a description.
        */}
-      {materialUrl && materialDescription ? (
-        <a href={materialUrl} className={classes.wrapper}>
-          {materialCover}
+      {url && description ? (
+        <a href={url} className={classes.wrapper}>
+          {image}
         </a>
       ) : (
-        <span className={classes.wrapper}>{materialCover}</span>
+        <span className={classes.wrapper}>{image}</span>
       )}
     </div>
   );
