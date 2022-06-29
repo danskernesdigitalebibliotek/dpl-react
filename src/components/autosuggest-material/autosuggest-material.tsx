@@ -8,7 +8,7 @@ import {
 import { Material } from "../material/material";
 
 export interface AutosuggestMaterialProps {
-  materialData: SuggestionWork[] | [];
+  materialData: SuggestionWork[];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textDataLength: number;
@@ -31,12 +31,15 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
         <ul className="autosuggest__materials">
           {/* eslint-disable react/jsx-props-no-spreading */}
           {/* The downshift combobox works this way by design */}
-          {materialData.map((item, index) => {
+          {materialData.map((item, incorrectIndex) => {
             let numberOfAuthors = 0;
+            const index = incorrectIndex + textDataLength;
+            console.log(`${incorrectIndex} ${index}`);
+            console.log(getItemProps({ item, index }));
             return (
               <li
                 className={`autosuggest__material ${
-                  highlightedIndex === index + textDataLength
+                  highlightedIndex === index
                     ? "autosuggest__material--highlight"
                     : ""
                 }`}
