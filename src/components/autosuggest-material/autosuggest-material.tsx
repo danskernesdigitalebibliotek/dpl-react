@@ -19,6 +19,10 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   highlightedIndex,
   textDataLength
 }) => {
+  if (materialData.length < 1) {
+    return <div />;
+  }
+
   return (
     <>
       <li className="autosuggest__divider" />
