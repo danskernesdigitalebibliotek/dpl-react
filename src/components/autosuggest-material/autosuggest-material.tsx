@@ -5,6 +5,7 @@ import {
   Suggestion,
   SuggestionWork
 } from "../autosuggest-text/autosuggest-text-item";
+import { Material } from "../material/material";
 
 export interface AutosuggestMaterialProps {
   materialData: SuggestionWork[] | [];
@@ -45,19 +46,12 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 {/* eslint-enable react/jsx-props-no-spreading */}
                 <div className="autosuggest__material__content">
                   <div className="autosuggest__cover">
-                    <div className="material-container">
-                      {/* TODO: once we have the material page, we need to link to the specific one from here. */}
-                      <a
-                        className="material material--xsmall bg-identity-tint-120 material__animate"
-                        href="google.com"
-                      >
-                        {/* TODO: once we have the cover service calls, we get use the image covers here. */}
-                        <img
-                          src="https://imgcdn.saxo.com/_9781616550417/0x500"
-                          alt=""
-                        />
-                      </a>
-                    </div>
+                    {/* TODO: once we have the material page and know what the urls look like, we need to pass materialUrl here */}
+                    <Material
+                      animate
+                      size="xsmall"
+                      materialId={item.manifestations[0].pid}
+                    />
                   </div>
                   <div className="autosuggest__info">
                     <div className="text-body-medium-medium autosuggest__title">

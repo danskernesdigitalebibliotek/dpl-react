@@ -5949,10 +5949,13 @@ export type SuggestionsFromQueryStringQuery = {
       | { __typename: "Subject"; value: string }
       | {
           __typename: "Work";
-          id: string;
           title?: string | null;
           fullTitle?: string | null;
           creators: Array<{ __typename?: "Creator"; name: string }>;
+          manifestations: Array<{
+            __typename?: "WorkManifestation";
+            pid: string;
+          }>;
         }
     >;
   };
@@ -6007,6 +6010,9 @@ export const SuggestionsFromQueryStringDocument = `
         fullTitle
         creators {
           name
+        }
+        manifestations {
+          pid
         }
       }
     }
