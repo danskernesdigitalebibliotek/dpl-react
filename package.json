@@ -34,7 +34,7 @@
     "dev": "concurrently --raw \"yarn start:storybook:dev\" \"yarn watch:lint:scss\"",
     "test": "cypress run",
     "cypress:open": "cypress open",
-    "codegen:dbc:gateway": "CODEGEN_SCHEMA_AGENCY=100200 CODEGEN_SCHEMA_PROFILE=opac graphql-codegen --config dbc-gateway.codegen.yml",
+    "codegen:dbc:gateway": "CODEGEN_SCHEMA_AGENCY=775100 CODEGEN_SCHEMA_PROFILE=opac graphql-codegen --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
     "codegen:client:fbs": "orval --project fbsAdapter",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
@@ -133,6 +133,7 @@
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
     "clsx": "^1.1.1",
+    "downshift": "^6.1.7",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",

@@ -10,8 +10,10 @@ query suggestionsFromQueryString($q: String!) {
         name
       }
       ... on Work {
-        id
-        title
+        id,
+        title,
+        fullTitle,
+        creators { name }
       }
     }
   }
