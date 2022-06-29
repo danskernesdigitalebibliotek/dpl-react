@@ -1,9 +1,9 @@
 import React from "react";
-import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
-import SearchResultListItem from "./search-result-list-item";
+import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
-  resultItems: SearchWithPaginationQuery["search"]["works"];
+  resultItems: WorkSimpleFragment[];
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {

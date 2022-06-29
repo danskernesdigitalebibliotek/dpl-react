@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import SearchResultList from "../../components/search-result-list/search-result.list";
 import SearchResultPager from "../../components/search-result-pager/search-result-pager";
 import {
-  SearchWithPaginationQuery,
-  useSearchWithPaginationQuery
+  SearchResponse,
+  useSearchWithPaginationQuery,
+  WorkSimpleFragment
 } from "../../core/dbc-gateway/generated/graphql";
 
 interface SearchResultProps {
@@ -12,12 +13,10 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const [resultItems, setResultItems] = useState<
-    SearchWithPaginationQuery["search"]["works"] | []
-  >([]);
-  const [hitcount, setHitCount] = useState<
-    SearchWithPaginationQuery["search"]["hitcount"] | number
-  >(0);
+  const [resultItems, setResultItems] = useState<WorkSimpleFragment[] | []>([]);
+  const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
+    0
+  );
   const [page, setPage] = useState(0);
   const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
 
