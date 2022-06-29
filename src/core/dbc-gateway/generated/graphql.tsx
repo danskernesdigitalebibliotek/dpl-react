@@ -5939,6 +5939,7 @@ export type SearchWithPaginationQuery = {
       } | null;
       manifestations: Array<{
         __typename?: "WorkManifestation";
+        pid: string;
         datePublished: unknown;
         creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
       }>;
@@ -5973,6 +5974,7 @@ export type SuggestionsFromQueryStringQuery = {
 
 export type ManifestationSimpleFragment = {
   __typename?: "WorkManifestation";
+  pid: string;
   datePublished: unknown;
   creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
 };
@@ -6000,6 +6002,7 @@ export type WorkSimpleFragment = {
   } | null;
   manifestations: Array<{
     __typename?: "WorkManifestation";
+    pid: string;
     datePublished: unknown;
     creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
   }>;
@@ -6013,6 +6016,7 @@ export const SeriesSimpleFragmentDoc = `
     `;
 export const ManifestationSimpleFragmentDoc = `
     fragment ManifestationSimple on WorkManifestation {
+  pid
   datePublished
   creators {
     name
