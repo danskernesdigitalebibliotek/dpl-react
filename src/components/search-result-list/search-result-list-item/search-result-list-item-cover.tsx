@@ -1,20 +1,20 @@
 import React from "react";
-import { Material, MaterialProps } from "../../material/material";
+import { Cover, CoverProps } from "../../cover/cover";
 
-type SearchResultListItemCoverProps = Omit<MaterialProps, "animate" | "size">;
+type SearchResultListItemCoverProps = Omit<CoverProps, "animate" | "size">;
 const SearchResultListItemCover: React.FC<SearchResultListItemCoverProps> = ({
   materialId,
-  materialDescription,
-  materialUrl,
+  description,
+  url,
   tint
 }) => {
   return (
-    <Material
+    <Cover
       animate
       materialId={materialId}
       size="small"
-      materialDescription={String(materialDescription)}
-      materialUrl={materialUrl}
+      description={String(description)}
+      url={url}
       tint={tint}
     />
   );
