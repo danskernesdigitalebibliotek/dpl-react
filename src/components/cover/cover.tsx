@@ -4,7 +4,7 @@ import { useGetCoverCollection } from "../../core/cover-service-api/cover-servic
 
 export type CoverProps = {
   animate: boolean;
-  size: "small" | "medium" | "large" | "original";
+  size: "xsmall" | "small" | "medium" | "large" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
   materialId: string;
   description?: string;
@@ -19,10 +19,16 @@ export const Cover = ({
   tint,
   materialId
 }: CoverProps) => {
+  let dataSize: CoverProps["size"];
+  if (size === "xsmall") {
+    dataSize = "small";
+  } else {
+    dataSize = size;
+  }
   const { data } = useGetCoverCollection({
     type: "pid",
     identifiers: [materialId],
-    sizes: [size]
+    sizes: [dataSize]
   });
 
   type TintClassesType = {
@@ -47,7 +53,7 @@ export const Cover = ({
     )
   };
 
-  const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
+  const coverUrl = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
   const image = coverUrl && <img src={coverUrl} alt={description || ""} />;
 
   return (
