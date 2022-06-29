@@ -16,7 +16,7 @@ export interface SuggestionCreator {
   __typename: "Creator";
   name: string;
 }
-export interface SuggestonSubject {
+export interface SuggestionSubject {
   __typename: "Subject";
   value: string;
 }
@@ -32,7 +32,7 @@ export interface SuggestionWork {
     pid: string;
   }[];
 }
-export type Suggestion = SuggestionCreator | SuggestonSubject | SuggestionWork;
+export type Suggestion = SuggestionCreator | SuggestionSubject | SuggestionWork;
 
 const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   classes,
@@ -42,6 +42,7 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   getItemProps
 }) => {
   const t = useText();
+  console.log(getItemProps({ item, index }));
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}

@@ -6,7 +6,10 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
-import { Suggestion } from "../../components/autosuggest-text/autosuggest-text-item";
+import {
+  Suggestion,
+  SuggestionWork
+} from "../../components/autosuggest-text/autosuggest-text-item";
 import { useText } from "../../core/utils/text";
 
 const SearchHeader: React.FC = () => {
@@ -32,6 +35,24 @@ const SearchHeader: React.FC = () => {
       setSuggestItems(arayOfResults);
     }
   }, [data]);
+
+  const originalData = data?.suggest.result;
+  const textData: Suggestion[] = [];
+  const materialData: SuggestionWork[] = [];
+  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+
+  if (originalData) {
+    originalData.forEach((item) => {
+      if (item.__typename === "Work") {
+        if (materialData.length < 3) {
+          materialData.push(item);
+          return;
+        }
+      }
+      textData.push(item);
+    });
+    orderedData = textData.concat(materialData);
+  }
 
   // if there are at least 3 chars in the search-field we open the autosuggest
   // by design this is how the autosuggest should work
@@ -83,7 +104,7 @@ const SearchHeader: React.FC = () => {
     }
     if (changes.highlightedIndex > -1) {
       const arrayIndex: number = changes.highlightedIndex;
-      const currentlyHighlightedObject = suggestItems[arrayIndex];
+      const currentlyHighlightedObject = orderedData[arrayIndex];
       const currentItemValue = determinSuggestionType(
         currentlyHighlightedObject
       );
@@ -102,7 +123,7 @@ const SearchHeader: React.FC = () => {
     getComboboxProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
-    items: suggestItems,
+    items: textData.concat(materialData),
     inputValue: q,
     defaultIsOpen: false,
     onInputValueChange: ({ inputValue = "" }) => {
@@ -125,8 +146,9 @@ const SearchHeader: React.FC = () => {
         {/* eslint-enable react/jsx-props-no-spreading */}
         <SearchBar getInputProps={getInputProps} />
         <Autosuggest
-          q={q}
-          data={data}
+          originalData={originalData}
+          textData={textData}
+          materialData={materialData}
           isLoading={isLoading}
           status={status}
           getMenuProps={getMenuProps}

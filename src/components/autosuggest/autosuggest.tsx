@@ -1,5 +1,5 @@
 import { UseComboboxPropGetters } from "downshift";
-import React from "react";
+import React, { useState } from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
@@ -9,8 +9,11 @@ import {
 } from "../autosuggest-text/autosuggest-text-item";
 
 export interface AutosuggestProps {
-  q: string | undefined;
-  data: SuggestionsFromQueryStringQuery | undefined;
+  originalData:
+    | SuggestionsFromQueryStringQuery["suggest"]["result"]
+    | undefined;
+  textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  materialData: SuggestionWork[];
   isLoading: boolean;
   status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
@@ -20,8 +23,9 @@ export interface AutosuggestProps {
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
-  q,
-  data,
+  originalData,
+  textData,
+  materialData,
   isLoading,
   status,
   getMenuProps,
@@ -29,22 +33,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getItemProps,
   isOpen
 }) => {
-  const originalData = data?.suggest.result;
-  const textData: Suggestion[] = [];
-  const materialData: SuggestionWork[] = [];
-
-  if (originalData) {
-    originalData.forEach((item) => {
-      if (item.__typename === "Work") {
-        if (materialData.length < 3) {
-          materialData.push(item);
-          return;
-        }
-      }
-      textData.push(item);
-    });
-  }
-
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -58,13 +46,10 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
         {isLoading && <div>Loading</div>}
 
-        {data && data.suggest.result.length < 1 && null}
-
-        {data && status === "success" && isOpen && (
+        {originalData !== undefined && status === "success" && isOpen && (
           <>
             <AutosuggestText
-              responseData={textData}
-              currentQ={q}
+              textData={textData}
               highlightedIndex={highlightedIndex}
               getItemProps={getItemProps}
             />

@@ -5,8 +5,7 @@ import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generate
 import AutosuggestTextItem, { Suggestion } from "./autosuggest-text-item";
 
 export interface AutosuggestTextProps {
-  responseData: SuggestionsFromQueryStringQuery["suggest"]["result"];
-  currentQ: string | undefined;
+  textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
 }
@@ -30,13 +29,13 @@ export function generateItemId(objectItem: Suggestion) {
 }
 
 export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
-  responseData,
+  textData,
   highlightedIndex,
   getItemProps
 }) => {
   return (
     <li>
-      {responseData.map((item, index) => {
+      {textData.map((item, index) => {
         const classes = {
           textSuggestion: `autosuggest__text text-body-medium-regular px-24 ${clsx(
             {
