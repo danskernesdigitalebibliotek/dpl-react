@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
   addItem,
@@ -39,15 +39,20 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
     );
   }, [materialId, mutate]);
 
-  const handleClick = () => {
-    if (fillState) {
-      removeItem("default", materialId);
-      setFillState(false);
-    } else {
-      addItem("default", materialId);
-      setFillState(true);
-    }
-  };
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (fillState) {
+        removeItem("default", materialId);
+        setFillState(false);
+      } else {
+        addItem("default", materialId);
+        setFillState(true);
+      }
+      // Prevent event from bubbling up.
+      e.stopPropagation();
+    },
+    [fillState, materialId]
+  );
 
   return (
     <button
