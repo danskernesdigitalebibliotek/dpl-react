@@ -5,7 +5,7 @@ import {
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationSimpleFragment[],
-  order: "asc" | "desc" = "asc"
+  order: "asc" | "desc" = "desc"
 ) => {
   return manifestations.sort((a, b) => {
     const currentDate = Number(a.datePublished);
@@ -70,4 +70,11 @@ export const getFirstPublishedYear = (
   manifestations: ManifestationSimpleFragment[]
 ) => {
   return String(getFirstPublishedManifestation(manifestations)?.datePublished);
+};
+
+export const getManifestationPid = (
+  manifestations: ManifestationSimpleFragment[]
+) => {
+  const ordered = orderManifestationsByYear(manifestations);
+  return ordered[0].pid;
 };
