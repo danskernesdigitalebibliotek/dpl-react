@@ -22,12 +22,14 @@ export interface SuggestonSubject {
 }
 export interface SuggestionWork {
   __typename: "Work";
-  id: string;
   title?: string | null | undefined;
   fullTitle?: string | null | undefined;
   creators: {
     __typename?: "Creator" | undefined;
     name: string;
+  }[];
+  manifestations: {
+    pid: string;
   }[];
 }
 export type Suggestion = SuggestionCreator | SuggestonSubject | SuggestionWork;
