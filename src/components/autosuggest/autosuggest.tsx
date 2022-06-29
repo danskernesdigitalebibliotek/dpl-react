@@ -30,19 +30,17 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   isOpen
 }) => {
   const originalData = data?.suggest.result;
-  const textData: Suggestion[] | [] = [];
-  const materialData: SuggestionWork[] | [] = [];
+  const textData: Suggestion[] = [];
+  const materialData: SuggestionWork[] = [];
 
   if (originalData) {
     originalData.forEach((item) => {
       if (item.__typename === "Work") {
         if (materialData.length < 3) {
-          // @ts-expect-error TODO: add item type
           materialData.push(item);
           return;
         }
       }
-      // @ts-expect-error TODO: add item type
       textData.push(item);
     });
   }
