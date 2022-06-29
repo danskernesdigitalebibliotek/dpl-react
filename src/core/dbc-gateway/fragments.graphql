@@ -1,0 +1,30 @@
+fragment ManifestationSimple on WorkManifestation {
+  datePublished
+  creators {
+    name
+    type
+  }
+}
+
+fragment SeriesSimple on Series {
+  part
+  title
+}
+
+fragment WorkSimple on Work {
+  id
+  fullTitle
+  creators {
+    name
+  }
+  subjects {
+    type
+    value
+  }
+  series {
+    ...SeriesSimple
+  }
+  manifestations {
+    ...ManifestationSimple
+  }
+}
