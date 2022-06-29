@@ -1,6 +1,6 @@
 import React from "react";
 import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
-import { MaterialProps } from "../material/material";
+import { CoverProps } from "../cover/cover";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
@@ -8,7 +8,7 @@ export interface SearchResultListProps {
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
-  const tints: MaterialProps["tint"][] = ["20", "40", "60", "80", "120"];
+  const tints: CoverProps["tint"][] = ["20", "40", "60", "80", "120"];
 
   return (
     <ul className="search-result-page__list my-32">

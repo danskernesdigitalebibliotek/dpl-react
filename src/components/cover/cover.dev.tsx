@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Material } from "./material";
+import { Cover } from "./cover";
 
 export default {
-  title: "Atoms / Material",
-  component: Material,
+  title: "Atoms / Cover",
+  component: Cover,
   argTypes: {
     size: {
       name: "Image size",
@@ -22,12 +22,12 @@ export default {
       name: "Material ID",
       control: { type: "text" }
     },
-    materialUrl: {
-      name: "Material URL",
+    url: {
+      name: "URL",
       control: { type: "text" }
     },
-    materialDescription: {
-      name: "Material description",
+    description: {
+      name: "Description",
       control: { type: "text" }
     }
   },
@@ -36,14 +36,12 @@ export default {
     animate: true,
     tint: "120",
     materialId: "870970-basis:45234401",
-    materialUrl: "/",
-    materialDescription: "description"
+    url: "/",
+    description: "description"
   }
-} as ComponentMeta<typeof Material>;
+} as ComponentMeta<typeof Cover>;
 
-const Template: ComponentStory<typeof Material> = (args) => (
-  <Material {...args} />
-);
+const Template: ComponentStory<typeof Cover> = (args) => <Cover {...args} />;
 
 export const item = Template.bind({});
 item.args = {};
