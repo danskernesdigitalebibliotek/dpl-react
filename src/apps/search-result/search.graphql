@@ -2,15 +2,7 @@ query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLi
   search(q: $q) {
     hitcount
     works(offset: $offset, limit: $limit) {
-      id
-      title
-      creators {
-        name
-      }
-      subjects {
-        type
-        value
-      }
+      ...WorkSimple
     }
   }
 }

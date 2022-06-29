@@ -5925,12 +5925,22 @@ export type SearchWithPaginationQuery = {
     works: Array<{
       __typename?: "Work";
       id: string;
-      title?: string | null;
+      fullTitle?: string | null;
       creators: Array<{ __typename?: "Creator"; name: string }>;
       subjects: Array<{
         __typename?: "Subject";
         type?: string | null;
         value: string;
+      }>;
+      series?: {
+        __typename?: "Series";
+        part?: string | null;
+        title?: string | null;
+      } | null;
+      manifestations: Array<{
+        __typename?: "WorkManifestation";
+        datePublished: unknown;
+        creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
       }>;
     }>;
   };
@@ -5961,24 +5971,85 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type ManifestationSimpleFragment = {
+  __typename?: "WorkManifestation";
+  datePublished: unknown;
+  creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
+};
+
+export type SeriesSimpleFragment = {
+  __typename?: "Series";
+  part?: string | null;
+  title?: string | null;
+};
+
+export type WorkSimpleFragment = {
+  __typename?: "Work";
+  id: string;
+  fullTitle?: string | null;
+  creators: Array<{ __typename?: "Creator"; name: string }>;
+  subjects: Array<{
+    __typename?: "Subject";
+    type?: string | null;
+    value: string;
+  }>;
+  series?: {
+    __typename?: "Series";
+    part?: string | null;
+    title?: string | null;
+  } | null;
+  manifestations: Array<{
+    __typename?: "WorkManifestation";
+    datePublished: unknown;
+    creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
+  }>;
+};
+
+export const SeriesSimpleFragmentDoc = `
+    fragment SeriesSimple on Series {
+  part
+  title
+}
+    `;
+export const ManifestationSimpleFragmentDoc = `
+    fragment ManifestationSimple on WorkManifestation {
+  datePublished
+  creators {
+    name
+    type
+  }
+}
+    `;
+export const WorkSimpleFragmentDoc = `
+    fragment WorkSimple on Work {
+  id
+  fullTitle
+  creators {
+    name
+  }
+  subjects {
+    type
+    value
+  }
+  series {
+    ...SeriesSimple
+  }
+  manifestations {
+    ...ManifestationSimple
+  }
+}
+    ${SeriesSimpleFragmentDoc}
+${ManifestationSimpleFragmentDoc}`;
 export const SearchWithPaginationDocument = `
     query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
   search(q: $q) {
     hitcount
     works(offset: $offset, limit: $limit) {
-      id
-      title
-      creators {
-        name
-      }
-      subjects {
-        type
-        value
-      }
+      ...WorkSimple
     }
   }
 }
-    `;
+    ${WorkSimpleFragmentDoc}`;
 export const useSearchWithPaginationQuery = <
   TData = SearchWithPaginationQuery,
   TError = unknown
