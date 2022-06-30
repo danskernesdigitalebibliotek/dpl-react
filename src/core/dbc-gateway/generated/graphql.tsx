@@ -5941,6 +5941,7 @@ export type SearchWithPaginationQuery = {
         __typename?: "WorkManifestation";
         pid: string;
         datePublished: unknown;
+        materialType: string;
         creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
       }>;
     }>;
@@ -5976,6 +5977,7 @@ export type ManifestationSimpleFragment = {
   __typename?: "WorkManifestation";
   pid: string;
   datePublished: unknown;
+  materialType: string;
   creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
 };
 
@@ -6004,6 +6006,7 @@ export type WorkSimpleFragment = {
     __typename?: "WorkManifestation";
     pid: string;
     datePublished: unknown;
+    materialType: string;
     creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
   }>;
 };
@@ -6018,6 +6021,7 @@ export const ManifestationSimpleFragmentDoc = `
     fragment ManifestationSimple on WorkManifestation {
   pid
   datePublished
+  materialType
   creators {
     name
     type

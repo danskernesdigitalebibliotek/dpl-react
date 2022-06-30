@@ -1,6 +1,7 @@
 fragment ManifestationSimple on WorkManifestation {
   pid
   datePublished
+  materialType
   creators {
     name
     type

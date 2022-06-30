@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
 import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
 import Arrow from "../../atoms/icons/arrow/arrow";
+import AvailabilityLabels, {
+  AvailabiltityLabels
+} from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
 import {
@@ -66,6 +69,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         {author && (
           <p className="text-small-caption">{`Af ${author} (${datePublished})`}</p>
         )}
+      </div>
+      <div className="search-result-item__availability">
+        <AvailabiltityLabels manifestations={manifestations} />
       </div>
       <Arrow />
     </article>
