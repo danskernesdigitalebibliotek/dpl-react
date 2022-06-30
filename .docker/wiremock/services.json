@@ -1,0 +1,8 @@
+{
+  "services" : [ {
+    "id" : "5gpl3",
+    "name" : "FBS",
+    "port" : 8100,
+    "rootDir" : "fbs"
+  } ]
+}

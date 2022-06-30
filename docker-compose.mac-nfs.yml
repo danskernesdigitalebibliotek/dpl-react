@@ -11,3 +11,8 @@ volumes:
       type: nfs
       o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
       device: ":${PWD}"
+  wiremock_data:
+    driver_opts:
+      type: nfs
+      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+      device: ":${PWD}/.docker/wiremock"

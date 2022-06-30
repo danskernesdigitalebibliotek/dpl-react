@@ -28,12 +28,17 @@ tasks:
     summary: Install and run docker compose
     cmds:
       - task dev:install
-      - docker compose up --detach
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} up --detach
 
   dev:stop:
     summary: Stop docker compose environment
     cmds:
       - docker compose {{ .DOCKER_COMPOSE_FILES }} stop
+
+  dev:up:
+    summary: Install run docker compose
+    cmds:
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} up --detach
 
   dev:down:
     summary: Stop and remove docker compose environment
