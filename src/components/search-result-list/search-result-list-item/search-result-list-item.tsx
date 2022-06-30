@@ -1,11 +1,10 @@
 import React, { useCallback } from "react";
 import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
 import Arrow from "../../atoms/icons/arrow/arrow";
-import AvailabilityLabels, {
-  AvailabiltityLabels
-} from "../../availability-label/availability-labels";
+import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
+import { Link } from "../../utils/link";
 import {
   creatorsToString,
   flattenCreators,
@@ -60,10 +59,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
-          {/* TODO: Remove this little inline style and make a class for it in dpl-design-system. */}
-          <a style={{ textDecoration: "none" }} href="/">
-            {fullTitle}
-          </a>
+          <Link href="/">{fullTitle}</Link>
         </h2>
 
         {author && (
