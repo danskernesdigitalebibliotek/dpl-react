@@ -7,7 +7,7 @@ import { useText } from "../../core/utils/text";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
-  selected: boolean;
+  selected?: boolean;
   link: string | undefined;
   materialId: string[];
 }
