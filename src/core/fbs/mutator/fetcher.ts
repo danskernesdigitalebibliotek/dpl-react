@@ -2,6 +2,42 @@ import { getToken, TOKEN_USER_KEY } from "../../token";
 
 const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
 
+type FetchParams =
+  | string
+  | string[][]
+  | Record<string, string>
+  | URLSearchParams
+  | undefined;
+
+/**
+ * Build URLSearchParams instance with support for arrays of values.
+ *
+ * By default URLSearchParams will join arrays of values with a comma. This is
+ * not desirable for our use case. Instead we want arrays of values to be
+ * represented as multiple entries with the same key.
+ */
+function buildParams(data: FetchParams) {
+  let params: URLSearchParams;
+
+  if (typeof data === "string" || data === undefined) {
+    params = new URLSearchParams(data);
+  } else {
+    params = new URLSearchParams();
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((inner) => {
+          params.append(key, inner.toString());
+        });
+      } else {
+        params.append(key, value.toString());
+      }
+    });
+  }
+
+  return params;
+}
+
 export const fetcher = async <ResponseType>({
   url,
   method,
@@ -16,13 +52,6 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  type FetchParams =
-    | string
-    | string[][]
-    | Record<string, string>
-    | URLSearchParams
-    | undefined;
-
   const userToken = getToken(TOKEN_USER_KEY);
   const authHeaders = userToken
     ? ({ Authorization: `Bearer ${userToken}` } as object)
@@ -31,7 +60,7 @@ export const fetcher = async <ResponseType>({
   const body = data ? JSON.stringify(data) : null;
 
   const response = await fetch(
-    `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
+    `${baseURL}${url}${params ? `?${buildParams(params as FetchParams)}` : ""}`,
     {
       method,
       headers: {
@@ -41,6 +70,10 @@ export const fetcher = async <ResponseType>({
       body
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
 
   try {
     return (await response.json()) as ResponseType;
