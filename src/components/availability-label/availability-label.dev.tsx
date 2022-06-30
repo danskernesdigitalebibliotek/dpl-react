@@ -12,28 +12,30 @@ export default {
   title: "Components/Availability Label",
   component: AvailabilityLabel,
   argTypes: {
+    materialId: {
+      name: "Material Id",
+      control: { type: "array" }
+    },
     manifestText: {
       name: "Manifestation text",
-      defaultValue: "Bog",
       control: { type: "text" }
     },
-    availabilityText: {
-      name: "Availability text",
-      defaultValue: "Hjemme",
-      control: { type: "text" }
-    },
-    state: {
-      name: "State",
-      description:
-        "To change availaility, select from Storybook Availability Label components",
-      defaultValue: "available",
-      control: { type: null }
-    },
+
     link: {
       name: "Link",
-      defaultValue: "https://www.google.com",
       control: { type: "text" }
+    },
+    selected: {
+      name: "selected",
+      control: { type: "boolean" }
     }
+  },
+  args: {
+    materialId: ["62523611"],
+    manifestText: "Bog",
+    availabilityText: "Hjemme",
+    link: "",
+    selected: false
   }
 } as ComponentMeta<typeof AvailabilityLabel>;
 
@@ -42,19 +44,22 @@ const Template: ComponentStory<typeof AvailabilityLabel> = (
 ) => <AvailabilityLabel {...args} />;
 
 export const Available = Template.bind({});
+Available.args = {
+  materialId: ["61435867"]
+};
+
+export const MoreThanOneID = Template.bind({});
+MoreThanOneID.args = {
+  materialId: ["62523611", "62150041", "61435867"]
+};
 
 export const Selected = Template.bind({});
 Selected.args = {
   manifestText: "lydbog (cd-mp3)",
-  availabilityText: "udlånt",
-  state: "selected",
-  link: undefined
+  selected: true
 };
 
 export const Unavailable = Template.bind({});
 Unavailable.args = {
-  manifestText: "ebog",
-  availabilityText: "online",
-  state: "unavailable",
-  link: undefined
+  manifestText: "ebog"
 };
