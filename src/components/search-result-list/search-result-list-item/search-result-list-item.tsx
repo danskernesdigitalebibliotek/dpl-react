@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
+import { useText } from "../../../core/utils/text";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
@@ -24,7 +25,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   item: { fullTitle, series, creators, manifestations, id: workId },
   coverTint
 }) => {
-  const creatorsText = creatorsToString(flattenCreators(creators));
+  const t = useText();
+  const creatorsText = creatorsToString(flattenCreators(creators), t);
   const author = creatorsText || "[Creators are missing]";
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
@@ -63,7 +65,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </h2>
 
         {author && (
-          <p className="text-small-caption">{`Af ${author} (${datePublished})`}</p>
+          <p className="text-small-caption">{`${t(
+            "byAuthorText"
+          )} ${author} (${datePublished})`}</p>
         )}
       </div>
       <div className="search-result-item__availability">
