@@ -1,7 +1,6 @@
 import * as React from "react";
 import { getUrlQueryParam } from "../../core/utils/helpers";
 import {
-  getPageSize,
   getPageSizeFromConfiguration,
   getPageSizeFromDataAttributes
 } from "./helpers";
@@ -20,7 +19,7 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
 }) => {
   // If a q string has been defined as a data attribute use that
   // otherwise use the one from the url query parameter.
-  const searchQuery = attrQ || (getUrlQueryParam() as string);
+  const searchQuery = attrQ || (getUrlQueryParam("q") as string);
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.

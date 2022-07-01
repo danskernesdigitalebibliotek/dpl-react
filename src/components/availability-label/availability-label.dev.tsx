@@ -12,8 +12,8 @@ export default {
   title: "Components/Availability Label",
   component: AvailabilityLabel,
   argTypes: {
-    materialId: {
-      name: "Material Id",
+    faustIds: {
+      name: "Faust Ids",
       control: { type: "array" }
     },
     manifestText: {
@@ -31,7 +31,7 @@ export default {
     }
   },
   args: {
-    materialId: ["62523611"],
+    faustIds: ["62523611"],
     manifestText: "Bog",
     availabilityText: "Hjemme",
     link: "",
@@ -45,12 +45,12 @@ const Template: ComponentStory<typeof AvailabilityLabel> = (
 
 export const Available = Template.bind({});
 Available.args = {
-  materialId: ["61435867"]
+  faustIds: ["61435867"]
 };
 
 export const MoreThanOneID = Template.bind({});
 MoreThanOneID.args = {
-  materialId: ["62523611", "62150041", "61435867"]
+  faustIds: ["62523611", "62150041", "61435867"]
 };
 
 export const Selected = Template.bind({});
