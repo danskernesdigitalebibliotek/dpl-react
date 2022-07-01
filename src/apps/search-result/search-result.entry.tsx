@@ -1,6 +1,10 @@
 import * as React from "react";
 import { getUrlQueryParam } from "../../core/utils/helpers";
-import { getPageSize } from "./helpers";
+import {
+  getPageSize,
+  getPageSizeFromConfiguration,
+  getPageSizeFromDataAttributes
+} from "./helpers";
 import SearchResult from "./search-result";
 
 export interface SearchResultEntryProps {
@@ -20,16 +24,19 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
-  const pageSize = getPageSize({
-    desktop: attrPageSizeDesktop,
-    mobile: attrPageSizeMobile
-  });
+  let pageSize = 0;
+  if (attrPageSizeDesktop && attrPageSizeMobile) {
+    pageSize = getPageSizeFromDataAttributes({
+      desktop: attrPageSizeDesktop,
+      mobile: attrPageSizeMobile
+    });
+  } else {
+    pageSize = getPageSizeFromConfiguration();
+  }
 
   return (
     <div>
-      {searchQuery && (
-        <SearchResult q={searchQuery} pageSize={pageSize as number} />
-      )}
+      {searchQuery && <SearchResult q={searchQuery} pageSize={pageSize} />}
     </div>
   );
 };

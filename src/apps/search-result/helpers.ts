@@ -1,25 +1,30 @@
 import configuration, { getDeviceConf } from "../../core/configuration";
 
 interface PageSizeDataAttributes {
-  desktop?: number;
-  mobile?: number;
+  desktop: number;
+  mobile: number;
 }
 
-export const getPageSize = ({ desktop, mobile }: PageSizeDataAttributes) => {
-  if (desktop && mobile) {
-    return getDeviceConf("search", {
-      search: {
-        mobile: {
-          pageSize: mobile
-        },
-        desktop: {
-          pageSize: desktop
-        }
+export const getPageSizeFromDataAttributes = ({
+  desktop,
+  mobile
+}: PageSizeDataAttributes) => {
+  const { pageSize } = getDeviceConf("search", {
+    search: {
+      mobile: {
+        pageSize: mobile
+      },
+      desktop: {
+        pageSize: desktop
       }
-    }).pageSize;
-  }
+    }
+  });
+  return Number(pageSize);
+};
 
-  return getDeviceConf("search", configuration).pageSize;
+export const getPageSizeFromConfiguration = () => {
+  const { pageSize } = getDeviceConf("search", configuration);
+  return Number(pageSize);
 };
 
 export default {};
