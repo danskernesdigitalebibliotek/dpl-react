@@ -1,4 +1,5 @@
 import React from "react";
+import { useText } from "../../core/utils/text";
 
 export interface SearchResultPagerProps {
   setPageHandler: () => void;
@@ -10,17 +11,20 @@ function SearchResultPager({
   searchItemsShown,
   hitcount
 }: SearchResultPagerProps) {
+  const t = useText();
   return (
     <div className="search-result-pager">
       <p className="text-small-caption search-result-pager__title">
-        Viser {searchItemsShown} ud af {hitcount} resultater
+        {t("showingText")} {searchItemsShown} {t("outOfText")} {hitcount}{" "}
+        {t("resultsText")}
       </p>
       <button
         type="button"
         className="btn-primary btn-outline btn-medium arrow__hover--right-small"
         onClick={setPageHandler}
       >
-        VIS FLERE
+        {/* TODO: Solve casing in CSS */}
+        {t("showMoreText").toUpperCase()}
       </button>
     </div>
   );

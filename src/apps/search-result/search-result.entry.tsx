@@ -1,12 +1,22 @@
 import * as React from "react";
 import { getUrlQueryParam } from "../../core/utils/helpers";
+import { withText } from "../../core/utils/text";
 import {
   getPageSizeFromConfiguration,
   getPageSizeFromDataAttributes
 } from "./helpers";
 import SearchResult from "./search-result";
 
-export interface SearchResultEntryProps {
+interface SearchResultEntryTextProps {
+  etAlText: string;
+  byAuthorText: string;
+  showMoreText: string;
+  showingText: string;
+  outOfText: string;
+  resultsText: string;
+}
+
+export interface SearchResultEntryProps extends SearchResultEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
@@ -40,4 +50,4 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default SearchResultEntry;
+export default withText(SearchResultEntry);
