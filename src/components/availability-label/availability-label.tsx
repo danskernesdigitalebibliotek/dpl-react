@@ -9,18 +9,18 @@ export interface AvailabilityLabelProps {
   manifestText: string;
   selected?: boolean;
   link: string | undefined;
-  materialId: string[];
+  faustIds: string[];
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
   link,
-  materialId
+  faustIds
 }) => {
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
-    recordid: materialId
+    recordid: faustIds
   });
 
   if (isLoading || isError) {
