@@ -2,6 +2,7 @@ import {
   ManifestationSimpleFragment,
   WorkSimpleFragment
 } from "../../core/dbc-gateway/generated/graphql";
+import { UseTextFunction } from "../../core/utils/text";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationSimpleFragment[],
@@ -32,21 +33,22 @@ const getCreatorsFromManifestations = (
   return Array.from(new Set(creators));
 };
 
-export const creatorsToString = (creators: string[]) => {
+export const creatorsToString = (creators: string[], t: UseTextFunction) => {
   if (creators.length > 1) {
     const firstTwo = creators.slice(0, 2);
-    return `${firstTwo.join(", ")} et al.`;
+    return `${firstTwo.join(", ")} ${t("etAlText")}`;
   }
 
   return creators[0];
 };
 
 export const getCreatorTextFromManifestations = (
-  manifestations: ManifestationSimpleFragment[]
+  manifestations: ManifestationSimpleFragment[],
+  t: UseTextFunction
 ) => {
   const creators = getCreatorsFromManifestations(manifestations);
 
-  return creatorsToString(creators);
+  return creatorsToString(creators, t);
 };
 
 const getFirstPublishedManifestation = (

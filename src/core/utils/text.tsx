@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { RootState, store, useSelector } from "../store";
 import { addTextEntries } from "../text.slice";
 
-export const useText = (): ((key: string) => string) => {
+export type UseTextFunction = (key: string) => string;
+export const useText = (): UseTextFunction => {
   const { data } = useSelector((state: RootState) => state.text);
   return (key: string) => data?.[key] ?? key;
 };

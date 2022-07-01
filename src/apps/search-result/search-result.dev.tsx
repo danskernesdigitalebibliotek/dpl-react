@@ -22,6 +22,36 @@ export default {
       name: "Number of search result items on mobile",
       defaultValue: 20,
       control: { type: "number" }
+    },
+    etAlText: {
+      name: "Et al. Text",
+      defaultValue: "et al.",
+      control: { type: "text" }
+    },
+    byAuthorText: {
+      name: "By (author) Text",
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    showMoreText: {
+      name: "Show more Text",
+      defaultValue: "vis flere",
+      control: { type: "text" }
+    },
+    showingText: {
+      name: "Showing Text",
+      defaultValue: "Viser",
+      control: { type: "text" }
+    },
+    outOfText: {
+      name: "Out of Text",
+      defaultValue: "ud af",
+      control: { type: "text" }
+    },
+    resultsText: {
+      name: "Results Text",
+      defaultValue: "resultater",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;
