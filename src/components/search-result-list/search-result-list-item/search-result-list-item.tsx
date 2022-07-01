@@ -22,7 +22,13 @@ export interface SearchResultListItemProps {
 
 // TODO: The material item link should point at something.
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
-  item: { fullTitle, series, creators, manifestations, id: workId },
+  item: {
+    titles: { full: fullTitle },
+    series,
+    creators,
+    manifestations,
+    workId
+  },
   coverTint
 }) => {
   const t = useText();
