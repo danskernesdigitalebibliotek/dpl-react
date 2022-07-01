@@ -5,7 +5,7 @@ import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../utils/link";
+import { Link } from "../../atoms/link";
 import {
   creatorsToString,
   flattenCreators,

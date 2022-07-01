@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
+import { LinkNoStyle } from "../atoms/link-no-style";
 
 export type CoverProps = {
   animate: boolean;
@@ -57,9 +58,9 @@ export const Cover = ({
        * Only render the material as a link if we have both an url and a description.
        */}
       {url && description ? (
-        <a href={url} className={classes.wrapper}>
+        <LinkNoStyle href={url} className={classes.wrapper}>
           {image}
-        </a>
+        </LinkNoStyle>
       ) : (
         <span className={classes.wrapper}>{image}</span>
       )}
