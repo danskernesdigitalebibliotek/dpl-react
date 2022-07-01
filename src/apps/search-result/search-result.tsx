@@ -41,6 +41,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       limit: pageSize
     },
     {
+      // If the component is used in Storybook context
+      // the same query and other parameters might come twice within the global stale time.
+      // If that happens the onssuccess handler will not be called and we cannot
+      // see the functionality of it properly.
+      // By setting it to zero here we basically disable the cache for search queries,
+      // which is tolerable since the same query probably won't occur in production
+      // within a reasonable global stale time.
       staleTime: 0,
       onSuccess: (result) => {
         const {
