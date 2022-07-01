@@ -15,6 +15,7 @@ const SearchResultListItemSeries: React.FC<SearchResultListItemSeriesProps> = ({
           <span className="text-label-semibold">{part}</span> i serien&nbsp;
         </span>
       )}
+      {/* TODO: Should be converted to a Link component when the link component is ready */}
       {title && (
         <a href="/" className="link-tag">
           {title}
