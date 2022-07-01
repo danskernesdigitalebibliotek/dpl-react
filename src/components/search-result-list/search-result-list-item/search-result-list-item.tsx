@@ -67,6 +67,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
+          {/* TODO: Point link at material page url when ready */}
           <Link href="/">{fullTitle}</Link>
         </h2>
 
