@@ -48,7 +48,8 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
         addItem("default", materialId);
         setFillState(true);
       }
-      // Prevent event from bubbling up.
+      // Prevent event from bubbling up. If other components includes the favourite button
+      // this wont interfere with their click handler.
       e.stopPropagation();
     },
     [fillState, materialId]
