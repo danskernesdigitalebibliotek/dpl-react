@@ -1,6 +1,6 @@
 import React from "react";
 import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
-import { CoverProps } from "../cover/cover";
+import { getCoverTint } from "./helpers";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
@@ -8,20 +8,13 @@ export interface SearchResultListProps {
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
-  const tints: CoverProps["tint"][] = ["20", "40", "60", "80", "120"];
-
   return (
     <ul className="search-result-page__list my-32">
-      {resultItems.map((item, i) => {
-        const tintKey = i % tints.length;
-        const coverTint = tints[tintKey];
-
-        return (
-          <li key={item.id}>
-            <SearchResultListItem item={item} coverTint={coverTint} />
-          </li>
-        );
-      })}
+      {resultItems.map((item, i) => (
+        <li key={item.id}>
+          <SearchResultListItem item={item} coverTint={getCoverTint(i)} />
+        </li>
+      ))}
     </ul>
   );
 };

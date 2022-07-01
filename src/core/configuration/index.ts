@@ -6,7 +6,7 @@ type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
 };
-type Configuration = {
+export type Configuration = {
   [confScope: string]: Record<string, unknown>;
 };
 
