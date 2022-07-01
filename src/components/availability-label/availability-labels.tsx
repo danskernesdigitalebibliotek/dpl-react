@@ -1,5 +1,7 @@
 import React from "react";
 import { ManifestationSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import { convertPostIdToFaustId } from "../../core/utils/helpers";
+import { PostId } from "../../core/utils/types/ids";
 import { AvailabilityLabel } from "./availability-label";
 
 export interface AvailabilityLabelsProps {
@@ -12,13 +14,16 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   return (
     <>
       {manifestations.map((manifestation) => {
-        const { pid, materialType } = manifestation;
-        const matches = pid.match(/^[0-9]+-[a-z]+:([0-9]+)$/);
-        if (matches?.[1]) {
+        const { pid, materialType } = manifestation as {
+          pid: PostId;
+          materialType: string;
+        };
+        const faustId = convertPostIdToFaustId(pid);
+        if (faustId) {
           return (
             <AvailabilityLabel
               link="/"
-              materialId={[matches[1]]}
+              faustIds={[faustId]}
               manifestText={materialType}
             />
           );
