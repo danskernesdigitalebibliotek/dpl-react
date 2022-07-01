@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "test") {
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
 const userToken = getSessionStorage(TOKEN_USER_KEY);
-const libraryToken = process.env.STORYBOOK_LIBRARY_TOKEN ?? getSessionStorage(TOKEN_LIBRARY_KEY);
+const libraryToken = process.env.LIBRARY_TOKEN ?? getSessionStorage(TOKEN_LIBRARY_KEY);
 
 if (userToken) {
   setToken(TOKEN_USER_KEY, userToken);
