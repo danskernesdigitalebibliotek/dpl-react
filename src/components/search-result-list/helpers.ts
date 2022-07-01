@@ -1,8 +1,10 @@
+import configuration, { getConf } from "../../core/configuration";
 import {
   ManifestationSimpleFragment,
   WorkSimpleFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { UseTextFunction } from "../../core/utils/text";
+import { CoverProps } from "../cover/cover";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationSimpleFragment[],
@@ -69,4 +71,14 @@ export const getManifestationPid = (
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
   return ordered[0].pid;
+};
+
+export const getCoverTint = (index: number) => {
+  const conf = getConf("search", configuration);
+  const { coverTints }: { coverTints?: CoverProps["tint"][] } = conf;
+  if (coverTints) {
+    const tintKey = index % coverTints.length;
+    return coverTints[tintKey];
+  }
+  return undefined;
 };

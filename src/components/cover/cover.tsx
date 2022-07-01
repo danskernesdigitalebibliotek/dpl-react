@@ -5,7 +5,7 @@ import { useGetCoverCollection } from "../../core/cover-service-api/cover-servic
 export type CoverProps = {
   animate: boolean;
   size: "small" | "medium" | "large" | "original";
-  tint?: "20" | "40" | "60" | "80" | "120";
+  tint?: "20" | "40" | "80" | "100" | "120";
   materialId: string;
   description?: string;
   url?: string;
