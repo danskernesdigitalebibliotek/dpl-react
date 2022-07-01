@@ -39,7 +39,13 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   return (
     // We know that is not following a11y recommendations to have an onclick handler
     // on a noninteractive element.
-    // But since we have a link in the title we should be alright.
+    // The reason why this is implemented:
+    // We have interactive elements within each search result: the favourite button,
+    // which must react to clicks
+    // while we also want the entire search result to be clickable.
+    // You cannot have nested links so onClick handlers
+    // and stopping event propagation is necessary.
+    //
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       className="search-result-item arrow arrow__hover--right-small"
