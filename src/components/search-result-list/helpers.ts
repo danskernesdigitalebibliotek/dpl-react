@@ -11,19 +11,9 @@ export const orderManifestationsByYear = (
     const currentDate = Number(a.datePublished);
     const prevDate = Number(b.datePublished);
     if (order === "desc") {
-      if (currentDate < prevDate) {
-        return 1;
-      }
+      return prevDate - currentDate;
     }
-
-    if (currentDate < prevDate) {
-      return 1;
-    }
-    if (currentDate < prevDate) {
-      return -1;
-    }
-
-    return 0;
+    return currentDate - prevDate;
   });
 };
 
