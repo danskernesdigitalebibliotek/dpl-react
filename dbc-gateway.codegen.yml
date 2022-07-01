@@ -1,6 +1,8 @@
 overwrite: true
 schema:
-  - "https://next-prototype-gateway.dbc.dk/${CODEGEN_SCHEMA_AGENCY}/${CODEGEN_SCHEMA_PROFILE}/graphql"
+  - "https://fbi-api.dbc.dk/${CODEGEN_SCHEMA_PROFILE}/graphql":
+        headers:
+          Authorization: "Bearer ${STORYBOOK_LIBRARY_TOKEN}"
 documents: "src/**/*.graphql"
 generates:
   src/core/dbc-gateway/generated/graphql.tsx:
