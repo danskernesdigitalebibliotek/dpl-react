@@ -6,7 +6,7 @@ fragment ManifestationsSimple on Manifestations {
       display
     }
     materialTypes {
-      general
+      specific
     }
     creators {
       display,
