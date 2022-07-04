@@ -1,5 +1,5 @@
 import { UseComboboxPropGetters } from "downshift";
-import React, { useState } from "react";
+import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
