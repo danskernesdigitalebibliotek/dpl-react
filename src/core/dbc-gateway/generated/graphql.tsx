@@ -1073,8 +1073,8 @@ export type SearchWithPaginationQuery = {
       workId: string;
       titles: { __typename?: "WorkTitles"; full: Array<string> };
       creators: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       series: Array<{
         __typename?: "Series";
@@ -1095,8 +1095,8 @@ export type SearchWithPaginationQuery = {
             general: string;
           }>;
           creators: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
         }>;
       };
@@ -1112,8 +1112,8 @@ export type ManifestationsSimpleFragment = {
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
     creators: Array<
-      | { __typename?: "Corporation"; display: string }
-      | { __typename?: "Person"; display: string }
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
     >;
   }>;
 };
@@ -1129,8 +1129,8 @@ export type WorkSimpleFragment = {
   workId: string;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
-    | { __typename?: "Corporation"; display: string }
-    | { __typename?: "Person"; display: string }
+    | { __typename: "Corporation"; display: string }
+    | { __typename: "Person"; display: string }
   >;
   series: Array<{
     __typename?: "Series";
@@ -1145,8 +1145,8 @@ export type WorkSimpleFragment = {
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
       creators: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
     }>;
   };
@@ -1172,6 +1172,7 @@ export const ManifestationsSimpleFragmentDoc = `
     }
     creators {
       display
+      __typename
     }
   }
 }
@@ -1184,6 +1185,7 @@ export const WorkSimpleFragmentDoc = `
   }
   creators {
     display
+    __typename
   }
   series {
     ...SeriesSimple
