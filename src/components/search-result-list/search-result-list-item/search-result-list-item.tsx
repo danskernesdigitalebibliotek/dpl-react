@@ -8,6 +8,7 @@ import { CoverProps } from "../../cover/cover";
 import { Link } from "../../utils/link";
 import {
   creatorsToString,
+  filterCreators,
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
@@ -32,7 +33,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   coverTint
 }) => {
   const t = useText();
-  const creatorsText = creatorsToString(flattenCreators(creators), t);
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
   const author = creatorsText || "[Creators are missing]";
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);

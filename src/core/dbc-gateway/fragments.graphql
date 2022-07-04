@@ -9,7 +9,8 @@ fragment ManifestationsSimple on Manifestations {
       general
     }
     creators {
-      display
+      display,
+      __typename
     }
   }
 
@@ -28,7 +29,8 @@ fragment WorkSimple on Work {
     full
   }
   creators {
-    display
+    display,
+  __typename
   }
   series {
     ...SeriesSimple
