@@ -1104,26 +1104,18 @@ export type SearchWithPaginationQuery = {
   };
 };
 
-type CreatorSimpleCorporationFragment = {
-  __typename?: "Corporation";
-  display: string;
-};
-
-type CreatorSimplePersonFragment = { __typename?: "Person"; display: string };
-
-export type CreatorSimpleFragment =
-  | CreatorSimpleCorporationFragment
-  | CreatorSimplePersonFragment;
-
-export type ManifestationSimpleFragment = {
-  __typename?: "Manifestation";
-  pid: string;
-  publicationYear: { __typename?: "PublicationYear"; display: string };
-  materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
-  creators: Array<
-    | { __typename?: "Corporation"; display: string }
-    | { __typename?: "Person"; display: string }
-  >;
+export type ManifestationsSimpleFragment = {
+  __typename?: "Manifestations";
+  all: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    publicationYear: { __typename?: "PublicationYear"; display: string };
+    materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
+    creators: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+    >;
+  }>;
 };
 
 export type SeriesSimpleFragment = {
@@ -1160,11 +1152,6 @@ export type WorkSimpleFragment = {
   };
 };
 
-export const CreatorSimpleFragmentDoc = `
-    fragment CreatorSimple on Creator {
-  display
-}
-    `;
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   numberInSeries {
@@ -1173,20 +1160,22 @@ export const SeriesSimpleFragmentDoc = `
   title
 }
     `;
-export const ManifestationSimpleFragmentDoc = `
-    fragment ManifestationSimple on Manifestation {
-  pid
-  publicationYear {
-    display
-  }
-  materialTypes {
-    general
-  }
-  creators {
-    ...CreatorSimple
+export const ManifestationsSimpleFragmentDoc = `
+    fragment ManifestationsSimple on Manifestations {
+  all {
+    pid
+    publicationYear {
+      display
+    }
+    materialTypes {
+      general
+    }
+    creators {
+      display
+    }
   }
 }
-    ${CreatorSimpleFragmentDoc}`;
+    `;
 export const WorkSimpleFragmentDoc = `
     fragment WorkSimple on Work {
   workId
@@ -1194,20 +1183,17 @@ export const WorkSimpleFragmentDoc = `
     full
   }
   creators {
-    ...CreatorSimple
+    display
   }
   series {
     ...SeriesSimple
   }
   manifestations {
-    all {
-      ...ManifestationSimple
-    }
+    ...ManifestationsSimple
   }
 }
-    ${CreatorSimpleFragmentDoc}
-${SeriesSimpleFragmentDoc}
-${ManifestationSimpleFragmentDoc}`;
+    ${SeriesSimpleFragmentDoc}
+${ManifestationsSimpleFragmentDoc}`;
 export const SearchWithPaginationDocument = `
     query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
   search(q: $q) {

@@ -1,17 +1,18 @@
-fragment CreatorSimple on Creator {
-  display
-}
-fragment ManifestationSimple on Manifestation {
-  pid
-  publicationYear {
-    display
+
+fragment ManifestationsSimple on Manifestations {
+  all {
+    pid
+    publicationYear {
+      display
+    }
+    materialTypes {
+      general
+    }
+    creators {
+      display
+    }
   }
-  materialTypes {
-    general
-  }
-  creators {
-    ...CreatorSimple
-  }
+
 }
 
 fragment SeriesSimple on Series {
@@ -27,15 +28,12 @@ fragment WorkSimple on Work {
     full
   }
   creators {
-    ...CreatorSimple
+    display
   }
   series {
     ...SeriesSimple
   }
   manifestations {
-    all {
-      ...ManifestationSimple
-    }
-
+    ...ManifestationsSimple
   }
 }

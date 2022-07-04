@@ -8,7 +8,8 @@ interface SearchResultListItemSeriesProps {
 const SearchResultListItemSeries: React.FC<SearchResultListItemSeriesProps> = ({
   series
 }) => {
-  const display = numberInSeries?.display;
+  const display = series?.[0]?.numberInSeries?.display;
+  const title = series?.[0]?.title;
   return (
     <div className="text-small-caption">
       {display && (
