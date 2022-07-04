@@ -41,9 +41,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
 
-  // TODO: Redirect to material page.
   const handleClick = useCallback(() => {
-    console.log("Going to material page!");
+    // TODO: Redirect to material page.
   }, []);
 
   return (
