@@ -29,7 +29,7 @@ const SearchHeader: React.FC = () => {
     status: string;
   } = useSuggestionsFromQueryStringQuery({ q });
 
-  // once the query returns data, we set it into our useSate
+  // make sure to only assign the data once
   useEffect(() => {
     if (data) {
       const arayOfResults = data.suggest.result;
@@ -54,8 +54,7 @@ const SearchHeader: React.FC = () => {
     orderedData = textData.concat(materialData);
   }
 
-  // if there are at least 3 chars in the search-field we open the autosuggest
-  // by design this is how the autosuggest should work
+  // autosuggest dropdown opening and closing based on input text length
   useEffect(() => {
     if (q) {
       const minimalLengthQuery = 3;
@@ -92,6 +91,8 @@ const SearchHeader: React.FC = () => {
     setCurrentlySelectedItem(determinSuggestionType(selectedItem));
   }
 
+  // downshift prevents the default form submission event when the autosuggest
+  // is open - that's why in some cases we have to simulate form sumbission
   function manualRedirect(inputValue: string) {
     const baseUrl = t("searchHeaderUrlText");
     const params = inputValue;
@@ -121,7 +122,6 @@ const SearchHeader: React.FC = () => {
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
-    // is it was an enter click we need to manually redirect to the search result
     if (type === "__controlled_prop_updated_selected_item__") {
       manualRedirect(currentItemValue);
     }
@@ -147,12 +147,11 @@ const SearchHeader: React.FC = () => {
       return;
     }
     setQWithoutQuery(inputValue);
-    // is it was an enter click we need to manually redirect to the search result
     if (type === "__controlled_prop_updated_selected_item__") {
       manualRedirect(inputValue);
     }
   }
-  // here we get all downshift properties for the dropdown that we will need
+  // this is the main Downshift hook
   const {
     getMenuProps,
     highlightedIndex,
