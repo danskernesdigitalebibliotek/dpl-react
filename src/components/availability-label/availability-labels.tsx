@@ -21,7 +21,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
             <AvailabilityLabel
               link="/"
               faustIds={[faustId]}
-              manifestText={materialTypes[0].general}
+              manifestText={materialTypes[0].specific}
             />
           );
         }
