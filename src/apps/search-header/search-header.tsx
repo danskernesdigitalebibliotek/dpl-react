@@ -15,6 +15,7 @@ import { useText } from "../../core/utils/text";
 const SearchHeader: React.FC = () => {
   const t = useText();
   const [q, setQ] = useState<string>("");
+  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<any[]>([]);
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
@@ -36,7 +37,7 @@ const SearchHeader: React.FC = () => {
     }
   }, [data]);
 
-  const originalData = data?.suggest.result;
+  const originalData = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: SuggestionWork[] = [];
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
@@ -95,25 +96,46 @@ const SearchHeader: React.FC = () => {
   function handleHighlightedIndexChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
+    const { selectedItem, highlightedIndex, type } = changes;
     if (
-      changes.selectedItem === undefined ||
-      changes.selectedItem === null ||
-      changes.highlightedIndex === undefined
+      selectedItem === undefined ||
+      selectedItem === null ||
+      highlightedIndex === undefined
     ) {
       return;
     }
-    if (changes.highlightedIndex > -1) {
-      const arrayIndex: number = changes.highlightedIndex;
-      const currentlyHighlightedObject = orderedData[arrayIndex];
-      const currentItemValue = determinSuggestionType(
-        currentlyHighlightedObject
-      );
-      setQ(currentItemValue);
-    } else {
-      setIsAutosuggestOpen(false);
+    if (type === "__item_mouse_move__" || type === "__menu_mouse_leave__") {
+      return;
     }
+    if (highlightedIndex < 0) {
+      setIsAutosuggestOpen(false);
+      return;
+    }
+    const arrayIndex: number = highlightedIndex;
+    const currentlyHighlightedObject = orderedData[arrayIndex];
+    const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
+    if (
+      type === "__input_keydown_arrow_down__" ||
+      type === "__input_keydown_arrow_up__"
+    ) {
+      setQWithoutQuery(currentItemValue);
+      return;
+    }
+    setQ(currentItemValue);
   }
 
+  function handleInputValueChange(changes: UseComboboxStateChange<Suggestion>) {
+    const { inputValue, type } = changes;
+    if (inputValue === undefined) {
+      return;
+    }
+    if (type === "__input_change__") {
+      setQ(inputValue);
+      setQWithoutQuery(inputValue);
+      return;
+    }
+    setQWithoutQuery(inputValue);
+  }
   // here we get all downshift properties for the dropdown that we will need
   const {
     getMenuProps,
@@ -124,11 +146,9 @@ const SearchHeader: React.FC = () => {
   } = useCombobox({
     isOpen: isAutosuggestOpen,
     items: textData.concat(materialData),
-    inputValue: q,
+    inputValue: qWithoutQuery,
     defaultIsOpen: false,
-    onInputValueChange: ({ inputValue = "" }) => {
-      setQ(inputValue);
-    },
+    onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
     selectedItem: currentlySelectedItem,
     onHighlightedIndexChange: handleHighlightedIndexChange
