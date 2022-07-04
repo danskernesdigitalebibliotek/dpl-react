@@ -23,7 +23,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   if (materialData.length < 1) {
     return <div />;
   }
-
   return (
     <>
       <li className="autosuggest__divider" />
@@ -34,8 +33,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {materialData.map((item, incorrectIndex) => {
             let numberOfAuthors = 0;
             const index = incorrectIndex + textDataLength;
-            console.log(`${incorrectIndex} ${index}`);
-            console.log(getItemProps({ item, index }));
             return (
               <li
                 className={`autosuggest__material ${

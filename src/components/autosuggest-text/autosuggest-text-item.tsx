@@ -42,7 +42,6 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   getItemProps
 }) => {
   const t = useText();
-  console.log(getItemProps({ item, index }));
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
