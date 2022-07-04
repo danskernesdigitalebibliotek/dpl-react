@@ -36,7 +36,6 @@ const SearchHeader: React.FC = () => {
       setSuggestItems(arayOfResults);
     }
   }, [data]);
-
   const originalData = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: SuggestionWork[] = [];
@@ -93,6 +92,14 @@ const SearchHeader: React.FC = () => {
     setCurrentlySelectedItem(determinSuggestionType(selectedItem));
   }
 
+  function manualRedirect(inputValue: string) {
+    const baseUrl = t("searchHeaderUrlText");
+    const params = inputValue;
+    if (window.top) {
+      window.top.location.href = `${baseUrl}?q=${params}`;
+    }
+  }
+
   function handleHighlightedIndexChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
@@ -114,6 +121,10 @@ const SearchHeader: React.FC = () => {
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
+    // is it was an enter click we need to manually redirect to the search result
+    if (type === "__controlled_prop_updated_selected_item__") {
+      manualRedirect(currentItemValue);
+    }
     if (
       type === "__input_keydown_arrow_down__" ||
       type === "__input_keydown_arrow_up__"
@@ -129,12 +140,17 @@ const SearchHeader: React.FC = () => {
     if (inputValue === undefined) {
       return;
     }
+
     if (type === "__input_change__") {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
       return;
     }
     setQWithoutQuery(inputValue);
+    // is it was an enter click we need to manually redirect to the search result
+    if (type === "__controlled_prop_updated_selected_item__") {
+      manualRedirect(inputValue);
+    }
   }
   // here we get all downshift properties for the dropdown that we will need
   const {
@@ -161,6 +177,7 @@ const SearchHeader: React.FC = () => {
       <form
         action={t("searchHeaderUrlText")}
         className="header__menu-search"
+        id="autosuggestForm"
         {...getComboboxProps()}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
