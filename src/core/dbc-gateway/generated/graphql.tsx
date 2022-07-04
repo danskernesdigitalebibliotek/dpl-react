@@ -1092,7 +1092,7 @@ export type SearchWithPaginationQuery = {
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
-            general: string;
+            specific: string;
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -1110,7 +1110,7 @@ export type ManifestationsSimpleFragment = {
     __typename?: "Manifestation";
     pid: string;
     publicationYear: { __typename?: "PublicationYear"; display: string };
-    materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -1143,7 +1143,7 @@ export type WorkSimpleFragment = {
       __typename?: "Manifestation";
       pid: string;
       publicationYear: { __typename?: "PublicationYear"; display: string };
-      materialTypes: Array<{ __typename?: "MaterialType"; general: string }>;
+      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -1168,7 +1168,7 @@ export const ManifestationsSimpleFragmentDoc = `
       display
     }
     materialTypes {
-      general
+      specific
     }
     creators {
       display
