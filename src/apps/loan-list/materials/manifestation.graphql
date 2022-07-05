@@ -1,0 +1,12 @@
+query getMaterialManifestation($pid: String!) {
+  manifestation(pid: $pid) {
+    title
+    description
+    fullTitle
+    datePublished
+    materialType
+    creators {
+      name
+    }
+  }
+}

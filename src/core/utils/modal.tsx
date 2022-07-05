@@ -23,13 +23,11 @@ function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
+
     // Deep link stuff: if the id is in the url, open the modal
-    if (searchParams.get(modalId)) {
+    if (searchParams.get("modal")?.includes(modalId)) {
       dispatch(openModal({ modalId }));
     }
-    return () => {
-      searchParams.delete(modalId);
-    };
   }, [modalId, dispatch]);
 
   // Check if the modal should be open
@@ -39,9 +37,14 @@ function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
 
   return (
     <div
-      className="modal modal-cta modal-padding modal-show"
+      className="modal modal-loan modal-padding modal-show"
       style={{
-        zIndex: modalIds.indexOf(modalId)
+        zIndex: modalIds.indexOf(modalId),
+        position: "fixed",
+        top: "0",
+        right: "0",
+        bottom: "0",
+        left: "0"
       }}
       role="dialog"
     >
@@ -67,7 +70,9 @@ function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
         <img src={CloseIcon} alt="" />
         {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
       </button>
-      <div className="modal-cta__container">{children}</div>
+      <div className="modal-loan__container" style={{ overflow: "scroll" }}>
+        {children}
+      </div>
     </div>
   );
 }

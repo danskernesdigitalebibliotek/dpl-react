@@ -9,7 +9,7 @@ export default {
   decorators: [withQuery],
   parameters: {
     query: {
-      "demo-modal-one": "true"
+      modal: "demo-modal-one"
     }
   },
   argTypes: {
