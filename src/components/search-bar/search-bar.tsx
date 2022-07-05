@@ -1,40 +1,39 @@
 import * as React from "react";
 import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
+import { UseComboboxPropGetters } from "downshift";
 
 export interface SearchBarProps {
-  q: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
   searchHeaderUrl?: string;
   altText?: string;
-  inputPlaceholder?: string;
+  inputPlaceholderText?: string;
+  getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  q,
-  setQuery,
-  searchHeaderUrl = "/search",
   altText = "search icon",
-  inputPlaceholder = "Search here"
+  inputPlaceholderText = "Search here",
+  getInputProps
 }) => {
   return (
-    <div className="header__menu-search">
-      <form action={searchHeaderUrl} className="header__menu-search-form">
-        <input
-          name="q"
-          className="header__menu-search-input text-body-medium-regular"
-          type="text"
-          placeholder={inputPlaceholder}
-          value={q}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <input
-          type="image"
-          src={searchIcon}
-          alt={altText}
-          className="header__menu-search-icon"
-        />
-      </form>
-    </div>
+    <>
+      {/* eslint-disable react/jsx-props-no-spreading */}
+      {/* The downshift combobox works this way by design */}
+      <input
+        name="q"
+        className="header__menu-search-input text-body-medium-regular"
+        type="text"
+        autoComplete="off"
+        placeholder={inputPlaceholderText}
+        {...getInputProps()}
+      />
+      {/* eslint-enable react/jsx-props-no-spreading */}
+      <input
+        type="image"
+        src={searchIcon}
+        alt={altText}
+        className="header__menu-search-icon"
+      />
+    </>
   );
 };
 

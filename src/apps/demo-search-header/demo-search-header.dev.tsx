@@ -5,7 +5,7 @@ import DemoSearchHeader, {
 } from "./demo-search-header.entry";
 
 export default {
-  title: "Demo Search Header",
+  title: "Apps / Demo Search Header",
   component: DemoSearchHeader,
   argTypes: {
     searchUrl: {

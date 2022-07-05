@@ -3,14 +3,15 @@ module.exports = {
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-controls",
+    "@storybook/addon-queryparams",
     {
       name: "@storybook/preset-typescript",
     },
     {
-      name: '@storybook/addon-postcss',
+      name: "@storybook/addon-postcss",
       options: {
         postcssLoaderOptions: {
-          implementation: require('postcss'),
+          implementation: require("postcss"),
         },
       },
     },
@@ -18,7 +19,7 @@ module.exports = {
   typescript: {
     check: true,
     checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
+    reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: prop => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true

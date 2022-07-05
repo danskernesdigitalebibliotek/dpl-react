@@ -8,8 +8,6 @@ export interface HelloWorldEntryProps {
   whatText: string;
 }
 
-const HelloWorldEntry: React.FC<HelloWorldEntryProps> = (
-  props: HelloWorldEntryProps
-) => <HelloWorld />;
+const HelloWorldEntry: React.FC<HelloWorldEntryProps> = () => <HelloWorld />;
 
 export default withText(HelloWorldEntry);

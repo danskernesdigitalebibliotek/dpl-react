@@ -5911,6 +5911,43 @@ export type HoldingsItem = {
   localizationPid?: Maybe<Scalars["String"]>;
 };
 
+export type SearchWithPaginationQueryVariables = Exact<{
+  q: SearchQuery;
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+}>;
+
+export type SearchWithPaginationQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      id: string;
+      fullTitle?: string | null;
+      creators: Array<{ __typename?: "Creator"; name: string }>;
+      subjects: Array<{
+        __typename?: "Subject";
+        type?: string | null;
+        value: string;
+      }>;
+      series?: {
+        __typename?: "Series";
+        part?: string | null;
+        title?: string | null;
+      } | null;
+      manifestations: Array<{
+        __typename?: "WorkManifestation";
+        pid: string;
+        datePublished: unknown;
+        materialType: string;
+        creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
+      }>;
+    }>;
+  };
+};
+
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"];
 }>;
@@ -5922,11 +5959,117 @@ export type SuggestionsFromQueryStringQuery = {
     result: Array<
       | { __typename: "Creator"; name: string }
       | { __typename: "Subject"; value: string }
-      | { __typename: "Work"; id: string; title?: string | null }
+      | {
+          __typename: "Work";
+          id: string;
+          title?: string | null;
+          fullTitle?: string | null;
+          creators: Array<{ __typename?: "Creator"; name: string }>;
+        }
     >;
   };
 };
 
+export type ManifestationSimpleFragment = {
+  __typename?: "WorkManifestation";
+  pid: string;
+  datePublished: unknown;
+  materialType: string;
+  creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
+};
+
+export type SeriesSimpleFragment = {
+  __typename?: "Series";
+  part?: string | null;
+  title?: string | null;
+};
+
+export type WorkSimpleFragment = {
+  __typename?: "Work";
+  id: string;
+  fullTitle?: string | null;
+  creators: Array<{ __typename?: "Creator"; name: string }>;
+  subjects: Array<{
+    __typename?: "Subject";
+    type?: string | null;
+    value: string;
+  }>;
+  series?: {
+    __typename?: "Series";
+    part?: string | null;
+    title?: string | null;
+  } | null;
+  manifestations: Array<{
+    __typename?: "WorkManifestation";
+    pid: string;
+    datePublished: unknown;
+    materialType: string;
+    creators: Array<{ __typename?: "Creator"; name: string; type: string }>;
+  }>;
+};
+
+export const SeriesSimpleFragmentDoc = `
+    fragment SeriesSimple on Series {
+  part
+  title
+}
+    `;
+export const ManifestationSimpleFragmentDoc = `
+    fragment ManifestationSimple on WorkManifestation {
+  pid
+  datePublished
+  materialType
+  creators {
+    name
+    type
+  }
+}
+    `;
+export const WorkSimpleFragmentDoc = `
+    fragment WorkSimple on Work {
+  id
+  fullTitle
+  creators {
+    name
+  }
+  subjects {
+    type
+    value
+  }
+  series {
+    ...SeriesSimple
+  }
+  manifestations {
+    ...ManifestationSimple
+  }
+}
+    ${SeriesSimpleFragmentDoc}
+${ManifestationSimpleFragmentDoc}`;
+export const SearchWithPaginationDocument = `
+    query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
+  search(q: $q) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkSimple
+    }
+  }
+}
+    ${WorkSimpleFragmentDoc}`;
+export const useSearchWithPaginationQuery = <
+  TData = SearchWithPaginationQuery,
+  TError = unknown
+>(
+  variables: SearchWithPaginationQueryVariables,
+  options?: UseQueryOptions<SearchWithPaginationQuery, TError, TData>
+) =>
+  useQuery<SearchWithPaginationQuery, TError, TData>(
+    ["searchWithPagination", variables],
+    fetcher<SearchWithPaginationQuery, SearchWithPaginationQueryVariables>(
+      SearchWithPaginationDocument,
+      variables
+    ),
+    options
+  );
 export const SuggestionsFromQueryStringDocument = `
     query suggestionsFromQueryString($q: String!) {
   suggest(q: $q) {
@@ -5941,6 +6084,10 @@ export const SuggestionsFromQueryStringDocument = `
       ... on Work {
         id
         title
+        fullTitle
+        creators {
+          name
+        }
       }
     }
   }
