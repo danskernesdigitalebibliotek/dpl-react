@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
-import AutosuggestTextItem, { Suggestion } from "./autosuggest-text-item";
+import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
+import AutosuggestTextItem from "./autosuggest-text-item";
 
 export interface AutosuggestTextProps {
-  responseData: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  responseData: Suggestions;
   currentQ: string | undefined;
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
@@ -15,13 +16,11 @@ export interface AutosuggestTextProps {
 }
 
 export function itemToString(objectItem: Suggestion) {
-  switch (objectItem.__typename) {
-    case "Creator":
-      return objectItem.name;
-    case "Subject":
-      return objectItem.value;
+  switch (objectItem.type) {
+    case SuggestionType.Composit:
+      return objectItem.work?.titles.main[0];
     default:
-      return objectItem.title;
+      return objectItem.term;
   }
 }
 
@@ -42,7 +41,7 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
 }) => {
   return (
     <>
-      {responseData.map((item, index) => {
+      {responseData.map((item: Suggestion, index: number) => {
         const classes = {
           textSuggestion: `autosuggest__item--text text-body-medium-regular px-24 ${clsx(
             {
