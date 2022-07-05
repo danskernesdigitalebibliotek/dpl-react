@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getUrlQueryParam } from "../../core/utils/helpers";
+import { getParams } from "../../core/utils/helpers";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import Material from "./material";
 
@@ -8,17 +8,11 @@ export interface MaterialEntryProps {
   workId: WorkId;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({
-  pid: attrPid,
-  workId: attrWorkId
-}) => {
-  // If a pid or workId string has been defined as a data attributes use that
-  // otherwise use the one from the url query parameter.
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, workId }) => {
+  // Get params either from data attributes or from url.
+  const { pid: pPid, workId: pWorkId } = getParams({ pid, workId });
 
-  const pidQuery = attrPid || (getUrlQueryParam("pid") as string);
-  const workIdQuery = attrWorkId || (getUrlQueryParam("workId") as string);
-
-  return <Material pid={pidQuery} workId={workIdQuery} />;
+  return <Material pid={pPid} workId={pWorkId} />;
 };
 
 export default MaterialEntry;

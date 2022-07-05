@@ -28,4 +28,4 @@ withStorybookArgs.args = {
 };
 
 export const withUrlParams = Template.bind({});
-withUrlParams.args = {};
+withUrlParams.args = { pid: undefined, workId: undefined };
