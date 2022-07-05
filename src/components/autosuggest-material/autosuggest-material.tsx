@@ -1,13 +1,10 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { generateItemId } from "../autosuggest-text/autosuggest-text";
-import {
-  Suggestion,
-  SuggestionWork
-} from "../autosuggest-text/autosuggest-text-item";
 
 export interface AutosuggestMaterialProps {
-  materialData: SuggestionWork[] | [];
+  materialData: Suggestions | [];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textDataLength: number;
@@ -59,13 +56,13 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                   </div>
                   <div className="autosuggest__item--materials__item__content--info">
                     <div className="text-body-medium-medium autosuggest__item--materials__item__content--info__title">
-                      {item.fullTitle}
+                      {item.work?.titles.main[0]}
                     </div>
                     <div className="text-body-small-regular autosuggest__item--materials__item__content--info__author">
-                      {item.creators.map((author) => {
+                      {item.work?.creators.map((author) => {
                         if (numberOfAuthors < 3) {
                           numberOfAuthors += 1;
-                          return author.name;
+                          return author.display;
                         }
                         return "et al.";
                       })}
