@@ -5,7 +5,7 @@ import {
   Suggestion,
   SuggestionWork
 } from "../autosuggest-text/autosuggest-text-item";
-import { Material } from "../material/material";
+import { Cover } from "../cover/cover";
 
 export interface AutosuggestMaterialProps {
   materialData: SuggestionWork[];
@@ -47,7 +47,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 <div className="autosuggest__material__content">
                   <div className="autosuggest__cover">
                     {/* TODO: once we have the material page and know what the urls look like, we need to pass materialUrl here */}
-                    <Material
+                    <Cover
                       animate
                       size="xsmall"
                       materialId={item.manifestations[0].pid}
