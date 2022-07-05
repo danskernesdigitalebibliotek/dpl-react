@@ -1104,6 +1104,31 @@ export type SearchWithPaginationQuery = {
   };
 };
 
+export type SuggestionsFromQueryStringQueryVariables = Exact<{
+  q: Scalars["String"];
+}>;
+
+export type SuggestionsFromQueryStringQuery = {
+  __typename?: "Query";
+  suggest: {
+    __typename?: "SuggestResponse";
+    result: Array<{
+      __typename?: "Suggestion";
+      type: SuggestionType;
+      term: string;
+      work?: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+        creators: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+      } | null;
+    }>;
+  };
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -1219,5 +1244,39 @@ export const useSearchWithPaginationQuery = <
       SearchWithPaginationDocument,
       variables
     ),
+    options
+  );
+export const SuggestionsFromQueryStringDocument = `
+    query suggestionsFromQueryString($q: String!) {
+  suggest(q: $q) {
+    result {
+      type
+      term
+      work {
+        workId
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+      }
+    }
+  }
+}
+    `;
+export const useSuggestionsFromQueryStringQuery = <
+  TData = SuggestionsFromQueryStringQuery,
+  TError = unknown
+>(
+  variables: SuggestionsFromQueryStringQueryVariables,
+  options?: UseQueryOptions<SuggestionsFromQueryStringQuery, TError, TData>
+) =>
+  useQuery<SuggestionsFromQueryStringQuery, TError, TData>(
+    ["suggestionsFromQueryString", variables],
+    fetcher<
+      SuggestionsFromQueryStringQuery,
+      SuggestionsFromQueryStringQueryVariables
+    >(SuggestionsFromQueryStringDocument, variables),
     options
   );
