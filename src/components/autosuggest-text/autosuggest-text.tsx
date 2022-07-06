@@ -35,16 +35,16 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
 }) => {
   return (
     <li>
-      {textData.map((item, index) => {
-        const classes = {
-          textSuggestion: `autosuggest__text text-body-medium-regular px-24 ${clsx(
-            {
-              "autosuggest__text--highlight": highlightedIndex === index
-            }
-          )}`
-        };
-        return (
-          <ul>
+      <ul>
+        {textData.map((item, index) => {
+          const classes = {
+            textSuggestion: `autosuggest__text text-body-medium-regular px-24 ${clsx(
+              {
+                "autosuggest__text--highlight": highlightedIndex === index
+              }
+            )}`
+          };
+          return (
             <AutosuggestTextItem
               classes={classes}
               item={item}
@@ -52,9 +52,9 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
               generateItemId={generateItemId}
               getItemProps={getItemProps}
             />
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </li>
   );
 };

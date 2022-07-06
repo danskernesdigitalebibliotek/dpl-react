@@ -46,7 +46,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
         {isLoading && <div>Loading</div>}
 
-        {originalData !== undefined && status === "success" && isOpen && (
+        {originalData && status && isOpen && (
           <>
             <AutosuggestText
               textData={textData}
