@@ -11,6 +11,7 @@ import {
   SuggestionWork
 } from "../../components/autosuggest-text/autosuggest-text-item";
 import { useText } from "../../core/utils/text";
+import { downshiftEventTypes } from "../../core/utils/constants";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -108,7 +109,10 @@ const SearchHeader: React.FC = () => {
     if (!selectedItem || !highlightedIndex) {
       return;
     }
-    if (type === "__item_mouse_move__" || type === "__menu_mouse_leave__") {
+    if (
+      type === downshiftEventTypes.item_mouse_move ||
+      type === downshiftEventTypes.menu_mouse_leave
+    ) {
       return;
     }
     if (highlightedIndex < 0) {
@@ -118,12 +122,12 @@ const SearchHeader: React.FC = () => {
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
-    if (type === "__controlled_prop_updated_selected_item__") {
+    if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
       manualRedirect(currentItemValue);
     }
     if (
-      type === "__input_keydown_arrow_down__" ||
-      type === "__input_keydown_arrow_up__"
+      type === downshiftEventTypes.input_keydown_arrow_down ||
+      type === downshiftEventTypes.input_keydown_arrow_up
     ) {
       setQWithoutQuery(currentItemValue);
       return;
@@ -137,13 +141,13 @@ const SearchHeader: React.FC = () => {
       return;
     }
 
-    if (type === "__input_change__") {
+    if (type === downshiftEventTypes.input_change) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
       return;
     }
     setQWithoutQuery(inputValue);
-    if (type === "__controlled_prop_updated_selected_item__") {
+    if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
       manualRedirect(inputValue);
     }
   }
