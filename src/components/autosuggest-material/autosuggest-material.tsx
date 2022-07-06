@@ -1,11 +1,13 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { useText } from "../../core/utils/text";
 import { generateItemId } from "../autosuggest-text/autosuggest-text";
 import {
   Suggestion,
   SuggestionWork
 } from "../autosuggest-text/autosuggest-text-item";
 import { Cover } from "../cover/cover";
+import { creatorsToString } from "../search-result-list/helpers";
 
 export interface AutosuggestMaterialProps {
   materialData: SuggestionWork[];
@@ -20,6 +22,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   highlightedIndex,
   textDataLength
 }) => {
+  const t = useText();
   if (materialData.length < 1) {
     return <div />;
   }
@@ -31,8 +34,11 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {/* eslint-disable react/jsx-props-no-spreading */}
           {/* The downshift combobox works this way by design */}
           {materialData.map((item, incorrectIndex) => {
-            let numberOfAuthors = 0;
             const index = incorrectIndex + textDataLength;
+            const authors: string[] = [];
+            item.creators.forEach((creator) => {
+              authors.push(creator.name);
+            });
             return (
               <li
                 className={`autosuggest__material ${
@@ -58,13 +64,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                       {item.fullTitle}
                     </div>
                     <div className="text-body-small-regular autosuggest__author">
-                      {item.creators.map((author) => {
-                        if (numberOfAuthors <= 3) {
-                          numberOfAuthors += 1;
-                          return author.name;
-                        }
-                        return "et al.";
-                      })}
+                      {creatorsToString(authors, t)}
                     </div>
                   </div>
                 </div>
