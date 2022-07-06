@@ -24,7 +24,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
 }) => {
   const t = useText();
   if (materialData.length < 1) {
-    return <div />;
+    return null;
   }
   return (
     <>
