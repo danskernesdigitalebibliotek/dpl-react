@@ -105,11 +105,7 @@ const SearchHeader: React.FC = () => {
     changes: UseComboboxStateChange<Suggestion>
   ) {
     const { selectedItem, highlightedIndex, type } = changes;
-    if (
-      selectedItem === undefined ||
-      selectedItem === null ||
-      highlightedIndex === undefined
-    ) {
+    if (!selectedItem || !highlightedIndex) {
       return;
     }
     if (type === "__item_mouse_move__" || type === "__menu_mouse_leave__") {
