@@ -1,7 +1,7 @@
 import React from "react";
 import { ManifestationSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../core/utils/helpers";
-import { PostId } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 import { AvailabilityLabel } from "./availability-label";
 
 export interface AvailabilityLabelsProps {
@@ -15,7 +15,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
     <>
       {manifestations.map((manifestation) => {
         const { pid, materialType } = manifestation as {
-          pid: PostId;
+          pid: Pid;
           materialType: string;
         };
         const faustId = convertPostIdToFaustId(pid);
