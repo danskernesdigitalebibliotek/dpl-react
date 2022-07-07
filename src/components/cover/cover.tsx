@@ -20,12 +20,7 @@ export const Cover = ({
   tint,
   pid
 }: CoverProps) => {
-  let dataSize: CoverProps["size"];
-  if (size === "xsmall") {
-    dataSize = "small";
-  } else {
-    dataSize = size;
-  }
+  const dataSize: CoverProps["size"] = size === "xsmall" ? "small" : size;
   const { data } = useGetCoverCollection({
     type: "pid",
     identifiers: [pid],
