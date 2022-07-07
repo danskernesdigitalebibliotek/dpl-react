@@ -2,16 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
 import {
   SuggestionsFromQueryStringQuery,
+  SuggestionType,
   useSuggestionsFromQueryStringQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
-import {
-  Suggestion,
-  SuggestionWork
-} from "../../components/autosuggest-text/autosuggest-text-item";
+import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useText } from "../../core/utils/text";
 import { downshiftEventTypes } from "../../core/utils/constants";
+
+export interface SearchHeaderProps {
+  searchHeaderUrl?: string;
+  altText?: string;
+  inputPlaceholderText?: string;
+  stringSuggestionAuthorText?: string;
+  stringSuggestionWorkText?: string;
+  stringSuggestionTopicText?: string;
+}
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -70,16 +77,10 @@ const SearchHeader: React.FC = () => {
   }, [q]);
 
   function determinSuggestionType(suggestion: Suggestion): string {
-    switch (suggestion.__typename) {
-      case "Creator":
-        return suggestion.name;
-      case "Subject":
-        return suggestion.value;
-      default:
-        return suggestion.title !== null && suggestion.title !== undefined
-          ? suggestion.title
-          : "incomplete data";
+    if (suggestion.type === SuggestionType.Composit) {
+      return suggestion.work?.titles.main[0] || "incomplete data";
     }
+    return suggestion.term;
   }
 
   function handleSelectedItemChange(

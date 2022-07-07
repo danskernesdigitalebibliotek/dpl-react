@@ -1,18 +1,18 @@
 import configuration, { getConf } from "../../core/configuration";
 import {
-  ManifestationSimpleFragment,
+  ManifestationsSimpleFragment,
   WorkSimpleFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { UseTextFunction } from "../../core/utils/text";
 import { CoverProps } from "../cover/cover";
 
 export const orderManifestationsByYear = (
-  manifestations: ManifestationSimpleFragment[],
+  manifestations: ManifestationsSimpleFragment,
   order: "asc" | "desc" = "desc"
 ) => {
-  return manifestations.sort((a, b) => {
-    const currentDate = Number(a.datePublished);
-    const prevDate = Number(b.datePublished);
+  return manifestations.all.sort((a, b) => {
+    const currentDate = Number(a.publicationYear.display);
+    const prevDate = Number(b.publicationYear.display);
     if (order === "desc") {
       return prevDate - currentDate;
     }
@@ -20,15 +20,24 @@ export const orderManifestationsByYear = (
   });
 };
 
+export const filterCreators = (
+  creators: WorkSimpleFragment["creators"],
+  filterBy: ["Person" | "Corporation"]
+) =>
+  creators.filter((creator) => {
+    // eslint-disable-next-line no-underscore-dangle
+    return creator.__typename && filterBy.includes(creator.__typename);
+  });
+
 export const flattenCreators = (creators: WorkSimpleFragment["creators"]) =>
   creators.map((creator) => {
-    return creator.name;
+    return creator.display;
   });
 
 const getCreatorsFromManifestations = (
-  manifestations: ManifestationSimpleFragment[]
+  manifestations: ManifestationsSimpleFragment
 ) => {
-  const creators = manifestations.reduce<string[]>((acc, curr) => {
+  const creators = manifestations.all.reduce<string[]>((acc, curr) => {
     return [...acc, ...flattenCreators(curr.creators)];
   }, [] as string[]);
 
@@ -45,7 +54,7 @@ export const creatorsToString = (creators: string[], t: UseTextFunction) => {
 };
 
 export const getCreatorTextFromManifestations = (
-  manifestations: ManifestationSimpleFragment[],
+  manifestations: ManifestationsSimpleFragment,
   t: UseTextFunction
 ) => {
   const creators = getCreatorsFromManifestations(manifestations);
@@ -54,20 +63,22 @@ export const getCreatorTextFromManifestations = (
 };
 
 const getFirstPublishedManifestation = (
-  manifestations: ManifestationSimpleFragment[]
+  manifestations: ManifestationsSimpleFragment
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
   return ordered[0];
 };
 
 export const getFirstPublishedYear = (
-  manifestations: ManifestationSimpleFragment[]
+  manifestations: ManifestationsSimpleFragment
 ) => {
-  return String(getFirstPublishedManifestation(manifestations)?.datePublished);
+  return String(
+    getFirstPublishedManifestation(manifestations)?.publicationYear.display
+  );
 };
 
 export const getManifestationPid = (
-  manifestations: ManifestationSimpleFragment[]
+  manifestations: ManifestationsSimpleFragment
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
   return ordered[0].pid;

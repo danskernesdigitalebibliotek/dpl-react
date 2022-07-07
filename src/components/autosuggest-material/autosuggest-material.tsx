@@ -2,15 +2,12 @@ import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { useText } from "../../core/utils/text";
 import { generateItemId } from "../autosuggest-text/autosuggest-text";
-import {
-  Suggestion,
-  SuggestionWork
-} from "../autosuggest-text/autosuggest-text-item";
+import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
 import { creatorsToString } from "../search-result-list/helpers";
 
 export interface AutosuggestMaterialProps {
-  materialData: SuggestionWork[];
+  materialData: Suggestions | [];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textDataLength: number;
@@ -64,7 +61,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                   </div>
                   <div className="autosuggest__info">
                     <div className="text-body-medium-medium autosuggest__title">
-                      {item.fullTitle}
+                      {item.work?.titles.main[0]}
                     </div>
                     <div className="text-body-small-regular autosuggest__author">
                       {creatorsToString(authors, t)}

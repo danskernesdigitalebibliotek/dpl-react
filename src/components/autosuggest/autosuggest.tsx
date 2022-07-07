@@ -1,12 +1,12 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import {
+  SuggestionsFromQueryStringQuery,
+  SuggestionType
+} from "../../core/dbc-gateway/generated/graphql";
+import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
-import {
-  Suggestion,
-  SuggestionWork
-} from "../autosuggest-text/autosuggest-text-item";
 
 export interface AutosuggestProps {
   originalData:
@@ -33,6 +33,24 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getItemProps,
   isOpen
 }) => {
+  const originalData = data?.suggest.result;
+  const textData: Suggestions | [] = [];
+  const materialData: Suggestions | [] = [];
+
+  if (originalData) {
+    originalData.forEach((item) => {
+      if (item.type === SuggestionType.Composit) {
+        if (materialData.length < 3) {
+          // @ts-expect-error TODO: item
+          materialData.push(item);
+          return;
+        }
+      }
+      // @ts-expect-error TODO: item
+      textData.push(item);
+    });
+  }
+
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}

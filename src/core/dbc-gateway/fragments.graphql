@@ -1,32 +1,41 @@
-fragment ManifestationSimple on WorkManifestation {
-  pid
-  datePublished
-  materialType
-  creators {
-    name
-    type
+
+fragment ManifestationsSimple on Manifestations {
+  all {
+    pid
+    publicationYear {
+      display
+    }
+    materialTypes {
+      specific
+    }
+    creators {
+      display,
+      __typename
+    }
   }
+
 }
 
 fragment SeriesSimple on Series {
-  part
+  numberInSeries {
+    display
+  }
   title
 }
 
 fragment WorkSimple on Work {
-  id
-  fullTitle
-  creators {
-    name
+  workId
+  titles {
+    full
   }
-  subjects {
-    type
-    value
+  creators {
+    display,
+  __typename
   }
   series {
     ...SeriesSimple
   }
   manifestations {
-    ...ManifestationSimple
+    ...ManifestationsSimple
   }
 }

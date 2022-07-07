@@ -8,6 +8,7 @@ import { CoverProps } from "../../cover/cover";
 import { Link } from "../../utils/link";
 import {
   creatorsToString,
+  filterCreators,
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
@@ -22,18 +23,26 @@ export interface SearchResultListItemProps {
 
 // TODO: The material item link should point at something.
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
-  item: { fullTitle, series, creators, manifestations, id: workId },
+  item: {
+    titles: { full: fullTitle },
+    series,
+    creators,
+    manifestations,
+    workId
+  },
   coverTint
 }) => {
   const t = useText();
-  const creatorsText = creatorsToString(flattenCreators(creators), t);
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
   const author = creatorsText || "[Creators are missing]";
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
 
-  // TODO: Redirect to material page.
   const handleClick = useCallback(() => {
-    console.log("Going to material page!");
+    // TODO: Redirect to material page.
   }, []);
 
   return (

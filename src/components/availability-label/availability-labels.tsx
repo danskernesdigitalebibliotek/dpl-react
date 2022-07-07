@@ -1,11 +1,11 @@
 import React from "react";
-import { ManifestationSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../core/utils/helpers";
-import { PostId } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 import { AvailabilityLabel } from "./availability-label";
 
 export interface AvailabilityLabelsProps {
-  manifestations: ManifestationSimpleFragment[];
+  manifestations: ManifestationsSimpleFragment;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
@@ -13,21 +13,19 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
 }) => {
   return (
     <>
-      {manifestations.map((manifestation) => {
-        const { pid, materialType } = manifestation as {
-          pid: PostId;
-          materialType: string;
-        };
-        const faustId = convertPostIdToFaustId(pid);
+      {manifestations.all.map((manifestation) => {
+        const { pid, materialTypes } = manifestation;
+        const faustId = convertPostIdToFaustId(pid as Pid);
         if (faustId) {
           return (
             <AvailabilityLabel
               link="/"
               faustIds={[faustId]}
-              manifestText={materialType}
+              manifestText={materialTypes[0].specific}
             />
           );
         }
+
         return null;
       })}
     </>

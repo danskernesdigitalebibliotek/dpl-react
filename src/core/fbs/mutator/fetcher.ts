@@ -1,4 +1,4 @@
-import { getToken, TOKEN_USER_KEY } from "../../token";
+import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
 
 const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
 
@@ -52,9 +52,9 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const userToken = getToken(TOKEN_USER_KEY);
-  const authHeaders = userToken
-    ? ({ Authorization: `Bearer ${userToken}` } as object)
+  const libraryToken = getToken(TOKEN_LIBRARY_KEY);
+  const authHeaders = libraryToken
+    ? ({ Authorization: `Bearer ${libraryToken}` } as object)
     : {};
 
   const body = data ? JSON.stringify(data) : null;

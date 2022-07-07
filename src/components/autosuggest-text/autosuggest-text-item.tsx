@@ -1,6 +1,8 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { useText } from "../../core/utils/text";
+import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { Suggestion } from "../../core/utils/types/autosuggest";
 
 export interface AutosuggestTextItemProps {
   classes: {
@@ -11,28 +13,6 @@ export interface AutosuggestTextItemProps {
   generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
 }
-
-export interface SuggestionCreator {
-  __typename: "Creator";
-  name: string;
-}
-export interface SuggestionSubject {
-  __typename: "Subject";
-  value: string;
-}
-export interface SuggestionWork {
-  __typename: "Work";
-  title?: string | null | undefined;
-  fullTitle?: string | null | undefined;
-  creators: {
-    __typename?: "Creator" | undefined;
-    name: string;
-  }[];
-  manifestations: {
-    pid: string;
-  }[];
-}
-export type Suggestion = SuggestionCreator | SuggestionSubject | SuggestionWork;
 
 const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   classes,
@@ -52,15 +32,14 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         {...getItemProps({ item, index })}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-
-        {item.__typename === "Creator"
-          ? `${item.name} (${t("stringSuggestionAuthorText")})`
+        {item.type === SuggestionType.Creator
+          ? `${item.term} (${t("stringSuggestionAuthorText")})`
           : null}
-        {item.__typename === "Subject"
-          ? `${item.value} (${t("stringSuggestionTopicText")})`
+        {item.type === SuggestionType.Subject
+          ? `${item.term} (${t("stringSuggestionTopicText")})`
           : null}
-        {item.__typename === "Work"
-          ? `${item.title} (${t("stringSuggestionWorkText")})`
+        {item.type === SuggestionType.Composit
+          ? `${item?.work?.titles?.main} (${t("stringSuggestionWorkText")})`
           : null}
       </li>
     </>
