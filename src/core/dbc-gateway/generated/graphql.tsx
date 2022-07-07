@@ -1260,9 +1260,6 @@ export const SuggestionsFromQueryStringDocument = `
         creators {
           display
         }
-        manifestations {
-          pid
-        }
       }
     }
   }
