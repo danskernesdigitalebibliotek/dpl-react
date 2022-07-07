@@ -12,6 +12,11 @@ query suggestionsFromQueryString($q: String!) {
         creators {
           display
         }
+        manifestations {
+          first {
+            pid
+          }
+        }
       }
     }
   }

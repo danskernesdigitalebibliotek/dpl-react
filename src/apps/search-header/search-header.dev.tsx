@@ -1,14 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
-import { SearchHeaderProps } from "./search-header";
-import SearchHeaderEntry from "./search-header.entry";
+import SearchHeaderEntry, { SearchHeaderProps } from "./search-header.entry";
 
 export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
-    searchHeaderUrl: {
+    searchHeaderUrlText: {
       name: "Search header base URL",
       defaultValue: "https://bibliotek.dk/search",
       control: { type: "text" }
