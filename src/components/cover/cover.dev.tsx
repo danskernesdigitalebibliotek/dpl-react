@@ -35,7 +35,7 @@ export default {
     size: "small",
     animate: true,
     tint: "120",
-    materialId: "870970-basis:45234401",
+    pid: "870970-basis:45234401",
     url: "/",
     description: "description"
   }

@@ -5,6 +5,7 @@ import { generateItemId } from "../autosuggest-text/autosuggest-text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
 import { creatorsToString } from "../search-result-list/helpers";
+import { Pid } from "../../core/utils/types/ids";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -57,7 +58,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                       <Cover
                         animate
                         size="xsmall"
-                        materialId={item.work.workId}
+                        pid={item.work.manifestations.first.pid as Pid}
                       />
                     )}
                   </div>
