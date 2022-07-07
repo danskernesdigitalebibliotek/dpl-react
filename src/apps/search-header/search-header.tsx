@@ -46,7 +46,7 @@ const SearchHeader: React.FC = () => {
   }, [data]);
   const originalData = suggestItems;
   const textData: Suggestion[] = [];
-  const materialData: SuggestionWork[] = [];
+  const materialData: Suggestion[] = [];
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
 
   if (originalData) {

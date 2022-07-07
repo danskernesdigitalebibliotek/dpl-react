@@ -13,7 +13,7 @@ export interface AutosuggestProps {
     | SuggestionsFromQueryStringQuery["suggest"]["result"]
     | undefined;
   textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
-  materialData: SuggestionWork[];
+  materialData: Suggestions;
   isLoading: boolean;
   status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
@@ -33,20 +33,14 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getItemProps,
   isOpen
 }) => {
-  const originalData = data?.suggest.result;
-  const textData: Suggestions | [] = [];
-  const materialData: Suggestions | [] = [];
-
   if (originalData) {
     originalData.forEach((item) => {
       if (item.type === SuggestionType.Composit) {
         if (materialData.length < 3) {
-          // @ts-expect-error TODO: item
           materialData.push(item);
           return;
         }
       }
-      // @ts-expect-error TODO: item
       textData.push(item);
     });
   }

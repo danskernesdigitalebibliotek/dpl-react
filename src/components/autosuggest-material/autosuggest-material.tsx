@@ -36,8 +36,8 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {materialData.map((item, incorrectIndex) => {
             const index = incorrectIndex + textDataLength;
             const authors: string[] = [];
-            item.creators.forEach((creator) => {
-              authors.push(creator.name);
+            item.work?.creators.forEach((creator) => {
+              authors.push(creator.display);
             });
             return (
               <li
@@ -53,11 +53,13 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 <div className="autosuggest__material__content">
                   <div className="autosuggest__cover">
                     {/* TODO: once we have the material page and know what the urls look like, we need to pass materialUrl here */}
-                    <Cover
-                      animate
-                      size="xsmall"
-                      materialId={item.manifestations[0].pid}
-                    />
+                    {item.work && (
+                      <Cover
+                        animate
+                        size="xsmall"
+                        materialId={item.work.workId}
+                      />
+                    )}
                   </div>
                   <div className="autosuggest__info">
                     <div className="text-body-medium-medium autosuggest__title">
