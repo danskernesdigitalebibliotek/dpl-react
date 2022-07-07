@@ -33,18 +33,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getItemProps,
   isOpen
 }) => {
-  if (originalData) {
-    originalData.forEach((item) => {
-      if (item.type === SuggestionType.Composit) {
-        if (materialData.length < 3) {
-          materialData.push(item);
-          return;
-        }
-      }
-      textData.push(item);
-    });
-  }
-
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}

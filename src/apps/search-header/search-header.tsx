@@ -50,8 +50,11 @@ const SearchHeader: React.FC = () => {
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
 
   if (originalData) {
-    originalData.forEach((item) => {
-      if (item.__typename === "Work") {
+    originalData.forEach((item: Suggestion) => {
+      if (
+        item.type === SuggestionType.Composit ||
+        item.type === SuggestionType.Title
+      ) {
         if (materialData.length < 3) {
           materialData.push(item);
           return;
