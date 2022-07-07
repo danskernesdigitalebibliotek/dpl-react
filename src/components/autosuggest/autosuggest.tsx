@@ -1,9 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import {
-  SuggestionsFromQueryStringQuery,
-  SuggestionType
-} from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
