@@ -73,9 +73,7 @@ function Modal({
         <img src={CloseIcon} alt="" />
         {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
       </button>
-      <div className="modal-loan__container" style={{ overflow: "scroll" }}>
         {children}
-      </div>
     </div>
   );
 }
