@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import { useText } from "../../../../core/utils/text";
+import statusThreshold from "../../../../core/configuration/status-thresholds.json";
 
 interface StatusCircleProps {
   dueDate: string;
@@ -19,9 +20,9 @@ const StatusCircle: React.FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
 
   let color = "#484848";
-  if (daysBetweenTodayAndDue < 1) {
+  if (daysBetweenTodayAndDue <= statusThreshold.danger) {
     color = "#d5364a";
-  } else if (daysBetweenTodayAndDue < 7) {
+  } else if (daysBetweenTodayAndDue <= statusThreshold.warning) {
     color = "#f7bf42";
   }
 
