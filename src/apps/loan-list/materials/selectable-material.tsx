@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
+import { useText } from "../../../core/utils/text";
 
 interface SelectableMaterialProps {
   faust: string;
   dueDate: string;
-  renewableStatus: string;
-  loanType: string;
+  renewableStatus?: string[];
+  loanType?: string;
   getAuthorName: Function;
   material: {
     description: string;
@@ -27,15 +28,18 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   material,
   getAuthorName
 }) => {
+  const t = useText();
+
   return (
     <>
       {material && (
         <li>
           <div className="list-materials">
+            {/* todo make fixed in design system  */}
             <div className="list-materials__checkbox mr-32">
               <div className="checkbox">
                 <input id={faust} className="checkbox__input" type="checkbox" />
-                <label className="checkbox__label" for={faust}>
+                <label className="checkbox__label" htmlFor={faust}>
                   <span className="checkbox__icon">
                     <svg width="20px" height="20px">
                       <polyline
@@ -54,9 +58,6 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
                 <div className="status-label status-label--outline ">
                   {material.materialType}
                 </div>
-                <div className="status-label status-label--danger list-materials__content-status-label">
-                  AFLEVERES {dayjs(dueDate).format("DD-MM-YYYY")}
-                </div>
               </div>
               <p className="text-header-h5 mt-8">{material.fullTitle}</p>
               <p className="text-small-caption">
@@ -67,25 +68,22 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
             </div>
             <div className="list-materials__status">
               <span className="text-small-caption">
-                {renewableStatus.includes("deniedOtherReason") && (
-                  <>Materialet kan ikke fornyes flere gange</>
+                {renewableStatus.includes("deniedMaxRenewalsReached") && (
+                  <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
                 )}
-                {renewableStatus.includes("deniedMaxRenewalsReach") && (
-                  <>Materialet kan ikke fornyes flere gange</>
+                {renewableStatus.includes("deniedReserved") && (
+                  <> {t("LoanListDeniedOtherReasonText")}</>
                 )}
-                {renewableStatus.includes("deniedMaxRenewalsReach") && (
-                  <>Materialet kan ikke fornyes flere gange</>
-                )}
+                {/* todo "Lånet er fornyet i dag" -> this information lacking in fbs */}
                 {loanType === "interLibraryLoan" && (
-                  <>
-                    Materialet er udlånt fra en anden kommune og fornyelsen er
-                    derfor betinget af et andet biblioteks accept
-                  </>
+                  <>{t("LoanListDeniedInterLibraryLoanText")}</>
                 )}
                 {/* todo “Lånet er fornyet i dag”, hvis lånet er fornyet samme dag */}
               </span>
-              <div className="status-label status-label--indfo ">
-                Afleveres {dueDate}
+              {/* todo add color in design system */}
+              <div className="status-label status-label--info">
+                {t("LoanListToBeDeliveredMaterialText")}{" "}
+                {dayjs(dueDate).format("DD-MM-YYYY")}
               </div>
             </div>
           </div>

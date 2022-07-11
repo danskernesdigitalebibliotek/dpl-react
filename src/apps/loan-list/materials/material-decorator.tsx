@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
 import {
   useGetMaterialQuery,
-  useGetMaterialManifestationQuery
+  useGetMaterialManifestationQuery,
+  WorkManifestation
 } from "../../../core/dbc-gateway/generated/graphql";
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
+import { useText } from "../../../core/utils/text";
 
 interface MaterialDecoratorProps {
   materialType: string;
   faust: string;
   dueDate: string;
-  loanType: string;
-  renewableStatus?: string;
+  loanType?: string;
+  renewableStatus?: string[];
   amountOfMaterialsWithDueDate?: number;
   selectDueDate?: Function;
   loanDate?: string;
@@ -28,36 +29,29 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   selectDueDate,
   loanDate
 }) => {
-  const [material, setMaterial] = useState<{
-    description: string;
-    fullTitle: string;
-    datePublished: string;
-    materialType: string;
-    creators: {
-      __typename?: "Creator" | undefined;
-      name: string;
-    }[];
-  }>();
+  const t = useText();
+  const [material, setMaterial] = useState<WorkManifestation>();
   const [materialId, setMaterialId] = useState<string>("");
 
   // Create a string of authors with commas and a conjunction
-  function getAuthorName(
+  const getAuthorName = (
     creators: {
       name: string;
     }[]
-  ) {
+  ) => {
     const names = creators.map(({ name }) => name);
-
     let returnContentString = "";
     if (names.length === 1) {
-      returnContentString = `Af ${names.join(", ")}`;
+      returnContentString = `${t("loanListMaterialByAuthorText")} ${names.join(
+        ", "
+      )}`;
     } else {
-      returnContentString = `Af ${names
+      returnContentString = `${t("loanListMaterialByAuthorText")} ${names
         .slice(0, -1)
-        .join(", ")} og ${names.slice(-1)}`;
+        .join(", ")} ${t("loanListMaterialAndAuthorText")} ${names.slice(-1)}`;
     }
     return returnContentString;
-  }
+  };
 
   const { isSuccess, data } = useGetMaterialQuery({
     faust
@@ -78,13 +72,14 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
-      setMaterial(dataManifestation.manifestation);
+      let { manifestation } = dataManifestation;
+      setMaterial(manifestation);
     }
   }, [isSuccessManifestation, dataManifestation]);
 
   return (
     <>
-      {materialType === "selectableMaterial" && (
+      {materialType === "selectableMaterial" && material && (
         <SelectableMaterial
           renewableStatus={renewableStatus}
           faust={faust}
@@ -94,7 +89,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           getAuthorName={getAuthorName}
         />
       )}
-      {materialType === "stackableMaterial" && (
+      {materialType === "stackableMaterial" && material && (
         <StackableMaterial
           dueDate={dueDate}
           loanDate={loanDate}

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../core/modal.slice";
-import { Material } from "../../../components/material/material";
-import StatusCircle from "../materials/utils/status-circle";
+import { Cover } from "../../../components/cover/cover";
+import StatusCircle from "./utils/status-circle";
+import StatusBadge from "./utils/status-badge";
+import { useText } from "../../../core/utils/text";
 
 interface StackableMaterialProps {
   dueDate: string;
   loanDate: string | undefined;
-  amountOfMaterialsWithDueDate: number;
-  selectDueDate: Function;
+  amountOfMaterialsWithDueDate?: number;
+  selectDueDate?: Function;
   getAuthorName: Function;
   materialId: string;
   material: {
@@ -33,98 +35,101 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   materialId,
   getAuthorName
 }) => {
-  const dispatch = useDispatch();
+  const t = useText();
 
+  const dispatch = useDispatch();
   return (
-    <div
-      className={`list-reservation m-32 ${
-        amountOfMaterialsWithDueDate > 1 ? "list-reservation--stacked" : ""
-      }`}
-    >
+    <>
       {material && (
-        <>
-          <div className="list-reservation__material">
-            <div>
-              <Material
-                size="small"
-                animate={false}
-                tint="120"
-                materialId={materialId}
-                materialDescription={material.description}
-              />
-            </div>
-            <div className="list-reservation__information">
+        <div
+          className={`list-reservation m-32 ${
+            amountOfMaterialsWithDueDate > 1 ? "list-reservation--stacked" : ""
+          }`}
+        >
+          <>
+            <div className="list-reservation__material">
               <div>
-                <div className="status-label status-label--outline">
-                  {material.materialType}
+                <Cover
+                  size="small"
+                  animate={false}
+                  tint="120"
+                  materialId={materialId}
+                  description={material.description}
+                />
+              </div>
+              <div className="list-reservation__information">
+                <div>
+                  <div className="status-label status-label--outline">
+                    {material.materialType}
+                  </div>
                 </div>
-              </div>
-              <div className="list-reservation__about">
-                <h3 className="text-header-h4">{material.fullTitle}</h3>
-                <p className="text-small-caption color-secondary-gray">
-                  {material.creators.length > 0 &&
-                    getAuthorName(material.creators)}
-                  {material.datePublished && <> ({material.datePublished})</>}
-                </p>
-              </div>
-              {amountOfMaterialsWithDueDate > 1 && (
-                <a
-                  type="button"
-                  onClick={() => {
-                    selectDueDate();
-                    dispatch(openModal({ modalId: dueDate }));
-                  }}
-                  aria-label="note about material"
-                  className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-                >
-                  + {amountOfMaterialsWithDueDate} materialer
-                </a>
-              )}
-              {dayjs().isAfter(dayjs(dueDate)) && (
-                <a
-                  href="todo"
-                  aria-label="todo"
-                  className="list-reservation__note-desktop text-small-caption color-signal-alert"
-                >
-                  Du pålægges et gebyr, når materialet afleveres
-                </a>
-              )}
-            </div>
-          </div>
-          <div>
-            <div className="list-reservation__status">
-              <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-              <div>
-                <div className="list-reservation__deadline">
-                  {dayjs().isAfter(dayjs(dueDate)) && (
-                    <div className="status-label status-label--danger">
-                      overskredet
-                    </div>
-                  )}
-                  <p className="text-small-caption">
-                    Afleveres {dayjs(dueDate).format("DD-MM-YYYY")}
+                <div className="list-reservation__about">
+                  <h3 className="text-header-h4">{material.fullTitle}</h3>
+                  <p className="text-small-caption color-secondary-gray">
+                    {material.creators.length > 0 &&
+                      getAuthorName(material.creators)}
+                    {material.datePublished && <> ({material.datePublished})</>}
                   </p>
-                  {amountOfMaterialsWithDueDate > 1 && (
-                    <a
-                      href=""
-                      className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                    >
-                      + {amountOfMaterialsWithDueDate} materialer
-                    </a>
-                  )}
+                </div>
+                {amountOfMaterialsWithDueDate > 1 && (
+                  // todo style this button as a link
+                  <a
+                    type="button"
+                    onClick={() => {
+                      selectDueDate();
+                      dispatch(openModal({ modalId: dueDate }));
+                    }}
+                    aria-describedby={t("loanListMaterialsModalDesktopText")}
+                    className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+                  >
+                    + {amountOfMaterialsWithDueDate}{" "}
+                    {t("LoanListMaterialsDesktopText")}
+                  </a>
+                )}
+                {dayjs().isAfter(dayjs(dueDate)) && (
                   <a
                     href="todo"
-                    className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                    className="list-reservation__note-desktop text-small-caption color-signal-alert"
                   >
-                    Du pålægges et gebyr, når materialet afleveres
+                    {t("loanListLateFeeDesktopText")}
                   </a>
+                )}
+              </div>
+            </div>
+            <div>
+              <div className="list-reservation__status">
+                <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+                <div>
+                  <div className="list-reservation__deadline">
+                    <StatusBadge dueDate={dueDate} />
+                    <p className="text-small-caption">
+                      {t("LoanListToBeDeliveredText")}{" "}
+                      {dayjs(dueDate).format("DD-MM-YYYY")}
+                    </p>
+                    {amountOfMaterialsWithDueDate > 1 && (
+                      <a
+                        href=""
+                        aria-describedby={t("loanListMaterialsModalMobileText")}
+                        className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                      >
+                        + {amountOfMaterialsWithDueDate}{" "}
+                        {t("LoanListMaterialsMobileText")}
+                      </a>
+                    )}
+                    <a
+                      href="todo"
+                      className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                    >
+                      {t("loanListLateFeeMobileText")}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
+          </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
