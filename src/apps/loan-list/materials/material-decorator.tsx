@@ -72,7 +72,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
-      let { manifestation } = dataManifestation;
+      const { manifestation } = dataManifestation;
       setMaterial(manifestation);
     }
   }, [isSuccessManifestation, dataManifestation]);

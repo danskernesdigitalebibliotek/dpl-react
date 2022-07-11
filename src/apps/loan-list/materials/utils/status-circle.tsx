@@ -16,8 +16,7 @@ const StatusCircle: React.FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const daysBetweenTodayAndDue = Math.floor(dueD.diff(today, "day", true));
   const daysBetweenLoanAndDue = Math.floor(dueD.diff(loanD, "day", true));
 
-  let percent = (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
-  percent = 100 - percent;
+  const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
 
   let color = "#484848";
   if (daysBetweenTodayAndDue < 1) {

@@ -122,6 +122,14 @@ export default {
     LoanListLabelCheckboxMaterialModalText: {
       defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
+    },
+    LoanListCloseModalText: {
+      defaultValue: "Luk forny lån modal",
+      control: { type: "text" }
+    },
+    LoanListModalDescriptionText: {
+      defaultValue: "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

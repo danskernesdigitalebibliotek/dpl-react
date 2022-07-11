@@ -112,8 +112,11 @@ const DemoLoanList: React.FC = () => {
       {loans && (
         <div className="list-reservation-container">
           {view === "stacked" &&
-            dueDates &&
             dueDates?.map((uniqueDueDate) => {
+              // Stack items:
+              // if multiple items have the same due date, they are "stacked"
+              // which means styling making it look like there are multiple materials,
+              // but only _one_ with said due date is visible.
               const loan = loans.filter(
                 ({ loanDetails }) => loanDetails.dueDate === uniqueDueDate
               );

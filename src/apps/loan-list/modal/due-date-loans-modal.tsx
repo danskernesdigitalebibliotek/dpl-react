@@ -24,7 +24,11 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
   const t = useText();
 
   return (
-    <Modal modalId={dueDate} closeModalAriaLabelText="Todo">
+    <Modal
+      modalId={dueDate}
+      closeModalAriaLabelText={t("LoanListCloseModalText")}
+      screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
+    >
       {loansModal && (
         <>
           <div className="modal-loan__header">
