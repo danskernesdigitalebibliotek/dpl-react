@@ -14,6 +14,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   additionalClasses
 }) => {
   return (
+    // todo add space between label adn checkbox
     <div className={`checkbox ${additionalClasses}`}>
       <label className="checkbox__label" htmlFor={id}>
         <span className="checkbox__icon">
