@@ -8,6 +8,7 @@ type ModalProps = {
   children: ReactNode;
   modalId: string;
   closeModalAriaLabelText: string;
+  screenReaderModalDescriptionText: string;
 };
 
 interface ModalIdsProps {
@@ -16,7 +17,12 @@ interface ModalIdsProps {
   };
 }
 
-function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
+function Modal({
+  modalId,
+  closeModalAriaLabelText,
+  children,
+  screenReaderModalDescriptionText
+}: ModalProps) {
   const t = useText();
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -49,7 +55,7 @@ function Modal({ modalId, closeModalAriaLabelText, children }: ModalProps) {
       role="dialog"
     >
       <div className="modal__screen-reader-description" id={`modal-${modalId}`}>
-        {t("screenReaderModalDescriptionText")}
+        {screenReaderModalDescriptionText}
       </div>
       <button
         type="button"

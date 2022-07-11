@@ -4,7 +4,7 @@ import { withQuery } from "@storybook/addon-queryparams";
 import DemoModal, { DemoModalEntryProps } from "./demo-modal.entry";
 
 export default {
-  title: "Demo modal",
+  title: "Apps / Demo modal",
   component: DemoModal,
   decorators: [withQuery],
   parameters: {
