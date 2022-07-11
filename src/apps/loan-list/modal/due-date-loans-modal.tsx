@@ -30,51 +30,54 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
       closeModalAriaLabelText={t("LoanListCloseModalText")}
       screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
     >
-      {loansModal && (
-        <>
-          <div className="modal-loan__header">
-            <div className="mr-32">
-              {/* todo this status circle being discussed på fddf, as we dont know which numbers to use for the full circle, and the designers are somewhat vague about the idea  */}
-              <StatusCircle loanDate="03-08-2022" dueDate={dueDate} />
+      {/* todo add overflow scroll in style repo */}
+      <div className="modal-loan__container">
+        {loansModal && (
+          <>
+            <div className="modal-loan__header">
+              <div className="mr-32">
+                {/* todo this status circle being discussed på fddf, as we dont know which numbers to use for the full circle, and the designers are somewhat vague about the idea  */}
+                <StatusCircle loanDate="03-08-2022" dueDate={dueDate} />
+              </div>
+              <div>
+                <h1 className="modal-loan__title text-header-h2">
+                  {t("loanListToBeDeliveredModalText")}{" "}
+                  {dayjs(dueDate).locale(localeDa).format("DD MMMM YYYY")}
+                </h1>
+              </div>
             </div>
-            <div>
-              <h1 className="modal-loan__title text-header-h2">
-                {t("loanListToBeDeliveredModalText")}{" "}
-                {dayjs(dueDate).locale(localeDa).format("DD MMMM YYYY")}
-              </h1>
+            <div className="modal-loan__buttons">
+              <CheckBox
+                id="checkbox-select-all"
+                label={t("loanListSelectPossibleCheckboxText")}
+              />
+              <button
+                type="button"
+                className="btn-primary btn-filled btn-small arrow__hover--right-small"
+              >
+                {t("loanListRenewPossibleText")} ({renewable})
+              </button>
             </div>
-          </div>
-          <div className="modal-loan__buttons">
-            <CheckBox
-              id="checkbox-select-all"
-              label={t("loanListSelectPossibleCheckboxText")}
-            />
-            <button
-              type="button"
-              className="btn-primary btn-filled btn-small arrow__hover--right-small"
-            >
-              {t("loanListRenewPossibleText")} ({renewable})
-            </button>
-          </div>
-          <div className="modal-loan__list">
-            <ul className="modal-loan__list-materials">
-              {dueDates &&
-                loansModal.map(({ renewalStatusList, loanDetails }) => {
-                  return (
-                    <MaterialDecorator
-                      key={loanDetails.recordId}
-                      materialType="selectableMaterial"
-                      faust={loanDetails.recordId}
-                      dueDate={loanDetails.dueDate}
-                      renewableStatus={renewalStatusList}
-                      loanType={loanDetails.loanType}
-                    />
-                  );
-                })}
-            </ul>
-          </div>
-        </>
-      )}
+            <div className="modal-loan__list">
+              <ul className="modal-loan__list-materials">
+                {dueDates &&
+                  loansModal.map(({ renewalStatusList, loanDetails }) => {
+                    return (
+                      <MaterialDecorator
+                        key={loanDetails.recordId}
+                        materialType="selectableMaterial"
+                        faust={loanDetails.recordId}
+                        dueDate={loanDetails.dueDate}
+                        renewableStatus={renewalStatusList}
+                        loanType={loanDetails.loanType}
+                      />
+                    );
+                  })}
+              </ul>
+            </div>
+          </>
+        )}
+      </div>
     </Modal>
   );
 };
