@@ -6,7 +6,11 @@ import LoanList, { LoanListEntryProps } from "./loan-list.entry";
 export default {
   title: "Apps / Loan list",
   component: LoanList,
-  parameters: {},
+  parameters: {
+    query: {
+      modal: "2022-07-16"
+    }
+  },
   argTypes: {
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
@@ -112,8 +116,11 @@ export default {
       control: { type: "text" }
     },
     LoanListToBeDeliveredMaterialText: {
-      defaultValue:
-        "Afleveres",
+      defaultValue: "Afleveres",
+      control: { type: "text" }
+    },
+    LoanListLabelCheckboxMaterialModalText: {
+      defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
     }
   },

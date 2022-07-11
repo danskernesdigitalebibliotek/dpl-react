@@ -1,6 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useText } from "../../../core/utils/text";
+import CheckBox from "./utils/checkbox";
 
 interface SelectableMaterialProps {
   faust: string;
@@ -36,23 +37,13 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
         <li>
           <div className="list-materials">
             {/* todo make fixed in design system  */}
-            <div className="list-materials__checkbox mr-32">
-              <div className="checkbox">
-                <input id={faust} className="checkbox__input" type="checkbox" />
-                <label className="checkbox__label" htmlFor={faust}>
-                  <span className="checkbox__icon">
-                    <svg width="20px" height="20px">
-                      <polyline
-                        points="1.5 6 4.5 9 10.5 1"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></polyline>
-                    </svg>
-                  </span>
-                </label>
-              </div>
-            </div>
+            <CheckBox
+              additionalClasses="mr-32"
+              id={faust}
+              label={t("LoanListLabelCheckboxMaterialModalText")}
+              hideLabel={true}
+            />
+
             <div className="list-materials__content">
               <div className="list-materials__content-status">
                 <div className="status-label status-label--outline ">

@@ -10,8 +10,10 @@ import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
+import CheckBox from "../materials/utils/checkbox";
+import DueDateLoansModal from "../modal/due-date-loans-modal";
 
-const DemoSearchHeader: React.FC<LoanListProps> = () => {
+const DemoLoanList: React.FC = () => {
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[] | null>([]);
   const [dueDates, setDueDates] = useState<string[]>();
@@ -27,18 +29,26 @@ const DemoSearchHeader: React.FC<LoanListProps> = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
+    // regex for finding date string from modal query param
     const regex = /^\d{4}-\d{2}-\d{2}$/;
+    // modal query param
     const modalString = searchParams.get("modal");
+
     if (modalString && loans) {
       const found = modalString.toString().match(regex);
+      // If there is a date string in the modal query param
       if (found) {
         setDueDateModal(found[0]);
+        // THe loans are filtered with said date string
         const loansForModal = loans.filter(
           ({ loanDetails }) => loanDetails.dueDate === dueDateModal
         );
+        // Amount of renewable loans are determined, used in the ui
         const amountOfRenewableLoans = loansForModal.filter(
           ({ isRenewable }) => isRenewable
         ).length;
+
+        // Loans for modal (the modal shows loans stacked by due date)
         setLoansModal(loansForModal);
         setRenewable(amountOfRenewableLoans);
       }
@@ -50,7 +60,13 @@ const DemoSearchHeader: React.FC<LoanListProps> = () => {
       if (value) {
         const listOfDueDates = value.map((a) => a.loanDetails.dueDate);
         const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
+
+        // The due dates are used for the stacked materials
+        // The stacked materials view shows materials stacked by
+        // due date, and for this we need a uniqe list of due dates
         setDueDates(uniqeListOfDueDates);
+
+        // Loans are sorted by due date
         const sortedByDueDate = value.sort(
           (objA, objB) =>
             new Date(objA.loanDetails.dueDate).getTime() -
@@ -62,7 +78,7 @@ const DemoSearchHeader: React.FC<LoanListProps> = () => {
     });
   }, []);
 
-  function selectDueDate(dueDateModalInput: string) {
+  function openModalDueDate(dueDateModalInput: string) {
     if (loans) {
       setDueDateModal(dueDateModalInput);
       setLoansModal(
@@ -109,7 +125,7 @@ const DemoSearchHeader: React.FC<LoanListProps> = () => {
                 <MaterialDecorator
                   materialType="stackableMaterial"
                   faust={recordId}
-                  selectDueDate={() => selectDueDate(dueDate)}
+                  selectDueDate={() => openModalDueDate(dueDate)}
                   dueDate={dueDate}
                   loanDate={loanDate}
                   amountOfMaterialsWithDueDate={loan.length}
@@ -129,68 +145,14 @@ const DemoSearchHeader: React.FC<LoanListProps> = () => {
             })}
         </div>
       )}
-      <Modal modalId={dueDateModal} closeModalAriaLabelText="Todo">
-        <div className="modal-loan__header">
-          <div className="mr-32">
-            <StatusCircle loanDate="04-14-2022" dueDate={dueDateModal} />
-          </div>
-          <div>
-            <h1 className="modal-loan__title text-header-h2">
-              {t("loanListToBeDeliveredModalText")}{" "}
-              {dayjs(dueDateModal).locale(localeDa).format("DD MMMM YYYY")}
-            </h1>
-          </div>
-        </div>
-        <div className="modal-loan__buttons">
-          <div className="checkbox">
-            <label className="checkbox__label" htmlFor="checkbox-select-all">
-              <span className="checkbox__icon">
-                <svg width="20px" height="20px">
-                  <polyline
-                    points="1.5 6 4.5 9 10.5 1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </span>
-              <span className="checkbox__text text-small-caption color-secondary-gray">
-                {t("loanListSelectPossibleCheckboxText")}
-              </span>
-              <input
-                id="checkbox-select-all"
-                className="checkbox__input"
-                type="checkbox"
-              />
-            </label>
-          </div>
-          <button
-            type="button"
-            className="btn-primary btn-filled btn-small arrow__hover--right-small"
-          >
-            {t("loanListRenewPossibleText")} ({renewable})
-          </button>
-        </div>
-        <div className="modal-loan__list">
-          <ul className="modal-loan__list-materials">
-            {dueDates &&
-              loansModal &&
-              loansModal.map(({ renewalStatusList, loanDetails }) => {
-                return (
-                  <MaterialDecorator
-                    materialType="selectableMaterial"
-                    faust={loanDetails.recordId}
-                    dueDate={loanDetails.dueDate}
-                    renewableStatus={renewalStatusList}
-                    loanType={loanDetails.loanType}
-                  />
-                );
-              })}
-          </ul>
-        </div>
-      </Modal>
+      <DueDateLoansModal
+        dueDate={dueDateModal}
+        renewable={renewable}
+        dueDates={dueDates}
+        loansModal={loansModal}
+      />
     </div>
   );
 };
 
-export default DemoSearchHeader;
+export default DemoLoanList;
