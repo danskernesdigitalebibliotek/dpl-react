@@ -9,6 +9,7 @@ type ModalProps = {
   modalId: string;
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
+  additionalClasses?: string;
 };
 
 interface ModalIdsProps {
@@ -21,7 +22,8 @@ function Modal({
   modalId,
   closeModalAriaLabelText,
   children,
-  screenReaderModalDescriptionText
+  screenReaderModalDescriptionText,
+  additionalClasses
 }: ModalProps) {
   const t = useText();
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ function Modal({
 
   return (
     <div
-      className="modal modal-loan modal-padding modal-show"
+      className={`modal modal-padding modal-show ${additionalClasses}`}
       style={{
         zIndex: modalIds.indexOf(modalId)
       }}
