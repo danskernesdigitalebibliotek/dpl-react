@@ -61,6 +61,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                 loansModal.map(({ renewalStatusList, loanDetails }) => {
                   return (
                     <MaterialDecorator
+                      key={loanDetails.recordId}
                       materialType="selectableMaterial"
                       faust={loanDetails.recordId}
                       dueDate={loanDetails.dueDate}

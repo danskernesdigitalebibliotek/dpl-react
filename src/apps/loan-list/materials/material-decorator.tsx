@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   useGetMaterialQuery,
   useGetMaterialManifestationQuery,
-  WorkManifestation
+  GetMaterialManifestationQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
@@ -19,6 +19,16 @@ interface MaterialDecoratorProps {
   loanDate?: string;
 }
 
+export interface WorkManifestationType {
+  __typename?: "WorkManifestation" | undefined;
+  title?: string | null | undefined;
+  description: string;
+  fullTitle: string;
+  datePublished: unknown;
+  materialType: string;
+  creators: { __typename?: "Creator" | undefined; name: string }[];
+}
+
 const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   materialType,
   faust,
@@ -30,7 +40,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   loanDate
 }) => {
   const t = useText();
-  const [material, setMaterial] = useState<WorkManifestation>();
+  const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
   const [materialId, setMaterialId] = useState<string>("");
 
   // Create a string of authors with commas and a conjunction
@@ -72,8 +82,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
-      const { manifestation } = dataManifestation;
-      setMaterial(manifestation);
+      setMaterial(dataManifestation);
     }
   }, [isSuccessManifestation, dataManifestation]);
 

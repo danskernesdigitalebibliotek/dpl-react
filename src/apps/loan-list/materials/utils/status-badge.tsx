@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import statusThreshold from "../../../../core/configuration/status-thresholds.json";
 import { useText } from "../../../../core/utils/text";
 
-
 interface StatusBadgeProps {
   dueDate: string;
 }

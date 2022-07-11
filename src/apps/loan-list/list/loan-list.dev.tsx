@@ -128,7 +128,8 @@ export default {
       control: { type: "text" }
     },
     LoanListModalDescriptionText: {
-      defaultValue: "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
+      defaultValue:
+        "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
       control: { type: "text" }
     }
   },
