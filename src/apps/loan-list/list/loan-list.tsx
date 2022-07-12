@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import localeDa from "dayjs/locale/da";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { getLoansV2 } from "../../../core/fbs/fbs";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
-import Modal from "../../../core/utils/modal";
-import StatusCircle from "../materials/utils/status-circle";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
-import CheckBox from "../materials/utils/checkbox";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 
-const DemoLoanList: React.FC = () => {
+const LoanList: React.FC = () => {
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[] | null>([]);
   const [dueDates, setDueDates] = useState<string[]>();
@@ -120,7 +116,7 @@ const DemoLoanList: React.FC = () => {
               const loan = loans.filter(
                 ({ loanDetails }) => loanDetails.dueDate === uniqueDueDate
               );
-
+              
               const {
                 loanDetails: { dueDate, loanDate, recordId }
               } = loan[0];
@@ -160,4 +156,4 @@ const DemoLoanList: React.FC = () => {
   );
 };
 
-export default DemoLoanList;
+export default LoanList;

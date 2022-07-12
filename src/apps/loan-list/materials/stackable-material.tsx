@@ -14,7 +14,6 @@ interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   selectDueDate?: Function;
   getAuthorName: Function;
-  materialId: string;
   material: GetMaterialManifestationQuery;
 }
 
@@ -24,15 +23,19 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   amountOfMaterialsWithDueDate,
   selectDueDate,
   material,
-  materialId,
   getAuthorName
 }) => {
   const t = useText();
 
-  const { description, creators, datePublished, materialType, fullTitle } =
-    material.manifestation;
-  const dispatch = useDispatch();
+  const { creators, hostPublication, materialTypes, titles, pid, abstract } =
+    material?.manifestation || {};
+  const { year } = hostPublication || {};
+  const [{ specific }] = materialTypes || [];
+  const {
+    main: [mainText]
+  } = titles || { main: [] };
 
+  const dispatch = useDispatch();
   return (
     <div
       className={`list-reservation m-32 ${
@@ -45,23 +48,21 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
         <div>
           <Cover
             size="small"
-            animate={false}
+            animate
             tint="120"
-            materialId={materialId}
-            description={description}
+            materialId={pid || ""}
+            description={abstract && abstract[0]}
           />
         </div>
         <div className="list-reservation__information">
           <div>
-            <div className="status-label status-label--outline">
-              {materialType}
-            </div>
+            <div className="status-label status-label--outline">{specific}</div>
           </div>
           <div className="list-reservation__about">
-            <h3 className="text-header-h4">{fullTitle}</h3>
+            <h3 className="text-header-h4">{mainText}</h3>
             <p className="text-small-caption color-secondary-gray">
-              {creators.length > 0 && getAuthorName(creators)}
-              {datePublished && <> ({datePublished})</>}
+              {creators && creators.length > 0 && getAuthorName(creators)}
+              {year?.year && <> ({year.year})</>}
             </p>
           </div>
           {amountOfMaterialsWithDueDate &&

@@ -1,5 +1,0 @@
-query getMaterial($faust: String!) {
-  work(faust: $faust) {
-    id
-  }
-}

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  useGetMaterialQuery,
-  useGetMaterialManifestationQuery,
-  GetMaterialManifestationQuery
+  GetMaterialManifestationQuery,
+  useGetMaterialManifestationQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
@@ -41,15 +40,14 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 }) => {
   const t = useText();
   const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
-  const [materialId, setMaterialId] = useState<string>("");
 
   // Create a string of authors with commas and a conjunction
   const getAuthorName = (
     creators: {
-      name: string;
+      display: string;
     }[]
   ) => {
-    const names = creators.map(({ name }) => name);
+    const names = creators.map(({ display }) => display);
     let returnContentString = "";
     if (names.length === 1) {
       returnContentString = `${t("loanListMaterialByAuthorText")} ${names.join(
@@ -63,23 +61,10 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
     return returnContentString;
   };
 
-  const { isSuccess, data } = useGetMaterialQuery({
-    faust
-  });
-
   const { isSuccess: isSuccessManifestation, data: dataManifestation } =
     useGetMaterialManifestationQuery({
-      pid: materialId
+      faust
     });
-
-  useEffect(() => {
-    if (isSuccess && data) {
-      if (data?.work?.id) {
-        setMaterialId(data.work.id.replace("work-of:", ""));
-      }
-    }
-  }, [data, isSuccess]);
-
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
       setMaterial(dataManifestation);
@@ -88,7 +73,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   return (
     <>
-      {materialType === "selectableMaterial" && material && (
+      {materialType === "selectableMaterial" && material?.manifestation && (
         <SelectableMaterial
           renewableStatus={renewableStatus}
           faust={faust}
@@ -98,13 +83,12 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           getAuthorName={getAuthorName}
         />
       )}
-      {materialType === "stackableMaterial" && material && (
+      {materialType === "stackableMaterial" && material?.manifestation && (
         <StackableMaterial
           dueDate={dueDate}
           loanDate={loanDate}
           amountOfMaterialsWithDueDate={amountOfMaterialsWithDueDate}
           selectDueDate={selectDueDate}
-          materialId={materialId}
           material={material}
           getAuthorName={getAuthorName}
         />

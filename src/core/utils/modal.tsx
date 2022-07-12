@@ -73,7 +73,7 @@ function Modal({
         <img src={CloseIcon} alt="" />
         {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
       </button>
-        {children}
+      {children}
     </div>
   );
 }

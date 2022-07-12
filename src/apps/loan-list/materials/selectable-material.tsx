@@ -23,8 +23,14 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
 }) => {
   const t = useText();
 
-  const { creators, datePublished, materialType, fullTitle } =
-    material.manifestation;
+  const { creators, hostPublication, materialTypes, titles } =
+    material?.manifestation || {};
+
+  const { year } = hostPublication || {};
+  const [{ specific }] = materialTypes || [];
+  const {
+    main: [mainText]
+  } = titles || { main: [] };
 
   return (
     <li>
@@ -40,13 +46,13 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
         <div className="list-materials__content">
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
-              {materialType}
+              {specific}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{fullTitle}</p>
+          <p className="text-header-h5 mt-8">{mainText}</p>
           <p className="text-small-caption">
-            {creators.length > 0 && getAuthorName(creators)}
-            {datePublished && <> ({datePublished})</>}
+            {creators && creators.length > 0 && getAuthorName(creators)}
+            {year?.year && <> ({year.year})</>}
           </p>
         </div>
         <div className="list-materials__status">
