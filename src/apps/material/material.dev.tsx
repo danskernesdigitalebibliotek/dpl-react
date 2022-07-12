@@ -13,6 +13,10 @@ export default {
     workId: {
       name: "workId",
       control: { type: "text" }
+    },
+    showPeriodikumSelect: {
+      name: "showPeriodikumSelect",
+      control: { type: "boolean" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -25,6 +29,13 @@ export const withStorybookArgs = Template.bind({});
 withStorybookArgs.args = {
   pid: `870970-basis:46336461`,
   workId: `work-of:870970-basis:46336461`
+};
+
+export const withStorybookArgsAndPeriodikumSelect = Template.bind({});
+withStorybookArgsAndPeriodikumSelect.args = {
+  pid: `870970-basis:46336461`,
+  workId: `work-of:870970-basis:46336461`,
+  showPeriodikumSelect: true
 };
 
 export const withUrlParams = Template.bind({});
