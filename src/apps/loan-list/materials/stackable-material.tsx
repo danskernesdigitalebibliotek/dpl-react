@@ -12,8 +12,8 @@ interface StackableMaterialProps {
   dueDate: string;
   loanDate: string | undefined;
   amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: Function;
-  getAuthorName: Function;
+  selectDueDate?: () => void;
+  authorString: string;
   material: GetMaterialManifestationQuery;
 }
 
@@ -23,11 +23,11 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   amountOfMaterialsWithDueDate,
   selectDueDate,
   material,
-  getAuthorName
+  authorString
 }) => {
   const t = useText();
 
-  const { creators, hostPublication, materialTypes, titles, pid, abstract } =
+  const { hostPublication, materialTypes, titles, pid, abstract } =
     material?.manifestation || {};
   const { year } = hostPublication || {};
   const [{ specific }] = materialTypes || [];
@@ -61,7 +61,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
           <div className="list-reservation__about">
             <h3 className="text-header-h4">{mainText}</h3>
             <p className="text-small-caption color-secondary-gray">
-              {creators && creators.length > 0 && getAuthorName(creators)}
+              {authorString}
               {year?.year && <> ({year.year})</>}
             </p>
           </div>

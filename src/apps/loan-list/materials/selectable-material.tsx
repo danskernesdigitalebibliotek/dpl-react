@@ -9,7 +9,7 @@ interface SelectableMaterialProps {
   dueDate: string;
   renewableStatus?: string[];
   loanType?: string;
-  getAuthorName: Function;
+  authorString: string;
   material: GetMaterialManifestationQuery;
 }
 
@@ -19,11 +19,11 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   renewableStatus,
   loanType,
   material,
-  getAuthorName
+  authorString
 }) => {
   const t = useText();
 
-  const { creators, hostPublication, materialTypes, titles } =
+  const { hostPublication, materialTypes, titles } =
     material?.manifestation || {};
 
   const { year } = hostPublication || {};
@@ -51,7 +51,7 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{mainText}</p>
           <p className="text-small-caption">
-            {creators && creators.length > 0 && getAuthorName(creators)}
+            {authorString}
             {year?.year && <> ({year.year})</>}
           </p>
         </div>

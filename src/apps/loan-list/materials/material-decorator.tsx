@@ -80,7 +80,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           dueDate={dueDate}
           loanType={loanType}
           material={material}
-          getAuthorName={getAuthorName}
+          authorString={getAuthorName(material.manifestation?.creators)}
         />
       )}
       {materialType === "stackableMaterial" && material?.manifestation && (
@@ -90,7 +90,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           amountOfMaterialsWithDueDate={amountOfMaterialsWithDueDate}
           selectDueDate={selectDueDate}
           material={material}
-          getAuthorName={getAuthorName}
+          authorString={getAuthorName(material.manifestation?.creators)}
         />
       )}
     </>
