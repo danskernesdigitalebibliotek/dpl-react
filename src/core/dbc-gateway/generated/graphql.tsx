@@ -1057,6 +1057,44 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
+export type GetWorkQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetWorkQuery = {
+  __typename?: "Query";
+  work?: {
+    __typename?: "Work";
+    workId: string;
+    titles: { __typename?: "WorkTitles"; full: Array<string> };
+    creators: Array<
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
+    >;
+    series: Array<{
+      __typename?: "Series";
+      title: string;
+      numberInSeries?: {
+        __typename?: "NumberInSeries";
+        display: string;
+      } | null;
+    }>;
+    manifestations: {
+      __typename?: "Manifestations";
+      all: Array<{
+        __typename?: "Manifestation";
+        pid: string;
+        publicationYear: { __typename?: "PublicationYear"; display: string };
+        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        creators: Array<
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
+        >;
+      }>;
+    };
+  } | null;
+};
+
 export type SearchWithPaginationQueryVariables = Exact<{
   q: SearchQuery;
   offset: Scalars["Int"];
@@ -1221,6 +1259,22 @@ export const WorkSimpleFragmentDoc = `
 }
     ${SeriesSimpleFragmentDoc}
 ${ManifestationsSimpleFragmentDoc}`;
+export const GetWorkDocument = `
+    query getWork($id: String!) {
+  work(id: $id) {
+    ...WorkSimple
+  }
+}
+    ${WorkSimpleFragmentDoc}`;
+export const useGetWorkQuery = <TData = GetWorkQuery, TError = unknown>(
+  variables: GetWorkQueryVariables,
+  options?: UseQueryOptions<GetWorkQuery, TError, TData>
+) =>
+  useQuery<GetWorkQuery, TError, TData>(
+    ["getWork", variables],
+    fetcher<GetWorkQuery, GetWorkQueryVariables>(GetWorkDocument, variables),
+    options
+  );
 export const SearchWithPaginationDocument = `
     query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
   search(q: $q) {
