@@ -1,6 +1,6 @@
 describe("Opens demo modal", () => {
   it("Opens and closes modal", () => {
-    cy.visit("/iframe.html?path=/story/demo-modal--app");
+    cy.visit("/iframe.html?path=/story/apps-demo-modal--app");
     // Url parameters are passed in, so we expect the first modal to be open on navigation to the url
     cy.get(".modal").find("h1").should("contain", "demo-modal-one");
     cy.get(".modal")
