@@ -116,7 +116,7 @@ const LoanList: React.FC = () => {
               const loan = loans.filter(
                 ({ loanDetails }) => loanDetails.dueDate === uniqueDueDate
               );
-              
+
               const {
                 loanDetails: { dueDate, loanDate, recordId }
               } = loan[0];
