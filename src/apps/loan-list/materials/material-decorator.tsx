@@ -14,7 +14,7 @@ interface MaterialDecoratorProps {
   loanType?: string;
   renewableStatus?: string[];
   amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: Function;
+  selectDueDate?: () => void;
   loanDate?: string;
 }
 
