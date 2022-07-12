@@ -2,7 +2,6 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import { closeModal, openModal } from "../modal.slice";
-import { useText } from "./text";
 
 type ModalProps = {
   children: ReactNode;
@@ -25,7 +24,6 @@ function Modal({
   screenReaderModalDescriptionText,
   additionalClasses
 }: ModalProps) {
-  const t = useText();
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
