@@ -6,24 +6,13 @@ import Material from "./material";
 export interface MaterialEntryProps {
   pid: Pid;
   workId: WorkId;
-  showPeriodikumSelect?: boolean;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({
-  pid,
-  workId,
-  showPeriodikumSelect
-}) => {
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, workId }) => {
   // Get params either from data attributes or from url.
   const { pid: pPid, workId: pWorkId } = getParams({ pid, workId });
 
-  return (
-    <Material
-      pid={pPid}
-      workId={pWorkId}
-      showPeriodikumSelect={showPeriodikumSelect}
-    />
-  );
+  return <Material pid={pPid} workId={pWorkId} />;
 };
 
 export default MaterialEntry;

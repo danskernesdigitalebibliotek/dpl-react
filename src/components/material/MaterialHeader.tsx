@@ -11,13 +11,11 @@ import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 interface MaterialHeaderProps {
   pid: Pid;
   work: WorkSimpleFragment;
-  showPeriodikumSelect?: boolean;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   pid,
-  work: { titles, creators, manifestations },
-  showPeriodikumSelect = false
+  work: { titles, creators, manifestations }
 }) => {
   const title = titles.full[0];
   const allAuthorsString = creators.map((author) => author.display).join(", ");
@@ -33,7 +31,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <div className="material-header__availability-label">
           <AvailabiltityLabels manifestations={manifestations} />
         </div>
-        {showPeriodikumSelect && <MaterialPeriodikumSelect />}
+
+        {/* Check and chow if data has PeriodikumSelect  */}
+        {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
           <Button
             label="RESERVER BOG"

@@ -6,14 +6,9 @@ import { Pid, WorkId } from "../../core/utils/types/ids";
 export interface MaterialProps {
   pid: Pid;
   workId: WorkId;
-  showPeriodikumSelect?: boolean;
 }
 
-const Material: React.FC<MaterialProps> = ({
-  pid,
-  workId,
-  showPeriodikumSelect
-}) => {
+const Material: React.FC<MaterialProps> = ({ pid, workId }) => {
   const { data, isLoading } = useGetWorkQuery({
     id: workId
   });
@@ -23,15 +18,7 @@ const Material: React.FC<MaterialProps> = ({
   }
 
   return (
-    <main>
-      {data?.work && (
-        <MaterialHeader
-          pid={pid}
-          work={data.work}
-          showPeriodikumSelect={showPeriodikumSelect}
-        />
-      )}
-    </main>
+    <main>{data?.work && <MaterialHeader pid={pid} work={data.work} />}</main>
   );
 };
 
