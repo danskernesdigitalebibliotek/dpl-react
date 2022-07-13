@@ -1,5 +1,11 @@
 import React from "react";
 import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  creatorsToString,
+  filterCreators,
+  flattenCreators
+} from "../../core/utils/helpers";
+import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite from "../button-favourite/button-favourite";
@@ -15,10 +21,20 @@ interface MaterialHeaderProps {
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   pid,
-  work: { titles, creators, manifestations }
+  work: {
+    titles: { full: fullTitle },
+    creators,
+    manifestations
+  }
 }) => {
-  const title = titles.full[0];
-  const allAuthorsString = creators.map((author) => author.display).join(", ");
+  const t = useText();
+
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
+
+  const author = creatorsText || "[Creators are missing]";
 
   return (
     <header className="material-header">
@@ -27,7 +43,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       </div>
       <div className="material-header__content">
         <ButtonFavourite materialId={pid} />
-        <MaterialHeaderText title={title} author={allAuthorsString} />
+        <MaterialHeaderText title={String(fullTitle)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels manifestations={manifestations} />
         </div>
