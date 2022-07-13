@@ -88,23 +88,41 @@ const LoanList: React.FC = () => {
   return (
     <div aria-hidden={loansModal !== null ?? true}>
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
-      {/* Todo style the below */}
-      <h2 className="text-header-h4 m-32">
-        {t("loanListPhysicalLoansTitleText")} ({amountOfLoans})
-      </h2>
-      <button onClick={() => setView("list")} type="button">
-        <img src={MenuIcon} alt={t("loanListListText")} />
-      </button>
-      <button onClick={() => setView("stacked")} type="button">
-        <img src={VariousIcon} alt={t("loanListStackText")} />
-      </button>
-      <button
-        type="button"
-        aria-describedby={t("loanListRenewMultipleButtonExplanationText")}
-        className="btn-primary btn-medium  btn-filled arrow__hover--right-small"
-      >
-        {t("loanListRenewMultipleButtonText")}
-      </button>
+      <div className="dpl-list-buttons">
+        <h2 className="dpl-list-buttons__header">
+          {t("loanListPhysicalLoansTitleText")}
+          <div className="dpl-list-buttons__power">{amountOfLoans}</div>
+        </h2>
+        <div className="dpl-list-buttons__buttons">
+          <div className="dpl-list-buttons__buttons__button">
+            <button
+              className="dpl-icon-button"
+              onClick={() => setView("list")}
+              type="button"
+            >
+              <img src={MenuIcon} alt={t("loanListListText")} />
+            </button>
+          </div>
+          <div className="dpl-list-buttons__buttons__button">
+            <button
+              className="dpl-icon-button"
+              onClick={() => setView("stacked")}
+              type="button"
+            >
+              <img src={VariousIcon} alt={t("loanListStackText")} />
+            </button>
+          </div>
+          <div className="dpl-list-buttons__buttons__button">
+            <button
+              type="button"
+              aria-describedby={t("loanListRenewMultipleButtonExplanationText")}
+              className="btn-primary btn-filled btn-small arrow__hover--right-small"
+            >
+              {t("loanListRenewMultipleButtonText")}
+            </button>
+          </div>
+        </div>
+      </div>
       {loans && (
         <div className="list-reservation-container">
           {view === "stacked" &&
