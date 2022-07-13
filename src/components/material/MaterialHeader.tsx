@@ -9,7 +9,8 @@ import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite from "../button-favourite/button-favourite";
-import { Button } from "../Buttons/Button";
+import ButtonLargeFilled from "../Buttons/ButtonLargeFilled";
+import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
@@ -51,21 +52,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {/* Check and chow if data has PeriodikumSelect  */}
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
-          <Button
-            label="RESERVER BOG"
-            buttonType="none"
-            variant="filled"
+          <ButtonLargeFilled label={t("reserveBookText")} disabled={false} />
+          <ButtonLargeOutline
+            label={t("fineOnBookshelfText")}
             disabled={false}
-            collapsible={false}
-            size="large"
-          />
-          <Button
-            label="FIND PÅ HYLDEN"
-            buttonType="none"
-            variant="outline"
-            disabled={false}
-            collapsible={false}
-            size="large"
           />
         </div>
       </div>

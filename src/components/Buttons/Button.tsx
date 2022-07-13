@@ -46,27 +46,14 @@ export const Button: React.FC<ButtonProps> = ({
     return null;
   }, [buttonType, iconClassName, variant]);
 
-  const getSize = () => {
-    if (size === "large") return "btn-large";
-    if (size === "medium") return "btn-medium";
-    if (size === "small") return "btn-small";
-    if (size === "xsmall") return "btn-xsmall";
-    return "";
-  };
-
-  const getVariant = () => {
-    if (variant === "filled") return "btn-filled";
-    if (variant === "outline") return "btn-outline";
-    return "";
-  };
-
   return (
     <button
       type="button"
-      className={`btn-primary ${getVariant()} ${getSize()} arrow__hover--right-small`}
+      className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small`}
       disabled={disabled}
       onClick={onClick}
     >
+      {/* TODO find out what should be instead (6) */}
       {`${label} ${buttonType === "search" ? "(6)" : ""}`}
       <Icon />
     </button>
