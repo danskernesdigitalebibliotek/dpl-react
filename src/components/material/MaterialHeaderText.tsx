@@ -16,7 +16,7 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
     <>
       <h1 className="text-header-h1 mb-16">{title}</h1>
       <p className="text-body-large">
-        <span>{t("Af")} </span>
+        <span>{t("materialHeaderAuthorByText")} </span>
         {author}
       </p>
     </>

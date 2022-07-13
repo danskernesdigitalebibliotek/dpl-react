@@ -19,7 +19,7 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
         <div className="material-periodikum-select">
           {/* This is because the design requires label and select input to be separated */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="year">{t("Årgang")}</label>
+          <label htmlFor="year">{t("periodikumSelectYearText")}</label>
           <div className="material-periodikum-select__border-container">
             <select id="year">
               {years.map((year) => (
@@ -35,7 +35,7 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
         <div className="material-periodikum-select">
           {/* This is because the design requires label and select input to be separated */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="weeks">{t("Uge")}</label>
+          <label htmlFor="weeks">{t("periodikumSelectWeekText")}</label>
           <div className="material-periodikum-select__border-container">
             <select id="weeks">
               {weeks.map((week) => (

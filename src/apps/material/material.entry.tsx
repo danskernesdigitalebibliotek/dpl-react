@@ -1,9 +1,16 @@
 import * as React from "react";
 import { getParams } from "../../core/utils/helpers";
+import { withText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import Material from "./material";
 
-export interface MaterialEntryProps {
+interface MaterialEntryTextProps {
+  materialHeaderAuthorByText: string;
+  periodikumSelectYearText: string;
+  periodikumSelectWeekText: string;
+}
+
+export interface MaterialEntryProps extends MaterialEntryTextProps {
   pid: Pid;
   workId: WorkId;
 }
@@ -15,4 +22,4 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, workId }) => {
   return <Material pid={pPid} workId={pWorkId} />;
 };
 
-export default MaterialEntry;
+export default withText(MaterialEntry);
