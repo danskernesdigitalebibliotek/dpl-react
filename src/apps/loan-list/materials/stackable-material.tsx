@@ -97,7 +97,11 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
           <StatusCircle loanDate={loanDate} dueDate={dueDate} />
           <div>
             <div className="list-reservation__deadline">
-              <StatusBadge dueDate={dueDate} />
+              <StatusBadge
+                dueDate={dueDate}
+                dangerText={t("loanListStatusBadgeDangerText")}
+                warningText={t("loanListStatusBadgeWarningText")}
+              />
               <p className="text-small-caption">
                 {t("LoanListToBeDeliveredText")}{" "}
                 {dayjs(dueDate).format("DD-MM-YYYY")}

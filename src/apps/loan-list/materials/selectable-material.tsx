@@ -2,6 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
+import StatusBadge from "./utils/status-badge";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 
 interface SelectableMaterialProps {
@@ -68,11 +69,14 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
               {loanType === "interLibraryLoan" && (
                 <>{t("LoanListDeniedInterLibraryLoanText")}</>
               )}
-              {/* todo “Lånet er fornyet i dag”, hvis lånet er fornyet samme dag */}
             </span>
           )}
-          {/* todo add color in design system */}
-          <div className="status-label status-label--info">
+          <StatusBadge
+            dueDate={dueDate}
+            neutralText={`${t("LoanListToBeDeliveredMaterialText")} 
+            ${dayjs(dueDate).format("DD-MM-YYYY")}`}
+          />
+          <div className="status-label status-label--neutral">
             {t("LoanListToBeDeliveredMaterialText")}{" "}
             {dayjs(dueDate).format("DD-MM-YYYY")}
           </div>
