@@ -14,10 +14,11 @@ import {
 
 const LoanList: React.FC = () => {
   const t = useText();
-  const [loans, setLoans] = useState<LoanV2[] | null>([]);
-  const [dueDates, setDueDates] = useState<string[]>();
+  const [loans, setLoans] = useState<LoanV2[]>();
+  const [dueDates, setDueDates] = useState<string[]>([]);
   const [dueDateModal, setDueDateModal] = useState<string>("");
   const [loansModal, setLoansModal] = useState<LoanV2[] | null>();
+  const [ariaHide, setAriaHide] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
   const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
   const [view, setView] = useState<string>("list");
@@ -68,6 +69,7 @@ const LoanList: React.FC = () => {
 
         // Loans for modal (the modal shows loans stacked by due date)
         setLoansModal(loansForModal);
+        setAriaHide(true);
         setRenewable(amountOfRenewableLoans);
       }
     }
@@ -77,15 +79,17 @@ const LoanList: React.FC = () => {
     if (loans) {
       setDueDateModal(dueDateModalInput);
       setLoansModal(
-        loans.filter(
-          ({ loanDetails }) => loanDetails.dueDate === dueDateModalInput
+        removeLoansWithDuplicateDueDate(
+          dueDateModalInput,
+          loans,
+          "loanDetails.dueDate"
         )
       );
     }
   }
 
   return (
-    <div aria-hidden={loansModal !== null ?? true}>
+    <div aria-hidden={ariaHide}>
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
       <div className="dpl-list-buttons">
         <h2 className="dpl-list-buttons__header">
@@ -125,13 +129,15 @@ const LoanList: React.FC = () => {
       {loans && (
         <div className="list-reservation-container">
           {view === "stacked" &&
-            dueDates?.map((uniqueDueDate) => {
+            dueDates.map((uniqueDueDate) => {
               // Stack items:
               // if multiple items have the same due date, they are "stacked"
               // which means styling making it look like there are multiple materials,
               // but only _one_ with said due date is visible.
-              const loan = loans.filter(
-                ({ loanDetails }) => loanDetails.dueDate === uniqueDueDate
+              const loan = removeLoansWithDuplicateDueDate(
+                uniqueDueDate,
+                loans,
+                "loanDetails.dueDate"
               );
 
               const {

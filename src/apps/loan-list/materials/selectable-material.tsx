@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../helpers";
+import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
@@ -10,7 +10,6 @@ interface SelectableMaterialProps {
   dueDate: string;
   renewableStatus?: string[];
   loanType?: string;
-  authorString: string;
   material: GetMaterialManifestationQuery;
 }
 
@@ -20,11 +19,10 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   renewableStatus,
   loanType,
   material,
-  authorString
 }) => {
   const t = useText();
 
-  const { hostPublication, materialTypes, titles } =
+  const { hostPublication, materialTypes, titles, creators } =
     material?.manifestation || {};
 
   const { year } = hostPublication || {};
@@ -51,7 +49,12 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{mainText}</p>
           <p className="text-small-caption">
-            {authorString}
+            {creators &&
+              getAuthorNames(
+                creators,
+                t("loanListMaterialByAuthorText"),
+                t("loanListMaterialAndAuthorText")
+              )}
             {year?.year && <> ({year.year})</>}
           </p>
         </div>

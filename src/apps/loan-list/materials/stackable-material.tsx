@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { formatDate, materialOverdue } from "../helpers";
+import { formatDate, materialOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
@@ -13,7 +13,6 @@ interface StackableMaterialProps {
   loanDate: string | undefined;
   amountOfMaterialsWithDueDate?: number;
   selectDueDate?: () => void;
-  authorString: string;
   material: GetMaterialManifestationQuery;
 }
 
@@ -23,11 +22,10 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   amountOfMaterialsWithDueDate,
   selectDueDate,
   material,
-  authorString
 }) => {
   const t = useText();
 
-  const { hostPublication, materialTypes, titles, pid, abstract } =
+  const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material?.manifestation || {};
   const { year } = hostPublication || {};
   const [{ specific }] = materialTypes || [];
@@ -61,7 +59,12 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
           <div className="list-reservation__about">
             <h3 className="text-header-h4">{mainText}</h3>
             <p className="text-small-caption color-secondary-gray">
-              {authorString}
+              {creators &&
+                getAuthorNames(
+                  creators,
+                  t("loanListMaterialByAuthorText"),
+                  t("loanListMaterialAndAuthorText")
+                )}
               {year?.year && <> ({year.year})</>}
             </p>
           </div>

@@ -6,10 +6,11 @@ import {
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
 import { useText } from "../../../core/utils/text";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface MaterialDecoratorProps {
   materialType: string;
-  faust: string;
+  faust: FaustId;
   dueDate: string;
   loanType?: string;
   renewableStatus?: string[];
@@ -41,26 +42,6 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   const t = useText();
   const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
 
-  // Create a string of authors with commas and a conjunction
-  const getAuthorName = (
-    creators: {
-      display: string;
-    }[]
-  ) => {
-    const names = creators.map(({ display }) => display);
-    let returnContentString = "";
-    if (names.length === 1) {
-      returnContentString = `${t("loanListMaterialByAuthorText")} ${names.join(
-        ", "
-      )}`;
-    } else {
-      returnContentString = `${t("loanListMaterialByAuthorText")} ${names
-        .slice(0, -1)
-        .join(", ")} ${t("loanListMaterialAndAuthorText")} ${names.slice(-1)}`;
-    }
-    return returnContentString;
-  };
-
   const { isSuccess: isSuccessManifestation, data: dataManifestation } =
     useGetMaterialManifestationQuery({
       faust
@@ -80,7 +61,6 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           dueDate={dueDate}
           loanType={loanType}
           material={material}
-          authorString={getAuthorName(material.manifestation?.creators)}
         />
       )}
       {materialType === "stackableMaterial" && material?.manifestation && (
@@ -90,7 +70,6 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
           amountOfMaterialsWithDueDate={amountOfMaterialsWithDueDate}
           selectDueDate={selectDueDate}
           material={material}
-          authorString={getAuthorName(material.manifestation?.creators)}
         />
       )}
     </>
