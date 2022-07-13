@@ -5,7 +5,10 @@ interface MaterialHeaderTextProps {
   author: string;
 }
 
-const MaterialHeaderText = ({ title, author }: MaterialHeaderTextProps) => {
+const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
+  title,
+  author
+}) => {
   return (
     <>
       <h1 className="text-header-h1 mb-16">{title}</h1>
