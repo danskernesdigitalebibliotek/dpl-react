@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
-import { getLoansV2 } from "../../../core/fbs/fbs";
+import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
@@ -21,6 +21,29 @@ const LoanList: React.FC = () => {
   const [renewable, setRenewable] = useState<number | null>(null);
   const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
   const [view, setView] = useState<string>("list");
+
+  const { isSuccess, data } = useGetLoansV2();
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      const listOfDueDates = data.map((a) => a.loanDetails.dueDate);
+      const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
+
+      // The due dates are used for the stacked materials
+      // The stacked materials view shows materials stacked by
+      // due date, and for this we need a uniqe list of due dates
+      setDueDates(uniqeListOfDueDates);
+
+      // Loans are sorted by due date
+      const sortedByDueDate = data.sort(
+        (objA, objB) =>
+          new Date(objA.loanDetails.dueDate).getTime() -
+          new Date(objB.loanDetails.dueDate).getTime()
+      );
+      setLoans(sortedByDueDate);
+      setAmountOfLoans(sortedByDueDate.length);
+    }
+  }, [isSuccess, data]);
 
   useEffect(() => {
     // regex for finding date string from modal query param
@@ -49,29 +72,6 @@ const LoanList: React.FC = () => {
       }
     }
   }, [loans, dueDateModal]);
-
-  useEffect(() => {
-    getLoansV2().then((value) => {
-      if (value) {
-        const listOfDueDates = value.map((a) => a.loanDetails.dueDate);
-        const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
-
-        // The due dates are used for the stacked materials
-        // The stacked materials view shows materials stacked by
-        // due date, and for this we need a uniqe list of due dates
-        setDueDates(uniqeListOfDueDates);
-
-        // Loans are sorted by due date
-        const sortedByDueDate = value.sort(
-          (objA, objB) =>
-            new Date(objA.loanDetails.dueDate).getTime() -
-            new Date(objB.loanDetails.dueDate).getTime()
-        );
-        setLoans(sortedByDueDate);
-        setAmountOfLoans(sortedByDueDate.length);
-      }
-    });
-  }, []);
 
   function openModalDueDate(dueDateModalInput: string) {
     if (loans) {
