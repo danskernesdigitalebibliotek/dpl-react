@@ -2,7 +2,7 @@ import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import React, { FC, ReactNode } from "react";
 
 export interface DisclosureProps {
-  MainIcon: { path: string; altText: string };
+  mainIconPath: string;
   title: string;
   children?: ReactNode;
   disclosureIconExpandAltText: string;
@@ -11,20 +11,19 @@ export interface DisclosureProps {
 export const Disclosure: FC<DisclosureProps> = ({
   title,
   children,
-  MainIcon: { path, altText },
-  disclosureIconExpandAltText
+  mainIconPath
 }) => {
   return (
     <details className="disclosure text-body-large">
       <summary className="disclosure__headline text-body-large">
         <div className="disclosure__icon bg-identity-tint-120 m-24">
-          <img className="disclosure__icon" src={path} alt={altText} />
+          <img className="disclosure__icon" src={mainIconPath} alt="" />
         </div>
         {title}
         <img
           className="disclosure__expand mr-24 noselect"
           src={ExpandMoreIcon}
-          alt={disclosureIconExpandAltText}
+          alt=""
         />
       </summary>
       {children}
