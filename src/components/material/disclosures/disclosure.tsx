@@ -1,19 +1,19 @@
-import ExpandMoreIcon from "@reload/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import React, { FC, ReactNode } from "react";
-import { useText } from "../../../core/utils/text";
 
 export interface DisclosureProps {
-  svgIcon: { path: string; altText: string };
+  MainIcon: { path: string; altText: string };
   title: string;
   children?: ReactNode;
+  disclosureIconExpandAltText: string;
 }
 
 export const Disclosure: FC<DisclosureProps> = ({
   title,
   children,
-  svgIcon: { path, altText }
+  MainIcon: { path, altText },
+  disclosureIconExpandAltText
 }) => {
-  const t = useText();
   return (
     <details className="disclosure text-body-large">
       <summary className="disclosure__headline text-body-large">
@@ -24,7 +24,7 @@ export const Disclosure: FC<DisclosureProps> = ({
         <img
           className="disclosure__expand mr-24 noselect"
           src={ExpandMoreIcon}
-          alt={t("disclosureIconExpandAltText")}
+          alt={disclosureIconExpandAltText}
         />
       </summary>
       {children}
