@@ -1,7 +1,6 @@
 import React from "react";
 import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
-import { AvailabilityLabel } from "../availability-label/availability-label";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite from "../button-favourite/button-favourite";
 import { Button } from "../Buttons/Button";

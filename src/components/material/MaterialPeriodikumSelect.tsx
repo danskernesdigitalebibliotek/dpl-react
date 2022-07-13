@@ -9,6 +9,8 @@ const MaterialPeriodikumSelect: React.FC = () => {
   return (
     <div className="text-small-caption material-periodikum ">
       <div className="material-periodikum-select">
+        {/* This is because the design requires label and select input to be separated */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="year">Årgang</label>
         <div className="material-periodikum-select__border-container">
           <select id="year">
@@ -21,6 +23,8 @@ const MaterialPeriodikumSelect: React.FC = () => {
         </div>
       </div>
       <div className="material-periodikum-select">
+        {/* This is because the design requires label and select input to be separated */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="weeks">Uge</label>
         <div className="material-periodikum-select__border-container">
           <select id="weeks">
