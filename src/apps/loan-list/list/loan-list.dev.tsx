@@ -6,6 +6,11 @@ import LoanList, { LoanListEntryProps } from "./loan-list.entry";
 export default {
   title: "Apps / Loan list",
   component: LoanList,
+  parameters: {
+    query: {
+      modal: "2022-07-16"
+    }
+  },
   argTypes: {
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",

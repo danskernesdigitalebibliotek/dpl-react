@@ -1,6 +1,6 @@
 import React from "react";
-import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
+import { formatDate, materialOverdue } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
@@ -82,7 +82,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                 {t("LoanListMaterialsDesktopText")}
               </button>
             )}
-          {dayjs().isAfter(dayjs(dueDate)) && (
+          {materialOverdue(dueDate) && (
             <a
               href="todo"
               className="list-reservation__note-desktop text-small-caption color-signal-alert"
@@ -103,8 +103,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                 warningText={t("loanListStatusBadgeWarningText")}
               />
               <p className="text-small-caption">
-                {t("LoanListToBeDeliveredText")}{" "}
-                {dayjs(dueDate).format("DD-MM-YYYY")}
+                {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
               {amountOfMaterialsWithDueDate &&
                 amountOfMaterialsWithDueDate > 1 && (

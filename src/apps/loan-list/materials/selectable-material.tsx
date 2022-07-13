@@ -1,5 +1,5 @@
 import React from "react";
-import dayjs from "dayjs";
+import { formatDate } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
@@ -74,11 +74,10 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
           <StatusBadge
             dueDate={dueDate}
             neutralText={`${t("LoanListToBeDeliveredMaterialText")} 
-            ${dayjs(dueDate).format("DD-MM-YYYY")}`}
+            ${formatDate(dueDate)}`}
           />
           <div className="status-label status-label--neutral">
-            {t("LoanListToBeDeliveredMaterialText")}{" "}
-            {dayjs(dueDate).format("DD-MM-YYYY")}
+            {t("LoanListToBeDeliveredMaterialText")} {formatDate(dueDate)}
           </div>
         </div>
       </div>

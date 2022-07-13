@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { getLoansV2 } from "../../../core/fbs/fbs";
@@ -9,6 +7,10 @@ import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
 import { getUrlQueryParam } from "../../../core/utils/helpers";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
+import {
+  removeLoansWithDuplicateDueDate,
+  getAmountOfRenewableLoans
+} from "../helpers";
 
 const LoanList: React.FC = () => {
   const t = useText();
@@ -21,10 +23,6 @@ const LoanList: React.FC = () => {
   const [view, setView] = useState<string>("list");
 
   useEffect(() => {
-    dayjs.extend(localizedFormat);
-  }, []);
-
-  useEffect(() => {
     // regex for finding date string from modal query param
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     // modal query param
@@ -35,14 +33,15 @@ const LoanList: React.FC = () => {
       // If there is a date string in the modal query param
       if (found) {
         setDueDateModal(found[0]);
-        // THe loans are filtered with said date string
-        const loansForModal = loans.filter(
-          ({ loanDetails }) => loanDetails.dueDate === dueDateModal
+        // The loans are filtered with said date string
+        const loansForModal = removeLoansWithDuplicateDueDate(
+          dueDateModal,
+          loans,
+          "loanDetails.dueDate"
         );
+
         // Amount of renewable loans are determined, used in the ui
-        const amountOfRenewableLoans = loansForModal.filter(
-          ({ isRenewable }) => isRenewable
-        ).length;
+        const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
 
         // Loans for modal (the modal shows loans stacked by due date)
         setLoansModal(loansForModal);
