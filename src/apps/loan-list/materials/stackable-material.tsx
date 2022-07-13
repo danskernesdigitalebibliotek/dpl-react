@@ -68,7 +68,6 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
           {amountOfMaterialsWithDueDate &&
             amountOfMaterialsWithDueDate > 1 &&
             selectDueDate && (
-              // todo style this button as a link
               <button
                 type="button"
                 onClick={() => {
@@ -107,7 +106,6 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
               </p>
               {amountOfMaterialsWithDueDate &&
                 amountOfMaterialsWithDueDate > 1 && (
-                  // todo style this button as a link
                   <button
                     type="button"
                     aria-describedby={t("loanListMaterialsModalMobileText")}

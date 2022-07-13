@@ -30,7 +30,6 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
       closeModalAriaLabelText={t("LoanListCloseModalText")}
       screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
     >
-      {/* todo add overflow scroll in style repo */}
       <div className="modal-loan__container">
         {loansModal && (
           <>

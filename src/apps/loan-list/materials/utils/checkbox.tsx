@@ -8,8 +8,8 @@ interface CheckBoxProps {
 
 const CheckBox: React.FC<CheckBoxProps> = ({ id, label, hideLabel }) => {
   return (
-    // todo add space between label and checkbox
     <div className="checkbox">
+      <input id={id} className="checkbox__input" type="checkbox" />
       <label className="checkbox__label" htmlFor={id}>
         <span className="checkbox__icon">
           <svg width="20px" height="20px">
@@ -21,15 +21,13 @@ const CheckBox: React.FC<CheckBoxProps> = ({ id, label, hideLabel }) => {
             />
           </svg>
         </span>
-        {/* todo hide label class on hide label */}
         <span
           className={`checkbox__text text-small-caption color-secondary-gray ${
-            hideLabel ? "hide-visually" : ""
+            hideLabel ? "checkbox__text--hide-visually" : ""
           }`}
         >
           {label}
         </span>
-        <input id={id} className="checkbox__input" type="checkbox" />
       </label>
     </div>
   );
