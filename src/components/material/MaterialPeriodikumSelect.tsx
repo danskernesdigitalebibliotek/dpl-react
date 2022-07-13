@@ -1,6 +1,9 @@
 import React from "react";
+import { useText } from "../../core/utils/text";
 
 const MaterialPeriodikumSelect: React.FC = () => {
+  const t = useText();
+
   const placeholderData = {
     year: ["2017", "2018", "2019", "2020", "2021", "2022"],
     weeks: ["30", "31", "32", "33", "34", "35"]
@@ -11,7 +14,7 @@ const MaterialPeriodikumSelect: React.FC = () => {
       <div className="material-periodikum-select">
         {/* This is because the design requires label and select input to be separated */}
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="year">Årgang</label>
+        <label htmlFor="year">{t("Årgang")}</label>
         <div className="material-periodikum-select__border-container">
           <select id="year">
             {placeholderData.year.map((year) => (
@@ -25,7 +28,7 @@ const MaterialPeriodikumSelect: React.FC = () => {
       <div className="material-periodikum-select">
         {/* This is because the design requires label and select input to be separated */}
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="weeks">Uge</label>
+        <label htmlFor="weeks">{t("Uge")}</label>
         <div className="material-periodikum-select__border-container">
           <select id="weeks">
             {placeholderData.weeks.map((week) => (
