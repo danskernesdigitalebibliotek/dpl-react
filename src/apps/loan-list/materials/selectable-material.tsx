@@ -36,14 +36,13 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   return (
     <li>
       <div className="list-materials">
-        {/* todo make fixed in design system  */}
-        <CheckBox
-          additionalClasses="mr-32"
-          id={faust}
-          label={t("LoanListLabelCheckboxMaterialModalText")}
-          hideLabel
-        />
-
+        <div className="mr-32">
+          <CheckBox
+            id={faust}
+            label={t("LoanListLabelCheckboxMaterialModalText")}
+            hideLabel
+          />
+        </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
