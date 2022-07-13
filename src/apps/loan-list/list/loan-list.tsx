@@ -7,6 +7,7 @@ import { getLoansV2 } from "../../../core/fbs/fbs";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
+import { getUrlQueryParam } from "../../../core/utils/helpers";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 
 const LoanList: React.FC = () => {
@@ -24,11 +25,10 @@ const LoanList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
     // regex for finding date string from modal query param
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     // modal query param
-    const modalString = searchParams.get("modal");
+    const modalString = getUrlQueryParam("modal");
 
     if (modalString && loans) {
       const found = modalString.toString().match(regex);
