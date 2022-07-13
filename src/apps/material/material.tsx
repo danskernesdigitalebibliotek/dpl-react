@@ -17,8 +17,15 @@ const Material: React.FC<MaterialProps> = ({ pid, workId }) => {
     return <div>Loading...</div>;
   }
 
+  // TODO: handle error if data is empty array
+  if (!data?.work) {
+    return <div>No work data</div>;
+  }
+
   return (
-    <main>{data?.work && <MaterialHeader pid={pid} work={data.work} />}</main>
+    <main>
+      <MaterialHeader pid={pid} work={data.work} />
+    </main>
   );
 };
 
