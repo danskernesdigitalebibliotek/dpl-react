@@ -6,11 +6,10 @@ import {
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
 import { useText } from "../../../core/utils/text";
-import { FaustId } from "../../../core/utils/types/ids";
 
 interface MaterialDecoratorProps {
   materialType: string;
-  faust: FaustId;
+  recordId: string;
   dueDate: string;
   loanType?: string;
   renewableStatus?: string[];
@@ -31,7 +30,7 @@ export interface WorkManifestationType {
 
 const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   materialType,
-  faust,
+  recordId,
   dueDate,
   loanType,
   renewableStatus,
@@ -44,7 +43,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   const { isSuccess: isSuccessManifestation, data: dataManifestation } =
     useGetMaterialManifestationQuery({
-      faust
+      recordId
     });
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
@@ -57,7 +56,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
       {materialType === "selectableMaterial" && material?.manifestation && (
         <SelectableMaterial
           renewableStatus={renewableStatus}
-          faust={faust}
+          recordId={recordId}
           dueDate={dueDate}
           loanType={loanType}
           material={material}

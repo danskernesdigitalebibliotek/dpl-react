@@ -6,7 +6,7 @@ import StatusBadge from "./utils/status-badge";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 
 interface SelectableMaterialProps {
-  faust: string;
+  recordId: string;
   dueDate: string;
   renewableStatus?: string[];
   loanType?: string;
@@ -14,7 +14,7 @@ interface SelectableMaterialProps {
 }
 
 const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
-  faust,
+  recordId,
   dueDate,
   renewableStatus,
   loanType,
@@ -36,7 +36,7 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
       <div className="list-materials">
         <div className="mr-32">
           <CheckBox
-            id={faust}
+            id={recordId}
             label={t("LoanListLabelCheckboxMaterialModalText")}
             hideLabel
           />

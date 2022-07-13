@@ -147,7 +147,7 @@ const LoanList: React.FC = () => {
                 <MaterialDecorator
                   key={recordId}
                   materialType="stackableMaterial"
-                  faust={recordId}
+                  recordId={recordId}
                   selectDueDate={() => openModalDueDate(dueDate)}
                   dueDate={dueDate}
                   loanDate={loanDate}
@@ -161,7 +161,7 @@ const LoanList: React.FC = () => {
                 <MaterialDecorator
                   key={recordId}
                   materialType="stackableMaterial"
-                  faust={recordId}
+                  recordId={recordId}
                   dueDate={dueDate}
                   loanDate={loanDate}
                 />
