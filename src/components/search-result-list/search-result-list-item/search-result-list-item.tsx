@@ -12,7 +12,7 @@ import {
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
-} from "../helpers";
+} from "../../../core/utils/helpers";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import SearchResultListItemSeries from "./search-result-list-item-series";
 

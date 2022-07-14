@@ -13,6 +13,31 @@ export default {
     workId: {
       name: "workId",
       control: { type: "text" }
+    },
+    materialHeaderAuthorByText: {
+      name: "Af forfatter",
+      defaultValue: "Af ",
+      control: { type: "text" }
+    },
+    periodikumSelectYearText: {
+      name: "År",
+      defaultValue: "År",
+      control: { type: "text" }
+    },
+    periodikumSelectWeekText: {
+      name: "Uge",
+      defaultValue: "Uge",
+      control: { type: "text" }
+    },
+    reserveBookText: {
+      name: "Reserve book",
+      defaultValue: "RESERVER BOG",
+      control: { type: "text" }
+    },
+    fineOnBookshelfText: {
+      name: "Fine on bookshelf",
+      defaultValue: "FINE PÅ HYLDEN",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
