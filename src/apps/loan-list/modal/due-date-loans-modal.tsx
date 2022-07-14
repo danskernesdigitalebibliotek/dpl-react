@@ -65,7 +65,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                       <MaterialDecorator
                         key={loanDetails.recordId}
                         materialType="selectableMaterial"
-                        faust={loanDetails.recordId}
+                        recordId={loanDetails.recordId}
                         dueDate={loanDetails.dueDate}
                         renewableStatus={renewalStatusList}
                         loanType={loanDetails.loanType}
