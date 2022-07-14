@@ -35,6 +35,11 @@ export default {
       name: "Fine on bookshelf",
       defaultValue: "FINE PÅ HYLDEN",
       control: { type: "text" }
+    },
+    inTheSameSeriesText: {
+      name: "In the same series",
+      defaultValue: "I samme serie",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
