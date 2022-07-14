@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
+import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
@@ -17,7 +17,7 @@ import SearchResultListItemCover from "./search-result-list-item-cover";
 import SearchResultListItemSeries from "./search-result-list-item-series";
 
 export interface SearchResultListItemProps {
-  item: WorkSimpleFragment;
+  item: WorkSmallFragment;
   coverTint: CoverProps["tint"];
 }
 

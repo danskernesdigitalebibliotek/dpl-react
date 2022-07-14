@@ -1,16 +1,16 @@
 import React from "react";
 import MaterialHeader from "../../components/material/MaterialHeader";
-import { useGetWorkQuery } from "../../core/dbc-gateway/generated/graphql";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
+import { Pid } from "../../core/utils/types/ids";
 
 export interface MaterialProps {
   pid: Pid;
   workId: WorkId;
 }
 
-const Material: React.FC<MaterialProps> = ({ pid, workId }) => {
-  const { data, isLoading } = useGetWorkQuery({
-    id: workId
+const Material: React.FC<MaterialProps> = ({ pid }) => {
+  const { data, isLoading } = useGetMaterialQuery({
+    pid
   });
 
   if (isLoading) {

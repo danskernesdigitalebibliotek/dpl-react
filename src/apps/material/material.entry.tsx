@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getParams } from "../../core/utils/helpers";
 import { withText } from "../../core/utils/text";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
@@ -12,14 +12,13 @@ interface MaterialEntryTextProps {
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
   pid: Pid;
-  workId: WorkId;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, workId }) => {
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
   // Get params either from data attributes or from url.
-  const { pid: pPid, workId: pWorkId } = getParams({ pid, workId });
+  const { pid: pPid } = getParams({ pid });
 
-  return <Material pid={pPid} workId={pWorkId} />;
+  return <Material pid={pPid} />;
 };
 
 export default withText(MaterialEntry);
