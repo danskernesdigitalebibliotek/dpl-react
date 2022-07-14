@@ -45,6 +45,11 @@ export default {
       name: "Emneord ",
       defaultValue: "Emneord ",
       control: { type: "text" }
+    },
+    numberInSeriesText: {
+      name: "i serie",
+      defaultValue: "i serie",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

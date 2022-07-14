@@ -14,7 +14,9 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
 }) => {
   const t = useText();
 
-  const seriesList = work.series.map((item) => item.title);
+  const seriesMembersList = work.seriesMembers.map(
+    (item) => item.titles.main[0]
+  );
   const subjectsList = work.subjects.all.map((item) => item.display);
 
   return (
@@ -26,7 +28,17 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
       <h2 className="text-header-h4 pb-24">Beskrivelse</h2>
       <p className="text-body-large ">{description}</p>
       <div className="material-description__links mt-32">
-        <SeriesLine title={t("inTheSameSeriesText")} linkList={seriesList} />
+        {work.series.map((item) => (
+          <SeriesLine
+            title={`Nr. ${item?.numberInSeries?.number?.[0]}`}
+            subTitle={t("numberInSeriesText")}
+            linkList={[String(item?.numberInSeries?.display)]}
+          />
+        ))}
+        <SeriesLine
+          title={t("inTheSameSeriesText")}
+          linkList={seriesMembersList}
+        />
         <SeriesLine title={t("subjectsText")} linkList={subjectsList} />
       </div>
     </section>
