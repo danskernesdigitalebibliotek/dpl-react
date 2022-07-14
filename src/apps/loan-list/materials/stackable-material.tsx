@@ -21,7 +21,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   loanDate,
   amountOfMaterialsWithDueDate,
   selectDueDate,
-  material,
+  material
 }) => {
   const t = useText();
 

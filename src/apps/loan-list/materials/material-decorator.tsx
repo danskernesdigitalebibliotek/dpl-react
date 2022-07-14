@@ -38,7 +38,6 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   selectDueDate,
   loanDate
 }) => {
-  const t = useText();
   const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
 
   const { isSuccess: isSuccessManifestation, data: dataManifestation } =

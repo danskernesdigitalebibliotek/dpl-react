@@ -18,7 +18,7 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   dueDate,
   renewableStatus,
   loanType,
-  material,
+  material
 }) => {
   const t = useText();
 
