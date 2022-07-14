@@ -40,6 +40,11 @@ export default {
       name: "In the same series",
       defaultValue: "I samme serie",
       control: { type: "text" }
+    },
+    subjectsText: {
+      name: "Emneord ",
+      defaultValue: "Emneord ",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
