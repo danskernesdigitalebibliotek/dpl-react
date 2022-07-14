@@ -14,15 +14,20 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
 }) => {
   const t = useText();
 
-  const { series } = work;
-  const list = series.map((item) => item.title);
+  const seriesList = work.series.map((item) => item.title);
+  const subjectsList = work.subjects.all.map((item) => item.display);
 
   return (
-    <section className="material-description">
+    <section
+      className="material-description"
+      // TODO: Width has to be change in dpl-design-system so it matches the width from figma
+      style={{ maxWidth: "100%" }}
+    >
       <h2 className="text-header-h4 pb-24">Beskrivelse</h2>
       <p className="text-body-large ">{description}</p>
       <div className="material-description__links mt-32">
-        <SeriesLine title={t("inTheSameSeriesText")} linkList={list} />
+        <SeriesLine title={t("inTheSameSeriesText")} linkList={seriesList} />
+        <SeriesLine title={t("subjectsText")} linkList={subjectsList} />
       </div>
     </section>
   );
