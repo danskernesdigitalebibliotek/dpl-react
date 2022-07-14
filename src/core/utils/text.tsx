@@ -37,7 +37,7 @@ export const withText = <T,>(Component: React.ComponentType<T>) => {
           entries: textEntries
         })
       );
-    }, [props, propsWithoutText]);
+    }, [props]);
 
     // Since this is a High Order Functional Component
     // we do not know what props we are dealing with.
