@@ -5,7 +5,6 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import SelectableMaterial from "./selectable-material";
 import StackableMaterial from "./stackable-material";
-import { useText } from "../../../core/utils/text";
 
 interface MaterialDecoratorProps {
   materialType: string;
