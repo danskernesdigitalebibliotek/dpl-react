@@ -1,5 +1,5 @@
-query getWork($id: String!) {
-  work(id: $id) {
-    ...WorkSimple
+query getMaterial($pid: String!) {
+  work(pid: $pid) {
+    ...WorkMedium
   }
 }

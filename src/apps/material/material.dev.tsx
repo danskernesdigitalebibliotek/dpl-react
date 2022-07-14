@@ -10,10 +10,6 @@ export default {
       name: "pid",
       control: { type: "text" }
     },
-    workId: {
-      name: "workId",
-      control: { type: "text" }
-    },
     materialHeaderAuthorByText: {
       name: "Af forfatter",
       defaultValue: "Af ",
@@ -48,9 +44,8 @@ const Template: ComponentStory<typeof MaterialEntry> = (args) => (
 
 export const withStorybookArgs = Template.bind({});
 withStorybookArgs.args = {
-  pid: `870970-basis:46336461`,
-  workId: `work-of:870970-basis:46336461`
+  pid: `870970-basis:52557240`
 };
 
 export const withUrlParams = Template.bind({});
-withUrlParams.args = { pid: undefined, workId: undefined };
+withUrlParams.args = { pid: undefined };

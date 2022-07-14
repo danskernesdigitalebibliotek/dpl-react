@@ -1057,15 +1057,24 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
-export type GetWorkQueryVariables = Exact<{
-  id: Scalars["String"];
+export type GetMaterialQueryVariables = Exact<{
+  pid: Scalars["String"];
 }>;
 
-export type GetWorkQuery = {
+export type GetMaterialQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
     workId: string;
+    seriesMembers: Array<{
+      __typename?: "Work";
+      titles: {
+        __typename?: "WorkTitles";
+        main: Array<string>;
+        full: Array<string>;
+        original?: Array<string> | null;
+      };
+    }>;
     titles: { __typename?: "WorkTitles"; full: Array<string> };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1074,9 +1083,13 @@ export type GetWorkQuery = {
     series: Array<{
       __typename?: "Series";
       title: string;
+      isPopular?: boolean | null;
+      readThisFirst?: boolean | null;
+      readThisWhenever?: boolean | null;
       numberInSeries?: {
         __typename?: "NumberInSeries";
         display: string;
+        number?: Array<number> | null;
       } | null;
     }>;
     manifestations: {
@@ -1117,10 +1130,23 @@ export type SearchWithPaginationQuery = {
       series: Array<{
         __typename?: "Series";
         title: string;
+        isPopular?: boolean | null;
+        readThisFirst?: boolean | null;
+        readThisWhenever?: boolean | null;
         numberInSeries?: {
           __typename?: "NumberInSeries";
           display: string;
+          number?: Array<number> | null;
         } | null;
+      }>;
+      seriesMembers: Array<{
+        __typename?: "Work";
+        titles: {
+          __typename?: "WorkTitles";
+          main: Array<string>;
+          full: Array<string>;
+          original?: Array<string> | null;
+        };
       }>;
       manifestations: {
         __typename?: "Manifestations";
@@ -1184,10 +1210,17 @@ export type ManifestationsSimpleFragment = {
 export type SeriesSimpleFragment = {
   __typename?: "Series";
   title: string;
-  numberInSeries?: { __typename?: "NumberInSeries"; display: string } | null;
+  isPopular?: boolean | null;
+  readThisFirst?: boolean | null;
+  readThisWhenever?: boolean | null;
+  numberInSeries?: {
+    __typename?: "NumberInSeries";
+    display: string;
+    number?: Array<number> | null;
+  } | null;
 };
 
-export type WorkSimpleFragment = {
+export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
@@ -1198,7 +1231,67 @@ export type WorkSimpleFragment = {
   series: Array<{
     __typename?: "Series";
     title: string;
-    numberInSeries?: { __typename?: "NumberInSeries"; display: string } | null;
+    isPopular?: boolean | null;
+    readThisFirst?: boolean | null;
+    readThisWhenever?: boolean | null;
+    numberInSeries?: {
+      __typename?: "NumberInSeries";
+      display: string;
+      number?: Array<number> | null;
+    } | null;
+  }>;
+  seriesMembers: Array<{
+    __typename?: "Work";
+    titles: {
+      __typename?: "WorkTitles";
+      main: Array<string>;
+      full: Array<string>;
+      original?: Array<string> | null;
+    };
+  }>;
+  manifestations: {
+    __typename?: "Manifestations";
+    all: Array<{
+      __typename?: "Manifestation";
+      pid: string;
+      publicationYear: { __typename?: "PublicationYear"; display: string };
+      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      creators: Array<
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
+      >;
+    }>;
+  };
+};
+
+export type WorkMediumFragment = {
+  __typename?: "Work";
+  workId: string;
+  seriesMembers: Array<{
+    __typename?: "Work";
+    titles: {
+      __typename?: "WorkTitles";
+      main: Array<string>;
+      full: Array<string>;
+      original?: Array<string> | null;
+    };
+  }>;
+  titles: { __typename?: "WorkTitles"; full: Array<string> };
+  creators: Array<
+    | { __typename: "Corporation"; display: string }
+    | { __typename: "Person"; display: string }
+  >;
+  series: Array<{
+    __typename?: "Series";
+    title: string;
+    isPopular?: boolean | null;
+    readThisFirst?: boolean | null;
+    readThisWhenever?: boolean | null;
+    numberInSeries?: {
+      __typename?: "NumberInSeries";
+      display: string;
+      number?: Array<number> | null;
+    } | null;
   }>;
   manifestations: {
     __typename?: "Manifestations";
@@ -1217,10 +1310,14 @@ export type WorkSimpleFragment = {
 
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
+  title
+  isPopular
   numberInSeries {
     display
+    number
   }
-  title
+  readThisFirst
+  readThisWhenever
 }
     `;
 export const ManifestationsSimpleFragmentDoc = `
@@ -1240,8 +1337,8 @@ export const ManifestationsSimpleFragmentDoc = `
   }
 }
     `;
-export const WorkSimpleFragmentDoc = `
-    fragment WorkSimple on Work {
+export const WorkSmallFragmentDoc = `
+    fragment WorkSmall on Work {
   workId
   titles {
     full
@@ -1253,26 +1350,46 @@ export const WorkSimpleFragmentDoc = `
   series {
     ...SeriesSimple
   }
+  seriesMembers {
+    titles {
+      main
+      full
+      original
+    }
+  }
   manifestations {
     ...ManifestationsSimple
   }
 }
     ${SeriesSimpleFragmentDoc}
 ${ManifestationsSimpleFragmentDoc}`;
-export const GetWorkDocument = `
-    query getWork($id: String!) {
-  work(id: $id) {
-    ...WorkSimple
+export const WorkMediumFragmentDoc = `
+    fragment WorkMedium on Work {
+  ...WorkSmall
+  seriesMembers {
+    titles {
+      main
+    }
   }
 }
-    ${WorkSimpleFragmentDoc}`;
-export const useGetWorkQuery = <TData = GetWorkQuery, TError = unknown>(
-  variables: GetWorkQueryVariables,
-  options?: UseQueryOptions<GetWorkQuery, TError, TData>
+    ${WorkSmallFragmentDoc}`;
+export const GetMaterialDocument = `
+    query getMaterial($pid: String!) {
+  work(pid: $pid) {
+    ...WorkMedium
+  }
+}
+    ${WorkMediumFragmentDoc}`;
+export const useGetMaterialQuery = <TData = GetMaterialQuery, TError = unknown>(
+  variables: GetMaterialQueryVariables,
+  options?: UseQueryOptions<GetMaterialQuery, TError, TData>
 ) =>
-  useQuery<GetWorkQuery, TError, TData>(
-    ["getWork", variables],
-    fetcher<GetWorkQuery, GetWorkQueryVariables>(GetWorkDocument, variables),
+  useQuery<GetMaterialQuery, TError, TData>(
+    ["getMaterial", variables],
+    fetcher<GetMaterialQuery, GetMaterialQueryVariables>(
+      GetMaterialDocument,
+      variables
+    ),
     options
   );
 export const SearchWithPaginationDocument = `
@@ -1280,11 +1397,11 @@ export const SearchWithPaginationDocument = `
   search(q: $q) {
     hitcount
     works(offset: $offset, limit: $limit) {
-      ...WorkSimple
+      ...WorkSmall
     }
   }
 }
-    ${WorkSimpleFragmentDoc}`;
+    ${WorkSmallFragmentDoc}`;
 export const useSearchWithPaginationQuery = <
   TData = SearchWithPaginationQuery,
   TError = unknown

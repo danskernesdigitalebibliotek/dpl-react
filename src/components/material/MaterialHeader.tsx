@@ -1,5 +1,5 @@
 import React from "react";
-import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import {
   creatorsToString,
   filterCreators,
@@ -17,7 +17,7 @@ import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 
 interface MaterialHeaderProps {
   pid: Pid;
-  work: WorkSimpleFragment;
+  work: WorkMediumFragment;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({

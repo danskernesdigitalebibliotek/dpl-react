@@ -3,7 +3,7 @@ import { CoverProps } from "../../components/cover/cover";
 import configuration, { getConf } from "../configuration";
 import { UseTextFunction } from "./text";
 import {
-  WorkSimpleFragment,
+  WorkSmallFragment,
   ManifestationsSimpleFragment
 } from "../dbc-gateway/generated/graphql";
 import { FaustId, Pid } from "./types/ids";
@@ -23,7 +23,7 @@ export const orderManifestationsByYear = (
 };
 
 export const filterCreators = (
-  creators: WorkSimpleFragment["creators"],
+  creators: WorkSmallFragment["creators"],
   filterBy: ["Person" | "Corporation"]
 ) =>
   creators.filter((creator) => {
@@ -31,7 +31,7 @@ export const filterCreators = (
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
-export const flattenCreators = (creators: WorkSimpleFragment["creators"]) =>
+export const flattenCreators = (creators: WorkSmallFragment["creators"]) =>
   creators.map((creator) => {
     return creator.display;
   });
