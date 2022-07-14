@@ -11,7 +11,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = ({
 }) => {
   return (
     <dl className={`list-description ${classNames ?? ""}`}>
-      {data.map((item, i) => {
+      {data.map((item) => {
         const { label, value } = item;
         return (
           <>
