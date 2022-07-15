@@ -1,7 +1,7 @@
 import React from "react";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
-import SeriesLine from "./MaterialSeriesLine";
+import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 interface MaterialDescriptionProps {
   work: WorkMediumFragment;
@@ -20,26 +20,24 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
   const subjectsList = work.subjects.all.map((item) => item.display);
 
   return (
-    <section
-      className="material-description"
-      // TODO: Width has to be change in dpl-design-system so it matches the width from figma
-      style={{ maxWidth: "100%" }}
-    >
+    <section className="material-description">
       <h2 className="text-header-h4 pb-24">Beskrivelse</h2>
-      <p className="text-body-large ">{description}</p>
+      <p className="text-body-large material-description__content">
+        {description}
+      </p>
       <div className="material-description__links mt-32">
         {work.series.map((item) => (
-          <SeriesLine
+          <HorizontalTermLine
             title={`Nr. ${item?.numberInSeries?.number?.[0]}`}
             subTitle={t("numberInSeriesText")}
             linkList={[String(item?.numberInSeries?.display)]}
           />
         ))}
-        <SeriesLine
+        <HorizontalTermLine
           title={t("inTheSameSeriesText")}
           linkList={seriesMembersList}
         />
-        <SeriesLine title={t("subjectsText")} linkList={subjectsList} />
+        <HorizontalTermLine title={t("subjectsText")} linkList={subjectsList} />
       </div>
     </section>
   );
