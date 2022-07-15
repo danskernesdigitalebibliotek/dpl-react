@@ -1,4 +1,4 @@
-import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
+import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 describe("Loan list", () => {
   beforeEach(() => {
