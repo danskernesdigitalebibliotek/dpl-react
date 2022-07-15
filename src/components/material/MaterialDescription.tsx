@@ -21,13 +21,17 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
 
   return (
     <section className="material-description">
-      <h2 className="text-header-h4 pb-24">Beskrivelse</h2>
+      <h2 className="text-header-h4 pb-24">
+        {t("materialDescriptionHeadlineText")}
+      </h2>
       <p className="text-body-large material-description__content">
         {description}
       </p>
       <div className="material-description__links mt-32">
         <HorizontalTermLine
-          title={`Nr. ${work?.series[0]?.numberInSeries?.number?.[0]}`}
+          title={`${t("numberDescriptionText")} ${
+            work?.series[0]?.numberInSeries?.number?.[0]
+          }`}
           subTitle={t("numberInSeriesText")}
           linkList={[String(work?.series[0]?.numberInSeries?.display)]}
         />

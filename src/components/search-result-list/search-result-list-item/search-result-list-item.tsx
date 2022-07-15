@@ -75,7 +75,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           <ButtonFavourite materialId={workId} />
           {series && (
             <HorizontalTermLine
-              title={`Nr. ${series[0].numberInSeries?.number?.[0]}`}
+              title={`${t("numberDescriptionText")} ${
+                series[0].numberInSeries?.number?.[0]
+              }`}
               subTitle={t("numberInSeriesText")}
               linkList={[String(series[0]?.numberInSeries?.display)]}
             />
