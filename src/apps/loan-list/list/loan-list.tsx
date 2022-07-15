@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
@@ -46,24 +46,27 @@ const LoanList: React.FC = () => {
     }
   }, [isSuccess, data]);
 
-  function openModalDueDate(dueDateModalInput: string) {
-    if (loans) {
-      setDueDateModal(dueDateModalInput);
-      // The loans are filtered with said date string
-      const loansForModal = removeLoansWithDuplicateDueDate(
-        dueDateModalInput,
-        loans,
-        "loanDetails.dueDate"
-      );
-      // Amount of renewable loans are determined, used in the ui
-      const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
+  const openModalDueDate = useCallback(
+    (dueDateModalInput: string) => {
+      if (loans) {
+        setDueDateModal(dueDateModalInput);
+        // The loans are filtered with said date string
+        const loansForModal = removeLoansWithDuplicateDueDate(
+          dueDateModalInput,
+          loans,
+          "loanDetails.dueDate"
+        );
+        // Amount of renewable loans are determined, used in the ui
+        const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
 
-      // Loans for modal (the modal shows loans stacked by due date)
-      setLoansModal(loansForModal);
-      setAriaHide(true);
-      setRenewable(amountOfRenewableLoans);
-    }
-  }
+        // Loans for modal (the modal shows loans stacked by due date)
+        setLoansModal(loansForModal);
+        setAriaHide(true);
+        setRenewable(amountOfRenewableLoans);
+      }
+    },
+    [loans]
+  );
 
   useEffect(() => {
     // regex for finding date string from modal query param
@@ -78,7 +81,7 @@ const LoanList: React.FC = () => {
         openModalDueDate(found[0]);
       }
     }
-  }, [loans, dueDateModal]);
+  }, [loans, dueDateModal, openModalDueDate]);
 
   return (
     <div aria-hidden={ariaHide}>
