@@ -8,6 +8,11 @@ interface MaterialEntryTextProps {
   materialHeaderAuthorByText: string;
   periodikumSelectYearText: string;
   periodikumSelectWeekText: string;
+  reserveBookText: string;
+  fineOnBookshelfText: string;
+  inTheSameSeriesText: string;
+  subjectsText: string;
+  numberInSeriesText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

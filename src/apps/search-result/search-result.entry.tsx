@@ -11,6 +11,7 @@ interface SearchResultEntryTextProps {
   showingText: string;
   outOfText: string;
   resultsText: string;
+  numberInSeriesText: string;
 }
 
 export interface SearchResultEntryProps extends SearchResultEntryTextProps {
