@@ -13,6 +13,8 @@ interface MaterialEntryTextProps {
   inTheSameSeriesText: string;
   subjectsText: string;
   numberInSeriesText: string;
+  materialDescriptionHeadlineText: string;
+  numberDescriptionText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

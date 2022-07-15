@@ -50,6 +50,16 @@ export default {
       name: "i serie",
       defaultValue: "i serie",
       control: { type: "text" }
+    },
+    materialDescriptionHeadlineText: {
+      name: "Material Description Headline",
+      defaultValue: "Beskrivelse",
+      control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number Description Text",
+      defaultValue: "Nr. ",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
