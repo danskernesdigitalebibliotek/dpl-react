@@ -26,13 +26,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
         {description}
       </p>
       <div className="material-description__links mt-32">
-        {work.series.map((item) => (
-          <HorizontalTermLine
-            title={`Nr. ${item?.numberInSeries?.number?.[0]}`}
-            subTitle={t("numberInSeriesText")}
-            linkList={[String(item?.numberInSeries?.display)]}
-          />
-        ))}
+        <HorizontalTermLine
+          title={`Nr. ${work?.series[0]?.numberInSeries?.number?.[0]}`}
+          subTitle={t("numberInSeriesText")}
+          linkList={[String(work?.series[0]?.numberInSeries?.display)]}
+        />
+
         <HorizontalTermLine
           title={t("inTheSameSeriesText")}
           linkList={seriesMembersList}
