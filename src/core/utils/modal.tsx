@@ -43,7 +43,9 @@ function Modal({
 
   return (
     <div
-      className={`modal modal-padding modal-show ${additionalClasses}`}
+      className={`modal modal-padding ${
+        modalIds.includes(modalId) ? "modal-show" : ""
+      } ${additionalClasses}`}
       style={{
         zIndex: modalIds.indexOf(modalId)
       }}

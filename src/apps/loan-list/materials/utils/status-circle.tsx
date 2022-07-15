@@ -15,8 +15,8 @@ const StatusCircle: React.FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const today = dayjs();
   const loanD = dayjs(loanDate);
 
-  const daysBetweenTodayAndDue = Math.floor(dueD.diff(today, "day", true));
-  const daysBetweenLoanAndDue = Math.floor(dueD.diff(loanD, "day", true));
+  const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
+  const daysBetweenLoanAndDue = Math.ceil(dueD.diff(loanD, "day", true));
 
   const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
 

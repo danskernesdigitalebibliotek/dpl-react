@@ -64,9 +64,10 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
               {renewableStatus.includes("deniedMaxRenewalsReached") && (
                 <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
               )}
-              {renewableStatus.includes("deniedReserved") && (
-                <> {t("LoanListDeniedOtherReasonText")}</>
-              )}
+              {renewableStatus.includes("deniedOtherReason") ||
+                (renewableStatus.includes("deniedReserved") && (
+                  <> {t("LoanListDeniedOtherReasonText")}</>
+                ))}
               {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}
               {loanType === "interLibraryLoan" && (
                 <>{t("LoanListDeniedInterLibraryLoanText")}</>
@@ -78,9 +79,6 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
             neutralText={`${t("LoanListToBeDeliveredMaterialText")} 
             ${formatDate(dueDate)}`}
           />
-          <div className="status-label status-label--neutral">
-            {t("LoanListToBeDeliveredMaterialText")} {formatDate(dueDate)}
-          </div>
         </div>
       </div>
     </li>

@@ -46,6 +46,25 @@ const LoanList: React.FC = () => {
     }
   }, [isSuccess, data]);
 
+  function openModalDueDate(dueDateModalInput: string) {
+    if (loans) {
+      setDueDateModal(dueDateModalInput);
+      // The loans are filtered with said date string
+      const loansForModal = removeLoansWithDuplicateDueDate(
+        dueDateModalInput,
+        loans,
+        "loanDetails.dueDate"
+      );
+      // Amount of renewable loans are determined, used in the ui
+      const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
+
+      // Loans for modal (the modal shows loans stacked by due date)
+      setLoansModal(loansForModal);
+      setAriaHide(true);
+      setRenewable(amountOfRenewableLoans);
+    }
+  }
+
   useEffect(() => {
     // regex for finding date string from modal query param
     const regex = /^\d{4}-\d{2}-\d{2}$/;
@@ -56,37 +75,10 @@ const LoanList: React.FC = () => {
       const found = modalString.toString().match(regex);
       // If there is a date string in the modal query param
       if (found) {
-        setDueDateModal(found[0]);
-        // The loans are filtered with said date string
-        const loansForModal = removeLoansWithDuplicateDueDate(
-          dueDateModal,
-          loans,
-          "loanDetails.dueDate"
-        );
-
-        // Amount of renewable loans are determined, used in the ui
-        const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
-
-        // Loans for modal (the modal shows loans stacked by due date)
-        setLoansModal(loansForModal);
-        setAriaHide(true);
-        setRenewable(amountOfRenewableLoans);
+        openModalDueDate(found[0]);
       }
     }
   }, [loans, dueDateModal]);
-
-  function openModalDueDate(dueDateModalInput: string) {
-    if (loans) {
-      setDueDateModal(dueDateModalInput);
-      setLoansModal(
-        removeLoansWithDuplicateDueDate(
-          dueDateModalInput,
-          loans,
-          "loanDetails.dueDate"
-        )
-      );
-    }
-  }
 
   return (
     <div aria-hidden={ariaHide}>
@@ -109,6 +101,7 @@ const LoanList: React.FC = () => {
           <div className="dpl-list-buttons__buttons__button">
             <button
               className="dpl-icon-button"
+              id="test-stack"
               onClick={() => setView("stacked")}
               type="button"
             >

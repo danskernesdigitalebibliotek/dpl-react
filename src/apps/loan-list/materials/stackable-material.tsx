@@ -78,6 +78,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                   dispatch(openModal({ modalId: dueDate }));
                 }}
                 aria-describedby={t("loanListMaterialsModalDesktopText")}
+                id="test-more-materials"
                 className="list-reservation__note-desktop text-small-caption color-secondary-gray"
               >
                 + {amountOfMaterialsWithDueDate}{" "}
@@ -118,12 +119,6 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                     {t("LoanListMaterialsMobileText")}
                   </button>
                 )}
-              <a
-                href="todo"
-                className="list-reservation__note-mobile text-small-caption color-signal-alert"
-              >
-                {t("loanListLateFeeMobileText")}
-              </a>
             </div>
           </div>
         </div>

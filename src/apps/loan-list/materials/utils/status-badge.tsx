@@ -18,20 +18,21 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({
   const dueD = dayjs(dueDate);
   const today = dayjs();
 
-  const daysBetweenTodayAndDue = Math.floor(dueD.diff(today, "day", true));
+  const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
 
   if (daysBetweenTodayAndDue <= statusThreshold.danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
   }
+
   if (daysBetweenTodayAndDue <= statusThreshold.warning && warningText) {
     return (
       <div className="status-label status-label--warning">{warningText}</div>
     );
   }
 
-  if (neutralText && daysBetweenTodayAndDue) {
+  if (neutralText) {
     return (
       <div className="status-label status-label--neutral">{neutralText}</div>
     );

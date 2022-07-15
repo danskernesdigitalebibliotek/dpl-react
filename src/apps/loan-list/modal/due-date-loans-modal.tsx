@@ -52,6 +52,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
               />
               <button
                 type="button"
+                id="renew-several"
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
                 {t("loanListRenewPossibleText")} ({renewable})
