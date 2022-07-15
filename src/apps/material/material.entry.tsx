@@ -15,10 +15,7 @@ export interface MaterialEntryProps extends MaterialEntryTextProps {
 }
 
 const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
-  // Get params either from data attributes or from url.
-  const { pid: pPid } = getParams({ pid });
-
-  return <Material pid={pPid} />;
+  return <Material pid={pid} />;
 };
 
 export default withText(MaterialEntry);

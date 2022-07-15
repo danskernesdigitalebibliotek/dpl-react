@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import MaterialEntry from "./material.entry";
+import MaterialEntry, { MaterialEntryProps } from "./material.entry";
 
 export default {
   title: "Apps / Material",
@@ -8,6 +8,7 @@ export default {
   argTypes: {
     pid: {
       name: "pid",
+      defaultValue: "870970-basis:52557240",
       control: { type: "text" }
     },
     materialHeaderAuthorByText: {
@@ -38,14 +39,6 @@ export default {
   }
 } as ComponentMeta<typeof MaterialEntry>;
 
-const Template: ComponentStory<typeof MaterialEntry> = (args) => (
-  <MaterialEntry {...args} />
-);
-
-export const withStorybookArgs = Template.bind({});
-withStorybookArgs.args = {
-  pid: `870970-basis:52557240`
-};
-
-export const withUrlParams = Template.bind({});
-withUrlParams.args = { pid: undefined };
+export const Material: ComponentStory<typeof MaterialEntry> = (
+  args: MaterialEntryProps
+) => <MaterialEntry {...args} />;
