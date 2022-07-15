@@ -18,7 +18,7 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
         {subTitle && <span className="text-small-caption">{subTitle} </span>}
       </p>
       <ul className="horizontal-term-line__list">
-        {linkList?.map((item) => (
+        {linkList.map((item) => (
           <li>
             <a href="/" className="link-tag">
               {item}
