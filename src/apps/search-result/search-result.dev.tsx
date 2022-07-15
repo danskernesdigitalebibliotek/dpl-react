@@ -52,6 +52,11 @@ export default {
       name: "Results Text",
       defaultValue: "resultater",
       control: { type: "text" }
+    },
+    numberInSeriesText: {
+      name: "i serie",
+      defaultValue: "i serie",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;
