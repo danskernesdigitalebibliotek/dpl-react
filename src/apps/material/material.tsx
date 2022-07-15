@@ -5,7 +5,6 @@ import { Pid } from "../../core/utils/types/ids";
 
 export interface MaterialProps {
   pid: Pid;
-  workId: WorkId;
 }
 
 const Material: React.FC<MaterialProps> = ({ pid }) => {
