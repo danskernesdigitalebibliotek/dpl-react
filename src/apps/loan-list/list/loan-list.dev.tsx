@@ -126,6 +126,10 @@ export default {
       defaultValue:
         "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
       control: { type: "text" }
+    },
+    LoanListEmptyPhysicalLoansText: {
+      defaultValue: "Du har i øjeblikket ingen fysiske lån",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

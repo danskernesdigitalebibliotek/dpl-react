@@ -162,6 +162,11 @@ const LoanList: React.FC = () => {
                 );
               }
             )}
+          {loans && loans.length === 0 && (
+            <div className="dpl-list-empty">
+              {t("LoanListEmptyPhysicalLoansText")}
+            </div>
+          )}
         </div>
       )}
       <DueDateLoansModal
