@@ -147,17 +147,19 @@ const LoanList: React.FC = () => {
               );
             })}
           {view === "list" &&
-            loans.map(({ loanDetails: { dueDate, loanDate, recordId } }) => {
-              return (
-                <MaterialDecorator
-                  key={faust}
-                  materialType="stackableMaterial"
-                  faust={faust}
-                  dueDate={dueDate}
-                  loanDate={loanDate}
-                />
-              );
-            })}
+            loans.map(
+              ({ loanDetails: { dueDate, loanDate, recordId: faust } }) => {
+                return (
+                  <MaterialDecorator
+                    key={faust}
+                    materialType="stackableMaterial"
+                    faust={faust}
+                    dueDate={dueDate}
+                    loanDate={loanDate}
+                  />
+                );
+              }
+            )}
         </div>
       )}
       <DueDateLoansModal
