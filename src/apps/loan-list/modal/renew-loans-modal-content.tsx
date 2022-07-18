@@ -9,6 +9,7 @@ import {
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
+import useIsInViewport from "../../../components/utils/in-viewport";
 
 interface RenewLoansModalContentProps {
   renewable: number | null;
@@ -24,6 +25,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   buttonLabel
 }) => {
   const { mutate } = useRenewLoansV2();
+  const [topButtonsVisible, firstRef] = useIsInViewport<HTMLDivElement>(30);
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
   const [loans, setLoans] = useState<Array<LoanV2>>([]);
@@ -85,7 +87,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   return (
     <>
-      <div className="modal-loan__buttons">
+      <div className="modal-loan__buttons" ref={firstRef}>
         <CheckBox
           selected={materialsToRenew.length === allRenewableMaterials}
           id="checkbox-select-all"
@@ -131,6 +133,23 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             );
           })}
         </ul>
+        {!topButtonsVisible && (
+          <div
+            className="modal-loan__buttons modal-loan__buttons--bottom"
+            style={{ position: "fixed", left: 0, bottom: 0, right: 0 }}
+          >
+            <CheckBox
+              id="checkbox-select-all"
+              label={t("loanListSelectPossibleCheckboxText")}
+            />
+            <button
+              type="button"
+              className="btn-primary btn-filled btn-small arrow__hover--right-small"
+            >
+              {t("loanListRenewPossibleText")} ({renewable})
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
