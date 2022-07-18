@@ -35,6 +35,31 @@ export default {
       name: "Fine on bookshelf",
       defaultValue: "FINE PÅ HYLDEN",
       control: { type: "text" }
+    },
+    inTheSameSeriesText: {
+      name: "In the same series",
+      defaultValue: "I samme serie",
+      control: { type: "text" }
+    },
+    subjectsText: {
+      name: "Emneord ",
+      defaultValue: "Emneord ",
+      control: { type: "text" }
+    },
+    numberInSeriesText: {
+      name: "i serie",
+      defaultValue: "i serie",
+      control: { type: "text" }
+    },
+    materialDescriptionHeadlineText: {
+      name: "Material Description Headline",
+      defaultValue: "Beskrivelse",
+      control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number Description Text",
+      defaultValue: "Nr. ",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

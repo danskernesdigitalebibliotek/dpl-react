@@ -14,7 +14,7 @@ import {
   getManifestationPid
 } from "../../../core/utils/helpers";
 import SearchResultListItemCover from "./search-result-list-item-cover";
-import SearchResultListItemSeries from "./search-result-list-item-series";
+import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 
 export interface SearchResultListItemProps {
   item: WorkSmallFragment;
@@ -72,7 +72,15 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
           <ButtonFavourite materialId={workId} />
-          {series && <SearchResultListItemSeries series={series} />}
+          {series && (
+            <HorizontalTermLine
+              title={`${t("numberDescriptionText")} ${
+                series[0].numberInSeries?.number?.[0]
+              }`}
+              subTitle={t("numberInSeriesText")}
+              linkList={[String(series[0]?.numberInSeries?.display)]}
+            />
+          )}
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
