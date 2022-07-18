@@ -37,7 +37,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   const dispatch = useDispatch();
   return (
     <div
-      className={`list-reservation m-32 ${
+      className={`list-reservation my-32 ${
         amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
           ? "list-reservation--stacked"
           : ""
