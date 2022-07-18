@@ -20,7 +20,7 @@ export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
 
-export const materialOverdue = (date: string) => {
+export const materialIsOverdue = (date: string) => {
   return dayjs().isAfter(dayjs(date));
 };
 

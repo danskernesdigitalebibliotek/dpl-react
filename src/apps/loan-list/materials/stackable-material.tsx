@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { formatDate, materialOverdue, getAuthorNames } from "../helpers";
+import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
@@ -85,7 +85,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                 {t("LoanListMaterialsDesktopText")}
               </button>
             )}
-          {materialOverdue(dueDate) && (
+          {materialIsOverdue(dueDate) && (
             <a
               href="todo"
               className="list-reservation__note-desktop text-small-caption color-signal-alert"

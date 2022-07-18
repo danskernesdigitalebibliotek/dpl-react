@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
+import { dateMatchesUsFormat } from "../../../core/utils/helpers";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
@@ -69,17 +70,11 @@ const LoanList: React.FC = () => {
   );
 
   useEffect(() => {
-    // regex for finding date string from modal query param
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
     // modal query param
     const modalString = getUrlQueryParam("modal");
-
-    if (modalString && loans) {
-      const found = modalString.toString().match(regex);
-      // If there is a date string in the modal query param
-      if (found) {
-        openModalDueDate(found[0]);
-      }
+    const dateFound = dateMatchesUsFormat(modalString);
+    if (modalString && loans && dateFound) {
+      openModalDueDate(dateFound);
     }
   }, [loans, dueDateModal, openModalDueDate]);
 
