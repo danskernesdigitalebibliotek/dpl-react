@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useCallback } from "react";
-import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
-import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
   dateMatchesUsFormat,
@@ -14,6 +12,8 @@ import {
   removeLoansWithDuplicateDueDate,
   getAmountOfRenewableLoans
 } from "../helpers";
+import IconList from "../../../components/icon-list/icon-list";
+import IconStack from "../../../components/icon-stack/icon-stack";
 
 const LoanList: React.FC = () => {
   const t = useText();
@@ -81,9 +81,12 @@ const LoanList: React.FC = () => {
   }, [loans, dueDateModal, openModalDueDate]);
 
   return (
-    <div aria-hidden={ariaHide}>
+    <div
+      aria-hidden={ariaHide}
+      style={{ overflow: ariaHide ? "hidden" : "auto" }}
+    >
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
-      <div className="dpl-list-buttons">
+      <div className="dpl-list-buttons m-32">
         <h2 className="dpl-list-buttons__header">
           {t("loanListPhysicalLoansTitleText")}
           <div className="dpl-list-buttons__power">{amountOfLoans}</div>
@@ -91,24 +94,30 @@ const LoanList: React.FC = () => {
         <div className="dpl-list-buttons__buttons">
           <div className="dpl-list-buttons__buttons__button">
             <button
-              className="dpl-icon-button"
+              className={`dpl-icon-button ${
+                view === "list" ? "dpl-icon-button--selected" : ""
+              }`}
               onClick={() => setView("list")}
               type="button"
+              aria-label={t("loanListListText")}
             >
-              <img src={MenuIcon} alt={t("loanListListText")} />
+              <IconList />
             </button>
           </div>
           <div className="dpl-list-buttons__buttons__button">
             <button
-              className="dpl-icon-button"
+              className={`dpl-icon-button ${
+                view === "stacked" ? "dpl-icon-button--selected" : ""
+              }`}
               id="test-stack"
               onClick={() => setView("stacked")}
               type="button"
+              aria-label={t("loanListStackText")}
             >
-              <img src={VariousIcon} alt={t("loanListStackText")} />
+              <IconStack />
             </button>
           </div>
-          <div className="dpl-list-buttons__buttons__button">
+          <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
             <button
               type="button"
               aria-describedby={t("loanListRenewMultipleButtonExplanationText")}
@@ -120,7 +129,7 @@ const LoanList: React.FC = () => {
         </div>
       </div>
       {loans && (
-        <div className="list-reservation-container">
+        <div className="list-reservation-container m-32">
           {view === "stacked" &&
             dueDates.map((uniqueDueDate) => {
               // Stack items:
