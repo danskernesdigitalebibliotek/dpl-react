@@ -641,6 +641,12 @@ describe("Loan list", () => {
     cy.get("#test-stack").click();
     cy.get("#test-more-materials").click();
     cy.get(".modal").find(".modal-loan__buttons").should("exist");
+    cy.get(".modal").find(".modal-loan__buttons--bottom").should("not.exist");
+    // Add duration to scroll, if I don't it scrolls to fast for the eventlistener
+    // to work...
+    cy.get(".modal-loan__container").scrollTo("bottom", { duration: 50 });
+    cy.get(".modal").find(".modal-loan__buttons").should("not.be.visible");
+    cy.get(".modal").find(".modal-loan__buttons--bottom").should("exist");
   });
 });
 

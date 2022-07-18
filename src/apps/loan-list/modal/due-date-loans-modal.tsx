@@ -23,7 +23,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
   loansModal
 }) => {
   const t = useText();
-  const [topButtonsVisible, firstRef] = useIsInViewport<HTMLDivElement>(30);
+  const [topButtonsVisible, firstRef] = useIsInViewport(30);
 
   return (
     <Modal
@@ -76,11 +76,8 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                     );
                   })}
               </ul>
-              {!topButtonsVisible && (
-                <div
-                  className="modal-loan__buttons modal-loan__buttons--bottom"
-                  style={{ position: "fixed", left: 0, bottom: 0, right: 0 }}
-                >
+              {!topButtonsVisible && firstRef.current !== null && (
+                <div className="modal-loan__buttons modal-loan__buttons--bottom">
                   <CheckBox
                     id="checkbox-select-all"
                     label={t("loanListSelectPossibleCheckboxText")}
