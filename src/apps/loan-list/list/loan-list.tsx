@@ -10,7 +10,8 @@ import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import {
   removeLoansWithDuplicateDueDate,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  sortByLoanDate
 } from "../helpers";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
@@ -44,17 +45,13 @@ const LoanList: React.FC = () => {
       setDueDates(uniqeListOfDueDates);
 
       // Loans are sorted by due date
-      const sortedByDueDate = data.sort(
-        (objA, objB) =>
-          new Date(objA.loanDetails.dueDate).getTime() -
-          new Date(objB.loanDetails.dueDate).getTime()
-      );
-      setLoans(sortedByDueDate);
-      setAmountOfLoans(sortedByDueDate.length);
-      updateRenewable(sortedByDueDate);
+      const sortedByLoanDate = sortByLoanDate(data);
+
+      setLoans(sortedByLoanDate);
+      setAmountOfLoans(sortedByLoanDate.length);
+      updateRenewable(sortedByLoanDate);
     }
   }, [isSuccess, data]);
-
 
   const openModalDueDate = useCallback(
     (dueDateModalInput: string) => {

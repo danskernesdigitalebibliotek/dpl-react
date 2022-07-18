@@ -16,6 +16,14 @@ export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
   return list.filter(({ isRenewable }) => isRenewable).length;
 };
 
+export const sortByLoanDate = (list: LoanV2[]) => {
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.loanDetails.loanDate).getTime() -
+      new Date(objB.loanDetails.loanDate).getTime()
+  );
+};
+
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
