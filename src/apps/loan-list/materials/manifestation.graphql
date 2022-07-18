@@ -1,0 +1,20 @@
+query getMaterialManifestation($faust: String!) {
+  manifestation(faust: $faust) {
+    pid
+    titles {
+      main
+    }
+    abstract
+    hostPublication {
+      year {
+        year
+      }
+    }
+    materialTypes {
+      specific
+    }
+    creators {
+      display
+    }
+  }
+}

@@ -1057,6 +1057,29 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
+export type GetMaterialManifestationQueryVariables = Exact<{
+  faust: Scalars["String"];
+}>;
+
+export type GetMaterialManifestationQuery = {
+  __typename?: "Query";
+  manifestation?: {
+    __typename?: "Manifestation";
+    pid: string;
+    abstract: Array<string>;
+    titles: { __typename?: "ManifestationTitles"; main: Array<string> };
+    hostPublication?: {
+      __typename?: "HostPublication";
+      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    } | null;
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    creators: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+    >;
+  } | null;
+};
+
 export type GetMaterialQueryVariables = Exact<{
   pid: Scalars["String"];
 }>;
@@ -1373,6 +1396,43 @@ export const WorkMediumFragmentDoc = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+export const GetMaterialManifestationDocument = `
+    query getMaterialManifestation($faust: String!) {
+  manifestation(faust: $faust) {
+    pid
+    titles {
+      main
+    }
+    abstract
+    hostPublication {
+      year {
+        year
+      }
+    }
+    materialTypes {
+      specific
+    }
+    creators {
+      display
+    }
+  }
+}
+    `;
+export const useGetMaterialManifestationQuery = <
+  TData = GetMaterialManifestationQuery,
+  TError = unknown
+>(
+  variables: GetMaterialManifestationQueryVariables,
+  options?: UseQueryOptions<GetMaterialManifestationQuery, TError, TData>
+) =>
+  useQuery<GetMaterialManifestationQuery, TError, TData>(
+    ["getMaterialManifestation", variables],
+    fetcher<
+      GetMaterialManifestationQuery,
+      GetMaterialManifestationQueryVariables
+    >(GetMaterialManifestationDocument, variables),
+    options
+  );
 export const GetMaterialDocument = `
     query getMaterial($pid: String!) {
   work(pid: $pid) {
