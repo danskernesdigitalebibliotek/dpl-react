@@ -7,6 +7,7 @@ import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import useIsInViewport from "../../../components/utils/in-viewport";
 
 interface DueDateLoansModalProps {
   dueDate: string;
@@ -22,6 +23,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
   loansModal
 }) => {
   const t = useText();
+  const [topButtonsVisible, firstRef] = useIsInViewport(30);
 
   return (
     <Modal
@@ -45,7 +47,7 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                 </h1>
               </div>
             </div>
-            <div className="modal-loan__buttons">
+            <div className="modal-loan__buttons" ref={firstRef}>
               <CheckBox
                 id="checkbox-select-all"
                 label={t("loanListSelectPossibleCheckboxText")}
@@ -74,6 +76,20 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                     );
                   })}
               </ul>
+              {!topButtonsVisible && firstRef.current !== null && (
+                <div className="modal-loan__buttons modal-loan__buttons--bottom">
+                  <CheckBox
+                    id="checkbox-select-all"
+                    label={t("loanListSelectPossibleCheckboxText")}
+                  />
+                  <button
+                    type="button"
+                    className="btn-primary btn-filled btn-small arrow__hover--right-small"
+                  >
+                    {t("loanListRenewPossibleText")} ({renewable})
+                  </button>
+                </div>
+              )}
             </div>
           </>
         )}
