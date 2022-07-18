@@ -25,8 +25,13 @@ const LoanList: React.FC = () => {
   const [renewable, setRenewable] = useState<number | null>(null);
   const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
   const [view, setView] = useState<string>("list");
-
   const { isSuccess, data } = useGetLoansV2();
+
+  const updateRenewable = (materials: LoanV2[]) => {
+    // Amount of renewable loans are determined, used in the ui
+    const amountOfRenewableLoans = getAmountOfRenewableLoans(materials);
+    setRenewable(amountOfRenewableLoans);
+  };
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -46,8 +51,10 @@ const LoanList: React.FC = () => {
       );
       setLoans(sortedByDueDate);
       setAmountOfLoans(sortedByDueDate.length);
+      updateRenewable(sortedByDueDate);
     }
   }, [isSuccess, data]);
+
 
   const openModalDueDate = useCallback(
     (dueDateModalInput: string) => {
@@ -59,13 +66,12 @@ const LoanList: React.FC = () => {
           loans,
           "loanDetails.dueDate"
         );
-        // Amount of renewable loans are determined, used in the ui
-        const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
+
+        updateRenewable(loansForModal);
 
         // Loans for modal (the modal shows loans stacked by due date)
         setLoansModal(loansForModal);
         setAriaHide(true);
-        setRenewable(amountOfRenewableLoans);
       }
     },
     [loans]
@@ -120,6 +126,7 @@ const LoanList: React.FC = () => {
           <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
             <button
               type="button"
+              disabled={!!(renewable && renewable > 0)}
               aria-describedby={t("loanListRenewMultipleButtonExplanationText")}
               className="btn-primary btn-filled btn-small arrow__hover--right-small"
             >
