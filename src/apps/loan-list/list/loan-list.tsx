@@ -2,11 +2,13 @@ import React, { useEffect, useState, useCallback } from "react";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
-import { dateMatchesUsFormat } from "../../../core/utils/helpers";
+import {
+  dateMatchesUsFormat,
+  getUrlQueryParam
+} from "../../../core/utils/helpers";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
-import { getUrlQueryParam } from "../../../core/utils/helpers";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import {
   removeLoansWithDuplicateDueDate,

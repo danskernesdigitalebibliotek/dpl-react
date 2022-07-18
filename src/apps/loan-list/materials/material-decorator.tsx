@@ -41,7 +41,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
 
   const { isSuccess: isSuccessManifestation, data: dataManifestation } =
     useGetMaterialManifestationQuery({
-      faust: faust
+      faust
     });
   useEffect(() => {
     if (dataManifestation && isSuccessManifestation) {
