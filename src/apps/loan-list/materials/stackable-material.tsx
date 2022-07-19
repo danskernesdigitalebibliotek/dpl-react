@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
@@ -26,6 +26,22 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
 }) => {
   const t = useText();
 
+  useEffect(() => {
+    function stopPropagationFunction(e: Event) {
+      e.stopPropagation();
+    }
+
+    document
+      .querySelector("a")
+      ?.addEventListener("click", stopPropagationFunction, true);
+
+    return () => {
+      document
+        .querySelector("a")
+        ?.removeEventListener("click", stopPropagationFunction, true);
+    };
+  }, []);
+
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material?.manifestation || {};
   const { year } = hostPublication || {};
@@ -37,7 +53,8 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   const dispatch = useDispatch();
   return (
     <>
-      <div
+      <button
+        type="button"
         onClick={() => dispatch(openModal({ modalId: pid }))}
         className={`list-reservation m-32 ${
           amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
@@ -128,7 +145,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </button>
       {pid && (
         <MaterialDetailsModal
           fullTitle={mainText}
