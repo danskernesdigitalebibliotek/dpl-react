@@ -33,6 +33,7 @@ export interface LoanListEntryProps {
   LoanListCloseModalText: string;
   LoanListModalDescriptionText: string;
   LoanListEmptyPhysicalLoansText: string;
+  MaterialDetailsModalOverdueText: string;
 }
 
 const LoanListEntry: React.FC<LoanListEntryProps> = () => <LoanList />;

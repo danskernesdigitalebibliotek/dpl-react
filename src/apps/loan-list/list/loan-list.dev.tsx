@@ -6,6 +6,11 @@ import LoanList, { LoanListEntryProps } from "./loan-list.entry";
 export default {
   title: "Apps / Loan list",
   component: LoanList,
+  // parameters: {
+  //   query: {
+  //     modal: "2022-07-14"
+  //   }
+  // },
   argTypes: {
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
@@ -125,6 +130,18 @@ export default {
     LoanListModalDescriptionText: {
       defaultValue:
         "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
+      control: { type: "text" }
+    },
+    MaterialDetailsModalOverdueText: {
+      defaultValue: "Overskredet",
+      control: { type: "text" }
+    },
+    MaterialDetailsModalByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    MaterialDetailsModalAndAuthorText: {
+      defaultValue: "og",
       control: { type: "text" }
     },
     LoanListEmptyPhysicalLoansText: {
