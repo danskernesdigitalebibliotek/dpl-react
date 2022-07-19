@@ -12,6 +12,7 @@ import {
   StackableMaterialProps,
   MaterialProps
 } from "./utils/material-fetch-hoc";
+import MaterialDetailsModal from "../modal/material-details-modal";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
@@ -73,67 +74,52 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
 
   return (
-    <button
-      type="button"
-      onClick={(e) => selectListMaterial(e)}
-      className={`list-reservation my-32 ${
-        amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
-          ? "list-reservation--stacked"
-          : ""
-      }`}
-    >
-      <div className="list-reservation__material">
-        <div>
-          <Cover
-            pid={pid as Pid}
-            size="small"
-            animate={false}
-            description={abstract && abstract[0]}
-          />
-        </div>
-        <div className="list-reservation__information">
+    <>
+      <button
+        type="button"
+        onClick={(e) => selectListMaterial(e)}
+        className={`list-reservation my-32 ${
+          amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
+            ? "list-reservation--stacked"
+            : ""
+        }`}
+      >
+        <div className="list-reservation__material">
           <div>
-            <div className="status-label status-label--outline">{specific}</div>
+            <Cover
+              pid={pid as Pid}
+              size="small"
+              animate={false}
+              description={abstract && abstract[0]}
+            />
           </div>
-          <div className="list-reservation__about">
-            <h3 className="text-header-h4">{mainText}</h3>
-            <p className="text-small-caption color-secondary-gray">
-              {creators &&
-                getAuthorNames(
-                  creators,
-                  t("loanListMaterialByAuthorText"),
-                  t("loanListMaterialAndAuthorText")
-                )}
-              {year?.year && <> ({year.year})</>}
-            </p>
+          <div className="list-reservation__information">
+            <div>
+              <Cover
+                size="small"
+                animate
+                tint="120"
+                materialId={pid || ""}
+                description={abstract && abstract[0]}
+              />
+            </div>
+            {amountOfMaterialsWithDueDate &&
+              amountOfMaterialsWithDueDate > 1 &&
+              selectDueDate && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    openDueDateModal(e);
+                  }}
+                  aria-describedby={t("loanListMaterialsModalDesktopText")}
+                  id="test-more-materials"
+                  className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+                >
+                  {t("loanListLateFeeDesktopText")}
+                </button>
+              )}
           </div>
-          {amountOfMaterialsWithDueDate &&
-            amountOfMaterialsWithDueDate > 1 &&
-            selectDueDate && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  openDueDateModal(e);
-                }}
-                aria-describedby={t("loanListMaterialsModalDesktopText")}
-                id="test-more-materials"
-                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-              >
-                + {amountOfMaterialsWithDueDate}{" "}
-                {t("LoanListMaterialsDesktopText")}
-              </button>
-            )}
-          {materialIsOverdue(dueDate) && (
-            <a
-              href="todo"
-              className="list-reservation__note-desktop text-small-caption color-signal-alert"
-            >
-              {t("loanListLateFeeDesktopText")}
-            </a>
-          )}
         </div>
-      </div>
-      <div>
         <div className="list-reservation__status">
           <StatusCircle loanDate={loanDate} dueDate={dueDate} />
           <div>
@@ -168,8 +154,18 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             </div>
           </div>
         </div>
-      </div>
-    </button>
+      </button>
+      {pid && (
+        <MaterialDetailsModal
+          fullTitle={mainText}
+          dueDate={dueDate}
+          pid={pid}
+          materialType={specific}
+          creators={creators}
+          loanDate={loanDate}
+        />
+      )}
+    </>
   );
 };
 

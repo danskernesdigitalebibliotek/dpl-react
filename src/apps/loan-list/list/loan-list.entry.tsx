@@ -28,7 +28,6 @@ export interface LoanListEntryProps {
   LoanListCloseModalText: string;
   LoanListModalDescriptionText: string;
   LoanListEmptyPhysicalLoansText: string;
-  MaterialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
   loanListMaterialByAuthorText: string;
   loanModalMaterialByAuthorText: string;
@@ -55,6 +54,7 @@ export interface LoanListEntryProps {
   dueDateRenewLoanModalButtonText: string;
   dueDateWarningLoanOverdueText: string;
   dueDateLinkToPageWithFeesText: string;
+  MaterialDetailsModalOverdueText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
