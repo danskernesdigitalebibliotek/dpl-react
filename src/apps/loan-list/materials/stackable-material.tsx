@@ -158,6 +158,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       {pid && (
         <MaterialDetailsModal
           fullTitle={mainText}
+          loanId={loanId}
           dueDate={dueDate}
           pid={pid}
           materialType={specific}
