@@ -11,6 +11,7 @@ import MaterialDetailsModal from "../modal/material-details-modal";
 
 interface StackableMaterialProps {
   dueDate: string;
+  loanId: number;
   loanDate: string | undefined;
   amountOfMaterialsWithDueDate?: number;
   selectDueDate?: () => void;
@@ -22,7 +23,8 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   loanDate,
   amountOfMaterialsWithDueDate,
   selectDueDate,
-  material
+  material,
+  loanId
 }) => {
   const t = useText();
 
@@ -149,6 +151,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
       {pid && (
         <MaterialDetailsModal
           fullTitle={mainText}
+          loanId={loanId}
           dueDate={dueDate}
           pid={pid}
           materialType={specific}
