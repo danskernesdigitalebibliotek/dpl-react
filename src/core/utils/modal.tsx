@@ -47,7 +47,7 @@ function Modal({
         modalIds.includes(modalId) ? "modal-show" : ""
       } ${additionalClasses}`}
       style={{
-        zIndex: modalIds.indexOf(modalId)
+        zIndex: modalIds.indexOf(modalId) + 10
       }}
       role="dialog"
     >
@@ -63,7 +63,7 @@ function Modal({
         className="btn-ui modal-btn-close"
         aria-describedby={`modal-${modalId}`}
         style={{
-          zIndex: modalIds.indexOf(modalId)
+          zIndex: modalIds.indexOf(modalId) + 10
         }}
         aria-label={closeModalAriaLabelText}
         onClick={() => {

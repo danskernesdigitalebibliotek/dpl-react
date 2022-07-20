@@ -15,6 +15,7 @@ interface MaterialDecoratorProps {
   amountOfMaterialsWithDueDate?: number;
   selectDueDate?: () => void;
   loanDate?: string;
+  loanId: number;
 }
 
 export interface WorkManifestationType {
@@ -35,7 +36,8 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
   renewableStatus,
   amountOfMaterialsWithDueDate,
   selectDueDate,
-  loanDate
+  loanDate,
+  loanId
 }) => {
   const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
 
@@ -62,6 +64,7 @@ const MaterialDecorator: React.FC<MaterialDecoratorProps> = ({
       )}
       {materialType === "stackableMaterial" && material?.manifestation && (
         <StackableMaterial
+          loanId={loanId}
           dueDate={dueDate}
           loanDate={loanDate}
           amountOfMaterialsWithDueDate={amountOfMaterialsWithDueDate}

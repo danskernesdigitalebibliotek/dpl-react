@@ -145,10 +145,11 @@ const LoanList: React.FC = () => {
               );
 
               const {
-                loanDetails: { dueDate, loanDate, recordId: faust }
+                loanDetails: { loanId, dueDate, loanDate, recordId: faust }
               } = loan[0];
               return (
                 <MaterialDecorator
+                  loanId={loanId}
                   key={faust}
                   materialType="stackableMaterial"
                   faust={faust}
@@ -161,9 +162,12 @@ const LoanList: React.FC = () => {
             })}
           {view === "list" &&
             loans.map(
-              ({ loanDetails: { dueDate, loanDate, recordId: faust } }) => {
+              ({
+                loanDetails: { loanId, dueDate, loanDate, recordId: faust }
+              }) => {
                 return (
                   <MaterialDecorator
+                    loanId={loanId}
                     key={faust}
                     materialType="stackableMaterial"
                     faust={faust}
