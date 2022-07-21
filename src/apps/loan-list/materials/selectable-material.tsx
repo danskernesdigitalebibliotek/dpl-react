@@ -3,13 +3,18 @@ import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
-import {
-  FetchMaterial,
-  SelectableMaterialProps,
-  MaterialProps
-} from "./utils/material-fetch-hoc";
+import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { FetchMaterial } from "./utils/material-fetch-hoc";
+import { LoanDetailsV2 } from "../../../core/fbs/model";
 
-const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
+interface SelectableMaterialProps {
+  loanDetails: LoanDetailsV2;
+  material: GetMaterialManifestationQuery;
+  renewableStatus?: string[];
+  loanType?: string;
+}
+
+const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   loanDetails,
   renewableStatus,
   loanType,

@@ -7,11 +7,6 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 export default {
   title: "Apps / Loan list",
   component: LoanList,
-  // parameters: {
-  //   query: {
-  //     modal: "2022-07-14"
-  //   }
-  // },
   argTypes: {
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",

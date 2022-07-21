@@ -1,28 +1,21 @@
-import React, { useEffect, useState, useCallback, FC } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { openModal } from "../../../core/modal.slice";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
-import {
-  getAmountOfRenewableLoans,
-  IsAModalDisplayed,
-  sortByLoanDate
-} from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
+import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
-import { ModalIdsProps } from "../../../core/utils/modal";
-import MaterialDetailsModal from "../modal/material-details-modal";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
 
 export interface ModalMaterialType {
   materialItemNumber: number;

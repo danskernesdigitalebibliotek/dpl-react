@@ -12,7 +12,6 @@ import {
   StackableMaterialProps,
   MaterialProps
 } from "./utils/material-fetch-hoc";
-import MaterialDetailsModal from "../modal/material-details-modal";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
@@ -74,99 +73,85 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={(e) => selectListMaterial(e)}
-        className={`list-reservation my-32 ${
-          amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
-            ? "list-reservation--stacked"
-            : ""
-        }`}
-      >
-        <div className="list-reservation__material">
+    <button
+      type="button"
+      onClick={(e) => selectListMaterial(e)}
+      className={`list-reservation my-32 ${
+        amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
+          ? "list-reservation--stacked"
+          : ""
+      }`}
+    >
+      <div className="list-reservation__material">
+        <div>
+          <Cover
+            pid={pid as Pid}
+            size="small"
+            animate={false}
+            description={abstract && abstract[0]}
+          />
+        </div>
+        <div className="list-reservation__information">
           <div>
             <Cover
-              pid={pid as Pid}
               size="small"
-              animate={false}
+              animate
+              tint="120"
+              materialId={pid || ""}
               description={abstract && abstract[0]}
             />
           </div>
-          <div className="list-reservation__information">
-            <div>
-              <Cover
-                size="small"
-                animate
-                tint="120"
-                materialId={pid || ""}
-                description={abstract && abstract[0]}
-              />
-            </div>
-            {amountOfMaterialsWithDueDate &&
-              amountOfMaterialsWithDueDate > 1 &&
-              selectDueDate && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    openDueDateModal(e);
-                  }}
-                  aria-describedby={t("loanListMaterialsModalDesktopText")}
-                  id="test-more-materials"
-                  className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-                >
-                  {t("loanListLateFeeDesktopText")}
-                </button>
-              )}
+          {amountOfMaterialsWithDueDate &&
+            amountOfMaterialsWithDueDate > 1 &&
+            selectDueDate && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  openDueDateModal(e);
+                }}
+                aria-describedby={t("loanListMaterialsModalDesktopText")}
+                id="test-more-materials"
+                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+              >
+                {t("loanListLateFeeDesktopText")}
+              </button>
+            )}
+        </div>
+      </div>
+      <div className="list-reservation__status">
+        <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+        <div>
+          <div className="list-reservation__deadline">
+            <StatusBadge
+              dueDate={dueDate}
+              dangerText={t("loanListStatusBadgeDangerText")}
+              warningText={t("loanListStatusBadgeWarningText")}
+            />
+            <p className="text-small-caption" id="due-date">
+              {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
+            </p>
+            {amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1 && (
+              <button
+                type="button"
+                aria-describedby={t("loanListMaterialsModalMobileText")}
+                className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+              >
+                + {amountOfMaterialsWithDueDate}{" "}
+                {t("LoanListMaterialsMobileText")}
+              </button>
+            )}
+            {materialIsOverdue(dueDate) && (
+              <a
+                href="todo"
+                className="list-reservation__note-mobile text-small-caption color-signal-alert"
+              >
+                {t("loanListLateFeeMobileText")}
+              </a>
+            )}
           </div>
         </div>
-        <div className="list-reservation__status">
-          <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-          <div>
-            <div className="list-reservation__deadline">
-              <StatusBadge
-                dueDate={dueDate}
-                dangerText={t("loanListStatusBadgeDangerText")}
-                warningText={t("loanListStatusBadgeWarningText")}
-              />
-              <p className="text-small-caption" id="due-date">
-                {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
-              </p>
-              {amountOfMaterialsWithDueDate &&
-                amountOfMaterialsWithDueDate > 1 && (
-                  <button
-                    type="button"
-                    aria-describedby={t("loanListMaterialsModalMobileText")}
-                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                  >
-                    + {amountOfMaterialsWithDueDate}{" "}
-                    {t("LoanListMaterialsMobileText")}
-                  </button>
-                )}
-              {materialIsOverdue(dueDate) && (
-                <a
-                  href="todo"
-                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
-                >
-                  {t("loanListLateFeeMobileText")}
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </button>
-      {pid && (
-        <MaterialDetailsModal
-          fullTitle={mainText}
-          loanId={loanId}
-          dueDate={dueDate}
-          pid={pid}
-          materialType={specific}
-          creators={creators}
-          loanDate={loanDate}
-        />
-      )}
-    </>
+      </div>
+    </button>
   );
 };
 

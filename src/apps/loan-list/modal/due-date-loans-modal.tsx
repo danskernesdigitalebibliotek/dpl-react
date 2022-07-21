@@ -21,7 +21,6 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   loansModal
 }) => {
   const t = useText();
-
   return (
     <Modal
       modalId={dueDate}
