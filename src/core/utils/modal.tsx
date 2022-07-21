@@ -11,7 +11,7 @@ type ModalProps = {
   additionalClasses?: string;
 };
 
-interface ModalIdsProps {
+export interface ModalIdsProps {
   modal: {
     modalIds: string[];
   };

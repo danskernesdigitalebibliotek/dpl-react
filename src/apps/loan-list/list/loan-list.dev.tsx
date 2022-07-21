@@ -1,16 +1,12 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
-import LoanList, { LoanListEntryProps } from "./loan-list.entry";
+import LoanList from "./loan-list.entry";
+
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
-  // parameters: {
-  //   query: {
-  //     modal: "2022-07-14"
-  //   }
-  // },
   argTypes: {
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
@@ -152,6 +148,23 @@ export default {
   decorators: [withQuery]
 } as ComponentMeta<typeof LoanList>;
 
-export const LoanListEntry: ComponentStory<typeof LoanList> = (
-  args: LoanListEntryProps
-) => <LoanList {...args} />;
+const Template: ComponentStory<typeof LoanList> = (props) => (
+  <LoanList {...props} />
+);
+
+export const LoanListEntry = Template.bind({});
+LoanListEntry.args = {};
+
+export const LoanListDetailsModal = Template.bind({});
+LoanListDetailsModal.parameters = {
+  query: {
+    modal: "28847238"
+  }
+};
+
+export const LoanListDueDateModal = Template.bind({});
+LoanListDueDateModal.parameters = {
+  query: {
+    modal: "2022-07-14"
+  }
+};

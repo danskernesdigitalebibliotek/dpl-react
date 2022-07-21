@@ -20,8 +20,11 @@ export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
 
-export const materialIsOverdue = (date: string) => {
-  return dayjs().isAfter(dayjs(date));
+export const materialIsOverdue = (date: string | undefined) => {
+  if (date) {
+    return dayjs().isAfter(dayjs(date));
+  }
+  return false;
 };
 
 // Create a string of authors with commas and a conjunction
