@@ -3,10 +3,10 @@ import dayjs from "dayjs";
 import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
-import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import SelectableMaterial from "../materials/selectable-material";
 
 interface DueDateLoansModalProps {
   dueDate: string;
@@ -22,7 +22,6 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
   loansModal
 }) => {
   const t = useText();
-
   return (
     <Modal
       modalId={dueDate}
@@ -63,13 +62,10 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
                 {dueDates &&
                   loansModal.map(({ renewalStatusList, loanDetails }) => {
                     return (
-                      <MaterialDecorator
-                        key={loanDetails.recordId}
-                        materialType="selectableMaterial"
+                      <SelectableMaterial
                         faust={loanDetails.recordId}
-                        dueDate={loanDetails.dueDate}
+                        loanDetails={loanDetails}
                         renewableStatus={renewalStatusList}
-                        loanType={loanDetails.loanType}
                       />
                     );
                   })}

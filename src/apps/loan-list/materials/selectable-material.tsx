@@ -4,24 +4,25 @@ import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { FetchMaterial } from "./utils/material-fetch-hoc";
+import { LoanDetailsV2 } from "../../../core/fbs/model";
 
 interface SelectableMaterialProps {
-  faust: string;
-  dueDate: string;
+  loanDetails: LoanDetailsV2;
+  material: GetMaterialManifestationQuery;
   renewableStatus?: string[];
   loanType?: string;
-  material: GetMaterialManifestationQuery;
 }
 
 const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
-  faust,
-  dueDate,
+  loanDetails,
   renewableStatus,
   loanType,
   material
 }) => {
   const t = useText();
 
+  const { dueDate, recordId: faust } = loanDetails || {};
   const { hostPublication, materialTypes, titles, creators } =
     material?.manifestation || {};
 
@@ -85,4 +86,4 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
   );
 };
 
-export default SelectableMaterial;
+export default FetchMaterial(SelectableMaterial);

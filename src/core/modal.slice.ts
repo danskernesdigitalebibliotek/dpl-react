@@ -15,14 +15,19 @@ const modalSlice = createSlice({
   initialState: { modalIds: [] },
   reducers: {
     openModal(state: StateProps, action: PayloadProps) {
-      if (!state.modalIds.includes(action.payload.modalId)) {
+      if (
+        action.payload.modalId &&
+        !state.modalIds.includes(action.payload.modalId)
+      ) {
         state.modalIds.push(action.payload.modalId);
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
-        searchParams.set(
-          "modal",
-          `${alreadyOpenModals || ""}${action.payload.modalId}`
-        );
+        if (alreadyOpenModals) {
+          searchParams.set(
+            "modal",
+            `${alreadyOpenModals}${action.payload.modalId}`
+          );
+        }
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {

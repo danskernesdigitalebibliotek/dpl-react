@@ -135,3 +135,12 @@ export const dateMatchesUsFormat = (date: string | null) => {
   const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
   return returnValue;
 };
+
+export const queryMatchesFaust = (query: string | null) => {
+  // regex for finding date string from modal query param
+  const regex = /^\d{8}$/;
+  const faustFound = query ? query.toString().match(regex) : null;
+  const returnValue =
+    faustFound && faustFound.length > 0 ? faustFound[0] : null;
+  return returnValue;
+};
