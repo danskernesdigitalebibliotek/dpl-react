@@ -58,4 +58,14 @@ export const getAuthorNames = (
   return returnContentString;
 };
 
+// Simple faust match for modals
+export const queryMatchesFaust = (query: string | null) => {
+  // regex for finding date string from modal query param
+  const regex = /^\d{8}$/;
+  const faustFound = query ? query.toString().match(regex) : null;
+  const returnValue =
+    faustFound && faustFound.length > 0 ? faustFound[0] : null;
+  return returnValue;
+};
+
 export default {};

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { openModal } from "../../../core/modal.slice";
+import dateMatchesUsFormat from "../../../core/utils/helpers/date";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
@@ -10,8 +12,6 @@ import {
   removeLoansWithDuplicateDueDate,
   getAmountOfRenewableLoans
 } from "../helpers";
-import dateMatchesUsFormat from "../../../core/utils/helpers/date";
-import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import {
