@@ -6,6 +6,8 @@ import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import RenewLoansModalContent from "./renew-loans-modal-content";
+import WarningBar from "../materials/utils/warning-bar";
+import { materialIsOverdue } from "../helpers";
 
 interface DueDateLoansModalProps {
   dueDate: string;
@@ -44,6 +46,14 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
                 </h1>
               </div>
             </div>
+            {materialIsOverdue(dueDate) && (
+              <div className="modal-details__warning">
+                <WarningBar
+                  linkText={t("dueDateLinkToPageWithFeesText")}
+                  overdueText={t("dueDateWarningLoanOverdueText")}
+                />
+              </div>
+            )}
             <RenewLoansModalContent
               loansModal={loansModal}
               renewable={renewable}

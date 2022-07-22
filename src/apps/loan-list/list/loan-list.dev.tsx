@@ -175,6 +175,15 @@ export default {
       defaultValue: "Læs mere",
       control: { type: "text" }
     },
+    dueDateWarningLoanOverdueText: {
+      defaultValue:
+        "Afleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveres",
+      control: { type: "text" }
+    },
+    dueDateLinkToPageWithFeesText: {
+      defaultValue: "Læs mere",
+      control: { type: "text" }
+    },
     materialDetailsHandInLabelText: {
       defaultValue: "Afleveres",
       control: { type: "text" }
