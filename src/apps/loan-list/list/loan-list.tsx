@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
