@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
@@ -10,7 +10,7 @@ interface MaterialDetailsModalProps {
   loanDetails: LoanDetailsV2;
 }
 
-const MaterialDetailsModal: React.FC<MaterialDetailsModalProps> = ({
+const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
   loanDetails
 }) => {
   const t = useText();

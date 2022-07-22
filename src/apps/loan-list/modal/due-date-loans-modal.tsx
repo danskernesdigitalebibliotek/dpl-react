@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import dayjs from "dayjs";
 import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
@@ -13,7 +13,7 @@ interface DueDateLoansModalProps {
   loansModal: LoanV2[] | undefined | null;
 }
 
-const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
+const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
   renewable,
   loansModal

@@ -168,3 +168,10 @@ LoanListDueDateModal.parameters = {
     modal: "2022-07-14"
   }
 };
+
+export const LoanListRenewLoansModal = Template.bind({});
+LoanListRenewLoansModal.parameters = {
+  query: {
+    modal: "all"
+  }
+};

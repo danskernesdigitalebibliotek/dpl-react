@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {FC} from "react";
 import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
@@ -9,7 +9,7 @@ import {
   MaterialProps
 } from "./utils/material-fetch-hoc";
 
-const SelectableMaterial: React.FC<SelectableMaterialProps & MaterialProps> = ({
+const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   loanDetails,
   renewableStatus,
   loanType,
