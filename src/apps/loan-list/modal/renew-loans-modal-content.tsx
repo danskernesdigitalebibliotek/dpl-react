@@ -10,11 +10,15 @@ import { getRenewableMaterials, getAmountOfRenewableLoans } from "../helpers";
 interface RenewLoansModalContentProps {
   renewable: number | null;
   loansModal: LoanV2[];
+  buttonLabel: string;
+  checkboxLabel: string;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   renewable,
-  loansModal
+  loansModal,
+  checkboxLabel,
+  buttonLabel
 }) => {
   const t = useText();
   const { mutate } = useRenewLoansV2();
@@ -83,7 +87,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           selected={materialsToRenew.length === allRenewableMaterials}
           id="checkbox-select-all"
           onChecked={selectAll}
-          label={t("loanListSelectPossibleCheckboxText")}
+          label={checkboxLabel}
         />
         <button
           type="button"
@@ -92,7 +96,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           onClick={renewSelected}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
         >
-          {t("loanListRenewPossibleText")} ({renewable})
+          {buttonLabel} ({renewable})
         </button>
       </div>
       <div className="modal-loan__list">

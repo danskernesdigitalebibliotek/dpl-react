@@ -35,6 +35,8 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             <RenewLoansModalContent
               loansModal={loansModal}
               renewable={renewable}
+              buttonLabel={t("renewLoanModalButtonText")}
+              checkboxLabel={t("renewLoanModalCheckboxText")}
             />
           </>
         )}

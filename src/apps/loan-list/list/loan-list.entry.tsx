@@ -20,8 +20,6 @@ export interface LoanListEntryProps {
   loanListStatusCircleAriaLabelText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
-  loanListRenewPossibleText: string;
-  loanListSelectPossibleCheckboxText: string;
   LoanListDeniedMaxRenewalsReachedText: string;
   LoanListDeniedOtherReasonText: string;
   LoanListDeniedInterLibraryLoanText: string;
@@ -47,6 +45,10 @@ export interface LoanListEntryProps {
   materialDetailsHandInLabelText: string;
   materialDetailsLoanDateLabelText: string;
   materialDetailsMaterialNumberLabelText: string;
+  renewLoanModalCheckboxText: string;
+  renewLoanModalButtonText: string;
+  dueDateRenewLoanModalCheckboxText: string;
+  dueDateRenewLoanModalButtonText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;

@@ -78,14 +78,6 @@ export default {
       defaultValue: "Udløber snart",
       control: { type: "text" }
     },
-    loanListRenewPossibleText: {
-      defaultValue: "Forny mulige",
-      control: { type: "text" }
-    },
-    loanListSelectPossibleCheckboxText: {
-      defaultValue: "Vælg alle med mulighed for fornyelse",
-      control: { type: "text" }
-    },
     LoanListDeniedMaxRenewalsReachedText: {
       defaultValue: "Materialet kan ikke fornyes flere gange",
       control: { type: "text" }
@@ -193,6 +185,22 @@ export default {
     },
     materialDetailsMaterialNumberLabelText: {
       defaultValue: "Materialenummer",
+      control: { type: "text" }
+    },
+    renewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
+    dueDateRenewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
+    renewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    dueDateRenewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
       control: { type: "text" }
     }
   },
