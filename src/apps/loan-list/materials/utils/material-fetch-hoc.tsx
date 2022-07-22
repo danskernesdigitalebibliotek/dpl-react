@@ -5,47 +5,51 @@ import {
 } from "../../../../core/dbc-gateway/generated/graphql";
 import { LoanDetailsV2 } from "../../../../core/fbs/model";
 
-interface WithMaterialProps {
+export interface MaterialDetailsProps {
   loanDetails: LoanDetailsV2;
-  renewalStatusList?: string[];
+}
+export interface SelectableMaterialProps {
+  loanDetails: LoanDetailsV2;
+  renewableStatus: string[];
+  loanType?: string;
+  disabled: boolean;
+  materialsToRenew?: number[];
+  onChecked: (faust: string) => void;
+}
+
+export interface StackableMaterialProps {
+  loanDetails: LoanDetailsV2;
+  amountOfMaterialsWithDueDate?: number;
+  selectDueDate?: () => void;
+  selectMaterial?: ({
+    material,
+    loanDetails
+  }: {
+    material: GetMaterialManifestationQuery | undefined | null;
+    loanDetails: LoanDetailsV2;
+  }) => void;
+}
+export interface MaterialProps {
   material: GetMaterialManifestationQuery;
-  selectDueDate?: () => void;
-  selectMaterial?: ({
-    material,
-    loanDetails
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
-  }) => void;
-  amountOfMaterialsWithDueDate?: number;
-  renewableStatus?: string[];
 }
-interface InputProps {
-  faust: string;
-  loanDetails: LoanDetailsV2;
-  selectDueDate?: () => void;
-  selectMaterial?: ({
-    material,
-    loanDetails
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
-  }) => void;
-  amountOfMaterialsWithDueDate?: number;
-  renewableStatus?: string[];
-}
+
+type WithMaterialProps = (
+  | StackableMaterialProps
+  | SelectableMaterialProps
+  | MaterialDetailsProps
+) &
+  MaterialProps;
+
+type InputProps = { faust: string } & (
+  | StackableMaterialProps
+  | SelectableMaterialProps
+  | MaterialDetailsProps
+);
 
 export function FetchMaterial(
   WrappedComponent: React.ComponentType<WithMaterialProps>
 ) {
-  const WithFetchMaterial = ({
-    faust,
-    loanDetails,
-    selectDueDate,
-    selectMaterial,
-    amountOfMaterialsWithDueDate,
-    renewableStatus
-  }: InputProps) => {
+  const WithFetchMaterial = ({ faust, ...props }: InputProps) => {
     const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
     const { isSuccess: isSuccessManifestation, data } =
       useGetMaterialManifestationQuery({
@@ -59,16 +63,8 @@ export function FetchMaterial(
 
     return (
       <>
-        {material && (
-          <WrappedComponent
-            loanDetails={loanDetails}
-            renewableStatus={renewableStatus}
-            selectDueDate={selectDueDate}
-            selectMaterial={selectMaterial}
-            amountOfMaterialsWithDueDate={amountOfMaterialsWithDueDate}
-            material={material}
-          />
-        )}
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        {material && <WrappedComponent {...props} material={material} />}
         {/* todo loading figma? */}
         {!material && <div />}
       </>

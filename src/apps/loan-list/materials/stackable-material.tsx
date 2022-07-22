@@ -1,32 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
-import { Pid } from "../../../core/utils/types/ids";
-import MaterialDetailsModal from "../modal/material-details-modal";
-import { FetchMaterial } from "./utils/material-fetch-hoc";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
+import {
+  FetchMaterial,
+  StackableMaterialProps,
+  MaterialProps
+} from "./utils/material-fetch-hoc";
 
-interface StackableMaterialProps {
-  loanDetails: LoanDetailsV2;
-  material: GetMaterialManifestationQuery;
-  amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: () => void;
-  selectMaterial?: ({
-    material,
-    loanDetails
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
-  }) => void;
-}
-
-const StackableMaterial: React.FC<StackableMaterialProps> = ({
+const StackableMaterial: React.FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
   amountOfMaterialsWithDueDate,
   material,
@@ -61,7 +47,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
     };
   }, []);
 
-  const selectListMaterial = (e: Event) => {
+  const selectListMaterial = (e: MouseEvent) => {
     e.stopPropagation();
     if (selectMaterial) {
       selectMaterial({
@@ -75,7 +61,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   return (
     <button
       type="button"
-      onClick={() => selectListMaterial}
+      onClick={(e) => selectListMaterial(e)}
       className={`list-reservation my-32 ${
         amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
           ? "list-reservation--stacked"

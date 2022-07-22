@@ -21,7 +21,8 @@ import {
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
-import StackableMaterial from "../materials/stackable-material";
+import RenewLoansModal from "../modal/renew-loans-modal";
+import LoanListItems from "./loan-list-items";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -53,7 +54,7 @@ const LoanList: React.FC = () => {
   const [renewable, setRenewable] = useState<number | null>(null);
   const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
   const [view, setView] = useState<string>("list");
-  const { isSuccess, data } = useGetLoansV2();
+  const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
   const updateRenewable = (materials: LoanV2[]) => {
@@ -95,13 +96,14 @@ const LoanList: React.FC = () => {
   useEffect(() => {
     setDisplayList(true);
     if (modalIds.length > 0) {
+      refetch();
       setDisplayList(true);
     }
-  }, [modalIds?.length]);
+  }, [modalIds?.length, refetch]);
 
   const openModalDueDate = useCallback(
-    (dueDateModalInput: string) => {
-      if (loans) {
+    (dueDateModalInput?: string) => {
+      if (loans && dueDateModalInput) {
         setDueDateModal(dueDateModalInput);
         // The loans are filtered with said date string
         const loansForModal = removeLoansWithDuplicateDueDate(
@@ -120,6 +122,16 @@ const LoanList: React.FC = () => {
     },
     [loans]
   );
+
+  const openRenewLoansModal = useCallback(() => {
+    if (loans) {
+      const amountOfRenewableLoans = getAmountOfRenewableLoans(loans);
+
+      // Loans for modal (the modal shows loans stacked by due date)
+      setLoansModal(loans);
+      setRenewable(amountOfRenewableLoans);
+    }
+  }, [loans]);
 
   useEffect(() => {
     // modal query param
@@ -178,6 +190,10 @@ const LoanList: React.FC = () => {
               <div className="dpl-list-buttons__buttons__button">
                 <button
                   type="button"
+                  onClick={() => {
+                    openRenewLoansModal();
+                    dispatch(openModal({ modalId: "all" }));
+                  }}
                   aria-describedby={t(
                     "loanListRenewMultipleButtonExplanationText"
                   )}
@@ -189,46 +205,13 @@ const LoanList: React.FC = () => {
             </div>
           </div>
           {loans && (
-            <div className="list-reservation-container m-32">
-              {view === "stacked" &&
-                dueDates.map((uniqueDueDate) => {
-                  // Stack items:
-                  // if multiple items have the same due date, they are "stacked"
-                  // which means styling making it look like there are multiple materials,
-                  // but only _one_ with said due date is visible.
-                  const loan = removeLoansWithDuplicateDueDate(
-                    uniqueDueDate,
-                    loans,
-                    "loanDetails.dueDate"
-                  );
-
-                  const { loanDetails } = loan[0];
-
-                  return (
-                    <StackableMaterial
-                      loanDetails={loanDetails}
-                      key={loanDetails.recordId}
-                      faust={loanDetails.recordId}
-                      selectDueDate={() =>
-                        openModalDueDate(loanDetails.dueDate)
-                      }
-                      selectMaterial={selectModalMaterial}
-                      amountOfMaterialsWithDueDate={loan.length}
-                    />
-                  );
-                })}
-              {view === "list" &&
-                loans.map(({ loanDetails }) => {
-                  return (
-                    <StackableMaterial
-                      selectMaterial={selectModalMaterial}
-                      key={loanDetails.recordId}
-                      faust={loanDetails.recordId}
-                      loanDetails={loanDetails}
-                    />
-                  );
-                })}
-            </div>
+            <LoanListItems
+              dueDates={dueDates}
+              loans={loans}
+              view={view}
+              openModalDueDate={openModalDueDate}
+              selectModalMaterial={selectModalMaterial}
+            />
           )}
         </>
       )}
@@ -241,9 +224,9 @@ const LoanList: React.FC = () => {
       <DueDateLoansModal
         dueDate={dueDateModal}
         renewable={renewable}
-        dueDates={dueDates}
         loansModal={loansModal}
       />
+      <RenewLoansModal renewable={renewable} loansModal={loans} />
     </>
   );
 };
