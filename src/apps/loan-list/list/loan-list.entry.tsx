@@ -9,8 +9,6 @@ export interface LoanListEntryProps {
   loanListListText: string;
   loanListStackText: string;
   loanListRenewMultipleButtonExplanationText: string;
-  loanListMaterialByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
   loanListLateFeeDesktopText: string;
   loanListLateFeeMobileText: string;
   loanListDaysText: string;
@@ -19,7 +17,6 @@ export interface LoanListEntryProps {
   LoanListMaterialsMobileText: string;
   loanListMaterialsModalDesktopText: string;
   loanListMaterialsModalMobileText: string;
-  loanListToBeDeliveredModalText: string;
   loanListStatusCircleAriaLabelText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
@@ -34,6 +31,26 @@ export interface LoanListEntryProps {
   LoanListModalDescriptionText: string;
   LoanListEmptyPhysicalLoansText: string;
   MaterialDetailsModalOverdueText: string;
+  materialDetailsOverdueText: string;
+  loanListMaterialByAuthorText: string;
+  loanModalMaterialByAuthorText: string;
+  materialDetailsByAuthorText: string;
+  loanListMaterialAndAuthorText: string;
+  loanModalMaterialAndAuthorText: string;
+  materialDetailsAndAuthorText: string;
+  dueDateRenewLoanModalHeaderText: string;
+  renewLoanModalHeaderText: string;
+  renewLoanModalCloseModalText: string;
+  dueDateRenewLoanCloseModalText: string;
+  materialDetailsCloseModalText: string;
+  renewLoanModalDescriptionText: string;
+  dueDateRenewLoanModalDescriptionText: string;
+  materialDetailsModalDescriptionText: string;
+  materialDetailsRenewLoanButtonText: string;
+  materialDetailsLinkToPageWithFeesText: string;
+  materialDetailsHandInLabelText: string;
+  materialDetailsLoanDateLabelText: string;
+  materialDetailsMaterialNumberLabelText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;

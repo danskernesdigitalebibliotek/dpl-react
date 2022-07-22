@@ -146,6 +146,14 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                     {t("LoanListMaterialsMobileText")}
                   </button>
                 )}
+              {materialIsOverdue(dueDate) && (
+                <a
+                  href="todo"
+                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                >
+                  {t("loanListLateFeeMobileText")}
+                </a>
+              )}
             </div>
           </div>
         </div>

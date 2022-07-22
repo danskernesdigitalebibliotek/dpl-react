@@ -3,7 +3,6 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 
-
 export default {
   title: "Apps / Loan list",
   component: LoanList,
@@ -32,14 +31,7 @@ export default {
       defaultValue: "Forny flere",
       control: { type: "text" }
     },
-    loanListMaterialByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    loanListMaterialAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
-    },
+
     loanListLateFeeDesktopText: {
       defaultValue: "Du pålægges et gebyr, når materialet afleveres",
       control: { type: "text" }
@@ -72,10 +64,6 @@ export default {
     loanListMaterialsModalMobileText: {
       defaultValue:
         "Denne knap åbner en modal der dækker hele vinduet og der viser de lån der har den pågældende udlånsdato",
-      control: { type: "text" }
-    },
-    loanListToBeDeliveredModalText: {
-      defaultValue: "Afleveres",
       control: { type: "text" }
     },
     loanListStatusCircleAriaLabelText: {
@@ -119,25 +107,92 @@ export default {
       defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
     },
-    LoanListCloseModalText: {
+
+    loanListMaterialByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    loanModalMaterialByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    materialDetailsByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    loanListMaterialAndAuthorText: {
+      defaultValue: "og",
+      control: { type: "text" }
+    },
+    loanModalMaterialAndAuthorText: {
+      defaultValue: "og",
+      control: { type: "text" }
+    },
+    materialDetailsAndAuthorText: {
+      defaultValue: "og",
+      control: { type: "text" }
+    },
+    dueDateRenewLoanModalHeaderText: {
+      defaultValue: "Afleveres",
+      control: { type: "text" }
+    },
+    renewLoanModalHeaderText: {
+      defaultValue: "Forny flere",
+      control: { type: "text" }
+    },
+    renewLoanModalCloseModalText: {
       defaultValue: "Luk forny lån modal",
       control: { type: "text" }
     },
-    LoanListModalDescriptionText: {
+    dueDateRenewLoanCloseModalText: {
+      defaultValue: "Luk forny lån modal",
+      control: { type: "text" }
+    },
+    materialDetailsCloseModalText: {
+      defaultValue: "Luk materialedetalje modal",
+      control: { type: "text" }
+    },
+    renewLoanModalDescriptionText: {
+      defaultValue: "Denne modal gør det muligt at forny lån",
+      control: { type: "text" }
+    },
+    dueDateRenewLoanModalDescriptionText: {
       defaultValue:
         "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
       control: { type: "text" }
     },
-    MaterialDetailsModalOverdueText: {
+    materialDetailsModalDescriptionText: {
+      defaultValue:
+        "Denne modal viser et materiales detaljer og gør det muligt at forny materialet, hvis det kan fornyes",
+      control: { type: "text" }
+    },
+    materialDetailsOverdueText: {
       defaultValue: "Overskredet",
       control: { type: "text" }
     },
-    MaterialDetailsModalByAuthorText: {
-      defaultValue: "Af",
+    materialDetailsRenewLoanButtonText: {
+      defaultValue: "forny dit lån",
       control: { type: "text" }
     },
-    MaterialDetailsModalAndAuthorText: {
-      defaultValue: "og",
+    materialDetailsWarningLoanOverdueText: {
+      defaultValue:
+        "Afleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveres",
+      control: { type: "text" }
+    },
+    materialDetailsLinkToPageWithFeesText: {
+      defaultValue: "Læs mere",
+      control: { type: "text" }
+    },
+    materialDetailsHandInLabelText: {
+      defaultValue: "Afleveres",
+      control: { type: "text" }
+    },
+    materialDetailsLoanDateLabelText: {
+      defaultValue: "Udlånsdato",
+      control: { type: "text" }
+    },
+    materialDetailsMaterialNumberLabelText: {
+      defaultValue: "Materialenummer",
       control: { type: "text" }
     },
     LoanListEmptyPhysicalLoansText: {

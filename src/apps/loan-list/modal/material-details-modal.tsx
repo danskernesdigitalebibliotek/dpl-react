@@ -21,8 +21,10 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
     <Modal
       modalId={faust}
       additionalClasses="modal-details"
-      closeModalAriaLabelText={t("LoanListCloseModalText")}
-      screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
+      closeModalAriaLabelText={t("materialDetailsCloseModalText")}
+      screenReaderModalDescriptionText={t(
+        "materialDetailsModalDescriptionText"
+      )}
     >
       <MaterialDetails faust={faust} loanDetails={loanDetails} />
     </Modal>

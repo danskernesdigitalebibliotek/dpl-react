@@ -62,8 +62,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {creators &&
               getAuthorNames(
                 creators,
-                t("loanListMaterialByAuthorText"),
-                t("loanListMaterialAndAuthorText")
+                t("loanModalMaterialByAuthorText"),
+                t("loanModalMaterialAndAuthorText")
               )}
             {year?.year && <> ({year.year})</>}
           </p>
