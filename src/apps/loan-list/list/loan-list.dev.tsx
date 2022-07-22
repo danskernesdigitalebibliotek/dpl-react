@@ -220,14 +220,6 @@ export default {
     MaterialDetailsModalOverdueText: {
       defaultValue: "Overskredet",
       control: { type: "text" }
-    },
-    MaterialDetailsModalByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    MaterialDetailsModalAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
     }
   },
   decorators: [withQuery]
