@@ -1,27 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { FetchMaterial } from "./utils/material-fetch-hoc";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
+import {
+  FetchMaterial,
+  SelectableMaterialProps,
+  MaterialProps
+} from "./utils/material-fetch-hoc";
 
-interface SelectableMaterialProps {
-  loanDetails: LoanDetailsV2;
-  material: GetMaterialManifestationQuery;
-  renewableStatus?: string[];
-  loanType?: string;
-}
-
-const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
+const SelectableMaterial: React.FC<SelectableMaterialProps & MaterialProps> = ({
   loanDetails,
   renewableStatus,
   loanType,
-  material
+  material,
+  disabled,
+  onChecked,
+  materialsToRenew
 }) => {
   const t = useText();
-
   const { dueDate, recordId: faust } = loanDetails || {};
   const { hostPublication, materialTypes, titles, creators } =
     material?.manifestation || {};
@@ -34,13 +31,25 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
 
   return (
     <li>
-      <div className="list-materials">
+      <div
+        className={`list-materials ${
+          disabled ? "list-materials--disabled" : ""
+        }`}
+      >
         <div className="mr-32">
-          <CheckBox
-            id={faust}
-            label={t("LoanListLabelCheckboxMaterialModalText")}
-            hideLabel
-          />
+          {faust && (
+            <CheckBox
+              onChecked={onChecked}
+              id={faust}
+              selected={
+                materialsToRenew &&
+                materialsToRenew?.indexOf(parseInt(faust, 10)) > -1
+              }
+              disabled={disabled}
+              label={t("LoanListLabelCheckboxMaterialModalText")}
+              hideLabel
+            />
+          )}
         </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
@@ -62,13 +71,13 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
         <div className="list-materials__status">
           {renewableStatus && (
             <span className="text-small-caption">
-              {renewableStatus.includes("deniedMaxRenewalsReached") && (
+              {renewableStatus.indexOf("deniedMaxRenewalsReached") > -1 && (
                 <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
               )}
-              {renewableStatus.includes("deniedOtherReason") ||
-                (renewableStatus.includes("deniedReserved") && (
-                  <> {t("LoanListDeniedOtherReasonText")}</>
-                ))}
+              {(renewableStatus.indexOf("deniedOtherReason") > -1 ||
+                renewableStatus.indexOf("deniedReserved") > -1) && (
+                <> {t("LoanListDeniedOtherReasonText")}</>
+              )}
               {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}
               {loanType === "interLibraryLoan" && (
                 <>{t("LoanListDeniedInterLibraryLoanText")}</>

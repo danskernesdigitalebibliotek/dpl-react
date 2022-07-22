@@ -1,29 +1,27 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FC } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import { LoanDetailsV2, RenewedLoanV2 } from "../../../core/fbs/model";
+import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
 import { formatDate, getAuthorNames, materialIsOverdue } from "../helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import StatusBadge from "../materials/utils/status-badge";
 import IconCheckmark from "../../../components/icon-checkmark/icon-checkmark";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { FetchMaterial } from "../materials/utils/material-fetch-hoc";
-
-interface MaterialDetailsProps {
-  material: GetMaterialManifestationQuery;
-  loanDetails: LoanDetailsV2;
-}
+import {
+  FetchMaterial,
+  MaterialDetailsProps,
+  MaterialProps
+} from "../materials/utils/material-fetch-hoc";
 
 interface RenewStatusType {
   statusText?: string;
   buttonText: string;
 }
 
-const MaterialDetails: React.FC<MaterialDetailsProps> = ({
+const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   loanDetails,
   material
 }) => {
