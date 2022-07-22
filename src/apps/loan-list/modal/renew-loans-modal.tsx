@@ -19,8 +19,8 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
     <Modal
       modalId="all"
       additionalClasses="modal-loan"
-      closeModalAriaLabelText={t("LoanListCloseModalText")}
-      screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
+      closeModalAriaLabelText={t("renewLoanModalCloseModalText")}
+      screenReaderModalDescriptionText={t("renewLoanModalDescriptionText")}
     >
       <div className="modal-loan__container">
         {loansModal && (
@@ -28,7 +28,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             <div className="modal-loan__header">
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("loanListToBeDeliveredModalText")}
+                  {t("renewLoanModalHeaderText")}
                 </h1>
               </div>
             </div>

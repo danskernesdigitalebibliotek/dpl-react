@@ -24,8 +24,10 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
     <Modal
       modalId={dueDate}
       additionalClasses="modal-loan"
-      closeModalAriaLabelText={t("LoanListCloseModalText")}
-      screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
+      closeModalAriaLabelText={t("dueDateRenewLoanCloseModalText")}
+      screenReaderModalDescriptionText={t(
+        "dueDateRenewLoanModalDescriptionText"
+      )}
     >
       <div className="modal-loan__container">
         {loansModal && (
@@ -37,7 +39,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("loanListToBeDeliveredModalText")}{" "}
+                  {t("dueDateRenewLoanModalHeaderText")}{" "}
                   {dayjs(dueDate).locale(localeDa).format("DD MMMM YYYY")}
                 </h1>
               </div>

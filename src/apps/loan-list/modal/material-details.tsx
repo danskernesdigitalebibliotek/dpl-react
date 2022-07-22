@@ -119,7 +119,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               {dueDateUpdatable && (
                 <StatusBadge
                   dueDate={dueDateUpdatable}
-                  dangerText={t("MaterialDetailsOverdueText")}
+                  dangerText={t("materialDetailsOverdueText")}
                 />
               )}
             </div>
@@ -129,8 +129,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             {creators &&
               getAuthorNames(
                 creators,
-                t("loanListMaterialByAuthorText"),
-                t("loanListMaterialAndAuthorText")
+                t("materialDetailsByAuthorText"),
+                t("materialDetailsAndAuthorText")
               )}
             {hostPublication?.year && <> ({hostPublication.year.year})</>}
           </p>
@@ -143,7 +143,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             onClick={() => renew(loanId)}
             className="btn-primary btn-filled btn-small arrow__hover--right-small"
           >
-            forny dit lån
+            {t("materialDetailsRenewLoanButtonText")}
           </button>
         )}
         {renewStatus !== null && (
@@ -175,11 +175,10 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               <img className="warning-bar__icon" src={IconWarning} alt="" />
               <div>
                 <p className="text-body-medium-regular color-primary-black">
-                  Afleveringsdatoen for lånet er overskredet, derfor pålægges du
-                  et gebyr, når materialet afleveres{" "}
+                  {t("materialDetailsWarningLoanOverdueText")}{" "}
                   <a href="/" className="link-tag color-secondary-gray ml-8">
                     {/* todo link til gebyrer */}
-                    Læs mere
+                    {t("materialDetailsLinkToPageWithFeesText")}
                   </a>
                 </p>
               </div>
@@ -194,7 +193,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           </div>
           <div className="list-details__container">
             <div className="list-details__content">
-              <p className="text-header-h5">Afleveres</p>
+              <p className="text-header-h5">
+                {t("materialDetailsHandInLabelText")}
+              </p>
               <p className="text-small-caption">{formatDate(dueDate)}</p>
             </div>
           </div>
@@ -205,7 +206,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           </div>
           <div className="list-details__container">
             <div className="list-details__content">
-              <p className="text-header-h5">Udlånsdato</p>
+              <p className="text-header-h5">
+                {t("materialDetailsLoanDateLabelText")}
+              </p>
               <p className="text-small-caption">
                 {loanDate && formatDate(loanDate)}
               </p>
@@ -219,7 +222,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           <div className="list-details__container">
             <div className="list-details__content">
               {/* todo what is materialenummer */}
-              <p className="text-header-h5">Materialenummer</p>
+              <p className="text-header-h5">
+                {t("materialDetailsMaterialNumberLabelText")}
+              </p>
               <p className="text-small-caption">{materialItemNumber}</p>
             </div>
           </div>
