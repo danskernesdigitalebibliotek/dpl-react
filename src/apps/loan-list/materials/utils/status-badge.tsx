@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import dayjs from "dayjs";
 import statusThreshold from "../../../../core/configuration/status-thresholds.json";
 
@@ -9,7 +9,7 @@ interface StatusBadgeProps {
   neutralText?: string;
 }
 
-const StatusBadge: React.FC<StatusBadgeProps> = ({
+const StatusBadge: FC<StatusBadgeProps> = ({
   dueDate,
   warningText,
   dangerText,

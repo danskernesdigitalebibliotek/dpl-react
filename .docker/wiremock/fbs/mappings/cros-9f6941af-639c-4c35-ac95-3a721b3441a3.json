@@ -1,20 +1,18 @@
 {
-  "id" : "9f6941af-639c-4c35-ac95-3a721b3441a3",
-  "name" : "CROS",
-  "request" : {
-    "urlPathPattern" : "/.*",
-    "method" : "OPTIONS"
+  "request": {
+    "urlPattern": ".*",
+    "method": "OPTIONS"
   },
-  "response" : {
-    "status" : 200,
-    "body" : "",
-    "headers" : {
-      "Access-Control-Allow-Origin" : "*"
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+      "X-Content-Type-Options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "1; mode=block"
     }
-  },
-  "uuid" : "9f6941af-639c-4c35-ac95-3a721b3441a3",
-  "persistent" : true,
-  "priority" : 1,
-  "insertionIndex" : 14,
-  "postServeActions" : [ ]
+  }
 }

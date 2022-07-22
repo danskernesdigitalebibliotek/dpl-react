@@ -1,42 +1,68 @@
-import React from "react";
+import React, { useEffect, MouseEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
+import {
+  FetchMaterial,
+  StackableMaterialProps,
+  MaterialProps
+} from "./utils/material-fetch-hoc";
 
-interface StackableMaterialProps {
-  dueDate: string;
-  loanDate: string | undefined;
-  amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: () => void;
-  material: GetMaterialManifestationQuery;
-}
-
-const StackableMaterial: React.FC<StackableMaterialProps> = ({
-  dueDate,
-  loanDate,
+const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
+  loanDetails,
   amountOfMaterialsWithDueDate,
+  material,
   selectDueDate,
-  material
+  selectMaterial
 }) => {
   const t = useText();
+  const dispatch = useDispatch();
 
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
-    material?.manifestation || {};
+    material.manifestation || {};
   const { year } = hostPublication || {};
   const [{ specific }] = materialTypes || [];
   const {
     main: [mainText]
   } = titles || { main: [] };
+  const { loanDate, dueDate, recordId: faust } = loanDetails || {};
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    function stopPropagationFunction(e: Event) {
+      e.stopPropagation();
+    }
+
+    document
+      .querySelector("a")
+      ?.addEventListener("click", stopPropagationFunction, true);
+
+    return () => {
+      document
+        .querySelector("a")
+        ?.removeEventListener("click", stopPropagationFunction, true);
+    };
+  }, []);
+
+  const selectListMaterial = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (selectMaterial) {
+      selectMaterial({
+        material,
+        loanDetails
+      });
+    }
+    dispatch(openModal({ modalId: faust }));
+  };
+
   return (
-    <div
-      className={`list-reservation m-32 ${
+    <button
+      type="button"
+      onClick={(e) => selectListMaterial(e)}
+      className={`list-reservation my-32 ${
         amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
           ? "list-reservation--stacked"
           : ""
@@ -73,7 +99,8 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
             selectDueDate && (
               <button
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   selectDueDate();
                   dispatch(openModal({ modalId: dueDate }));
                 }}
@@ -105,7 +132,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                 dangerText={t("loanListStatusBadgeDangerText")}
                 warningText={t("loanListStatusBadgeWarningText")}
               />
-              <p className="text-small-caption">
+              <p className="text-small-caption" id="due-date">
                 {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
               {amountOfMaterialsWithDueDate &&
@@ -119,12 +146,20 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                     {t("LoanListMaterialsMobileText")}
                   </button>
                 )}
+              {materialIsOverdue(dueDate) && (
+                <a
+                  href="todo"
+                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                >
+                  {t("loanListLateFeeMobileText")}
+                </a>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
-export default StackableMaterial;
+export default FetchMaterial(StackableMaterial);
