@@ -14,11 +14,18 @@ import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
-import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
-import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
+import {
+  removeLoansWithDuplicateDueDate,
+  getAmountOfRenewableLoans,
+  queryMatchesFaust
+} from "../helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
+import {
+  IsAModalDisplayed,
+  sortByLoanDate
+} from "../../../core/utils/helpers/general";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
