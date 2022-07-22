@@ -147,6 +147,87 @@ describe("Modals", () => {
         "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
       );
   });
+  it("It opens due date modal with query params", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-06-13T16:43:25.325",
+            dueDate: "2022-07-14",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-06-13T16:43:25.325",
+            dueDate: "2022-07-14",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        }
+      ]
+    }).as("loans");
+
+    cy.intercept("POST", "**/opac/**", {
+      statusCode: 200,
+      body: {
+        data: {
+          manifestation: {
+            pid: "870970-basis:27215815",
+            titles: { main: ["Dummy Some Title"] },
+            abstract: ["Dummy Some abstract ..."],
+            hostPublication: { year: { year: 2006 } },
+            materialTypes: [{ specific: "Dummy bog" }],
+            creators: [
+              { display: "Dummy Jens Jensen" },
+              { display: "Dummy Some Corporation" }
+            ]
+          }
+        }
+      }
+    }).as("work");
+
+    cy.intercept("GET", "**covers**", {
+      statusCode: 200,
+      body: []
+    }).as("cover");
+    cy.visit(
+      "/iframe.html?path=/story/apps-loan-list--loan-list-renew-loans-modal"
+    );
+    cy.wait(["@loans", "@work", "@cover"]);
+    cy.get(".modal").find(".list-materials").should("have.length", 2);
+    cy.get(".modal")
+      .find(".list-materials")
+      .eq(0)
+      .should(
+        "have.text",
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
+      );
+  });
 });
 
 export {};

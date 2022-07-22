@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 
@@ -35,6 +35,6 @@ export interface LoanListEntryProps {
   MaterialDetailsModalOverdueText: string;
 }
 
-const LoanListEntry: React.FC<LoanListEntryProps> = () => <LoanList />;
+const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
 
 export default withText(LoanListEntry);

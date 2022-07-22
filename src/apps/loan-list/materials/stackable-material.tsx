@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent } from "react";
+import React, { useEffect, MouseEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
@@ -12,7 +12,7 @@ import {
   MaterialProps
 } from "./utils/material-fetch-hoc";
 
-const StackableMaterial: React.FC<StackableMaterialProps & MaterialProps> = ({
+const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
   amountOfMaterialsWithDueDate,
   material,

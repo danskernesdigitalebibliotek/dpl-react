@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import IconCheckbox from "../../../../components/icon-checkbox/icon-checkbox";
 
 interface CheckBoxProps {
@@ -10,7 +10,7 @@ interface CheckBoxProps {
   onChecked: (faust: string) => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({
+const CheckBox: FC<CheckBoxProps> = ({
   id,
   label,
   hideLabel,

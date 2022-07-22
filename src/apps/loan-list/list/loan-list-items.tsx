@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { removeLoansWithDuplicateDueDate } from "../helpers";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
@@ -19,7 +19,7 @@ interface LoanListItemProps {
   openModalDueDate: (dueDate: string) => void;
 }
 
-const LoanListItems: React.FC<LoanListItemProps> = ({
+const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,

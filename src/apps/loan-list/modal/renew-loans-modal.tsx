@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
@@ -9,7 +9,7 @@ interface RenewLoansModalProps {
   loansModal: LoanV2[] | undefined | null;
 }
 
-const RenewLoansModal: React.FC<RenewLoansModalProps> = ({
+const RenewLoansModal: FC<RenewLoansModalProps> = ({
   renewable,
   loansModal
 }) => {

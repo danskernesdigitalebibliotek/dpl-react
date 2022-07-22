@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
@@ -12,7 +12,7 @@ interface RenewLoansModalContentProps {
   loansModal: LoanV2[];
 }
 
-const RenewLoansModalContent: React.FC<RenewLoansModalContentProps> = ({
+const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   renewable,
   loansModal
 }) => {

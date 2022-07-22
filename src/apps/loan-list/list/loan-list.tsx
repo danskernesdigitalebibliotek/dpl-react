@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MenuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Menu.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
@@ -38,7 +38,7 @@ export interface LoanDetailsType {
   loanDate: string;
 }
 
-const LoanList: React.FC = () => {
+const LoanList: FC = () => {
   const dispatch = useDispatch();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
@@ -130,12 +130,16 @@ const LoanList: React.FC = () => {
   }, [loans]);
 
   useEffect(() => {
-    // modal query param
     const modalString = getUrlQueryParam("modal");
+
+    // modal query param: due date modal date
     const dateFound = dateMatchesUsFormat(modalString);
     if (modalString && loans && dateFound) {
       openModalDueDate(dateFound);
+      return;
     }
+
+    // modal query param: details modal faust
     const faustFound = queryMatchesFaust(modalString);
 
     if (modalString && faustFound && loans) {
@@ -144,6 +148,11 @@ const LoanList: React.FC = () => {
       );
       setModalLoanDetails(loanDetailsForModal[0].loanDetails);
       dispatch(openModal({ modalId: faustFound }));
+      return;
+    }
+    // modal query param: modal loans all
+    if (modalString === "all") {
+      dispatch(openModal({ modalId: "all" }));
     }
   }, [loans, openModalDueDate, dispatch]);
 
