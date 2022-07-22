@@ -3,7 +3,7 @@ import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/buil
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import { LoanDetailsV2, RenewedLoanV2 } from "../../../core/fbs/model";
+import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
 import { formatDate, getAuthorNames, materialIsOverdue } from "../helpers";
@@ -17,7 +17,6 @@ import {
   MaterialProps
 } from "../materials/utils/material-fetch-hoc";
 import WarningBar from "../materials/utils/warning-bar";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 
 interface RenewStatusType {
   statusText?: string;

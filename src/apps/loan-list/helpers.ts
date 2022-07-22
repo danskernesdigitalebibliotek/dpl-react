@@ -12,6 +12,21 @@ export const removeLoansWithDuplicateDueDate = (
   );
 };
 
+export const getRenewableMaterials = (list: LoanV2[]) => {
+  const listOfLoansToCheck: number[] = [];
+  list.filter(({ isRenewable }) => isRenewable);
+  list.forEach((loan) => {
+    if (loan.isRenewable) {
+      listOfLoansToCheck.push(parseInt(loan.loanDetails.recordId, 10));
+    }
+  });
+  return listOfLoansToCheck;
+};
+
+export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
+  return getRenewableMaterials(list).length;
+};
+
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };

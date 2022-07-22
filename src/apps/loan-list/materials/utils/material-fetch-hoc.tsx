@@ -31,18 +31,22 @@ export interface StackableMaterialProps {
     loanDetails: LoanDetailsV2;
   }) => void;
 }
-
 export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
 
-type InputProps = { faust: FaustId } & (
+type WithMaterialProps = (
+  | StackableMaterialProps
+  | SelectableMaterialProps
+  | MaterialDetailsProps
+) &
+  MaterialProps;
+
+type InputProps = { faust: string } & (
   | StackableMaterialProps
   | SelectableMaterialProps
   | MaterialDetailsProps
 );
-export type WithMaterialProps = MaterialProps &
-  (SelectableMaterialProps | StackableMaterialProps | MaterialDetailsProps);
 
 export function FetchMaterial(
   WrappedComponent: ComponentType<WithMaterialProps>

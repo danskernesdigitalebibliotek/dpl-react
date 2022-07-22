@@ -3,18 +3,13 @@ import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { FetchMaterial } from "./utils/material-fetch-hoc";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
+import {
+  FetchMaterial,
+  SelectableMaterialProps,
+  MaterialProps
+} from "./utils/material-fetch-hoc";
 
-interface SelectableMaterialProps {
-  loanDetails: LoanDetailsV2;
-  material: GetMaterialManifestationQuery;
-  renewableStatus?: string[];
-  loanType?: string;
-}
-
-const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
+const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   loanDetails,
   renewableStatus,
   loanType,
@@ -77,7 +72,7 @@ const SelectableMaterial: React.FC<SelectableMaterialProps> = ({
           {/* todo this will be changed, everything with these statusses will be revised */}
           {renewableStatus && (
             <span className="text-small-caption">
-              {renewableStatus.includes("deniedMaxRenewalsReached") && (
+              {renewableStatus.indexOf("deniedMaxRenewalsReached") > -1 && (
                 <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
               )}
               {(renewableStatus.includes("deniedOtherReason") ||

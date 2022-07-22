@@ -5,7 +5,6 @@ import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generat
 import { openModal } from "../../../core/modal.slice";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
-import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
@@ -16,6 +15,10 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
+import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
+import { ModalIdsProps } from "../../../core/utils/modal";
+import MaterialDetailsModal from "../modal/material-details-modal";
+import { LoanDetailsV2 } from "../../../core/fbs/model";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
