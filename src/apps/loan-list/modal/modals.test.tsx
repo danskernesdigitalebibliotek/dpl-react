@@ -63,9 +63,10 @@ describe("Modals", () => {
 
     cy.get(".modal-details__container").should(
       "have.text",
-      "Dummy bogOverskredetDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)forny dit lånAfleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveres Læs mereAfleveres10-07-2022Udlånsdato10-06-2022Materialenummer3846990827"
+      "Dummy bogMaterialDetailsOverdueTextDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)forny dit lånAfleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveres Læs mereAfleveres10-07-2022Udlånsdato10-06-2022Materialenummer3846990827"
     );
   });
+
   it("It opens due date modal with query params", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
       statusCode: 200,
@@ -144,10 +145,11 @@ describe("Modals", () => {
       .eq(0)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
       );
   });
-  it("It opens due date modal with query params", () => {
+
+  it("It opens renew loans modal with query params", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
       statusCode: 200,
       body: [
@@ -225,7 +227,7 @@ describe("Modals", () => {
       .eq(0)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
       );
   });
 });
