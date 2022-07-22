@@ -7,7 +7,6 @@ import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generat
 import { openModal } from "../../../core/modal.slice";
 import {
   dateMatchesUsFormat,
-  queryMatchesFaust,
   getUrlQueryParam
 } from "../../../core/utils/helpers";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
@@ -15,12 +14,12 @@ import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import {
   removeLoansWithDuplicateDueDate,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  queryMatchesFaust
 } from "../helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
-import StackableMaterial from "../materials/stackable-material";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
 
