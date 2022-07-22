@@ -15,6 +15,7 @@ import {
   MaterialDetailsProps,
   MaterialProps
 } from "../materials/utils/material-fetch-hoc";
+import WarningBar from "../materials/utils/warning-bar";
 
 interface RenewStatusType {
   statusText?: string;
@@ -170,20 +171,10 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       </div>
       {materialIsOverdue(dueDateUpdatable) && (
         <div className="modal-details__warning">
-          <div className="warning-bar bg-global-secondary">
-            <div className="warning-bar__left">
-              <img className="warning-bar__icon" src={IconWarning} alt="" />
-              <div>
-                <p className="text-body-medium-regular color-primary-black">
-                  {t("materialDetailsWarningLoanOverdueText")}{" "}
-                  <a href="/" className="link-tag color-secondary-gray ml-8">
-                    {/* todo link til gebyrer */}
-                    {t("materialDetailsLinkToPageWithFeesText")}
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
+          <WarningBar
+            linkText={t("materialDetailsLinkToPageWithFeesText")}
+            overdueText={t("materialDetailsWarningLoanOverdueText")}
+          />
         </div>
       )}
       <div className="modal-details__list">
