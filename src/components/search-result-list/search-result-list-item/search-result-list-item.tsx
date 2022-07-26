@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
+import { Pid } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
@@ -63,7 +64,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
-          materialId={manifestationPid}
+          pid={manifestationPid as Pid}
           description={String(fullTitle)}
           url="/"
           tint={coverTint}

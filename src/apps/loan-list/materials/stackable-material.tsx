@@ -7,6 +7,7 @@ import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
+import { Pid } from "../../../core/utils/types/ids";
 
 interface StackableMaterialProps {
   dueDate: string;
@@ -48,7 +49,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
             size="small"
             animate
             tint="120"
-            materialId={pid || ""}
+            pid={(pid as Pid) || ""}
             description={abstract && abstract[0]}
           />
         </div>

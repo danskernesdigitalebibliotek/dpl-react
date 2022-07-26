@@ -1,58 +1,35 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import {
-  SuggestionsFromQueryStringQuery,
-  SuggestionType
-} from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 
 export interface AutosuggestProps {
-  q: string | undefined;
-  data: SuggestionsFromQueryStringQuery | undefined;
+  originalData:
+    | SuggestionsFromQueryStringQuery["suggest"]["result"]
+    | undefined;
+  textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  materialData: Suggestions;
   isLoading: boolean;
   status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
-  q,
-  data,
+  originalData,
+  textData,
+  materialData,
   isLoading,
   status,
   getMenuProps,
   highlightedIndex,
   getItemProps,
-  isOpen,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  isOpen
 }) => {
-  const originalData = data?.suggest.result;
-  const textData: Suggestions | [] = [];
-  const materialData: Suggestions | [] = [];
-
-  if (originalData) {
-    originalData.forEach((item) => {
-      if (item.type === SuggestionType.Composit) {
-        if (materialData.length < 3) {
-          // @ts-expect-error TODO: item
-          materialData.push(item);
-          return;
-        }
-      }
-      // @ts-expect-error TODO: item
-      textData.push(item);
-    });
-  }
-
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -66,18 +43,12 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
         {isLoading && <div>Loading</div>}
 
-        {data && data.suggest.result.length < 1 && null}
-
-        {data && status === "success" && isOpen && (
+        {originalData && status && isOpen && (
           <>
             <AutosuggestText
-              responseData={textData}
-              currentQ={q}
+              textData={textData}
               highlightedIndex={highlightedIndex}
               getItemProps={getItemProps}
-              stringSuggestionAuthorText={stringSuggestionAuthorText}
-              stringSuggestionWorkText={stringSuggestionWorkText}
-              stringSuggestionTopicText={stringSuggestionTopicText}
             />
             <AutosuggestMaterial
               materialData={materialData}

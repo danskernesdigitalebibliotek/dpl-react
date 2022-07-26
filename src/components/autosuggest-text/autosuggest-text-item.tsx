@@ -1,5 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { useText } from "../../core/utils/text";
 import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 
@@ -11,9 +12,6 @@ export interface AutosuggestTextItemProps {
   index: number;
   generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
 
 const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
@@ -21,11 +19,9 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   item,
   index,
   generateItemId,
-  getItemProps,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  getItemProps
 }) => {
+  const t = useText();
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -36,15 +32,17 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         {...getItemProps({ item, index })}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-
         {item.type === SuggestionType.Creator
-          ? `${item.term} (${stringSuggestionAuthorText})`
+          ? `${item.term} (${t("stringSuggestionAuthorText")})`
           : null}
         {item.type === SuggestionType.Subject
-          ? `${item.term} (${stringSuggestionTopicText})`
+          ? `${item.term} (${t("stringSuggestionTopicText")})`
           : null}
         {item.type === SuggestionType.Composit
-          ? `${item?.work?.titles?.main} (${stringSuggestionWorkText})`
+          ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
+          : null}
+        {item.type === SuggestionType.Title
+          ? `${item.term} (${t("stringSuggestionWorkText")})`
           : null}
       </li>
     </>

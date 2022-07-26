@@ -8,6 +8,9 @@ import {
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
+import { useText } from "../../core/utils/text";
+import { downshiftEventTypes } from "../../core/utils/constants";
+import { itemToString } from "../../components/autosuggest-text/autosuggest-text";
 
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
@@ -18,15 +21,10 @@ export interface SearchHeaderProps {
   stringSuggestionTopicText?: string;
 }
 
-const SearchHeader: React.FC<SearchHeaderProps> = ({
-  searchHeaderUrl = "/search",
-  altText = "search icon",
-  inputPlaceholderText = "Search here",
-  stringSuggestionAuthorText = "Author",
-  stringSuggestionWorkText = "Work",
-  stringSuggestionTopicText = "Topic"
-}) => {
+const SearchHeader: React.FC = () => {
+  const t = useText();
   const [q, setQ] = useState<string>("");
+  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<any[]>([]);
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
@@ -40,16 +38,35 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     status: string;
   } = useSuggestionsFromQueryStringQuery({ q });
 
-  // once the query returns data, we set it into our useSate
+  // make sure to only assign the data once
   useEffect(() => {
     if (data) {
       const arayOfResults = data.suggest.result;
       setSuggestItems(arayOfResults);
     }
   }, [data]);
+  const originalData = suggestItems;
+  const textData: Suggestion[] = [];
+  const materialData: Suggestion[] = [];
+  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
 
-  // if there are at least 3 chars in the search-field we open the autosuggest
-  // by design this is how the autosuggest should work
+  if (originalData) {
+    originalData.forEach((item: Suggestion) => {
+      if (
+        item.type === SuggestionType.Composit ||
+        item.type === SuggestionType.Title
+      ) {
+        if (materialData.length < 3) {
+          materialData.push(item);
+          return;
+        }
+      }
+      textData.push(item);
+    });
+    orderedData = textData.concat(materialData);
+  }
+
+  // autosuggest dropdown opening and closing based on input text length
   useEffect(() => {
     if (q) {
       const minimalLengthQuery = 3;
@@ -80,29 +97,73 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     setCurrentlySelectedItem(determinSuggestionType(selectedItem));
   }
 
-  function handleHighlightedIndexChange(
-    changes: UseComboboxStateChange<Suggestion>
-  ) {
-    if (
-      changes.selectedItem === undefined ||
-      changes.selectedItem === null ||
-      changes.highlightedIndex === undefined
-    ) {
-      return;
-    }
-    if (changes.highlightedIndex > -1) {
-      const arrayIndex: number = changes.highlightedIndex;
-      const currentlyHighlightedObject = suggestItems[arrayIndex];
-      const currentItemValue = determinSuggestionType(
-        currentlyHighlightedObject
-      );
-      setQ(currentItemValue);
-    } else {
-      setIsAutosuggestOpen(false);
+  // downshift prevents the default form submission event when the autosuggest
+  // is open - that's why in some cases we have to simulate form sumbission
+  function manualRedirect(inputValue: string) {
+    const baseUrl = t("searchHeaderUrlText");
+    const params = inputValue;
+    if (window.top) {
+      window.top.location.href = `${baseUrl}?q=${params}`;
     }
   }
 
-  // here we get all downshift properties for the dropdown that we will need
+  function handleHighlightedIndexChange(
+    changes: UseComboboxStateChange<Suggestion>
+  ) {
+    const { type } = changes;
+    let { highlightedIndex } = changes;
+    if (
+      type === downshiftEventTypes.item_mouse_move ||
+      type === downshiftEventTypes.menu_mouse_leave
+    ) {
+      return;
+    }
+    if (highlightedIndex && highlightedIndex < 0) {
+      setIsAutosuggestOpen(false);
+      return;
+    }
+    if (!highlightedIndex) {
+      highlightedIndex = 0;
+    }
+    const arrayIndex: number = highlightedIndex;
+    const currentlyHighlightedObject = orderedData[arrayIndex];
+    const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
+    if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
+      manualRedirect(currentItemValue);
+      return;
+    }
+    if (
+      type === downshiftEventTypes.input_keydown_arrow_down ||
+      type === downshiftEventTypes.input_keydown_arrow_up
+    ) {
+      setQWithoutQuery(currentItemValue);
+      return;
+    }
+    setQ(currentItemValue);
+  }
+
+  function handleInputValueChange(changes: UseComboboxStateChange<Suggestion>) {
+    const { inputValue, selectedItem, type } = changes;
+    if (inputValue === undefined) {
+      return;
+    }
+    if (type === downshiftEventTypes.input_change) {
+      setQ(inputValue);
+      setQWithoutQuery(inputValue);
+      return;
+    }
+    setQWithoutQuery(inputValue);
+    if (
+      type === downshiftEventTypes.item_click ||
+      type === downshiftEventTypes.input_keydown_enter
+    ) {
+      if (!selectedItem) {
+        return;
+      }
+      manualRedirect(itemToString(selectedItem));
+    }
+  }
+  // this is the main Downshift hook
   const {
     getMenuProps,
     highlightedIndex,
@@ -111,12 +172,10 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
     getComboboxProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
-    items: suggestItems,
-    inputValue: q,
+    items: orderedData,
+    inputValue: qWithoutQuery,
     defaultIsOpen: false,
-    onInputValueChange: ({ inputValue = "" }) => {
-      setQ(inputValue);
-    },
+    onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
     selectedItem: currentlySelectedItem,
     onHighlightedIndexChange: handleHighlightedIndexChange
@@ -127,29 +186,23 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <form
-        action={searchHeaderUrl}
+        action={t("searchHeaderUrlText")}
         className="header__menu-search"
+        id="autosuggestForm"
         {...getComboboxProps()}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-        <SearchBar
-          searchHeaderUrl={searchHeaderUrl}
-          altText={altText}
-          inputPlaceholderText={inputPlaceholderText}
-          getInputProps={getInputProps}
-        />
+        <SearchBar getInputProps={getInputProps} />
         <Autosuggest
-          q={q}
-          data={data}
+          originalData={originalData}
+          textData={textData}
+          materialData={materialData}
           isLoading={isLoading}
           status={status}
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
-          stringSuggestionAuthorText={stringSuggestionAuthorText}
-          stringSuggestionWorkText={stringSuggestionWorkText}
-          stringSuggestionTopicText={stringSuggestionTopicText}
         />
       </form>
     </div>

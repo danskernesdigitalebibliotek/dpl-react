@@ -1,13 +1,14 @@
 import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
+import { Pid } from "../../core/utils/types/ids";
 import { LinkNoStyle } from "../atoms/link-no-style";
 
 export type CoverProps = {
   animate: boolean;
-  size: "small" | "medium" | "large" | "original";
+  size: "xsmall" | "small" | "medium" | "large" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
-  materialId: string;
+  pid: Pid;
   description?: string;
   url?: string;
 };
@@ -18,12 +19,13 @@ export const Cover = ({
   size,
   animate,
   tint,
-  materialId
+  pid
 }: CoverProps) => {
+  const dataSize: CoverProps["size"] = size === "xsmall" ? "small" : size;
   const { data } = useGetCoverCollection({
     type: "pid",
-    identifiers: [materialId],
-    sizes: [size]
+    identifiers: [pid],
+    sizes: [dataSize]
   });
 
   type TintClassesType = {
@@ -48,7 +50,7 @@ export const Cover = ({
     )
   };
 
-  const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
+  const coverUrl = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
   const image = coverUrl && <img src={coverUrl} alt={description || ""} />;
 
   return (

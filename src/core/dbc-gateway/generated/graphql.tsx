@@ -1211,6 +1211,10 @@ export type SuggestionsFromQueryStringQuery = {
           | { __typename?: "Corporation"; display: string }
           | { __typename?: "Person"; display: string }
         >;
+        manifestations: {
+          __typename?: "Manifestations";
+          first: { __typename?: "Manifestation"; pid: string };
+        };
       } | null;
     }>;
   };
@@ -1490,6 +1494,11 @@ export const SuggestionsFromQueryStringDocument = `
         }
         creators {
           display
+        }
+        manifestations {
+          first {
+            pid
+          }
         }
       }
     }
