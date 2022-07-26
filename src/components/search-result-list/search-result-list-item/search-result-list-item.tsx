@@ -1,24 +1,24 @@
 import React, { useCallback } from "react";
-import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
+import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import { Pid } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../utils/link";
+import { Link } from "../../atoms/link";
 import {
   creatorsToString,
   filterCreators,
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
-} from "../helpers";
+} from "../../../core/utils/helpers";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import SearchResultListItemSeries from "./search-result-list-item-series";
 
 export interface SearchResultListItemProps {
-  item: WorkSimpleFragment;
+  item: WorkSmallFragment;
   coverTint: CoverProps["tint"];
 }
 

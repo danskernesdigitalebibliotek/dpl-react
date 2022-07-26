@@ -1,26 +1,30 @@
 import React from "react";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import MaterialHeader from "../../components/material/MaterialHeader";
+import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
+import { Pid } from "../../core/utils/types/ids";
 
 export interface MaterialProps {
   pid: Pid;
-  workId: WorkId;
 }
 
-const Material: React.FC<MaterialProps> = ({ pid, workId }) => {
-  // This is placeholder code to show the pid and workId from the url or storybook.
+const Material: React.FC<MaterialProps> = ({ pid }) => {
+  const { data, isLoading } = useGetMaterialQuery({
+    pid
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // TODO: handle error if data is empty array
+  if (!data?.work) {
+    return <div>No work data</div>;
+  }
+
   return (
-    <div>
-      <div>
-        pid:
-        <br />
-        {pid}
-      </div>
-      <div>
-        workId:
-        <br />
-        {workId}
-      </div>
-    </div>
+    <main>
+      <MaterialHeader pid={pid} work={data.work} />
+    </main>
   );
 };
 

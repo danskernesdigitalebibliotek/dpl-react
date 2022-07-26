@@ -1,10 +1,10 @@
 import React from "react";
-import { WorkSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
-import { getCoverTint } from "./helpers";
+import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
+import { getCoverTint } from "../../core/utils/helpers";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
-  resultItems: WorkSimpleFragment[];
+  resultItems: WorkSmallFragment[];
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {

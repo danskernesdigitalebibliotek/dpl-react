@@ -17,10 +17,21 @@ const modalSlice = createSlice({
     openModal(state: StateProps, action: PayloadProps) {
       if (!state.modalIds.includes(action.payload.modalId)) {
         state.modalIds.push(action.payload.modalId);
+        const searchParams = new URLSearchParams(window.location.search);
+        const alreadyOpenModals = searchParams.get("modal");
+        searchParams.set(
+          "modal",
+          `${alreadyOpenModals || ""}${action.payload.modalId}`
+        );
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {
       state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
+      const searchParams = new URLSearchParams(window.location.search);
+      const newSearchParams = searchParams
+        .get("modal")
+        ?.replace(action.payload.modalId, "");
+      searchParams.set("modal", newSearchParams || "");
     }
   }
 });

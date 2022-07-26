@@ -1,18 +1,21 @@
 import * as React from "react";
 import { getParams } from "../../core/utils/helpers";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { withText } from "../../core/utils/text";
+import { Pid } from "../../core/utils/types/ids";
 import Material from "./material";
 
-export interface MaterialEntryProps {
-  pid: Pid;
-  workId: WorkId;
+interface MaterialEntryTextProps {
+  materialHeaderAuthorByText: string;
+  periodikumSelectYearText: string;
+  periodikumSelectWeekText: string;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, workId }) => {
-  // Get params either from data attributes or from url.
-  const { pid: pPid, workId: pWorkId } = getParams({ pid, workId });
+export interface MaterialEntryProps extends MaterialEntryTextProps {
+  pid: Pid;
+}
 
-  return <Material pid={pPid} workId={pWorkId} />;
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
+  return <Material pid={pid} />;
 };
 
-export default MaterialEntry;
+export default withText(MaterialEntry);

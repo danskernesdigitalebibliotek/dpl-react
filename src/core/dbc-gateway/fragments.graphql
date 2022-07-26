@@ -1,4 +1,3 @@
-
 fragment ManifestationsSimple on Manifestations {
   all {
     pid
@@ -9,33 +8,52 @@ fragment ManifestationsSimple on Manifestations {
       specific
     }
     creators {
-      display,
+      display
       __typename
     }
   }
-
 }
 
 fragment SeriesSimple on Series {
+  title
+  isPopular
   numberInSeries {
     display
+    number
   }
-  title
+  readThisFirst
+  readThisWhenever
 }
 
-fragment WorkSimple on Work {
+fragment WorkSmall on Work {
   workId
   titles {
     full
   }
   creators {
-    display,
-  __typename
+    display
+    __typename
   }
   series {
     ...SeriesSimple
   }
+  seriesMembers {
+    titles {
+      main
+      full
+      original
+    }
+  }
   manifestations {
     ...ManifestationsSimple
+  }
+}
+
+fragment WorkMedium on Work {
+  ...WorkSmall
+  seriesMembers {
+    titles {
+      main
+    }
   }
 }

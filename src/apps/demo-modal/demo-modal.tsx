@@ -14,12 +14,14 @@ const DemoModal: React.FC = () => {
     <>
       <Modal
         modalId={modalIdTwo}
+        screenReaderModalDescriptionText={t("screenReaderModalDescriptionText")}
         closeModalAriaLabelText={t("ariaLabelModalTwoText")}
       >
         <h1 id={`${modalIdTwo}-header`}>{modalIdTwo}</h1>
       </Modal>
       <Modal
         modalId={modalIdOne}
+        screenReaderModalDescriptionText={t("screenReaderModalDescriptionText")}
         closeModalAriaLabelText={t("ariaLabelModalOneText")}
       >
         <h1 id={`${modalIdOne}-header`}>{modalIdOne}</h1>
