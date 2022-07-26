@@ -39,7 +39,7 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
           ? `${item.term} (${t("stringSuggestionTopicText")})`
           : null}
         {item.type === SuggestionType.Composit
-          ? `${item?.work?.titles?.main} (${t("stringSuggestionWorkText")})`
+          ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
           : null}
       </li>
     </>
