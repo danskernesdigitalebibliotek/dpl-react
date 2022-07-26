@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 import { generateItemId } from "../autosuggest-text/autosuggest-text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
-import { creatorsToString } from "../search-result-list/helpers";
+import { creatorsToString } from "../../core/utils/helpers";
 import { Pid } from "../../core/utils/types/ids";
 
 export interface AutosuggestMaterialProps {

@@ -40,7 +40,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover materialId={pid} size="large" animate={false} />
+        <Cover pid={pid} size="large" animate={false} />
       </div>
       <div className="material-header__content">
         <ButtonFavourite materialId={pid} />
