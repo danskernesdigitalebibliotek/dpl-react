@@ -9,6 +9,7 @@ export interface SearchHeaderProps {
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
+  etAlText?: string;
 }
 
 const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
@@ -17,7 +18,8 @@ const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
   inputPlaceholderText = "Search here",
   stringSuggestionAuthorText = "author",
   stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  stringSuggestionTopicText = "topic",
+  etAlText = "et al."
 }) => <SearchHeader />;
 
 export default withText(SearchHeaderEntry);
