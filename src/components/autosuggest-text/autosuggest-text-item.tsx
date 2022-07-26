@@ -41,6 +41,9 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         {item.type === SuggestionType.Composit
           ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
           : null}
+        {item.type === SuggestionType.Title
+          ? `${item.term} (${t("stringSuggestionWorkText")})`
+          : null}
       </li>
     </>
   );

@@ -14,7 +14,7 @@ export interface AutosuggestTextProps {
 export function itemToString(objectItem: Suggestion) {
   switch (objectItem.type) {
     case SuggestionType.Composit:
-      return objectItem.work?.titles.main[0];
+      return objectItem.work?.titles.main[0] || "incomplete data";
     default:
       return objectItem.term;
   }

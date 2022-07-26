@@ -10,6 +10,7 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useText } from "../../core/utils/text";
 import { downshiftEventTypes } from "../../core/utils/constants";
+import { itemToString } from "../../components/autosuggest-text/autosuggest-text";
 
 export interface SearchHeaderProps {
   searchHeaderUrl?: string;
@@ -109,25 +110,27 @@ const SearchHeader: React.FC = () => {
   function handleHighlightedIndexChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
-    const { selectedItem, highlightedIndex, type } = changes;
-    if (!selectedItem || !highlightedIndex) {
-      return;
-    }
+    const { type } = changes;
+    let { highlightedIndex } = changes;
     if (
       type === downshiftEventTypes.item_mouse_move ||
       type === downshiftEventTypes.menu_mouse_leave
     ) {
       return;
     }
-    if (highlightedIndex < 0) {
+    if (highlightedIndex && highlightedIndex < 0) {
       setIsAutosuggestOpen(false);
       return;
+    }
+    if (!highlightedIndex) {
+      highlightedIndex = 0;
     }
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
     if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
       manualRedirect(currentItemValue);
+      return;
     }
     if (
       type === downshiftEventTypes.input_keydown_arrow_down ||
@@ -144,18 +147,20 @@ const SearchHeader: React.FC = () => {
     if (inputValue === undefined) {
       return;
     }
-
     if (type === downshiftEventTypes.input_change) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
       return;
     }
     setQWithoutQuery(inputValue);
-    if (type === downshiftEventTypes.item_click) {
+    if (
+      type === downshiftEventTypes.item_click ||
+      type === downshiftEventTypes.input_keydown_enter
+    ) {
       if (!selectedItem) {
         return;
       }
-      manualRedirect(selectedItem.term);
+      manualRedirect(itemToString(selectedItem));
     }
   }
   // this is the main Downshift hook
@@ -167,7 +172,7 @@ const SearchHeader: React.FC = () => {
     getComboboxProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
-    items: textData.concat(materialData),
+    items: orderedData,
     inputValue: qWithoutQuery,
     defaultIsOpen: false,
     onInputValueChange: handleInputValueChange,
