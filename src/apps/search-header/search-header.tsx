@@ -140,7 +140,7 @@ const SearchHeader: React.FC = () => {
   }
 
   function handleInputValueChange(changes: UseComboboxStateChange<Suggestion>) {
-    const { inputValue, type } = changes;
+    const { inputValue, selectedItem, type } = changes;
     if (inputValue === undefined) {
       return;
     }
@@ -151,8 +151,11 @@ const SearchHeader: React.FC = () => {
       return;
     }
     setQWithoutQuery(inputValue);
-    if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
-      manualRedirect(inputValue);
+    if (type === downshiftEventTypes.item_click) {
+      if (!selectedItem) {
+        return;
+      }
+      manualRedirect(selectedItem.term);
     }
   }
   // this is the main Downshift hook
