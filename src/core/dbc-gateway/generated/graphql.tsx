@@ -1220,6 +1220,21 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type GetManifestationQueryVariables = Exact<{
+  pid: Scalars["String"];
+}>;
+
+export type GetManifestationQuery = {
+  __typename?: "Query";
+  manifestation?: {
+    __typename?: "Manifestation";
+    physicalDescriptions: Array<{
+      __typename?: "PhysicalDescription";
+      summary: string;
+    }>;
+  } | null;
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -1518,5 +1533,29 @@ export const useSuggestionsFromQueryStringQuery = <
       SuggestionsFromQueryStringQuery,
       SuggestionsFromQueryStringQueryVariables
     >(SuggestionsFromQueryStringDocument, variables),
+    options
+  );
+export const GetManifestationDocument = `
+    query getManifestation($pid: String!) {
+  manifestation(pid: $pid) {
+    physicalDescriptions {
+      summary
+    }
+  }
+}
+    `;
+export const useGetManifestationQuery = <
+  TData = GetManifestationQuery,
+  TError = unknown
+>(
+  variables: GetManifestationQueryVariables,
+  options?: UseQueryOptions<GetManifestationQuery, TError, TData>
+) =>
+  useQuery<GetManifestationQuery, TError, TData>(
+    ["getManifestation", variables],
+    fetcher<GetManifestationQuery, GetManifestationQueryVariables>(
+      GetManifestationDocument,
+      variables
+    ),
     options
   );
