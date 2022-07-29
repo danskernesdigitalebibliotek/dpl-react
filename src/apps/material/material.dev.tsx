@@ -12,28 +12,28 @@ export default {
       control: { type: "text" }
     },
     materialHeaderAuthorByText: {
-      name: "Af forfatter",
+      name: "By (author)",
       defaultValue: "Af ",
       control: { type: "text" }
     },
     periodikumSelectYearText: {
-      name: "År",
+      name: "Year",
       defaultValue: "År",
       control: { type: "text" }
     },
     periodikumSelectWeekText: {
-      name: "Uge",
+      name: "Week",
       defaultValue: "Uge",
       control: { type: "text" }
     },
     reserveBookText: {
-      name: "Reserve book",
+      name: "Reserve",
       defaultValue: "RESERVER BOG",
       control: { type: "text" }
     },
-    fineOnBookshelfText: {
-      name: "Fine on bookshelf",
-      defaultValue: "FINE PÅ HYLDEN",
+    findOnBookshelfText: {
+      name: "Find on bookshelf",
+      defaultValue: "FIND PÅ HYLDEN",
       control: { type: "text" }
     }
   }
