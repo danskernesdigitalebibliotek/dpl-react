@@ -35,6 +35,11 @@ export default {
       name: "Find on bookshelf",
       defaultValue: "FIND PÅ HYLDEN",
       control: { type: "text" }
+    },
+    descriptionHeadlineText: {
+      name: "Description headline",
+      defaultValue: "Beskrivelse",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
