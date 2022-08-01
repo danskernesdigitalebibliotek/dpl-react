@@ -1232,6 +1232,7 @@ export type GetManifestationQuery = {
       __typename?: "PhysicalDescription";
       summary: string;
     }>;
+    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
   } | null;
 };
 
@@ -1540,6 +1541,9 @@ export const GetManifestationDocument = `
   manifestation(pid: $pid) {
     physicalDescriptions {
       summary
+    }
+    identifiers {
+      value
     }
   }
 }

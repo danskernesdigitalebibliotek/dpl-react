@@ -2,6 +2,9 @@ query getManifestation($pid: String!) {
   manifestation(pid: $pid) {
     physicalDescriptions {
       summary
+    },
+    identifiers {
+      value
     }
   }
 }
