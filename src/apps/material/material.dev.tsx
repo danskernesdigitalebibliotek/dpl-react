@@ -40,6 +40,16 @@ export default {
       name: "Description headline",
       defaultValue: "Beskrivelse",
       control: { type: "text" }
+    },
+    baseUrlText: {
+      name: "Base search url",
+      defaultValue: "https://bibliotek.dk/search",
+      control: { type: "text" }
+    },
+    identifierText: {
+      name: "Identifier/topic text",
+      defaultValue: "Emneord",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

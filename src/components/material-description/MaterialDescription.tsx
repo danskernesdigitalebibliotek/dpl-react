@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { generateMapId } from "../../core/utils/helpers";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 
@@ -10,6 +11,8 @@ export interface MaterialDescriptionProps {
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ pid }) => {
   const { data, isLoading } = useGetManifestationQuery({ pid });
   const t = useText();
+  const baseUrl = t("baseUrlText");
+  const identifierText = t("identifierText");
   return (
     <section className="material-description">
       <h2 className="text-header-h4 pb-16">{t("descriptionHeadlineText")}</h2>
@@ -45,34 +48,23 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ pid }) => {
             </a>
           </span>
         </div>
-        <div className="text-small-caption horizontal-term-line">
-          <p className="text-label-bold">Emneord</p>
-          <span>
-            <a href="/" className="link-tag">
-              Sverige
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              historie
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              klosterliv
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              korstogene
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              middelalderen
-            </a>
-          </span>
-        </div>
+        {!isLoading && data?.manifestation?.identifiers && (
+          <div className="text-small-caption horizontal-term-line">
+            <p className="text-label-bold">{identifierText}</p>
+            {data.manifestation.identifiers.map((identifier, index) => {
+              return (
+                <span key={generateMapId(index)}>
+                  <a
+                    href={`${baseUrl}?q=${identifier.value}`}
+                    className="link-tag"
+                  >
+                    {identifier.value}
+                  </a>
+                </span>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

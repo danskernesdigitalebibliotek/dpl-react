@@ -10,6 +10,8 @@ interface MaterialEntryTextProps {
   reserveBookText: string;
   findOnBookshelfText: string;
   descriptionHeadlineText: string;
+  baseUrlText: string;
+  identifierText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
