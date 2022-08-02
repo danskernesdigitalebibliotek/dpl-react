@@ -182,11 +182,7 @@ const SearchHeader: React.FC = () => {
   });
 
   return (
-    <form
-      className="header__menu-second"
-      action={t("searchHeaderUrlText")}
-      id="autosuggestForm"
-    >
+    <form className="header__menu-second" action={t("searchHeaderUrlText")}>
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
