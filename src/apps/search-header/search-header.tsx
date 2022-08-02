@@ -182,15 +182,14 @@ const SearchHeader: React.FC = () => {
   });
 
   return (
-    <div className="header__menu-second">
+    <form
+      className="header__menu-second"
+      action={t("searchHeaderUrlText")}
+      id="autosuggestForm"
+    >
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
-      <form
-        action={t("searchHeaderUrlText")}
-        className="header__menu-search"
-        id="autosuggestForm"
-        {...getComboboxProps()}
-      >
+      <div className="header__menu-search" {...getComboboxProps()}>
         {/* eslint-enable react/jsx-props-no-spreading */}
         <SearchBar getInputProps={getInputProps} />
         <Autosuggest
@@ -204,8 +203,8 @@ const SearchHeader: React.FC = () => {
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
         />
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
