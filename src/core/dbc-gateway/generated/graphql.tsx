@@ -1098,6 +1098,15 @@ export type GetMaterialQuery = {
         original?: Array<string> | null;
       };
     }>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: { __typename?: "WorkTitles"; full: Array<string> };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1319,6 +1328,15 @@ export type WorkMediumFragment = {
       original?: Array<string> | null;
     };
   }>;
+  subjects: {
+    __typename?: "SubjectContainer";
+    all: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
+  };
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1412,6 +1430,11 @@ export const WorkMediumFragmentDoc = `
   seriesMembers {
     titles {
       main
+    }
+  }
+  subjects {
+    all {
+      display
     }
   }
 }
