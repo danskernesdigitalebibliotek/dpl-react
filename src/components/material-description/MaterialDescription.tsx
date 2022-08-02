@@ -1,70 +1,58 @@
 import React from "react";
-import { useGetManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
+import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
   searchUrl: string;
+  work: WorkMediumFragment;
 }
 
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
-  pid,
-  searchUrl
+  searchUrl,
+  work
 }) => {
-  const { data, isLoading } = useGetManifestationQuery({ pid });
   const t = useText();
+  const inSeries = work.series;
+  const seriesMembersList = work.seriesMembers.map(
+    (item) => item.titles.main[0]
+  );
+  const subjectsList = work.subjects.all.map((item) => item.display);
+
   return (
     <section className="material-description">
       <h2 className="text-header-h4 pb-16">{t("descriptionHeadlineText")}</h2>
       <p className="text-body-large material-description__content">
-        {!isLoading && data?.manifestation?.physicalDescriptions[0].summary}
+        {/* data?.manifestation?.physicalDescriptions[0].summary */}
       </p>
       <div className="material-description__links mt-32">
-        <div className="text-small-caption horizontal-term-line">
-          <p className="text-label-bold">
-            Nr. 3 <span className="text-small-caption">i serien</span>
-          </p>
-          <span>
-            <a href="/" className="link-tag">
-              Vejen til Jerusalem
-            </a>
-          </span>
-        </div>
-        <div className="text-small-caption horizontal-term-line">
-          <p className="text-label-bold">I samme serie</p>
-          <span>
-            <a href="/" className="link-tag">
-              Tempelridderen
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              Riget ved vejens ende
-            </a>
-          </span>
-          <span>
-            <a href="/" className="link-tag">
-              Arven efter Arn
-            </a>
-          </span>
-        </div>
-        {!isLoading && data?.manifestation?.identifiers && (
-          <div className="text-small-caption horizontal-term-line">
-            <p className="text-label-bold">{t("identifierText")}</p>
-            {data.manifestation.identifiers.map((identifier) => {
-              return (
-                <span key={identifier.value}>
-                  <a
-                    href={`${searchUrl}&args=q:${identifier.value}`}
-                    className="link-tag"
-                  >
-                    {identifier.value}
-                  </a>
-                </span>
-              );
-            })}
-          </div>
+        {inSeries &&
+          inSeries.map((seriesItem) => {
+            return (
+              <HorizontalTermLine
+                title={`${t("numberDescriptionText")} ${
+                  seriesItem.numberInSeries?.number
+                }`}
+                subTitle={t("inSeriesText")}
+                linkList={[seriesItem.title]}
+              />
+            );
+          })}
+        {seriesMembersList && (
+          <HorizontalTermLine
+            title={t("inSameSeriesText")}
+            linkList={seriesMembersList}
+            searchUrl={searchUrl}
+          />
+        )}
+        {subjectsList && (
+          <HorizontalTermLine
+            title={t("identifierText")}
+            linkList={subjectsList}
+            searchUrl={searchUrl}
+          />
         )}
       </div>
     </section>

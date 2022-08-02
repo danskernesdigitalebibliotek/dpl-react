@@ -30,7 +30,7 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
   return (
     <main className="material-page">
       <MaterialHeader pid={pid} work={data.work} />
-      <MaterialDescription pid={pid} searchUrl={searchUrl} />
+      <MaterialDescription pid={pid} work={data.work} searchUrl={searchUrl} />
       <details className="disclosure text-body-large">
         <summary className="disclosure__headline text-body-large">
           <div className="disclosure__icon bg-identity-tint-120 m-24">

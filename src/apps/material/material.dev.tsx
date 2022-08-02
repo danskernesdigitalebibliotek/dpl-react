@@ -51,6 +51,21 @@ export default {
       name: "Identifier/topic text",
       defaultValue: "Emneord",
       control: { type: "text" }
+    },
+    inSameSeriesText: {
+      name: "In same series as",
+      defaultValue: "I samme serie",
+      control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number",
+      defaultValue: "Nr",
+      control: { type: "text" }
+    },
+    inSeriesText: {
+      name: "In series",
+      defaultValue: "i serien",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

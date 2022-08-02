@@ -11,6 +11,9 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   descriptionHeadlineText: string;
   identifierText: string;
+  inSeriesText: string;
+  inSameSeriesText: string;
+  numberDescriptionText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
