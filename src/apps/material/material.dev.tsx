@@ -43,7 +43,8 @@ export default {
     },
     searchUrl: {
       name: "Base search url",
-      defaultValue: "https://bibliotek.dk/search",
+      defaultValue:
+        "http://localhost/?path=/story/apps-search-result--search-result",
       control: { type: "text" }
     },
     identifierText: {

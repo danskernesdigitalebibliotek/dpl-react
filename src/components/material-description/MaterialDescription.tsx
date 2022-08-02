@@ -15,7 +15,6 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
 }) => {
   const { data, isLoading } = useGetManifestationQuery({ pid });
   const t = useText();
-  const identifierText = t("identifierText");
   return (
     <section className="material-description">
       <h2 className="text-header-h4 pb-16">{t("descriptionHeadlineText")}</h2>
@@ -53,12 +52,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
         </div>
         {!isLoading && data?.manifestation?.identifiers && (
           <div className="text-small-caption horizontal-term-line">
-            <p className="text-label-bold">{identifierText}</p>
+            <p className="text-label-bold">{t("identifierText")}</p>
             {data.manifestation.identifiers.map((identifier, index) => {
               return (
                 <span key={generateMapId(index)}>
                   <a
-                    href={`${searchUrl}?q=${identifier.value}`}
+                    href={`${searchUrl}&args=q:${identifier.value}`}
                     className="link-tag"
                   >
                     {identifier.value}
