@@ -18,7 +18,6 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
   const { data, isLoading } = useGetMaterialQuery({
     pid
   });
-  console.log("🚀 ~ file: material.tsx ~ line 20 ~ data", data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -49,8 +48,10 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
             alt="expand-icon"
           />
         </summary>
-        <MaterialMainfestationItem />
-        <MaterialMainfestationItem />
+
+        {data?.work?.manifestations?.all.map((item) => {
+          return <MaterialMainfestationItem key={item.pid} item={item} />;
+        })}
       </details>
       <details className="disclosure text-body-large">
         <summary className="disclosure__headline text-body-large">
