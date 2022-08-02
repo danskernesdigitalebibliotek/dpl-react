@@ -1130,12 +1130,20 @@ export type GetMaterialQuery = {
       all: Array<{
         __typename?: "Manifestation";
         pid: string;
+        titles: { __typename?: "ManifestationTitles"; main: Array<string> };
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          year?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+        } | null;
       }>;
     };
   } | null;
@@ -1187,6 +1195,7 @@ export type SearchWithPaginationQuery = {
         all: Array<{
           __typename?: "Manifestation";
           pid: string;
+          titles: { __typename?: "ManifestationTitles"; main: Array<string> };
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1196,6 +1205,13 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            year?: {
+              __typename?: "PublicationYear";
+              year?: number | null;
+            } | null;
+          } | null;
         }>;
       };
     }>;
@@ -1236,12 +1252,17 @@ export type ManifestationsSimpleFragment = {
   all: Array<{
     __typename?: "Manifestation";
     pid: string;
+    titles: { __typename?: "ManifestationTitles"; main: Array<string> };
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    } | null;
   }>;
 };
 
@@ -1293,12 +1314,17 @@ export type WorkSmallFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      titles: { __typename?: "ManifestationTitles"; main: Array<string> };
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+      } | null;
     }>;
   };
 };
@@ -1347,12 +1373,17 @@ export type WorkMediumFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      titles: { __typename?: "ManifestationTitles"; main: Array<string> };
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+      } | null;
     }>;
   };
 };
@@ -1372,6 +1403,9 @@ export const SeriesSimpleFragmentDoc = `
 export const ManifestationsSimpleFragmentDoc = `
     fragment ManifestationsSimple on Manifestations {
   all {
+    titles {
+      main
+    }
     pid
     publicationYear {
       display
@@ -1382,6 +1416,11 @@ export const ManifestationsSimpleFragmentDoc = `
     creators {
       display
       __typename
+    }
+    hostPublication {
+      year {
+        year
+      }
     }
   }
 }

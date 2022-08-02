@@ -1,5 +1,8 @@
 fragment ManifestationsSimple on Manifestations {
   all {
+    titles {
+      main
+    }
     pid
     publicationYear {
       display
@@ -10,6 +13,11 @@ fragment ManifestationsSimple on Manifestations {
     creators {
       display
       __typename
+    }
+    hostPublication {
+      year {
+        year
+      }
     }
   }
 }
