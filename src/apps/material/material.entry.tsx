@@ -7,6 +7,8 @@ interface MaterialEntryTextProps {
   materialHeaderAuthorByText: string;
   periodikumSelectYearText: string;
   periodikumSelectWeekText: string;
+  reserveBookText: string;
+  findOnBookshelfText: string;
   descriptionHeadlineText: string;
 }
 
