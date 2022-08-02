@@ -187,10 +187,9 @@ const SearchHeader: React.FC = () => {
       action={t("searchHeaderUrlText")}
       id="autosuggestForm"
     >
-      {/* eslint-disable react/jsx-props-no-spreading */}
-      {/* The downshift combobox works this way by design */}
+      {/* The downshift combobox uses prop spreading by design */}
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
-        {/* eslint-enable react/jsx-props-no-spreading */}
         <SearchBar getInputProps={getInputProps} />
         <Autosuggest
           originalData={originalData}

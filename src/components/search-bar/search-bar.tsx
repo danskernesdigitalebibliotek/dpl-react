@@ -11,8 +11,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ getInputProps }) => {
   const t = useText();
   return (
     <>
+      {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable react/jsx-props-no-spreading */}
-      {/* The downshift combobox works this way by design */}
       <input
         name="q"
         className="header__menu-search-input text-body-medium-regular"
