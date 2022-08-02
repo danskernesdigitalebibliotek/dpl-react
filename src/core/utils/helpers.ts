@@ -135,8 +135,3 @@ export const dateMatchesUsFormat = (date: string | null) => {
   const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
   return returnValue;
 };
-
-export function generateMapId(index: number | string) {
-  const randomId = Math.random().toString(36);
-  return randomId.concat(index.toString());
-}

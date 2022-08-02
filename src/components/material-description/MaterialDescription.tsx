@@ -1,6 +1,5 @@
 import React from "react";
 import { useGetManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
-import { generateMapId } from "../../core/utils/helpers";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 
@@ -53,9 +52,9 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
         {!isLoading && data?.manifestation?.identifiers && (
           <div className="text-small-caption horizontal-term-line">
             <p className="text-label-bold">{t("identifierText")}</p>
-            {data.manifestation.identifiers.map((identifier, index) => {
+            {data.manifestation.identifiers.map((identifier) => {
               return (
-                <span key={generateMapId(index)}>
+                <span key={identifier.value}>
                   <a
                     href={`${searchUrl}&args=q:${identifier.value}`}
                     className="link-tag"
