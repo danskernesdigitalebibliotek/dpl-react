@@ -27,7 +27,7 @@ const Material: React.FC<MaterialProps> = ({ pid }) => {
   }
 
   return (
-    <div className="material-page">
+    <main className="material-page">
       <MaterialHeader pid={pid} work={data.work} />
       <MaterialDescription pid={pid} />
       <details className="disclosure text-body-large">
@@ -167,7 +167,7 @@ const Material: React.FC<MaterialProps> = ({ pid }) => {
         </summary>
         Content
       </details>
-    </div>
+    </main>
   );
 };
 
