@@ -41,7 +41,7 @@ export default {
       defaultValue: "Beskrivelse",
       control: { type: "text" }
     },
-    baseUrlText: {
+    searchUrl: {
       name: "Base search url",
       defaultValue: "https://bibliotek.dk/search",
       control: { type: "text" }

@@ -6,12 +6,15 @@ import { Pid } from "../../core/utils/types/ids";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
+  searchUrl: string;
 }
 
-const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ pid }) => {
+const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
+  pid,
+  searchUrl
+}) => {
   const { data, isLoading } = useGetManifestationQuery({ pid });
   const t = useText();
-  const baseUrl = t("baseUrlText");
   const identifierText = t("identifierText");
   return (
     <section className="material-description">
@@ -55,7 +58,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ pid }) => {
               return (
                 <span key={generateMapId(index)}>
                   <a
-                    href={`${baseUrl}?q=${identifier.value}`}
+                    href={`${searchUrl}?q=${identifier.value}`}
                     className="link-tag"
                   >
                     {identifier.value}

@@ -10,16 +10,16 @@ interface MaterialEntryTextProps {
   reserveBookText: string;
   findOnBookshelfText: string;
   descriptionHeadlineText: string;
-  baseUrlText: string;
   identifierText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
   pid: Pid;
+  searchUrl: string;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
-  return <Material pid={pid} />;
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, searchUrl }) => {
+  return <Material pid={pid} searchUrl={searchUrl} />;
 };
 
 export default withText(MaterialEntry);

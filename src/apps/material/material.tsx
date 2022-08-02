@@ -10,9 +10,10 @@ import MaterialDescription from "../../components/material-description/MaterialD
 
 export interface MaterialProps {
   pid: Pid;
+  searchUrl: string;
 }
 
-const Material: React.FC<MaterialProps> = ({ pid }) => {
+const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
   const { data, isLoading } = useGetMaterialQuery({
     pid
   });
@@ -29,7 +30,7 @@ const Material: React.FC<MaterialProps> = ({ pid }) => {
   return (
     <main className="material-page">
       <MaterialHeader pid={pid} work={data.work} />
-      <MaterialDescription pid={pid} />
+      <MaterialDescription pid={pid} searchUrl={searchUrl} />
       <details className="disclosure text-body-large">
         <summary className="disclosure__headline text-body-large">
           <div className="disclosure__icon bg-identity-tint-120 m-24">
