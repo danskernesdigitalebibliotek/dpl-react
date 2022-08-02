@@ -3,10 +3,16 @@ import { FC } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 
 export interface MaterialMainfestationItemProps {
-  test?: null;
+  item: any;
 }
 
-const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = () => {
+const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
+  item
+}) => {
+  console.log(
+    "🚀 ~ file: MaterialMainfestationItem.tsx ~ line 12 ~ item",
+    item
+  );
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
@@ -17,7 +23,9 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = () => {
             src="icons/collection/Check.svg"
             alt="check-icon"
           />
-          <p className="text-label-semibold ml-24">BOG</p>
+          <p className="text-label-semibold ml-24">
+            {item?.materialTypes[0]?.specific}
+          </p>
           <div className="availability-label--divider ml-4" />
           <p className="text-label-normal ml-4 mr-8">Hjemme</p>
         </div>
@@ -31,9 +39,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = () => {
       </div>
       <div className="material-manifestation-item__text">
         <h2 className="material-manifestation-item__text__title text-header-h4">
-          Title
+          {item?.titles?.main[0]}
         </h2>
-        <p className="text-small-caption">Af Author (2022)</p>
+        <p className="text-small-caption">
+          Af {item?.creators[0]?.display} ({item?.hostPublication?.year?.year})
+        </p>
         <div className="material-manifestation-item__text__details">
           <p className="link-tag text-small-caption">Detaljer om materialet</p>
           <img src={ExpandIcon} alt="ExpandMore-icon" />
