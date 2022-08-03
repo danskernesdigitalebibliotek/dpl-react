@@ -1,6 +1,5 @@
 const path = require("path");
 const glob = require("glob");
-const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
@@ -29,11 +28,6 @@ module.exports = (_env, argv) => {
     })
   ];
 
-  if (process.env.BUNDLE_ANALYZER_TOKEN) {
-    plugins.push(
-      new BundleAnalyzerPlugin({ token: process.env.BUNDLE_ANALYZER_TOKEN })
-    );
-  }
   if (process.env.VERSION_FILE_NAME && process.env.VERSION_FILE_VERSION) {
     plugins.push(
       new VersionFile({
