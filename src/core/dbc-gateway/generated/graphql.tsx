@@ -1089,6 +1089,7 @@ export type GetMaterialQuery = {
   work?: {
     __typename?: "Work";
     workId: string;
+    abstract?: Array<string> | null;
     seriesMembers: Array<{
       __typename?: "Work";
       titles: {
@@ -1154,6 +1155,7 @@ export type SearchWithPaginationQuery = {
     works: Array<{
       __typename?: "Work";
       workId: string;
+      abstract?: Array<string> | null;
       titles: { __typename?: "WorkTitles"; full: Array<string> };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -1229,22 +1231,6 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
-export type GetManifestationQueryVariables = Exact<{
-  pid: Scalars["String"];
-}>;
-
-export type GetManifestationQuery = {
-  __typename?: "Query";
-  manifestation?: {
-    __typename?: "Manifestation";
-    physicalDescriptions: Array<{
-      __typename?: "PhysicalDescription";
-      summary: string;
-    }>;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
-  } | null;
-};
-
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -1275,6 +1261,7 @@ export type SeriesSimpleFragment = {
 export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
+  abstract?: Array<string> | null;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1319,6 +1306,7 @@ export type WorkSmallFragment = {
 export type WorkMediumFragment = {
   __typename?: "Work";
   workId: string;
+  abstract?: Array<string> | null;
   seriesMembers: Array<{
     __typename?: "Work";
     titles: {
@@ -1404,6 +1392,7 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
   }
+  abstract
   creators {
     display
     __typename
@@ -1557,32 +1546,5 @@ export const useSuggestionsFromQueryStringQuery = <
       SuggestionsFromQueryStringQuery,
       SuggestionsFromQueryStringQueryVariables
     >(SuggestionsFromQueryStringDocument, variables),
-    options
-  );
-export const GetManifestationDocument = `
-    query getManifestation($pid: String!) {
-  manifestation(pid: $pid) {
-    physicalDescriptions {
-      summary
-    }
-    identifiers {
-      value
-    }
-  }
-}
-    `;
-export const useGetManifestationQuery = <
-  TData = GetManifestationQuery,
-  TError = unknown
->(
-  variables: GetManifestationQueryVariables,
-  options?: UseQueryOptions<GetManifestationQuery, TError, TData>
-) =>
-  useQuery<GetManifestationQuery, TError, TData>(
-    ["getManifestation", variables],
-    fetcher<GetManifestationQuery, GetManifestationQueryVariables>(
-      GetManifestationDocument,
-      variables
-    ),
     options
   );

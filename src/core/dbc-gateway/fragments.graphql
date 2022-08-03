@@ -30,6 +30,7 @@ fragment WorkSmall on Work {
   titles {
     full
   }
+  abstract
   creators {
     display
     __typename
