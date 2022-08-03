@@ -76,7 +76,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           {series && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                series?.[0]?.numberInSeries?.display
+                series?.[0]?.numberInSeries?.number?.[0]
               }`}
               subTitle={t("inSeriesText")}
               linkList={[series?.[0].title]}
