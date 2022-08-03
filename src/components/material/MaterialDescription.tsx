@@ -23,10 +23,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
 
   return (
     <section className="material-description">
-      <h2 className="text-header-h4 pb-16">{t("descriptionHeadlineText")}</h2>
-      <p className="text-body-large material-description__content">
-        {/* data?.manifestation?.physicalDescriptions[0].summary */}
-      </p>
+      <h2 className="text-header-h4 pb-24">{t("descriptionHeadlineText")}</h2>
+      {work.abstract && (
+        <p className="text-body-large material-description__content">
+          {work.abstract[0]}
+        </p>
+      )}
       <div className="material-description__links mt-32">
         {inSeries &&
           inSeries.map((seriesItem) => {
