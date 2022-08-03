@@ -8,11 +8,7 @@ export interface DisclosureProps {
   disclosureIconExpandAltText: string;
 }
 
-export const Disclosure: FC<DisclosureProps> = ({
-  title,
-  children,
-  mainIconPath
-}) => {
+const Disclosure: FC<DisclosureProps> = ({ title, children, mainIconPath }) => {
   return (
     <details className="disclosure text-body-large">
       <summary className="disclosure__headline text-body-large">
