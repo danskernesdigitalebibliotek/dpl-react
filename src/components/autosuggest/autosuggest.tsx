@@ -41,8 +41,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 
-        {isLoading && <div>Loading</div>}
-
         {originalData && status && isOpen && (
           <>
             <AutosuggestText
