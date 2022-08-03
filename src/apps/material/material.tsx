@@ -6,7 +6,7 @@ import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import MaterialHeader from "../../components/material/MaterialHeader";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
-import MaterialDescription from "../../components/material-description/MaterialDescription";
+import MaterialDescription from "../../components/material/MaterialDescription";
 
 export interface MaterialProps {
   pid: Pid;
