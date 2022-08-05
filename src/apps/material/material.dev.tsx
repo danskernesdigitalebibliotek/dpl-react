@@ -82,6 +82,11 @@ export default {
       defaultValue: "Udgaver",
       control: { type: "text" }
     },
+    fictionNonfictionText: {
+      name: "Fiction Nonfiction",
+      defaultValue: "Emnetal",
+      control: { type: "text" }
+    },
     detailsText: {
       name: "Details",
       defaultValue: "Detaljer",

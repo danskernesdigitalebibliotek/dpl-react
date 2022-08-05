@@ -27,6 +27,7 @@ interface MaterialEntryTextProps {
   scopeText: string;
   publisherText: string;
   audienceText: string;
+  fictionNonfictionText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
