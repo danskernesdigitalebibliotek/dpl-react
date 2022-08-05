@@ -9,7 +9,6 @@ import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useText } from "../../core/utils/text";
-import { downshiftEventTypes } from "../../core/utils/constants";
 import { itemToString } from "../../components/autosuggest-text/autosuggest-text";
 
 export interface SearchHeaderProps {
@@ -113,8 +112,8 @@ const SearchHeader: React.FC = () => {
     const { type } = changes;
     let { highlightedIndex } = changes;
     if (
-      type === downshiftEventTypes.item_mouse_move ||
-      type === downshiftEventTypes.menu_mouse_leave
+      type === useCombobox.stateChangeTypes.ItemMouseMove ||
+      type === useCombobox.stateChangeTypes.MenuMouseLeave
     ) {
       return;
     }
@@ -128,13 +127,15 @@ const SearchHeader: React.FC = () => {
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
-    if (type === downshiftEventTypes.controlled_prop_updated_selected_item) {
+    if (
+      type === useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem
+    ) {
       manualRedirect(currentItemValue);
       return;
     }
     if (
-      type === downshiftEventTypes.input_keydown_arrow_down ||
-      type === downshiftEventTypes.input_keydown_arrow_up
+      type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
+      type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
       setQWithoutQuery(currentItemValue);
       return;
@@ -147,15 +148,15 @@ const SearchHeader: React.FC = () => {
     if (inputValue === undefined) {
       return;
     }
-    if (type === downshiftEventTypes.input_change) {
+    if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
       return;
     }
     setQWithoutQuery(inputValue);
     if (
-      type === downshiftEventTypes.item_click ||
-      type === downshiftEventTypes.input_keydown_enter
+      type === useCombobox.stateChangeTypes.ItemClick ||
+      type === useCombobox.stateChangeTypes.InputKeyDownEnter
     ) {
       if (!selectedItem) {
         return;
