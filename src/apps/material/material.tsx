@@ -1,11 +1,15 @@
 import React from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
+import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import Disclosure from "../../components/material/disclosures/disclosure";
+import ListDescription, {
+  ListData
+} from "../../components/list-description/list-description";
 import { useText } from "../../core/utils/text";
 
 export interface MaterialProps {
@@ -28,6 +32,35 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
     return <div>No work data</div>;
   }
 
+  const {
+    manifestations,
+    titles,
+    materialTypes,
+    mainLanguages,
+    creators,
+    workYear
+  } = data.work;
+
+  const listDescriptionData = {
+    Type: {
+      value: String(materialTypes?.[0]?.specific),
+      type: "standard"
+    },
+    Sprog: { value: String(mainLanguages?.[0].display), type: "standard" },
+    Bidragsydere: { value: String(creators?.[0].display), type: "link" },
+    Originaltitel: {
+      value: String(`${titles.original} ${workYear}`),
+      type: "standard"
+    }
+    // TODO: Logic must be created to select the manifestation to be presented for the rest of listDescriptionData
+
+    // ISBN: { value: "ISBN", type: "standard" },
+    // Udgave: { value: "Udgave, 2. oplag (2015)", type: "standard" },
+    // Omfang: { value: "795 sider", type: "standard" },
+    // Forlag: { value: "Rosinante", type: "standard" },
+    // Målgruppe: { value: "Voksenmateriale", type: "standard" }
+  };
+
   return (
     <main className="material-page">
       <MaterialHeader pid={pid} work={data.work} />
@@ -39,7 +72,7 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
         })`}
         disclosureIconExpandAltText=""
       >
-        {data.work.manifestations.all.map((manifestation) => {
+        {manifestations.all.map((manifestation) => {
           return (
             <MaterialMainfestationItem
               key={manifestation.pid}
@@ -47,6 +80,16 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
             />
           );
         })}
+      </Disclosure>
+      <Disclosure
+        mainIconPath={Receipt}
+        title="Detaljer"
+        disclosureIconExpandAltText=""
+      >
+        <ListDescription
+          className="pl-80 pb-48"
+          data={listDescriptionData as ListData}
+        />
       </Disclosure>
     </main>
   );
