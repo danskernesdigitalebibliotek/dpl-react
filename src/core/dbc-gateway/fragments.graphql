@@ -61,6 +61,7 @@ fragment WorkSmall on Work {
   workId
   titles {
     full
+    original
   }
   abstract
   creators {
@@ -84,14 +85,16 @@ fragment WorkSmall on Work {
 
 fragment WorkMedium on Work {
   ...WorkSmall
-  seriesMembers {
-    titles {
-      main
-    }
+  materialTypes {
+    specific
+  }
+  mainLanguages {
+    display
   }
   subjects {
     all {
       display
     }
   }
+  workYear
 }
