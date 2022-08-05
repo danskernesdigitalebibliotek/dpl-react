@@ -40,7 +40,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover pid={pid} size="large" animate={false} />
+        <Cover pid={pid} size="xlarge" animate={false} />
       </div>
       <div className="material-header__content">
         <ButtonFavourite materialId={pid} />
@@ -54,7 +54,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <div className="material-header__button">
           <ButtonLargeFilled label={t("reserveBookText")} disabled={false} />
           <ButtonLargeOutline
-            label={t("fineOnBookshelfText")}
+            label={t("findOnBookshelfText")}
             disabled={false}
           />
         </div>

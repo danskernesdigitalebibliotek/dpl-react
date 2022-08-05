@@ -30,6 +30,7 @@ fragment WorkSmall on Work {
   titles {
     full
   }
+  abstract
   creators {
     display
     __typename
@@ -54,6 +55,11 @@ fragment WorkMedium on Work {
   seriesMembers {
     titles {
       main
+    }
+  }
+  subjects {
+    all {
+      display
     }
   }
 }

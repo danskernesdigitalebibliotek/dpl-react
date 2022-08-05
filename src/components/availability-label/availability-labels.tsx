@@ -19,6 +19,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         if (faustId) {
           return (
             <AvailabilityLabel
+              key={pid}
               link="/"
               faustIds={[faustId]}
               manifestText={materialTypes[0].specific}

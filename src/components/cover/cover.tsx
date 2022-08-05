@@ -6,7 +6,7 @@ import { LinkNoStyle } from "../atoms/link-no-style";
 
 export type CoverProps = {
   animate: boolean;
-  size: "xsmall" | "small" | "medium" | "large" | "original";
+  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
   pid: Pid;
   description?: string;
@@ -21,7 +21,12 @@ export const Cover = ({
   tint,
   pid
 }: CoverProps) => {
-  const dataSize: CoverProps["size"] = size === "xsmall" ? "small" : size;
+  let dataSize: CoverProps["size"] = size;
+  if (dataSize === "xsmall") {
+    dataSize = "small";
+  } else if (dataSize === "xlarge") {
+    dataSize = "large";
+  }
   const { data } = useGetCoverCollection({
     type: "pid",
     identifiers: [pid],

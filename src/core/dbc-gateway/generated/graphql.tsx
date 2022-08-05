@@ -1089,6 +1089,7 @@ export type GetMaterialQuery = {
   work?: {
     __typename?: "Work";
     workId: string;
+    abstract?: Array<string> | null;
     seriesMembers: Array<{
       __typename?: "Work";
       titles: {
@@ -1098,6 +1099,15 @@ export type GetMaterialQuery = {
         original?: Array<string> | null;
       };
     }>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: { __typename?: "WorkTitles"; full: Array<string> };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1145,6 +1155,7 @@ export type SearchWithPaginationQuery = {
     works: Array<{
       __typename?: "Work";
       workId: string;
+      abstract?: Array<string> | null;
       titles: { __typename?: "WorkTitles"; full: Array<string> };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -1250,6 +1261,7 @@ export type SeriesSimpleFragment = {
 export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
+  abstract?: Array<string> | null;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1294,6 +1306,7 @@ export type WorkSmallFragment = {
 export type WorkMediumFragment = {
   __typename?: "Work";
   workId: string;
+  abstract?: Array<string> | null;
   seriesMembers: Array<{
     __typename?: "Work";
     titles: {
@@ -1303,6 +1316,15 @@ export type WorkMediumFragment = {
       original?: Array<string> | null;
     };
   }>;
+  subjects: {
+    __typename?: "SubjectContainer";
+    all: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
+  };
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1370,6 +1392,7 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
   }
+  abstract
   creators {
     display
     __typename
@@ -1396,6 +1419,11 @@ export const WorkMediumFragmentDoc = `
   seriesMembers {
     titles {
       main
+    }
+  }
+  subjects {
+    all {
+      display
     }
   }
 }

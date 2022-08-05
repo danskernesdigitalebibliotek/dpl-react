@@ -52,6 +52,16 @@ export default {
       name: "Results Text",
       defaultValue: "resultater",
       control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number description",
+      defaultValue: "Nr.",
+      control: { type: "text" }
+    },
+    inSeriesText: {
+      name: "In series",
+      defaultValue: "i serien",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;
