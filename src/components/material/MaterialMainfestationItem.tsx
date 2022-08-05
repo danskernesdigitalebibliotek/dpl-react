@@ -1,63 +1,107 @@
 import * as React from "react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { AvailabilityLabel } from "../availability-label/availability-label";
+import { Cover } from "../cover/cover";
+import { convertPostIdToFaustId } from "../../core/utils/helpers";
+import { Pid } from "../../core/utils/types/ids";
+import ListDescription, {
+  ListData
+} from "../list-description/list-description";
+import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
+import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import { useText } from "../../core/utils/text";
 
 export interface MaterialMainfestationItemProps {
-  item: any;
+  manifestation: ManifestationsSimpleFragment["all"][0];
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  item
+  manifestation: {
+    materialTypes,
+    pid,
+    titles,
+    creators,
+    hostPublication,
+    languages,
+    identifiers,
+    contributors,
+    edition,
+    audience,
+    physicalDescriptions
+  }
 }) => {
-  console.log(
-    "🚀 ~ file: MaterialMainfestationItem.tsx ~ line 12 ~ item",
-    item
-  );
+  const t = useText();
+  const [isOpen, setIsOpen] = useState(false);
+  const faustId = convertPostIdToFaustId(pid as Pid);
+
+  // TODO How to handle if there is no data?
+  const listDescriptionData = {
+    Type: { value: String(materialTypes?.[0]?.specific), type: "standard" },
+    Sprog: { value: String(languages?.main?.[0].display), type: "standard" },
+    Bidragsydere: { value: String(contributors?.[0].display), type: "link" },
+    Originaltitel: { value: String(titles?.original), type: "standard" },
+    ISBN: { value: String(identifiers?.[0].value), type: "standard" },
+    Udgave: { value: String(edition?.summary), type: "standard" },
+    Omfang: {
+      value: String(physicalDescriptions[0].numberOfPages),
+      type: "standard"
+    }, // No Dummy data
+    Forlag: { value: String(hostPublication?.publisher), type: "standard" },
+    Målgruppe: { value: String(audience?.generalAudience), type: "standard" }
+  };
+
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
-        <div className="pagefold-parent--xsmall availability-label text-label availability-label--unselected">
-          <div className="pagefold-triangle--xsmall--success pagefold-triangle--xsmall" />
-          <img
-            className="availability-label--check available"
-            src="icons/collection/Check.svg"
-            alt="check-icon"
+        {faustId && (
+          <AvailabilityLabel
+            manifestText={materialTypes[0]?.specific}
+            link="/"
+            faustIds={[faustId]}
           />
-          <p className="text-label-semibold ml-24">
-            {item?.materialTypes[0]?.specific}
-          </p>
-          <div className="availability-label--divider ml-4" />
-          <p className="text-label-normal ml-4 mr-8">Hjemme</p>
-        </div>
+        )}
       </div>
       <div className="material-manifestation-item__cover">
-        <div className="material-container">
-          <span className="material material--small bg-identity-tint-120">
-            <img src="images/book_cover_3.jpg" alt="I will be replaced" />
-          </span>
-        </div>
+        <Cover pid={pid as Pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
         <h2 className="material-manifestation-item__text__title text-header-h4">
-          {item?.titles?.main[0]}
+          {titles?.main[0]}
         </h2>
         <p className="text-small-caption">
-          Af {item?.creators[0]?.display} ({item?.hostPublication?.year?.year})
+          {t("materialHeaderAuthorByText")} {creators[0]?.display} (
+          {hostPublication?.year?.year})
         </p>
-        <div className="material-manifestation-item__text__details">
+
+        <div
+          className={`material-manifestation-item__text__details ${
+            isOpen ? "expanded" : ""
+          }`}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+          // TODO Check if this is the correct way to handle accessibility
+          onKeyPress={() => {
+            setIsOpen(!isOpen);
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <p className="link-tag text-small-caption">Detaljer om materialet</p>
           <img src={ExpandIcon} alt="ExpandMore-icon" />
         </div>
+        {isOpen && (
+          <ListDescription
+            className="mt-24"
+            data={listDescriptionData as ListData}
+          />
+        )}
       </div>
       <div className="material-manifestation-item__reserve">
-        <button
-          type="button"
-          className="btn-primary btn-filled btn-small arrow__hover--right-small"
-        >
-          RESERVER
-        </button>
+        <ButtonSmallFilled label="RESERVER" disabled={false} />
         <span className="link-tag text-small-caption material-manifestation-item__reserve__find">
-          Find på hylden
+          {t("findOnBookshelfText")}
         </span>
       </div>
     </div>
