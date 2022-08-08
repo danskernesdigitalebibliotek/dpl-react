@@ -4,9 +4,16 @@ import ReceiptIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import MaterialHeader from "../../components/material/MaterialHeader";
-import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
+import {
+  ExternalReview,
+  InfomediaReview,
+  LibrariansReview,
+  useGetMaterialQuery
+} from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
+import { Disclosure } from "../../components/material/disclosures/disclosure";
+import { MaterialReviews } from "../../components/material/MaterialReviews";
 
 export interface MaterialProps {
   pid: Pid;
@@ -150,24 +157,17 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
           </div>
         </dl>
       </details>
-      <details className="disclosure text-body-large">
-        <summary className="disclosure__headline text-body-large">
-          <div className="disclosure__icon bg-identity-tint-120 m-24">
-            <img
-              className="disclosure__icon"
-              src={CreateIcon}
-              alt="create-icon"
-            />
-          </div>
-          Anmeldelser
-          <img
-            className="disclosure__expand mr-24 noselect"
-            src={ExpandIcon}
-            alt="expand-icon"
+      {data.work.reviews && data.work.reviews.length >= 1 && (
+        <Disclosure title="Anmeldelser" mainIconPath={CreateIcon}>
+          <MaterialReviews
+            listOfReviews={
+              data.work.reviews as Array<
+                LibrariansReview | ExternalReview | InfomediaReview
+              >
+            }
           />
-        </summary>
-        Content
-      </details>
+        </Disclosure>
+      )}
     </main>
   );
 };

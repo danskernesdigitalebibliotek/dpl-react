@@ -5,7 +5,7 @@ export interface DisclosureProps {
   mainIconPath: string;
   title: string;
   children?: ReactNode;
-  disclosureIconExpandAltText: string;
+  disclosureIconExpandAltText?: string;
 }
 
 export const Disclosure: FC<DisclosureProps> = ({
