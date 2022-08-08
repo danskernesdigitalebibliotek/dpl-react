@@ -14,6 +14,9 @@ interface MaterialEntryTextProps {
   inSeriesText: string;
   inSameSeriesText: string;
   numberDescriptionText: string;
+  detailsOfTheMaterialText: string;
+  reserveText: string;
+  editionsText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

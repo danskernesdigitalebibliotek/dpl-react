@@ -61,7 +61,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         {faustId && (
           <AvailabilityLabel
             manifestText={materialTypes[0]?.specific}
-            link="/"
+            link="/" // TODO the correct link must be added
             faustIds={[faustId]}
           />
         )}
@@ -74,7 +74,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           {titles?.main[0]}
         </h2>
         <p className="text-small-caption">
-          {t("materialHeaderAuthorByText")} {creators[0]?.display} (
+          {t("materialHeaderAuthorByText")} {creatorsText} (
           {hostPublication?.year?.year})
         </p>
 
@@ -92,8 +92,10 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           role="button"
           tabIndex={0}
         >
-          <p className="link-tag text-small-caption">Detaljer om materialet</p>
-          <img src={ExpandIcon} alt="ExpandMore-icon" />
+          <p className="link-tag text-small-caption">
+            {t("detailsOfTheMaterialText")}
+          </p>
+          <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
           <ListDescription
@@ -103,7 +105,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__reserve">
-        <ButtonSmallFilled label="RESERVER" disabled={false} />
+        <ButtonSmallFilled label={t("reserveText")} disabled={false} />
+        {/* TODO The button has no functionality so far. This will come later */}
         <span className="link-tag text-small-caption material-manifestation-item__reserve__find">
           {t("findOnBookshelfText")}
         </span>
