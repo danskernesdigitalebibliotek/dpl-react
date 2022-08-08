@@ -3,6 +3,7 @@ import {
   InfomediaReview,
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import { usDateStringToEurDateObj } from "../../core/utils/helpers";
 import { useText } from "../../core/utils/text";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata from "./ReviewMetadata";
@@ -20,7 +21,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={review.date} />
+        <ReviewMetadata
+          author={review.author}
+          date={usDateStringToEurDateObj(review.date)}
+        />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {data?.infomedia.article?.headLine && (

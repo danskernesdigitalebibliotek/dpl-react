@@ -1,5 +1,6 @@
 import React from "react";
 import { ExternalReview } from "../../core/dbc-gateway/generated/graphql";
+import { usDateStringToEurDateObj } from "../../core/utils/helpers";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata from "./ReviewMetadata";
 
@@ -11,7 +12,10 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({ review }) => {
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={review.date} />
+        <ReviewMetadata
+          author={review.author}
+          date={usDateStringToEurDateObj(review.date)}
+        />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {review.urls &&

@@ -3,6 +3,7 @@ import {
   LibrariansReview,
   LibrariansReviewSection
 } from "../../core/dbc-gateway/generated/graphql";
+import { usDateStringToEurDateObj } from "../../core/utils/helpers";
 import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewLibrarianProps {
@@ -13,7 +14,10 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({ review }) => {
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={review.date} />
+        <ReviewMetadata
+          author={review.author}
+          date={usDateStringToEurDateObj(review.date)}
+        />
       )}
       {review.sections &&
         review.sections.map((section: LibrariansReviewSection) => {
