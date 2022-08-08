@@ -15,7 +15,7 @@ const ButtonLargeOutline: FC<ButtonLargeOutlineProps> = ({
     <Button
       label={label}
       buttonType="none"
-      variant="filled"
+      variant="outline"
       disabled={disabled}
       collapsible={false}
       size="large"
