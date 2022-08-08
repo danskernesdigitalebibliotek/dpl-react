@@ -11,6 +11,11 @@ import ListDescription, {
   ListData
 } from "../../components/list-description/list-description";
 import { useText } from "../../core/utils/text";
+import {
+  creatorsToString,
+  filterCreators,
+  flattenCreators
+} from "../../core/utils/helpers";
 
 export interface MaterialProps {
   pid: Pid;
@@ -41,15 +46,20 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
     workYear
   } = data.work;
 
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
+
   const listDescriptionData = {
     Type: {
-      value: String(materialTypes?.[0]?.specific),
+      value: materialTypes?.[0]?.specific,
       type: "standard"
     },
-    Sprog: { value: String(mainLanguages?.[0].display), type: "standard" },
-    Bidragsydere: { value: String(creators?.[0].display), type: "link" },
+    Sprog: { value: mainLanguages?.[0].display, type: "standard" },
+    Bidragsydere: { value: creatorsText, type: "link" },
     Originaltitel: {
-      value: String(`${titles.original} ${workYear}`),
+      value: `${titles?.original} ${workYear}`,
       type: "standard"
     }
     // TODO: Logic must be created to select the manifestation to be presented for the rest of listDescriptionData
