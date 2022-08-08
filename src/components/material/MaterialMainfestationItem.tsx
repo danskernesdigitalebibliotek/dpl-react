@@ -1,9 +1,15 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { string } from "prop-types";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
-import { convertPostIdToFaustId } from "../../core/utils/helpers";
+import {
+  convertPostIdToFaustId,
+  creatorsToString,
+  filterCreators,
+  flattenCreators
+} from "../../core/utils/helpers";
 import { Pid } from "../../core/utils/types/ids";
 import ListDescription, {
   ListData
@@ -35,7 +41,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid as Pid);
 
-  // TODO How to handle if there is no data?
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
+
   const allContributors = contributors.map(
     (contributor) => contributor.display
   );
@@ -85,7 +95,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           onClick={() => {
             setIsOpen(!isOpen);
           }}
-          // TODO Check if this is the correct way to handle accessibility
           onKeyPress={() => {
             setIsOpen(!isOpen);
           }}
