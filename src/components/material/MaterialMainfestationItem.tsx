@@ -36,19 +36,23 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const faustId = convertPostIdToFaustId(pid as Pid);
 
   // TODO How to handle if there is no data?
+  const allContributors = contributors.map(
+    (contributor) => contributor.display
+  );
+
   const listDescriptionData = {
-    Type: { value: String(materialTypes?.[0]?.specific), type: "standard" },
-    Sprog: { value: String(languages?.main?.[0].display), type: "standard" },
-    Bidragsydere: { value: String(contributors?.[0].display), type: "link" },
-    Originaltitel: { value: String(titles?.original), type: "standard" },
-    ISBN: { value: String(identifiers?.[0].value), type: "standard" },
-    Udgave: { value: String(edition?.summary), type: "standard" },
+    Type: { value: materialTypes?.[0]?.specific, type: "standard" },
+    Sprog: { value: languages?.main?.[0].display, type: "standard" },
+    Bidragsydere: { value: allContributors, type: "link" },
+    Originaltitel: { value: titles?.original, type: "standard" },
+    ISBN: { value: identifiers?.[0].value, type: "standard" },
+    Udgave: { value: edition?.summary, type: "standard" },
     Omfang: {
-      value: String(physicalDescriptions[0].numberOfPages),
+      value: physicalDescriptions[0].numberOfPages,
       type: "standard"
-    }, // No Dummy data
-    Forlag: { value: String(hostPublication?.publisher), type: "standard" },
-    Målgruppe: { value: String(audience?.generalAudience), type: "standard" }
+    },
+    Forlag: { value: hostPublication?.publisher, type: "standard" },
+    Målgruppe: { value: audience?.generalAudience, type: "standard" }
   };
 
   return (
