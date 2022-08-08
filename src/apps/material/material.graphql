@@ -3,3 +3,13 @@ query getMaterial($pid: String!) {
     ...WorkMedium
   }
 }
+
+query getInfomedia ($id: String!) {
+  infomedia(id: $id) {
+    error
+    article {
+      headLine
+      text
+    }
+  }
+}

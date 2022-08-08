@@ -62,4 +62,32 @@ fragment WorkMedium on Work {
       display
     }
   }
+  reviews {
+    __typename
+    ... on LibrariansReview {
+      author
+      date
+      sections {
+        code
+        heading
+        text
+      }
+    }
+    ... on ExternalReview {
+      author
+      date
+      rating
+      urls {
+        origin
+        url
+      }
+    }
+    ... on InfomediaReview {
+      author
+      date
+      origin
+      rating
+      id
+    }
+  }
 }

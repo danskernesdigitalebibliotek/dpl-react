@@ -1108,6 +1108,38 @@ export type GetMaterialQuery = {
         | { __typename?: "TimePeriod"; display: string }
       >;
     };
+    reviews: Array<
+      | {
+          __typename: "ExternalReview";
+          author?: string | null;
+          date?: string | null;
+          rating?: string | null;
+          urls: Array<{
+            __typename?: "AccessUrl";
+            origin: string;
+            url: string;
+          }>;
+        }
+      | {
+          __typename: "InfomediaReview";
+          author?: string | null;
+          date?: string | null;
+          origin?: string | null;
+          rating?: string | null;
+          id: string;
+        }
+      | {
+          __typename: "LibrariansReview";
+          author?: string | null;
+          date?: string | null;
+          sections: Array<{
+            __typename?: "LibrariansReviewSection";
+            code: LibrariansReviewSectionCode;
+            heading?: string | null;
+            text: string;
+          }>;
+        }
+    >;
     titles: { __typename?: "WorkTitles"; full: Array<string> };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1139,6 +1171,23 @@ export type GetMaterialQuery = {
       }>;
     };
   } | null;
+};
+
+export type GetInfomediaQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetInfomediaQuery = {
+  __typename?: "Query";
+  infomedia: {
+    __typename?: "InfomediaResponse";
+    error?: InfomediaError | null;
+    article?: {
+      __typename?: "InfomediaArticle";
+      headLine?: string | null;
+      text?: string | null;
+    } | null;
+  };
 };
 
 export type SearchWithPaginationQueryVariables = Exact<{
@@ -1325,6 +1374,34 @@ export type WorkMediumFragment = {
       | { __typename?: "TimePeriod"; display: string }
     >;
   };
+  reviews: Array<
+    | {
+        __typename: "ExternalReview";
+        author?: string | null;
+        date?: string | null;
+        rating?: string | null;
+        urls: Array<{ __typename?: "AccessUrl"; origin: string; url: string }>;
+      }
+    | {
+        __typename: "InfomediaReview";
+        author?: string | null;
+        date?: string | null;
+        origin?: string | null;
+        rating?: string | null;
+        id: string;
+      }
+    | {
+        __typename: "LibrariansReview";
+        author?: string | null;
+        date?: string | null;
+        sections: Array<{
+          __typename?: "LibrariansReviewSection";
+          code: LibrariansReviewSectionCode;
+          heading?: string | null;
+          text: string;
+        }>;
+      }
+  >;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1426,6 +1503,34 @@ export const WorkMediumFragmentDoc = `
       display
     }
   }
+  reviews {
+    __typename
+    ... on LibrariansReview {
+      author
+      date
+      sections {
+        code
+        heading
+        text
+      }
+    }
+    ... on ExternalReview {
+      author
+      date
+      rating
+      urls {
+        origin
+        url
+      }
+    }
+    ... on InfomediaReview {
+      author
+      date
+      origin
+      rating
+      id
+    }
+  }
 }
     ${WorkSmallFragmentDoc}`;
 export const GetMaterialManifestationDocument = `
@@ -1480,6 +1585,32 @@ export const useGetMaterialQuery = <TData = GetMaterialQuery, TError = unknown>(
     ["getMaterial", variables],
     fetcher<GetMaterialQuery, GetMaterialQueryVariables>(
       GetMaterialDocument,
+      variables
+    ),
+    options
+  );
+export const GetInfomediaDocument = `
+    query getInfomedia($id: String!) {
+  infomedia(id: $id) {
+    error
+    article {
+      headLine
+      text
+    }
+  }
+}
+    `;
+export const useGetInfomediaQuery = <
+  TData = GetInfomediaQuery,
+  TError = unknown
+>(
+  variables: GetInfomediaQueryVariables,
+  options?: UseQueryOptions<GetInfomediaQuery, TError, TData>
+) =>
+  useQuery<GetInfomediaQuery, TError, TData>(
+    ["getInfomedia", variables],
+    fetcher<GetInfomediaQuery, GetInfomediaQueryVariables>(
+      GetInfomediaDocument,
       variables
     ),
     options
