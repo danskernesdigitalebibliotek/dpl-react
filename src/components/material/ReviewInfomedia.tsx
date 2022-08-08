@@ -14,10 +14,34 @@ export interface ReviewInfomediaProps {
 
 const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
   const { id } = review;
-  const { data } = useGetInfomediaQuery({
+  const { data, error } = useGetInfomediaQuery({
     id
   });
   const t = useText();
+  if (error) {
+    return null;
+  }
+  if (!data) {
+    return null;
+  }
+  const { infomedia } = data;
+  if (infomedia.error) {
+    return (
+      <li className="review text-small-caption">
+        {(review.author || review.date) && (
+          <ReviewMetadata
+            author={review.author}
+            date={usDateStringToEurDateObj(review.date)}
+          />
+        )}
+        <div className="review__headline mb-8">
+          {infomedia.error === "BORROWER_NOT_LOGGED_IN"
+            ? t("loginToSeeReviewText")
+            : t("cantViewReviewText")}
+        </div>
+      </li>
+    );
+  }
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
@@ -27,20 +51,13 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
         />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
-      {data?.infomedia.article?.headLine && (
+      {infomedia.article?.headLine && (
         <div className="review__headline mb-8">
-          {data.infomedia.article.headLine}
+          {infomedia.article.headLine}
         </div>
       )}
-      {data?.infomedia.error && (
-        <div className="review__headline mb-8">
-          {data?.infomedia.error === "BORROWER_NOT_LOGGED_IN"
-            ? t("loginToSeeReviewText")
-            : t("cantViewReviewText")}
-        </div>
-      )}
-      {data?.infomedia.article?.text && (
-        <p className="review__body mb-8">{data?.infomedia.article?.text}</p>
+      {infomedia.article?.text && (
+        <p className="review__body mb-8">{infomedia.article?.text}</p>
       )}
       {review.origin && (
         <a href={review.origin} className="link-tag text-small-caption mb-8">
