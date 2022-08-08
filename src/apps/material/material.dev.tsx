@@ -31,6 +31,11 @@ export default {
       defaultValue: "RESERVER BOG",
       control: { type: "text" }
     },
+    reserveText: {
+      name: "Reserve",
+      defaultValue: "reserver",
+      control: { type: "text" }
+    },
     findOnBookshelfText: {
       name: "Find on bookshelf",
       defaultValue: "FIND PÅ HYLDEN",
@@ -65,6 +70,16 @@ export default {
     inSeriesText: {
       name: "In series",
       defaultValue: "i serien",
+      control: { type: "text" }
+    },
+    detailsOfTheMaterialText: {
+      name: "Details of the material",
+      defaultValue: "Detaljer om materialet",
+      control: { type: "text" }
+    },
+    editionsText: {
+      name: "Editions",
+      defaultValue: "Udgaver",
       control: { type: "text" }
     }
   }

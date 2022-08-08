@@ -6,6 +6,7 @@ import { Pid } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import Disclosure from "../../components/material/disclosures/disclosure";
+import { useText } from "../../core/utils/text";
 
 export interface MaterialProps {
   pid: Pid;
@@ -13,6 +14,7 @@ export interface MaterialProps {
 }
 
 const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
+  const t = useText();
   const { data, isLoading } = useGetMaterialQuery({
     pid
   });
@@ -32,7 +34,9 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
       <MaterialDescription pid={pid} work={data.work} searchUrl={searchUrl} />
       <Disclosure
         mainIconPath={VariousIcon}
-        title={`Udgaver (${data?.work?.manifestations?.all.length})`}
+        title={`${t("editionsText")} (${
+          data?.work?.manifestations?.all.length
+        })`}
         disclosureIconExpandAltText=""
       >
         {data.work.manifestations.all.map((manifestation) => {
