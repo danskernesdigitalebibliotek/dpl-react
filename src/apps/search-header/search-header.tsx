@@ -8,11 +8,10 @@ import {
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
-import { useText } from "../../core/utils/text";
 import { itemToString } from "../../components/autosuggest-text/autosuggest-text";
 
 export interface SearchHeaderProps {
-  searchHeaderUrl?: string;
+  baseUrl: string;
   altText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
@@ -20,8 +19,7 @@ export interface SearchHeaderProps {
   stringSuggestionTopicText?: string;
 }
 
-const SearchHeader: React.FC = () => {
-  const t = useText();
+const SearchHeader: React.FC<SearchHeaderProps> = ({ baseUrl }) => {
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<any[]>([]);
@@ -183,7 +181,7 @@ const SearchHeader: React.FC = () => {
   });
 
   return (
-    <form className="header__menu-second" action={t("searchHeaderUrlText")}>
+    <form className="header__menu-second" action={`${baseUrl}/search`}>
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>

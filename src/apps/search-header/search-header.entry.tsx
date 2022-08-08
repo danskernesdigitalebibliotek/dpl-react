@@ -3,7 +3,7 @@ import { withText } from "../../core/utils/text";
 import SearchHeader from "./search-header";
 
 export interface SearchHeaderProps {
-  searchHeaderUrlText?: string;
+  baseUrl: string;
   altText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
@@ -13,13 +13,7 @@ export interface SearchHeaderProps {
 }
 
 const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
-  searchHeaderUrlText = "https://bibliotek.dk/search",
-  altText = "search icon",
-  inputPlaceholderText = "Search here",
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic",
-  etAlText = "et al."
-}) => <SearchHeader />;
+  baseUrl = "https://bibliotek.dk"
+}) => <SearchHeader baseUrl={baseUrl} />;
 
 export default withText(SearchHeaderEntry);

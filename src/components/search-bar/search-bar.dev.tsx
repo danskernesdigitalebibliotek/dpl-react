@@ -42,13 +42,13 @@ export const Default: ComponentStory<typeof SearchBar> = (
     }
   });
 
-  const searchHeaderUrl = "https://bibliotek.dk/search";
+  const baseUrl = "https://bibliotek.dk";
 
   return (
     <StoryHeader>
       <div className="header__menu-second">
         <form
-          action={searchHeaderUrl}
+          action={baseUrl}
           className="header__menu-search"
           {...getComboboxProps()}
         >

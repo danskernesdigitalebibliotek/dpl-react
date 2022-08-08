@@ -7,9 +7,9 @@ export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
-    searchHeaderUrlText: {
+    baseUrl: {
       name: "Search header base URL",
-      defaultValue: "https://bibliotek.dk/search",
+      defaultValue: "https://bibliotek.dk",
       control: { type: "text" }
     },
     altText: {
