@@ -14,6 +14,8 @@ interface MaterialEntryTextProps {
   inSeriesText: string;
   inSameSeriesText: string;
   numberDescriptionText: string;
+  loginToSeeReviewText: string;
+  cantViewReviewText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

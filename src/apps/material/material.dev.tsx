@@ -66,6 +66,16 @@ export default {
       name: "In series",
       defaultValue: "i serien",
       control: { type: "text" }
+    },
+    loginToSeeReviewText: {
+      name: "Login to see Review",
+      defaultValue: "Log ind for at se anmeldensen.",
+      control: { type: "text" }
+    },
+    cantViewReviewText: {
+      name: "Cannot view Review",
+      defaultValue: "Kan ikke se anmeldensen.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
