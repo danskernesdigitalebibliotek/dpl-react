@@ -76,6 +76,21 @@ export default {
       name: "Cannot view Review",
       defaultValue: "Kan ikke se anmeldensen.",
       control: { type: "text" }
+    },
+    ratingIsText: {
+      name: "Rating is",
+      defaultValue: "Rating of this item is",
+      control: { type: "text" }
+    },
+    outOfText: {
+      name: "X 'out of' Y",
+      defaultValue: "out of",
+      control: { type: "text" }
+    },
+    heartsIconText: {
+      name: "Hearts icon text",
+      defaultValue: "hearts",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

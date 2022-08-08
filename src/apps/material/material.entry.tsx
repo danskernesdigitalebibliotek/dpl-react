@@ -16,6 +16,9 @@ interface MaterialEntryTextProps {
   numberDescriptionText: string;
   loginToSeeReviewText: string;
   cantViewReviewText: string;
+  ratingIsText: string;
+  outOfText: string;
+  heartsIconText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {
