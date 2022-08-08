@@ -15,7 +15,6 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({ review }) => {
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {review.urls &&
-        review.urls.length >= 1 &&
         review.urls.map((url) => {
           return (
             <a href={url.url} className="link-tag text-small-caption mb-8">
