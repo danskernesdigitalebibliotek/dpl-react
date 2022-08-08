@@ -96,12 +96,17 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ baseUrl }) => {
 
   // downshift prevents the default form submission event when the autosuggest
   // is open - that's why in some cases we have to simulate form sumbission
-  function manualRedirect(inputValue: string) {
-    const baseUrl = t("searchHeaderUrlText");
-    const params = inputValue;
-    if (window.top) {
-      window.top.location.href = `${baseUrl}?q=${params}`;
+  function manualRedirect(itemValue: Suggestion) {
+    const inputValue = itemToString(itemValue);
+    if (!window.top) {
+      return;
     }
+    // if this item is one of the work suggestions, redirect to material page
+    if (materialData.includes(itemValue)) {
+      window.top.location.href = `${baseUrl}/work/${itemValue.work?.manifestations.first.pid}`;
+      return;
+    }
+    window.top.location.href = `${baseUrl}/search?q=${inputValue}`;
   }
 
   function handleHighlightedIndexChange(
@@ -128,7 +133,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ baseUrl }) => {
     if (
       type === useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem
     ) {
-      manualRedirect(currentItemValue);
+      manualRedirect(currentlyHighlightedObject);
       return;
     }
     if (
@@ -159,7 +164,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({ baseUrl }) => {
       if (!selectedItem) {
         return;
       }
-      manualRedirect(itemToString(selectedItem));
+      manualRedirect(selectedItem);
     }
   }
   // this is the main Downshift hook
