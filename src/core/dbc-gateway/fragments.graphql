@@ -96,5 +96,8 @@ fragment WorkMedium on Work {
       display
     }
   }
+  fictionNonfiction {
+    display
+  }
   workYear
 }
