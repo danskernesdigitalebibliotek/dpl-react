@@ -42,9 +42,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     language?.isoCode.toLowerCase().includes("dan")
   );
 
-  const title = containsDanish
-    ? fullTitle
-    : `${fullTitle} (${mainLanguages[0].display})`;
+  const allLanguages = mainLanguages
+    .map((language) => language.display)
+    .join(", ");
+
+  const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
 
   return (
     <header className="material-header">
