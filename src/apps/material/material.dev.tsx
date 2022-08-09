@@ -96,7 +96,7 @@ export default {
       name: "Hearts icon text",
       defaultValue: "hearts",
       control: { type: "text" }
-    }
+    },
     detailsOfTheMaterialText: {
       name: "Details of the material",
       defaultValue: "Detaljer om materialet",

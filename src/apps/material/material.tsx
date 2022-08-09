@@ -1,5 +1,6 @@
 import React from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
+import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   ExternalReview,
@@ -9,7 +10,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import { Disclosure } from "../../components/material/disclosures/disclosure";
+import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
@@ -51,7 +52,7 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
               key={manifestation.pid}
               manifestation={manifestation}
             />
-            );
+          );
         })}
       </Disclosure>
       {data.work.reviews && data.work.reviews.length >= 1 && (
