@@ -10,13 +10,11 @@ export interface ReviewLibrarianProps {
 }
 
 const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({ review }) => {
+  const date = review.date ? usDateStringToDateObj(review.date) : null;
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata
-          author={review.author}
-          date={usDateStringToDateObj(review.date as string)}
-        />
+        <ReviewMetadata author={review.author} date={date} />
       )}
       {review.sections &&
         review.sections.map((section: LibrariansReviewSection) => {

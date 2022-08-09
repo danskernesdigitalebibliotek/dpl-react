@@ -8,13 +8,11 @@ export interface ReviewExternalProps {
 }
 
 const ReviewExternal: React.FC<ReviewExternalProps> = ({ review }) => {
+  const date = review.date ? usDateStringToDateObj(review.date) : null;
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata
-          author={review.author}
-          date={usDateStringToDateObj(review.date as string)}
-        />
+        <ReviewMetadata author={review.author} date={date} />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {review.urls &&

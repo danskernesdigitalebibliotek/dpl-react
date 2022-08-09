@@ -8,10 +8,7 @@ export interface ReviewMetadataProps {
   link?: string;
 }
 
-export const usDateStringToDateObj = (date: string): Date | null => {
-  if (date === "undefined") {
-    return null;
-  }
+export const usDateStringToDateObj = (date: string): Date => {
   dayjs.extend(customParseFormat);
   return dayjs(date, "YYYY-MM-DD").toDate();
 };

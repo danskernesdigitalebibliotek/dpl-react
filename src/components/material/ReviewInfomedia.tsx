@@ -25,14 +25,12 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
     return null;
   }
   const { infomedia } = data;
+  const date = review.date ? usDateStringToDateObj(review.date) : null;
   if (infomedia.error) {
     return (
       <li className="review text-small-caption">
         {(review.author || review.date) && (
-          <ReviewMetadata
-            author={review.author}
-            date={usDateStringToDateObj(review.date as string)}
-          />
+          <ReviewMetadata author={review.author} date={date} />
         )}
         {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
@@ -46,10 +44,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
   return (
     <li className="review text-small-caption">
       {(review.author || review.date) && (
-        <ReviewMetadata
-          author={review.author}
-          date={usDateStringToDateObj(review.date as string)}
-        />
+        <ReviewMetadata author={review.author} date={date} />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {infomedia.article?.headLine && (
@@ -63,7 +58,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
       {review.origin && (
         <ReviewMetadata
           author={review.author}
-          date={usDateStringToDateObj(review.date as string)}
+          date={date}
           link={review.origin}
         />
       )}
