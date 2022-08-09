@@ -35,6 +35,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
             date={usDateStringToEurDateObj(review.date)}
           />
         )}
+        {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
           {infomedia.error === "BORROWER_NOT_LOGGED_IN"
             ? t("loginToSeeReviewText")
