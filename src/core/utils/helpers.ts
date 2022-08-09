@@ -135,16 +135,3 @@ export const dateMatchesUsFormat = (date: string | null) => {
   const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
   return returnValue;
 };
-
-export const usDateStringToEurDateObj = (date: string | null | undefined) => {
-  if (!date || date === null) {
-    return date;
-  }
-  const dateArray = date?.split("-");
-  const euDate = new Date(
-    Number(dateArray[0]),
-    Number(dateArray[1]) - 1,
-    Number(dateArray[2])
-  );
-  return euDate;
-};

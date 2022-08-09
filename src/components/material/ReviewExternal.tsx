@@ -1,8 +1,7 @@
 import React from "react";
 import { ExternalReview } from "../../core/dbc-gateway/generated/graphql";
-import { usDateStringToEurDateObj } from "../../core/utils/helpers";
+import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
 import ReviewHearts from "./ReviewHearts";
-import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewExternalProps {
   review: ExternalReview;
@@ -14,7 +13,7 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({ review }) => {
       {(review.author || review.date) && (
         <ReviewMetadata
           author={review.author}
-          date={usDateStringToEurDateObj(review.date)}
+          date={usDateStringToDateObj(review.date as string)}
         />
       )}
       {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
