@@ -63,7 +63,9 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
       {review.origin && (
         <a href={review.origin} className="link-tag text-small-caption mb-8">
           {`${review.author}${review.author && review.date ? ", " : ""}${
-            review.date ? dayjs(review.date).format("DD-MM-YYYY") : ""
+            review.date
+              ? dayjs(usDateStringToDateObj(review.date)).format("DD.MM.YYYY")
+              : ""
           }`}
         </a>
       )}

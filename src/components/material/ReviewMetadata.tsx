@@ -4,10 +4,13 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 
 export interface ReviewMetadataProps {
   author?: string | null;
-  date?: Date;
+  date?: Date | null;
 }
 
-export const usDateStringToDateObj = (date: string): Date => {
+export const usDateStringToDateObj = (date: string): Date | null => {
+  if (date === "undefined") {
+    return null;
+  }
   dayjs.extend(customParseFormat);
   return dayjs(date, "YYYY-MM-DD").toDate();
 };
