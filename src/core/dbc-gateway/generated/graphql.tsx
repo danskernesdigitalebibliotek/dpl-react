@@ -1134,7 +1134,6 @@ export type GetMaterialQuery = {
           }>;
         }
     >;
-    titles: { __typename?: "WorkTitles"; full: Array<string> };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
@@ -1542,7 +1541,6 @@ export type WorkMediumFragment = {
         }>;
       }
   >;
-  titles: { __typename?: "WorkTitles"; full: Array<string> };
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
