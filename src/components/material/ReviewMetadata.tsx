@@ -5,6 +5,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 export interface ReviewMetadataProps {
   author?: string | null;
   date?: Date | null;
+  link?: string;
 }
 
 export const usDateStringToDateObj = (date: string): Date | null => {
@@ -15,14 +16,29 @@ export const usDateStringToDateObj = (date: string): Date | null => {
   return dayjs(date, "YYYY-MM-DD").toDate();
 };
 
-const ReviewMetadata: React.FC<ReviewMetadataProps> = ({ author, date }) => {
-  return (
-    <div className="review__meta mb-8">
-      {`${author || ""}${author && date ? ", " : ""}${
-        date ? dayjs(date).format("DD.MM.YYYY") : ""
-      }`}
-    </div>
-  );
+const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
+  author,
+  date,
+  link
+}) => {
+  const metaDataText = (
+    returnAuthor: string | null | undefined,
+    returnDate: Date | null | undefined
+  ) => {
+    return `${returnAuthor || ""}${returnAuthor && returnDate ? ", " : ""}${
+      returnDate ? dayjs(returnDate).format("DD.MM.YYYY") : ""
+    }`;
+  };
+
+  if (link) {
+    return (
+      <a href={link} className="link-tag text-small-caption mb-8">
+        {metaDataText(author, date)}
+      </a>
+    );
+  }
+
+  return <div className="review__meta mb-8">{metaDataText(author, date)}</div>;
 };
 
 export default ReviewMetadata;
