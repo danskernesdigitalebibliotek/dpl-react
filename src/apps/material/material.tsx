@@ -51,13 +51,17 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
     t
   );
 
+  const allLanguages = mainLanguages
+    .map((language) => language.display)
+    .join(", ");
+
   const listDescriptionData = {
     [t("typeText")]: {
       value: materialTypes?.[0]?.specific,
       type: "standard"
     },
     [t("languageText")]: {
-      value: mainLanguages?.[0].display,
+      value: allLanguages,
       type: "standard"
     },
     [t("contributorsText")]: { value: creatorsText, type: "link" },

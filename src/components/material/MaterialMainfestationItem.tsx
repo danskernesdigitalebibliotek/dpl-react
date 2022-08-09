@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { string } from "prop-types";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
@@ -50,10 +49,14 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     (contributor) => contributor.display
   );
 
+  const allLanguages = languages?.main
+    ?.map((language) => language.display)
+    .join(", ");
+
   const listDescriptionData = {
     [t("typeText")]: { value: materialTypes?.[0]?.specific, type: "standard" },
     [t("languageText")]: {
-      value: languages?.main?.[0].display,
+      value: allLanguages,
       type: "standard"
     },
     [t("contributorsText")]: { value: allContributors, type: "link" },
