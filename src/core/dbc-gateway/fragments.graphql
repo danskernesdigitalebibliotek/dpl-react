@@ -90,6 +90,7 @@ fragment WorkMedium on Work {
   }
   mainLanguages {
     display
+    isoCode
   }
   subjects {
     all {
