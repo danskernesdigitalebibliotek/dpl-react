@@ -52,23 +52,26 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
   );
 
   const listDescriptionData = {
-    Type: {
+    [t("typeText")]: {
       value: materialTypes?.[0]?.specific,
       type: "standard"
     },
-    Sprog: { value: mainLanguages?.[0].display, type: "standard" },
-    Bidragsydere: { value: creatorsText, type: "link" },
-    Originaltitel: {
+    [t("languageText")]: {
+      value: mainLanguages?.[0].display,
+      type: "standard"
+    },
+    [t("contributorsText")]: { value: creatorsText, type: "link" },
+    [t("originalTitleText")]: {
       value: `${titles?.original} ${workYear}`,
       type: "standard"
     }
     // TODO: Logic must be created to select the manifestation to be presented for the rest of listDescriptionData
 
-    // ISBN: { value: "ISBN", type: "standard" },
-    // Udgave: { value: "Udgave, 2. oplag (2015)", type: "standard" },
-    // Omfang: { value: "795 sider", type: "standard" },
-    // Forlag: { value: "Rosinante", type: "standard" },
-    // Målgruppe: { value: "Voksenmateriale", type: "standard" }
+    // [t("isbnText")]: { value: "ISBN", type: "standard" },
+    // [t("editionText")]: { value: "Udgave, 2. oplag (2015)", type: "standard" },
+    // [t("scopeText")]: { value: "795 sider", type: "standard" },
+    // [t("publisherText")]: { value: "Rosinante", type: "standard" },
+    // [t("audienceText")]: { value: "Voksenmateriale", type: "standard" }
   };
 
   return (
@@ -93,7 +96,7 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
       </Disclosure>
       <Disclosure
         mainIconPath={Receipt}
-        title="Detaljer"
+        title={t("detailsText")}
         disclosureIconExpandAltText=""
       >
         <ListDescription
