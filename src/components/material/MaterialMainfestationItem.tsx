@@ -80,7 +80,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover pid={pid as Pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__text__title text-header-h4">
+        <h2 className="material-manifestation-item__title text-header-h4">
           {titles?.main[0]}
         </h2>
         <p className="text-small-caption">
@@ -89,7 +89,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         </p>
 
         <div
-          className={`material-manifestation-item__text__details ${
+          className={`material-manifestation-item__details ${
             isOpen ? "expanded" : ""
           }`}
           onClick={() => {
@@ -113,10 +113,10 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           />
         )}
       </div>
-      <div className="material-manifestation-item__reserve">
+      <div className="material-manifestation-item__buttons">
         <ButtonSmallFilled label={t("reserveText")} disabled={false} />
         {/* TODO The button has no functionality so far. This will come later */}
-        <span className="link-tag text-small-caption material-manifestation-item__reserve__find">
+        <span className="link-tag text-small-caption material-manifestation-item__find">
           {t("findOnBookshelfText")}
         </span>
       </div>
