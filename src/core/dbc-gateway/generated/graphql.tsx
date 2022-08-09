@@ -1162,12 +1162,45 @@ export type GetMaterialQuery = {
       all: Array<{
         __typename?: "Manifestation";
         pid: string;
+        titles: {
+          __typename?: "ManifestationTitles";
+          main: Array<string>;
+          original?: Array<string> | null;
+        };
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          title: string;
+          creator?: string | null;
+          publisher?: string | null;
+          year?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{ __typename?: "Language"; display: string }> | null;
+        } | null;
+        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        contributors: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+        edition: { __typename?: "Edition"; summary: string };
+        audience?: {
+          __typename?: "Audience";
+          generalAudience: Array<string>;
+        } | null;
+        physicalDescriptions: Array<{
+          __typename?: "PhysicalDescription";
+          numberOfPages?: number | null;
+        }>;
       }>;
     };
   } | null;
@@ -1236,6 +1269,11 @@ export type SearchWithPaginationQuery = {
         all: Array<{
           __typename?: "Manifestation";
           pid: string;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1245,6 +1283,34 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            title: string;
+            creator?: string | null;
+            publisher?: string | null;
+            year?: {
+              __typename?: "PublicationYear";
+              year?: number | null;
+            } | null;
+          } | null;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{ __typename?: "Language"; display: string }> | null;
+          } | null;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition: { __typename?: "Edition"; summary: string };
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+          }>;
         }>;
       };
     }>;
@@ -1285,12 +1351,42 @@ export type ManifestationsSimpleFragment = {
   all: Array<{
     __typename?: "Manifestation";
     pid: string;
+    titles: {
+      __typename?: "ManifestationTitles";
+      main: Array<string>;
+      original?: Array<string> | null;
+    };
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      title: string;
+      creator?: string | null;
+      publisher?: string | null;
+      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    } | null;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{ __typename?: "Language"; display: string }> | null;
+    } | null;
+    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    contributors: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+    >;
+    edition: { __typename?: "Edition"; summary: string };
+    audience?: {
+      __typename?: "Audience";
+      generalAudience: Array<string>;
+    } | null;
+    physicalDescriptions: Array<{
+      __typename?: "PhysicalDescription";
+      numberOfPages?: number | null;
+    }>;
   }>;
 };
 
@@ -1342,12 +1438,42 @@ export type WorkSmallFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      titles: {
+        __typename?: "ManifestationTitles";
+        main: Array<string>;
+        original?: Array<string> | null;
+      };
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        title: string;
+        creator?: string | null;
+        publisher?: string | null;
+        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{ __typename?: "Language"; display: string }> | null;
+      } | null;
+      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      contributors: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+      >;
+      edition: { __typename?: "Edition"; summary: string };
+      audience?: {
+        __typename?: "Audience";
+        generalAudience: Array<string>;
+      } | null;
+      physicalDescriptions: Array<{
+        __typename?: "PhysicalDescription";
+        numberOfPages?: number | null;
+      }>;
     }>;
   };
 };
@@ -1424,12 +1550,42 @@ export type WorkMediumFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      titles: {
+        __typename?: "ManifestationTitles";
+        main: Array<string>;
+        original?: Array<string> | null;
+      };
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        title: string;
+        creator?: string | null;
+        publisher?: string | null;
+        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{ __typename?: "Language"; display: string }> | null;
+      } | null;
+      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      contributors: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+      >;
+      edition: { __typename?: "Edition"; summary: string };
+      audience?: {
+        __typename?: "Audience";
+        generalAudience: Array<string>;
+      } | null;
+      physicalDescriptions: Array<{
+        __typename?: "PhysicalDescription";
+        numberOfPages?: number | null;
+      }>;
     }>;
   };
 };
@@ -1450,6 +1606,10 @@ export const ManifestationsSimpleFragmentDoc = `
     fragment ManifestationsSimple on Manifestations {
   all {
     pid
+    titles {
+      main
+      original
+    }
     publicationYear {
       display
     }
@@ -1459,6 +1619,34 @@ export const ManifestationsSimpleFragmentDoc = `
     creators {
       display
       __typename
+    }
+    hostPublication {
+      title
+      creator
+      publisher
+      year {
+        year
+      }
+    }
+    languages {
+      main {
+        display
+      }
+    }
+    identifiers {
+      value
+    }
+    contributors {
+      display
+    }
+    edition {
+      summary
+    }
+    audience {
+      generalAudience
+    }
+    physicalDescriptions {
+      numberOfPages
     }
   }
 }

@@ -19,6 +19,9 @@ interface MaterialEntryTextProps {
   ratingIsText: string;
   outOfText: string;
   heartsIconText: string;
+  detailsOfTheMaterialText: string;
+  reserveText: string;
+  editionsText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

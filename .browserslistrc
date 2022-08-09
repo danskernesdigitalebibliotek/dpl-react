@@ -1,17 +1,9 @@
-# https://github.com/browserslist/browserslist#full-list
-# Browsers that we support
-# cover 90% in DK 06-11-2019
-and_chr 76
-chrome 77
-chrome 76
-edge 18
-firefox 69
-ie 11
-ios_saf 13.0-13.1
-ios_saf 12.2-12.3
-ios_saf 12.0-12.1
-ios_saf 11.3-11.4
-safari 13
-safari 12.1
-samsung 10.1
-samsung 9.2
+# These browsers match our coding guidelines
+# https://github.com/danskernesdigitalebibliotek/dpl-react/blob/main/docs/code_guidelines.md#general
+last 2 chrome versions
+last 2 edge versions
+last 2 firefox versions
+last 2 safari versions
+last 2 ios_saf versions
+last 2 and_chr versions
+last 2 samsung versions

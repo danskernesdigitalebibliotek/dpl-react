@@ -2,25 +2,22 @@ import * as React from "react";
 import { FC } from "react";
 import { Button } from "./Button";
 
-export interface ButtonLargeOutlineProps {
+export interface ButtonSmallFilledProps {
   label: string;
   disabled: boolean;
 }
 
-const ButtonLargeOutline: FC<ButtonLargeOutlineProps> = ({
-  label,
-  disabled
-}) => {
+const ButtonSmallFilled: FC<ButtonSmallFilledProps> = ({ label, disabled }) => {
   return (
     <Button
       label={label}
       buttonType="none"
-      variant="outline"
+      variant="filled"
       disabled={disabled}
       collapsible={false}
-      size="large"
+      size="small"
     />
   );
 };
 
-export default ButtonLargeOutline;
+export default ButtonSmallFilled;

@@ -1,6 +1,10 @@
 fragment ManifestationsSimple on Manifestations {
   all {
     pid
+    titles {
+      main
+      original
+    }
     publicationYear {
       display
     }
@@ -10,6 +14,34 @@ fragment ManifestationsSimple on Manifestations {
     creators {
       display
       __typename
+    }
+    hostPublication {
+      title
+      creator
+      publisher
+      year {
+        year
+      }
+    }
+    languages {
+      main {
+        display
+      }
+    }
+    identifiers {
+      value
+    }
+    contributors {
+      display
+    }
+    edition {
+      summary
+    }
+    audience {
+      generalAudience
+    }
+    physicalDescriptions {
+      numberOfPages
     }
   }
 }
