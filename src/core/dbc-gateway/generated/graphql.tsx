@@ -1102,6 +1102,10 @@ export type GetMaterialQuery = {
         | { __typename?: "TimePeriod"; display: string }
       >;
     };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+    } | null;
     titles: {
       __typename?: "WorkTitles";
       full: Array<string>;
@@ -1460,6 +1464,10 @@ export type WorkMediumFragment = {
       | { __typename?: "TimePeriod"; display: string }
     >;
   };
+  fictionNonfiction?: {
+    __typename?: "FictionNonfiction";
+    display: string;
+  } | null;
   titles: {
     __typename?: "WorkTitles";
     full: Array<string>;
@@ -1637,6 +1645,9 @@ export const WorkMediumFragmentDoc = `
     all {
       display
     }
+  }
+  fictionNonfiction {
+    display
   }
   workYear
 }
