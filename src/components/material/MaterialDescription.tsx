@@ -20,6 +20,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
     (item) => item.titles.main[0]
   );
   const subjectsList = work.subjects.all.map((item) => item.display);
+  const { fictionNonfiction } = work;
 
   return (
     <section className="material-description">
@@ -53,6 +54,13 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
           <HorizontalTermLine
             title={t("identifierText")}
             linkList={subjectsList}
+            searchUrl={searchUrl}
+          />
+        )}
+        {fictionNonfiction && (
+          <HorizontalTermLine
+            title={t("fictionNonfictionText")}
+            linkList={[fictionNonfiction.display]}
             searchUrl={searchUrl}
           />
         )}

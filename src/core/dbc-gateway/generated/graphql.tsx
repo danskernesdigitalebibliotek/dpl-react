@@ -1088,17 +1088,11 @@ export type GetMaterialQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
+    workYear?: string | null;
     workId: string;
     abstract?: Array<string> | null;
-    seriesMembers: Array<{
-      __typename?: "Work";
-      titles: {
-        __typename?: "WorkTitles";
-        main: Array<string>;
-        full: Array<string>;
-        original?: Array<string> | null;
-      };
-    }>;
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    mainLanguages: Array<{ __typename?: "Language"; display: string }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -1141,6 +1135,15 @@ export type GetMaterialQuery = {
         }
     >;
     titles: { __typename?: "WorkTitles"; full: Array<string> };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+    } | null;
+    titles: {
+      __typename?: "WorkTitles";
+      full: Array<string>;
+      original?: Array<string> | null;
+    };
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -1156,6 +1159,15 @@ export type GetMaterialQuery = {
         display: string;
         number?: Array<number> | null;
       } | null;
+    }>;
+    seriesMembers: Array<{
+      __typename?: "Work";
+      titles: {
+        __typename?: "WorkTitles";
+        main: Array<string>;
+        full: Array<string>;
+        original?: Array<string> | null;
+      };
     }>;
     manifestations: {
       __typename?: "Manifestations";
@@ -1238,7 +1250,11 @@ export type SearchWithPaginationQuery = {
       __typename?: "Work";
       workId: string;
       abstract?: Array<string> | null;
-      titles: { __typename?: "WorkTitles"; full: Array<string> };
+      titles: {
+        __typename?: "WorkTitles";
+        full: Array<string>;
+        original?: Array<string> | null;
+      };
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -1407,7 +1423,11 @@ export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
   abstract?: Array<string> | null;
-  titles: { __typename?: "WorkTitles"; full: Array<string> };
+  titles: {
+    __typename?: "WorkTitles";
+    full: Array<string>;
+    original?: Array<string> | null;
+  };
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -1480,17 +1500,11 @@ export type WorkSmallFragment = {
 
 export type WorkMediumFragment = {
   __typename?: "Work";
+  workYear?: string | null;
   workId: string;
   abstract?: Array<string> | null;
-  seriesMembers: Array<{
-    __typename?: "Work";
-    titles: {
-      __typename?: "WorkTitles";
-      main: Array<string>;
-      full: Array<string>;
-      original?: Array<string> | null;
-    };
-  }>;
+  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  mainLanguages: Array<{ __typename?: "Language"; display: string }>;
   subjects: {
     __typename?: "SubjectContainer";
     all: Array<
@@ -1529,6 +1543,15 @@ export type WorkMediumFragment = {
       }
   >;
   titles: { __typename?: "WorkTitles"; full: Array<string> };
+  fictionNonfiction?: {
+    __typename?: "FictionNonfiction";
+    display: string;
+  } | null;
+  titles: {
+    __typename?: "WorkTitles";
+    full: Array<string>;
+    original?: Array<string> | null;
+  };
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -1544,6 +1567,15 @@ export type WorkMediumFragment = {
       display: string;
       number?: Array<number> | null;
     } | null;
+  }>;
+  seriesMembers: Array<{
+    __typename?: "Work";
+    titles: {
+      __typename?: "WorkTitles";
+      main: Array<string>;
+      full: Array<string>;
+      original?: Array<string> | null;
+    };
   }>;
   manifestations: {
     __typename?: "Manifestations";
@@ -1656,6 +1688,7 @@ export const WorkSmallFragmentDoc = `
   workId
   titles {
     full
+    original
   }
   abstract
   creators {
@@ -1681,10 +1714,11 @@ ${ManifestationsSimpleFragmentDoc}`;
 export const WorkMediumFragmentDoc = `
     fragment WorkMedium on Work {
   ...WorkSmall
-  seriesMembers {
-    titles {
-      main
-    }
+  materialTypes {
+    specific
+  }
+  mainLanguages {
+    display
   }
   subjects {
     all {
@@ -1719,6 +1753,10 @@ export const WorkMediumFragmentDoc = `
       id
     }
   }
+  fictionNonfiction {
+    display
+  }
+  workYear
 }
     ${WorkSmallFragmentDoc}`;
 export const GetMaterialManifestationDocument = `

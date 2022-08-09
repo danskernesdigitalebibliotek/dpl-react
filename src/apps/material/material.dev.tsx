@@ -106,6 +106,61 @@ export default {
       name: "Editions",
       defaultValue: "Udgaver",
       control: { type: "text" }
+    },
+    fictionNonfictionText: {
+      name: "Fiction Nonfiction",
+      defaultValue: "Emnetal",
+      control: { type: "text" }
+    },
+    detailsText: {
+      name: "Details",
+      defaultValue: "Detaljer",
+      control: { type: "text" }
+    },
+    typeText: {
+      name: "Type",
+      defaultValue: "Type",
+      control: { type: "text" }
+    },
+    languageText: {
+      name: "Language",
+      defaultValue: "Sprog",
+      control: { type: "text" }
+    },
+    contributorsText: {
+      name: "Contributors",
+      defaultValue: "Bidragsydere",
+      control: { type: "text" }
+    },
+    originalTitleText: {
+      name: "Original title",
+      defaultValue: "Originaltitel",
+      control: { type: "text" }
+    },
+    isbnText: {
+      name: "ISBN",
+      defaultValue: "ISBN",
+      control: { type: "text" }
+    },
+    editionText: {
+      name: "Edition",
+      defaultValue: "Udgave",
+      control: { type: "text" }
+    },
+    scopeText: {
+      name: "Scope",
+      defaultValue: "Omfang",
+      control: { type: "text" }
+    },
+    publisherText: {
+      name: "Publisher",
+      defaultValue: "Forlag",
+      control: { type: "text" }
+    },
+    audienceText: {
+      name: "Audience",
+      defaultValue: "Målgruppe",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
