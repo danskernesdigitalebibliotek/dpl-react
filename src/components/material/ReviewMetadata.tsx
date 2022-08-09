@@ -1,15 +1,15 @@
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import React from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 export interface ReviewMetadataProps {
   author?: string | null;
-  date?: string | Dayjs;
+  date?: Date;
 }
 
-export const usDateStringToDateObj = (date: string) => {
+export const usDateStringToDateObj = (date: string): Date => {
   dayjs.extend(customParseFormat);
-  return dayjs(date, "YYYY-MM-DD");
+  return dayjs(date, "YYYY-MM-DD").toDate();
 };
 
 const ReviewMetadata: React.FC<ReviewMetadataProps> = ({ author, date }) => {
