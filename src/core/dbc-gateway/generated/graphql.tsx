@@ -1092,7 +1092,11 @@ export type GetMaterialQuery = {
     workId: string;
     abstract?: Array<string> | null;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
-    mainLanguages: Array<{ __typename?: "Language"; display: string }>;
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -1454,7 +1458,11 @@ export type WorkMediumFragment = {
   workId: string;
   abstract?: Array<string> | null;
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
-  mainLanguages: Array<{ __typename?: "Language"; display: string }>;
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
   subjects: {
     __typename?: "SubjectContainer";
     all: Array<
@@ -1640,6 +1648,7 @@ export const WorkMediumFragmentDoc = `
   }
   mainLanguages {
     display
+    isoCode
   }
   subjects {
     all {
