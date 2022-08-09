@@ -17,6 +17,16 @@ interface MaterialEntryTextProps {
   detailsOfTheMaterialText: string;
   reserveText: string;
   editionsText: string;
+  detailsText: string;
+  typeText: string;
+  languageText: string;
+  contributorsText: string;
+  originalTitleText: string;
+  isbnText: string;
+  editionText: string;
+  scopeText: string;
+  publisherText: string;
+  audienceText: string;
 }
 
 export interface MaterialEntryProps extends MaterialEntryTextProps {

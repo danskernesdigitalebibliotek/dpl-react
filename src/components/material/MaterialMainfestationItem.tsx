@@ -51,18 +51,24 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   );
 
   const listDescriptionData = {
-    Type: { value: materialTypes?.[0]?.specific, type: "standard" },
-    Sprog: { value: languages?.main?.[0].display, type: "standard" },
-    Bidragsydere: { value: allContributors, type: "link" },
-    Originaltitel: { value: titles?.original, type: "standard" },
-    ISBN: { value: identifiers?.[0].value, type: "standard" },
-    Udgave: { value: edition?.summary, type: "standard" },
-    Omfang: {
+    [t("typeText")]: { value: materialTypes?.[0]?.specific, type: "standard" },
+    [t("languageText")]: {
+      value: languages?.main?.[0].display,
+      type: "standard"
+    },
+    [t("contributorsText")]: { value: allContributors, type: "link" },
+    [t("originalTitleText")]: { value: titles?.original, type: "standard" },
+    [t("isbnText")]: { value: identifiers?.[0].value, type: "standard" },
+    [t("editionText")]: { value: edition?.summary, type: "standard" },
+    [t("scopeText")]: {
       value: physicalDescriptions[0].numberOfPages,
       type: "standard"
     },
-    Forlag: { value: hostPublication?.publisher, type: "standard" },
-    Målgruppe: { value: audience?.generalAudience, type: "standard" }
+    [t("publisherText")]: {
+      value: hostPublication?.publisher,
+      type: "standard"
+    },
+    [t("audienceText")]: { value: audience?.generalAudience, type: "standard" }
   };
 
   return (
