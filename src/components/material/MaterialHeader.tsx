@@ -25,7 +25,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     titles: { full: fullTitle },
     creators,
-    manifestations
+    manifestations,
+    mainLanguages
   }
 }) => {
   const t = useText();
@@ -37,6 +38,14 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   const author = creatorsText || "[Creators are missing]";
 
+  const containsDanish = mainLanguages.some((language) =>
+    language.display.toLowerCase().includes("dansk")
+  );
+
+  const title = containsDanish
+    ? fullTitle
+    : `${fullTitle} (${mainLanguages[0].display})`;
+
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -44,7 +53,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       </div>
       <div className="material-header__content">
         <ButtonFavourite materialId={pid} />
-        <MaterialHeaderText title={String(fullTitle)} author={author} />
+        <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels manifestations={manifestations} />
         </div>
