@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { LinkNoStyle } from "../atoms/link-no-style";
 
 export interface ReviewMetadataProps {
   author?: string | null;
@@ -29,9 +30,9 @@ const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
 
   if (link) {
     return (
-      <a href={link} className="link-tag text-small-caption mb-8">
+      <LinkNoStyle href={link} className="link-tag text-small-caption mb-8">
         {metaDataText(author, date)}
-      </a>
+      </LinkNoStyle>
     );
   }
 
