@@ -1,7 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { useText } from "../../core/utils/text";
-import { generateItemId } from "../autosuggest-text/autosuggest-text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
 import { creatorsToString } from "../../core/utils/helpers";
