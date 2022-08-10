@@ -19,7 +19,6 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   workId
 }) => {
   const { materialUrl } = useUrls();
-  console.log(getCurrentLocation());
 
   return (
     <>
