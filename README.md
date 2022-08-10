@@ -344,7 +344,7 @@ __Cowabunga!__ You now got styling in your application
 
 If the component is simple enough to be a primitive you would use in multiple
 occasions it's called an 'atom'. Such as a button or a link. If it's more
-specific that that and to be used across apps we just call it a component. An
+specific than that and to be used across apps we just call it a component. An
 example would be some type of media presented alongside a header and some text.
 
 The process when creating an atom or a component is more or less similar, but

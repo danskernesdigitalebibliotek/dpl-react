@@ -27,7 +27,7 @@ choice is based on multiple factors:
    [Drupal has adopted the Airbnb JavaScript Style Guide](https://www.drupal.org/node/2873849)
    so this choice should ensure consistency between the two projects.
 2. Airbnb's standard is one of the best known and most used in the JavaScript
-   ccoding standard landscape.
+   coding standard landscape.
 3. Airbnb’s standard is both comprehensive and well documented.
 4. Airbnb’s standards cover both JavaScript in general React/JSX specifically.
    This avoids potential conflicts between multiple standards.
