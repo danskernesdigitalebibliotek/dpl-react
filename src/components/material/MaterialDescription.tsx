@@ -6,14 +6,10 @@ import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
-  searchUrl: string;
   work: WorkMediumFragment;
 }
 
-const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
-  searchUrl,
-  work
-}) => {
+const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const t = useText();
   const inSeries = work.series;
   const seriesMembersList = work.seriesMembers.map(
@@ -47,21 +43,18 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
           <HorizontalTermLine
             title={t("inSameSeriesText")}
             linkList={seriesMembersList}
-            searchUrl={searchUrl}
           />
         )}
         {subjectsList && (
           <HorizontalTermLine
             title={t("identifierText")}
             linkList={subjectsList}
-            searchUrl={searchUrl}
           />
         )}
         {fictionNonfiction && (
           <HorizontalTermLine
             title={t("fictionNonfictionText")}
             linkList={[fictionNonfiction.display]}
-            searchUrl={searchUrl}
           />
         )}
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
-import { getCoverTint } from "../../core/utils/helpers";
+import { getCoverTint } from "../../core/utils/helpers/general";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {

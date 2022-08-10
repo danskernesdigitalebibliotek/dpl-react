@@ -1,18 +1,21 @@
 import React from "react";
+import { appendQueryParametersToPath } from "../../core/utils/helpers/url";
+import { useUrls } from "../../core/utils/url";
+import { Link } from "../atoms/link";
 
 export interface HorizontalTermLineProps {
   title: string;
   subTitle?: string;
   linkList: string[];
-  searchUrl?: string;
 }
 
 const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   title,
   subTitle,
-  linkList,
-  searchUrl
+  linkList
 }) => {
+  const { searchUrl } = useUrls();
+
   return (
     <div className="text-small-caption horizontal-term-line">
       <p className="text-label-bold">
@@ -22,12 +25,16 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
         )}
       </p>
 
-      {linkList.map((identifier) => {
+      {linkList.map((term) => {
+        const termUrl = appendQueryParametersToPath(searchUrl, {
+          q: term
+        });
+
         return (
-          <span key={identifier}>
-            <a href={`${searchUrl}&args=q:${identifier}`} className="link-tag">
-              {identifier}
-            </a>
+          <span key={term}>
+            <Link href={termUrl} className="link-tag">
+              {term}
+            </Link>
           </span>
         );
       })}

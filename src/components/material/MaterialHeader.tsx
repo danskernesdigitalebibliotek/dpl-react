@@ -4,9 +4,9 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators
-} from "../../core/utils/helpers";
+} from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { Pid } from "../../core/utils/types/ids";
+import { Pid, WorkId } from "../../core/utils/types/ids";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite from "../button-favourite/button-favourite";
 import ButtonLargeFilled from "../Buttons/ButtonLargeFilled";
@@ -23,6 +23,7 @@ interface MaterialHeaderProps {
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   pid,
   work: {
+    workId,
     titles: { full: fullTitle },
     creators,
     manifestations,
@@ -57,7 +58,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <ButtonFavourite materialId={pid} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
-          <AvailabiltityLabels manifestations={manifestations} />
+          <AvailabiltityLabels
+            workId={workId as WorkId}
+            manifestations={manifestations}
+          />
         </div>
 
         {/* Check and chow if data has PeriodikumSelect  */}

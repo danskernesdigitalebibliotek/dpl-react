@@ -1,6 +1,7 @@
 import * as React from "react";
-import { getParams, getUrlQueryParam } from "../../core/utils/helpers";
+import { getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
+import { withUrl } from "../../core/utils/url";
 import { getPageSize } from "./helpers";
 import SearchResult from "./search-result";
 
@@ -15,7 +16,14 @@ interface SearchResultEntryTextProps {
   inSeriesText: string;
 }
 
-export interface SearchResultEntryProps extends SearchResultEntryTextProps {
+interface SearchResultEntryUrlProps {
+  searchUrl: string;
+  materialUrl: string;
+}
+
+export interface SearchResultEntryProps
+  extends SearchResultEntryUrlProps,
+    SearchResultEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
@@ -44,4 +52,4 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withText(SearchResultEntry);
+export default withUrl(withText(SearchResultEntry));

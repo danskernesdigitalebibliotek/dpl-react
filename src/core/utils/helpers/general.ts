@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
-import { CoverProps } from "../../components/cover/cover";
-import configuration, { getConf } from "../configuration";
-import { UseTextFunction } from "./text";
+import { CoverProps } from "../../../components/cover/cover";
+import configuration, { getConf } from "../../configuration";
 import {
-  WorkSmallFragment,
-  ManifestationsSimpleFragment
-} from "../dbc-gateway/generated/graphql";
-import { FaustId, Pid } from "./types/ids";
+  ManifestationsSimpleFragment,
+  WorkSmallFragment
+} from "../../dbc-gateway/generated/graphql";
+import { UseTextFunction } from "../text";
+import { FaustId, Pid } from "../types/ids";
+import { getUrlQueryParam } from "./url";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
@@ -26,24 +27,27 @@ export const filterCreators = (
   creators: WorkSmallFragment["creators"],
   filterBy: ["Person" | "Corporation"]
 ) =>
-  creators.filter((creator) => {
+  creators.filter((creator: WorkSmallFragment["creators"][0]) => {
     // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
 export const flattenCreators = (creators: WorkSmallFragment["creators"]) =>
-  creators.map((creator) => {
+  creators.map((creator: WorkSmallFragment["creators"][0]) => {
     return creator.display;
   });
 
 const getCreatorsFromManifestations = (
   manifestations: ManifestationsSimpleFragment
 ) => {
-  const creators = manifestations.all.reduce<string[]>((acc, curr) => {
-    return [...acc, ...flattenCreators(curr.creators)];
-  }, [] as string[]);
+  const creators = manifestations.all.reduce<string[]>(
+    (acc: string[], curr) => {
+      return [...acc, ...flattenCreators(curr.creators)];
+    },
+    [] as string[]
+  );
 
-  return Array.from(new Set(creators));
+  return Array.from(new Set(creators)) as string[];
 };
 
 export const creatorsToString = (creators: string[], t: UseTextFunction) => {
@@ -96,19 +100,12 @@ export const getCoverTint = (index: number) => {
   return undefined;
 };
 
-//
-
 export const usePrevious = <Type>(value: Type) => {
   const ref = useRef<Type>();
   useEffect(() => {
     ref.current = value;
   }, [value]);
   return ref.current;
-};
-
-export const getUrlQueryParam = (param: string): null | string => {
-  const queryParams = new URLSearchParams(window.location.search);
-  return queryParams.get(param);
 };
 
 export const convertPostIdToFaustId = (postId: Pid): FaustId | null => {
@@ -126,12 +123,4 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   });
 
   return params;
-};
-
-export const dateMatchesUsFormat = (date: string | null) => {
-  // regex for finding date string from modal query param
-  const regex = /^\d{4}-\d{2}-\d{2}$/;
-  const dateFound = date ? date.toString().match(regex) : null;
-  const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
-  return returnValue;
 };

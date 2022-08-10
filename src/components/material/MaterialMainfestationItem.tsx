@@ -8,7 +8,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators
-} from "../../core/utils/helpers";
+} from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
 import ListDescription, {
   ListData

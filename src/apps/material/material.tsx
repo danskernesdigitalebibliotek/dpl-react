@@ -22,14 +22,13 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators
-} from "../../core/utils/helpers";
+} from "../../core/utils/helpers/general";
 
 export interface MaterialProps {
   pid: Pid;
-  searchUrl: string;
 }
 
-const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
+const Material: React.FC<MaterialProps> = ({ pid }) => {
   const t = useText();
   const { data, isLoading } = useGetMaterialQuery({
     pid
@@ -88,7 +87,7 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
   return (
     <main className="material-page">
       <MaterialHeader pid={pid} work={data.work} />
-      <MaterialDescription pid={pid} work={data.work} searchUrl={searchUrl} />
+      <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
         mainIconPath={VariousIcon}
         title={`${t("editionsText")} (${
