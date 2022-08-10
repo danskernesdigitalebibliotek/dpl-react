@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react)
 
 A set of React components and applications providing self-service features for
-Danish public libraries.
+Danish public libraries implemented in TypeScript.
 
 <!-- markdownlint-disable -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -17,7 +17,7 @@ Danish public libraries.
     - [Access tokens](#access-tokens)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
-    - [JavaScript + JSX](#javascript--jsx)
+    - [TypeScript + TSX](#typescript--tsx)
       - [Named functions Vs. Anonymous arrow functions](#named-functions-vs-anonymous-arrow-functions)
   - [Create a new application](#create-a-new-application)
     - [Application state-machine](#application-state-machine)
@@ -84,7 +84,7 @@ When storybook is started, you can access it at: [dpl-react.docker](http://dpl-r
 
 ### Standard and style
 
-#### JavaScript + JSX
+#### TypeScript + TSX
 
 For static code analysis we make use of the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 and for formatting we make use of [Prettier](https://github.com/prettier/prettier)

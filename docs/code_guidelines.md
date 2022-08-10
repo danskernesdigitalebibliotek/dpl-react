@@ -5,7 +5,7 @@ components for the Danish Public Libraries CMS project. The guidelines should
 help achieve:
 
 * A stable, secure and high quality foundation for building and maintaining
-  client-side JavaScript components for library websites
+  client-side TypeScript components for library websites
 * Consistency across multiple developers participating in the project
 * The best possible conditions for sharing components between library websites
 * The best possible conditions for the individual library website to customize
@@ -19,8 +19,10 @@ indicates that the guidelines should be updated to ensure transparency.
 ## Coding standards
 
 The project follows the [Airbnb JavaScript Style Guide](https://airbnb.io/javascript/)
-and [Airbnb React/JSX Style Guide](https://airbnb.io/javascript/react/). This
-choice is based on multiple factors:
+and [Airbnb React/JSX Style Guide](https://airbnb.io/javascript/react/). They
+have been [extended to support TypeScript](https://github.com/iamturns/eslint-config-airbnb-typescript).
+
+This choice is based on multiple factors:
 
 1. Historically the community of developers working with the Danish Public
    Libraries [has ties to the Drupal project](https://github.com/ding2/ding2/).
@@ -52,7 +54,7 @@ be especially aware of.
     * Firefox
     * Samsung Browser
 
-### JavaScript
+### TypeScript
 
 #### Named functions vs. anonymous arrow functions
 
