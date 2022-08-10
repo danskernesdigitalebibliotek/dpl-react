@@ -11,7 +11,7 @@ help achieve:
 * The best possible conditions for the individual library website to customize
   configuration and appearance
 
-Contributions to the DDB React project will be reviewed by members of the Core
+Contributions to the DPL React project will be reviewed by members of the Core
 team. These guidelines should inform contributors about what to expect in such a
 review. If a review comment cannot be traced back to one of these guidelines it
 indicates that the guidelines should be updated to ensure transparency.
@@ -22,8 +22,8 @@ The project follows the [Airbnb JavaScript Style Guide](https://airbnb.io/javasc
 and [Airbnb React/JSX Style Guide](https://airbnb.io/javascript/react/). This
 choice is based on multiple factors:
 
-1. Historically the community of developers working with DDB
-   [has ties to the Drupal project](https://github.com/ding2/ding2/).
+1. Historically the community of developers working with the Danish Public
+   Libraries [has ties to the Drupal project](https://github.com/ding2/ding2/).
    [Drupal has adopted the Airbnb JavaScript Style Guide](https://www.drupal.org/node/2873849)
    so this choice should ensure consistency between the two projects.
 2. Airbnb's standard is one of the best known and most used in the JavaScript
