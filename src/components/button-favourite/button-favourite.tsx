@@ -6,14 +6,15 @@ import {
   useHasItem
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
+import { Pid, WorkId } from "../../core/utils/types/ids";
 
 export interface ButtonFavouriteProps {
-  materialId: string;
+  id: WorkId | Pid;
 }
 
 // TODO We have to check if user is login and redirect if not
 
-const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
+const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ id }) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
 
@@ -23,7 +24,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
     mutate(
       {
         listId: "default",
-        itemId: materialId
+        itemId: id
       },
       {
         onSuccess: () => {
@@ -37,22 +38,22 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ materialId }) => {
         }
       }
     );
-  }, [materialId, mutate]);
+  }, [id, mutate]);
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (fillState) {
-        removeItem("default", materialId);
+        removeItem("default", id);
         setFillState(false);
       } else {
-        addItem("default", materialId);
+        addItem("default", id);
         setFillState(true);
       }
       // Prevent event from bubbling up. If other components includes the favourite button
       // this wont interfere with their click handler.
       e.stopPropagation();
     },
-    [fillState, materialId]
+    [fillState, id]
   );
 
   return (

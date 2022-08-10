@@ -80,7 +80,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
-          <ButtonFavourite materialId={workId} />
+          <ButtonFavourite id={workId as WorkId} />
           {numberInSeries && seriesTitle && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
