@@ -1,6 +1,7 @@
 import * as React from "react";
 import { withText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
+import { withUrl } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
@@ -34,14 +35,19 @@ interface MaterialEntryTextProps {
   audienceText: string;
   fictionNonfictionText: string;
 }
-
-export interface MaterialEntryProps extends MaterialEntryTextProps {
-  pid: Pid;
+interface MaterialEntryUrlProps {
   searchUrl: string;
+  materialUrl: string;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid, searchUrl }) => {
-  return <Material pid={pid} searchUrl={searchUrl} />;
+export interface MaterialEntryProps
+  extends MaterialEntryUrlProps,
+    MaterialEntryTextProps {
+  pid: Pid;
+}
+
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
+  return <Material pid={pid} />;
 };
 
-export default withText(MaterialEntry);
+export default withUrl(withText(MaterialEntry));

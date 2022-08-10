@@ -3,7 +3,7 @@ import React from "react";
 import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
-import { creatorsToString } from "../../core/utils/helpers";
+import { creatorsToString } from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
 
 export interface AutosuggestMaterialProps {

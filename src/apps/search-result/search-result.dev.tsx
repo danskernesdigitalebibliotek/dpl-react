@@ -23,6 +23,16 @@ export default {
       defaultValue: 20,
       control: { type: "number" }
     },
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "string" }
+    },
+    materialUrl: {
+      name: "Path to the material page",
+      defaultValue: "/work",
+      control: { type: "string" }
+    },
     etAlText: {
       name: "Et al. Text",
       defaultValue: "et al.",

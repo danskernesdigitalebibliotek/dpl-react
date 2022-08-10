@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
-import { Pid } from "../../../core/utils/types/ids";
+import { Pid, WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
@@ -13,16 +13,17 @@ import {
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
-} from "../../../core/utils/helpers";
+} from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
+import { useUrls } from "../../../core/utils/url";
+import { redirect as redirectTo } from "../../../core/utils/helpers/url";
 
 export interface SearchResultListItemProps {
   item: WorkSmallFragment;
   coverTint: CoverProps["tint"];
 }
 
-// TODO: The material item link should point at something.
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   item: {
     titles: { full: fullTitle },
@@ -34,6 +35,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   coverTint
 }) => {
   const t = useText();
+  const { materialUrl } = useUrls();
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -41,10 +43,13 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const author = creatorsText || "[Creators are missing]";
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
+  const firstInSeries = series?.[0];
+  const { title: seriesTitle, numberInSeries } = firstInSeries;
+  const materialFullPath = `${materialUrl}/${workId}`;
 
   const handleClick = useCallback(() => {
-    // TODO: Redirect to material page.
-  }, []);
+    redirectTo(materialFullPath);
+  }, [materialFullPath]);
 
   return (
     // We know that is not following a11y recommendations to have an onclick handler
@@ -66,27 +71,26 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         <SearchResultListItemCover
           pid={manifestationPid as Pid}
           description={String(fullTitle)}
-          url="/"
+          url={materialFullPath}
           tint={coverTint}
         />
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
           <ButtonFavourite materialId={workId} />
-          {series && (
+          {numberInSeries && seriesTitle && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                series?.[0]?.numberInSeries?.number?.[0]
+                numberInSeries.number?.[0]
               }`}
               subTitle={t("inSeriesText")}
-              linkList={[series?.[0].title]}
+              linkList={[seriesTitle]}
             />
           )}
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
-          {/* TODO: Point link at material page url when ready */}
-          <Link href="/">{fullTitle}</Link>
+          <Link href={materialFullPath}>{fullTitle}</Link>
         </h2>
 
         {author && (
@@ -96,7 +100,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         )}
       </div>
       <div className="search-result-item__availability">
-        <AvailabiltityLabels manifestations={manifestations} />
+        <AvailabiltityLabels
+          workId={workId as WorkId}
+          manifestations={manifestations}
+        />
       </div>
       <Arrow />
     </article>
