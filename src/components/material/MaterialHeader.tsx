@@ -23,11 +23,11 @@ interface MaterialHeaderProps {
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   pid,
   work: {
-    workId,
     titles: { full: fullTitle },
     creators,
     manifestations,
-    mainLanguages
+    mainLanguages,
+    workId
   }
 }) => {
   const t = useText();
@@ -55,7 +55,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <Cover pid={pid} size="xlarge" animate={false} />
       </div>
       <div className="material-header__content">
-        <ButtonFavourite materialId={pid} />
+        <ButtonFavourite id={workId as WorkId} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels

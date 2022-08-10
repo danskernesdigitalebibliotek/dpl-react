@@ -9,9 +9,9 @@ export default {
   component: ButtonFavourite,
 
   argTypes: {
-    materialId: {
+    id: {
       control: "text",
-      defaultValue: "870970-basis:45234401"
+      defaultValue: "work-of:870970-basis:45234401"
     }
   }
 } as ComponentMeta<typeof ButtonFavourite>;
