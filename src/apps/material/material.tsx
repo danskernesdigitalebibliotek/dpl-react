@@ -1,12 +1,19 @@
 import React from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
+import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import MaterialHeader from "../../components/material/MaterialHeader";
-import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
+import {
+  ExternalReview,
+  InfomediaReview,
+  LibrariansReview,
+  useGetMaterialQuery
+} from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import Disclosure from "../../components/material/disclosures/disclosure";
+import { MaterialReviews } from "../../components/material/MaterialReviews";
+import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import ListDescription, {
   ListData
 } from "../../components/list-description/list-description";
@@ -108,6 +115,17 @@ const Material: React.FC<MaterialProps> = ({ pid, searchUrl }) => {
           data={listDescriptionData as ListData}
         />
       </Disclosure>
+      {data.work.reviews && data.work.reviews.length >= 1 && (
+        <Disclosure title="Anmeldelser" mainIconPath={CreateIcon}>
+          <MaterialReviews
+            listOfReviews={
+              data.work.reviews as Array<
+                LibrariansReview | ExternalReview | InfomediaReview
+              >
+            }
+          />
+        </Disclosure>
+      )}
     </main>
   );
 };

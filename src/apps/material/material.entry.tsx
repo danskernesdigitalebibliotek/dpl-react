@@ -14,6 +14,11 @@ interface MaterialEntryTextProps {
   inSeriesText: string;
   inSameSeriesText: string;
   numberDescriptionText: string;
+  loginToSeeReviewText: string;
+  cantViewReviewText: string;
+  ratingIsText: string;
+  outOfText: string;
+  heartsIconText: string;
   detailsOfTheMaterialText: string;
   reserveText: string;
   editionsText: string;
