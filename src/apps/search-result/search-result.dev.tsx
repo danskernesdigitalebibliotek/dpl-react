@@ -26,12 +26,12 @@ export default {
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",
-      control: { type: "string" }
+      control: { type: "text" }
     },
     materialUrl: {
       name: "Path to the material page",
       defaultValue: "/work/:workid",
-      control: { type: "string" }
+      control: { type: "text" }
     },
     etAlText: {
       name: "Et al. Text",
