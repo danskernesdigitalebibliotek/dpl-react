@@ -18,8 +18,8 @@ import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
-  constructMaterialPath,
-  redirect as redirectTo
+  constructMaterialUrl,
+  redirectTo
 } from "../../../core/utils/helpers/url";
 
 export interface SearchResultListItemProps {
@@ -48,11 +48,11 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const manifestationPid = getManifestationPid(manifestations);
   const firstInSeries = series?.[0];
   const { title: seriesTitle, numberInSeries } = firstInSeries;
-  const materialFullPath = constructMaterialPath(materialUrl, workId as WorkId);
+  const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
 
   const handleClick = useCallback(() => {
-    redirectTo(materialFullPath);
-  }, [materialFullPath]);
+    redirectTo(materialFullUrl);
+  }, [materialFullUrl]);
 
   return (
     // We know that is not following a11y recommendations to have an onclick handler
@@ -74,8 +74,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         <SearchResultListItemCover
           pid={manifestationPid as Pid}
           description={String(fullTitle)}
-          // TODO: Make component use URL object instead of string.
-          url={String(materialFullPath)}
+          url={materialFullUrl}
           tint={coverTint}
         />
       </div>
@@ -94,8 +93,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
-          {/* TODO: Make component use URL object instead of string. */}
-          <Link href={String(materialFullPath)}>{fullTitle}</Link>
+          <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
         {author && (

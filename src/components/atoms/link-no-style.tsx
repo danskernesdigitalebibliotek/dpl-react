@@ -2,21 +2,21 @@ import React from "react";
 import { Link } from "./link";
 
 export interface LinkNoStyleProps {
-  href: string;
+  url: URL;
   children: React.ReactNode;
   isNewTab?: boolean;
   className?: string;
 }
 
 export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
-  href,
+  url,
   children,
   isNewTab = false,
   className
 }) => {
   return (
     <Link
-      href={href}
+      href={url}
       isNewTab={isNewTab}
       className={`"hide-linkstyle" ${className}`}
     >

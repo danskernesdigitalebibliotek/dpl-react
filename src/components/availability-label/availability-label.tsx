@@ -8,14 +8,14 @@ import { LinkNoStyle } from "../atoms/link-no-style";
 export interface AvailabilityLabelProps {
   manifestText: string;
   selected?: boolean;
-  link: string | undefined;
+  url?: URL;
   faustIds: string[];
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
-  link,
+  url,
   faustIds
 }) => {
   const t = useText();
@@ -62,8 +62,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     </div>
   );
 
-  return link ? (
-    <LinkNoStyle href={link}>{availabilityLabel}</LinkNoStyle>
+  return url ? (
+    <LinkNoStyle url={url}>{availabilityLabel}</LinkNoStyle>
   ) : (
     availabilityLabel
   );

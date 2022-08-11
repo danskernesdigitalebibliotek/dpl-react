@@ -1,10 +1,7 @@
 import React from "react";
 import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
-import {
-  appendQueryParametersToUrl as addQueryParametersToPath,
-  constructMaterialPath
-} from "../../core/utils/helpers/url";
+import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
@@ -26,7 +23,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         const { pid, materialTypes } = manifestation;
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid as Pid);
-        const url = constructMaterialPath(materialUrl, workId, materialType);
+        const url = constructMaterialUrl(materialUrl, workId, materialType);
 
         if (!faustId) {
           return null;
@@ -36,7 +33,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         return (
           <AvailabilityLabel
             key={pid}
-            link={String(url)}
+            url={url}
             faustIds={[faustId]}
             manifestText={materialType}
           />
