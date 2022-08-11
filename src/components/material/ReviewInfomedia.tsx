@@ -59,7 +59,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
         <ReviewMetadata
           author={review.author}
           date={date}
-          link={review.origin}
+          url={new URL(review.origin)}
         />
       )}
     </li>
