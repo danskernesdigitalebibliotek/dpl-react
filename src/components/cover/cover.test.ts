@@ -79,7 +79,7 @@ describe("Cover", () => {
       ]
     });
     cy.visit("/iframe.html?args=url:%2F&id=atoms-cover--item&viewMode=story");
-    cy.get("a").should("have.attr", "href", "/");
+    cy.get("a").should("have.attr", "href", "http://localhost:57021/");
   });
 });
 
