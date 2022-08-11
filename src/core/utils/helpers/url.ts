@@ -4,8 +4,7 @@ export const getCurrentLocation = () => String(window.location);
 
 export const appendQueryParametersToUrl = (
   url: URL,
-  parameters: { [key: string]: string },
-  base?: string
+  parameters: { [key: string]: string }
 ) => {
   // We need to clone url in order not to manipulate the incoming object.
   const processedUrl = new URL(url);
