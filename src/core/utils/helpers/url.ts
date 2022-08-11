@@ -3,16 +3,15 @@ import { WorkId } from "../types/ids";
 export const getCurrentLocation = () => String(window.location);
 
 export const appendQueryParametersToUrl = (
-  path: URL,
+  url: URL,
   parameters: { [key: string]: string },
   base?: string
 ) => {
-  const location = new URL(path, base ?? getCurrentLocation());
   Object.keys(parameters).forEach((key) => {
-    location.searchParams.append(key, parameters[key]);
+    url.searchParams.append(key, parameters[key]);
   });
 
-  return location;
+  return url;
 };
 
 export const getUrlQueryParam = (param: string): null | string => {
@@ -53,30 +52,26 @@ export const processUrlPlaceholders = (
   return processedUrl;
 };
 
-export const constructMaterialPath = (
-  materialUrl: URL,
+export const constructMaterialUrl = (
+  url: URL,
   workId: WorkId,
   type?: string
 ) => {
+  const materialUrl = url;
   // Replace placeholders with values.
-  const path = processUrlPlaceholders(String(materialUrl), [
+  materialUrl.pathname = processUrlPlaceholders(url.pathname, [
     [":workid", workId]
   ]);
 
   // Append type if specified.
   if (type) {
-    return new URL(
-      appendQueryParametersToUrl(new URL(path), {
-        type
-      }),
-      getCurrentLocation()
-    );
+    return appendQueryParametersToUrl(materialUrl, { type });
   }
 
-  return new URL(path, getCurrentLocation());
+  return materialUrl;
 };
 
-export const constructSearchPath = (searchUrl: URL, q: string) =>
+export const constructSearchUrl = (searchUrl: URL, q: string) =>
   appendQueryParametersToUrl(searchUrl, {
     q
   });
