@@ -16,6 +16,7 @@ import ListDescription, {
 import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
 import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
+import { getCurrentLocation } from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFragment["all"][0];
@@ -80,7 +81,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         {faustId && (
           <AvailabilityLabel
             manifestText={materialTypes[0]?.specific}
-            link="/" // TODO the correct link must be added
+            url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
             faustIds={[faustId]}
           />
         )}

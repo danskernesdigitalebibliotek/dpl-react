@@ -7,11 +7,13 @@ export const appendQueryParametersToUrl = (
   parameters: { [key: string]: string },
   base?: string
 ) => {
+  // We need to clone url in order not to manipulate the incoming object.
+  const processedUrl = new URL(url);
   Object.keys(parameters).forEach((key) => {
-    url.searchParams.append(key, parameters[key]);
+    processedUrl.searchParams.append(key, parameters[key]);
   });
 
-  return url;
+  return processedUrl;
 };
 
 export const getUrlQueryParam = (param: string): null | string => {
@@ -19,7 +21,7 @@ export const getUrlQueryParam = (param: string): null | string => {
   return queryParams.get(param);
 };
 
-export const redirect = (url: URL): void => {
+export const redirectTo = (url: URL): void => {
   window.location.replace(url);
 };
 

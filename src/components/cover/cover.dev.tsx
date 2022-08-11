@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cover } from "./cover";
+import { getCurrentLocation } from "../../core/utils/helpers/url";
 
 export default {
   title: "Atoms / Cover",
@@ -24,7 +25,7 @@ export default {
     },
     url: {
       name: "URL",
-      control: { type: "text" }
+      control: { type: "string" }
     },
     description: {
       name: "Description",
@@ -36,7 +37,7 @@ export default {
     animate: true,
     tint: "120",
     pid: "870970-basis:45234401",
-    url: "/",
+    url: new URL("/", getCurrentLocation()),
     description: "description"
   }
 } as ComponentMeta<typeof Cover>;

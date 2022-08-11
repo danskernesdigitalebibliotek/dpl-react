@@ -10,7 +10,7 @@ export type CoverProps = {
   tint?: "20" | "40" | "80" | "100" | "120";
   pid: Pid;
   description?: string;
-  url?: string;
+  url?: URL;
 };
 
 export const Cover = ({
@@ -61,7 +61,7 @@ export const Cover = ({
        * Only render the cover as a link if we have both an url and a description.
        */}
       {url && description ? (
-        <LinkNoStyle href={url} className={classes.wrapper}>
+        <LinkNoStyle url={url} className={classes.wrapper}>
           {image}
         </LinkNoStyle>
       ) : (
