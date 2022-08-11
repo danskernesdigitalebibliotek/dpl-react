@@ -175,27 +175,21 @@ describe("Search header app", () => {
   });
 
   it("Allows use of arrow keys to navigate autosuggest", () => {
-    cy.get(".header__menu-search-input")
-      .focus()
-      .type("harry")
-      .type("{downArrow}");
+    cy.get(".header__menu-search-input").focus().type("harry");
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(1000);
+    cy.get(".header__menu-search-input").focus().type("{downArrow}");
     cy.get("#downshift-0-item-0").should("have.attr", "aria-selected", "true");
   });
 
   it("Matches text in the search field with highlighted item", () => {
-    cy.get(".header__menu-search-input")
-      .focus()
-      .type("har")
-      .type("{downArrow}");
+    cy.get(".header__menu-search-input").focus().type("har");
     // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(1000);
-    cy.get(".header__menu-search-input").should(
-      "have.attr",
-      "value",
-      "Harry Potter"
-    );
+    cy.get(".header__menu-search-input")
+      .focus()
+      .type("{downArrow}")
+      .should("have.attr", "value", "Harry Potter");
   });
 
   it("Shows both parts of the autosuggest", () => {
