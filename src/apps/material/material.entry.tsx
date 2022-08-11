@@ -1,7 +1,7 @@
 import * as React from "react";
 import { withText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
-import { withUrl } from "../../core/utils/url";
+import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
@@ -50,4 +50,4 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
   return <Material pid={pid} />;
 };
 
-export default withUrl(withText(MaterialEntry));
+export default withUrls(withText(MaterialEntry));
