@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { getCurrentLocation } from "../../core/utils/helpers/url";
 import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";

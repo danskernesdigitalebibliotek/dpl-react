@@ -6,7 +6,7 @@ import { LinkNoStyle } from "../atoms/link-no-style";
 export interface ReviewMetadataProps {
   author?: string | null;
   date?: Date | null;
-  link?: string;
+  url?: URL;
 }
 
 export const usDateStringToDateObj = (date: string): Date => {
@@ -17,7 +17,7 @@ export const usDateStringToDateObj = (date: string): Date => {
 const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
   author,
   date,
-  link
+  url
 }) => {
   const metaDataText = (
     returnAuthor: string | null | undefined,
@@ -28,9 +28,9 @@ const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
     }`;
   };
 
-  if (link) {
+  if (url) {
     return (
-      <LinkNoStyle href={link} className="link-tag text-small-caption mb-8">
+      <LinkNoStyle url={url} className="link-tag text-small-caption mb-8">
         {metaDataText(author, date)}
       </LinkNoStyle>
     );
