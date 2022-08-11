@@ -1,5 +1,5 @@
 import React from "react";
-import { appendQueryParametersToPath } from "../../core/utils/helpers/url";
+import { constructSearchPath } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
 import { Link } from "../atoms/link";
 
@@ -26,13 +26,12 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
       </p>
 
       {linkList.map((term) => {
-        const termUrl = appendQueryParametersToPath(searchUrl, {
-          q: term
-        });
+        const termUrl = constructSearchPath(searchUrl, term);
 
         return (
           <span key={term}>
-            <Link href={termUrl} className="link-tag">
+            {/* TODO: Make component use URL object instead of string. */}
+            <Link href={String(termUrl)} className="link-tag">
               {term}
             </Link>
           </span>

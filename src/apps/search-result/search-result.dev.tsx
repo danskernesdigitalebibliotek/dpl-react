@@ -30,7 +30,7 @@ export default {
     },
     materialUrl: {
       name: "Path to the material page",
-      defaultValue: "/work",
+      defaultValue: "/work/:workid",
       control: { type: "string" }
     },
     etAlText: {

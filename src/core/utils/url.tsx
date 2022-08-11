@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { RootState, store, useSelector } from "../store";
 import { addUrlEntries } from "../url.slice";
+import { turnUrlStringsIntoObjects } from "./helpers/url";
 
 export const useUrls = () => {
   const { data } = useSelector((state: RootState) => state.url);
-  return data;
+  return useMemo(() => turnUrlStringsIntoObjects(data), [data]);
 };
 
-export const withUrl = <T,>(Component: React.ComponentType<T>) => {
+export const withUrls = <T,>(Component: React.ComponentType<T>) => {
   return (props: T) => {
     const [propsWithoutUrl, setPropsWithoutUrl] = useState({});
 
     useEffect(() => {
       const pattern = /.*Url$/g;
-      // Match all props that ends with "Text".
+      // Match all props that ends with "Url".
       const urlEntries = Object.fromEntries(
         Object.entries(props).filter(([prop]) => {
           return String(prop).match(pattern);
         })
       );
-      // and match all props that do NOT end with "Text".
+      // and match all props that do NOT end with "Url".
       const nonUrlEntries = Object.fromEntries(
         Object.entries(props).filter(([prop]) => {
           return !String(prop).match(pattern);
         })
       );
-      // If we do have props that are not text props
+      // If we do have props that are not url props
       // make sure they are set to state so we can use them in the returned component.
       if (Object.keys(nonUrlEntries).length) {
         setPropsWithoutUrl(nonUrlEntries);
       }
-      // Put found texts in redux store.
+      // Put found urls in redux store.
       store.dispatch(
         addUrlEntries({
           entries: urlEntries

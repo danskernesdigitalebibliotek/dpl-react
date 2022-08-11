@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
-import { withUrl } from "../../core/utils/url";
+import { withUrls } from "../../core/utils/url";
 import { getPageSize } from "./helpers";
 import SearchResult from "./search-result";
 
@@ -52,4 +52,4 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withUrl(withText(SearchResultEntry));
+export default withUrls(withText(SearchResultEntry));
