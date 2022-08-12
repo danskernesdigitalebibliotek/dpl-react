@@ -1,0 +1,2666 @@
+{
+  "data": {
+    "search": {
+      "hitcount": 9486,
+      "works": [
+        {
+          "workId": "work-of:870970-basis:22629344",
+          "titles": {
+            "full": [
+              "Dummy Some Title: Full"
+            ],
+            "original": [
+              "Dummy Some Title Origintal"
+            ]
+          },
+          "abstract": [
+            "Dummy The abstract"
+          ],
+          "creators": [
+            {
+              "display": "Dummy Jens Jensen",
+              "__typename": "Person"
+            },
+            {
+              "display": "Dummy Some Corporation",
+              "__typename": "Corporation"
+            }
+          ],
+          "series": [
+            {
+              "title": "Dummy Some Series",
+              "isPopular": true,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [
+                  1
+                ]
+              },
+              "readThisFirst": true,
+              "readThisWhenever": false
+            },
+            {
+              "title": "Dummy Some Series",
+              "isPopular": false,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [
+                  1
+                ]
+              },
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "seriesMembers": [
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            }
+          ],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:22629344",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:22252852",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:22441671",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23148048",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:27638708",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:38289977",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51989252",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:54871910",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:22513354",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:24168638",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23108283",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23195151",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:24343081",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23862476",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26178533",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23819104",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25194853",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:46018869",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:29317038",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51980247",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:25807995",
+          "titles": {
+            "full": [
+              "Dummy Some Title: Full"
+            ],
+            "original": [
+              "Dummy Some Title Origintal"
+            ]
+          },
+          "abstract": [
+            "Dummy The abstract"
+          ],
+          "creators": [
+            {
+              "display": "Dummy Jens Jensen",
+              "__typename": "Person"
+            },
+            {
+              "display": "Dummy Some Corporation",
+              "__typename": "Corporation"
+            }
+          ],
+          "series": [
+            {
+              "title": "Dummy Some Series",
+              "isPopular": true,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [
+                  1
+                ]
+              },
+              "readThisFirst": true,
+              "readThisWhenever": false
+            },
+            {
+              "title": "Dummy Some Series",
+              "isPopular": false,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [
+                  1
+                ]
+              },
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "seriesMembers": [
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            },
+            {
+              "titles": {
+                "main": [
+                  "Dummy Some Title"
+                ],
+                "full": [
+                  "Dummy Some Title: Full"
+                ],
+                "original": [
+                  "Dummy Some Title Origintal"
+                ]
+              }
+            }
+          ],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:25807995",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25998960",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26056829",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26137276",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:27639674",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:54872003",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25771893",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26068053",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26285240",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:29317100",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51980212",
+                "titles": {
+                  "main": [
+                    "Dummy Some Title"
+                  ],
+                  "original": [
+                    "Dummy Some Title: Original"
+                  ]
+                },
+                "publicationYear": {
+                  "display": "Dummy 1839"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                },
+                "audience": {
+                  "generalAudience": [
+                    "Dummy general audience"
+                  ]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
