@@ -11,7 +11,7 @@ describe("Search header app", () => {
                 term: "Harry Potter og De Vises Sten",
                 work: {
                   workId: "work-of:870970-basis:22629344",
-                  titles: { main: ["Dummy Some Title"] },
+                  titles: { main: ["Harry Potter og De Vises Sten"] },
                   creators: [
                     { display: "Dummy Jens Jensen" },
                     { display: "Dummy Some Corporation" }
@@ -194,12 +194,10 @@ describe("Search header app", () => {
 
   it("Shows both parts of the autosuggest", () => {
     cy.get(".header__menu-search-input").focus().type("har");
-    cy.get(".autosuggest>li:first-of-type>ul")
-      .children()
-      .should("have.length", 7);
-    cy.get(".autosuggest>li:nth-of-type(3)>ul")
-      .children()
-      .should("have.length", 3);
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000);
+    cy.contains("Harry Potter (emne)");
+    cy.contains("Harry Potter og De Vises Sten");
   });
 
   it("Shows cover pictures for the material suggestions", () => {
