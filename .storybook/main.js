@@ -1,8 +1,7 @@
 module.exports = {
   stories: ["../src/**/*.dev.@(jsx|tsx)"],
   addons: [
-    "@storybook/addon-docs",
-    "@storybook/addon-controls",
+    "@storybook/addon-essentials",
     "@storybook/addon-queryparams",
     {
       name: "@storybook/preset-typescript",

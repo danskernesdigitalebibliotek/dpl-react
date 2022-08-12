@@ -57,8 +57,7 @@
     "@graphql-codegen/typescript-react-query": "^3.5.12",
     "@graphql-typed-document-node/core": "^3.1.1",
     "@namics/stylelint-bem": "^7.0.0",
-    "@storybook/addon-controls": "^6.5.0-beta.7",
-    "@storybook/addon-docs": "^6.4.22",
+    "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-queryparams": "^6.2.9",
     "@storybook/builder-webpack5": "^6.5.0-beta.7",
@@ -129,7 +128,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-   "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-8f548e9376ece739167bb871359d5cc1b039f8d6",
+    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-8f548e9376ece739167bb871359d5cc1b039f8d6",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
