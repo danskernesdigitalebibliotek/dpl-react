@@ -78,6 +78,10 @@ describe("Search Result", () => {
   });
 
   beforeEach(() => {
+    // For the services needing a library token.
+    cy.window().then(() => {
+      sessionStorage.setItem("library", "9999999999999");
+    });
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
       .then((result) => {
