@@ -161,7 +161,7 @@ const LoanList: React.FC = () => {
               }
             )}
           {loans && loans.length === 0 && (
-            <div className="dpl-list-empty">
+            <div className="dpl-list-empty mt-16">
               {t("LoanListEmptyPhysicalLoansText")}
             </div>
           )}
