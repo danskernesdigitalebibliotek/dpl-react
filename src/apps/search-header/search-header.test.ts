@@ -1,162 +1,31 @@
+const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+
 describe("Search header app", () => {
   beforeEach(() => {
-    cy.intercept("POST", "**/opac/graphql", {
-      statusCode: 200,
-      body: {
-        data: {
-          suggest: {
-            result: [
-              {
-                type: "TITLE",
-                term: "Harry Potter og De Vises Sten",
-                work: {
-                  workId: "work-of:870970-basis:22629344",
-                  titles: { main: ["Harry Potter og De Vises Sten"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:22629344" } }
-                }
-              },
-              {
-                type: "SUBJECT",
-                term: "Harry Potter",
-                work: {
-                  workId: "work-of:870970-basis:22677780",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:22677780" } }
-                }
-              },
-              {
-                type: "SUBJECT",
-                term: "Harry Hole",
-                work: {
-                  workId: "work-of:870970-basis:53045650",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:53045650" } }
-                }
-              },
-              {
-                type: "CREATOR",
-                term: "Hartmut Rosa",
-                work: {
-                  workId: "work-of:870970-basis:50999335",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:50999335" } }
-                }
-              },
-              {
-                type: "CREATOR",
-                term: "Susan Hart (f. 1956)",
-                work: {
-                  workId: "work-of:870970-basis:28028881",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:28028881" } }
-                }
-              },
-              {
-                type: "TITLE",
-                term: "Harry Potter og fangen fra Azkaban",
-                work: {
-                  workId: "work-of:870970-basis:22995154",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:22995154" } }
-                }
-              },
-              {
-                type: "SUBJECT",
-                term: "Harry Dresden",
-                work: {
-                  workId: "work-of:870970-basis:53182623",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:53182623" } }
-                }
-              },
-              {
-                type: "TITLE",
-                term: "Harry Potter og Fønixordenen",
-                work: {
-                  workId: "work-of:870970-basis:25245784",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:25245784" } }
-                }
-              },
-              {
-                type: "CREATOR",
-                term: "Yuval Noah Harari",
-                work: {
-                  workId: "work-of:870970-basis:51725832",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:51725832" } }
-                }
-              },
-              {
-                type: "TITLE",
-                term: "Harry Potter and the philosopher's stone",
-                work: {
-                  workId: "work-of:870970-basis:42042455",
-                  titles: { main: ["Dummy Some Title"] },
-                  creators: [
-                    { display: "Dummy Jens Jensen" },
-                    { display: "Dummy Some Corporation" }
-                  ],
-                  manifestations: { first: { pid: "870970-basis:42042455" } }
-                }
-              }
-            ]
-          }
-        }
+    cy.fixture("search-header-data.json")
+      .then((result) => {
+        cy.intercept("POST", "**/opac/graphql", {
+          statusCode: 200,
+          body: result
+        });
+      })
+      .as("Autosuggest service");
+
+    cy.intercept(
+      {
+        url: coverUrlPattern
+      },
+      {
+        fixture: "images/search-header-cover.jpeg"
       }
-    });
-    cy.intercept("GET", "**/covers**", {
-      statusCode: 200,
-      body: [
-        {
-          id: "870970-basis:25245784",
-          type: "pid",
-          imageUrls: {
-            small: {
-              url: "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886150/bogportalen.dk/9788702029444.jpg",
-              format: "jpeg",
-              size: "small"
-            }
-          }
-        }
-      ]
-    });
+    ).as("Harry Potter cover");
+
+    cy.fixture("search-header-cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("Cover service");
+
     cy.visit("/iframe.html?args=viewMode=story&id=apps-search-header--default");
   });
 
