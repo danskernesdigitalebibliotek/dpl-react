@@ -6,6 +6,16 @@ export default {
   title: "Apps / Material",
   component: MaterialEntry,
   argTypes: {
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      name: "Path to the material page",
+      defaultValue: "/work/:workid",
+      control: { type: "text" }
+    },
     pid: {
       name: "pid",
       defaultValue: "870970-basis:52557240",
@@ -44,12 +54,6 @@ export default {
     descriptionHeadlineText: {
       name: "Description headline",
       defaultValue: "Beskrivelse",
-      control: { type: "text" }
-    },
-    searchUrl: {
-      name: "Base search url",
-      defaultValue:
-        "http://localhost/?path=/story/apps-search-result--search-result",
       control: { type: "text" }
     },
     identifierText: {
