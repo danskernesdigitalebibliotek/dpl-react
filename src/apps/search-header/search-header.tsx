@@ -24,7 +24,12 @@ const SearchHeader: React.FC = () => {
   const t = useText();
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
-  const [suggestItems, setSuggestItems] = useState<any[]>([]);
+  const [suggestItems, setSuggestItems] = useState<
+    SuggestionsFromQueryStringQuery["suggest"]["result"] | []
+  >([]);
+  // we need to convert between string and suggestion result object so
+  // that the value in the search field on enter click doesn't become [object][object]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
   const {
