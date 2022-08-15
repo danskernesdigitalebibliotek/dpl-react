@@ -19,8 +19,8 @@ export default {
       name: "Use animation",
       control: { type: "boolean" }
     },
-    materialId: {
-      name: "Material ID",
+    pid: {
+      name: "PID",
       control: { type: "text" }
     },
     url: {
