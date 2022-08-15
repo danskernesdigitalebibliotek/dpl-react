@@ -24,6 +24,9 @@ describe("Search Result", () => {
       ".search-result-page__list .search-result-item .horizontal-term-line"
     ).should(
       "contain.text",
+      // TODO: The series string being rendered makes no sense with the dummy data given
+      // and the (lack) of knowledge of which properties to use and how to combine them.
+      // Therefor when data is in place we can revisit this part of the test.
       "Nr. 1  i serienDummy Some SeriesNr. 1  i serienDummy Some Series"
     );
 
@@ -34,9 +37,10 @@ describe("Search Result", () => {
     );
 
     cy.log("Does the search result have authors?");
-    cy.get(
-      ".search-result-page__list .search-result-item p.text-small-caption"
-    ).should("contain.text", "Af Dummy Jens Jensen (Dummy 1839)");
+    cy.get(".search-result-page__list .search-result-item").should(
+      "contain.text",
+      "Af Dummy Jens Jensen (Dummy 1839)"
+    );
 
     cy.log(
       "Does a search result have the expected number of availibility labels?"
@@ -70,7 +74,7 @@ describe("Search Result", () => {
     );
     cy.get(".search-result-page__list").find("li").should("have.length", 4);
 
-    cy.log("The pager info should also have beenb updated.");
+    cy.log("The pager info should also have been updated.");
     cy.get(".search-result-pager__title").should(
       "contain.text",
       "Viser 4 ud af 9486 resultater"
@@ -78,10 +82,6 @@ describe("Search Result", () => {
   });
 
   beforeEach(() => {
-    // For the services needing a library token.
-    cy.window().then(() => {
-      sessionStorage.setItem("library", "9999999999999");
-    });
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
       .then((result) => {
