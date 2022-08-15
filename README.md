@@ -418,7 +418,7 @@ this:
 </details>
 
 As a minimum you will need the `runtime.js` and `bundle.js`. For styling
-of atoms and components you will need to import `components.css`.
+of components you will need to import `components.css`.
 
 Each application also has its own JavaScript artifact and it might have a CSS
 artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
@@ -515,7 +515,7 @@ can reuse various levels of infrastructure provided by the project such as:
 
 1. [Integration with various webservices](src/core)
 2. [User authentication and token management](src/core)
-3. [Visual atoms or components](#cross-application-components)
+3. [Visual components](#cross-application-components)
 4. Visual representations of [existing applications](src/apps)
 5. [Styling using SCSS](#style-your-application)
 6. Test infrastructure
