@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import { formatDate, getAuthorNames } from "../helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
@@ -37,7 +37,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="mr-32">
-          {faust && (
+          {faust && onChecked && (
             <CheckBox
               onChecked={onChecked}
               id={faust}

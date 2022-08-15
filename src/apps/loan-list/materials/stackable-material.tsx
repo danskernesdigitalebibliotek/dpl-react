@@ -6,6 +6,7 @@ import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
 import { useText } from "../../../core/utils/text";
+import { Pid } from "../../../core/utils/types/ids";
 import {
   FetchMaterial,
   StackableMaterialProps,
@@ -71,10 +72,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       <div className="list-reservation__material">
         <div>
           <Cover
+            pid={pid as Pid}
             size="small"
-            animate
-            tint="120"
-            materialId={pid || ""}
+            animate={false}
             description={abstract && abstract[0]}
           />
         </div>

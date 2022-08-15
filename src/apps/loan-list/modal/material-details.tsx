@@ -2,12 +2,12 @@ import React, { useEffect, useState, useCallback, FC } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
-import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
 import { formatDate, getAuthorNames, materialIsOverdue } from "../helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
+import { Pid } from "../../../core/utils/types/ids";
 import StatusBadge from "../materials/utils/status-badge";
 import IconCheckmark from "../../../components/icon-checkmark/icon-checkmark";
 import {
@@ -105,7 +105,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         <div className="modal-details__cover">
           <div className="material-container">
             <span className="material material--large bg-identity-tint-120 material__animate">
-              <Cover size="large" animate tint="120" materialId={pid || ""} />
+              <Cover pid={pid as Pid} size="large" animate={false} />
             </span>
           </div>
         </div>

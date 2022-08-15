@@ -11,11 +11,11 @@ export interface MaterialDetailsProps {
 
 export interface SelectableMaterialProps {
   loanDetails: LoanDetailsV2;
-  renewableStatus: string[];
+  renewableStatus?: string[];
   loanType?: string;
-  disabled: boolean;
+  disabled?: boolean;
   materialsToRenew?: number[];
-  onChecked: (faust: string) => void;
+  onChecked?: (faust: string) => void;
 }
 
 export interface StackableMaterialProps {
@@ -30,6 +30,7 @@ export interface StackableMaterialProps {
     loanDetails: LoanDetailsV2;
   }) => void;
 }
+
 export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
