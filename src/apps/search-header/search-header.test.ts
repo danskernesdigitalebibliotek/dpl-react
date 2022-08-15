@@ -192,8 +192,7 @@ describe("Search header app", () => {
 
   it("Shows both parts of the autosuggest", () => {
     cy.get(".header__menu-search-input").focus().type("har");
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(1000);
+    cy.get(".autosuggest").should("contain.text", "Harry");
     cy.contains("Harry Potter (emne)");
     cy.contains("Harry Potter og De Vises Sten");
   });
