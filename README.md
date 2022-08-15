@@ -275,7 +275,7 @@ appropriate.
 
 ```scss
 // ./src/apps/my-new-application/my-new-application.scss
-.warm {
+.dpl-warm {
   color: maroon;
 }
 ```
@@ -294,7 +294,7 @@ interface MyNewApplicationProps {
 }
 
 const MyNewApplication: React.FC<MyNewApplicationProps> = ({ text }) => (
-  <h2 className="warm">{text}</h2>
+  <h2 className="dpl-warm">{text}</h2>
 );
 
 export default MyNewApplication;
