@@ -337,9 +337,9 @@ __Cowabunga!__ You now got styling in your application
 ### Cross application components
 
 If the component is simple enough to be a primitive you would use in multiple
-occasions it's called n component.
+occasions it's called a component.
 
-The process when creating an component or an app is more or less similar, but
+The process when creating a component or an app is more or less similar, but
 some structural differences might be needed.
 
 ### Editor example configuration
