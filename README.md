@@ -175,7 +175,7 @@ export default MyNewApplicationEntry;
 <details>
   <summary>3. Create the mount</summary>
 
-```javascript
+```typescript
 // ./src/apps/my-new-application/my-new-application.mount.ts
 import addMount from "../../core/addMount";
 import MyNewApplication from "./my-new-application.entry";
