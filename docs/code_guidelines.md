@@ -120,29 +120,29 @@ Files provided by components must be placed in the following folders and have
 the extensions defined here.
 
 * Components (React applications)
-  * apps/[component-name]/[component-name].jsx
-    * Core JSX component.
+  * apps/[component-name]/[component-name].tsx
+    * Core TSX component.
   * components/[component-name]/[component-name].scss
     * Stylesheet for the component.
-  * apps/[component-name]/[component-name].entry.jsx
+  * apps/[component-name]/[component-name].entry.tsx
     * Main application entrypoint.
     * This will usually also be where state management is implemented.
     * This must _not_ include the default stylesheet.
-  * apps/[component-name]/[component-name].dev.jsx
+  * apps/[component-name]/[component-name].dev.tsx
     * Storybook entry for the component.
     * If the component has a stylesheet this must also be included here.
-  * apps/[component-name]/[component-name].mount.js
+  * apps/[component-name]/[component-name].mount.ts
     * Code for registering the application to be booted when a page is loaded on
       the host system.
-  * apps/[component-name]/[component-name].test.js
+  * apps/[component-name]/[component-name].test.ts
     * Test of the component implemented with [Cypress](https://www.cypress.io/)
 * Reusable elements (React components)
-  * components/[component-name]/[component-name].dev.jsx
-  * components/[component-name]/[component-name].jsx
+  * components/[component-name]/[component-name].dev.tsx
+  * components/[component-name]/[component-name].tsx
   * components/[component-name]/[component-name].scss
 * Reusable functions and classes
-  * core/[function].js
-  * core/[Class].js
+  * core/[function].ts
+  * core/[Class].ts
 
 ## Third party code
 
