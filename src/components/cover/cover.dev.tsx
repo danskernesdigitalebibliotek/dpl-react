@@ -4,7 +4,7 @@ import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 
 export default {
-  title: "Atoms / Cover",
+  title: "Components / Cover",
   component: Cover,
   argTypes: {
     size: {
