@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react)
 
 A set of React components and applications providing self-service features for
-Danish public libraries.
+Danish public libraries implemented in TypeScript.
 
 <!-- markdownlint-disable -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -18,15 +18,13 @@ Danish public libraries.
     - [Library token](#library-token)
   - [Installation](#installation)
   - [Standard and style](#standard-and-style)
-    - [JavaScript + JSX](#javascript--jsx)
+    - [TypeScript + TSX](#typescript--tsx)
       - [Named functions Vs. Anonymous arrow functions](#named-functions-vs-anonymous-arrow-functions)
   - [Create a new application](#create-a-new-application)
     - [Application state-machine](#application-state-machine)
   - [Style your application](#style-your-application)
   - [Style using the dpl design system library](#style-using-the-dpl-design-system-library)
   - [Cross application components](#cross-application-components)
-    - [Creating an atom](#creating-an-atom)
-    - [Creating a component](#creating-a-component)
   - [Editor example configuration](#editor-example-configuration)
 - [Usage](#usage)
   - [Naive app mount](#naive-app-mount)
@@ -100,7 +98,7 @@ When storybook is started, you can access it at: [dpl-react.docker](http://dpl-r
 
 ### Standard and style
 
-#### JavaScript + JSX
+#### TypeScript + TSX
 
 For static code analysis we make use of the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 and for formatting we make use of [Prettier](https://github.com/prettier/prettier)
@@ -150,24 +148,17 @@ stacktraces.
 <details>
   <summary>1. Create a new application component</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.jsx
-import React from "react";
-import PropTypes from "prop-types";
+```typescript
+// ./src/apps/my-new-application/my-new-application.tsx
+import * as React from "react";
 
-export function MyNewApplication({ text }) {
-  return (
-      <h2>{text}</h2>
-  );
+interface MyNewApplicationProps {
+  text: string;
 }
 
-MyNewApplication.defaultProps = {
-  text: "The fastest man alive!"
-};
-
-MyNewApplication.propTypes = {
-  text: PropTypes.string
-};
+const MyNewApplication: React.FC<MyNewApplicationProps> = ({ text }) => (
+  <h2>{text}</h2>
+);
 
 export default MyNewApplication;
 ```
@@ -177,18 +168,20 @@ export default MyNewApplication;
 <details>
   <summary>2. Create the entry component</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.entry.jsx
-import React from "react";
-import PropTypes from "prop-types";
-import MyNewApplication from "./my-new-application";
+```typescript
+// ./src/apps/my-new-application/my-new-application.entry.tsx
+import * as React from "react";
+
+interface MyNewApplicationEntryProps {
+  text: string;
+}
 
 // The props of an entry is all of the data attributes that were
 // set on the DOM element. See the section on "Naive app mount." for
 // an example.
-export function MyNewApplicationEntry(props) {
-  return <MyNewApplication text='Might be from a server?' />;
-}
+const MyNewApplicationEntry: React.FC<MyNewApplicationEntryProps> = ({
+ text
+}) => <h2>{text}</h2>;
 
 export default MyNewApplicationEntry;
 ```
@@ -198,8 +191,8 @@ export default MyNewApplicationEntry;
 <details>
   <summary>3. Create the mount</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.mount.js
+```typescript
+// ./src/apps/my-new-application/my-new-application.mount.ts
 import addMount from "../../core/addMount";
 import MyNewApplication from "./my-new-application.entry";
 
@@ -211,24 +204,28 @@ addMount({ appName: "my-new-application", app: MyNewApplication });
 <details>
   <summary>4. Add a story for local development</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.dev.jsx
+```typescript
+// ./src/apps/my-new-application/my-new-application.dev.tsx
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import MyNewApplicationEntry from "./my-new-application.entry";
-import MyNewApplication from "./my-new-application";
+import MyNewApplication, {
+  MyNewApplicationEntryProps
+} from "./my-new-application.entry";
 
-export default { title: "Apps|My new application" };
+export default {
+  title: "My new application",
+  component: MyNewApplication,
+  argTypes: {
+    text: {
+      defaultValue: "Text",
+      control: { type: "text" }
+    }
+  }
+} as ComponentMeta<typeof MyNewApplication>;
 
-export function Entry() {
-  // Testing the version that will be shipped.
-  return <MyNewApplicationEntry />;
-}
-
-export function WithoutData() {
-  // Play around with the application itself without server side data.
-  return <MyNewApplication />;
-}
-
+export const App: ComponentStory<typeof MyNewApplication> = (
+  args: MyNewApplicationEntryProps
+) => <MyNewApplication {...args} />;
 ```
 
 </details>
@@ -256,7 +253,7 @@ for you to tinker around.
 Most applications will have multiple internal states, so to aid consistency,
 it's recommended to:
 
-``` javascript
+``` typescript
   const [status, setStatus] = useState("<initial state>");
 ```
 
@@ -304,24 +301,17 @@ appropriate.
 <details>
   <summary>2. Add the class to your application</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.jsx
-import React from "react";
-import PropTypes from "prop-types";
+```typescript
+// ./src/apps/my-new-application/my-new-application.tsx
+import * as React from "react";
 
-export function MyNewApplication({ text }) {
-  return (
-      <h2 className='warm'>{text}</h2>
-  );
+interface MyNewApplicationProps {
+  text: string;
 }
 
-MyNewApplication.defaultProps = {
-  text: "The fastest man alive!"
-};
-
-MyNewApplication.propTypes = {
-  text: PropTypes.string
-};
+const MyNewApplication: React.FC<MyNewApplicationProps> = ({ text }) => (
+  <h2 className="dpl-warm">{text}</h2>
+);
 
 export default MyNewApplication;
 ```
@@ -331,25 +321,29 @@ export default MyNewApplication;
 <details>
   <summary>3. Import the scss into your story</summary>
 
-```javascript
-// ./src/apps/my-new-application/my-new-application.dev.jsx
+```typescript
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import MyNewApplicationEntry from "./my-new-application.entry";
-import MyNewApplication from "./my-new-application";
+import MyNewApplication, {
+  MyNewApplicationEntryProps
+} from "./my-new-application.entry";
 
-import './my-new-application.scss';
+import "./my-new-application.css";
 
-export default { title: "Apps|My new application" };
+export default {
+  title: "My new application",
+  component: MyNewApplication,
+  argTypes: {
+    text: {
+      defaultValue: "Text",
+      control: { type: "text" }
+    }
+  }
+} as ComponentMeta<typeof MyNewApplication>;
 
-export function Entry() {
-  // Testing the version that will be shipped.
-  return <MyNewApplicationEntry />;
-}
-
-export function WithoutData() {
-  // Play around with the application itself without server side data.
-  return <MyNewApplication />;
-}
+export const App: ComponentStory<typeof MyNewApplication> = (
+  args: MyNewApplicationEntryProps
+) => <MyNewApplication {...args} />;
 ```
 
 </details>
@@ -384,129 +378,10 @@ yarn add @danskernesdigitalebibliotek/dpl-design-system@feature-availability-lab
 ### Cross application components
 
 If the component is simple enough to be a primitive you would use in multiple
-occasions it's called an 'atom'. Such as a button or a link. If it's more
-specific that that and to be used across apps we just call it a component. An
-example would be some type of media presented alongside a header and some text.
+occasions it's called a component.
 
-The process when creating an atom or a component is more or less similar, but
+The process when creating a component or an app is more or less similar, but
 some structural differences might be needed.
-
-#### Creating an atom
-
-<details>
-  <summary>1. Create the atom</summary>
-
-```javascript
-// ./src/components/atoms/my-new-atom/my-new-atom.jsx
-import React from "react";
-import PropTypes from 'prop-types';
-
-/**
- * A simple button.
- *
- * @export
- * @param {object} props
- * @returns {ReactNode}
- */
-export function MyNewAtom({ className, children }) {
-  return <button className={`btn ${className}`}>{children}</button>;
-}
-
-MyNewAtom.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-}
-
-MyNewAtom.defaultProps = {
-  className: ""
-}
-
-export default MyNewAtom;
-```
-
-</details>
-
-<details>
-  <summary>2. Create styles for the atom</summary>
-
-```scss
-// ./src/components/atoms/my-new-atom/my-new-atom.scss
-.dpl-btn {
-    color: blue;
-}
-```
-
-</details>
-
-<details>
-  <summary>3. Import the atom's styles into the component stylesheet</summary>
-
-```scss
-// ./src/components/components.scss
-@import 'atoms/button/button.scss';
-@import 'atoms/my-new-atom/my-new-atom.scss';
-```
-
-</details>
-
-<details>
-  <summary>4. Create a story for your atom</summary>
-
-```javascript
-// ./src/components/atoms/my-new-atom/my-new-atom.dev.jsx
-import React from "react";
-import MyNewAtom from "./my-new-atom";
-
-export default { title: "Atoms|My new atom" };
-
-export function WithText() {
-  return <MyNewAtom>Cick me!</MyNewAtom>;
-}
-```
-
-</details>
-
-<details>
-  <summary>5. Import the atom into the applications or other components where
-you would want to use it</summary>
-
-```javascript
-// ./src/apps/my-new-application/my-new-application.jsx
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-
-import MyNewAtom from "../../components/atom/my-new-atom/my-new-atom"
-
-export function MyNewApplication({ text }) {
-  return (
-      <Fragment>
-        <h2 className='warm'>{text}</h2>
-        <MyNewAtom className='additional-class' />
-      </Fragment>
-  );
-}
-
-MyNewApplication.defaultProps = {
-  text: "The fastest man alive!"
-};
-
-MyNewApplication.propTypes = {
-  text: PropTypes.string
-};
-
-export default MyNewApplication;
-```
-
-</details>
-
-__Finito!__ You now know how to share code across applications
-
-#### Creating a component
-
-Repeat all of the same steps as with an atom but place it in it's own directory
-inside `components`.
-
-Such as `./src/components/my-new-component/my-new-component.jsx`
 
 ### Editor example configuration
 
@@ -584,7 +459,7 @@ this:
 </details>
 
 As a minimum you will need the `runtime.js` and `bundle.js`. For styling
-of atoms and components you will need to import `components.css`.
+of components you will need to import `components.css`.
 
 Each application also has its own JavaScript artifact and it might have a CSS
 artifact as well. Such as `add-to-checklist.js` and `add-to-checklist.css`.
@@ -681,7 +556,7 @@ can reuse various levels of infrastructure provided by the project such as:
 
 1. [Integration with various webservices](src/core)
 2. [User authentication and token management](src/core)
-3. [Visual atoms or components](#cross-application-components)
+3. [Visual components](#cross-application-components)
 4. Visual representations of [existing applications](src/apps)
 5. [Styling using SCSS](#style-your-application)
 6. Test infrastructure

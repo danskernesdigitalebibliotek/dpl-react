@@ -5,13 +5,13 @@ components for the Danish Public Libraries CMS project. The guidelines should
 help achieve:
 
 * A stable, secure and high quality foundation for building and maintaining
-  client-side JavaScript components for library websites
+  client-side TypeScript components for library websites
 * Consistency across multiple developers participating in the project
 * The best possible conditions for sharing components between library websites
 * The best possible conditions for the individual library website to customize
   configuration and appearance
 
-Contributions to the DDB React project will be reviewed by members of the Core
+Contributions to the DPL React project will be reviewed by members of the Core
 team. These guidelines should inform contributors about what to expect in such a
 review. If a review comment cannot be traced back to one of these guidelines it
 indicates that the guidelines should be updated to ensure transparency.
@@ -19,15 +19,17 @@ indicates that the guidelines should be updated to ensure transparency.
 ## Coding standards
 
 The project follows the [Airbnb JavaScript Style Guide](https://airbnb.io/javascript/)
-and [Airbnb React/JSX Style Guide](https://airbnb.io/javascript/react/). This
-choice is based on multiple factors:
+and [Airbnb React/JSX Style Guide](https://airbnb.io/javascript/react/). They
+have been [extended to support TypeScript](https://github.com/iamturns/eslint-config-airbnb-typescript).
 
-1. Historically the community of developers working with DDB
-   [has ties to the Drupal project](https://github.com/ding2/ding2/).
+This choice is based on multiple factors:
+
+1. Historically the community of developers working with the Danish Public
+   Libraries [has ties to the Drupal project](https://github.com/ding2/ding2/).
    [Drupal has adopted the Airbnb JavaScript Style Guide](https://www.drupal.org/node/2873849)
    so this choice should ensure consistency between the two projects.
 2. Airbnb's standard is one of the best known and most used in the JavaScript
-   ccoding standard landscape.
+   coding standard landscape.
 3. Airbnb’s standard is both comprehensive and well documented.
 4. Airbnb’s standards cover both JavaScript in general React/JSX specifically.
    This avoids potential conflicts between multiple standards.
@@ -52,7 +54,7 @@ be especially aware of.
     * Firefox
     * Samsung Browser
 
-### JavaScript
+### TypeScript
 
 #### Named functions vs. anonymous arrow functions
 
@@ -118,29 +120,29 @@ Files provided by components must be placed in the following folders and have
 the extensions defined here.
 
 * Components (React applications)
-  * apps/[component-name]/[component-name].jsx
-    * Core JSX component.
+  * apps/[component-name]/[component-name].tsx
+    * Core TSX component.
   * components/[component-name]/[component-name].scss
     * Stylesheet for the component.
-  * apps/[component-name]/[component-name].entry.jsx
+  * apps/[component-name]/[component-name].entry.tsx
     * Main application entrypoint.
     * This will usually also be where state management is implemented.
     * This must _not_ include the default stylesheet.
-  * apps/[component-name]/[component-name].dev.jsx
+  * apps/[component-name]/[component-name].dev.tsx
     * Storybook entry for the component.
     * If the component has a stylesheet this must also be included here.
-  * apps/[component-name]/[component-name].mount.js
+  * apps/[component-name]/[component-name].mount.ts
     * Code for registering the application to be booted when a page is loaded on
       the host system.
-  * apps/[component-name]/[component-name].test.js
+  * apps/[component-name]/[component-name].test.ts
     * Test of the component implemented with [Cypress](https://www.cypress.io/)
 * Reusable elements (React components)
-  * components/[component-name]/[component-name].dev.jsx
-  * components/[component-name]/[component-name].jsx
+  * components/[component-name]/[component-name].dev.tsx
+  * components/[component-name]/[component-name].tsx
   * components/[component-name]/[component-name].scss
 * Reusable functions and classes
-  * core/[function].js
-  * core/[Class].js
+  * core/[function].ts
+  * core/[Class].ts
 
 ## Third party code
 
