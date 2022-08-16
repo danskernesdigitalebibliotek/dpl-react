@@ -94,7 +94,7 @@ describe("Search Result", () => {
         url: coverUrlPattern
       },
       {
-        fixture: "images/harry-cover.jpg"
+        fixture: "images/cover.jpg"
       }
     ).as("Harry Potter cover");
     // Intercept covers.
