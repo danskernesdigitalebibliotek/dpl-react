@@ -4,7 +4,7 @@ import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 
 export default {
-  title: "Atoms / Cover",
+  title: "Components / Cover",
   component: Cover,
   argTypes: {
     size: {
@@ -19,8 +19,8 @@ export default {
       name: "Use animation",
       control: { type: "boolean" }
     },
-    materialId: {
-      name: "Material ID",
+    pid: {
+      name: "PID",
       control: { type: "text" }
     },
     url: {
@@ -33,10 +33,10 @@ export default {
     }
   },
   args: {
+    pid: "870970-basis:45234401",
     size: "small",
     animate: true,
     tint: "120",
-    pid: "870970-basis:45234401",
     url: new URL("/", getCurrentLocation()),
     description: "description"
   }
