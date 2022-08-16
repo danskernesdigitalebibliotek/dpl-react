@@ -52,7 +52,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 {/* eslint-enable react/jsx-props-no-spreading */}
                 <div className="autosuggest__material__content">
                   <div className="autosuggest__cover">
-                    {/* TODO: once we have the material page and know what the urls look like, we need to pass materialUrl here */}
                     {item.work && (
                       <Cover
                         animate
