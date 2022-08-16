@@ -16,7 +16,7 @@ describe("Search header app", () => {
         url: coverUrlPattern
       },
       {
-        fixture: "images/search-header-cover.jpeg"
+        fixture: "images/cover.jpg"
       }
     ).as("Harry Potter cover");
 
