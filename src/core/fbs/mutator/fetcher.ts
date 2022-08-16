@@ -1,4 +1,4 @@
-import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
+import { getToken, TOKEN_USER_KEY } from "../../token";
 
 const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
 
@@ -12,8 +12,8 @@ type FetchParams =
 /**
  * Build URLSearchParams instance with support for arrays of values.
  *
- * By default URLSearchParams will join arrays of values with a comma. This is
- * not desirable for our use case. Instead we want arrays of values to be
+ * By default, URLSearchParams will join arrays of values with a comma. This is
+ * not desirable for our use case. Instead, we want arrays of values to be
  * represented as multiple entries with the same key.
  */
 function buildParams(data: FetchParams) {
@@ -52,7 +52,7 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const libraryToken = getToken(TOKEN_LIBRARY_KEY);
+  const libraryToken = getToken(TOKEN_USER_KEY);
   const authHeaders = libraryToken
     ? ({ Authorization: `Bearer ${libraryToken}` } as object)
     : {};
