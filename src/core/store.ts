@@ -15,7 +15,7 @@ import urlReducer from "./url.slice";
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text"]
+  blacklist: ["text", "url"]
 };
 
 export const store = configureStore({
