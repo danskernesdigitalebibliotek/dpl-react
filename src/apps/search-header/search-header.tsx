@@ -145,13 +145,6 @@ const SearchHeader: React.FC = () => {
     const currentlyHighlightedObject = orderedData[arrayIndex];
     const currentItemValue = determinSuggestionTerm(currentlyHighlightedObject);
     if (
-      type === useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem
-    ) {
-      // not sure if we need this here
-      // manualRedirect(changes.selectedItem as Suggestion);
-      return;
-    }
-    if (
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
