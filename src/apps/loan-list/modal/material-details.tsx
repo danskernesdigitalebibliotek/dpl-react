@@ -46,6 +46,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 
   const determineRenewedStatus = useCallback(
     ({ renewalStatus }: RenewedLoanV2) => {
+      // todo this will be changed, everything with these statusses will be revised
       //  renewed deniedReserved deniedMaxRenewalsReached deniedLoanerIsBlocked deniedMaterialIsNotLoanable deniedMaterialIsNotFound deniedLoanerNotFound deniedLoaningProfileNotFound deniedOtherReason;
       if (renewalStatus[0] === "deniedMaxRenewalsReached") {
         setRenewStatus({
@@ -87,6 +88,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               determineRenewedStatus(result[0]);
             }
           },
+          // todo error handling, missing in figma
           onError: () => {}
         }
       );

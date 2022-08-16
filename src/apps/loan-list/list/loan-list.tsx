@@ -95,6 +95,8 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     setDisplayList(true);
+    // If modalids are longer than 0, a modal is open.
+    // If a modal is open, the list should not be displayed.
     if (modalIds.length > 0) {
       refetch();
       setDisplayList(true);
@@ -162,6 +164,8 @@ const LoanList: FC = () => {
 
   return (
     <>
+      {/* only display the list when a modal is not open. this is to do with accessibility, 
+      so the screen reader does not focus on focusable inputs in the list while a modal is open. */}
       {displayList && (
         <>
           <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>

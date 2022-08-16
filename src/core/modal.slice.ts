@@ -15,6 +15,8 @@ const modalSlice = createSlice({
   initialState: { modalIds: [] },
   reducers: {
     openModal(state: StateProps, action: PayloadProps) {
+      // If there is a modalid in the payload, and if this modalid is not saved
+      // then save the modalid
       if (
         action.payload.modalId &&
         !state.modalIds.includes(action.payload.modalId)

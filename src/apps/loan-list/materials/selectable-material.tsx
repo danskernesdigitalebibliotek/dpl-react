@@ -69,6 +69,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div className="list-materials__status">
+          {/* todo this will be changed, everything with these statusses will be revised */}
           {renewableStatus && (
             <span className="text-small-caption">
               {renewableStatus.indexOf("deniedMaxRenewalsReached") > -1 && (

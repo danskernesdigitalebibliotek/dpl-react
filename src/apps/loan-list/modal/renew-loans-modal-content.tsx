@@ -1,5 +1,4 @@
 import React, { useState, useEffect, FC } from "react";
-import { useText } from "../../../core/utils/text";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import SelectableMaterial from "../materials/selectable-material";
@@ -20,7 +19,6 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel
 }) => {
-  const t = useText();
   const { mutate } = useRenewLoansV2();
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
@@ -48,6 +46,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             setRenewedLoans(result);
           }
         },
+        // todo error handling, missing in figma
         onError: () => {}
       }
     );
