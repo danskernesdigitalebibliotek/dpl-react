@@ -1,17 +1,14 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
-import SearchHeaderEntry, { SearchHeaderProps } from "./search-header.entry";
+import SearchHeaderEntry, {
+  SearchHeaderEntryProps
+} from "./search-header.entry";
 
 export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
-    searchHeaderUrlText: {
-      name: "Search header base URL",
-      defaultValue: "https://bibliotek.dk/search",
-      control: { type: "text" }
-    },
     altText: {
       name: "Alt text for search button image",
       defaultValue: "søgeikon",
@@ -36,12 +33,22 @@ export default {
       name: "String suggestion spec - topic",
       defaultValue: "emne",
       control: { type: "text" }
+    },
+    searchUrl: {
+      name: "Base search url",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      name: "Base material page url",
+      defaultValue: "/work/:workid",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;
 
 export const Default: ComponentStory<typeof SearchHeaderEntry> = (
-  args: SearchHeaderProps
+  args: SearchHeaderEntryProps
 ) => (
   // We use the Header component as context to the search bar.
   // It is the Header that creates the Search bar's design -
