@@ -1,0 +1,29 @@
+[
+  {
+    "id": "870970-basis:45234401",
+    "type": "pid",
+    "imageUrls": {
+      "original": {
+        "url": "https:res.cloudinary.com/dandigbib/image/upload/v1605727140/bogportalen.dk/9781848485532.jpg",
+        "format": "jpeg",
+        "size": "original"
+      },
+      "small": {
+        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1605727140/bogportalen.dk/9781848485532.jpg",
+        "format": "jpeg",
+        "size": "small"
+      },
+      "medium": {
+        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_medium/v1605727140/bogportalen.dk/9781848485532.jpg",
+        "format": "jpeg",
+
+        "size": "medium"
+      },
+      "large": {
+        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1605727140/bogportalen.dk/9781848485532.jpg",
+        "format": "jpeg",
+        "size": "large"
+      }
+    }
+  }
+]
