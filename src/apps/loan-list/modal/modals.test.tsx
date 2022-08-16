@@ -63,7 +63,7 @@ describe("Modals", () => {
 
     cy.get(".modal-details__container").should(
       "have.text",
-      "Dummy bogMaterialDetailsOverdueTextDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)forny dit lånAfleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveres Læs mereAfleveres10-07-2022Udlånsdato10-06-2022Materialenummer3846990827"
+      "Dummy bogOverskredetDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)forny dit lånAfleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveresLæs mereAfleveres10-07-2022Udlånsdato10-06-2022Materialenummer3846990827"
     );
   });
 
