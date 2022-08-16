@@ -8,20 +8,15 @@ import {
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
-import { useText } from "../../core/utils/text";
-import { itemToString } from "../../components/autosuggest-text/autosuggest-text";
-
-export interface SearchHeaderProps {
-  searchHeaderUrl?: string;
-  altText?: string;
-  inputPlaceholderText?: string;
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
-}
+import { useUrls } from "../../core/utils/url";
+import {
+  constructMaterialUrl,
+  constructSearchUrl,
+  redirectTo
+} from "../../core/utils/helpers/url";
+import { WorkId } from "../../core/utils/types/ids";
 
 const SearchHeader: React.FC = () => {
-  const t = useText();
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<any[]>([]);
@@ -36,6 +31,7 @@ const SearchHeader: React.FC = () => {
     isLoading: boolean;
     status: string;
   } = useSuggestionsFromQueryStringQuery({ q });
+  const { searchUrl, materialUrl } = useUrls();
 
   // make sure to only assign the data once
   useEffect(() => {
@@ -48,7 +44,6 @@ const SearchHeader: React.FC = () => {
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
-
   if (originalData) {
     originalData.forEach((item: Suggestion) => {
       if (
@@ -65,7 +60,7 @@ const SearchHeader: React.FC = () => {
     orderedData = textData.concat(materialData);
   }
 
-  // autosuggest dropdown opening and closing based on input text length
+  // autosuggest opening and closing based on input text length
   useEffect(() => {
     if (q) {
       const minimalLengthQuery = 3;
@@ -79,11 +74,20 @@ const SearchHeader: React.FC = () => {
     }
   }, [q]);
 
-  function determinSuggestionType(suggestion: Suggestion): string {
+  function determinSuggestionTerm(suggestion: Suggestion): string {
     if (suggestion.type === SuggestionType.Composit) {
       return suggestion.work?.titles.main[0] || "incomplete data";
     }
     return suggestion.term;
+  }
+
+  function isDisplayedAsWorkSuggestion(selectedItem: Suggestion["work"]) {
+    for (let i = 0; i < materialData.length; i += 1) {
+      if (materialData[i].work?.workId === selectedItem?.workId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function handleSelectedItemChange(
@@ -93,17 +97,28 @@ const SearchHeader: React.FC = () => {
     if (!selectedItem) {
       return;
     }
-    setCurrentlySelectedItem(determinSuggestionType(selectedItem));
+    setCurrentlySelectedItem(determinSuggestionTerm(selectedItem));
   }
 
-  // downshift prevents the default form submission event when the autosuggest
-  // is open - that's why in some cases we have to simulate form sumbission
-  function manualRedirect(inputValue: string) {
-    const baseUrl = t("searchHeaderUrlText");
-    const params = inputValue;
-    if (window.top) {
-      window.top.location.href = `${baseUrl}?q=${params}`;
+  // downshift prevents the default form submission event when the
+  // autosuggest is open - we have to simulate form sumbission
+  function manualRedirect(
+    currentSelectedSuggestion: Suggestion,
+    materialId?: WorkId
+  ) {
+    let redirectUrl: URL;
+    // work suggestion redirect
+    if (materialId) {
+      redirectUrl = constructMaterialUrl(materialUrl, materialId as WorkId);
+      redirectTo(redirectUrl);
+      return;
     }
+    // not a work suggestion redirect
+    redirectUrl = constructSearchUrl(
+      searchUrl,
+      determinSuggestionTerm(currentSelectedSuggestion)
+    );
+    redirectTo(redirectUrl);
   }
 
   function handleHighlightedIndexChange(
@@ -111,12 +126,14 @@ const SearchHeader: React.FC = () => {
   ) {
     const { type } = changes;
     let { highlightedIndex } = changes;
+    // don't do aything for mouse events
     if (
       type === useCombobox.stateChangeTypes.ItemMouseMove ||
       type === useCombobox.stateChangeTypes.MenuMouseLeave
     ) {
       return;
     }
+    // close autosuggest if there is no highlighted index
     if (highlightedIndex && highlightedIndex < 0) {
       setIsAutosuggestOpen(false);
       return;
@@ -126,11 +143,12 @@ const SearchHeader: React.FC = () => {
     }
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
-    const currentItemValue = determinSuggestionType(currentlyHighlightedObject);
+    const currentItemValue = determinSuggestionTerm(currentlyHighlightedObject);
     if (
       type === useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem
     ) {
-      manualRedirect(currentItemValue);
+      // not sure if we need this here
+      // manualRedirect(changes.selectedItem as Suggestion);
       return;
     }
     if (
@@ -154,16 +172,25 @@ const SearchHeader: React.FC = () => {
       return;
     }
     setQWithoutQuery(inputValue);
-    if (
-      type === useCombobox.stateChangeTypes.ItemClick ||
-      type === useCombobox.stateChangeTypes.InputKeyDownEnter
-    ) {
-      if (!selectedItem) {
-        return;
-      }
-      manualRedirect(itemToString(selectedItem));
+    if (!selectedItem) {
+      return;
     }
+    if (
+      type !== useCombobox.stateChangeTypes.ItemClick &&
+      type !== useCombobox.stateChangeTypes.InputKeyDownEnter
+    ) {
+      return;
+    }
+    if (
+      selectedItem.work?.workId &&
+      isDisplayedAsWorkSuggestion(selectedItem.work)
+    ) {
+      manualRedirect(selectedItem, selectedItem.work?.workId as WorkId);
+      return;
+    }
+    manualRedirect(selectedItem);
   }
+
   // this is the main Downshift hook
   const {
     getMenuProps,
@@ -183,7 +210,10 @@ const SearchHeader: React.FC = () => {
   });
 
   return (
-    <form className="header__menu-second" action={t("searchHeaderUrlText")}>
+    <form
+      className="header__menu-second"
+      action={String(constructSearchUrl(searchUrl, qWithoutQuery))}
+    >
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
