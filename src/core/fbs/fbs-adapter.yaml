@@ -432,7 +432,7 @@ paths:
             description: "\n The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
             operationId: updateV5
             summary: 'Update information about the patron.'
-securityDefinitions:
+securitySchemes:
     oauth:
         type: oauth2
         description: 'OAuth 2.0 password Grant'
