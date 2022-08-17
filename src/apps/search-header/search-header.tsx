@@ -33,7 +33,7 @@ const SearchHeader: React.FC = () => {
   } = useSuggestionsFromQueryStringQuery({ q });
   const { searchUrl, materialUrl } = useUrls();
 
-  // make sure to only assign the data once
+  // mMke sure to only assign the data once.
   useEffect(() => {
     if (data) {
       const arayOfResults = data.suggest.result;
@@ -60,7 +60,7 @@ const SearchHeader: React.FC = () => {
     orderedData = textData.concat(materialData);
   }
 
-  // autosuggest opening and closing based on input text length
+  // Autosuggest opening and closing based on input text length.
   useEffect(() => {
     if (q) {
       const minimalLengthQuery = 3;
@@ -103,20 +103,20 @@ const SearchHeader: React.FC = () => {
     setCurrentlySelectedItem(determineSuggestionTerm(selectedItem));
   }
 
-  // downshift prevents the default form submission event when the
-  // autosuggest is open - we have to simulate form sumbission
+  // Downshift prevents the default form submission event when the
+  // autosuggest is open - we have to simulate form sumbission.
   function manualRedirect(
     currentSelectedSuggestion: Suggestion,
     materialId?: WorkId
   ) {
     let redirectUrl: URL;
-    // work suggestion redirect
+    // Work suggestion redirect.
     if (materialId) {
       redirectUrl = constructMaterialUrl(materialUrl, materialId as WorkId);
       redirectTo(redirectUrl);
       return;
     }
-    // not a work suggestion redirect
+    // Not a work suggestion redirect.
     redirectUrl = constructSearchUrl(
       searchUrl,
       determineSuggestionTerm(currentSelectedSuggestion)
@@ -129,14 +129,14 @@ const SearchHeader: React.FC = () => {
   ) {
     const { type } = changes;
     let { highlightedIndex } = changes;
-    // don't do aything for mouse events
+    // Don't do aything for mouse events.
     if (
       type === useCombobox.stateChangeTypes.ItemMouseMove ||
       type === useCombobox.stateChangeTypes.MenuMouseLeave
     ) {
       return;
     }
-    // close autosuggest if there is no highlighted index
+    // Close autosuggest if there is no highlighted index.
     if (highlightedIndex && highlightedIndex < 0) {
       setIsAutosuggestOpen(false);
       return;
@@ -189,7 +189,7 @@ const SearchHeader: React.FC = () => {
     manualRedirect(selectedItem);
   }
 
-  // this is the main Downshift hook
+  // This is the main Downshift hook.
   const {
     getMenuProps,
     highlightedIndex,

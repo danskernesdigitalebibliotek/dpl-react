@@ -32,7 +32,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {/* The downshift combobox works this way by design (line 50) */}
           {/* incorrectIndex because in the whole of autosuggest dropdown it is
           not the correct index for the item. We first need to add the length of
-          items from autosuggest string suggestion to it for it to be accurate */}
+          items from autosuggest string suggestion to it for it to be accurate. */}
           {materialData.map((item, incorrectIndex) => {
             const index = incorrectIndex + textDataLength;
             const authors: string[] = [];
