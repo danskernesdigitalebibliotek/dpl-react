@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
@@ -22,8 +22,13 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getManifestationPid
+  getManifestationPid,
+  getFirstPublishedManifestation
 } from "../../core/utils/helpers/general";
+import {
+  getUrlQueryParam,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -31,9 +36,34 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
+  const [typeState, setTypeState] = useState<null | string>(null);
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+
+  useEffect(() => {
+    if (!data?.work) return;
+
+    if (!typeState) {
+      const type = getUrlQueryParam("type");
+      if (type) {
+        setTypeState(type);
+      } else {
+        // Takes the type of first Published Manifestation
+        const firstPublishedManifestation = getFirstPublishedManifestation(
+          data.work.manifestations
+        ).materialTypes[0].specific;
+
+        setQueryParametersInUrl({ type: firstPublishedManifestation });
+        setTypeState(firstPublishedManifestation);
+      }
+    }
+  }, [data?.work, typeState]);
+
+  const handleSelectType = (type: string) => {
+    setQueryParametersInUrl({ type });
+    setTypeState(type);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -91,7 +121,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
   return (
     <main className="material-page">
-      <MaterialHeader wid={wid} work={data.work} />
+      <MaterialHeader
+        wid={wid}
+        work={data.work}
+        handleSelectType={handleSelectType}
+      />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
         mainIconPath={VariousIcon}

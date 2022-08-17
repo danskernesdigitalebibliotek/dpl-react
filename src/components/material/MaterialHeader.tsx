@@ -19,6 +19,7 @@ import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 interface MaterialHeaderProps {
   wid: WorkId;
   work: WorkMediumFragment;
+  handleSelectType?: (type: string) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -28,7 +29,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     manifestations,
     mainLanguages,
     workId: wid
-  }
+  },
+  handleSelectType
 }) => {
   const t = useText();
 
@@ -65,6 +67,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           <AvailabiltityLabels
             workId={wid as WorkId}
             manifestations={manifestations}
+            handleSelectType={handleSelectType}
           />
         </div>
 

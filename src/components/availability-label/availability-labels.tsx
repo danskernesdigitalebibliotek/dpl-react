@@ -9,11 +9,13 @@ import { AvailabilityLabel } from "./availability-label";
 export interface AvailabilityLabelsProps {
   manifestations: ManifestationsSimpleFragment;
   workId: WorkId;
+  handleSelectType?: (type: string) => void;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
-  workId
+  workId,
+  handleSelectType
 }) => {
   const { materialUrl } = useUrls();
 
@@ -36,6 +38,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
             url={url}
             faustIds={[faustId]}
             manifestText={materialType}
+            handleSelectType={handleSelectType}
           />
         );
       })}
