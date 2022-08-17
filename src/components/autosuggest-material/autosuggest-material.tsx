@@ -32,7 +32,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           {/* The downshift combobox works this way by design (line 50) */}
           {/* incorrectIndex because in the whole of autosuggest dropdown it is
           not the correct index for the item. We first need to add the length of
-          items from autosuggest string suggestion to it for it to be accurate */}
+          items from autosuggest string suggestion to it for it to be accurate. */}
           {materialData.map((item, incorrectIndex) => {
             const index = incorrectIndex + textDataLength;
             const authors: string[] = [];
@@ -52,7 +52,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 {/* eslint-enable react/jsx-props-no-spreading */}
                 <div className="autosuggest__material__content">
                   <div className="autosuggest__cover">
-                    {/* TODO: once we have the material page and know what the urls look like, we need to pass materialUrl here */}
                     {item.work && (
                       <Cover
                         animate

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { withText } from "../../core/utils/text";
+import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
 
-export interface SearchHeaderProps {
-  searchHeaderUrlText?: string;
+export interface SearchHeaderTextProps {
   altText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
@@ -12,14 +12,24 @@ export interface SearchHeaderProps {
   etAlText?: string;
 }
 
-const SearchHeaderEntry: React.FC<SearchHeaderProps> = ({
-  searchHeaderUrlText = "https://bibliotek.dk/search",
+export interface SearchHeaderUrlProps {
+  searchUrl: string;
+  materialUrl: string;
+}
+
+export interface SearchHeaderEntryProps
+  extends SearchHeaderTextProps,
+    SearchHeaderUrlProps {}
+
+const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
   altText = "search icon",
   inputPlaceholderText = "Search here",
   stringSuggestionAuthorText = "author",
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic",
   etAlText = "et al."
-}) => <SearchHeader />;
+}) => {
+  return <SearchHeader />;
+};
 
-export default withText(SearchHeaderEntry);
+export default withUrls(withText(SearchHeaderEntry));
