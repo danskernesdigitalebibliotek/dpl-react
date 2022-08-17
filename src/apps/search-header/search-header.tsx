@@ -170,15 +170,18 @@ const SearchHeader: React.FC = () => {
       return;
     }
     setQWithoutQuery(inputValue);
+    // Escape if there is no selected item defined.
     if (!selectedItem) {
       return;
     }
+    // Nothing happens if this is not a mouse click or enter click.
     if (
       type !== useCombobox.stateChangeTypes.ItemClick &&
       type !== useCombobox.stateChangeTypes.InputKeyDownEnter
     ) {
       return;
     }
+    // If this item is shown as one of work suggestions redirect to material page.
     if (
       selectedItem.work?.workId &&
       isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
@@ -186,6 +189,7 @@ const SearchHeader: React.FC = () => {
       manualRedirect(selectedItem, selectedItem.work?.workId as WorkId);
       return;
     }
+    // Otherwise redirect to search result page.
     manualRedirect(selectedItem);
   }
 
