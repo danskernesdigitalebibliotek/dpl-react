@@ -60,7 +60,7 @@ describe("Loan list", () => {
     cy.wait(["@loans", "@work", "@cover"]);
     cy.get(".list-reservation").should(
       "have.text",
-      "Dummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Du pålægges et gebyr, når materialet afleveres0dageOverskredetAfleveres 14-07-2022"
+      "Dummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Du pålægges et gebyr, når materialet afleveres0dageOverskredetAfleveres 14-07-2022Du pålægges et gebyr, når materialet afleveres"
     );
   });
 
@@ -408,21 +408,21 @@ describe("Loan list", () => {
       .eq(0)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet kan ikke fornyes flere gangeAfleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet er udlånt fra en anden kommune og fornyelsen er derfor betinget af et andet biblioteks acceptAfleveres \n            14-07-2022"
       );
     cy.get(".modal")
       .find(".list-materials")
       .eq(1)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet kan ikke fornyes flere gangeAfleveres \n            14-07-2022"
       );
     cy.get(".modal")
       .find(".list-materials")
       .eq(2)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet er udlånt fra en anden kommune og fornyelsen er derfor betinget af et andet biblioteks acceptAfleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
       );
     cy.get(".modal")
       .find(".list-materials")

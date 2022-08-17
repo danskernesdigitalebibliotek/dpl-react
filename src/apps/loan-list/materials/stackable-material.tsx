@@ -37,7 +37,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
   const dispatch = useDispatch();
   return (
     <div
-      className={`list-reservation m-32 ${
+      className={`list-reservation my-32 ${
         amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
           ? "list-reservation--stacked"
           : ""
@@ -87,6 +87,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
               </button>
             )}
           {materialIsOverdue(dueDate) && (
+            // todo 5387.2.2b.iv.3.b.i. Se Bilag 6 pkt. 2
             <a
               href="todo"
               className="list-reservation__note-desktop text-small-caption color-signal-alert"
@@ -120,6 +121,15 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                     {t("LoanListMaterialsMobileText")}
                   </button>
                 )}
+              {materialIsOverdue(dueDate) && (
+                // todo 5387.2.2b.iv.3.b.i. Se Bilag 6 pkt. 2
+                <a
+                  href="todo"
+                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                >
+                  {t("loanListLateFeeMobileText")}
+                </a>
+              )}
             </div>
           </div>
         </div>
