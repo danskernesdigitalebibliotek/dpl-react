@@ -32,6 +32,7 @@ export interface LoanListEntryProps {
   LoanListLabelCheckboxMaterialModalText: string;
   LoanListCloseModalText: string;
   LoanListModalDescriptionText: string;
+  LoanListEmptyPhysicalLoansText: string;
 }
 
 const LoanListEntry: React.FC<LoanListEntryProps> = () => <LoanList />;
