@@ -9,7 +9,7 @@ import {
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { Pid } from "../../core/utils/types/ids";
+import { Pid, WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -21,17 +21,18 @@ import { useText } from "../../core/utils/text";
 import {
   creatorsToString,
   filterCreators,
-  flattenCreators
+  flattenCreators,
+  getManifestationPid
 } from "../../core/utils/helpers/general";
 
 export interface MaterialProps {
-  pid: Pid;
+  wid: WorkId;
 }
 
-const Material: React.FC<MaterialProps> = ({ pid }) => {
+const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
   const { data, isLoading } = useGetMaterialQuery({
-    pid
+    wid
   });
 
   if (isLoading) {
@@ -52,6 +53,10 @@ const Material: React.FC<MaterialProps> = ({ pid }) => {
     workYear
   } = data.work;
 
+  // TODO: Temporary way to get a pid we can use for showing a cover for the material.
+  // It should be replaced with some dynamic feature
+  // that follows the current type of the material.
+  const pid = getManifestationPid(manifestations) as Pid;
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -86,7 +91,7 @@ const Material: React.FC<MaterialProps> = ({ pid }) => {
 
   return (
     <main className="material-page">
-      <MaterialHeader pid={pid} work={data.work} />
+      <MaterialHeader wid={wid} work={data.work} />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
         mainIconPath={VariousIcon}

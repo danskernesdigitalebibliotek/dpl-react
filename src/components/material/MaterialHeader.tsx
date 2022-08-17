@@ -3,7 +3,8 @@ import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import {
   creatorsToString,
   filterCreators,
-  flattenCreators
+  flattenCreators,
+  getManifestationPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
@@ -16,18 +17,17 @@ import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 
 interface MaterialHeaderProps {
-  pid: Pid;
+  wid: WorkId;
   work: WorkMediumFragment;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
-  pid,
   work: {
     titles: { full: fullTitle },
     creators,
     manifestations,
     mainLanguages,
-    workId
+    workId: wid
   }
 }) => {
   const t = useText();
@@ -37,6 +37,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     t
   );
 
+  // TODO: Temporary way to get a pid we can use for showing a cover for the material.
+  // It should be replaced with some dynamic feature
+  // that follows the current type of the material.
+  const pid = getManifestationPid(manifestations) as Pid;
   const author = creatorsText || "[Creators are missing]";
 
   const containsDanish = mainLanguages.some((language) =>
@@ -55,11 +59,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <Cover pid={pid} size="xlarge" animate={false} />
       </div>
       <div className="material-header__content">
-        <ButtonFavourite id={workId as WorkId} />
+        <ButtonFavourite id={wid as WorkId} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels
-            workId={workId as WorkId}
+            workId={wid as WorkId}
             manifestations={manifestations}
           />
         </div>

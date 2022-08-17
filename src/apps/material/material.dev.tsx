@@ -16,9 +16,9 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
-    pid: {
-      name: "pid",
-      defaultValue: "870970-basis:52557240",
+    wid: {
+      name: "Work ID",
+      defaultValue: "work-of:870970-basis:52557240",
       control: { type: "text" }
     },
     materialHeaderAuthorByText: {

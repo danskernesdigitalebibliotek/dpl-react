@@ -1,6 +1,6 @@
 import * as React from "react";
 import { withText } from "../../core/utils/text";
-import { Pid } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
@@ -43,11 +43,11 @@ interface MaterialEntryUrlProps {
 export interface MaterialEntryProps
   extends MaterialEntryUrlProps,
     MaterialEntryTextProps {
-  pid: Pid;
+  wid: WorkId;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ pid }) => {
-  return <Material pid={pid} />;
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
+  return <Material wid={wid} />;
 };
 
 export default withUrls(withText(MaterialEntry));
