@@ -1,12 +1,13 @@
 import React from "react";
-import { constructSearchUrl } from "../../core/utils/helpers/url";
-import { useUrls } from "../../core/utils/url";
 import { Link } from "../atoms/link";
 
 export interface HorizontalTermLineProps {
   title: string;
   subTitle?: string;
-  linkList: string[];
+  linkList: {
+    url: URL;
+    term: string;
+  }[];
 }
 
 const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
@@ -14,8 +15,6 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   subTitle,
   linkList
 }) => {
-  const { searchUrl } = useUrls();
-
   return (
     <div className="text-small-caption horizontal-term-line">
       <p className="text-label-bold">
@@ -25,13 +24,11 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
         )}
       </p>
 
-      {linkList.map((term) => {
-        const termUrl = constructSearchUrl(searchUrl, term);
-
+      {linkList.map((item) => {
         return (
-          <span key={term}>
-            <Link href={termUrl} className="link-tag">
-              {term}
+          <span key={item.term}>
+            <Link href={item.url} className="link-tag">
+              {item.term}
             </Link>
           </span>
         );
