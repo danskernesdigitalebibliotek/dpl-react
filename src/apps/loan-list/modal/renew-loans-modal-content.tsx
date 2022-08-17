@@ -4,7 +4,10 @@ import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
-import { getRenewableMaterials, getAmountOfRenewableLoans } from "../helpers";
+import {
+  getRenewableMaterials,
+  getAmountOfRenewableLoans
+} from "../../../core/utils/helpers/general";
 
 interface RenewLoansModalContentProps {
   renewable: number | null;

@@ -4,6 +4,7 @@ import {
   useGetMaterialManifestationQuery
 } from "../../../../core/dbc-gateway/generated/graphql";
 import { LoanDetailsV2 } from "../../../../core/fbs/model";
+import { FaustId } from "../../../../core/utils/types/ids";
 
 export interface MaterialDetailsProps {
   loanDetails: LoanDetailsV2;
@@ -15,7 +16,7 @@ export interface SelectableMaterialProps {
   loanType?: string;
   disabled?: boolean;
   materialsToRenew?: number[];
-  onChecked?: (faust: string) => void;
+  onChecked?: (faust: FaustId) => void;
 }
 
 export interface StackableMaterialProps {
@@ -35,7 +36,7 @@ export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
 
-type InputProps = { faust: string } & (
+type InputProps = { faust: FaustId } & (
   | StackableMaterialProps
   | SelectableMaterialProps
   | MaterialDetailsProps
@@ -48,6 +49,7 @@ export function FetchMaterial(
 ) {
   const WithFetchMaterial = ({ faust, ...props }: InputProps) => {
     const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
+    // Todo error handling
     const { isSuccess: isSuccessManifestation, data } =
       useGetMaterialManifestationQuery({
         faust

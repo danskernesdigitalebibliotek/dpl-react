@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
+import { Link } from "../../../../components/atoms/link";
 
 interface WarningBarProps {
   linkText: string;
@@ -7,6 +8,9 @@ interface WarningBarProps {
 }
 
 const WarningBar: FC<WarningBarProps> = ({ linkText, overdueText }) => {
+  /* todo link til gebyrer */
+  const url = new URL("/");
+
   return (
     <div className="warning-bar bg-global-secondary">
       <div className="warning-bar__left">
@@ -14,10 +18,10 @@ const WarningBar: FC<WarningBarProps> = ({ linkText, overdueText }) => {
         <div>
           <p className="text-body-medium-regular color-primary-black">
             {overdueText}
-            <a href="/" className="link-tag color-secondary-gray ml-8">
-              {/* todo link til gebyrer */}
+
+            <Link href={url} className="link-tag color-secondary-gray ml-8">
               {linkText}
-            </a>
+            </Link>
           </p>
         </div>
       </div>

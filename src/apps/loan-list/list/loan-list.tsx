@@ -4,23 +4,22 @@ import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { openModal } from "../../../core/modal.slice";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
+import {
+  getAmountOfRenewableLoans,
+  IsAModalDisplayed,
+  sortByLoanDate
+} from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
-import {
-  removeLoansWithDuplicateDueDate,
-  getAmountOfRenewableLoans
-} from "../helpers";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import {
-  sortByLoanDate,
-  queryMatchesFaust
-} from "../../../core/utils/helpers/general";
+import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
+import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
 
@@ -28,7 +27,7 @@ export interface ModalMaterialType {
   materialItemNumber: number;
   mainText: string;
   pid: string;
-  faust: string;
+  faust: FaustId;
   specific: string;
   creators: string;
 }
@@ -97,11 +96,11 @@ const LoanList: FC = () => {
     setDisplayList(true);
     // If modalids are longer than 0, a modal is open.
     // If a modal is open, the list should not be displayed.
-    if (modalIds.length > 0) {
+    if (IsAModalDisplayed(modalIds)) {
       refetch();
       setDisplayList(true);
     }
-  }, [modalIds?.length, refetch]);
+  }, [modalIds, modalIds.length, refetch]);
 
   const openModalDueDate = useCallback(
     (dueDateModalInput?: string) => {
