@@ -69,7 +69,7 @@ export const getCreatorTextFromManifestations = (
   return creatorsToString(creators, t);
 };
 
-const getFirstPublishedManifestation = (
+export const getFirstPublishedManifestation = (
   manifestations: ManifestationsSimpleFragment
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
