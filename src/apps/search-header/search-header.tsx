@@ -85,12 +85,10 @@ const SearchHeader: React.FC = () => {
     selectedItem: Suggestion["work"],
     currentMaterialData: Suggestion[]
   ) {
-    for (let i = 0; i < currentMaterialData.length; i += 1) {
-      if (currentMaterialData[i].work?.workId === selectedItem?.workId) {
-        return true;
-      }
-    }
-    return false;
+    const dataWithWorkId = currentMaterialData.filter(
+      (item) => item.work?.workId === selectedItem?.workId
+    );
+    return Boolean(dataWithWorkId.length);
   }
 
   function handleSelectedItemChange(
