@@ -33,7 +33,7 @@ const SearchHeader: React.FC = () => {
   } = useSuggestionsFromQueryStringQuery({ q });
   const { searchUrl, materialUrl } = useUrls();
 
-  // mMke sure to only assign the data once.
+  // Make sure to only assign the data once.
   useEffect(() => {
     if (data) {
       const arayOfResults = data.suggest.result;
