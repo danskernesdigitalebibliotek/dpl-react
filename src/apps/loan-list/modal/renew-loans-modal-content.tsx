@@ -8,6 +8,7 @@ import {
   getRenewableMaterials,
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface RenewLoansModalContentProps {
   renewable: number | null;
@@ -109,7 +110,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
                 <SelectableMaterial
                   disabled
                   onChecked={onChecked}
-                  faust={loanDetails.recordId}
+                  faust={loanDetails.recordId as FaustId}
                   loanDetails={loanDetails}
                   renewableStatus={renewalStatus}
                 />
@@ -118,7 +119,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {loans.map(({ renewalStatusList, isRenewable, loanDetails }) => {
             return (
               <SelectableMaterial
-                faust={loanDetails.recordId}
+                faust={loanDetails.recordId as FaustId}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
                 disabled={!isRenewable}

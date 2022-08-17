@@ -100,7 +100,7 @@ const LoanList: FC = () => {
       refetch();
       setDisplayList(true);
     }
-  }, [modalIds, modalIds.length, refetch]);
+  }, [modalIds, modalIds?.length, refetch]);
 
   const openModalDueDate = useCallback(
     (dueDateModalInput?: string) => {

@@ -4,6 +4,7 @@ import { removeLoansWithDuplicateDueDate } from "../helpers";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface LoanListItemProps {
   loans: LoanV2[];
@@ -48,7 +49,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <StackableMaterial
               loanDetails={loanDetails}
               key={loanDetails.recordId}
-              faust={loanDetails.recordId}
+              faust={loanDetails.recordId as FaustId}
               selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
               selectMaterial={selectModalMaterial}
               amountOfMaterialsWithDueDate={loan.length}
@@ -61,7 +62,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <StackableMaterial
               selectMaterial={selectModalMaterial}
               key={loanDetails.recordId}
-              faust={loanDetails.recordId}
+              faust={loanDetails.recordId as FaustId}
               loanDetails={loanDetails}
             />
           );

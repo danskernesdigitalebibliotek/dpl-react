@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import { Link } from "../../../../components/atoms/link";
+import { getCurrentLocation } from "../../../../core/utils/helpers/url";
 
 interface WarningBarProps {
   linkText: string;
@@ -9,7 +10,7 @@ interface WarningBarProps {
 
 const WarningBar: FC<WarningBarProps> = ({ linkText, overdueText }) => {
   /* todo link til gebyrer */
-  const url = new URL("/");
+  const url = new URL("/", getCurrentLocation());
 
   return (
     <div className="warning-bar bg-global-secondary">

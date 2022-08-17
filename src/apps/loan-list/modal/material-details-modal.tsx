@@ -4,6 +4,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import MaterialDetails from "./material-details";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface MaterialDetailsModalProps {
   material: GetMaterialManifestationQuery | undefined | null;
@@ -26,7 +27,7 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
         "materialDetailsModalDescriptionText"
       )}
     >
-      <MaterialDetails faust={faust} loanDetails={loanDetails} />
+      <MaterialDetails faust={faust as FaustId} loanDetails={loanDetails} />
     </Modal>
   );
 };

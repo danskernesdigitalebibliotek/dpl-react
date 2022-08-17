@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import IconCheckbox from "../../../../components/icon-checkbox/icon-checkbox";
+import { FaustId } from "../../../../core/utils/types/ids";
 
 interface CheckBoxProps {
   id: string;
@@ -7,7 +8,7 @@ interface CheckBoxProps {
   hideLabel?: boolean;
   selected?: boolean;
   disabled?: boolean;
-  onChecked: (faust: string) => void;
+  onChecked: (faust: FaustId) => void;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -23,7 +24,7 @@ const CheckBox: FC<CheckBoxProps> = ({
       <input
         id={id}
         className="checkbox__input"
-        onChange={() => onChecked(id)}
+        onChange={() => onChecked(id as FaustId)}
         checked={selected}
         type="checkbox"
         disabled={disabled}
