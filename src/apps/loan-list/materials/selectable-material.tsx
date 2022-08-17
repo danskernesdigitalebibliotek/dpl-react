@@ -72,11 +72,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           {/* todo this will be changed, everything with these statusses will be revised */}
           {renewableStatus && (
             <span className="text-small-caption">
-              {renewableStatus.indexOf("deniedMaxRenewalsReached") > -1 && (
+              {renewableStatus.includes("deniedMaxRenewalsReached") && (
                 <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
               )}
-              {(renewableStatus.indexOf("deniedOtherReason") > -1 ||
-                renewableStatus.indexOf("deniedReserved") > -1) && (
+              {(renewableStatus.includes("deniedOtherReason") ||
+                renewableStatus.includes("deniedReserved")) && (
                 <> {t("LoanListDeniedOtherReasonText")}</>
               )}
               {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}

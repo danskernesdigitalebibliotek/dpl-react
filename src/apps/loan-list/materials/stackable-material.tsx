@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent, FC } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
@@ -32,32 +32,45 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   } = titles || { main: [] };
   const { loanDate, dueDate, recordId: faust } = loanDetails || {};
 
+  function stopPropagationFunction(e: Event | MouseEvent) {
+    e.stopPropagation();
+  }
   useEffect(() => {
-    function stopPropagationFunction(e: Event) {
-      e.stopPropagation();
-    }
-
     document
-      .querySelector("a")
+      .querySelector(".list-reservation a")
       ?.addEventListener("click", stopPropagationFunction, true);
 
     return () => {
       document
-        .querySelector("a")
+        .querySelector(".list-reservation a")
         ?.removeEventListener("click", stopPropagationFunction, true);
     };
   }, []);
 
-  const selectListMaterial = (e: MouseEvent) => {
-    e.stopPropagation();
-    if (selectMaterial) {
-      selectMaterial({
-        material,
-        loanDetails
-      });
-    }
-    dispatch(openModal({ modalId: faust }));
-  };
+  const openDueDateModal = useCallback(
+    (e: MouseEvent) => {
+      stopPropagationFunction(e);
+      if (selectDueDate) {
+        selectDueDate();
+        dispatch(openModal({ modalId: dueDate }));
+      }
+    },
+    [dispatch, dueDate, selectDueDate]
+  );
+
+  const selectListMaterial = useCallback(
+    (e: MouseEvent) => {
+      stopPropagationFunction(e);
+      if (selectMaterial) {
+        selectMaterial({
+          material,
+          loanDetails
+        });
+      }
+      dispatch(openModal({ modalId: faust }));
+    },
+    [dispatch, faust, loanDetails, material, selectMaterial]
+  );
 
   return (
     <button
@@ -100,9 +113,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               <button
                 type="button"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  selectDueDate();
-                  dispatch(openModal({ modalId: dueDate }));
+                  openDueDateModal(e);
                 }}
                 aria-describedby={t("loanListMaterialsModalDesktopText")}
                 id="test-more-materials"

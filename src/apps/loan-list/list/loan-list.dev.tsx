@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
+import modalIdsConf from "../../../core/configuration/modal-ids.json";
 
 export default {
   title: "Apps / Loan list",
@@ -244,6 +245,6 @@ LoanListDueDateModal.parameters = {
 export const LoanListRenewLoansModal = Template.bind({});
 LoanListRenewLoansModal.parameters = {
   query: {
-    modal: "all"
+    modal: modalIdsConf.allLoansId
   }
 };

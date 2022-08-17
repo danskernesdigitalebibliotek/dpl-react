@@ -132,8 +132,10 @@ const LoanList: FC = () => {
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(loans);
       setRenewable(amountOfRenewableLoans);
+
+      dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
     }
-  }, [loans]);
+  }, [loans, dispatch]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
@@ -205,7 +207,6 @@ const LoanList: FC = () => {
                   type="button"
                   onClick={() => {
                     openRenewLoansModal();
-                    dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
                   }}
                   aria-describedby={t(
                     "loanListRenewMultipleButtonExplanationText"

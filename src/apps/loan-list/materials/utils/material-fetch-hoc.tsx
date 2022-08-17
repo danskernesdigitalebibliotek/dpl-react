@@ -64,7 +64,7 @@ export function FetchMaterial(
       <>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         {material && <WrappedComponent {...props} material={material} />}
-        {/* todo loading figma? */}
+        {/* todo loading screen missing in figma */}
         {!material && <div />}
       </>
     );

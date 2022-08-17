@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, useCallback } from "react";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import SelectableMaterial from "../materials/selectable-material";
@@ -31,7 +31,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     Array<RenewedLoanV2> | undefined | null
   >(null);
 
-  const renewSelected = () => {
+  const renewSelected = useCallback(() => {
     mutate(
       {
         data: materialsToRenew
@@ -54,7 +54,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         onError: () => {}
       }
     );
-  };
+  }, [loans, materialsToRenew, mutate]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));

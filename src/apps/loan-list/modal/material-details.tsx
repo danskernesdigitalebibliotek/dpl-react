@@ -75,8 +75,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     [t]
   );
 
-  const renew = (renewId: number) => {
-    if (renewId) {
+  const renew = useCallback(
+    (renewId: number) => {
       mutate(
         {
           data: [renewId]
@@ -92,8 +92,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           onError: () => {}
         }
       );
-    }
-  };
+    },
+    [determineRenewedStatus, mutate]
+  );
 
   useEffect(() => {
     if (dueDate) {
