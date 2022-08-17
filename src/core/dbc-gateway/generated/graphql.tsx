@@ -149,6 +149,14 @@ export type Dk5MainEntry = {
   display: Scalars["String"];
 };
 
+export type DidYouMean = {
+  __typename?: "DidYouMean";
+  /** An alternative query */
+  query: Scalars["String"];
+  /** A probability score between 0-1 indicating how relevant the query is */
+  score: Scalars["Float"];
+};
+
 export type DigitalArticleService = {
   __typename?: "DigitalArticleService";
   /** Issn which can be used to order article through Digital Article Service */
@@ -242,6 +250,22 @@ export enum FictionNonfictionCode {
   Fiction = "FICTION",
   Nonfiction = "NONFICTION",
   NotSpecified = "NOT_SPECIFIED"
+}
+
+/** Holdings Filters */
+export type HoldingsFilters = {
+  branchId?: InputMaybe<Array<Scalars["String"]>>;
+  department?: InputMaybe<Array<Scalars["String"]>>;
+  location?: InputMaybe<Array<Scalars["String"]>>;
+  status?: InputMaybe<Array<HoldingsStatus>>;
+  sublocation?: InputMaybe<Array<Scalars["String"]>>;
+};
+
+export enum HoldingsStatus {
+  /** Holding is on loan */
+  OnLoan = "OnLoan",
+  /** Holding is physically available at the branch */
+  OnShelf = "OnShelf"
 }
 
 export type HostPublication = {
@@ -736,6 +760,7 @@ export type QueryRisArgs = {
 
 export type QuerySearchArgs = {
   filters?: InputMaybe<SearchFilters>;
+  holdingsFilters?: InputMaybe<HoldingsFilters>;
   q: SearchQuery;
 };
 
@@ -854,6 +879,8 @@ export type SearchQuery = {
 /** The simple search response */
 export type SearchResponse = {
   __typename?: "SearchResponse";
+  /** A list of alternative search queries */
+  didYouMean: Array<DidYouMean>;
   /**
    * Make sure only to fetch this when needed
    * This may take seconds to complete
@@ -1081,7 +1108,7 @@ export type GetMaterialManifestationQuery = {
 };
 
 export type GetMaterialQueryVariables = Exact<{
-  pid: Scalars["String"];
+  wid: Scalars["String"];
 }>;
 
 export type GetMaterialQuery = {
@@ -1804,8 +1831,8 @@ export const useGetMaterialManifestationQuery = <
     options
   );
 export const GetMaterialDocument = `
-    query getMaterial($pid: String!) {
-  work(pid: $pid) {
+    query getMaterial($wid: String!) {
+  work(id: $wid) {
     ...WorkMedium
   }
 }
