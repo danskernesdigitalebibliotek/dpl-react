@@ -74,7 +74,7 @@ const SearchHeader: React.FC = () => {
     }
   }, [q]);
 
-  function determinSuggestionTerm(suggestion: Suggestion): string {
+  function determineSuggestionTerm(suggestion: Suggestion): string {
     if (suggestion.type === SuggestionType.Composit) {
       return suggestion.work?.titles.main[0] || "incomplete data";
     }
@@ -97,7 +97,7 @@ const SearchHeader: React.FC = () => {
     if (!selectedItem) {
       return;
     }
-    setCurrentlySelectedItem(determinSuggestionTerm(selectedItem));
+    setCurrentlySelectedItem(determineSuggestionTerm(selectedItem));
   }
 
   // downshift prevents the default form submission event when the
@@ -116,7 +116,7 @@ const SearchHeader: React.FC = () => {
     // not a work suggestion redirect
     redirectUrl = constructSearchUrl(
       searchUrl,
-      determinSuggestionTerm(currentSelectedSuggestion)
+      determineSuggestionTerm(currentSelectedSuggestion)
     );
     redirectTo(redirectUrl);
   }
@@ -143,7 +143,9 @@ const SearchHeader: React.FC = () => {
     }
     const arrayIndex: number = highlightedIndex;
     const currentlyHighlightedObject = orderedData[arrayIndex];
-    const currentItemValue = determinSuggestionTerm(currentlyHighlightedObject);
+    const currentItemValue = determineSuggestionTerm(
+      currentlyHighlightedObject
+    );
     if (
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
