@@ -1,5 +1,5 @@
-query getMaterial($pid: String!) {
-  work(pid: $pid) {
+query getMaterial($wid: String!) {
+  work(id: $wid) {
     ...WorkMedium
   }
 }
