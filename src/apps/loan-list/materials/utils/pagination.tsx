@@ -57,18 +57,25 @@ const Pagination: FC<PaginationProps> = ({
         openModalDueDate={openModalDueDate}
         selectModalMaterial={selectModalMaterial}
       />
-      <div className="pagination m-24">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel={<img src={ArrowRight} alt={t("paginationNextLabel")} />}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel={
-            <img src={ArrowLeft} alt={t("paginationPreviousLabel")} />
-          }
-        />
-      </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel={<img src={ArrowRight} alt={t("paginationNextLabelText")} />}
+        onPageChange={handlePageClick}
+        pageClassName="dpl-pagination__item"
+        pageLinkClassName="dpl-pagination__item__link"
+        previousClassName="dpl-pagination__item dpl-pagination__item--previous"
+        previousLinkClassName="dpl-pagination__item__link"
+        nextClassName="dpl-pagination__item dpl-pagination__item--next"
+        nextLinkClassName="dpl-pagination__item__link"
+        breakClassName="dpl-pagination__item"
+        breakLinkClassName="dpl-pagination__item__link"
+        containerClassName="dpl-pagination"
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel={
+          <img src={ArrowLeft} alt={t("paginationPreviousLabelText")} />
+        }
+      />
     </>
   );
 };

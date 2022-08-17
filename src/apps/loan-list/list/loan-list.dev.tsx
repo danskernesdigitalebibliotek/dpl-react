@@ -221,11 +221,11 @@ export default {
       defaultValue: "Overskredet",
       control: { type: "text" }
     },
-    paginationNextLabel: {
+    paginationNextLabelText: {
       defaultValue: "Næste side",
       control: { type: "text" }
     },
-    paginationPreviousLabel: {
+    paginationPreviousLabelText: {
       defaultValue: "Forrige side",
       control: { type: "text" }
     }

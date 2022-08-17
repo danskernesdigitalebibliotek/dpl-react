@@ -57,6 +57,8 @@ export interface LoanListEntryProps {
   MaterialDetailsModalOverdueText: string;
   paginationNextLabel: string;
   paginationPreviousLabel: string;
+  paginationNextLabelText: string;
+  paginationPreviousLabelText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
