@@ -2,6 +2,21 @@ import get from "lodash.get";
 import dayjs from "dayjs";
 import { LoanV2 } from "../../core/fbs/model/loanV2";
 
+export const removeLoansWithSameDueDate = (list: LoanV2[]) => {
+  const seen: string[] = [];
+
+  const loanList = list.filter((el) => {
+    const duplicate = seen.includes(el.loanDetails.dueDate);
+    seen.push(el.loanDetails.dueDate);
+    return !duplicate;
+  });
+
+  const duplicateDueDates = seen.filter((item) => {
+    return seen.lastIndexOf(item) !== seen.indexOf(item);
+  });
+
+  return { loanList, duplicateDueDates };
+};
 export const removeLoansWithDuplicateDueDate = (
   date: string,
   list: LoanV2[],

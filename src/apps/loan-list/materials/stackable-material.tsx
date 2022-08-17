@@ -77,9 +77,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       type="button"
       onClick={(e) => selectListMaterial(e)}
       className={`list-reservation my-32 ${
-        amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
-          ? "list-reservation--stacked"
-          : ""
+        amountOfMaterialsWithDueDate > 1 ? "list-reservation--stacked" : ""
       }`}
     >
       <div className="list-reservation__material">
@@ -92,62 +90,80 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           />
         </div>
         <div className="list-reservation__information">
-          <div>
-            <Cover
-              size="small"
-              animate
-              tint="120"
-              materialId={pid || ""}
-              description={abstract && abstract[0]}
-            />
+          {/* todo move to style rep */}
+          <div style={{ display: "flex" }}>
+            <div className="status-label status-label--outline">{specific}</div>
           </div>
-          {amountOfMaterialsWithDueDate &&
-            amountOfMaterialsWithDueDate > 1 &&
-            selectDueDate && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  openDueDateModal(e);
-                }}
-                aria-describedby={t("loanListMaterialsModalDesktopText")}
-                id="test-more-materials"
-                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-              >
-                {t("loanListLateFeeDesktopText")}
-              </button>
-            )}
+          <div className="list-reservation__about">
+            <h3 className="text-header-h4">{mainText}</h3>
+            <p className="text-small-caption color-secondary-gray">
+              {creators &&
+                getAuthorNames(
+                  creators,
+                  t("loanListMaterialByAuthorText"),
+                  t("loanListMaterialAndAuthorText")
+                )}
+              {year?.year && <> ({year.year})</>}
+            </p>
+          </div>
+          {amountOfMaterialsWithDueDate > 1 && selectDueDate && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                selectDueDate();
+                dispatch(openModal({ modalId: dueDate }));
+              }}
+              aria-describedby={t("loanListMaterialsModalDesktopText")}
+              id="test-more-materials"
+              className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+            >
+              + {amountOfMaterialsWithDueDate}{" "}
+              {t("LoanListMaterialsDesktopText")}
+            </button>
+          )}
+          {materialIsOverdue(dueDate) && (
+            <a
+              href="todo"
+              className="list-reservation__note-desktop text-small-caption color-signal-alert"
+            >
+              {t("loanListLateFeeDesktopText")}
+            </a>
+          )}
         </div>
       </div>
-      <div className="list-reservation__status">
-        <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-        <div>
-          <div className="list-reservation__deadline">
-            <StatusBadge
-              dueDate={dueDate}
-              dangerText={t("loanListStatusBadgeDangerText")}
-              warningText={t("loanListStatusBadgeWarningText")}
-            />
-            <p className="text-small-caption" id="due-date">
-              {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
-            </p>
-            {amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1 && (
-              <button
-                type="button"
-                aria-describedby={t("loanListMaterialsModalMobileText")}
-                className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-              >
-                + {amountOfMaterialsWithDueDate}{" "}
-                {t("LoanListMaterialsMobileText")}
-              </button>
-            )}
-            {materialIsOverdue(dueDate) && (
-              <a
-                href="todo"
-                className="list-reservation__note-mobile text-small-caption color-signal-alert"
-              >
-                {t("loanListLateFeeMobileText")}
-              </a>
-            )}
+      <div>
+        <div className="list-reservation__status">
+          <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+          <div>
+            <div className="list-reservation__deadline">
+              <StatusBadge
+                dueDate={dueDate}
+                dangerText={t("loanListStatusBadgeDangerText")}
+                warningText={t("loanListStatusBadgeWarningText")}
+              />
+              <p className="text-small-caption" id="due-date">
+                {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
+              </p>
+              {amountOfMaterialsWithDueDate > 1 && (
+                <button
+                  type="button"
+                  aria-describedby={t("loanListMaterialsModalMobileText")}
+                  className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                >
+                  + {amountOfMaterialsWithDueDate}{" "}
+                  {t("LoanListMaterialsMobileText")}
+                </button>
+              )}
+              {materialIsOverdue(dueDate) && (
+                <a
+                  href="todo"
+                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                >
+                  {t("loanListLateFeeMobileText")}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>

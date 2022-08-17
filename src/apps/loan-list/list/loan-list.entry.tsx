@@ -55,6 +55,8 @@ export interface LoanListEntryProps {
   dueDateWarningLoanOverdueText: string;
   dueDateLinkToPageWithFeesText: string;
   MaterialDetailsModalOverdueText: string;
+  paginationNextLabel: string;
+  paginationPreviousLabel: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;

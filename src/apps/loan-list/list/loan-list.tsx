@@ -17,7 +17,8 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import {
   removeLoansWithDuplicateDueDate,
   getAmountOfRenewableLoans,
-  queryMatchesFaust
+  queryMatchesFaust,
+  removeLoansWithSameDueDate
 } from "../helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
@@ -26,6 +27,7 @@ import {
   IsAModalDisplayed,
   sortByLoanDate
 } from "../../../core/utils/helpers/general";
+import Pagination from "../materials/utils/pagination";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -44,8 +46,9 @@ export interface LoanDetailsType {
 const LoanList: FC = () => {
   const dispatch = useDispatch();
   const t = useText();
+  const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
   const [loans, setLoans] = useState<LoanV2[]>();
-  const [dueDates, setDueDates] = useState<string[]>([]);
+  const [duplicateDueDates, setDuplicateDueDates] = useState<string[]>([]);
   const [modalMaterial, setModalMaterial] = useState<
     GetMaterialManifestationQuery | null | undefined
   >(null);
@@ -68,20 +71,15 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      const listOfDueDates = data.map((a) => a.loanDetails.dueDate);
-      const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
-
-      // The due dates are used for the stacked materials
-      // The stacked materials view shows materials stacked by
-      // due date, and for this we need a uniqe list of due dates
-      setDueDates(uniqeListOfDueDates);
-
       // Loans are sorted by due date
-      const sortedByLoanDate = sortByLoanDate(data);
-
-      setLoans(sortedByLoanDate);
-      setAmountOfLoans(sortedByLoanDate.length);
-      updateRenewable(sortedByLoanDate);
+      setAllLoans(data);
+      const sortedByDueDate = data.sort(
+        (objA, objB) =>
+          new Date(objA.loanDetails.dueDate).getTime() -
+          new Date(objB.loanDetails.dueDate).getTime()
+      );
+      setLoans(sortedByDueDate);
+      setAmountOfLoans(sortedByDueDate.length);
     }
   }, [isSuccess, data]);
 
@@ -104,26 +102,38 @@ const LoanList: FC = () => {
     }
   }, [modalIds, modalIds?.length, refetch]);
 
+  useEffect(() => {
+    if (view === "stacked") {
+      const { loanList, duplicateDueDates: localDuplicateDueDates } =
+        removeLoansWithSameDueDate(allLoans);
+      setLoans(loanList);
+      setDuplicateDueDates(localDuplicateDueDates);
+    }
+    if (view === "list" && allLoans.length > 0) {
+      setLoans(allLoans);
+      setDuplicateDueDates([]);
+    }
+  }, [view, allLoans]);
+
   const openModalDueDate = useCallback(
-    (dueDateModalInput?: string) => {
-      if (loans && dueDateModalInput) {
-        setDueDateModal(dueDateModalInput);
-        // The loans are filtered with said date string
-        const loansForModal = removeLoansWithDuplicateDueDate(
-          dueDateModalInput,
-          loans,
-          "loanDetails.dueDate"
-        );
+    (dueDateModalInput: string) => {
+      setDueDateModal(dueDateModalInput);
 
-        // Amount of renewable loans are determined, used in the ui
-        const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
+      // The loans are filtered with said date string
+      const loansForModal = removeLoansWithDuplicateDueDate(
+        dueDateModalInput,
+        allLoans,
+        "loanDetails.dueDate"
+      );
 
-        // Loans for modal (the modal shows loans stacked by due date)
-        setLoansModal(loansForModal);
-        setRenewable(amountOfRenewableLoans);
-      }
+      // Amount of renewable loans are determined, used in the ui
+      const amountOfRenewableLoans = getAmountOfRenewableLoans(loansForModal);
+
+      // Loans for modal (the modal shows loans stacked by due date)
+      setLoansModal(loansForModal);
+      setRenewable(amountOfRenewableLoans);
     },
-    [loans]
+    [allLoans]
   );
 
   const openRenewLoansModal = useCallback(() => {
@@ -220,9 +230,10 @@ const LoanList: FC = () => {
             </div>
           </div>
           {loans && (
-            <LoanListItems
-              dueDates={dueDates}
+            <Pagination
+              duplicateDueDates={duplicateDueDates}
               loans={loans}
+              itemsPerPage={10}
               view={view}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}

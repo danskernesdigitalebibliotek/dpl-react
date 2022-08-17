@@ -220,6 +220,14 @@ export default {
     MaterialDetailsModalOverdueText: {
       defaultValue: "Overskredet",
       control: { type: "text" }
+    },
+    paginationNextLabel: {
+      defaultValue: "Næste side",
+      control: { type: "text" }
+    },
+    paginationPreviousLabel: {
+      defaultValue: "Forrige side",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
