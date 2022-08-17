@@ -103,27 +103,6 @@ const SearchHeader: React.FC = () => {
     setCurrentlySelectedItem(determineSuggestionTerm(selectedItem));
   }
 
-  // Downshift prevents the default form submission event when the
-  // autosuggest is open - we have to simulate form sumbission.
-  function manualRedirect(
-    currentSelectedSuggestion: Suggestion,
-    materialId?: WorkId
-  ) {
-    let redirectUrl: URL;
-    // Work suggestion redirect.
-    if (materialId) {
-      redirectUrl = constructMaterialUrl(materialUrl, materialId as WorkId);
-      redirectTo(redirectUrl);
-      return;
-    }
-    // Not a work suggestion redirect.
-    redirectUrl = constructSearchUrl(
-      searchUrl,
-      determineSuggestionTerm(currentSelectedSuggestion)
-    );
-    redirectTo(redirectUrl);
-  }
-
   function handleHighlightedIndexChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
@@ -186,11 +165,15 @@ const SearchHeader: React.FC = () => {
       selectedItem.work?.workId &&
       isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
     ) {
-      manualRedirect(selectedItem, selectedItem.work?.workId as WorkId);
+      redirectTo(
+        constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
+      );
       return;
     }
     // Otherwise redirect to search result page.
-    manualRedirect(selectedItem);
+    redirectTo(
+      constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
+    );
   }
 
   // This is the main Downshift hook.
