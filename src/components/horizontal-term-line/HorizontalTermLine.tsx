@@ -25,10 +25,11 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
       </p>
 
       {linkList.map((item) => {
+        const { term, url } = item;
         return (
-          <span key={item.term}>
-            <Link href={item.url} className="link-tag">
-              {item.term}
+          <span key={term}>
+            <Link href={url} className="link-tag">
+              {term}
             </Link>
           </span>
         );
