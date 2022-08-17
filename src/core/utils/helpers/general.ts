@@ -5,6 +5,7 @@ import {
   ManifestationsSimpleFragment,
   WorkSmallFragment
 } from "../../dbc-gateway/generated/graphql";
+import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
@@ -123,4 +124,12 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   });
 
   return params;
+};
+
+export const sortByLoanDate = (list: LoanV2[]) => {
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.loanDetails.loanDate).getTime() -
+      new Date(objB.loanDetails.loanDate).getTime()
+  );
 };

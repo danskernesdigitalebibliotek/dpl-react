@@ -6,13 +6,13 @@ import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import {
   removeLoansWithDuplicateDueDate,
-  getAmountOfRenewableLoans,
-  sortByLoanDate
+  getAmountOfRenewableLoans
 } from "../helpers";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
+import { sortByLoanDate } from "../../../core/utils/helpers/general";
 
 const LoanList: React.FC = () => {
   const t = useText();
