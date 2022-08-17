@@ -81,9 +81,12 @@ const SearchHeader: React.FC = () => {
     return suggestion.term;
   }
 
-  function isDisplayedAsWorkSuggestion(selectedItem: Suggestion["work"]) {
-    for (let i = 0; i < materialData.length; i += 1) {
-      if (materialData[i].work?.workId === selectedItem?.workId) {
+  function isDisplayedAsWorkSuggestion(
+    selectedItem: Suggestion["work"],
+    currentMaterialData: Suggestion[]
+  ) {
+    for (let i = 0; i < currentMaterialData.length; i += 1) {
+      if (currentMaterialData[i].work?.workId === selectedItem?.workId) {
         return true;
       }
     }
@@ -178,7 +181,7 @@ const SearchHeader: React.FC = () => {
     }
     if (
       selectedItem.work?.workId &&
-      isDisplayedAsWorkSuggestion(selectedItem.work)
+      isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
     ) {
       manualRedirect(selectedItem, selectedItem.work?.workId as WorkId);
       return;
