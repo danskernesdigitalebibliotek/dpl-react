@@ -22,6 +22,7 @@ import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import LoanListItems from "./loan-list-items";
+import modalIdsConf from "../../../core/configuration/modal-ids.json";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -156,8 +157,8 @@ const LoanList: FC = () => {
       return;
     }
     // modal query param: modal loans all
-    if (modalString === "all") {
-      dispatch(openModal({ modalId: "all" }));
+    if (modalString === modalIdsConf.allLoansId) {
+      dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
     }
   }, [loans, openModalDueDate, dispatch]);
 
@@ -204,7 +205,7 @@ const LoanList: FC = () => {
                   type="button"
                   onClick={() => {
                     openRenewLoansModal();
-                    dispatch(openModal({ modalId: "all" }));
+                    dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
                   }}
                   aria-describedby={t(
                     "loanListRenewMultipleButtonExplanationText"

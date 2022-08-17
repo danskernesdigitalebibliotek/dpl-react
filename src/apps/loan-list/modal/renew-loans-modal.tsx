@@ -3,6 +3,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import RenewLoansModalContent from "./renew-loans-modal-content";
+import modalIdsConf from "../../../core/configuration/modal-ids.json";
 
 interface RenewLoansModalProps {
   renewable: number | null;
@@ -17,7 +18,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
 
   return (
     <Modal
-      modalId="all"
+      modalId={modalIdsConf.allLoansId}
       additionalClasses="modal-loan"
       closeModalAriaLabelText={t("renewLoanModalCloseModalText")}
       screenReaderModalDescriptionText={t("renewLoanModalDescriptionText")}
