@@ -108,6 +108,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             renewedLoans.map(({ renewalStatus, loanDetails }) => {
               return (
                 <SelectableMaterial
+                  key={loanDetails.recordId}
                   disabled
                   onChecked={onChecked}
                   faust={loanDetails.recordId as FaustId}
@@ -119,6 +120,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {loans.map(({ renewalStatusList, isRenewable, loanDetails }) => {
             return (
               <SelectableMaterial
+                key={loanDetails.recordId}
                 faust={loanDetails.recordId as FaustId}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
