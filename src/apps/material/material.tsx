@@ -23,7 +23,8 @@ import {
   filterCreators,
   flattenCreators,
   getManifestationPid,
-  getFirstPublishedManifestation
+  getFirstPublishedManifestation,
+  slugify
 } from "../../core/utils/helpers/general";
 import {
   getUrlQueryParam,
@@ -54,15 +55,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           data.work.manifestations
         ).materialTypes[0].specific;
 
-        setQueryParametersInUrl({ type: firstPublishedManifestation });
-        setTypeState(firstPublishedManifestation);
+        setQueryParametersInUrl({
+          type: slugify(firstPublishedManifestation)
+        });
+        setTypeState(slugify(firstPublishedManifestation));
       }
     }
   }, [data?.work, typeState]);
 
   const handleSelectType = (type: string) => {
-    setQueryParametersInUrl({ type });
-    setTypeState(type);
+    setQueryParametersInUrl({ type: slugify(type) });
+    setTypeState(slugify(type));
   };
 
   if (isLoading) {
@@ -124,6 +127,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       <MaterialHeader
         wid={wid}
         work={data.work}
+        selectedType={typeState}
         handleSelectType={handleSelectType}
       />
       <MaterialDescription pid={pid} work={data.work} />
