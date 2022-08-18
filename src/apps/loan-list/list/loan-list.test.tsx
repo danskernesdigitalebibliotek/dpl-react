@@ -408,7 +408,7 @@ describe("Loan list", () => {
       .eq(0)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet er udlånt fra en anden kommune og fornyelsen er derfor betinget af et andet biblioteks acceptAfleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
       );
     cy.get(".modal")
       .find(".list-materials")
@@ -422,7 +422,7 @@ describe("Loan list", () => {
       .eq(2)
       .should(
         "have.text",
-        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
+        "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
       );
     cy.get(".modal")
       .find(".list-materials")
