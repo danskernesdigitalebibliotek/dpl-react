@@ -39,7 +39,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             selectMaterial={selectModalMaterial}
             key={loanDetails.recordId}
             selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
-            faust={loanDetails.recordId}
+            faust={loanDetails.recordId as FaustId}
             loanDetails={loanDetails}
           />
         );
