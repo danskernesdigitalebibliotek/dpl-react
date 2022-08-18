@@ -24,6 +24,7 @@ interface MaterialEntryTextProps {
   reserveText: string;
   editionsText: string;
   detailsText: string;
+  reviewsText: string;
   typeText: string;
   languageText: string;
   contributorsText: string;
