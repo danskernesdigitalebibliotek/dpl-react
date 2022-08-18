@@ -17,8 +17,6 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
 
   const { recordId: faust } = loanDetails || {};
 
-  const { recordId: faust } = loanDetails || {};
-
   return (
     <Modal
       modalId={faust}
