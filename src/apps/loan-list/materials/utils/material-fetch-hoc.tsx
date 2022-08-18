@@ -21,7 +21,7 @@ export interface SelectableMaterialProps {
 
 export interface StackableMaterialProps {
   loanDetails: LoanDetailsV2;
-  amountOfMaterialsWithDueDate: number;
+  amountOfMaterialsWithDueDate?: number;
   selectDueDate?: () => void;
   selectMaterial?: ({
     material,
@@ -31,6 +31,7 @@ export interface StackableMaterialProps {
     loanDetails: LoanDetailsV2;
   }) => void;
 }
+
 export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
