@@ -117,7 +117,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         />
       </Disclosure>
       {data.work.reviews && data.work.reviews.length >= 1 && (
-        <Disclosure title="Anmeldelser" mainIconPath={CreateIcon}>
+        <Disclosure title={t("reviewsText")} mainIconPath={CreateIcon}>
           <MaterialReviews
             listOfReviews={
               data.work.reviews as Array<

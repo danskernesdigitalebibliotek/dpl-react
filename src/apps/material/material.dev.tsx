@@ -121,6 +121,11 @@ export default {
       defaultValue: "Detaljer",
       control: { type: "text" }
     },
+    reviewsText: {
+      name: "Reviews",
+      defaultValue: "Anmeldelser",
+      control: { type: "text" }
+    },
     typeText: {
       name: "Type",
       defaultValue: "Type",
