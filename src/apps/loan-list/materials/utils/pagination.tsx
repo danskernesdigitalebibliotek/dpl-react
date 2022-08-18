@@ -13,7 +13,6 @@ interface PaginationProps {
   loans: LoanV2[];
   duplicateDueDates: string[];
   view: string;
-  dueDates: string[];
   selectModalMaterial: ({
     material,
     loanDetails
