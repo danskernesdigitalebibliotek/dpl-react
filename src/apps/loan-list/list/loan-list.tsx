@@ -95,8 +95,6 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     setDisplayList(true);
-    // If modalids are longer than 0, a modal is open.
-    // If a modal is open, the list should not be displayed.
     if (IsAModalDisplayed(modalIds)) {
       refetch();
       setDisplayList(true);
@@ -192,7 +190,7 @@ const LoanList: FC = () => {
               <div className="dpl-list-buttons__buttons__button">
                 <button
                   className={`dpl-icon-button ${
-                    view === "stack" ? "dpl-icon-button--selected" : ""
+                    view === "stacked" ? "dpl-icon-button--selected" : ""
                   }`}
                   id="test-stack"
                   onClick={() => setView("stacked")}

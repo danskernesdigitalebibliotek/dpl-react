@@ -9,7 +9,6 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
-import { LoanV2 } from "../../fbs/model";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
@@ -135,6 +134,8 @@ export const sortByLoanDate = (list: LoanV2[]) => {
   );
 };
 
+// If modalids are longer than 0, a modal is open.
+// If a modal is open, the list should not be displayed.
 export const IsAModalDisplayed = (modalIds: string[]) => {
   return modalIds.length > 0;
 };
