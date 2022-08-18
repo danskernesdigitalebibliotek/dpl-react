@@ -77,7 +77,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       type="button"
       onClick={(e) => selectListMaterial(e)}
       className={`list-reservation my-32 ${
-        amountOfMaterialsWithDueDate > 1 ? "list-reservation--stacked" : ""
+        amountOfMaterialsWithDueDate ? "list-reservation--stacked" : ""
       }`}
     >
       <div className="list-reservation__material">
@@ -106,13 +106,11 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               {year?.year && <> ({year.year})</>}
             </p>
           </div>
-          {amountOfMaterialsWithDueDate > 1 && selectDueDate && (
+          {amountOfMaterialsWithDueDate && selectDueDate && (
             <button
               type="button"
               onClick={(e) => {
-                e.stopPropagation();
-                selectDueDate();
-                dispatch(openModal({ modalId: dueDate }));
+                openDueDateModal(e);
               }}
               aria-describedby={t("loanListMaterialsModalDesktopText")}
               id="test-more-materials"
@@ -145,7 +143,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               <p className="text-small-caption" id="due-date">
                 {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
-              {amountOfMaterialsWithDueDate > 1 && (
+              {amountOfMaterialsWithDueDate && (
                 <button
                   type="button"
                   aria-describedby={t("loanListMaterialsModalMobileText")}
