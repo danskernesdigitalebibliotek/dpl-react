@@ -10,13 +10,11 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
-import ListDescription, {
-  ListData
-} from "../list-description/list-description";
 import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
 import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
+import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFragment["all"][0];
@@ -46,34 +44,61 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     t
   );
 
-  const allContributors = contributors.map(
-    (contributor) => contributor.display
+  const allContributors = String(
+    contributors.map((contributor) => contributor.display)
   );
 
-  const allLanguages = languages?.main
-    ?.map((language) => language.display)
-    .join(", ");
+  const allLanguages = String(
+    languages?.main?.map((language) => language.display).join(", ")
+  );
 
-  const listDescriptionData = {
-    [t("typeText")]: { value: materialTypes?.[0]?.specific, type: "standard" },
-    [t("languageText")]: {
+  const listDescriptionData: ListData = [
+    {
+      label: t("typeText"),
+      value: materialTypes?.[0]?.specific ?? "",
+      type: "standard"
+    },
+    {
+      label: t("languageText"),
       value: allLanguages,
       type: "standard"
     },
-    [t("contributorsText")]: { value: allContributors, type: "link" },
-    [t("originalTitleText")]: { value: titles?.original, type: "standard" },
-    [t("isbnText")]: { value: identifiers?.[0].value, type: "standard" },
-    [t("editionText")]: { value: edition?.summary, type: "standard" },
-    [t("scopeText")]: {
-      value: physicalDescriptions[0].numberOfPages,
+    {
+      label: t("contributorsText"),
+      value: allContributors,
+      type: "link"
+    },
+    {
+      label: t("originalTitleText"),
+      value: titles?.original?.[0] ?? "",
       type: "standard"
     },
-    [t("publisherText")]: {
-      value: hostPublication?.publisher,
+    {
+      label: t("isbnText"),
+      value: identifiers?.[0].value,
       type: "standard"
     },
-    [t("audienceText")]: { value: audience?.generalAudience, type: "standard" }
-  };
+    {
+      label: t("editionText"),
+      value: edition?.summary,
+      type: "standard"
+    },
+    {
+      label: t("scopeText"),
+      value: String(physicalDescriptions?.[0]?.numberOfPages ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("publisherText"),
+      value: hostPublication?.publisher ?? "",
+      type: "standard"
+    },
+    {
+      label: t("audienceText"),
+      value: audience?.generalAudience[0] ?? "",
+      type: "standard"
+    }
+  ];
 
   return (
     <div className="material-manifestation-item">
@@ -117,10 +142,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <ListDescription
-            className="mt-24"
-            data={listDescriptionData as ListData}
-          />
+          <MaterialDetailsList className="mt-24" data={listDescriptionData} />
         )}
       </div>
       <div className="material-manifestation-item__buttons">

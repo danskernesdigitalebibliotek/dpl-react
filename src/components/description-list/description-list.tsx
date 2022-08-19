@@ -2,10 +2,10 @@ import * as React from "react";
 
 export interface DescriptionListProps {
   classNames?: string;
-  data: { label: string; value: string }[];
+  data: { label: string; value: string | React.ReactNode }[];
 }
 
-export const DescriptionList: React.FC<DescriptionListProps> = ({
+const DescriptionList: React.FC<DescriptionListProps> = ({
   data,
   classNames
 }) => {
@@ -14,10 +14,10 @@ export const DescriptionList: React.FC<DescriptionListProps> = ({
       {data.map((item) => {
         const { label, value } = item;
         return (
-          <>
+          <div>
             <dt>{label}</dt>
             <dd>{value}</dd>
-          </>
+          </div>
         );
       })}
     </dl>
