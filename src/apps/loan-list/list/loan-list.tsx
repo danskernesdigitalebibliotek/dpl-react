@@ -12,7 +12,6 @@ import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
-import LoanListItems from "./loan-list-items";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import {
   removeLoansWithDuplicateDueDate,
@@ -23,11 +22,9 @@ import {
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
-import {
-  IsAModalDisplayed,
-  sortByLoanDate
-} from "../../../core/utils/helpers/general";
+import { IsAModalDisplayed } from "../../../core/utils/helpers/general";
 import Pagination from "../materials/utils/pagination";
+import { loanListItems } from "../../../core/configuration/items-in-list.json";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -59,7 +56,7 @@ const LoanList: FC = () => {
   const [displayList, setDisplayList] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
   const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
-  const [view, setView] = useState<string>("list");
+  const [view, setView] = useState<string>();
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -72,7 +69,7 @@ const LoanList: FC = () => {
   useEffect(() => {
     if (isSuccess && data) {
       // Loans are sorted by due date
-      setAllLoans(data);
+      setAllLoans([...data]);
       const sortedByDueDate = data.sort(
         (objA, objB) =>
           new Date(objA.loanDetails.dueDate).getTime() -
@@ -80,6 +77,7 @@ const LoanList: FC = () => {
       );
       setLoans(sortedByDueDate);
       setAmountOfLoans(sortedByDueDate.length);
+      setView("list");
     }
   }, [isSuccess, data]);
 
@@ -109,7 +107,7 @@ const LoanList: FC = () => {
       setLoans(loanList);
       setDuplicateDueDates(localDuplicateDueDates);
     }
-    if (view === "list" && allLoans.length > 0) {
+    if (view === "list") {
       setLoans(allLoans);
       setDuplicateDueDates([]);
     }
@@ -165,8 +163,10 @@ const LoanList: FC = () => {
       const loanDetailsForModal = loans.filter(
         ({ loanDetails }) => loanDetails.recordId === faustFound
       );
-      setModalLoanDetails(loanDetailsForModal[0].loanDetails);
-      dispatch(openModal({ modalId: faustFound }));
+      if (loanDetailsForModal.length > 0) {
+        setModalLoanDetails(loanDetailsForModal[0].loanDetails);
+        dispatch(openModal({ modalId: faustFound }));
+      }
       return;
     }
     // modal query param: modal loans all
@@ -231,28 +231,28 @@ const LoanList: FC = () => {
           </div>
           {loans && (
             <Pagination
-              duplicateDueDates={duplicateDueDates}
               loans={loans}
-              itemsPerPage={10}
-              view={view}
+              pageSize={loanListItems}
+              duplicateDueDates={duplicateDueDates}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
+              allLoansLength={loans.length}
             />
           )}
+          {modalLoanDetails && (
+            <MaterialDetailsModal
+              loanDetails={modalLoanDetails}
+              material={modalMaterial}
+            />
+          )}
+          <DueDateLoansModal
+            dueDate={dueDateModal}
+            renewable={renewable}
+            loansModal={loansModal}
+          />
+          <RenewLoansModal renewable={renewable} loansModal={loans} />
         </>
       )}
-      {modalLoanDetails && (
-        <MaterialDetailsModal
-          loanDetails={modalLoanDetails}
-          material={modalMaterial}
-        />
-      )}
-      <DueDateLoansModal
-        dueDate={dueDateModal}
-        renewable={renewable}
-        loansModal={loansModal}
-      />
-      <RenewLoansModal renewable={renewable} loansModal={loans} />
     </>
   );
 };

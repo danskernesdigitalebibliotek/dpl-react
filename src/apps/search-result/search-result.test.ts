@@ -7,21 +7,21 @@ describe("Search Result", () => {
     );
 
     cy.log("Check length of search result list:");
-    cy.get(".search-result-page__list").find("li").should("have.length", 2);
+    cy.get(".result-page__list").find("li").should("have.length", 2);
 
     cy.log("Do the search results have images?");
-    cy.get(".search-result-page__list .search-result-item img")
+    cy.get(".result-page__list .search-result-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
 
     cy.log("Does the search result have favourite buttons?");
     cy.get(
-      ".search-result-page__list .search-result-item .button-favourite"
+      ".result-page__list .search-result-item .button-favourite"
     ).should("have.attr", "aria-label", "Add to favorites");
 
     cy.log("Does the search result have a series line?");
     cy.get(
-      ".search-result-page__list .search-result-item .horizontal-term-line"
+      ".result-page__list .search-result-item .horizontal-term-line"
     ).should(
       "contain.text",
       // TODO: The series string being rendered makes no sense with the dummy data given
@@ -31,13 +31,13 @@ describe("Search Result", () => {
     );
 
     cy.log("Does the search result have titles?");
-    cy.get(".search-result-page__list .search-result-item h2").should(
+    cy.get(".result-page__list .search-result-item h2").should(
       "contain.text",
       "Dummy Some Title: Full"
     );
 
     cy.log("Does the search result have authors?");
-    cy.get(".search-result-page__list .search-result-item").should(
+    cy.get(".result-page__list .search-result-item").should(
       "contain.text",
       "Af Dummy Jens Jensen (Dummy 1839)"
     );
@@ -46,19 +46,19 @@ describe("Search Result", () => {
       "Does a search result have the expected number of availibility labels?"
     );
     cy.get(
-      ".search-result-page__list :nth-child(1) .search-result-item .search-result-item__availability"
+      ".result-page__list :nth-child(1) .search-result-item .search-result-item__availability"
     )
       .find("a")
       .should("have.length", 20);
 
     cy.log("Do we have a pager?");
-    cy.get(".search-result-pager__title").should(
+    cy.get(".result-pager__title").should(
       "contain.text",
       "Viser 2 ud af 9486 resultater"
     );
 
     cy.log("Do we have some pager info?");
-    cy.get(".search-result-pager button").should("contain.text", "VIS FLERE");
+    cy.get(".result-pager button").should("contain.text", "VIS FLERE");
   });
 
   it("Shows more items if asked to", () => {
@@ -67,15 +67,15 @@ describe("Search Result", () => {
     );
 
     cy.log("Show more results.");
-    cy.get(".search-result-pager button").click();
+    cy.get(".result-pager button").click();
 
     cy.log(
       "Check length of search result list since it should be twice as long."
     );
-    cy.get(".search-result-page__list").find("li").should("have.length", 4);
+    cy.get(".result-page__list").find("li").should("have.length", 4);
 
     cy.log("The pager info should also have been updated.");
-    cy.get(".search-result-pager__title").should(
+    cy.get(".result-pager__title").should(
       "contain.text",
       "Viser 4 ud af 9486 resultater"
     );

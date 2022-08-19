@@ -1,18 +1,13 @@
 import React, { FC, useState, useEffect } from "react";
-import ReactPaginate from "react-paginate";
-import ArrowLeft from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ArrowLeft.svg";
-import ArrowRight from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ArrowRight.svg";
 import { LoanV2 } from "../../../../core/fbs/model/loanV2";
 import { LoanDetailsV2 } from "../../../../core/fbs/model";
 import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
 import LoanListItems from "../../list/loan-list-items";
-import { useText } from "../../../../core/utils/text";
+import ResultPager from "../../../../components/result-pager/result-pager";
 
 interface PaginationProps {
-  itemsPerPage: number;
   loans: LoanV2[];
   duplicateDueDates: string[];
-  view: string;
   selectModalMaterial: ({
     material,
     loanDetails
@@ -21,59 +16,51 @@ interface PaginationProps {
     loanDetails: LoanDetailsV2;
   }) => void;
   openModalDueDate: (dueDate: string) => void;
+  pageSize: number;
+  allLoansLength: number;
 }
 
 const Pagination: FC<PaginationProps> = ({
-  itemsPerPage,
+  allLoansLength,
   loans,
   duplicateDueDates,
   openModalDueDate,
-  selectModalMaterial
+  selectModalMaterial,
+  pageSize
 }) => {
-  const t = useText();
-  // We start with an empty list of items.
-  const [currentItems, setCurrentItems] = useState<LoanV2[]>([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
+  const [displayedItems, setDisplayedItems] = useState<LoanV2[]>(
+    [...loans].splice(0, pageSize)
+  );
+  const [allLoans] = useState<LoanV2[]>(loans);
+  const [page, setPage] = useState(0);
+  const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
 
   useEffect(() => {
-    // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(loans.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(loans.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, loans]);
-  // Invoke when user click to request another page.
-  const handlePageClick = (event: { selected: number }) => {
-    const newOffset = (event.selected * itemsPerPage) % loans.length;
-    setItemOffset(newOffset);
+    setDisplayedItems([...allLoans].splice(0, searchItemsShown));
+  }, [searchItemsShown, allLoans]);
+
+  const setPageHandler = () => {
+    const currentPage = page + 1;
+    setPage(currentPage);
+    if ((currentPage + 1) * pageSize >= allLoansLength) {
+      setSearchItemsShown(allLoansLength);
+      return;
+    }
+    setSearchItemsShown((currentPage + 1) * pageSize);
   };
 
   return (
     <>
       <LoanListItems
         duplicateDueDates={duplicateDueDates}
-        loans={currentItems}
+        loans={displayedItems}
         openModalDueDate={openModalDueDate}
         selectModalMaterial={selectModalMaterial}
       />
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel={<img src={ArrowRight} alt={t("paginationNextLabelText")} />}
-        onPageChange={handlePageClick}
-        pageClassName="dpl-pagination__item"
-        pageLinkClassName="dpl-pagination__item__link"
-        previousClassName="dpl-pagination__item dpl-pagination__item--previous"
-        previousLinkClassName="dpl-pagination__item__link"
-        nextClassName="dpl-pagination__item dpl-pagination__item--next"
-        nextLinkClassName="dpl-pagination__item__link"
-        breakClassName="dpl-pagination__item"
-        breakLinkClassName="dpl-pagination__item__link"
-        containerClassName="dpl-pagination"
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel={
-          <img src={ArrowLeft} alt={t("paginationPreviousLabelText")} />
-        }
+      <ResultPager
+        searchItemsShown={searchItemsShown}
+        hitcount={allLoansLength}
+        setPageHandler={setPageHandler}
       />
     </>
   );
