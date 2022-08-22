@@ -1,5 +1,6 @@
 const path = require("path");
 const glob = require("glob");
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
@@ -25,6 +26,10 @@ module.exports = (_env, argv) => {
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
       context: path.resolve(__dirname, "./src"),
       useEslintrc: true
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled",
+      generateStatsFile: true
     })
   ];
 

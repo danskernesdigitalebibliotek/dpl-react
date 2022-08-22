@@ -1,0 +1,79 @@
+on: pull_request
+
+jobs:
+  build-head:
+    name: 'Build head'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{github.event.pull_request.head.repo.full_name }}
+          ref: ${{github.event.pull_request.head.ref}}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build:js:prod
+      - name: Upload stats.json
+        uses: actions/upload-artifact@v1
+        with:
+          name: head-stats
+          path: ./dist/stats.json
+
+  build-base:
+    name: 'Build base'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.base_ref }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build:js:prod
+      - name: Upload stats.json
+        uses: actions/upload-artifact@v1
+        with:
+          name: base-stats
+          path: ./dist/stats.json
+
+  compare:
+    name: 'Compare bundle sizes'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    needs: [build-base, build-head]
+    steps:
+      - name: Download base artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: base-stats
+      - name: Download head artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: head-stats
+      - uses: github/webpack-bundlesize-compare-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          current-stats-json-path: ./head-stats/stats.json
+          base-stats-json-path: ./base-stats/stats.json
