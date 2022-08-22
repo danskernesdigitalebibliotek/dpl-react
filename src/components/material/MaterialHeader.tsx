@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  ManifestationsSimpleFragment,
+  ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import {
@@ -22,9 +22,9 @@ import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 interface MaterialHeaderProps {
   wid: WorkId;
   work: WorkMediumFragment;
-  manifestation?: ManifestationsSimpleFragment["latest"];
+  manifestation?: ManifestationsSimpleFieldsFragment;
   selectManifestationHandler: (
-    manifestation: ManifestationsSimpleFragment["latest"]
+    manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
 }
 
