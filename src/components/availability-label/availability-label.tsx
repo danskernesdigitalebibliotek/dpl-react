@@ -10,13 +10,15 @@ export interface AvailabilityLabelProps {
   selected?: boolean;
   url?: URL;
   faustIds: string[];
+  handleSelectManifestation?: () => void | undefined;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
   url,
-  faustIds
+  faustIds,
+  handleSelectManifestation
 }) => {
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
@@ -53,7 +55,13 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   };
 
   const availabilityLabel = (
-    <div className={classes.parent}>
+    <div
+      className={classes.parent}
+      onClick={handleSelectManifestation ?? undefined}
+      onKeyPress={handleSelectManifestation ?? undefined}
+      role="button"
+      tabIndex={0}
+    >
       <div className={classes.triangle} />
       <img className={classes.check} src={CheckIcon} alt="check-icon" />
       <p className="text-label-semibold ml-24">{manifestText}</p>
@@ -62,7 +70,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     </div>
   );
 
-  return url ? (
+  return url && !handleSelectManifestation ? (
     <LinkNoStyle url={url}>{availabilityLabel}</LinkNoStyle>
   ) : (
     availabilityLabel

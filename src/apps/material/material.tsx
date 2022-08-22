@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
@@ -7,7 +7,8 @@ import {
   ExternalReview,
   InfomediaReview,
   LibrariansReview,
-  useGetMaterialQuery
+  useGetMaterialQuery,
+  ManifestationsSimpleFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
@@ -25,6 +26,15 @@ import {
 import MaterialDetailsList, {
   ListData
 } from "../../components/material/MaterialDetailsList";
+import {
+  getUrlQueryParam,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
+import {
+  getManifestationFromType,
+  getManifestationType,
+  getWorkManifestation
+} from "./helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -32,9 +42,33 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
+
+  const [currentManifestation, setCurrentManifestation] = useState<
+    ManifestationsSimpleFragment["latest"] | null
+  >(null);
+
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+
+  // This useEffect selects the current manifestation
+  useEffect(() => {
+    if (!data?.work) return;
+    const { work } = data;
+    const type = getUrlQueryParam("type");
+    // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
+    if (!type) {
+      const workManifestation = getWorkManifestation(work);
+      setCurrentManifestation(workManifestation);
+      setQueryParametersInUrl({
+        type: getManifestationType(workManifestation)
+      });
+      return;
+    }
+    // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
+    const manifestationFromType = getManifestationFromType(type, work);
+    setCurrentManifestation(manifestationFromType);
+  }, [data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -88,7 +122,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
   return (
     <main className="material-page">
-      <MaterialHeader wid={wid} work={data.work} />
+      <MaterialHeader
+        wid={wid}
+        work={data.work}
+        manifestation={
+          currentManifestation as ManifestationsSimpleFragment["latest"]
+        }
+        selectManifestationHandler={setCurrentManifestation}
+      />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
         mainIconPath={VariousIcon}
