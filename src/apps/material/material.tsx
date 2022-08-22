@@ -10,7 +10,7 @@ import {
   useGetMaterialQuery,
   ManifestationsSimpleFieldsFragment
 } from "../../core/dbc-gateway/generated/graphql";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -92,7 +92,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   // TODO: Temporary way to get a pid we can use for showing a cover for the material.
   // It should be replaced with some dynamic feature
   // that follows the current type of the material.
-  const pid = getManifestationPid(manifestations) as Pid;
+  const pid = getManifestationPid(manifestations);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
