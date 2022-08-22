@@ -11,13 +11,13 @@ import {
 } from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
 import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
-import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 
 export interface MaterialMainfestationItemProps {
-  manifestation: ManifestationsSimpleFragment["all"][0];
+  manifestation: ManifestationsSimpleFieldsFragment;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({

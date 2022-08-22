@@ -252,15 +252,6 @@ export enum FictionNonfictionCode {
   NotSpecified = "NOT_SPECIFIED"
 }
 
-/** Holdings Filters */
-export type HoldingsFilters = {
-  branchId?: InputMaybe<Array<Scalars["String"]>>;
-  department?: InputMaybe<Array<Scalars["String"]>>;
-  location?: InputMaybe<Array<Scalars["String"]>>;
-  status?: InputMaybe<Array<HoldingsStatus>>;
-  sublocation?: InputMaybe<Array<Scalars["String"]>>;
-};
-
 export enum HoldingsStatus {
   /** Holding is on loan */
   OnLoan = "OnLoan",
@@ -760,7 +751,6 @@ export type QueryRisArgs = {
 
 export type QuerySearchArgs = {
   filters?: InputMaybe<SearchFilters>;
-  holdingsFilters?: InputMaybe<HoldingsFilters>;
   q: SearchQuery;
 };
 
@@ -850,14 +840,19 @@ export enum SchoolUseCode {
 /** Search Filters */
 export type SearchFilters = {
   accessTypes?: InputMaybe<Array<Scalars["String"]>>;
+  branchId?: InputMaybe<Array<Scalars["String"]>>;
   childrenOrAdults?: InputMaybe<Array<Scalars["String"]>>;
   creators?: InputMaybe<Array<Scalars["String"]>>;
+  department?: InputMaybe<Array<Scalars["String"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
   fictionalCharacter?: InputMaybe<Array<Scalars["String"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
+  location?: InputMaybe<Array<Scalars["String"]>>;
   mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
   materialTypes?: InputMaybe<Array<Scalars["String"]>>;
+  status?: InputMaybe<Array<HoldingsStatus>>;
   subjects?: InputMaybe<Array<Scalars["String"]>>;
+  sublocation?: InputMaybe<Array<Scalars["String"]>>;
   workTypes?: InputMaybe<Array<Scalars["String"]>>;
 };
 
@@ -1567,6 +1562,44 @@ export type ManifestationsSimpleFragment = {
   };
 };
 
+export type ManifestationsSimpleFieldsFragment = {
+  __typename?: "Manifestation";
+  pid: string;
+  titles: {
+    __typename?: "ManifestationTitles";
+    main: Array<string>;
+    original?: Array<string> | null;
+  };
+  publicationYear: { __typename?: "PublicationYear"; display: string };
+  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  creators: Array<
+    | { __typename: "Corporation"; display: string }
+    | { __typename: "Person"; display: string }
+  >;
+  hostPublication?: {
+    __typename?: "HostPublication";
+    title: string;
+    creator?: string | null;
+    publisher?: string | null;
+    year?: { __typename?: "PublicationYear"; year?: number | null } | null;
+  } | null;
+  languages?: {
+    __typename?: "Languages";
+    main?: Array<{ __typename?: "Language"; display: string }> | null;
+  } | null;
+  identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+  contributors: Array<
+    | { __typename?: "Corporation"; display: string }
+    | { __typename?: "Person"; display: string }
+  >;
+  edition: { __typename?: "Edition"; summary: string };
+  audience?: { __typename?: "Audience"; generalAudience: Array<string> } | null;
+  physicalDescriptions: Array<{
+    __typename?: "PhysicalDescription";
+    numberOfPages?: number | null;
+  }>;
+};
+
 export type SeriesSimpleFragment = {
   __typename?: "Series";
   title: string;
@@ -1880,100 +1913,63 @@ export const SeriesSimpleFragmentDoc = `
   readThisWhenever
 }
     `;
-export const ManifestationsSimpleFragmentDoc = `
-    fragment ManifestationsSimple on Manifestations {
-  all {
-    pid
-    titles {
-      main
-      original
-    }
-    publicationYear {
-      display
-    }
-    materialTypes {
-      specific
-    }
-    creators {
-      display
-      __typename
-    }
-    hostPublication {
-      title
-      creator
-      publisher
-      year {
-        year
-      }
-    }
-    languages {
-      main {
-        display
-      }
-    }
-    identifiers {
-      value
-    }
-    contributors {
-      display
-    }
-    edition {
-      summary
-    }
-    audience {
-      generalAudience
-    }
-    physicalDescriptions {
-      numberOfPages
+export const ManifestationsSimpleFieldsFragmentDoc = `
+    fragment ManifestationsSimpleFields on Manifestation {
+  pid
+  titles {
+    main
+    original
+  }
+  publicationYear {
+    display
+  }
+  materialTypes {
+    specific
+  }
+  creators {
+    display
+    __typename
+  }
+  hostPublication {
+    title
+    creator
+    publisher
+    year {
+      year
     }
   }
-  latest {
-    pid
-    titles {
-      main
-      original
-    }
-    publicationYear {
+  languages {
+    main {
       display
     }
-    materialTypes {
-      specific
-    }
-    creators {
-      display
-      __typename
-    }
-    hostPublication {
-      title
-      creator
-      publisher
-      year {
-        year
-      }
-    }
-    languages {
-      main {
-        display
-      }
-    }
-    identifiers {
-      value
-    }
-    contributors {
-      display
-    }
-    edition {
-      summary
-    }
-    audience {
-      generalAudience
-    }
-    physicalDescriptions {
-      numberOfPages
-    }
+  }
+  identifiers {
+    value
+  }
+  contributors {
+    display
+  }
+  edition {
+    summary
+  }
+  audience {
+    generalAudience
+  }
+  physicalDescriptions {
+    numberOfPages
   }
 }
     `;
+export const ManifestationsSimpleFragmentDoc = `
+    fragment ManifestationsSimple on Manifestations {
+  all {
+    ...ManifestationsSimpleFields
+  }
+  latest {
+    ...ManifestationsSimpleFields
+  }
+}
+    ${ManifestationsSimpleFieldsFragmentDoc}`;
 export const WorkSmallFragmentDoc = `
     fragment WorkSmall on Work {
   workId

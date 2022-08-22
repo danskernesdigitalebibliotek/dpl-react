@@ -1,5 +1,5 @@
 import {
-  ManifestationsSimpleFragment,
+  ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { orderManifestationsByYear } from "../../core/utils/helpers/general";

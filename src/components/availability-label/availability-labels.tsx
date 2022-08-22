@@ -1,6 +1,9 @@
 import React from "react";
 import { getManifestationType } from "../../apps/material/helper";
-import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  ManifestationsSimpleFieldsFragment,
+  ManifestationsSimpleFragment
+} from "../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
@@ -13,9 +16,9 @@ import { AvailabilityLabel } from "./availability-label";
 export interface AvailabilityLabelsProps {
   manifestations: ManifestationsSimpleFragment;
   workId: WorkId;
-  manifestation?: ManifestationsSimpleFragment["latest"];
+  manifestation?: ManifestationsSimpleFieldsFragment;
   selectManifestationHandler?: (
-    manifestation: ManifestationsSimpleFragment["latest"]
+    manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
 }
 

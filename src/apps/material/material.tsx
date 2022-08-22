@@ -8,7 +8,7 @@ import {
   InfomediaReview,
   LibrariansReview,
   useGetMaterialQuery,
-  ManifestationsSimpleFragment
+  ManifestationsSimpleFieldsFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
@@ -43,9 +43,8 @@ export interface MaterialProps {
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
 
-  const [currentManifestation, setCurrentManifestation] = useState<
-    ManifestationsSimpleFragment["latest"] | null
-  >(null);
+  const [currentManifestation, setCurrentManifestation] =
+    useState<ManifestationsSimpleFieldsFragment | null>(null);
 
   const { data, isLoading } = useGetMaterialQuery({
     wid
@@ -128,7 +127,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         wid={wid}
         work={data.work}
         manifestation={
-          currentManifestation as ManifestationsSimpleFragment["latest"]
+          currentManifestation as ManifestationsSimpleFieldsFragment
         }
         selectManifestationHandler={setCurrentManifestation}
       />
