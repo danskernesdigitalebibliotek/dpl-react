@@ -46,10 +46,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     t
   );
 
-  // TODO: Temporary way to get a pid we can use for showing a cover for the material.
-  // It should be replaced with some dynamic feature
-  // that follows the current type of the material.
-  const pid = getManifestationPid(manifestations) as Pid;
   const author = creatorsText || "[Creators are missing]";
 
   const containsDanish = mainLanguages.some((language) =>
@@ -61,11 +57,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     .join(", ");
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
+  const coverPid =
+    (manifestation?.pid as Pid) || getManifestationPid(manifestations);
 
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover pid={pid} size="xlarge" animate={false} />
+        <Cover pid={coverPid} size="xlarge" animate={false} />
       </div>
       <div className="material-header__content">
         <ButtonFavourite id={wid as WorkId} />
