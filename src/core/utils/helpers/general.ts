@@ -88,7 +88,7 @@ export const getManifestationPid = (
   manifestations: ManifestationsSimpleFragment
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
-  return ordered[0].pid;
+  return ordered[0].pid as Pid;
 };
 
 export const getCoverTint = (index: number) => {
