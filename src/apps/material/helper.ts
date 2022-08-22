@@ -1,11 +1,11 @@
 import {
-  ManifestationsSimpleFragment,
+  ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
 import { orderManifestationsByYear } from "../../core/utils/helpers/general";
 
 export const getManifestationType = (
-  manifestation: ManifestationsSimpleFragment["latest"] | undefined
+  manifestation: ManifestationsSimpleFieldsFragment | undefined
 ) => String(manifestation?.materialTypes?.[0]?.specific);
 
 export const getWorkManifestation = (work: WorkMediumFragment) => {

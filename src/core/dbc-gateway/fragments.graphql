@@ -1,51 +1,17 @@
+
+
 fragment ManifestationsSimple on Manifestations {
   all {
-    pid
-    titles {
-      main
-      original
-    }
-    publicationYear {
-      display
-    }
-    materialTypes {
-      specific
-    }
-    creators {
-      display
-      __typename
-    }
-    hostPublication {
-      title
-      creator
-      publisher
-      year {
-        year
-      }
-    }
-    languages {
-      main {
-        display
-      }
-    }
-    identifiers {
-      value
-    }
-    contributors {
-      display
-    }
-    edition {
-      summary
-    }
-    audience {
-      generalAudience
-    }
-    physicalDescriptions {
-      numberOfPages
-    }
+   ...ManifestationsSimpleFields
   }
   latest {
-    pid
+   ...ManifestationsSimpleFields
+  }
+}
+
+
+fragment ManifestationsSimpleFields on Manifestation {
+  pid
     titles {
       main
       original
@@ -88,7 +54,6 @@ fragment ManifestationsSimple on Manifestations {
     physicalDescriptions {
       numberOfPages
     }
-  }
 }
 
 fragment SeriesSimple on Series {
