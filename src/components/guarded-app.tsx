@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeRequest, reRunRequest } from "../core/guardedRequests.slice";
 import { RootState, TypedDispatch } from "../core/store";
@@ -14,7 +14,9 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
-  React.useLayoutEffect(() => {
+  console.log("PERSISTED REQUEST:", persistedRequest);
+
+  useEffect(() => {
     if (!persistedRequest) {
       return;
     }
