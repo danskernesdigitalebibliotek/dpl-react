@@ -2,7 +2,12 @@ import { FC, ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeRequest, reRunRequest } from "../core/guardedRequests.slice";
 import { RootState, TypedDispatch } from "../core/store";
-import { getUrlQueryParam } from "../core/utils/helpers/url";
+import {
+  getCurrentLocation,
+  getUrlQueryParam,
+  removeQueryParametersFromUrl,
+  replaceCurrentLocation
+} from "../core/utils/helpers/url";
 
 export interface GuardedAppProps {
   children: ReactElement<any, any> | null;
@@ -15,7 +20,8 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
-  const didAuthenticate = getUrlQueryParam("didAuthenticate");
+  const AUTH_PARAM = "didAuthenticate";
+  const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
   console.log("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
@@ -24,6 +30,11 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
     }
 
     (async () => {
+      const currentUrlWithoutAuthParam = removeQueryParametersFromUrl(
+        new URL(getCurrentLocation()),
+        AUTH_PARAM
+      );
+      replaceCurrentLocation(currentUrlWithoutAuthParam);
       await dispatch(reRunRequest(persistedRequest));
       // TODO: fix:
       // @ts-ignore
