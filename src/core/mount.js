@@ -27,9 +27,19 @@ function mount(context) {
         createElement(
           Store,
           {},
-          createElement(withErrorBoundary(app, ErrorBoundary), {
-            ...container.dataset
-          })
+          createElement(
+            withErrorBoundary(app, {
+              FallbackComponent: ErrorBoundary,
+              onError(error, info) {
+                // Logging should be acceptable in an error handler.
+                // eslint-disable-next-line no-console
+                console.error(error, info);
+              }
+            }),
+            {
+              ...container.dataset
+            }
+          )
         ),
         container
       );

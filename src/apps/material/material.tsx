@@ -14,9 +14,7 @@ import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
-import ListDescription, {
-  ListData
-} from "../../components/list-description/list-description";
+
 import { useText } from "../../core/utils/text";
 import {
   creatorsToString,
@@ -99,28 +97,24 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     .map((language) => language.display)
     .join(", ");
 
-  const listDescriptionData = {
-    [t("typeText")]: {
+  const listDescriptionData: ListData = [
+    {
+      label: t("typeText"),
       value: materialTypes?.[0]?.specific,
       type: "standard"
     },
-    [t("languageText")]: {
+    {
+      label: t("languageText"),
       value: allLanguages,
       type: "standard"
     },
-    [t("contributorsText")]: { value: creatorsText, type: "link" },
-    [t("originalTitleText")]: {
+    { label: t("contributorsText"), value: creatorsText, type: "link" },
+    {
+      label: t("originalTitleText"),
       value: `${titles?.original} ${workYear}`,
       type: "standard"
     }
-    // TODO: Logic must be created to select the manifestation to be presented for the rest of listDescriptionData
-
-    // [t("isbnText")]: { value: "ISBN", type: "standard" },
-    // [t("editionText")]: { value: "Udgave, 2. oplag (2015)", type: "standard" },
-    // [t("scopeText")]: { value: "795 sider", type: "standard" },
-    // [t("publisherText")]: { value: "Rosinante", type: "standard" },
-    // [t("audienceText")]: { value: "Voksenmateriale", type: "standard" }
-  };
+  ];
 
   return (
     <main className="material-page">
@@ -152,9 +146,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         title={t("detailsText")}
         disclosureIconExpandAltText=""
       >
-        <ListDescription
+        <MaterialDetailsList
           className="pl-80 pb-48"
-          data={listDescriptionData as ListData}
+          data={listDescriptionData}
         />
       </Disclosure>
       {data.work.reviews && data.work.reviews.length >= 1 && (

@@ -1192,6 +1192,7 @@ export type GetMaterialQuery = {
     }>;
     seriesMembers: Array<{
       __typename?: "Work";
+      workId: string;
       titles: {
         __typename?: "WorkTitles";
         main: Array<string>;
@@ -1303,6 +1304,7 @@ export type SearchWithPaginationQuery = {
       }>;
       seriesMembers: Array<{
         __typename?: "Work";
+        workId: string;
         titles: {
           __typename?: "WorkTitles";
           main: Array<string>;
@@ -1501,6 +1503,7 @@ export type WorkSmallFragment = {
   }>;
   seriesMembers: Array<{
     __typename?: "Work";
+    workId: string;
     titles: {
       __typename?: "WorkTitles";
       main: Array<string>;
@@ -1628,6 +1631,7 @@ export type WorkMediumFragment = {
   }>;
   seriesMembers: Array<{
     __typename?: "Work";
+    workId: string;
     titles: {
       __typename?: "WorkTitles";
       main: Array<string>;
@@ -1757,6 +1761,7 @@ export const WorkSmallFragmentDoc = `
     ...SeriesSimple
   }
   seriesMembers {
+    workId
     titles {
       main
       full

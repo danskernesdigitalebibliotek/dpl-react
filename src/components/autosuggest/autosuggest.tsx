@@ -23,7 +23,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   originalData,
   textData,
   materialData,
-  isLoading,
   status,
   getMenuProps,
   highlightedIndex,

@@ -1,7 +1,12 @@
 import React from "react";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  constructMaterialUrl,
+  constructSearchUrl
+} from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
-import { Pid } from "../../core/utils/types/ids";
+import { Pid, WorkId } from "../../core/utils/types/ids";
+import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 export interface MaterialDescriptionProps {
@@ -11,11 +16,20 @@ export interface MaterialDescriptionProps {
 
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const t = useText();
+  const { searchUrl, materialUrl } = useUrls();
   const inSeries = work.series;
-  const seriesMembersList = work.seriesMembers.map(
-    (item) => item.titles.main[0]
-  );
-  const subjectsList = work.subjects.all.map((item) => item.display);
+  const seriesMembersList = work.seriesMembers.map((item) => {
+    return {
+      url: constructMaterialUrl(materialUrl, item.workId as WorkId),
+      term: item.titles.main[0]
+    };
+  });
+  const subjectsList = work.subjects.all.map((item) => {
+    return {
+      url: constructSearchUrl(searchUrl, item.display),
+      term: item.display
+    };
+  });
   const { fictionNonfiction } = work;
 
   return (
@@ -35,7 +49,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                   seriesItem.numberInSeries?.number
                 }`}
                 subTitle={t("inSeriesText")}
-                linkList={[seriesItem.title]}
+                linkList={[
+                  {
+                    url: constructSearchUrl(searchUrl, seriesItem.title),
+                    term: seriesItem.title
+                  }
+                ]}
               />
             );
           })}
@@ -54,7 +73,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
         {fictionNonfiction && (
           <HorizontalTermLine
             title={t("fictionNonfictionText")}
-            linkList={[fictionNonfiction.display]}
+            linkList={[
+              {
+                url: constructSearchUrl(searchUrl, fictionNonfiction.display),
+                term: fictionNonfiction.display
+              }
+            ]}
           />
         )}
       </div>
