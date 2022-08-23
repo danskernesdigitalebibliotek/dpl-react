@@ -19,6 +19,7 @@ import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
   constructMaterialUrl,
+  constructSearchUrl,
   redirectTo
 } from "../../../core/utils/helpers/url";
 
@@ -38,7 +39,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   coverTint
 }) => {
   const t = useText();
-  const { materialUrl } = useUrls();
+  const { materialUrl, searchUrl } = useUrls();
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -87,7 +88,12 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
                 numberInSeries.number?.[0]
               }`}
               subTitle={t("inSeriesText")}
-              linkList={[seriesTitle]}
+              linkList={[
+                {
+                  url: constructSearchUrl(searchUrl, seriesTitle),
+                  term: seriesTitle
+                }
+              ]}
             />
           )}
         </div>
