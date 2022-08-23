@@ -1,4 +1,8 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  ThunkDispatch
+} from "@reduxjs/toolkit";
 import {
   TypedUseSelectorHook,
   useSelector as rawUseSelector
@@ -9,6 +13,7 @@ import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
+import guardedRequestsReducer from "./guardedRequests.slice";
 
 // TODO: We have planned to get rid of redux-persist.
 // When the step has been made to remove it all the persist setup should go as well.
@@ -25,7 +30,8 @@ export const store = configureStore({
       user: userReducer,
       text: textReducer,
       modal: modalReducer,
-      url: urlReducer
+      url: urlReducer,
+      guardedRequests: guardedRequestsReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"
@@ -34,4 +40,6 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type TypedDispatch = ThunkDispatch<RootState, never, never>;
 export const useSelector: TypedUseSelectorHook<RootState> = rawUseSelector;

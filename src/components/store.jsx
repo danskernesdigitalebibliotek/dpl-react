@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { store, persistor } from "../core/store";
+import GuardedApp from "./guarded-app";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +19,9 @@ const queryClient = new QueryClient({
 const Store = ({ children }) => (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <PersistGate persistor={persistor}>{children}</PersistGate>
+      <PersistGate persistor={persistor}>
+        <GuardedApp>{children}</GuardedApp>
+      </PersistGate>
     </QueryClientProvider>
   </Provider>
 );
