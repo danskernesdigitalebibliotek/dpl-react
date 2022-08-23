@@ -28,6 +28,9 @@ import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import MaterialDetailsList, {
+  ListData
+} from "../../components/material/MaterialDetailsList";
 
 export interface MaterialProps {
   wid: WorkId;
