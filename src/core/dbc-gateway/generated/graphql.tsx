@@ -1113,6 +1113,7 @@ export type GetMaterialQuery = {
     workYear?: string | null;
     workId: string;
     abstract?: Array<string> | null;
+    genreAndForm: Array<string>;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     mainLanguages: Array<{
       __typename?: "Language";
@@ -1200,6 +1201,7 @@ export type GetMaterialQuery = {
       all: Array<{
         __typename?: "Manifestation";
         pid: string;
+        genreAndForm: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1243,6 +1245,7 @@ export type GetMaterialQuery = {
       latest: {
         __typename?: "Manifestation";
         pid: string;
+        genreAndForm: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1319,6 +1322,7 @@ export type SearchWithPaginationQuery = {
       __typename?: "Work";
       workId: string;
       abstract?: Array<string> | null;
+      genreAndForm: Array<string>;
       titles: {
         __typename?: "WorkTitles";
         full: Array<string>;
@@ -1355,6 +1359,7 @@ export type SearchWithPaginationQuery = {
         all: Array<{
           __typename?: "Manifestation";
           pid: string;
+          genreAndForm: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1401,6 +1406,7 @@ export type SearchWithPaginationQuery = {
         latest: {
           __typename?: "Manifestation";
           pid: string;
+          genreAndForm: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1483,6 +1489,7 @@ export type ManifestationsSimpleFragment = {
   all: Array<{
     __typename?: "Manifestation";
     pid: string;
+    genreAndForm: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -1523,6 +1530,7 @@ export type ManifestationsSimpleFragment = {
   latest: {
     __typename?: "Manifestation";
     pid: string;
+    genreAndForm: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -1565,6 +1573,7 @@ export type ManifestationsSimpleFragment = {
 export type ManifestationsSimpleFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
+  genreAndForm: Array<string>;
   titles: {
     __typename?: "ManifestationTitles";
     main: Array<string>;
@@ -1617,6 +1626,7 @@ export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
   abstract?: Array<string> | null;
+  genreAndForm: Array<string>;
   titles: {
     __typename?: "WorkTitles";
     full: Array<string>;
@@ -1653,6 +1663,7 @@ export type WorkSmallFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      genreAndForm: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1693,6 +1704,7 @@ export type WorkSmallFragment = {
     latest: {
       __typename?: "Manifestation";
       pid: string;
+      genreAndForm: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1738,6 +1750,7 @@ export type WorkMediumFragment = {
   workYear?: string | null;
   workId: string;
   abstract?: Array<string> | null;
+  genreAndForm: Array<string>;
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   mainLanguages: Array<{
     __typename?: "Language";
@@ -1821,6 +1834,7 @@ export type WorkMediumFragment = {
     all: Array<{
       __typename?: "Manifestation";
       pid: string;
+      genreAndForm: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1861,6 +1875,7 @@ export type WorkMediumFragment = {
     latest: {
       __typename?: "Manifestation";
       pid: string;
+      genreAndForm: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1916,6 +1931,7 @@ export const SeriesSimpleFragmentDoc = `
 export const ManifestationsSimpleFieldsFragmentDoc = `
     fragment ManifestationsSimpleFields on Manifestation {
   pid
+  genreAndForm
   titles {
     main
     original
@@ -1993,6 +2009,7 @@ export const WorkSmallFragmentDoc = `
       original
     }
   }
+  genreAndForm
   manifestations {
     ...ManifestationsSimple
   }

@@ -1,59 +1,57 @@
-
-
 fragment ManifestationsSimple on Manifestations {
   all {
-   ...ManifestationsSimpleFields
+    ...ManifestationsSimpleFields
   }
   latest {
-   ...ManifestationsSimpleFields
+    ...ManifestationsSimpleFields
   }
 }
 
-
 fragment ManifestationsSimpleFields on Manifestation {
   pid
-    titles {
-      main
-      original
+  genreAndForm
+  titles {
+    main
+    original
+  }
+  publicationYear {
+    display
+  }
+  materialTypes {
+    specific
+  }
+  creators {
+    display
+    __typename
+  }
+  hostPublication {
+    title
+    creator
+    publisher
+    year {
+      year
     }
-    publicationYear {
+  }
+  languages {
+    main {
       display
     }
-    materialTypes {
-      specific
-    }
-    creators {
-      display
-      __typename
-    }
-    hostPublication {
-      title
-      creator
-      publisher
-      year {
-        year
-      }
-    }
-    languages {
-      main {
-        display
-      }
-    }
-    identifiers {
-      value
-    }
-    contributors {
-      display
-    }
-    edition {
-      summary
-    }
-    audience {
-      generalAudience
-    }
-    physicalDescriptions {
-      numberOfPages
-    }
+  }
+  identifiers {
+    value
+  }
+  contributors {
+    display
+  }
+  edition {
+    summary
+  }
+  audience {
+    generalAudience
+  }
+  physicalDescriptions {
+    numberOfPages
+  }
 }
 
 fragment SeriesSimple on Series {
@@ -89,6 +87,7 @@ fragment WorkSmall on Work {
       original
     }
   }
+  genreAndForm
   manifestations {
     ...ManifestationsSimple
   }
