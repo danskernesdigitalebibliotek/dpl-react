@@ -4,6 +4,7 @@ import { persistor, RootState } from "./store";
 import { hasToken } from "./token";
 import {
   appendQueryParametersToUrl,
+  getCurrentLocation,
   redirectTo,
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
@@ -85,8 +86,12 @@ export const guardedRequest = createAsyncThunk(
         // And redirect to external login.
         const { authUrl } = getUrlsFromState(getState() as RootState);
         if (authUrl) {
+          let currentUrl = new URL(getCurrentLocation());
+          currentUrl = appendQueryParametersToUrl(currentUrl, {
+            didAuthenticate: "1"
+          });
           const redirectUrl = appendQueryParametersToUrl(authUrl, {
-            "current-path": "/search?q=harry+potter&didAuthenticate=1"
+            "current-path": String(currentUrl)
           });
           console.log("REDIRECTING TO AUTH URL:", redirectUrl);
           redirectTo(redirectUrl);
