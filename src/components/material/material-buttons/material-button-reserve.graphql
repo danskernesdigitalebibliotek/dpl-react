@@ -1,0 +1,31 @@
+query getManifestationAccess ($pid: [String!]!) {
+  manifestations(pid: $pid) {
+    materialTypes {
+      specific
+    }
+    accessTypes {
+      code
+    }
+    access {
+      __typename
+      ... on AccessUrl {
+        origin
+        url
+      }
+      ... on InfomediaService {
+        id
+      }
+      ... on InterLibraryLoan {
+        loanIsPossible
+      }
+      ... on Ereol {
+        origin
+        url
+        canAlwaysBeLoaned
+      }
+      ... on DigitalArticleService {
+        issn
+      }
+    }
+  }
+}

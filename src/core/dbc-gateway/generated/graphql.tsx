@@ -1484,6 +1484,31 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type GetManifestationAccessQueryVariables = Exact<{
+  pid: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type GetManifestationAccessQuery = {
+  __typename?: "Query";
+  manifestations: Array<{
+    __typename?: "Manifestation";
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    access: Array<
+      | { __typename: "AccessUrl"; origin: string; url: string }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
+  } | null>;
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -2209,5 +2234,53 @@ export const useSuggestionsFromQueryStringQuery = <
       SuggestionsFromQueryStringQuery,
       SuggestionsFromQueryStringQueryVariables
     >(SuggestionsFromQueryStringDocument, variables),
+    options
+  );
+export const GetManifestationAccessDocument = `
+    query getManifestationAccess($pid: [String!]!) {
+  manifestations(pid: $pid) {
+    materialTypes {
+      specific
+    }
+    accessTypes {
+      code
+    }
+    access {
+      __typename
+      ... on AccessUrl {
+        origin
+        url
+      }
+      ... on InfomediaService {
+        id
+      }
+      ... on InterLibraryLoan {
+        loanIsPossible
+      }
+      ... on Ereol {
+        origin
+        url
+        canAlwaysBeLoaned
+      }
+      ... on DigitalArticleService {
+        issn
+      }
+    }
+  }
+}
+    `;
+export const useGetManifestationAccessQuery = <
+  TData = GetManifestationAccessQuery,
+  TError = unknown
+>(
+  variables: GetManifestationAccessQueryVariables,
+  options?: UseQueryOptions<GetManifestationAccessQuery, TError, TData>
+) =>
+  useQuery<GetManifestationAccessQuery, TError, TData>(
+    ["getManifestationAccess", variables],
+    fetcher<GetManifestationAccessQuery, GetManifestationAccessQueryVariables>(
+      GetManifestationAccessDocument,
+      variables
+    ),
     options
   );
