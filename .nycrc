@@ -1,9 +1,3 @@
 {
-  "include": [
-    "src/"
-  ],
-  "extension": [
-    ".js",
-    ".jsx"
-  ]
+  "extends": "@istanbuljs/nyc-config-typescript",
 }
