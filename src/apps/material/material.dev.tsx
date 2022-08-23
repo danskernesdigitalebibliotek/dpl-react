@@ -175,6 +175,11 @@ export default {
       name: "Genre and form",
       defaultValue: "Genre",
       control: { type: "text" }
+    },
+    creatorsAreMissingText: {
+      name: "Creators are missing",
+      defaultValue: "Creators are missing",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

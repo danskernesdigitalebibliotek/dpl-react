@@ -44,7 +44,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-  const author = creatorsText || "[Creators are missing]";
+  const author = creatorsText || t("creatorsAreMissingText");
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
   const firstInSeries = series?.[0];
