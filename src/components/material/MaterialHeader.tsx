@@ -46,7 +46,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     t
   );
 
-  const author = creatorsText || "[Creators are missing]";
+  const author = creatorsText || t("creatorsAreMissingText");
 
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
