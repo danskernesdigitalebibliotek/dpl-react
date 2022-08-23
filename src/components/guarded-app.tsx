@@ -2,6 +2,7 @@ import { FC, ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeRequest, reRunRequest } from "../core/guardedRequests.slice";
 import { RootState, TypedDispatch } from "../core/store";
+import { getUrlQueryParam } from "../core/utils/helpers/url";
 
 export interface GuardedAppProps {
   children: ReactElement<any, any> | null;
@@ -14,10 +15,11 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
+  const didAuthenticate = getUrlQueryParam("didAuthenticate");
   console.log("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
-    if (!persistedRequest) {
+    if (!persistedRequest || !didAuthenticate) {
       return;
     }
 
@@ -27,7 +29,7 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
       // @ts-ignore
       dispatch(removeRequest());
     })();
-  }, [dispatch, persistedRequest]);
+  }, [didAuthenticate, dispatch, persistedRequest]);
 
   if (persistedRequest) {
     return null;

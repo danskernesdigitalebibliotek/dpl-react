@@ -2,7 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { addItem } from "./material-list-api/material-list";
 import { persistor, RootState } from "./store";
 import { hasToken } from "./token";
-import { redirectTo, turnUrlStringsIntoObjects } from "./utils/helpers/url";
+import {
+  appendQueryParametersToUrl,
+  redirectTo,
+  turnUrlStringsIntoObjects
+} from "./utils/helpers/url";
 
 interface Callback<T1, T2 = void> {
   (args: T1): T2;
@@ -81,8 +85,11 @@ export const guardedRequest = createAsyncThunk(
         // And redirect to external login.
         const { authUrl } = getUrlsFromState(getState() as RootState);
         if (authUrl) {
-          console.log("REDIRECTING TO AUTH URL:", authUrl);
-          redirectTo(authUrl);
+          const redirectUrl = appendQueryParametersToUrl(authUrl, {
+            "current-path": "/search?q=harry+potter&didAuthenticate=1"
+          });
+          console.log("REDIRECTING TO AUTH URL:", redirectUrl);
+          redirectTo(redirectUrl);
         }
       });
     }
