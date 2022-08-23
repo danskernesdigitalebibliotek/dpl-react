@@ -32,7 +32,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     contributors,
     edition,
     audience,
-    physicalDescriptions
+    physicalDescriptions,
+    genreAndForm
   }
 }) => {
   const t = useText();
@@ -60,12 +61,17 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     },
     {
       label: t("languageText"),
-      value: allLanguages,
+      value: allLanguages ?? "",
+      type: "standard"
+    },
+    {
+      label: t("genreAndFormText"),
+      value: genreAndForm?.[0] ?? "",
       type: "standard"
     },
     {
       label: t("contributorsText"),
-      value: allContributors,
+      value: allContributors ?? "",
       type: "link"
     },
     {
@@ -75,12 +81,12 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     },
     {
       label: t("isbnText"),
-      value: identifiers?.[0].value,
+      value: identifiers?.[0].value ?? "",
       type: "standard"
     },
     {
       label: t("editionText"),
-      value: edition?.summary,
+      value: edition?.summary ?? "",
       type: "standard"
     },
     {

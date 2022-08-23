@@ -80,19 +80,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>No work data</div>;
   }
 
-  const {
-    manifestations,
-    titles,
-    materialTypes,
-    mainLanguages,
-    creators,
-    workYear
-  } = data.work;
+  const { manifestations, titles, mainLanguages, creators, workYear } =
+    data.work;
 
   // TODO: Temporary way to get a pid we can use for showing a cover for the material.
   // It should be replaced with some dynamic feature
   // that follows the current type of the material.
   const pid = getManifestationPid(manifestations);
+  const fallBackManifestation = getWorkManifestation(data?.work);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -105,7 +100,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const listDescriptionData: ListData = [
     {
       label: t("typeText"),
-      value: materialTypes?.[0]?.specific,
+      value:
+        (currentManifestation?.materialTypes?.[0]?.specific && "") ||
+        (fallBackManifestation?.materialTypes?.[0]?.specific && ""),
       type: "standard"
     },
     {
@@ -113,10 +110,56 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       value: allLanguages,
       type: "standard"
     },
+    {
+      label: t("genreAndFormText"),
+      value:
+        (currentManifestation?.genreAndForm?.[0] ?? "") ||
+        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
+      type: "standard"
+    },
     { label: t("contributorsText"), value: creatorsText, type: "link" },
     {
       label: t("originalTitleText"),
-      value: `${titles?.original} ${workYear}`,
+      value: titles && workYear ? `${titles?.original} ${workYear}` : "",
+      type: "standard"
+    },
+    {
+      label: t("isbnText"),
+      value:
+        (currentManifestation?.identifiers?.[0].value ?? "") ||
+        (fallBackManifestation?.identifiers?.[0].value ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("editionText"),
+      value:
+        (currentManifestation?.edition?.summary ?? "") ||
+        (fallBackManifestation?.edition?.summary ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("scopeText"),
+      value:
+        String(
+          currentManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
+        ) ||
+        String(
+          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
+        ),
+      type: "standard"
+    },
+    {
+      label: t("publisherText"),
+      value:
+        (currentManifestation?.hostPublication?.publisher ?? "") ||
+        (fallBackManifestation?.hostPublication?.publisher ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("audienceText"),
+      value:
+        (currentManifestation?.audience?.generalAudience[0] ?? "") ||
+        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
       type: "standard"
     }
   ];
