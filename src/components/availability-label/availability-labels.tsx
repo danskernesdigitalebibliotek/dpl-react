@@ -1,7 +1,11 @@
 import React from "react";
+import { getManifestationType } from "../../apps/material/helper";
 import { ManifestationsSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
-import { constructMaterialUrl } from "../../core/utils/helpers/url";
+import {
+  constructMaterialUrl,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
@@ -9,18 +13,24 @@ import { AvailabilityLabel } from "./availability-label";
 export interface AvailabilityLabelsProps {
   manifestations: ManifestationsSimpleFragment;
   workId: WorkId;
+  manifestation?: ManifestationsSimpleFragment["latest"];
+  selectManifestationHandler?: (
+    manifestation: ManifestationsSimpleFragment["latest"]
+  ) => void;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
-  workId
+  workId,
+  manifestation,
+  selectManifestationHandler
 }) => {
   const { materialUrl } = useUrls();
 
   return (
     <>
-      {manifestations.all.map((manifestation) => {
-        const { pid, materialTypes } = manifestation;
+      {manifestations.all.map((item) => {
+        const { pid, materialTypes } = item;
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid as Pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
@@ -29,13 +39,26 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
           return null;
         }
 
-        // TODO: Make AvailabilityLabel use URL object instead of string.
         return (
           <AvailabilityLabel
             key={pid}
             url={url}
             faustIds={[faustId]}
             manifestText={materialType}
+            selected={
+              manifestation &&
+              materialType === getManifestationType(manifestation)
+            }
+            handleSelectManifestation={
+              selectManifestationHandler
+                ? () => {
+                    selectManifestationHandler(item);
+                    setQueryParametersInUrl({
+                      type: materialType
+                    });
+                  }
+                : undefined
+            }
           />
         );
       })}
