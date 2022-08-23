@@ -180,6 +180,16 @@ export default {
       name: "Creators are missing",
       defaultValue: "Creators are missing",
       control: { type: "text" }
+    },
+    goToEReolenText: {
+      name: "Go to e-Reolen",
+      defaultValue: "Gå til ereolen",
+      control: { type: "text" }
+    },
+    viewOnlineText: {
+      name: "View online",
+      defaultValue: "Se online",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

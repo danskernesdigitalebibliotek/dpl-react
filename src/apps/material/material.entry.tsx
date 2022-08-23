@@ -37,6 +37,8 @@ interface MaterialEntryTextProps {
   fictionNonfictionText: string;
   genreAndFormText: string;
   creatorsAreMissingText: string;
+  goToEReolenText: string;
+  viewOnlineText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
