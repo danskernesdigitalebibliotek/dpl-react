@@ -102,3 +102,12 @@ export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
     {}
   );
 };
+
+export const replaceCurrentLocation = (replacementUrl: URL) => {
+  window.history.replaceState(null, "", replacementUrl);
+};
+
+export const removeQueryParametersFromUrl = (url: URL, parameter: string) => {
+  url.searchParams.delete(parameter);
+  return url;
+};
