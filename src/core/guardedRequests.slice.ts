@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { addItem } from "./material-list-api/material-list";
-import { RootState } from "./store";
+import { persistor, RootState } from "./store";
 import { hasToken } from "./token";
 import { redirectTo, turnUrlStringsIntoObjects } from "./utils/helpers/url";
 
@@ -75,11 +75,16 @@ export const guardedRequest = createAsyncThunk(
           args
         })
       );
-      // And redirect to external login.
-      const { authUrl } = getUrlsFromState(getState() as RootState);
-      if (authUrl) {
-        redirectTo(authUrl);
-      }
+
+      // Make sure that the request is persisted.
+      persistor.flush().then(() => {
+        // And redirect to external login.
+        const { authUrl } = getUrlsFromState(getState() as RootState);
+        if (authUrl) {
+          console.log("REDIRECTING TO AUTH URL:", authUrl);
+          redirectTo(authUrl);
+        }
+      });
     }
 
     // The user is authorized to perform callback. Let's do it!
