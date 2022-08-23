@@ -170,6 +170,11 @@ export default {
       name: "Audience",
       defaultValue: "Målgruppe",
       control: { type: "text" }
+    },
+    genreAndFormText: {
+      name: "Genre and form",
+      defaultValue: "Genre",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
