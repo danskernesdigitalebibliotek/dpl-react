@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
@@ -19,6 +19,7 @@ interface SearchResultEntryTextProps {
 interface SearchResultEntryUrlProps {
   searchUrl: string;
   materialUrl: string;
+  authUrl: string;
 }
 
 export interface SearchResultEntryProps
