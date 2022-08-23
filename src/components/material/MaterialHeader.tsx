@@ -1,5 +1,8 @@
 import React from "react";
-import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  ManifestationsSimpleFragment,
+  WorkMediumFragment
+} from "../../core/dbc-gateway/generated/graphql";
 import {
   creatorsToString,
   filterCreators,
@@ -19,6 +22,10 @@ import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 interface MaterialHeaderProps {
   wid: WorkId;
   work: WorkMediumFragment;
+  manifestation?: ManifestationsSimpleFragment["latest"];
+  selectManifestationHandler: (
+    manifestation: ManifestationsSimpleFragment["latest"]
+  ) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -28,7 +35,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     manifestations,
     mainLanguages,
     workId: wid
-  }
+  },
+  manifestation,
+  selectManifestationHandler
 }) => {
   const t = useText();
 
@@ -65,6 +74,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           <AvailabiltityLabels
             workId={wid as WorkId}
             manifestations={manifestations}
+            manifestation={manifestation}
+            selectManifestationHandler={selectManifestationHandler}
           />
         </div>
 

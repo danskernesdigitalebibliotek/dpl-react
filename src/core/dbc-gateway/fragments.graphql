@@ -44,6 +44,51 @@ fragment ManifestationsSimple on Manifestations {
       numberOfPages
     }
   }
+  latest {
+    pid
+    titles {
+      main
+      original
+    }
+    publicationYear {
+      display
+    }
+    materialTypes {
+      specific
+    }
+    creators {
+      display
+      __typename
+    }
+    hostPublication {
+      title
+      creator
+      publisher
+      year {
+        year
+      }
+    }
+    languages {
+      main {
+        display
+      }
+    }
+    identifiers {
+      value
+    }
+    contributors {
+      display
+    }
+    edition {
+      summary
+    }
+    audience {
+      generalAudience
+    }
+    physicalDescriptions {
+      numberOfPages
+    }
+  }
 }
 
 fragment SeriesSimple on Series {
