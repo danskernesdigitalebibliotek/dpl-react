@@ -35,6 +35,7 @@ interface MaterialEntryTextProps {
   publisherText: string;
   audienceText: string;
   fictionNonfictionText: string;
+  genreAndFormText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
