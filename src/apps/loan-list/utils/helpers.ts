@@ -1,6 +1,6 @@
 import get from "lodash.get";
 import dayjs from "dayjs";
-import { LoanV2 } from "../../core/fbs/model/loanV2";
+import { LoanV2 } from "../../../core/fbs/model/loanV2";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string,

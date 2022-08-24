@@ -5,7 +5,11 @@ import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
-import { formatDate, getAuthorNames, materialIsOverdue } from "../helpers";
+import {
+  formatDate,
+  getAuthorNames,
+  materialIsOverdue
+} from "../utils/helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import { Pid } from "../../../core/utils/types/ids";
 import StatusBadge from "../materials/utils/status-badge";

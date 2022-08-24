@@ -1,6 +1,10 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
+import {
+  formatDate,
+  materialIsOverdue,
+  getAuthorNames
+} from "../utils/helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
