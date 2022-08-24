@@ -102,6 +102,7 @@ export const guardedRequest = createAsyncThunk(
       });
     }
 
+    console.log("PERFORMING REQUEST CALLBACK");
     // The user is authorized to perform callback. Let's do it!
     const requestCallback = getRequestCallback(type);
     return requestCallback(args);
@@ -113,6 +114,7 @@ export const reRunRequest = createAsyncThunk(
   async ({ type, args }: RequestItem, { fulfillWithValue }) => {
     if (requestCallbackExists(type)) {
       const requestCallback = getRequestCallback(type);
+      console.log("RERUNNING REQUEST");
       return requestCallback(args);
     }
     return fulfillWithValue({ status: "success", message: "" });
