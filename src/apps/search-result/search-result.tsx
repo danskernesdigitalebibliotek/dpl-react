@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import SearchResultList from "../../components/search-result-list/search-result.list";
-import SearchResultPager from "../../components/search-result-pager/search-result-pager";
+import ResultPager from "../../components/result-pager/result-pager";
 import {
   SearchResponse,
   useSearchWithPaginationQuery,
@@ -73,7 +73,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       <SearchResultHeader hitcount={String(hitcount)} q={q} />
       {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
       {moreWorksToBeLoaded && (
-        <SearchResultPager
+        <ResultPager
           searchItemsShown={searchItemsShown}
           hitcount={hitcount}
           setPageHandler={setPageHandler}

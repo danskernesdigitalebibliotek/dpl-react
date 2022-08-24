@@ -53,4 +53,26 @@ export const queryMatchesFaust = (query: string | null) => {
   return returnValue;
 };
 
+export const getStackedSearchItems = (
+  view: string,
+  list: LoanV2[],
+  searchItemsShown: number,
+  dueDates: string[] | undefined
+) => {
+  let returnLoans: LoanV2[] = [];
+  if (view === "stacked" && dueDates) {
+    const dueDatesCopy = dueDates.slice(0, searchItemsShown);
+    dueDatesCopy.forEach((uniqueDueDate) => {
+      returnLoans = returnLoans.concat(
+        list.filter(({ loanDetails }) => loanDetails.dueDate === uniqueDueDate)
+      );
+    });
+  }
+  return returnLoans;
+};
+
+export const getSearchItems = (list: LoanV2[], searchItemsShown: number) => {
+  return [...list].splice(0, searchItemsShown);
+};
+
 export default {};
