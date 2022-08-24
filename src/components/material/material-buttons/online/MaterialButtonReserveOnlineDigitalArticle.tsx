@@ -18,6 +18,7 @@ const MaterialButtonReserveOnlineDigitalArticle: FC<
     return null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClick = (articleIssn: string) => {
     // TODO: open modal and start registering flow for digital articles
   };

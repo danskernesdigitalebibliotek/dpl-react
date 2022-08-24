@@ -18,6 +18,7 @@ const MaterialButtonReserveOnlineInfomediaArticle: FC<
     return null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClick = (articleId: string) => {
     // TODO: view the article in full text
   };

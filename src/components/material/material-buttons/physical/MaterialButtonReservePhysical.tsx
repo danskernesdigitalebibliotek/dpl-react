@@ -14,11 +14,11 @@ const MaterialButtonReservePhysical: FC<MaterialButtonReservePhysicalProps> = ({
 }) => {
   const t = useText();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClick = (manifestationId: string) => {
     // TODO: open the modal and reserve
   };
 
-  // TODO: use faustId to open the reservation flow
   return (
     <Button
       label={`${t("reserveText")} ${manifestationMaterialType}`}
