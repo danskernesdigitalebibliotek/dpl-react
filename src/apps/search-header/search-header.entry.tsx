@@ -1,4 +1,5 @@
 import * as React from "react";
+import GuardedApp from "../../components/guarded-app";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
