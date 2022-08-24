@@ -26,7 +26,6 @@ const MaterialButtonsReserve: FC<MaterialButtonsReserveProps> = ({
   const accessType = manifestation.accessTypes[0].code;
   const manifestationId = convertPostIdToFaustId(pid as Pid);
 
-  // reserveable physically
   if (accessType === AccessTypeCode.Physical) {
     return (
       <MaterialButtonsReservePhysical
@@ -36,7 +35,6 @@ const MaterialButtonsReserve: FC<MaterialButtonsReserveProps> = ({
     );
   }
 
-  // reserveable online
   return <MaterialButtonsReserveOnline manifestation={manifestation} />;
 };
 
