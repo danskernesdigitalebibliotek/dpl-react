@@ -17,16 +17,18 @@ import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import {
   removeLoansWithDuplicateDueDate,
-  queryMatchesFaust
-} from "../utils/helpers";
+  queryMatchesFaust,
+  getStackedSearchItems,
+  getSearchItems
+} from "../helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
-import Pagination from "../utils/pagination";
-import { ListView } from "../../../core/utils/types/list-view";
+import ResultPager from "../../../components/result-pager/result-pager";
+import { pageSize } from "../../../core/configuration/pagesize.json";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -47,6 +49,8 @@ const LoanList: FC = () => {
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
   const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
+  const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>();
   const [dueDates, setDueDates] = useState<string[]>([]);
   const [modalMaterial, setModalMaterial] = useState<
     GetMaterialManifestationQuery | null | undefined
@@ -57,6 +61,8 @@ const LoanList: FC = () => {
   const [loansModal, setLoansModal] = useState<LoanV2[] | null>();
   const [displayList, setDisplayList] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
+  const [page, setPage] = useState<number>(0);
+  const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
   const [view, setView] = useState<string>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -83,8 +89,9 @@ const LoanList: FC = () => {
 
       setLoans(sortedByLoanDate);
       updateRenewable(sortedByLoanDate);
+      setDisplayedLoans([...sortedByLoanDate].splice(0, searchItemsShown));
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data, searchItemsShown]);
 
   const selectModalMaterial = ({
     material,
@@ -139,6 +146,15 @@ const LoanList: FC = () => {
     }
   }, [loans, dispatch]);
 
+  const setPageHandler = () => {
+    if (loans) {
+      const currentPage = page + 1;
+      const itemsOnPage = (currentPage + 1) * pageSize;
+      setPage(currentPage);
+      setSearchItemsShown(itemsOnPage);
+    }
+  };
+
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
@@ -165,6 +181,29 @@ const LoanList: FC = () => {
       dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
     }
   }, [loans, openModalDueDate, dispatch]);
+
+  useEffect(() => {
+    if (loans) {
+      if (view === "list") {
+        setDisplayedLoans(getSearchItems(loans, searchItemsShown));
+      } else {
+        const stackedLoans: LoanV2[] = getStackedSearchItems(
+          view,
+          loans,
+          searchItemsShown,
+          dueDates
+        );
+
+        setDisplayedLoans([...stackedLoans]);
+      }
+    }
+  }, [dueDates, loans, searchItemsShown, view]);
+
+  useEffect(() => {
+    // When view is changed (from list to stacks or stacks to list)
+    // The items shown are reset to pagesize from config
+    setSearchItemsShown(pageSize);
+  }, [view]);
 
   return (
     <>
@@ -220,15 +259,21 @@ const LoanList: FC = () => {
               </div>
             </div>
           </div>
-          {loans && (
-            <Pagination
-              dueDates={dueDates}
-              loans={loans}
-              view={view as ListView}
-              hitcount={allLoans.length}
-              openModalDueDate={openModalDueDate}
-              selectModalMaterial={selectModalMaterial}
-            />
+          {displayedLoans && allLoans && (
+            <>
+              <LoanListItems
+                dueDates={dueDates}
+                loans={displayedLoans}
+                view={view}
+                openModalDueDate={openModalDueDate}
+                selectModalMaterial={selectModalMaterial}
+              />
+              <ResultPager
+                searchItemsShown={displayedLoans.length}
+                hitcount={allLoans.length}
+                setPageHandler={setPageHandler}
+              />
+            </>
           )}
         </>
       )}
