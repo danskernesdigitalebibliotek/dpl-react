@@ -85,9 +85,8 @@ const LoanList: FC = () => {
 
       setLoans(sortedByLoanDate);
       updateRenewable(sortedByLoanDate);
-      setDisplayedLoans([...sortedByLoanDate].splice(0, searchItemsShown));
     }
-  }, [isSuccess, data, searchItemsShown]);
+  }, [isSuccess, data]);
 
   const selectModalMaterial = ({
     material,
@@ -141,15 +140,6 @@ const LoanList: FC = () => {
     }
   }, [loans, open]);
 
-  const setPageHandler = () => {
-    if (loans) {
-      const currentPage = page + 1;
-      const itemsOnPage = (currentPage + 1) * pageSize;
-      setPage(currentPage);
-      setSearchItemsShown(itemsOnPage);
-    }
-  };
-
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
@@ -176,29 +166,6 @@ const LoanList: FC = () => {
       open(modalIdsConf.allLoansId);
     }
   }, [loans, openModalDueDate, open]);
-
-  useEffect(() => {
-    if (loans) {
-      if (view === "list") {
-        setDisplayedLoans(getSearchItems(loans, searchItemsShown));
-      } else {
-        const stackedLoans: LoanV2[] = getStackedSearchItems(
-          view,
-          loans,
-          searchItemsShown,
-          dueDates
-        );
-
-        setDisplayedLoans([...stackedLoans]);
-      }
-    }
-  }, [dueDates, loans, searchItemsShown, view]);
-
-  useEffect(() => {
-    // When view is changed (from list to stacks or stacks to list)
-    // The items shown are reset to pagesize from config
-    setSearchItemsShown(pageSize);
-  }, [view]);
 
   return (
     <>
