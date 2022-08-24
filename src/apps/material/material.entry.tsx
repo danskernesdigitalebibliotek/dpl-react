@@ -39,6 +39,11 @@ interface MaterialEntryTextProps {
   creatorsAreMissingText: string;
   goToEReolenText: string;
   viewOnlineText: string;
+  loadingText: string;
+  getOnlineText: string;
+  seeOnlineText: string;
+  cantReserveText: string;
+  goToText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

@@ -190,6 +190,31 @@ export default {
       name: "View online",
       defaultValue: "Se online",
       control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading",
+      control: { type: "text" }
+    },
+    getOnlineText: {
+      name: "Get online",
+      defaultValue: "Få online",
+      control: { type: "text" }
+    },
+    seeOnlineText: {
+      name: "See online",
+      defaultValue: "Se online",
+      control: { type: "text" }
+    },
+    cantReserveText: {
+      name: "Can't be reserved",
+      defaultValue: "Kan ej reserveres",
+      control: { type: "text" }
+    },
+    goToText: {
+      name: "Go to",
+      defaultValue: "Gå til",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
