@@ -13,7 +13,7 @@ const Disclosure: FC<DisclosureProps> = ({ title, children, mainIconPath }) => {
     <details className="disclosure text-body-large">
       <summary className="disclosure__headline text-body-large">
         <div className="disclosure__icon bg-identity-tint-120 m-24">
-          <img className="disclosure__icon" src={mainIconPath} alt="" />
+          <img className="disclosure__icon invert" src={mainIconPath} alt="" />
         </div>
         {title}
         <img
