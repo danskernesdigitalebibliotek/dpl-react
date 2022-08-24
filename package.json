@@ -29,7 +29,7 @@
     "watch:lint:scss": "chokidar \"./src/**/*.scss\" -c \"yarn lint:scss:fix\"",
     "build:doc": "doctoc README.md",
     "build:storybook": "build-storybook -c .storybook -o dev",
-    "start:storybook:test": "NODE_ENV=test start-storybook --port 57021",
+    "start:storybook:test": "NODE_ENV=test start-storybook --port 57021 --quiet --ci",
     "start:storybook:dev": "NODE_ENV=development  start-storybook --port 80",
     "dev": "concurrently --raw \"yarn start:storybook:dev\" \"yarn watch:lint:scss\"",
     "test": "cypress run",
