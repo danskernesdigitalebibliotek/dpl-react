@@ -42,18 +42,22 @@ const LoanListItems: FC<LoanListItemProps> = ({
             loans,
             "loanDetails.dueDate"
           );
-
-          const { loanDetails } = loan[0];
+          const { loanDetails } = loan[0] || {};
 
           return (
-            <StackableMaterial
-              loanDetails={loanDetails}
-              key={loanDetails.recordId}
-              faust={loanDetails.recordId as FaustId}
-              selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
-              selectMaterial={selectModalMaterial}
-              amountOfMaterialsWithDueDate={loan.length}
-            />
+            // eslint-disable-next-line react/jsx-no-useless-fragment
+            <>
+              {loanDetails && (
+                <StackableMaterial
+                  loanDetails={loanDetails}
+                  key={loanDetails.recordId}
+                  faust={loanDetails.recordId as FaustId}
+                  selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
+                  selectMaterial={selectModalMaterial}
+                  amountOfMaterialsWithDueDate={loan.length}
+                />
+              )}
+            </>
           );
         })}
       {view === "list" &&

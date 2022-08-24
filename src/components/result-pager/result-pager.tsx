@@ -1,20 +1,20 @@
 import React from "react";
 import { useText } from "../../core/utils/text";
 
-export interface SearchResultPagerProps {
+export interface ResultPagerProps {
   setPageHandler: () => void;
   searchItemsShown: number;
   hitcount: number;
 }
-function SearchResultPager({
+function ResultPager({
   setPageHandler,
   searchItemsShown,
   hitcount
-}: SearchResultPagerProps) {
+}: ResultPagerProps) {
   const t = useText();
   return (
-    <div className="search-result-pager">
-      <p className="text-small-caption search-result-pager__title">
+    <div className="result-pager">
+      <p className="text-small-caption result-pager__title">
         {t("showingText")} {searchItemsShown} {t("outOfText")} {hitcount}{" "}
         {t("resultsText")}
       </p>
@@ -30,4 +30,4 @@ function SearchResultPager({
   );
 }
 
-export default SearchResultPager;
+export default ResultPager;

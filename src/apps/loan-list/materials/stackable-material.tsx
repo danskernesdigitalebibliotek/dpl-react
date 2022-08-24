@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
@@ -21,7 +21,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const modalButtonHandler = useModalButtonHandler();
-
+  const [additionalMaterials] = useState(
+    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
+  );
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
   const { year } = hostPublication || {};
@@ -76,9 +78,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       type="button"
       onClick={(e) => selectListMaterial(e)}
       className={`list-reservation my-32 ${
-        amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
-          ? "list-reservation--stacked"
-          : ""
+        additionalMaterials > 0 ? "list-reservation--stacked" : ""
       }`}
     >
       <div className="list-reservation__material">
@@ -106,22 +106,19 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               {year?.year && <> ({year.year})</>}
             </p>
           </div>
-          {amountOfMaterialsWithDueDate &&
-            amountOfMaterialsWithDueDate > 1 &&
-            selectDueDate && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  openDueDateModal(e);
-                }}
-                aria-describedby={t("loanListMaterialsModalDesktopText")}
-                id="test-more-materials"
-                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-              >
-                + {amountOfMaterialsWithDueDate}{" "}
-                {t("loanListMaterialsDesktopText")}
-              </button>
-            )}
+          {additionalMaterials > 0 && (
+            <button
+              type="button"
+              onClick={(e) => {
+                openDueDateModal(e);
+              }}
+              aria-describedby={t("loanListMaterialsModalDesktopText")}
+              id="test-more-materials"
+              className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+            >
+              + {additionalMaterials} {t("LoanListMaterialsDesktopText")}
+            </button>
+          )}
           {materialIsOverdue(dueDate) && (
             <a
               href="todo"
@@ -145,17 +142,15 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               <p className="text-small-caption" id="due-date">
                 {t("loanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
-              {amountOfMaterialsWithDueDate &&
-                amountOfMaterialsWithDueDate > 1 && (
-                  <button
-                    type="button"
-                    aria-describedby={t("loanListMaterialsModalMobileText")}
-                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                  >
-                    + {amountOfMaterialsWithDueDate}{" "}
-                    {t("loanListMaterialsMobileText")}
-                  </button>
-                )}
+              {additionalMaterials > 0 && (
+                <button
+                  type="button"
+                  aria-describedby={t("loanListMaterialsModalMobileText")}
+                  className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                >
+                  + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                </button>
+              )}
               {materialIsOverdue(dueDate) && (
                 <a
                   href="todo"
