@@ -77,7 +77,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {/* Check and show if data has PeriodikumSelect  */}
+        {/* Check and show if data has PeriodikumSelect. */}
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
           <MaterialButtonsReserve pid={pid} />
