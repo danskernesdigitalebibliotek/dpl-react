@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AUTH_PARAM } from "../components/guarded-app";
 import { addItem } from "./material-list-api/material-list";
 import { persistor, RootState } from "./store";
@@ -9,6 +9,7 @@ import {
   redirectTo,
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
+import { App } from "./utils/types/ids";
 
 interface Callback<T1, T2 = void> {
   (args: T1): T2;
@@ -27,6 +28,7 @@ type CallbackType = keyof typeof requestCallbacks;
 export type RequestItem = {
   type: CallbackType;
   args: Record<string, unknown>;
+  app: App;
 };
 
 const initialState: { request: RequestItem | null } = { request: null };
@@ -43,10 +45,7 @@ const guardedRequests = createSlice({
     }
   }
 });
-
 export const { addRequest, removeRequest } = guardedRequests.actions;
-
-export default guardedRequests.reducer;
 
 const getRequestCallback = (
   type: CallbackType
@@ -64,7 +63,7 @@ const getUrlsFromState = (state: RootState) => {
 export const guardedRequest = createAsyncThunk(
   "guardedRequests/performRequest",
   async (
-    { type, args }: RequestItem,
+    { type, args, app }: RequestItem,
     { dispatch, fulfillWithValue, getState }
   ) => {
     // The callback is unknown and we cannot continue.
@@ -78,7 +77,8 @@ export const guardedRequest = createAsyncThunk(
       dispatch(
         addRequest({
           type,
-          args
+          args,
+          app
         })
       );
 
@@ -118,3 +118,5 @@ export const reRunRequest = createAsyncThunk(
     return fulfillWithValue({ status: "success", message: "" });
   }
 );
+
+export default guardedRequests.reducer;
