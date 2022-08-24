@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { AUTH_PARAM } from "../components/guarded-app";
 import { addItem } from "./material-list-api/material-list";
 import { persistor, RootState } from "./store";
 import { hasToken } from "./token";
@@ -86,14 +87,16 @@ export const guardedRequest = createAsyncThunk(
         // And redirect to external login.
         const { authUrl } = getUrlsFromState(getState() as RootState);
         if (authUrl) {
-          let currentUrl = new URL(getCurrentLocation());
-          currentUrl = appendQueryParametersToUrl(currentUrl, {
-            didAuthenticate: "1"
-          });
+          const { pathname, search } = appendQueryParametersToUrl(
+            new URL(getCurrentLocation()),
+            {
+              [AUTH_PARAM]: "1"
+            }
+          );
           const redirectUrl = appendQueryParametersToUrl(authUrl, {
-            "current-path": String(currentUrl)
+            "current-path": `${pathname}${search}`
           });
-          console.log("REDIRECTING TO AUTH URL:", redirectUrl);
+          console.log("REDIRECTING TO AUTH URL:", String(redirectUrl));
           redirectTo(redirectUrl);
         }
       });
