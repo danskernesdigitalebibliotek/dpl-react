@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
-import { removeLoansWithDuplicateDueDate } from "../helpers";
+import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
