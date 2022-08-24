@@ -7,20 +7,22 @@ import {
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
-import { guardedRequest } from "../../core/guardedRequests.slice";
-import { TypedDispatch } from "../../core/store";
 
+export type ButtonFavouriteId = WorkId | Pid;
 export interface ButtonFavouriteProps {
-  id: WorkId | Pid;
+  id: ButtonFavouriteId;
+  addToListRequest: (id: ButtonFavouriteId) => void;
 }
 
 // TODO We have to check if user is login and redirect if not
 
-const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ id }) => {
+const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
+  id,
+  addToListRequest
+}) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
   const { mutate } = useHasItem();
-  const dispatch = useDispatch<TypedDispatch>();
 
   useEffect(() => {
     mutate(
@@ -48,14 +50,14 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({ id }) => {
         removeItem("default", id);
         setFillState(false);
       } else {
-        dispatch(guardedRequest({ type: "addFavorite", args: { id } }));
+        addToListRequest(id);
         setFillState(true);
       }
       // Prevent event from bubbling up. If other components includes the favourite button
       // this wont interfere with their click handler.
       e.stopPropagation();
     },
-    [dispatch, fillState, id]
+    [addToListRequest, fillState, id]
   );
 
   return (
