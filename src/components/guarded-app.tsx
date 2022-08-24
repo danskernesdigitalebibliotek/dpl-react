@@ -12,6 +12,7 @@ import {
 export interface GuardedAppProps {
   children: ReactElement<any, any> | null;
 }
+export const AUTH_PARAM = "didAuthenticate";
 
 // This component makes sure to withhold app rendering
 // until the persisted request has been executed.
@@ -20,7 +21,6 @@ const GuardedApp: FC<GuardedAppProps> = ({ children }) => {
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
-  const AUTH_PARAM = "didAuthenticate";
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
   console.log("PERSISTED REQUEST:", persistedRequest);
 
