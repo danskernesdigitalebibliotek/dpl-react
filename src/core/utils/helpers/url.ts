@@ -35,7 +35,7 @@ export const setQueryParametersInUrl = (parameters: {
 };
 
 export const redirectTo = (url: URL): void => {
-  window.location.replace(url);
+  window.location.assign(url);
 };
 
 export const constructUrlWithPlaceholder = (
