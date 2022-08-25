@@ -10,6 +10,13 @@ export interface SearchHeaderTextProps {
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
   etAlText?: string;
+  bookCategoryText: string;
+  ebookCategoryText: string;
+  filmCategoryText: string;
+  audioBookCategoryText: string;
+  musicCategoryText: string;
+  gameCategoryText: string;
+  animatedSeriesCategoryText: string;
 }
 
 export interface SearchHeaderUrlProps {
@@ -21,13 +28,21 @@ export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
     SearchHeaderUrlProps {}
 
+// default value here prevents variable names to show if undefined
 const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
   altText = "search icon",
   inputPlaceholderText = "Search here",
   stringSuggestionAuthorText = "author",
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic",
-  etAlText = "et al."
+  etAlText = "et al.",
+  bookCategoryText = "Books",
+  ebookCategoryText = "Ebooks",
+  filmCategoryText = "Movies",
+  audioBookCategoryText = "Audio Books",
+  musicCategoryText = "Music",
+  gameCategoryText = "Games",
+  animatedSeriesCategoryText = "Animated Series"
 }) => {
   return <SearchHeader />;
 };
