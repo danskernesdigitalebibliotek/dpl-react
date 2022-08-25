@@ -48,7 +48,7 @@ const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
-  const [allLoans, setAllLoans] = useState<LoanV2[]>();
+  const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
   const [dueDates, setDueDates] = useState<string[]>([]);
   const [modalMaterial, setModalMaterial] = useState<
     GetMaterialManifestationQuery | null | undefined
