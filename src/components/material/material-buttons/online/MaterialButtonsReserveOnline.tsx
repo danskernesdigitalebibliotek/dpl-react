@@ -15,8 +15,7 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
   const accessType = manifestation.access[0].__typename;
 
   if (accessType === "Ereol" || accessType === "AccessUrl") {
-    const externalUrl = manifestation.access[0].url;
-    const { origin } = manifestation.access[0];
+    const { origin, url: externalUrl } = manifestation.access[0];
     return (
       <MaterialButtonReserveOnlineExternal
         externalUrl={externalUrl}
