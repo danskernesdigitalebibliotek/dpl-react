@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
+import { useText } from "../../../../core/utils/text";
 import { Pid } from "../../../../core/utils/types/ids";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 
@@ -11,6 +12,7 @@ interface MaterialAvailabilityTextPhysicalProps {
 const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
 > = ({ pid }) => {
+  const t = useText();
   const faustId = convertPostIdToFaustId(pid as Pid);
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [String(faustId)]
@@ -25,7 +27,11 @@ const MaterialAvailabilityTextPhysical: React.FC<
   );
 
   return (
-    <MaterialAvailabilityTextParagraph>{`Vi har indkøbt ${totalMaterials} eksemplarer. Der er ${totalReservations} reserveringer til dette materiale`}</MaterialAvailabilityTextParagraph>
+    <MaterialAvailabilityTextParagraph>{`${t(
+      "weHaveShoppedText"
+    )} ${totalMaterials} ${t("copiesThereIsText")} ${totalReservations} ${t(
+      "reservationsForThisMaterialText"
+    )}`}</MaterialAvailabilityTextParagraph>
   );
 };
 
