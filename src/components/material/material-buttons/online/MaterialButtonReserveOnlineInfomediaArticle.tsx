@@ -25,7 +25,7 @@ const MaterialButtonReserveOnlineInfomediaArticle: FC<
 
   return (
     <Button
-      label={t("seeOnlineText")}
+      label={t("readArticleText")}
       buttonType="none"
       variant="filled"
       disabled={false}

@@ -38,7 +38,7 @@ interface MaterialEntryTextProps {
   genreAndFormText: string;
   creatorsAreMissingText: string;
   goToEReolenText: string;
-  viewOnlineText: string;
+  readArticleText: string;
   loadingText: string;
   getOnlineText: string;
   seeOnlineText: string;

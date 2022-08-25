@@ -186,9 +186,9 @@ export default {
       defaultValue: "Gå til ereolen",
       control: { type: "text" }
     },
-    viewOnlineText: {
-      name: "View online",
-      defaultValue: "Se online",
+    readArticleText: {
+      name: "Read article",
+      defaultValue: "Læs artiklen",
       control: { type: "text" }
     },
     loadingText: {
