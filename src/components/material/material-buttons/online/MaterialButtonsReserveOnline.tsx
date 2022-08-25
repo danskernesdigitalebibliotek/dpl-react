@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
 import MaterialButtonReserveOnlineDigitalArticle from "./MaterialButtonReserveOnlineDigitalArticle";
-import MaterialButtonReserveOnlineEreol from "./MaterialButtonReserveOnlineExternal";
+import MaterialButtonReserveOnlineExternal from "./MaterialButtonReserveOnlineExternal";
 import MaterialButtonReserveOnlineInfomediaArticle from "./MaterialButtonReserveOnlineInfomediaArticle";
 
 export interface MaterialButtonsReserveOnlineProps {
@@ -18,7 +18,7 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
     const externalUrl = manifestation.access[0].url;
     const { origin } = manifestation.access[0];
     return (
-      <MaterialButtonReserveOnlineEreol
+      <MaterialButtonReserveOnlineExternal
         externalUrl={externalUrl}
         origin={origin}
       />
