@@ -17,10 +17,12 @@ const MaterialButtonsReserve: FC<MaterialButtonsReserveProps> = ({
   manifestation
 }) => {
   const { pid } = manifestation;
-  const accessType = manifestation.accessTypes[0].code;
+  const hasPhysicalAccess = manifestation.accessTypes.some(
+    (type) => type.code === AccessTypeCode.Physical
+  );
   const manifestationId = convertPostIdToFaustId(pid as Pid);
 
-  if (accessType === AccessTypeCode.Physical) {
+  if (hasPhysicalAccess) {
     return (
       <MaterialButtonsReservePhysical
         faustId={manifestationId as string}
