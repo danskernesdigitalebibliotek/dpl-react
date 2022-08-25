@@ -22,7 +22,7 @@ Start[User is on the material page and the default manifestation is selected]
 --> 4{Is the selected manifestations reservable ?}
 
 4{Is the selected manifestation reservable ?} --Yes-->
-ButtonWithType[The button says 'Reserve /material type/' + Is disabled]
+ButtonWithType[The button says 'Reserve /material type/' + is enabled]
 4{Is the selected manifestation reservable ?} --No-->
 CannotbeReserved[The button says 'Cannot be reserved' + Is disabled]
 
