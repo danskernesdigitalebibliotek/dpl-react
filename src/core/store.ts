@@ -13,6 +13,10 @@ import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
+// TODO: Fix dependency cycle problem
+// There is not an obvious solution but we need access to the persistor
+// in the guardedRequest thunk.
+// eslint-disable-next-line import/no-cycle
 import guardedRequestsReducer from "./guardedRequests.slice";
 
 // TODO: We have planned to get rid of redux-persist.
