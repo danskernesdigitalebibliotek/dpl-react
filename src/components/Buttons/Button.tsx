@@ -41,13 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
     }
 
     if (buttonType === "external-link") {
-      return (
-        <img
-          className={iconClassName}
-          src={ExternalLinkIcon}
-          aria-label="external-link"
-        />
-      );
+      return <img className={iconClassName} src={ExternalLinkIcon} alt="" />;
     }
 
     return null;
