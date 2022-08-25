@@ -1,8 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { AUTH_PARAM } from "../components/guarded-app";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { addItem } from "./material-list-api/material-list";
-import { persistor, RootState } from "./store";
-import { hasToken } from "./token";
+// TODO: Fix dependency cycle problem
+// There is not an obvious solution but we need access to the persistor
+// in the guardedRequest thunk.
+// eslint-disable-next-line import/no-cycle
+import { persistor } from "./store";
+import type { RootState } from "./store";
+import { getCurrentUnixTime } from "./utils/helpers/date";
 import {
   appendQueryParametersToUrl,
   getCurrentLocation,
@@ -10,6 +14,9 @@ import {
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
 import { App } from "./utils/types/ids";
+import { userIsAnonymous } from "./utils/helpers/user";
+
+export const AUTH_PARAM = "didAuthenticate";
 
 interface Callback<T1, T2 = void> {
   (args: T1): T2;
@@ -29,6 +36,15 @@ export type RequestItem = {
   type: CallbackType;
   args: Record<string, unknown>;
   app: App;
+  expire?: number;
+};
+const getExpireTimestamp = () => getCurrentUnixTime() + 60;
+export const hasRequestExpired = ({ expire }: RequestItem) => {
+  // If no expiration timestamp is given. We will expire the request immediately.
+  if (!expire) {
+    return true;
+  }
+  return getCurrentUnixTime() > expire;
 };
 
 const initialState: { request: RequestItem | null } = { request: null };
@@ -36,9 +52,12 @@ const guardedRequests = createSlice({
   name: "guardedRequests",
   initialState,
   reducers: {
-    addRequest(state, action) {
-      const { payload } = action;
-      state.request = payload;
+    addRequest(state, action: PayloadAction<RequestItem>) {
+      const { payload: request } = action;
+      if (!request?.expire) {
+        request.expire = getExpireTimestamp();
+      }
+      state.request = request;
     },
     removeRequest(state) {
       state.request = null;
@@ -60,27 +79,23 @@ const getUrlsFromState = (state: RootState) => {
   } = state;
   return turnUrlStringsIntoObjects(data);
 };
+
 export const guardedRequest = createAsyncThunk(
   "guardedRequests/performRequest",
   async (
-    { type, args, app }: RequestItem,
+    requestItem: RequestItem,
     { dispatch, fulfillWithValue, getState }
   ) => {
+    const { type, args } = requestItem;
     // The callback is unknown and we cannot continue.
     if (!requestCallbackExists(type)) {
       return fulfillWithValue({ status: "ignored", message: "Nothing to do" });
     }
 
     // User is anonymous and the requests is known.
-    if (!hasToken("user")) {
+    if (userIsAnonymous()) {
       // So we'll store the request for later execution.
-      dispatch(
-        addRequest({
-          type,
-          args,
-          app
-        })
-      );
+      dispatch(addRequest(requestItem));
 
       // Make sure that the request is persisted.
       persistor.flush().then(() => {
@@ -111,12 +126,16 @@ export const guardedRequest = createAsyncThunk(
 
 export const reRunRequest = createAsyncThunk(
   "guardedRequests/reRunRequest",
-  async ({ type, args }: RequestItem, { fulfillWithValue }) => {
+  async (requestItem: RequestItem, { fulfillWithValue, dispatch }) => {
+    const { type, args } = requestItem;
+
+    // Run request callback.
     if (requestCallbackExists(type)) {
       const requestCallback = getRequestCallback(type);
       console.log("RERUNNING REQUEST");
       return requestCallback(args);
     }
+
     return fulfillWithValue({ status: "success", message: "" });
   }
 );

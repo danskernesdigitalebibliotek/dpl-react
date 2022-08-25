@@ -1,60 +1,84 @@
 import React, { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeRequest, reRunRequest } from "../core/guardedRequests.slice";
-import { RootState, TypedDispatch } from "../core/store";
+import {
+  AUTH_PARAM,
+  hasRequestExpired,
+  removeRequest,
+  RequestItem,
+  reRunRequest
+} from "../core/guardedRequests.slice";
+import { RootState } from "../core/store";
+import { getCurrentUnixTime } from "../core/utils/helpers/date";
 import {
   getCurrentLocation,
   getUrlQueryParam,
   removeQueryParametersFromUrl,
   replaceCurrentLocation
 } from "../core/utils/helpers/url";
+import { userIsAnonymous } from "../core/utils/helpers/user";
 import { App } from "../core/utils/types/ids";
 
 export interface GuardedAppProps {
   app: App;
   children: ReactNode;
 }
-export const AUTH_PARAM = "didAuthenticate";
 
 // This component makes sure to withhold app rendering
 // until the persisted request has been executed.
 const GuardedApp = ({ app, children }: GuardedAppProps) => {
-  const dispatch = useDispatch<TypedDispatch>();
+  const dispatch = useDispatch();
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
+  const isApplicationBlocked = persistedRequest && !userIsAnonymous();
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
+
   console.log("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
-    // If we do not have persisted a request
-    // or we did not come back from an authentication
-    // do nothing.
-    if (!persistedRequest || !didAuthenticate) {
+    if (!persistedRequest) {
+      return;
+    }
+
+    console.log("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
+    console.log("CURRRENT TIMESTAMP", getCurrentUnixTime());
+    console.log("EXPIRE TIMESTAMP", persistedRequest.expire);
+
+    // If request has expired remove it.
+    if (hasRequestExpired(persistedRequest)) {
+      dispatch(removeRequest());
+    }
+  }, [dispatch, persistedRequest]);
+
+  useEffect(() => {
+    if (!isApplicationBlocked) {
       return;
     }
     const { app: persistedRequestApp } = persistedRequest;
 
-    // If the request is not connected to this app do nothing.
-    if (app !== persistedRequestApp) {
+    // If we do not have the auth url parameter
+    // or the request does not belong to this app do nothing.
+    if (!didAuthenticate || app !== persistedRequestApp) {
       return;
     }
 
-    (async () => {
-      const currentUrlWithoutAuthParam = removeQueryParametersFromUrl(
-        new URL(getCurrentLocation()),
-        AUTH_PARAM
-      );
-      replaceCurrentLocation(currentUrlWithoutAuthParam);
-      await dispatch(reRunRequest(persistedRequest));
-      // TODO: fix:
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      dispatch(removeRequest());
-    })();
-  }, [app, didAuthenticate, dispatch, persistedRequest]);
+    // TODO: For some reason the type is not right in the redux type system.
+    // It needs to be solved but I do not have the proper solution right now.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    dispatch(reRunRequest(persistedRequest));
 
-  if (persistedRequest) {
+    const currentUrlWithoutAuthParam = removeQueryParametersFromUrl(
+      new URL(getCurrentLocation()),
+      AUTH_PARAM
+    );
+    // Remove auth parameter from url so we don't accidentally
+    // repeat the functionality related to it.
+    replaceCurrentLocation(currentUrlWithoutAuthParam);
+    dispatch(removeRequest());
+  }, [app, didAuthenticate, dispatch, isApplicationBlocked, persistedRequest]);
+
+  if (isApplicationBlocked) {
     return <div />;
   }
 
