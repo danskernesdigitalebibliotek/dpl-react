@@ -3,6 +3,7 @@ import {
   useGetV1ProductsIdentifier,
   useGetV1UserLoansIdentifier
 } from "../../../../core/publizon/publizon";
+import { useText } from "../../../../core/utils/text";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 
 interface MaterialAvailabilityTextOnlineProps {
@@ -36,7 +37,7 @@ const MaterialAvailabilityTextOnline: React.FC<
   if (costFree) {
     return (
       <MaterialAvailabilityTextParagraph>
-        Materialet tæller ikke med i din lånerkvote
+        {t("materialIsIncludedText")}
       </MaterialAvailabilityTextParagraph>
     );
   }
@@ -44,16 +45,14 @@ const MaterialAvailabilityTextOnline: React.FC<
   if (!costFree) {
     return (
       <MaterialAvailabilityTextParagraph>
-        Du har lånt X ud af Y mulige [materialte-type] denne måned
+        {`${t("youHaveBorrowedText")} X ${t(
+          "outOfText"
+        )} Y [materialte-type] ${t("thisMonthText")}`}
       </MaterialAvailabilityTextParagraph>
     );
   }
 
-  return (
-    <MaterialAvailabilityTextParagraph>
-      MaterialAvailabilityTextOnline
-    </MaterialAvailabilityTextParagraph>
-  );
+  return null;
 };
 
 export default MaterialAvailabilityTextOnline;
