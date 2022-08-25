@@ -33,18 +33,18 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
     );
   }
 
-  // Internal Library Loan should never be the case here for external loans
-  // But we need to exclude it to access infomedia article id
-  if (accessType === "InterLibraryLoan") {
-    return null;
+  if (accessType === "InfomediaService") {
+    const infomediaArticleId = manifestation.access[0].id;
+    return (
+      <MaterialButtonReserveOnlineInfomediaArticle
+        infomediaArticleId={infomediaArticleId}
+      />
+    );
   }
 
-  const infomediaArticleId = manifestation.access[0].id;
-  return (
-    <MaterialButtonReserveOnlineInfomediaArticle
-      infomediaArticleId={infomediaArticleId}
-    />
-  );
+  // Last option is an Internal Library Loan, which practically will never be
+  // the case because this component is only active in case of an online loan
+  return null;
 };
 
 export default MaterialButtonsReserveOnline;
