@@ -46,6 +46,13 @@ interface MaterialEntryTextProps {
   cantReserveText: string;
   goToText: string;
   materialIsLoanedOutText: string;
+  materialIsIncludedText: string;
+  weHaveShoppedText: string;
+  copiesThereIsText: string;
+  reservationsForThisMaterialText: string;
+  youHaveBorrowedText: string;
+  possibleText: string;
+  thisMonthText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
