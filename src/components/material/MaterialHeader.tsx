@@ -80,10 +80,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {/* Check and show if data has PeriodikumSelect. */}
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
-          <MaterialButtonsReserve
-            pid={coverPid}
-            manifestation={manifestation}
-          />
+          {manifestation && (
+            <MaterialButtonsReserve manifestation={manifestation} />
+          )}
           <ButtonLargeOutline
             label={t("findOnBookshelfText")}
             disabled={false}

@@ -10,19 +10,13 @@ import MaterialButtonsReserveOnline from "./online/MaterialButtonsReserveOnline"
 import MaterialButtonsReservePhysical from "./physical/MaterialButtonsReservePhysical";
 
 export interface MaterialButtonsReserveProps {
-  pid: Pid;
-  manifestation?: ManifestationsSimpleFieldsFragment;
+  manifestation: ManifestationsSimpleFieldsFragment;
 }
 
 const MaterialButtonsReserve: FC<MaterialButtonsReserveProps> = ({
-  pid,
   manifestation
 }) => {
-  if (!manifestation) {
-    // No error handling necessary here, it is according to the specs
-    return null;
-  }
-
+  const { pid } = manifestation;
   const accessType = manifestation.accessTypes[0].code;
   const manifestationId = convertPostIdToFaustId(pid as Pid);
 
