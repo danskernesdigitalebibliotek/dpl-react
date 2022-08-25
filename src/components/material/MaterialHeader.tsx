@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import {
   ManifestationsSimpleFieldsFragment,
@@ -19,6 +19,7 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
 import { Cover } from "../cover/cover";
+import MaterialAvailabilityText from "./MaterialAvailabilityText/MaterialAvailabilityText";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 import MaterialButtons from "./material-buttons/MaterialButtons";
@@ -98,6 +99,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <div className="material-header__button">
           {manifestation && <MaterialButtons manifestation={manifestation} />}
         </div>
+        {manifestation && (
+          <MaterialAvailabilityText manifestation={manifestation} />
+        )}
       </div>
     </header>
   );
