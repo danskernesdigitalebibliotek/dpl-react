@@ -34,7 +34,10 @@ export const store = configureStore({
       guardedRequests: guardedRequestsReducer
     })
   ),
-  devTools: process.env.NODE_ENV === "development"
+  // TODO: Change this back after debugging
+  devTools: true
+  // Should be:
+  // devTools: process.env.NODE_ENV === "development"
 });
 
 export const persistor = persistStore(store);
