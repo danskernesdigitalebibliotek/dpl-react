@@ -93,7 +93,7 @@ export default {
     },
     outOfText: {
       name: "X 'out of' Y",
-      defaultValue: "out of",
+      defaultValue: "ud af",
       control: { type: "text" }
     },
     heartsIconText: {
@@ -224,6 +224,41 @@ export default {
     findOnShelfExpandButtonExplanationText: {
       name: "Find on shelf expand button explanation text",
       defaultValue: "This button opens a modal",
+      control: { type: "text" }
+    },
+    materialIsIncludedText: {
+      name: "Material is included",
+      defaultValue: "Materialet tæller ikke med i din lånerkvote",
+      control: { type: "text" }
+    },
+    weHaveShoppedText: {
+      name: "We have shopped",
+      defaultValue: "Vi har købt",
+      control: { type: "text" }
+    },
+    copiesThereIsText: {
+      name: "copies there is",
+      defaultValue: "eksemplarer. Der er",
+      control: { type: "text" }
+    },
+    reservationsForThisMaterialText: {
+      name: "Reservations for this material",
+      defaultValue: "reserveringer til dette materiale",
+      control: { type: "text" }
+    },
+    youHaveBorrowedText: {
+      name: "You have borrowed",
+      defaultValue: "Du har lånt",
+      control: { type: "text" }
+    },
+    possibleText: {
+      name: "Possible",
+      defaultValue: "mulige",
+      control: { type: "text" }
+    },
+    thisMonthText: {
+      name: "This month",
+      defaultValue: "denne måned",
       control: { type: "text" }
     }
   }

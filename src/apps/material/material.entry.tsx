@@ -47,6 +47,13 @@ interface MaterialEntryTextProps {
   goToText: string;
   materialIsLoanedOutText: string;
   findOnShelfExpandButtonExplanationText: string;
+  materialIsIncludedText: string;
+  weHaveShoppedText: string;
+  copiesThereIsText: string;
+  reservationsForThisMaterialText: string;
+  youHaveBorrowedText: string;
+  possibleText: string;
+  thisMonthText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
