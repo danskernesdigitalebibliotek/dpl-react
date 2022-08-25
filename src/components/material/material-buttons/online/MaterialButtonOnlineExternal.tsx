@@ -4,14 +4,15 @@ import { useText } from "../../../../core/utils/text";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
-export interface MaterialButtonReserveOnlineExternalProps {
+export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
 }
 
-const MaterialButtonReserveOnlineExternal: FC<
-  MaterialButtonReserveOnlineExternalProps
-> = ({ externalUrl = "https://google.com", origin }) => {
+const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
+  externalUrl = "https://google.com",
+  origin
+}) => {
   const t = useText();
   const externalLinkObject = new URL(externalUrl);
 
@@ -30,4 +31,4 @@ const MaterialButtonReserveOnlineExternal: FC<
   );
 };
 
-export default MaterialButtonReserveOnlineExternal;
+export default MaterialButtonOnlineExternal;

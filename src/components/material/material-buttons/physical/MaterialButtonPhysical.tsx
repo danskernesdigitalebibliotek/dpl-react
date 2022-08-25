@@ -3,12 +3,12 @@ import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
-export interface MaterialButtonReservePhysicalProps {
+export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   faustId: string;
 }
 
-const MaterialButtonReservePhysical: FC<MaterialButtonReservePhysicalProps> = ({
+const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustId
 }) => {
@@ -34,4 +34,4 @@ const MaterialButtonReservePhysical: FC<MaterialButtonReservePhysicalProps> = ({
   );
 };
 
-export default MaterialButtonReservePhysical;
+export default MaterialButtonPhysical;

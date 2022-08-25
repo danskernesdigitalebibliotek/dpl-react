@@ -3,13 +3,13 @@ import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
-export interface MaterialButtonReserveOnlineDigitalArticleProps {
-  digitalArticleIssn: string;
+export interface MaterialButtonOnlineInfomediaArticleProps {
+  infomediaArticleId: string;
 }
 
-const MaterialButtonReserveOnlineDigitalArticle: FC<
-  MaterialButtonReserveOnlineDigitalArticleProps
-> = ({ digitalArticleIssn }) => {
+const MaterialButtonOnlineInfomediaArticle: FC<
+  MaterialButtonOnlineInfomediaArticleProps
+> = ({ infomediaArticleId }) => {
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
   const t = useText();
@@ -19,23 +19,23 @@ const MaterialButtonReserveOnlineDigitalArticle: FC<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (articleIssn: string) => {
-    // TODO: open modal and start registering flow for digital articles
+  const onClick = (articleId: string) => {
+    // TODO: view the article in full text
   };
 
   return (
     <Button
-      label={t("orderDigitalCopy")}
+      label={t("readArticleText")}
       buttonType="none"
       variant="filled"
       disabled={false}
       collapsible={false}
       size="large"
       onClick={() => {
-        onClick(digitalArticleIssn);
+        onClick(infomediaArticleId);
       }}
     />
   );
 };
 
-export default MaterialButtonReserveOnlineDigitalArticle;
+export default MaterialButtonOnlineInfomediaArticle;

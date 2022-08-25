@@ -17,7 +17,7 @@ import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
-import MaterialButtonsReserve from "./material-buttons/MaterialButtonsReserve";
+import MaterialButtons from "./material-buttons/MaterialButtons";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -80,9 +80,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {/* Check and show if data has PeriodikumSelect. */}
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
-          {manifestation && (
-            <MaterialButtonsReserve manifestation={manifestation} />
-          )}
+          {manifestation && <MaterialButtons manifestation={manifestation} />}
           <ButtonLargeOutline
             label={t("findOnBookshelfText")}
             disabled={false}

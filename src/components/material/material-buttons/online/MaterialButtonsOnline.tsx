@@ -1,15 +1,15 @@
 import * as React from "react";
 import { FC } from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
-import MaterialButtonReserveOnlineDigitalArticle from "./MaterialButtonReserveOnlineDigitalArticle";
-import MaterialButtonReserveOnlineExternal from "./MaterialButtonReserveOnlineExternal";
-import MaterialButtonReserveOnlineInfomediaArticle from "./MaterialButtonReserveOnlineInfomediaArticle";
+import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
+import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
+import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
-export interface MaterialButtonsReserveOnlineProps {
+export interface MaterialButtonsOnlineProps {
   manifestation: ManifestationsSimpleFieldsFragment;
 }
 
-const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
+const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   manifestation
 }) => {
   const accessType = manifestation.access[0].__typename;
@@ -17,17 +17,14 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
   if (accessType === "Ereol" || accessType === "AccessUrl") {
     const { origin, url: externalUrl } = manifestation.access[0];
     return (
-      <MaterialButtonReserveOnlineExternal
-        externalUrl={externalUrl}
-        origin={origin}
-      />
+      <MaterialButtonOnlineExternal externalUrl={externalUrl} origin={origin} />
     );
   }
 
   if (accessType === "DigitalArticleService") {
     const digitalArticleIssn = manifestation.access[0].issn;
     return (
-      <MaterialButtonReserveOnlineDigitalArticle
+      <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
       />
     );
@@ -36,7 +33,7 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
   if (accessType === "InfomediaService") {
     const infomediaArticleId = manifestation.access[0].id;
     return (
-      <MaterialButtonReserveOnlineInfomediaArticle
+      <MaterialButtonOnlineInfomediaArticle
         infomediaArticleId={infomediaArticleId}
       />
     );
@@ -47,4 +44,4 @@ const MaterialButtonsReserveOnline: FC<MaterialButtonsReserveOnlineProps> = ({
   return null;
 };
 
-export default MaterialButtonsReserveOnline;
+export default MaterialButtonsOnline;

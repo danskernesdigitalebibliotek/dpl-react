@@ -6,15 +6,15 @@ import { Pid } from "../../../../core/utils/types/ids";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
-import MaterialButtonReservePhysical from "./MaterialButtonReservePhysical";
+import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
-export interface MaterialButtonsReservePhysicalProps {
+export interface MaterialButtonsPhysicalProps {
   manifestation: ManifestationsSimpleFieldsFragment;
 }
 
-const MaterialButtonsReservePhysical: React.FC<
-  MaterialButtonsReservePhysicalProps
-> = ({ manifestation }) => {
+const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
+  manifestation
+}) => {
   const { pid } = manifestation;
   const faustId = convertPostIdToFaustId(pid as Pid);
   const { data, isLoading } = useGetAvailabilityV3({
@@ -51,4 +51,4 @@ const MaterialButtonsReservePhysical: React.FC<
   );
 };
 
-export default MaterialButtonsReservePhysical;
+export default MaterialButtonsPhysical;
