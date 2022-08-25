@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
-import { redirectTo } from "../../../../core/utils/helpers/url";
 import { useText } from "../../../../core/utils/text";
+import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonReserveOnlineExternalProps {
@@ -11,27 +11,22 @@ export interface MaterialButtonReserveOnlineExternalProps {
 
 const MaterialButtonReserveOnlineExternal: FC<
   MaterialButtonReserveOnlineExternalProps
-> = ({ externalUrl, origin }) => {
+> = ({ externalUrl = "https://google.com", origin }) => {
   const t = useText();
-
-  const onClick = (externalLink: string) => {
-    const externalLinkObject = new URL(externalLink);
-    redirectTo(externalLinkObject);
-  };
+  const externalLinkObject = new URL(externalUrl);
 
   return (
-    <Button
-      label={`${t("goToText")} ${origin}`}
-      buttonType="external-link"
-      variant="filled"
-      disabled={false}
-      collapsible={false}
-      size="large"
-      onClick={() => {
-        onClick(externalUrl);
-      }}
-      classNames="invert"
-    />
+    <LinkNoStyle url={externalLinkObject}>
+      <Button
+        label={`${t("goToText")} ${origin}`}
+        buttonType="external-link"
+        variant="filled"
+        disabled={false}
+        collapsible={false}
+        size="large"
+        classNames="invert"
+      />
+    </LinkNoStyle>
   );
 };
 
