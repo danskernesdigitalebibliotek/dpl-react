@@ -4,7 +4,7 @@ on:
     branches:
       - 'main' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-name: Upload Code Coverage
+name: Integration test
 
 jobs:
   test:
@@ -29,6 +29,18 @@ jobs:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'
           browser: chrome
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Upload videos
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
       - name: Generate code coverage report
         run: yarn run nyc report --reporter=clover --reporter=text --report-dir=./coverage
       - name: Upload coverage to Codecov
