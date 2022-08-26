@@ -24,57 +24,54 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
     return null;
   }
   return (
-    <>
-      <li className="autosuggest__divider" />
-      <li>
-        <ul className="autosuggest__materials">
-          {/* eslint-disable react/jsx-props-no-spreading */}
-          {/* The downshift combobox works this way by design (line 50) */}
-          {/* incorrectIndex because in the whole of autosuggest dropdown it is
+    <li>
+      <ul className="autosuggest__materials">
+        {/* eslint-disable react/jsx-props-no-spreading */}
+        {/* The downshift combobox works this way by design (line 50) */}
+        {/* incorrectIndex because in the whole of autosuggest dropdown it is
           not the correct index for the item. We first need to add the length of
           items from autosuggest string suggestion to it for it to be accurate. */}
-          {materialData.map((item, incorrectIndex) => {
-            const index = incorrectIndex + textDataLength;
-            const authors: string[] = [];
-            item.work?.creators.forEach((creator) => {
-              authors.push(creator.display);
-            });
-            return (
-              <li
-                className={`autosuggest__material ${
-                  highlightedIndex === index
-                    ? "autosuggest__material--highlight"
-                    : ""
-                }`}
-                key={item.work?.workId}
-                {...getItemProps({ item, index })}
-              >
-                {/* eslint-enable react/jsx-props-no-spreading */}
-                <div className="autosuggest__material__content">
-                  <div className="autosuggest__cover">
-                    {item.work && (
-                      <Cover
-                        animate
-                        size="xsmall"
-                        pid={item.work.manifestations.first.pid as Pid}
-                      />
-                    )}
+        {materialData.map((item, incorrectIndex) => {
+          const index = incorrectIndex + textDataLength;
+          const authors: string[] = [];
+          item.work?.creators.forEach((creator) => {
+            authors.push(creator.display);
+          });
+          return (
+            <li
+              className={`autosuggest__material ${
+                highlightedIndex === index
+                  ? "autosuggest__material--highlight"
+                  : ""
+              }`}
+              key={item.work?.workId}
+              {...getItemProps({ item, index })}
+            >
+              {/* eslint-enable react/jsx-props-no-spreading */}
+              <div className="autosuggest__material__content">
+                <div className="autosuggest__cover">
+                  {item.work && (
+                    <Cover
+                      animate
+                      size="xsmall"
+                      pid={item.work.manifestations.first.pid as Pid}
+                    />
+                  )}
+                </div>
+                <div className="autosuggest__info">
+                  <div className="text-body-medium-medium autosuggest__title">
+                    {item.work?.titles.main[0]}
                   </div>
-                  <div className="autosuggest__info">
-                    <div className="text-body-medium-medium autosuggest__title">
-                      {item.work?.titles.main[0]}
-                    </div>
-                    <div className="text-body-small-regular autosuggest__author">
-                      {creatorsToString(authors, t)}
-                    </div>
+                  <div className="text-body-small-regular autosuggest__author">
+                    {creatorsToString(authors, t)}
                   </div>
                 </div>
-              </li>
-            );
-          })}
-        </ul>
-      </li>
-    </>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </li>
   );
 };
 
