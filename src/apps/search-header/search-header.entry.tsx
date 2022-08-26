@@ -17,6 +17,7 @@ export interface SearchHeaderTextProps {
   musicCategoryText: string;
   gameCategoryText: string;
   animatedSeriesCategoryText: string;
+  inText: string;
 }
 
 export interface SearchHeaderUrlProps {
