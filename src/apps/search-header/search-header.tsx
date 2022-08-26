@@ -15,6 +15,7 @@ import {
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
+import { useText } from "../../core/utils/text";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -42,6 +43,16 @@ const SearchHeader: React.FC = () => {
   );
 
   const { searchUrl, materialUrl } = useUrls();
+  const t = useText();
+  const autosuggestCategoryList = [
+    t("bookCategoryText"),
+    t("ebookCategoryText"),
+    t("filmCategoryText"),
+    t("audioBookCategoryText"),
+    t("musicCategoryText"),
+    t("gameCategoryText"),
+    t("animatedSeriesCategoryText")
+  ];
 
   // Make sure to only assign the data once.
   useEffect(() => {
@@ -53,8 +64,16 @@ const SearchHeader: React.FC = () => {
   const originalData = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
+  const categoryData: Suggestion[] = [];
+  let nonWorkSuggestion: Suggestion | undefined;
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+
   if (originalData) {
+    nonWorkSuggestion = originalData.find(
+      (item) =>
+        item.type !== SuggestionType.Title &&
+        item.type !== SuggestionType.Composit
+    );
     originalData.forEach((item: Suggestion) => {
       if (
         item.type === SuggestionType.Composit ||
@@ -68,6 +87,13 @@ const SearchHeader: React.FC = () => {
       textData.push(item);
     });
     orderedData = textData.concat(materialData);
+
+    if (nonWorkSuggestion) {
+      autosuggestCategoryList.forEach(() => {
+        categoryData.push(nonWorkSuggestion as Suggestion);
+      });
+      orderedData = orderedData.concat(categoryData);
+    }
   }
 
   // Autosuggest opening and closing based on input text length.
@@ -210,12 +236,14 @@ const SearchHeader: React.FC = () => {
           originalData={originalData}
           textData={textData}
           materialData={materialData}
+          categoryData={categoryData}
           isLoading={isLoading}
           status={status}
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
+          autosuggestCategoryList={autosuggestCategoryList}
         />
       </div>
     </form>
