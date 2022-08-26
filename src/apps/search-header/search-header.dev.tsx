@@ -78,6 +78,11 @@ export default {
       name: "Animated series category",
       defaultValue: "Tegneserier",
       control: { type: "text" }
+    },
+    inText: {
+      name: "x 'in' y",
+      defaultValue: "i",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;
