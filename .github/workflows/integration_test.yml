@@ -1,10 +1,6 @@
-on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    branches:
-      - 'main' # Push events to matching v*, i.e. v1.0, v20.15.10
+name: Integration test
 
-name: Upload Code Coverage
+on: [ push, pull_request ]
 
 jobs:
   test:
@@ -29,8 +25,22 @@ jobs:
           start: yarn start:storybook:test
           wait-on: 'http://localhost:57021'
           browser: chrome
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v1
+        if: failure()
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Upload videos
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+      - name: Generate code coverage report
+        run: yarn run nyc report --reporter=clover --reporter=text --report-dir=./coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./coverage/
           fail_ci_if_error: false
