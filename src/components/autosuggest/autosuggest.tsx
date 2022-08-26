@@ -2,6 +2,7 @@ import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
+import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 
@@ -17,6 +18,8 @@ export interface AutosuggestProps {
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
+  categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  autosuggestCategoryList: string[];
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
@@ -27,7 +30,9 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getMenuProps,
   highlightedIndex,
   getItemProps,
-  isOpen
+  isOpen,
+  categoryData,
+  autosuggestCategoryList
 }) => {
   return (
     <>
@@ -54,6 +59,20 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
               highlightedIndex={highlightedIndex}
               textDataLength={textData.length}
             />
+            {categoryData && categoryData.length > 0 && (
+              <>
+                <li className="autosuggest__divider" />
+                <AutosuggestCategory
+                  categoryData={categoryData}
+                  getItemProps={getItemProps}
+                  highlightedIndex={highlightedIndex}
+                  textAndMaterialDataLength={
+                    textData.length + materialData.length
+                  }
+                  autosuggestCategoryList={autosuggestCategoryList}
+                />
+              </>
+            )}
           </>
         )}
       </ul>
