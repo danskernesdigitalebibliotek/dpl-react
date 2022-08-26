@@ -2,7 +2,10 @@ import React from "react";
 
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ButtonFavourite, { ButtonFavouriteProps } from "./button-favourite";
+import ButtonFavourite, {
+  ButtonFavouriteId,
+  ButtonFavouriteProps
+} from "./button-favourite";
 
 export default {
   title: "Components  / Button Favourite",
@@ -18,7 +21,14 @@ export default {
 
 const Template: ComponentStory<typeof ButtonFavourite> = (
   args: ButtonFavouriteProps
-) => <ButtonFavourite {...args} />;
+) => {
+  // This is a fake situation where we just need to give the button a handler.
+  // The handler does nothing.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const addToListRequest = (id: ButtonFavouriteId) => {};
+
+  return <ButtonFavourite {...args} addToListRequest={addToListRequest} />;
+};
 
 export const favourite = Template.bind({});
 favourite.args = {};
