@@ -47,6 +47,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
               highlightedIndex={highlightedIndex}
               getItemProps={getItemProps}
             />
+            <li className="autosuggest__divider" />
             <AutosuggestMaterial
               materialData={materialData}
               getItemProps={getItemProps}
