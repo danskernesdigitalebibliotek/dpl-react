@@ -11,7 +11,7 @@ export interface AutosuggestCategoryProps {
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textAndMaterialDataLength: number;
-  autosuggestCategoryList: string[];
+  autosuggestCategoryList: { render: string; type: string }[];
 }
 
 const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
@@ -44,7 +44,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
             >
               {`${item.term} ${t("inText")}`}
               <div className="boxed-text text-tags noselect ml-8">
-                {autosuggestCategoryList[incorrectIndex]}
+                {autosuggestCategoryList[incorrectIndex].render}
               </div>
             </li>
           );
