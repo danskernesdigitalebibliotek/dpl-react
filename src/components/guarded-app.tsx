@@ -40,7 +40,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
     }
 
     console.log("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
-    console.log("CURRRENT TIMESTAMP", getCurrentUnixTime());
+    console.log("CURRENT TIMESTAMP", getCurrentUnixTime());
     console.log("EXPIRE TIMESTAMP", persistedRequest.expire);
 
     // If request has expired remove it.
