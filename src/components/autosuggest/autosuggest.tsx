@@ -7,12 +7,8 @@ import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 
 export interface AutosuggestProps {
-  originalData:
-    | SuggestionsFromQueryStringQuery["suggest"]["result"]
-    | undefined;
   textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   materialData: Suggestions;
-  isLoading: boolean;
   status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
@@ -23,10 +19,8 @@ export interface AutosuggestProps {
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
-  originalData,
   textData,
   materialData,
-  status,
   getMenuProps,
   highlightedIndex,
   getItemProps,
@@ -45,38 +39,32 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 
-        {originalData && status && isOpen && (
+        <AutosuggestText
+          textData={textData}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+        />
+        {textData.length > 0 && materialData.length > 0 && (
+          <li className="autosuggest__divider" />
+        )}
+        {materialData.length > 0 && (
+          <AutosuggestMaterial
+            materialData={materialData}
+            getItemProps={getItemProps}
+            highlightedIndex={highlightedIndex}
+            textDataLength={textData.length}
+          />
+        )}
+        {categoryData && categoryData.length > 0 && (
           <>
-            <AutosuggestText
-              textData={textData}
-              highlightedIndex={highlightedIndex}
+            <li className="autosuggest__divider" />
+            <AutosuggestCategory
+              categoryData={categoryData}
               getItemProps={getItemProps}
+              highlightedIndex={highlightedIndex}
+              textAndMaterialDataLength={textData.length + materialData.length}
+              autosuggestCategoryList={autosuggestCategoryList}
             />
-            {textData.length > 0 && materialData.length > 0 && (
-              <li className="autosuggest__divider" />
-            )}
-            {materialData.length > 0 && (
-              <AutosuggestMaterial
-                materialData={materialData}
-                getItemProps={getItemProps}
-                highlightedIndex={highlightedIndex}
-                textDataLength={textData.length}
-              />
-            )}
-            {categoryData && categoryData.length > 0 && (
-              <>
-                <li className="autosuggest__divider" />
-                <AutosuggestCategory
-                  categoryData={categoryData}
-                  getItemProps={getItemProps}
-                  highlightedIndex={highlightedIndex}
-                  textAndMaterialDataLength={
-                    textData.length + materialData.length
-                  }
-                  autosuggestCategoryList={autosuggestCategoryList}
-                />
-              </>
-            )}
           </>
         )}
       </ul>
