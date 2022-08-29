@@ -12,6 +12,7 @@ import { useUrls } from "../../core/utils/url";
 import {
   constructMaterialUrl,
   constructSearchUrl,
+  constructSearchUrlWithFilter,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
@@ -45,14 +46,19 @@ const SearchHeader: React.FC = () => {
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList = [
-    t("bookCategoryText"),
-    t("ebookCategoryText"),
-    t("filmCategoryText"),
-    t("audioBookCategoryText"),
-    t("musicCategoryText"),
-    t("gameCategoryText"),
-    t("animatedSeriesCategoryText")
+    { render: t("bookCategoryText"), type: "book" },
+    { render: t("ebookCategoryText"), type: "ebook" },
+    { render: t("filmCategoryText"), type: "movie" },
+    { render: t("audioBookCategoryText"), type: "audioBook" },
+    { render: t("musicCategoryText"), type: "music" },
+    { render: t("gameCategoryText"), type: "game" },
+    { render: t("animatedSeriesCategoryText"), type: "animatedSeries" }
   ];
+  // Once we register the item select event the original highlighted index is
+  // already set to -1 by Downshift.
+  const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
+    number | null
+  >(null);
 
   // Make sure to only assign the data once.
   useEffect(() => {
@@ -137,12 +143,20 @@ const SearchHeader: React.FC = () => {
   ) {
     const { type } = changes;
     let { highlightedIndex } = changes;
-    // Don't do aything for mouse events.
+    // Don't do aything for mouse hover events.
     if (
       type === useCombobox.stateChangeTypes.ItemMouseMove ||
       type === useCombobox.stateChangeTypes.MenuMouseLeave
     ) {
       return;
+    }
+    if (
+      type !== useCombobox.stateChangeTypes.ItemClick &&
+      type !== useCombobox.stateChangeTypes.InputKeyDownEnter
+    ) {
+      if (highlightedIndex !== undefined && highlightedIndex > -1) {
+        setHighlightedIndexAfterClick(highlightedIndex);
+      }
     }
     // Close autosuggest if there is no highlighted index.
     if (highlightedIndex && highlightedIndex < 0) {
@@ -198,6 +212,26 @@ const SearchHeader: React.FC = () => {
         constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
       );
       return;
+    }
+    // If this item is shown as a category suggestion
+    if (
+      nonWorkSuggestion &&
+      changes.selectedItem &&
+      nonWorkSuggestion.term === changes.selectedItem.term &&
+      highlightedIndexAfterClick &&
+      highlightedIndexAfterClick >= textData.concat(materialData).length
+    ) {
+      const highlightedCategoryIndex =
+        highlightedIndexAfterClick - (textData.length + materialData.length);
+      redirectTo(
+        constructSearchUrlWithFilter(
+          searchUrl,
+          determineSuggestionTerm(selectedItem),
+          {
+            materialType: autosuggestCategoryList[highlightedCategoryIndex].type
+          }
+        )
+      );
     }
     // Otherwise redirect to search result page.
     redirectTo(
