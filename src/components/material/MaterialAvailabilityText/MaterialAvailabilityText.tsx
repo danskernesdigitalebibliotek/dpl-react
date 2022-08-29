@@ -16,7 +16,12 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestation }) => {
           return (
             <MaterialAvailabilityTextPhysical pid={manifestation.pid as Pid} />
           );
-        if (item.code === "ONLINE") return <MaterialAvailabilityTextOnline />;
+        if (item.code === "ONLINE" && manifestation.identifiers)
+          return (
+            <MaterialAvailabilityTextOnline
+              isbn={manifestation.identifiers?.[0].value}
+            />
+          );
         return null;
       })}
     </>
