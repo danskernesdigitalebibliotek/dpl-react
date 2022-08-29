@@ -19,7 +19,7 @@ export interface AutosuggestProps {
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
-  autosuggestCategoryList: string[];
+  autosuggestCategoryList: { render: string; type: string }[];
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
