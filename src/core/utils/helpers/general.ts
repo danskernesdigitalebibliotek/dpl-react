@@ -136,7 +136,7 @@ export const sortByLoanDate = (list: LoanV2[]) => {
 
 // If modalids are longer than 0, a modal is open.
 // If a modal is open, the list should not be displayed.
-export const IsAModalDisplayed = (modalIds: string[]) => {
+export const isAModalDisplayed = (modalIds: string[]) => {
   return modalIds.length > 0;
 };
 

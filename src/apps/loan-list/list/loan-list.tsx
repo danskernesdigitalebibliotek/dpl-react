@@ -6,7 +6,7 @@ import { openModal } from "../../../core/modal.slice";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
 import {
   getAmountOfRenewableLoans,
-  IsAModalDisplayed,
+  isAModalDisplayed,
   sortByLoanDate
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
@@ -95,7 +95,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     setDisplayList(true);
-    if (IsAModalDisplayed(modalIds)) {
+    if (isAModalDisplayed(modalIds)) {
       refetch();
       setDisplayList(true);
     }
