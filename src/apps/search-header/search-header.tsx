@@ -266,19 +266,22 @@ const SearchHeader: React.FC = () => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
         <SearchBar getInputProps={getInputProps} />
-        <Autosuggest
-          originalData={originalData}
-          textData={textData}
-          materialData={materialData}
-          categoryData={categoryData}
-          isLoading={isLoading}
-          status={status}
-          getMenuProps={getMenuProps}
-          highlightedIndex={highlightedIndex}
-          getItemProps={getItemProps}
-          isOpen={isAutosuggestOpen}
-          autosuggestCategoryList={autosuggestCategoryList}
-        />
+        {originalData &&
+          originalData.length > 0 &&
+          status === "success" &&
+          isAutosuggestOpen && (
+            <Autosuggest
+              textData={textData}
+              materialData={materialData}
+              categoryData={categoryData}
+              status={status}
+              getMenuProps={getMenuProps}
+              highlightedIndex={highlightedIndex}
+              getItemProps={getItemProps}
+              isOpen={isAutosuggestOpen}
+              autosuggestCategoryList={autosuggestCategoryList}
+            />
+          )}
       </div>
     </form>
   );
