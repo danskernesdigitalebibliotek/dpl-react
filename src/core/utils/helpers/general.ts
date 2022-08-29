@@ -141,12 +141,9 @@ export const isAModalDisplayed = (modalIds: string[]) => {
 };
 
 export const getRenewableMaterials = (list: LoanV2[]) => {
-  let listOfLoansToCheck: number[] = [];
-
-  listOfLoansToCheck = list
+  return list
     .filter(({ isRenewable }) => isRenewable)
     .map(({ loanDetails }) => parseInt(loanDetails.recordId, 10));
-  return listOfLoansToCheck;
 };
 
 export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
