@@ -52,6 +52,33 @@ fragment ManifestationsSimpleFields on Manifestation {
   physicalDescriptions {
     numberOfPages
   }
+  materialTypes {
+    specific
+  }
+  accessTypes {
+    code
+  }
+  access {
+    __typename
+    ... on AccessUrl {
+      origin
+      url
+    }
+    ... on InfomediaService {
+      id
+    }
+    ... on InterLibraryLoan {
+      loanIsPossible
+    }
+    ... on Ereol {
+      origin
+      url
+      canAlwaysBeLoaned
+    }
+    ... on DigitalArticleService {
+      issn
+    }
+  }
 }
 
 fragment SeriesSimple on Series {

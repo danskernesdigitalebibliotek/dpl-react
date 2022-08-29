@@ -1,5 +1,7 @@
 import React from "react";
 import ArrowSmallRight from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/arrow-ui/icon-arrow-ui-small-right.svg";
+import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
+import clsx from "clsx";
 
 export type ButtonProps = {
   label: string;
@@ -9,6 +11,7 @@ export type ButtonProps = {
   size: "large" | "medium" | "small" | "xsmall";
   variant: "outline" | "filled";
   onClick?: () => void;
+  classNames?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,12 +21,17 @@ export const Button: React.FC<ButtonProps> = ({
   collapsible,
   size,
   variant,
-  onClick
+  onClick,
+  classNames
 }) => {
-  const iconClassName = `btn-icon ${collapsible ? "btn-collapsible" : ""}`;
+  const iconClassName = `btn-icon ${clsx({ "btn-collapsible": collapsible }, [
+    classNames
+  ])}`;
 
   const Icon = React.useCallback(() => {
-    if (variant !== "outline") return null;
+    if (variant === "outline") {
+      return null;
+    }
 
     if (buttonType === "default") {
       return (
@@ -34,13 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
     }
 
     if (buttonType === "external-link") {
-      return (
-        <img
-          className={iconClassName}
-          src="icons/buttons/icon-btn-external-link.svg"
-          alt="external-link"
-        />
-      );
+      return <img className={iconClassName} src={ExternalLinkIcon} alt="" />;
     }
 
     return null;
