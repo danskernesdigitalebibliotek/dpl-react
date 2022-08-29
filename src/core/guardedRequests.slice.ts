@@ -13,7 +13,7 @@ import {
   redirectTo,
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
-import { App } from "./utils/types/ids";
+import { GuardedAppId } from "./utils/types/ids";
 import { userIsAnonymous } from "./utils/helpers/user";
 
 export const AUTH_PARAM = "didAuthenticate";
@@ -35,7 +35,7 @@ type CallbackType = keyof typeof requestCallbacks;
 export type RequestItem = {
   type: CallbackType;
   args: Record<string, unknown>;
-  app: App;
+  app: GuardedAppId;
   expire?: number;
 };
 const getExpireTimestamp = () => getCurrentUnixTime() + 60;

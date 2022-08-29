@@ -4,7 +4,6 @@ import {
   AUTH_PARAM,
   hasRequestExpired,
   removeRequest,
-  RequestItem,
   reRunRequest
 } from "../core/guardedRequests.slice";
 import { RootState } from "../core/store";
@@ -16,10 +15,10 @@ import {
   replaceCurrentLocation
 } from "../core/utils/helpers/url";
 import { userIsAnonymous } from "../core/utils/helpers/user";
-import { App } from "../core/utils/types/ids";
+import { GuardedAppId } from "../core/utils/types/ids";
 
 export interface GuardedAppProps {
-  app: App;
+  app: GuardedAppId;
   children: ReactNode;
 }
 
