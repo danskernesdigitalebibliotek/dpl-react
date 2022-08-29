@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
   removeItem,
