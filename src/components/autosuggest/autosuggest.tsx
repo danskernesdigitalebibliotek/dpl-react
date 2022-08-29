@@ -52,13 +52,17 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
               highlightedIndex={highlightedIndex}
               getItemProps={getItemProps}
             />
-            <li className="autosuggest__divider" />
-            <AutosuggestMaterial
-              materialData={materialData}
-              getItemProps={getItemProps}
-              highlightedIndex={highlightedIndex}
-              textDataLength={textData.length}
-            />
+            {materialData.length > 0 && (
+              <>
+                <li className="autosuggest__divider" />
+                <AutosuggestMaterial
+                  materialData={materialData}
+                  getItemProps={getItemProps}
+                  highlightedIndex={highlightedIndex}
+                  textDataLength={textData.length}
+                />
+              </>
+            )}
             {categoryData && categoryData.length > 0 && (
               <>
                 <li className="autosuggest__divider" />
