@@ -31,7 +31,7 @@ describe("Cover", () => {
         }
       ]
     });
-    cy.visit("/iframe.html?args=&id=atoms-cover--item&viewMode=story");
+    cy.visit("/iframe.html?args=&id=components-cover--item&viewMode=story");
     cy.get("img").should(
       "have.attr",
       "src",
@@ -56,7 +56,7 @@ describe("Cover", () => {
       ]
     });
     cy.visit(
-      "/iframe.html?args=description:description&id=atoms-cover--item&viewMode=story"
+      "/iframe.html?args=description:description&id=components-cover--item&viewMode=story"
     );
     cy.get("img").should("have.attr", "alt", "description");
   });
@@ -78,8 +78,10 @@ describe("Cover", () => {
         }
       ]
     });
-    cy.visit("/iframe.html?args=url:%2F&id=atoms-cover--item&viewMode=story");
-    cy.get("a").should("have.attr", "href", "/");
+    cy.visit(
+      "/iframe.html?args=url:%2F&id=components-cover--item&viewMode=story"
+    );
+    cy.get("a").should("have.attr", "href", "http://localhost:57021/");
   });
 });
 

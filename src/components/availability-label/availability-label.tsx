@@ -1,22 +1,24 @@
 import React from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
-import { Link } from "../utils/link";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
+import { LinkNoStyle } from "../atoms/link-no-style";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
   selected?: boolean;
-  link: string | undefined;
+  url?: URL;
   faustIds: string[];
+  handleSelectManifestation?: () => void | undefined;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
-  link,
-  faustIds
+  url,
+  faustIds,
+  handleSelectManifestation
 }) => {
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
@@ -53,7 +55,13 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   };
 
   const availabilityLabel = (
-    <div className={classes.parent}>
+    <div
+      className={classes.parent}
+      onClick={handleSelectManifestation ?? undefined}
+      onKeyPress={handleSelectManifestation ?? undefined}
+      role="button"
+      tabIndex={0}
+    >
       <div className={classes.triangle} />
       <img className={classes.check} src={CheckIcon} alt="check-icon" />
       <p className="text-label-semibold ml-24">{manifestText}</p>
@@ -62,8 +70,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     </div>
   );
 
-  return link ? (
-    <Link href={link}>{availabilityLabel}</Link>
+  return url && !handleSelectManifestation ? (
+    <LinkNoStyle url={url}>{availabilityLabel}</LinkNoStyle>
   ) : (
     availabilityLabel
   );

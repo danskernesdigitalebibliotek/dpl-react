@@ -1,40 +1,59 @@
 import React, { useCallback } from "react";
-import { WorkSimpleFragment } from "../../../core/dbc-gateway/generated/graphql";
+import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
+import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../utils/link";
+import { Link } from "../../atoms/link";
 import {
   creatorsToString,
+  filterCreators,
   flattenCreators,
   getFirstPublishedYear,
   getManifestationPid
-} from "../helpers";
+} from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
-import SearchResultListItemSeries from "./search-result-list-item-series";
+import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
+import { useUrls } from "../../../core/utils/url";
+import {
+  constructMaterialUrl,
+  constructSearchUrl,
+  redirectTo
+} from "../../../core/utils/helpers/url";
 
 export interface SearchResultListItemProps {
-  item: WorkSimpleFragment;
+  item: WorkSmallFragment;
   coverTint: CoverProps["tint"];
 }
 
-// TODO: The material item link should point at something.
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
-  item: { fullTitle, series, creators, manifestations, id: workId },
+  item: {
+    titles: { full: fullTitle },
+    series,
+    creators,
+    manifestations,
+    workId
+  },
   coverTint
 }) => {
   const t = useText();
-  const creatorsText = creatorsToString(flattenCreators(creators), t);
-  const author = creatorsText || "[Creators are missing]";
+  const { materialUrl, searchUrl } = useUrls();
+  const creatorsText = creatorsToString(
+    flattenCreators(filterCreators(creators, ["Person"])),
+    t
+  );
+  const author = creatorsText || t("creatorsAreMissingText");
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
+  const firstInSeries = series?.[0];
+  const { title: seriesTitle, numberInSeries } = firstInSeries;
+  const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
 
-  // TODO: Redirect to material page.
   const handleClick = useCallback(() => {
-    console.log("Going to material page!");
-  }, []);
+    redirectTo(materialFullUrl);
+  }, [materialFullUrl]);
 
   return (
     // We know that is not following a11y recommendations to have an onclick handler
@@ -54,21 +73,33 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
-          materialId={manifestationPid}
+          pid={manifestationPid}
           description={String(fullTitle)}
-          url="/"
+          url={materialFullUrl}
           tint={coverTint}
         />
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
-          <ButtonFavourite materialId={workId} />
-          {series && <SearchResultListItemSeries series={series} />}
+          <ButtonFavourite id={workId as WorkId} />
+          {numberInSeries && seriesTitle && (
+            <HorizontalTermLine
+              title={`${t("numberDescriptionText")} ${
+                numberInSeries.number?.[0]
+              }`}
+              subTitle={t("inSeriesText")}
+              linkList={[
+                {
+                  url: constructSearchUrl(searchUrl, seriesTitle),
+                  term: seriesTitle
+                }
+              ]}
+            />
+          )}
         </div>
 
         <h2 className="search-result-item__title text-header-h4">
-          {/* TODO: Point link at material page url when ready */}
-          <Link href="/">{fullTitle}</Link>
+          <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
         {author && (
@@ -78,7 +109,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         )}
       </div>
       <div className="search-result-item__availability">
-        <AvailabiltityLabels manifestations={manifestations} />
+        <AvailabiltityLabels
+          workId={workId as WorkId}
+          manifestations={manifestations}
+        />
       </div>
       <Arrow />
     </article>

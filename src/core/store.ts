@@ -8,13 +8,14 @@ import storage from "redux-persist/lib/storage/session";
 import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
+import urlReducer from "./url.slice";
 
 // TODO: We have planned to get rid of redux-persist.
 // When the step has been made to remove it all the persist setup should go as well.
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text"]
+  blacklist: ["text", "url"]
 };
 
 export const store = configureStore({
@@ -23,7 +24,8 @@ export const store = configureStore({
     combineReducers({
       user: userReducer,
       text: textReducer,
-      modal: modalReducer
+      modal: modalReducer,
+      url: urlReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"

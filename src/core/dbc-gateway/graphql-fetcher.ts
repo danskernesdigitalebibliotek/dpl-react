@@ -9,21 +9,24 @@ export const fetcher = <TData, TVariables>(
     // First version is with a library token.
     const libraryToken = getToken(TOKEN_LIBRARY_KEY);
 
-    if (!libraryToken) {
-      throw new Error("Library token is missing!");
-    }
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const authHeaders = libraryToken
+      ? ({ Authorization: `Bearer ${libraryToken}` } as object)
+      : {};
 
     const res = await fetch(
       // For now the endpoint is hardcoded. (although it is unclear which agency id to use)
       // When we get wiser of when the library id and profile is changing
       // we will update it with a dynamic version:
-      "https://next-prototype-gateway.dbc.dk/775100/opac/graphql",
+      "https://fbi-api.dbc.dk/opac/graphql",
       {
         method: "POST",
         ...{
           headers: {
-            Authorization: `Bearer ${libraryToken}`,
-            "Content-Type": "application/json"
+            ...headers,
+            ...authHeaders
           }
         },
         body: JSON.stringify({ query, variables })

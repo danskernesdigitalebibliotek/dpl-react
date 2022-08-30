@@ -4,7 +4,7 @@ import SearchResultPager from "../../components/search-result-pager/search-resul
 import {
   SearchResponse,
   useSearchWithPaginationQuery,
-  WorkSimpleFragment
+  WorkSmallFragment
 } from "../../core/dbc-gateway/generated/graphql";
 
 interface SearchResultProps {
@@ -13,7 +13,7 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const [resultItems, setResultItems] = useState<WorkSimpleFragment[] | []>([]);
+  const [resultItems, setResultItems] = useState<WorkSmallFragment[] | []>([]);
   const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
     0
   );

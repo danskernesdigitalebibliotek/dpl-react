@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
+import { getCurrentLocation } from "../../core/utils/helpers/url";
 import {
   AvailabilityLabelProps,
   AvailabilityLabel
@@ -21,7 +22,7 @@ export default {
       control: { type: "text" }
     },
 
-    link: {
+    url: {
       name: "Link",
       control: { type: "text" }
     },
@@ -34,7 +35,7 @@ export default {
     faustIds: ["62523611"],
     manifestText: "Bog",
     availabilityText: "Hjemme",
-    link: "",
+    url: new URL("/", getCurrentLocation()),
     selected: false
   }
 } as ComponentMeta<typeof AvailabilityLabel>;

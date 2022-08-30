@@ -1,14 +1,16 @@
 import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
+import { Pid } from "../../core/utils/types/ids";
+import { LinkNoStyle } from "../atoms/link-no-style";
 
 export type CoverProps = {
   animate: boolean;
-  size: "small" | "medium" | "large" | "original";
+  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
-  materialId: string;
+  pid: Pid;
   description?: string;
-  url?: string;
+  url?: URL;
 };
 
 export const Cover = ({
@@ -17,12 +19,18 @@ export const Cover = ({
   size,
   animate,
   tint,
-  materialId
+  pid
 }: CoverProps) => {
+  let dataSize: CoverProps["size"] = size;
+  if (dataSize === "xsmall") {
+    dataSize = "small";
+  } else if (dataSize === "xlarge") {
+    dataSize = "large";
+  }
   const { data } = useGetCoverCollection({
     type: "pid",
-    identifiers: [materialId],
-    sizes: [size]
+    identifiers: [pid],
+    sizes: [dataSize]
   });
 
   type TintClassesType = {
@@ -38,28 +46,24 @@ export const Cover = ({
   };
 
   const classes = {
-    wrapper: clsx(
-      `material material--${size}`,
-      tintClasses[tint || "default"],
-      {
-        material__animate: animate
-      }
-    )
+    wrapper: clsx(`cover cover--${size}`, tintClasses[tint || "default"], {
+      cover__animate: animate
+    })
   };
 
-  const coverUrl = data?.[0]?.imageUrls?.[`${size}`]?.url;
+  const coverUrl = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
   const image = coverUrl && <img src={coverUrl} alt={description || ""} />;
 
   return (
-    <div className="material-container">
+    <div className="cover-container">
       {/**
        * Images inside links must have an non-empty alt text to meet accessibility requirements.
-       * Only render the material as a link if we have both an url and a description.
+       * Only render the cover as a link if we have both an url and a description.
        */}
       {url && description ? (
-        <a href={url} className={classes.wrapper}>
+        <LinkNoStyle url={url} className={classes.wrapper}>
           {image}
-        </a>
+        </LinkNoStyle>
       ) : (
         <span className={classes.wrapper}>{image}</span>
       )}

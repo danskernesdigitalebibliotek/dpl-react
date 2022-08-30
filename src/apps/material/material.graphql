@@ -1,0 +1,15 @@
+query getMaterial($wid: String!) {
+  work(id: $wid) {
+    ...WorkMedium
+  }
+}
+
+query getInfomedia ($id: String!) {
+  infomedia(id: $id) {
+    error
+    article {
+      headLine
+      text
+    }
+  }
+}

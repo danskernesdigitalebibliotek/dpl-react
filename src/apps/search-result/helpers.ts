@@ -27,4 +27,17 @@ export const getPageSizeFromConfiguration = () => {
   return Number(pageSize);
 };
 
+export const getPageSize = (pageSizes: Partial<PageSizeDataAttributes>) => {
+  const { desktop, mobile } = pageSizes;
+  let pageSize = 0;
+  if (desktop && mobile) {
+    pageSize = getPageSizeFromDataAttributes(
+      pageSizes as PageSizeDataAttributes
+    );
+  } else {
+    pageSize = getPageSizeFromConfiguration();
+  }
+
+  return pageSize;
+};
 export default {};

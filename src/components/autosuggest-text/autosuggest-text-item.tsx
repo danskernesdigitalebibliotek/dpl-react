@@ -1,5 +1,8 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import { useText } from "../../core/utils/text";
+import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { Suggestion } from "../../core/utils/types/autosuggest";
 
 export interface AutosuggestTextItemProps {
   classes: {
@@ -9,41 +12,16 @@ export interface AutosuggestTextItemProps {
   index: number;
   generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
-  stringSuggestionAuthorText?: string;
-  stringSuggestionWorkText?: string;
-  stringSuggestionTopicText?: string;
 }
-
-export interface SuggestionCreator {
-  __typename: "Creator";
-  name: string;
-}
-export interface SuggestonSubject {
-  __typename: "Subject";
-  value: string;
-}
-export interface SuggestionWork {
-  __typename: "Work";
-  id: string;
-  title?: string | null | undefined;
-  fullTitle?: string | null | undefined;
-  creators: {
-    __typename?: "Creator" | undefined;
-    name: string;
-  }[];
-}
-export type Suggestion = SuggestionCreator | SuggestonSubject | SuggestionWork;
 
 const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   classes,
   item,
   index,
   generateItemId,
-  getItemProps,
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic"
+  getItemProps
 }) => {
+  const t = useText();
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -54,15 +32,17 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         {...getItemProps({ item, index })}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-
-        {item.__typename === "Creator"
-          ? `${item.name} (${stringSuggestionAuthorText})`
+        {item.type === SuggestionType.Creator
+          ? `${item.term} (${t("stringSuggestionAuthorText")})`
           : null}
-        {item.__typename === "Subject"
-          ? `${item.value} (${stringSuggestionTopicText})`
+        {item.type === SuggestionType.Subject
+          ? `${item.term} (${t("stringSuggestionTopicText")})`
           : null}
-        {item.__typename === "Work"
-          ? `${item.title} (${stringSuggestionWorkText})`
+        {item.type === SuggestionType.Composit
+          ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
+          : null}
+        {item.type === SuggestionType.Title
+          ? `${item.term} (${t("stringSuggestionWorkText")})`
           : null}
       </li>
     </>

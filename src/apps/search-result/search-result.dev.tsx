@@ -23,6 +23,16 @@ export default {
       defaultValue: 20,
       control: { type: "number" }
     },
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      name: "Path to the material page",
+      defaultValue: "/work/:workid",
+      control: { type: "text" }
+    },
     etAlText: {
       name: "Et al. Text",
       defaultValue: "et al.",
@@ -51,6 +61,16 @@ export default {
     resultsText: {
       name: "Results Text",
       defaultValue: "resultater",
+      control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number description",
+      defaultValue: "Nr.",
+      control: { type: "text" }
+    },
+    inSeriesText: {
+      name: "In series",
+      defaultValue: "i serien",
       control: { type: "text" }
     }
   }

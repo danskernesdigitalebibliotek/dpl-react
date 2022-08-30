@@ -1,9 +1,10 @@
 {
-  "include": [
-    "src/"
-  ],
-  "extension": [
-    ".js",
-    ".jsx"
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "include": "src/",
+  "exclude": [
+    "src/core/cover-service-api/**/*.*",
+    "src/core/dbc-gateway/**/*.*",
+    "src/core/fbs/**/*.*",
+    "src/core/material-list-api/**/*.*"
   ]
 }

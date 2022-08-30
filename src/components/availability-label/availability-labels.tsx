@@ -1,34 +1,69 @@
 import React from "react";
-import { ManifestationSimpleFragment } from "../../core/dbc-gateway/generated/graphql";
-import { convertPostIdToFaustId } from "../../core/utils/helpers";
-import { PostId } from "../../core/utils/types/ids";
+import { getManifestationType } from "../../apps/material/helper";
+import {
+  ManifestationsSimpleFieldsFragment,
+  ManifestationsSimpleFragment
+} from "../../core/dbc-gateway/generated/graphql";
+import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  constructMaterialUrl,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
+import { Pid, WorkId } from "../../core/utils/types/ids";
+import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
 
 export interface AvailabilityLabelsProps {
-  manifestations: ManifestationSimpleFragment[];
+  manifestations: ManifestationsSimpleFragment;
+  workId: WorkId;
+  manifestation?: ManifestationsSimpleFieldsFragment;
+  selectManifestationHandler?: (
+    manifestation: ManifestationsSimpleFieldsFragment
+  ) => void;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
-  manifestations
+  manifestations,
+  workId,
+  manifestation,
+  selectManifestationHandler
 }) => {
+  const { materialUrl } = useUrls();
+
   return (
     <>
-      {manifestations.map((manifestation) => {
-        const { pid, materialType } = manifestation as {
-          pid: PostId;
-          materialType: string;
-        };
-        const faustId = convertPostIdToFaustId(pid);
-        if (faustId) {
-          return (
-            <AvailabilityLabel
-              link="/"
-              faustIds={[faustId]}
-              manifestText={materialType}
-            />
-          );
+      {manifestations.all.map((item) => {
+        const { pid, materialTypes } = item;
+        const materialType = materialTypes[0].specific;
+        const faustId = convertPostIdToFaustId(pid as Pid);
+        const url = constructMaterialUrl(materialUrl, workId, materialType);
+
+        if (!faustId) {
+          return null;
         }
-        return null;
+
+        return (
+          <AvailabilityLabel
+            key={pid}
+            url={url}
+            faustIds={[faustId]}
+            manifestText={materialType}
+            selected={
+              manifestation &&
+              materialType === getManifestationType(manifestation)
+            }
+            handleSelectManifestation={
+              selectManifestationHandler
+                ? () => {
+                    selectManifestationHandler(item);
+                    setQueryParametersInUrl({
+                      type: materialType
+                    });
+                  }
+                : undefined
+            }
+          />
+        );
       })}
     </>
   );
