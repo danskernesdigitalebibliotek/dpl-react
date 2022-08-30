@@ -5,12 +5,12 @@ import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonsFindOnShelfProps {
-  isButton?: boolean;
+  isOnEditionCard?: boolean;
   faustIds: string[];
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
-  isButton,
+  isOnEditionCard,
   faustIds
 }) => {
   const t = useText();
@@ -33,7 +33,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     return null;
   }
 
-  if (isButton) {
+  if (!isOnEditionCard) {
     if (!data[0].available) {
       return (
         <Button
