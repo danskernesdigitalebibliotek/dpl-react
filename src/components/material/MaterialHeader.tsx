@@ -18,7 +18,6 @@ import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
-import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
@@ -98,10 +97,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
           {manifestation && <MaterialButtons manifestation={manifestation} />}
-          <ButtonLargeOutline
-            label={t("findOnBookshelfText")}
-            disabled={false}
-          />
         </div>
       </div>
     </header>
