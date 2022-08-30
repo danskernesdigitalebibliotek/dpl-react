@@ -22,6 +22,12 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     // we open the find on shelf modal here
   };
 
+  const onKeyUp = (key: string) => {
+    if (key === "Enter") {
+      onClick();
+    }
+  };
+
   if (!data || isError || isLoading) {
     // TODO: handle error here once we handle errors
     return null;
@@ -48,9 +54,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         disabled={false}
         collapsible={false}
         size="large"
-        onClick={() => {
-          onClick();
-        }}
+        onClick={() => onClick()}
       />
     );
   }
@@ -64,7 +68,13 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   }
 
   return (
-    <span className="link-tag text-small-caption material-manifestation-item__find capitalize-all">
+    <span
+      className="link-tag text-small-caption material-manifestation-item__find capitalize-all"
+      onClick={() => onClick()}
+      onKeyUp={(e) => onKeyUp(e.key)}
+      role="button"
+      tabIndex={0}
+    >
       {t("findOnBookshelfText")}
     </span>
   );
