@@ -44,6 +44,7 @@ interface MaterialEntryTextProps {
   seeOnlineText: string;
   cantReserveText: string;
   goToText: string;
+  materialIsLoanedOutText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

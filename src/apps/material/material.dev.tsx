@@ -215,6 +215,11 @@ export default {
       name: "Go to",
       defaultValue: "Gå til",
       control: { type: "text" }
+    },
+    materialIsLoanedOutText: {
+      name: "Material is loaned out",
+      defaultValue: "Materialet er udlånt",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
