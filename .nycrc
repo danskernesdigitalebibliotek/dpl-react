@@ -5,6 +5,7 @@
     "src/core/cover-service-api/**/*.*",
     "src/core/dbc-gateway/**/*.*",
     "src/core/fbs/**/*.*",
-    "src/core/material-list-api/**/*.*"
+    "src/core/material-list-api/**/*.*",
+    "src/core/publizoni/**/*.*"
   ]
 }
