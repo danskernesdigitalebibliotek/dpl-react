@@ -12,9 +12,13 @@ import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 
 export interface MaterialButtonsProps {
   manifestation: ManifestationsSimpleFieldsFragment;
+  isOnEditionCard?: boolean;
 }
 
-const MaterialButtons: FC<MaterialButtonsProps> = ({ manifestation }) => {
+const MaterialButtons: FC<MaterialButtonsProps> = ({
+  manifestation,
+  isOnEditionCard
+}) => {
   const hasPhysicalAccess = manifestation.accessTypes.some(
     (type) => type.code === AccessTypeCode.Physical
   );
@@ -23,13 +27,20 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({ manifestation }) => {
   if (hasPhysicalAccess) {
     return (
       <>
-        <MaterialButtonsPhysical manifestation={manifestation} />
-        <MaterialButtonsFindOnShelf isButton faustIds={[faustId as string]} />
+        <MaterialButtonsPhysical
+          manifestation={manifestation}
+          isOnEditionCard={isOnEditionCard}
+        />
       </>
     );
   }
 
-  return <MaterialButtonsOnline manifestation={manifestation} />;
+  return (
+    <MaterialButtonsOnline
+      manifestation={manifestation}
+      isOnEditionCard={isOnEditionCard}
+    />
+  );
 };
 
 export default MaterialButtons;
