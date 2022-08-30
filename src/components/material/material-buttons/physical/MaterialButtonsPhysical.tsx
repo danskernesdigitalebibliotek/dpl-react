@@ -10,10 +10,12 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
   manifestation: ManifestationsSimpleFieldsFragment;
+  isOnEditionCard?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  manifestation
+  manifestation,
+  isOnEditionCard
 }) => {
   const { pid } = manifestation;
   const faustId = convertPostIdToFaustId(pid as Pid);
@@ -26,7 +28,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const isUserBlocked = false;
 
   if (isLoading) {
-    return <MaterialButtonLoading />;
+    return <MaterialButtonLoading isOnEditionCard={isOnEditionCard} />;
   }
 
   if (!data) {
@@ -34,12 +36,12 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   }
 
   if (isUserBlocked) {
-    return <MaterialButtonUserBlocked />;
+    return <MaterialButtonUserBlocked isOnEditionCard={isOnEditionCard} />;
   }
 
   const manifestationAvailability = data[0];
   if (!manifestationAvailability.reservable) {
-    return <MaterialButtonCantReserve />;
+    return <MaterialButtonCantReserve isOnEditionCard={isOnEditionCard} />;
   }
 
   const manifestationMaterialType = manifestation.materialTypes[0].specific;
@@ -47,6 +49,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     <MaterialButtonReservePhysical
       manifestationMaterialType={manifestationMaterialType}
       faustId={faustId as string}
+      isOnEditionCard={isOnEditionCard}
     />
   );
 };

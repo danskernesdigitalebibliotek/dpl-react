@@ -10,12 +10,11 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
-import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
 import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
-import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
+import MaterialButtons from "./material-buttons/MaterialButtons";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;
@@ -35,7 +34,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     audience,
     physicalDescriptions,
     genreAndForm
-  }
+  },
+  manifestation
 }) => {
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
@@ -153,9 +153,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <ButtonSmallFilled label={t("reserveText")} disabled={false} />
-        {/* TODO The button has no functionality so far. This will come later */}
-        <MaterialButtonsFindOnShelf faustIds={[faustId as string]} />
+        <MaterialButtons manifestation={manifestation} isOnEditionCard />
       </div>
     </div>
   );
