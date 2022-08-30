@@ -111,13 +111,13 @@ export const guardedRequest = createAsyncThunk(
           const redirectUrl = appendQueryParametersToUrl(authUrl, {
             "current-path": `${pathname}${search}`
           });
-          console.log("REDIRECTING TO AUTH URL:", String(redirectUrl));
+          console.debug("REDIRECTING TO AUTH URL:", String(redirectUrl));
           redirectTo(redirectUrl);
         }
       });
     }
 
-    console.log("PERFORMING REQUEST CALLBACK");
+    console.debug("PERFORMING REQUEST CALLBACK");
     // The user is authorized to perform callback. Let's do it!
     const requestCallback = getRequestCallback(type);
     return requestCallback(args);
@@ -132,7 +132,7 @@ export const reRunRequest = createAsyncThunk(
     // Run request callback.
     if (requestCallbackExists(type)) {
       const requestCallback = getRequestCallback(type);
-      console.log("RERUNNING REQUEST");
+      console.debug("RERUNNING REQUEST");
       return requestCallback(args);
     }
 
