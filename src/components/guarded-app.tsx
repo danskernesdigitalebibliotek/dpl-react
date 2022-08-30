@@ -32,16 +32,16 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
   const isApplicationBlocked = persistedRequest && !userIsAnonymous();
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
 
-  console.log("PERSISTED REQUEST:", persistedRequest);
+  console.debug("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
     if (!persistedRequest) {
       return;
     }
 
-    console.log("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
-    console.log("CURRENT TIMESTAMP", getCurrentUnixTime());
-    console.log("EXPIRE TIMESTAMP", persistedRequest.expire);
+    console.debug("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
+    console.debug("CURRENT TIMESTAMP", getCurrentUnixTime());
+    console.debug("EXPIRE TIMESTAMP", persistedRequest.expire);
 
     // If request has expired remove it.
     if (hasRequestExpired(persistedRequest)) {
