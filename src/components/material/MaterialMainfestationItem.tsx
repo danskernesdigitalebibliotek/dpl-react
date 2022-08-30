@@ -15,6 +15,7 @@ import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/gener
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
+import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;
@@ -154,9 +155,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__buttons">
         <ButtonSmallFilled label={t("reserveText")} disabled={false} />
         {/* TODO The button has no functionality so far. This will come later */}
-        <span className="link-tag text-small-caption material-manifestation-item__find">
-          {t("findOnBookshelfText")}
-        </span>
+        <MaterialButtonsFindOnShelf faustIds={[faustId as string]} />
       </div>
     </div>
   );
