@@ -31,6 +31,10 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           manifestation={manifestation}
           isOnEditionCard={isOnEditionCard}
         />
+        <MaterialButtonsFindOnShelf
+          isOnEditionCard={isOnEditionCard}
+          faustIds={[faustId as string]}
+        />
       </>
     );
   }
