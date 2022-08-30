@@ -6,11 +6,13 @@ import { Button } from "../../../Buttons/Button";
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   faustId: string;
+  isOnEditionCard?: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
-  faustId
+  faustId,
+  isOnEditionCard
 }) => {
   const t = useText();
 
@@ -19,6 +21,21 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
     // TODO: open the modal and reserve
   };
 
+  if (isOnEditionCard) {
+    return (
+      <Button
+        label={t("reserveText")}
+        buttonType="none"
+        variant="filled"
+        disabled={false}
+        collapsible={false}
+        size="small"
+        onClick={() => {
+          onClick(faustId);
+        }}
+      />
+    );
+  }
   return (
     <Button
       label={`${t("reserveText")} ${manifestationMaterialType}`}
