@@ -10,13 +10,13 @@ export interface SearchHeaderTextProps {
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
   etAlText?: string;
-  bookCategoryText: string;
-  ebookCategoryText: string;
-  filmCategoryText: string;
-  audioBookCategoryText: string;
-  musicCategoryText: string;
-  gameCategoryText: string;
-  animatedSeriesCategoryText: string;
+  autosuggestBookCategoryText: string;
+  autosuggestEbookCategoryText: string;
+  autosuggestFilmCategoryText: string;
+  autosuggestAudioBookCategoryText: string;
+  autosuggestMusicCategoryText: string;
+  autosuggestGameCategoryText: string;
+  autosuggestAnimatedSeriesCategoryText: string;
   inText: string;
   loadingText: string;
 }
@@ -38,14 +38,14 @@ const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
   stringSuggestionWorkText = "work",
   stringSuggestionTopicText = "topic",
   etAlText = "et al.",
-  bookCategoryText = "Books",
-  ebookCategoryText = "Ebooks",
-  filmCategoryText = "Movies",
-  audioBookCategoryText = "Audio Books",
-  musicCategoryText = "Music",
-  gameCategoryText = "Games",
-  animatedSeriesCategoryText = "Animated Series",
-  inText = "i",
+  autosuggestBookCategoryText = "Books",
+  autosuggestEbookCategoryText = "Ebooks",
+  autosuggestFilmCategoryText = "Movies",
+  autosuggestAudioBookCategoryText = "Audio Books",
+  autosuggestMusicCategoryText = "Music",
+  autosuggestGameCategoryText = "Games",
+  autosuggestAnimatedSeriesCategoryText = "Animated Series",
+  inText = "in",
   loadingText = "Loading"
 }) => {
   return <SearchHeader />;

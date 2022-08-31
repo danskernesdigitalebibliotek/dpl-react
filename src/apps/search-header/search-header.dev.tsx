@@ -44,37 +44,37 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
-    bookCategoryText: {
+    autosuggestBookCategoryText: {
       name: "Book category",
       defaultValue: "Bøger",
       control: { type: "text" }
     },
-    ebookCategoryText: {
+    autosuggestEbookCategoryText: {
       name: "Ebook category",
       defaultValue: "Ebøger",
       control: { type: "text" }
     },
-    filmCategoryText: {
+    autosuggestFilmCategoryText: {
       name: "Movie category",
       defaultValue: "Film",
       control: { type: "text" }
     },
-    audioBookCategoryText: {
+    autosuggestAudioBookCategoryText: {
       name: "Audio book category",
       defaultValue: "Lydbøger",
       control: { type: "text" }
     },
-    musicCategoryText: {
+    autosuggestMusicCategoryText: {
       name: "Music category",
       defaultValue: "Musik",
       control: { type: "text" }
     },
-    gameCategoryText: {
+    autosuggestGameCategoryText: {
       name: "Game category",
       defaultValue: "Spil",
       control: { type: "text" }
     },
-    animatedSeriesCategoryText: {
+    autosuggestAnimatedSeriesCategoryText: {
       name: "Animated series category",
       defaultValue: "Tegneserier",
       control: { type: "text" }

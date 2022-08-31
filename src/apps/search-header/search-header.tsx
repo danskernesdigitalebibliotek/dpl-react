@@ -42,17 +42,17 @@ const SearchHeader: React.FC = () => {
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList = [
-    { render: t("bookCategoryText"), type: Category.book },
-    { render: t("ebookCategoryText"), type: Category.ebook },
-    { render: t("filmCategoryText"), type: Category.movie },
+    { render: t("autosuggestBookCategoryText"), type: Category.book },
+    { render: t("autosuggestEbookCategoryText"), type: Category.ebook },
+    { render: t("autosuggestFilmCategoryText"), type: Category.movie },
     {
-      render: t("audioBookCategoryText"),
+      render: t("autosuggestAudioBookCategoryText"),
       type: Category.audioBook
     },
-    { render: t("musicCategoryText"), type: Category.music },
-    { render: t("gameCategoryText"), type: Category.game },
+    { render: t("autosuggestMusicCategoryText"), type: Category.music },
+    { render: t("autosuggestGameCategoryText"), type: Category.game },
     {
-      render: t("animatedSeriesCategoryText"),
+      render: t("autosuggestAnimatedSeriesCategoryText"),
       type: Category.animatedSeries
     }
   ];
