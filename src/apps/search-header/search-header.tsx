@@ -267,6 +267,9 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
+  const isDataPresent =
+    originalData && originalData.length > 0 && status === "success";
+
   return (
     <form
       className="header__menu-second"
@@ -276,23 +279,20 @@ const SearchHeader: React.FC = () => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
         <SearchBar getInputProps={getInputProps} />
-        {originalData &&
-          originalData.length > 0 &&
-          status === "success" &&
-          isAutosuggestOpen && (
-            <Autosuggest
-              textData={textData}
-              materialData={materialData}
-              categoryData={categoryData}
-              status={status}
-              getMenuProps={getMenuProps}
-              highlightedIndex={highlightedIndex}
-              getItemProps={getItemProps}
-              isOpen={isAutosuggestOpen}
-              autosuggestCategoryList={autosuggestCategoryList}
-              isLoading={isLoading}
-            />
-          )}
+        {isDataPresent && isAutosuggestOpen && (
+          <Autosuggest
+            textData={textData}
+            materialData={materialData}
+            categoryData={categoryData}
+            status={status}
+            getMenuProps={getMenuProps}
+            highlightedIndex={highlightedIndex}
+            getItemProps={getItemProps}
+            isOpen={isAutosuggestOpen}
+            autosuggestCategoryList={autosuggestCategoryList}
+            isLoading={isLoading}
+          />
+        )}
       </div>
     </form>
   );
