@@ -31,9 +31,9 @@ export default {
       defaultValue: "År",
       control: { type: "text" }
     },
-    periodikumSelectWeekText: {
+    periodikumSelectEditionText: {
       name: "Week",
-      defaultValue: "Uge",
+      defaultValue: "Udgave",
       control: { type: "text" }
     },
     reserveBookText: {
