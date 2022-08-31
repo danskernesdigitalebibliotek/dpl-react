@@ -232,14 +232,15 @@ const SearchHeader: React.FC = () => {
     ) {
       const highlightedCategoryIndex =
         highlightedIndexAfterClick - (textData.length + materialData.length);
+      const selectedItemString = determineSuggestionTerm(changes.selectedItem);
       redirectTo(
-        constructSearchUrlWithFilter(
+        constructSearchUrlWithFilter({
           searchUrl,
-          determineSuggestionTerm(selectedItem),
-          {
+          selectedItemString,
+          filter: {
             materialType: autosuggestCategoryList[highlightedCategoryIndex].type
           }
-        )
+        })
       );
     }
     // Otherwise redirect to search result page.
