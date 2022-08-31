@@ -5,5 +5,6 @@ const dateMatchesUsFormat = (date: string | null) => {
   const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
   return returnValue;
 };
+export const getCurrentUnixTime = () => Math.floor(Date.now() / 1000);
 
 export default dateMatchesUsFormat;

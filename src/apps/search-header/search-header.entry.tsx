@@ -13,22 +13,15 @@ export interface SearchHeaderTextProps {
 }
 
 export interface SearchHeaderUrlProps {
-  searchUrl: string;
-  materialUrl: string;
+  searchUrl?: string;
+  materialUrl?: string;
 }
 
 export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
     SearchHeaderUrlProps {}
 
-const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
-  altText = "search icon",
-  inputPlaceholderText = "Search here",
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic",
-  etAlText = "et al."
-}) => {
+const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
   return <SearchHeader />;
 };
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import GuardedApp from "../../components/guarded-app";
 import { withText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
@@ -57,8 +58,10 @@ export interface MaterialEntryProps
   wid: WorkId;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
-  return <Material wid={wid} />;
-};
+const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => (
+  <GuardedApp app="material">
+    <Material wid={wid} />
+  </GuardedApp>
+);
 
-export default withUrls(withText(MaterialEntry));
+export default withUrls(withText(WrappedMaterialEntry));

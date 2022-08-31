@@ -1,24 +1,23 @@
-import React from "react";
+import React, { FC } from "react";
 import dayjs from "dayjs";
 import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
-import MaterialDecorator from "../materials/material-decorator";
 import { useText } from "../../../core/utils/text";
-import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import RenewLoansModalContent from "./renew-loans-modal-content";
+import WarningBar from "../materials/utils/warning-bar";
+import { materialIsOverdue } from "../helpers";
 
 interface DueDateLoansModalProps {
   dueDate: string;
   renewable: number | null;
-  dueDates: string[] | undefined;
   loansModal: LoanV2[] | undefined | null;
 }
 
-const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
+const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
   renewable,
-  dueDates,
   loansModal
 }) => {
   const t = useText();
@@ -27,8 +26,10 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
     <Modal
       modalId={dueDate}
       additionalClasses="modal-loan"
-      closeModalAriaLabelText={t("LoanListCloseModalText")}
-      screenReaderModalDescriptionText={t("LoanListModalDescriptionText")}
+      closeModalAriaLabelText={t("dueDateRenewLoanCloseModalText")}
+      screenReaderModalDescriptionText={t(
+        "dueDateRenewLoanModalDescriptionText"
+      )}
     >
       <div className="modal-loan__container">
         {loansModal && (
@@ -40,41 +41,25 @@ const DueDateLoansModal: React.FC<DueDateLoansModalProps> = ({
               </div>
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("loanListToBeDeliveredModalText")}{" "}
+                  {t("dueDateRenewLoanModalHeaderText")}{" "}
                   {dayjs(dueDate).locale(localeDa).format("DD MMMM YYYY")}
                 </h1>
               </div>
             </div>
-            <div className="modal-loan__buttons">
-              <CheckBox
-                id="checkbox-select-all"
-                label={t("loanListSelectPossibleCheckboxText")}
-              />
-              <button
-                type="button"
-                id="renew-several"
-                className="btn-primary btn-filled btn-small arrow__hover--right-small"
-              >
-                {t("loanListRenewPossibleText")} ({renewable})
-              </button>
-            </div>
-            <div className="modal-loan__list">
-              <ul className="modal-loan__list-materials">
-                {dueDates &&
-                  loansModal.map(({ renewalStatusList, loanDetails }) => {
-                    return (
-                      <MaterialDecorator
-                        key={loanDetails.recordId}
-                        materialType="selectableMaterial"
-                        faust={loanDetails.recordId}
-                        dueDate={loanDetails.dueDate}
-                        renewableStatus={renewalStatusList}
-                        loanType={loanDetails.loanType}
-                      />
-                    );
-                  })}
-              </ul>
-            </div>
+            {materialIsOverdue(dueDate) && (
+              <div className="modal-details__warning">
+                <WarningBar
+                  linkText={t("dueDateLinkToPageWithFeesText")}
+                  overdueText={t("dueDateWarningLoanOverdueText")}
+                />
+              </div>
+            )}
+            <RenewLoansModalContent
+              loansModal={loansModal}
+              renewable={renewable}
+              buttonLabel={t("dueDateRenewLoanModalButtonText")}
+              checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
+            />
           </>
         )}
       </div>

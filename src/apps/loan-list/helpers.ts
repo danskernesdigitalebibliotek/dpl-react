@@ -12,16 +12,15 @@ export const removeLoansWithDuplicateDueDate = (
   );
 };
 
-export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
-  return list.filter(({ isRenewable }) => isRenewable).length;
-};
-
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
 
-export const materialIsOverdue = (date: string) => {
-  return dayjs().isAfter(dayjs(date));
+export const materialIsOverdue = (date: string | undefined) => {
+  if (date) {
+    return dayjs().isAfter(dayjs(date));
+  }
+  return false;
 };
 
 // Create a string of authors with commas and a conjunction
@@ -42,6 +41,16 @@ export const getAuthorNames = (
       .join(", ")} ${and} ${names.slice(-1)}`;
   }
   return returnContentString;
+};
+
+// Simple faust match for modals
+export const queryMatchesFaust = (query: string | null) => {
+  // regex for finding date string from modal query param
+  const regex = /^\d{8}$/;
+  const faustFound = query ? query.toString().match(regex) : null;
+  const returnValue =
+    faustFound && faustFound.length > 0 ? faustFound[0] : null;
+  return returnValue;
 };
 
 export default {};
