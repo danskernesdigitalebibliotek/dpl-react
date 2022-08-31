@@ -5,7 +5,7 @@ import {
   ManifestationsSimpleFieldsFragment
 } from "../../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
-import { Pid } from "../../../core/utils/types/ids";
+import { FaustId, Pid } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
@@ -24,7 +24,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({ manifestation }) => {
     return (
       <>
         <MaterialButtonsPhysical manifestation={manifestation} />
-        <MaterialButtonsFindOnShelf isButton faustIds={[faustId as string]} />
+        <MaterialButtonsFindOnShelf isButton faustIds={[faustId as FaustId]} />
       </>
     );
   }
