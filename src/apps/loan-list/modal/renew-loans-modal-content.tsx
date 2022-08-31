@@ -10,6 +10,7 @@ import {
 } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
 import useIsInViewport from "../../../components/utils/in-viewport";
+import { useText } from "../../../core/utils/text";
 
 interface RenewLoansModalContentProps {
   renewable: number | null;
@@ -24,8 +25,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel
 }) => {
+  const t = useText();
   const { mutate } = useRenewLoansV2();
-  const [topButtonsVisible, firstRef] = useIsInViewport<HTMLDivElement>(30);
+  const [topButtonsVisible, firstRef] = useIsInViewport(30);
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
   const [loans, setLoans] = useState<Array<LoanV2>>([]);
@@ -139,6 +141,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             style={{ position: "fixed", left: 0, bottom: 0, right: 0 }}
           >
             <CheckBox
+              onChecked={selectAll}
               id="checkbox-select-all"
               label={t("loanListSelectPossibleCheckboxText")}
             />
