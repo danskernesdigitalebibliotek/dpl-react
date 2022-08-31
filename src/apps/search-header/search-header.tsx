@@ -18,6 +18,7 @@ import {
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
 import Category from "../../core/utils/types/material-type";
+import { findNonWorkSuggestion } from "./helpers";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -77,11 +78,8 @@ const SearchHeader: React.FC = () => {
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
 
   if (originalData) {
-    nonWorkSuggestion = originalData.find(
-      (item) =>
-        item.type !== SuggestionType.Title &&
-        item.type !== SuggestionType.Composit
-    );
+    nonWorkSuggestion = findNonWorkSuggestion(originalData);
+
     originalData.forEach((item: Suggestion) => {
       if (
         item.type === SuggestionType.Composit ||
