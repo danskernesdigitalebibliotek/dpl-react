@@ -3,8 +3,12 @@ import React from "react";
 import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
-import { creatorsToString } from "../../core/utils/helpers/general";
+import {
+  creatorsToString,
+  flattenCreators
+} from "../../core/utils/helpers/general";
 import { Pid } from "../../core/utils/types/ids";
+import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -30,10 +34,15 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           // not the correct index for the item. We first need to add the length of
           // items from autosuggest string suggestion to it for it to be accurate (=> index)
           const index = incorrectIndex + textDataLength;
-          const authors: string[] = [];
-          item.work?.creators.forEach((creator) => {
-            authors.push(creator.display);
-          });
+          const { work } = item;
+          if (!work) {
+            return null;
+          }
+          const { creators } = work;
+          const authors = flattenCreators(
+            creators as WorkSmallFragment["creators"]
+          );
+
           return (
             <li
               className={`autosuggest__material ${
