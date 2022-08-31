@@ -29,6 +29,7 @@
       ],
       "seriesMembers": [
         {
+          "workId": "work-of:870970-basis:52557240",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -36,6 +37,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:52970628",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -43,6 +45,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:53280749",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -50,6 +53,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:53802001",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -57,6 +61,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:54189141",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -64,6 +69,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:46656172",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -71,6 +77,7 @@
           }
         },
         {
+          "workId": "work-of:870970-basis:38500775",
           "titles": {
             "main": ["Dummy Some Title"],
             "full": ["Dummy Some Title: Full"],
@@ -78,10 +85,12 @@
           }
         }
       ],
+      "genreAndForm": ["Dummy some genre"],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:52557240",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -106,10 +115,15 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ]
           },
           {
             "pid": "870970-basis:52643503",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -134,10 +148,15 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": false }
+            ]
           },
           {
             "pid": "870970-basis:53200346",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -162,10 +181,15 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ]
           },
           {
             "pid": "870970-basis:53292968",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -190,10 +214,15 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ]
           },
           {
             "pid": "870970-basis:46615743",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -218,10 +247,15 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ]
           },
           {
             "pid": "870970-basis:52590302",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -246,10 +280,20 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "ereolen.dk",
+                "url": "https://ereolen.dk/ting/object/870970-basis:52590302"
+              },
+              { "__typename": "InterLibraryLoan", "loanIsPossible": false }
+            ]
           },
           {
             "pid": "870970-basis:52643414",
+            "genreAndForm": ["Dummy some genre"],
             "titles": {
               "main": ["Dummy Some Title"],
               "original": ["Dummy Some Title: Original"]
@@ -274,9 +318,43 @@
             "contributors": [{ "display": "Dummy Jens Jensen" }],
             "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
             "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }]
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ]
           }
-        ]
+        ],
+        "latest": {
+          "pid": "870970-basis:52557240",
+          "genreAndForm": ["Dummy some genre"],
+          "titles": {
+            "main": ["Dummy Some Title"],
+            "original": ["Dummy Some Title: Original"]
+          },
+          "publicationYear": { "display": "Dummy 1839" },
+          "materialTypes": [{ "specific": "Dummy bog" }],
+          "creators": [
+            { "display": "Dummy Jens Jensen", "__typename": "Person" },
+            { "display": "Dummy Some Corporation", "__typename": "Corporation" }
+          ],
+          "hostPublication": {
+            "title": "Dummy Årsskrift / Carlsbergfondet",
+            "creator": "Dummy Some Creator",
+            "publisher": "Dummy Some Publisher",
+            "year": { "year": 2006 }
+          },
+          "languages": { "main": [{ "display": "Dummy dansk" }] },
+          "identifiers": [{ "value": "Dummy 1234567891234" }],
+          "contributors": [{ "display": "Dummy Jens Jensen" }],
+          "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
+          "audience": { "generalAudience": ["Dummy general audience"] },
+          "physicalDescriptions": [{ "numberOfPages": null }],
+          "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+          "access": [
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ]
+        }
       },
       "materialTypes": [{ "specific": "Dummy bog" }],
       "mainLanguages": [{ "display": "Dummy dansk", "isoCode": "Dummy dan" }],
@@ -297,7 +375,7 @@
           "urls": [
             {
               "origin": "litteratursiden.dk",
-              "url": "http:www.litteratursiden.dk/anmeldelser/syv-soestre-af-lucinda-riley"
+              "url": "http://www.litteratursiden.dk/anmeldelser/syv-soestre-af-lucinda-riley"
             }
           ]
         },
