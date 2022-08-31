@@ -26,11 +26,11 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
     <li>
       <ul>
         {/* eslint-disable react/jsx-props-no-spreading */}
-        {/* The downshift combobox works this way by design (line 45) */}
-        {/* incorrectIndex because in the whole of autosuggest dropdown it is
-          not the correct index for the item. We first need to add the length of
-          items from autosuggest string suggestion to it for it to be accurate. */}
+        {/* The downshift combobox works this way by design (line 43) */}
         {categoryData.map((item, incorrectIndex) => {
+          // incorrectIndex because in the whole of autosuggest dropdown it is
+          // not the correct index for the item. We first need to add the length of
+          // items from autosuggest string suggestion to it for it to be accurate (=> index)
           const index = incorrectIndex + textAndMaterialDataLength;
           return (
             <li
