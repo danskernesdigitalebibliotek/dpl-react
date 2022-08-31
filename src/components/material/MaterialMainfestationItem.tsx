@@ -9,7 +9,7 @@ import {
   filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { Pid } from "../../core/utils/types/ids";
+import { FaustId, Pid } from "../../core/utils/types/ids";
 import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
 import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
@@ -155,7 +155,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__buttons">
         <ButtonSmallFilled label={t("reserveText")} disabled={false} />
         {/* TODO The button has no functionality so far. This will come later */}
-        <MaterialButtonsFindOnShelf faustIds={[faustId as string]} />
+        <MaterialButtonsFindOnShelf faustIds={[faustId as FaustId]} />
       </div>
     </div>
   );
