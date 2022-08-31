@@ -74,6 +74,8 @@ const SearchHeader: React.FC = () => {
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
   const categoryData: Suggestion[] = [];
+  // The first suggestion that is not of SuggestionType.Title - used for showing/
+  // /hiding autosuggest categories suggestions.
   let nonWorkSuggestion: Suggestion | undefined;
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
 
