@@ -1,10 +1,13 @@
 import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
 import { AvailabiltityLabels } from "../../availability-label/availability-labels";
-import ButtonFavourite from "../../button-favourite/button-favourite";
+import ButtonFavourite, {
+  ButtonFavouriteId
+} from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
 import { Link } from "../../atoms/link";
 import {
@@ -22,6 +25,8 @@ import {
   constructSearchUrl,
   redirectTo
 } from "../../../core/utils/helpers/url";
+import { TypedDispatch } from "../../../core/store";
+import { guardedRequest } from "../../../core/guardedRequests.slice";
 
 export interface SearchResultListItemProps {
   item: WorkSmallFragment;
@@ -40,6 +45,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
+  const dispatch = useDispatch<TypedDispatch>();
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -54,6 +60,16 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const handleClick = useCallback(() => {
     redirectTo(materialFullUrl);
   }, [materialFullUrl]);
+
+  const addToListRequest = (id: ButtonFavouriteId) => {
+    dispatch(
+      guardedRequest({
+        type: "addFavorite",
+        args: { id },
+        app: "search-result"
+      })
+    );
+  };
 
   return (
     // We know that is not following a11y recommendations to have an onclick handler
@@ -81,7 +97,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
-          <ButtonFavourite id={workId as WorkId} />
+          <ButtonFavourite
+            id={workId as WorkId}
+            addToListRequest={addToListRequest}
+          />
           {numberInSeries && seriesTitle && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${

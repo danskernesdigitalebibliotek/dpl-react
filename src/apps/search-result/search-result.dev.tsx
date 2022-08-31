@@ -23,6 +23,11 @@ export default {
       defaultValue: 20,
       control: { type: "number" }
     },
+    authUrl: {
+      name: "Url where user can authenticate",
+      defaultValue: "",
+      control: { type: "text" }
+    },
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",

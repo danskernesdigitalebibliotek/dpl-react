@@ -15,7 +15,6 @@ import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
-
 import { useText } from "../../core/utils/text";
 import {
   creatorsToString,

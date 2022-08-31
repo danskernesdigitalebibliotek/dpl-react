@@ -22,32 +22,15 @@ export interface SearchHeaderTextProps {
 }
 
 export interface SearchHeaderUrlProps {
-  searchUrl: string;
-  materialUrl: string;
+  searchUrl?: string;
+  materialUrl?: string;
 }
 
 export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
     SearchHeaderUrlProps {}
 
-// default value here prevents variable names to show if undefined
-const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
-  altText = "search icon",
-  inputPlaceholderText = "Search here",
-  stringSuggestionAuthorText = "author",
-  stringSuggestionWorkText = "work",
-  stringSuggestionTopicText = "topic",
-  etAlText = "et al.",
-  autosuggestBookCategoryText = "Books",
-  autosuggestEbookCategoryText = "Ebooks",
-  autosuggestFilmCategoryText = "Movies",
-  autosuggestAudioBookCategoryText = "Audio Books",
-  autosuggestMusicCategoryText = "Music",
-  autosuggestGameCategoryText = "Games",
-  autosuggestAnimatedSeriesCategoryText = "Animated Series",
-  inText = "in",
-  loadingText = "Loading"
-}) => {
+const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
   return <SearchHeader />;
 };
 

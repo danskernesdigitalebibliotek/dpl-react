@@ -11,7 +11,7 @@ type ModalProps = {
   additionalClasses?: string;
 };
 
-interface ModalIdsProps {
+export interface ModalIdsProps {
   modal: {
     modalIds: string[];
   };
@@ -47,7 +47,11 @@ function Modal({
         modalIds.includes(modalId) ? "modal-show" : ""
       } ${additionalClasses}`}
       style={{
-        zIndex: modalIds.indexOf(modalId)
+        // some elements are designed with z-index which means they pop up over the modal
+        // so I add 10 to the z-index of the modal
+        // the index of the modalid is used, so the newest modal is always on top of
+        // the remaining modals
+        zIndex: modalIds.indexOf(modalId) + 10
       }}
       role="dialog"
     >
@@ -63,7 +67,8 @@ function Modal({
         className="btn-ui modal-btn-close"
         aria-describedby={`modal-${modalId}`}
         style={{
-          zIndex: modalIds.indexOf(modalId)
+          // same as comment above
+          zIndex: modalIds.indexOf(modalId) + 10
         }}
         aria-label={closeModalAriaLabelText}
         onClick={() => {

@@ -133,3 +133,19 @@ export const sortByLoanDate = (list: LoanV2[]) => {
       new Date(objB.loanDetails.loanDate).getTime()
   );
 };
+
+// If modalids are longer than 0, a modal is open.
+// If a modal is open, the list should not be displayed.
+export const isAModalDisplayed = (modalIds: string[]) => {
+  return modalIds.length > 0;
+};
+
+export const getRenewableMaterials = (list: LoanV2[]) => {
+  return list
+    .filter(({ isRenewable }) => isRenewable)
+    .map(({ loanDetails }) => parseInt(loanDetails.recordId, 10));
+};
+
+export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
+  return getRenewableMaterials(list).length;
+};

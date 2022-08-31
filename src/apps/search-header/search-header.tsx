@@ -26,6 +26,7 @@ const SearchHeader: React.FC = () => {
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
+  const minimalQueryLength = 3;
   // we need to convert between string and suggestion result object so
   // that the value in the search field on enter click doesn't become [object][object]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,7 +40,11 @@ const SearchHeader: React.FC = () => {
     data: SuggestionsFromQueryStringQuery | undefined;
     isLoading: boolean;
     status: string;
-  } = useSuggestionsFromQueryStringQuery({ q });
+  } = useSuggestionsFromQueryStringQuery(
+    { q },
+    { enabled: q.length >= minimalQueryLength }
+  );
+
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList = [
@@ -106,17 +111,12 @@ const SearchHeader: React.FC = () => {
 
   // Autosuggest opening and closing based on input text length.
   useEffect(() => {
-    if (q) {
-      const minimalLengthQuery = 3;
-      if (q.length >= minimalLengthQuery) {
-        setIsAutosuggestOpen(true);
-      } else {
-        setIsAutosuggestOpen(false);
-      }
+    if (data) {
+      setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [q]);
+  }, [data]);
 
   function determineSuggestionTerm(suggestion: Suggestion): string {
     if (suggestion.type === SuggestionType.Composit) {

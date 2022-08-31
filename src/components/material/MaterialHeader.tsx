@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
+import { guardedRequest } from "../../core/guardedRequests.slice";
+import { TypedDispatch } from "../../core/store";
 import {
   creatorsToString,
   filterCreators,
@@ -12,12 +15,14 @@ import {
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
-import ButtonFavourite from "../button-favourite/button-favourite";
-import ButtonLargeFilled from "../Buttons/ButtonLargeFilled";
+import ButtonFavourite, {
+  ButtonFavouriteId
+} from "../button-favourite/button-favourite";
 import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
+import MaterialButtons from "./material-buttons/MaterialButtons";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -40,7 +45,16 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectManifestationHandler
 }) => {
   const t = useText();
-
+  const dispatch = useDispatch<TypedDispatch>();
+  const addToListRequest = (id: ButtonFavouriteId) => {
+    dispatch(
+      guardedRequest({
+        type: "addFavorite",
+        args: { id },
+        app: "material"
+      })
+    );
+  };
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -66,7 +80,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <Cover pid={coverPid} size="xlarge" animate />
       </div>
       <div className="material-header__content">
-        <ButtonFavourite id={wid as WorkId} />
+        <ButtonFavourite
+          id={wid as WorkId}
+          addToListRequest={addToListRequest}
+        />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels
@@ -77,10 +94,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {/* Check and chow if data has PeriodikumSelect  */}
+        {/* Check and show if data has PeriodikumSelect. */}
         {false && <MaterialPeriodikumSelect />}
         <div className="material-header__button">
-          <ButtonLargeFilled label={t("reserveBookText")} disabled={false} />
+          {manifestation && <MaterialButtons manifestation={manifestation} />}
           <ButtonLargeOutline
             label={t("findOnBookshelfText")}
             disabled={false}

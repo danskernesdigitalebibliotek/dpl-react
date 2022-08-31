@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import dayjs from "dayjs";
 import { useText } from "../../../../core/utils/text";
 import statusThreshold from "../../../../core/configuration/status-thresholds.json";
@@ -9,7 +9,7 @@ interface StatusCircleProps {
   loanDate: string | undefined;
 }
 
-const StatusCircle: React.FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
+const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
   const dueD = dayjs(dueDate);
   const today = dayjs();

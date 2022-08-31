@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 
@@ -9,8 +9,6 @@ export interface LoanListEntryProps {
   loanListListText: string;
   loanListStackText: string;
   loanListRenewMultipleButtonExplanationText: string;
-  loanListMaterialByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
   loanListLateFeeDesktopText: string;
   loanListLateFeeMobileText: string;
   loanListDaysText: string;
@@ -19,12 +17,9 @@ export interface LoanListEntryProps {
   LoanListMaterialsMobileText: string;
   loanListMaterialsModalDesktopText: string;
   loanListMaterialsModalMobileText: string;
-  loanListToBeDeliveredModalText: string;
   loanListStatusCircleAriaLabelText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
-  loanListRenewPossibleText: string;
-  loanListSelectPossibleCheckboxText: string;
   LoanListDeniedMaxRenewalsReachedText: string;
   LoanListDeniedOtherReasonText: string;
   LoanListDeniedInterLibraryLoanText: string;
@@ -33,8 +28,35 @@ export interface LoanListEntryProps {
   LoanListCloseModalText: string;
   LoanListModalDescriptionText: string;
   LoanListEmptyPhysicalLoansText: string;
+  MaterialDetailsModalOverdueText: string;
+  materialDetailsOverdueText: string;
+  loanListMaterialByAuthorText: string;
+  loanModalMaterialByAuthorText: string;
+  materialDetailsByAuthorText: string;
+  loanListMaterialAndAuthorText: string;
+  loanModalMaterialAndAuthorText: string;
+  materialDetailsAndAuthorText: string;
+  dueDateRenewLoanModalHeaderText: string;
+  renewLoanModalHeaderText: string;
+  renewLoanModalCloseModalText: string;
+  dueDateRenewLoanCloseModalText: string;
+  materialDetailsCloseModalText: string;
+  renewLoanModalDescriptionText: string;
+  dueDateRenewLoanModalDescriptionText: string;
+  materialDetailsModalDescriptionText: string;
+  materialDetailsRenewLoanButtonText: string;
+  materialDetailsLinkToPageWithFeesText: string;
+  materialDetailsHandInLabelText: string;
+  materialDetailsLoanDateLabelText: string;
+  materialDetailsMaterialNumberLabelText: string;
+  renewLoanModalCheckboxText: string;
+  renewLoanModalButtonText: string;
+  dueDateRenewLoanModalCheckboxText: string;
+  dueDateRenewLoanModalButtonText: string;
+  dueDateWarningLoanOverdueText: string;
+  dueDateLinkToPageWithFeesText: string;
 }
 
-const LoanListEntry: React.FC<LoanListEntryProps> = () => <LoanList />;
+const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
 
 export default withText(LoanListEntry);

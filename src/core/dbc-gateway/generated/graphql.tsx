@@ -1241,6 +1241,19 @@ export type GetMaterialQuery = {
           __typename?: "PhysicalDescription";
           numberOfPages?: number | null;
         }>;
+        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        access: Array<
+          | { __typename: "AccessUrl"; origin: string; url: string }
+          | { __typename: "DigitalArticleService"; issn: string }
+          | {
+              __typename: "Ereol";
+              origin: string;
+              url: string;
+              canAlwaysBeLoaned: boolean;
+            }
+          | { __typename: "InfomediaService"; id: string }
+          | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        >;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -1285,6 +1298,19 @@ export type GetMaterialQuery = {
           __typename?: "PhysicalDescription";
           numberOfPages?: number | null;
         }>;
+        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        access: Array<
+          | { __typename: "AccessUrl"; origin: string; url: string }
+          | { __typename: "DigitalArticleService"; issn: string }
+          | {
+              __typename: "Ereol";
+              origin: string;
+              url: string;
+              canAlwaysBeLoaned: boolean;
+            }
+          | { __typename: "InfomediaService"; id: string }
+          | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        >;
       };
     };
   } | null;
@@ -1402,6 +1428,22 @@ export type SearchWithPaginationQuery = {
             __typename?: "PhysicalDescription";
             numberOfPages?: number | null;
           }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | { __typename: "AccessUrl"; origin: string; url: string }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -1449,6 +1491,22 @@ export type SearchWithPaginationQuery = {
             __typename?: "PhysicalDescription";
             numberOfPages?: number | null;
           }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | { __typename: "AccessUrl"; origin: string; url: string }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
         };
       };
     }>;
@@ -1526,6 +1584,19 @@ export type ManifestationsSimpleFragment = {
       __typename?: "PhysicalDescription";
       numberOfPages?: number | null;
     }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    access: Array<
+      | { __typename: "AccessUrl"; origin: string; url: string }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -1567,6 +1638,19 @@ export type ManifestationsSimpleFragment = {
       __typename?: "PhysicalDescription";
       numberOfPages?: number | null;
     }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    access: Array<
+      | { __typename: "AccessUrl"; origin: string; url: string }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
   };
 };
 
@@ -1607,6 +1691,19 @@ export type ManifestationsSimpleFieldsFragment = {
     __typename?: "PhysicalDescription";
     numberOfPages?: number | null;
   }>;
+  accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+  access: Array<
+    | { __typename: "AccessUrl"; origin: string; url: string }
+    | { __typename: "DigitalArticleService"; issn: string }
+    | {
+        __typename: "Ereol";
+        origin: string;
+        url: string;
+        canAlwaysBeLoaned: boolean;
+      }
+    | { __typename: "InfomediaService"; id: string }
+    | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+  >;
 };
 
 export type SeriesSimpleFragment = {
@@ -1700,6 +1797,19 @@ export type WorkSmallFragment = {
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
       }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | { __typename: "AccessUrl"; origin: string; url: string }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -1741,6 +1851,19 @@ export type WorkSmallFragment = {
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
       }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | { __typename: "AccessUrl"; origin: string; url: string }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
     };
   };
 };
@@ -1871,6 +1994,19 @@ export type WorkMediumFragment = {
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
       }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | { __typename: "AccessUrl"; origin: string; url: string }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -1912,6 +2048,19 @@ export type WorkMediumFragment = {
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
       }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | { __typename: "AccessUrl"; origin: string; url: string }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
     };
   };
 };
@@ -1973,6 +2122,33 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   physicalDescriptions {
     numberOfPages
+  }
+  materialTypes {
+    specific
+  }
+  accessTypes {
+    code
+  }
+  access {
+    __typename
+    ... on AccessUrl {
+      origin
+      url
+    }
+    ... on InfomediaService {
+      id
+    }
+    ... on InterLibraryLoan {
+      loanIsPossible
+    }
+    ... on Ereol {
+      origin
+      url
+      canAlwaysBeLoaned
+    }
+    ... on DigitalArticleService {
+      issn
+    }
   }
 }
     `;
