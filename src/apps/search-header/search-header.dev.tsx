@@ -83,6 +83,11 @@ export default {
       name: "x 'in' y",
       defaultValue: "i",
       control: { type: "text" }
+    },
+    LoadingText: {
+      name: "Loading",
+      defaultValue: "Indlæsesr",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;

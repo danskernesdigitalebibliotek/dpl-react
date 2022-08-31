@@ -18,6 +18,7 @@ export interface SearchHeaderTextProps {
   gameCategoryText: string;
   animatedSeriesCategoryText: string;
   inText: string;
+  loadingText: string;
 }
 
 export interface SearchHeaderUrlProps {
@@ -44,7 +45,8 @@ const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
   musicCategoryText = "Music",
   gameCategoryText = "Games",
   animatedSeriesCategoryText = "Animated Series",
-  inText = "i"
+  inText = "i",
+  loadingText = "Loading"
 }) => {
   return <SearchHeader />;
 };
