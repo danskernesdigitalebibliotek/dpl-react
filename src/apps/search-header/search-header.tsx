@@ -17,6 +17,7 @@ import {
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
+import Category from "../../core/utils/types/material-type";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -41,13 +42,19 @@ const SearchHeader: React.FC = () => {
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList = [
-    { render: t("bookCategoryText"), type: "book" },
-    { render: t("ebookCategoryText"), type: "ebook" },
-    { render: t("filmCategoryText"), type: "movie" },
-    { render: t("audioBookCategoryText"), type: "audioBook" },
-    { render: t("musicCategoryText"), type: "music" },
-    { render: t("gameCategoryText"), type: "game" },
-    { render: t("animatedSeriesCategoryText"), type: "animatedSeries" }
+    { render: t("bookCategoryText"), type: Category.book },
+    { render: t("ebookCategoryText"), type: Category.ebook },
+    { render: t("filmCategoryText"), type: Category.movie },
+    {
+      render: t("audioBookCategoryText"),
+      type: Category.audioBook
+    },
+    { render: t("musicCategoryText"), type: Category.music },
+    { render: t("gameCategoryText"), type: Category.game },
+    {
+      render: t("animatedSeriesCategoryText"),
+      type: Category.animatedSeries
+    }
   ];
   // Once we register the item select event the original highlighted index is
   // already set to -1 by Downshift.
