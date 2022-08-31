@@ -35,10 +35,10 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
         <div className="material-periodikum-select">
           {/* This is because the design requires label and select input to be separated */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="weeks">{t("periodikumSelectWeekText")}</label>
+          <label htmlFor="editions">{t("periodikumSelectEditionText")}</label>
           <div className="material-periodikum-select__border-container">
             <select id="weeks">
-              {weeks.map((week) => (
+              id="editions"
                 <option key={week} value={week}>
                   {week}
                 </option>

@@ -8,7 +8,7 @@ import Material from "./material";
 interface MaterialEntryTextProps {
   materialHeaderAuthorByText: string;
   periodikumSelectYearText: string;
-  periodikumSelectWeekText: string;
+  periodikumSelectEditionText: string;
   reserveBookText: string;
   findOnBookshelfText: string;
   descriptionHeadlineText: string;
