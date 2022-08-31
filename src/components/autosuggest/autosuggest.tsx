@@ -1,6 +1,7 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
@@ -16,6 +17,7 @@ export interface AutosuggestProps {
   isOpen: boolean;
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
   autosuggestCategoryList: { render: string; type: string }[];
+  isLoading: boolean;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
@@ -26,8 +28,19 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   getItemProps,
   isOpen,
   categoryData,
-  autosuggestCategoryList
+  autosuggestCategoryList,
+  isLoading
 }) => {
+  const t = useText();
+
+  if (isLoading && !textData) {
+    return (
+      <ul className="autosuggest pb-16">
+        <li className="ml-24">{t("LoadingText")}</li>
+      </ul>
+    );
+  }
+
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}

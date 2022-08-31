@@ -280,6 +280,7 @@ const SearchHeader: React.FC = () => {
               getItemProps={getItemProps}
               isOpen={isAutosuggestOpen}
               autosuggestCategoryList={autosuggestCategoryList}
+              isLoading={isLoading}
             />
           )}
       </div>
