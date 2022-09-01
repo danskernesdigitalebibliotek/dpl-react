@@ -77,6 +77,11 @@ export default {
       name: "In series",
       defaultValue: "i serien",
       control: { type: "text" }
+    },
+    showingResultsForText: {
+      name: "Showing results for",
+      defaultValue: "Viser resultater for",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;
