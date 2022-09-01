@@ -10,7 +10,7 @@ import {
 } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
 import useIsInViewport from "../../../components/utils/in-viewport";
-import { useText } from "../../../core/utils/text";
+import { Button } from "../../../components/Buttons/Button";
 
 interface RenewLoansModalContentProps {
   renewable: number | null;
@@ -29,7 +29,6 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   buttonBottomLabel,
   checkboxBottomLabel
 }) => {
-  const t = useText();
   const { mutate } = useRenewLoansV2();
   const [topButtonsVisible, firstRef] = useIsInViewport(30);
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
@@ -100,15 +99,16 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           onChecked={selectAll}
           label={checkboxLabel}
         />
-        <button
-          type="button"
+        <Button
+          label={`${buttonLabel} (${renewable})`}
+          buttonType="none"
           id="renew-several"
+          variant="filled"
           disabled={renewable === 0}
+          collapsible={false}
           onClick={renewSelected}
-          className="btn-primary btn-filled btn-small arrow__hover--right-small"
-        >
-          {buttonLabel} ({renewable})
-        </button>
+          size="small"
+        />
       </div>
       <div className="modal-loan__list">
         <ul className="modal-loan__list-materials">
@@ -140,21 +140,21 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           })}
         </ul>
         {!topButtonsVisible && (
-          <div
-            className="modal-loan__buttons modal-loan__buttons--bottom"
-            style={{ position: "fixed", left: 0, bottom: 0, right: 0 }}
-          >
+          <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
               onChecked={selectAll}
               id="checkbox-select-all"
               label={checkboxBottomLabel}
             />
-            <button
-              type="button"
-              className="btn-primary btn-filled btn-small arrow__hover--right-small"
-            >
-              {buttonBottomLabel}({renewable})
-            </button>
+            <Button
+              label={`${buttonBottomLabel} (${renewable})`}
+              buttonType="none"
+              variant="filled"
+              disabled={renewable === 0}
+              collapsible={false}
+              onClick={renewSelected}
+              size="small"
+            />
           </div>
         )}
       </div>

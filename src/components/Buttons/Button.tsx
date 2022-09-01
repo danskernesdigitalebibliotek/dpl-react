@@ -12,6 +12,7 @@ export type ButtonProps = {
   variant: "outline" | "filled";
   onClick?: () => void;
   classNames?: string;
+  id?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -22,7 +23,8 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   variant,
   onClick,
-  classNames
+  classNames,
+  id
 }) => {
   const iconClassName = `btn-icon ${clsx({ "btn-collapsible": collapsible }, [
     classNames
@@ -54,6 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small`}
       disabled={disabled}
       onClick={onClick}
+      id={id}
     >
       {/* TODO find out what should be instead (6) */}
       {`${label} ${buttonType === "search" ? "(6)" : ""}`}
