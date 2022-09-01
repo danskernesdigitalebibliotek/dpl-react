@@ -149,3 +149,28 @@ export const getRenewableMaterials = (list: LoanV2[]) => {
 export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
   return getRenewableMaterials(list).length;
 };
+
+// TODO FIX TS ERRORS
+// MaterialPeriodikum.tsx#L37
+export const groupObjectArrayByProperty = <
+  P extends string,
+  T extends Record<P, string> & Record<string, unknown>
+>(
+  array: T[],
+  property: P
+) =>
+  array.reduce<Record<string, T[]>>(
+    (result: { [key: string]: T[] }, current: T) => {
+      const groupBy = current[property];
+      // Merge into result if the property already exist.
+      if (groupBy in result) {
+        return {
+          ...result,
+          [groupBy]: [...result[groupBy], current]
+        };
+      }
+      // Otherwise create new property.
+      return { ...result, [groupBy]: [current] };
+    },
+    {}
+  );
