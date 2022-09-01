@@ -91,6 +91,18 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
     q
   });
 
+export const constructSearchUrlWithFilter = (args: {
+  searchUrl: URL;
+  selectedItemString: string;
+  filter: { [type: string]: string };
+}) => {
+  const { searchUrl, selectedItemString, filter } = args;
+  return appendQueryParametersToUrl(searchUrl, {
+    q: selectedItemString,
+    ...filter
+  });
+};
+
 export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
   return Object.keys(urls).reduce(
     (acc: { [key: string]: URL }, key: string) => {
