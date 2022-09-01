@@ -150,27 +150,31 @@ export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
   return getRenewableMaterials(list).length;
 };
 
-// TODO FIX TS ERRORS
-// MaterialPeriodical.tsx#L37
 export const groupObjectArrayByProperty = <
   P extends string,
-  T extends Record<P, string> & Record<string, unknown>
+  T extends { [key in P]?: string },
+  Result extends { [key: string]: T[] }
 >(
   array: T[],
   property: P
 ) =>
-  array.reduce<Record<string, T[]>>(
-    (result: { [key: string]: T[] }, current: T) => {
-      const groupBy = current[property];
-      // Merge into result if the property already exist.
-      if (groupBy in result) {
-        return {
-          ...result,
-          [groupBy]: [...result[groupBy], current]
-        };
-      }
-      // Otherwise create new property.
-      return { ...result, [groupBy]: [current] };
-    },
-    {}
-  );
+  array.reduce((result: Result, current: T) => {
+    const groupBy = current[property];
+    // If for some reason we do not have a value we just return the accumulated result.
+    if (!groupBy) {
+      return result;
+    }
+
+    // Make sure that the new aggregation key is a string.
+    const key = String(groupBy);
+
+    // Merge into result if the property already exist.
+    if (key in result) {
+      return {
+        ...result,
+        [key]: [...result[key], current]
+      };
+    }
+    // Otherwise create new property.
+    return { ...result, [key]: [current] };
+  }, {} as Result);

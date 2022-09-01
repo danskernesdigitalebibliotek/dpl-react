@@ -9,6 +9,7 @@ export type GroupListItem = {
   volumeYear: string;
 };
 
+export type GroupList = { [key: string]: GroupListItem[] };
 interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
   selectPeriodicalSelect: (periodicalSelect: string | null) => void;

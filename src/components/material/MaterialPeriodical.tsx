@@ -34,8 +34,6 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
 
   return (
     <MaterialPeriodicalSelect
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       groupList={groupObjectArrayByProperty(materialsPeriodical, "volumeYear")}
       selectPeriodicalSelect={selectPeriodicalSelect}
     />
