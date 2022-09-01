@@ -1,25 +1,33 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
-  it("Should render the search results as expected", () => {
+  it("should render the site", () => {
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
+  });
 
-    cy.log("Check length of search result list:");
+  it("Check search title", () => {
+    cy.contains("Viser resultater for “harry” (9486)");
+  });
+
+  it("Check length of search result list", () => {
     cy.get(".search-result-page__list").find("li").should("have.length", 2);
+  });
 
-    cy.log("Do the search results have images?");
+  it("Do the search results have images?", () => {
     cy.get(".search-result-page__list .search-result-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
+  });
 
-    cy.log("Does the search result have favourite buttons?");
+  it("Does the search result have favourite buttons?", () => {
     cy.get(
       ".search-result-page__list .search-result-item .button-favourite"
     ).should("have.attr", "aria-label", "Add to favorites");
+  });
 
-    cy.log("Does the search result have a series line?");
+  it("Does the search result have a series line?", () => {
     cy.get(
       ".search-result-page__list .search-result-item .horizontal-term-line"
     ).should(
@@ -29,52 +37,50 @@ describe("Search Result", () => {
       // Therefor when data is in place we can revisit this part of the test.
       "Nr. 1  i serienDummy Some SeriesNr. 1  i serienDummy Some Series"
     );
+  });
 
-    cy.log("Does the search result have titles?");
+  it("Does the search result have titles?", () => {
     cy.get(".search-result-page__list .search-result-item h2").should(
       "contain.text",
       "Dummy Some Title: Full"
     );
+  });
 
-    cy.log("Does the search result have authors?");
+  it("Does the search result have authors?", () => {
     cy.get(".search-result-page__list .search-result-item").should(
       "contain.text",
       "Af Dummy Jens Jensen (Dummy 1839)"
     );
+  });
 
-    cy.log(
-      "Does a search result have the expected number of availibility labels?"
-    );
+  it("Does a search result have the expected number of availibility labels?", () => {
     cy.get(
       ".search-result-page__list :nth-child(1) .search-result-item .search-result-item__availability"
     )
       .find("a")
       .should("have.length", 20);
+  });
 
-    cy.log("Do we have a pager?");
+  it("Do we have a pager?", () => {
     cy.get(".search-result-pager__title").should(
       "contain.text",
       "Viser 2 ud af 9486 resultater"
     );
+  });
 
-    cy.log("Do we have some pager info?");
+  it("Do we have some pager info?", () => {
     cy.get(".search-result-pager button").should("contain.text", "VIS FLERE");
   });
 
-  it("Shows more items if asked to", () => {
-    cy.visit(
-      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
-    );
-
-    cy.log("Show more results.");
+  it("Show more results.", () => {
     cy.get(".search-result-pager button").click();
+  });
 
-    cy.log(
-      "Check length of search result list since it should be twice as long."
-    );
+  it("Check length of search result list since it should be twice as long.", () => {
     cy.get(".search-result-page__list").find("li").should("have.length", 4);
+  });
 
-    cy.log("The pager info should also have been updated.");
+  it("The pager info should also have been updated.", () => {
     cy.get(".search-result-pager__title").should(
       "contain.text",
       "Viser 4 ud af 9486 resultater"
