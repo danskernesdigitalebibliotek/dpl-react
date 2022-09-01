@@ -209,11 +209,27 @@ export default {
       defaultValue: "Vælg alle med mulighed for fornyelse",
       control: { type: "text" }
     },
+    bottomRenewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
+    bottomDueDateRenewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
     renewLoanModalButtonText: {
       defaultValue: "Forny mulige",
       control: { type: "text" }
     },
     dueDateRenewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    bottomRenewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    bottomDueDateRenewLoanModalButtonText: {
       defaultValue: "Forny mulige",
       control: { type: "text" }
     }
@@ -228,23 +244,23 @@ const Template: ComponentStory<typeof LoanList> = (props) => (
 export const LoanListEntry = Template.bind({});
 LoanListEntry.args = {};
 
-export const LoanListDetailsModal = Template.bind({});
-LoanListDetailsModal.parameters = {
-  query: {
-    modal: "28847238"
-  }
-};
+// export const LoanListDetailsModal = Template.bind({});
+// LoanListDetailsModal.parameters = {
+//   query: {
+//     modal: "28847238"
+//   }
+// };
 
-export const LoanListDueDateModal = Template.bind({});
-LoanListDueDateModal.parameters = {
-  query: {
-    modal: "2022-07-14"
-  }
-};
+// export const LoanListDueDateModal = Template.bind({});
+// LoanListDueDateModal.parameters = {
+//   query: {
+//     modal: "2022-07-14"
+//   }
+// };
 
-export const LoanListRenewLoansModal = Template.bind({});
-LoanListRenewLoansModal.parameters = {
-  query: {
-    modal: modalIdsConf.allLoansId
-  }
-};
+// export const LoanListRenewLoansModal = Template.bind({});
+// LoanListRenewLoansModal.parameters = {
+//   query: {
+//     modal: modalIdsConf.allLoansId
+//   }
+// };

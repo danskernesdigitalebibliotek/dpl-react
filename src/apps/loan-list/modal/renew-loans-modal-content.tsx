@@ -17,13 +17,17 @@ interface RenewLoansModalContentProps {
   loansModal: LoanV2[];
   buttonLabel: string;
   checkboxLabel: string;
+  buttonBottomLabel: string;
+  checkboxBottomLabel: string;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   renewable,
   loansModal,
   checkboxLabel,
-  buttonLabel
+  buttonLabel,
+  buttonBottomLabel,
+  checkboxBottomLabel
 }) => {
   const t = useText();
   const { mutate } = useRenewLoansV2();
@@ -143,13 +147,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             <CheckBox
               onChecked={selectAll}
               id="checkbox-select-all"
-              label={t("loanListSelectPossibleCheckboxText")}
+              label={checkboxBottomLabel}
             />
             <button
               type="button"
               className="btn-primary btn-filled btn-small arrow__hover--right-small"
             >
-              {t("loanListRenewPossibleText")} ({renewable})
+              {buttonBottomLabel}({renewable})
             </button>
           </div>
         )}

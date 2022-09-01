@@ -55,6 +55,10 @@ export interface LoanListEntryProps {
   dueDateRenewLoanModalButtonText: string;
   dueDateWarningLoanOverdueText: string;
   dueDateLinkToPageWithFeesText: string;
+  bottomRenewLoanModalCheckboxText: string;
+  bottomDueDateRenewLoanModalCheckboxText: string;
+  bottomRenewLoanModalButtonText: string;
+  bottomDueDateRenewLoanModalButtonText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
