@@ -15,6 +15,7 @@ interface SearchResultEntryTextProps {
   resultsText: string;
   numberDescriptionText: string;
   inSeriesText: string;
+  showingResultsForText: string;
 }
 
 interface SearchResultEntryUrlProps {
