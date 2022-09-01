@@ -45,6 +45,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [currentManifestation, setCurrentManifestation] =
     useState<ManifestationsSimpleFieldsFragment | null>(null);
 
+  // periodikumSelect must be used later to change the UI and reservation when you have chosen a specific periodical
+  // eslint-disable-next-line
+  const [periodikumSelect, setPriodikumSelect] = useState<string | null>(null);
+
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
@@ -172,6 +176,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           currentManifestation as ManifestationsSimpleFieldsFragment
         }
         selectManifestationHandler={setCurrentManifestation}
+        selectPeriodikumSelect={setPriodikumSelect}
       />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure

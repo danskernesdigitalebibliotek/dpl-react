@@ -1,48 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { useText } from "../../core/utils/text";
 
-// create interface for MaterialPeriodikumSelectProps widt a list of strings
+export type GroupListItem = {
+  displayText: string;
+  itemNumber: string;
+  volume: string;
+  volumeNumber: string;
+  volumeYear: string;
+};
+
 interface MaterialPeriodikumSelectProps {
-  years?: string[];
-  weeks?: string[];
+  groupList: { [key: string]: GroupListItem[] };
+  selectPeriodikumSelect: (periodikumSelect: string | null) => void;
 }
 
 const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
-  years,
-  weeks
+  groupList,
+  selectPeriodikumSelect
 }) => {
+  const last = String(Object.keys(groupList).sort().pop());
   const t = useText();
+  const [year, setYear] = useState<string>(last);
 
   return (
     <div className="text-small-caption material-periodikum ">
-      {years && (
-        <div className="material-periodikum-select">
-          {/* This is because the design requires label and select input to be separated */}
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="year">{t("periodikumSelectYearText")}</label>
-          <div className="material-periodikum-select__border-container">
-            <select id="year">
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
+      <div className="material-periodikum-select">
+        {/* This is because the design requires label and select input to be separated */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="year">{t("periodikumSelectYearText")}</label>
+        <div className="material-periodikum-select__border-container">
+          <select
+            id="year"
+            defaultValue={year}
+            onChange={(e) => setYear(e.target.value)}
+          >
+            {Object.keys(groupList)
+              .sort()
+              .map((item) => (
+                <option key={item} value={item}>
+                  {item}
                 </option>
               ))}
-            </select>
-          </div>
+          </select>
         </div>
-      )}
-      {weeks && (
+      </div>
+
+      {year && (
         <div className="material-periodikum-select">
           {/* This is because the design requires label and select input to be separated */}
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-          <label htmlFor="weeks">{t("periodikumSelectWeekText")}</label>
+          <label htmlFor="editions">{t("periodikumSelectEditionText")}</label>
           <div className="material-periodikum-select__border-container">
-            <select id="weeks">
-              {weeks.map((week) => (
-                <option key={week} value={week}>
-                  {week}
-                </option>
-              ))}
+            <select
+              id="editions"
+              onChange={(e) => selectPeriodikumSelect(e.target.value)}
+            >
+              {groupList[year]?.map((item) => {
+                return (
+                  <option key={item.itemNumber} value={item.itemNumber}>
+                    {item.volumeNumber}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>
