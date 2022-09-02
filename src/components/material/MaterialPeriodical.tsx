@@ -3,16 +3,16 @@ import { FC } from "react";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { FaustId } from "../../core/utils/types/ids";
-import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
+import MaterialPeriodicalSelect from "./MaterialPeriodicalSelect";
 
-export interface MaterialPeriodikumProps {
+export interface MaterialPeriodicalProps {
   faustId: FaustId;
-  selectPeriodikumSelect: (periodikumSelect: string | null) => void;
+  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
 }
 
-const MaterialPeriodikum: FC<MaterialPeriodikumProps> = ({
+const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   faustId,
-  selectPeriodikumSelect
+  selectPeriodicalSelect
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [String(faustId)]
@@ -20,8 +20,8 @@ const MaterialPeriodikum: FC<MaterialPeriodikumProps> = ({
 
   if (isLoading || isError || !data) return null;
 
-  // This make a array of all periodikum editions
-  const materialsPeriodical = data[0]?.holdings
+  // This make a array of all periodical editions
+  const materialsPeriodical = data[0].holdings
     // Get all holdings
     .map((holding) => {
       // Make all editions from holdings into one array
@@ -33,13 +33,13 @@ const MaterialPeriodikum: FC<MaterialPeriodikumProps> = ({
     .flat();
 
   return (
-    <MaterialPeriodikumSelect
+    <MaterialPeriodicalSelect
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       groupList={groupObjectArrayByProperty(materialsPeriodical, "volumeYear")}
-      selectPeriodikumSelect={selectPeriodikumSelect}
+      selectPeriodicalSelect={selectPeriodicalSelect}
     />
   );
 };
 
-export default MaterialPeriodikum;
+export default MaterialPeriodical;

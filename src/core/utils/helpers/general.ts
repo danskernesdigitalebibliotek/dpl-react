@@ -151,7 +151,7 @@ export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
 };
 
 // TODO FIX TS ERRORS
-// MaterialPeriodikum.tsx#L37
+// MaterialPeriodical.tsx#L37
 export const groupObjectArrayByProperty = <
   P extends string,
   T extends Record<P, string> & Record<string, unknown>

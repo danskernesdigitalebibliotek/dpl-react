@@ -100,7 +100,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           currentManifestation as ManifestationsSimpleFieldsFragment
         }
         selectManifestationHandler={setCurrentManifestation}
-        selectPeriodikumSelect={setPriodikumSelect}
+        selectPeriodicalSelect={setPriodikumSelect}
       />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
