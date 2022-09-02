@@ -24,7 +24,6 @@ import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./MaterialPeriodical";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -48,9 +47,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectManifestationHandler,
   selectPeriodicalSelect
 }) => {
-  // THIS MUST BE DELETED (START
-  const isDemoPeriodical = getUrlQueryParam("periodical");
-  // THIS MUST BE DELETED (END)
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
@@ -103,17 +99,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {
-          // isDemoPeriodical logic MUST BE DELETED
-          // TODO check and show if manifestation needs PeriodicalSelect.
-          // manifestation?.source.includes("Dummy some source") &&
-          isDemoPeriodical && faustId && (
-            <MaterialPeriodical
-              faustId={isDemoPeriodical ? "49333536" : faustId}
-              selectPeriodicalSelect={selectPeriodicalSelect}
-            />
-          )
-        }
+        {manifestation?.source.includes("bibliotekskatalog") && faustId && (
+          <MaterialPeriodical
+            faustId={faustId}
+            selectPeriodicalSelect={selectPeriodicalSelect}
+          />
+        )}
+
         <div className="material-header__button">
           {manifestation && <MaterialButtons manifestation={manifestation} />}
           <ButtonLargeOutline
