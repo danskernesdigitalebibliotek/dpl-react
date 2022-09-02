@@ -23,7 +23,7 @@ import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
-import MaterialPeriodikum from "./MaterialPeriodikum";
+import MaterialPeriodical from "./MaterialPeriodical";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 interface MaterialHeaderProps {
@@ -33,7 +33,7 @@ interface MaterialHeaderProps {
   selectManifestationHandler: (
     manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
-  selectPeriodikumSelect: (periodikumSelect: string | null) => void;
+  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -46,10 +46,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   },
   manifestation,
   selectManifestationHandler,
-  selectPeriodikumSelect
+  selectPeriodicalSelect
 }) => {
   // THIS MUST BE DELETED (START
-  const isDemoPeriodikum = getUrlQueryParam("periodikum");
+  const isDemoPeriodical = getUrlQueryParam("periodical");
   // THIS MUST BE DELETED (END)
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -104,13 +104,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         </div>
 
         {
-          // isDemoPeriodikum logic MUST BE DELETED
-          // TODO check and show if manifestation needs PeriodikumSelect.
+          // isDemoPeriodical logic MUST BE DELETED
+          // TODO check and show if manifestation needs PeriodicalSelect.
           // manifestation?.source.includes("Dummy some source") &&
-          isDemoPeriodikum && faustId && (
-            <MaterialPeriodikum
-              faustId={isDemoPeriodikum ? "49333536" : faustId}
-              selectPeriodikumSelect={selectPeriodikumSelect}
+          isDemoPeriodical && faustId && (
+            <MaterialPeriodical
+              faustId={isDemoPeriodical ? "49333536" : faustId}
+              selectPeriodicalSelect={selectPeriodicalSelect}
             />
           )
         }

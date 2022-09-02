@@ -9,14 +9,14 @@ export type GroupListItem = {
   volumeYear: string;
 };
 
-interface MaterialPeriodikumSelectProps {
-  groupList: { [key: string]: GroupListItem[] };
-  selectPeriodikumSelect: (periodikumSelect: string | null) => void;
+interface MaterialPeriodicalSelectProps {
+  groupList: GroupList;
+  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
 }
 
-const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
+const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   groupList,
-  selectPeriodikumSelect
+  selectPeriodicalSelect
 }) => {
   const last = String(Object.keys(groupList).sort().pop());
   const t = useText();
@@ -25,9 +25,7 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
   return (
     <div className="text-small-caption material-periodikum ">
       <div className="material-periodikum-select">
-        {/* This is because the design requires label and select input to be separated */}
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="year">{t("periodikumSelectYearText")}</label>
+        <label htmlFor="year">{t("periodicalSelectYearText")}</label>
         <div className="material-periodikum-select__border-container">
           <select
             id="year"
@@ -47,13 +45,11 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
 
       {year && (
         <div className="material-periodikum-select">
-          {/* This is because the design requires label and select input to be separated */}
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="editions">{t("periodikumSelectEditionText")}</label>
           <div className="material-periodikum-select__border-container">
             <select
               id="editions"
-              onChange={(e) => selectPeriodikumSelect(e.target.value)}
+              onChange={(e) => selectPeriodicalSelect(e.target.value)}
             >
               {groupList[year]?.map((item) => {
                 return (
@@ -70,4 +66,4 @@ const MaterialPeriodikumSelect: React.FC<MaterialPeriodikumSelectProps> = ({
   );
 };
 
-export default MaterialPeriodikumSelect;
+export default MaterialPeriodicalSelect;

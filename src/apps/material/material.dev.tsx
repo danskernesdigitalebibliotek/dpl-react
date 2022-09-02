@@ -26,12 +26,12 @@ export default {
       defaultValue: "Af ",
       control: { type: "text" }
     },
-    periodikumSelectYearText: {
+    periodicalSelectYearText: {
       name: "Year",
       defaultValue: "År",
       control: { type: "text" }
     },
-    periodikumSelectEditionText: {
+    periodicalSelectEditionText: {
       name: "Week",
       defaultValue: "Udgave",
       control: { type: "text" }
