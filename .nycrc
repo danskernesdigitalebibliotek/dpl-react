@@ -6,6 +6,6 @@
     "src/core/dbc-gateway/**/*.*",
     "src/core/fbs/**/*.*",
     "src/core/material-list-api/**/*.*",
-    "src/core/publizoni/**/*.*"
+    "src/core/publizon/**/*.*"
   ]
 }

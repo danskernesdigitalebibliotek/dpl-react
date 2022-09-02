@@ -19,7 +19,7 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestation }) => {
         if (item.code === "ONLINE" && manifestation.identifiers)
           return (
             <MaterialAvailabilityTextOnline
-              isbn={manifestation.identifiers?.[0].value}
+              isbn={manifestation.identifiers[0].value}
             />
           );
         return null;
