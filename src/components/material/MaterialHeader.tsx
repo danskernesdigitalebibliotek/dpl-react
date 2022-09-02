@@ -7,6 +7,7 @@ import {
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
+  convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
   flattenCreators,
@@ -21,8 +22,9 @@ import ButtonFavourite, {
 import ButtonLargeOutline from "../Buttons/ButtonLargeOutline";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
-import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import MaterialPeriodikum from "./MaterialPeriodikum";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -31,6 +33,7 @@ interface MaterialHeaderProps {
   selectManifestationHandler: (
     manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
+  selectPeriodikumSelect: (periodikumSelect: string | null) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -42,8 +45,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     workId: wid
   },
   manifestation,
-  selectManifestationHandler
+  selectManifestationHandler,
+  selectPeriodikumSelect
 }) => {
+  // THIS MUST BE DELETED (START
+  const isDemoPeriodikum = getUrlQueryParam("periodikum");
+  // THIS MUST BE DELETED (END)
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
@@ -74,6 +81,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const coverPid =
     (manifestation?.pid as Pid) || getManifestationPid(manifestations);
 
+  const faustId = convertPostIdToFaustId(manifestation?.pid as Pid);
+
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -94,8 +103,17 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {/* Check and show if data has PeriodikumSelect. */}
-        {false && <MaterialPeriodikumSelect />}
+        {
+          // isDemoPeriodikum logic MUST BE DELETED
+          // TODO check and show if manifestation needs PeriodikumSelect.
+          // manifestation?.source.includes("Dummy some source") &&
+          isDemoPeriodikum && faustId && (
+            <MaterialPeriodikum
+              faustId={isDemoPeriodikum ? "49333536" : faustId}
+              selectPeriodikumSelect={selectPeriodikumSelect}
+            />
+          )
+        }
         <div className="material-header__button">
           {manifestation && <MaterialButtons manifestation={manifestation} />}
           <ButtonLargeOutline
