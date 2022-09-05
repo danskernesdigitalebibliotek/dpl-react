@@ -2,7 +2,7 @@ import React from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
-import { Pid } from "../../../../core/utils/types/ids";
+import { FaustId, Pid } from "../../../../core/utils/types/ids";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
@@ -16,9 +16,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   manifestation
 }) => {
   const { pid } = manifestation;
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid as Pid) ?? "";
   const { data, isLoading } = useGetAvailabilityV3({
-    recordid: [faustId as string]
+    recordid: [faustId]
   });
 
   // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
@@ -38,7 +38,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   }
 
   const manifestationAvailability = data[0];
-  if (!manifestationAvailability.reservable) {
+  if (!manifestationAvailability.reservable || !faustId) {
     return <MaterialButtonCantReserve />;
   }
 
@@ -46,7 +46,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   return (
     <MaterialButtonReservePhysical
       manifestationMaterialType={manifestationMaterialType}
-      faustId={faustId as string}
+      faustId={faustId}
     />
   );
 };

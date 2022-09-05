@@ -1,11 +1,14 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../../../core/modal.slice";
 import { useText } from "../../../../core/utils/text";
+import { FaustId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
+import { reservationModalId } from "../../../reservation/reservation-modal";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
-  faustId: string;
+  faustId: FaustId;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
@@ -13,10 +16,10 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   faustId
 }) => {
   const t = useText();
+  const dispatch = useDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (manifestationId: string) => {
-    // TODO: open the modal and reserve
+  const onClick = () => {
+    dispatch(openModal({ modalId: reservationModalId(faustId) }));
   };
 
   return (
@@ -27,9 +30,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
       disabled={false}
       collapsible={false}
       size="large"
-      onClick={() => {
-        onClick(faustId);
-      }}
+      onClick={onClick}
     />
   );
 };

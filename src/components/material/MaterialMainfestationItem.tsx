@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { useDispatch } from "react-redux";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
@@ -16,6 +17,8 @@ import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
+import { reservationModalId } from "../reservation/reservation-modal";
+import { openModal } from "../../core/modal.slice";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;
@@ -38,8 +41,15 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   }
 }) => {
   const t = useText();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid as Pid);
+
+  const onClick = () => {
+    if (faustId) {
+      dispatch(openModal({ modalId: reservationModalId(faustId) }));
+    }
+  };
 
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
@@ -153,7 +163,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <ButtonSmallFilled label={t("reserveText")} disabled={false} />
+        <ButtonSmallFilled
+          label={t("reserveText")}
+          disabled={false}
+          onClick={onClick}
+        />
         {/* TODO The button has no functionality so far. This will come later */}
         <MaterialButtonsFindOnShelf faustIds={[faustId as FaustId]} />
       </div>
