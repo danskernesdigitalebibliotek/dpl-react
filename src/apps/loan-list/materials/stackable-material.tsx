@@ -99,7 +99,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             <div className="status-label status-label--outline">{specific}</div>
           </div>
           <div className="list-reservation__about">
-            <h3 className="text-header-h4">{mainText} {dueDate}</h3>
+            <h3 className="text-header-h4">{mainText}</h3>
             <p className="text-small-caption color-secondary-gray">
               {creators &&
                 getAuthorNames(
