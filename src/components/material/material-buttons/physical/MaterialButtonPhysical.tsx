@@ -17,8 +17,10 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const t = useText();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (manifestationId: string) => {
-    // TODO: open the modal and reserve
+  const onClick = () => {
+    // TODO: open the modal and reserve + remove console.log()
+    // eslint-disable-next-line no-console
+    console.log(faustId);
   };
 
   if (isOnEditionCard) {
@@ -30,9 +32,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
         disabled={false}
         collapsible={false}
         size="small"
-        onClick={() => {
-          onClick(faustId);
-        }}
+        onClick={onClick}
       />
     );
   }
@@ -44,9 +44,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
       disabled={false}
       collapsible={false}
       size="large"
-      onClick={() => {
-        onClick(faustId);
-      }}
+      onClick={onClick}
     />
   );
 };
