@@ -5,12 +5,12 @@ import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   digitalArticleIssn: string;
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
-> = ({ digitalArticleIssn, isOnEditionCard }) => {
+> = ({ digitalArticleIssn, size }) => {
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
   const t = useText();
@@ -24,22 +24,6 @@ const MaterialButtonOnlineDigitalArticle: FC<
     // TODO: open modal and start registering flow for digital articles
   };
 
-  if (isOnEditionCard) {
-    return (
-      <Button
-        label={t("orderDigitalCopy")}
-        buttonType="none"
-        variant="filled"
-        disabled={false}
-        collapsible={false}
-        size="small"
-        onClick={() => {
-          onClick(digitalArticleIssn);
-        }}
-      />
-    );
-  }
-
   return (
     <Button
       label={t("orderDigitalCopy")}
@@ -47,7 +31,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
       variant="filled"
       disabled={false}
       collapsible={false}
-      size="large"
+      size={size || "large"}
       onClick={() => {
         onClick(digitalArticleIssn);
       }}

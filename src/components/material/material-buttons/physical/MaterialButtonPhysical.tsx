@@ -6,13 +6,13 @@ import { Button } from "../../../Buttons/Button";
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   faustId: string;
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustId,
-  isOnEditionCard
+  size
 }) => {
   const t = useText();
 
@@ -23,27 +23,18 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
     console.log(faustId);
   };
 
-  if (isOnEditionCard) {
-    return (
-      <Button
-        label={t("reserveText")}
-        buttonType="none"
-        variant="filled"
-        disabled={false}
-        collapsible={false}
-        size="small"
-        onClick={onClick}
-      />
-    );
-  }
   return (
     <Button
-      label={`${t("reserveText")} ${manifestationMaterialType}`}
+      label={
+        size === "small"
+          ? t("reserveText")
+          : `${t("reserveText")} ${manifestationMaterialType}`
+      }
       buttonType="none"
       variant="filled"
       disabled={false}
       collapsible={false}
-      size="large"
+      size={size || "large"}
       onClick={onClick}
     />
   );

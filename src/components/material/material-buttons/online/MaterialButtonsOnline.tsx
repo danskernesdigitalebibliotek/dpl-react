@@ -7,12 +7,12 @@ import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomedi
 
 export interface MaterialButtonsOnlineProps {
   manifestation: ManifestationsSimpleFieldsFragment;
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   manifestation,
-  isOnEditionCard
+  size
 }) => {
   const accessType = manifestation.access[0].__typename;
 
@@ -22,7 +22,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       <MaterialButtonOnlineExternal
         externalUrl={externalUrl}
         origin={origin}
-        isOnEditionCard={isOnEditionCard}
+        size={size}
       />
     );
   }
@@ -32,7 +32,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     return (
       <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
-        isOnEditionCard={isOnEditionCard}
+        size={size}
       />
     );
   }
@@ -42,7 +42,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     return (
       <MaterialButtonOnlineInfomediaArticle
         infomediaArticleId={infomediaArticleId}
-        isOnEditionCard={isOnEditionCard}
+        size={size}
       />
     );
   }

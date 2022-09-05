@@ -4,26 +4,13 @@ import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonUserBlockedProps {
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
-  isOnEditionCard
+  size
 }) => {
   const t = useText();
-
-  if (isOnEditionCard) {
-    return (
-      <Button
-        label={t("reserveText")}
-        buttonType="none"
-        variant="filled"
-        disabled
-        collapsible={false}
-        size="small"
-      />
-    );
-  }
 
   return (
     <Button
@@ -32,7 +19,7 @@ const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
       variant="filled"
       disabled
       collapsible={false}
-      size="large"
+      size={size || "large"}
     />
   );
 };

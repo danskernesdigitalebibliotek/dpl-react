@@ -153,7 +153,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <MaterialButtons manifestation={manifestation} isOnEditionCard />
+        <MaterialButtons manifestation={manifestation} size="small" />
       </div>
     </div>
   );

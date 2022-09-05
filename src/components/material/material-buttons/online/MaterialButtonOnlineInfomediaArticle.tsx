@@ -5,12 +5,12 @@ import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   infomediaArticleId: string;
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
-> = ({ infomediaArticleId, isOnEditionCard }) => {
+> = ({ infomediaArticleId, size }) => {
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
   const t = useText();
@@ -20,25 +20,11 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (articleId: string) => {
+  const onClick = () => {
     // TODO: view the article in full text
+    // eslint-disable-next-line
+    console.log(infomediaArticleId);
   };
-
-  if (isOnEditionCard) {
-    return (
-      <Button
-        label={t("readArticleText")}
-        buttonType="none"
-        variant="filled"
-        disabled={false}
-        collapsible={false}
-        size="small"
-        onClick={() => {
-          onClick(infomediaArticleId);
-        }}
-      />
-    );
-  }
 
   return (
     <Button
@@ -47,10 +33,8 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       variant="filled"
       disabled={false}
       collapsible={false}
-      size="large"
-      onClick={() => {
-        onClick(infomediaArticleId);
-      }}
+      size={size || "large"}
+      onClick={onClick}
     />
   );
 };

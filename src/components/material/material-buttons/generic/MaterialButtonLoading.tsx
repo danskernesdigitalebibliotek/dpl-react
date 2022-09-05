@@ -4,26 +4,11 @@ import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonLoadingProps {
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
-const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({
-  isOnEditionCard
-}) => {
+const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({ size }) => {
   const t = useText();
-
-  if (isOnEditionCard) {
-    return (
-      <Button
-        label={t("loadingText")}
-        buttonType="none"
-        variant="filled"
-        disabled
-        collapsible={false}
-        size="small"
-      />
-    );
-  }
 
   return (
     <Button
@@ -32,7 +17,7 @@ const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({
       variant="filled"
       disabled
       collapsible={false}
-      size="large"
+      size={size || "large"}
     />
   );
 };

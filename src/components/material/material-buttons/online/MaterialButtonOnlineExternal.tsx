@@ -7,32 +7,16 @@ import { Button } from "../../../Buttons/Button";
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   externalUrl = "https://google.com",
   origin,
-  isOnEditionCard
+  size
 }) => {
   const t = useText();
   const externalLinkObject = new URL(externalUrl);
-
-  if (isOnEditionCard) {
-    return (
-      <LinkNoStyle url={externalLinkObject}>
-        <Button
-          label={`${t("goToText")} ${origin}`}
-          buttonType="external-link"
-          variant="filled"
-          disabled={false}
-          collapsible={false}
-          size="small"
-          classNames="invert"
-        />
-      </LinkNoStyle>
-    );
-  }
 
   return (
     <LinkNoStyle url={externalLinkObject}>
@@ -42,7 +26,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         variant="filled"
         disabled={false}
         collapsible={false}
-        size="large"
+        size={size || "large"}
         classNames="invert"
       />
     </LinkNoStyle>

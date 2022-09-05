@@ -5,12 +5,12 @@ import { useText } from "../../../../core/utils/text";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonsFindOnShelfProps {
-  isOnEditionCard?: boolean;
+  size?: "large" | "medium" | "small" | "xsmall";
   faustIds: string[];
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
-  isOnEditionCard,
+  size,
   faustIds
 }) => {
   const t = useText();
@@ -33,7 +33,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     return null;
   }
 
-  if (!isOnEditionCard) {
+  if (size !== "small") {
     if (!data[0].available) {
       return (
         <Button
@@ -42,7 +42,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
           variant="outline"
           disabled
           collapsible={false}
-          size="large"
+          size={size || "large"}
         />
       );
     }
@@ -53,8 +53,8 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         variant="outline"
         disabled={false}
         collapsible={false}
-        size="large"
-        onClick={() => onClick()}
+        size={size || "large"}
+        onClick={onClick}
       />
     );
   }
@@ -70,7 +70,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   return (
     <span
       className="link-tag text-small-caption material-manifestation-item__find capitalize-all"
-      onClick={() => onClick()}
+      onClick={onClick}
       onKeyUp={(e) => onKeyUp(e.key)}
       role="button"
       tabIndex={0}
