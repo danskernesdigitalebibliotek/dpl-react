@@ -19,9 +19,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size
 }) => {
   const { pid } = manifestation;
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid as Pid) ?? "";
   const { data, isLoading } = useGetAvailabilityV3({
-    recordid: [faustId as string]
+    recordid: [faustId]
   });
 
   // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
