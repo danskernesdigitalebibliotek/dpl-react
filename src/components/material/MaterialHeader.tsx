@@ -77,7 +77,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const coverPid =
     (manifestation?.pid as Pid) || getManifestationPid(manifestations);
 
-  const faustId = convertPostIdToFaustId(manifestation?.pid as Pid);
+  const faustId = manifestation
+    ? convertPostIdToFaustId(manifestation?.pid as Pid)
+    : "";
 
   return (
     <header className="material-header">
