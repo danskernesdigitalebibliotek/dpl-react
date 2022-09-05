@@ -1,0 +1,13 @@
+# PR comments and annotations duplicate information that is also available in
+# the Codecov UI
+comment: false
+github_checks:
+  annotations: false
+
+coverage:
+  status:
+    project:
+      default:
+        # Use informational status checks as we do not have a hard policy
+        # regarding code coverage at the moment.
+        informational: true
