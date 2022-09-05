@@ -59,7 +59,7 @@ export const Button: React.FC<ButtonProps> = ({
       id={id}
     >
       {/* TODO find out what should be instead (6) */}
-      {`${label} ${buttonType === "search" ? "(6)" : ""}`}
+      {`${label}${buttonType === "search" ? " (6)" : ""}`}
       <Icon />
     </button>
   );
