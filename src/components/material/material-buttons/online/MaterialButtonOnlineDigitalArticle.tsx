@@ -20,8 +20,10 @@ const MaterialButtonOnlineDigitalArticle: FC<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (articleIssn: string) => {
+  const onClick = () => {
     // TODO: open modal and start registering flow for digital articles
+    // eslint-disable-next-line
+    console.log(digitalArticleIssn);
   };
 
   return (
@@ -32,9 +34,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
       disabled={false}
       collapsible={false}
       size={size || "large"}
-      onClick={() => {
-        onClick(digitalArticleIssn);
-      }}
+      onClick={onClick}
     />
   );
 };
