@@ -24,10 +24,10 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   const [year, setYear] = useState<string>(last);
 
   return (
-    <div className="text-small-caption material-periodikum ">
-      <div className="material-periodikum-select">
+    <div className="text-small-caption material-periodical ">
+      <div className="material-periodical-select">
         <label htmlFor="year">{t("periodicalSelectYearText")}</label>
-        <div className="material-periodikum-select__border-container">
+        <div className="material-periodical-select__border-container">
           <select
             id="year"
             defaultValue={year}
@@ -45,9 +45,9 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
       </div>
 
       {year && (
-        <div className="material-periodikum-select">
-          <label htmlFor="editions">{t("periodikumSelectEditionText")}</label>
-          <div className="material-periodikum-select__border-container">
+        <div className="material-periodical-select">
+          <label htmlFor="editions">{t("periodicalSelectEditionText")}</label>
+          <div className="material-periodical-select__border-container">
             <select
               id="editions"
               onChange={(e) => selectPeriodicalSelect(e.target.value)}
