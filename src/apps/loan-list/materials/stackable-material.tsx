@@ -111,17 +111,25 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             </p>
           </div>
           {additionalMaterials > 0 && (
-            <button
-              type="button"
-              onClick={(e) => {
-                openDueDateModal(e);
-              }}
-              aria-describedby={t("loanListMaterialsModalDesktopText")}
-              id="test-more-materials"
-              className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-            >
-              + {additionalMaterials} {t("LoanListMaterialsDesktopText")}
-            </button>
+            <>
+              <div
+                className="list-reservation__hidden-explanation"
+                id="materials-modal-desktop-text"
+              >
+                {t("loanListMaterialsModalDesktopText")}
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  openDueDateModal(e);
+                }}
+                aria-describedby="materials-modal-desktop-text"
+                id="test-more-materials"
+                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
+              >
+                + {additionalMaterials} {t("LoanListMaterialsDesktopText")}
+              </button>
+            </>
           )}
           {materialIsOverdue(dueDate) && (
             <a
@@ -147,13 +155,21 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                 {t("loanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
               {additionalMaterials > 0 && (
-                <button
-                  type="button"
-                  aria-describedby={t("loanListMaterialsModalMobileText")}
-                  className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                >
-                  + {additionalMaterials} {t("LoanListMaterialsMobileText")}
-                </button>
+                <>
+                  <div
+                    className="list-reservation__hidden-explanation"
+                    id="materials-modal-text"
+                  >
+                    {t("loanListMaterialsModalMobileText")}
+                  </div>
+                  <button
+                    type="button"
+                    aria-describedby="materials-modal-text"
+                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                  >
+                    + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                  </button>
+                </>
               )}
               {materialIsOverdue(dueDate) && (
                 <a
