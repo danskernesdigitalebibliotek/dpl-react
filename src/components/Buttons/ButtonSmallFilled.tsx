@@ -5,9 +5,14 @@ import { Button } from "./Button";
 export interface ButtonSmallFilledProps {
   label: string;
   disabled: boolean;
+  onClick: () => void;
 }
 
-const ButtonSmallFilled: FC<ButtonSmallFilledProps> = ({ label, disabled }) => {
+const ButtonSmallFilled: FC<ButtonSmallFilledProps> = ({
+  label,
+  disabled,
+  onClick
+}) => {
   return (
     <Button
       label={label}
@@ -16,6 +21,7 @@ const ButtonSmallFilled: FC<ButtonSmallFilledProps> = ({ label, disabled }) => {
       disabled={disabled}
       collapsible={false}
       size="small"
+      onClick={onClick}
     />
   );
 };

@@ -60,7 +60,7 @@ function Modal({
       </div>
       <button
         type="button"
-        /* A focusable element in a modal must have focus when opened, 
+        /* A focusable element in a modal must have focus when opened,
         or else the screen reader will remain on the main page */
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
