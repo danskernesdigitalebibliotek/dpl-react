@@ -130,7 +130,7 @@ export const guardedRequest = createAsyncThunk(
 
 export const reRunRequest = createAsyncThunk(
   "guardedRequests/reRunRequest",
-  async (requestItem: RequestItem, { fulfillWithValue, dispatch }) => {
+  async (requestItem: RequestItem, { fulfillWithValue }) => {
     const { type, args } = requestItem;
 
     // Run request callback.
