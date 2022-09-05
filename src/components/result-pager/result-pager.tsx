@@ -15,6 +15,7 @@ function ResultPager({
   return (
     <div className="result-pager">
       <p className="text-small-caption result-pager__title">
+        {/* TODO: interpolate these strings */}
         {t("showingText")} {searchItemsShown} {t("outOfText")} {hitcount}{" "}
         {t("resultsText")}
       </p>
