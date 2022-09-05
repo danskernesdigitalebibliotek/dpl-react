@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+import GuardedApp from "../../components/guarded-app";
 import { getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
@@ -14,11 +15,13 @@ interface SearchResultEntryTextProps {
   resultsText: string;
   numberDescriptionText: string;
   inSeriesText: string;
+  showingResultsForText: string;
 }
 
 interface SearchResultEntryUrlProps {
   searchUrl: string;
   materialUrl: string;
+  authUrl: string;
 }
 
 export interface SearchResultEntryProps
@@ -47,7 +50,11 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
 
   return (
     <div>
-      {searchQuery && <SearchResult q={searchQuery} pageSize={pageSize} />}
+      {searchQuery && (
+        <GuardedApp app="search-result">
+          <SearchResult q={searchQuery} pageSize={pageSize} />
+        </GuardedApp>
+      )}
     </div>
   );
 };

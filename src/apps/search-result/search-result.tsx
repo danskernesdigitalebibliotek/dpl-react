@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import SearchResultList from "../../components/search-result-list/search-result.list";
 import SearchResultPager from "../../components/search-result-pager/search-result-pager";
 import {
@@ -68,7 +69,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const moreWorksToBeLoaded = worksAreLoaded && hasSearchItemsLeft;
 
   return (
-    <>
+    <div className="search-result-page">
+      <SearchResultHeader hitcount={String(hitcount)} q={q} />
       {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
       {moreWorksToBeLoaded && (
         <SearchResultPager
@@ -77,7 +79,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           setPageHandler={setPageHandler}
         />
       )}
-    </>
+    </div>
   );
 };
 

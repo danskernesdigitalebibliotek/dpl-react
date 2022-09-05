@@ -12,9 +12,13 @@ import { useUrls } from "../../core/utils/url";
 import {
   constructMaterialUrl,
   constructSearchUrl,
+  constructSearchUrlWithFilter,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
+import { useText } from "../../core/utils/text";
+import Category from "../../core/utils/types/material-type";
+import { findNonWorkSuggestion } from "./helpers";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -22,6 +26,7 @@ const SearchHeader: React.FC = () => {
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
+  const minimalQueryLength = 3;
   // we need to convert between string and suggestion result object so
   // that the value in the search field on enter click doesn't become [object][object]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,8 +40,33 @@ const SearchHeader: React.FC = () => {
     data: SuggestionsFromQueryStringQuery | undefined;
     isLoading: boolean;
     status: string;
-  } = useSuggestionsFromQueryStringQuery({ q });
+  } = useSuggestionsFromQueryStringQuery(
+    { q },
+    { enabled: q.length >= minimalQueryLength }
+  );
+
   const { searchUrl, materialUrl } = useUrls();
+  const t = useText();
+  const autosuggestCategoryList = [
+    { render: t("autosuggestBookCategoryText"), type: Category.book },
+    { render: t("autosuggestEbookCategoryText"), type: Category.ebook },
+    { render: t("autosuggestFilmCategoryText"), type: Category.movie },
+    {
+      render: t("autosuggestAudioBookCategoryText"),
+      type: Category.audioBook
+    },
+    { render: t("autosuggestMusicCategoryText"), type: Category.music },
+    { render: t("autosuggestGameCategoryText"), type: Category.game },
+    {
+      render: t("autosuggestAnimatedSeriesCategoryText"),
+      type: Category.animatedSeries
+    }
+  ];
+  // Once we register the item select event the original highlighted index is
+  // already set to -1 by Downshift.
+  const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
+    number | null
+  >(null);
 
   // Make sure to only assign the data once.
   useEffect(() => {
@@ -48,8 +78,15 @@ const SearchHeader: React.FC = () => {
   const originalData = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
+  const categoryData: Suggestion[] = [];
+  // The first suggestion that is not of SuggestionType.Title - used for showing/
+  // /hiding autosuggest categories suggestions.
+  let nonWorkSuggestion: Suggestion | undefined;
   let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+
   if (originalData) {
+    nonWorkSuggestion = findNonWorkSuggestion(originalData);
+
     originalData.forEach((item: Suggestion) => {
       if (
         item.type === SuggestionType.Composit ||
@@ -63,21 +100,23 @@ const SearchHeader: React.FC = () => {
       textData.push(item);
     });
     orderedData = textData.concat(materialData);
+
+    if (nonWorkSuggestion) {
+      autosuggestCategoryList.forEach(() => {
+        categoryData.push(nonWorkSuggestion as Suggestion);
+      });
+      orderedData = orderedData.concat(categoryData);
+    }
   }
 
   // Autosuggest opening and closing based on input text length.
   useEffect(() => {
-    if (q) {
-      const minimalLengthQuery = 3;
-      if (q.length >= minimalLengthQuery) {
-        setIsAutosuggestOpen(true);
-      } else {
-        setIsAutosuggestOpen(false);
-      }
+    if (data) {
+      setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [q]);
+  }, [data]);
 
   function determineSuggestionTerm(suggestion: Suggestion): string {
     if (suggestion.type === SuggestionType.Composit) {
@@ -111,12 +150,22 @@ const SearchHeader: React.FC = () => {
   ) {
     const { type } = changes;
     let { highlightedIndex } = changes;
-    // Don't do aything for mouse events.
+    // Don't do aything for mouse hover events.
     if (
       type === useCombobox.stateChangeTypes.ItemMouseMove ||
       type === useCombobox.stateChangeTypes.MenuMouseLeave
     ) {
       return;
+    }
+    // If this is a click/enter press we need to save the highlighted index
+    // before Downshift sets it to -1.
+    if (
+      type !== useCombobox.stateChangeTypes.ItemClick &&
+      type !== useCombobox.stateChangeTypes.InputKeyDownEnter
+    ) {
+      if (highlightedIndex !== undefined && highlightedIndex > -1) {
+        setHighlightedIndexAfterClick(highlightedIndex);
+      }
     }
     // Close autosuggest if there is no highlighted index.
     if (highlightedIndex && highlightedIndex < 0) {
@@ -173,6 +222,27 @@ const SearchHeader: React.FC = () => {
       );
       return;
     }
+    // If this item is shown as a category suggestion
+    if (
+      nonWorkSuggestion &&
+      changes.selectedItem &&
+      nonWorkSuggestion.term === changes.selectedItem.term &&
+      highlightedIndexAfterClick &&
+      highlightedIndexAfterClick >= textData.concat(materialData).length
+    ) {
+      const highlightedCategoryIndex =
+        highlightedIndexAfterClick - (textData.length + materialData.length);
+      const selectedItemString = determineSuggestionTerm(changes.selectedItem);
+      redirectTo(
+        constructSearchUrlWithFilter({
+          searchUrl,
+          selectedItemString,
+          filter: {
+            materialType: autosuggestCategoryList[highlightedCategoryIndex].type
+          }
+        })
+      );
+    }
     // Otherwise redirect to search result page.
     redirectTo(
       constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
@@ -197,6 +267,9 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
+  const isDataPresent =
+    originalData && originalData.length > 0 && status === "success";
+
   return (
     <form
       className="header__menu-second"
@@ -206,17 +279,20 @@ const SearchHeader: React.FC = () => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
         <SearchBar getInputProps={getInputProps} />
-        <Autosuggest
-          originalData={originalData}
-          textData={textData}
-          materialData={materialData}
-          isLoading={isLoading}
-          status={status}
-          getMenuProps={getMenuProps}
-          highlightedIndex={highlightedIndex}
-          getItemProps={getItemProps}
-          isOpen={isAutosuggestOpen}
-        />
+        {isDataPresent && isAutosuggestOpen && (
+          <Autosuggest
+            textData={textData}
+            materialData={materialData}
+            categoryData={categoryData}
+            status={status}
+            getMenuProps={getMenuProps}
+            highlightedIndex={highlightedIndex}
+            getItemProps={getItemProps}
+            isOpen={isAutosuggestOpen}
+            autosuggestCategoryList={autosuggestCategoryList}
+            isLoading={isLoading}
+          />
+        )}
       </div>
     </form>
   );

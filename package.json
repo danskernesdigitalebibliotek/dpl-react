@@ -37,6 +37,7 @@
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=opac graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
     "codegen:client:fbs": "orval --project fbsAdapter",
+    "codegen:client:publizon": "orval --project publizonAdapter",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
@@ -70,6 +71,7 @@
     "@types/node": "^17.0.31",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
+    "@types/react-redux": "^7.1.24",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "autoprefixer": "^10.4.7",
@@ -130,7 +132,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "1.6.1",
+    "@danskernesdigitalebibliotek/dpl-design-system": "1.7.0",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
@@ -146,6 +148,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-error-boundary": "^3.1.4",
+    "react-hook-inview": "^4.5.0",
     "react-query": "^3.39.0",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",

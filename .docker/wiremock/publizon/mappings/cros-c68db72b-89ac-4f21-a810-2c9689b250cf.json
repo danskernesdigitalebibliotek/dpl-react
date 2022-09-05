@@ -1,0 +1,20 @@
+{
+  "id" : "c68db72b-89ac-4f21-a810-2c9689b250cf",
+  "name" : "CROS",
+  "request" : {
+    "urlPathPattern" : "/.*",
+    "method" : "OPTIONS"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "",
+    "headers" : {
+      "Access-Control-Allow-Origin" : "*"
+    }
+  },
+  "uuid" : "c68db72b-89ac-4f21-a810-2c9689b250cf",
+  "persistent" : true,
+  "priority" : 10,
+  "insertionIndex" : 1,
+  "postServeActions" : [ ]
+}

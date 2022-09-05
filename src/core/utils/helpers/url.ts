@@ -9,7 +9,7 @@ export const appendQueryParametersToUrl = (
   // We need to clone url in order not to manipulate the incoming object.
   const processedUrl = new URL(url);
   Object.keys(parameters).forEach((key) => {
-    processedUrl.searchParams.append(key, parameters[key]);
+    processedUrl.searchParams.set(key, parameters[key]);
   });
 
   return processedUrl;
@@ -35,7 +35,7 @@ export const setQueryParametersInUrl = (parameters: {
 };
 
 export const redirectTo = (url: URL): void => {
-  window.location.replace(url);
+  window.location.assign(url);
 };
 
 export const constructUrlWithPlaceholder = (
@@ -91,6 +91,18 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
     q
   });
 
+export const constructSearchUrlWithFilter = (args: {
+  searchUrl: URL;
+  selectedItemString: string;
+  filter: { [type: string]: string };
+}) => {
+  const { searchUrl, selectedItemString, filter } = args;
+  return appendQueryParametersToUrl(searchUrl, {
+    q: selectedItemString,
+    ...filter
+  });
+};
+
 export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
   return Object.keys(urls).reduce(
     (acc: { [key: string]: URL }, key: string) => {
@@ -101,4 +113,13 @@ export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
     },
     {}
   );
+};
+
+export const replaceCurrentLocation = (replacementUrl: URL) => {
+  window.history.replaceState(null, "", replacementUrl);
+};
+
+export const removeQueryParametersFromUrl = (url: URL, parameter: string) => {
+  url.searchParams.delete(parameter);
+  return url;
 };

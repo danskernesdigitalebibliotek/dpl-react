@@ -1,42 +1,81 @@
-import React from "react";
+import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import { Pid } from "../../../core/utils/types/ids";
+import {
+  FetchMaterial,
+  StackableMaterialProps,
+  MaterialProps
+} from "./utils/material-fetch-hoc";
 
-interface StackableMaterialProps {
-  dueDate: string;
-  loanDate: string | undefined;
-  amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: () => void;
-  material: GetMaterialManifestationQuery;
-}
-
-const StackableMaterial: React.FC<StackableMaterialProps> = ({
-  dueDate,
-  loanDate,
+const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
+  loanDetails,
   amountOfMaterialsWithDueDate,
+  material,
   selectDueDate,
-  material
+  selectMaterial
 }) => {
   const t = useText();
+  const dispatch = useDispatch();
 
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
-    material?.manifestation || {};
+    material.manifestation || {};
   const { year } = hostPublication || {};
   const [{ specific }] = materialTypes || [];
   const {
     main: [mainText]
   } = titles || { main: [] };
+  const { loanDate, dueDate, recordId: faust } = loanDetails || {};
 
-  const dispatch = useDispatch();
+  function stopPropagationFunction(e: Event | MouseEvent) {
+    e.stopPropagation();
+  }
+  useEffect(() => {
+    document
+      .querySelector(".list-reservation a")
+      ?.addEventListener("click", stopPropagationFunction, true);
+
+    return () => {
+      document
+        .querySelector(".list-reservation a")
+        ?.removeEventListener("click", stopPropagationFunction, true);
+    };
+  }, []);
+
+  const openDueDateModal = useCallback(
+    (e: MouseEvent) => {
+      stopPropagationFunction(e);
+      if (selectDueDate) {
+        selectDueDate();
+        dispatch(openModal({ modalId: dueDate }));
+      }
+    },
+    [dispatch, dueDate, selectDueDate]
+  );
+
+  const selectListMaterial = useCallback(
+    (e: MouseEvent) => {
+      stopPropagationFunction(e);
+      if (selectMaterial) {
+        selectMaterial({
+          material,
+          loanDetails
+        });
+      }
+      dispatch(openModal({ modalId: faust }));
+    },
+    [dispatch, faust, loanDetails, material, selectMaterial]
+  );
+
   return (
-    <div
+    <button
+      type="button"
+      onClick={(e) => selectListMaterial(e)}
       className={`list-reservation my-32 ${
         amountOfMaterialsWithDueDate && amountOfMaterialsWithDueDate > 1
           ? "list-reservation--stacked"
@@ -46,10 +85,9 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
       <div className="list-reservation__material">
         <div>
           <Cover
+            pid={pid as Pid}
             size="small"
-            animate
-            tint="120"
-            pid={(pid as Pid) || ""}
+            animate={false}
             description={abstract && abstract[0]}
           />
         </div>
@@ -74,9 +112,8 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
             selectDueDate && (
               <button
                 type="button"
-                onClick={() => {
-                  selectDueDate();
-                  dispatch(openModal({ modalId: dueDate }));
+                onClick={(e) => {
+                  openDueDateModal(e);
                 }}
                 aria-describedby={t("loanListMaterialsModalDesktopText")}
                 id="test-more-materials"
@@ -87,7 +124,6 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
               </button>
             )}
           {materialIsOverdue(dueDate) && (
-            // todo 5387.2.2b.iv.3.b.i. Se Bilag 6 pkt. 2
             <a
               href="todo"
               className="list-reservation__note-desktop text-small-caption color-signal-alert"
@@ -107,7 +143,7 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                 dangerText={t("loanListStatusBadgeDangerText")}
                 warningText={t("loanListStatusBadgeWarningText")}
               />
-              <p className="text-small-caption">
+              <p className="text-small-caption" id="due-date">
                 {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
               {amountOfMaterialsWithDueDate &&
@@ -122,7 +158,6 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
                   </button>
                 )}
               {materialIsOverdue(dueDate) && (
-                // todo 5387.2.2b.iv.3.b.i. Se Bilag 6 pkt. 2
                 <a
                   href="todo"
                   className="list-reservation__note-mobile text-small-caption color-signal-alert"
@@ -134,8 +169,8 @@ const StackableMaterial: React.FC<StackableMaterialProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
-export default StackableMaterial;
+export default FetchMaterial(StackableMaterial);

@@ -74,5 +74,29 @@ export default defineConfig({
         indent: 2
       }
     }
+  },
+  publizonAdapter: {
+    output: {
+      mode: "split",
+      target: "src/core/publizon/publizon.ts",
+      schemas: "src/core/publizon/model",
+      client: "react-query",
+      override: {
+        mutator: {
+          path: "src/core/publizon/mutator/fetcher.ts",
+          name: "fetcher"
+        },
+        query: {
+          useQuery: true
+        }
+      },
+      prettier: true
+    },
+    input: {
+      target: "src/core/publizon/publizon-adapter.yaml",
+      converterOptions: {
+        indent: 2
+      }
+    }
   }
 });
