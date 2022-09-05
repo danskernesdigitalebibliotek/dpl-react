@@ -28,6 +28,7 @@ import {
   getManifestationType,
   getWorkManifestation
 } from "./helper";
+import ReserVationModal from "../../components/reservation/reservation-modal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -110,10 +111,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.all.map((manifestation) => {
           return (
-            <MaterialMainfestationItem
-              key={manifestation.pid}
-              manifestation={manifestation}
-            />
+            <>
+              <MaterialMainfestationItem
+                key={manifestation.pid}
+                manifestation={manifestation}
+              />
+              <ReserVationModal manifestation={manifestation} work={work} />
+            </>
           );
         })}
       </Disclosure>
@@ -137,6 +141,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             }
           />
         </Disclosure>
+      )}
+      {currentManifestation && (
+        <ReserVationModal manifestation={currentManifestation} work={work} />
       )}
     </main>
   );
