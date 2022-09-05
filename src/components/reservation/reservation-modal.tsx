@@ -2,21 +2,10 @@ import React, { useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
-  ManifestationsSimpleFieldsFragment,
-  WorkMediumFragment
-} from "../../core/dbc-gateway/generated/graphql";
-import {
-  getGetHoldingsV3QueryKey,
-  useAddReservationsV2,
-  useGetBranches,
-  useGetHoldingsV3,
-  useGetPatronInformationByPatronIdV2
-} from "../../core/fbs/fbs";
-import {
-  convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
-  flattenCreators
+  flattenCreators,
+  convertPostIdToFaustId
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -37,13 +26,20 @@ import {
   getPreferredLocation,
   totalMaterials
 } from "../../apps/material/helper";
+import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  getGetHoldingsV3QueryKey,
+  useAddReservationsV2,
+  useGetBranches,
+  useGetHoldingsV3,
+  useGetPatronInformationByPatronIdV2
+} from "../../core/fbs/fbs";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
   manifestation: ManifestationsSimpleFieldsFragment;
-  work: WorkMediumFragment;
 };
 
 const ReservationModal = ({ manifestation }: ReservationModalProps) => {
