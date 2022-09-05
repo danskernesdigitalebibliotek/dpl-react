@@ -32,7 +32,6 @@ const Pagination: FC<PaginationProps> = ({
 }) => {
   const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
   const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>();
-
   const [page, setPage] = useState<number>(0);
 
   const setPageHandler = () => {
