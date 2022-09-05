@@ -209,11 +209,27 @@ export default {
       defaultValue: "Vælg alle med mulighed for fornyelse",
       control: { type: "text" }
     },
+    bottomRenewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
+    bottomDueDateRenewLoanModalCheckboxText: {
+      defaultValue: "Vælg alle med mulighed for fornyelse",
+      control: { type: "text" }
+    },
     renewLoanModalButtonText: {
       defaultValue: "Forny mulige",
       control: { type: "text" }
     },
     dueDateRenewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    bottomRenewLoanModalButtonText: {
+      defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    bottomDueDateRenewLoanModalButtonText: {
       defaultValue: "Forny mulige",
       control: { type: "text" }
     }
