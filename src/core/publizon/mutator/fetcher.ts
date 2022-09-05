@@ -1,6 +1,6 @@
-import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
+import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
 
-const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
+const baseURL = "https://pubhub-openplatform.dbc.dk/"; // use your own URL here or environment variable
 
 type FetchParams =
   | string

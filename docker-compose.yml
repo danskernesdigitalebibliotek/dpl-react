@@ -22,12 +22,35 @@ services:
     image: up9inc/wiremock-studio:2.32.0-18
     ports:
       - "9000"
+      # FBS
       - "8100"
+      # Publizon
+      - "8110"
     volumes:
       - wiremock_data:/home/wiremock
     environment:
+      VIRTUAL_HOST: dpl-mock.docker
+      VIRTUAL_PORT: 9000
+
+  wiremock-fbs:
+    image: wiremock/wiremock:2.32.0-alpine
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_fbs_data:/home/wiremock
+    environment:
       VIRTUAL_HOST: fbs-mock.docker
-      VIRTUAL_PORT: 8100
+      VIRTUAL_PORT: 8080
+
+  wiremock-publizon:
+    image: wiremock/wiremock:2.32.0-alpine
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_publizon_data:/home/wiremock
+    environment:
+      VIRTUAL_HOST: publizon-mock.docker
+      VIRTUAL_PORT: 8080
 
 volumes:
   root:
@@ -39,4 +62,14 @@ volumes:
     driver_opts:
       type: none
       device: $PWD/.docker/wiremock
+      o: bind
+  wiremock_fbs_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/fbs
+      o: bind
+  wiremock_publizon_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/publizon
       o: bind

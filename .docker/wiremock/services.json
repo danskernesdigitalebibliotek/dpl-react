@@ -4,5 +4,10 @@
     "name" : "FBS",
     "port" : 8100,
     "rootDir" : "fbs"
+  }, {
+    "id" : "m4yqj",
+    "name" : "publizon",
+    "port" : 8110,
+    "rootDir" : "publizon"
   } ]
 }

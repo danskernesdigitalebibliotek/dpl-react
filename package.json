@@ -37,6 +37,7 @@
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=opac graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
     "codegen:client:fbs": "orval --project fbsAdapter",
+    "codegen:client:publizon": "orval --project publizonAdapter",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
