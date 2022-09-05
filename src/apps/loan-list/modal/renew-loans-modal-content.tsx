@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
+import { useInView } from "react-hook-inview";
 import CheckBox from "../materials/utils/checkbox";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import SelectableMaterial from "../materials/selectable-material";
@@ -9,7 +10,6 @@ import {
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
-import useIsInViewport from "../../../components/utils/in-viewport";
 import { Button } from "../../../components/Buttons/Button";
 
 interface RenewLoansModalContentProps {
@@ -30,7 +30,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
-  const [topButtonsVisible, firstRef] = useIsInViewport(30);
+  const [ref, isVisible] = useInView({
+    threshold: 0
+  });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
   const [loans, setLoans] = useState<Array<LoanV2>>([]);
@@ -92,7 +94,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   return (
     <>
-      <div className="modal-loan__buttons" ref={firstRef}>
+      <div className="modal-loan__buttons" ref={ref}>
         <CheckBox
           selected={materialsToRenew.length === allRenewableMaterials}
           id="checkbox-select-all"
@@ -139,7 +141,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             );
           })}
         </ul>
-        {!topButtonsVisible && (
+        {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
               onChecked={selectAll}
