@@ -4,11 +4,11 @@ import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { FaustId } from "../../../core/utils/types/ids";
+import { ListView } from "../../../core/utils/types/list-view";
 
 interface LoanListItemProps {
   loans: LoanV2[];
-  view: string;
+  view: ListView;
   dueDates: string[];
   selectModalMaterial: ({
     material,
