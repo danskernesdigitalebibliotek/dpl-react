@@ -23,13 +23,14 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({ manifestation, size }) => {
   const faustId = convertPostIdToFaustId(manifestation.pid as Pid);
 
   if (hasPhysicalAccess) {
+    if (!faustId) {
+      // TODO: handle error here once we do that
+      return null;
+    }
     return (
       <>
         <MaterialButtonsPhysical manifestation={manifestation} size={size} />
-        <MaterialButtonsFindOnShelf
-          size={size}
-          faustIds={[faustId as string]}
-        />
+        <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
       </>
     );
   }

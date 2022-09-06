@@ -3,11 +3,12 @@ import { FC } from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import { FaustId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonsFindOnShelfProps {
   size?: ButtonSize;
-  faustIds: string[];
+  faustIds: FaustId[];
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
