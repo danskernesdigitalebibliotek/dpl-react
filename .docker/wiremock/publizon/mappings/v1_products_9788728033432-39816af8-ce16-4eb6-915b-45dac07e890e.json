@@ -10,7 +10,6 @@
     "body" : "{\n  \"code\": 128,\n  \"message\": \"Bogen er ikke tilgængelig for udlån (#128).\"\n}",
     "headers" : {
       "vary" : "Origin",
-      "access-control-allow-origin" : "*",
       "content-type" : "application/json; charset=utf-8",
       "date" : "Tue, 16 Aug 2022 10:24:37 GMT",
       "strict-transport-security" : "max-age=15552000"
