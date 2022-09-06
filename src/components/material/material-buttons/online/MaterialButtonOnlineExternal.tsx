@@ -1,13 +1,14 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
-  size?: "large" | "medium" | "small" | "xsmall";
+  size?: ButtonSize;
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({

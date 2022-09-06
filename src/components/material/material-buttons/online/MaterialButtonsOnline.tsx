@@ -1,13 +1,14 @@
 import * as React from "react";
 import { FC } from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
   manifestation: ManifestationsSimpleFieldsFragment;
-  size?: "large" | "medium" | "small" | "xsmall";
+  size?: ButtonSize;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({

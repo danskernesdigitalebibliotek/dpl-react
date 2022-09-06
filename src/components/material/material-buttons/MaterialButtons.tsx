@@ -5,6 +5,7 @@ import {
   ManifestationsSimpleFieldsFragment
 } from "../../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
+import { ButtonSize } from "../../../core/utils/types/button";
 import { Pid } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
@@ -12,7 +13,7 @@ import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 
 export interface MaterialButtonsProps {
   manifestation: ManifestationsSimpleFieldsFragment;
-  size?: "large" | "medium" | "small" | "xsmall";
+  size?: ButtonSize;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({ manifestation, size }) => {

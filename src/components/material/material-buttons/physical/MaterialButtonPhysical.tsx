@@ -1,12 +1,13 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   faustId: string;
-  size?: "large" | "medium" | "small" | "xsmall";
+  size?: ButtonSize;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({

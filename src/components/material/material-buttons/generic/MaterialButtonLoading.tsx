@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonLoadingProps {
-  size?: "large" | "medium" | "small" | "xsmall";
+  size?: ButtonSize;
 }
 
 const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({ size }) => {
