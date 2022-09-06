@@ -20,13 +20,15 @@ export interface AvailabilityLabelsProps {
   selectManifestationHandler?: (
     manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
+  cursorPointer?: boolean;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
   manifestation,
-  selectManifestationHandler
+  selectManifestationHandler,
+  cursorPointer = false
 }) => {
   const { materialUrl } = useUrls();
 
@@ -46,6 +48,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
           <AvailabilityLabel
             key={pid}
             url={url}
+            cursorPointer={cursorPointer}
             faustIds={[faustId]}
             manifestText={materialType}
             selected={

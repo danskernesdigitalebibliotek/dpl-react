@@ -11,6 +11,7 @@ export interface AvailabilityLabelProps {
   url?: URL;
   faustIds: string[];
   handleSelectManifestation?: () => void | undefined;
+  cursorPointer?: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -18,7 +19,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   selected = false,
   url,
   faustIds,
-  handleSelectManifestation
+  handleSelectManifestation,
+  cursorPointer = false
 }) => {
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
@@ -41,6 +43,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       {
         "pagefold-parent--xsmall availability-label--unselected": !selected
       },
+      { "cursor-pointer": cursorPointer },
       "text-label",
       "availability-label"
     ),
