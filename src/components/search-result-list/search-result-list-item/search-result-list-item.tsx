@@ -129,6 +129,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       </div>
       <div className="search-result-item__availability">
         <AvailabiltityLabels
+          cursorPointer
           workId={workId as WorkId}
           manifestations={manifestations}
         />

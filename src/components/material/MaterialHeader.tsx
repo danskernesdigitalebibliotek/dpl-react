@@ -94,6 +94,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels
+            cursorPointer
             workId={wid as WorkId}
             manifestations={manifestations}
             manifestation={manifestation}
