@@ -6,6 +6,7 @@ import { pageSize } from "../../../core/configuration/pagesize.json";
 import LoanListItems from "../list/loan-list-items";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
+import { ListView } from "../../../core/utils/types/list-view";
 
 interface PaginationProps {
   selectModalMaterial: ({
@@ -16,7 +17,7 @@ interface PaginationProps {
     loanDetails: LoanDetailsV2;
   }) => void;
   openModalDueDate: (dueDate: string) => void;
-  view: string;
+  view: ListView;
   hitcount: number;
   dueDates: string[];
   loans: LoanV2[];

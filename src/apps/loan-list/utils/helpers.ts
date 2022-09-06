@@ -1,6 +1,7 @@
 import get from "lodash.get";
 import dayjs from "dayjs";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import { ListView } from "../../../core/utils/types/list-view";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string,
@@ -54,7 +55,7 @@ export const queryMatchesFaust = (query: string | null) => {
 };
 
 export const getStackedSearchItems = (
-  view: string,
+  view: ListView,
   list: LoanV2[],
   itemsShown: number,
   dueDates: string[] | undefined
