@@ -56,12 +56,12 @@ export const queryMatchesFaust = (query: string | null) => {
 export const getStackedSearchItems = (
   view: string,
   list: LoanV2[],
-  searchItemsShown: number,
+  itemsShown: number,
   dueDates: string[] | undefined
 ) => {
   let returnLoans: LoanV2[] = [];
   if (view === "stacked" && dueDates) {
-    const dueDatesCopy = dueDates.slice(0, searchItemsShown);
+    const dueDatesCopy = dueDates.slice(0, itemsShown);
     dueDatesCopy.forEach((uniqueDueDate) => {
       returnLoans = returnLoans.concat(
         list.filter(({ loanDetails }) => loanDetails.dueDate === uniqueDueDate)
@@ -71,8 +71,8 @@ export const getStackedSearchItems = (
   return returnLoans;
 };
 
-export const getSearchItems = (list: LoanV2[], searchItemsShown: number) => {
-  return [...list].splice(0, searchItemsShown);
+export const getListItems = (list: LoanV2[], itemsShown: number) => {
+  return [...list].splice(0, itemsShown);
 };
 
 export default {};
