@@ -3,12 +3,12 @@ import { useText } from "../../core/utils/text";
 
 export interface ResultPagerProps {
   setPageHandler: () => void;
-  searchItemsShown: number;
+  itemsShown: number;
   hitcount: number;
 }
 function ResultPager({
   setPageHandler,
-  searchItemsShown,
+  itemsShown,
   hitcount
 }: ResultPagerProps) {
   const t = useText();
@@ -16,7 +16,7 @@ function ResultPager({
     <div className="result-pager">
       <p className="text-small-caption result-pager__title">
         {/* TODO: interpolate these strings */}
-        {t("showingText")} {searchItemsShown} {t("outOfText")} {hitcount}{" "}
+        {t("showingText")} {itemsShown} {t("outOfText")} {hitcount}{" "}
         {t("resultsText")}
       </p>
       <button

@@ -74,7 +74,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
       {moreWorksToBeLoaded && (
         <ResultPager
-          searchItemsShown={searchItemsShown}
+          itemsShown={searchItemsShown}
           hitcount={hitcount}
           setPageHandler={setPageHandler}
         />
