@@ -31,7 +31,7 @@ const Pagination: FC<PaginationProps> = ({
   selectModalMaterial
 }) => {
   const [itemsShown, setitemsShown] = useState(pageSize);
-  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>();
+  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>([]);
   const [page, setPage] = useState<number>(0);
 
   const setPageHandler = () => {
@@ -67,24 +67,19 @@ const Pagination: FC<PaginationProps> = ({
   }, [view]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {displayedLoans && (
-        <>
-          <LoanListItems
-            dueDates={dueDates}
-            loans={displayedLoans}
-            view={view}
-            openModalDueDate={openModalDueDate}
-            selectModalMaterial={selectModalMaterial}
-          />
-          <ResultPager
-            itemsShown={displayedLoans.length}
-            hitcount={hitcount}
-            setPageHandler={setPageHandler}
-          />
-        </>
-      )}
+      <LoanListItems
+        dueDates={dueDates}
+        loans={displayedLoans}
+        view={view}
+        openModalDueDate={openModalDueDate}
+        selectModalMaterial={selectModalMaterial}
+      />
+      <ResultPager
+        itemsShown={displayedLoans.length}
+        hitcount={hitcount}
+        setPageHandler={setPageHandler}
+      />
     </>
   );
 };
