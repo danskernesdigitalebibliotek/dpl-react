@@ -12,8 +12,6 @@ import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
-import IconList from "../../../components/icon-list/icon-list";
-import IconStack from "../../../components/icon-stack/icon-stack";
 import {
   ModalIdsProps,
   useModalButtonHandler
@@ -23,12 +21,7 @@ import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
-import Pagination from "../utils/pagination";
-import { ListView } from "../../../core/utils/types/list-view";
-import {
-  queryMatchesFaust,
-  removeLoansWithDuplicateDueDate
-} from "../utils/helpers";
+import List from "./list";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -47,10 +40,8 @@ export interface LoanDetailsType {
 const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
   const t = useText();
-  const [loans, setLoans] = useState<LoanV2[]>();
-  const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
-  const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
-  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>();
+  const [physicalLoans, setPhysicalLoans] = useState<LoanV2[]>();
+  const [allPhysicalLoans, setAllPhysicalLoans] = useState<LoanV2[]>([]);
   const [dueDates, setDueDates] = useState<string[]>([]);
   const [modalMaterial, setModalMaterial] = useState<
     GetMaterialManifestationQuery | null | undefined
@@ -61,7 +52,6 @@ const LoanList: FC = () => {
   const [loansModal, setLoansModal] = useState<LoanV2[] | null>();
   const [displayList, setDisplayList] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
-  const [view, setView] = useState<ListView>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -73,7 +63,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setAllLoans([...data]);
+      setAllPhysicalLoans([...data]);
       const listOfDueDates = data.map((a) => a.loanDetails.dueDate);
       const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
 
@@ -85,7 +75,7 @@ const LoanList: FC = () => {
       // Loans are sorted by due date
       const sortedByLoanDate = sortByLoanDate(data);
 
-      setLoans(sortedByLoanDate);
+      setPhysicalLoans(sortedByLoanDate);
       updateRenewable(sortedByLoanDate);
       setDisplayedLoans([...sortedByLoanDate].splice(0, searchItemsShown));
     }
@@ -112,12 +102,12 @@ const LoanList: FC = () => {
 
   const openModalDueDate = useCallback(
     (dueDateModalInput?: string) => {
-      if (loans && dueDateModalInput) {
+      if (physicalLoans && dueDateModalInput) {
         setDueDateModal(dueDateModalInput);
         // The loans are filtered with said date string
         const loansForModal = removeLoansWithDuplicateDueDate(
           dueDateModalInput,
-          loans,
+          physicalLoans,
           "loanDetails.dueDate"
         );
 
@@ -129,35 +119,26 @@ const LoanList: FC = () => {
         setRenewable(amountOfRenewableLoans);
       }
     },
-    [loans]
+    [physicalLoans]
   );
 
   const openRenewLoansModal = useCallback(() => {
-    if (loans) {
-      const amountOfRenewableLoans = getAmountOfRenewableLoans(loans);
+    if (physicalLoans) {
+      const amountOfRenewableLoans = getAmountOfRenewableLoans(physicalLoans);
 
       // Loans for modal (the modal shows loans stacked by due date)
-      setLoansModal(loans);
+      setLoansModal(physicalLoans);
       setRenewable(amountOfRenewableLoans);
       open(modalIdsConf.allLoansId);
     }
-  }, [loans, open]);
-
-  const setPageHandler = () => {
-    if (loans) {
-      const currentPage = page + 1;
-      const itemsOnPage = (currentPage + 1) * pageSize;
-      setPage(currentPage);
-      setSearchItemsShown(itemsOnPage);
-    }
-  };
+  }, [physicalLoans]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
     // modal query param: due date modal date
     const dateFound = dateMatchesUsFormat(modalString);
-    if (modalString && loans && dateFound) {
+    if (modalString && physicalLoans && dateFound) {
       openModalDueDate(dateFound);
       return;
     }
@@ -165,8 +146,8 @@ const LoanList: FC = () => {
     // modal query param: details modal faust
     const faustFound = queryMatchesFaust(modalString);
 
-    if (modalString && faustFound && loans) {
-      const loanDetailsForModal = loans.filter(
+    if (modalString && faustFound && physicalLoans) {
+      const loanDetailsForModal = physicalLoans.filter(
         ({ loanDetails }) => loanDetails.recordId === faustFound
       );
       setModalLoanDetails(loanDetailsForModal[0].loanDetails);
@@ -177,7 +158,7 @@ const LoanList: FC = () => {
     if (modalString === modalIdsConf.allLoansId) {
       open(modalIdsConf.allLoansId);
     }
-  }, [loans, openModalDueDate, open]);
+  }, [physicalLoans, openModalDueDate]);
 
   useEffect(() => {
     if (loans) {
@@ -209,61 +190,15 @@ const LoanList: FC = () => {
       {displayList && (
         <>
           <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
-          <div className="dpl-list-buttons m-32">
-            <h2 className="dpl-list-buttons__header">
-              {t("loanListPhysicalLoansTitleText")}
-              <div className="dpl-list-buttons__power">{allLoans.length}</div>
-            </h2>
-            <div className="dpl-list-buttons__buttons">
-              <div className="dpl-list-buttons__buttons__button">
-                <button
-                  onClick={() => setView("list")}
-                  className={`dpl-icon-button ${
-                    view === "list" ? "dpl-icon-button--selected" : ""
-                  }`}
-                  type="button"
-                  aria-label={t("loanListListText")}
-                >
-                  <IconList />
-                </button>
-              </div>
-              <div className="dpl-list-buttons__buttons__button">
-                <button
-                  className={`dpl-icon-button ${
-                    view === "stacked" ? "dpl-icon-button--selected" : ""
-                  }`}
-                  id="test-stack"
-                  onClick={() => setView("stacked")}
-                  type="button"
-                  aria-label={t("loanListStackText")}
-                >
-                  <IconStack />
-                </button>
-              </div>
-              <div className="dpl-list-buttons__buttons__button">
-                <button
-                  type="button"
-                  onClick={() => {
-                    openRenewLoansModal();
-                  }}
-                  aria-describedby={t(
-                    "loanListRenewMultipleButtonExplanationText"
-                  )}
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
-                >
-                  {t("loanListRenewMultipleButtonText")}
-                </button>
-              </div>
-            </div>
-          </div>
-          {loans && (
-            <Pagination
-              dueDates={dueDates}
-              loans={loans}
-              view={view}
-              hitcount={allLoans.length}
+          {physicalLoans && (
+            <List
+              header={t("loanListPhysicalLoansTitleText")}
+              openRenewLoansModal={openRenewLoansModal}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
+              loans={physicalLoans}
+              dueDates={dueDates}
+              allLoansLength={allPhysicalLoans.length}
             />
           )}
         </>
@@ -279,7 +214,7 @@ const LoanList: FC = () => {
         renewable={renewable}
         loansModal={loansModal}
       />
-      <RenewLoansModal renewable={renewable} loansModal={loans} />
+      <RenewLoansModal renewable={renewable} loansModal={physicalLoans} />
     </>
   );
 };
