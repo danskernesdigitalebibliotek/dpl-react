@@ -79,23 +79,25 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 
   const renew = useCallback(
     (renewId: number) => {
-      mutate(
-        {
-          data: [renewId]
-        },
-        {
-          onSuccess: (result) => {
-            if (result) {
-              setDueDateUpdatable(result[0].loanDetails.dueDate);
-              determineRenewedStatus(result[0]);
-            }
+      if (isRenewable) {
+        mutate(
+          {
+            data: [renewId]
           },
-          // todo error handling, missing in figma
-          onError: () => {}
-        }
-      );
+          {
+            onSuccess: (result) => {
+              if (result) {
+                setDueDateUpdatable(result[0].loanDetails.dueDate);
+                determineRenewedStatus(result[0]);
+              }
+            },
+            // todo error handling, missing in figma
+            onError: () => {}
+          }
+        );
+      }
     },
-    [determineRenewedStatus, mutate]
+    [determineRenewedStatus, isRenewable, mutate]
   );
 
   useEffect(() => {

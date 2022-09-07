@@ -1,4 +1,4 @@
-import React, { useState, FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
