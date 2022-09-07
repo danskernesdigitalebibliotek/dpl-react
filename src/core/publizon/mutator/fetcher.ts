@@ -1,6 +1,6 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
 
-const baseURL = "https://pubhub-openplatform.dbc.dk/"; // use your own URL here or environment variable
+const baseURL = "http://0.0.0.0:53876"; // use your own URL here or environment variable
 
 type FetchParams =
   | string
@@ -65,7 +65,7 @@ export const fetcher = async <ResponseType>({
       method,
       headers: {
         ...headers,
-        ...authHeaders
+        // ...authHeaders
       },
       body
     }

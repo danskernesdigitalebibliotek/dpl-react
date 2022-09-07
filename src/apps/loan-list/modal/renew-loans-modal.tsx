@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface RenewLoansModalProps {
   renewable: number | null;
-  loansModal: LoanV2[] | undefined | null;
+  loansModal: LoanMetaDataType[];
 }
 
 const RenewLoansModal: FC<RenewLoansModalProps> = ({

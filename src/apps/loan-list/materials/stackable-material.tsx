@@ -18,11 +18,11 @@ import {
 } from "./utils/material-fetch-hoc";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
-  loanDetails,
   amountOfMaterialsWithDueDate,
   material,
   selectDueDate,
-  selectMaterial
+  selectMaterial,
+  loanMetaData
 }) => {
   const t = useText();
   const dispatch = useDispatch();
@@ -36,7 +36,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const {
     main: [mainText]
   } = titles || { main: [] };
-  const { loanDate, dueDate, recordId: faust } = loanDetails || {};
+
+  const { dueDate, loanDate, id } = loanMetaData;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -56,12 +57,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const openDueDateModal = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (selectDueDate) {
-        selectDueDate();
+      if (selectDueDate && dueDate) {
+        selectDueDate(id, dueDate);
         dispatch(openModal({ modalId: dueDate }));
       }
     },
-    [dispatch, dueDate, selectDueDate]
+    [dispatch, dueDate, id, selectDueDate]
   );
 
   const selectListMaterial = useCallback(
@@ -70,12 +71,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       if (selectMaterial) {
         selectMaterial({
           material,
-          loanDetails
+          loanMetaData
         });
       }
-      dispatch(openModal({ modalId: faust }));
+      dispatch(openModal({ modalId: id }));
     },
-    [dispatch, faust, loanDetails, material, selectMaterial]
+    [dispatch, loanMetaData, material, id, selectMaterial]
   );
 
   return (
@@ -132,7 +133,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
               </button>
             </>
           )}
-          {materialIsOverdue(dueDate) && (
+          {dueDate && materialIsOverdue(dueDate) && (
             <a
               href="todo"
               className="list-reservation__note-desktop text-small-caption color-signal-alert"
@@ -143,46 +144,48 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         </div>
       </div>
       <div>
-        <div className="list-reservation__status">
-          <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-          <div>
-            <div className="list-reservation__deadline">
-              <StatusBadge
-                dueDate={dueDate}
-                dangerText={t("loanListStatusBadgeDangerText")}
-                warningText={t("loanListStatusBadgeWarningText")}
-              />
-              <p className="text-small-caption" id="due-date">
-                {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
-              </p>
-              {additionalMaterials > 0 && (
-                <>
-                  <div
-                    className="list-reservation__hidden-explanation"
-                    id="materials-modal-text"
+        {dueDate && loanDate && (
+          <div className="list-reservation__status">
+            <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+            <div>
+              <div className="list-reservation__deadline">
+                <StatusBadge
+                  dueDate={dueDate}
+                  dangerText={t("loanListStatusBadgeDangerText")}
+                  warningText={t("loanListStatusBadgeWarningText")}
+                />
+                <p className="text-small-caption" id="due-date">
+                  {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
+                </p>
+                {additionalMaterials > 0 && (
+                  <>
+                    <div
+                      className="list-reservation__hidden-explanation"
+                      id="materials-modal-text"
+                    >
+                      {t("loanListMaterialsModalMobileText")}
+                    </div>
+                    <button
+                      type="button"
+                      aria-describedby="materials-modal-text"
+                      className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                    >
+                      + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                    </button>
+                  </>
+                )}
+                {materialIsOverdue(dueDate) && (
+                  <a
+                    href="todo"
+                    className="list-reservation__note-mobile text-small-caption color-signal-alert"
                   >
-                    {t("loanListMaterialsModalMobileText")}
-                  </div>
-                  <button
-                    type="button"
-                    aria-describedby="materials-modal-text"
-                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                  >
-                    + {additionalMaterials} {t("LoanListMaterialsMobileText")}
-                  </button>
-                </>
-              )}
-              {materialIsOverdue(dueDate) && (
-                <a
-                  href="todo"
-                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
-                >
-                  {t("loanListLateFeeMobileText")}
-                </a>
-              )}
+                    {t("loanListLateFeeMobileText")}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </button>
   );

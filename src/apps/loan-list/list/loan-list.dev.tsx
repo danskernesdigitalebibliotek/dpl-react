@@ -16,6 +16,10 @@ export default {
       defaultValue: "Fysiske lån",
       control: { type: "text" }
     },
+    loanListDigitalLoansTitleText: {
+      defaultValue: "Digitale lån",
+      control: { type: "text" }
+    },
     loanListListText: {
       defaultValue: "Liste aria text",
       control: { type: "text" }

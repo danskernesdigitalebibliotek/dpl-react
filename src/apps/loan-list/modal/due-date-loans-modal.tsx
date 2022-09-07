@@ -4,15 +4,15 @@ import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { materialIsOverdue } from "../utils/helpers";
+import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface DueDateLoansModalProps {
   dueDate: string;
   renewable: number | null;
-  loansModal: LoanV2[] | undefined | null;
+  loansModal: LoanMetaDataType[];
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
@@ -59,8 +59,8 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               renewable={renewable}
               buttonLabel={t("dueDateRenewLoanModalButtonText")}
               checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
-              buttonBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
-              checkboxBottomLabel={t("bottomDueDateRenewLoanModalButtonText")}
+              checkboxBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
+              buttonBottomLabel={t("bottomDueDateRenewLoanModalButtonText")}
             />
           </>
         )}

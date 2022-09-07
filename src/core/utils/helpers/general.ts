@@ -10,6 +10,8 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
+import { Loan } from "../../publizon/model";
+import { LoanMetaDataType } from "./LoanMetaDataType";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
@@ -127,10 +129,24 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanV2[]) => {
-  return sortBy(list, ({ loanDetails }) => {
-    return loanDetails.loanDate;
+export const sortByLoanDate = (list: LoanMetaDataType[]) => {
+  return sortBy(list, ({ loanDate }) => {
+    return loanDate;
   });
+};
+
+export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
+  return Array.from(
+    new Set(
+      list
+        .filter(({ dueDate }) => dueDate !== (undefined || null))
+        .map(({ dueDate }) => dueDate)
+    )
+  ) as string[];
+};
+
+export const getDueDatesForModal = (list: LoanMetaDataType[], date: string) => {
+  return list.filter(({ dueDate }) => dueDate === date);
 };
 
 // If modalids are longer than 0, a modal is open.
@@ -139,12 +155,12 @@ export const isAModalDisplayed = (modalIds: string[]) => {
   return modalIds.length > 0;
 };
 
-export const getRenewableMaterials = (list: LoanV2[]) => {
+export const getRenewableMaterials = (list: LoanMetaDataType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanDetails }) => parseInt(loanDetails.recordId, 10));
+    .map(({ id }) => parseInt(id, 10));
 };
 
-export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
+export const getAmountOfRenewableLoans = (list: LoanMetaDataType[]) => {
   return getRenewableMaterials(list).length;
 };
