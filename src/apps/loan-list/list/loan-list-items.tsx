@@ -1,24 +1,22 @@
-import React, { useState, FC } from "react";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import React, { FC, useEffect, useState } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
-import { FaustId } from "../../../core/utils/types/ids";
+import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface LoanListItemProps {
-  loans: LoanV2[];
+  loans: LoanMetaDataType[];
   view: ListView;
   dueDates: string[];
   selectModalMaterial: ({
     material,
-    loanDetails
+    loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
+    loanMetaData: LoanMetaDataType;
   }) => void;
-  openModalDueDate: (dueDate: string) => void;
+  openModalDueDate: (id: string, dueDate?: string) => void;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
@@ -28,46 +26,49 @@ const LoanListItems: FC<LoanListItemProps> = ({
   openModalDueDate,
   selectModalMaterial
 }) => {
-  useState<LoanDetailsV2 | null>(null);
+  const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
+
+  useEffect(() => {
+    if (view === "stacked") {
+      setLocalDueDates([...dueDates, null]);
+    }
+  }, [dueDates, view]);
 
   return (
     <div className="list-reservation-container m-32">
       {view === "stacked" &&
-        dueDates.map((uniqueDueDate) => {
+        localDueDates.map((uniqueDueDate: string | null) => {
           // Stack items:
           // if multiple items have the same due date, they are "stacked"
           // which means styling making it look like there are multiple materials,
           // but only _one_ with said due date is visible.
-          const loan = removeLoansWithDuplicateDueDate(
+          const loansUniqueDueDate = removeLoansWithDuplicateDueDate(
             uniqueDueDate,
-            loans,
-            "loanDetails.dueDate"
+            loans
           );
-          const { loanDetails } = loan[0] || {};
+          const loanMetaData = loansUniqueDueDate[0] || {};
 
           return (
             <div>
-              {loanDetails && (
+              {loanMetaData && (
                 <StackableMaterial
-                  loanDetails={loanDetails}
-                  key={loanDetails.recordId}
-                  faust={loanDetails.recordId as FaustId}
-                  selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
+                  loanMetaData={loanMetaData}
+                  key={loanMetaData.id}
+                  selectDueDate={openModalDueDate}
                   selectMaterial={selectModalMaterial}
-                  amountOfMaterialsWithDueDate={loan.length}
+                  amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
                 />
               )}
             </div>
           );
         })}
       {view === "list" &&
-        loans.map(({ loanDetails }) => {
+        loans.map((loanMetaData) => {
           return (
             <StackableMaterial
               selectMaterial={selectModalMaterial}
-              key={loanDetails.recordId}
-              faust={loanDetails.recordId as FaustId}
-              loanDetails={loanDetails}
+              key={loanMetaData.id}
+              loanMetaData={loanMetaData}
             />
           );
         })}
