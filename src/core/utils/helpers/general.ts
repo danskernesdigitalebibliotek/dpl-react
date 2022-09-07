@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import sortBy from "lodash.sortby";
 import { CoverProps } from "../../../components/cover/cover";
 import configuration, { getConf } from "../../configuration";
 import {
@@ -127,11 +128,9 @@ export const getParams = <T, K extends keyof T>(props: T) => {
 };
 
 export const sortByLoanDate = (list: LoanV2[]) => {
-  return list.sort(
-    (objA, objB) =>
-      new Date(objA.loanDetails.loanDate).getTime() -
-      new Date(objB.loanDetails.loanDate).getTime()
-  );
+  return sortBy(list, ({ loanDetails }) => {
+    return loanDetails.loanDate;
+  });
 };
 
 // If modalids are longer than 0, a modal is open.
