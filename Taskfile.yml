@@ -47,6 +47,20 @@ tasks:
       # causes the process to fail. Wait and retry if that is the case
       - docker compose {{ .DOCKER_COMPOSE_FILES }} down --volumes --remove-orphans || (sleep 3 && docker-compose down)
 
+  dev:mocks:start:
+    summary: Start wiremocks
+    cmds:
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} up wiremock-fbs --detach
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} up wiremock-publizon --detach
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} up wiremock --detach
+
+  dev:mocks:stop:
+    summary: Stop wiremocks
+    cmds:
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} stop wiremock-fbs
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} stop wiremock-publizon
+      - docker compose {{ .DOCKER_COMPOSE_FILES }} stop wiremock
+
   dev:storybook:
     summary: Run storybook in development mode
     cmds:

@@ -34,6 +34,7 @@ services:
 
   wiremock-fbs:
     image: wiremock/wiremock:2.32.0-alpine
+    command: "--enable-stub-cors" # Enable automatic sending of cross-origin (CORS) response headers.
     ports:
       - "8080"
     volumes:
@@ -44,6 +45,7 @@ services:
 
   wiremock-publizon:
     image: wiremock/wiremock:2.32.0-alpine
+    command: "--enable-stub-cors" # Enable automatic sending of cross-origin (CORS) response headers.
     ports:
       - "8080"
     volumes:

@@ -10,7 +10,6 @@
     "body" : "{\n  \"reservations\": [\n    {\n      \"productId\": \"0ddd10d0-d69f-4734-8a27-ac4546f4b912\",\n      \"identifier\": \"9788740063530\",\n      \"createdDateUtc\": \"2022-08-16T10:52:39.932Z\",\n      \"status\": 1,\n      \"productTitle\": \"Bargums synder\",\n      \"expireDateUtc\": null,\n      \"expectedRedeemDateUtc\": \"2021-01-27T19:37:15.63Z\"\n    }\n  ],\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
     "headers" : {
       "vary" : "Origin",
-      "access-control-allow-origin" : "*",
       "content-type" : "application/json; charset=utf-8",
       "date" : "Tue, 16 Aug 2022 10:53:33 GMT",
       "strict-transport-security" : "max-age=15552000"

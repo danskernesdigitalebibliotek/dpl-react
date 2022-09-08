@@ -10,7 +10,6 @@
     "body" : "{\n  \"expirationDateUtc\": \"2022-09-15T10:04:13.6396484Z\",\n  \"orderNumber\": \"3c060277-3218-4ad2-98fe-a57bce1cf1e6\",\n  \"orderId\": \"58058e94-a03f-4018-bec1-816ee7894ab8\",\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
     "headers" : {
       "vary" : "Origin",
-      "access-control-allow-origin" : "*",
       "content-type" : "application/json; charset=utf-8",
       "date" : "Tue, 16 Aug 2022 10:05:05 GMT",
       "strict-transport-security" : "max-age=15552000"

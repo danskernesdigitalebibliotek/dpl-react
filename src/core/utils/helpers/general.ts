@@ -149,3 +149,32 @@ export const getRenewableMaterials = (list: LoanV2[]) => {
 export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
   return getRenewableMaterials(list).length;
 };
+
+export const groupObjectArrayByProperty = <
+  P extends string,
+  T extends { [key in P]?: string },
+  Result extends { [key: string]: T[] }
+>(
+  array: T[],
+  property: P
+) =>
+  array.reduce((result: Result, current: T) => {
+    const groupBy = current[property];
+    // If for some reason we do not have a value we just return the accumulated result.
+    if (!groupBy) {
+      return result;
+    }
+
+    // Make sure that the new aggregation key is a string.
+    const key = String(groupBy);
+
+    // Merge into result if the property already exist.
+    if (key in result) {
+      return {
+        ...result,
+        [key]: [...result[key], current]
+      };
+    }
+    // Otherwise create new property.
+    return { ...result, [key]: [current] };
+  }, {} as Result);

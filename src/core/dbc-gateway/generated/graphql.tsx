@@ -101,6 +101,30 @@ export type Classification = {
   system: Scalars["String"];
 };
 
+/** Search Filters */
+export type ComplexSearchFilters = {
+  branchId?: InputMaybe<Array<Scalars["String"]>>;
+  department?: InputMaybe<Array<Scalars["String"]>>;
+  location?: InputMaybe<Array<Scalars["String"]>>;
+  status?: InputMaybe<Array<HoldingsStatus>>;
+  sublocation?: InputMaybe<Array<Scalars["String"]>>;
+};
+
+/** The search response */
+export type ComplexSearchResponse = {
+  __typename?: "ComplexSearchResponse";
+  /** Total number of works found. May be used for pagination. */
+  hitcount: Scalars["Int"];
+  /** The works matching the given search query. Use offset and limit for pagination. */
+  works: Array<Work>;
+};
+
+/** The search response */
+export type ComplexSearchResponseWorksArgs = {
+  limit: Scalars["PaginationLimit"];
+  offset: Scalars["Int"];
+};
+
 export type Corporation = Creator &
   Subject & {
     __typename?: "Corporation";
@@ -699,6 +723,7 @@ export type PublicationYear = {
 
 export type Query = {
   __typename?: "Query";
+  complexSearch: ComplexSearchResponse;
   infomedia: InfomediaResponse;
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
@@ -711,6 +736,11 @@ export type Query = {
   suggest: SuggestResponse;
   work?: Maybe<Work>;
   works: Array<Maybe<Work>>;
+};
+
+export type QueryComplexSearchArgs = {
+  cql: Scalars["String"];
+  filters?: InputMaybe<ComplexSearchFilters>;
 };
 
 export type QueryInfomediaArgs = {
@@ -1202,6 +1232,7 @@ export type GetMaterialQuery = {
         __typename?: "Manifestation";
         pid: string;
         genreAndForm: Array<string>;
+        source: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1259,6 +1290,7 @@ export type GetMaterialQuery = {
         __typename?: "Manifestation";
         pid: string;
         genreAndForm: Array<string>;
+        source: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1386,6 +1418,7 @@ export type SearchWithPaginationQuery = {
           __typename?: "Manifestation";
           pid: string;
           genreAndForm: Array<string>;
+          source: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1449,6 +1482,7 @@ export type SearchWithPaginationQuery = {
           __typename?: "Manifestation";
           pid: string;
           genreAndForm: Array<string>;
+          source: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1548,6 +1582,7 @@ export type ManifestationsSimpleFragment = {
     __typename?: "Manifestation";
     pid: string;
     genreAndForm: Array<string>;
+    source: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -1602,6 +1637,7 @@ export type ManifestationsSimpleFragment = {
     __typename?: "Manifestation";
     pid: string;
     genreAndForm: Array<string>;
+    source: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -1658,6 +1694,7 @@ export type ManifestationsSimpleFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
   genreAndForm: Array<string>;
+  source: Array<string>;
   titles: {
     __typename?: "ManifestationTitles";
     main: Array<string>;
@@ -1761,6 +1798,7 @@ export type WorkSmallFragment = {
       __typename?: "Manifestation";
       pid: string;
       genreAndForm: Array<string>;
+      source: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1815,6 +1853,7 @@ export type WorkSmallFragment = {
       __typename?: "Manifestation";
       pid: string;
       genreAndForm: Array<string>;
+      source: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -1958,6 +1997,7 @@ export type WorkMediumFragment = {
       __typename?: "Manifestation";
       pid: string;
       genreAndForm: Array<string>;
+      source: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2012,6 +2052,7 @@ export type WorkMediumFragment = {
       __typename?: "Manifestation";
       pid: string;
       genreAndForm: Array<string>;
+      source: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2081,6 +2122,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     fragment ManifestationsSimpleFields on Manifestation {
   pid
   genreAndForm
+  source
   titles {
     main
     original

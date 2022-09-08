@@ -24,6 +24,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     // we open the find on shelf modal here
   };
 
+  // If element is currently focused on, we would like to let users open it using enter
   const onKeyUp = (key: string) => {
     if (key === "Enter") {
       onClick();
@@ -44,7 +45,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
           variant="outline"
           disabled
           collapsible={false}
-          size={size || "large"}
+          size="large"
         />
       );
     }
@@ -55,7 +56,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         variant="outline"
         disabled={false}
         collapsible={false}
-        size={size || "large"}
+        size="large"
         onClick={onClick}
       />
     );
@@ -70,15 +71,16 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   }
 
   return (
-    <span
-      className="link-tag text-small-caption material-manifestation-item__find capitalize-all"
+    <button
+      className="link-tag text-small-caption material-manifestation-item__find capitalize-all btn-ui"
+      aria-describedby={t("findOnShelfExpandButtonExplanationText")}
       onClick={onClick}
       onKeyUp={(e) => onKeyUp(e.key)}
-      role="button"
       tabIndex={0}
+      type="button"
     >
       {t("findOnBookshelfText")}
-    </span>
+    </button>
   );
 };
 

@@ -7,8 +7,8 @@ import Material from "./material";
 
 interface MaterialEntryTextProps {
   materialHeaderAuthorByText: string;
-  periodikumSelectYearText: string;
-  periodikumSelectWeekText: string;
+  periodicalSelectYearText: string;
+  periodicalSelectEditionText: string;
   reserveBookText: string;
   findOnBookshelfText: string;
   descriptionHeadlineText: string;
@@ -46,6 +46,7 @@ interface MaterialEntryTextProps {
   cantReserveText: string;
   goToText: string;
   materialIsLoanedOutText: string;
+  findOnShelfExpandButtonExplanationText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

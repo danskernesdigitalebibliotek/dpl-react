@@ -11,8 +11,7 @@
     "headers" : {
       "content-type" : [ "application/json; charset=utf-8", "application/json" ],
       "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security" : "max-age=15552000",
-      "Access-Control-Allow-Origin" : "*"
+      "strict-transport-security" : "max-age=15552000"
     },
     "transformers" : [ "response-template" ]
   },

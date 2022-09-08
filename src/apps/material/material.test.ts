@@ -1,37 +1,37 @@
 describe("Material", () => {
-  it("Should render the material page as expected", () => {
-    cy.log("Does the Material have title?");
+  it("Does the Material have title?", () => {
     cy.contains("Dummy Some Title: Full");
-
-    cy.log("Check that cover has a src");
+  });
+  it("Check that cover has a src", () => {
     cy.get("img").should(
       "have.attr",
       "src",
       "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1605727140/bogportalen.dk/9781848485532.jpg"
     );
-
-    cy.log("Does the material have favourite buttons?");
+  });
+  it("Does the material have favourite buttons?", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
       "Add to favorites"
     );
-
-    cy.log("Does the material have horizontal lines?");
+  });
+  it("Does the material have horizontal lines?", () => {
     cy.contains("Nr 1 i serien");
     cy.contains("Dummy Some Series");
-
-    cy.log("Does the material have authors?");
+  });
+  it("Does the material have authors?", () => {
     cy.contains("Af Dummy Jens Jensen");
+  });
 
-    cy.log("Does a material have a availibility label");
+  it("Does a material have a availibility label", () => {
     cy.contains("Dummy bog");
     cy.contains("unavailable");
-
-    cy.log("Open material details");
+  });
+  it("Open material details", () => {
     cy.get("details").click({ multiple: true });
-
-    cy.log("Does the material have a editions with a buttton to reserve");
+  });
+  it("Does the material have a editions with a buttton to reserved", () => {
     cy.contains("reserver");
   });
 

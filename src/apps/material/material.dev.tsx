@@ -26,14 +26,14 @@ export default {
       defaultValue: "Af ",
       control: { type: "text" }
     },
-    periodikumSelectYearText: {
+    periodicalSelectYearText: {
       name: "Year",
       defaultValue: "År",
       control: { type: "text" }
     },
-    periodikumSelectWeekText: {
+    periodicalSelectEditionText: {
       name: "Week",
-      defaultValue: "Uge",
+      defaultValue: "Udgave",
       control: { type: "text" }
     },
     reserveBookText: {
@@ -219,6 +219,11 @@ export default {
     materialIsLoanedOutText: {
       name: "Material is loaned out",
       defaultValue: "Materialet er udlånt",
+      control: { type: "text" }
+    },
+    findOnShelfExpandButtonExplanationText: {
+      name: "Find on shelf expand button explanation text",
+      defaultValue: "This button opens a modal",
       control: { type: "text" }
     }
   }

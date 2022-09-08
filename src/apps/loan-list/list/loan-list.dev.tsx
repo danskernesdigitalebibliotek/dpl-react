@@ -45,15 +45,15 @@ export default {
       defaultValue: "dage",
       control: { type: "text" }
     },
-    LoanListToBeDeliveredText: {
+    loanListToBeDeliveredText: {
       defaultValue: "Afleveres",
       control: { type: "text" }
     },
-    LoanListMaterialsDesktopText: {
+    loanListMaterialsDesktopText: {
       defaultValue: "andre materialer",
       control: { type: "text" }
     },
-    LoanListMaterialsMobileText: {
+    loanListMaterialsMobileText: {
       defaultValue: "andre materialer",
       control: { type: "text" }
     },
@@ -79,24 +79,24 @@ export default {
       defaultValue: "Udløber snart",
       control: { type: "text" }
     },
-    LoanListDeniedMaxRenewalsReachedText: {
+    loanListDeniedMaxRenewalsReachedText: {
       defaultValue: "Materialet kan ikke fornyes flere gange",
       control: { type: "text" }
     },
-    LoanListDeniedOtherReasonText: {
+    loanListDeniedOtherReasonText: {
       defaultValue: "Materialet er reserveret af andre",
       control: { type: "text" }
     },
-    LoanListDeniedInterLibraryLoanText: {
+    loanListDeniedInterLibraryLoanText: {
       defaultValue:
         "Materialet er udlånt fra en anden kommune og fornyelsen er derfor betinget af et andet biblioteks accept",
       control: { type: "text" }
     },
-    LoanListToBeDeliveredMaterialText: {
+    loanListToBeDeliveredMaterialText: {
       defaultValue: "Afleveres",
       control: { type: "text" }
     },
-    LoanListLabelCheckboxMaterialModalText: {
+    loanListLabelCheckboxMaterialModalText: {
       defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
     },
@@ -197,7 +197,7 @@ export default {
       defaultValue: "Materialenummer",
       control: { type: "text" }
     },
-    LoanListEmptyPhysicalLoansText: {
+    loanListEmptyPhysicalLoansText: {
       defaultValue: "Du har i øjeblikket ingen fysiske lån",
       control: { type: "text" }
     },
