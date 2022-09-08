@@ -1,9 +1,5 @@
 import * as React from "react";
-import Location from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
-import Subtitles from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
-import Message from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
-import LoanHistory from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import {
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
@@ -27,9 +23,11 @@ import { Button } from "../Buttons/Button";
 import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
 import {
-  getNoInterestAfter,
-  getPreferredLocation
-} from "../../apps/material/helper";
+  AgencyBranch,
+  AuthenticatedPatronV6,
+  HoldingsForBibliographicalRecordV3
+} from "../../core/fbs/model";
+import UserListItems from "./UserListItems";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -40,21 +38,44 @@ type ReservationModalProps = {
 };
 
 const ReservationModal = ({ manifestation }: ReservationModalProps) => {
-  const { pid, materialTypes, creators, titles, publicationYear, edition } =
-    manifestation;
+  const {
+    pid,
+    materialTypes,
+    creators,
+    titles,
+    publicationYear,
+    edition: { summary }
+  } = manifestation;
   const t = useText();
   const faustId = convertPostIdToFaustId(pid as Pid);
   const { mutate } = useAddReservationsV2();
 
-  const { data: branchData } = useGetBranches();
-  const { data: userData } = useGetPatronInformationByPatronIdV2();
-  const { data: holdingsData } = useGetHoldingsV3({
+  const branchResponse = useGetBranches();
+  const userResponse = useGetPatronInformationByPatronIdV2();
+  const holdingsResponse = useGetHoldingsV3({
     recordid: [String(faustId)]
   });
 
+  if (
+    !faustId ||
+    !branchResponse.data ||
+    !userResponse.data ||
+    !holdingsResponse.data
+  ) {
+    return null;
+  }
+
+  const { data: branchData } = branchResponse as { data: AgencyBranch[] };
+  const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
+  const { data: holdingsData } = holdingsResponse as {
+    data: HoldingsForBibliographicalRecordV3[];
+  };
+  const { reservations, holdings } = holdingsData[0];
+  const { patron } = userData;
+
   // TODO move to material/helper.ts because it is used in multiple places (Info text under buttons in the material header)
-  const totalReservations = holdingsData?.[0].reservations;
-  const totalMaterials = holdingsData?.[0].holdings.reduce(
+  const totalReservations = reservations;
+  const totalMaterials = holdings.reduce(
     (acc, curr) => acc + curr.materials.length,
     0
   );
@@ -66,23 +87,17 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
     ) || t("creatorsAreMissingText");
 
   const onClick = () => {
-    if (faustId) {
-      const batch = {
-        data: {
-          reservations: [
-            {
-              recordId: faustId
-            }
-          ]
-        }
-      };
-      mutate(batch);
-    }
+    const batch = {
+      data: {
+        reservations: [
+          {
+            recordId: faustId
+          }
+        ]
+      }
+    };
+    mutate(batch);
   };
-
-  if (!faustId || !userData) {
-    return null;
-  }
 
   return (
     <Modal
@@ -122,43 +137,13 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
             />
           </div>
           <div className="reservation-modal-list">
-            {edition?.summary && (
-              <ReservationFormListItem
-                icon={Various}
-                title={t("editionText")}
-                text={edition.summary}
-              />
-            )}
-            {userData?.patron?.defaultInterestPeriod && (
-              <ReservationFormListItem
-                icon={LoanHistory}
-                title={t("haveNoInterestAfterText")}
-                text={getNoInterestAfter(userData.patron.defaultInterestPeriod)}
-              />
-            )}
-            {userData?.patron?.preferredPickupBranch && branchData && (
-              <ReservationFormListItem
-                icon={Location}
-                title={t("pickupLocationText")}
-                text={getPreferredLocation(
-                  userData.patron.preferredPickupBranch,
-                  branchData
-                )}
-              />
-            )}
-            {userData?.patron?.phoneNumber && (
-              <ReservationFormListItem
-                icon={Subtitles}
-                title={t("receiveSmsWhenMaterialReadyText")}
-                text={userData.patron.phoneNumber}
-              />
-            )}
-            {userData?.patron?.emailAddress && (
-              <ReservationFormListItem
-                icon={Message}
-                title={t("receiveEmailWhenMaterialReadyText")}
-                text={userData.patron.emailAddress}
-              />
+            <ReservationFormListItem
+              icon={Various}
+              title={t("editionText")}
+              text={summary}
+            />
+            {patron && (
+              <UserListItems patron={patron} branchData={branchData} />
             )}
           </div>
         </div>
