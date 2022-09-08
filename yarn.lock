@@ -1721,10 +1721,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@1.6.1":
-  version "1.6.1"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/1.6.1/1a15a29eca78dbfbc9708b3097dcebf076c2db5c#1a15a29eca78dbfbc9708b3097dcebf076c2db5c"
-  integrity sha512-Pfs7fZn4jR4WINg+BeOEV8h2f28OY0P05/Lk8xqW/JZHnOVidoqTmuk8mlugte0BKxk5wHaj6DSz7iTKeaxpcg==
+"@danskernesdigitalebibliotek/dpl-design-system@^0.0.0-b42865dbbcc6dbc2eee6b5913baa57fc9f8f9609":
+  version "0.0.0-b42865dbbcc6dbc2eee6b5913baa57fc9f8f9609"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-b42865dbbcc6dbc2eee6b5913baa57fc9f8f9609/71df1333bc3d070c691b5c3d0f8aeb2eed74a755#71df1333bc3d070c691b5c3d0f8aeb2eed74a755"
+  integrity sha512-Fu/uaeDpKElq8wY9dvAshyBNRFsj8UYPzz7g9KQFCVulhBOjJ2iIGIh7ZoogBMbuPaBSguK0aDgCNjqUv/YKFw==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
