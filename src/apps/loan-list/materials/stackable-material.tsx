@@ -1,7 +1,5 @@
 import React, { useEffect, useCallback, FC, MouseEvent } from "react";
-import { useDispatch } from "react-redux";
 import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
-import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
@@ -12,6 +10,7 @@ import {
   StackableMaterialProps,
   MaterialProps
 } from "./utils/material-fetch-hoc";
+import { useModalButtonHandler } from "../../../core/utils/modal";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
@@ -21,7 +20,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   selectMaterial
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+  const modalButtonHandler = useModalButtonHandler();
 
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
@@ -52,10 +51,10 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       stopPropagationFunction(e);
       if (selectDueDate) {
         selectDueDate();
-        dispatch(openModal({ modalId: dueDate }));
+        modalButtonHandler(dueDate);
       }
     },
-    [dispatch, dueDate, selectDueDate]
+    [dueDate, modalButtonHandler, selectDueDate]
   );
 
   const selectListMaterial = useCallback(
@@ -67,9 +66,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           loanDetails
         });
       }
-      dispatch(openModal({ modalId: faust }));
+      modalButtonHandler(faust);
     },
-    [dispatch, faust, loanDetails, material, selectMaterial]
+    [faust, loanDetails, material, modalButtonHandler, selectMaterial]
   );
 
   return (

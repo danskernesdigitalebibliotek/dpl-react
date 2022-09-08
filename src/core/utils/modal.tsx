@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import { closeModal, openModal } from "../modal.slice";
 
+type ModalId = string;
+
 type ModalProps = {
   children: ReactNode;
-  modalId: string;
+  modalId: ModalId;
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
   additionalClasses?: string;
@@ -13,7 +15,7 @@ type ModalProps = {
 
 export interface ModalIdsProps {
   modal: {
-    modalIds: string[];
+    modalIds: ModalId[];
   };
 }
 
@@ -60,7 +62,7 @@ function Modal({
       </div>
       <button
         type="button"
-        /* A focusable element in a modal must have focus when opened, 
+        /* A focusable element in a modal must have focus when opened,
         or else the screen reader will remain on the main page */
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
@@ -82,5 +84,12 @@ function Modal({
     </div>
   );
 }
+
+export const useModalButtonHandler = () => {
+  const dispatch = useDispatch();
+  return (modalId: ModalId) => {
+    return dispatch(openModal({ modalId }));
+  };
+};
 
 export default Modal;

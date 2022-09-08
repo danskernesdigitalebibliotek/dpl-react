@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { openModal } from "../../../core/modal.slice";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
 import {
   getAmountOfRenewableLoans,
@@ -16,7 +15,10 @@ import DueDateLoansModal from "../modal/due-date-loans-modal";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
-import { ModalIdsProps } from "../../../core/utils/modal";
+import {
+  ModalIdsProps,
+  useModalButtonHandler
+} from "../../../core/utils/modal";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
@@ -39,7 +41,7 @@ export interface LoanDetailsType {
 }
 
 const LoanList: FC = () => {
-  const dispatch = useDispatch();
+  const modalButtonHandler = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
   const [dueDates, setDueDates] = useState<string[]>([]);
@@ -130,10 +132,9 @@ const LoanList: FC = () => {
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(loans);
       setRenewable(amountOfRenewableLoans);
-
-      dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
+      modalButtonHandler(modalIdsConf.allLoansId);
     }
-  }, [loans, dispatch]);
+  }, [loans, modalButtonHandler]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
@@ -153,18 +154,18 @@ const LoanList: FC = () => {
         ({ loanDetails }) => loanDetails.recordId === faustFound
       );
       setModalLoanDetails(loanDetailsForModal[0].loanDetails);
-      dispatch(openModal({ modalId: faustFound }));
+      modalButtonHandler(faustFound);
       return;
     }
     // modal query param: modal loans all
     if (modalString === modalIdsConf.allLoansId) {
-      dispatch(openModal({ modalId: modalIdsConf.allLoansId }));
+      modalButtonHandler(modalIdsConf.allLoansId);
     }
-  }, [loans, openModalDueDate, dispatch]);
+  }, [loans, openModalDueDate, modalButtonHandler]);
 
   return (
     <>
-      {/* only display the list when a modal is not open. this is to do with accessibility, 
+      {/* only display the list when a modal is not open. this is to do with accessibility,
       so the screen reader does not focus on focusable inputs in the list while a modal is open. */}
       {displayList && (
         <>

@@ -1,14 +1,17 @@
-import * as React from "react";
-import { useDispatch } from "react-redux";
-import Modal from "../../core/utils/modal";
-import { openModal } from "../../core/modal.slice";
+import React from "react";
+import { ModalId } from "../../core/modal.slice";
+import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
 
 const DemoModal: React.FC = () => {
-  const dispatch = useDispatch();
+  const buttonHandler = useModalButtonHandler();
   const t = useText();
   const modalIdOne = "demo-modal-one";
   const modalIdTwo = "demo-modal-two";
+
+  const onClick = (modalId: ModalId) => () => {
+    buttonHandler(modalId);
+  };
 
   return (
     <>
@@ -28,9 +31,7 @@ const DemoModal: React.FC = () => {
         <button
           type="button"
           id={`${modalIdTwo}-button`}
-          onClick={() => {
-            dispatch(openModal({ modalId: modalIdTwo }));
-          }}
+          onClick={onClick(modalIdTwo)}
         >
           Show Modal 2
         </button>
@@ -38,9 +39,7 @@ const DemoModal: React.FC = () => {
       <button
         type="button"
         id={`${modalIdOne}-button`}
-        onClick={() => {
-          dispatch(openModal({ modalId: modalIdOne }));
-        }}
+        onClick={onClick(modalIdOne)}
       >
         Show Modal 1
       </button>
