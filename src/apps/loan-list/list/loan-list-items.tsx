@@ -5,6 +5,7 @@ import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface LoanListItemProps {
   loans: LoanV2[];

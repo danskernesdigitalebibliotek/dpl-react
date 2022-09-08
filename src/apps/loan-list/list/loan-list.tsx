@@ -28,6 +28,7 @@ import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import Pagination from "../utils/pagination";
+import { ListView } from "../../../core/utils/types/list-view";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -224,7 +225,7 @@ const LoanList: FC = () => {
             <Pagination
               dueDates={dueDates}
               loans={loans}
-              view={view}
+              view={view as ListView}
               hitcount={allLoans.length}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
