@@ -83,6 +83,7 @@ export const mapLoanPublizonToLoanMetaDataType = (
 ): LoanMetaDataType[] => {
   return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
     return {
+      // this converts utc, at removes the time
       dueDate: loanExpireDateUtc,
       loanDate: orderDateUtc,
       id: libraryBook?.identifier || "",

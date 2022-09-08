@@ -14,6 +14,7 @@ export interface LoanListEntryProps {
   loanListLateFeeMobileText: string;
   loanListDaysText: string;
   loanListToBeDeliveredText: string;
+  loanListToBeDeliveredDigitalMaterialText: string;
   loanListMaterialsDesktopText: string;
   loanListMaterialsMobileText: string;
   loanListMaterialsModalDesktopText: string;
