@@ -32,6 +32,8 @@ const LoanListItems: FC<LoanListItemProps> = ({
 
   useEffect(() => {
     if (view === "stacked") {
+      // Publizon material sometimes have due dates that are "null"
+      // These should also be displayed stacked
       setLocalDueDates([...dueDates, null]);
     }
   }, [dueDates, view]);
