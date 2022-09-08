@@ -69,7 +69,7 @@ const LoanList: FC = () => {
 
       setPhysicalLoans(sortedByLoanDate);
     }
-  }, [isSuccess, data, searchItemsShown]);
+  }, [isSuccess, data]);
 
   useEffect(() => {
     if (publizonData?.loans) {
@@ -178,29 +178,6 @@ const LoanList: FC = () => {
       open(modalIdsConf.allLoansId);
     }
   }, [physicalLoans, openModalDueDate]);
-
-  useEffect(() => {
-    if (loans) {
-      if (view === "list") {
-        setDisplayedLoans(getSearchItems(loans, searchItemsShown));
-      } else {
-        const stackedLoans: LoanV2[] = getStackedSearchItems(
-          view,
-          loans,
-          searchItemsShown,
-          dueDates
-        );
-
-        setDisplayedLoans([...stackedLoans]);
-      }
-    }
-  }, [dueDates, loans, searchItemsShown, view]);
-
-  useEffect(() => {
-    // When view is changed (from list to stacks or stacks to list)
-    // The items shown are reset to pagesize from config
-    setSearchItemsShown(pageSize);
-  }, [view]);
 
   return (
     <>
