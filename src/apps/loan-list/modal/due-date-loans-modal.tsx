@@ -11,13 +11,11 @@ import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface DueDateLoansModalProps {
   dueDate: string;
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
-  renewable,
   loansModal
 }) => {
   const t = useText();

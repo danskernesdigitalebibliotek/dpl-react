@@ -15,12 +15,12 @@ export interface SelectableMaterialProps {
   disabled?: boolean;
   materialsToRenew?: number[];
   onChecked?: (faust: FaustId) => void;
-}
+} 
 
 export interface StackableMaterialProps {
   loanMetaData: LoanMetaDataType;
   amountOfMaterialsWithDueDate?: number;
-  dueDateLabel: string;
+  dueDateLabel?: string;
   selectDueDate?: (dueDate: string, id: string) => void;
   selectMaterial?: ({
     material,
