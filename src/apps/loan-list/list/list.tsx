@@ -24,6 +24,7 @@ export interface ListProps {
   dueDates: string[];
   allLoansLength: number;
   view: ListView;
+  dueDateLabel: string;
 }
 
 const List: FC<ListProps> = ({
@@ -35,7 +36,8 @@ const List: FC<ListProps> = ({
   loans,
   dueDates,
   allLoansLength,
-  view
+  view,
+  dueDateLabel
 }) => {
   const t = useText();
   useState<LoanDetailsV2 | null>(null);
@@ -93,6 +95,7 @@ const List: FC<ListProps> = ({
       </div>
       {loans && (
         <Pagination
+          dueDateLabel={dueDateLabel}
           dueDates={dueDates}
           loans={loans}
           view={view as ListView}
