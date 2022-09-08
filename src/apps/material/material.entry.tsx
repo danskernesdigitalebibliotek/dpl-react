@@ -54,6 +54,12 @@ interface MaterialEntryTextProps {
   youHaveBorrowedText: string;
   possibleText: string;
   thisMonthText: string;
+  approveReservationText: string;
+  shiftText: string;
+  pickupLocationText: string;
+  receiveSmsWhenMaterialReadyText: string;
+  receiveEmailWhenMaterialReadyText: string;
+  haveNoInterestAfterText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

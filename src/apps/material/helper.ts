@@ -3,6 +3,7 @@ import {
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
+import { AgencyBranch } from "../../core/fbs/model";
 import {
   creatorsToString,
   filterCreators,
@@ -116,4 +117,27 @@ export const getWorkDescriptionListData = ({
       type: "standard"
     }
   ];
+};
+
+export const getNoInterestAfter = (days: number) => {
+  switch (days) {
+    case 30:
+      return "1 måned";
+    case 60:
+      return "2 måneder";
+    case 90:
+      return "3 måneder";
+    case 180:
+      return "6 måneder";
+    case 360:
+      return "12 måneder";
+    default:
+      return `${days} dage`;
+  }
+};
+
+export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {
+  const locationItem = array.find((item) => item.branchId === id);
+  if (!locationItem) return id;
+  return locationItem.title;
 };
