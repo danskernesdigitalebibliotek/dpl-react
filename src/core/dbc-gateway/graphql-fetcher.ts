@@ -1,4 +1,4 @@
-import { getToken, TOKEN_LIBRARY_KEY } from "../token";
+import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../token";
 
 export const fetcher = <TData, TVariables>(
   query: string,
@@ -7,13 +7,13 @@ export const fetcher = <TData, TVariables>(
   return async (): Promise<TData> => {
     // The whole concept of agency id, profile and and bearer token needs to be refined.
     // First version is with a library token.
-    const libraryToken = getToken(TOKEN_LIBRARY_KEY);
+    const token = getToken(TOKEN_USER_KEY) || getToken(TOKEN_LIBRARY_KEY);
 
     const headers = {
       "Content-Type": "application/json"
     };
-    const authHeaders = libraryToken
-      ? ({ Authorization: `Bearer ${libraryToken}` } as object)
+    const authHeaders = token
+      ? ({ Authorization: `Bearer ${token}` } as object)
       : {};
 
     const res = await fetch(
