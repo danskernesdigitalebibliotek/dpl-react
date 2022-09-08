@@ -70,8 +70,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   }
 
   return (
-    <span
-      className="link-tag text-small-caption material-manifestation-item__find capitalize-all"
+      aria-describedby={t("findOnShelfExpandButtonExplanationText")}
       onClick={onClick}
       onKeyUp={(e) => onKeyUp(e.key)}
       role="button"

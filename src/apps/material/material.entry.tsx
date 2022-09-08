@@ -46,6 +46,7 @@ interface MaterialEntryTextProps {
   cantReserveText: string;
   goToText: string;
   materialIsLoanedOutText: string;
+  findOnShelfExpandButtonExplanationText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
