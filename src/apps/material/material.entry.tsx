@@ -46,6 +46,15 @@ interface MaterialEntryTextProps {
   cantReserveText: string;
   goToText: string;
   materialIsLoanedOutText: string;
+  approveReservationText: string;
+  weHaveShoppedText: string;
+  copiesThereIsText: string;
+  reservationsForThisMaterialText: string;
+  shiftText: string;
+  pickupLocationText: string;
+  receiveSmsWhenMaterialReadyText: string;
+  receiveEmailWhenMaterialReadyText: string;
+  haveNoInterestAfterText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

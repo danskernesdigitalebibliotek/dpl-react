@@ -220,6 +220,51 @@ export default {
       name: "Material is loaned out",
       defaultValue: "Materialet er udlånt",
       control: { type: "text" }
+    },
+    approveReservationText: {
+      name: "Approve reservation",
+      defaultValue: "Godkend reservation",
+      control: { type: "text" }
+    },
+    weHaveShoppedText: {
+      name: "We have shopped",
+      defaultValue: "Vi har købt",
+      control: { type: "text" }
+    },
+    copiesThereIsText: {
+      name: "copies there is",
+      defaultValue: "eksemplarer. Der er",
+      control: { type: "text" }
+    },
+    reservationsForThisMaterialText: {
+      name: "Reservations for this material",
+      defaultValue: "reserveringer til dette materiale",
+      control: { type: "text" }
+    },
+    shiftText: {
+      name: "Shift",
+      defaultValue: "Skift",
+      control: { type: "text" }
+    },
+    pickupLocationText: {
+      name: "Pick up at",
+      defaultValue: "Afhentes på",
+      control: { type: "text" }
+    },
+    receiveSmsWhenMaterialReadyText: {
+      name: "Receive SMS when the material is ready",
+      defaultValue: "Du får en sms, når materialet er klar",
+      control: { type: "text" }
+    },
+    receiveEmailWhenMaterialReadyText: {
+      name: "Receive mail when the material is ready",
+      defaultValue: "Du får besked, når materialet er klar",
+      control: { type: "text" }
+    },
+    haveNoInterestAfterText: {
+      name: "Have no interest after",
+      defaultValue: "Har ingen interesse efter",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
