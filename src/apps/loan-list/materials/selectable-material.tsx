@@ -46,7 +46,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 materialsToRenew?.indexOf(parseInt(faust, 10)) > -1
               }
               disabled={disabled}
-              label={t("LoanListLabelCheckboxMaterialModalText")}
+              label={t("loanListLabelCheckboxMaterialModalText")}
               hideLabel
             />
           )}
@@ -73,21 +73,21 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           {renewableStatus && (
             <span className="text-small-caption">
               {renewableStatus.includes("deniedMaxRenewalsReached") && (
-                <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
+                <>{t("loanListDeniedMaxRenewalsReachedText")}</>
               )}
               {(renewableStatus.includes("deniedOtherReason") ||
                 renewableStatus.includes("deniedReserved")) && (
-                <> {t("LoanListDeniedOtherReasonText")}</>
+                <> {t("loanListDeniedOtherReasonText")}</>
               )}
               {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}
               {loanType === "interLibraryLoan" && (
-                <>{t("LoanListDeniedInterLibraryLoanText")}</>
+                <>{t("loanListDeniedInterLibraryLoanText")}</>
               )}
             </span>
           )}
           <StatusBadge
             dueDate={dueDate}
-            neutralText={`${t("LoanListToBeDeliveredMaterialText")} 
+            neutralText={`${t("loanListToBeDeliveredMaterialText")}
             ${formatDate(dueDate)}`}
           />
         </div>

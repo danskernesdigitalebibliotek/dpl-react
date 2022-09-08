@@ -1,0 +1,23 @@
+{
+  "id" : "96cb4daa-4715-41c0-87c1-c24af0fd5d35",
+  "name" : "Checklist",
+  "request" : {
+    "url" : "/v1/user/checklist",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"items\": [\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:50.215\",\n      \"productTitle\": \"forsvindingsnumre\",\n      \"identifier\": \"9788711914137\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:47.108\",\n      \"productTitle\": \"To om paragrafferne\",\n      \"identifier\": \"9788711746998\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:43.616\",\n      \"productTitle\": \"Dain-forbandelsen\",\n      \"identifier\": \"9788771289350\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:40.073\",\n      \"productTitle\": \"Mordet i det blå tog\",\n      \"identifier\": \"9788711321683\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:36.722\",\n      \"productTitle\": \"Mitfordmordene første bog\",\n      \"identifier\": \"9788740047905\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-15T13:34:18.509\",\n      \"productTitle\": \"Tættere end man tror\",\n      \"identifier\": \"9788771076950\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:49:10.515\",\n      \"productTitle\": \"Fuldmåne i oktober\",\n      \"identifier\": \"9788711514245\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:49:07.175\",\n      \"productTitle\": \"Hjortens flugt\",\n      \"identifier\": \"9788726069365\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:49:03.385\",\n      \"productTitle\": \"Himlen over London\",\n      \"identifier\": \"9788770539081\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:49:00.026\",\n      \"productTitle\": \"På rejse med Charley\",\n      \"identifier\": \"9788771830828\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:56.949\",\n      \"productTitle\": \"Min kamp VI\",\n      \"identifier\": \"9788711571255\"\n    },\n    {\n      \"createdDateUtc\": \"2022-08-16T09:48:32.843\",\n      \"productTitle\": \"Harry Pottcast & Hemmelighedernes Kammer (15:18)\",\n      \"identifier\": \"9788793884342\"\n    }\n  ],\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 09:50:19 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "96cb4daa-4715-41c0-87c1-c24af0fd5d35",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 5,
+  "postServeActions" : [ ]
+}

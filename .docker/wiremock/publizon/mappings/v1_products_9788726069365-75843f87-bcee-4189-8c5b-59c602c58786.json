@@ -1,0 +1,23 @@
+{
+  "id" : "75843f87-bcee-4189-8c5b-59c602c58786",
+  "name" : "Products (9788726069365)",
+  "request" : {
+    "url" : "/v1/products/9788726069365",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2018-08-08T14:25:41.373Z\",\n    \"updatedUtc\": \"2018-08-08T14:25:41.373Z\",\n    \"title\": \"Hjortens flugt\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788726069365.mp3\",\n    \"productType\": 2,\n    \"externalProductId\": {\n      \"idType\": 3,\n      \"id\": \"9788726069365\"\n    },\n    \"internalProductId\": \"8d82d25c-0133-4e30-bbd0-9f160d731038\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Christian\",\n        \"lastName\": \"Winther\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Troels\",\n        \"lastName\": \"Møller\"\n      }\n    ],\n    \"format\": \"zip\",\n    \"fileSizeInBytes\": 208424,\n    \"durationInSeconds\": 17857,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2018-08-10T00:00:00Z\",\n    \"description\": \"\\\"Hjortens Flugt\\\" er en romantisk versfortælling af Christian Winther fra 1855. Handlingen er henlagt til Erik 7. af Pommerns tid og beskriver de elskendes kamp mod troldkvinden Rhitra, kongens dæmoniske elskerinde. Forsmået af Junker Strange hævner hun sig ved at lade ham binde til en hjort. Versformen er hentet fra Nibelungenlied. Christian Winther har desuden tegnet en slags selvportræt i Folmer Sanger, dronningens trubadur.\\n\\n\\n\\nChristian Winther, 1796-1876, dansk digter. Opvoksede i et præstegårdsmiljø og levede senere det frie liv i København. Winther blev uddannet teolog, men fik aldrig embede. I stedet fungerede han som huslærer i København og deltog igen i både studenter- og selskabslivet. Under en rejse i Italien formøblede han en stor arv, og de næste mange år efter hjemkomsten i 1831 var præget af forelskelser, pengemangel og en broget virksomhed som udgiver, redaktør, oversætter og forfatter. Med en karakteristisk inderlighed, metrisk smidighed og ironisk distance fandt Winther i poesien udtryk for kærlighedens mangeartede følelser, herunder også erotiske, og hans poetiske produktion var livslang og tog gerne udgangspunkt i egne følelser og liv. Med langdigtet \\\"Hjortens Flugt\\\" fra 1855 fik han litterær succes, men privat var hans og hans families liv præget af uro. Sine sidste år tilbragte han i Paris.\",\n    \"productCategories\": [\n      {\n        \"description\": \"Danmark\",\n        \"code\": \"1DND\"\n      },\n      {\n        \"description\": \"19. århundrede, 1800 til 1899\",\n        \"code\": \"3MN\"\n      },\n      {\n        \"description\": \"Poesi\",\n        \"code\": \"DC\"\n      },\n      {\n        \"description\": \"Skønlitteratur og relaterede emner\",\n        \"code\": \"F\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:53 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "75843f87-bcee-4189-8c5b-59c602c58786",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 23,
+  "postServeActions" : [ ]
+}

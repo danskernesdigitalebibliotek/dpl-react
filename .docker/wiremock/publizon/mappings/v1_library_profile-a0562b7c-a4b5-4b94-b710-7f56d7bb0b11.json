@@ -1,0 +1,23 @@
+{
+  "id" : "a0562b7c-a4b5-4b94-b710-7f56d7bb0b11",
+  "name" : "Library",
+  "request" : {
+    "url" : "/v1/library/profile",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"id\": 816,\n  \"name\": \"Aarhus Bibliotek\",\n  \"isilNumber\": \"DK-775100\",\n  \"ebookLoanDurationInDays\": 30,\n  \"maxEbookAmountPerMonth\": 300001,\n  \"maxEbookAmountPerMonthNotificationThreshold\": 200001,\n  \"maxConcurrentEbookLoansPerBorrower\": 7,\n  \"maxConcurrentEbookReservationsPerBorrower\": 3,\n  \"maxEbookCancellationsPerMonth\": 20,\n  \"audioLoanDurationInDays\": 30,\n  \"maxAudioAmountPerMonth\": 300002,\n  \"maxAudioAmountPerMonthNotificationThreshold\": 200002,\n  \"maxConcurrentAudioLoansPerBorrower\": 8,\n  \"maxConcurrentAudioReservationsPerBorrower\": 3,\n  \"maxAudioCancellationsPerMonth\": 10,\n  \"testCards\": [\n    {\n      \"testCardNumber\": \"3200000001\"\n    },\n    {\n      \"testCardNumber\": \"3200000002\"\n    },\n    {\n      \"testCardNumber\": \"3200000003\"\n    },\n    {\n      \"testCardNumber\": \"3200000004\"\n    }\n  ]\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Mon, 15 Aug 2022 19:41:38 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "a0562b7c-a4b5-4b94-b710-7f56d7bb0b11",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 1,
+  "postServeActions" : [ ]
+}

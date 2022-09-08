@@ -1,0 +1,23 @@
+{
+  "id" : "e91c0c00-9b4c-4dd9-9a19-c01f24f4ea32",
+  "name" : "Products (9788771289350)",
+  "request" : {
+    "url" : "/v1/products/9788771289350",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2014-11-17T09:26:14.217Z\",\n    \"updatedUtc\": \"2019-04-30T21:07:21.513Z\",\n    \"title\": \"Dain-forbandelsen\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788771289350.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788771289350\"\n    },\n    \"internalProductId\": \"61d6ec28-9b21-47f0-834e-f3465c3e9749\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Dashiell\",\n        \"lastName\": \"Hammett\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Kirsten\",\n        \"lastName\": \"Bernhard\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 1322,\n    \"durationInSeconds\": null,\n    \"publisher\": \"Rosenkilde & Bahnhof\",\n    \"publicationDate\": \"2014-11-17T00:00:00Z\",\n    \"description\": \"Leggett-familien i San Francisco har fået stjålet deres diamanter – familiejuvelerne, og detektiven bliver tilkaldt for at opklare dette\\r\\ntyveri. En formodet forbandelse, der hviler over Dain-familien, og som\\r\\nangiveligt har resulteret i pludselige og voldsomme dødsfald, spiller\\r\\nen central rolle i handlingen.\\r\\nEt broget net af tyverier, løgne og mord optrævles. Det kommer for en\\r\\ndag, at det yngste skud på Dain-stammen, den unge Gabrielle, både er\\r\\nnarkoman og er involveret i en mystisk religiøs sekt.\\r\\nGabrielle flygter fra sekten og bliver gift med sin forlovede Eric, men\\r\\nmakabre hændelser bliver ved at forfølge dem. Detektiven haster til\\r\\nfor at beskytte Gabrielle og hjælpe hende med at komme fri af hendes\\r\\nafhængighed af morfin. Han må prøve at afsløre årsagen til alle de\\r\\nmystiske, voldelige begivenheder, der finder sted omkring Gabrielle\\r\\nog Dain-familiemedlemmerne.\\r\\nPrivatdetektiven, som Hammett slørende kaldte ’The Continental\\r\\nOp’, optræder i den danske oversættelse kun som netop ’Detektiven’\\r\\n– unavngiven og mystisk!\\r\\nDain-forbandelsen er bygget over Hammetts detektivhistorie om\\r\\n’The Continental Op’, skrevet til pulp fiction-magasinet The Black\\r\\nMask i 1928-1929. Dette magasin blev spændings- og drengelæsning\\r\\nfor en hel generation. Bladet fik ikonisk status og blev genintroduceret\\r\\ntil moderne generationer som inspirationskilde nummer 1 for Quentin Tarantinos film ’Pulp Fiction’.\\r\\n\\r\\nDashiell Hammett (1894-1961) amerikansk kriminalforfatter, skrev en\\r\\nrække verdensberømte privatdetektivromaner. Betragtes som en af\\r\\nde allerstørste blandt genrens forfattere. Dain-forbandelsen (1929) er\\r\\nen af hans berømteste romaner.\",\n    \"productCategories\": [\n      {\n        \"description\": \"Krimier og mysterier\",\n        \"code\": \"FF\"\n      },\n      {\n        \"description\": \"Klassiske krimier\",\n        \"code\": \"FFC\"\n      },\n      {\n        \"description\": \"Thrillere / spændingsromaner\",\n        \"code\": \"FH\"\n      },\n      {\n        \"description\": \"Oversat skønlitteratur\",\n        \"code\": \"FYT\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:28 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "e91c0c00-9b4c-4dd9-9a19-c01f24f4ea32",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 16,
+  "postServeActions" : [ ]
+}

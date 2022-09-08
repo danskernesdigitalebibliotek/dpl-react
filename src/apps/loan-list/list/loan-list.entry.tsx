@@ -12,23 +12,23 @@ export interface LoanListEntryProps {
   loanListLateFeeDesktopText: string;
   loanListLateFeeMobileText: string;
   loanListDaysText: string;
-  LoanListToBeDeliveredText: string;
-  LoanListMaterialsDesktopText: string;
-  LoanListMaterialsMobileText: string;
+  loanListToBeDeliveredText: string;
+  loanListMaterialsDesktopText: string;
+  loanListMaterialsMobileText: string;
   loanListMaterialsModalDesktopText: string;
   loanListMaterialsModalMobileText: string;
   loanListStatusCircleAriaLabelText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
-  LoanListDeniedMaxRenewalsReachedText: string;
-  LoanListDeniedOtherReasonText: string;
-  LoanListDeniedInterLibraryLoanText: string;
-  LoanListToBeDeliveredMaterialText: string;
-  LoanListLabelCheckboxMaterialModalText: string;
+  loanListDeniedMaxRenewalsReachedText: string;
+  loanListDeniedOtherReasonText: string;
+  loanListDeniedInterLibraryLoanText: string;
+  loanListToBeDeliveredMaterialText: string;
+  loanListLabelCheckboxMaterialModalText: string;
   LoanListCloseModalText: string;
-  LoanListModalDescriptionText: string;
-  LoanListEmptyPhysicalLoansText: string;
-  MaterialDetailsModalOverdueText: string;
+  loanListModalDescriptionText: string;
+  loanListEmptyPhysicalLoansText: string;
+  materialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
   loanListMaterialByAuthorText: string;
   loanModalMaterialByAuthorText: string;
@@ -55,6 +55,10 @@ export interface LoanListEntryProps {
   dueDateRenewLoanModalButtonText: string;
   dueDateWarningLoanOverdueText: string;
   dueDateLinkToPageWithFeesText: string;
+  bottomRenewLoanModalCheckboxText: string;
+  bottomDueDateRenewLoanModalCheckboxText: string;
+  bottomRenewLoanModalButtonText: string;
+  bottomDueDateRenewLoanModalButtonText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;

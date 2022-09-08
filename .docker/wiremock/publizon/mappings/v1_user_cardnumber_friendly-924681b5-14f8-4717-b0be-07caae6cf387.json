@@ -1,0 +1,23 @@
+{
+  "id" : "924681b5-14f8-4717-b0be-07caae6cf387",
+  "name" : "Friendly",
+  "request" : {
+    "url" : "/v1/user/cardnumber/friendly",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"friendlyCardNumber\": \"8R9W59\",\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Mon, 15 Aug 2022 19:41:46 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "924681b5-14f8-4717-b0be-07caae6cf387",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 2,
+  "postServeActions" : [ ]
+}

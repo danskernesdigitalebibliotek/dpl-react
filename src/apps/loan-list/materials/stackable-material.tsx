@@ -120,7 +120,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                 className="list-reservation__note-desktop text-small-caption color-secondary-gray"
               >
                 + {amountOfMaterialsWithDueDate}{" "}
-                {t("LoanListMaterialsDesktopText")}
+                {t("loanListMaterialsDesktopText")}
               </button>
             )}
           {materialIsOverdue(dueDate) && (
@@ -144,7 +144,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                 warningText={t("loanListStatusBadgeWarningText")}
               />
               <p className="text-small-caption" id="due-date">
-                {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
+                {t("loanListToBeDeliveredText")} {formatDate(dueDate)}
               </p>
               {amountOfMaterialsWithDueDate &&
                 amountOfMaterialsWithDueDate > 1 && (
@@ -154,7 +154,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                     className="list-reservation__note-mobile text-small-caption color-secondary-gray"
                   >
                     + {amountOfMaterialsWithDueDate}{" "}
-                    {t("LoanListMaterialsMobileText")}
+                    {t("loanListMaterialsMobileText")}
                   </button>
                 )}
               {materialIsOverdue(dueDate) && (

@@ -1,0 +1,23 @@
+{
+  "id" : "554643ca-a905-4a52-ba23-fb984b4751aa",
+  "name" : "Products (9788771076950)",
+  "request" : {
+    "url" : "/v1/products/9788771076950",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2019-12-04T11:33:23.27Z\",\n    \"updatedUtc\": \"2020-01-07T12:00:11.07Z\",\n    \"title\": \"Tættere end man tror\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788771076950.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788771076950\"\n    },\n    \"internalProductId\": \"feefd798-903b-472b-b884-bbcd7f761dba\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Brad\",\n        \"lastName\": \"Parks\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Rasmus Klitgaard\",\n        \"lastName\": \"Hansen\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 812,\n    \"durationInSeconds\": null,\n    \"publisher\": \"Jentas\",\n    \"publicationDate\": \"2020-01-17T00:00:00Z\",\n    \"description\": \"Katastrofen er altid tættere, end man tror.\\r\\n\\r\\nMelanie Barrick havde lært det på den hårde måde, mens hun voksede op i de sociale myndigheders varetægt. Men nu, som voksen og med en hengiven mand, fast arbejde og sin vidunderlige, nyfødte søn Alex troede hun, at det var et overstået kapitel i hendes liv.\\r\\nLige indtil en tirsdag eftermiddag hvor hun som sædvanlig henter Alex hos dagplejeren – kun for at finde ud af at han er blevet tvangsfjernet af myndighederne. Det er enhver forælders værste mareridt, men det er endnu værre for Melanie, som kun alt for godt kender konsekvenserne af at blive opslugt af systemet. Og alting bliver om muligt endnu værre, da hun finder ud af, at politiet har ransaget hendes hjem, og at de har fundet kokain nok til at sende hende bag tremmer i mange år. Beviserne imod hende er overvældende, og hvis det ikke lykkes hende at bevise sin uskyld, vil hun aldrig få sin søn at se igen.\\r\\nSamtidig kæmper den assisterende offentlige anklager, Amy Kaye – som har fået Melanies sag – med sine egne problemer. Hun er gået i stå med en sag, som ingen ønsker, at hun skal efterforske – en serievoldtægtsmand, som bærer maske og taler til ofrene med hviskende stemme, og som har overfaldet snesevis af kvinder i årenes løb uden at blive fanget.\\r\\nInklusive Melanie. Men nu er hendes overfaldsmand måske nøglen til hendes redning … eller til hendes undergang.\\r\\n\\r\\nParks har komponeret en mesterlig og gribende fortælling.\\r\\n– Oprah.com\\r\\n\\r\\nEt stærkt plot, et overbevisende persongalleri og en handling, som \\r\\nvil få læserne til at sluge bogen i én mundfuld.\\r\\n– Alafair Burke\\r\\n\\r\\nBrad Parks er den eneste forfatter, som har vundet både Shamus, Nero og Lefty Awards, tre af de mest prestigefyldte krimipriser i USA. Hans romaner er oversat til femten sprog og er blevet rost til skyerne overalt.\",\n    \"productCategories\": [\n      {\n        \"description\": \"Skønlitteratur: generelt\",\n        \"code\": \"FB\"\n      },\n      {\n        \"description\": \"Krimier og mysterier\",\n        \"code\": \"FF\"\n      },\n      {\n        \"description\": \"Politiromaner\",\n        \"code\": \"FFP\"\n      },\n      {\n        \"description\": \"Kvindelige detektiver\",\n        \"code\": \"FFS\"\n      },\n      {\n        \"description\": \"Thrillere / spændingsromaner\",\n        \"code\": \"FH\"\n      },\n      {\n        \"description\": \"Psykologiske thrillere\",\n        \"code\": \"FHX\"\n      }\n    ],\n    \"costFree\": false\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:25:00 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "554643ca-a905-4a52-ba23-fb984b4751aa",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 25,
+  "postServeActions" : [ ]
+}

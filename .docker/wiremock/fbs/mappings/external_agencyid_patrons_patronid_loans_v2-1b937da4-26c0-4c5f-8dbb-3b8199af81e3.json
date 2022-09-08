@@ -11,14 +11,13 @@
     "headers" : {
       "content-type" : [ "application/json; charset=utf-8", "application/json" ],
       "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security" : "max-age=15552000",
-      "Access-Control-Allow-Origin" : "*"
+      "strict-transport-security" : "max-age=15552000"
     },
     "transformers" : [ "response-template" ]
   },
   "uuid" : "1b937da4-26c0-4c5f-8dbb-3b8199af81e3",
   "persistent" : true,
   "priority" : 5,
-  "insertionIndex" : 3,
+  "insertionIndex" : 5,
   "postServeActions" : [ ]
 }

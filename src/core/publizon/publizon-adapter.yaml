@@ -1,0 +1,1214 @@
+openapi: 3.0.1
+info:
+  title: Publizon Library API
+  description: "Pubhub exists in two separate environments, each with their own server, code and database. Please use the web service located at library-api.qa.pubhub.dk when developing and testing.\nOrders/loans created in test environment will not be invoiced. Please request a new license key for the production environment when you're ready to go live."
+  version: '1'
+paths:
+  /v1/user/cardnumber/friendly:
+    get:
+      tags:
+        - CardNumber
+      summary: Gets the user's friendly card number.
+      description: "Sample **request**:\r\n            \r\n    GET /friendly\r\n    {\r\n        \"name\": \"Some name\"\r\n    }"
+      parameters:
+        - name: clientId
+          in: header
+          description: Id of client/application calling the endpoint.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          description: Library license key.
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          description: Borrower's card number.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the friendly card number.
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FriendlyCardResult'
+              example: {"friendlyCardNumber":"AABBCC123","code":101,"message":"OK"}
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FriendlyCardResult'
+              example: {"friendlyCardNumber":"AABBCC123","code":101,"message":"OK"}
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FriendlyCardResult'
+              example: {"friendlyCardNumber":"AABBCC123","code":101,"message":"OK"}
+        '400':
+          description: 'Error occurred, see message.'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /v1/user/checklist:
+    get:
+      tags:
+        - Checklist
+      summary: List all checklist items of the user.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChecklistResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChecklistResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChecklistResult'
+  '/v1/user/checklist/{identifier}':
+    post:
+      tags:
+        - Checklist
+      summary: Add a book to the user's checklist.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+    delete:
+      tags:
+        - Checklist
+      summary: Delete a book from the user's checklist.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+  /v1/library/profile:
+    get:
+      tags:
+        - Library
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LibraryProfile'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LibraryProfile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LibraryProfile'
+  /v1/user/loans:
+    get:
+      tags:
+        - Loan
+      summary: Lists all active loans of the user.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: bookType
+          in: query
+          description: '0 = Ebook, 1 = Audio'
+          schema:
+            $ref: '#/components/schemas/BookTypes'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoanListResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanListResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoanListResult'
+  '/v1/user/loans/{identifier}':
+    get:
+      tags:
+        - Loan
+      summary: Gets details of a specific loan.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            maxLength: 13
+            minLength: 13
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoanResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoanResult'
+    post:
+      tags:
+        - Loan
+      summary: Creates a new loan.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          schema:
+            type: string
+        - name: institutionId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateLoanResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLoanResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateLoanResult'
+  '/v1/loanstatus/{identifier}':
+    get:
+      tags:
+        - LoanStatus
+      summary: Get loan status of a specific product.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoanStatusResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanStatusResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoanStatusResult'
+  /v1/loanstatus:
+    post:
+      tags:
+        - LoanStatus
+      summary: Get loan status of all products.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          schema:
+            type: string
+      requestBody:
+        description: Product identifiers of which to retrieve loan status.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoanStatusListResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanStatusListResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoanStatusListResult'
+  '/v1/products/{identifier}':
+    get:
+      tags:
+        - Product
+      summary: Get a specific product.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductResult'
+  /v1/products:
+    get:
+      tags:
+        - Product
+      summary: List all products.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductListResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResult'
+  /v1/user/reservations:
+    get:
+      tags:
+        - Reservation
+      summary: Lists all reservations of the user.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationListResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationListResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationListResult'
+  '/v1/user/reservations/{identifier}':
+    post:
+      tags:
+        - Reservation
+      summary: Creates a new reservation.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+    patch:
+      tags:
+        - Reservation
+      summary: Updates the phone number and email address of a specific reservation.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+    delete:
+      tags:
+        - Reservation
+      summary: Cancels a reservation.
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: licenseKey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: cardNumber
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: identifier
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResult'
+components:
+  schemas:
+    ApiResponseCode:
+      enum:
+        - 101
+        - 105
+        - 118
+        - 120
+        - 125
+        - 128
+        - 131
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+        - 141
+        - 142
+        - 143
+        - 147
+        - 148
+        - 149
+        - 150
+        - 151
+        - 152
+        - 153
+      type: integer
+      description: '101 = Success, 105 = InvalidContentIdentifier, 118 = InvalidRequestIdentity, 120 = MaxConcurrentLoansPerBorrowerExceeded, 125 = MaxAmountPerMonthExceeded, 128 = ContentNotFound, 131 = NotLoanable, 134 = CardTemporarilyBlocked, 135 = MaxLoansOnTitleReached, 136 = InsufficientCopiesException, 137 = ReservationLimitReached, 138 = GenericFault, 139 = InvalidAgreement, 140 = AlreadyReserved, 141 = InvalidEmail, 142 = InvalidPhone, 143 = CostFreeLimitReached, 147 = CountryNotFound, 148 = InvalidInstitutionId, 149 = InvalidCardFormat, 150 = InvalidCardByCulr, 151 = CardNotFound, 152 = InvalidClientId, 153 = LoanNotFound'
+      format: int32
+    ApiResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Base API Result. Used in all methods.
+    BookTypes:
+      enum:
+        - 0
+        - 1
+      type: integer
+      description: '0 = Ebook, 1 = Audio'
+      format: int32
+    ChecklistItem:
+      type: object
+      properties:
+        createdDateUtc:
+          type: string
+          format: date-time
+        productTitle:
+          type: string
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Checklist item.
+    ChecklistResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChecklistItem'
+          nullable: true
+      additionalProperties: false
+      description: "Get checklist result. Checklist items are found in\r\n<br>Items\r\n."
+    ContentLoanStatusEnum:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      type: integer
+      description: ''
+      format: int32
+    CreateLoanResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        expirationDateUtc:
+          type: string
+          format: date-time
+        orderNumber:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    FileExtensionType:
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      description: ''
+      format: int32
+    FriendlyCardResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        friendlyCardNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IdentifierTypeEnum:
+      enum:
+        - 2
+        - 3
+        - 15
+      type: integer
+      description: ''
+      format: int32
+    LibraryBook:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        identifierType:
+          $ref: '#/components/schemas/IdentifierTypeEnum'
+        title:
+          type: string
+          nullable: true
+        publishersName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LibraryData:
+      type: object
+      properties:
+        loanDurationDays:
+          type: integer
+          format: int32
+        maxConcurrentEbookLoansPerBorrower:
+          type: integer
+          format: int32
+        maxConcurrentAudiobookLoansPerBorrower:
+          type: integer
+          format: int32
+        maxAmountPerMonth:
+          type: integer
+          format: int32
+      additionalProperties: false
+    LibraryProductCategory:
+      type: object
+      properties:
+        description:
+          type: string
+          nullable: true
+        code:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LibraryProductContributor:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LibraryProductExternalId:
+      type: object
+      properties:
+        idType:
+          $ref: '#/components/schemas/IdentifierTypeEnum'
+        id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LibraryProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        isilNumber:
+          type: string
+          nullable: true
+        ebookLoanDurationInDays:
+          type: integer
+          format: int32
+        maxEbookAmountPerMonth:
+          type: integer
+          format: int32
+        maxEbookAmountPerMonthNotificationThreshold:
+          type: integer
+          format: int32
+          nullable: true
+        maxConcurrentEbookLoansPerBorrower:
+          type: integer
+          format: int32
+        maxConcurrentEbookReservationsPerBorrower:
+          type: integer
+          format: int32
+        maxEbookCancellationsPerMonth:
+          type: integer
+          format: int32
+        audioLoanDurationInDays:
+          type: integer
+          format: int32
+        maxAudioAmountPerMonth:
+          type: integer
+          format: int32
+        maxAudioAmountPerMonthNotificationThreshold:
+          type: integer
+          format: int32
+          nullable: true
+        maxConcurrentAudioLoansPerBorrower:
+          type: integer
+          format: int32
+        maxConcurrentAudioReservationsPerBorrower:
+          type: integer
+          format: int32
+        maxAudioCancellationsPerMonth:
+          type: integer
+          format: int32
+        testCards:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestCard'
+          nullable: true
+      additionalProperties: false
+    Loan:
+      type: object
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        orderNumber:
+          type: string
+          nullable: true
+        orderDateUtc:
+          type: string
+          format: date-time
+        loanExpireDateUtc:
+          type: string
+          format: date-time
+        isSubscriptionLoan:
+          type: boolean
+        libraryBook:
+          $ref: '#/components/schemas/LibraryBook'
+        fileExtensionType:
+          $ref: '#/components/schemas/FileExtensionType'
+      additionalProperties: false
+    LoanListResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        loans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Loan'
+          nullable: true
+        libraryData:
+          $ref: '#/components/schemas/LibraryData'
+        userData:
+          $ref: '#/components/schemas/UserData'
+      additionalProperties: false
+    LoanResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        loan:
+          $ref: '#/components/schemas/Loan'
+        libraryData:
+          $ref: '#/components/schemas/LibraryData'
+        userData:
+          $ref: '#/components/schemas/UserData'
+      additionalProperties: false
+    LoanStatusItem:
+      type: object
+      properties:
+        loanStatus:
+          $ref: '#/components/schemas/ContentLoanStatusEnum'
+        onChecklist:
+          type: boolean
+        identifier:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LoanStatusListResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanStatusItem'
+          nullable: true
+      additionalProperties: false
+    LoanStatusResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        loanStatus:
+          $ref: '#/components/schemas/ContentLoanStatusEnum'
+        onChecklist:
+          type: boolean
+        identifier:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Product:
+      type: object
+      properties:
+        createdUtc:
+          type: string
+          format: date-time
+        updatedUtc:
+          type: string
+          format: date-time
+        title:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        languageCode:
+          type: string
+          nullable: true
+        coverUri:
+          type: string
+          nullable: true
+        thumbnailUri:
+          type: string
+          nullable: true
+        sampleUri:
+          type: string
+          nullable: true
+        productType:
+          type: integer
+          format: int32
+        externalProductId:
+          $ref: '#/components/schemas/LibraryProductExternalId'
+        internalProductId:
+          type: string
+          nullable: true
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryProductContributor'
+          nullable: true
+        format:
+          type: string
+          nullable: true
+        fileSizeInBytes:
+          type: integer
+          format: int32
+        durationInSeconds:
+          type: integer
+          format: int32
+          nullable: true
+        publisher:
+          type: string
+          nullable: true
+        publicationDate:
+          type: string
+          format: date-time
+        description:
+          type: string
+          nullable: true
+        productCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryProductCategory'
+          nullable: true
+        costFree:
+          type: boolean
+      additionalProperties: false
+    ProductListResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          nullable: true
+      additionalProperties: false
+      description: "Get product list result. Product items are found in\r\n<br>Products\r\n."
+    ProductResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+      additionalProperties: false
+      description: Get product result.
+    Reservation:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+        identifier:
+          type: string
+          nullable: true
+        createdDateUtc:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+        productTitle:
+          type: string
+          nullable: true
+        expireDateUtc:
+          type: string
+          format: date-time
+          nullable: true
+        expectedRedeemDateUtc:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Reservation item.
+    ReservationInput:
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Data used to create/update a reservation.
+    ReservationListResult:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ApiResponseCode'
+        message:
+          type: string
+          nullable: true
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+          nullable: true
+      additionalProperties: false
+      description: "Reservation list result. Reservation items are found in\r\n<br>Reservations\r\n."
+    TestCard:
+      type: object
+      properties:
+        testCardNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserData:
+      type: object
+      properties:
+        totalLoans:
+          type: integer
+          format: int32
+        totalEbookLoans:
+          type: integer
+          format: int32
+        totalAudioLoans:
+          type: integer
+          format: int32
+        ebookLoansRemaining:
+          type: integer
+          format: int32
+        audiobookLoansRemaining:
+          type: integer
+          format: int32
+        ebookLoanAvailableUtc:
+          type: string
+          format: date-time
+        audioLoanAvailableUtc:
+          type: string
+          format: date-time
+        friendlyCardNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: 'OAuth 2.0 password Grant'
+      flows:
+        password:
+          tokenUrl: 'https://login.bib.dk/oauth/token'
+          scopes: {  }
+security:
+  -
+    oauth: []
+tags: []

@@ -1,0 +1,23 @@
+{
+  "id" : "39816af8-ce16-4eb6-915b-45dac07e890e",
+  "name" : "Products (9788728033432) - error",
+  "request" : {
+    "url" : "/v1/products/9788728033432",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 400,
+    "body" : "{\n  \"code\": 128,\n  \"message\": \"Bogen er ikke tilgængelig for udlån (#128).\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:37 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "39816af8-ce16-4eb6-915b-45dac07e890e",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 19,
+  "postServeActions" : [ ]
+}

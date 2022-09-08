@@ -1,0 +1,23 @@
+{
+  "id" : "0a26f80b-4719-4035-af58-bf215e5fba18",
+  "name" : "Products (9788711914137)",
+  "request" : {
+    "url" : "/v1/products/9788711914137",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2019-02-12T12:30:57.99Z\",\n    \"updatedUtc\": \"2020-03-26T11:53:57.337Z\",\n    \"title\": \"forsvindingsnumre\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788711914137.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 3,\n      \"id\": \"9788711914137\"\n    },\n    \"internalProductId\": \"929a78c6-3506-49f6-9450-0e5202ac64b8\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Amalie\",\n        \"lastName\": \"Langballe\"\n      },\n      {\n        \"type\": \"B01\",\n        \"firstName\": \"Anne-Marie\",\n        \"lastName\": \"Christensen\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 1173,\n    \"durationInSeconds\": null,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2019-03-07T00:00:00Z\",\n    \"description\": \"<p dir=\\\"ltr\\\" align=\\\"left\\\">Når noget forsvinder forventer man, at det kan findes igen. Sådan har Agnes det med sin mor, som er død.</p>\\r\\n<p dir=\\\"ltr\\\" align=\\\"left\\\">Men Agnes er ikke god til at finde noget. Ting bliver væk for hende, fugle, mennesker og virkelighedsfornemmelse. Hun leder efter alle de ting på steder, hvor de ikke er. I Berlin, i København og i Tel Aviv. </p>\\r\\n<p dir=\\\"ltr\\\" align=\\\"left\\\">Indtil noget umuligt en dag dukker op i hendes lejlighed. Noget, som måske kan hjælpe hende tilbage til virkeligheden.</p>\\r\\n<p dir=\\\"ltr\\\" align=\\\"left\\\">Forsvindingsnumre er en hudløs roman om en ung kvinde i sorg og om forsøget på at finde fodfæste i livet efter at have mistet nogen, man ikke kan undvære.</p>\",\n    \"productCategories\": [\n      {\n        \"description\": \"Skønlitteratur: generelt\",\n        \"code\": \"FB\"\n      },\n      {\n        \"description\": \"Moderne skønlitteratur. Samtidslitteratur\",\n        \"code\": \"FBA\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:34 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "0a26f80b-4719-4035-af58-bf215e5fba18",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 18,
+  "postServeActions" : [ ]
+}

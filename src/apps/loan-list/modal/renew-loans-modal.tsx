@@ -38,6 +38,8 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
               renewable={renewable}
               buttonLabel={t("renewLoanModalButtonText")}
               checkboxLabel={t("renewLoanModalCheckboxText")}
+              buttonBottomLabel={t("bottomRenewLoanModalButtonText")}
+              checkboxBottomLabel={t("bottomRenewLoanModalCheckboxText")}
             />
           </>
         )}

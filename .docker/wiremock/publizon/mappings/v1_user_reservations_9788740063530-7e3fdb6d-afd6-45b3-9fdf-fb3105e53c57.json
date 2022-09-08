@@ -1,0 +1,28 @@
+{
+  "id" : "7e3fdb6d-afd6-45b3-9fdf-fb3105e53c57",
+  "name" : "Reservations (update)",
+  "request" : {
+    "urlPathPattern" : "/v1/user/reservations/.*",
+    "method" : "PATCH",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n  \"email\": \"itkdev@mkb.aarhus.dk\",\n  \"phoneNumber\": \"+4529490271\"\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:53:27 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "7e3fdb6d-afd6-45b3-9fdf-fb3105e53c57",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 31,
+  "postServeActions" : [ ]
+}

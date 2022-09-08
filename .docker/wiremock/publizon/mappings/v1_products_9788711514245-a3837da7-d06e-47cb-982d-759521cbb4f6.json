@@ -1,0 +1,23 @@
+{
+  "id" : "a3837da7-d06e-47cb-982d-759521cbb4f6",
+  "name" : "Products (9788711514245)",
+  "request" : {
+    "url" : "/v1/products/9788711514245",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2016-06-02T12:29:49.433Z\",\n    \"updatedUtc\": \"2016-06-02T12:29:49.433Z\",\n    \"title\": \"Fuldmåne i oktober\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788711514245.mp3\",\n    \"productType\": 2,\n    \"externalProductId\": {\n      \"idType\": 3,\n      \"id\": \"9788711514245\"\n    },\n    \"internalProductId\": \"c3496e75-5e97-4ecb-a10f-f4ab411018cb\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Victoria\",\n        \"lastName\": \"Holt\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Else\",\n        \"lastName\": \"Kornerup\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Nanna\",\n        \"lastName\": \"Salomon\"\n      }\n    ],\n    \"format\": \"zip\",\n    \"fileSizeInBytes\": 480504,\n    \"durationInSeconds\": 42106,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2016-06-01T00:00:00Z\",\n    \"description\": \"Den ene mand er hendes skæbne. Den anden kan blive hendes endeligt.<br><br>Ifølge gammel overtro kan en ung pige få et glimt af sin fremtidige ægtemand under fuldmånen i oktober. Men da den smukke fremmede, som åbenbarer sig for Cordelia Grant, forsvinder igen efter et alt for kort møde, tvinges hun til at spørge sig selv: Var han blot et spøgelse … eller var han mere end det?<br><br>Mindet om den mystiske gentleman hjemsøger stadig Cordelia, da Sir Jason Verringer gør sin entré i hendes liv. Rygtet siger, at den flotte herremand har myrdet sin kone og elskerinde – men Cordelia ved om nogen, at man ikke skal stole på sladder. Og der er ingen tvivl om, at Jason er farligt tiltrækkende. Hendes fremtid afhænger af ét enkelt valg.<br><br>Victoria Holt (1906-1993) var en af verdens mest elskede og mest produktive forfattere i sin levetid. Hun begyndte allerede at skrive som 17-årig, og en række af hendes tidlige noveller blev trykt i London-aviserne. Det var dog romaner i den historiske genre, der gav det internationale gennembrud, og i dag er hendes romaner solgt i over 50 millioner eksemplarer verden over.<br><br>\\\"En af de ypperste forfattere af gotiske kærlighedsromaner og en stærk historiefortæller, hvis gribende romaner har begejstret millioner af læsere.\\\"<br>– RT Book Reviews\",\n    \"productCategories\": [\n      {\n        \"description\": \"England\",\n        \"code\": \"1DDU-GB-E\"\n      },\n      {\n        \"description\": \"Krimier og mysterier\",\n        \"code\": \"FF\"\n      },\n      {\n        \"description\": \"Romantisk skønlitteratur\",\n        \"code\": \"FR\"\n      },\n      {\n        \"description\": \"Historiske romaner\",\n        \"code\": \"FV\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:56 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "a3837da7-d06e-47cb-982d-759521cbb4f6",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 24,
+  "postServeActions" : [ ]
+}

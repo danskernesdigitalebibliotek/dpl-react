@@ -1,0 +1,23 @@
+{
+  "id" : "b8240e59-ecc1-41a1-a7b9-7443890b7f9c",
+  "name" : "Products (9788793884342)",
+  "request" : {
+    "url" : "/v1/products/9788793884342",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2019-07-02T13:49:32.25Z\",\n    \"updatedUtc\": \"2019-07-02T13:49:32.25Z\",\n    \"title\": \"Harry Pottcast & Hemmelighedernes Kammer (15:18)\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788793884342.mp3\",\n    \"productType\": 4,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788793884342\"\n    },\n    \"internalProductId\": \"ae9c9a0f-72c2-4750-8262-713c2ecc0859\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Amalie Dahlerup\",\n        \"lastName\": \"Hermansen\"\n      },\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Nanna Bille\",\n        \"lastName\": \"Cornelsen\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Amalie Dahlerup\",\n        \"lastName\": \"Hermansen\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Nanna Bille\",\n        \"lastName\": \"Cornelsen\"\n      }\n    ],\n    \"format\": \"zip\",\n    \"fileSizeInBytes\": 81771,\n    \"durationInSeconds\": 5233,\n    \"publisher\": \"Harry Pottcast\",\n    \"publicationDate\": \"2019-07-02T00:00:00Z\",\n    \"description\": \"Kapitel 15\",\n    \"productCategories\": [\n      {\n        \"description\": \"Fantasy\",\n        \"code\": \"FM\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:18 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "b8240e59-ecc1-41a1-a7b9-7443890b7f9c",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 13,
+  "postServeActions" : [ ]
+}

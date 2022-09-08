@@ -26,14 +26,14 @@ export default {
       defaultValue: "Af ",
       control: { type: "text" }
     },
-    periodikumSelectYearText: {
+    periodicalSelectYearText: {
       name: "Year",
       defaultValue: "År",
       control: { type: "text" }
     },
-    periodikumSelectWeekText: {
+    periodicalSelectEditionText: {
       name: "Week",
-      defaultValue: "Uge",
+      defaultValue: "Udgave",
       control: { type: "text" }
     },
     reserveBookText: {

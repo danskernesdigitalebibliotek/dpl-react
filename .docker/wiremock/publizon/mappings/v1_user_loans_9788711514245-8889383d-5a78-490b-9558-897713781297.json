@@ -1,0 +1,23 @@
+{
+  "id" : "8889383d-5a78-490b-9558-897713781297",
+  "name" : "Loans (add)",
+  "request" : {
+    "url" : "/v1/user/loans/9788711514245",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"expirationDateUtc\": \"2022-09-15T10:04:13.6396484Z\",\n  \"orderNumber\": \"3c060277-3218-4ad2-98fe-a57bce1cf1e6\",\n  \"orderId\": \"58058e94-a03f-4018-bec1-816ee7894ab8\",\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:05:05 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "8889383d-5a78-490b-9558-897713781297",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 8,
+  "postServeActions" : [ ]
+}

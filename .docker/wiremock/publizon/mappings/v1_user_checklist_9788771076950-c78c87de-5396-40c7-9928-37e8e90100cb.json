@@ -1,0 +1,23 @@
+{
+  "id" : "c78c87de-5396-40c7-9928-37e8e90100cb",
+  "name" : "Checklist (add)",
+  "request" : {
+    "urlPathPattern" : "/v1/user/checklist/.*",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 09:50:09 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "c78c87de-5396-40c7-9928-37e8e90100cb",
+  "persistent" : true,
+  "priority" : 2,
+  "insertionIndex" : 4,
+  "postServeActions" : [ ]
+}

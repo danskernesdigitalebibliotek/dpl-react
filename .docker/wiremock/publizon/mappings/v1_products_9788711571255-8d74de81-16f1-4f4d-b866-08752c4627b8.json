@@ -1,0 +1,23 @@
+{
+  "id" : "8d74de81-16f1-4f4d-b866-08752c4627b8",
+  "name" : "Products (9788711571255)",
+  "request" : {
+    "url" : "/v1/products/9788711571255",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2016-01-18T11:16:34.76Z\",\n    \"updatedUtc\": \"2019-12-03T14:22:26.717Z\",\n    \"title\": \"Min kamp VI\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788711571255.mp3\",\n    \"productType\": 2,\n    \"externalProductId\": {\n      \"idType\": 3,\n      \"id\": \"9788711571255\"\n    },\n    \"internalProductId\": \"0ab1d85f-4e9b-4498-a992-28cca0066694\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Karl Ove\",\n        \"lastName\": \"Knausgård\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Sara\",\n        \"lastName\": \"Koch\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Tobias\",\n        \"lastName\": \"Hertz\"\n      }\n    ],\n    \"format\": \"zip\",\n    \"fileSizeInBytes\": 1571756,\n    \"durationInSeconds\": 167175,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2016-01-15T00:00:00Z\",\n    \"description\": \"I romanværket Min kamp udforsker Karl Ove Knausgård nådeløst og selvudleverende sit eget liv, sine ambitioner og svagheder, sin usikkerhed og tvivl, sine relationer til venner og tidligere kærester, kone og børn og forældre. Det er et værk, hvor livet beskrives i alle dets nuancer, fra de afgørende, rystende øjeblikke til hverdagslivets mindste detaljer. Det er også et risikabelt projekt, hvor grænserne mellem det private og det offentlige overskrides, ikke uden omkostninger for forfatteren selv og de mennesker, der beskrives. <br><br>I sjette og sidste bog handler det om realiseringen af værket: om udgivelsen af de tidligere bind og omstændighederne i forbindelse med dette, om litteraturen selv og dens forhold til virkeligheden.<br>Karl Ove Knausgårds roman er en af de seneste års mest omdiskuterede bøger. Den har fået flere prestigefyldte priser og skabt debat langt uden for hjemlandet Norges grænser.\",\n    \"productCategories\": [\n      {\n        \"description\": \"Norge\",\n        \"code\": \"1DNN\"\n      },\n      {\n        \"description\": \"Norsk\",\n        \"code\": \"2ACSN\"\n      },\n      {\n        \"description\": \"Skønlitteratur og relaterede emner\",\n        \"code\": \"F\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:42 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "8d74de81-16f1-4f4d-b866-08752c4627b8",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 20,
+  "postServeActions" : [ ]
+}

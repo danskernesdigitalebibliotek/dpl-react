@@ -7,6 +7,7 @@ import {
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
+  convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
   flattenCreators,
@@ -20,8 +21,8 @@ import ButtonFavourite, {
 } from "../button-favourite/button-favourite";
 import { Cover } from "../cover/cover";
 import MaterialHeaderText from "./MaterialHeaderText";
-import MaterialPeriodikumSelect from "./MaterialPeriodikumSelect";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import MaterialPeriodical from "./MaterialPeriodical";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -30,6 +31,7 @@ interface MaterialHeaderProps {
   selectManifestationHandler: (
     manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
+  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -41,7 +43,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     workId: wid
   },
   manifestation,
-  selectManifestationHandler
+  selectManifestationHandler,
+  selectPeriodicalSelect
 }) => {
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -73,6 +76,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const coverPid =
     (manifestation?.pid as Pid) || getManifestationPid(manifestations);
 
+  const faustId = manifestation
+    ? convertPostIdToFaustId(manifestation?.pid as Pid)
+    : "";
+
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -93,8 +100,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {/* Check and show if data has PeriodikumSelect. */}
-        {false && <MaterialPeriodikumSelect />}
+        {manifestation?.source.includes("bibliotekskatalog") && faustId && (
+          <MaterialPeriodical
+            faustId={faustId}
+            selectPeriodicalSelect={selectPeriodicalSelect}
+          />
+        )}
+
         <div className="material-header__button">
           {manifestation && <MaterialButtons manifestation={manifestation} />}
         </div>

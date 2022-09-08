@@ -1,0 +1,23 @@
+{
+  "id" : "c688fd8e-f9ce-42e6-94ce-4f6d2c71d5b6",
+  "name" : "Loan details (9788711514245)",
+  "request" : {
+    "url" : "/v1/user/loans/9788711514245",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"loan\": {\n    \"orderId\": \"58058e94-a03f-4018-bec1-816ee7894ab8\",\n    \"orderNumber\": \"3c060277-3218-4ad2-98fe-a57bce1cf1e6\",\n    \"orderDateUtc\": \"2022-08-16T10:04:47.123\",\n    \"loanExpireDateUtc\": \"2022-09-15T10:04:13.64Z\",\n    \"isSubscriptionLoan\": false,\n    \"libraryBook\": {\n      \"identifier\": \"9788711514245\",\n      \"identifierType\": 3,\n      \"title\": \"Fuldmåne i oktober\",\n      \"publishersName\": \"Lindhardt og Ringhof\"\n    },\n    \"fileExtensionType\": 1\n  },\n  \"libraryData\": {\n    \"loanDurationDays\": 0,\n    \"maxConcurrentEbookLoansPerBorrower\": 0,\n    \"maxConcurrentAudiobookLoansPerBorrower\": 0,\n    \"maxAmountPerMonth\": 0\n  },\n  \"userData\": {\n    \"totalLoans\": 2,\n    \"totalEbookLoans\": 1,\n    \"totalAudioLoans\": 1,\n    \"ebookLoansRemaining\": -2,\n    \"audiobookLoansRemaining\": -2,\n    \"ebookLoanAvailableUtc\": \"2022-08-16T10:04:37.390625Z\",\n    \"audioLoanAvailableUtc\": \"2022-08-16T10:04:37.390625Z\",\n    \"friendlyCardNumber\": \"8R9W59\"\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:05:27 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "c688fd8e-f9ce-42e6-94ce-4f6d2c71d5b6",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 10,
+  "postServeActions" : [ ]
+}

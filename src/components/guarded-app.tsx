@@ -32,6 +32,8 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
   const isApplicationBlocked = persistedRequest && !userIsAnonymous();
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
 
+  // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
+  // eslint-disable-next-line no-console
   console.debug("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
@@ -39,8 +41,12 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
       return;
     }
 
+    // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
+    // eslint-disable-next-line no-console
     console.debug("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
+    // eslint-disable-next-line no-console
     console.debug("CURRENT TIMESTAMP", getCurrentUnixTime());
+    // eslint-disable-next-line no-console
     console.debug("EXPIRE TIMESTAMP", persistedRequest.expire);
 
     // If request has expired remove it.

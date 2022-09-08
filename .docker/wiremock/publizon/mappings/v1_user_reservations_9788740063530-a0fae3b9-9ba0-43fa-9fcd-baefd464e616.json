@@ -1,0 +1,23 @@
+{
+  "id" : "a0fae3b9-9ba0-43fa-9fcd-baefd464e616",
+  "name" : "Reservations (remove)",
+  "request" : {
+    "urlPathPattern" : "/v1/user/reservations/.*",
+    "method" : "DELETE"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:53:39 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "a0fae3b9-9ba0-43fa-9fcd-baefd464e616",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 33,
+  "postServeActions" : [ ]
+}

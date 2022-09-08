@@ -10,6 +10,15 @@ export interface SearchHeaderTextProps {
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
   etAlText?: string;
+  autosuggestBookCategoryText: string;
+  autosuggestEbookCategoryText: string;
+  autosuggestFilmCategoryText: string;
+  autosuggestAudioBookCategoryText: string;
+  autosuggestMusicCategoryText: string;
+  autosuggestGameCategoryText: string;
+  autosuggestAnimatedSeriesCategoryText: string;
+  inText: string;
+  loadingText: string;
 }
 
 export interface SearchHeaderUrlProps {

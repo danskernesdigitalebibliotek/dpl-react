@@ -16,20 +16,14 @@ import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
-import {
-  creatorsToString,
-  filterCreators,
-  flattenCreators,
-  getManifestationPid
-} from "../../core/utils/helpers/general";
-import MaterialDetailsList, {
-  ListData
-} from "../../components/material/MaterialDetailsList";
+import { getManifestationPid } from "../../core/utils/helpers/general";
+import MaterialDetailsList from "../../components/material/MaterialDetailsList";
 import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
 import {
+  getWorkDescriptionListData,
   getManifestationFromType,
   getManifestationType,
   getWorkManifestation
@@ -45,6 +39,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [currentManifestation, setCurrentManifestation] =
     useState<ManifestationsSimpleFieldsFragment | null>(null);
 
+  // periodicalSelect must be used later to change the UI and reservation when you have chosen a specific periodical
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [periodicalSelect, setPeriodicalSelect] = useState<string | null>(null);
+
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
@@ -54,7 +52,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (!data?.work) return;
     const { work } = data;
     const type = getUrlQueryParam("type");
-    // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
+    // if there is no type in the url, <getWorkManif></getWorkManif>estation is used to set the state and url type parameters
     if (!type) {
       const workManifestation = getWorkManifestation(work);
       setCurrentManifestation(workManifestation);
@@ -79,89 +77,19 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>No work data</div>;
   }
 
-  const { manifestations, titles, mainLanguages, creators, workYear } =
-    data.work;
+  const { work } = data;
+  const { manifestations } = work;
 
   // TODO: Temporary way to get a pid we can use for showing a cover for the material.
   // It should be replaced with some dynamic feature
   // that follows the current type of the material.
   const pid = getManifestationPid(manifestations);
-  const fallBackManifestation = getWorkManifestation(data?.work);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
+
+  const listDescriptionData = getWorkDescriptionListData({
+    manifestation: currentManifestation,
+    work,
     t
-  );
-
-  const allLanguages = mainLanguages
-    .map((language) => language.display)
-    .join(", ");
-
-  const listDescriptionData: ListData = [
-    {
-      label: t("typeText"),
-      value:
-        (currentManifestation?.materialTypes?.[0]?.specific && "") ||
-        (fallBackManifestation?.materialTypes?.[0]?.specific && ""),
-      type: "standard"
-    },
-    {
-      label: t("languageText"),
-      value: allLanguages,
-      type: "standard"
-    },
-    {
-      label: t("genreAndFormText"),
-      value:
-        (currentManifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
-      type: "standard"
-    },
-    { label: t("contributorsText"), value: creatorsText, type: "link" },
-    {
-      label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear}` : "",
-      type: "standard"
-    },
-    {
-      label: t("isbnText"),
-      value:
-        (currentManifestation?.identifiers?.[0].value ?? "") ||
-        (fallBackManifestation?.identifiers?.[0].value ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("editionText"),
-      value:
-        (currentManifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation?.edition?.summary ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("scopeText"),
-      value:
-        String(
-          currentManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ) ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ),
-      type: "standard"
-    },
-    {
-      label: t("publisherText"),
-      value:
-        (currentManifestation?.hostPublication?.publisher ?? "") ||
-        (fallBackManifestation?.hostPublication?.publisher ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("audienceText"),
-      value:
-        (currentManifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
-      type: "standard"
-    }
-  ];
+  });
 
   return (
     <main className="material-page">
@@ -172,13 +100,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           currentManifestation as ManifestationsSimpleFieldsFragment
         }
         selectManifestationHandler={setCurrentManifestation}
+        selectPeriodicalSelect={setPeriodicalSelect}
       />
       <MaterialDescription pid={pid} work={data.work} />
       <Disclosure
         mainIconPath={VariousIcon}
-        title={`${t("editionsText")} (${
-          data?.work?.manifestations?.all.length
-        })`}
+        title={`${t("editionsText")} (${work?.manifestations?.all.length})`}
         disclosureIconExpandAltText=""
       >
         {manifestations.all.map((manifestation) => {

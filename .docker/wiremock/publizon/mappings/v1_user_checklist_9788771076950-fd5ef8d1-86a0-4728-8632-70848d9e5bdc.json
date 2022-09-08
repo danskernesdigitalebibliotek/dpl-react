@@ -1,0 +1,23 @@
+{
+  "id" : "fd5ef8d1-86a0-4728-8632-70848d9e5bdc",
+  "name" : "Checklist (remove)",
+  "request" : {
+    "urlPathPattern" : "/v1/user/checklist/.*",
+    "method" : "DELETE"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 09:50:23 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "fd5ef8d1-86a0-4728-8632-70848d9e5bdc",
+  "persistent" : true,
+  "priority" : 1,
+  "insertionIndex" : 6,
+  "postServeActions" : [ ]
+}

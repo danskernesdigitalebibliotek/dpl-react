@@ -1,0 +1,28 @@
+{
+  "id" : "6333a6d6-ba71-4794-bb57-882b94995af5",
+  "name" : "Reservations (create)",
+  "request" : {
+    "urlPathPattern" : "/v1/user/reservations/.*",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n  \"email\": \"jeskr@aarhus.dk\",\n  \"phoneNumber\": \"+4529490270\"\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:52:58 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "6333a6d6-ba71-4794-bb57-882b94995af5",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 30,
+  "postServeActions" : [ ]
+}

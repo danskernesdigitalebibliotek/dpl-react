@@ -1,0 +1,23 @@
+{
+  "id" : "9b13da33-2be3-4711-8664-81c27009495e",
+  "name" : "Loans (list)",
+  "request" : {
+    "url" : "/v1/user/loans",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"loans\": [\n    {\n      \"orderId\": \"082bb01a-8979-424b-93a6-7cc7081f8a45\",\n      \"orderNumber\": \"0c5a287f-be96-4a68-a85a-453864b330cd\",\n      \"orderDateUtc\": \"2022-08-15T13:23:13.54\",\n      \"loanExpireDateUtc\": \"2022-09-14T13:22:40.083Z\",\n      \"isSubscriptionLoan\": false,\n      \"libraryBook\": {\n        \"identifier\": \"9788771076950\",\n        \"identifierType\": 15,\n        \"title\": \"Tættere end man tror\",\n        \"publishersName\": \"Jentas\"\n      },\n      \"fileExtensionType\": 3\n    },\n    {\n      \"orderId\": \"58058e94-a03f-4018-bec1-816ee7894ab8\",\n      \"orderNumber\": \"3c060277-3218-4ad2-98fe-a57bce1cf1e6\",\n      \"orderDateUtc\": \"2022-08-16T10:04:47.123\",\n      \"loanExpireDateUtc\": \"2022-09-15T10:04:13.64Z\",\n      \"isSubscriptionLoan\": false,\n      \"libraryBook\": {\n        \"identifier\": \"9788711514245\",\n        \"identifierType\": 3,\n        \"title\": \"Fuldmåne i oktober\",\n        \"publishersName\": \"Lindhardt og Ringhof\"\n      },\n      \"fileExtensionType\": 1\n    }\n  ],\n  \"libraryData\": {\n    \"loanDurationDays\": 0,\n    \"maxConcurrentEbookLoansPerBorrower\": 0,\n    \"maxConcurrentAudiobookLoansPerBorrower\": 0,\n    \"maxAmountPerMonth\": 0\n  },\n  \"userData\": {\n    \"totalLoans\": 2,\n    \"totalEbookLoans\": 1,\n    \"totalAudioLoans\": 1,\n    \"ebookLoansRemaining\": -2,\n    \"audiobookLoansRemaining\": -2,\n    \"ebookLoanAvailableUtc\": \"2022-08-16T10:04:44.2734375Z\",\n    \"audioLoanAvailableUtc\": \"2022-08-16T10:04:44.2734375Z\",\n    \"friendlyCardNumber\": \"8R9W59\"\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:05:34 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "9b13da33-2be3-4711-8664-81c27009495e",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 11,
+  "postServeActions" : [ ]
+}

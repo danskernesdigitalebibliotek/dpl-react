@@ -1,0 +1,23 @@
+{
+  "id" : "3c8a1c68-5cbf-4179-8f56-1da7c9be8fa3",
+  "name" : "Products (9788711746998)",
+  "request" : {
+    "url" : "/v1/products/9788711746998",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2017-03-31T12:38:23.983Z\",\n    \"updatedUtc\": \"2017-03-31T12:38:23.983Z\",\n    \"title\": \"To om paragrafferne\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788711746998.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 3,\n      \"id\": \"9788711746998\"\n    },\n    \"internalProductId\": \"789de57c-04bc-4cc6-9bb1-1076fa0d1bd9\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Agatha\",\n        \"lastName\": \"Christie\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Poul Ib\",\n        \"lastName\": \"Liebe\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 675,\n    \"durationInSeconds\": null,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2017-03-30T00:00:00Z\",\n    \"description\": \"Agatha Christies herlige detektivpar Tommy og Tuppence overtager et detektivbureau, og inden længe står de midt i den ene kryptiske sag efter den anden. Men som altid kaster de sig over sagerne med vid og charme og opnår spændende og overraskende resultater.<br><br>Agatha Christie (1890-1976) er Englands ukronede krimidronning og skaberen af kendte og elskede figurer som mesterdetektiven Hercule Poirot og den lettere påtrængende, men ikke desto mindre geniale Miss Marple. <br><br>Agatha Christie er den bedst sælgende krimiforfatter i verden, og hendes bøger er oversat til flere sprog end William Shakespeares. Mange af romanerne er tilmed blevet lavet til både film, TV og sat op på hæderkronede teatre.\\n\\nTommy og Tuppence Beresford er et detektivpar, der optræder i mange af Agatha Christies bøger. Vi møder dem første gang i \\\"Den hemmelige modstander\\\" i 1922, hvor de griber chancen for at afpresse penge af en forbryder, men de opdager hurtigt, at livet som privatdetektiv er langt mere spændende og lukrativt.\",\n    \"productCategories\": [\n      {\n        \"description\": \"Mellemkrigstiden, 1919 til 1939\",\n        \"code\": \"3MPBG\"\n      },\n      {\n        \"description\": \"Klassisk skønlitteratur\",\n        \"code\": \"FBC\"\n      },\n      {\n        \"description\": \"Klassiske krimier\",\n        \"code\": \"FFC\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:31 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "3c8a1c68-5cbf-4179-8f56-1da7c9be8fa3",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 17,
+  "postServeActions" : [ ]
+}

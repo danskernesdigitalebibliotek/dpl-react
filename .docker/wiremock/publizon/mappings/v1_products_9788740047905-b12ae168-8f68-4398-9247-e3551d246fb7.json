@@ -1,0 +1,23 @@
+{
+  "id" : "b12ae168-8f68-4398-9247-e3551d246fb7",
+  "name" : "Products (9788740047905)",
+  "request" : {
+    "url" : "/v1/products/9788740047905",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2018-02-19T10:17:50.367Z\",\n    \"updatedUtc\": \"2019-10-01T13:12:55.743Z\",\n    \"title\": \"Mitfordmordene første bog\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788740047905.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788740047905\"\n    },\n    \"internalProductId\": \"571704dc-9d7b-43bd-88d8-644f75bfe04f\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Jessica\",\n        \"lastName\": \" Fellowes\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Kirsten\",\n        \"lastName\": \"Heltner\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 572,\n    \"durationInSeconds\": null,\n    \"publisher\": \"JP/Politikens Forlag\",\n    \"publicationDate\": \"2018-03-16T00:00:00Z\",\n    \"description\": \"Fans af Daisy Goodwin, Julian Fellowes og Agatha Christie vil elske denne serie om Mitfordmordene, der er bygget på virkelige forbrydelser og skildrer den virkelige Mitford-familie og dens seks excentriske søstre.\\r\\n<br>\\r\\nÅret er 1920 og Louisa Cannon drømmer om en vej ud af fattigdommens London, en by, der er hårdt mærket af den netop overståede verdenskrigs rædsler.\\r\\n<br>\\r\\nLouisas redning bliver en ansættelse hos familien Mitford på Asthall Manor i Oxfordshire. Som kombineret barnepige og selskabsdame for de seks Mitfordsøstre får hun adgang til en helt ny og fortryllende verden. Især knytter hun sig til den eventyrlystne og smukke sekstenårige Nancy, den ældste af søstrene, der elsker detektivhistorier og brænder for at opleve verden uden for godset. \\r\\n<br>\\r\\nMen da sygeplejersken Florence Nightingale Shore, der er guddatter til sin berømte navnesøster, myrdes på toget til Hastings, husker Louisa, at hun har set noget i det tog, der måske kunne være af betydning. Sagen vækker opsigt, og snart vikles både Louisa og Nancy ind i en mordgåde, der er lige så spændende, som den er livsfarlig.\",\n    \"productCategories\": [\n      {\n        \"description\": \"England\",\n        \"code\": \"1DDU-GB-E\"\n      },\n      {\n        \"description\": \"Historiske krimier\",\n        \"code\": \"FFH\"\n      }\n    ],\n    \"costFree\": false\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:21 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "b12ae168-8f68-4398-9247-e3551d246fb7",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 14,
+  "postServeActions" : [ ]
+}

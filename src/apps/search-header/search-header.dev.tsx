@@ -43,6 +43,51 @@ export default {
       name: "Base material page url",
       defaultValue: "/work/:workid",
       control: { type: "text" }
+    },
+    autosuggestBookCategoryText: {
+      name: "Book category",
+      defaultValue: "Bøger",
+      control: { type: "text" }
+    },
+    autosuggestEbookCategoryText: {
+      name: "Ebook category",
+      defaultValue: "Ebøger",
+      control: { type: "text" }
+    },
+    autosuggestFilmCategoryText: {
+      name: "Movie category",
+      defaultValue: "Film",
+      control: { type: "text" }
+    },
+    autosuggestAudioBookCategoryText: {
+      name: "Audio book category",
+      defaultValue: "Lydbøger",
+      control: { type: "text" }
+    },
+    autosuggestMusicCategoryText: {
+      name: "Music category",
+      defaultValue: "Musik",
+      control: { type: "text" }
+    },
+    autosuggestGameCategoryText: {
+      name: "Game category",
+      defaultValue: "Spil",
+      control: { type: "text" }
+    },
+    autosuggestAnimatedSeriesCategoryText: {
+      name: "Animated series category",
+      defaultValue: "Tegneserier",
+      control: { type: "text" }
+    },
+    inText: {
+      name: "x 'in' y",
+      defaultValue: "i",
+      control: { type: "text" }
+    },
+    LoadingText: {
+      name: "Loading",
+      defaultValue: "Indlæsesr",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;

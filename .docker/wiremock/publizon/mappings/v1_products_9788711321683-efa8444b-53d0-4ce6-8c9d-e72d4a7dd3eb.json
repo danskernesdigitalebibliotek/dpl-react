@@ -1,0 +1,23 @@
+{
+  "id" : "efa8444b-53d0-4ce6-8c9d-e72d4a7dd3eb",
+  "name" : "Products (9788711321683)",
+  "request" : {
+    "url" : "/v1/products/9788711321683",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2014-11-04T12:20:19.347Z\",\n    \"updatedUtc\": \"2017-02-23T13:04:56.617Z\",\n    \"title\": \"Mordet i det blå tog\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788711321683.epub\",\n    \"productType\": 1,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788711321683\"\n    },\n    \"internalProductId\": \"fa07f75d-5c00-4429-90c9-76e2bb5eb526\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"Agatha\",\n        \"lastName\": \"Christie\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Jutta\",\n        \"lastName\": \"Larsen\"\n      }\n    ],\n    \"format\": \"epub\",\n    \"fileSizeInBytes\": 899,\n    \"durationInSeconds\": null,\n    \"publisher\": \"Lindhardt og Ringhof\",\n    \"publicationDate\": \"2014-11-07T00:00:00Z\",\n    \"description\": \"I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: \\\"Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden.\\\"\",\n    \"productCategories\": [\n      {\n        \"description\": \"Skønlitteratur og relaterede emner\",\n        \"code\": \"F\"\n      },\n      {\n        \"description\": \"Klassiske krimier\",\n        \"code\": \"FFC\"\n      }\n    ],\n    \"costFree\": true\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:25 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "efa8444b-53d0-4ce6-8c9d-e72d4a7dd3eb",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 15,
+  "postServeActions" : [ ]
+}

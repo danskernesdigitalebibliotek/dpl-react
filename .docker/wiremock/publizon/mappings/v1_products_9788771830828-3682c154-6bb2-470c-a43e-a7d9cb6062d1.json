@@ -1,0 +1,23 @@
+{
+  "id" : "3682c154-6bb2-470c-a43e-a7d9cb6062d1",
+  "name" : "Products (9788771830828)",
+  "request" : {
+    "url" : "/v1/products/9788771830828",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"product\": {\n    \"createdUtc\": \"2016-03-08T12:56:16.637Z\",\n    \"updatedUtc\": \"2016-11-09T15:22:09.477Z\",\n    \"title\": \"På rejse med Charley\",\n    \"isActive\": true,\n    \"languageCode\": \"dan\",\n    \"coverUri\": null,\n    \"thumbnailUri\": null,\n    \"sampleUri\": \"http://samples.qa.pubhub.dk/9788771830828.mp3\",\n    \"productType\": 2,\n    \"externalProductId\": {\n      \"idType\": 15,\n      \"id\": \"9788771830828\"\n    },\n    \"internalProductId\": \"94a5a0c5-5371-4e5b-bbe9-1dbe4d1f6bc7\",\n    \"contributors\": [\n      {\n        \"type\": \"A01\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Steinbeck\"\n      },\n      {\n        \"type\": \"A12\",\n        \"firstName\": \"Martin\",\n        \"lastName\": \"Røes\"\n      },\n      {\n        \"type\": \"B06\",\n        \"firstName\": \"Knud\",\n        \"lastName\": \"Müller\"\n      },\n      {\n        \"type\": \"E07\",\n        \"firstName\": \"Dan\",\n        \"lastName\": \"Schlosser\"\n      }\n    ],\n    \"format\": \"zip\",\n    \"fileSizeInBytes\": 304690,\n    \"durationInSeconds\": 27432,\n    \"publisher\": \"Bechs Forlag - Viatone\",\n    \"publicationDate\": \"2016-03-08T00:00:00Z\",\n    \"description\": \"<i>På rejse med Charley</i> er en rejsebeskrivelse af en rundrejse i USA i 1960, som Steinbeck foretog i en autocamper sammen med sin puddelhund Charley. Steinbeck skrev, at han var drevet af et ønske om at genopdage sit hjemland, eftersom han tjente til livets ophold ved at skrive om det. Han følte sig ude af berøring med det moderne USA efter i tyve år at have boet i New York og rejst rundt i Europa, og han ønskede bl.a. at finde ud af, hvordan den moderne amerikaner var. I sin autocamper Rosinante (opkaldt efter Don Quixotes hest) tilbagelagde den da 58-årige Steinbeck og Charley knap 16,000 km sammen langs USA’s ydre grænser. Bogen er en charmerende beskrivelse af de steder og mennesker, som Steinbeck støder på undervejs samt de refleksioner, de giver anledning til – og som ofte kommer til udtryk som mentale samtaler med Charley.<br><br>\\r\\n\\r\\n\\\"Efter 25 år som berømt forfatter følte John Steinbeck, at han ikke længere kendte sit eget land. Hans beretning om genopdagelsen blev et lille mirakel af en bog med titlen <i>På rejse med Charley</i> … Det er snart 50 år siden, men noget af det forunderlige ved bogen er, at den føles, som var det i går, rejsen fandt sted … Det er en bog, der gør én glad. Vi har en tilbøjelighed til at se USA med Hollywoods øjne, det hysteriske, det skabagtige, det drivende sentimentale, det overtydelige, det primitivt overfladiske. Når vi ser det med Steinbecks, genfødes det i al sin rigdom.\\\" – Klaes Kastholm Hansen, Berlingske 2008, *****<br><br>\",\n    \"productCategories\": [\n      {\n        \"description\": \"USA\",\n        \"code\": \"1KBB\"\n      },\n      {\n        \"description\": \"1960 til 1969\",\n        \"code\": \"3MPQS\"\n      },\n      {\n        \"description\": \"Erindringer\",\n        \"code\": \"DNC\"\n      },\n      {\n        \"description\": \"Dagbøger, breve og noter\",\n        \"code\": \"DND\"\n      },\n      {\n        \"description\": \"Moderne skønlitteratur. Samtidslitteratur\",\n        \"code\": \"FBA\"\n      },\n      {\n        \"description\": \"Oversat skønlitteratur\",\n        \"code\": \"FYT\"\n      }\n    ],\n    \"costFree\": false\n  },\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "vary" : "Origin",
+      "content-type" : "application/json; charset=utf-8",
+      "date" : "Tue, 16 Aug 2022 10:24:46 GMT",
+      "strict-transport-security" : "max-age=15552000"
+    }
+  },
+  "uuid" : "3682c154-6bb2-470c-a43e-a7d9cb6062d1",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 21,
+  "postServeActions" : [ ]
+}

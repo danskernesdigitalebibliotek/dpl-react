@@ -51,9 +51,16 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
           {infomedia.article.headLine}
         </div>
       )}
+      {/* We consider infomedia to be a trustworthy source & decided not to
+      sanitize the text data that we render as HTML. */}
+      {/* eslint-disable react/no-danger */}
       {infomedia.article?.text && (
-        <p className="review__body mb-8">{infomedia.article?.text}</p>
+        <p
+          className="review__body mb-8"
+          dangerouslySetInnerHTML={{ __html: infomedia.article?.text }}
+        />
       )}
+      {/* eslint-enable react/no-danger */}
       {review.origin && (
         <ReviewMetadata
           author={review.author}
