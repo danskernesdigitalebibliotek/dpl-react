@@ -260,6 +260,36 @@ export default {
       name: "This month",
       defaultValue: "denne måned",
       control: { type: "text" }
+    },
+    approveReservationText: {
+      name: "Approve reservation",
+      defaultValue: "Godkend reservation",
+      control: { type: "text" }
+    },
+    shiftText: {
+      name: "Shift",
+      defaultValue: "Skift",
+      control: { type: "text" }
+    },
+    pickupLocationText: {
+      name: "Pick up at",
+      defaultValue: "Afhentes på",
+      control: { type: "text" }
+    },
+    receiveSmsWhenMaterialReadyText: {
+      name: "Receive SMS when the material is ready",
+      defaultValue: "Du får en sms, når materialet er klar",
+      control: { type: "text" }
+    },
+    receiveEmailWhenMaterialReadyText: {
+      name: "Receive mail when the material is ready",
+      defaultValue: "Du får besked, når materialet er klar",
+      control: { type: "text" }
+    },
+    haveNoInterestAfterText: {
+      name: "Have no interest after",
+      defaultValue: "Har ingen interesse efter",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
