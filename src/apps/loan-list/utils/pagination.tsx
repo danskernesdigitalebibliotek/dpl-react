@@ -32,7 +32,7 @@ const Pagination: FC<PaginationProps> = ({
   selectModalMaterial,
   dueDateLabel
 }) => {
-  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
   // So, this is necessary due to the stacked items
   // Where, in the ui it shows 5 stacked items, and
   // those items accumulated is 34 items - which means
