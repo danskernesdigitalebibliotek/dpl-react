@@ -4,7 +4,7 @@ import { getPageSize } from "../../apps/search-result/helpers";
 
 const usePager = (hitcount: number, overrideItemsShown?: () => number) => {
   const pageSize = getPageSize({});
-  const [itemsShown, setitemsShown] = useState(pageSize);
+  const [itemsShown, setitemsShown] = useState<number>(pageSize);
   const [page, setPage] = useState<number>(0);
 
   const pagehandler = () => {

@@ -19,14 +19,16 @@ function ResultPager({
         {t("showingText")} {itemsShown} {t("outOfText")} {hitcount}{" "}
         {t("resultsText")}
       </p>
-      <button
-        type="button"
-        className="btn-primary btn-outline btn-medium arrow__hover--right-small"
-        onClick={setPageHandler}
-      >
-        {/* TODO: Solve casing in CSS */}
-        {t("showMoreText").toUpperCase()}
-      </button>
+      {!(itemsShown === hitcount) && (
+        <button
+          type="button"
+          className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+          onClick={setPageHandler}
+        >
+          {/* TODO: Solve casing in CSS */}
+          {t("showMoreText").toUpperCase()}
+        </button>
+      )}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 {
   "mobile": {
-    "pageSize": 20
+    "pageSize": 2
   },
   "desktop": {
-    "pageSize": 50
+    "pageSize": 2
   },
   "coverTints": ["100", "40", "80", "120", "20"]
 }

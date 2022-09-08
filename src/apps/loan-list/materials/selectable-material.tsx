@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { formatDate, getAuthorNames } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
@@ -17,6 +17,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   materialsToRenew
 }) => {
   const t = useText();
+  const [selected, setSelected] = useState<boolean>(false);
+
   const { dueDate, id, loanType, renewalStatusList } = loanMetaData || {};
   const { hostPublication, materialTypes, titles, creators } =
     material?.manifestation || {};
@@ -26,6 +28,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const {
     main: [mainText]
   } = titles || { main: [] };
+
+  useEffect(() => {
+    if (materialsToRenew) {
+      setSelected(materialsToRenew?.indexOf(parseInt(id, 10)) > -1);
+    }
+  }, [materialsToRenew, materialsToRenew?.length, id]);
 
   return (
     <li>
@@ -39,10 +47,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <CheckBox
               onChecked={onChecked}
               id={id}
-              selected={
-                materialsToRenew &&
-                materialsToRenew?.indexOf(parseInt(id, 10)) > -1
-              }
+              selected={selected}
               disabled={disabled}
               label={t("LoanListLabelCheckboxMaterialModalText")}
               hideLabel

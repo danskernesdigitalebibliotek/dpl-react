@@ -10,6 +10,7 @@ import {
 import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 import { mapRenewedLoanPBSToLoanMetaDataType } from "../utils/helpers";
+import usePager from "../../../components/result-pager/use-pager";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanMetaDataType[];
@@ -27,6 +28,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
+  const { itemsShown, PagerComponent } = usePager(loansModal.length);
   const [ref, isVisible] = useInView({
     threshold: 0
   });
@@ -35,6 +37,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     number | null
   >(0);
   const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
   const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
 
   const renewSelected = useCallback(() => {
@@ -65,9 +68,15 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
-    setLoans(loansModal);
     setAllRenewableMaterials(getAmountOfRenewableLoans(loansModal));
   }, [loansModal]);
+
+  useEffect(() => {
+    setDisplayedLoans([...loansModal].splice(0, itemsShown));
+  }, [itemsShown, loansModal]);
+  useEffect(() => {
+    setDisplayedLoans([...loansModal].splice(0, itemsShown));
+  }, [itemsShown, loansModal]);
 
   const selectAll = () => {
     if (materialsToRenew.length > 0) {
@@ -79,7 +88,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   const onChecked = (faust: string) => {
     const faustNumber = parseInt(faust, 10);
-    const materialsToRenewCopy = materialsToRenew;
+    const materialsToRenewCopy = [...materialsToRenew];
 
     const indexOfItemToRemove = materialsToRenew.indexOf(faustNumber);
     if (indexOfItemToRemove > -1) {
@@ -128,7 +137,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               />
             );
           })}
-          {loans.map((loanMetaData) => {
+          {displayedLoans.map((loanMetaData) => {
             return (
               <SelectableMaterial
                 key={loanMetaData.id}
@@ -140,6 +149,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             );
           })}
         </ul>
+        {PagerComponent}
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
