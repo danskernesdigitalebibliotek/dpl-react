@@ -12,7 +12,6 @@ import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 import { mapRenewedLoanPBSToLoanMetaDataType } from "../utils/helpers";
 
 interface RenewLoansModalContentProps {
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
   buttonLabel: string;
   checkboxLabel: string;
@@ -34,7 +33,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     threshold: 0
   });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
+  const [allRenewableMaterials, setAllRenewableMaterials] = useState<
+    number | null
+  >(0);
   const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
   const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
 

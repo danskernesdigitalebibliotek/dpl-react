@@ -6,7 +6,6 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface RenewLoansModalProps {
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
 }
 

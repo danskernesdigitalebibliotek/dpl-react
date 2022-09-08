@@ -4,7 +4,6 @@ import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import dateMatchesUsFormat from "../../../core/utils/helpers/date";
 import {
-  getAmountOfRenewableLoans,
   isAModalDisplayed,
   getDueDatesLoan,
   sortByLoanDate,
@@ -51,16 +50,9 @@ const LoanList: FC = () => {
   const [dueDateModal, setDueDateModal] = useState<string>("");
   const [loansModal, setLoansModal] = useState<LoanMetaDataType[]>();
   const [displayList, setDisplayList] = useState<boolean>(false);
-  const [renewable, setRenewable] = useState<number | null>(null);
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
-
-  const updateRenewable = (materials: LoanMetaDataType[]) => {
-    // Amount of renewable loans are determined, used in the ui
-    const amountOfRenewableLoans = getAmountOfRenewableLoans(materials);
-    setRenewable(amountOfRenewableLoans);
-  };
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -76,8 +68,6 @@ const LoanList: FC = () => {
       const sortedByLoanDate = sortByLoanDate(mapToLoanMetaDataType);
 
       setPhysicalLoans(sortedByLoanDate);
-      updateRenewable(sortedByLoanDate);
-      setDisplayedLoans([...sortedByLoanDate].splice(0, searchItemsShown));
     }
   }, [isSuccess, data, searchItemsShown]);
 
@@ -137,15 +127,9 @@ const LoanList: FC = () => {
             dueDateModalInput
           );
 
-          // Amount of renewable loans are determined, used in the ui
-          const amountOfRenewableLoans =
-            getAmountOfRenewableLoans(loansForModal);
-
           // Loans for modal (the modal shows loans stacked by due date)
           setLoansModal(loansForModal);
-          setRenewable(amountOfRenewableLoans);
         } else if (digitalLoans && isClickedLoanDigital) {
-          setRenewable(0);
           // The loans are filtered with said date string
           const loansForModal = getDueDatesForModal(
             digitalLoans,
@@ -161,8 +145,6 @@ const LoanList: FC = () => {
 
   const openRenewLoansModal = useCallback(() => {
     if (physicalLoans) {
-      const amountOfRenewableLoans = getAmountOfRenewableLoans(physicalLoans);
-
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(physicalLoans);
       setRenewable(amountOfRenewableLoans);
@@ -263,15 +245,9 @@ const LoanList: FC = () => {
         />
       )}
       {loansModal && (
-        <DueDateLoansModal
-          dueDate={dueDateModal}
-          renewable={renewable}
-          loansModal={loansModal}
-        />
+        <DueDateLoansModal dueDate={dueDateModal} loansModal={loansModal} />
       )}
-      {physicalLoans && (
-        <RenewLoansModal renewable={renewable} loansModal={physicalLoans} />
-      )}
+      {physicalLoans && <RenewLoansModal loansModal={physicalLoans} />}
     </>
   );
 };

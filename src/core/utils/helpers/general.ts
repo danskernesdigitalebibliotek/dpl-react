@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
 import sortBy from "lodash.sortby";
 import { CoverProps } from "../../../components/cover/cover";
+import { UseTextFunction } from "../text";
 import configuration, {
   getConf,
   getDeviceConf,
   ConfScope
 } from "../../configuration";
-import { LoanV2 } from "../../fbs/model/loanV2";
-import { UseTextFunction } from "../text";
 import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
+import { LoanMetaDataType } from "./LoanMetaDataType";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
