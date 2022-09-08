@@ -46,8 +46,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
           const { loanDetails } = loan[0] || {};
 
           return (
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <>
+            <div>
               {loanDetails && (
                 <StackableMaterial
                   loanDetails={loanDetails}
@@ -58,7 +57,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   amountOfMaterialsWithDueDate={loan.length}
                 />
               )}
-            </>
+            </div>
           );
         })}
       {view === "list" &&
