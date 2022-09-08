@@ -50,14 +50,14 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       //  renewed deniedReserved deniedMaxRenewalsReached deniedLoanerIsBlocked deniedMaterialIsNotLoanable deniedMaterialIsNotFound deniedLoanerNotFound deniedLoaningProfileNotFound deniedOtherReason;
       if (renewalStatus[0] === "deniedMaxRenewalsReached") {
         setRenewStatus({
-          statusText: t("LoanListDeniedOtherReasonText"),
+          statusText: t("loanListDeniedOtherReasonText"),
           buttonText: "kan ikke fornyes"
         });
         return;
       }
       if (renewalStatus[0] === ("deniedOtherReason" || "deniedReserved")) {
         setRenewStatus({
-          statusText: t("LoanListDeniedOtherReasonText"),
+          statusText: t("loanListDeniedOtherReasonText"),
           buttonText: "kan ikke fornyes"
         });
         return;
@@ -68,7 +68,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         return;
       }
       setRenewStatus({
-        statusText: t("LoanListDeniedOtherReasonText"),
+        statusText: t("loanListDeniedOtherReasonText"),
         buttonText: "kan ikke fornyes"
       });
     },

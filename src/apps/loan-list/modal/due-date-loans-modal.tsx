@@ -4,7 +4,7 @@ import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import { LoanV2 } from "../../../core/fbs/model";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { materialIsOverdue } from "../helpers";
