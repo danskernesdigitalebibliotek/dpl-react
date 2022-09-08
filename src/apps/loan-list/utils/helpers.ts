@@ -4,6 +4,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
@@ -32,6 +33,7 @@ export const getAuthorNames = (
   and: string
 ) => {
   const names = creators.map(({ display }) => display);
+
   let returnContentString = "";
   if (names.length === 1) {
     returnContentString = `${by} ${names.join(", ")}`;
@@ -51,6 +53,41 @@ export const queryMatchesFaust = (query: string | null) => {
   const returnValue =
     faustFound && faustFound.length > 0 ? faustFound[0] : null;
   return returnValue;
+};
+
+// deconstructing material and LoanMetaDataType
+export const getMaterialInfo = (
+  loanMetaData: LoanMetaDataType,
+  material: GetMaterialManifestationQuery | undefined | null
+) => {
+  const { dueDate, id, loanType, loanDate, renewalStatusList } = loanMetaData;
+  const { hostPublication, materialTypes, titles, creators, pid, abstract } =
+    material?.manifestation || {};
+
+  const description = abstract ? abstract[0] : "";
+
+  const { year } = hostPublication || {};
+  const [{ specific: materialType }] = materialTypes || [];
+  const {
+    main: [mainText]
+  } = titles || { main: [] };
+
+  const materialTitle = mainText;
+
+  return {
+    dueDate,
+    creators,
+    id,
+    loanType,
+    renewalStatusList,
+    year,
+    titles,
+    materialType,
+    materialTitle,
+    pid,
+    description,
+    loanDate
+  };
 };
 
 export const getStackedItems = (

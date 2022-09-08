@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import {
   formatDate,
   materialIsOverdue,
-  getAuthorNames
+  getAuthorNames,
+  getMaterialInfo
 } from "../utils/helpers";
 import { openModal } from "../../../core/modal.slice";
 import { Cover } from "../../../components/cover/cover";
@@ -27,18 +28,22 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const dispatch = useDispatch();
+
+  const {
+    dueDate,
+    loanDate,
+    id,
+    creators,
+    year,
+    materialType,
+    materialTitle,
+    description,
+    pid
+  } = getMaterialInfo(loanMetaData, material);
+
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-  const { creators, hostPublication, materialTypes, titles, pid, abstract } =
-    material.manifestation || {};
-  const { year } = hostPublication || {};
-  const [{ specific }] = materialTypes || [];
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
-
-  const { dueDate, loanDate, id } = loanMetaData;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -94,15 +99,15 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             pid={pid as Pid}
             size="small"
             animate={false}
-            description={abstract && abstract[0]}
+            description={description}
           />
         </div>
         <div className="list-reservation__information">
           <div>
-            <div className="status-label status-label--outline">{specific}</div>
+            <div className="status-label status-label--outline">{materialType}</div>
           </div>
           <div className="list-reservation__about">
-            <h3 className="text-header-h4">{mainText}</h3>
+            <h3 className="text-header-h4">{materialTitle}</h3>
             <p className="text-small-caption color-secondary-gray">
               {creators &&
                 getAuthorNames(

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { formatDate, getAuthorNames } from "../utils/helpers";
+import { formatDate, getMaterialInfo, getAuthorNames } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
@@ -18,16 +18,16 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const [selected, setSelected] = useState<boolean>(false);
-
-  const { dueDate, id, loanType, renewalStatusList } = loanMetaData || {};
-  const { hostPublication, materialTypes, titles, creators } =
-    material?.manifestation || {};
-
-  const { year } = hostPublication || {};
-  const [{ specific }] = materialTypes || [];
   const {
-    main: [mainText]
-  } = titles || { main: [] };
+    dueDate,
+    id,
+    loanType,
+    renewalStatusList,
+    creators,
+    year,
+    materialType,
+    materialTitle
+  } = getMaterialInfo(loanMetaData, material);
 
   useEffect(() => {
     if (materialsToRenew) {
@@ -57,10 +57,10 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         <div className="list-materials__content">
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
-              {specific}
+              {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{mainText}</p>
+          <p className="text-header-h5 mt-8">{materialTitle}</p>
           <p className="text-small-caption">
             {creators &&
               getAuthorNames(
