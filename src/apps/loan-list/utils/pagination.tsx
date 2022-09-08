@@ -20,6 +20,7 @@ interface PaginationProps {
   hitcount: number;
   dueDates: string[];
   loans: LoanMetaDataType[];
+  dueDateLabel: string;
 }
 
 const Pagination: FC<PaginationProps> = ({
@@ -28,7 +29,8 @@ const Pagination: FC<PaginationProps> = ({
   dueDates,
   loans,
   openModalDueDate,
-  selectModalMaterial
+  selectModalMaterial,
+  dueDateLabel
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>([]);
   // So, this is necessary due to the stacked items
@@ -60,6 +62,7 @@ const Pagination: FC<PaginationProps> = ({
   return (
     <>
       <LoanListItems
+        dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}

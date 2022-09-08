@@ -53,6 +53,10 @@ export default {
       defaultValue: "Afleveres",
       control: { type: "text" }
     },
+    loanListToBeDeliveredDigitalMaterialText: {
+      defaultValue: "Udløber",
+      control: { type: "text" }
+    },
     loanListMaterialsDesktopText: {
       defaultValue: "andre materialer",
       control: { type: "text" }
