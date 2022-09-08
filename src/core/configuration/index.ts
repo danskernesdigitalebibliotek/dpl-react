@@ -1,7 +1,7 @@
 import { isMobile } from "react-device-detect";
-import search from "./search.json";
+import dplConfig from "./dpl-config.json";
 
-type ConfScope = "search";
+type ConfScope = "dplConfig";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -16,7 +16,6 @@ export const getConf = (
   device?: Device
 ) => {
   const subConf = configuration[type];
-
   if (device) {
     return subConf[device] as ConfigurationEntry;
   }
@@ -33,5 +32,5 @@ export const getDeviceConf = (
 };
 
 export default {
-  search
+  dplConfig
 } as Configuration;

@@ -92,7 +92,7 @@ export const getManifestationPid = (
 };
 
 export const getCoverTint = (index: number) => {
-  const conf = getConf("search", configuration);
+  const conf = getConf("dplConfig", configuration);
   const { coverTints }: { coverTints?: CoverProps["tint"][] } = conf;
   if (coverTints) {
     const tintKey = index % coverTints.length;
