@@ -231,7 +231,7 @@ const LoanList: FC = () => {
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
       {displayList && (
         <>
-          {/* {physicalLoans && (
+          {physicalLoans && (
             <List
               header={t("loanListPhysicalLoansTitleText")}
               openRenewLoansModal={openRenewLoansModal}
@@ -242,8 +242,9 @@ const LoanList: FC = () => {
               allLoansLength={allPhysicalLoans.length}
               setView={setView}
               view={view as ListView}
+              dueDateLabel={t("LoanListToBeDeliveredText")}
             />
-          )} */}
+          )}
           {digitalLoans && (
             <List
               header={t("loanListDigitalLoansTitleText")}
@@ -254,7 +255,7 @@ const LoanList: FC = () => {
               dueDates={digitalLoansDueDates}
               allLoansLength={allDigitalLoans.length}
               view={view as ListView}
-              setView={setView}
+              dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
             />
           )}
         </>

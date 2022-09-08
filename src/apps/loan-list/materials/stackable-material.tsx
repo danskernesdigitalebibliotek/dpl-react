@@ -22,7 +22,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   material,
   selectDueDate,
   selectMaterial,
-  loanMetaData
+  loanMetaData,
+  dueDateLabel
 }) => {
   const t = useText();
   const dispatch = useDispatch();
@@ -155,7 +156,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                   warningText={t("loanListStatusBadgeWarningText")}
                 />
                 <p className="text-small-caption" id="due-date">
-                  {t("LoanListToBeDeliveredText")} {formatDate(dueDate)}
+                  {dueDateLabel} {formatDate(dueDate)}
                 </p>
                 {additionalMaterials > 0 && (
                   <>

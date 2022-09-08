@@ -17,6 +17,7 @@ interface LoanListItemProps {
     loanMetaData: LoanMetaDataType;
   }) => void;
   openModalDueDate: (id: string, dueDate?: string) => void;
+  dueDateLabel: string;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
@@ -24,7 +25,8 @@ const LoanListItems: FC<LoanListItemProps> = ({
   view,
   dueDates,
   openModalDueDate,
-  selectModalMaterial
+  selectModalMaterial,
+  dueDateLabel
 }) => {
   const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
 
@@ -52,6 +54,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <div>
               {loanMetaData && (
                 <StackableMaterial
+                  dueDateLabel={dueDateLabel}
                   loanMetaData={loanMetaData}
                   key={loanMetaData.id}
                   selectDueDate={openModalDueDate}
@@ -66,6 +69,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loanMetaData) => {
           return (
             <StackableMaterial
+              dueDateLabel={dueDateLabel}
               selectMaterial={selectModalMaterial}
               key={loanMetaData.id}
               loanMetaData={loanMetaData}
