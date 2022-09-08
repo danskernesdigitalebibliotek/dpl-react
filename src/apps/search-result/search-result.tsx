@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
+import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/search-result.list";
-import ResultPager from "../../components/result-pager/result-pager";
 import {
   SearchResponse,
   useSearchWithPaginationQuery,
@@ -18,21 +18,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
     0
   );
-  const [page, setPage] = useState(0);
-  const [searchItemsShown, setSearchItemsShown] = useState(pageSize);
-
-  const setPageHandler = () => {
-    const currentPage = page + 1;
-    setPage(currentPage);
-    setSearchItemsShown((currentPage + 1) * pageSize);
-  };
+  const { PagerComponent, page } = usePager(hitcount);
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
   useEffect(() => {
     setResultItems([]);
-    setPage(0);
-    setSearchItemsShown(pageSize);
   }, [q, pageSize]);
 
   useSearchWithPaginationQuery(
@@ -64,21 +55,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     }
   );
 
-  const hasSearchItemsLeft = searchItemsShown < hitcount;
   const worksAreLoaded = Boolean(resultItems.length);
-  const moreWorksToBeLoaded = worksAreLoaded && hasSearchItemsLeft;
 
   return (
     <div className="search-result-page">
       <SearchResultHeader hitcount={String(hitcount)} q={q} />
       {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
-      {moreWorksToBeLoaded && (
-        <ResultPager
-          itemsShown={searchItemsShown}
-          hitcount={hitcount}
-          setPageHandler={setPageHandler}
-        />
-      )}
+      {PagerComponent}
     </div>
   );
 };

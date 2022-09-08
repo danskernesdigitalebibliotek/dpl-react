@@ -1,12 +1,11 @@
 import React, { useEffect, useState, FC } from "react";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { getStackedSearchItems, getListItems } from "./helpers";
-import ResultPager from "../../../components/result-pager/result-pager";
-import { pageSize } from "../../../core/configuration/pagesize.json";
 import LoanListItems from "../list/loan-list-items";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { ListView } from "../../../core/utils/types/list-view";
+import usePager from "../../../components/result-pager/use-pager";
 
 interface PaginationProps {
   selectModalMaterial: ({
@@ -31,18 +30,16 @@ const Pagination: FC<PaginationProps> = ({
   openModalDueDate,
   selectModalMaterial
 }) => {
-  const [itemsShown, setitemsShown] = useState(pageSize);
   const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>([]);
-  const [page, setPage] = useState<number>(0);
-
-  const setPageHandler = () => {
-    if (loans) {
-      const currentPage = page + 1;
-      const itemsOnPage = (currentPage + 1) * pageSize;
-      setPage(currentPage);
-      setitemsShown(itemsOnPage);
-    }
+  // So, this is necessary due to the stacked items
+  // Where, in the ui it shows 5 stacked items, and
+  // those items accumulated is 34 items - which means
+  // even though there are five items, the pagination
+  // component should display 34 items.....
+  const overrideItemsShown = () => {
+    return displayedLoans.length;
   };
+  const { itemsShown, PagerComponent } = usePager(hitcount, overrideItemsShown);
 
   useEffect(() => {
     if (loans) {
@@ -61,12 +58,6 @@ const Pagination: FC<PaginationProps> = ({
     }
   }, [dueDates, loans, itemsShown, view]);
 
-  useEffect(() => {
-    // When view is changed (from list to stacks or stacks to list)
-    // The items shown are reset to pagesize from config
-    setitemsShown(pageSize);
-  }, [view]);
-
   return (
     <>
       <LoanListItems
@@ -76,11 +67,7 @@ const Pagination: FC<PaginationProps> = ({
         openModalDueDate={openModalDueDate}
         selectModalMaterial={selectModalMaterial}
       />
-      <ResultPager
-        itemsShown={displayedLoans.length}
-        hitcount={hitcount}
-        setPageHandler={setPageHandler}
-      />
+      {PagerComponent}
     </>
   );
 };
