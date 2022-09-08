@@ -215,6 +215,16 @@ export default {
       name: "Go to",
       defaultValue: "Gå til",
       control: { type: "text" }
+    },
+    materialIsLoanedOutText: {
+      name: "Material is loaned out",
+      defaultValue: "Materialet er udlånt",
+      control: { type: "text" }
+    },
+    findOnShelfExpandButtonExplanationText: {
+      name: "Find on shelf expand button explanation text",
+      defaultValue: "This button opens a modal",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
