@@ -7,7 +7,6 @@ import {
 import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Pid } from "../../../core/utils/types/ids";
-import { FaustId, Pid } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
