@@ -6,14 +6,10 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface RenewLoansModalProps {
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({
-  renewable,
-  loansModal
-}) => {
+const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
   const t = useText();
 
   return (
@@ -35,7 +31,6 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             </div>
             <RenewLoansModalContent
               loansModal={loansModal}
-              renewable={renewable}
               buttonLabel={t("renewLoanModalButtonText")}
               checkboxLabel={t("renewLoanModalCheckboxText")}
               buttonBottomLabel={t("bottomRenewLoanModalButtonText")}

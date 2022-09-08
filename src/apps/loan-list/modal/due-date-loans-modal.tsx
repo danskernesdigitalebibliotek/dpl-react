@@ -11,13 +11,11 @@ import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface DueDateLoansModalProps {
   dueDate: string;
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
-  renewable,
   loansModal
 }) => {
   const t = useText();
@@ -56,7 +54,6 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
             )}
             <RenewLoansModalContent
               loansModal={loansModal}
-              renewable={renewable}
               buttonLabel={t("dueDateRenewLoanModalButtonText")}
               checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
               checkboxBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}

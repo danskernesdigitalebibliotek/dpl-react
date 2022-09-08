@@ -12,7 +12,6 @@ import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 import { mapRenewedLoanPBSToLoanMetaDataType } from "../utils/helpers";
 
 interface RenewLoansModalContentProps {
-  renewable: number | null;
   loansModal: LoanMetaDataType[];
   buttonLabel: string;
   checkboxLabel: string;
@@ -21,7 +20,6 @@ interface RenewLoansModalContentProps {
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
-  renewable,
   loansModal,
   checkboxLabel,
   buttonLabel,
@@ -33,7 +31,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     threshold: 0
   });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
+  const [allRenewableMaterials, setAllRenewableMaterials] = useState<
+    number | null
+  >(0);
   const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
   const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
 
@@ -100,11 +100,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           label={checkboxLabel}
         />
         <Button
-          label={`${buttonLabel} (${renewable})`}
+          label={`${buttonLabel} (${allRenewableMaterials})`}
           buttonType="none"
           id="renew-several"
           variant="filled"
-          disabled={renewable === 0}
+          disabled={allRenewableMaterials === 0}
           collapsible={false}
           onClick={renewSelected}
           size="small"
@@ -148,10 +148,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               label={checkboxBottomLabel}
             />
             <Button
-              label={`${buttonBottomLabel} (${renewable})`}
+              label={`${buttonBottomLabel} (${allRenewableMaterials})`}
               buttonType="none"
               variant="filled"
-              disabled={renewable === 0}
+              disabled={allRenewableMaterials === 0}
               collapsible={false}
               onClick={renewSelected}
               size="small"

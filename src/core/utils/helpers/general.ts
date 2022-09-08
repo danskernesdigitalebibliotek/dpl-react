@@ -6,11 +6,9 @@ import {
   ManifestationsSimpleFragment,
   WorkSmallFragment
 } from "../../dbc-gateway/generated/graphql";
-import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
-import { Loan } from "../../publizon/model";
 import { LoanMetaDataType } from "./LoanMetaDataType";
 
 export const orderManifestationsByYear = (
