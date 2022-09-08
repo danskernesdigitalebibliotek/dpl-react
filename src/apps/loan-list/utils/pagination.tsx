@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
-import { getStackedSearchItems, getListItems } from "./helpers";
+import { getStackedItems, getListItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
@@ -46,7 +46,7 @@ const Pagination: FC<PaginationProps> = ({
       if (view === "list") {
         setDisplayedLoans(getListItems(loans, itemsShown));
       } else {
-        const stackedLoans: LoanV2[] = getStackedSearchItems(
+        const stackedLoans: LoanV2[] = getStackedItems(
           view,
           loans,
           itemsShown,

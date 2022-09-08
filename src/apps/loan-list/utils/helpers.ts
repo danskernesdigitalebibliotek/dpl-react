@@ -54,7 +54,7 @@ export const queryMatchesFaust = (query: string | null) => {
   return returnValue;
 };
 
-export const getStackedSearchItems = (
+export const getStackedItems = (
   view: ListView,
   list: LoanV2[],
   itemsShown: number,
