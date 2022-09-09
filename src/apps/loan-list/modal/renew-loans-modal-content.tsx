@@ -13,7 +13,6 @@ import { FaustId } from "../../../core/utils/types/ids";
 import { Button } from "../../../components/Buttons/Button";
 
 interface RenewLoansModalContentProps {
-  renewable: number | null;
   loansModal: LoanV2[];
   buttonLabel: string;
   checkboxLabel: string;
@@ -22,7 +21,6 @@ interface RenewLoansModalContentProps {
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
-  renewable,
   loansModal,
   checkboxLabel,
   buttonLabel,
@@ -102,11 +100,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           label={checkboxLabel}
         />
         <Button
-          label={`${buttonLabel} (${renewable})`}
+          label={`${buttonLabel} (${allRenewableMaterials})`}
           buttonType="none"
           id="renew-several"
           variant="filled"
-          disabled={renewable === 0}
+          disabled={allRenewableMaterials === 0}
           collapsible={false}
           onClick={renewSelected}
           size="small"
@@ -149,10 +147,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               label={checkboxBottomLabel}
             />
             <Button
-              label={`${buttonBottomLabel} (${renewable})`}
+              label={`${buttonBottomLabel} (${allRenewableMaterials})`}
               buttonType="none"
               variant="filled"
-              disabled={renewable === 0}
+              disabled={allRenewableMaterials === 0}
               collapsible={false}
               onClick={renewSelected}
               size="small"

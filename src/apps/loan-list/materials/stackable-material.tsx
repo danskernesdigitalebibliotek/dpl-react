@@ -127,7 +127,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                 id="test-more-materials"
                 className="list-reservation__note-desktop text-small-caption color-secondary-gray"
               >
-                + {additionalMaterials} {t("LoanListMaterialsDesktopText")}
+                + {additionalMaterials} {t("loanListMaterialsDesktopText")}
               </button>
             </>
           )}
@@ -167,7 +167,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                     aria-describedby="materials-modal-text"
                     className="list-reservation__note-mobile text-small-caption color-secondary-gray"
                   >
-                    + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                    + {additionalMaterials} {t("loanListMaterialsMobileText")}
                   </button>
                 </>
               )}

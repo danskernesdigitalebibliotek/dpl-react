@@ -10,10 +10,7 @@ interface RenewLoansModalProps {
   loansModal: LoanV2[] | undefined | null;
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({
-  renewable,
-  loansModal
-}) => {
+const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
   const t = useText();
 
   return (
@@ -35,7 +32,6 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             </div>
             <RenewLoansModalContent
               loansModal={loansModal}
-              renewable={renewable}
               buttonLabel={t("renewLoanModalButtonText")}
               checkboxLabel={t("renewLoanModalCheckboxText")}
               buttonBottomLabel={t("bottomRenewLoanModalButtonText")}
