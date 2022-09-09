@@ -1,23 +1,30 @@
 import * as React from "react";
 import { FC } from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
   manifestation: ManifestationsSimpleFieldsFragment;
+  size?: ButtonSize;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
-  manifestation
+  manifestation,
+  size
 }) => {
   const accessType = manifestation.access[0].__typename;
 
   if (accessType === "Ereol" || accessType === "AccessUrl") {
     const { origin, url: externalUrl } = manifestation.access[0];
     return (
-      <MaterialButtonOnlineExternal externalUrl={externalUrl} origin={origin} />
+      <MaterialButtonOnlineExternal
+        externalUrl={externalUrl}
+        origin={origin}
+        size={size}
+      />
     );
   }
 
@@ -26,6 +33,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     return (
       <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
+        size={size}
       />
     );
   }
@@ -35,6 +43,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     return (
       <MaterialButtonOnlineInfomediaArticle
         infomediaArticleId={infomediaArticleId}
+        size={size}
       />
     );
   }

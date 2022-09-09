@@ -1,10 +1,16 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
-const MaterialButtonLoading: FC = () => {
+export interface MaterialButtonLoadingProps {
+  size?: ButtonSize;
+}
+
+const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({ size }) => {
   const t = useText();
+
   return (
     <Button
       label={t("loadingText")}
@@ -12,7 +18,7 @@ const MaterialButtonLoading: FC = () => {
       variant="filled"
       disabled
       collapsible={false}
-      size="large"
+      size={size || "large"}
     />
   );
 };

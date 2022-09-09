@@ -1,17 +1,20 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
+  size?: ButtonSize;
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   externalUrl = "https://google.com",
-  origin
+  origin,
+  size
 }) => {
   const t = useText();
   const externalLinkObject = new URL(externalUrl);
@@ -24,7 +27,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         variant="filled"
         disabled={false}
         collapsible={false}
-        size="large"
+        size={size || "large"}
         classNames="invert"
       />
     </LinkNoStyle>

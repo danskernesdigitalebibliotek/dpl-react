@@ -41,7 +41,7 @@ describe("Material", () => {
     // Intercept graphql search query.
     cy.fixture("material/fbi-api.json")
       .then((result) => {
-        cy.intercept("POST", "**/opac/graphql**", result);
+        cy.intercept("POST", "**/opac/graphql", result);
       })
       .as("Graphql search query");
 

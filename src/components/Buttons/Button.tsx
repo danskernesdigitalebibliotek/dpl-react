@@ -2,13 +2,14 @@ import React from "react";
 import ArrowSmallRight from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/arrow-ui/icon-arrow-ui-small-right.svg";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import clsx from "clsx";
+import { ButtonSize } from "../../core/utils/types/button";
 
 export type ButtonProps = {
   label: string;
   buttonType: "none" | "default" | "external-link" | "search";
   disabled: boolean;
   collapsible: boolean;
-  size: "large" | "medium" | "small" | "xsmall";
+  size: ButtonSize;
   variant: "outline" | "filled";
   onClick?: () => void;
   classNames?: string;

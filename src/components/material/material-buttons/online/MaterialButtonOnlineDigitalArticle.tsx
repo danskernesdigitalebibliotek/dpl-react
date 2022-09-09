@@ -1,15 +1,17 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   digitalArticleIssn: string;
+  size?: ButtonSize;
 }
 
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
-> = ({ digitalArticleIssn }) => {
+> = ({ digitalArticleIssn, size }) => {
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
   const t = useText();
@@ -19,8 +21,10 @@ const MaterialButtonOnlineDigitalArticle: FC<
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = (articleIssn: string) => {
+  const onClick = () => {
     // TODO: open modal and start registering flow for digital articles
+    // eslint-disable-next-line
+    console.log(digitalArticleIssn);
   };
 
   return (
@@ -30,10 +34,8 @@ const MaterialButtonOnlineDigitalArticle: FC<
       variant="filled"
       disabled={false}
       collapsible={false}
-      size="large"
-      onClick={() => {
-        onClick(digitalArticleIssn);
-      }}
+      size={size || "large"}
+      onClick={onClick}
     />
   );
 };

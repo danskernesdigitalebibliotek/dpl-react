@@ -1,10 +1,18 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
-const MaterialButtonCantReserve: FC = () => {
+export interface MaterialButtonCantReserveProps {
+  size?: ButtonSize;
+}
+
+const MaterialButtonCantReserve: FC<MaterialButtonCantReserveProps> = ({
+  size
+}) => {
   const t = useText();
+
   return (
     <Button
       label={t("cantReserveText")}
@@ -12,7 +20,7 @@ const MaterialButtonCantReserve: FC = () => {
       variant="filled"
       disabled
       collapsible={false}
-      size="large"
+      size={size || "large"}
     />
   );
 };

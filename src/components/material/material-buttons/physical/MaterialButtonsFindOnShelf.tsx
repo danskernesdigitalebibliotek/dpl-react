@@ -2,16 +2,17 @@ import * as React from "react";
 import { FC } from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { useText } from "../../../../core/utils/text";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonsFindOnShelfProps {
-  isButton?: boolean;
+  size?: ButtonSize;
   faustIds: FaustId[];
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
-  isButton,
+  size,
   faustIds
 }) => {
   const t = useText();
@@ -35,7 +36,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     return null;
   }
 
-  if (isButton) {
+  if (size !== "small") {
     if (!data[0].available) {
       return (
         <Button

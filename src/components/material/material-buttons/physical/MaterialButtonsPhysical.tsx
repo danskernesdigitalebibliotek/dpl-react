@@ -2,6 +2,7 @@ import React from "react";
 import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
+import { ButtonSize } from "../../../../core/utils/types/button";
 import { Pid } from "../../../../core/utils/types/ids";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
@@ -10,10 +11,12 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
   manifestation: ManifestationsSimpleFieldsFragment;
+  size?: ButtonSize;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  manifestation
+  manifestation,
+  size
 }) => {
   const { pid } = manifestation;
   const faustId = convertPostIdToFaustId(pid as Pid);
@@ -26,7 +29,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const isUserBlocked = false;
 
   if (isLoading) {
-    return <MaterialButtonLoading />;
+    return <MaterialButtonLoading size={size} />;
   }
 
   if (!data) {
@@ -34,12 +37,12 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   }
 
   if (isUserBlocked) {
-    return <MaterialButtonUserBlocked />;
+    return <MaterialButtonUserBlocked size={size} />;
   }
 
   const manifestationAvailability = data[0];
   if (!manifestationAvailability.reservable) {
-    return <MaterialButtonCantReserve />;
+    return <MaterialButtonCantReserve size={size} />;
   }
 
   const manifestationMaterialType = manifestation.materialTypes[0].specific;
@@ -47,6 +50,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     <MaterialButtonReservePhysical
       manifestationMaterialType={manifestationMaterialType}
       faustId={faustId as string}
+      size={size}
     />
   );
 };
