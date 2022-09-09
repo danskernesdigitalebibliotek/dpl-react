@@ -100,7 +100,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {manifestation?.source.includes("bibliotekskatalog") && faustId && (
+        {manifestation?.source?.includes("bibliotekskatalog") && faustId && (
           <MaterialPeriodical
             faustId={faustId}
             selectPeriodicalSelect={selectPeriodicalSelect}
