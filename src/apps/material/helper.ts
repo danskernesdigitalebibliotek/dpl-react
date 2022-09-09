@@ -119,21 +119,21 @@ export const getWorkDescriptionListData = ({
   ];
 };
 
-export const getNoInterestAfter = (days: number) => {
-  switch (days) {
-    case 30:
-      return "1 måned";
-    case 60:
-      return "2 måneder";
-    case 90:
-      return "3 måneder";
-    case 180:
-      return "6 måneder";
-    case 360:
-      return "12 måneder";
-    default:
-      return `${days} dage`;
-  }
+export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
+  const reservationInterestIntervals: { [key: string]: string } = {
+    "30": t("oneMonthText"),
+    "60": t("twoMonthsText"),
+    "90": t("threeMonthsText"),
+    "180": t("sixMonthsText"),
+    "360": t("twelveMonthsText"),
+    default: `${days} ${t("daysText")}`
+  } as const;
+
+  const lookupKey = String(days);
+  return (
+    reservationInterestIntervals[lookupKey] ??
+    reservationInterestIntervals.default
+  );
 };
 
 export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {

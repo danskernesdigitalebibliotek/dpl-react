@@ -60,6 +60,12 @@ interface MaterialEntryTextProps {
   receiveSmsWhenMaterialReadyText: string;
   receiveEmailWhenMaterialReadyText: string;
   haveNoInterestAfterText: string;
+  oneMonthText: string;
+  twoMonthsText: string;
+  threeMonthsText: string;
+  sixMonthsText: string;
+  twelveMonthsText: string;
+  daysText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
