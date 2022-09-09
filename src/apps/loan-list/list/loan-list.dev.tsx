@@ -16,6 +16,18 @@ export default {
       defaultValue: "Fysiske lån",
       control: { type: "text" }
     },
+    loanListDigitalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen digitale lån",
+      control: { type: "text" }
+    },
+    loanListPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen fysiske lån",
+      control: { type: "text" }
+    },
+    loanListDigitalPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket 0 lån",
+      control: { type: "text" }
+    },
     loanListDigitalLoansTitleText: {
       defaultValue: "Digitale lån",
       control: { type: "text" }
@@ -203,10 +215,6 @@ export default {
     },
     materialDetailsMaterialNumberLabelText: {
       defaultValue: "Materialenummer",
-      control: { type: "text" }
-    },
-    LoanListEmptyPhysicalLoansText: {
-      defaultValue: "Du har i øjeblikket ingen fysiske lån",
       control: { type: "text" }
     },
     renewLoanModalCheckboxText: {

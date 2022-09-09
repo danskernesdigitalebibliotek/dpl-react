@@ -6,6 +6,9 @@ export interface LoanListEntryProps {
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
+  loanListDigitalLoansEmptyListText: string;
+  loanListDigitalPhysicalLoansEmptyListText: string;
+  loanListPhysicalLoansEmptyListText: string;
   loanListRenewMultipleButtonText: string;
   loanListListText: string;
   loanListStackText: string;
@@ -29,7 +32,6 @@ export interface LoanListEntryProps {
   LoanListLabelCheckboxMaterialModalText: string;
   LoanListCloseModalText: string;
   LoanListModalDescriptionText: string;
-  LoanListEmptyPhysicalLoansText: string;
   MaterialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
   loanListMaterialByAuthorText: string;

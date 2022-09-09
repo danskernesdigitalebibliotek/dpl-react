@@ -19,8 +19,9 @@ interface PaginationProps {
   view: ListView;
   hitcount: number;
   dueDates: string[];
-  loans: LoanMetaDataType[];
+  loans?: LoanMetaDataType[];
   dueDateLabel: string;
+  emptyListLabel: string;
 }
 
 const Pagination: FC<PaginationProps> = ({
@@ -30,7 +31,8 @@ const Pagination: FC<PaginationProps> = ({
   loans,
   openModalDueDate,
   selectModalMaterial,
-  dueDateLabel
+  dueDateLabel,
+  emptyListLabel
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
   // So, this is necessary due to the stacked items
@@ -56,15 +58,22 @@ const Pagination: FC<PaginationProps> = ({
 
   return (
     <>
-      <LoanListItems
-        dueDateLabel={dueDateLabel}
-        dueDates={dueDates}
-        loans={displayedLoans}
-        view={view}
-        openModalDueDate={openModalDueDate}
-        selectModalMaterial={selectModalMaterial}
-      />
-      {PagerComponent}
+      {displayedLoans.length > 0 && (
+        <>
+          <LoanListItems
+            dueDateLabel={dueDateLabel}
+            dueDates={dueDates}
+            loans={displayedLoans}
+            view={view}
+            openModalDueDate={openModalDueDate}
+            selectModalMaterial={selectModalMaterial}
+          />
+          {PagerComponent}
+        </>
+      )}
+      {displayedLoans.length === 0 && (
+        <div className="dpl-list-empty">{emptyListLabel}</div>
+      )}
     </>
   );
 };

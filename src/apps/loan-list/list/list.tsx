@@ -10,6 +10,7 @@ import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 export interface ListProps {
   header: string;
+  emptyListLabel: string;
   openRenewLoansModal: () => void;
   openModalDueDate: (id: string, dueDate?: string) => void;
   setView?: (view: string) => void;
@@ -20,7 +21,7 @@ export interface ListProps {
     material: GetMaterialManifestationQuery | undefined | null;
     loanMetaData: LoanMetaDataType;
   }) => void;
-  loans: LoanMetaDataType[];
+  loans?: LoanMetaDataType[];
   dueDates: string[];
   allLoansLength: number;
   view: ListView;
@@ -37,7 +38,8 @@ const List: FC<ListProps> = ({
   dueDates,
   allLoansLength,
   view,
-  dueDateLabel
+  dueDateLabel,
+  emptyListLabel
 }) => {
   const t = useText();
   useState<LoanDetailsV2 | null>(null);
@@ -93,17 +95,16 @@ const List: FC<ListProps> = ({
           </div>
         )}
       </div>
-      {loans && (
-        <Pagination
-          dueDateLabel={dueDateLabel}
-          dueDates={dueDates}
-          loans={loans}
-          view={view as ListView}
-          hitcount={allLoansLength}
-          openModalDueDate={openModalDueDate}
-          selectModalMaterial={selectModalMaterial}
-        />
-      )}
+      <Pagination
+        emptyListLabel={emptyListLabel}
+        dueDateLabel={dueDateLabel}
+        dueDates={dueDates}
+        loans={loans}
+        view={view as ListView}
+        hitcount={allLoansLength}
+        openModalDueDate={openModalDueDate}
+        selectModalMaterial={selectModalMaterial}
+      />
     </>
   );
 };

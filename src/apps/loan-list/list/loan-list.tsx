@@ -31,11 +31,11 @@ const LoanList: FC = () => {
   const dispatch = useDispatch();
   const t = useText();
   const [view, setView] = useState<string>("list");
-  const [physicalLoans, setPhysicalLoans] = useState<LoanMetaDataType[]>();
+  const [physicalLoans, setPhysicalLoans] = useState<LoanMetaDataType[]>([]);
   const [allPhysicalLoans, setAllPhysicalLoans] = useState<LoanMetaDataType[]>(
     []
   );
-  const [digitalLoans, setDigitalLoans] = useState<LoanMetaDataType[]>();
+  const [digitalLoans, setDigitalLoans] = useState<LoanMetaDataType[]>([]);
   const [allDigitalLoans, setAllDigitalLoans] = useState<LoanMetaDataType[]>(
     []
   );
@@ -108,7 +108,7 @@ const LoanList: FC = () => {
     setDisplayList(true);
     if (isAModalDisplayed(modalIds)) {
       refetch();
-      setDisplayList(true);
+      setDisplayList(false);
     }
   }, [modalIds, modalIds?.length, refetch]);
 
@@ -187,11 +187,12 @@ const LoanList: FC = () => {
       {/* only display the list when a modal is not open. this is to do with accessibility, 
       so the screen reader does not focus on focusable inputs in the list while a modal is open. */}
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
-      {displayList && (
-        <>
-          {physicalLoans && (
+      {displayList &&
+        (digitalLoans?.length !== 0 || physicalLoans.length !== 0) && (
+          <>
             <List
               header={t("loanListPhysicalLoansTitleText")}
+              emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               openRenewLoansModal={openRenewLoansModal}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
@@ -202,10 +203,9 @@ const LoanList: FC = () => {
               view={view as ListView}
               dueDateLabel={t("LoanListToBeDeliveredText")}
             />
-          )}
-          {digitalLoans && (
             <List
               header={t("loanListDigitalLoansTitleText")}
+              emptyListLabel={t("loanListDigitalLoansEmptyListText")}
               openRenewLoansModal={openRenewLoansModal}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
@@ -215,8 +215,12 @@ const LoanList: FC = () => {
               view={view as ListView}
               dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
             />
-          )}
-        </>
+          </>
+        )}
+      {digitalLoans?.length === 0 && physicalLoans?.length === 0 && (
+        <div className="dpl-list-empty">
+          {t("loanListDigitalPhysicalLoansEmptyListText")}
+        </div>
       )}
       {modalLoanDetails && (
         <MaterialDetailsModal
