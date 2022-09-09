@@ -33,7 +33,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         <ReservationFormListItem
           icon={LoanHistory}
           title={t("haveNoInterestAfterText")}
-          text={getNoInterestAfter(defaultInterestPeriod)}
+          text={getNoInterestAfter(defaultInterestPeriod, t)}
         />
       )}
       {preferredPickupBranch && branchData && (
