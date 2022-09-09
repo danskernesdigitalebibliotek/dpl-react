@@ -155,7 +155,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons manifestation={manifestation} size="small" />
-        <MaterialButtonsFindOnShelf faustIds={[faustId as FaustId]} />
       </div>
     </div>
   );
