@@ -3,7 +3,7 @@ import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import { Pid } from "../../../../core/utils/types/ids";
+import { FaustId, Pid } from "../../../../core/utils/types/ids";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
@@ -19,7 +19,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size
 }) => {
   const { pid } = manifestation;
-  const faustId = convertPostIdToFaustId(pid as Pid) ?? "";
+  const faustId = (convertPostIdToFaustId(pid as Pid) ?? "") as FaustId;
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: [faustId]
   });
@@ -49,7 +49,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   return (
     <MaterialButtonReservePhysical
       manifestationMaterialType={manifestationMaterialType}
-      faustId={faustId as string}
+      faustId={faustId}
       size={size}
     />
   );
