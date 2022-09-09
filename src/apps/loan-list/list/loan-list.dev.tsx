@@ -8,6 +8,10 @@ export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    fbsBaseUrl: {
+      defaultValue: "https://fbs-openplatform.dbc.dk",
+      control: { type: "text" }
+    },
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
       control: { type: "text" }

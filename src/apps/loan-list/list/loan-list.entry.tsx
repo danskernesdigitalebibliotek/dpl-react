@@ -3,6 +3,7 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 
 export interface LoanListEntryProps {
+  fbsBaseUrl: string;
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
@@ -63,6 +64,9 @@ export interface LoanListEntryProps {
   bottomDueDateRenewLoanModalButtonText: string;
 }
 
-const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
+const LoanListEntry: FC<LoanListEntryProps> = (props) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <LoanList {...props} />
+);
 
 export default withText(LoanListEntry);

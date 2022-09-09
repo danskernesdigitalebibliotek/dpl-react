@@ -19,6 +19,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies
         run: yarn install
+
+
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
