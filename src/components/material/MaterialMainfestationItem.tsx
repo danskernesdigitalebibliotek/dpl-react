@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { useDispatch } from "react-redux";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
@@ -17,8 +16,6 @@ import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
-import { reservationModalId } from "../reservation/reservation-modal";
-import { openModal } from "../../core/modal.slice";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;
@@ -42,16 +39,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid as Pid);
-
-  const onClick = () => {
-    if (faustId) {
-      dispatch(openModal({ modalId: reservationModalId(faustId) }));
-    }
-  };
-
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
