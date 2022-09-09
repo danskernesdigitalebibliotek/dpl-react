@@ -290,6 +290,36 @@ export default {
       name: "Have no interest after",
       defaultValue: "Har ingen interesse efter",
       control: { type: "text" }
+    },
+    oneMonthText: {
+      name: "One month",
+      defaultValue: "1 måned",
+      control: { type: "text" }
+    },
+    twoMonthsText: {
+      name: "Two months",
+      defaultValue: "2 måneder",
+      control: { type: "text" }
+    },
+    threeMonthsText: {
+      name: "Three months",
+      defaultValue: "3 måneder",
+      control: { type: "text" }
+    },
+    sixMonthsText: {
+      name: "Six months",
+      defaultValue: "6 måneder",
+      control: { type: "text" }
+    },
+    twelveMonthsText: {
+      name: "Twelve months",
+      defaultValue: "12 måneder",
+      control: { type: "text" }
+    },
+    daysText: {
+      name: "Days",
+      defaultValue: "Dage",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
