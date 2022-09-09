@@ -1,7 +1,7 @@
 import "./dev-fonts.scss";
 import "../src/components/components.scss";
 import "@danskernesdigitalebibliotek/dpl-design-system/build/css/base.css";
-import getToken, {
+import {
   setToken,
   TOKEN_LIBRARY_KEY,
   TOKEN_USER_KEY
@@ -11,7 +11,7 @@ import Store from "../src/components/store";
 import { store } from "../src/core/store";
 
 import React from "react";
-import { setStatusAuthenticated, updateStatus } from "../src/core/user.slice";
+import { updateStatus } from "../src/core/user.slice";
 
 if (process.env.NODE_ENV === "test") {
   store.dispatch(
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
-const userToken = process.env.STORYBOOK_USER_TOKEN ?? getSessionStorage(STORYBOOK_USER_TOKEN);
+const userToken = process.env.STORYBOOK_USER_TOKEN ?? getSessionStorage(TOKEN_USER_KEY);
 const libraryToken = process.env.STORYBOOK_LIBRARY_TOKEN ?? getSessionStorage(TOKEN_LIBRARY_KEY);
 
 if (userToken) {
