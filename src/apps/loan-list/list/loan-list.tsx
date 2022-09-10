@@ -59,7 +59,7 @@ const LoanList: FC = () => {
   const [loansModal, setLoansModal] = useState<LoanV2[] | null>();
   const [displayList, setDisplayList] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
-  const [view, setView] = useState<string>("list");
+  const [view, setView] = useState<ListView>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -225,7 +225,7 @@ const LoanList: FC = () => {
             <Pagination
               dueDates={dueDates}
               loans={loans}
-              view={view as ListView}
+              view={view}
               hitcount={allLoans.length}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
