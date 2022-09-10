@@ -39,7 +39,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
   }, [dueDates, view]);
 
   return (
-    <div className="list-reservation-container m-32">
+    <div className="list-reservation-container">
       {view === "stacked" &&
         localDueDates.map((uniqueDueDate: string | null) => {
           // Stack items:

@@ -44,7 +44,7 @@ const List: FC<ListProps> = ({
 
   return (
     <>
-      <div className="dpl-list-buttons m-32">
+      <div className="dpl-list-buttons">
         <h2 className="dpl-list-buttons__header">
           {header}
           <div className="dpl-list-buttons__power">{allLoansLength}</div>
@@ -76,7 +76,7 @@ const List: FC<ListProps> = ({
                 <IconStack />
               </button>
             </div>
-            <div className="dpl-list-buttons__buttons__button">
+            <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
               <button
                 type="button"
                 onClick={() => {

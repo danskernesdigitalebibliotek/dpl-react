@@ -27,6 +27,11 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
     color = colors.warning;
   }
 
+  const daysBetweenTodayAndDueString =
+    daysBetweenTodayAndDue > 0
+      ? `+${daysBetweenTodayAndDue}`
+      : `${daysBetweenTodayAndDue}`;
+
   return (
     <div
       className="list-reservation__counter"
@@ -40,9 +45,7 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
           background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${color} ${percent}%, #DBDBDB 0)`
         }}
       >
-        <span className="counter__value">
-          {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
-        </span>
+        <span className="counter__value">{daysBetweenTodayAndDue}</span>
         <span className="counter__label">{t("loanListDaysText")}</span>
       </div>
     </div>

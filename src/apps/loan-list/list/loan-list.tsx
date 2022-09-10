@@ -183,7 +183,7 @@ const LoanList: FC = () => {
   }, [physicalLoans, openModalDueDate, dispatch]);
 
   return (
-    <>
+    <div className="loan-list-page">
       {/* only display the list when a modal is not open. this is to do with accessibility, 
       so the screen reader does not focus on focusable inputs in the list while a modal is open. */}
       <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
@@ -228,7 +228,7 @@ const LoanList: FC = () => {
         <DueDateLoansModal dueDate={dueDateModal} loansModal={loansModal} />
       )}
       {physicalLoans && <RenewLoansModal loansModal={physicalLoans} />}
-    </>
+    </div>
   );
 };
 

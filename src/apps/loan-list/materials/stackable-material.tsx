@@ -149,50 +149,48 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           )}
         </div>
       </div>
-      <div>
-        {dueDate && loanDate && (
-          <div className="list-reservation__status">
-            <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-            <div>
-              <div className="list-reservation__deadline">
-                <StatusBadge
-                  dueDate={dueDate}
-                  dangerText={t("loanListStatusBadgeDangerText")}
-                  warningText={t("loanListStatusBadgeWarningText")}
-                />
-                <p className="text-small-caption" id="due-date">
-                  {dueDateLabel} {formatDate(dueDate)}
-                </p>
-                {additionalMaterials > 0 && (
-                  <>
-                    <div
-                      className="list-reservation__hidden-explanation"
-                      id="materials-modal-text"
-                    >
-                      {t("loanListMaterialsModalMobileText")}
-                    </div>
-                    <button
-                      type="button"
-                      aria-describedby="materials-modal-text"
-                      className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                    >
-                      + {additionalMaterials} {t("LoanListMaterialsMobileText")}
-                    </button>
-                  </>
-                )}
-                {materialIsOverdue(dueDate) && (
-                  <a
-                    href="todo"
-                    className="list-reservation__note-mobile text-small-caption color-signal-alert"
+      {dueDate && loanDate && (
+        <div className="list-reservation__status">
+          <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+          <div>
+            <div className="list-reservation__deadline">
+              <StatusBadge
+                dueDate={dueDate}
+                dangerText={t("loanListStatusBadgeDangerText")}
+                warningText={t("loanListStatusBadgeWarningText")}
+              />
+              <p className="text-small-caption" id="due-date">
+                {dueDateLabel} {formatDate(dueDate)}
+              </p>
+              {additionalMaterials > 0 && (
+                <>
+                  <div
+                    className="list-reservation__hidden-explanation"
+                    id="materials-modal-text"
                   >
-                    {t("loanListLateFeeMobileText")}
-                  </a>
-                )}
-              </div>
+                    {t("loanListMaterialsModalMobileText")}
+                  </div>
+                  <button
+                    type="button"
+                    aria-describedby="materials-modal-text"
+                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
+                  >
+                    + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                  </button>
+                </>
+              )}
+              {materialIsOverdue(dueDate) && (
+                <a
+                  href="todo"
+                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+                >
+                  {t("loanListLateFeeMobileText")}
+                </a>
+              )}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </button>
   );
 };
