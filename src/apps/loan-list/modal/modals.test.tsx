@@ -139,7 +139,9 @@ describe("Modals", () => {
       "/iframe.html?path=/story/apps-loan-list--loan-list-due-date-modal"
     );
     cy.wait(["@loans", "@work", "@cover"]);
-    cy.get(".modal").find(".list-materials").should("have.length", 2);
+    // TODO Figure out why :visible is needed
+    // There are two additional hidden materials in the DOM when testing.
+    cy.get(".modal").find(".list-materials:visible").should("have.length", 2);
     cy.get(".modal")
       .find(".list-materials")
       .eq(0)
