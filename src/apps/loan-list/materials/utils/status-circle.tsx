@@ -27,11 +27,6 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
     color = colors.warning;
   }
 
-  const daysBetweenTodayAndDueString =
-    daysBetweenTodayAndDue > 0
-      ? `+${daysBetweenTodayAndDue}`
-      : `${daysBetweenTodayAndDue}`;
-
   return (
     <div
       className="list-reservation__counter"
