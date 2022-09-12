@@ -62,15 +62,10 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
   const branchResponse = useGetBranches();
   const userResponse = useGetPatronInformationByPatronIdV2();
   const holdingsResponse = useGetHoldingsV3({
-    recordid: [String(faustId)]
+    recordid: [faustId]
   });
 
-  if (
-    !faustId ||
-    !branchResponse.data ||
-    !userResponse.data ||
-    !holdingsResponse.data
-  ) {
+  if (!branchResponse.data || !userResponse.data || !holdingsResponse.data) {
     return null;
   }
 
