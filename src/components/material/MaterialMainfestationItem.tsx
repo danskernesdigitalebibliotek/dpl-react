@@ -110,13 +110,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
-        {faustId && (
-          <AvailabilityLabel
-            manifestText={materialTypes[0]?.specific}
-            url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
-            faustIds={[faustId]}
-          />
-        )}
+        <AvailabilityLabel
+          manifestText={materialTypes[0]?.specific}
+          url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
+          faustIds={[faustId]}
+        />
       </div>
       <div className="material-manifestation-item__cover">
         <Cover pid={pid as Pid} size="small" animate={false} />

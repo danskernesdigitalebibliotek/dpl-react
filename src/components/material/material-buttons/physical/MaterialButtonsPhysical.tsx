@@ -19,7 +19,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size
 }) => {
   const { pid } = manifestation;
-  const faustId = (convertPostIdToFaustId(pid as Pid) ?? "") as FaustId;
+  const faustId = convertPostIdToFaustId(pid as Pid);
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: [faustId]
   });
