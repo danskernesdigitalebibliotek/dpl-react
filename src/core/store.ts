@@ -11,6 +11,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import textReducer from "./text.slice";
 import userReducer from "./user.slice";
+import configReducer from "./config.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 // TODO: Fix dependency cycle problem
@@ -32,6 +33,7 @@ export const store = configureStore({
     persistConfig,
     combineReducers({
       user: userReducer,
+      config: configReducer,
       text: textReducer,
       modal: modalReducer,
       url: urlReducer,
