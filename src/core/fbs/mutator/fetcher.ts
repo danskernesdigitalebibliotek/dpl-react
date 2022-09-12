@@ -1,7 +1,5 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
-import { getConfig, Options } from "../fbaConfig";
-
-const baseURL = getConfig(Options.baseUrl);
+import { getConfig, Options } from "../fbsConfig";
 
 type FetchParams =
   | string
@@ -53,6 +51,7 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
+  const baseURL = getConfig(Options.baseUrl);
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)
@@ -65,8 +64,8 @@ export const fetcher = async <ResponseType>({
     {
       method,
       headers: {
-        ...headers,
-        ...authHeaders
+        ...headers
+        // ...authHeaders
       },
       body
     }
