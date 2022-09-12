@@ -109,9 +109,12 @@ export const usePrevious = <Type>(value: Type) => {
   return ref.current;
 };
 
-export const convertPostIdToFaustId = (postId: Pid): FaustId | null => {
+export const convertPostIdToFaustId = (postId: Pid) => {
   const matches = postId.match(/^[0-9]+-[a-z]+:([0-9]+)$/);
-  return matches?.[1] ? (matches?.[1] as FaustId) : null;
+  if (matches?.[1]) {
+    return matches?.[1] as FaustId;
+  }
+  throw new Error(`Unable to extract faust id from post id "${postId}"`);
 };
 
 // Get params if they are defined as props use those

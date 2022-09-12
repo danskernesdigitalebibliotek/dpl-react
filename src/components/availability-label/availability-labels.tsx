@@ -40,10 +40,6 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         const faustId = convertPostIdToFaustId(pid as Pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
 
-        if (!faustId) {
-          return null;
-        }
-
         return (
           <AvailabilityLabel
             key={pid}

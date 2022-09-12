@@ -16,7 +16,7 @@ const MaterialAvailabilityTextPhysical: React.FC<
   const t = useText();
   const faustId = convertPostIdToFaustId(pid as Pid);
   const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [String(faustId)]
+    recordid: [faustId]
   });
 
   if (isLoading || isError || !data) return null;

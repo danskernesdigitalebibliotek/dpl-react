@@ -77,10 +77,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const coverPid =
     (manifestation?.pid as Pid) || getManifestationPid(manifestations);
 
-  const faustId = manifestation
-    ? convertPostIdToFaustId(manifestation?.pid as Pid)
-    : "";
-
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -102,9 +98,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {manifestation?.source?.includes("bibliotekskatalog") && faustId && (
+        {manifestation?.source?.includes("bibliotekskatalog") && (
           <MaterialPeriodical
-            faustId={faustId}
+            faustId={convertPostIdToFaustId(manifestation?.pid as Pid)}
             selectPeriodicalSelect={selectPeriodicalSelect}
           />
         )}
