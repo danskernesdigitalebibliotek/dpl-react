@@ -1,6 +1,5 @@
 import { RootState, useSelector } from "../store";
-import { setConfig } from "../config.slice";
-import withSuffix from "./withSuffix";
+import withConfigSuffix from "./withConfigSuffix";
 
 export type UseConfigFunction = (key: string) => string;
 export const useConfig = (): UseConfigFunction => {
@@ -9,7 +8,7 @@ export const useConfig = (): UseConfigFunction => {
 };
 
 export const withConfig = <T>(Component: React.ComponentType<T>) => {
-  return withSuffix(Component, "Config", setConfig);
+  return withConfigSuffix(Component);
 };
 
 export default {};
