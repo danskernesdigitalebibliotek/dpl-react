@@ -7,7 +7,7 @@ export enum Options {
 }
 
 const config: { [key in Options]: string } = {
-  baseUrl: "https://fbs-openplatform.dbc.dk"
+  baseUrl: ""
 };
 
 export function setConfig(type: Options, value: string) {
