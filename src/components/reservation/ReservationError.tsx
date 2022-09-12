@@ -1,4 +1,5 @@
 import React from "react";
+import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 
 type ReservationErrorProps = {
@@ -8,11 +9,14 @@ type ReservationErrorProps = {
 const ReservationError: React.FC<ReservationErrorProps> = ({
   setReservationDidSuccess
 }) => {
+  const t = useText();
   return (
     <section className="reservation-modal reservation-modal--confirm">
-      <h2 className="text-header-h3 pb-48">ReservationError</h2>
+      <h2 className="text-header-h3 pb-48">
+        {t("reservationErrorsTitleText")}
+      </h2>
       <p className="text-body-medium-regular pb-48">
-        Vi kunne desværre ikke gennemføre din reservation.
+        {t("reservationErrorsDescriptionText")}
       </p>
       <Button
         classNames="reservation-modal__confirm-button"
