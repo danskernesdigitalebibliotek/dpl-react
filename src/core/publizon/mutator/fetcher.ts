@@ -1,6 +1,5 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
-
-const baseURL = "https://pubhub-openplatform.dbc.dk/"; // use your own URL here or environment variable
+import { getConfig, Options } from "../publizonConfig";
 
 type FetchParams =
   | string
@@ -53,6 +52,8 @@ export const fetcher = async <ResponseType>({
   signal?: AbortSignal;
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
+  const baseURL = getConfig(Options.baseUrl);
+
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)
     : {};
