@@ -320,6 +320,43 @@ export default {
       name: "Days",
       defaultValue: "Dage",
       control: { type: "text" }
+    },
+    reservationSuccesTitleText: {
+      name: "Reservation Success title",
+      defaultValue: "Materialet er hjemme og er nu reserveret til dig!",
+      control: { type: "text" }
+    },
+    reservationSuccesIsReservedForYouText: {
+      name: "Reservation Success Title",
+      defaultValue: "er reserveret til dig",
+      control: { type: "text" }
+    },
+    reservationSuccesPreferredPickupBranchText: {
+      name: "Reservation Preferred pickup branch",
+      defaultValue:
+        "Materialet er hjemme, og du får beksed så snart der ligger klar til dig - afhentning på",
+      control: { type: "text" }
+    },
+    reservationErrorsTitleText: {
+      name: "Reservation Error title",
+      defaultValue: "Reservationsfejl",
+      control: { type: "text" }
+    },
+    reservationErrorsDescriptionText: {
+      name: "Reservation Error description",
+      defaultValue:
+        "Der er desværre sket en fejl. Vi beklager ulejligheden. Prøv igen",
+      control: { type: "text" }
+    },
+    tryAginButtonText: {
+      name: "Try again button text",
+      defaultValue: "Prøv igen",
+      control: { type: "text" }
+    },
+    okButtonText: {
+      name: "Ok button text",
+      defaultValue: "Ok",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
