@@ -64,7 +64,7 @@ interface MaterialEntryTextProps {
   twoMonthsText: string;
   threeMonthsText: string;
   sixMonthsText: string;
-  twelveMonthsText: string;
+  oneYearText: string;
   daysText: string;
   reservationSuccesTitleText: string;
   reservationSuccesIsReservedForYouText: string;
@@ -73,6 +73,7 @@ interface MaterialEntryTextProps {
   reservationErrorsDescriptionText: string;
   tryAginButtonText: string;
   okButtonText: string;
+  missingDataText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
