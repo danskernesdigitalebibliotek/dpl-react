@@ -34,6 +34,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           icon={LoanHistory}
           title={t("haveNoInterestAfterText")}
           text={getNoInterestAfter(defaultInterestPeriod, t)}
+          changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
       {preferredPickupBranch && branchData && (
@@ -41,6 +42,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           icon={Location}
           title={t("pickupLocationText")}
           text={getPreferredLocation(preferredPickupBranch, branchData)}
+          changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
       {phoneNumber && (
@@ -48,6 +50,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           icon={Subtitles}
           title={t("receiveSmsWhenMaterialReadyText")}
           text={phoneNumber}
+          changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
       {emailAddress && (
@@ -55,6 +58,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           icon={Message}
           title={t("receiveEmailWhenMaterialReadyText")}
           text={emailAddress}
+          changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
     </>

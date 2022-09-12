@@ -30,7 +30,10 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { getPreferredLocation } from "../../apps/material/helper";
+import {
+  getPreferredLocation,
+  totalMaterials
+} from "../../apps/material/helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -78,13 +81,6 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
   };
   const { reservations, holdings } = holdingsData[0];
   const { patron } = userData;
-
-  // TODO move to material/helper.ts because it is used in multiple places (Info text under buttons in the material header)
-  const totalReservations = reservations;
-  const totalMaterials = holdings.reduce(
-    (acc, curr) => acc + curr.materials.length,
-    0
-  );
 
   const author =
     creatorsToString(
@@ -147,11 +143,9 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
           <div>
             <div className="reservation-modal-submit">
               <p className="text-small-caption">
-                {`${t("weHaveShoppedText")} ${totalMaterials} ${t(
+                {`${t("weHaveShoppedText")} ${totalMaterials(holdings)} ${t(
                   "copiesThereIsText"
-                )} ${totalReservations} ${t(
-                  "reservationsForThisMaterialText"
-                )}`}
+                )} ${reservations} ${t("reservationsForThisMaterialText")}`}
               </p>
               <Button
                 label={t("approveReservationText")}
@@ -168,6 +162,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
                 icon={Various}
                 title={t("editionText")}
                 text={summary}
+                changeHandler={() => {}} // TODO: open modal to switch user data
               />
               {patron && (
                 <UserListItems patron={patron} branchData={branchData} />

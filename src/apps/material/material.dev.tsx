@@ -311,7 +311,7 @@ export default {
       defaultValue: "6 måneder",
       control: { type: "text" }
     },
-    twelveMonthsText: {
+    oneYearText: {
       name: "Twelve months",
       defaultValue: "12 måneder",
       control: { type: "text" }
@@ -356,6 +356,11 @@ export default {
     okButtonText: {
       name: "Ok button text",
       defaultValue: "Ok",
+      control: { type: "text" }
+    },
+    missingDataText: {
+      name: "Missing data text",
+      defaultValue: "Mangler data",
       control: { type: "text" }
     }
   }
