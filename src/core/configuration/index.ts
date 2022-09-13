@@ -1,7 +1,8 @@
 import { isMobile } from "react-device-detect";
-import dplConfig from "./dpl-config.json";
+import pageSize from "./page-size.json";
+import coverTints from "./cover-tints.json";
 
-type ConfScope = "dplConfig";
+type ConfScope = "pageSize" | "coverTints";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -32,5 +33,6 @@ export const getDeviceConf = (
 };
 
 export default {
-  dplConfig
+  pageSize,
+  coverTints
 } as Configuration;

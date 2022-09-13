@@ -10,7 +10,7 @@ interface RenewLoansModalProps {
   loansModal: LoanV2[] | undefined | null;
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
+const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal, renewable }) => {
   const t = useText();
 
   return (

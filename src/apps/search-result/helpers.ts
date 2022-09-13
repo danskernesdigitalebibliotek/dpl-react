@@ -9,8 +9,8 @@ export const getPageSizeFromDataAttributes = ({
   desktop,
   mobile
 }: PageSizeDataAttributes) => {
-  const { pageSize } = getDeviceConf("dplConfig", {
-    dplConfig: {
+  const { pageSize } = getDeviceConf("pageSize", {
+    pageSize: {
       mobile: {
         pageSize: mobile
       },
@@ -23,7 +23,7 @@ export const getPageSizeFromDataAttributes = ({
 };
 
 export const getPageSizeFromConfiguration = () => {
-  const { pageSize } = getDeviceConf("dplConfig", configuration);
+  const { pageSize } = getDeviceConf("pageSize", configuration);
   return Number(pageSize);
 };
 
