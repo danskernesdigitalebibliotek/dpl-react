@@ -12,7 +12,7 @@
   },
   "scripts": {
     "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:js": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx ./src",
+    "lint:js": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --max-warnings 0 ./src",
     "lint:js:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --fix ./src",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2-fix",
