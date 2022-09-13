@@ -64,7 +64,7 @@ export const fetcher = async <ResponseType>({
     {
       method,
       headers: {
-        ...headers
+        ...headers,
         ...authHeaders
       },
       body
