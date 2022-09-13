@@ -9,15 +9,14 @@ import {
   filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { Pid } from "../../core/utils/types/ids";
-import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import { Manifestation } from "../../core/utils/types/entities";
 
 export interface MaterialMainfestationItemProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: Manifestation;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
@@ -39,7 +38,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 }) => {
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -116,7 +115,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         />
       </div>
       <div className="material-manifestation-item__cover">
-        <Cover pid={pid as Pid} size="small" animate={false} />
+        <Cover pid={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
         <h2 className="material-manifestation-item__title text-header-h4">

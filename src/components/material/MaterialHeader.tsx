@@ -1,9 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  ManifestationsSimpleFieldsFragment,
-  WorkMediumFragment
-} from "../../core/dbc-gateway/generated/graphql";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
@@ -14,7 +10,7 @@ import {
   getManifestationPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import { AvailabiltityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
@@ -24,14 +20,13 @@ import MaterialAvailabilityText from "./MaterialAvailabilityText/MaterialAvailab
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./MaterialPeriodical";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 
 interface MaterialHeaderProps {
   wid: WorkId;
-  work: WorkMediumFragment;
-  manifestation?: ManifestationsSimpleFieldsFragment;
-  selectManifestationHandler: (
-    manifestation: ManifestationsSimpleFieldsFragment
-  ) => void;
+  work: Work;
+  manifestation: Manifestation;
+  selectManifestationHandler: (manifestation: Manifestation) => void;
   selectPeriodicalSelect: (periodicalSelect: string | null) => void;
 }
 
@@ -39,10 +34,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     titles: { full: fullTitle },
     creators,
-    manifestations,
+    manifestations: { all: manifestations },
     mainLanguages,
     workId: wid
   },
+  manifestation: { pid },
   manifestation,
   selectManifestationHandler,
   selectPeriodicalSelect
@@ -74,8 +70,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     .join(", ");
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
-  const coverPid =
-    (manifestation?.pid as Pid) || getManifestationPid(manifestations);
+  const coverPid = pid || getManifestationPid(manifestations);
 
   return (
     <header className="material-header">
@@ -83,24 +78,21 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <Cover pid={coverPid} size="xlarge" animate />
       </div>
       <div className="material-header__content">
-        <ButtonFavourite
-          id={wid as WorkId}
-          addToListRequest={addToListRequest}
-        />
+        <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
           <AvailabiltityLabels
             cursorPointer
-            workId={wid as WorkId}
+            workId={wid}
             manifestations={manifestations}
-            manifestation={manifestation}
+            selectedManifestation={manifestation}
             selectManifestationHandler={selectManifestationHandler}
           />
         </div>
 
         {manifestation?.source?.includes("bibliotekskatalog") && (
           <MaterialPeriodical
-            faustId={convertPostIdToFaustId(manifestation?.pid as Pid)}
+            faustId={convertPostIdToFaustId(pid)}
             selectPeriodicalSelect={selectPeriodicalSelect}
           />
         )}

@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { WorkSmallFragment } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
@@ -27,9 +26,10 @@ import {
 } from "../../../core/utils/helpers/url";
 import { TypedDispatch } from "../../../core/store";
 import { guardedRequest } from "../../../core/guardedRequests.slice";
+import { Work } from "../../../core/utils/types/entities";
 
 export interface SearchResultListItemProps {
-  item: WorkSmallFragment;
+  item: Work;
   coverTint: CoverProps["tint"];
 }
 
@@ -38,7 +38,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     titles: { full: fullTitle },
     series,
     creators,
-    manifestations,
+    manifestations: { all: manifestations },
     workId
   },
   coverTint
@@ -97,10 +97,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
-          <ButtonFavourite
-            id={workId as WorkId}
-            addToListRequest={addToListRequest}
-          />
+          <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
           {numberInSeries && seriesTitle && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
@@ -130,7 +127,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       <div className="search-result-item__availability">
         <AvailabiltityLabels
           cursorPointer
-          workId={workId as WorkId}
+          workId={workId}
           manifestations={manifestations}
         />
       </div>
