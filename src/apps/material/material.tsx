@@ -115,10 +115,16 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.all.map((manifestation) => {
           return (
-            <MaterialMainfestationItem
-              key={manifestation.pid}
-              manifestation={manifestation}
-            />
+            <>
+              <MaterialMainfestationItem
+                key={manifestation.pid}
+                manifestation={manifestation}
+              />
+              <ReservationModal manifestation={manifestation} work={work} />
+              <FindOnShelfModal
+                faustId={convertPostIdToFaustId(manifestation.pid as Pid)}
+              />
+            </>
           );
         })}
       </Disclosure>
