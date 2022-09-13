@@ -12,12 +12,10 @@ const Disclosure: FC<DisclosureProps> = ({ title, children, mainIconPath }) => {
   return (
     <details className="disclosure text-body-large">
       <summary className="disclosure__headline text-body-large">
-        <div className="disclosure__icon bg-identity-tint-120 m-24">
-          <img className="disclosure__icon invert" src={mainIconPath} alt="" />
-        </div>
+          <div className="disclosure__icon bg-identity-tint-120">
         {title}
         <img
-          className="disclosure__expand mr-24 noselect"
+          className="disclosure__expand noselect"
           src={ExpandMoreIcon}
           alt=""
         />
