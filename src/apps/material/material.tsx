@@ -10,16 +10,13 @@ import {
   useGetMaterialQuery,
   ManifestationsSimpleFieldsFragment
 } from "../../core/dbc-gateway/generated/graphql";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
-import {
-  convertPostIdToFaustId,
-  getManifestationPid
-} from "../../core/utils/helpers/general";
+import { getManifestationPid } from "../../core/utils/helpers/general";
 import MaterialDetailsList from "../../components/material/MaterialDetailsList";
 import {
   getUrlQueryParam,
@@ -121,9 +118,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <ReservationModal manifestation={manifestation} work={work} />
-              <FindOnShelfModal
-                faustId={convertPostIdToFaustId(manifestation.pid as Pid)}
-              />
+              <FindOnShelfModal manifestation={manifestation} />
             </>
           );
         })}
@@ -152,9 +147,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       {currentManifestation && (
         <>
           <ReservationModal manifestation={currentManifestation} work={work} />
-          <FindOnShelfModal
-            faustId={convertPostIdToFaustId(currentManifestation.pid as Pid)}
-          />
+          <FindOnShelfModal manifestation={currentManifestation} />
         </>
       )}
     </main>

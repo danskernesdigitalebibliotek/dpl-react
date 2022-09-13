@@ -1,19 +1,23 @@
 import * as React from "react";
 import { FC } from "react";
+import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
+import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
-import { FaustId } from "../../core/utils/types/ids";
+import { FaustId, Pid } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
 
 export interface FindOnShelfModalProps {
-  faustId: FaustId;
+  manifestation: ManifestationsSimpleFieldsFragment;
 }
 
-const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ faustId }) => {
+const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
   const t = useText();
+  const { pid } = manifestation;
+  const faustId = convertPostIdToFaustId(pid as Pid);
 
   return (
     <Modal
