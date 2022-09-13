@@ -79,7 +79,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   }
 
   const { work } = data;
-  const { manifestations } = work;
+  const { manifestations, reviews } = work;
 
   // TODO: Temporary way to get a pid we can use for showing a cover for the material.
   // It should be replaced with some dynamic feature
@@ -96,17 +96,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     <main className="material-page">
       <MaterialHeader
         wid={wid}
-        work={data.work}
+        work={work}
         manifestation={
           currentManifestation as ManifestationsSimpleFieldsFragment
         }
         selectManifestationHandler={setCurrentManifestation}
         selectPeriodicalSelect={setPeriodicalSelect}
       />
-      <MaterialDescription pid={pid} work={data.work} />
+      <MaterialDescription pid={pid} work={work} />
       <Disclosure
         mainIconPath={VariousIcon}
-        title={`${t("editionsText")} (${work?.manifestations?.all.length})`}
+        title={`${t("editionsText")} (${manifestations?.all.length})`}
         disclosureIconExpandAltText=""
       >
         {manifestations.all.map((manifestation) => {
@@ -131,11 +131,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           data={listDescriptionData}
         />
       </Disclosure>
-      {data.work.reviews && data.work.reviews.length >= 1 && (
+      {reviews && reviews.length >= 1 && (
         <Disclosure title={t("reviewsText")} mainIconPath={CreateIcon}>
           <MaterialReviews
             listOfReviews={
-              data.work.reviews as Array<
+              reviews as Array<
                 LibrariansReview | ExternalReview | InfomediaReview
               >
             }

@@ -9,7 +9,7 @@ import {
   filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
@@ -18,7 +18,7 @@ import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
 
 export interface MaterialMainfestationItemProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: ManifestationsSimpleFieldsFragment & { pid: Pid };
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
@@ -40,7 +40,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 }) => {
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -117,7 +117,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         />
       </div>
       <div className="material-manifestation-item__cover">
-        <Cover pid={pid as Pid} size="small" animate={false} />
+        <Cover pid={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
         <h2 className="material-manifestation-item__title text-header-h4">
@@ -152,7 +152,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons manifestation={manifestation} size="small" />
-        <MaterialButtonsFindOnShelf faustIds={[faustId as FaustId]} />
+        <MaterialButtonsFindOnShelf faustIds={[faustId]} />
       </div>
     </div>
   );

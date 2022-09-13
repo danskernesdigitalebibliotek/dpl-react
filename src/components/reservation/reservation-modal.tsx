@@ -39,7 +39,7 @@ export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: ManifestationsSimpleFieldsFragment & { pid: Pid };
   work: WorkMediumFragment;
 };
 
@@ -56,7 +56,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
     boolean | null
   >(null);
   const t = useText();
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
   const { mutate } = useAddReservationsV2();
 
   const branchResponse = useGetBranches();
@@ -123,7 +123,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
       {reservationDidSuccess === null && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover pid={pid as Pid} size="medium" animate />
+            <Cover pid={pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}

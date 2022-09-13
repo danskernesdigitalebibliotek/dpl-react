@@ -16,7 +16,7 @@ import { AvailabilityLabel } from "./availability-label";
 export interface AvailabilityLabelsProps {
   manifestations: ManifestationsSimpleFragment;
   workId: WorkId;
-  manifestation?: ManifestationsSimpleFieldsFragment;
+  selectedManifestation?: ManifestationsSimpleFieldsFragment;
   selectManifestationHandler?: (
     manifestation: ManifestationsSimpleFieldsFragment
   ) => void;
@@ -26,7 +26,7 @@ export interface AvailabilityLabelsProps {
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
-  manifestation,
+  selectedManifestation: manifestation,
   selectManifestationHandler,
   cursorPointer = false
 }) => {

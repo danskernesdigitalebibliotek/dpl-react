@@ -10,16 +10,15 @@ import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: ManifestationsSimpleFieldsFragment & { pid: Pid };
   size?: ButtonSize;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  manifestation,
+  manifestation: { pid, materialTypes },
   size
 }) => {
-  const { pid } = manifestation;
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: [faustId]
   });
@@ -45,7 +44,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonCantReserve size={size} />;
   }
 
-  const manifestationMaterialType = manifestation.materialTypes[0].specific;
+  const manifestationMaterialType = materialTypes[0].specific;
   return (
     <MaterialButtonReservePhysical
       manifestationMaterialType={manifestationMaterialType}
