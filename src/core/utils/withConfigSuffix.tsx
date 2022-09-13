@@ -27,15 +27,15 @@ export default <T,>(Component: React.ComponentType<T>) => {
     );
 
     // If the fbs config is found, set it in config
-    if (suffixEntries.fbsBaseConfig) {
-      fbsSetConfig(FbsOptions.baseUrl, suffixEntries.fbsBaseConfig);
+    if (suffixEntries.fbsBaseUrlConfig) {
+      fbsSetConfig(FbsOptions.baseUrl, suffixEntries.fbsBaseUrlConfig);
     }
 
     // If the publizon config is found, set it in config
-    if (suffixEntries.publizonBaseConfig) {
+    if (suffixEntries.publizonBaseUrlConfig) {
       publizonSetConfig(
         publizonOptions.baseUrl,
-        suffixEntries.publizonBaseConfig
+        suffixEntries.publizonBaseUrlConfig
       );
     }
 

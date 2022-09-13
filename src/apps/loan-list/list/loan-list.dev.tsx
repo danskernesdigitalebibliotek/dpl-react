@@ -13,12 +13,12 @@ export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
-    fbsBaseConfig: {
-      defaultValue: "http://0.0.0.0:49815", // Todo Jesper set proper defaults
+    fbsBaseUrlConfig: {
+      defaultValue: "https://fbs-openplatform.dbc.dk",
       control: { type: "text" }
     },
-    publizonBaseConfig: {
-      defaultValue: "http://0.0.0.0:49816", // Todo Jesper set proper defaults
+    publizonBaseUrlConfig: {
+      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
       control: { type: "text" }
     },
     loanListTitleText: {

@@ -4,7 +4,8 @@ import { withText } from "../../../core/utils/text";
 import { withConfig } from "../../../core/utils/config";
 
 export interface LoanListEntryProps {
-  fbsBaseUrl: string;
+  fbsBaseUrlConfig: string;
+  publizonBaseUrlConfig: string;
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
