@@ -6,7 +6,7 @@ import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
 
 export interface AvailabilityLabelProps {
-  manifestText: string;
+  manifestText?: string;
   selected?: boolean;
   url?: URL;
   faustIds: string[];
@@ -67,9 +67,17 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     >
       <div className={classes.triangle} />
       <img className={classes.check} src={CheckIcon} alt="check-icon" />
-      <p className="text-label-semibold ml-24">{manifestText}</p>
-      <div className="availability-label--divider ml-4" />
-      <p className="text-label-normal ml-4 mr-8">{availabilityText}</p>
+      {manifestText && (
+        <>
+          <p className="text-label-semibold ml-24">{manifestText}</p>
+          <div className="availability-label--divider ml-4" />
+        </>
+      )}
+      <p
+        className={`text-label-normal ${manifestText ? "ml-4" : "ml-24"} mr-8`}
+      >
+        {availabilityText}
+      </p>
     </div>
   );
 
