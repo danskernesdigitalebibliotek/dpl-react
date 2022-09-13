@@ -18,7 +18,7 @@ interface RenewLoansModalContentProps {
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
-  renewable: number;
+  renewable: number | null;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
@@ -34,8 +34,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     threshold: 0
   });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] =
-    useState<number>(renewable);
+  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(
+    renewable || 0
+  );
   const [loans, setLoans] = useState<Array<LoanV2>>([]);
   const [renewedLoans, setRenewedLoans] = useState<
     Array<RenewedLoanV2> | undefined | null
