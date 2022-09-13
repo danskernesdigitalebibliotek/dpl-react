@@ -12,6 +12,7 @@ services:
     ports:
       - "80"
     command: 'yarn dev'
+    tty: true
     environment:
       VIRTUAL_HOST: dpl-react.docker
       VIRTUAL_PORT: 80
