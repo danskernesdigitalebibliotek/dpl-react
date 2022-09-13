@@ -118,7 +118,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <ReservationModal manifestation={manifestation} work={work} />
-              <FindOnShelfModal manifestation={manifestation} />
+              <FindOnShelfModal
+                manifestation={manifestation}
+                key={`find-on-shelf-modal-${manifestation.pid}`}
+              />
             </>
           );
         })}
