@@ -9,7 +9,7 @@ import {
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { FaustId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
 import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
@@ -34,12 +34,13 @@ import {
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: Manifestation;
 };
 
 const ReservationModal = ({ manifestation }: ReservationModalProps) => {
@@ -56,7 +57,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
     useState<ReservationResponseV2 | null>(null);
 
   const t = useText();
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
 
   const { mutate } = useAddReservationsV2();
   const branchResponse = useGetBranches();
@@ -138,7 +139,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover pid={pid as Pid} size="medium" animate />
+            <Cover pid={pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}

@@ -7,8 +7,7 @@ import {
   ExternalReview,
   InfomediaReview,
   LibrariansReview,
-  useGetMaterialQuery,
-  ManifestationsSimpleFieldsFragment
+  useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
@@ -30,6 +29,7 @@ import {
 } from "./helper";
 import ReservationModal from "../../components/reservation/reservation-modal";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -39,7 +39,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
 
   const [currentManifestation, setCurrentManifestation] =
-    useState<ManifestationsSimpleFieldsFragment | null>(null);
+    useState<Manifestation | null>(null);
 
   // periodicalSelect must be used later to change the UI and reservation when you have chosen a specific periodical
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,7 +52,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   // This useEffect selects the current manifestation
   useEffect(() => {
     if (!data?.work) return;
-    const { work } = data;
+    const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
     // if there is no type in the url, <getWorkManif></getWorkManif>estation is used to set the state and url type parameters
     if (!type) {
@@ -79,8 +79,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>No work data</div>;
   }
 
-  const { work } = data;
-  const { manifestations } = work;
+  const {
+    work,
+    work: {
+      manifestations: { all: manifestations },
+      reviews
+    }
+  } = data as { work: Work };
 
   // TODO: Temporary way to get a pid we can use for showing a cover for the material.
   // It should be replaced with some dynamic feature
@@ -93,24 +98,26 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     t
   });
 
+  if (!currentManifestation) {
+    return null;
+  }
+
   return (
     <main className="material-page">
       <MaterialHeader
         wid={wid}
-        work={data.work}
-        manifestation={
-          currentManifestation as ManifestationsSimpleFieldsFragment
-        }
+        work={work}
+        manifestation={currentManifestation}
         selectManifestationHandler={setCurrentManifestation}
         selectPeriodicalSelect={setPeriodicalSelect}
       />
-      <MaterialDescription pid={pid} work={data.work} />
+      <MaterialDescription pid={pid} work={work} />
       <Disclosure
         mainIconPath={VariousIcon}
-        title={`${t("editionsText")} (${work?.manifestations?.all.length})`}
+        title={`${t("editionsText")} (${manifestations.length})`}
         disclosureIconExpandAltText=""
       >
-        {manifestations.all.map((manifestation) => {
+        {manifestations.map((manifestation: Manifestation) => {
           return (
             <>
               <MaterialMainfestationItem
@@ -136,11 +143,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           data={listDescriptionData}
         />
       </Disclosure>
-      {data.work.reviews && data.work.reviews.length >= 1 && (
+      {reviews && reviews.length >= 1 && (
         <Disclosure title={t("reviewsText")} mainIconPath={CreateIcon}>
           <MaterialReviews
             listOfReviews={
-              data.work.reviews as Array<
+              reviews as Array<
                 LibrariansReview | ExternalReview | InfomediaReview
               >
             }

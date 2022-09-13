@@ -1,6 +1,7 @@
 import React from "react";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getCoverTint } from "../../core/utils/helpers/general";
+import { Work } from "../../core/utils/types/entities";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
@@ -12,7 +13,10 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
     <ul className="search-result-page__list my-32">
       {resultItems.map((item, i) => (
         <li key={item.workId}>
-          <SearchResultListItem item={item} coverTint={getCoverTint(i)} />
+          <SearchResultListItem
+            item={item as Work}
+            coverTint={getCoverTint(i)}
+          />
         </li>
       ))}
     </ul>

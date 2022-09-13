@@ -14,7 +14,7 @@ const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
 > = ({ pid }) => {
   const t = useText();
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [faustId]
   });

@@ -1,8 +1,4 @@
 import { ListData } from "../../components/material/MaterialDetailsList";
-import {
-  ManifestationsSimpleFieldsFragment,
-  WorkMediumFragment
-} from "../../core/dbc-gateway/generated/graphql";
 import { AgencyBranch, HoldingsV3 } from "../../core/fbs/model";
 import {
   creatorsToString,
@@ -11,26 +7,26 @@ import {
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 
-export const getManifestationType = (
-  manifestation: ManifestationsSimpleFieldsFragment
-) => manifestation?.materialTypes?.[0]?.specific;
+export const getManifestationType = (manifestation: Manifestation) =>
+  manifestation?.materialTypes?.[0]?.specific;
 
-export const getWorkManifestation = (work: WorkMediumFragment) => {
-  return work.manifestations.latest;
+export const getWorkManifestation = (work: Work) => {
+  return work.manifestations.latest as Manifestation;
 };
 
 export const getManifestationFromType = (
   type: string,
-  work: WorkMediumFragment
+  { manifestations: { all: manifestations } }: Work
 ) => {
-  const allManifestations = orderManifestationsByYear(work.manifestations);
+  const allManifestations = orderManifestationsByYear(manifestations);
 
   const allManifestationsThatMatchType = allManifestations.filter(
-    (item) => getManifestationType(item) === type
+    (item) => getManifestationType(item as Manifestation) === type
   );
 
-  return allManifestationsThatMatchType.shift();
+  return allManifestationsThatMatchType.shift() as Manifestation;
 };
 
 export const getWorkDescriptionListData = ({
@@ -38,8 +34,8 @@ export const getWorkDescriptionListData = ({
   work,
   t
 }: {
-  manifestation: ManifestationsSimpleFieldsFragment | null;
-  work: WorkMediumFragment;
+  manifestation: Manifestation | null;
+  work: Work;
   t: UseTextFunction;
 }): ListData => {
   const { titles, mainLanguages, creators, workYear } = work;

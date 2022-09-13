@@ -1,24 +1,21 @@
 import { useEffect, useRef } from "react";
 import { CoverProps } from "../../../components/cover/cover";
-import {
-  ManifestationsSimpleFragment,
-  WorkSmallFragment
-} from "../../dbc-gateway/generated/graphql";
-import { LoanV2 } from "../../fbs/model/loanV2";
-import { UseTextFunction } from "../text";
-import { FaustId, Pid } from "../types/ids";
-import { getUrlQueryParam } from "./url";
 import configuration, {
   getConf,
   getDeviceConf,
   ConfScope
 } from "../../configuration";
+import { LoanV2 } from "../../fbs/model/loanV2";
+import { UseTextFunction } from "../text";
+import { Manifestation, Work } from "../types/entities";
+import { FaustId, Pid } from "../types/ids";
+import { getUrlQueryParam } from "./url";
 
 export const orderManifestationsByYear = (
-  manifestations: ManifestationsSimpleFragment,
+  manifestations: Manifestation[],
   order: "asc" | "desc" = "desc"
 ) => {
-  return manifestations.all.sort((a, b) => {
+  return manifestations.sort((a, b) => {
     const currentDate = Number(a.publicationYear.display);
     const prevDate = Number(b.publicationYear.display);
     if (order === "desc") {
@@ -29,28 +26,23 @@ export const orderManifestationsByYear = (
 };
 
 export const filterCreators = (
-  creators: WorkSmallFragment["creators"],
+  creators: Work["creators"],
   filterBy: ["Person" | "Corporation"]
 ) =>
-  creators.filter((creator: WorkSmallFragment["creators"][0]) => {
+  creators.filter((creator: Work["creators"][0]) => {
     // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
-export const flattenCreators = (creators: WorkSmallFragment["creators"]) =>
-  creators.map((creator: WorkSmallFragment["creators"][0]) => {
+export const flattenCreators = (creators: Work["creators"]) =>
+  creators.map((creator: Work["creators"][0]) => {
     return creator.display;
   });
 
-const getCreatorsFromManifestations = (
-  manifestations: ManifestationsSimpleFragment
-) => {
-  const creators = manifestations.all.reduce<string[]>(
-    (acc: string[], curr) => {
-      return [...acc, ...flattenCreators(curr.creators)];
-    },
-    [] as string[]
-  );
+const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
+  const creators = manifestations.reduce<string[]>((acc: string[], curr) => {
+    return [...acc, ...flattenCreators(curr.creators)];
+  }, [] as string[]);
 
   return Array.from(new Set(creators)) as string[];
 };
@@ -65,7 +57,7 @@ export const creatorsToString = (creators: string[], t: UseTextFunction) => {
 };
 
 export const getCreatorTextFromManifestations = (
-  manifestations: ManifestationsSimpleFragment,
+  manifestations: Manifestation[],
   t: UseTextFunction
 ) => {
   const creators = getCreatorsFromManifestations(manifestations);
@@ -74,25 +66,21 @@ export const getCreatorTextFromManifestations = (
 };
 
 export const getFirstPublishedManifestation = (
-  manifestations: ManifestationsSimpleFragment
+  manifestations: Manifestation[]
 ) => {
   const ordered = orderManifestationsByYear(manifestations);
   return ordered[0];
 };
 
-export const getFirstPublishedYear = (
-  manifestations: ManifestationsSimpleFragment
-) => {
+export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
     getFirstPublishedManifestation(manifestations)?.publicationYear.display
   );
 };
 
-export const getManifestationPid = (
-  manifestations: ManifestationsSimpleFragment
-) => {
+export const getManifestationPid = (manifestations: Manifestation[]) => {
   const ordered = orderManifestationsByYear(manifestations);
-  return ordered[0].pid as Pid;
+  return ordered[0].pid;
 };
 
 export const getCoverTint = (index: number) => {

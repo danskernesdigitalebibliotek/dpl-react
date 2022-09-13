@@ -7,19 +7,19 @@ export interface ReviewExternalProps {
   review: ExternalReview;
 }
 
-const ReviewExternal: React.FC<ReviewExternalProps> = ({ review }) => {
-  const date = review.date ? usDateStringToDateObj(review.date) : null;
+const ReviewExternal: React.FC<ReviewExternalProps> = ({
+  review: { date: reviewDate, author, rating, urls }
+}) => {
+  const date = reviewDate ? usDateStringToDateObj(reviewDate) : null;
   return (
     <li className="review text-small-caption">
-      {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={date} />
-      )}
-      {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
-      {review.urls &&
-        review.urls.map((url) => {
+      {(author || reviewDate) && <ReviewMetadata author={author} date={date} />}
+      {rating && <ReviewHearts amountOfHearts={rating} />}
+      {urls &&
+        urls.map(({ url, origin }) => {
           return (
-            <a href={url.url} className="link-tag text-small-caption mb-8">
-              {url.origin}
+            <a href={url} className="link-tag text-small-caption mb-8">
+              {origin}
             </a>
           );
         })}

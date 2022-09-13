@@ -1,27 +1,23 @@
 import * as React from "react";
-import { ManifestationsSimpleFieldsFragment } from "../../../core/dbc-gateway/generated/graphql";
-import { Pid } from "../../../core/utils/types/ids";
+import { Manifestation } from "../../../core/utils/types/entities";
 import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnline";
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";
 
 interface Props {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: Manifestation;
 }
 
-const MaterialAvailabilityText: React.FC<Props> = ({ manifestation }) => {
+const MaterialAvailabilityText: React.FC<Props> = ({
+  manifestation,
+  manifestation: { pid, identifiers }
+}) => {
   return (
     <>
       {manifestation.accessTypes.map((item) => {
         if (item.code === "PHYSICAL")
-          return (
-            <MaterialAvailabilityTextPhysical pid={manifestation.pid as Pid} />
-          );
-        if (item.code === "ONLINE" && manifestation.identifiers)
-          return (
-            <MaterialAvailabilityTextOnline
-              isbn={manifestation.identifiers[0].value}
-            />
-          );
+          return <MaterialAvailabilityTextPhysical pid={pid} />;
+        if (item.code === "ONLINE" && identifiers)
+          return <MaterialAvailabilityTextOnline isbn={identifiers[0].value} />;
         return null;
       })}
     </>
