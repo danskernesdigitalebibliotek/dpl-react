@@ -9,13 +9,12 @@ import {
   filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
-import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;
@@ -155,7 +154,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons manifestation={manifestation} size="small" />
-        <MaterialButtonsFindOnShelf faustIds={[faustId as FaustId]} />
       </div>
     </div>
   );
