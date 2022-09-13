@@ -43,7 +43,7 @@ function Modal({
 
   return (
     <div
-      className={`modal modal-padding ${
+      className={`modal ${
         modalIds.includes(modalId) ? "modal-show" : ""
       } ${additionalClasses}`}
       style={{
