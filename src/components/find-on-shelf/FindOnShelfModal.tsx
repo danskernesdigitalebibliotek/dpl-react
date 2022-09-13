@@ -21,7 +21,11 @@ export interface FindOnShelfModalProps {
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
   const t = useText();
-  const { pid, creators } = manifestation;
+  const {
+    pid,
+    creators,
+    titles: { main: mainTitle }
+  } = manifestation;
   const faustId = convertPostIdToFaustId(pid as Pid);
   const author =
     creatorsToString(
@@ -38,7 +42,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
     >
       <>
         <h1 className="text-header-h2 modal-find-on-shelf__headline">
-          {manifestation.titles.main} / {author}
+          {mainTitle} / {author}
         </h1>
         <div className="text-small-caption modal-find-on-shelf__caption">
           8 biblioteker har materialet
