@@ -78,12 +78,11 @@ export const getListItems = (list: LoanMetaDataType[], itemsShown: number) => {
   return [...list].splice(0, itemsShown);
 };
 
-export const mapLoanPublizonToLoanMetaDataType = (
+export const mapPublizonLoanToLoanMetaDataType = (
   list: Loan[]
 ): LoanMetaDataType[] => {
   return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
     return {
-      // this converts utc, at removes the time
       dueDate: loanExpireDateUtc,
       loanDate: orderDateUtc,
       id: libraryBook?.identifier || "",
@@ -95,7 +94,7 @@ export const mapLoanPublizonToLoanMetaDataType = (
   });
 };
 
-export const mapLoanPBSToLoanMetaDataType = (
+export const mapPBSLoanToLoanMetaDataType = (
   list: LoanV2[]
 ): LoanMetaDataType[] => {
   return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
@@ -111,7 +110,7 @@ export const mapLoanPBSToLoanMetaDataType = (
   });
 };
 
-export const mapRenewedLoanPBSToLoanMetaDataType = (
+export const mapPBSRenewedLoanToLoanMetaDataType = (
   list: RenewedLoanV2[]
 ): LoanMetaDataType[] => {
   return list.map(({ loanDetails }) => {
