@@ -102,8 +102,10 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
   return (
     <Modal
       modalId={reservationModalId(faustId)}
-      screenReaderModalDescriptionText={t("screenReaderModalDescriptionText")}
-      closeModalAriaLabelText={t("ariaLabelModalTwoText")}
+      screenReaderModalDescriptionText={t(
+        "reservationModalScreenReaderModalDescriptionText"
+      )}
+      closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
     >
       {reservationDidSuccess && patron && (
         <ReservationSucces

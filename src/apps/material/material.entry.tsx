@@ -74,6 +74,8 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   okButtonText: string;
   missingDataText: string;
+  reservationModalScreenReaderModalDescriptionText: string;
+  reservationModalCloseModalAriaLabelText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
