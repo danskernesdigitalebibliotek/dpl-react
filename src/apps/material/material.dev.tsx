@@ -387,6 +387,26 @@ export default {
       name: "Reservation modal aria label modal two",
       defaultValue: "Luk reservation modal",
       control: { type: "text" }
+    },
+    numberInQueueText: {
+      name: "Number in queue text",
+      defaultValue: "Du er nummer",
+      control: { type: "text" }
+    },
+    queueText: {
+      name: "Queue text",
+      defaultValue: "i køen",
+      control: { type: "text" }
+    },
+    alreadyReservedText: {
+      name: "Already reserved text",
+      defaultValue: "Du har allerede reserveret dette materiale",
+      control: { type: "text" }
+    },
+    closeText: {
+      name: "Close text",
+      defaultValue: "Luk",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
