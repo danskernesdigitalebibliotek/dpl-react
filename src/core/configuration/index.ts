@@ -3,7 +3,7 @@ import pageSize from "./page-size.json";
 import pageSizeLoanList from "./page-size-loan-list.json";
 import coverTints from "./cover-tints.json";
 
-type ConfScope = "pageSize" | "coverTints";
+export type ConfScope = "pageSize" | "coverTints" | "pageSizeLoanList";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;

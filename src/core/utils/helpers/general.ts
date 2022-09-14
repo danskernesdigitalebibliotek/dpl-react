@@ -8,7 +8,11 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
-import configuration, { getConf, getDeviceConf } from "../../configuration";
+import configuration, {
+  getConf,
+  getDeviceConf,
+  ConfScope
+} from "../../configuration";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
