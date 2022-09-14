@@ -58,12 +58,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const openDueDateModal = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (selectDueDate) {
-        selectDueDate();
-        open(dueDate);
+      if (selectDueDate && dueDate) {
+        selectDueDate(dueDate, id);
+        modalButtonHandler(dueDate);
       }
     },
-    [dueDate, open, selectDueDate]
+    [dueDate, id, modalButtonHandler, selectDueDate]
   );
 
   const selectListMaterial = useCallback(
@@ -75,9 +75,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           loanMetaData
         });
       }
-      open(faust);
+      modalButtonHandler(id);
     },
-    [faust, loanDetails, material, open, selectMaterial]
+    [id, loanMetaData, material, modalButtonHandler, selectMaterial]
   );
 
   return (
@@ -102,7 +102,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             <div className="status-label status-label--outline">{specific}</div>
           </div>
           <div className="list-reservation__about">
-            <h3 className="text-header-h4">{mainText} {dueDate}</h3>
+            <h3 className="text-header-h4">
+              {mainText} {dueDate}
+            </h3>
             <p className="text-small-caption color-secondary-gray">
               {creators &&
                 getAuthorNames(
