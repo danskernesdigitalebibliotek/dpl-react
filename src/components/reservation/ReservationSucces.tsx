@@ -8,12 +8,14 @@ type ReservationSuccesProps = {
   title: string;
   preferredPickupBranch: string;
   modalId: string;
+  numberInQueue: string;
 };
 
 const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   modalId,
   title,
-  preferredPickupBranch
+  preferredPickupBranch,
+  numberInQueue
 }) => {
   const dispatch = useDispatch();
   const t = useText();
@@ -24,6 +26,9 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
       </h2>
       <p className="text-body-medium-regular pb-24">
         {title} {t("reservationSuccesIsReservedForYouText")}
+      </p>
+      <p className="text-body-medium-regular pb-24">
+        {t("numberInQueueText")} {numberInQueue} {t("queueText")}
       </p>
       <p className="text-body-medium-regular pb-48">
         {t("reservationSuccesPreferredPickupBranchText")}

@@ -1,32 +1,45 @@
 import React from "react";
+import { ReservationResponseV2 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 
 type ReservationErrorProps = {
-  setReservationDidSuccess: (value: boolean | null) => void;
+  errorDescription?: string;
+  buttonText?: string;
+  setReservationResponse: (
+    reservationResponse: ReservationResponseV2 | null
+  ) => void;
 };
 
 const ReservationError: React.FC<ReservationErrorProps> = ({
-  setReservationDidSuccess
+  errorDescription,
+  buttonText,
+  setReservationResponse
 }) => {
   const t = useText();
   return (
     <section className="reservation-modal reservation-modal--confirm">
-      <h2 className="text-header-h3 pb-48">
-        {t("reservationErrorsTitleText")}
-      </h2>
-      <p className="text-body-medium-regular pb-48">
-        {t("reservationErrorsDescriptionText")}
-      </p>
+      {errorDescription ? (
+        <h2 className="text-header-h3 pb-48">{errorDescription}</h2>
+      ) : (
+        <>
+          <h2 className="text-header-h3 pb-48">
+            {t("reservationErrorsTitleText")}
+          </h2>
+          <p className="text-body-medium-regular pb-48">
+            {t("reservationErrorsDescriptionText")}
+          </p>
+        </>
+      )}
       <Button
         classNames="reservation-modal__confirm-button"
-        label={t("tryAginButtonText")}
+        label={buttonText ?? t("tryAginButtonText")}
         buttonType="none"
         disabled={false}
         collapsible={false}
         size="small"
         variant="filled"
-        onClick={() => setReservationDidSuccess(null)}
+        onClick={() => setReservationResponse(null)}
       />
     </section>
   );

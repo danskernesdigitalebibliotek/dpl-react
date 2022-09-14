@@ -79,6 +79,10 @@ interface MaterialEntryTextProps {
   librariesHaveTheMaterialText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
+  numberInQueueText: string;
+  queueText: string;
+  alreadyReservedText: string;
+  closeText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
