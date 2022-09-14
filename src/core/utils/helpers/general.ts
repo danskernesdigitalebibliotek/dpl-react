@@ -135,9 +135,13 @@ export const getParams = <T, K extends keyof T>(props: T) => {
 };
 
 export const sortByLoanDate = (list: LoanMetaDataType[]) => {
-  return sortBy(list, ({ loanDate }) => {
-    return loanDate;
-  });
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.loanDate || new Date()).getTime() -
+      new Date(objB.loanDate || new Date()).getTime()
+  );
 };
 
 export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
