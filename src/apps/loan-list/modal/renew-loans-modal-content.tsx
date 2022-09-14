@@ -9,7 +9,7 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
-import { mapRenewedLoanPBSToLoanMetaDataType } from "../utils/helpers";
+import { mapPBSRenewedLoanToLoanMetaDataType } from "../utils/helpers";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanMetaDataType[];
@@ -54,7 +54,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
 
-            setRenewedLoans(mapRenewedLoanPBSToLoanMetaDataType(result));
+            setRenewedLoans(mapPBSRenewedLoanToLoanMetaDataType(result));
           }
         },
         // todo error handling, missing in figma
