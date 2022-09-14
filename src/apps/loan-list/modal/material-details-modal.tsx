@@ -1,10 +1,8 @@
 import React, { FC } from "react";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import MaterialDetails from "./material-details";
-import { FaustId } from "../../../core/utils/types/ids";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface MaterialDetailsModalProps {

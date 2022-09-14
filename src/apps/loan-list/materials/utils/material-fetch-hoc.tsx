@@ -15,7 +15,7 @@ export interface SelectableMaterialProps {
   disabled?: boolean;
   materialsToRenew?: number[];
   onChecked?: (faust: FaustId) => void;
-} 
+}
 
 export interface StackableMaterialProps {
   loanMetaData: LoanMetaDataType;
