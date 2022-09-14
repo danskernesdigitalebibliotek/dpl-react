@@ -35,7 +35,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         {preferredPickupBranch}.
       </p>
       <Button
-        classNames="reservation-modal__confirm-button"
+        className="reservation-modal__confirm-button"
         label={t("okButtonText")}
         buttonType="none"
         disabled={false}
