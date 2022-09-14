@@ -28,6 +28,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
+
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
   const { year } = hostPublication || {};

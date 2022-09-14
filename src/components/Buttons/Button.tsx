@@ -15,6 +15,7 @@ export type ButtonProps = {
   iconClassNames?: string;
   id?: string;
   classNames?: string;
+  elementType?: "button" | "submit";
 };
 
 export const Button: React.FC<ButtonProps> = ({

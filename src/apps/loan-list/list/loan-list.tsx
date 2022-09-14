@@ -45,6 +45,7 @@ export interface LoanDetailsType {
 }
 
 const LoanList: FC = () => {
+  const { open } = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
   const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
@@ -61,7 +62,6 @@ const LoanList: FC = () => {
   const [view, setView] = useState<ListView>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
-  const { open } = useModalButtonHandler();
 
   const updateRenewable = (materials: LoanV2[]) => {
     // Amount of renewable loans are determined, used in the ui

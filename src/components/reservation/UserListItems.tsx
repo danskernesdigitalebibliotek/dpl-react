@@ -11,6 +11,13 @@ import {
   getPreferredLocation
 } from "../../apps/material/helper";
 import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
+import { useModalButtonHandler } from "../../core/utils/modal";
+import EmailModal from "./forms/EmailModal";
+import {
+  modalReservationFormId,
+  ModalReservationFormTextType
+} from "./forms/helper";
+import SmsModal from "./forms/SmsModal";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -18,6 +25,7 @@ export interface UserListItemsProps {
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
+  patron,
   patron: {
     defaultInterestPeriod,
     preferredPickupBranch,
@@ -27,6 +35,13 @@ const UserListItems: FC<UserListItemsProps> = ({
   branchData
 }) => {
   const t = useText();
+  const { open } = useModalButtonHandler();
+  const stringifyValue = (value: string | null | undefined) =>
+    value ? String(value) : "";
+  const openModal = (type: ModalReservationFormTextType) => () => {
+    open(modalReservationFormId(type));
+  };
+
   return (
     <>
       {defaultInterestPeriod && (
@@ -46,20 +61,26 @@ const UserListItems: FC<UserListItemsProps> = ({
         />
       )}
       {phoneNumber && (
-        <ReservationFormListItem
-          icon={Subtitles}
-          title={t("receiveSmsWhenMaterialReadyText")}
-          text={phoneNumber}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
+        <>
+          <ReservationFormListItem
+            icon={Subtitles}
+            title={t("receiveSmsWhenMaterialReadyText")}
+            text={stringifyValue(phoneNumber)}
+            changeHandler={openModal("sms")}
+          />
+          <SmsModal patron={patron} />
+        </>
       )}
       {emailAddress && (
-        <ReservationFormListItem
-          icon={Message}
-          title={t("receiveEmailWhenMaterialReadyText")}
-          text={emailAddress}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
+        <>
+          <ReservationFormListItem
+            icon={Message}
+            title={t("receiveEmailWhenMaterialReadyText")}
+            text={stringifyValue(emailAddress)}
+            changeHandler={openModal("email")}
+          />
+          <EmailModal patron={patron} />
+        </>
       )}
     </>
   );
