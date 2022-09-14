@@ -196,7 +196,7 @@ const LoanList: FC = () => {
               allLoansLength={allPhysicalLoans.length}
               setView={setView}
               view={view as ListView}
-              dueDateLabel={t("LoanListToBeDeliveredText")}
+              dueDateLabel={t("loanListToBeDeliveredText")}
             />
           )}
           {digitalLoans && (
