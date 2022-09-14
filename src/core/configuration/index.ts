@@ -1,5 +1,6 @@
 import { isMobile } from "react-device-detect";
 import pageSize from "./page-size.json";
+import pageSizeLoanList from "./page-size-loan-list.json";
 import coverTints from "./cover-tints.json";
 
 type ConfScope = "pageSize" | "coverTints";
@@ -34,5 +35,6 @@ export const getDeviceConf = (
 
 export default {
   pageSize,
-  coverTints
+  coverTints,
+  pageSizeLoanList
 } as Configuration;

@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { CoverProps } from "../../../components/cover/cover";
-import configuration, { getConf } from "../../configuration";
 import {
   ManifestationsSimpleFragment,
   WorkSmallFragment
@@ -9,6 +8,7 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
+import configuration, { getConf, getDeviceConf } from "../../configuration";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
@@ -138,6 +138,11 @@ export const sortByLoanDate = (list: LoanV2[]) => {
 // If a modal is open, the list should not be displayed.
 export const isAModalDisplayed = (modalIds: string[]) => {
   return modalIds.length > 0;
+};
+
+export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
+  const { pageSize } = getDeviceConf(pageSizeConf, configuration);
+  return Number(pageSize);
 };
 
 export const getRenewableMaterials = (list: LoanV2[]) => {

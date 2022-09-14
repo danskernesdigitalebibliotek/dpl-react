@@ -6,6 +6,7 @@ import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generat
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
+import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
 
 interface PaginationProps {
   selectModalMaterial: ({
@@ -39,7 +40,12 @@ const Pagination: FC<PaginationProps> = ({
   const overrideItemsShown = () => {
     return displayedLoans.length;
   };
-  const { itemsShown, PagerComponent } = usePager(hitcount, overrideItemsShown);
+
+  const { itemsShown, PagerComponent } = usePager(
+    hitcount,
+    getPageSizeFromConfiguration("pageSizeLoanList"),
+    overrideItemsShown
+  );
 
   useEffect(() => {
     if (loans) {

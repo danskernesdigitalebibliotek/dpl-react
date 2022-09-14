@@ -1,4 +1,5 @@
-import configuration, { getDeviceConf } from "../../core/configuration";
+import { getDeviceConf } from "../../core/configuration";
+import { getPageSizeFromConfiguration } from "../../core/utils/helpers/general";
 
 interface PageSizeDataAttributes {
   desktop: number;
@@ -22,11 +23,6 @@ export const getPageSizeFromDataAttributes = ({
   return Number(pageSize);
 };
 
-export const getPageSizeFromConfiguration = () => {
-  const { pageSize } = getDeviceConf("pageSize", configuration);
-  return Number(pageSize);
-};
-
 export const getPageSize = (pageSizes: Partial<PageSizeDataAttributes>) => {
   const { desktop, mobile } = pageSizes;
   let pageSize = 0;
@@ -35,7 +31,7 @@ export const getPageSize = (pageSizes: Partial<PageSizeDataAttributes>) => {
       pageSizes as PageSizeDataAttributes
     );
   } else {
-    pageSize = getPageSizeFromConfiguration();
+    pageSize = getPageSizeFromConfiguration("pageSize");
   }
 
   return pageSize;

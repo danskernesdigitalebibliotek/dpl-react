@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ResultPager from "./result-pager";
-import { getPageSize } from "../../apps/search-result/helpers";
 
-const usePager = (hitcount: number, overrideItemsShown?: () => number) => {
-  const pageSize = getPageSize({});
+const usePager = (
+  hitcount: number,
+  pageSize: number,
+  overrideItemsShown?: () => number
+) => {
   const [itemsShown, setitemsShown] = useState(pageSize);
   const [page, setPage] = useState<number>(0);
 

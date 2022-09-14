@@ -18,7 +18,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
     0
   );
-  const { PagerComponent, page } = usePager(hitcount);
+  const { PagerComponent, page } = usePager(hitcount, pageSize);
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
