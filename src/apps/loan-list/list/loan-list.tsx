@@ -56,7 +56,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      const mapToLoanMetaDataType = mapLoanPBSToLoanMetaDataType(data);
+      const mapToLoanMetaDataType = mapPBSLoanToLoanMetaDataType(data);
       setAllPhysicalLoans(mapToLoanMetaDataType);
 
       // The due dates are used for the stacked materials
@@ -73,7 +73,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (publizonData?.loans) {
-      const mapToLoanMetaDataType = mapLoanPublizonToLoanMetaDataType(
+      const mapToLoanMetaDataType = mapPublizonLoanToLoanMetaDataType(
         publizonData.loans
       );
       setAllDigitalLoans(mapToLoanMetaDataType);
