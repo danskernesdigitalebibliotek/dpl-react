@@ -147,10 +147,9 @@ const LoanList: FC = () => {
     if (physicalLoans) {
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(physicalLoans);
-      setRenewable(amountOfRenewableLoans);
-      open(modalIdsConf.allLoansId);
+      modalButtonHandler(modalIdsConf.allLoansId);
     }
-  }, [physicalLoans]);
+  }, [physicalLoans, modalButtonHandler]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
@@ -177,7 +176,7 @@ const LoanList: FC = () => {
     if (modalString === modalIdsConf.allLoansId) {
       open(modalIdsConf.allLoansId);
     }
-  }, [physicalLoans, openModalDueDate]);
+  }, [physicalLoans, openModalDueDate, modalButtonHandler]);
 
   return (
     <>

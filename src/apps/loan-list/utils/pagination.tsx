@@ -1,11 +1,11 @@
 import React, { useEffect, useState, FC } from "react";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { getStackedItems, getListItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
 import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
+import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 
 interface PaginationProps {
   selectModalMaterial: ({
