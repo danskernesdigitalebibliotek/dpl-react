@@ -9,10 +9,7 @@ interface RenewLoansModalProps {
   loansModal: LoanMetaDataType[];
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({
-  loansModal,
-  renewable
-}) => {
+const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
   const t = useText();
 
   return (
@@ -34,7 +31,6 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             </div>
             <RenewLoansModalContent
               loansModal={loansModal}
-              renewable={renewable}
               buttonLabel={t("renewLoanModalButtonText")}
               checkboxLabel={t("renewLoanModalCheckboxText")}
               buttonBottomLabel={t("bottomRenewLoanModalButtonText")}

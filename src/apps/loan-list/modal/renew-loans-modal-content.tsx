@@ -17,7 +17,6 @@ interface RenewLoansModalContentProps {
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
-  renewable: number | null;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
@@ -25,8 +24,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel,
   buttonBottomLabel,
-  checkboxBottomLabel,
-  renewable
+  checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
   const [ref, isVisible] = useInView({
