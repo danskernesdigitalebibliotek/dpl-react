@@ -77,6 +77,8 @@ interface MaterialEntryTextProps {
   reservationModalScreenReaderModalDescriptionText: string;
   reservationModalCloseModalAriaLabelText: string;
   librariesHaveTheMaterialText: string;
+  findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfModalCloseModalAriaLabelText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

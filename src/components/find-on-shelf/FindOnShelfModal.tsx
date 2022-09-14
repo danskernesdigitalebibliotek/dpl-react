@@ -47,8 +47,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
   return (
     <Modal
       modalId={findOnShelfModalId(faustId)}
-      screenReaderModalDescriptionText={t("screenReaderModalDescriptionText")}
-      closeModalAriaLabelText={t("ariaLabelModalTwoText")}
+      screenReaderModalDescriptionText={t(
+        "findOnShelfModalScreenReaderModalDescriptionText"
+      )}
+      closeModalAriaLabelText={t("findOnShelfModalCloseModalAriaLabelText")}
       additionalClasses="modal-details modal-find-on-shelf"
     >
       <>
