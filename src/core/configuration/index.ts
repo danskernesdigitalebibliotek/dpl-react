@@ -1,7 +1,9 @@
 import { isMobile } from "react-device-detect";
-import search from "./search.json";
+import pageSize from "./page-size.json";
+import pageSizeLoanList from "./page-size-loan-list.json";
+import coverTints from "./cover-tints.json";
 
-type ConfScope = "search";
+export type ConfScope = "pageSize" | "coverTints" | "pageSizeLoanList";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -16,7 +18,6 @@ export const getConf = (
   device?: Device
 ) => {
   const subConf = configuration[type];
-
   if (device) {
     return subConf[device] as ConfigurationEntry;
   }
@@ -33,5 +34,7 @@ export const getDeviceConf = (
 };
 
 export default {
-  search
+  pageSize,
+  coverTints,
+  pageSizeLoanList
 } as Configuration;

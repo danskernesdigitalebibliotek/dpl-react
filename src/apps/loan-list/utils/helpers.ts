@@ -1,6 +1,7 @@
 import get from "lodash.get";
 import dayjs from "dayjs";
-import { LoanV2 } from "../../core/fbs/model";
+import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import { ListView } from "../../../core/utils/types/list-view";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string,
@@ -51,6 +52,28 @@ export const queryMatchesFaust = (query: string | null) => {
   const returnValue =
     faustFound && faustFound.length > 0 ? faustFound[0] : null;
   return returnValue;
+};
+
+export const getStackedItems = (
+  view: ListView,
+  list: LoanV2[],
+  itemsShown: number,
+  dueDates: string[] | undefined
+) => {
+  let returnLoans: LoanV2[] = [];
+  if (view === "stacked" && dueDates) {
+    const dueDatesCopy = dueDates.slice(0, itemsShown);
+    dueDatesCopy.forEach((uniqueDueDate) => {
+      returnLoans = returnLoans.concat(
+        list.filter(({ loanDetails }) => loanDetails.dueDate === uniqueDueDate)
+      );
+    });
+  }
+  return returnLoans;
+};
+
+export const getListItems = (list: LoanV2[], itemsShown: number) => {
+  return [...list].splice(0, itemsShown);
 };
 
 export default {};

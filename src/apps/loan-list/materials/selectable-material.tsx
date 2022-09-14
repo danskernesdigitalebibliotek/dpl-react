@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { formatDate, getAuthorNames } from "../helpers";
+import { formatDate, getAuthorNames } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";

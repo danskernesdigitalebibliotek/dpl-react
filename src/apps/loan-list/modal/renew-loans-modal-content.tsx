@@ -13,28 +13,30 @@ import { FaustId } from "../../../core/utils/types/ids";
 import { Button } from "../../../components/Buttons/Button";
 
 interface RenewLoansModalContentProps {
-  renewable: number | null;
   loansModal: LoanV2[];
   buttonLabel: string;
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
+  renewable: number | null;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
-  renewable,
   loansModal,
   checkboxLabel,
   buttonLabel,
   buttonBottomLabel,
-  checkboxBottomLabel
+  checkboxBottomLabel,
+  renewable
 }) => {
   const { mutate } = useRenewLoansV2();
   const [ref, isVisible] = useInView({
     threshold: 0
   });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(0);
+  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(
+    renewable || 0
+  );
   const [loans, setLoans] = useState<Array<LoanV2>>([]);
   const [renewedLoans, setRenewedLoans] = useState<
     Array<RenewedLoanV2> | undefined | null
@@ -102,11 +104,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           label={checkboxLabel}
         />
         <Button
-          label={`${buttonLabel} (${renewable})`}
+          label={`${buttonLabel} (${allRenewableMaterials})`}
           buttonType="none"
           id="renew-several"
           variant="filled"
-          disabled={renewable === 0}
+          disabled={allRenewableMaterials === 0}
           collapsible={false}
           onClick={renewSelected}
           size="small"
@@ -149,10 +151,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               label={checkboxBottomLabel}
             />
             <Button
-              label={`${buttonBottomLabel} (${renewable})`}
+              label={`${buttonBottomLabel} (${allRenewableMaterials})`}
               buttonType="none"
               variant="filled"
-              disabled={renewable === 0}
+              disabled={allRenewableMaterials === 0}
               collapsible={false}
               onClick={renewSelected}
               size="small"

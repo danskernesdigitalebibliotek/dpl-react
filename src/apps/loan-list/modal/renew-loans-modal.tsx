@@ -11,8 +11,8 @@ interface RenewLoansModalProps {
 }
 
 const RenewLoansModal: FC<RenewLoansModalProps> = ({
-  renewable,
-  loansModal
+  loansModal,
+  renewable
 }) => {
   const t = useText();
 

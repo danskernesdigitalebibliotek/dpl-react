@@ -14,17 +14,21 @@ import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
 import {
   ModalIdsProps,
   useModalButtonHandler
 } from "../../../core/utils/modal";
+import {
+  removeLoansWithDuplicateDueDate,
+  queryMatchesFaust
+} from "../utils/helpers";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
 import RenewLoansModal from "../modal/renew-loans-modal";
-import LoanListItems from "./loan-list-items";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import Pagination from "../utils/pagination";
+import { ListView } from "../../../core/utils/types/list-view";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -44,6 +48,7 @@ const LoanList: FC = () => {
   const modalButtonHandler = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
+  const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
   const [dueDates, setDueDates] = useState<string[]>([]);
   const [modalMaterial, setModalMaterial] = useState<
     GetMaterialManifestationQuery | null | undefined
@@ -54,8 +59,7 @@ const LoanList: FC = () => {
   const [loansModal, setLoansModal] = useState<LoanV2[] | null>();
   const [displayList, setDisplayList] = useState<boolean>(false);
   const [renewable, setRenewable] = useState<number | null>(null);
-  const [amountOfLoans, setAmountOfLoans] = useState<number>(0);
-  const [view, setView] = useState<string>("list");
+  const [view, setView] = useState<ListView>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -67,6 +71,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
+      setAllLoans([...data]);
       const listOfDueDates = data.map((a) => a.loanDetails.dueDate);
       const uniqeListOfDueDates = Array.from(new Set(listOfDueDates));
 
@@ -79,7 +84,6 @@ const LoanList: FC = () => {
       const sortedByLoanDate = sortByLoanDate(data);
 
       setLoans(sortedByLoanDate);
-      setAmountOfLoans(sortedByLoanDate.length);
       updateRenewable(sortedByLoanDate);
     }
   }, [isSuccess, data]);
@@ -173,7 +177,7 @@ const LoanList: FC = () => {
           <div className="dpl-list-buttons m-32">
             <h2 className="dpl-list-buttons__header">
               {t("loanListPhysicalLoansTitleText")}
-              <div className="dpl-list-buttons__power">{amountOfLoans}</div>
+              <div className="dpl-list-buttons__power">{allLoans.length}</div>
             </h2>
             <div className="dpl-list-buttons__buttons">
               <div className="dpl-list-buttons__buttons__button">
@@ -218,10 +222,11 @@ const LoanList: FC = () => {
             </div>
           </div>
           {loans && (
-            <LoanListItems
+            <Pagination
               dueDates={dueDates}
               loans={loans}
               view={view}
+              hitcount={allLoans.length}
               openModalDueDate={openModalDueDate}
               selectModalMaterial={selectModalMaterial}
             />
