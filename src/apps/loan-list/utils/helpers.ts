@@ -16,6 +16,16 @@ export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
 
+export const getRenewedIds = (list: RenewedLoanV2[]) => {
+  return list.map(({ loanDetails }) => loanDetails.recordId);
+};
+
+export const removeLoansWithIds = (list: LoanMetaDataType[], ids: string[]) => {
+  return list.filter(({ id }) => {
+    return ids.indexOf(id) === -1;
+  });
+};
+
 export const materialIsOverdue = (date: string | undefined) => {
   if (date) {
     return dayjs().isAfter(dayjs(date));

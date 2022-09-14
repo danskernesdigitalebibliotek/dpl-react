@@ -9,7 +9,11 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
-import { mapPBSRenewedLoanToLoanMetaDataType } from "../utils/helpers";
+import {
+  mapPBSRenewedLoanToLoanMetaDataType,
+  getRenewedIds,
+  removeLoansWithIds
+} from "../utils/helpers";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanMetaDataType[];
@@ -45,12 +49,8 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
-            const renewedIds = result.map(
-              ({ loanDetails }) => loanDetails.recordId
-            );
-            const filteredLoans = loans.filter(({ id }) => {
-              return renewedIds.indexOf(id) === -1;
-            });
+            const renewedIds = getRenewedIds(result);
+            const filteredLoans = removeLoansWithIds(loans, renewedIds);
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
 
