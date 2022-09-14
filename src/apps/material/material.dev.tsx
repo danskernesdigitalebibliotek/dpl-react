@@ -362,6 +362,16 @@ export default {
       name: "Missing data text",
       defaultValue: "Mangler data",
       control: { type: "text" }
+    },
+    reservationModalScreenReaderModalDescriptionText: {
+      name: "Reservation modal screen reader description",
+      defaultValue: "Modal for reservation",
+      control: { type: "text" }
+    },
+    reservationModalCloseModalAriaLabelText: {
+      name: "Reservation modal aria label modal two",
+      defaultValue: "Luk reservation modal",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
