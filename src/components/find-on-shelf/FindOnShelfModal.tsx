@@ -52,9 +52,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
       additionalClasses="modal-details modal-find-on-shelf"
     >
       <>
-        <h1 className="text-header-h2 modal-find-on-shelf__headline">
+        <h2 className="text-header-h2 modal-find-on-shelf__headline">
           {mainTitle} / {author}
-        </h1>
+        </h2>
         {isLoading && (
           <p className="text-body-large ml-16 mt-96">{t("loadingText")}</p>
         )}
