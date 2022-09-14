@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import sortBy from "lodash.sortby";
 import { CoverProps } from "../../../components/cover/cover";
 import {
   ManifestationsSimpleFragment,
