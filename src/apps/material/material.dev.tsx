@@ -260,6 +260,123 @@ export default {
       name: "This month",
       defaultValue: "denne måned",
       control: { type: "text" }
+    },
+    approveReservationText: {
+      name: "Approve reservation",
+      defaultValue: "Godkend reservation",
+      control: { type: "text" }
+    },
+    shiftText: {
+      name: "Shift",
+      defaultValue: "Skift",
+      control: { type: "text" }
+    },
+    pickupLocationText: {
+      name: "Pick up at",
+      defaultValue: "Afhentes på",
+      control: { type: "text" }
+    },
+    receiveSmsWhenMaterialReadyText: {
+      name: "Receive SMS when the material is ready",
+      defaultValue: "Du får en sms, når materialet er klar",
+      control: { type: "text" }
+    },
+    receiveEmailWhenMaterialReadyText: {
+      name: "Receive mail when the material is ready",
+      defaultValue: "Du får besked, når materialet er klar",
+      control: { type: "text" }
+    },
+    haveNoInterestAfterText: {
+      name: "Have no interest after",
+      defaultValue: "Har ingen interesse efter",
+      control: { type: "text" }
+    },
+    oneMonthText: {
+      name: "One month",
+      defaultValue: "1 måned",
+      control: { type: "text" }
+    },
+    twoMonthsText: {
+      name: "Two months",
+      defaultValue: "2 måneder",
+      control: { type: "text" }
+    },
+    threeMonthsText: {
+      name: "Three months",
+      defaultValue: "3 måneder",
+      control: { type: "text" }
+    },
+    sixMonthsText: {
+      name: "Six months",
+      defaultValue: "6 måneder",
+      control: { type: "text" }
+    },
+    oneYearText: {
+      name: "Twelve months",
+      defaultValue: "12 måneder",
+      control: { type: "text" }
+    },
+    daysText: {
+      name: "Days",
+      defaultValue: "Dage",
+      control: { type: "text" }
+    },
+    reservationSuccesTitleText: {
+      name: "Reservation Success title",
+      defaultValue: "Materialet er hjemme og er nu reserveret til dig!",
+      control: { type: "text" }
+    },
+    reservationSuccesIsReservedForYouText: {
+      name: "Reservation Success Title",
+      defaultValue: "er reserveret til dig",
+      control: { type: "text" }
+    },
+    reservationSuccesPreferredPickupBranchText: {
+      name: "Reservation Preferred pickup branch",
+      defaultValue:
+        "Materialet er hjemme, og du får beksed så snart der ligger klar til dig - afhentning på",
+      control: { type: "text" }
+    },
+    reservationErrorsTitleText: {
+      name: "Reservation Error title",
+      defaultValue: "Reservationsfejl",
+      control: { type: "text" }
+    },
+    reservationErrorsDescriptionText: {
+      name: "Reservation Error description",
+      defaultValue:
+        "Der er desværre sket en fejl. Vi beklager ulejligheden. Prøv igen",
+      control: { type: "text" }
+    },
+    tryAginButtonText: {
+      name: "Try again button text",
+      defaultValue: "Prøv igen",
+      control: { type: "text" }
+    },
+    okButtonText: {
+      name: "Ok button text",
+      defaultValue: "Ok",
+      control: { type: "text" }
+    },
+    missingDataText: {
+      name: "Missing data text",
+      defaultValue: "Mangler data",
+      control: { type: "text" }
+    },
+    reservationModalScreenReaderModalDescriptionText: {
+      name: "Reservation modal screen reader description",
+      defaultValue: "Modal for reservation",
+      control: { type: "text" }
+    },
+    reservationModalCloseModalAriaLabelText: {
+      name: "Reservation modal aria label modal two",
+      defaultValue: "Luk reservation modal",
+      control: { type: "text" }
+    },
+    librariesHaveTheMaterialText: {
+      name: "Libraries have the material",
+      defaultValue: "biblioteker har materialet",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

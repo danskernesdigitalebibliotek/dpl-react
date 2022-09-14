@@ -54,6 +54,29 @@ interface MaterialEntryTextProps {
   youHaveBorrowedText: string;
   possibleText: string;
   thisMonthText: string;
+  approveReservationText: string;
+  shiftText: string;
+  pickupLocationText: string;
+  receiveSmsWhenMaterialReadyText: string;
+  receiveEmailWhenMaterialReadyText: string;
+  haveNoInterestAfterText: string;
+  oneMonthText: string;
+  twoMonthsText: string;
+  threeMonthsText: string;
+  sixMonthsText: string;
+  oneYearText: string;
+  daysText: string;
+  reservationSuccesTitleText: string;
+  reservationSuccesIsReservedForYouText: string;
+  reservationSuccesPreferredPickupBranchText: string;
+  reservationErrorsTitleText: string;
+  reservationErrorsDescriptionText: string;
+  tryAginButtonText: string;
+  okButtonText: string;
+  missingDataText: string;
+  reservationModalScreenReaderModalDescriptionText: string;
+  reservationModalCloseModalAriaLabelText: string;
+  librariesHaveTheMaterialText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

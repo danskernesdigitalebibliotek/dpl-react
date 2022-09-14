@@ -61,7 +61,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
         {!isLoading && (
           <>
             <div className="text-small-caption modal-find-on-shelf__caption">
-              {data[0].holdings.length} biblioteker har materialet
+              {`${data[0].holdings.length} ${t(
+                "librariesHaveTheMaterialText"
+              )}`}
             </div>
             {holdings.map((holding) => {
               return (
