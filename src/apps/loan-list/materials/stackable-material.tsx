@@ -182,7 +182,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                       aria-describedby="materials-modal-text"
                       className="list-reservation__note-mobile"
                     >
-                      + {additionalMaterials} {t("LoanListMaterialsMobileText")}
+                      + {additionalMaterials} {t("loanListMaterialsMobileText")}
                     </button>
                   </>
                 )}
