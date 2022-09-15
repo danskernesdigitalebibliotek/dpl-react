@@ -23,10 +23,10 @@ export const getManifestationFromType = (
   const allManifestations = orderManifestationsByYear(manifestations);
 
   const allManifestationsThatMatchType = allManifestations.filter(
-    (item) => getManifestationType(item as Manifestation) === type
+    (item) => getManifestationType(item) === type
   );
 
-  return allManifestationsThatMatchType.shift() as Manifestation;
+  return allManifestationsThatMatchType.shift();
 };
 
 export const getWorkDescriptionListData = ({
