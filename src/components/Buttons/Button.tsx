@@ -12,9 +12,9 @@ export type ButtonProps = {
   size: ButtonSize;
   variant: "outline" | "filled";
   onClick?: () => void;
-  classNames?: string;
+  iconClassNames?: string;
   id?: string;
-  className?: string;
+  classNames?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -25,12 +25,12 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   variant,
   onClick,
-  classNames,
+  iconClassNames,
   id,
-  className
+  classNames
 }) => {
   const iconClassName = `btn-icon ${clsx({ "btn-collapsible": collapsible }, [
-    classNames
+    iconClassNames
   ])}`;
 
   const Icon = React.useCallback(() => {
@@ -57,7 +57,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type="button"
       className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small ${
-        className ?? ""
+        classNames ?? ""
       }`}
       disabled={disabled}
       onClick={onClick}
