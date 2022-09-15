@@ -12,6 +12,7 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId, Pid } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
+import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -75,7 +76,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
                   faustId={faustId}
                   fullWidth
                 >
-                  I will one day be a list of items.
+                  <FindOnShelfManifestationList holding={holding} />
                 </Disclosure>
               );
             })}
