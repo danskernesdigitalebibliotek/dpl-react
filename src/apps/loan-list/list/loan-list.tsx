@@ -156,7 +156,8 @@ const LoanList: FC = () => {
 
     // modal query param: due date modal date
     const dateFound = dateMatchesUsFormat(modalString);
-    if (modalString && physicalLoans && dateFound) {
+
+    if (modalString && dateFound) {
       openModalDueDate(dateFound);
       return;
     }
