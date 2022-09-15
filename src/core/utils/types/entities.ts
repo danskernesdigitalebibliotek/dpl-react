@@ -7,7 +7,7 @@ import { Pid, WorkId } from "./ids";
 export type Manifestation = Omit<ManifestationsSimpleFieldsFragment, "pid"> & {
   pid: Pid;
 };
-export type Work = Omit<WorkMediumFragment, "workId"> & {
+export type Work = Omit<WorkMediumFragment, "workId" | "manifestations"> & {
   workId: WorkId;
   manifestations: {
     all: Manifestation[];

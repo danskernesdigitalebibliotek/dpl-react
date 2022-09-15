@@ -1,16 +1,15 @@
 import React from "react";
-import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import { Pid } from "../../../../core/utils/types/ids";
+import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
-  manifestation: ManifestationsSimpleFieldsFragment & { pid: Pid };
+  manifestation: Manifestation;
   size?: ButtonSize;
 }
 
