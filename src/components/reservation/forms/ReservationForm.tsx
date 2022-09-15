@@ -34,7 +34,6 @@ const ReservationForm = ({
             collapsible={false}
             size="xlarge"
             variant="filled"
-            elementType="submit"
             onClick={onSubmit}
           />
         </div>

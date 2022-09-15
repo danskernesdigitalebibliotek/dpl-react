@@ -96,7 +96,7 @@ export const saveText = ({
     return;
   }
 
-  // Update user email.
+  // Update user data.
   mutate(
     {
       data: {
