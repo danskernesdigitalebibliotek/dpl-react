@@ -4,36 +4,51 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 
 type ReservationErrorProps = {
-  errorDescription?: string;
-  buttonText?: string;
+  reservationResult: string;
   setReservationResponse: (
     reservationResponse: ReservationResponseV2 | null
   ) => void;
 };
 
 const ReservationError: React.FC<ReservationErrorProps> = ({
-  errorDescription,
-  buttonText,
+  reservationResult,
   setReservationResponse
 }) => {
   const t = useText();
+
+  const handleErrorText: {
+    [key: string]: {
+      title: string;
+      description: string;
+      buttonText: string;
+    };
+  } = {
+    already_reserved: {
+      title: t("alreadyReservedText"),
+      description: "",
+      buttonText: t("closeText")
+    },
+    default: {
+      title: t("reservationErrorsTitleText"),
+      description: t("reservationErrorsDescriptionText"),
+      buttonText: t("tryAginButtonText")
+    }
+  } as const;
+
+  const reservationErrorInfo =
+    handleErrorText[reservationResult] || handleErrorText.default;
+
   return (
     <section className="reservation-modal reservation-modal--confirm">
-      {errorDescription ? (
-        <h2 className="text-header-h3 pb-48">{errorDescription}</h2>
-      ) : (
-        <>
-          <h2 className="text-header-h3 pb-48">
-            {t("reservationErrorsTitleText")}
-          </h2>
-          <p className="text-body-medium-regular pb-48">
-            {t("reservationErrorsDescriptionText")}
-          </p>
-        </>
+      <h2 className="text-header-h3 pb-48">{reservationErrorInfo.title}</h2>
+      {reservationErrorInfo.description && (
+        <p className="text-body-medium-regular pb-48">
+          {reservationErrorInfo.description}
+        </p>
       )}
       <Button
         classNames="reservation-modal__confirm-button"
-        label={buttonText ?? t("tryAginButtonText")}
+        label={reservationErrorInfo.buttonText}
         buttonType="none"
         disabled={false}
         collapsible={false}

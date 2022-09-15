@@ -107,13 +107,10 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
     });
   };
 
-  const reservationResult = reservationResponse?.reservationResults
-    ? reservationResponse.reservationResults[0].result
-    : null;
-
-  const reservationDetails = reservationResponse?.reservationResults
-    ? reservationResponse.reservationResults[0].reservationDetails
-    : null;
+  const reservationSuccess = reservationResponse?.success || false;
+  const reservationResult = reservationResponse?.reservationResults[0]?.result;
+  const reservationDetails =
+    reservationResponse?.reservationResults[0]?.reservationDetails;
 
   return (
     <Modal
@@ -123,73 +120,71 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
     >
-      {reservationResult === "success" && reservationDetails && patron && (
+      {reservationSuccess && reservationDetails && (
         <ReservationSucces
           modalId={reservationModalId(faustId)}
           title={titles.main[0]}
           preferredPickupBranch={getPreferredLocation(
-            patron.preferredPickupBranch,
+            reservationDetails.pickupBranch,
             branchData
           )}
-          numberInQueue={String(reservationDetails.numberInQueue)}
+          numberInQueue={reservationDetails.numberInQueue}
         />
       )}
 
-      {reservationResult === "already_reserved" && (
+      {!reservationSuccess && reservationResult && (
         <ReservationError
+          reservationResult={reservationResult}
           setReservationResponse={setReservationResponse}
-          errorDescription={t("alreadyReservedText")}
-          buttonText={t("closeText")}
         />
       )}
 
-      {reservationResult !== "success" &&
-        reservationResult !== "already_reserved" && (
-          <section className="reservation-modal">
-            <header className="reservation-modal-header">
-              <Cover pid={pid as Pid} size="medium" animate />
-              <div className="reservation-modal-description">
-                <div className="reservation-modal-tag">
-                  {materialTypes[0].specific}
-                </div>
-                <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
-                <p className="text-body-medium-regular">
-                  {t("materialHeaderAuthorByText")} {author} (
-                  {publicationYear.display})
-                </p>
+      {!reservationResult && (
+        <section className="reservation-modal">
+          <header className="reservation-modal-header">
+            <Cover pid={pid as Pid} size="medium" animate />
+            <div className="reservation-modal-description">
+              <div className="reservation-modal-tag">
+                {materialTypes[0].specific}
               </div>
-            </header>
-            <div>
-              <div className="reservation-modal-submit">
-                <p className="text-small-caption">
-                  {`${t("weHaveShoppedText")} ${totalMaterials(holdings)} ${t(
-                    "copiesThereIsText"
-                  )} ${reservations} ${t("reservationsForThisMaterialText")}`}
-                </p>
-                <Button
-                  label={t("approveReservationText")}
-                  buttonType="none"
-                  variant="filled"
-                  disabled={false}
-                  collapsible={false}
-                  size="small"
-                  onClick={onClick}
-                />
-              </div>
-              <div className="reservation-modal-list">
-                <ReservationFormListItem
-                  icon={Various}
-                  title={t("editionText")}
-                  text={summary}
-                  changeHandler={() => {}} // TODO: open modal to switch user data
-                />
-                {patron && (
-                  <UserListItems patron={patron} branchData={branchData} />
-                )}
-              </div>
+              <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
+              <p className="text-body-medium-regular">
+                {t("materialHeaderAuthorByText")} {author} (
+                {publicationYear.display})
+              </p>
             </div>
-          </section>
-        )}
+          </header>
+          <div>
+            <div className="reservation-modal-submit">
+              <p className="text-small-caption">
+                {`${t("weHaveShoppedText")} ${totalMaterials(holdings)} ${t(
+                  "copiesThereIsText"
+                )} ${reservations} ${t("reservationsForThisMaterialText")}`}
+              </p>
+              <Button
+                label={t("approveReservationText")}
+                buttonType="none"
+                variant="filled"
+                disabled={false}
+                collapsible={false}
+                size="small"
+                onClick={onClick}
+              />
+            </div>
+            <div className="reservation-modal-list">
+              <ReservationFormListItem
+                icon={Various}
+                title={t("editionText")}
+                text={summary}
+                changeHandler={() => {}} // TODO: open modal to switch user data
+              />
+              {patron && (
+                <UserListItems patron={patron} branchData={branchData} />
+              )}
+            </div>
+          </div>
+        </section>
+      )}
     </Modal>
   );
 };
