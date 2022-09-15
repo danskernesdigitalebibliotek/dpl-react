@@ -407,6 +407,48 @@ export default {
       name: "Close text",
       defaultValue: "Luk",
       control: { type: "text" }
+    },
+    modalReservationFormEmailHeaderTitleText: {
+      name: "Modal reservation form email header title",
+      defaultValue: "Ændring af email",
+      control: { type: "text" }
+    },
+    modalReservationFormEmailHeaderDescriptionText: {
+      name: "Modal reservation form email header description",
+      defaultValue:
+        "Hvis du ønsker at få notifikationer på e-mail kan du indtaste eller ændre den ønskede e-mail hér.",
+      control: { type: "text" }
+    },
+    modalReservationFormEmailInputFieldLabelText: {
+      name: "Modal reservation form email input field label",
+      defaultValue: "Email",
+      control: { type: "text" }
+    },
+    modalReservationFormEmailInputFieldDescriptionText: {
+      name: "Modal reservation form email input field description",
+      defaultValue: "Indtast email",
+      control: { type: "text" }
+    },
+    modalReservationFormSmsHeaderTitleText: {
+      name: "Modal reservation form sms header title",
+      defaultValue: "Ændring af telefonnummer",
+      control: { type: "text" }
+    },
+    modalReservationFormSmsHeaderDescriptionText: {
+      name: "Modal reservation form sms header description",
+      defaultValue:
+        "Hvis du ønsker at få notifikationer på sms kan du indtaste eller ændre dit telefonnummer hér.",
+      control: { type: "text" }
+    },
+    modalReservationFormSmsInputFieldLabelText: {
+      name: "Modal reservation form sms input field label",
+      defaultValue: "Telefonnummer",
+      control: { type: "text" }
+    },
+    modalReservationFormSmsInputFieldDescriptionText: {
+      name: "Modal reservation form sms input field description",
+      defaultValue: "Telefonnummer",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

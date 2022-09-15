@@ -1,5 +1,6 @@
 import React from "react";
 import { PatronV5 } from "../../../core/fbs/model";
+import { useText } from "../../../core/utils/text";
 import ModalReservationFormText from "./ModalReservationFormText";
 
 export interface SmsModalProps {
@@ -7,19 +8,18 @@ export interface SmsModalProps {
 }
 
 const SmsModal = ({ patron, patron: { phoneNumber } }: SmsModalProps) => {
+  const t = useText();
   return (
     <ModalReservationFormText
       type="sms"
       defaultText={phoneNumber}
       header={{
-        title: "Ændring af telefonnummer",
-        description: [
-          "Hvis du ønsker at få notifikationer på sms kan du indtaste eller ændre dit telefonnummer hér."
-        ]
+        title: t("modalReservationFormSmsHeaderTitleText"),
+        description: [t("modalReservationFormSmsHeaderDescriptionText")]
       }}
       inputField={{
-        label: "Telefonnummer",
-        description: "Indtast telefonnummer"
+        label: t("modalReservationFormSmsInputFieldLabelText"),
+        description: t("modalReservationFormSmsInputFieldDescriptionText")
       }}
       patron={patron}
     />
