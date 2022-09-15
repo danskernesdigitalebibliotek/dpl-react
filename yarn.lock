@@ -1721,10 +1721,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@npm:@reload/dpl-design-system@reservation-forms-DDFSOEG-210":
-  version "0.0.0-9145cdefd16f4ef1e9bff0d950220f57c54f73f7"
-  resolved "https://npm.pkg.github.com/download/@reload/dpl-design-system/0.0.0-9145cdefd16f4ef1e9bff0d950220f57c54f73f7/3187337385cfab39ffceb12ca513e5e13b7af26f#3187337385cfab39ffceb12ca513e5e13b7af26f"
-  integrity sha512-kGr6+sBau+MnpAMO/y4zvd1ZMLvMhuSw/SldV3zt8qMciu982LUkLd7oYXaoIq4HE2m038iGCZvFEcVYL4bxRQ==
+"@danskernesdigitalebibliotek/dpl-design-system@npm:@danskernesdigitalebibliotek/dpl-design-system@release-4":
+  version "0.0.0-afe28410fa20fffd0c9f10f77515f121fa5d730f"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-afe28410fa20fffd0c9f10f77515f121fa5d730f/44a6a3a5902a5c83c82d2fbd9c03292ac1a4a58a#44a6a3a5902a5c83c82d2fbd9c03292ac1a4a58a"
+  integrity sha512-LhxfYqCsTQ3Jlx51m2XbnG5Byezg/ww3iA5UMR3crfckXicuyYP3qeUACpB/eX1wnLe5jkOFts3CLM65682UkA==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
