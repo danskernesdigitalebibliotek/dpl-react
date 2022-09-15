@@ -1,18 +1,20 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useCallback, useEffect } from "react";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
 import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import RenewLoansModal from "../modal/renew-loans-modal";
+import { useModalButtonHandler } from "../../../core/utils/modal";
+import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
+import { isDate } from "../../../core/utils/helpers/date";
 
 export interface ListProps {
   header: string;
-  openRenewLoansModal: () => void;
-  openModalDueDate: (id: string, dueDate?: string) => void;
-  setView?: (view: string) => void;
+  setView: (view: string) => void;
   selectModalMaterial: ({
     material,
     loanMetaData
@@ -22,34 +24,52 @@ export interface ListProps {
   }) => void;
   loans: LoanMetaDataType[];
   dueDates: string[];
-  allLoansLength: number;
   view: ListView;
   dueDateLabel: string;
+  viewToggleable: boolean;
 }
 
 const List: FC<ListProps> = ({
   header,
-  openRenewLoansModal,
-  openModalDueDate,
   selectModalMaterial,
   setView,
   loans,
   dueDates,
-  allLoansLength,
   view,
-  dueDateLabel
+  dueDateLabel,
+  viewToggleable
 }) => {
   const t = useText();
-  useState<LoanDetailsV2 | null>(null);
+  const modalButtonHandler = useModalButtonHandler();
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const openRenewLoansModal = useCallback(() => {
+    setShowModal(true);
+    modalButtonHandler(modalIdsConf.allLoansId);
+  }, [modalButtonHandler]);
+
+  useEffect(() => {
+    const modalString = getUrlQueryParam("modal");
+
+    // If the query param has all loans id, the modal should be opened
+    if (modalString === modalIdsConf.allLoansId) {
+      openRenewLoansModal();
+    }
+
+    // If the queryparme is a date, the view should be stacked
+    if (isDate(modalString)) {
+      setView("stacked");
+    }
+  }, [openRenewLoansModal, setView]);
 
   return (
     <>
       <div className="dpl-list-buttons m-32">
         <h2 className="dpl-list-buttons__header">
           {header}
-          <div className="dpl-list-buttons__power">{allLoansLength}</div>
+          <div className="dpl-list-buttons__power">{loans.length}</div>
         </h2>
-        {setView && (
+        {viewToggleable && (
           <div className="dpl-list-buttons__buttons">
             <div className="dpl-list-buttons__buttons__button">
               <button
@@ -99,11 +119,10 @@ const List: FC<ListProps> = ({
           dueDates={dueDates}
           loans={loans}
           view={view as ListView}
-          hitcount={allLoansLength}
-          openModalDueDate={openModalDueDate}
           selectModalMaterial={selectModalMaterial}
         />
       )}
+      {showModal && <RenewLoansModal loansModal={loans} />}
     </>
   );
 };

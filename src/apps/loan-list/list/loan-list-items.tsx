@@ -4,6 +4,8 @@ import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
+import { isDate } from "../../../core/utils/helpers/date";
 
 interface LoanListItemProps {
   loans: LoanMetaDataType[];
@@ -16,7 +18,6 @@ interface LoanListItemProps {
     material: GetMaterialManifestationQuery | undefined | null;
     loanMetaData: LoanMetaDataType;
   }) => void;
-  openModalDueDate: (id: string, dueDate?: string) => void;
   dueDateLabel: string;
 }
 
@@ -24,7 +25,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  openModalDueDate,
   selectModalMaterial,
   dueDateLabel
 }) => {
@@ -52,16 +52,25 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
           const loanMetaData = loansUniqueDueDate[0] || {};
 
+          let openModal = false;
+          const queryParam = getUrlQueryParam("modal");
+
+          // If there is a query param with the due date, a modal should be opened
+          if (queryParam && uniqueDueDate && isDate(queryParam)) {
+            openModal = queryParam === uniqueDueDate;
+          }
+
           return (
             <div>
               {loanMetaData && (
                 <StackableMaterial
                   dueDateLabel={dueDateLabel}
                   loanMetaData={loanMetaData}
+                  openModal={openModal}
                   key={loanMetaData.id}
-                  selectDueDate={openModalDueDate}
                   selectMaterial={selectModalMaterial}
                   amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
+                  stack={loansUniqueDueDate}
                 />
               )}
             </div>
@@ -71,6 +80,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loanMetaData) => {
           return (
             <StackableMaterial
+              openModal={false}
               dueDateLabel={dueDateLabel}
               selectMaterial={selectModalMaterial}
               key={loanMetaData.id}

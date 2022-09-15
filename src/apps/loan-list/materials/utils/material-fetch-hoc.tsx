@@ -18,10 +18,11 @@ export interface SelectableMaterialProps {
 }
 
 export interface StackableMaterialProps {
+  stack?: LoanMetaDataType[];
   loanMetaData: LoanMetaDataType;
   amountOfMaterialsWithDueDate?: number;
   dueDateLabel?: string;
-  selectDueDate?: (dueDate: string, id: string) => void;
+  openModal?: boolean;
   selectMaterial?: ({
     material,
     loanMetaData
