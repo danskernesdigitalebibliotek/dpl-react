@@ -28,7 +28,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         disabled={false}
         collapsible={false}
         size={size || "large"}
-        classNames="invert"
+        iconClassNames="invert"
       />
     </LinkNoStyle>
   );

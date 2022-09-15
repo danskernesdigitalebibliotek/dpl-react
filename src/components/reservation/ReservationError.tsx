@@ -32,7 +32,7 @@ const ReservationError: React.FC<ReservationErrorProps> = ({
         </>
       )}
       <Button
-        className="reservation-modal__confirm-button"
+        classNames="reservation-modal__confirm-button"
         label={buttonText ?? t("tryAginButtonText")}
         buttonType="none"
         disabled={false}
