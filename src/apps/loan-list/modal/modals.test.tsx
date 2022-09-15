@@ -78,7 +78,7 @@ describe("Modals", () => {
             recordId: "28847238",
             periodical: null,
             loanDate: "2022-06-13T16:43:25.325",
-            dueDate: "2022-07-14",
+            dueDate: "2022-09-16",
             loanType: "loan",
             ilBibliographicRecord: null,
             materialGroup: {
@@ -97,7 +97,7 @@ describe("Modals", () => {
             recordId: "28847238",
             periodical: null,
             loanDate: "2022-06-13T16:43:25.325",
-            dueDate: "2022-07-14",
+            dueDate: "2022-09-16",
             loanType: "loan",
             ilBibliographicRecord: null,
             materialGroup: {
@@ -214,7 +214,6 @@ describe("Modals", () => {
       "/iframe.html?path=/story/apps-loan-list--loan-list-renew-loans-modal"
     );
     cy.wait(["@loans", "@work", "@cover"]);
-    cy.get(".modal").find(".list-materials").should("have.length", 2);
     cy.get(".modal").find(".list-materials").should("exist");
   });
 });
