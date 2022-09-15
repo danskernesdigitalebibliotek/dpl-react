@@ -87,8 +87,13 @@ function Modal({
 
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
-  return (modalId: ModalId) => {
-    return dispatch(openModal({ modalId }));
+  return {
+    open: (modalId: ModalId) => {
+      return dispatch(openModal({ modalId }));
+    },
+    close: (modalId: ModalId) => {
+      return dispatch(closeModal({ modalId }));
+    }
   };
 };
 

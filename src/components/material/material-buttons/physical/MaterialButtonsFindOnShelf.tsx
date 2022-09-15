@@ -1,8 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
-import { openModal } from "../../../../core/modal.slice";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
@@ -19,13 +18,13 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   faustIds
 }) => {
   const t = useText();
+  const { open } = useModalButtonHandler();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds
   });
 
-  const dispatch = useDispatch();
   const onClick = () => {
-    dispatch(openModal({ modalId: findOnShelfModalId(faustIds[0]) }));
+    open(findOnShelfModalId(faustIds[0]));
   };
 
   // If element is currently focused on, we would like to let users open it using enter

@@ -20,8 +20,10 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   selectMaterial
 }) => {
   const t = useText();
-  const modalButtonHandler = useModalButtonHandler();
-
+  const { open } = useModalButtonHandler();
+  const [additionalMaterials] = useState(
+    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
+  );
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
   const { year } = hostPublication || {};
@@ -51,10 +53,10 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       stopPropagationFunction(e);
       if (selectDueDate) {
         selectDueDate();
-        modalButtonHandler(dueDate);
+        open(dueDate);
       }
     },
-    [dueDate, modalButtonHandler, selectDueDate]
+    [dueDate, open, selectDueDate]
   );
 
   const selectListMaterial = useCallback(
@@ -66,9 +68,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           loanDetails
         });
       }
-      modalButtonHandler(faust);
+      open(faust);
     },
-    [faust, loanDetails, material, modalButtonHandler, selectMaterial]
+    [faust, loanDetails, material, open, selectMaterial]
   );
 
   return (

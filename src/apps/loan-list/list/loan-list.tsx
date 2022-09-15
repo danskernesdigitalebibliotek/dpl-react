@@ -41,7 +41,6 @@ export interface LoanDetailsType {
 }
 
 const LoanList: FC = () => {
-  const modalButtonHandler = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
   const [dueDates, setDueDates] = useState<string[]>([]);
@@ -58,6 +57,7 @@ const LoanList: FC = () => {
   const [view, setView] = useState<string>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+  const { open } = useModalButtonHandler();
 
   const updateRenewable = (materials: LoanV2[]) => {
     // Amount of renewable loans are determined, used in the ui
@@ -132,9 +132,9 @@ const LoanList: FC = () => {
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(loans);
       setRenewable(amountOfRenewableLoans);
-      modalButtonHandler(modalIdsConf.allLoansId);
+      open(modalIdsConf.allLoansId);
     }
-  }, [loans, modalButtonHandler]);
+  }, [loans, open]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
@@ -154,14 +154,14 @@ const LoanList: FC = () => {
         ({ loanDetails }) => loanDetails.recordId === faustFound
       );
       setModalLoanDetails(loanDetailsForModal[0].loanDetails);
-      modalButtonHandler(faustFound);
+      open(faustFound);
       return;
     }
     // modal query param: modal loans all
     if (modalString === modalIdsConf.allLoansId) {
-      modalButtonHandler(modalIdsConf.allLoansId);
+      open(modalIdsConf.allLoansId);
     }
-  }, [loans, openModalDueDate, modalButtonHandler]);
+  }, [loans, openModalDueDate, open]);
 
   return (
     <>
