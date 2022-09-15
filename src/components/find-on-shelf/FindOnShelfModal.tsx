@@ -76,7 +76,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
                   faustId={faustId}
                   fullWidth
                 >
-                  <FindOnShelfManifestationList holding={holding} />
+                  <FindOnShelfManifestationList
+                    holding={holding}
+                    title={mainTitle[0]}
+                  />
                 </Disclosure>
               );
             })}

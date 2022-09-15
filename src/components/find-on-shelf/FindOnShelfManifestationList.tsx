@@ -5,10 +5,12 @@ import { useText } from "../../core/utils/text";
 
 export interface FindOnShelfManifestationListProps {
   holding: HoldingsV3;
+  title: string;
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
-  holding
+  holding,
+  title
 }) => {
   const t = useText();
   const { materials, department, location, sublocation } = holding;
@@ -29,9 +31,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             key={material.itemNumber}
             className="find-on-shelf__row text-body-medium-regular"
           >
-            <span className="find-on-shelf__material-text">
-              Vejen til Jerusalem, 2008
-            </span>
+            <span className="find-on-shelf__material-text">{title}, 2008</span>
             <span>
               {`${department?.title ? `${department.title}` : ""}
               ${
