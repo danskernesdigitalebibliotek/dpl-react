@@ -10,7 +10,7 @@ type ModalProps = {
   modalId: ModalId;
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
-  additionalClasses?: string;
+  classNames?: string;
 };
 
 export interface ModalIdsProps {
@@ -24,7 +24,7 @@ function Modal({
   closeModalAriaLabelText,
   children,
   screenReaderModalDescriptionText,
-  additionalClasses
+  classNames
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -45,9 +45,9 @@ function Modal({
 
   return (
     <div
-      className={`modal ${
-        modalIds.includes(modalId) ? "modal-show" : ""
-      } ${additionalClasses}`}
+      className={`modal ${modalIds.includes(modalId) ? "modal-show" : ""} ${
+        classNames || ""
+      }`}
       style={{
         // some elements are designed with z-index which means they pop up over the modal
         // so I add 10 to the z-index of the modal
