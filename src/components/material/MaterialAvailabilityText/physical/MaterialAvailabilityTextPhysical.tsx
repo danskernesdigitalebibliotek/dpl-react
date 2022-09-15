@@ -1,4 +1,5 @@
 import * as React from "react";
+import { totalMaterials } from "../../../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
@@ -15,21 +16,19 @@ const MaterialAvailabilityTextPhysical: React.FC<
   const t = useText();
   const faustId = convertPostIdToFaustId(pid as Pid);
   const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [String(faustId)]
+    recordid: [faustId]
   });
 
   if (isLoading || isError || !data) return null;
 
-  const totalReservations = data[0].reservations;
-  const totalMaterials = data[0].holdings.reduce(
-    (acc, curr) => acc + curr.materials.length,
-    0
-  );
+  const { reservations, holdings } = data[0];
 
   return (
     <MaterialAvailabilityTextParagraph>{`${t(
       "weHaveShoppedText"
-    )} ${totalMaterials} ${t("copiesThereIsText")} ${totalReservations} ${t(
+    )} ${totalMaterials(holdings)} ${t(
+      "copiesThereIsText"
+    )} ${reservations} ${t(
       "reservationsForThisMaterialText"
     )}`}</MaterialAvailabilityTextParagraph>
   );

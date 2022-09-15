@@ -40,7 +40,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid as Pid);
-
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -110,13 +109,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
-        {faustId && (
-          <AvailabilityLabel
-            manifestText={materialTypes[0]?.specific}
-            url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
-            faustIds={[faustId]}
-          />
-        )}
+        <AvailabilityLabel
+          manifestText={materialTypes[0]?.specific}
+          url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
+          faustIds={[faustId]}
+        />
       </div>
       <div className="material-manifestation-item__cover">
         <Cover pid={pid as Pid} size="small" animate={false} />

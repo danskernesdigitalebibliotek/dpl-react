@@ -62,18 +62,18 @@ describe("Search Result", () => {
   });
 
   it("Do we have a pager?", () => {
-    cy.get(".search-result-pager__title").should(
+    cy.get(".result-pager__title").should(
       "contain.text",
       "Viser 2 ud af 9486 resultater"
     );
   });
 
   it("Do we have some pager info?", () => {
-    cy.get(".search-result-pager button").should("contain.text", "VIS FLERE");
+    cy.get(".result-pager button").should("contain.text", "VIS FLERE");
   });
 
   it("Show more results.", () => {
-    cy.get(".search-result-pager button").click();
+    cy.get(".result-pager button").click();
   });
 
   it("Check length of search result list since it should be twice as long.", () => {
@@ -81,7 +81,7 @@ describe("Search Result", () => {
   });
 
   it("The pager info should also have been updated.", () => {
-    cy.get(".search-result-pager__title").should(
+    cy.get(".result-pager__title").should(
       "contain.text",
       "Viser 4 ud af 9486 resultater"
     );

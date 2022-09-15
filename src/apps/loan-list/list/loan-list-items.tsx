@@ -1,14 +1,15 @@
 import React, { useState, FC } from "react";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
-import { removeLoansWithDuplicateDueDate } from "../helpers";
+import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import StackableMaterial from "../materials/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { ListView } from "../../../core/utils/types/list-view";
 import { FaustId } from "../../../core/utils/types/ids";
 
 interface LoanListItemProps {
   loans: LoanV2[];
-  view: string;
+  view: ListView;
   dueDates: string[];
   selectModalMaterial: ({
     material,
@@ -42,18 +43,21 @@ const LoanListItems: FC<LoanListItemProps> = ({
             loans,
             "loanDetails.dueDate"
           );
-
-          const { loanDetails } = loan[0];
+          const { loanDetails } = loan[0] || {};
 
           return (
-            <StackableMaterial
-              loanDetails={loanDetails}
-              key={loanDetails.recordId}
-              faust={loanDetails.recordId as FaustId}
-              selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
-              selectMaterial={selectModalMaterial}
-              amountOfMaterialsWithDueDate={loan.length}
-            />
+            <div>
+              {loanDetails && (
+                <StackableMaterial
+                  loanDetails={loanDetails}
+                  key={loanDetails.recordId}
+                  faust={loanDetails.recordId as FaustId}
+                  selectDueDate={() => openModalDueDate(loanDetails.dueDate)}
+                  selectMaterial={selectModalMaterial}
+                  amountOfMaterialsWithDueDate={loan.length}
+                />
+              )}
+            </div>
           );
         })}
       {view === "list" &&

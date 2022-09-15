@@ -1,0 +1,8 @@
+{
+  "mobile": {
+    "pageSize": 10
+  },
+  "desktop": {
+    "pageSize": 25
+  }
+}

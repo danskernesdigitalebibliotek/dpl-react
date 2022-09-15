@@ -1,21 +1,22 @@
 import React from "react";
 import { useText } from "../../core/utils/text";
 
-export interface SearchResultPagerProps {
+export interface ResultPagerProps {
   setPageHandler: () => void;
-  searchItemsShown: number;
+  itemsShown: number;
   hitcount: number;
 }
-function SearchResultPager({
+function ResultPager({
   setPageHandler,
-  searchItemsShown,
+  itemsShown,
   hitcount
-}: SearchResultPagerProps) {
+}: ResultPagerProps) {
   const t = useText();
   return (
-    <div className="search-result-pager">
-      <p className="text-small-caption search-result-pager__title">
-        {t("showingText")} {searchItemsShown} {t("outOfText")} {hitcount}{" "}
+    <div className="result-pager">
+      <p className="text-small-caption result-pager__title">
+        {/* TODO: interpolate these strings */}
+        {t("showingText")} {itemsShown} {t("outOfText")} {hitcount}{" "}
         {t("resultsText")}
       </p>
       <button
@@ -30,4 +31,4 @@ function SearchResultPager({
   );
 }
 
-export default SearchResultPager;
+export default ResultPager;

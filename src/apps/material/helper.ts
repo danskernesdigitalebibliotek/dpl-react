@@ -3,6 +3,7 @@ import {
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../core/dbc-gateway/generated/graphql";
+import { AgencyBranch, HoldingsV3 } from "../../core/fbs/model";
 import {
   creatorsToString,
   filterCreators,
@@ -116,4 +117,30 @@ export const getWorkDescriptionListData = ({
       type: "standard"
     }
   ];
+};
+
+export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
+  const reservationInterestIntervals: { [key: string]: string } = {
+    "30": t("oneMonthText"),
+    "60": t("twoMonthsText"),
+    "90": t("threeMonthsText"),
+    "180": t("sixMonthsText"),
+    "360": t("oneYearText"),
+    default: `${days} ${t("daysText")}`
+  } as const;
+
+  const lookupKey = String(days);
+  return (
+    reservationInterestIntervals[lookupKey] ??
+    reservationInterestIntervals.default
+  );
+};
+
+export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {
+  const locationItem = array.find((item) => item.branchId === id);
+  return locationItem ? locationItem.title : id;
+};
+
+export const totalMaterials = (holdings: HoldingsV3[]) => {
+  return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
 };

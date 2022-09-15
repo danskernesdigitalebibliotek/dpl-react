@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { CoverProps } from "../../../components/cover/cover";
-import configuration, { getConf } from "../../configuration";
 import {
   ManifestationsSimpleFragment,
   WorkSmallFragment
@@ -9,6 +8,11 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { UseTextFunction } from "../text";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
+import configuration, {
+  getConf,
+  getDeviceConf,
+  ConfScope
+} from "../../configuration";
 
 export const orderManifestationsByYear = (
   manifestations: ManifestationsSimpleFragment,
@@ -92,7 +96,7 @@ export const getManifestationPid = (
 };
 
 export const getCoverTint = (index: number) => {
-  const conf = getConf("search", configuration);
+  const conf = getConf("coverTints", configuration);
   const { coverTints }: { coverTints?: CoverProps["tint"][] } = conf;
   if (coverTints) {
     const tintKey = index % coverTints.length;
@@ -109,9 +113,12 @@ export const usePrevious = <Type>(value: Type) => {
   return ref.current;
 };
 
-export const convertPostIdToFaustId = (postId: Pid): FaustId | null => {
+export const convertPostIdToFaustId = (postId: Pid) => {
   const matches = postId.match(/^[0-9]+-[a-z]+:([0-9]+)$/);
-  return matches?.[1] ? (matches?.[1] as FaustId) : null;
+  if (matches?.[1]) {
+    return matches?.[1] as FaustId;
+  }
+  throw new Error(`Unable to extract faust id from post id "${postId}"`);
 };
 
 // Get params if they are defined as props use those
@@ -138,6 +145,11 @@ export const sortByLoanDate = (list: LoanV2[]) => {
 // If a modal is open, the list should not be displayed.
 export const isAModalDisplayed = (modalIds: string[]) => {
   return modalIds.length > 0;
+};
+
+export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
+  const { pageSize } = getDeviceConf(pageSizeConf, configuration);
+  return Number(pageSize);
 };
 
 export const getRenewableMaterials = (list: LoanV2[]) => {

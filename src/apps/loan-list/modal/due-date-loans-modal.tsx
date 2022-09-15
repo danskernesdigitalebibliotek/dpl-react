@@ -7,7 +7,7 @@ import { useText } from "../../../core/utils/text";
 import { LoanV2 } from "../../../core/fbs/model";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
-import { materialIsOverdue } from "../helpers";
+import { materialIsOverdue } from "../utils/helpers";
 
 interface DueDateLoansModalProps {
   dueDate: string;
@@ -55,8 +55,8 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
             )}
             <RenewLoansModalContent
-              loansModal={loansModal}
               renewable={renewable}
+              loansModal={loansModal}
               buttonLabel={t("dueDateRenewLoanModalButtonText")}
               checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
               buttonBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
