@@ -82,6 +82,14 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
 }
 
+fragment ManifestationFindOnShelfFields on Manifestation {
+  edition {
+    publicationYear {
+      year
+    }
+  }
+}
+
 fragment SeriesSimple on Series {
   title
   isPopular
