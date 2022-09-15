@@ -83,6 +83,14 @@ interface MaterialEntryTextProps {
   queueText: string;
   alreadyReservedText: string;
   closeText: string;
+  modalReservationFormEmailHeaderTitleText: string;
+  modalReservationFormEmailHeaderDescriptionText: string;
+  modalReservationFormEmailInputFieldLabelText: string;
+  modalReservationFormEmailInputFieldDescriptionText: string;
+  modalReservationFormSmsHeaderTitleText: string;
+  modalReservationFormSmsHeaderDescriptionText: string;
+  modalReservationFormSmsInputFieldLabelText: string;
+  modalReservationFormSmsInputFieldDescriptionText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
