@@ -15,9 +15,7 @@ interface PaginationProps {
     material: GetMaterialManifestationQuery | undefined | null;
     loanMetaData: LoanMetaDataType;
   }) => void;
-  openModalDueDate: (id: string, dueDate?: string) => void;
   view: ListView;
-  hitcount: number;
   dueDates: string[];
   loans: LoanMetaDataType[];
   dueDateLabel: string;
@@ -25,10 +23,8 @@ interface PaginationProps {
 
 const Pagination: FC<PaginationProps> = ({
   view,
-  hitcount,
   dueDates,
   loans,
-  openModalDueDate,
   selectModalMaterial,
   dueDateLabel
 }) => {
@@ -43,7 +39,7 @@ const Pagination: FC<PaginationProps> = ({
   };
 
   const { itemsShown, PagerComponent } = usePager(
-    hitcount,
+    loans.length,
     getPageSizeFromConfiguration("pageSizeLoanList"),
     overrideItemsShown
   );
@@ -66,7 +62,6 @@ const Pagination: FC<PaginationProps> = ({
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}
-        openModalDueDate={openModalDueDate}
         selectModalMaterial={selectModalMaterial}
       />
       {PagerComponent}

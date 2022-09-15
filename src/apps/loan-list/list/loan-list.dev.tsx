@@ -262,7 +262,7 @@ LoanListDetailsModal.parameters = {
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-07-14"
+    modal: "2022-09-16"
   }
 };
 
