@@ -1,5 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent } from "react";
-import { formatDate, materialIsOverdue, getAuthorNames } from "../helpers";
+import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
@@ -11,6 +10,11 @@ import {
   MaterialProps
 } from "./utils/material-fetch-hoc";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import {
+  formatDate,
+  getAuthorNames,
+  materialIsOverdue
+} from "../utils/helpers";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,

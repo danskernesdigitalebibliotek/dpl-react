@@ -14,7 +14,6 @@ import { useText } from "../../../core/utils/text";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import { removeLoansWithDuplicateDueDate, queryMatchesFaust } from "../helpers";
 import {
   ModalIdsProps,
   useModalButtonHandler
@@ -26,6 +25,10 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
+import {
+  queryMatchesFaust,
+  removeLoansWithDuplicateDueDate
+} from "../utils/helpers";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
