@@ -3,22 +3,18 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { configTypes } from "../../../core/utils/helpers/fetcherHelper";
 
-// The below props than end on "Config" will be intercepted by the "withConfig" hook
-// This hook sets the fetch urls for publizon and pbs
-// The below props than end on "Text" will be intercepted by the "withText" hook
-// This hook saves the texts and makes them available with the useText hook.
-// Both to avoid props overload.
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
-    fbsBaseUrlConfig: {
-      defaultValue: "https://fbs-openplatform.dbc.dk",
+    [configTypes.fbs]: {
+      defaultValue: "",
       control: { type: "text" }
     },
-    publizonBaseUrlConfig: {
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
+    [configTypes.publizon]: {
+      defaultValue: "",
       control: { type: "text" }
     },
     loanListTitleText: {
