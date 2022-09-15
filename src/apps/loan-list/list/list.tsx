@@ -57,6 +57,7 @@ const List: FC<ListProps> = ({
     }
 
     // If the queryparme is a date, the view should be stacked
+    // because the modal it opens can only be opened in the stacked view
     if (isDate(modalString)) {
       setView("stacked");
     }
