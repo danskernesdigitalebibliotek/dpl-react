@@ -91,6 +91,9 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
+  findOnShelfModalListMaterialText: string;
+  findOnShelfModalListFindOnShelfText: string;
+  findOnShelfModalListItemCountText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

@@ -449,6 +449,21 @@ export default {
       name: "Modal reservation form sms input field description",
       defaultValue: "Telefonnummer",
       control: { type: "text" }
+    },
+    findOnShelfModalListMaterialText: {
+      name: "Material",
+      defaultValue: "Materiale",
+      control: { type: "text" }
+    },
+    findOnShelfModalListFindOnShelfText: {
+      name: "Find it on shelf",
+      defaultValue: "Find det på hylden",
+      control: { type: "text" }
+    },
+    findOnShelfModalListItemCountText: {
+      name: "Home",
+      defaultValue: "Hjemme",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
