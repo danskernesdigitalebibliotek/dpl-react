@@ -21,7 +21,7 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
   return (
     <Modal
       modalId={faust}
-      additionalClasses="modal-details"
+      classNames="modal-details"
       closeModalAriaLabelText={t("materialDetailsCloseModalText")}
       screenReaderModalDescriptionText={t(
         "materialDetailsModalDescriptionText"

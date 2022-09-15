@@ -51,7 +51,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
         "findOnShelfModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("findOnShelfModalCloseModalAriaLabelText")}
-      additionalClasses="modal-details modal-find-on-shelf"
+      classNames="modal-details modal-find-on-shelf"
     >
       <>
         <h2 className="text-header-h2 modal-find-on-shelf__headline">

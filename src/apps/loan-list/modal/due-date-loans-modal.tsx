@@ -25,7 +25,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   return (
     <Modal
       modalId={dueDate}
-      additionalClasses="modal-loan"
+      classNames="modal-loan"
       closeModalAriaLabelText={t("dueDateRenewLoanCloseModalText")}
       screenReaderModalDescriptionText={t(
         "dueDateRenewLoanModalDescriptionText"
