@@ -372,6 +372,21 @@ export default {
       name: "Reservation modal aria label modal two",
       defaultValue: "Luk reservation modal",
       control: { type: "text" }
+    },
+    librariesHaveTheMaterialText: {
+      name: "Libraries have the material",
+      defaultValue: "biblioteker har materialet",
+      control: { type: "text" }
+    },
+    findOnShelfModalScreenReaderModalDescriptionText: {
+      name: "Reservation modal screen reader description",
+      defaultValue: "Modal for reservation",
+      control: { type: "text" }
+    },
+    findOnShelfModalCloseModalAriaLabelText: {
+      name: "Reservation modal aria label modal two",
+      defaultValue: "Luk reservation modal",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

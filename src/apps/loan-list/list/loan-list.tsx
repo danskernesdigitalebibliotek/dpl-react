@@ -18,10 +18,6 @@ import {
   ModalIdsProps,
   useModalButtonHandler
 } from "../../../core/utils/modal";
-import {
-  removeLoansWithDuplicateDueDate,
-  queryMatchesFaust
-} from "../utils/helpers";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { FaustId } from "../../../core/utils/types/ids";
@@ -29,6 +25,10 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
+import {
+  queryMatchesFaust,
+  removeLoansWithDuplicateDueDate
+} from "../utils/helpers";
 
 export interface ModalMaterialType {
   materialItemNumber: number;
@@ -45,7 +45,6 @@ export interface LoanDetailsType {
 }
 
 const LoanList: FC = () => {
-  const modalButtonHandler = useModalButtonHandler();
   const t = useText();
   const [loans, setLoans] = useState<LoanV2[]>();
   const [allLoans, setAllLoans] = useState<LoanV2[]>([]);
@@ -62,6 +61,7 @@ const LoanList: FC = () => {
   const [view, setView] = useState<ListView>("list");
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+  const { open } = useModalButtonHandler();
 
   const updateRenewable = (materials: LoanV2[]) => {
     // Amount of renewable loans are determined, used in the ui
@@ -136,9 +136,9 @@ const LoanList: FC = () => {
       // Loans for modal (the modal shows loans stacked by due date)
       setLoansModal(loans);
       setRenewable(amountOfRenewableLoans);
-      modalButtonHandler(modalIdsConf.allLoansId);
+      open(modalIdsConf.allLoansId);
     }
-  }, [loans, modalButtonHandler]);
+  }, [loans, open]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
@@ -158,14 +158,14 @@ const LoanList: FC = () => {
         ({ loanDetails }) => loanDetails.recordId === faustFound
       );
       setModalLoanDetails(loanDetailsForModal[0].loanDetails);
-      modalButtonHandler(faustFound);
+      open(faustFound);
       return;
     }
     // modal query param: modal loans all
     if (modalString === modalIdsConf.allLoansId) {
-      modalButtonHandler(modalIdsConf.allLoansId);
+      open(modalIdsConf.allLoansId);
     }
-  }, [loans, openModalDueDate, modalButtonHandler]);
+  }, [loans, openModalDueDate, open]);
 
   return (
     <>

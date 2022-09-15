@@ -45,7 +45,7 @@ function Modal({
 
   return (
     <div
-      className={`modal modal-padding ${
+      className={`modal ${
         modalIds.includes(modalId) ? "modal-show" : ""
       } ${additionalClasses}`}
       style={{
@@ -87,8 +87,13 @@ function Modal({
 
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
-  return (modalId: ModalId) => {
-    return dispatch(openModal({ modalId }));
+  return {
+    open: (modalId: ModalId) => {
+      return dispatch(openModal({ modalId }));
+    },
+    close: (modalId: ModalId) => {
+      return dispatch(closeModal({ modalId }));
+    }
   };
 };
 

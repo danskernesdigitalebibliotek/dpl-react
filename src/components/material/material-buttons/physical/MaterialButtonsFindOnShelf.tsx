@@ -1,10 +1,12 @@
 import * as React from "react";
 import { FC } from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
+import { findOnShelfModalId } from "../../../find-on-shelf/FindOnShelfModal";
 
 export interface MaterialButtonsFindOnShelfProps {
   size?: ButtonSize;
@@ -16,12 +18,13 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   faustIds
 }) => {
   const t = useText();
+  const { open } = useModalButtonHandler();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds
   });
 
   const onClick = () => {
-    // we open the find on shelf modal here
+    open(findOnShelfModalId(faustIds[0]));
   };
 
   // If element is currently focused on, we would like to let users open it using enter

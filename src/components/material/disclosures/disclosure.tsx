@@ -1,23 +1,42 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import React, { FC, ReactNode } from "react";
+import { FaustId } from "../../../core/utils/types/ids";
+import { AvailabilityLabel } from "../../availability-label/availability-label";
 
 export interface DisclosureProps {
-  mainIconPath: string;
+  mainIconPath?: string;
   title: string;
   children?: ReactNode;
   disclosureIconExpandAltText?: string;
+  faustId?: FaustId;
+  fullWidth?: boolean;
 }
 
-const Disclosure: FC<DisclosureProps> = ({ title, children, mainIconPath }) => {
+const Disclosure: FC<DisclosureProps> = ({
+  title,
+  children,
+  mainIconPath,
+  faustId,
+  fullWidth
+}) => {
   return (
-    <details className="disclosure text-body-large">
+    <details
+      className={`disclosure text-body-large ${
+        fullWidth ? "disclosure--full-width" : ""
+      }`}
+    >
       <summary className="disclosure__headline text-body-large">
-        <div className="disclosure__icon bg-identity-tint-120 m-24">
-          <img className="disclosure__icon invert" src={mainIconPath} alt="" />
-        </div>
-        {title}
+        {mainIconPath && (
+          <div className="disclosure__icon bg-identity-tint-120">
+            <img className="invert" src={mainIconPath} alt="" />
+          </div>
+        )}
+        <span className={`disclosure__text${faustId ? "--shorter" : ""}`}>
+          {title}
+        </span>
+        {faustId && <AvailabilityLabel faustIds={[faustId]} />}
         <img
-          className="disclosure__expand mr-24 noselect"
+          className="disclosure__expand noselect"
           src={ExpandMoreIcon}
           alt=""
         />

@@ -29,6 +29,7 @@ import {
   getWorkManifestation
 } from "./helper";
 import ReservationModal from "../../components/reservation/reservation-modal";
+import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -117,6 +118,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <ReservationModal manifestation={manifestation} work={work} />
+              <FindOnShelfModal
+                manifestation={manifestation}
+                key={`find-on-shelf-modal-${manifestation.pid}`}
+              />
             </>
           );
         })}
@@ -143,7 +148,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         </Disclosure>
       )}
       {currentManifestation && (
-        <ReservationModal manifestation={currentManifestation} work={work} />
+        <>
+          <ReservationModal manifestation={currentManifestation} work={work} />
+          <FindOnShelfModal manifestation={currentManifestation} />
+        </>
       )}
     </main>
   );

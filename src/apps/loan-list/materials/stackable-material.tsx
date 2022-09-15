@@ -1,9 +1,4 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
-import {
-  formatDate,
-  materialIsOverdue,
-  getAuthorNames
-} from "../utils/helpers";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
@@ -15,6 +10,11 @@ import {
   MaterialProps
 } from "./utils/material-fetch-hoc";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import {
+  formatDate,
+  getAuthorNames,
+  materialIsOverdue
+} from "../utils/helpers";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loanDetails,
@@ -24,7 +24,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   selectMaterial
 }) => {
   const t = useText();
-  const modalButtonHandler = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
@@ -57,10 +57,10 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       stopPropagationFunction(e);
       if (selectDueDate) {
         selectDueDate();
-        modalButtonHandler(dueDate);
+        open(dueDate);
       }
     },
-    [dueDate, modalButtonHandler, selectDueDate]
+    [dueDate, open, selectDueDate]
   );
 
   const selectListMaterial = useCallback(
@@ -72,9 +72,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           loanDetails
         });
       }
-      modalButtonHandler(faust);
+      open(faust);
     },
-    [faust, loanDetails, material, modalButtonHandler, selectMaterial]
+    [faust, loanDetails, material, open, selectMaterial]
   );
 
   return (

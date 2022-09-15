@@ -15,7 +15,6 @@ import { useText } from "../../core/utils/text";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
-import MaterialButtonsFindOnShelf from "./material-buttons/physical/MaterialButtonsFindOnShelf";
 
 export interface MaterialMainfestationItemProps {
   manifestation: ManifestationsSimpleFieldsFragment;

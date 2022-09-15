@@ -4,13 +4,13 @@ import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
 
 const DemoModal: React.FC = () => {
-  const buttonHandler = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const t = useText();
   const modalIdOne = "demo-modal-one";
   const modalIdTwo = "demo-modal-two";
 
   const onClick = (modalId: ModalId) => () => {
-    buttonHandler(modalId);
+    open(modalId);
   };
 
   return (
