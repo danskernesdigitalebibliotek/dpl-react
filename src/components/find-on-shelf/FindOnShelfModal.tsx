@@ -73,6 +73,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
                   key={holding.branch.branchId}
                   title={holding.branch.title}
                   faustId={faustId}
+                  fullWidth
                 >
                   I will one day be a list of items.
                 </Disclosure>

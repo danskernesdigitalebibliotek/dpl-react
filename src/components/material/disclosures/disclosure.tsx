@@ -9,25 +9,29 @@ export interface DisclosureProps {
   children?: ReactNode;
   disclosureIconExpandAltText?: string;
   faustId?: FaustId;
+  fullWidth?: boolean;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
   title,
   children,
   mainIconPath,
-  faustId
+  faustId,
+  fullWidth
 }) => {
   return (
-    <details className="disclosure text-body-large">
+    <details
+      className={`disclosure text-body-large ${
+        fullWidth ? "disclosure--full-width" : ""
+      }`}
+    >
       <summary className="disclosure__headline text-body-large">
         {mainIconPath && (
           <div className="disclosure__icon bg-identity-tint-120">
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span
-          className={`disclosure__headline__text${faustId ? "-shorter" : ""}`}
-        >
+        <span className={`disclosure__text${faustId ? "--shorter" : ""}`}>
           {title}
         </span>
         {faustId && <AvailabilityLabel faustIds={[faustId]} />}
