@@ -4,7 +4,7 @@ import { useUpdateV5 } from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
-import TextInput from "../../atoms/TextInput";
+import TextInput from "../../atoms/input/TextInput";
 import {
   modalReservationFormId,
   ModalReservationFormTextType,
