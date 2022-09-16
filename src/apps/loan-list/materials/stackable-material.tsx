@@ -15,6 +15,7 @@ import {
   getAuthorNames,
   materialIsOverdue
 } from "../utils/helpers";
+import DueDateLoansModal from "../modal/due-date-loans-modal";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
