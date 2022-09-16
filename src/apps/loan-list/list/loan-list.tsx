@@ -18,7 +18,11 @@ import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 import { ListView } from "../../../core/utils/types/list-view";
-import { queryMatchesFaust } from "../utils/helpers";
+import {
+  mapPBSLoanToLoanMetaDataType,
+  queryMatchesFaust,
+  mapPublizonLoanToLoanMetaDataType
+} from "../utils/helpers";
 
 const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
