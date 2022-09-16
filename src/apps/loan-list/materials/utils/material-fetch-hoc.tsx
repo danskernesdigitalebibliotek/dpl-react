@@ -31,6 +31,9 @@ export interface StackableMaterialProps {
     loanMetaData: LoanMetaDataType;
   }) => void;
 }
+export interface ReservationMaterialProps {
+  loanMetaData: LoanMetaDataType;
+}
 
 export interface MaterialProps {
   material: GetMaterialManifestationQuery;

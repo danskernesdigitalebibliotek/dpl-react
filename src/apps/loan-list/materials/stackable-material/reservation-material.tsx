@@ -3,8 +3,7 @@ import {
   FetchMaterial,
   ReservationMaterialProps,
   MaterialProps
-} from "../../apps/loan-list/materials/utils/material-fetch-hoc";
-
+} from "../utils/material-fetch-hoc";
 import MaterialInfo from "./material-info";
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
