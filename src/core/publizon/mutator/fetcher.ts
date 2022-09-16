@@ -1,5 +1,10 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
-import { getConfig, Options } from "../publizonConfig";
+import {
+  getFectcherUrl,
+  configTypes,
+} from "../../utils/helpers/fetcherHelper";
+
+const defaultBaseUrl = "https://pubhub-openplatform.test.dbc.dk";
 
 type FetchParams =
   | string
@@ -52,7 +57,9 @@ export const fetcher = async <ResponseType>({
   signal?: AbortSignal;
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
-  const baseURL = getConfig(Options.baseUrl);
+
+  const baseUrlFromConfig = getFectcherUrl(configTypes.publizon);
+  const baseURL = baseUrlFromConfig || defaultBaseUrl;
 
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)
