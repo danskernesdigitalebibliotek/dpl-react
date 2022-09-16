@@ -18,7 +18,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   children
 }) => {
   const t = useText();
-  const { creators, loanType, year, materialTitle, pid, description } =
+  const { creators, materialType, year, materialTitle, pid, description } =
     getMaterialInfo(loanMetaData, material);
 
   return (
@@ -33,7 +33,9 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
       </div>
       <div className="list-reservation__information">
         <div>
-          <div className="status-label status-label--outline">{loanType}</div>
+          <div className="status-label status-label--outline">
+            {materialType}
+          </div>
         </div>
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{materialTitle}</h3>
