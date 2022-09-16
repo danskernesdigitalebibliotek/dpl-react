@@ -1,8 +1,5 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
-import {
-  getFectcherUrl,
-  configTypes,
-} from "../../utils/helpers/fetcherHelper";
+import { getFectcherUrl, configTypes } from "../../utils/helpers/fetcherHelper";
 
 const defaultBaseUrl = "https://pubhub-openplatform.test.dbc.dk";
 
