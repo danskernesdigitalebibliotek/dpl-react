@@ -40,13 +40,13 @@ const List: FC<ListProps> = ({
   viewToggleable
 }) => {
   const t = useText();
-  const modalButtonHandler = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const openRenewLoansModal = useCallback(() => {
     setShowModal(true);
-    modalButtonHandler(modalIdsConf.allLoansId);
-  }, [modalButtonHandler]);
+    open(modalIdsConf.allLoansId);
+  }, [open]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");

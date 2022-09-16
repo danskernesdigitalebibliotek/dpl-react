@@ -26,7 +26,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   stack
 }) => {
   const t = useText();
-  const { modalButtonHandler } = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
@@ -59,9 +59,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const openDueDateModal = useCallback(() => {
     if (stack && dueDate) {
       setShowModal(true);
-      modalButtonHandler(dueDate);
+      open(dueDate);
     }
-  }, [stack, modalButtonHandler, dueDate]);
+  }, [stack, open, dueDate]);
 
   useEffect(() => {
     if (openModal) {
@@ -86,9 +86,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           loanMetaData
         });
       }
-      modalButtonHandler(id);
+      open(id);
     },
-    [id, loanMetaData, material, modalButtonHandler, selectMaterial]
+    [id, loanMetaData, material, open, selectMaterial]
   );
 
   return (

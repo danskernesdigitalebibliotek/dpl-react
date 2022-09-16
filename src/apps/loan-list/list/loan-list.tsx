@@ -18,6 +18,7 @@ import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
 import { ListView } from "../../../core/utils/types/list-view";
+import { queryMatchesFaust } from "../utils/helpers";
 
 const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
@@ -100,14 +101,14 @@ const LoanList: FC = () => {
         ({ id }) => id === faustFound
       );
       setModalLoanDetails(loanDetailsForModal[0]);
-      modalButtonHandler(faustFound);
+      open(faustFound);
       return;
     }
     // modal query param: modal loans all
     if (modalString === modalIdsConf.allLoansId) {
       open(modalIdsConf.allLoansId);
     }
-  }, [physicalLoans, modalButtonHandler]);
+  }, [physicalLoans, open]);
 
   return (
     <>
