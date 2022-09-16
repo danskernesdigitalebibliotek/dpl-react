@@ -4,6 +4,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
 import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
@@ -134,6 +135,42 @@ export const mapPBSRenewedLoanToLoanMetaDataType = (
       loanType: loanDetails.loanType
     };
   });
+};
+
+export const getMaterialInfo = (
+  loanMetaData: LoanMetaDataType,
+  material: GetMaterialManifestationQuery | undefined | null
+) => {
+  const { dueDate, id, loanType, loanDate, renewalStatusList } = loanMetaData;
+  const { hostPublication, materialTypes, titles, creators, pid, abstract } =
+    material?.manifestation || {};
+
+  const description = abstract ? abstract[0] : "";
+
+  const { year: yearObject } = hostPublication || {};
+  const { year } = yearObject || {};
+
+  const [{ specific: materialType }] = materialTypes || [];
+  const {
+    main: [mainText]
+  } = titles || { main: [] };
+
+  const materialTitle = mainText;
+
+  return {
+    dueDate,
+    creators,
+    id,
+    loanType,
+    renewalStatusList,
+    year,
+    titles,
+    materialType,
+    materialTitle,
+    pid,
+    description,
+    loanDate
+  };
 };
 
 export default {};
