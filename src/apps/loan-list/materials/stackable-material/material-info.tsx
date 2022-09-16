@@ -9,7 +9,7 @@ import { Pid } from "../../../../core/utils/types/ids";
 interface MaterialInfoProps {
   loanMetaData: LoanMetaDataType;
   material: GetMaterialManifestationQuery;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
