@@ -26,11 +26,16 @@ jobs:
         run: yarn install
       - name: Build artifacts
         run: |
+          yarn build:css:prod
           VERSION_FILE_NAME=$GITHUB_REPOSITORY \
           VERSION_FILE_VERSION=$(git describe --tags --exclude=latest) \
-          yarn build
-      - name: Upload
+          yarn build:js:prod --json webpack-stats.json
+      - name: Upload build
         uses: actions/upload-artifact@v1
         with:
           name: dist
           path: dist
+      - name: Upload webpack stats artifact
+        uses: relative-ci/agent-upload-artifact-action@v1
+        with:
+          webpackStatsFile: ./webpack-stats.json
