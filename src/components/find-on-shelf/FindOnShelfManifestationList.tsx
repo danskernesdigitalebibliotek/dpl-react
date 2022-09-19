@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { HoldingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
+import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
 
 export interface FindOnShelfManifestationListProps {
   holding: HoldingsV3;
@@ -14,6 +15,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
 }) => {
   const t = useText();
   const { materials, department, location, sublocation } = holding;
+
   return (
     <ul className="find-on-shelf">
       <li className="find-on-shelf__header-row text-small-caption">
@@ -27,33 +29,13 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
       </li>
       {materials.map((material) => {
         return (
-          <li
-            key={material.itemNumber}
-            className="find-on-shelf__row text-body-medium-regular"
-          >
-            <span className="find-on-shelf__material-text">{title}, 2008</span>
-            <span>
-              {`${department?.title ? `${department.title}` : ""}
-              ${
-                (department?.title && sublocation?.title) ||
-                (department?.title && location?.title)
-                  ? " · "
-                  : ""
-              }
-              ${sublocation ? `${sublocation}` : ""}
-              ${
-                (sublocation?.title && location?.title) ||
-                (department?.title && location?.title)
-                  ? " · "
-                  : ""
-              }
-              ${location ? `${location}` : ""}`}
-            </span>
-            <span className="find-on-shelf__item-count-text">
-              13
-              <span className="hide-visually--on-desktop">hjemme</span>
-            </span>
-          </li>
+          <FindOnShelfManifestationListItem
+            department={department?.title}
+            location={location?.title}
+            sublocation={sublocation?.title}
+            title={title}
+            material={material}
+          />
         );
       })}
     </ul>
