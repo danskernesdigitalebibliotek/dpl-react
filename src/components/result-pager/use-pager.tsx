@@ -22,13 +22,13 @@ const usePager = (
     setitemsShown(itemsOnPage);
   };
 
-  const PagerComponent = (
+  const PagerComponent = hitcount ? (
     <ResultPager
       itemsShown={overrideItemsShown ? overrideItemsShown() : itemsShown}
       hitcount={hitcount}
       setPageHandler={pagehandler}
     />
-  );
+  ) : null;
 
   return { itemsShown, PagerComponent, page };
 };
