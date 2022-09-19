@@ -65,9 +65,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   return (
     <div className="search-result-page">
-      <SearchResultHeader hitcount={String(hitcount)} q={q} />
-      {worksAreLoaded && <SearchResultList resultItems={resultItems} />}
-      {PagerComponent}
+      {worksAreLoaded && (
+        <>
+          <SearchResultHeader hitcount={String(hitcount)} q={q} />
+          <SearchResultList resultItems={resultItems} />
+          {PagerComponent}
+        </>
+      )}
     </div>
   );
 };
