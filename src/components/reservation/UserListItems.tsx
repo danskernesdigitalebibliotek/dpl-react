@@ -60,28 +60,22 @@ const UserListItems: FC<UserListItemsProps> = ({
           changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
-      {phoneNumber && (
-        <>
-          <ReservationFormListItem
-            icon={Subtitles}
-            title={t("receiveSmsWhenMaterialReadyText")}
-            text={stringifyValue(phoneNumber)}
-            changeHandler={openModal("sms")}
-          />
-          <SmsModal patron={patron} />
-        </>
-      )}
-      {emailAddress && (
-        <>
-          <ReservationFormListItem
-            icon={Message}
-            title={t("receiveEmailWhenMaterialReadyText")}
-            text={stringifyValue(emailAddress)}
-            changeHandler={openModal("email")}
-          />
-          <EmailModal patron={patron} />
-        </>
-      )}
+      <>
+        <ReservationFormListItem
+          icon={Subtitles}
+          title={t("receiveSmsWhenMaterialReadyText")}
+          text={stringifyValue(phoneNumber)}
+          changeHandler={openModal("sms")}
+        />
+        <ReservationFormListItem
+          icon={Message}
+          title={t("receiveEmailWhenMaterialReadyText")}
+          text={stringifyValue(emailAddress)}
+          changeHandler={openModal("email")}
+        />
+        <SmsModal patron={patron} />
+        <EmailModal patron={patron} />
+      </>
     </>
   );
 };
