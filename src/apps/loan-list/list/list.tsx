@@ -41,10 +41,8 @@ const List: FC<ListProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const [showModal, setShowModal] = useState<boolean>(false);
 
   const openRenewLoansModal = useCallback(() => {
-    setShowModal(true);
     open(modalIdsConf.allLoansId);
   }, [open]);
 
@@ -123,7 +121,7 @@ const List: FC<ListProps> = ({
           selectModalMaterial={selectModalMaterial}
         />
       )}
-      {showModal && <RenewLoansModal loansModal={loans} />}
+      <RenewLoansModal loansModal={loans} />
     </>
   );
 };

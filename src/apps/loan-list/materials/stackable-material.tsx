@@ -31,7 +31,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const additionalMaterials = amountOfMaterialsWithDueDate
     ? amountOfMaterialsWithDueDate - 1
     : 0;
-  const [showModal, setShowModal] = useState(false);
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
   const { year } = hostPublication || {};
@@ -59,7 +58,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 
   const openDueDateModal = useCallback(() => {
     if (stack && dueDate) {
-      setShowModal(true);
       open(dueDate);
     }
   }, [stack, open, dueDate]);
@@ -200,7 +198,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           </div>
         )}
       </button>
-      {showModal && dueDate && stack && (
+      {dueDate && stack && (
         <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
       )}
     </>

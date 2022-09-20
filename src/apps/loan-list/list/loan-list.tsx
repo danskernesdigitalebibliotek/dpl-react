@@ -19,7 +19,7 @@ import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
 import {
-  mapPBSLoanToLoanMetaDataType,
+  mapFBSLoanToLoanMetaDataType,
   queryMatchesFaust,
   mapPublizonLoanToLoanMetaDataType
 } from "../utils/helpers";
@@ -47,7 +47,7 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      const mapToLoanMetaDataType = mapPBSLoanToLoanMetaDataType(data);
+      const mapToLoanMetaDataType = mapFBSLoanToLoanMetaDataType(data);
 
       // The due dates are used for the stacked materials
       // The stacked materials view shows materials stacked by

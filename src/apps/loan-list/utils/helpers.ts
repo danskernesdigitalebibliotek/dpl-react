@@ -104,7 +104,7 @@ export const mapPublizonLoanToLoanMetaDataType = (
   });
 };
 
-export const mapPBSLoanToLoanMetaDataType = (
+export const mapFBSLoanToLoanMetaDataType = (
   list: LoanV2[]
 ): LoanMetaDataType[] => {
   return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
@@ -120,7 +120,7 @@ export const mapPBSLoanToLoanMetaDataType = (
   });
 };
 
-export const mapPBSRenewedLoanToLoanMetaDataType = (
+export const mapFBSRenewedLoanToLoanMetaDataType = (
   list: RenewedLoanV2[]
 ): LoanMetaDataType[] => {
   return list.map(({ loanDetails }) => {
