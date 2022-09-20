@@ -18,6 +18,7 @@ import {
   ModalReservationFormTextType
 } from "./forms/helper";
 import SmsModal from "./forms/SmsModal";
+import { stringifyValue } from "../../core/utils/helpers/general";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -36,8 +37,6 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const stringifyValue = (value: string | null | undefined) =>
-    value ? String(value) : "";
   const openModal = (type: ModalReservationFormTextType) => () => {
     open(modalReservationFormId(type));
   };

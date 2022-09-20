@@ -1,5 +1,4 @@
-import { QueryClient, UseMutateFunction } from "react-query";
-import { getGetPatronInformationByPatronIdV2QueryKey } from "../../../core/fbs/fbs";
+import { UseMutateFunction } from "react-query";
 import {
   AuthenticatedPatronV6,
   PatronV5,
@@ -68,7 +67,6 @@ type SaveText = {
     },
     unknown
   >;
-  queryClient: QueryClient;
 };
 
 export const saveText = ({
@@ -76,49 +74,48 @@ export const saveText = ({
   changedText,
   savedText,
   patron,
-  mutate,
-  queryClient
+  mutate
 }: SaveText) => {
-  // If we do not have an email address, we do not want to save anything.
-  if (!changedText) {
-    return;
-  }
-  const textDiffers = changedText !== savedText;
-  const updatedPatronData = constructPatronSaveData({
-    type,
-    value: changedText,
-    patron
-  });
+  return new Promise((resolve, reject) => {
+    const textDiffers = changedText !== savedText;
+    const updatedPatronData = constructPatronSaveData({
+      type,
+      value: changedText,
+      patron
+    });
 
-  // If cannot construct the updated patron data or the email address is the same,
-  // we do not want to save anything.
-  if (!updatedPatronData || !textDiffers) {
-    return;
-  }
-
-  // Update user data.
-  mutate(
-    {
-      data: {
-        patron: updatedPatronData
-      }
-    },
-    {
-      onSuccess: (response) => {
-        if (!response) {
-          return;
-        }
-        // If we succeeded in mutating we can cache the new data.
-        queryClient.setQueryData(
-          getGetPatronInformationByPatronIdV2QueryKey(),
-          response
-        );
-      },
-      onError: () => {
-        throw new Error("Error updating patron data");
-      }
+    // If we cannot construct the updated patron data we do not want to save anything.
+    if (!updatedPatronData) {
+      reject(new Error("Cannot construct updated patron data"));
+      return;
     }
-  );
+    // If the email address is the same we do not want to save anything.
+    if (!textDiffers) {
+      resolve("");
+      return;
+    }
+
+    // Update user data.
+    mutate(
+      {
+        data: {
+          patron: updatedPatronData
+        }
+      },
+      {
+        onSuccess: (response) => {
+          if (!response) {
+            reject(new Error("We did not get a response from the server"));
+            return;
+          }
+          resolve(response);
+        },
+        onError: (e) => {
+          reject(e);
+        }
+      }
+    );
+  });
 };
 
 export default {};

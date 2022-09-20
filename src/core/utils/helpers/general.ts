@@ -198,3 +198,5 @@ export const groupObjectArrayByProperty = <
 export const getManifestationsPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
+export const stringifyValue = (value: string | null | undefined) =>
+  value ? String(value) : "";

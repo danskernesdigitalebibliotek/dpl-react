@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useQueryClient } from "react-query";
-import { useUpdateV5 } from "../../../core/fbs/fbs";
+import {
+  getGetPatronInformationByPatronIdV2QueryKey,
+  useUpdateV5
+} from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
+import { stringifyValue } from "../../../core/utils/helpers/general";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
@@ -47,9 +51,7 @@ const ModalReservationFormText = ({
   const { close } = useModalButtonHandler();
   const queryClient = useQueryClient();
   const t = useText();
-  const [text, setText] = useState<string>(
-    defaultText ? String(defaultText) : ""
-  );
+  const [text, setText] = useState<string>(stringifyValue(defaultText));
   const { mutate } = useUpdateV5();
 
   const onChange = (input: string) => {
@@ -62,10 +64,26 @@ const ModalReservationFormText = ({
       changedText: text,
       savedText: defaultText,
       patron,
-      mutate,
-      queryClient
-    });
-    close(modalReservationFormId(type));
+      mutate
+    })
+      .then((response) => {
+        // If we succeeded in saving we can cache the new data.
+        if (response) {
+          queryClient.setQueryData(
+            getGetPatronInformationByPatronIdV2QueryKey(),
+            response
+          );
+        }
+      })
+      .catch((e) => {
+        // If an error ocurred make sure to reset the text to the old value.
+        setText(stringifyValue(defaultText));
+        throw e;
+      })
+      .finally(() => {
+        // Close modal no matter what.
+        close(modalReservationFormId(type));
+      });
   };
 
   const { modalId, screenReaderModalDescriptionText, closeModalAriaLabelText } =
