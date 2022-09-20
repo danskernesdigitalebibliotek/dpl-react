@@ -9,7 +9,7 @@ import {
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { WorkId } from "../../core/utils/types/ids";
+import { Pid, WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -125,7 +125,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <FindOnShelfModal
-                manifestation={manifestation}
+                manifestations={[manifestation]}
+                workTitles={work.titles.full}
+                authors={work.creators}
+                pid={manifestation.pid as Pid}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
               <ReservationModal manifestation={manifestation} />
@@ -156,8 +159,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       )}
       {currentManifestation && (
         <>
-          <FindOnShelfModal manifestation={currentManifestation} />
           <ReservationModal manifestation={currentManifestation} />
+          <FindOnShelfModal
+            manifestations={[currentManifestation]}
+            workTitles={work.titles.full}
+            authors={work.creators}
+          />
         </>
       )}
     </main>

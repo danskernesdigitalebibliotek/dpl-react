@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
+import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { HoldingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
@@ -8,11 +9,13 @@ import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem
 export interface FindOnShelfManifestationListProps {
   holding: HoldingsV3;
   title: string;
+  manifestations: ManifestationsSimpleFieldsFragment[];
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
   holding,
-  title
+  title,
+  manifestations
 }) => {
   const t = useText();
   const { materials, department, location, sublocation } = holding;
@@ -29,13 +32,14 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
           {t("findOnShelfModalListItemCountText")}
         </span>
       </li>
-      {materials.map((material) => {
+      {manifestations.map((manifestation) => {
         return (
           <FindOnShelfManifestationListItem
             department={department?.title}
             location={location?.title}
             sublocation={sublocation?.title}
             title={title}
+            material={materials[0]}
             numberAvailable={numberAvailable}
           />
         );

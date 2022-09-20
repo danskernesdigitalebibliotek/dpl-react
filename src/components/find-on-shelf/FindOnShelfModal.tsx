@@ -1,12 +1,16 @@
 import * as React from "react";
 import { FC } from "react";
-import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  ManifestationsSimpleFieldsFragment,
+  WorkMediumFragment
+} from "../../core/dbc-gateway/generated/graphql";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
-  flattenCreators
+  flattenCreators,
+  getManifestationsPids
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -18,24 +22,34 @@ export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
 
 export interface FindOnShelfModalProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestations: ManifestationsSimpleFieldsFragment[];
+  workTitles: string[];
+  authors: WorkMediumFragment["creators"];
+  pid?: Pid;
 }
 
-const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
+const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
+  manifestations,
+  workTitles,
+  authors,
+  pid
+}) => {
   const t = useText();
-  const {
-    pid,
-    creators,
-    titles: { main: mainTitle }
-  } = manifestation;
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const manifestationsPidArray = getManifestationsPids(manifestations);
+  const modalFaustId = pid ? convertPostIdToFaustId(pid as Pid) : undefined;
+  const modalId = modalFaustId
+    ? findOnShelfModalId(modalFaustId)
+    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid as Pid));
+  const faustIdArray = manifestationsPidArray.map((manifestationPid) =>
+    convertPostIdToFaustId(manifestationPid as Pid)
+  );
   const author =
-    creatorsToString(
-      flattenCreators(filterCreators(creators, ["Person"])),
-      t
-    ) || t("creatorsAreMissingText");
+    creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
+    t("creatorsAreMissingText");
+  const title = workTitles.join(", ");
+
   const { data, isError, isLoading } = useGetHoldingsV3({
-    recordid: [faustId]
+    recordid: faustIdArray
   });
 
   if (isError || !data) {
@@ -44,10 +58,11 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
   }
 
   const { holdings } = data[0];
+  console.log(holdings);
 
   return (
     <Modal
-      modalId={findOnShelfModalId(faustId)}
+      modalId={modalId}
       screenReaderModalDescriptionText={t(
         "findOnShelfModalScreenReaderModalDescriptionText"
       )}
@@ -56,7 +71,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
     >
       <>
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
-          {mainTitle} / {author}
+          {`${title} / ${author}`}
         </h2>
         {isLoading && (
           <p className="text-body-large ml-16 mt-96">{t("loadingText")}</p>
@@ -73,12 +88,13 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({ manifestation }) => {
                 <Disclosure
                   key={holding.branch.branchId}
                   title={holding.branch.title}
-                  faustId={faustId}
+                  faustId={faustIdArray[0]}
                   fullWidth
                 >
                   <FindOnShelfManifestationList
                     holding={holding}
-                    title={mainTitle[0]}
+                    title={title}
+                    manifestations={manifestations}
                   />
                 </Disclosure>
               );
