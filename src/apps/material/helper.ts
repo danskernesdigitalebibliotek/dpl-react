@@ -1,5 +1,5 @@
 import { ListData } from "../../components/material/MaterialDetailsList";
-import { AgencyBranch, HoldingsV3 } from "../../core/fbs/model";
+import { HoldingsV3 } from "../../core/fbs/model";
 import {
   creatorsToString,
   filterCreators,
@@ -131,11 +131,6 @@ export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
     reservationInterestIntervals[lookupKey] ??
     reservationInterestIntervals.default
   );
-};
-
-export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {
-  const locationItem = array.find((item) => item.branchId === id);
-  return locationItem ? locationItem.title : id;
 };
 
 export const totalMaterials = (holdings: HoldingsV3[]) => {

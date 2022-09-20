@@ -97,6 +97,8 @@ interface MaterialEntryTextProps {
   typeText: string;
   weHaveShoppedText: string;
   youHaveBorrowedText: string;
+  modalReservationFormPickupHeaderTitleText: string;
+  modalReservationFormPickupHeaderDescriptionText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

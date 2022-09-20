@@ -1,15 +1,11 @@
-import * as React from "react";
+import React, { FC } from "react";
 import Location from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import Subtitles from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
 import Message from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
 import LoanHistory from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
-import { FC } from "react";
 import { useText } from "../../core/utils/text";
 import ReservationFormListItem from "./ReservationFormListItem";
-import {
-  getNoInterestAfter,
-  getPreferredLocation
-} from "../../apps/material/helper";
+import { getNoInterestAfter } from "../../apps/material/helper";
 import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import EmailModal from "./forms/EmailModal";
@@ -20,11 +16,14 @@ import {
 import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import { smsNotificationsIsEnabled } from "./helper";
+import { smsNotificationsIsEnabled, getPreferredLocationText } from "./helper";
+import PickupModal from "./forms/PickupModal";
 
 export interface UserListItemsProps {
   patron: PatronV5;
-  branchData: AgencyBranch[];
+  branches: AgencyBranch[];
+  selectedBranch: string;
+  selectBranchHandler: (value: string) => void;
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
@@ -35,7 +34,9 @@ const UserListItems: FC<UserListItemsProps> = ({
     phoneNumber,
     emailAddress
   },
-  branchData
+  branches,
+  selectBranchHandler,
+  selectedBranch
 }) => {
   const t = useText();
 
@@ -55,13 +56,24 @@ const UserListItems: FC<UserListItemsProps> = ({
           changeHandler={() => {}} // TODO: open modal to switch user data
         />
       )}
-      {preferredPickupBranch && branchData && (
-        <ReservationFormListItem
-          icon={Location}
-          title={t("pickupLocationText")}
-          text={getPreferredLocation(preferredPickupBranch, branchData)}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
+      {preferredPickupBranch && branches && (
+        <>
+          <ReservationFormListItem
+            icon={Location}
+            title={t("pickupLocationText")}
+            text={getPreferredLocationText(
+              preferredPickupBranch,
+              selectedBranch,
+              branches
+            )}
+            changeHandler={openModal("pickup")}
+          />
+          <PickupModal
+            branches={branches}
+            defaultBranch={selectedBranch}
+            selectBranchHandler={selectBranchHandler}
+          />
+        </>
       )}
       <>
         {smsNotificationsIsEnabled(config) && (

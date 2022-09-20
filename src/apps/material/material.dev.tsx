@@ -479,6 +479,17 @@ export default {
       name: "Et al. Text",
       defaultValue: "et al.",
       control: { type: "text" }
+    },
+    modalReservationFormPickupHeaderTitleText: {
+      name: "Modal reservation form pickup header title",
+      defaultValue: "Ændring af afhentningssted",
+      control: { type: "text" }
+    },
+    modalReservationFormPickupHeaderDescriptionText: {
+      name: "Modal reservation form pickup header description",
+      defaultValue:
+        "Hvis du ønsker at ændre dit afhentningssted kan du vælge et nyt hér.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
