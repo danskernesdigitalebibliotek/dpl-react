@@ -16,7 +16,7 @@ import MaterialDetailsModal from "../modal/material-details-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
 import {
   mapPBSLoanToLoanMetaDataType,

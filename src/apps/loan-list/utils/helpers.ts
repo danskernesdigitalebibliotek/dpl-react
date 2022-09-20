@@ -3,7 +3,7 @@ import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,

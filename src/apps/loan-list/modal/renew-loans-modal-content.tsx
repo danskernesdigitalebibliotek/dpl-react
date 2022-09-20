@@ -8,7 +8,7 @@ import {
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import {
   mapPBSRenewedLoanToLoanMetaDataType,
   getRenewedIds,

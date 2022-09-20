@@ -3,7 +3,7 @@ import {
   GetMaterialManifestationQuery,
   useGetMaterialManifestationQuery
 } from "../../../../core/dbc-gateway/generated/graphql";
-import { LoanMetaDataType } from "../../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
 import { FaustId } from "../../../../core/utils/types/ids";
 
 export interface MaterialDetailsProps {
