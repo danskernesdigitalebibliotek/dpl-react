@@ -42,7 +42,7 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span className="find-on-shelf__item-count-text">
         {numberAvailable}
-        <span className="hide-visually--on-desktop">hjemme</span>
+        <span className="hide-visually--on-desktop"> hjemme</span>
       </span>
     </li>
   );
