@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { CoverProps } from "../../../components/cover/cover";
+import { ManifestationsSimpleFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import configuration, {
   getConf,
   getDeviceConf,
@@ -178,3 +179,9 @@ export const groupObjectArrayByProperty = <
     // Otherwise create new property.
     return { ...result, [key]: [current] };
   }, {} as Result);
+
+export const getManifestationsPids = (
+  manifestations: ManifestationsSimpleFieldsFragment[]
+) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
