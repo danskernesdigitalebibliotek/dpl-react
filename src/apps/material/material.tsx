@@ -161,6 +161,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         <>
           <ReservationModal manifestation={currentManifestation} />
           <FindOnShelfModal
+            // TODO: when we have a selected manifestations group, pass it
+            // down here as manifestations prop
             manifestations={[currentManifestation]}
             workTitles={work.titles.full}
             authors={work.creators}
