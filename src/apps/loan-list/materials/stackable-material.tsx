@@ -28,9 +28,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const [additionalMaterials] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
+  const additionalMaterials = amountOfMaterialsWithDueDate
+    ? amountOfMaterialsWithDueDate - 1
+    : 0;
   const [showModal, setShowModal] = useState(false);
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
