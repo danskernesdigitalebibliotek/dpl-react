@@ -8,7 +8,7 @@ interface ConfigPossibilities {
 export const configTypes: ConfigPossibilities = {
   fbs: "fbsBaseUrl",
   publizon: "publizonBaseUrl"
-};
+} as const;
 
 export const getFectcherUrl = (endpoint: string) => {
   const {
