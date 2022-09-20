@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
