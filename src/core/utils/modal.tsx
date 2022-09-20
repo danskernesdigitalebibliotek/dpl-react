@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
+import clsx from "clsx";
 import { closeModal, openModal } from "../modal.slice";
 
 type ModalId = string;
@@ -45,9 +46,13 @@ function Modal({
 
   return (
     <div
-      className={`modal ${modalIds.includes(modalId) ? "modal-show" : ""} ${
-        classNames || ""
-      }`}
+      className={clsx(
+        "modal",
+        {
+          "modal-show": modalIds.includes(modalId)
+        },
+        classNames
+      )}
       style={{
         // some elements are designed with z-index which means they pop up over the modal
         // so I add 10 to the z-index of the modal
