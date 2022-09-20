@@ -22,17 +22,14 @@ const FindOnShelfManifestationListItem: FC<
   material,
   numberAvailable
 }) => {
-  const { itemNumber } = material;
+  const { itemNumber: faustId } = material;
   const { data } = useGetFindOnShelfManifestationQuery({
-    faustId: itemNumber
+    faustId
   });
   const publicationYear = data?.manifestation?.edition.publicationYear?.year;
 
   return (
-    <li
-      key={itemNumber}
-      className="find-on-shelf__row text-body-medium-regular"
-    >
+    <li key={faustId} className="find-on-shelf__row text-body-medium-regular">
       <span className="find-on-shelf__material-text">
         {title}, {publicationYear || ""}
       </span>
