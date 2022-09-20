@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
 import {
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
@@ -58,7 +59,6 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   }
 
   const { holdings } = data[0];
-  console.log(holdings);
 
   return (
     <Modal
@@ -84,11 +84,13 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
               )}`}
             </div>
             {holdings.map((holding) => {
+              const hasAvailableMaterials =
+                totalAvailableMaterialsInBranch(holding.materials) > 0;
               return (
                 <Disclosure
                   key={holding.branch.branchId}
                   title={holding.branch.title}
-                  faustId={faustIdArray[0]}
+                  isAvailable={hasAvailableMaterials}
                   fullWidth
                 >
                   <FindOnShelfManifestationList
