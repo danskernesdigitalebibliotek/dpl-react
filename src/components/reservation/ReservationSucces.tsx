@@ -33,7 +33,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         </p>
       )}
       <p className="text-body-medium-regular pb-48">
-        {t("reservationSuccesPreferredPickupBranchText")}
+        {t("reservationSuccesPreferredPickupBranchText")}{" "}
         {preferredPickupBranch}.
       </p>
       <Button

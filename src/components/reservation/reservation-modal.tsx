@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
@@ -22,10 +22,7 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import {
-  getPreferredLocation,
-  totalMaterials
-} from "../../apps/material/helper";
+import { totalMaterials } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -34,6 +31,7 @@ import {
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
+import { getPreferredLocation } from "./helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -55,6 +53,7 @@ const ReservationModal = ({
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
+  const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
 
   const t = useText();
   const faustId = convertPostIdToFaustId(pid);
@@ -66,6 +65,14 @@ const ReservationModal = ({
     recordid: [faustId]
   });
 
+  // If the user has a preferred pickup branch, use that as default.
+  useEffect(() => {
+    if (!selectedBranch && userResponse?.data?.patron) {
+      setSelectedBranch(userResponse.data.patron.preferredPickupBranch);
+    }
+  }, [selectedBranch, userResponse]);
+
+  // If we don't have all data for displaying the view render nothing.
   if (!branchResponse.data || !userResponse.data || !holdingsResponse.data) {
     return null;
   }
@@ -84,24 +91,28 @@ const ReservationModal = ({
       t
     ) || t("creatorsAreMissingText");
 
-  const onClick = () => {
-    const batch = {
-      data: {
-        reservations: [
-          {
-            recordId: faustId
-          }
-        ]
+  const saveReservation = () => {
+    // Save reservation to FBS.
+    mutate(
+      {
+        data: {
+          reservations: [
+            {
+              recordId: faustId,
+              ...(selectedBranch ? { pickupBranch: selectedBranch } : {})
+            }
+          ]
+        }
+      },
+      {
+        onSuccess: (res) => {
+          // this state is used to show the success or error modal
+          setReservationResponse(res);
+          // because after a successful reservation the holdings (reservations) are updated
+          queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
+        }
       }
-    };
-    mutate(batch, {
-      onSuccess: (res) => {
-        // this state is used to show the success or error modal
-        setReservationResponse(res);
-        // because after a successful reservation the holdings (reservations) are updated
-        queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
-      }
-    });
+    );
   };
 
   const reservationSuccess = reservationResponse?.success || false;
@@ -165,7 +176,7 @@ const ReservationModal = ({
                 disabled={false}
                 collapsible={false}
                 size="small"
-                onClick={onClick}
+                onClick={saveReservation}
               />
             </div>
             <div className="reservation-modal-list">
@@ -175,8 +186,13 @@ const ReservationModal = ({
                 text={edition?.summary ?? ""}
                 changeHandler={() => {}} // TODO: open modal to switch user data
               />
-              {patron && (
-                <UserListItems patron={patron} branchData={branchData} />
+              {patron && selectedBranch && (
+                <UserListItems
+                  patron={patron}
+                  branches={branchData}
+                  selectedBranch={selectedBranch}
+                  selectBranchHandler={setSelectedBranch}
+                />
               )}
             </div>
           </div>
