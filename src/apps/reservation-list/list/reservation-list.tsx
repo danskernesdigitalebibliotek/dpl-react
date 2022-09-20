@@ -20,7 +20,7 @@ const ReservationList: FC = () => {
   }, [isSuccess, data]);
 
   return (
-    <>
+    <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
       <div className="dpl-list-buttons m-32">
         <h2 className="dpl-list-buttons__header">
@@ -29,11 +29,16 @@ const ReservationList: FC = () => {
         </h2>
       </div>
       {/* Todo */}
-      {reservations.length > 0 &&
-        reservations.map((reservation) => (
-          <ReservationMaterial id={reservation.id} loanMetaData={reservation} />
-        ))}
-    </>
+      <div className="list-reservation-container m-32">
+        {reservations.length > 0 &&
+          reservations.map((reservation) => (
+            <ReservationMaterial
+              id={reservation.id}
+              loanMetaData={reservation}
+            />
+          ))}
+      </div>
+    </div>
   );
 };
 
