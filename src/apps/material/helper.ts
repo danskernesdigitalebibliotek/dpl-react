@@ -140,3 +140,12 @@ export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {
 export const totalMaterials = (holdings: HoldingsV3[]) => {
   return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
 };
+
+export const totalAvailableMaterialsInBranch = (
+  materialsOnBranch: HoldingsV3["materials"]
+) => {
+  return materialsOnBranch.reduce(
+    (acc, curr) => (curr.available ? acc + 1 : acc),
+    0
+  );
+};
