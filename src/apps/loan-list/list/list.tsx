@@ -5,7 +5,8 @@ import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
@@ -20,9 +21,9 @@ export interface ListProps {
     loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
+    loanMetaData: MetaDataType<LoanMetaDataType>;
   }) => void;
-  loans: LoanMetaDataType[];
+  loans: MetaDataType<LoanMetaDataType>[];
   dueDates: string[];
   view: ListView;
   dueDateLabel: string;

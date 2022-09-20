@@ -8,15 +8,16 @@ import {
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import {
-  mapPBSRenewedLoanToLoanMetaDataType,
+  mapFBSRenewedLoanToLoanMetaDataType,
   getRenewedIds,
   removeLoansWithIds
 } from "../utils/helpers";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 interface RenewLoansModalContentProps {
-  loansModal: LoanMetaDataType[];
+  loansModal: MetaDataType<LoanMetaDataType>[];
   buttonLabel: string;
   checkboxLabel: string;
   buttonBottomLabel: string;
@@ -38,8 +39,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<
     number | null
   >(0);
-  const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
-  const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
+  const [loans, setLoans] = useState<MetaDataType<LoanMetaDataType>[]>([]);
+  const [renewedLoans, setRenewedLoans] = useState<
+    MetaDataType<LoanMetaDataType>[]
+  >([]);
 
   const renewSelected = useCallback(() => {
     mutate(
@@ -54,7 +57,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
 
-            setRenewedLoans(mapPBSRenewedLoanToLoanMetaDataType(result));
+            setRenewedLoans(mapFBSRenewedLoanToLoanMetaDataType(result));
           }
         },
         // todo error handling, missing in figma
@@ -121,6 +124,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {renewedLoans.map((loanMetaData) => {
             return (
               <SelectableMaterial
+                id={loanMetaData.id}
                 key={loanMetaData.id}
                 disabled
                 onChecked={onChecked}
@@ -131,10 +135,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {loans.map((loanMetaData) => {
             return (
               <SelectableMaterial
+                id={loanMetaData.id}
                 key={loanMetaData.id}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
-                disabled={!loanMetaData.isRenewable}
+                disabled={!loanMetaData.loanSpecific?.isRenewable}
                 loanMetaData={loanMetaData}
               />
             );

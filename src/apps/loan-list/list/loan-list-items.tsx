@@ -3,12 +3,13 @@ import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 interface LoanListItemProps {
-  loans: LoanMetaDataType[];
+  loans: MetaDataType<LoanMetaDataType>[];
   view: ListView;
   dueDates: string[];
   selectModalMaterial: ({
@@ -16,7 +17,7 @@ interface LoanListItemProps {
     loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
+    loanMetaData: MetaDataType<LoanMetaDataType>;
   }) => void;
   dueDateLabel: string;
 }
@@ -66,6 +67,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
                 <StackableMaterial
                   dueDateLabel={dueDateLabel}
                   loanMetaData={loanMetaData}
+                  id={loanMetaData.id}
                   openModal={openModal}
                   key={loanMetaData.id}
                   selectMaterial={selectModalMaterial}
@@ -80,6 +82,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loanMetaData) => {
           return (
             <StackableMaterial
+              id={loanMetaData.id}
               openModal={false}
               dueDateLabel={dueDateLabel}
               selectMaterial={selectModalMaterial}

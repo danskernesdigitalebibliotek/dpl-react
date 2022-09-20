@@ -1,10 +1,12 @@
 import React, { useEffect, useCallback, FC, MouseEvent } from "react";
-import {
-  FetchMaterial,
-  ReservationMaterialProps,
-  MaterialProps
-} from "../utils/material-fetch-hoc";
+import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import MaterialInfo from "./material-info";
+import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
+import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
+
+export interface ReservationMaterialProps {
+  loanMetaData: MetaDataType<ReservationMetaDataType>;
+}
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   material,
@@ -36,9 +38,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
       onClick={(e) => openDetailsModal(e)}
       className="list-reservation my-32"
     >
-      <MaterialInfo loanMetaData={loanMetaData} material={material} />
+      <MaterialInfo material={material} loanMetaData={loanMetaData} />
     </button>
   );
 };
 
-export default FetchMaterial(ReservationMaterial);
+export default fetchMaterial(ReservationMaterial);

@@ -1,13 +1,19 @@
 import React, { FC } from "react";
-import { formatDate, getAuthorNames } from "../utils/helpers";
+import { formatDate, getAuthorNames, getMaterialInfo } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
-import {
-  FetchMaterial,
-  SelectableMaterialProps,
-  MaterialProps
-} from "./utils/material-fetch-hoc";
+import fetchMaterial, { MaterialProps } from "./utils/material-fetch-hoc";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { FaustId } from "../../../core/utils/types/ids";
+
+interface SelectableMaterialProps {
+  loanMetaData: MetaDataType<LoanMetaDataType>;
+  disabled?: boolean;
+  materialsToRenew?: number[];
+  onChecked?: (faust: FaustId) => void;
+}
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   loanMetaData,
@@ -17,15 +23,17 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   materialsToRenew
 }) => {
   const t = useText();
-  const { dueDate, id, loanType, renewalStatusList } = loanMetaData || {};
-  const { hostPublication, materialTypes, titles, creators } =
-    material?.manifestation || {};
 
-  const { year } = hostPublication || {};
-  const [{ specific }] = materialTypes || [];
   const {
-    main: [mainText]
-  } = titles || { main: [] };
+    creators,
+    year,
+    materialType,
+    materialTitle,
+    loanType,
+    dueDate,
+    id,
+    renewalStatusList
+  } = getMaterialInfo(material, loanMetaData);
 
   return (
     <li>
@@ -51,11 +59,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
-            <div className="status-label status-label--outline ">
-              {specific}
+            <div className="status-label status-label--outline">
+              {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{mainText}</p>
+          <p className="text-header-h5 mt-8">{materialTitle}</p>
           <p className="text-small-caption">
             {creators &&
               getAuthorNames(
@@ -63,7 +71,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 t("loanModalMaterialByAuthorText"),
                 t("loanModalMaterialAndAuthorText")
               )}
-            {year?.year && <> ({year.year})</>}
+            {year && <> ({year})</>}
           </p>
         </div>
         <div className="list-materials__status">
@@ -96,4 +104,4 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default FetchMaterial(SelectableMaterial);
+export default fetchMaterial(SelectableMaterial);

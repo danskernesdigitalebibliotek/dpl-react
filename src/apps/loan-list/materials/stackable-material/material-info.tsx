@@ -1,13 +1,15 @@
 import React, { FC, ReactNode } from "react";
 import { getAuthorNames, getMaterialInfo } from "../../utils/helpers";
-import { LoanMetaDataType } from "../../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
 import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../../core/utils/text";
 import { Cover } from "../../../../components/cover/cover";
 import { Pid } from "../../../../core/utils/types/ids";
+import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
+import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
 
 interface MaterialInfoProps {
-  loanMetaData: LoanMetaDataType;
+  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>;
   material: GetMaterialManifestationQuery;
   children?: ReactNode;
 }
@@ -18,8 +20,9 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   children
 }) => {
   const t = useText();
+
   const { creators, materialType, year, materialTitle, pid, description } =
-    getMaterialInfo(loanMetaData, material);
+    getMaterialInfo(material, loanMetaData);
 
   return (
     <div className="list-reservation__material">

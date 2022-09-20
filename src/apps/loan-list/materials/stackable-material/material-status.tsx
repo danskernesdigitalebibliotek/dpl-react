@@ -1,26 +1,23 @@
 import React, { FC, ReactNode } from "react";
-import { formatDate, getMaterialInfo } from "../../utils/helpers";
-import { LoanMetaDataType } from "../../../../core/utils/helpers/LoanMetaDataType";
-import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { formatDate } from "../../utils/helpers";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
 
 interface MaterialStatusProps {
-  loanMetaData: LoanMetaDataType;
-  material: GetMaterialManifestationQuery;
+  dueDate: string | null | undefined;
+  loanDate: string | null | undefined;
   dueDateLabel: string;
   children: ReactNode;
 }
 
 const MaterialStatus: FC<MaterialStatusProps> = ({
-  loanMetaData,
-  material,
+  dueDate,
+  loanDate,
   dueDateLabel,
   children
 }) => {
   const t = useText();
-  const { dueDate, loanDate } = getMaterialInfo(loanMetaData, material);
 
   if (!dueDate || !loanDate) return <div />;
 

@@ -1,16 +1,21 @@
 import React, { useEffect, useState, FC } from "react";
 import { useText } from "../../../core/utils/text";
 import { useGetReservationsV2 } from "../../../core/fbs/fbs";
-import { ReservationDetailsV2 } from "../../../core/fbs/model/reservationDetailsV2";
+import ReservationMaterial from "../../loan-list/materials/stackable-material/reservation-material";
+import { mapFBSReservationToLoanMetaDataType } from "../../loan-list/utils/helpers";
+import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 const ReservationList: FC = () => {
   const t = useText();
   const { isSuccess, data } = useGetReservationsV2();
-  const [reservations, setReservations] = useState<ReservationDetailsV2[]>([]);
+  const [reservations, setReservations] = useState<
+    MetaDataType<ReservationMetaDataType>[]
+  >([]);
 
   useEffect(() => {
     if (isSuccess && data) {
-      setReservations(data);
+      setReservations(mapFBSReservationToLoanMetaDataType(data));
     }
   }, [isSuccess, data]);
 
@@ -25,7 +30,9 @@ const ReservationList: FC = () => {
       </div>
       {/* Todo */}
       {reservations.length > 0 &&
-        reservations.map(({ reservationId }) => <div>{reservationId}</div>)}
+        reservations.map((reservation) => (
+          <ReservationMaterial id={reservation.id} loanMetaData={reservation} />
+        ))}
     </>
   );
 };

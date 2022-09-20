@@ -1,62 +1,31 @@
-import React, { useEffect, useState, ComponentType } from "react";
+import React, { useEffect, useState, ComponentType, FC } from "react";
 import {
   GetMaterialManifestationQuery,
   useGetMaterialManifestationQuery
 } from "../../../../core/dbc-gateway/generated/graphql";
-import { LoanMetaDataType } from "../../../../core/utils/helpers/LoanMetaDataType";
 import { FaustId } from "../../../../core/utils/types/ids";
-
-export interface MaterialDetailsProps {
-  loanMetaData: LoanMetaDataType;
-}
-
-export interface SelectableMaterialProps {
-  loanMetaData: LoanMetaDataType;
-  disabled?: boolean;
-  materialsToRenew?: number[];
-  onChecked?: (faust: FaustId) => void;
-}
-
-export interface StackableMaterialProps {
-  stack?: LoanMetaDataType[];
-  loanMetaData: LoanMetaDataType;
-  amountOfMaterialsWithDueDate?: number;
-  dueDateLabel?: string;
-  openModal?: boolean;
-  selectMaterial?: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
-  }) => void;
-}
-export interface ReservationMaterialProps {
-  loanMetaData: LoanMetaDataType;
-}
 
 export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
 
-type InputProps = { loanMetaData: LoanMetaDataType } & (
-  | StackableMaterialProps
-  | SelectableMaterialProps
-  | MaterialDetailsProps
-);
-export type WithMaterialProps = MaterialProps &
-  (SelectableMaterialProps | StackableMaterialProps | MaterialDetailsProps);
+type InputProps = {
+  id: FaustId;
+};
 
-export function FetchMaterial(
-  WrappedComponent: ComponentType<WithMaterialProps>
-) {
-  const WithFetchMaterial = ({ loanMetaData, ...props }: InputProps) => {
+const fetchMaterial =
+  <P extends object>(
+    Component: ComponentType<P & MaterialProps>
+  ): FC<P & InputProps> =>
+  ({ id, ...props }: InputProps) => {
     const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
+
     // Todo error handling
     const { isSuccess: isSuccessManifestation, data } =
       useGetMaterialManifestationQuery({
-        faust: loanMetaData?.id
+        faust: id
       });
+
     useEffect(() => {
       if (data && isSuccessManifestation) {
         setMaterial(data);
@@ -66,10 +35,9 @@ export function FetchMaterial(
     return (
       <>
         {material && (
-          <WrappedComponent
-            loanMetaData={loanMetaData}
+          <Component
             /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...props}
+            {...(props as P)}
             material={material}
           />
         )}
@@ -79,7 +47,4 @@ export function FetchMaterial(
     );
   };
 
-  return WithFetchMaterial;
-}
-
-export default FetchMaterial;
+export default fetchMaterial;

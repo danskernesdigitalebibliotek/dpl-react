@@ -8,22 +8,27 @@ import { useText } from "../../../core/utils/text";
 import {
   formatDate,
   getAuthorNames,
+  getMaterialInfo,
   materialIsOverdue
 } from "../utils/helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import { Pid } from "../../../core/utils/types/ids";
 import StatusBadge from "../materials/utils/status-badge";
 import IconCheckmark from "../../../components/icon-checkmark/icon-checkmark";
-import {
-  FetchMaterial,
-  MaterialDetailsProps,
+import fetchMaterial, {
   MaterialProps
 } from "../materials/utils/material-fetch-hoc";
 import WarningBar from "../materials/utils/warning-bar";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface RenewStatusType {
   statusText?: string;
   buttonText: string;
+}
+
+export interface MaterialDetailsProps {
+  loanMetaData: MetaDataType<LoanMetaDataType>;
 }
 
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
@@ -31,20 +36,27 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
+  const { mutate } = useRenewLoansV2();
+
+  const {
+    creators,
+    year,
+    materialType,
+    materialTitle,
+    pid,
+    description,
+    materialItemNumber,
+    dueDate,
+    loanDate,
+    id,
+    isRenewable
+  } = getMaterialInfo(material, loanMetaData);
 
   const [renewStatus, setRenewStatus] = useState<RenewStatusType | null>(null);
-  const { creators, hostPublication, materialTypes, titles, pid } =
-    material?.manifestation || {};
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
-  const { materialItemNumber, dueDate, loanDate, id, isRenewable } =
-    loanMetaData;
   const [dueDateUpdatable, setDueDateUpdatable] = useState<
     string | undefined | null
   >(dueDate);
   const [renewed, setRenewed] = useState<boolean>(false);
-  const { mutate } = useRenewLoansV2();
 
   const determineRenewedStatus = useCallback(
     ({ renewalStatus }: RenewedLoanV2) => {
@@ -110,16 +122,21 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         <div className="modal-details__cover">
           <div className="material-container">
             <span className="material material--large bg-identity-tint-120 material__animate">
-              <Cover pid={pid as Pid} size="large" animate={false} />
+              <Cover
+                pid={pid as Pid}
+                size="large"
+                animate={false}
+                description={description}
+              />
             </span>
           </div>
         </div>
         <div className="modal-details__material">
           {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
             <div className="modal-details__tags">
-              {materialTypes && (
-                <div className="status-label status-label--outline ">
-                  {materialTypes[0].specific}
+              {materialType && (
+                <div className="status-label status-label--outline">
+                  {materialType}
                 </div>
               )}
               <StatusBadge
@@ -128,7 +145,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               />
             </div>
           )}
-          <h2 className="modal-details__title text-header-h2">{mainText}</h2>
+          <h2 className="modal-details__title text-header-h2">
+            {materialTitle}
+          </h2>
           <p className="text-body-medium-regular">
             {creators &&
               getAuthorNames(
@@ -136,7 +155,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
                 t("materialDetailsByAuthorText"),
                 t("materialDetailsAndAuthorText")
               )}
-            {hostPublication?.year && <> ({hostPublication.year.year})</>}
+            {year && <> ({year})</>}
           </p>
         </div>
       </div>
@@ -233,4 +252,4 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   );
 };
 
-export default FetchMaterial(MaterialDetails);
+export default fetchMaterial(MaterialDetails);

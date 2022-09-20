@@ -16,20 +16,23 @@ import MaterialDetailsModal from "../modal/material-details-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
 import {
-  mapPBSLoanToLoanMetaDataType,
+  mapFBSLoanToLoanMetaDataType,
   queryMatchesFaust,
   mapPublizonLoanToLoanMetaDataType
 } from "../utils/helpers";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<string>("list");
-  const [physicalLoans, setPhysicalLoans] = useState<LoanMetaDataType[]>();
-  const [digitalLoans, setDigitalLoans] = useState<LoanMetaDataType[]>();
+  const [physicalLoans, setPhysicalLoans] =
+    useState<MetaDataType<LoanMetaDataType>[]>();
+  const [digitalLoans, setDigitalLoans] =
+    useState<MetaDataType<LoanMetaDataType>[]>();
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
     []
   );
@@ -40,14 +43,14 @@ const LoanList: FC = () => {
     GetMaterialManifestationQuery | null | undefined
   >(null);
   const [modalLoanDetails, setModalLoanDetails] =
-    useState<LoanMetaDataType | null>(null);
+    useState<MetaDataType<LoanMetaDataType> | null>(null);
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
   useEffect(() => {
     if (isSuccess && data) {
-      const mapToLoanMetaDataType = mapPBSLoanToLoanMetaDataType(data);
+      const mapToLoanMetaDataType = mapFBSLoanToLoanMetaDataType(data);
 
       // The due dates are used for the stacked materials
       // The stacked materials view shows materials stacked by
@@ -84,7 +87,7 @@ const LoanList: FC = () => {
     loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
+    loanMetaData: MetaDataType<LoanMetaDataType>;
   }) => {
     setModalMaterial(material);
     setModalLoanDetails(loanMetaData);

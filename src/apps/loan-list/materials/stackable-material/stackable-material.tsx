@@ -1,16 +1,32 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import { useText } from "../../../../core/utils/text";
-import {
-  FetchMaterial,
-  StackableMaterialProps,
-  MaterialProps
-} from "../utils/material-fetch-hoc";
+import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import DueDateLoansModal from "../../modal/due-date-loans-modal";
 import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
+import { getMaterialInfo } from "../../utils/helpers";
+import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
+import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
+import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
+import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+
+interface StackableMaterialProps {
+  stack?: MetaDataType<LoanMetaDataType>[];
+  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>;
+  amountOfMaterialsWithDueDate?: number;
+  dueDateLabel?: string;
+  openModal?: boolean;
+  selectMaterial?: ({
+    material,
+    loanMetaData
+  }: {
+    material: GetMaterialManifestationQuery | undefined | null;
+    loanMetaData: MetaDataType<LoanMetaDataType>;
+  }) => void;
+}
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
@@ -23,11 +39,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const [additionalMaterials] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
+  const additionalMaterials = amountOfMaterialsWithDueDate
+    ? amountOfMaterialsWithDueDate - 1
+    : 0;
+
   const [showModal, setShowModal] = useState(false);
-  const { dueDate, id } = loanMetaData;
+  const { id, dueDate, loanDate } = getMaterialInfo(material, loanMetaData);
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -93,8 +110,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           />
         </MaterialInfo>
         <MaterialStatus
-          loanMetaData={loanMetaData}
-          material={material}
+          dueDate={dueDate}
+          loanDate={loanDate}
           dueDateLabel={dueDateLabel || ""}
         >
           <AdditionalMaterialsButton
@@ -116,4 +133,4 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default FetchMaterial(StackableMaterial);
+export default fetchMaterial(StackableMaterial);

@@ -3,14 +3,18 @@ import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import type { ReservationDetailsV2 } from "../../../core/fbs/model/reservationDetailsV2";
+import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import { FaustId } from "../../../core/utils/types/ids";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
-  list: LoanMetaDataType[]
+  list: MetaDataType<LoanMetaDataType>[]
 ) => {
-  return list.filter(({ dueDate }) => dueDate === date);
+  return list.filter(({ loanSpecific }) => loanSpecific?.dueDate === date);
 };
 
 export const formatDate = (date: string) => {
@@ -21,7 +25,10 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
 
-export const removeLoansWithIds = (list: LoanMetaDataType[], ids: string[]) => {
+export const removeLoansWithIds = (
+  list: MetaDataType<LoanMetaDataType>[],
+  ids: string[]
+) => {
   return list.filter(({ id }) => {
     return ids.indexOf(id) === -1;
   });
@@ -66,11 +73,11 @@ export const queryMatchesFaust = (query: string | null) => {
 
 export const getStackedItems = (
   view: ListView,
-  list: LoanMetaDataType[],
+  list: MetaDataType<LoanMetaDataType>[],
   itemsShown: number,
   dueDates: string[] | undefined | null[]
 ) => {
-  let returnLoans: LoanMetaDataType[] = [];
+  let returnLoans: MetaDataType<LoanMetaDataType>[] = [];
   if (view === "stacked" && dueDates) {
     // I mean... this...
     // If the due date is null, the stacked item still has to be shown
@@ -78,70 +85,109 @@ export const getStackedItems = (
     dueDatesCopy = dueDatesCopy.slice(0, itemsShown);
     dueDatesCopy.forEach((uniqueDueDate) => {
       returnLoans = returnLoans.concat(
-        list.filter(({ dueDate }) => dueDate === uniqueDueDate)
+        list.filter(
+          ({ loanSpecific }) => loanSpecific?.dueDate === uniqueDueDate
+        )
       );
     });
   }
   return returnLoans;
 };
 
-export const getListItems = (list: LoanMetaDataType[], itemsShown: number) => {
+export const getListItems = (
+  list: MetaDataType<LoanMetaDataType>[],
+  itemsShown: number
+) => {
   return [...list].splice(0, itemsShown);
 };
 
 export const mapPublizonLoanToLoanMetaDataType = (
   list: Loan[]
-): LoanMetaDataType[] => {
+): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
     return {
-      dueDate: loanExpireDateUtc,
-      loanDate: orderDateUtc,
-      id: libraryBook?.identifier || "",
-      isRenewable: false,
-      materialItemNumber: libraryBook?.identifier || "",
-      renewalStatusList: [],
-      loanType: null
+      id: libraryBook?.identifier as FaustId,
+      loanSpecific: {
+        dueDate: loanExpireDateUtc,
+        loanDate: orderDateUtc,
+        isRenewable: false,
+        materialItemNumber: libraryBook?.identifier || "",
+        renewalStatusList: [],
+        loanType: null
+      }
     };
   });
 };
 
-export const mapPBSLoanToLoanMetaDataType = (
+export const mapFBSLoanToLoanMetaDataType = (
   list: LoanV2[]
-): LoanMetaDataType[] => {
+): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
     return {
-      dueDate: loanDetails.dueDate,
-      loanDate: loanDetails.loanDate,
-      renewalStatusList,
-      id: loanDetails.recordId,
-      isRenewable,
-      materialItemNumber: loanDetails.materialItemNumber,
-      loanType: loanDetails.loanType
+      id: loanDetails.recordId as FaustId,
+      loanSpecific: {
+        dueDate: loanDetails.dueDate,
+        loanDate: loanDetails.loanDate,
+        renewalStatusList,
+        id: loanDetails.recordId,
+        isRenewable,
+        materialItemNumber: loanDetails.materialItemNumber,
+        loanType: loanDetails.loanType
+      }
     };
   });
 };
 
-export const mapPBSRenewedLoanToLoanMetaDataType = (
+export const mapFBSRenewedLoanToLoanMetaDataType = (
   list: RenewedLoanV2[]
-): LoanMetaDataType[] => {
+): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanDetails }) => {
     return {
-      dueDate: loanDetails.dueDate,
-      loanDate: loanDetails.loanDate,
-      renewalStatusList: [],
-      id: loanDetails.recordId,
-      isRenewable: false,
-      materialItemNumber: loanDetails.materialItemNumber,
-      loanType: loanDetails.loanType
+      id: loanDetails.recordId as FaustId,
+      loanSpecific: {
+        dueDate: loanDetails.dueDate,
+        loanDate: loanDetails.loanDate,
+        renewalStatusList: [],
+        id: loanDetails.recordId,
+        isRenewable: false,
+        materialItemNumber: loanDetails.materialItemNumber,
+        loanType: loanDetails.loanType
+      }
     };
   });
+};
+
+export const mapFBSReservationToLoanMetaDataType = (
+  list: ReservationDetailsV2[]
+): MetaDataType<ReservationMetaDataType>[] => {
+  return list.map(
+    ({ recordId, dateOfReservation, expiryDate, numberInQueue }) => {
+      return {
+        id: recordId as FaustId,
+        reservationSpecific: {
+          dateOfReservation,
+          expiryDate,
+          numberInQueue
+        }
+      };
+    }
+  );
 };
 
 export const getMaterialInfo = (
-  loanMetaData: LoanMetaDataType,
-  material: GetMaterialManifestationQuery | undefined | null
+  material: GetMaterialManifestationQuery | undefined | null,
+  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>
 ) => {
-  const { dueDate, id, loanType, loanDate, renewalStatusList } = loanMetaData;
+  const {
+    materialItemNumber,
+    dueDate,
+    loanType,
+    loanDate,
+    renewalStatusList,
+    isRenewable
+  } = loanMetaData.loanSpecific || {};
+
+  const { id } = loanMetaData;
   const { hostPublication, materialTypes, titles, creators, pid, abstract } =
     material?.manifestation || {};
 
@@ -158,6 +204,8 @@ export const getMaterialInfo = (
   const materialTitle = mainText;
 
   return {
+    isRenewable,
+    materialItemNumber,
     dueDate,
     creators,
     id,
