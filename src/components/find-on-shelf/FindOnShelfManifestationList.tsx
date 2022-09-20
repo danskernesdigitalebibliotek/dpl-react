@@ -41,6 +41,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             title={title}
             material={materials[0]}
             numberAvailable={numberAvailable}
+            key={manifestation.pid}
           />
         );
       })}
