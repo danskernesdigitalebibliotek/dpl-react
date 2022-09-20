@@ -36,22 +36,22 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   pid
 }) => {
   const t = useText();
-  const manifestationsPidArray = getManifestationsPids(manifestations);
-  const modalFaustId = pid ? convertPostIdToFaustId(pid as Pid) : undefined;
-  const modalId = modalFaustId
-    ? findOnShelfModalId(modalFaustId)
-    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid as Pid));
-  const faustIdArray = manifestationsPidArray.map((manifestationPid) =>
+  const pidArray = getManifestationsPids(manifestations);
+  const faustIdArray = pidArray.map((manifestationPid) =>
     convertPostIdToFaustId(manifestationPid as Pid)
   );
+  const { data, isError, isLoading } = useGetHoldingsV3({
+    recordid: faustIdArray
+  });
   const author =
     creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
     t("creatorsAreMissingText");
   const title = workTitles.join(", ");
 
-  const { data, isError, isLoading } = useGetHoldingsV3({
-    recordid: faustIdArray
-  });
+  const modalFaustId = pid ? convertPostIdToFaustId(pid as Pid) : undefined;
+  const modalId = modalFaustId
+    ? findOnShelfModalId(modalFaustId)
+    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid as Pid));
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it
