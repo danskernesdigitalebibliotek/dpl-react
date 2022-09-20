@@ -21,6 +21,7 @@ import fetchMaterial, {
 import WarningBar from "../materials/utils/warning-bar";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 
 interface RenewStatusType {
   statusText?: string;
@@ -28,7 +29,7 @@ interface RenewStatusType {
 }
 
 export interface MaterialDetailsProps {
-  loanMetaData: MetaDataType<LoanMetaDataType>;
+  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>;
 }
 
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({

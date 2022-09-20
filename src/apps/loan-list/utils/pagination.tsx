@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { getStackedItems, getListItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
 import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
@@ -9,13 +8,6 @@ import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type"
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 interface PaginationProps {
-  selectModalMaterial: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: MetaDataType<LoanMetaDataType>;
-  }) => void;
   view: ListView;
   dueDates: string[];
   loans: MetaDataType<LoanMetaDataType>[];
@@ -26,7 +18,6 @@ const Pagination: FC<PaginationProps> = ({
   view,
   dueDates,
   loans,
-  selectModalMaterial,
   dueDateLabel
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<
@@ -65,7 +56,6 @@ const Pagination: FC<PaginationProps> = ({
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}
-        selectModalMaterial={selectModalMaterial}
       />
       {PagerComponent}
     </>

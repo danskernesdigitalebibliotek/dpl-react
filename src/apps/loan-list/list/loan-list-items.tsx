@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
@@ -12,13 +11,6 @@ interface LoanListItemProps {
   loans: MetaDataType<LoanMetaDataType>[];
   view: ListView;
   dueDates: string[];
-  selectModalMaterial: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: MetaDataType<LoanMetaDataType>;
-  }) => void;
   dueDateLabel: string;
 }
 
@@ -26,7 +18,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  selectModalMaterial,
   dueDateLabel
 }) => {
   const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
@@ -70,7 +61,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   id={loanMetaData.id}
                   openModal={openModal}
                   key={loanMetaData.id}
-                  selectMaterial={selectModalMaterial}
                   amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
                   stack={loansUniqueDueDate}
                 />
@@ -85,7 +75,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
               id={loanMetaData.id}
               openModal={false}
               dueDateLabel={dueDateLabel}
-              selectMaterial={selectModalMaterial}
               key={loanMetaData.id}
               loanMetaData={loanMetaData}
             />

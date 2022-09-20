@@ -1,5 +1,4 @@
 import React, { useState, FC, useCallback, useEffect } from "react";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
@@ -16,13 +15,6 @@ import { isDate } from "../../../core/utils/helpers/date";
 export interface ListProps {
   header: string;
   setView: (view: string) => void;
-  selectModalMaterial: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: MetaDataType<LoanMetaDataType>;
-  }) => void;
   loans: MetaDataType<LoanMetaDataType>[];
   dueDates: string[];
   view: ListView;
@@ -32,7 +24,6 @@ export interface ListProps {
 
 const List: FC<ListProps> = ({
   header,
-  selectModalMaterial,
   setView,
   loans,
   dueDates,
@@ -121,7 +112,6 @@ const List: FC<ListProps> = ({
           dueDates={dueDates}
           loans={loans}
           view={view as ListView}
-          selectModalMaterial={selectModalMaterial}
         />
       )}
       {showModal && <RenewLoansModal loansModal={loans} />}

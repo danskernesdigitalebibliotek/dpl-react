@@ -5,10 +5,11 @@ import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generat
 import MaterialDetails from "./material-details";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 
 interface MaterialDetailsModalProps {
   material: GetMaterialManifestationQuery | undefined | null;
-  loanMetaData: MetaDataType<LoanMetaDataType>;
+  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>;
 }
 
 const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({

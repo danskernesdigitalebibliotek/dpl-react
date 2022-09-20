@@ -7,11 +7,12 @@ import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
-import { getMaterialInfo } from "../../utils/helpers";
+import { getMaterialInfo, queryMatchesFaust } from "../../utils/helpers";
 import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
 import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
-import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import MaterialDetailsModal from "../../modal/material-details-modal";
+import { getUrlQueryParam } from "../../../../core/utils/helpers/url";
 
 interface StackableMaterialProps {
   stack?: MetaDataType<LoanMetaDataType>[];
@@ -19,20 +20,12 @@ interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   dueDateLabel?: string;
   openModal?: boolean;
-  selectMaterial?: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: MetaDataType<LoanMetaDataType>;
-  }) => void;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
   material,
   openModal,
-  selectMaterial,
   loanMetaData,
   dueDateLabel,
   stack
@@ -43,7 +36,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
     ? amountOfMaterialsWithDueDate - 1
     : 0;
 
-  const [showModal, setShowModal] = useState(false);
   const { id, dueDate, loanDate } = getMaterialInfo(material, loanMetaData);
 
   function stopPropagationFunction(e: Event | MouseEvent) {
@@ -63,7 +55,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 
   const openDueDateModal = useCallback(() => {
     if (stack && dueDate) {
-      setShowModal(true);
       open(dueDate);
     }
   }, [stack, open, dueDate]);
@@ -77,16 +68,21 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const selectListMaterial = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (selectMaterial) {
-        selectMaterial({
-          material,
-          loanMetaData
-        });
-      }
       open(id);
     },
-    [id, loanMetaData, material, open, selectMaterial]
+    [id, open]
   );
+
+  useEffect(() => {
+    const modalString = getUrlQueryParam("modal");
+
+    // modal query param: details modal faust
+    const faustFound = queryMatchesFaust(modalString);
+
+    if (modalString && faustFound && faustFound === id) {
+      open(faustFound);
+    }
+  }, [id, open]);
 
   return (
     <>
@@ -126,8 +122,11 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           />
         </MaterialStatus>
       </button>
-      {showModal && dueDate && stack && (
+      {dueDate && stack && (
         <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
+      )}
+      {loanMetaData && loanMetaData && (
+        <MaterialDetailsModal loanMetaData={loanMetaData} material={material} />
       )}
     </>
   );

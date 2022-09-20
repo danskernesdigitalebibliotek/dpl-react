@@ -1,32 +1,23 @@
 import React, { useEffect, useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getDueDatesLoan,
   sortByLoanDate
 } from "../../../core/utils/helpers/general";
-import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
-import {
-  ModalIdsProps,
-  useModalButtonHandler
-} from "../../../core/utils/modal";
-import MaterialDetailsModal from "../modal/material-details-modal";
-import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { ModalIdsProps } from "../../../core/utils/modal";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
 import {
   mapFBSLoanToLoanMetaDataType,
-  queryMatchesFaust,
   mapPublizonLoanToLoanMetaDataType
 } from "../utils/helpers";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 
 const LoanList: FC = () => {
-  const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<string>("list");
   const [physicalLoans, setPhysicalLoans] =
@@ -39,11 +30,6 @@ const LoanList: FC = () => {
   const [digitalLoansDueDates, setDigitalLoansDueDates] = useState<string[]>(
     []
   );
-  const [modalMaterial, setModalMaterial] = useState<
-    GetMaterialManifestationQuery | null | undefined
-  >(null);
-  const [modalLoanDetails, setModalLoanDetails] =
-    useState<MetaDataType<LoanMetaDataType> | null>(null);
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -82,40 +68,11 @@ const LoanList: FC = () => {
     }
   }, [publizonData]);
 
-  const selectModalMaterial = ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: MetaDataType<LoanMetaDataType>;
-  }) => {
-    setModalMaterial(material);
-    setModalLoanDetails(loanMetaData);
-  };
-
   useEffect(() => {
-    refetch();
+    if (modalIds.length === 0) {
+      refetch();
+    }
   }, [modalIds?.length, refetch]);
-
-  useEffect(() => {
-    const modalString = getUrlQueryParam("modal");
-
-    // modal query param: details modal faust
-    const faustFound = queryMatchesFaust(modalString);
-
-    if (modalString && faustFound && physicalLoans) {
-      const loanDetailsForModal = physicalLoans.filter(
-        ({ id }) => id === faustFound
-      );
-      setModalLoanDetails(loanDetailsForModal[0]);
-      open(faustFound);
-      return;
-    }
-    // modal query param: modal loans all
-    if (modalString === modalIdsConf.allLoansId) {
-      open(modalIdsConf.allLoansId);
-    }
-  }, [physicalLoans, open]);
 
   return (
     <>
@@ -123,7 +80,6 @@ const LoanList: FC = () => {
       {physicalLoans && (
         <List
           header={t("loanListPhysicalLoansTitleText")}
-          selectModalMaterial={selectModalMaterial}
           dueDateLabel={t("loanListToBeDeliveredText")}
           loans={physicalLoans}
           dueDates={physicalLoansDueDates}
@@ -136,18 +92,11 @@ const LoanList: FC = () => {
         <List
           header={t("loanListDigitalLoansTitleText")}
           dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
-          selectModalMaterial={selectModalMaterial}
           loans={digitalLoans}
           dueDates={digitalLoansDueDates}
           setView={setView}
           view={view as ListView}
           viewToggleable={false}
-        />
-      )}
-      {modalLoanDetails && (
-        <MaterialDetailsModal
-          loanMetaData={modalLoanDetails}
-          material={modalMaterial}
         />
       )}
     </>
