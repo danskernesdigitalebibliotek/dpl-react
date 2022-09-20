@@ -9,11 +9,19 @@ export interface FindOnShelfManifestationListItemProps {
   sublocation: string | undefined;
   title: string;
   material: MaterialV3;
+  numberAvailable: number;
 }
 
 const FindOnShelfManifestationListItem: FC<
   FindOnShelfManifestationListItemProps
-> = ({ department, location, sublocation, title, material }) => {
+> = ({
+  department,
+  location,
+  sublocation,
+  title,
+  material,
+  numberAvailable
+}) => {
   const { itemNumber } = material;
   const { data } = useGetFindOnShelfManifestationQuery({
     faustId: itemNumber
@@ -36,7 +44,7 @@ const FindOnShelfManifestationListItem: FC<
       ${location ? `${location}` : ""}`}
       </span>
       <span className="find-on-shelf__item-count-text">
-        13
+        {numberAvailable}
         <span className="hide-visually--on-desktop">hjemme</span>
       </span>
     </li>
