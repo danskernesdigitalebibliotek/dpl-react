@@ -42,15 +42,16 @@ type ReservationModalProps = {
   manifestation: Manifestation;
 };
 
-const ReservationModal = ({ manifestation }: ReservationModalProps) => {
-  const {
+const ReservationModal = ({
+  manifestation: {
     pid,
     materialTypes,
     creators,
     titles,
     publicationYear,
-    edition: { summary }
-  } = manifestation;
+    edition
+  }
+}: ReservationModalProps) => {
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
@@ -171,7 +172,7 @@ const ReservationModal = ({ manifestation }: ReservationModalProps) => {
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={summary}
+                text={edition?.summary ?? ""}
                 changeHandler={() => {}} // TODO: open modal to switch user data
               />
               {patron && (
