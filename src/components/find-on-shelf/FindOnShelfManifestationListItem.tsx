@@ -25,7 +25,8 @@ const FindOnShelfManifestationListItem: FC<
   return (
     <li className="find-on-shelf__row text-body-medium-regular">
       <span className="find-on-shelf__material-text">
-        {title}, {publicationYear || ""}
+        {title}
+        {publicationYear ? `, ${publicationYear}` : ""}
       </span>
       <span>
         {`${department ? `${department}` : ""}
