@@ -122,6 +122,34 @@
         "description": null,
         "fields": [
           {
+            "name": "loginRequired",
+            "description": "If the resource requires login",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "note",
+            "description": "Notes for the resource",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "origin",
             "description": "The origin, e.g. \"DBC Webarkiv\"",
             "args": [],
@@ -984,6 +1012,30 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "roles",
+            "description": "A list of which kinds of contributions this creator made to this creation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Role",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -2117,6 +2169,12 @@
             "deprecationReason": null
           },
           {
+            "name": "NO_MUNICIPALITY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SERVICE_NOT_LICENSED",
             "description": null,
             "isDeprecated": false,
@@ -2969,13 +3027,9 @@
             "description": "Edition details for this manifestation",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Edition",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Edition",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3806,6 +3860,22 @@
                     "ofType": null
                   }
                 }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bestRepresentation",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Manifestation",
+                "ofType": null
               }
             },
             "isDeprecated": false,
