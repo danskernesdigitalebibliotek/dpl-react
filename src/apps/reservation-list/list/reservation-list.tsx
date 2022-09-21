@@ -15,24 +15,31 @@ import List from "./list";
 
 const ReservationList: FC = () => {
   const t = useText();
-  const { isSuccess, data } = useGetReservationsV2();
 
+  // Date fetch
+  const { isSuccess, data } = useGetReservationsV2();
+  const { data: publizonData } = useGetV1UserReservations();
+
+  // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
     useState<MetaDataType<ReservationMetaDataType>[]>([]);
-  const [reservedReservations, setReservedReservations] = useState<
-    MetaDataType<ReservationMetaDataType>[]
-  >([]);
+
   const [
     readyForPickupReservationsPublizon,
     setReadyForPickupReservationsPublizon
   ] = useState<MetaDataType<ReservationMetaDataType>[]>([]);
+
   const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
     MetaDataType<ReservationMetaDataType>[]
   >([]);
+
   const [reservedReservationsPublizon, setReservedReservationsPublizon] =
     useState<MetaDataType<ReservationMetaDataType>[]>([]);
-  const { data: publizonData } = useGetV1UserReservations();
 
+  // Set digital reservations
+  // The digital "ready for pickup"-reservations are mixed with the
+  // phyiscal "ready for pickup"-reservations. The digital
+  // "reserved"-reservations have their own list
   useEffect(() => {
     if (publizonData && publizonData.reservations) {
       setReadyForPickupReservationsPublizon(
@@ -48,6 +55,10 @@ const ReservationList: FC = () => {
     }
   }, [publizonData]);
 
+  // Set digital reservations
+  // The physical "ready for pickup"-reservations are mixed with the
+  // digital "ready for pickup"-reservations. The phyiscal
+  // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccess && data) {
       setReadyForPickupReservationsFBS(
