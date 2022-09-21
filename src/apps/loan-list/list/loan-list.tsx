@@ -122,6 +122,7 @@ const LoanList: FC = () => {
         <>
           {physicalLoans && (
             <List
+              emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               header={t("loanListPhysicalLoansTitleText")}
               selectModalMaterial={selectModalMaterial}
               dueDateLabel={t("loanListToBeDeliveredText")}
@@ -130,12 +131,12 @@ const LoanList: FC = () => {
               setView={setView}
               view={view as ListView}
               viewToggleable
-              emptyListLabel="todo"
             />
           )}
           {digitalLoans && (
             <List
               header={t("loanListDigitalLoansTitleText")}
+              emptyListLabel={t("loanListDigitalLoansEmptyListText")}
               dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
               selectModalMaterial={selectModalMaterial}
               loans={digitalLoans}
@@ -143,7 +144,6 @@ const LoanList: FC = () => {
               setView={setView}
               view={view as ListView}
               viewToggleable={false}
-              emptyListLabel="todo"
             />
           )}
         </>

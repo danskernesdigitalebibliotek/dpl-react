@@ -240,6 +240,18 @@ export default {
     bottomDueDateRenewLoanModalButtonText: {
       defaultValue: "Forny mulige",
       control: { type: "text" }
+    },
+    loanListDigitalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen digitale lån",
+      control: { type: "text" }
+    },
+    loanListPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen fysiske lån",
+      control: { type: "text" }
+    },
+    loanListDigitalPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket 0 lån",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
