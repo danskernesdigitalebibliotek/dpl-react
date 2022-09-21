@@ -141,11 +141,6 @@ export const totalMaterials = (holdings: HoldingsV3[]) => {
   return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
 };
 
-export const totalAvailableMaterialsInBranch = (
-  materialsOnBranch: HoldingsV3["materials"]
-) => {
-  return materialsOnBranch.reduce(
-    (acc, curr) => (curr.available ? acc + 1 : acc),
-    0
-  );
+export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
+  return materials.reduce((acc, curr) => (curr.available ? acc + 1 : acc), 0);
 };

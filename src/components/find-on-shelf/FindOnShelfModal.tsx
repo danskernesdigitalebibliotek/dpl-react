@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
+import { totalAvailableMaterials } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   convertPostIdToFaustId,
@@ -82,7 +82,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             </div>
             {holdings.map((holding) => {
               const hasAvailableMaterials =
-                totalAvailableMaterialsInBranch(holding.materials) > 0;
+                totalAvailableMaterials(holding.materials) > 0;
               return (
                 <Disclosure
                   key={holding.branch.branchId}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
+import { totalAvailableMaterials } from "../../apps/material/helper";
 import { HoldingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -19,7 +19,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
 }) => {
   const t = useText();
   const { materials, department, location, sublocation } = holding;
-  const numberAvailable = totalAvailableMaterialsInBranch(materials);
+  const numberAvailable = totalAvailableMaterials(materials);
 
   return (
     <ul className="find-on-shelf">
