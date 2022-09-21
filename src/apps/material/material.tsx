@@ -9,7 +9,7 @@ import {
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -128,7 +128,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestations={[manifestation]}
                 workTitles={work.titles.full}
                 authors={work.creators}
-                pid={manifestation.pid as Pid}
+                pid={manifestation.pid}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
               <ReservationModal manifestation={manifestation} />
