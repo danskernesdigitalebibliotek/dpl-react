@@ -22,6 +22,7 @@ const FindOnShelfManifestationListItem: FC<
   numberAvailable
 }) => {
   const t = useText();
+  const locationArray = [department, sublocation, location].filter((el) => el);
 
   return (
     <li className="find-on-shelf__row text-body-medium-regular">
@@ -29,13 +30,7 @@ const FindOnShelfManifestationListItem: FC<
         {title}
         {publicationYear ? `, ${publicationYear}` : ""}
       </span>
-      <span>
-        {`${department ? `${department}` : ""}
-      ${(department && sublocation) || (department && location) ? " · " : ""}
-      ${sublocation ? `${sublocation}` : ""}
-      ${(sublocation && location) || (department && location) ? " · " : ""}
-      ${location ? `${location}` : ""}`}
-      </span>
+      <span>{locationArray.join("· ")}</span>
       <span className="find-on-shelf__item-count-text">
         {numberAvailable}
         <span className="hide-visually--on-desktop">{` ${t(
