@@ -8,6 +8,10 @@ export interface ReservationListProps {
   reservationListReadyText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
+  reservationListYouAreNumberInLineText: string;
+  reservationListExpiresSoonText: string;
+  reservationListInLineText: string;
+  reservationPickUpLatestText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

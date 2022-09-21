@@ -57,7 +57,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
           {pickupDeadline && (
             <div className="list-reservation__deadline">
               <div className="status-label status-label--info">
-                Hent senest {pickupDeadline}
+                {t("reservationPickUpLatestText")} {pickupDeadline}
               </div>
               <p className="text-small-caption">{pickupLibrary}</p>
             </div>
@@ -75,19 +75,22 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
             percent={numberInQueue / 100}
           >
             <span className="counter__value">{numberInQueue}</span>
-            <span className="counter__label">I køen</span>
+            <span className="counter__label">
+              {t("reservationListInLineText")}
+            </span>
           </StatusCircleIcon>
         )}
         <div>
           <div className="list-reservation__deadline">
             {daysBetweenTodayAndDue <= thresholds.warning && (
               <div className="status-label status-label--warning">
-                Udløber snart
+                {t("reservationListExpiresSoonText")}
               </div>
             )}
             {numberInQueue && (
               <p className="text-small-caption">
-                Du er nummer {numberInQueue} i køen
+                {/* todo string interpolation */}
+                {t("reservationListYouAreNumberInLineText")} {numberInQueue}
               </p>
             )}
           </div>

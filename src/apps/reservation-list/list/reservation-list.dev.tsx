@@ -34,6 +34,22 @@ export default {
     materialAndAuthorText: {
       defaultValue: "og",
       control: { type: "text" }
+    },
+    reservationListYouAreNumberInLineText: {
+      defaultValue: "Du er nummer {tal her} i køen",
+      control: { type: "text" }
+    },
+    reservationListExpiresSoonText: {
+      defaultValue: "Udløber snart",
+      control: { type: "text" }
+    },
+    reservationListInLineText: {
+      defaultValue: "I køen",
+      control: { type: "text" }
+    },
+    reservationPickUpLatestText: {
+      defaultValue: "Hent senest",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
