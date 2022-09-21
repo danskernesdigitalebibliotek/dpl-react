@@ -28,7 +28,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
           {t("findOnShelfModalListMaterialText")}
         </span>
         <span>{t("findOnShelfModalListFindOnShelfText")}</span>
-        <span className="find-on-shelf__item-count-header">
+        <span className="find-on-shelf__item-count-header capitalize-first">
           {t("findOnShelfModalListItemCountText")}
         </span>
       </li>

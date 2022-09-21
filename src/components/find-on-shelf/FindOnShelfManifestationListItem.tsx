@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import { useText } from "../../core/utils/text";
 
 export interface FindOnShelfManifestationListItemProps {
   department: string | undefined;
@@ -20,6 +21,8 @@ const FindOnShelfManifestationListItem: FC<
   publicationYear,
   numberAvailable
 }) => {
+  const t = useText();
+
   return (
     <li className="find-on-shelf__row text-body-medium-regular">
       <span className="find-on-shelf__material-text">
@@ -35,7 +38,9 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span className="find-on-shelf__item-count-text">
         {numberAvailable}
-        <span className="hide-visually--on-desktop"> hjemme</span>
+        <span className="hide-visually--on-desktop">{` ${t(
+          "findOnShelfModalListItemCountText"
+        )}`}</span>
       </span>
     </li>
   );
