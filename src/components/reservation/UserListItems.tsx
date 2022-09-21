@@ -19,6 +19,8 @@ import {
 } from "./forms/helper";
 import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
+import { useConfig } from "../../core/utils/config";
+import { smsNotificationsIsEnabled } from "./helper";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -36,6 +38,8 @@ const UserListItems: FC<UserListItemsProps> = ({
   branchData
 }) => {
   const t = useText();
+
+  const config = useConfig();
   const { open } = useModalButtonHandler();
   const openModal = (type: ModalReservationFormTextType) => () => {
     open(modalReservationFormId(type));
@@ -60,19 +64,23 @@ const UserListItems: FC<UserListItemsProps> = ({
         />
       )}
       <>
-        <ReservationFormListItem
-          icon={Subtitles}
-          title={t("receiveSmsWhenMaterialReadyText")}
-          text={stringifyValue(phoneNumber)}
-          changeHandler={openModal("sms")}
-        />
+        {smsNotificationsIsEnabled(config) && (
+          <>
+            <ReservationFormListItem
+              icon={Subtitles}
+              title={t("receiveSmsWhenMaterialReadyText")}
+              text={stringifyValue(phoneNumber)}
+              changeHandler={openModal("sms")}
+            />
+            <SmsModal patron={patron} />
+          </>
+        )}
         <ReservationFormListItem
           icon={Message}
           title={t("receiveEmailWhenMaterialReadyText")}
           text={stringifyValue(emailAddress)}
           changeHandler={openModal("email")}
         />
-        <SmsModal patron={patron} />
         <EmailModal patron={patron} />
       </>
     </>
