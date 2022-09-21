@@ -39,7 +39,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             location={location?.title}
             sublocation={sublocation?.title}
             title={title}
-            material={materials[0]}
+            publicationYear={manifestation.publicationYear.display}
             numberAvailable={numberAvailable}
             key={manifestation.pid}
           />

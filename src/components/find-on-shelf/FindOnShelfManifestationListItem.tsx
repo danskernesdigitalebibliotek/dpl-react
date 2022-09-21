@@ -1,14 +1,12 @@
 import * as React from "react";
 import { FC } from "react";
-import { useGetFindOnShelfManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
-import { MaterialV3 } from "../../core/fbs/model";
 
 export interface FindOnShelfManifestationListItemProps {
   department: string | undefined;
   location: string | undefined;
   sublocation: string | undefined;
   title: string;
-  material: MaterialV3;
+  publicationYear: string;
   numberAvailable: number;
 }
 
@@ -19,7 +17,7 @@ const FindOnShelfManifestationListItem: FC<
   location,
   sublocation,
   title,
-  material,
+  publicationYear,
   numberAvailable
 }) => {
   return (
