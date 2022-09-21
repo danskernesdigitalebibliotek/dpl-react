@@ -21,6 +21,11 @@ export default {
       defaultValue: "work-of:870970-basis:52557240",
       control: { type: "text" }
     },
+    smsNotificationsForReservationsEnabledConfig: {
+      name: "SMS notifications for reservations is enabled",
+      defaultValue: "1",
+      control: { type: "text" }
+    },
     materialHeaderAuthorByText: {
       name: "By (author)",
       defaultValue: "Af ",
