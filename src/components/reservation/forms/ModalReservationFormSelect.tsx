@@ -69,8 +69,8 @@ const ModalReservationFormSelect = ({
             onChange={selectChange}
             defaultValue={selectedItem}
           >
-            <option className="dropdown__option" selected disabled>
-              Choose one
+            <option className="dropdown__option" disabled>
+              {t("chooseOneText")}
             </option>
             {items.map(({ title, branchId }) => (
               <option className="dropdown__option" value={branchId}>

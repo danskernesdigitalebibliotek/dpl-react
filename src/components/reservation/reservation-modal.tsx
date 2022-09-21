@@ -31,7 +31,7 @@ import {
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
-import { getPreferredLocation } from "./helper";
+import { getPreferredBranch } from "./helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -132,7 +132,7 @@ const ReservationModal = ({
         <ReservationSucces
           modalId={reservationModalId(faustId)}
           title={titles.main[0]}
-          preferredPickupBranch={getPreferredLocation(
+          preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branchData
           )}

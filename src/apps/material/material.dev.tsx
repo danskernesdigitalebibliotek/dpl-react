@@ -490,6 +490,11 @@ export default {
       defaultValue:
         "Hvis du ønsker at ændre dit afhentningssted kan du vælge et nyt hér.",
       control: { type: "text" }
+    },
+    chooseOneText: {
+      name: "Choose one text",
+      defaultValue: "Vælg en",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
