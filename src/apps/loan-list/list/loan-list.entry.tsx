@@ -32,10 +32,10 @@ export interface LoanListEntryProps {
   loanListEmptyPhysicalLoansText: string;
   materialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
-  loanListMaterialByAuthorText: string;
+  materialByAuthorText: string;
+  materialAndAuthorText: string;
   loanModalMaterialByAuthorText: string;
   materialDetailsByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
   loanModalMaterialAndAuthorText: string;
   materialDetailsAndAuthorText: string;
   dueDateRenewLoanModalHeaderText: string;

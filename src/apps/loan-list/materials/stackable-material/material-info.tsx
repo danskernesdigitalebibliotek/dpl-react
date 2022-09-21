@@ -46,8 +46,8 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             {creators &&
               getAuthorNames(
                 creators,
-                t("loanListMaterialByAuthorText"),
-                t("loanListMaterialAndAuthorText")
+                t("materialByAuthorText"),
+                t("materialAndAuthorText")
               )}{" "}
             {year && <>({year})</>}
           </p>

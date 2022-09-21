@@ -1,43 +1,84 @@
 import React, { useEffect, useState, FC } from "react";
 import { useText } from "../../../core/utils/text";
 import { useGetReservationsV2 } from "../../../core/fbs/fbs";
-import ReservationMaterial from "../../loan-list/materials/stackable-material/reservation-material";
-import { mapFBSReservationToLoanMetaDataType } from "../../loan-list/utils/helpers";
 import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import {
+  mapFBSReservationToLoanMetaDataType,
+  getReadyForPickup,
+  sortByOldestPickupDeadline,
+  getReserved,
+  mapPublizonReservationToLoanMetaDataType
+} from "../utils/helpers";
+import { useGetV1UserReservations } from "../../../core/publizon/publizon";
+import List from "./list";
 
 const ReservationList: FC = () => {
   const t = useText();
   const { isSuccess, data } = useGetReservationsV2();
-  const [reservations, setReservations] = useState<
+
+  const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
+    useState<MetaDataType<ReservationMetaDataType>[]>([]);
+  const [reservedReservations, setReservedReservations] = useState<
     MetaDataType<ReservationMetaDataType>[]
   >([]);
+  const [
+    readyForPickupReservationsPublizon,
+    setReadyForPickupReservationsPublizon
+  ] = useState<MetaDataType<ReservationMetaDataType>[]>([]);
+  const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
+    MetaDataType<ReservationMetaDataType>[]
+  >([]);
+  const [reservedReservationsPublizon, setReservedReservationsPublizon] =
+    useState<MetaDataType<ReservationMetaDataType>[]>([]);
+  const { data: publizonData } = useGetV1UserReservations();
+
+  useEffect(() => {
+    if (publizonData && publizonData.reservations) {
+      setReadyForPickupReservationsPublizon(
+        getReadyForPickup(
+          mapPublizonReservationToLoanMetaDataType(publizonData.reservations)
+        )
+      );
+      setReservedReservationsPublizon(
+        getReserved(
+          mapPublizonReservationToLoanMetaDataType(publizonData.reservations)
+        )
+      );
+    }
+  }, [publizonData]);
 
   useEffect(() => {
     if (isSuccess && data) {
-      setReservations(mapFBSReservationToLoanMetaDataType(data));
+      setReadyForPickupReservationsFBS(
+        sortByOldestPickupDeadline(
+          getReadyForPickup(mapFBSReservationToLoanMetaDataType(data))
+        )
+      );
+      setReservedReservationsFBS(
+        getReserved(mapFBSReservationToLoanMetaDataType(data))
+      );
     }
   }, [isSuccess, data]);
 
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
-      <div className="dpl-list-buttons m-32">
-        <h2 className="dpl-list-buttons__header">
-          {t("reservationListPhysicalLoansTitleText")}
-          <div className="dpl-list-buttons__power">{reservations.length}</div>
-        </h2>
-      </div>
-      {/* Todo */}
-      <div className="list-reservation-container m-32">
-        {reservations.length > 0 &&
-          reservations.map((reservation) => (
-            <ReservationMaterial
-              id={reservation.id}
-              loanMetaData={reservation}
-            />
-          ))}
-      </div>
+      <List
+        header={t("reservationListReadyForPickupTitleText")}
+        list={sortByOldestPickupDeadline([
+          ...readyForPickupReservationsFBS,
+          ...readyForPickupReservationsPublizon
+        ])}
+      />
+      <List
+        header={t("reservationListPhysicalReservationsHeaderText")}
+        list={reservedReservationsFBS}
+      />
+      <List
+        header={t("reservationListDigitalReservationsHeaderText")}
+        list={reservedReservationsPublizon}
+      />
     </div>
   );
 };

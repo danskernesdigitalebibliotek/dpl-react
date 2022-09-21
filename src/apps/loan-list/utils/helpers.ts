@@ -5,7 +5,6 @@ import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import type { ReservationDetailsV2 } from "../../../core/fbs/model/reservationDetailsV2";
 import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import { FaustId } from "../../../core/utils/types/ids";
@@ -155,23 +154,6 @@ export const mapFBSRenewedLoanToLoanMetaDataType = (
       }
     };
   });
-};
-
-export const mapFBSReservationToLoanMetaDataType = (
-  list: ReservationDetailsV2[]
-): MetaDataType<ReservationMetaDataType>[] => {
-  return list.map(
-    ({ recordId, dateOfReservation, expiryDate, numberInQueue }) => {
-      return {
-        id: recordId as FaustId,
-        reservationSpecific: {
-          dateOfReservation,
-          expiryDate,
-          numberInQueue
-        }
-      };
-    }
-  );
 };
 
 export const getMaterialInfo = (

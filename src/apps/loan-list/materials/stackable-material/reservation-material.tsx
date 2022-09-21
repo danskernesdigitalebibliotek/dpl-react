@@ -3,6 +3,7 @@ import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import MaterialInfo from "./material-info";
 import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
+import ReservationInfo from "./reservation-info";
 
 export interface ReservationMaterialProps {
   loanMetaData: MetaDataType<ReservationMetaDataType>;
@@ -33,13 +34,24 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   }, []);
 
   return (
-    <button
-      type="button"
-      onClick={(e) => openDetailsModal(e)}
-      className="list-reservation my-32"
-    >
-      <MaterialInfo material={material} loanMetaData={loanMetaData} />
-    </button>
+    <div>
+      {loanMetaData.reservationSpecific && (
+        <button
+          type="button"
+          onClick={(e) => openDetailsModal(e)}
+          className="list-reservation my-32"
+        >
+          <MaterialInfo material={material} loanMetaData={loanMetaData} />
+          <ReservationInfo
+            state={loanMetaData.reservationSpecific.state}
+            expiryDate={loanMetaData.reservationSpecific.expiryDate}
+            pickupDeadline={loanMetaData.reservationSpecific.pickupDeadline}
+            pickupBranch={loanMetaData.reservationSpecific.pickupBranch}
+            numberInQueue={loanMetaData.reservationSpecific.numberInQueue}
+          />
+        </button>
+      )}
+    </div>
   );
 };
 

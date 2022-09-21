@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { useText } from "../../../../core/utils/text";
 import statusThreshold from "../../../../core/configuration/status-thresholds.json";
 import colors from "../../../../core/configuration/colors.json";
+import StatusCircleIcon from "./status-circle-icon";
 
 interface StatusCircleProps {
   dueDate: string;
@@ -28,24 +29,12 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   }
 
   return (
-    <div
-      className="list-reservation__counter"
-      aria-label={t("loanListStatusCircleAriaLabelText")}
-    >
-      <div
-        role="progressbar"
-        className="counter"
-        aria-hidden
-        style={{
-          background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${color} ${percent}%, #DBDBDB 0)`
-        }}
-      >
-        <span className="counter__value">
-          {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
-        </span>
-        <span className="counter__label">{t("loanListDaysText")}</span>
-      </div>
-    </div>
+    <StatusCircleIcon color={color} percent={percent}>
+      <span className="counter__value">
+        {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
+      </span>
+      <span className="counter__label">{t("loanListDaysText")}</span>
+    </StatusCircleIcon>
   );
 };
 

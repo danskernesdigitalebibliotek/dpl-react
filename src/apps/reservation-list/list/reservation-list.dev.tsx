@@ -11,8 +11,28 @@ export default {
       defaultValue: "Dine reserveringer",
       control: { type: "text" }
     },
-    reservationListPhysicalLoansTitleText: {
-      defaultValue: "Fysiske reserveringer",
+    reservationListPhysicalReservationsHeaderText: {
+      defaultValue: "Fysiske",
+      control: { type: "text" }
+    },
+    reservationListDigitalReservationsHeaderText: {
+      defaultValue: "Digitale",
+      control: { type: "text" }
+    },
+    reservationListReadyForPickupTitleText: {
+      defaultValue: "Klar til lån",
+      control: { type: "text" }
+    },
+    reservationListReadyText: {
+      defaultValue: "Klar",
+      control: { type: "text" }
+    },
+    materialByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      defaultValue: "og",
       control: { type: "text" }
     }
   },

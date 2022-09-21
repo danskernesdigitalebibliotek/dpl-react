@@ -109,9 +109,12 @@ export default {
       defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
     },
-
-    loanListMaterialByAuthorText: {
+    materialByAuthorText: {
       defaultValue: "Af",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      defaultValue: "og",
       control: { type: "text" }
     },
     loanModalMaterialByAuthorText: {
@@ -120,10 +123,6 @@ export default {
     },
     materialDetailsByAuthorText: {
       defaultValue: "Af",
-      control: { type: "text" }
-    },
-    loanListMaterialAndAuthorText: {
-      defaultValue: "og",
       control: { type: "text" }
     },
     loanModalMaterialAndAuthorText: {
