@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import statusThreshold from "../../../../core/configuration/status-thresholds.json";
+import { getThresholds } from "../../../../core/utils/helpers/general";
 
 interface StatusBadgeProps {
   dueDate: string;
@@ -17,16 +17,17 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 }) => {
   const dueD = dayjs(dueDate);
   const today = dayjs();
+  const thresholds = getThresholds();
 
   const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
 
-  if (daysBetweenTodayAndDue <= statusThreshold.danger && dangerText) {
+  if (daysBetweenTodayAndDue <= thresholds.danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
   }
 
-  if (daysBetweenTodayAndDue <= statusThreshold.warning && warningText) {
+  if (daysBetweenTodayAndDue <= thresholds.warning && warningText) {
     return (
       <div className="status-label status-label--warning">{warningText}</div>
     );

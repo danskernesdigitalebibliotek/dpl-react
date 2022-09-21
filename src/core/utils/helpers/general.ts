@@ -94,6 +94,14 @@ export const getCoverTint = (index: number) => {
   return undefined;
 };
 
+export const getColors = () => {
+  return getConf("colors", configuration);
+};
+
+export const getThresholds = () => {
+  return getConf("statusThreshold", configuration);
+};
+
 export const usePrevious = <Type>(value: Type) => {
   const ref = useRef<Type>();
   useEffect(() => {

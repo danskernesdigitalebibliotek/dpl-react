@@ -3,11 +3,13 @@ import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/ba
 import dayjs from "dayjs";
 import { useText } from "../../../../core/utils/text";
 import StatusCircleIcon from "../utils/status-circle-icon";
-import colors from "../../../../core/configuration/colors.json";
 import { getPreferredLocation } from "../../../material/helper";
 import { useGetBranches } from "../../../../core/fbs/fbs";
 import { AgencyBranch } from "../../../../core/fbs/model";
-import statusThreshold from "../../../../core/configuration/status-thresholds.json";
+import {
+  getColors,
+  getThresholds
+} from "../../../../core/utils/helpers/general";
 
 interface ReservationInfoProps {
   state: string | null | undefined;
@@ -29,6 +31,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   const branchResponse = useGetBranches();
   const dueD = dayjs(expiryDate);
   const today = dayjs();
+  const colors = getColors();
+  const thresholds = getThresholds();
 
   const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
   useEffect(() => {
@@ -45,7 +49,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   if (state === "readyForPickup") {
     return (
       <div className="list-reservation__status">
-        <StatusCircleIcon color={colors.success} percent={100}>
+        <StatusCircleIcon color={colors.success as string} percent={100}>
           <img src={check} alt="" />
           {t("reservationListReadyText")}
         </StatusCircleIcon>
@@ -67,7 +71,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       <div className="list-reservation__status">
         {numberInQueue && (
           <StatusCircleIcon
-            color={colors.default}
+            color={colors.default as string}
             percent={numberInQueue / 100}
           >
             <span className="counter__value">{numberInQueue}</span>
@@ -76,7 +80,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         )}
         <div>
           <div className="list-reservation__deadline">
-            {daysBetweenTodayAndDue <= statusThreshold.warning && (
+            {daysBetweenTodayAndDue <= thresholds.warning && (
               <div className="status-label status-label--warning">
                 Udløber snart
               </div>
