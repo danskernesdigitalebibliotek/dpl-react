@@ -16,7 +16,7 @@ import {
 import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import { smsNotificationsIsEnabled, getPreferredLocationText } from "./helper";
+import { smsNotificationsIsEnabled, getPreferredBranch } from "./helper";
 import PickupModal from "./forms/PickupModal";
 
 export interface UserListItemsProps {
@@ -61,11 +61,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           <ReservationFormListItem
             icon={Location}
             title={t("pickupLocationText")}
-            text={getPreferredLocationText(
-              preferredPickupBranch,
-              selectedBranch,
-              branches
-            )}
+            text={getPreferredBranch(selectedBranch, branches)}
             changeHandler={openModal("pickup")}
           />
           <PickupModal
