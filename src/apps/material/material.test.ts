@@ -35,8 +35,52 @@ describe("Material", () => {
     cy.contains("reserver");
   });
 
+  it("Open modal by clicking on reserver button (reserver Dummy bog) and close it with the x bottom", () => {
+    cy.contains("button:visible", "reserver Dummy bog").click();
+    cy.contains("Afhentes på");
+    cy.contains("Hovedbiblioteket");
+    cy.contains("12345678");
+    cy.contains("test@test.com");
+    cy.get(`[aria-label="Luk reservation modal"]`).click({
+      multiple: true,
+      force: true
+    });
+  });
+
+  it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
+    cy.contains("button:visible", "reserver Dummy bog").click();
+    cy.contains("button:visible", "Godkend reservation").click();
+    cy.contains("Materialet er hjemme og er nu reserveret til dig!");
+    cy.contains("Du er nummer 3 i køen");
+    cy.contains("button:visible", "Ok").click();
+  });
+
   beforeEach(() => {
     cy.visit("/iframe.html?args=&id=apps-material--material");
+
+    cy.fixture("material/reservations.json")
+      .then((result) => {
+        cy.intercept("POST", "**/patrons/patronid/reservations/**", result);
+      })
+      .as("reservations");
+
+    cy.fixture("material/holdings.json")
+      .then((result) => {
+        cy.intercept("GET", "**/agencyid/catalog/holdings/**", result);
+      })
+      .as("holdings");
+
+    cy.fixture("material/branches.json")
+      .then((result) => {
+        cy.intercept("GET", "**/agencyid/branches", result);
+      })
+      .as("branches");
+
+    cy.fixture("material/user.json")
+      .then((result) => {
+        cy.intercept("GET", "**/agencyid/patrons/patronid/v2", result);
+      })
+      .as("user");
 
     // Intercept graphql search query.
     cy.fixture("material/fbi-api.json")
