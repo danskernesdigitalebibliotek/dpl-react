@@ -13,9 +13,3 @@ query getInfomedia ($id: String!) {
     }
   }
 }
-
-query getFindOnShelfManifestation ($faustId: String!) {
-  manifestation(faust: $faustId) {
-    ...ManifestationFindOnShelfFields
-  }
-}

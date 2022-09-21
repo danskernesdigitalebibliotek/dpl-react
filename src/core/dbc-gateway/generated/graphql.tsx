@@ -1373,24 +1373,6 @@ export type GetInfomediaQuery = {
   };
 };
 
-export type GetFindOnShelfManifestationQueryVariables = Exact<{
-  faustId: Scalars["String"];
-}>;
-
-export type GetFindOnShelfManifestationQuery = {
-  __typename?: "Query";
-  manifestation?: {
-    __typename?: "Manifestation";
-    edition: {
-      __typename?: "Edition";
-      publicationYear?: {
-        __typename?: "PublicationYear";
-        year?: number | null;
-      } | null;
-    };
-  } | null;
-};
-
 export type SearchWithPaginationQueryVariables = Exact<{
   q: SearchQuery;
   offset: Scalars["Int"];
@@ -1769,17 +1751,6 @@ export type ManifestationsSimpleFieldsFragment = {
   >;
 };
 
-export type ManifestationFindOnShelfFieldsFragment = {
-  __typename?: "Manifestation";
-  edition: {
-    __typename?: "Edition";
-    publicationYear?: {
-      __typename?: "PublicationYear";
-      year?: number | null;
-    } | null;
-  };
-};
-
 export type SeriesSimpleFragment = {
   __typename?: "Series";
   title: string;
@@ -2143,15 +2114,6 @@ export type WorkMediumFragment = {
   };
 };
 
-export const ManifestationFindOnShelfFieldsFragmentDoc = `
-    fragment ManifestationFindOnShelfFields on Manifestation {
-  edition {
-    publicationYear {
-      year
-    }
-  }
-}
-    `;
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
@@ -2409,28 +2371,6 @@ export const useGetInfomediaQuery = <
       GetInfomediaDocument,
       variables
     ),
-    options
-  );
-export const GetFindOnShelfManifestationDocument = `
-    query getFindOnShelfManifestation($faustId: String!) {
-  manifestation(faust: $faustId) {
-    ...ManifestationFindOnShelfFields
-  }
-}
-    ${ManifestationFindOnShelfFieldsFragmentDoc}`;
-export const useGetFindOnShelfManifestationQuery = <
-  TData = GetFindOnShelfManifestationQuery,
-  TError = unknown
->(
-  variables: GetFindOnShelfManifestationQueryVariables,
-  options?: UseQueryOptions<GetFindOnShelfManifestationQuery, TError, TData>
-) =>
-  useQuery<GetFindOnShelfManifestationQuery, TError, TData>(
-    ["getFindOnShelfManifestation", variables],
-    fetcher<
-      GetFindOnShelfManifestationQuery,
-      GetFindOnShelfManifestationQueryVariables
-    >(GetFindOnShelfManifestationDocument, variables),
     options
   );
 export const SearchWithPaginationDocument = `
