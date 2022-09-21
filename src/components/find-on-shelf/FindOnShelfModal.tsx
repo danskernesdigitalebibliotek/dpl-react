@@ -1,10 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
 import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
-import {
-  ManifestationsSimpleFieldsFragment,
-  WorkMediumFragment
-} from "../../core/dbc-gateway/generated/graphql";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   convertPostIdToFaustId,
@@ -15,6 +11,7 @@ import {
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId, Pid } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
@@ -23,9 +20,9 @@ export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
 
 export interface FindOnShelfModalProps {
-  manifestations: ManifestationsSimpleFieldsFragment[];
+  manifestations: Manifestation[];
   workTitles: string[];
-  authors: WorkMediumFragment["creators"];
+  authors: Work["creators"];
   pid?: Pid;
 }
 

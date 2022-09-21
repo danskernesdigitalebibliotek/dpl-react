@@ -1,15 +1,15 @@
 import * as React from "react";
 import { FC } from "react";
 import { totalAvailableMaterialsInBranch } from "../../apps/material/helper";
-import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { HoldingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
+import { Manifestation } from "../../core/utils/types/entities";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
 
 export interface FindOnShelfManifestationListProps {
   holding: HoldingsV3;
   title: string;
-  manifestations: ManifestationsSimpleFieldsFragment[];
+  manifestations: Manifestation[];
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
