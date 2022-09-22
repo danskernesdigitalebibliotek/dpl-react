@@ -46,6 +46,7 @@ interface MaterialEntryTextProps {
   librariesHaveTheMaterialText: string;
   loadingText: string;
   loginToSeeReviewText: string;
+  materialHeaderAllEditionsText: string;
   materialHeaderAuthorByText: string;
   materialIsIncludedText: string;
   materialIsLoanedOutText: string;
@@ -54,6 +55,8 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
   modalReservationFormEmailInputFieldLabelText: string;
+  modalReservationFormPickupHeaderDescriptionText: string;
+  modalReservationFormPickupHeaderTitleText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
@@ -97,8 +100,6 @@ interface MaterialEntryTextProps {
   typeText: string;
   weHaveShoppedText: string;
   youHaveBorrowedText: string;
-  modalReservationFormPickupHeaderTitleText: string;
-  modalReservationFormPickupHeaderDescriptionText: string;
   chooseOneText: string;
   modalReservationFormNoInterestAfterHeaderTitleText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;

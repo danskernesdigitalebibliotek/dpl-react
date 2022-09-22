@@ -2,7 +2,14 @@ import dayjs from "dayjs";
 import { UseConfigFunction } from "../../core/utils/config";
 import { UseTextFunction } from "../../core/utils/text";
 import { AgencyBranch, CreateReservationBatchV2 } from "../../core/fbs/model";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  creatorsToString,
+  filterCreators,
+  flattenCreators,
+  materialIsFiction
+} from "../../core/utils/helpers/general";
+import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
@@ -46,12 +53,6 @@ const constructReservation = ({ pid }: Manifestation) => {
 
   return { recordId: faustId };
 };
-
-// const constructParallelReservation = (manifestation: Manifestation) => {
-
-//   return { ...constructReservation(manifestation), type };
-// };
-
 const constructReservations = (manifestations: Manifestation[]) =>
   manifestations.map((manifestation) => constructReservation(manifestation));
 
@@ -70,6 +71,27 @@ export const constructReservationData = ({
     ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
     ...(expiryDate ? { expiryDate } : {})
   };
+};
+
+export const getAuthorLine = (
+  manifestation: Manifestation,
+  t: UseTextFunction
+) => {
+  const { creators, publicationYear } = manifestation;
+  const author =
+    creatorsToString(
+      flattenCreators(filterCreators(creators, ["Person"])),
+      t
+    ) || t("creatorsAreMissingText");
+
+  let year = "";
+  if (publicationYear) {
+    year = `(${publicationYear.display})`;
+  }
+  if (materialIsFiction(manifestation)) {
+    year = `(${t("materialHeaderAllEditionsText")})`;
+  }
+  return [t("materialHeaderAuthorByText"), author, year].join(" ");
 };
 
 export default {};

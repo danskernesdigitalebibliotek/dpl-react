@@ -26,6 +26,11 @@ export default {
       defaultValue: "1",
       control: { type: "text" }
     },
+    materialHeaderAllEditionsText: {
+      name: "Text for the fiction edition text",
+      defaultValue: "All editions",
+      control: { type: "text" }
+    },
     materialHeaderAuthorByText: {
       name: "By (author)",
       defaultValue: "Af ",
