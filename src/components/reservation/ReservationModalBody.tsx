@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
-import {
-  convertPostIdToFaustId,
-  creatorsToString,
-  filterCreators,
-  flattenCreators
-} from "../../core/utils/helpers/general";
+import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId } from "../../core/utils/types/ids";
@@ -35,9 +30,10 @@ import {
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
-  getPreferredBranch,
   getFutureDateString,
-  constructReservationData
+  getPreferredBranch,
+  constructReservationData,
+  getAuthorLine
 } from "./helper";
 import UseAvailableManifestations from "../../core/utils/UseAvailableManifestations";
 
@@ -51,14 +47,7 @@ type ReservationModalProps = {
 
 const ReservationModalBody = ({
   mainManifestation,
-  mainManifestation: {
-    pid,
-    materialTypes,
-    titles,
-    edition,
-    creators,
-    publicationYear
-  },
+  mainManifestation: { pid, materialTypes, titles, edition },
   parallelManifestations
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
@@ -106,12 +95,7 @@ const ReservationModalBody = ({
   };
   const { reservations, holdings } = holdingsData[0];
   const { patron } = userData;
-
-  const author =
-    creatorsToString(
-      flattenCreators(filterCreators(creators, ["Person"])),
-      t
-    ) || t("creatorsAreMissingText");
+  const authorLine = getAuthorLine(mainManifestation, t);
 
   const saveReservation = () => {
     if (!availableManifestations) {
@@ -181,10 +165,7 @@ const ReservationModalBody = ({
                 {materialTypes[0].specific}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
-              <p className="text-body-medium-regular">
-                {t("materialHeaderAuthorByText")} {author} (
-                {publicationYear.display})
-              </p>
+              <p className="text-body-medium-regular">{authorLine}</p>
             </div>
           </header>
           <div>
@@ -225,6 +206,25 @@ const ReservationModalBody = ({
             </div>
           </div>
         </section>
+      )}
+
+      {reservationSuccess && reservationDetails && (
+        <ReservationSucces
+          modalId={reservationModalId(faustId)}
+          title={titles.main[0]}
+          preferredPickupBranch={getPreferredBranch(
+            reservationDetails.pickupBranch,
+            branchData
+          )}
+          numberInQueue={reservationDetails.numberInQueue}
+        />
+      )}
+
+      {!reservationSuccess && reservationResult && (
+        <ReservationError
+          reservationResult={reservationResult}
+          setReservationResponse={setReservationResponse}
+        />
       )}
     </Modal>
   );
