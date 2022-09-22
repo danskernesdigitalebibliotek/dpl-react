@@ -403,6 +403,11 @@ export default {
       defaultValue: "hjemme",
       control: { type: "text" }
     },
+    findOnShelfModalNoLocationSpecifiedText: {
+      name: "No location for find on shelf specified",
+      defaultValue: "-",
+      control: { type: "text" }
+    },
     numberInQueueText: {
       name: "Number in queue text",
       defaultValue: "Du er nummer",
