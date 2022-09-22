@@ -73,7 +73,8 @@ export default {
               __typename: "InterLibraryLoan",
               loanIsPossible: true
             }
-          ]
+          ],
+          shelfmark: null
         },
         {
           pid: "870970-basis:52643414",
@@ -139,7 +140,8 @@ export default {
               __typename: "InterLibraryLoan",
               loanIsPossible: true
             }
-          ]
+          ],
+          shelfmark: { postfix: "Postfix, 24", shelfmark: "60.7" }
         }
       ],
       control: { type: "object" }
