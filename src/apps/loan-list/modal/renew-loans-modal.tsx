@@ -16,7 +16,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
   return (
     <Modal
       modalId={modalIdsConf.allLoansId}
-      additionalClasses="modal-loan"
+      classNames="modal-loan"
       closeModalAriaLabelText={t("renewLoanModalCloseModalText")}
       screenReaderModalDescriptionText={t("renewLoanModalDescriptionText")}
     >
