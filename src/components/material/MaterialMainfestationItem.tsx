@@ -80,7 +80,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     },
     {
       label: t("isbnText"),
-      value: identifiers?.[0].value ?? "",
+      value: identifiers?.[0]?.value ?? "",
       type: "standard"
     },
     {
