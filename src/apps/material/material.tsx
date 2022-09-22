@@ -128,7 +128,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestations={[manifestation]}
                 workTitles={manifestation.titles.main}
                 authors={manifestation.creators}
-                pid={manifestation.pid}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
               <ReservationModal manifestation={manifestation} />

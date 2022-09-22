@@ -24,14 +24,12 @@ export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
   workTitles: string[];
   authors: Work["creators"];
-  pid?: Pid;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   manifestations,
   workTitles,
-  authors,
-  pid
+  authors
 }) => {
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
@@ -45,11 +43,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
     t("creatorsAreMissingText");
   const title = workTitles.join(", ");
-
-  const modalFaustId = pid ? convertPostIdToFaustId(pid) : undefined;
-  const modalId = modalFaustId
-    ? findOnShelfModalId(modalFaustId)
-    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid));
+  const modalId = findOnShelfModalId(
+    convertPostIdToFaustId(manifestations[0].pid)
+  );
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.

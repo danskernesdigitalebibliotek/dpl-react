@@ -3,7 +3,6 @@ import React from "react";
 import materialDev from "../../apps/material/material.dev";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
-import { Pid } from "../../core/utils/types/ids";
 import MaterialButtonsFindOnShelf from "../material/material-buttons/physical/MaterialButtonsFindOnShelf";
 import FindOnShelfModal, { FindOnShelfModalProps } from "./FindOnShelfModal";
 import { mockedManifestationData } from "./mocked-data";
@@ -45,14 +44,16 @@ export default {
 export const Default: ComponentStory<typeof FindOnShelfModal> = (
   args: FindOnShelfModalProps
 ) => {
-  const { pid } = args;
+  const {
+    manifestations: [{ pid }]
+  } = args;
   const FindOnShelfModalWithText = withText(FindOnShelfModal);
 
   return (
     <>
       <MaterialButtonsFindOnShelf
         size="small"
-        faustIds={[convertPostIdToFaustId(pid as Pid)]}
+        faustIds={[convertPostIdToFaustId(pid)]}
       />
       <FindOnShelfModalWithText {...args} />
     </>
