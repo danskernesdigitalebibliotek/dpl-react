@@ -126,8 +126,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               />
               <FindOnShelfModal
                 manifestations={[manifestation]}
-                workTitles={work.titles.full}
-                authors={work.creators}
+                workTitles={manifestation.titles.main}
+                authors={manifestation.creators}
                 pid={manifestation.pid}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
