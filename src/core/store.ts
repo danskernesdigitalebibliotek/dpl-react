@@ -25,7 +25,7 @@ import guardedRequestsReducer from "./guardedRequests.slice";
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text", "url", "config"]
+  blacklist: ["text", "url", "modal", "config"]
 };
 
 export const store = configureStore({
