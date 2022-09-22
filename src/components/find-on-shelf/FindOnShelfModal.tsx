@@ -57,15 +57,14 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   }
 
   // Transforming holdings data & manifestation data so we can render it.
-  const pairedManifestationsWithBranches: ManifestationHoldings = [];
-  for (let i = 0; i < data.length; i += 1) {
-    for (let j = 0; j < data[i].holdings.length; j += 1) {
-      pairedManifestationsWithBranches.push({
-        manifestation: manifestations[i],
-        holding: data[i].holdings[j]
+  const pairedManifestationsWithBranches: ManifestationHoldings = data
+    .map((holdingsPerManifestation, index) => {
+      return holdingsPerManifestation.holdings.map((holding) => {
+        const manifestation = manifestations[index];
+        return { manifestation, holding };
       });
-    }
-  }
+    })
+    .flat();
   console.log({ pairedManifestationsWithBranches });
   const allBranches = data
     .map((item) => item.holdings.map((holding) => holding.branch.branchId))
