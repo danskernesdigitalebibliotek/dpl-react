@@ -26,7 +26,6 @@ import {
   getPreferredLocation,
   totalMaterials
 } from "../../apps/material/helper";
-import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -34,7 +33,7 @@ import {
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
-import { Manifestation, Work } from "../../core/utils/types/entities";
+import { Manifestation } from "../../core/utils/types/entities";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
