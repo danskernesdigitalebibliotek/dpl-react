@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { totalAvailableMaterials } from "../../apps/material/helper";
+import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   convertPostIdToFaustId,
@@ -12,6 +12,7 @@ import {
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
 import { FaustId, Pid } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
@@ -51,11 +52,36 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid as Pid));
 
   if (isError || !data) {
-    // TODO: handle error once we have established a way to do it
+    // TODO: handle error once we have established a way to do it.
     return null;
   }
 
-  const { holdings } = data[0];
+  // Transforming holdings data & manifestation data so we can render it.
+  const pairedManifestationsWithBranches: ManifestationHoldings = [];
+  for (let i = 0; i < data.length; i += 1) {
+    for (let j = 0; j < data[i].holdings.length; j += 1) {
+      pairedManifestationsWithBranches.push({
+        manifestation: manifestations[i],
+        holding: data[i].holdings[j]
+      });
+    }
+  }
+  console.log({ pairedManifestationsWithBranches });
+  const allBranches = data
+    .map((item) => item.holdings.map((holding) => holding.branch.branchId))
+    .flat();
+  const uniqueBranches = Array.from(new Set(allBranches));
+  console.log({ uniqueBranches });
+  // Grouping pairedManifestationsWithBranches objects based on same branch
+  // gives us the desired data structure to render.
+  const finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
+    return pairedManifestationsWithBranches.filter(
+      (manifestationWithBranch) => {
+        return manifestationWithBranch.holding.branch.branchId === branch;
+      }
+    );
+  });
+  console.log({ finalData });
 
   return (
     <Modal
@@ -76,24 +102,20 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         {!isLoading && (
           <>
             <div className="text-small-caption modal-find-on-shelf__caption">
-              {`${data[0].holdings.length} ${t(
-                "librariesHaveTheMaterialText"
-              )}`}
+              {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
             </div>
-            {holdings.map((holding) => {
-              const hasAvailableMaterials =
-                totalAvailableMaterials(holding.materials) > 0;
+            {finalData.map((libraryBranch) => {
               return (
                 <Disclosure
-                  key={holding.branch.branchId}
-                  title={holding.branch.title}
-                  isAvailable={hasAvailableMaterials}
+                  key={libraryBranch[0].holding.branch.branchId}
+                  title={libraryBranch[0].holding.branch.title}
+                  isAvailable={isAnyManifestationAvailableOnBranch(
+                    libraryBranch
+                  )}
                   fullWidth
                 >
                   <FindOnShelfManifestationList
-                    holding={holding}
-                    title={title}
-                    manifestations={manifestations}
+                    libraryBranchHoldings={libraryBranch}
                   />
                 </Disclosure>
               );

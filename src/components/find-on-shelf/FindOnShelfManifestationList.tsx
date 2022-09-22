@@ -1,25 +1,18 @@
 import * as React from "react";
 import { FC } from "react";
 import { totalAvailableMaterials } from "../../apps/material/helper";
-import { HoldingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
-import { Manifestation } from "../../core/utils/types/entities";
+import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
 
 export interface FindOnShelfManifestationListProps {
-  holding: HoldingsV3;
-  title: string;
-  manifestations: Manifestation[];
+  libraryBranchHoldings: ManifestationHoldings;
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
-  holding,
-  title,
-  manifestations
+  libraryBranchHoldings
 }) => {
   const t = useText();
-  const { materials, department, location, sublocation } = holding;
-  const numberAvailable = totalAvailableMaterials(materials);
 
   return (
     <ul className="find-on-shelf">
@@ -32,16 +25,20 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
           {t("findOnShelfModalListItemCountText")}
         </span>
       </li>
-      {manifestations.map((manifestation) => {
+      {libraryBranchHoldings.map((branchHolding) => {
         return (
           <FindOnShelfManifestationListItem
-            department={department?.title}
-            location={location?.title}
-            sublocation={sublocation?.title}
-            title={title}
-            publicationYear={manifestation.publicationYear.display}
-            numberAvailable={numberAvailable}
-            key={manifestation.pid}
+            department={branchHolding.holding.department?.title}
+            location={branchHolding.holding.location?.title}
+            sublocation={branchHolding.holding.sublocation?.title}
+            title={branchHolding.manifestation.titles.main.join(", ")}
+            publicationYear={
+              branchHolding.manifestation.publicationYear.display
+            }
+            numberAvailable={totalAvailableMaterials(
+              branchHolding.holding.materials
+            )}
+            key={branchHolding.holding.branch.branchId}
           />
         );
       })}
