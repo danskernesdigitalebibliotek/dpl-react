@@ -45,7 +45,7 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span>
         {locationArray.length
-          ? locationArray.join("· ")
+          ? locationArray.join(" · ")
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text">
