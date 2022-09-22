@@ -26,12 +26,12 @@ const FindOnShelfManifestationListItem: FC<
 }) => {
   const t = useText();
 
-  const shelfmarkString = shelfmark
+  const shelfmarkFullText = shelfmark
     ? `${shelfmark.shelfmark} ${shelfmark.postfix}`
     : undefined;
 
   const locationArray = [
-    shelfmarkString,
+    shelfmarkFullText,
     department,
     sublocation,
     location
