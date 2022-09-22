@@ -1,5 +1,6 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
+import { hardcodedInterestPeriods } from "../helper";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 
 export interface PickupModalProps {
@@ -13,37 +14,23 @@ const NoInterestAfterModal = ({
 }: PickupModalProps) => {
   const t = useText();
 
-  const hardcodedInterestPeriods = [
-    {
-      branchId: "30",
-      title: t("oneMonthText")
-    },
-    {
-      branchId: "60",
-      title: t("twoMonthsText")
-    },
-    {
-      branchId: "90",
-      title: t("threeMonthsText")
-    },
-    {
-      branchId: "180",
-      title: t("sixMonthsText")
-    },
-    {
-      branchId: "360",
-      title: t("oneYearText")
-    }
-  ];
+  const formatInterestPeriods = Object.entries(hardcodedInterestPeriods(t)).map(
+    ([key, value]) => ({
+      value: key,
+      label: value
+    })
+  );
 
   return (
     <ModalReservationFormSelect
       type="interestPeriod"
       header={{
         title: t("modalReservationFormNoInterestAfterHeaderTitleText"),
-        description: [t("modalReservationFormNoInterestAfterHeaderDescriptionText")]
+        description: [
+          t("modalReservationFormNoInterestAfterHeaderDescriptionText")
+        ]
       }}
-      items={hardcodedInterestPeriods}
+      items={formatInterestPeriods}
       defaultSelectedItem={selectedInterest}
       selectHandler={setSelectedInterest}
     />

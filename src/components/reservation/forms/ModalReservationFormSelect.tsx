@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
 import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { AgencyBranch } from "../../../core/fbs/model";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
@@ -12,7 +11,7 @@ export interface ModalReservationFormSelectProps {
     title: string;
     description: string[];
   };
-  items: AgencyBranch[];
+  items: { label: string; value: string }[];
   defaultSelectedItem: string;
   selectHandler: (value: string) => void;
 }
@@ -72,9 +71,9 @@ const ModalReservationFormSelect = ({
             <option className="dropdown__option" disabled>
               {t("chooseOneText")}
             </option>
-            {items.map(({ title, branchId }) => (
-              <option className="dropdown__option" value={branchId}>
-                {title}
+            {items.map(({ label, value }) => (
+              <option className="dropdown__option" value={value}>
+                {label}
               </option>
             ))}
           </select>
