@@ -1,7 +1,9 @@
 import dayjs from "dayjs";
 import { UseConfigFunction } from "../../core/utils/config";
-import { AgencyBranch } from "../../core/fbs/model";
 import { UseTextFunction } from "../../core/utils/text";
+import { AgencyBranch, CreateReservationBatchV2 } from "../../core/fbs/model";
+import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import { Manifestation } from "../../core/utils/types/entities";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
   config("smsNotificationsForReservationsEnabledConfig") === "1";
@@ -37,6 +39,37 @@ export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
 export const getFutureDateString = (num: number) => {
   const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
   return futureDate;
+};
+
+const constructReservation = ({ pid }: Manifestation) => {
+  const faustId = convertPostIdToFaustId(pid);
+
+  return { recordId: faustId };
+};
+
+// const constructParallelReservation = (manifestation: Manifestation) => {
+
+//   return { ...constructReservation(manifestation), type };
+// };
+
+const constructReservations = (manifestations: Manifestation[]) =>
+  manifestations.map((manifestation) => constructReservation(manifestation));
+
+export const constructReservationData = ({
+  manifestations,
+  selectedBranch,
+  expiryDate
+}: {
+  manifestations: Manifestation[];
+  selectedBranch: string | null;
+  expiryDate: string | null;
+}): CreateReservationBatchV2 => {
+  return {
+    reservations: constructReservations(manifestations),
+    ...(manifestations.length > 1 ? { type: "parallel" } : {}),
+    ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
+    ...(expiryDate ? { expiryDate } : {})
+  };
 };
 
 export default {};

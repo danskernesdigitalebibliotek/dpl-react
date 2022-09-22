@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
+  convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
-  flattenCreators,
-  convertPostIdToFaustId
+  flattenCreators
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -22,7 +22,10 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { totalMaterials } from "../../apps/material/helper";
+import {
+  getManifestationType,
+  totalMaterials
+} from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -31,25 +34,38 @@ import {
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
-import { getPreferredBranch, getFutureDateString } from "./helper";
+import {
+  getPreferredBranch,
+  getFutureDateString,
+  constructReservationData
+} from "./helper";
+import UseAvailableManifestations from "../../core/utils/UseAvailableManifestations";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
-  manifestation: Manifestation;
+  mainManifestation: Manifestation;
+  parallelManifestations?: Manifestation[];
 };
 
-const ReservationModal = ({
-  manifestation: {
+const ReservationModalBody = ({
+  mainManifestation,
+  mainManifestation: {
     pid,
     materialTypes,
-    creators,
     titles,
-    publicationYear,
-    edition
-  }
+    edition,
+    creators,
+    publicationYear
+  },
+  parallelManifestations
 }: ReservationModalProps) => {
+  const mainManifestationType = getManifestationType(mainManifestation);
+  const { availableManifestations } = UseAvailableManifestations({
+    manifestations: parallelManifestations ?? [mainManifestation],
+    type: mainManifestationType
+  });
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
@@ -98,20 +114,20 @@ const ReservationModal = ({
     ) || t("creatorsAreMissingText");
 
   const saveReservation = () => {
+    if (!availableManifestations) {
+      return;
+    }
+
     // Save reservation to FBS.
     mutate(
       {
-        data: {
-          reservations: [
-            {
-              recordId: faustId,
-              ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
-              ...(selectedInterest
-                ? { expiryDate: getFutureDateString(selectedInterest) }
-                : {})
-            }
-          ]
-        }
+        data: constructReservationData({
+          manifestations: availableManifestations,
+          selectedBranch,
+          expiryDate: selectedInterest
+            ? getFutureDateString(selectedInterest)
+            : null
+        })
       },
       {
         onSuccess: (res) => {
@@ -182,7 +198,7 @@ const ReservationModal = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={false}
+                disabled={!availableManifestations}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
@@ -214,4 +230,4 @@ const ReservationModal = ({
   );
 };
 
-export default ReservationModal;
+export default ReservationModalBody;

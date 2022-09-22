@@ -200,3 +200,8 @@ export const getManifestationsPids = (manifestations: Manifestation[]) => {
 };
 export const stringifyValue = (value: string | null | undefined) =>
   value ? String(value) : "";
+export const materialIsFiction = ({
+  fictionNonfiction
+}: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+export default {};
