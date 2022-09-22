@@ -3,7 +3,7 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
-import { configTypes } from "../../../core/utils/helpers/fetcherHelper";
+import { configTypes } from "../../../core/utils/helpers/fetcher";
 
 export default {
   title: "Apps / Loan list",
