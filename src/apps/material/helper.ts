@@ -8,6 +8,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
 
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
@@ -143,4 +144,14 @@ export const totalMaterials = (holdings: HoldingsV3[]) => {
 
 export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
   return materials.reduce((acc, curr) => (curr.available ? acc + 1 : acc), 0);
+};
+
+export const isAnyManifestationAvailableOnBranch = (
+  libraryBranches: ManifestationHoldings
+) => {
+  return libraryBranches.some((libraryBranch) => {
+    return libraryBranch.holding.materials.some((material) => {
+      return material.available;
+    });
+  });
 };
