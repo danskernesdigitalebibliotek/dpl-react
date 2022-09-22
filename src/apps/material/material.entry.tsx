@@ -95,6 +95,7 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
+  etAlText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;

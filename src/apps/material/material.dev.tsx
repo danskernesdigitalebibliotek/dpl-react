@@ -469,6 +469,11 @@ export default {
       name: "Modal reservation form sms input field description",
       defaultValue: "Telefonnummer",
       control: { type: "text" }
+    },
+    etAlText: {
+      name: "Et al. Text",
+      defaultValue: "et al.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
