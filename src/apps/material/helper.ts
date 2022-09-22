@@ -17,14 +17,20 @@ export const getWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
 };
 
+export const filterManifestationsByType = (
+  type: string,
+  manifestations: Manifestation[]
+) => manifestations.filter((item) => getManifestationType(item) === type);
+
 export const getManifestationFromType = (
   type: string,
   { manifestations: { all: manifestations } }: Work
 ) => {
   const allManifestations = orderManifestationsByYear(manifestations);
 
-  const allManifestationsThatMatchType = allManifestations.filter(
-    (item) => getManifestationType(item) === type
+  const allManifestationsThatMatchType = filterManifestationsByType(
+    type,
+    allManifestations
   );
 
   return allManifestationsThatMatchType.shift();
