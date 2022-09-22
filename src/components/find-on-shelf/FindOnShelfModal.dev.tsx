@@ -74,6 +74,72 @@ export default {
               loanIsPossible: true
             }
           ]
+        },
+        {
+          pid: "870970-basis:52643414",
+          genreAndForm: ["slægtsromaner"],
+          source: ["Bibliotekskatalog"],
+          titles: {
+            main: ["De syv søstre (mp3)"],
+            original: ["The seven sisters"]
+          },
+          publicationYear: {
+            display: "2016"
+          },
+          materialTypes: [
+            {
+              specific: "lydbog (cd-mp3)"
+            }
+          ],
+          creators: [
+            {
+              display: "Lucinda Riley",
+              __typename: "Person"
+            }
+          ],
+          hostPublication: null,
+          languages: {
+            main: [
+              {
+                display: "dansk"
+              }
+            ]
+          },
+          identifiers: [
+            {
+              value: "9788763850636"
+            }
+          ],
+          contributors: [
+            {
+              display: "Maria Stokholm"
+            },
+            {
+              display: "Ulla Lauridsen"
+            }
+          ],
+          edition: {
+            summary: "1. lydbogsudgave"
+          },
+          audience: {
+            generalAudience: []
+          },
+          physicalDescriptions: [
+            {
+              numberOfPages: null
+            }
+          ],
+          accessTypes: [
+            {
+              code: "PHYSICAL"
+            }
+          ],
+          access: [
+            {
+              __typename: "InterLibraryLoan",
+              loanIsPossible: true
+            }
+          ]
         }
       ],
       control: { type: "object" }
