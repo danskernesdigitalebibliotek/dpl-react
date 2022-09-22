@@ -10,16 +10,22 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   return locationItem ? locationItem.title : id;
 };
 
+export const hardcodedInterestPeriods = (t: UseTextFunction) => {
+  return {
+    "30": t("oneMonthText"),
+    "60": t("twoMonthsText"),
+    "90": t("threeMonthsText"),
+    "180": t("sixMonthsText"),
+    "360": t("oneYearText")
+  };
+};
+
 export const getNoInterestAfter = (
   days: number | string,
   t: UseTextFunction
 ) => {
   const reservationInterestIntervals: { [key: string]: string } = {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText"),
+    ...hardcodedInterestPeriods(t),
     default: `${days} ${t("daysText")}`
   } as const;
 

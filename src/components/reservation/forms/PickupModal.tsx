@@ -16,6 +16,11 @@ const PickupModal = ({
 }: PickupModalProps) => {
   const t = useText();
 
+  const formatBranches = branches.map((branch) => ({
+    value: branch.branchId,
+    label: branch.title
+  }));
+
   return (
     <ModalReservationFormSelect
       type="pickup"
@@ -23,7 +28,7 @@ const PickupModal = ({
         title: t("modalReservationFormPickupHeaderTitleText"),
         description: [t("modalReservationFormPickupHeaderDescriptionText")]
       }}
-      items={branches}
+      items={formatBranches}
       defaultSelectedItem={defaultBranch}
       selectHandler={selectBranchHandler}
     />
