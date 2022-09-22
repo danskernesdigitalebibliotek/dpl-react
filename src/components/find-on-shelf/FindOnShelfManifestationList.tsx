@@ -28,6 +28,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
       {libraryBranchHoldings.map((branchHolding) => {
         return (
           <FindOnShelfManifestationListItem
+            shelfmark={branchHolding.manifestation.shelfmark}
             department={branchHolding.holding.department?.title}
             location={branchHolding.holding.location?.title}
             sublocation={branchHolding.holding.sublocation?.title}
