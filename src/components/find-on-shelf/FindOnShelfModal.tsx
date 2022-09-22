@@ -46,10 +46,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     t("creatorsAreMissingText");
   const title = workTitles.join(", ");
 
-  const modalFaustId = pid ? convertPostIdToFaustId(pid as Pid) : undefined;
+  const modalFaustId = pid ? convertPostIdToFaustId(pid) : undefined;
   const modalId = modalFaustId
     ? findOnShelfModalId(modalFaustId)
-    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid as Pid));
+    : findOnShelfModalId(convertPostIdToFaustId(manifestations[0].pid));
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.
