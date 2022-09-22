@@ -65,12 +65,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       });
     })
     .flat();
-  console.log({ pairedManifestationsWithBranches });
   const allBranches = data
     .map((item) => item.holdings.map((holding) => holding.branch.branchId))
     .flat();
   const uniqueBranches = Array.from(new Set(allBranches));
-  console.log({ uniqueBranches });
   // Grouping pairedManifestationsWithBranches objects based on same branch
   // gives us the desired data structure to render.
   const finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
@@ -80,7 +78,6 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       }
     );
   });
-  console.log({ finalData });
 
   return (
     <Modal
