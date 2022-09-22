@@ -15,6 +15,10 @@ fragment ManifestationsSimpleFields on Manifestation {
     main
     original
   }
+  fictionNonfiction {
+    display
+    code
+  }
   publicationYear {
     display
   }
@@ -169,6 +173,7 @@ fragment WorkMedium on Work {
   }
   fictionNonfiction {
     display
+    code
   }
   workYear
 }

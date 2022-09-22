@@ -1202,6 +1202,7 @@ export type GetMaterialQuery = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
+      code: FictionNonfictionCode;
     } | null;
     titles: {
       __typename?: "WorkTitles";
@@ -1246,6 +1247,11 @@ export type GetMaterialQuery = {
           main: Array<string>;
           original?: Array<string> | null;
         };
+        fictionNonfiction?: {
+          __typename?: "FictionNonfiction";
+          display: string;
+          code: FictionNonfictionCode;
+        } | null;
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
@@ -1309,6 +1315,11 @@ export type GetMaterialQuery = {
           main: Array<string>;
           original?: Array<string> | null;
         };
+        fictionNonfiction?: {
+          __typename?: "FictionNonfiction";
+          display: string;
+          code: FictionNonfictionCode;
+        } | null;
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
@@ -1442,6 +1453,11 @@ export type SearchWithPaginationQuery = {
             main: Array<string>;
             original?: Array<string> | null;
           };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1511,6 +1527,11 @@ export type SearchWithPaginationQuery = {
             main: Array<string>;
             original?: Array<string> | null;
           };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1616,6 +1637,11 @@ export type ManifestationsSimpleFragment = {
       main: Array<string>;
       original?: Array<string> | null;
     };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
@@ -1676,6 +1702,11 @@ export type ManifestationsSimpleFragment = {
       main: Array<string>;
       original?: Array<string> | null;
     };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
@@ -1738,6 +1769,11 @@ export type ManifestationsSimpleFieldsFragment = {
     main: Array<string>;
     original?: Array<string> | null;
   };
+  fictionNonfiction?: {
+    __typename?: "FictionNonfiction";
+    display: string;
+    code: FictionNonfictionCode;
+  } | null;
   publicationYear: { __typename?: "PublicationYear"; display: string };
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   creators: Array<
@@ -1847,6 +1883,11 @@ export type WorkSmallFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -1907,6 +1948,11 @@ export type WorkSmallFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -2012,6 +2058,7 @@ export type WorkMediumFragment = {
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
+    code: FictionNonfictionCode;
   } | null;
   titles: {
     __typename?: "WorkTitles";
@@ -2056,6 +2103,11 @@ export type WorkMediumFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -2116,6 +2168,11 @@ export type WorkMediumFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -2189,6 +2246,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   titles {
     main
     original
+  }
+  fictionNonfiction {
+    display
+    code
   }
   publicationYear {
     display
@@ -2346,6 +2407,7 @@ export const WorkMediumFragmentDoc = `
   }
   fictionNonfiction {
     display
+    code
   }
   workYear
 }
