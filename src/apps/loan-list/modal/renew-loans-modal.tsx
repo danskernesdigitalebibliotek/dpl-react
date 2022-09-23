@@ -3,7 +3,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface RenewLoansModalProps {
   loansModal: LoanMetaDataType[];

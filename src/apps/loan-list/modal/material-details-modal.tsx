@@ -3,7 +3,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import MaterialDetails from "./material-details";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface MaterialDetailsModalProps {
   material: GetMaterialManifestationQuery | undefined | null;

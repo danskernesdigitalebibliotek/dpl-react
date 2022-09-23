@@ -5,7 +5,7 @@ import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generat
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
 import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface PaginationProps {
   selectModalMaterial: ({

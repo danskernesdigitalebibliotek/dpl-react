@@ -9,7 +9,7 @@ import configuration, {
 import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
-import { LoanMetaDataType } from "./LoanMetaDataType";
+import { LoanMetaDataType } from "../types/loan-meta-data-type";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],

@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { formatDate, materialIsOverdue } from "../utils/helpers";
-import { LoanMetaDataType } from "../../../core/utils/helpers/LoanMetaDataType";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface DueDateLoansModalProps {
   dueDate: string;
