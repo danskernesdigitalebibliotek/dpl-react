@@ -29,7 +29,7 @@ describe("Material", () => {
     cy.contains("unavailable");
   });
   it("Open material details", () => {
-    cy.get("details").click({ multiple: true });
+    cy.get("details").last().click();
   });
   it("Does the material have a editions with a buttton to reserved", () => {
     cy.contains("reserver");
@@ -56,8 +56,6 @@ describe("Material", () => {
   });
 
   beforeEach(() => {
-    cy.visit("/iframe.html?args=&id=apps-material--material");
-
     cy.fixture("material/reservations.json")
       .then((result) => {
         cy.intercept("POST", "**/patrons/patronid/reservations/**", result);
@@ -107,6 +105,8 @@ describe("Material", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
+
+    cy.visit("/iframe.html?args=&id=apps-material--material");
   });
 });
 

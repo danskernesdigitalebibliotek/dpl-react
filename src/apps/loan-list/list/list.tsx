@@ -1,4 +1,4 @@
-import React, { useState, FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
@@ -33,10 +33,8 @@ const List: FC<ListProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const [showModal, setShowModal] = useState<boolean>(false);
 
   const openRenewLoansModal = useCallback(() => {
-    setShowModal(true);
     open(modalIdsConf.allLoansId);
   }, [open]);
 
@@ -114,7 +112,7 @@ const List: FC<ListProps> = ({
           view={view as ListView}
         />
       )}
-      {showModal && <RenewLoansModal loansModal={loans} />}
+      <RenewLoansModal loansModal={loans} />
     </>
   );
 };
