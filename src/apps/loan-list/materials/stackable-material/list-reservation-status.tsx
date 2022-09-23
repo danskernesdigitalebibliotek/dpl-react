@@ -28,7 +28,7 @@ const ListReservationStatus: FC<ListReservationStatusProps> = ({
         <div className="list-reservation__deadline">
           {expiresSoon && (
             <div className="status-label status-label--warning">
-              {t("reservationListExpiresSoonText")}
+              {t("expiresSoonText")}
             </div>
           )}
           <p className="text-small-caption">{label}</p>

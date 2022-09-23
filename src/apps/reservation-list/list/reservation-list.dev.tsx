@@ -7,7 +7,7 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
-    reservationListHeaderText: {
+    headerText: {
       defaultValue: "Dine reserveringer",
       control: { type: "text" }
     },
@@ -23,7 +23,7 @@ export default {
       defaultValue: "Klar til lån",
       control: { type: "text" }
     },
-    reservationListReadyText: {
+    readyText: {
       defaultValue: "Klar",
       control: { type: "text" }
     },
@@ -35,15 +35,15 @@ export default {
       defaultValue: "og",
       control: { type: "text" }
     },
-    reservationListYouAreNumberInLineText: {
+    youAreNumberInLineText: {
       defaultValue: "Du er nummer {tal her} i køen",
       control: { type: "text" }
     },
-    reservationListExpiresSoonText: {
+    expiresSoonText: {
       defaultValue: "Udløber snart",
       control: { type: "text" }
     },
-    reservationListInLineText: {
+    inLineText: {
       defaultValue: "I køen",
       control: { type: "text" }
     },

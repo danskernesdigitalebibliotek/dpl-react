@@ -3,14 +3,14 @@ import ReservationList from "./reservation-list";
 import { withText } from "../../../core/utils/text";
 
 export interface ReservationListProps {
-  reservationListHeaderText: string;
-  reservationListPhysicalLoansTitleText: string;
-  reservationListReadyText: string;
+  headerText: string;
+  physicalLoansTitleText: string;
+  readyText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
-  reservationListYouAreNumberInLineText: string;
-  reservationListExpiresSoonText: string;
-  reservationListInLineText: string;
+  youAreNumberInLineText: string;
+  expiresSoonText: string;
+  inLineText: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
   publizonAudioBookText: string;

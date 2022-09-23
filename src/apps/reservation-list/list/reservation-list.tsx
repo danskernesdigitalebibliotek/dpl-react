@@ -76,7 +76,7 @@ const ReservationList: FC = () => {
 
   return (
     <div className="reservation-list-page">
-      <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
+      <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
       <List
         header={t("reservationListReadyForPickupTitleText")}
         list={sortByOldestPickupDeadline([

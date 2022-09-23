@@ -53,7 +53,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         label={readyForPickupLabel}
       >
         <img src={check} alt="" />
-        {t("reservationListReadyText")}
+        {t("readyText")}
       </ListReservationStatus>
     );
   }
@@ -65,10 +65,10 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         // Todo we dont have how many in the queue
         percent={numberInQueue / 100}
         expiresSoon={daysBetweenTodayAndDate(expiryDate) <= thresholds.warning}
-        label={`${t("reservationListYouAreNumberInLineText")} ${numberInQueue}`}
+        label={`${t("youAreNumberInLineText")} ${numberInQueue}`}
       >
         <span className="counter__value">{numberInQueue}</span>
-        <span className="counter__label">{t("reservationListInLineText")}</span>
+        <span className="counter__label">{t("inLineText")}</span>
       </ListReservationStatus>
     );
   }
