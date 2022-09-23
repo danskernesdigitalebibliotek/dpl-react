@@ -125,6 +125,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             return (
               <SelectableMaterial
                 id={loanMetaData.id}
+                type={loanMetaData.type}
                 key={loanMetaData.id}
                 disabled
                 onChecked={onChecked}
@@ -135,6 +136,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {loans.map((loanMetaData) => {
             return (
               <SelectableMaterial
+                type={loanMetaData.type}
                 id={loanMetaData.id}
                 key={loanMetaData.id}
                 materialsToRenew={materialsToRenew}

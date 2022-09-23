@@ -4,8 +4,6 @@ import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { Loan } from "../../../core/publizon/model";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import { FaustId } from "../../../core/utils/types/ids";
 
@@ -38,26 +36,6 @@ export const materialIsOverdue = (date: string | undefined) => {
     return dayjs().isAfter(dayjs(date));
   }
   return false;
-};
-
-// Create a string of authors with commas and a conjunction
-export const getAuthorNames = (
-  creators: {
-    display: string;
-  }[],
-  by: string,
-  and: string
-) => {
-  const names = creators.map(({ display }) => display);
-  let returnContentString = "";
-  if (names.length === 1) {
-    returnContentString = `${by} ${names.join(", ")}`;
-  } else {
-    returnContentString = `${by} ${names
-      .slice(0, -1)
-      .join(", ")} ${and} ${names.slice(-1)}`;
-  }
-  return returnContentString;
 };
 
 // Simple faust match for modals
@@ -105,6 +83,7 @@ export const mapPublizonLoanToLoanMetaDataType = (
 ): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
     return {
+      type: "digital",
       id: libraryBook?.identifier as FaustId,
       loanSpecific: {
         dueDate: loanExpireDateUtc,
@@ -123,6 +102,7 @@ export const mapFBSLoanToLoanMetaDataType = (
 ): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
     return {
+      type: "physical",
       id: loanDetails.recordId as FaustId,
       loanSpecific: {
         dueDate: loanDetails.dueDate,
@@ -142,6 +122,7 @@ export const mapFBSRenewedLoanToLoanMetaDataType = (
 ): MetaDataType<LoanMetaDataType>[] => {
   return list.map(({ loanDetails }) => {
     return {
+      type: "physical",
       id: loanDetails.recordId as FaustId,
       loanSpecific: {
         dueDate: loanDetails.dueDate,
@@ -154,53 +135,6 @@ export const mapFBSRenewedLoanToLoanMetaDataType = (
       }
     };
   });
-};
-
-export const getMaterialInfo = (
-  material: GetMaterialManifestationQuery | undefined | null,
-  loanMetaData: MetaDataType<LoanMetaDataType | ReservationMetaDataType>
-) => {
-  const {
-    materialItemNumber,
-    dueDate,
-    loanType,
-    loanDate,
-    renewalStatusList,
-    isRenewable
-  } = loanMetaData.loanSpecific || {};
-
-  const { id } = loanMetaData;
-  const { hostPublication, materialTypes, titles, creators, pid, abstract } =
-    material?.manifestation || {};
-
-  const description = abstract ? abstract[0] : "";
-
-  const { year: yearObject } = hostPublication || {};
-  const { year } = yearObject || {};
-
-  const [{ specific: materialType }] = materialTypes || [];
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
-
-  const materialTitle = mainText;
-
-  return {
-    isRenewable,
-    materialItemNumber,
-    dueDate,
-    creators,
-    id,
-    loanType,
-    renewalStatusList,
-    year,
-    titles,
-    materialType,
-    materialTitle,
-    pid,
-    description,
-    loanDate
-  };
 };
 
 export default {};

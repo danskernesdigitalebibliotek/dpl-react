@@ -5,12 +5,7 @@ import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
-import {
-  formatDate,
-  getAuthorNames,
-  getMaterialInfo,
-  materialIsOverdue
-} from "../utils/helpers";
+import { formatDate, materialIsOverdue } from "../utils/helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import { Pid } from "../../../core/utils/types/ids";
 import StatusBadge from "../materials/utils/status-badge";
@@ -39,19 +34,11 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   const t = useText();
   const { mutate } = useRenewLoansV2();
 
-  const {
-    creators,
-    year,
-    materialType,
-    materialTitle,
-    pid,
-    description,
-    materialItemNumber,
-    dueDate,
-    loanDate,
-    id,
-    isRenewable
-  } = getMaterialInfo(material, loanMetaData);
+  const { dueDate, isRenewable, materialItemNumber, loanDate } =
+    loanMetaData.loanSpecific || {};
+
+  const { authors, pid, materialType, year, title, description } =
+    material || {};
 
   const [renewStatus, setRenewStatus] = useState<RenewStatusType | null>(null);
   const [dueDateUpdatable, setDueDateUpdatable] = useState<
@@ -119,136 +106,133 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 
   return (
     <div className="modal-details__container">
-      <div className="modal-details__header">
-        <div className="modal-details__cover">
-          <div className="material-container">
-            <span className="material material--large bg-identity-tint-120 material__animate">
-              <Cover
-                pid={pid as Pid}
-                size="large"
-                animate={false}
-                description={description}
-              />
-            </span>
-          </div>
-        </div>
-        <div className="modal-details__material">
-          {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
-            <div className="modal-details__tags">
-              {materialType && (
-                <div className="status-label status-label--outline">
-                  {materialType}
+      {material && (
+        <>
+          <div className="modal-details__header">
+            <div className="modal-details__cover">
+              <div className="material-container">
+                <span className="material material--large bg-identity-tint-120 material__animate">
+                  <Cover
+                    pid={pid as Pid}
+                    size="large"
+                    animate={false}
+                    description={description || ""}
+                  />
+                </span>
+              </div>
+            </div>
+            <div className="modal-details__material">
+              {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
+                <div className="modal-details__tags">
+                  {materialType && (
+                    <div className="status-label status-label--outline">
+                      {materialType}
+                    </div>
+                  )}
+                  <StatusBadge
+                    dueDate={dueDateUpdatable}
+                    dangerText={t("materialDetailsOverdueText")}
+                  />
                 </div>
               )}
-              <StatusBadge
-                dueDate={dueDateUpdatable}
-                dangerText={t("materialDetailsOverdueText")}
+              <h2 className="modal-details__title text-header-h2">{title}</h2>
+              <p className="text-body-medium-regular">
+                {authors}
+                {year && <> ({year})</>}
+              </p>
+            </div>
+          </div>
+          {pid && isRenewable && (
+            <div className="modal-details__buttons">
+              {renewStatus === null && (
+                <button
+                  type="button"
+                  onClick={() => renew(parseInt(pid, 10))}
+                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
+                >
+                  {t("materialDetailsRenewLoanButtonText")}
+                </button>
+              )}
+              {renewStatus !== null && (
+                <>
+                  {renewStatus?.statusText && (
+                    <span className="modal-details__buttons__status-text">
+                      {renewStatus?.statusText}
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    disabled
+                    className="btn-primary btn-outline btn-small arrow__hover--right-small"
+                  >
+                    {renewStatus?.buttonText}
+                    {renewed && (
+                      <div className="btn-icon">
+                        <IconCheckmark />
+                      </div>
+                    )}
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+          {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
+            <div className="modal-details__warning">
+              <WarningBar
+                linkText={t("materialDetailsLinkToPageWithFeesText")}
+                overdueText={t("materialDetailsWarningLoanOverdueText")}
               />
             </div>
           )}
-          <h2 className="modal-details__title text-header-h2">
-            {materialTitle}
-          </h2>
-          <p className="text-body-medium-regular">
-            {creators &&
-              getAuthorNames(
-                creators,
-                t("materialDetailsByAuthorText"),
-                t("materialDetailsAndAuthorText")
-              )}
-            {year && <> ({year})</>}
-          </p>
-        </div>
-      </div>
-      {id && isRenewable && (
-        <div className="modal-details__buttons">
-          {renewStatus === null && (
-            <button
-              type="button"
-              onClick={() => renew(parseInt(id, 10))}
-              className="btn-primary btn-filled btn-small arrow__hover--right-small"
-            >
-              {t("materialDetailsRenewLoanButtonText")}
-            </button>
-          )}
-          {renewStatus !== null && (
-            <>
-              {renewStatus?.statusText && (
-                <span className="modal-details__buttons__status-text">
-                  {renewStatus?.statusText}
-                </span>
-              )}
-              <button
-                type="button"
-                disabled
-                className="btn-primary btn-outline btn-small arrow__hover--right-small"
-              >
-                {renewStatus?.buttonText}
-                {renewed && (
-                  <div className="btn-icon">
-                    <IconCheckmark />
+          <div className="modal-details__list">
+            {dueDate && (
+              <div className="list-details">
+                <div className="list-details__icon">
+                  <img src={LoansIcon} alt="" />
+                </div>
+                <div className="list-details__container">
+                  <div className="list-details__content">
+                    <p className="text-header-h5">
+                      {t("materialDetailsHandInLabelText")}
+                    </p>
+                    <p className="text-small-caption">{formatDate(dueDate)}</p>
                   </div>
-                )}
-              </button>
-            </>
-          )}
-        </div>
+                </div>
+              </div>
+            )}
+            {loanDate && (
+              <div className="list-details">
+                <div className="list-details__icon">
+                  <img src={ReservationIcon} alt="" />
+                </div>
+                <div className="list-details__container">
+                  <div className="list-details__content">
+                    <p className="text-header-h5">
+                      {t("materialDetailsLoanDateLabelText")}
+                    </p>
+                    <p className="text-small-caption">{formatDate(loanDate)}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+            {materialItemNumber && (
+              <div className="list-details">
+                <div className="list-details__icon">
+                  <img src={EbookIcon} alt="" />
+                </div>
+                <div className="list-details__container">
+                  <div className="list-details__content">
+                    <p className="text-header-h5">
+                      {t("materialDetailsMaterialNumberLabelText")}
+                    </p>
+                    <p className="text-small-caption">{materialItemNumber}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
       )}
-      {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
-        <div className="modal-details__warning">
-          <WarningBar
-            linkText={t("materialDetailsLinkToPageWithFeesText")}
-            overdueText={t("materialDetailsWarningLoanOverdueText")}
-          />
-        </div>
-      )}
-      <div className="modal-details__list">
-        {dueDate && (
-          <div className="list-details">
-            <div className="list-details__icon">
-              <img src={LoansIcon} alt="" />
-            </div>
-            <div className="list-details__container">
-              <div className="list-details__content">
-                <p className="text-header-h5">
-                  {t("materialDetailsHandInLabelText")}
-                </p>
-                <p className="text-small-caption">{formatDate(dueDate)}</p>
-              </div>
-            </div>
-          </div>
-        )}
-        {loanDate && (
-          <div className="list-details">
-            <div className="list-details__icon">
-              <img src={ReservationIcon} alt="" />
-            </div>
-            <div className="list-details__container">
-              <div className="list-details__content">
-                <p className="text-header-h5">
-                  {t("materialDetailsLoanDateLabelText")}
-                </p>
-                <p className="text-small-caption">{formatDate(loanDate)}</p>
-              </div>
-            </div>
-          </div>
-        )}
-        {materialItemNumber && (
-          <div className="list-details">
-            <div className="list-details__icon">
-              <img src={EbookIcon} alt="" />
-            </div>
-            <div className="list-details__container">
-              <div className="list-details__content">
-                <p className="text-header-h5">
-                  {t("materialDetailsMaterialNumberLabelText")}
-                </p>
-                <p className="text-small-caption">{materialItemNumber}</p>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

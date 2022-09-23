@@ -13,6 +13,7 @@ import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-ty
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
 import MaterialDetailsModal from "../../modal/material-details-modal";
 import { getUrlQueryParam } from "../../../../core/utils/helpers/url";
+import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 
 interface StackableMaterialProps {
   stack?: MetaDataType<LoanMetaDataType>[];
@@ -36,7 +37,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
     ? amountOfMaterialsWithDueDate - 1
     : 0;
 
-  const { id, dueDate, loanDate } = getMaterialInfo(material, loanMetaData);
+  const { dueDate, loanDate } = loanMetaData.loanSpecific || {};
+  const { id } = loanMetaData || {};
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -93,18 +95,20 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           additionalMaterials > 0 ? "list-reservation--stacked" : ""
         }`}
       >
-        <MaterialInfo loanMetaData={loanMetaData} material={material}>
-          <AdditionalMaterialsButton
-            label={t("loanListMaterialsDesktopText")}
-            openDueDateModal={openDueDateModal}
-            additionalMaterials={additionalMaterials}
-            screenReaderLabel={t("loanListMaterialsModalDesktopText")}
-          />
-          <MaterialOverdueLink
-            label={t("loanListLateFeeDesktopText")}
-            dueDate={dueDate}
-          />
-        </MaterialInfo>
+        {material && (
+          <MaterialInfo material={material}>
+            <AdditionalMaterialsButton
+              label={t("loanListMaterialsDesktopText")}
+              openDueDateModal={openDueDateModal}
+              additionalMaterials={additionalMaterials}
+              screenReaderLabel={t("loanListMaterialsModalDesktopText")}
+            />
+            <MaterialOverdueLink
+              label={t("loanListLateFeeDesktopText")}
+              dueDate={dueDate}
+            />
+          </MaterialInfo>
+        )}
         <MaterialStatus
           dueDate={dueDate}
           loanDate={loanDate}
@@ -132,4 +136,4 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default fetchMaterial(StackableMaterial);
+export default fetchMaterial(fetchDigitalMaterial(StackableMaterial));

@@ -1,5 +1,3 @@
-import { ReservationType } from "./reservation-type";
-
 export interface ReservationMetaDataType {
   dateOfReservation: string | undefined;
   expiryDate: string | null | undefined;
@@ -7,5 +5,5 @@ export interface ReservationMetaDataType {
   numberInQueue?: number | undefined;
   state: string;
   pickupBranch?: string;
-  type: ReservationType;
+  expectedRedeemDateUtc?: string;
 }

@@ -1,29 +1,24 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
-import { useGetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
-import { Product } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
+import { useGetV1ProductsIdentifier } from "../../../../core/publizon/publizon";
 import { MaterialClassification } from "../../../../core/utils/types/material-classification";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
-import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/general";
-
-export interface MaterialProps {
-  material?: BasicDetailsType | null;
-}
+import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/general";
+import { MaterialProps } from "./material-fetch-hoc";
 
 type InputProps = {
-  digitalMaterial?: Product | null;
   id: FaustId;
   type: MaterialClassification;
 };
 
-const fetchMaterial =
+const fetchDigitalMaterial =
   <P extends object>(
     Component: ComponentType<P & MaterialProps>
   ): FC<P & InputProps> =>
   ({ id, type, ...props }: InputProps) => {
-    // If this is a digital book, another HOC fetches the data and this
+    // If this is a physical book, another HOC fetches the data and this
     // HOC just returns the component
-    if (type === "digital") {
+    if (type === "physical") {
       return (
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -33,35 +28,33 @@ const fetchMaterial =
       );
     }
 
-    const [material, setMaterial] = useState<BasicDetailsType>();
+    const [digitalMaterial, setDigitalMaterial] = useState<BasicDetailsType>();
 
     // Todo error handling
-    const { isSuccess: isSuccessManifestation, data } =
-      useGetMaterialManifestationQuery({
-        faust: id
-      });
+    const { data: productsData, isSuccess: isSuccessDigital } =
+      useGetV1ProductsIdentifier(id);
 
     useEffect(() => {
-      if (data && isSuccessManifestation && data.manifestation) {
-        setMaterial(mapManifestationToBasicDetailsType(data));
+      if (productsData && isSuccessDigital && productsData.product) {
+        setDigitalMaterial(mapProductToBasicDetailsType(productsData.product));
       } else {
         // todo error handling
       }
-    }, [isSuccessManifestation, data]);
+    }, [productsData, isSuccessDigital]);
 
     return (
       <div>
-        {material && (
+        {digitalMaterial && (
           <Component
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...(props as P)}
-            material={material}
             type={type}
             id={id}
+            material={digitalMaterial}
           />
         )}
       </div>
     );
   };
 
-export default fetchMaterial;
+export default fetchDigitalMaterial;

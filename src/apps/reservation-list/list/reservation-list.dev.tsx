@@ -50,6 +50,18 @@ export default {
     reservationPickUpLatestText: {
       defaultValue: "Hent senest",
       control: { type: "text" }
+    },
+    publizonEbookText: {
+      defaultValue: "E-bog",
+      control: { type: "text" }
+    },
+    publizonAudioBookText: {
+      defaultValue: "Lydbog",
+      control: { type: "text" }
+    },
+    publizonPodcastText: {
+      defaultValue: "Podcast",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

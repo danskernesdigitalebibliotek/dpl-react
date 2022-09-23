@@ -1,9 +1,10 @@
-import React, { useEffect, useCallback, FC, MouseEvent } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import MaterialInfo from "./material-info";
 import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
 import ReservationInfo from "./reservation-info";
+import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 
 export interface ReservationMaterialProps {
   loanMetaData: MetaDataType<ReservationMetaDataType>;
@@ -16,6 +17,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
   }
+
   useEffect(() => {
     document
       .querySelector(".list-reservation a")
@@ -41,18 +43,12 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
           onClick={(e) => openDetailsModal(e)}
           className="list-reservation my-32"
         >
-          <MaterialInfo material={material} loanMetaData={loanMetaData} />
-          <ReservationInfo
-            state={loanMetaData.reservationSpecific.state}
-            expiryDate={loanMetaData.reservationSpecific.expiryDate}
-            pickupDeadline={loanMetaData.reservationSpecific.pickupDeadline}
-            pickupBranch={loanMetaData.reservationSpecific.pickupBranch}
-            numberInQueue={loanMetaData.reservationSpecific.numberInQueue}
-          />
+          {material && <MaterialInfo material={material} />}
+          <ReservationInfo reservationInfo={loanMetaData.reservationSpecific} />
         </button>
       )}
     </div>
   );
 };
 
-export default fetchMaterial(ReservationMaterial);
+export default fetchMaterial(fetchDigitalMaterial(ReservationMaterial));

@@ -12,6 +12,9 @@ export interface ReservationListProps {
   reservationListExpiresSoonText: string;
   reservationListInLineText: string;
   reservationPickUpLatestText: string;
+  publizonEbookText: string;
+  publizonAudioBookText: string;
+  publizonPodcastText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

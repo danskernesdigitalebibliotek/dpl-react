@@ -56,6 +56,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <div>
               {loanMetaData && (
                 <StackableMaterial
+                  type={loanMetaData.type}
                   dueDateLabel={dueDateLabel}
                   loanMetaData={loanMetaData}
                   id={loanMetaData.id}
@@ -72,6 +73,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loanMetaData) => {
           return (
             <StackableMaterial
+              type={loanMetaData.type}
               id={loanMetaData.id}
               openModal={false}
               dueDateLabel={dueDateLabel}

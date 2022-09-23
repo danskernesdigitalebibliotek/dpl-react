@@ -18,7 +18,11 @@ const List: FC<ListProps> = ({ list, header }) => {
       </div>
       <div className="list-reservation-container m-32">
         {list.map((reservation) => (
-          <ReservationMaterial id={reservation.id} loanMetaData={reservation} />
+          <ReservationMaterial
+            type={reservation.type}
+            id={reservation.id}
+            loanMetaData={reservation}
+          />
         ))}
       </div>
     </>
