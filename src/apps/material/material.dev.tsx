@@ -388,6 +388,26 @@ export default {
       defaultValue: "Luk reservation modal",
       control: { type: "text" }
     },
+    findOnShelfModalListMaterialText: {
+      name: "Material",
+      defaultValue: "Materiale",
+      control: { type: "text" }
+    },
+    findOnShelfModalListFindOnShelfText: {
+      name: "Find it on shelf",
+      defaultValue: "Find det på hylden",
+      control: { type: "text" }
+    },
+    findOnShelfModalListItemCountText: {
+      name: "Home",
+      defaultValue: "hjemme",
+      control: { type: "text" }
+    },
+    findOnShelfModalNoLocationSpecifiedText: {
+      name: "No location for find on shelf specified",
+      defaultValue: "-",
+      control: { type: "text" }
+    },
     numberInQueueText: {
       name: "Number in queue text",
       defaultValue: "Du er nummer",
@@ -448,6 +468,11 @@ export default {
     modalReservationFormSmsInputFieldDescriptionText: {
       name: "Modal reservation form sms input field description",
       defaultValue: "Telefonnummer",
+      control: { type: "text" }
+    },
+    etAlText: {
+      name: "Et al. Text",
+      defaultValue: "et al.",
       control: { type: "text" }
     }
   }

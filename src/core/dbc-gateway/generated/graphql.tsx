@@ -1293,6 +1293,11 @@ export type GetMaterialQuery = {
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
         >;
+        shelfmark?: {
+          __typename?: "Shelfmark";
+          postfix: string;
+          shelfmark: string;
+        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -1351,6 +1356,11 @@ export type GetMaterialQuery = {
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
         >;
+        shelfmark?: {
+          __typename?: "Shelfmark";
+          postfix: string;
+          shelfmark: string;
+        } | null;
       };
     };
   } | null;
@@ -1485,6 +1495,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
           >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix: string;
+            shelfmark: string;
+          } | null;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -1549,6 +1564,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
           >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix: string;
+            shelfmark: string;
+          } | null;
         };
       };
     }>;
@@ -1640,6 +1660,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
     >;
+    shelfmark?: {
+      __typename?: "Shelfmark";
+      postfix: string;
+      shelfmark: string;
+    } | null;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -1695,6 +1720,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
     >;
+    shelfmark?: {
+      __typename?: "Shelfmark";
+      postfix: string;
+      shelfmark: string;
+    } | null;
   };
 };
 
@@ -1749,6 +1779,11 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
   >;
+  shelfmark?: {
+    __typename?: "Shelfmark";
+    postfix: string;
+    shelfmark: string;
+  } | null;
 };
 
 export type SeriesSimpleFragment = {
@@ -1856,6 +1891,11 @@ export type WorkSmallFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -1911,6 +1951,11 @@ export type WorkSmallFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     };
   };
 };
@@ -2055,6 +2100,11 @@ export type WorkMediumFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -2110,6 +2160,11 @@ export type WorkMediumFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     };
   };
 };
@@ -2199,6 +2254,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     ... on DigitalArticleService {
       issn
     }
+  }
+  shelfmark {
+    postfix
+    shelfmark
   }
 }
     `;

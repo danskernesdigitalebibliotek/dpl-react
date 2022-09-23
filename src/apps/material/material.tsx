@@ -125,7 +125,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <FindOnShelfModal
-                manifestation={manifestation}
+                manifestations={[manifestation]}
+                workTitles={manifestation.titles.main}
+                authors={manifestation.creators}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
               <ReservationModal manifestation={manifestation} />
@@ -156,8 +158,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       )}
       {currentManifestation && (
         <>
-          <FindOnShelfModal manifestation={currentManifestation} />
           <ReservationModal manifestation={currentManifestation} />
+          <FindOnShelfModal
+            // TODO: when we have a selected manifestations group, pass it
+            // down here as manifestations prop
+            manifestations={[currentManifestation]}
+            workTitles={work.titles.full}
+            authors={work.creators}
+          />
         </>
       )}
     </main>

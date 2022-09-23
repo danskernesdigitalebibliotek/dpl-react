@@ -80,6 +80,10 @@ fragment ManifestationsSimpleFields on Manifestation {
       issn
     }
   }
+  shelfmark {
+    postfix
+    shelfmark
+  }
 }
 
 fragment SeriesSimple on Series {

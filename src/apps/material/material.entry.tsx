@@ -79,6 +79,10 @@ interface MaterialEntryTextProps {
   librariesHaveTheMaterialText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
+  findOnShelfModalListMaterialText: string;
+  findOnShelfModalListFindOnShelfText: string;
+  findOnShelfModalListItemCountText: string;
+  findOnShelfModalNoLocationSpecifiedText: string;
   numberInQueueText: string;
   queueText: string;
   alreadyReservedText: string;
@@ -91,6 +95,7 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
+  etAlText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
