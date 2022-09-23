@@ -11,6 +11,7 @@ import { LoanV2 } from "../../fbs/model/loanV2";
 import { RenewedLoanV2 } from "../../fbs/model/renewedLoanV2";
 import { LoanMetaDataType } from "../types/loan-meta-data-type";
 
+// Creates a "by author, author and author"-string
 // String interpolation todo?
 export const getContributors = (creators: string[] | undefined) => {
   const {
@@ -32,6 +33,7 @@ export const getContributors = (creators: string[] | undefined) => {
   return returnContentString;
 };
 
+//
 function getYearFromDataString(date?: string) {
   if (date) {
     return new Date(date).getFullYear();
@@ -39,6 +41,10 @@ function getYearFromDataString(date?: string) {
   return "";
 }
 
+// Product is a material from Publizon, and is the equivalent
+// to a manifestation from FBI. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapProductToBasicDetailsType = (material: Product) => {
   const {
     publicationDate,
@@ -71,6 +77,10 @@ export const mapProductToBasicDetailsType = (material: Product) => {
   } as BasicDetailsType;
 };
 
+// Manifestation is a material manifestation from FBI, and is the equivalent
+// to the Product type in Publizon. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
   material: GetMaterialManifestationQuery
 ) => {
@@ -94,6 +104,10 @@ export const mapManifestationToBasicDetailsType = (
   } as BasicDetailsType;
 };
 
+// ReservationDetailsV2 is a reservation from FBS, and is the equivalent
+// to the Reservation type in Publizon. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapFBSReservationToLoanMetaDataType = (
   list: ReservationDetailsV2[]
 ): MetaDataType<ReservationMetaDataType>[] => {
@@ -123,6 +137,10 @@ export const mapFBSReservationToLoanMetaDataType = (
   );
 };
 
+// Reservation is a reservation from Publizon, and is the equivalent
+// to the ReservationDetailsV2 type in FBS. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapPublizonReservationToLoanMetaDataType = (
   list: Reservation[]
 ): MetaDataType<ReservationMetaDataType>[] => {
@@ -156,6 +174,10 @@ export const mapPublizonReservationToLoanMetaDataType = (
   );
 };
 
+// Loan is a loan from Publizon, and is the equivalent
+// to the LoanV2 type in FBS. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapPublizonLoanToLoanMetaDataType = (
   list: Loan[]
 ): MetaDataType<LoanMetaDataType>[] => {
@@ -175,6 +197,10 @@ export const mapPublizonLoanToLoanMetaDataType = (
   });
 };
 
+// LoanV2 is a loan from FBS, and is the equivalent
+// to the Loan type in Publizon. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
 export const mapFBSLoanToLoanMetaDataType = (
   list: LoanV2[]
 ): MetaDataType<LoanMetaDataType>[] => {
@@ -195,6 +221,10 @@ export const mapFBSLoanToLoanMetaDataType = (
   });
 };
 
+// RenewedLoanV2 is a renewed loan from FBS, and for the moment has no
+// equivalent in publizon. It is mapped to loan type, because the only
+// thing relevant in the UI is that the loan has been renewed, and is
+// Not renewable any longer.
 export const mapFBSRenewedLoanToLoanMetaDataType = (
   list: RenewedLoanV2[]
 ): MetaDataType<LoanMetaDataType>[] => {
