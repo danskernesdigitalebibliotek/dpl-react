@@ -116,8 +116,8 @@ const LoanList: FC = () => {
   }, [physicalLoans, open]);
 
   return (
-    <>
-      <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
+    <div className="loan-list-page">
+      <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
       {(physicalLoans.length > 0 || digitalLoans.length > 0) && (
         <>
           {physicalLoans && (
@@ -159,7 +159,7 @@ const LoanList: FC = () => {
           material={modalMaterial}
         />
       )}
-    </>
+    </div>
   );
 };
 
