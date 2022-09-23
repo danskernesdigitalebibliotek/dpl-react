@@ -10,6 +10,7 @@ export interface DisclosureProps {
   disclosureIconExpandAltText?: string;
   isAvailable?: boolean;
   fullWidth?: boolean;
+  open?: boolean;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
@@ -17,7 +18,8 @@ const Disclosure: FC<DisclosureProps> = ({
   children,
   mainIconPath,
   isAvailable,
-  fullWidth
+  fullWidth,
+  open
 }) => {
   const t = useText();
 
@@ -26,6 +28,7 @@ const Disclosure: FC<DisclosureProps> = ({
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
+      open={open}
     >
       <summary className="disclosure__headline text-body-large">
         {mainIconPath && (
