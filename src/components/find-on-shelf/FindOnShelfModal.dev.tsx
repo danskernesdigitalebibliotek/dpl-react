@@ -25,18 +25,13 @@ export default {
       control: { type: "object" }
     },
     authors: {
-      name: "Work title(s)",
+      name: "Author(s)",
       defaultValue: [
         { __typename: "Person", display: "author 1" },
         { __typename: "Person", display: "author 2" },
         { __typename: "Corporation", display: "author 3" }
       ],
       control: { type: "object" }
-    },
-    pid: {
-      name: "Work title(s)",
-      defaultValue: "870970-basis:52557240",
-      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof FindOnShelfModal>;
