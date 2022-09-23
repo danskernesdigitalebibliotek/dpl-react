@@ -8,7 +8,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
+import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;

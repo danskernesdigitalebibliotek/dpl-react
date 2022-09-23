@@ -12,8 +12,8 @@ import {
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { ManifestationHoldings } from "./types";
+import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 

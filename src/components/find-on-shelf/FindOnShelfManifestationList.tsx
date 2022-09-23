@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { totalAvailableMaterials } from "../../apps/material/helper";
 import { useText } from "../../core/utils/text";
-import { ManifestationHoldings } from "../../core/utils/types/find-on-shelf";
+import { ManifestationHoldings } from "./types";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
 
 export interface FindOnShelfManifestationListProps {
