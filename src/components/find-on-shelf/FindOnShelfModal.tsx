@@ -75,6 +75,18 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     );
   });
 
+  // Sorting of the final data below.
+  const finalDataMainBranchFirst = [
+    ...finalData.filter((manifestationHoldings) => {
+      return manifestationHoldings[0].holding.branch.branchId.endsWith("00");
+    }),
+    ...finalData.filter((manifestationHoldings) => {
+      return !manifestationHoldings[0].holding.branch.branchId.endsWith("00");
+    })
+  ];
+
+  const finalDataToShow = finalDataMainBranchFirst;
+
   return (
     <Modal
       modalId={modalId}
@@ -96,7 +108,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             <div className="text-small-caption modal-find-on-shelf__caption">
               {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
             </div>
-            {finalData.map((libraryBranch) => {
+            {finalDataToShow.map((libraryBranch) => {
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
