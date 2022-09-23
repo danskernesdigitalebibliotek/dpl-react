@@ -31,10 +31,10 @@ const FindOnShelfManifestationListItem: FC<
     : undefined;
 
   const locationArray = [
-    shelfmarkFullText,
     department,
+    location,
     sublocation,
-    location
+    shelfmarkFullText
   ].filter((el) => el);
 
   return (
