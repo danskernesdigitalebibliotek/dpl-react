@@ -1,6 +1,7 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
+import { getFectcherUrl, configTypes } from "../../utils/helpers/fetcher";
 
-const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
+const defaultBaseUrl = "https://fbs-openplatform.dbc.dk";
 
 type FetchParams =
   | string
@@ -53,6 +54,10 @@ export const fetcher = async <ResponseType>({
   signal?: AbortSignal;
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
+
+  const baseUrlFromConfig = getFectcherUrl(configTypes.fbs);
+  const baseURL = baseUrlFromConfig || defaultBaseUrl;
+
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)
     : {};

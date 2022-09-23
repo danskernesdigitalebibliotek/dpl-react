@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
+import { withUrls } from "../../../core/utils/url";
 
 export interface LoanListEntryProps {
+  fbsBaseUrlConfig: string;
+  publizonBaseUrlConfig: string;
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
@@ -65,4 +68,4 @@ export interface LoanListEntryProps {
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
 
-export default withText(LoanListEntry);
+export default withUrls(withText(LoanListEntry));

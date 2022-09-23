@@ -3,11 +3,20 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { configTypes } from "../../../core/utils/helpers/fetcher";
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    [configTypes.fbs]: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
+    [configTypes.publizon]: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
       control: { type: "text" }
