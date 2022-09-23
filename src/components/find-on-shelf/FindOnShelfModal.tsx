@@ -34,7 +34,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
-    convertPostIdToFaustId(manifestationPid as Pid)
+    convertPostIdToFaustId(manifestationPid)
   );
   const { data, isError, isLoading } = useGetHoldingsV3({
     recordid: faustIdArray
