@@ -11,8 +11,11 @@ export const removeLoansWithDuplicateDueDate = (
   return list.filter(({ loanSpecific }) => loanSpecific?.dueDate === date);
 };
 
-export const formatDate = (date: string) => {
-  return dayjs(date).format("DD-MM-YYYY");
+export const formatDate = (date?: string | null) => {
+  if (date) {
+    return dayjs(date).format("DD-MM-YYYY");
+  }
+  return "";
 };
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
@@ -74,6 +77,5 @@ export const getListItems = (
 ) => {
   return [...list].splice(0, itemsShown);
 };
-
 
 export default {};

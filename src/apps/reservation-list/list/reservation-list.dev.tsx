@@ -62,6 +62,10 @@ export default {
     publizonPodcastText: {
       defaultValue: "Podcast",
       control: { type: "text" }
+    },
+    loanBeforeText: {
+      defaultValue: "Lånes inden",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

@@ -15,6 +15,7 @@ export interface ReservationListProps {
   publizonEbookText: string;
   publizonAudioBookText: string;
   publizonPodcastText: string;
+  loanBeforeText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

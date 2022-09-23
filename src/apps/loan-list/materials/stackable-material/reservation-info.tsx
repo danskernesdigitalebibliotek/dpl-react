@@ -11,6 +11,7 @@ import {
 } from "../../../../core/utils/helpers/general";
 import ListReservationStatus from "./list-reservation-status";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
+import { formatDate } from "../../utils/helpers";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationMetaDataType;
@@ -22,21 +23,25 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
   const { state, expiryDate, pickupBranch, numberInQueue, pickupDeadline } =
     reservationInfo;
 
-  const [pickupLibrary, setPickupLibrary] = useState<string>();
+  const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const branchResponse = useGetBranches();
   const colors = getColors();
   const thresholds = getThresholds();
 
   useEffect(() => {
     if (branchResponse.data && pickupBranch) {
-      setPickupLibrary(
+      setReadyForPickupLabel(
         getPreferredLocation(
           pickupBranch,
           branchResponse.data as AgencyBranch[]
         )
       );
+    } else {
+      setReadyForPickupLabel(
+        `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
+      );
     }
-  }, [branchResponse, pickupBranch]);
+  }, [branchResponse, pickupBranch, pickupDeadline, t]);
 
   if (state === "readyForPickup") {
     return (
@@ -44,7 +49,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         color={colors.success as string}
         percent={100}
         expiresSoon={false}
-        label={pickupLibrary ? pickupLibrary : `Lånes inden ${pickupDeadline}`}
+        // todo interpolation
+        label={readyForPickupLabel}
       >
         <img src={check} alt="" />
         {t("reservationListReadyText")}
