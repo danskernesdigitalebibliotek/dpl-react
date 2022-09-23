@@ -168,7 +168,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
                 <p className="text-small-caption" id="due-date">
                   {dueDateLabel} {formatDate(dueDate)}
                 </p>
-                {additionalMaterials > 0 && (
+                {additionalMaterials && (
                   <>
                     <div
                       className="list-reservation__hidden-explanation"
