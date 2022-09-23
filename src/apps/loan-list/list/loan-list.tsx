@@ -79,25 +79,6 @@ const LoanList: FC = () => {
     }
   }, [publizonData]);
 
-  useEffect(() => {
-    if (publizonData?.loans) {
-      const mapToLoanMetaDataType = mapLoanPublizonToLoanMetaDataType(
-        publizonData.loans
-      );
-      setAllDigitalLoans(mapToLoanMetaDataType);
-
-      // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanMetaDataType);
-
-      setDigitalLoans(sortedByLoanDate);
-
-      // The due dates are used for the stacked materials
-      // The stacked materials view shows materials stacked by
-      // due date, and for this we need a unique list of due dates
-      setDigitalLoansDueDates(getDueDatesLoan(sortedByLoanDate));
-    }
-  }, [publizonData]);
-
   const selectModalMaterial = ({
     material,
     loanMetaData
