@@ -4,14 +4,16 @@ import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { ReservationMetaDataType } from "../../../core/utils/types/reservation-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import {
-  mapFBSReservationToLoanMetaDataType,
   getReadyForPickup,
   sortByOldestPickupDeadline,
-  getReserved,
-  mapPublizonReservationToLoanMetaDataType
+  getReserved
 } from "../utils/helpers";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import List from "./list";
+import {
+  mapFBSReservationToLoanMetaDataType,
+  mapPublizonReservationToLoanMetaDataType
+} from "../../../core/utils/helpers/mapper";
 
 const ReservationList: FC = () => {
   const t = useText();

@@ -1,11 +1,8 @@
 import dayjs from "dayjs";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
-import { Loan } from "../../../core/publizon/model";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
-import { FaustId } from "../../../core/utils/types/ids";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
@@ -78,63 +75,5 @@ export const getListItems = (
   return [...list].splice(0, itemsShown);
 };
 
-export const mapPublizonLoanToLoanMetaDataType = (
-  list: Loan[]
-): MetaDataType<LoanMetaDataType>[] => {
-  return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
-    return {
-      type: "digital",
-      id: libraryBook?.identifier as FaustId,
-      loanSpecific: {
-        dueDate: loanExpireDateUtc,
-        loanDate: orderDateUtc,
-        isRenewable: false,
-        materialItemNumber: libraryBook?.identifier || "",
-        renewalStatusList: [],
-        loanType: null
-      }
-    };
-  });
-};
-
-export const mapFBSLoanToLoanMetaDataType = (
-  list: LoanV2[]
-): MetaDataType<LoanMetaDataType>[] => {
-  return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
-    return {
-      type: "physical",
-      id: loanDetails.recordId as FaustId,
-      loanSpecific: {
-        dueDate: loanDetails.dueDate,
-        loanDate: loanDetails.loanDate,
-        renewalStatusList,
-        id: loanDetails.recordId,
-        isRenewable,
-        materialItemNumber: loanDetails.materialItemNumber,
-        loanType: loanDetails.loanType
-      }
-    };
-  });
-};
-
-export const mapFBSRenewedLoanToLoanMetaDataType = (
-  list: RenewedLoanV2[]
-): MetaDataType<LoanMetaDataType>[] => {
-  return list.map(({ loanDetails }) => {
-    return {
-      type: "physical",
-      id: loanDetails.recordId as FaustId,
-      loanSpecific: {
-        dueDate: loanDetails.dueDate,
-        loanDate: loanDetails.loanDate,
-        renewalStatusList: [],
-        id: loanDetails.recordId,
-        isRenewable: false,
-        materialItemNumber: loanDetails.materialItemNumber,
-        loanType: loanDetails.loanType
-      }
-    };
-  });
-};
 
 export default {};

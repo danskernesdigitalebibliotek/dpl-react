@@ -9,12 +9,9 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
-import {
-  mapFBSRenewedLoanToLoanMetaDataType,
-  getRenewedIds,
-  removeLoansWithIds
-} from "../utils/helpers";
+import { getRenewedIds, removeLoansWithIds } from "../utils/helpers";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+import { mapFBSRenewedLoanToLoanMetaDataType } from "../../../core/utils/helpers/mapper";
 
 interface RenewLoansModalContentProps {
   loansModal: MetaDataType<LoanMetaDataType>[];

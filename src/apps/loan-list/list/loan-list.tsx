@@ -11,11 +11,11 @@ import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
+import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import {
   mapFBSLoanToLoanMetaDataType,
   mapPublizonLoanToLoanMetaDataType
-} from "../utils/helpers";
-import { MetaDataType } from "../../../core/utils/types/meta-data-type";
+} from "../../../core/utils/helpers/mapper";
 
 const LoanList: FC = () => {
   const t = useText();

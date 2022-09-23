@@ -13,9 +13,6 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanMetaDataType } from "../types/loan-meta-data-type";
 import { MetaDataType } from "../types/meta-data-type";
-import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
-import { BasicDetailsType } from "../types/basic-details-type";
-import { Product } from "../../publizon/model";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
@@ -193,88 +190,6 @@ export const getAmountOfRenewableLoans = (
   list: MetaDataType<LoanMetaDataType>[]
 ) => {
   return getRenewableMaterials(list).length;
-};
-
-export const getContributors = (creators: string[] | undefined) => {
-  const {
-    text: { data: texts }
-  } = store.getState();
-
-  let returnContentString = "";
-  if (creators && creators.length > 0) {
-    if (creators.length === 1) {
-      returnContentString = `${texts.materialByAuthorText} ${creators.join(
-        ", "
-      )}`;
-    } else {
-      returnContentString = `${texts.materialByAuthorText} ${creators
-        .slice(0, -1)
-        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
-    }
-  }
-  return returnContentString;
-};
-
-function getYearFromDataString(date?: string) {
-  if (date) {
-    return new Date(date).getFullYear();
-  }
-  return "";
-}
-
-export const mapManifestationToBasicDetailsType = (
-  material: GetMaterialManifestationQuery
-) => {
-  const { hostPublication, abstract, titles, pid, materialTypes, creators } =
-    material?.manifestation || {};
-
-  const description = abstract ? abstract[0] : "";
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
-  const { year: yearObject } = hostPublication || {};
-  const { year } = yearObject || {};
-
-  return {
-    authors: getContributors(creators?.map(({ display }) => display)),
-    pid,
-    title: mainText,
-    year,
-    description,
-    materialType: materialTypes ? materialTypes[0].specific : undefined
-  } as BasicDetailsType;
-};
-
-export const mapProductToBasicDetailsType = (material: Product) => {
-  const {
-    publicationDate,
-    title,
-    description,
-    productType,
-    contributors,
-    externalProductId
-  } = material;
-
-  const {
-    text: { data: texts }
-  } = store.getState();
-
-  const digitalProductType: { [key: number]: string } = {
-    1: texts.publizonEbookText,
-    2: texts.publizonAudioBookText,
-    4: texts.publizonAudioBookText
-  };
-  
-  return {
-    title,
-    year: getYearFromDataString(publicationDate),
-    description,
-    materialType: productType ? digitalProductType[productType] : "",
-    pid: externalProductId?.id,
-    authors: getContributors(
-      contributors?.map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-    )
-  } as BasicDetailsType;
 };
 
 export const groupObjectArrayByProperty = <

@@ -4,7 +4,7 @@ import { Product } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { MaterialClassification } from "../../../../core/utils/types/material-classification";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
-import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/general";
+import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/mapper";
 
 export interface MaterialProps {
   material?: BasicDetailsType | null;

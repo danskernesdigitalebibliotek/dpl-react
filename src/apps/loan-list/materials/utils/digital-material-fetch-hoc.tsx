@@ -3,7 +3,7 @@ import { FaustId } from "../../../../core/utils/types/ids";
 import { useGetV1ProductsIdentifier } from "../../../../core/publizon/publizon";
 import { MaterialClassification } from "../../../../core/utils/types/material-classification";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
-import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/general";
+import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/mapper";
 import { MaterialProps } from "./material-fetch-hoc";
 
 type InputProps = {
