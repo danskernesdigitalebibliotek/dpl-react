@@ -96,7 +96,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         type="button"
         onClick={(e) => selectListMaterial(e)}
         className={`list-reservation my-32 ${
-          additionalMaterials > 0 ? "list-reservation--stacked" : ""
+          additionalMaterials ? "list-reservation--stacked" : ""
         }`}
       >
         <div className="list-reservation__material">
