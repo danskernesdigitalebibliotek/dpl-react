@@ -1,24 +1,26 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useInView } from "react-hook-inview";
 import CheckBox from "../materials/utils/checkbox";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
-import { RenewedLoanV2 } from "../../../core/fbs/model";
 import {
   getRenewableMaterials,
   getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
-import { FaustId } from "../../../core/utils/types/ids";
 import { Button } from "../../../components/Buttons/Button";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import {
+  mapFBSRenewedLoanToLoanMetaDataType,
+  getRenewedIds,
+  removeLoansWithIds
+} from "../utils/helpers";
 
 interface RenewLoansModalContentProps {
-  loansModal: LoanV2[];
+  loansModal: LoanMetaDataType[];
   buttonLabel: string;
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
-  renewable: number | null;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
@@ -26,21 +28,18 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel,
   buttonBottomLabel,
-  checkboxBottomLabel,
-  renewable
+  checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
   const [ref, isVisible] = useInView({
     threshold: 0
   });
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] = useState<number>(
-    renewable || 0
-  );
-  const [loans, setLoans] = useState<Array<LoanV2>>([]);
-  const [renewedLoans, setRenewedLoans] = useState<
-    Array<RenewedLoanV2> | undefined | null
-  >(null);
+  const [allRenewableMaterials, setAllRenewableMaterials] = useState<
+    number | null
+  >(0);
+  const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
+  const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
 
   const renewSelected = useCallback(() => {
     mutate(
@@ -50,15 +49,12 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
-            const renewedIds = result.map(
-              ({ loanDetails }) => loanDetails.recordId
-            );
-            const filteredLoans = loans.filter((item) => {
-              return renewedIds.indexOf(item.loanDetails.recordId) === -1;
-            });
+            const renewedIds = getRenewedIds(result);
+            const filteredLoans = removeLoansWithIds(loans, renewedIds);
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
-            setRenewedLoans(result);
+
+            setRenewedLoans(mapFBSRenewedLoanToLoanMetaDataType(result));
           }
         },
         // todo error handling, missing in figma
@@ -115,30 +111,31 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         />
       </div>
       <div className="modal-loan__list">
-        <ul className="modal-loan__list-materials">
-          {renewedLoans &&
-            renewedLoans.map(({ renewalStatus, loanDetails }) => {
-              return (
-                <SelectableMaterial
-                  key={loanDetails.recordId}
-                  disabled
-                  onChecked={onChecked}
-                  faust={loanDetails.recordId as FaustId}
-                  loanDetails={loanDetails}
-                  renewableStatus={renewalStatus}
-                />
-              );
-            })}
-          {loans.map(({ renewalStatusList, isRenewable, loanDetails }) => {
+        <ul
+          className={`modal-loan__list-materials ${
+            !isVisible
+              ? "modal-loan__list-materials--bottom-buttons-visible"
+              : ""
+          }`}
+        >
+          {renewedLoans.map((loanMetaData) => {
             return (
               <SelectableMaterial
-                key={loanDetails.recordId}
-                faust={loanDetails.recordId as FaustId}
+                key={loanMetaData.id}
+                disabled
+                onChecked={onChecked}
+                loanMetaData={loanMetaData}
+              />
+            );
+          })}
+          {loans.map((loanMetaData) => {
+            return (
+              <SelectableMaterial
+                key={loanMetaData.id}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
-                disabled={!isRenewable}
-                loanDetails={loanDetails}
-                renewableStatus={renewalStatusList}
+                disabled={!loanMetaData.isRenewable}
+                loanMetaData={loanMetaData}
               />
             );
           })}

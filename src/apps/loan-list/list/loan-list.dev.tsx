@@ -16,6 +16,10 @@ export default {
       defaultValue: "Fysiske lån",
       control: { type: "text" }
     },
+    loanListDigitalLoansTitleText: {
+      defaultValue: "Digitale lån",
+      control: { type: "text" }
+    },
     loanListListText: {
       defaultValue: "Liste aria text",
       control: { type: "text" }
@@ -47,6 +51,10 @@ export default {
     },
     loanListToBeDeliveredText: {
       defaultValue: "Afleveres",
+      control: { type: "text" }
+    },
+    loanListToBeDeliveredDigitalMaterialText: {
+      defaultValue: "Udløber",
       control: { type: "text" }
     },
     loanListMaterialsDesktopText: {
@@ -254,7 +262,7 @@ LoanListDetailsModal.parameters = {
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-07-14"
+    modal: "2022-09-16"
   }
 };
 

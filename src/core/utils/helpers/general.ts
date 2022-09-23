@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 import { CoverProps } from "../../../components/cover/cover";
+import { UseTextFunction } from "../text";
 import configuration, {
   getConf,
   getDeviceConf,
   ConfScope
 } from "../../configuration";
-import { LoanV2 } from "../../fbs/model/loanV2";
-import { UseTextFunction } from "../text";
 import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
+import { LoanMetaDataType } from "../types/loan-meta-data-type";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
@@ -121,12 +121,28 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanV2[]) => {
+export const sortByLoanDate = (list: LoanMetaDataType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
   return list.sort(
     (objA, objB) =>
-      new Date(objA.loanDetails.loanDate).getTime() -
-      new Date(objB.loanDetails.loanDate).getTime()
+      new Date(objA.loanDate || new Date()).getTime() -
+      new Date(objB.loanDate || new Date()).getTime()
   );
+};
+
+export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
+  return Array.from(
+    new Set(
+      list
+        .filter(({ dueDate }) => dueDate !== (undefined || null))
+        .map(({ dueDate }) => dueDate)
+    )
+  ) as string[];
+};
+
+export const getDueDatesForModal = (list: LoanMetaDataType[], date: string) => {
+  return list.filter(({ dueDate }) => dueDate === date);
 };
 
 // If modalids are longer than 0, a modal is open.
@@ -140,13 +156,13 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
   return Number(pageSize);
 };
 
-export const getRenewableMaterials = (list: LoanV2[]) => {
+export const getRenewableMaterials = (list: LoanMetaDataType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanDetails }) => parseInt(loanDetails.recordId, 10));
+    .map(({ id }) => parseInt(id, 10));
 };
 
-export const getAmountOfRenewableLoans = (list: LoanV2[]) => {
+export const getAmountOfRenewableLoans = (list: LoanMetaDataType[]) => {
   return getRenewableMaterials(list).length;
 };
 

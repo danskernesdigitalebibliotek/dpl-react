@@ -1,20 +1,29 @@
-import get from "lodash.get";
 import dayjs from "dayjs";
 import { LoanV2 } from "../../../core/fbs/model/loanV2";
+import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
+import { Loan } from "../../../core/publizon/model";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 export const removeLoansWithDuplicateDueDate = (
-  date: string,
-  list: LoanV2[],
-  filterByPath: string
+  date: string | null,
+  list: LoanMetaDataType[]
 ) => {
-  return list.filter(
-    (material: LoanV2) => get(material, filterByPath) === date
-  );
+  return list.filter(({ dueDate }) => dueDate === date);
 };
 
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
+};
+
+export const getRenewedIds = (list: RenewedLoanV2[]) => {
+  return list.map(({ loanDetails }) => loanDetails.recordId);
+};
+
+export const removeLoansWithIds = (list: LoanMetaDataType[], ids: string[]) => {
+  return list.filter(({ id }) => {
+    return ids.indexOf(id) === -1;
+  });
 };
 
 export const materialIsOverdue = (date: string | undefined) => {
@@ -56,24 +65,75 @@ export const queryMatchesFaust = (query: string | null) => {
 
 export const getStackedItems = (
   view: ListView,
-  list: LoanV2[],
+  list: LoanMetaDataType[],
   itemsShown: number,
-  dueDates: string[] | undefined
+  dueDates: string[] | undefined | null[]
 ) => {
-  let returnLoans: LoanV2[] = [];
+  let returnLoans: LoanMetaDataType[] = [];
   if (view === "stacked" && dueDates) {
-    const dueDatesCopy = dueDates.slice(0, itemsShown);
+    // I mean... this...
+    // If the due date is null, the stacked item still has to be shown
+    let dueDatesCopy = [...dueDates, null];
+    dueDatesCopy = dueDatesCopy.slice(0, itemsShown);
     dueDatesCopy.forEach((uniqueDueDate) => {
       returnLoans = returnLoans.concat(
-        list.filter(({ loanDetails }) => loanDetails.dueDate === uniqueDueDate)
+        list.filter(({ dueDate }) => dueDate === uniqueDueDate)
       );
     });
   }
   return returnLoans;
 };
 
-export const getListItems = (list: LoanV2[], itemsShown: number) => {
+export const getListItems = (list: LoanMetaDataType[], itemsShown: number) => {
   return [...list].splice(0, itemsShown);
+};
+
+export const mapPublizonLoanToLoanMetaDataType = (
+  list: Loan[]
+): LoanMetaDataType[] => {
+  return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
+    return {
+      dueDate: loanExpireDateUtc,
+      loanDate: orderDateUtc,
+      id: libraryBook?.identifier || "",
+      isRenewable: false,
+      materialItemNumber: libraryBook?.identifier || "",
+      renewalStatusList: [],
+      loanType: null
+    };
+  });
+};
+
+export const mapFBSLoanToLoanMetaDataType = (
+  list: LoanV2[]
+): LoanMetaDataType[] => {
+  return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
+    return {
+      dueDate: loanDetails.dueDate,
+      loanDate: loanDetails.loanDate,
+      renewalStatusList,
+      id: loanDetails.recordId,
+      isRenewable,
+      materialItemNumber: loanDetails.materialItemNumber,
+      loanType: loanDetails.loanType
+    };
+  });
+};
+
+export const mapFBSRenewedLoanToLoanMetaDataType = (
+  list: RenewedLoanV2[]
+): LoanMetaDataType[] => {
+  return list.map(({ loanDetails }) => {
+    return {
+      dueDate: loanDetails.dueDate,
+      loanDate: loanDetails.loanDate,
+      renewalStatusList: [],
+      id: loanDetails.recordId,
+      isRenewable: false,
+      materialItemNumber: loanDetails.materialItemNumber,
+      loanType: loanDetails.loanType
+    };
+  });
 };
 
 export default {};

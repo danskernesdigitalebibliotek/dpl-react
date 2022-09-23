@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import { Cover } from "../../../components/cover/cover";
 import StatusCircle from "./utils/status-circle";
 import StatusBadge from "./utils/status-badge";
@@ -15,20 +15,22 @@ import {
   getAuthorNames,
   materialIsOverdue
 } from "../utils/helpers";
+import DueDateLoansModal from "../modal/due-date-loans-modal";
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
-  loanDetails,
   amountOfMaterialsWithDueDate,
   material,
-  selectDueDate,
-  selectMaterial
+  openModal,
+  selectMaterial,
+  loanMetaData,
+  dueDateLabel,
+  stack
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const [additionalMaterials] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
-
+  const additionalMaterials = amountOfMaterialsWithDueDate
+    ? amountOfMaterialsWithDueDate - 1
+    : 0;
   const { creators, hostPublication, materialTypes, titles, pid, abstract } =
     material.manifestation || {};
   const { year } = hostPublication || {};
@@ -36,7 +38,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const {
     main: [mainText]
   } = titles || { main: [] };
-  const { loanDate, dueDate, recordId: faust } = loanDetails || {};
+
+  const { dueDate, loanDate, id } = loanMetaData;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -53,15 +56,24 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
     };
   }, []);
 
-  const openDueDateModal = useCallback(
+  const openDueDateModal = useCallback(() => {
+    if (stack && dueDate) {
+      open(dueDate);
+    }
+  }, [stack, open, dueDate]);
+
+  useEffect(() => {
+    if (openModal) {
+      openDueDateModal();
+    }
+  }, [openDueDateModal, openModal]);
+
+  const openDueDateModalCallBack = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (selectDueDate) {
-        selectDueDate();
-        open(dueDate);
-      }
+      openDueDateModal();
     },
-    [dueDate, open, selectDueDate]
+    [openDueDateModal]
   );
 
   const selectListMaterial = useCallback(
@@ -70,121 +82,126 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       if (selectMaterial) {
         selectMaterial({
           material,
-          loanDetails
+          loanMetaData
         });
       }
-      open(faust);
+      open(id);
     },
-    [faust, loanDetails, material, open, selectMaterial]
+    [id, loanMetaData, material, open, selectMaterial]
   );
 
   return (
-    <button
-      type="button"
-      onClick={(e) => selectListMaterial(e)}
-      className={`list-reservation my-32 ${
-        additionalMaterials > 0 ? "list-reservation--stacked" : ""
-      }`}
-    >
-      <div className="list-reservation__material">
-        <div>
-          <Cover
-            pid={pid as Pid}
-            size="small"
-            animate={false}
-            description={abstract && abstract[0]}
-          />
-        </div>
-        <div className="list-reservation__information">
+    <>
+      <button
+        type="button"
+        onClick={(e) => selectListMaterial(e)}
+        className={`list-reservation my-32 ${
+          additionalMaterials ? "list-reservation--stacked" : ""
+        }`}
+      >
+        <div className="list-reservation__material">
           <div>
-            <div className="status-label status-label--outline">{specific}</div>
+            <Cover
+              pid={pid as Pid}
+              size="small"
+              animate={false}
+              description={abstract && abstract[0]}
+            />
           </div>
-          <div className="list-reservation__about">
-            <h3 className="text-header-h4">{mainText}</h3>
-            <p className="text-small-caption color-secondary-gray">
-              {creators &&
-                getAuthorNames(
-                  creators,
-                  t("loanListMaterialByAuthorText"),
-                  t("loanListMaterialAndAuthorText")
-                )}
-              {year?.year && <> ({year.year})</>}
-            </p>
-          </div>
-          {additionalMaterials > 0 && (
-            <>
-              <div
-                className="list-reservation__hidden-explanation"
-                id="materials-modal-desktop-text"
-              >
-                {t("loanListMaterialsModalDesktopText")}
+          <div className="list-reservation__information">
+            <div>
+              <div className="status-label status-label--outline">
+                {specific}
               </div>
-              <button
-                type="button"
-                onClick={(e) => {
-                  openDueDateModal(e);
-                }}
-                aria-describedby="materials-modal-desktop-text"
-                id="test-more-materials"
-                className="list-reservation__note-desktop text-small-caption color-secondary-gray"
-              >
-                + {additionalMaterials} {t("loanListMaterialsDesktopText")}
-              </button>
-            </>
-          )}
-          {materialIsOverdue(dueDate) && (
-            <a
-              href="todo"
-              className="list-reservation__note-desktop text-small-caption color-signal-alert"
-            >
-              {t("loanListLateFeeDesktopText")}
-            </a>
-          )}
-        </div>
-      </div>
-      <div>
-        <div className="list-reservation__status">
-          <StatusCircle loanDate={loanDate} dueDate={dueDate} />
-          <div>
-            <div className="list-reservation__deadline">
-              <StatusBadge
-                dueDate={dueDate}
-                dangerText={t("loanListStatusBadgeDangerText")}
-                warningText={t("loanListStatusBadgeWarningText")}
-              />
-              <p className="text-small-caption" id="due-date">
-                {t("loanListToBeDeliveredText")} {formatDate(dueDate)}
+            </div>
+            <div className="list-reservation__about">
+              <h3 className="text-header-h4">{mainText}</h3>
+              <p className="text-small-caption color-secondary-gray">
+                {creators &&
+                  getAuthorNames(
+                    creators,
+                    t("loanListMaterialByAuthorText"),
+                    t("loanListMaterialAndAuthorText")
+                  )}
+                {year?.year && <> ({year.year})</>}
               </p>
-              {additionalMaterials > 0 && (
-                <>
-                  <div
-                    className="list-reservation__hidden-explanation"
-                    id="materials-modal-text"
-                  >
-                    {t("loanListMaterialsModalMobileText")}
-                  </div>
-                  <button
-                    type="button"
-                    aria-describedby="materials-modal-text"
-                    className="list-reservation__note-mobile text-small-caption color-secondary-gray"
-                  >
-                    + {additionalMaterials} {t("loanListMaterialsMobileText")}
-                  </button>
-                </>
-              )}
-              {materialIsOverdue(dueDate) && (
-                <a
-                  href="todo"
-                  className="list-reservation__note-mobile text-small-caption color-signal-alert"
+            </div>
+            {additionalMaterials > 0 && (
+              <>
+                <div
+                  className="list-reservation__hidden-explanation"
+                  id="materials-modal-desktop-text"
                 >
-                  {t("loanListLateFeeMobileText")}
-                </a>
-              )}
+                  {t("loanListMaterialsModalDesktopText")}
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => openDueDateModalCallBack(e)}
+                  aria-describedby="materials-modal-desktop-text"
+                  id="test-more-materials"
+                  className="list-reservation__note-desktop"
+                >
+                  + {additionalMaterials} {t("loanListMaterialsDesktopText")}
+                </button>
+              </>
+            )}
+            {dueDate && materialIsOverdue(dueDate) && (
+              <a
+                href="todo"
+                className="list-reservation__note-desktop color-signal-alert"
+              >
+                {t("loanListLateFeeDesktopText")}
+              </a>
+            )}
+          </div>
+        </div>
+        {dueDate && loanDate && (
+          <div className="list-reservation__status">
+            <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+            <div>
+              <div className="list-reservation__deadline">
+                <StatusBadge
+                  dueDate={dueDate}
+                  dangerText={t("loanListStatusBadgeDangerText")}
+                  warningText={t("loanListStatusBadgeWarningText")}
+                />
+                <p className="text-small-caption" id="due-date">
+                  {dueDateLabel} {formatDate(dueDate)}
+                </p>
+                {additionalMaterials && (
+                  <>
+                    <div
+                      className="list-reservation__hidden-explanation"
+                      id="materials-modal-text"
+                    >
+                      {t("loanListMaterialsModalMobileText")}
+                    </div>
+                    <button
+                      type="button"
+                      aria-describedby="materials-modal-text"
+                      className="list-reservation__note-mobile"
+                    >
+                      + {additionalMaterials} {t("loanListMaterialsMobileText")}
+                    </button>
+                  </>
+                )}
+                {materialIsOverdue(dueDate) && (
+                  <a
+                    href="todo"
+                    className="list-reservation__note-mobile color-signal-alert"
+                  >
+                    {t("loanListLateFeeMobileText")}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </button>
+        )}
+      </button>
+      {dueDate && stack && (
+        <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
+      )}
+    </>
   );
 };
 

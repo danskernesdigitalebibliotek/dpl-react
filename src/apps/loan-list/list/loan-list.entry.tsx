@@ -5,6 +5,7 @@ import { withText } from "../../../core/utils/text";
 export interface LoanListEntryProps {
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
+  loanListDigitalLoansTitleText: string;
   loanListRenewMultipleButtonText: string;
   loanListListText: string;
   loanListStackText: string;
@@ -13,6 +14,7 @@ export interface LoanListEntryProps {
   loanListLateFeeMobileText: string;
   loanListDaysText: string;
   loanListToBeDeliveredText: string;
+  loanListToBeDeliveredDigitalMaterialText: string;
   loanListMaterialsDesktopText: string;
   loanListMaterialsMobileText: string;
   loanListMaterialsModalDesktopText: string;

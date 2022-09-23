@@ -10,16 +10,14 @@ import {
 } from "./utils/material-fetch-hoc";
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
-  loanDetails,
-  renewableStatus,
-  loanType,
+  loanMetaData,
   material,
   disabled,
   onChecked,
   materialsToRenew
 }) => {
   const t = useText();
-  const { dueDate, recordId: faust } = loanDetails || {};
+  const { dueDate, id, loanType, renewalStatusList } = loanMetaData || {};
   const { hostPublication, materialTypes, titles, creators } =
     material?.manifestation || {};
 
@@ -37,13 +35,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="mr-32">
-          {faust && onChecked && (
+          {id && onChecked && (
             <CheckBox
               onChecked={onChecked}
-              id={faust}
+              id={id}
               selected={
                 materialsToRenew &&
-                materialsToRenew?.indexOf(parseInt(faust, 10)) > -1
+                materialsToRenew?.indexOf(parseInt(id, 10)) > -1
               }
               disabled={disabled}
               label={t("loanListLabelCheckboxMaterialModalText")}
@@ -70,14 +68,14 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           {/* todo this will be changed, everything with these statusses will be revised */}
-          {renewableStatus && (
+          {renewalStatusList && (
             <span className="text-small-caption">
-              {renewableStatus.includes("deniedMaxRenewalsReached") && (
-                <>{t("loanListDeniedMaxRenewalsReachedText")}</>
+              {renewalStatusList.includes("deniedMaxRenewalsReached") && (
+                <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
               )}
-              {(renewableStatus.includes("deniedOtherReason") ||
-                renewableStatus.includes("deniedReserved")) && (
-                <> {t("loanListDeniedOtherReasonText")}</>
+              {(renewalStatusList.includes("deniedOtherReason") ||
+                renewalStatusList.includes("deniedReserved")) && (
+                <> {t("LoanListDeniedOtherReasonText")}</>
               )}
               {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}
               {loanType === "interLibraryLoan" && (
@@ -85,11 +83,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               )}
             </span>
           )}
-          <StatusBadge
-            dueDate={dueDate}
-            neutralText={`${t("loanListToBeDeliveredMaterialText")}
+          {dueDate && (
+            <StatusBadge
+              dueDate={dueDate}
+              neutralText={`${t("loanListToBeDeliveredMaterialText")} 
             ${formatDate(dueDate)}`}
-          />
+            />
+          )}
         </div>
       </div>
     </li>

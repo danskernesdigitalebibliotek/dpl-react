@@ -1,11 +1,6 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
 
-// const baseURL = "https://pubhub-openplatform.dbc.dk"; // use your own URL here or environment variable
-// TODO: This is a test url because the one above is not ready yet
-// You can test with these two ids in MaterialAvailabilityTextOnline
-// const costfreeID = "9788711321683";
-// const notCostfreeID = "9788740047905";
-const baseURL = "https://pubhub-openplatform.test.dbc.dk";
+const baseURL = "https://pubhub-openplatform.dbc.dk/"; // use your own URL here or environment variable
 
 type FetchParams =
   | string

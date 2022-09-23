@@ -1,26 +1,24 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import localeDa from "dayjs/locale/da";
 import Modal from "../../../core/utils/modal";
 import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
-import { LoanV2 } from "../../../core/fbs/model";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
-import { materialIsOverdue } from "../utils/helpers";
+import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface DueDateLoansModalProps {
   dueDate: string;
-  renewable: number | null;
-  loansModal: LoanV2[] | undefined | null;
+  loansModal: LoanMetaDataType[];
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
-  renewable,
   loansModal
 }) => {
   const t = useText();
+  const aMonthAgo = dayjs().subtract(7, "month").format("YYYY-MM-DD");
 
   return (
     <Modal
@@ -36,13 +34,13 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
           <>
             <div className="modal-loan__header">
               <div className="mr-32">
-                {/* todo this status circle being discussed på fddf, as we dont know which numbers to use for the full circle, and the designers are somewhat vague about the idea  */}
-                <StatusCircle loanDate="03-08-2022" dueDate={dueDate} />
+                {/* So, in the scenario where there are mixed loans, the design is challenged  */}
+                {/* Therefore it was decided that the loandate for all the materials are "a month ago"  */}
+                <StatusCircle loanDate={aMonthAgo} dueDate={dueDate} />
               </div>
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("dueDateRenewLoanModalHeaderText")}{" "}
-                  {dayjs(dueDate).locale(localeDa).format("DD MMMM YYYY")}
+                  {t("dueDateRenewLoanModalHeaderText")} {formatDate(dueDate)}
                 </h1>
               </div>
             </div>
@@ -55,12 +53,11 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
             )}
             <RenewLoansModalContent
-              renewable={renewable}
               loansModal={loansModal}
               buttonLabel={t("dueDateRenewLoanModalButtonText")}
               checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
-              buttonBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
-              checkboxBottomLabel={t("bottomDueDateRenewLoanModalButtonText")}
+              checkboxBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
+              buttonBottomLabel={t("bottomDueDateRenewLoanModalButtonText")}
             />
           </>
         )}

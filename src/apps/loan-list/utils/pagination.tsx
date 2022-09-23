@@ -1,37 +1,34 @@
 import React, { useEffect, useState, FC } from "react";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { getStackedItems, getListItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { LoanDetailsV2 } from "../../../core/fbs/model";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
 import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
+import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 
 interface PaginationProps {
   selectModalMaterial: ({
     material,
-    loanDetails
+    loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
+    loanMetaData: LoanMetaDataType;
   }) => void;
-  openModalDueDate: (dueDate: string) => void;
   view: ListView;
-  hitcount: number;
   dueDates: string[];
-  loans: LoanV2[];
+  loans: LoanMetaDataType[];
+  dueDateLabel: string;
 }
 
 const Pagination: FC<PaginationProps> = ({
   view,
-  hitcount,
   dueDates,
   loans,
-  openModalDueDate,
-  selectModalMaterial
+  selectModalMaterial,
+  dueDateLabel
 }) => {
-  const [displayedLoans, setDisplayedLoans] = useState<LoanV2[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
   // So, this is necessary due to the stacked items
   // Where, in the ui it shows 5 stacked items, and
   // those items accumulated is 34 items - which means
@@ -42,7 +39,7 @@ const Pagination: FC<PaginationProps> = ({
   };
 
   const { itemsShown, PagerComponent } = usePager(
-    hitcount,
+    loans.length,
     getPageSizeFromConfiguration("pageSizeLoanList"),
     overrideItemsShown
   );
@@ -52,13 +49,7 @@ const Pagination: FC<PaginationProps> = ({
       if (view === "list") {
         setDisplayedLoans(getListItems(loans, itemsShown));
       } else {
-        const stackedLoans: LoanV2[] = getStackedItems(
-          view,
-          loans,
-          itemsShown,
-          dueDates
-        );
-
+        const stackedLoans = getStackedItems(view, loans, itemsShown, dueDates);
         setDisplayedLoans([...stackedLoans]);
       }
     }
@@ -67,10 +58,10 @@ const Pagination: FC<PaginationProps> = ({
   return (
     <>
       <LoanListItems
+        dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}
-        openModalDueDate={openModalDueDate}
         selectModalMaterial={selectModalMaterial}
       />
       {PagerComponent}

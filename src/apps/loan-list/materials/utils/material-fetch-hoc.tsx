@@ -3,32 +3,32 @@ import {
   GetMaterialManifestationQuery,
   useGetMaterialManifestationQuery
 } from "../../../../core/dbc-gateway/generated/graphql";
-import { LoanDetailsV2 } from "../../../../core/fbs/model";
+import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
 import { FaustId } from "../../../../core/utils/types/ids";
 
 export interface MaterialDetailsProps {
-  loanDetails: LoanDetailsV2;
+  loanMetaData: LoanMetaDataType;
 }
 
 export interface SelectableMaterialProps {
-  loanDetails: LoanDetailsV2;
-  renewableStatus?: string[];
-  loanType?: string;
+  loanMetaData: LoanMetaDataType;
   disabled?: boolean;
   materialsToRenew?: number[];
   onChecked?: (faust: FaustId) => void;
 }
 
 export interface StackableMaterialProps {
-  loanDetails: LoanDetailsV2;
+  stack?: LoanMetaDataType[];
+  loanMetaData: LoanMetaDataType;
   amountOfMaterialsWithDueDate?: number;
-  selectDueDate?: () => void;
+  dueDateLabel?: string;
+  openModal?: boolean;
   selectMaterial?: ({
     material,
-    loanDetails
+    loanMetaData
   }: {
     material: GetMaterialManifestationQuery | undefined | null;
-    loanDetails: LoanDetailsV2;
+    loanMetaData: LoanMetaDataType;
   }) => void;
 }
 
@@ -36,7 +36,7 @@ export interface MaterialProps {
   material: GetMaterialManifestationQuery;
 }
 
-type InputProps = { faust: FaustId } & (
+type InputProps = { loanMetaData: LoanMetaDataType } & (
   | StackableMaterialProps
   | SelectableMaterialProps
   | MaterialDetailsProps
@@ -47,12 +47,12 @@ export type WithMaterialProps = MaterialProps &
 export function FetchMaterial(
   WrappedComponent: ComponentType<WithMaterialProps>
 ) {
-  const WithFetchMaterial = ({ faust, ...props }: InputProps) => {
+  const WithFetchMaterial = ({ loanMetaData, ...props }: InputProps) => {
     const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
     // Todo error handling
     const { isSuccess: isSuccessManifestation, data } =
       useGetMaterialManifestationQuery({
-        faust
+        faust: loanMetaData?.id
       });
     useEffect(() => {
       if (data && isSuccessManifestation) {
@@ -62,8 +62,14 @@ export function FetchMaterial(
 
     return (
       <>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        {material && <WrappedComponent {...props} material={material} />}
+        {material && (
+          <WrappedComponent
+            loanMetaData={loanMetaData}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...props}
+            material={material}
+          />
+        )}
         {/* todo loading screen missing in figma */}
         {!material && <div />}
       </>
