@@ -76,14 +76,13 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   });
 
   // Sorting of the final data below.
-  const finalDataMainBranchFirst = [
-    ...finalData.filter((manifestationHoldings) => {
-      return manifestationHoldings[0].holding.branch.branchId.endsWith("00");
-    }),
-    ...finalData.filter((manifestationHoldings) => {
-      return !manifestationHoldings[0].holding.branch.branchId.endsWith("00");
-    })
-  ];
+  const finalDataMainBranchFirst = finalData.sort(
+    (manifestationHolding: ManifestationHoldings) => {
+      return manifestationHolding[0].holding.branch.branchId.endsWith("00")
+        ? -1
+        : 1;
+    }
+  );
 
   const finalDataToShow = finalDataMainBranchFirst;
 
