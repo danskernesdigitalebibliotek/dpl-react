@@ -105,6 +105,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
                     libraryBranch
                   )}
                   fullWidth
+                  open={finalData.length === 1}
                 >
                   <FindOnShelfManifestationList
                     libraryBranchHoldings={libraryBranch}
