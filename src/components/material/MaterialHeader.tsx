@@ -27,7 +27,7 @@ interface MaterialHeaderProps {
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
+  selectPeriodicalSelect: (periodicalSelect: string) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -90,7 +90,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {manifestation?.source?.includes("bibliotekskatalog") && (
+        {manifestation?.source
+          ?.map((i) => i.toLowerCase())
+          .includes("bibliotekskatalog") && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
             selectPeriodicalSelect={selectPeriodicalSelect}

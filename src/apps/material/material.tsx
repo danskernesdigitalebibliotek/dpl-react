@@ -158,7 +158,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       )}
       {currentManifestation && (
         <>
-          <ReservationModal manifestation={currentManifestation} />
+          <ReservationModal
+            manifestation={currentManifestation}
+            periodicalSelect={periodicalSelect}
+          />
           <FindOnShelfModal
             // TODO: when we have a selected manifestations group, pass it
             // down here as manifestations prop

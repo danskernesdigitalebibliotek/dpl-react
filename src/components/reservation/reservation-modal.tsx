@@ -38,9 +38,11 @@ export const reservationModalId = (faustId: FaustId) =>
 
 type ReservationModalProps = {
   manifestation: Manifestation;
+  periodicalSelect?: string | null;
 };
 
-const ReservationModal = ({
+const ReservationModal: React.FunctionComponent<ReservationModalProps> = ({
+  periodicalSelect,
   manifestation: {
     pid,
     materialTypes,
@@ -49,7 +51,7 @@ const ReservationModal = ({
     publicationYear,
     edition
   }
-}: ReservationModalProps) => {
+}) => {
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
@@ -108,6 +110,14 @@ const ReservationModal = ({
               ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
               ...(selectedInterest
                 ? { expiryDate: getFutureDateString(selectedInterest) }
+                : {}),
+              ...(periodicalSelect
+                ? {
+                    periodical: {
+                      volumeNumber: JSON.parse(periodicalSelect).volumeNumber,
+                      volumeYear: JSON.parse(periodicalSelect).volumeYear
+                    }
+                  }
                 : {})
             }
           ]
@@ -164,7 +174,10 @@ const ReservationModal = ({
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}
               </div>
-              <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
+              <h2 className="text-header-h2 mt-22 mb-8">
+                {titles.main[0]}{" "}
+                {periodicalSelect && JSON.parse(periodicalSelect).displayText}
+              </h2>
               <p className="text-body-medium-regular">
                 {t("materialHeaderAuthorByText")} {author} (
                 {publicationYear.display})
