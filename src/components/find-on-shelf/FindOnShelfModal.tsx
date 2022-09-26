@@ -78,14 +78,36 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   });
 
   // Sorting of the data below to show branches & manifestations in the correct order.
-  const finalDataAlphabetical = finalData.sort(
-    (a: ManifestationHoldings, b: ManifestationHoldings) => {
-      return a[0].holding.branch.title.localeCompare(
-        b[0].holding.branch.title,
-        "da-DK"
-      );
+  function orderManifestationHoldingsAlphabetically(
+    a: ManifestationHoldings,
+    b: ManifestationHoldings
+  ) {
+    return a[0].holding.branch.title.localeCompare(
+      b[0].holding.branch.title,
+      "da-DK"
+    );
+  }
+  const availableManifestationHoldings = finalData.filter(
+    (manifestationHolding: ManifestationHoldings) => {
+      return isAnyManifestationAvailableOnBranch(manifestationHolding);
     }
   );
+  const unavailableManifestationHoldings = finalData.filter(
+    (manifestationHolding: ManifestationHoldings) => {
+      return !isAnyManifestationAvailableOnBranch(manifestationHolding);
+    }
+  );
+  const finalDataAlphabetical = availableManifestationHoldings
+    .sort((a: ManifestationHoldings, b: ManifestationHoldings) => {
+      return orderManifestationHoldingsAlphabetically(a, b);
+    })
+    .concat(
+      unavailableManifestationHoldings.sort(
+        (a: ManifestationHoldings, b: ManifestationHoldings) => {
+          return orderManifestationHoldingsAlphabetically(a, b);
+        }
+      )
+    );
   // "00" is the ending of beanchIds for branches that are considered main & should
   // be shown first independent of whether they're available.
   const finalDataMainBranchFirst = finalDataAlphabetical.sort(
