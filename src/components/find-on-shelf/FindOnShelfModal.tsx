@@ -80,7 +80,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   // Sorting of the data below to show branches & manifestations in the correct order.
   const finalDataAlphabetical = finalData.sort(
     (a: ManifestationHoldings, b: ManifestationHoldings) => {
-      return a[0].holding.branch.title > b[0].holding.branch.title ? 1 : -1;
+      return a[0].holding.branch.title.localeCompare(
+        b[0].holding.branch.title,
+        "da-DK"
+      );
     }
   );
   // "00" is the ending of beanchIds for branches that are considered main.
