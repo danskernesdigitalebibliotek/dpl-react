@@ -18,7 +18,7 @@ export default {
     },
     wid: {
       name: "Work ID",
-      defaultValue: "work-of:870970-basis:52557240",
+      defaultValue: "work-of:870970-basis:06373674",
       control: { type: "text" }
     },
     smsNotificationsForReservationsEnabledConfig: {
