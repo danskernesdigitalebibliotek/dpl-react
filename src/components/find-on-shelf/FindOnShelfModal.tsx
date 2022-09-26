@@ -52,7 +52,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     return null;
   }
 
-  // Transforming holdings data & manifestation data so we can render it.
+  // Transforming holdings data & manifestation data so we can render it. The data
+  // we get from services cannot be rendered in its raw form - doesn't match what
+  // we are supposed to show on the page.
   const pairedManifestationsWithBranches: ManifestationHoldings = data
     .map((holdingsPerManifestation, index) => {
       return holdingsPerManifestation.holdings.map((holding) => {
@@ -66,7 +68,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     .flat();
   const uniqueBranches = Array.from(new Set(allBranches));
   // Grouping pairedManifestationsWithBranches objects based on same branch
-  // gives us the desired data structure to render.
+  // gives us the desired data structure that we can render.
   const finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
     return pairedManifestationsWithBranches.filter(
       (manifestationWithBranch) => {
@@ -74,6 +76,18 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       }
     );
   });
+
+  // Sorting of the data below to show branches & manifestations in the correct order.
+  // "00" is the ending of beanchIds for branches that are considered main.
+  const finalDataMainBranchFirst = finalData.sort(
+    (manifestationHolding: ManifestationHoldings) => {
+      return manifestationHolding[0].holding.branch.branchId.endsWith("00")
+        ? -1
+        : 1;
+    }
+  );
+
+  const finalDataToShow = finalDataMainBranchFirst;
 
   return (
     <Modal
@@ -96,7 +110,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             <div className="text-small-caption modal-find-on-shelf__caption">
               {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
             </div>
-            {finalData.map((libraryBranch) => {
+            {finalDataToShow.map((libraryBranch) => {
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
