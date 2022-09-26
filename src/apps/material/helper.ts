@@ -116,23 +116,6 @@ export const getWorkDescriptionListData = ({
   ];
 };
 
-export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
-  const reservationInterestIntervals: { [key: string]: string } = {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText"),
-    default: `${days} ${t("daysText")}`
-  } as const;
-
-  const lookupKey = String(days);
-  return (
-    reservationInterestIntervals[lookupKey] ??
-    reservationInterestIntervals.default
-  );
-};
-
 export const totalMaterials = (holdings: HoldingsV3[]) => {
   return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
 };

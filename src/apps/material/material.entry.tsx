@@ -99,6 +99,9 @@ interface MaterialEntryTextProps {
   youHaveBorrowedText: string;
   modalReservationFormPickupHeaderTitleText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
+  chooseOneText: string;
+  modalReservationFormNoInterestAfterHeaderTitleText: string;
+  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
