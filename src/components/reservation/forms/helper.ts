@@ -5,7 +5,11 @@ import {
   UpdatePatronRequestV4
 } from "../../../core/fbs/model";
 
-export type ModalReservationFormTextType = "email" | "sms" | "pickup";
+export type ModalReservationFormTextType =
+  | "email"
+  | "sms"
+  | "pickup"
+  | "interestPeriod";
 
 export const modalReservationFormId = (type: ModalReservationFormTextType) =>
   `modal-reservation-form-${type}`;
