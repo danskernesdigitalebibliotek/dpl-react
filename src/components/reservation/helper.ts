@@ -9,7 +9,6 @@ import {
   flattenCreators,
   materialIsFiction
 } from "../../core/utils/helpers/general";
-import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
@@ -48,11 +47,14 @@ export const getFutureDateString = (num: number) => {
   return futureDate;
 };
 
-const constructReservation = ({ pid }: Manifestation) => {
+const constructReservation = ({
+  pid
+}: Manifestation): CreateReservationBatchV2["reservations"][0] => {
   const faustId = convertPostIdToFaustId(pid);
 
   return { recordId: faustId };
 };
+
 const constructReservations = (manifestations: Manifestation[]) =>
   manifestations.map((manifestation) => constructReservation(manifestation));
 

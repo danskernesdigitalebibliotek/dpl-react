@@ -30,12 +30,12 @@ import {
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
-  getFutureDateString,
-  getPreferredBranch,
   constructReservationData,
-  getAuthorLine
+  getAuthorLine,
+  getFutureDateString,
+  getPreferredBranch
 } from "./helper";
-import UseAvailableManifestations from "../../core/utils/UseAvailableManifestations";
+import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -51,7 +51,7 @@ const ReservationModalBody = ({
   parallelManifestations
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
-  const { availableManifestations } = UseAvailableManifestations({
+  const { reservableManifestations } = UseReservableManifestations({
     manifestations: parallelManifestations ?? [mainManifestation],
     type: mainManifestationType
   });
@@ -98,7 +98,7 @@ const ReservationModalBody = ({
   const authorLine = getAuthorLine(mainManifestation, t);
 
   const saveReservation = () => {
-    if (!availableManifestations) {
+    if (!reservableManifestations) {
       return;
     }
 
@@ -106,7 +106,7 @@ const ReservationModalBody = ({
     mutate(
       {
         data: constructReservationData({
-          manifestations: availableManifestations,
+          manifestations: reservableManifestations,
           selectedBranch,
           expiryDate: selectedInterest
             ? getFutureDateString(selectedInterest)
@@ -179,7 +179,7 @@ const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={!availableManifestations}
+                disabled={!reservableManifestations}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
