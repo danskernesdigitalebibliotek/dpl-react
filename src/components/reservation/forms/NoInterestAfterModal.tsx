@@ -4,8 +4,8 @@ import { hardcodedInterestPeriods } from "../helper";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 
 export interface PickupModalProps {
-  selectedInterest: string;
-  setSelectedInterest: (value: string) => void;
+  selectedInterest: number;
+  setSelectedInterest: (value: number) => void;
 }
 
 const NoInterestAfterModal = ({
@@ -31,8 +31,8 @@ const NoInterestAfterModal = ({
         ]
       }}
       items={formatInterestPeriods}
-      defaultSelectedItem={selectedInterest}
-      selectHandler={setSelectedInterest}
+      defaultSelectedItem={String(selectedInterest)}
+      selectHandler={(value: string) => setSelectedInterest(Number(value))}
     />
   );
 };
