@@ -86,7 +86,8 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       );
     }
   );
-  // "00" is the ending of beanchIds for branches that are considered main.
+  // "00" is the ending of beanchIds for branches that are considered main & should
+  // be shown first independent of whether they're available.
   const finalDataMainBranchFirst = finalDataAlphabetical.sort(
     (manifestationHolding: ManifestationHoldings) => {
       return manifestationHolding[0].holding.branch.branchId.endsWith("00")
