@@ -5,7 +5,6 @@ import Message from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/
 import LoanHistory from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import { useText } from "../../core/utils/text";
 import ReservationFormListItem from "./ReservationFormListItem";
-import { getNoInterestAfter } from "../../apps/material/helper";
 import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import EmailModal from "./forms/EmailModal";
@@ -16,14 +15,21 @@ import {
 import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import { smsNotificationsIsEnabled, getPreferredBranch } from "./helper";
+import {
+  smsNotificationsIsEnabled,
+  getPreferredBranch,
+  getNoInterestAfter
+} from "./helper";
 import PickupModal from "./forms/PickupModal";
+import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 
 export interface UserListItemsProps {
   patron: PatronV5;
   branches: AgencyBranch[];
   selectedBranch: string;
   selectBranchHandler: (value: string) => void;
+  selectedInterest: string;
+  setSelectedInterest: (value: string) => void;
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
@@ -35,8 +41,10 @@ const UserListItems: FC<UserListItemsProps> = ({
     emailAddress
   },
   branches,
+  selectedBranch,
   selectBranchHandler,
-  selectedBranch
+  selectedInterest,
+  setSelectedInterest
 }) => {
   const t = useText();
 
@@ -49,12 +57,18 @@ const UserListItems: FC<UserListItemsProps> = ({
   return (
     <>
       {defaultInterestPeriod && (
-        <ReservationFormListItem
-          icon={LoanHistory}
-          title={t("haveNoInterestAfterText")}
-          text={getNoInterestAfter(defaultInterestPeriod, t)}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
+        <>
+          <ReservationFormListItem
+            icon={LoanHistory}
+            title={t("haveNoInterestAfterText")}
+            text={getNoInterestAfter(selectedInterest, t)}
+            changeHandler={openModal("interestPeriod")}
+          />
+          <NoInterestAfterModal
+            selectedInterest={selectedInterest}
+            setSelectedInterest={setSelectedInterest}
+          />
+        </>
       )}
       {preferredPickupBranch && branches && (
         <>

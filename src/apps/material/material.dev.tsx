@@ -495,6 +495,17 @@ export default {
       name: "Choose one text",
       defaultValue: "Vælg en",
       control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterHeaderTitleText: {
+      name: "Modal reservation form no interest after header title",
+      defaultValue: "Ændring af dato",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterHeaderDescriptionText: {
+      name: "Modal reservation form no interest after header description",
+      defaultValue:
+        "Hvis du ønsker at ændre din dato for ikke længere at have interesse i materialet kan du vælge en ny hér.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

@@ -31,7 +31,7 @@ import {
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
-import { getPreferredBranch } from "./helper";
+import { getPreferredBranch, getFutureDateString } from "./helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -54,6 +54,7 @@ const ReservationModal = ({
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
+  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
 
   const t = useText();
   const faustId = convertPostIdToFaustId(pid);
@@ -65,12 +66,19 @@ const ReservationModal = ({
     recordid: [faustId]
   });
 
-  // If the user has a preferred pickup branch, use that as default.
+  // If the user has a preferredPickupBranch or defaultInterestPeriod, use that as default.
   useEffect(() => {
-    if (!selectedBranch && userResponse?.data?.patron) {
+    if (!userResponse?.data?.patron) return;
+
+    if (!selectedBranch) {
       setSelectedBranch(userResponse.data.patron.preferredPickupBranch);
     }
-  }, [selectedBranch, userResponse]);
+    if (!selectedInterest) {
+      setSelectedInterest(
+        String(userResponse.data.patron.defaultInterestPeriod)
+      );
+    }
+  }, [selectedBranch, selectedInterest, userResponse]);
 
   // If we don't have all data for displaying the view render nothing.
   if (!branchResponse.data || !userResponse.data || !holdingsResponse.data) {
@@ -99,7 +107,10 @@ const ReservationModal = ({
           reservations: [
             {
               recordId: faustId,
-              ...(selectedBranch ? { pickupBranch: selectedBranch } : {})
+              ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
+              ...(selectedInterest
+                ? { expiryDate: getFutureDateString(selectedInterest) }
+                : {})
             }
           ]
         }
@@ -186,12 +197,15 @@ const ReservationModal = ({
                 text={edition?.summary ?? ""}
                 changeHandler={() => {}} // TODO: open modal to switch user data
               />
-              {patron && selectedBranch && (
+
+              {patron && selectedBranch && selectedInterest && (
                 <UserListItems
                   patron={patron}
                   branches={branchData}
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
+                  selectedInterest={selectedInterest}
+                  setSelectedInterest={setSelectedInterest}
                 />
               )}
             </div>
