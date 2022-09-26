@@ -78,8 +78,13 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   });
 
   // Sorting of the data below to show branches & manifestations in the correct order.
+  const finalDataAlphabetical = finalData.sort(
+    (a: ManifestationHoldings, b: ManifestationHoldings) => {
+      return a[0].holding.branch.title > b[0].holding.branch.title ? 1 : -1;
+    }
+  );
   // "00" is the ending of beanchIds for branches that are considered main.
-  const finalDataMainBranchFirst = finalData.sort(
+  const finalDataMainBranchFirst = finalDataAlphabetical.sort(
     (manifestationHolding: ManifestationHoldings) => {
       return manifestationHolding[0].holding.branch.branchId.endsWith("00")
         ? -1
