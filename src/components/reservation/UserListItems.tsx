@@ -28,8 +28,8 @@ export interface UserListItemsProps {
   branches: AgencyBranch[];
   selectedBranch: string;
   selectBranchHandler: (value: string) => void;
-  selectedInterest: string;
-  setSelectedInterest: (value: string) => void;
+  selectedInterest: number;
+  setSelectedInterest: (value: number) => void;
 }
 
 const UserListItems: FC<UserListItemsProps> = ({

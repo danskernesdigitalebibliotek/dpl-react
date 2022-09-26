@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { UseConfigFunction } from "../../core/utils/config";
 import { AgencyBranch } from "../../core/fbs/model";
 import { UseTextFunction } from "../../core/utils/text";
@@ -20,10 +21,7 @@ export const hardcodedInterestPeriods = (t: UseTextFunction) => {
   };
 };
 
-export const getNoInterestAfter = (
-  days: number | string,
-  t: UseTextFunction
-) => {
+export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
   const reservationInterestIntervals: { [key: string]: string } = {
     ...hardcodedInterestPeriods(t),
     default: `${days} ${t("daysText")}`
@@ -36,11 +34,9 @@ export const getNoInterestAfter = (
   );
 };
 
-export const getFutureDateString = (num: string | number) => {
-  const today = new Date();
-  const futureDate = new Date();
-  futureDate.setDate(today.getDate() + Number(num));
-  return futureDate.toISOString().slice(0, 10);
+export const getFutureDateString = (num: number) => {
+  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
+  return futureDate;
 };
 
 export default {};

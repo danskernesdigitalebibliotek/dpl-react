@@ -54,7 +54,7 @@ const ReservationModal = ({
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
-  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
+  const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
 
   const t = useText();
   const faustId = convertPostIdToFaustId(pid);
@@ -74,9 +74,7 @@ const ReservationModal = ({
       setSelectedBranch(userResponse.data.patron.preferredPickupBranch);
     }
     if (!selectedInterest) {
-      setSelectedInterest(
-        String(userResponse.data.patron.defaultInterestPeriod)
-      );
+      setSelectedInterest(userResponse.data.patron.defaultInterestPeriod);
     }
   }, [selectedBranch, selectedInterest, userResponse]);
 
