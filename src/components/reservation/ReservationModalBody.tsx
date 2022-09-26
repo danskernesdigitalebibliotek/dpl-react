@@ -30,10 +30,10 @@ import {
 } from "../../core/fbs/fbs";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
-  constructReservationData,
-  getAuthorLine,
   getFutureDateString,
-  getPreferredBranch
+  getPreferredBranch,
+  constructReservationData,
+  getAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 
@@ -137,25 +137,6 @@ const ReservationModalBody = ({
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
     >
-      {reservationSuccess && reservationDetails && (
-        <ReservationSucces
-          modalId={reservationModalId(faustId)}
-          title={titles.main[0]}
-          preferredPickupBranch={getPreferredBranch(
-            reservationDetails.pickupBranch,
-            branchData
-          )}
-          numberInQueue={reservationDetails.numberInQueue}
-        />
-      )}
-
-      {!reservationSuccess && reservationResult && (
-        <ReservationError
-          reservationResult={reservationResult}
-          setReservationResponse={setReservationResponse}
-        />
-      )}
-
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">

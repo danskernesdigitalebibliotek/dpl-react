@@ -1,7 +1,11 @@
 import dayjs from "dayjs";
 import { UseConfigFunction } from "../../core/utils/config";
 import { UseTextFunction } from "../../core/utils/text";
-import { AgencyBranch, CreateReservationBatchV2 } from "../../core/fbs/model";
+import {
+  AgencyBranch,
+  CreateReservation,
+  CreateReservationBatchV2
+} from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
   creatorsToString,
@@ -48,15 +52,30 @@ export const getFutureDateString = (num: number) => {
 };
 
 const constructReservation = ({
-  pid
-}: Manifestation): CreateReservationBatchV2["reservations"][0] => {
+  manifestation: { pid },
+  selectedBranch
+}: {
+  manifestation: Manifestation;
+  selectedBranch?: string;
+}): CreateReservation => {
   const faustId = convertPostIdToFaustId(pid);
 
-  return { recordId: faustId };
+  return {
+    recordId: faustId,
+    ...(selectedBranch ? { pickupBranch: selectedBranch } : {})
+  };
 };
 
-const constructReservations = (manifestations: Manifestation[]) =>
-  manifestations.map((manifestation) => constructReservation(manifestation));
+const constructReservations = ({
+  manifestations,
+  selectedBranch
+}: {
+  manifestations: Manifestation[];
+  selectedBranch?: string;
+}): CreateReservation[] =>
+  manifestations.map((manifestation) =>
+    constructReservation({ manifestation, selectedBranch })
+  );
 
 export const constructReservationData = ({
   manifestations,
