@@ -64,6 +64,9 @@ export interface LoanListEntryProps {
   bottomDueDateRenewLoanModalCheckboxText: string;
   bottomRenewLoanModalButtonText: string;
   bottomDueDateRenewLoanModalButtonText: string;
+  loanListDigitalLoansEmptyListText: string;
+  loanListPhysicalLoansEmptyListText: string;
+  loanListDigitalPhysicalLoansEmptyListText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
