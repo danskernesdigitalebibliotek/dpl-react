@@ -140,6 +140,7 @@
     "downshift": "^6.1.7",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
+    "lodash.partition": "^4.6.0",
     "orval": "^6.8.1",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
