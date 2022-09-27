@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import partition from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
@@ -130,6 +131,34 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
           {`${title} / ${author}`}
         </h2>
+        <div className="periodical-dropdowns">
+          <div className="dropdown dropdown--grey-borders">
+            <select
+              className="dropdown__select"
+              aria-label="Choose periodical year"
+            >
+              <option className="dropdown__option" value="2022">
+                2022
+              </option>
+            </select>
+            <div className="dropdown__arrows">
+              <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
+            </div>
+          </div>
+          <div className="dropdown dropdown--grey-borders">
+            <select
+              className="dropdown__select"
+              aria-label="Choose periodical week"
+            >
+              <option className="dropdown__option" value="40">
+                40
+              </option>
+            </select>
+            <div className="dropdown__arrows">
+              <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
+            </div>
+          </div>
+        </div>
         {isLoading && (
           <p className="text-body-large ml-16 mt-96">{t("loadingText")}</p>
         )}
