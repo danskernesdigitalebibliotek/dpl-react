@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { debug } from "console";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 import { Pid } from "../../core/utils/types/ids";
 import { LinkNoStyle } from "../atoms/link-no-style";
