@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import partition from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
@@ -77,16 +78,35 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     );
   });
 
-  // Sorting of the data below to show branches & manifestations in the correct order.
-  const finalDataAlphabetical = finalData.sort(
-    (a: ManifestationHoldings, b: ManifestationHoldings) => {
-      return a[0].holding.branch.title.localeCompare(
-        b[0].holding.branch.title,
-        "da-DK"
-      );
-    }
-  );
-  // "00" is the ending of beanchIds for branches that are considered main.
+  // Sorting of the data below to show branches in the correct order:
+  // 1. Main library branch first
+  // 2. Branches with any available speciments sorted alphabetically
+  // 3. Branches without available speciments sorted alphabetically
+  function orderManifestationHoldingsAlphabetically(
+    a: ManifestationHoldings,
+    b: ManifestationHoldings
+  ) {
+    return a[0].holding.branch.title.localeCompare(
+      b[0].holding.branch.title,
+      "da-DK"
+    );
+  }
+  const [availableManifestationHoldings, unavailableManifestationHoldings] =
+    partition(finalData, isAnyManifestationAvailableOnBranch);
+
+  const finalDataAlphabetical = availableManifestationHoldings
+    .sort((a: ManifestationHoldings, b: ManifestationHoldings) => {
+      return orderManifestationHoldingsAlphabetically(a, b);
+    })
+    .concat(
+      unavailableManifestationHoldings.sort(
+        (a: ManifestationHoldings, b: ManifestationHoldings) => {
+          return orderManifestationHoldingsAlphabetically(a, b);
+        }
+      )
+    );
+  // "00" is the ending of beanchIds for branches that are considered main & should
+  // be shown first independent of whether they're available.
   const finalDataMainBranchFirst = finalDataAlphabetical.sort(
     (manifestationHolding: ManifestationHoldings) => {
       return manifestationHolding[0].holding.branch.branchId.endsWith("00")
@@ -118,7 +138,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             <div className="text-small-caption modal-find-on-shelf__caption">
               {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
             </div>
-            {finalDataToShow.map((libraryBranch) => {
+            {finalDataToShow.map((libraryBranch: ManifestationHoldings) => {
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
