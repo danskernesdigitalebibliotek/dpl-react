@@ -3,26 +3,37 @@
     "work": {
       "workId": "work-of:870970-basis:52557240",
       "titles": {
-        "full": ["Dummy Some Title: Full"],
-        "original": ["Dummy Some Title Origintal"]
+        "full": [
+          "De syv søstre : Maias historie"
+        ],
+        "original": []
       },
-      "abstract": ["Dummy The abstract"],
+      "abstract": [
+        "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav"
+      ],
       "creators": [
-        { "display": "Dummy Jens Jensen", "__typename": "Person" },
-        { "display": "Dummy Some Corporation", "__typename": "Corporation" }
+        {
+          "display": "Lucinda Riley",
+          "__typename": "Person"
+        }
       ],
       "series": [
         {
-          "title": "Dummy Some Series",
-          "isPopular": true,
-          "numberInSeries": { "display": "Dummy number one", "number": [1] },
-          "readThisFirst": true,
-          "readThisWhenever": false
+          "title": "De syv søstre-serien",
+          "isPopular": null,
+          "numberInSeries": {
+            "display": "1",
+            "number": [
+              1
+            ]
+          },
+          "readThisFirst": null,
+          "readThisWhenever": null
         },
         {
-          "title": "Dummy Some Series",
-          "isPopular": false,
-          "numberInSeries": { "display": "Dummy number one", "number": [1] },
+          "title": "Cicero favorit",
+          "isPopular": null,
+          "numberInSeries": null,
           "readThisFirst": null,
           "readThisWhenever": null
         }
@@ -31,339 +42,780 @@
         {
           "workId": "work-of:870970-basis:52557240",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "De syv søstre"
+            ],
+            "full": [
+              "De syv søstre : Maias historie"
+            ],
+            "original": []
           }
         },
         {
           "workId": "work-of:870970-basis:52970628",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Stormsøsteren"
+            ],
+            "full": [
+              "Stormsøsteren : Allys historie"
+            ],
+            "original": []
           }
         },
         {
           "workId": "work-of:870970-basis:53280749",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Skyggesøsteren"
+            ],
+            "full": [
+              "Skyggesøsteren : Stars historie"
+            ],
+            "original": []
           }
         },
         {
           "workId": "work-of:870970-basis:53802001",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Perlesøsteren"
+            ],
+            "full": [
+              "Perlesøsteren : CeCes historie"
+            ],
+            "original": []
           }
         },
         {
           "workId": "work-of:870970-basis:54189141",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Månesøsteren"
+            ],
+            "full": [
+              "Månesøsteren : Tiggys historie"
+            ],
+            "original": []
           }
         },
         {
           "workId": "work-of:870970-basis:46656172",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Solsøsteren"
+            ],
+            "full": [
+              "Solsøsteren : Electras historie"
+            ],
+            "original": [
+              "The sun sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:38500775",
           "titles": {
-            "main": ["Dummy Some Title"],
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "main": [
+              "Den forsvundne søster"
+            ],
+            "full": [
+              "Den forsvundne søster"
+            ],
+            "original": [
+              "The missing sister"
+            ]
           }
         }
       ],
-      "genreAndForm": ["Dummy some genre"],
+      "genreAndForm": [
+        "slægtsromaner"
+      ],
       "manifestations": {
         "all": [
           {
-            "pid": "870970-basis:52557240",
-            "genreAndForm": ["Dummy some genre"],
-            "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
-            },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
-              {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
-              }
-            ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
-            },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
-            "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-            ]
-          },
-          {
-            "pid": "870970-basis:52643503",
-            "genreAndForm": ["Dummy some genre"],
-            "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
-            },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
-              {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
-              }
-            ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
-            },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
-            "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": false }
-            ]
-          },
-          {
-            "pid": "870970-basis:53200346",
-            "genreAndForm": ["Dummy some genre"],
-            "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
-            },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
-              {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
-              }
-            ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
-            },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
-            "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-            ]
-          },
-          {
-            "pid": "870970-basis:53292968",
-            "genreAndForm": ["Dummy some genre"],
-            "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
-            },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
-              {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
-              }
-            ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
-            },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
-            "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-            ]
-          },
-          {
             "pid": "870970-basis:46615743",
-            "genreAndForm": ["Dummy some genre"],
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2019"
+            },
+            "materialTypes": [
               {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
+                "specific": "bog"
               }
             ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
             },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "identifiers": [
+              {
+                "value": "9788763863285"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "3. udgave, 1. oplag (2019)"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
             "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-            ]
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": null
+          },
+          {
+            "pid": "870970-basis:52557240",
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2016"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763844116"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. udgave, 3. oplag (2018)"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": null
           },
           {
             "pid": "870970-basis:52590302",
-            "genreAndForm": ["Dummy some genre"],
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "eReolen"
+            ],
             "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2016"
+            },
+            "materialTypes": [
               {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
+                "specific": "ebog"
               }
             ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
             },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "identifiers": [
+              {
+                "value": "9788763844123"
+              },
+              {
+                "value": "https://ereolen.dk/ting/object/870970-basis:52590302"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. eBogsudgave"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
             "access": [
               {
                 "__typename": "AccessUrl",
                 "origin": "ereolen.dk",
                 "url": "https://ereolen.dk/ting/object/870970-basis:52590302"
               },
-              { "__typename": "InterLibraryLoan", "loanIsPossible": false }
-            ]
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": false
+              }
+            ],
+            "shelfmark": null
           },
           {
             "pid": "870970-basis:52643414",
-            "genreAndForm": ["Dummy some genre"],
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["Dummy Some Title"],
-              "original": ["Dummy Some Title: Original"]
+              "main": [
+                "De syv søstre (mp3)"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
-            "publicationYear": { "display": "Dummy 1839" },
-            "materialTypes": [{ "specific": "Dummy bog" }],
-            "creators": [
-              { "display": "Dummy Jens Jensen", "__typename": "Person" },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2016"
+            },
+            "materialTypes": [
               {
-                "display": "Dummy Some Corporation",
-                "__typename": "Corporation"
+                "specific": "lydbog (cd-mp3)"
               }
             ],
-            "hostPublication": {
-              "title": "Dummy Årsskrift / Carlsbergfondet",
-              "creator": "Dummy Some Creator",
-              "publisher": "Dummy Some Publisher",
-              "year": { "year": 2006 }
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
             },
-            "languages": { "main": [{ "display": "Dummy dansk" }] },
-            "identifiers": [{ "value": "Dummy 1234567891234" }],
-            "contributors": [{ "display": "Dummy Jens Jensen" }],
-            "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-            "audience": { "generalAudience": ["Dummy general audience"] },
-            "physicalDescriptions": [{ "numberOfPages": null }],
-            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "identifiers": [
+              {
+                "value": "9788763850636"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Maria Stokholm"
+              },
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. lydbogsudgave"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
             "access": [
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-            ]
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": null
+          },
+          {
+            "pid": "870970-basis:52643503",
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2016"
+            },
+            "materialTypes": [
+              {
+                "specific": "lydbog (net)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763847995"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Maria Stokholm"
+              },
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": null,
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": false
+              }
+            ],
+            "shelfmark": null
+          },
+          {
+            "pid": "870970-basis:53200346",
+            "genreAndForm": [],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2017"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788703079875"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. bogklubudgave, 1. oplag (2017)"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": null
+          },
+          {
+            "pid": "870970-basis:53292968",
+            "genreAndForm": [
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "SKOENLITTERATUR",
+              "code": "FICTION"
+            },
+            "publicationYear": {
+              "display": "2017"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763849630"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "2. udgave, 11. oplag (2021)"
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": null
           }
         ],
         "latest": {
-          "pid": "870970-basis:52557240",
-          "genreAndForm": ["Dummy some genre"],
-          "titles": {
-            "main": ["Dummy Some Title"],
-            "original": ["Dummy Some Title: Original"]
-          },
-          "publicationYear": { "display": "Dummy 1839" },
-          "materialTypes": [{ "specific": "Dummy bog" }],
-          "creators": [
-            { "display": "Dummy Jens Jensen", "__typename": "Person" },
-            { "display": "Dummy Some Corporation", "__typename": "Corporation" }
+          "pid": "870970-basis:46615743",
+          "genreAndForm": [
+            "slægtsromaner"
           ],
-          "hostPublication": {
-            "title": "Dummy Årsskrift / Carlsbergfondet",
-            "creator": "Dummy Some Creator",
-            "publisher": "Dummy Some Publisher",
-            "year": { "year": 2006 }
+          "source": [
+            "Bibliotekskatalog"
+          ],
+          "titles": {
+            "main": [
+              "De syv søstre"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           },
-          "languages": { "main": [{ "display": "Dummy dansk" }] },
-          "identifiers": [{ "value": "Dummy 1234567891234" }],
-          "contributors": [{ "display": "Dummy Jens Jensen" }],
-          "edition": { "summary": "Dummy 3. i.e. 2 udgave, 2005" },
-          "audience": { "generalAudience": ["Dummy general audience"] },
-          "physicalDescriptions": [{ "numberOfPages": null }],
-          "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+          "fictionNonfiction": {
+            "display": "SKOENLITTERATUR",
+            "code": "FICTION"
+          },
+          "publicationYear": {
+            "display": "2019"
+          },
+          "materialTypes": [
+            {
+              "specific": "bog"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "hostPublication": null,
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "9788763863285"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Ulla Lauridsen"
+            }
+          ],
+          "edition": {
+            "summary": "3. udgave, 1. oplag (2019)"
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
           "access": [
-            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-          ]
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": null
         }
       },
-      "materialTypes": [{ "specific": "Dummy bog" }],
-      "mainLanguages": [{ "display": "Dummy dansk", "isoCode": "Dummy dan" }],
+      "materialTypes": [
+        {
+          "specific": "lydbog (net)"
+        },
+        {
+          "specific": "bog"
+        },
+        {
+          "specific": "ebog"
+        },
+        {
+          "specific": "punktskrift"
+        },
+        {
+          "specific": "lydbog (cd-mp3)"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
       "subjects": {
         "all": [
-          { "display": "Dummy Some fictional subject" },
-          { "display": "Dummy 1950-1980" },
-          { "display": "Dummy Jens Jensen" },
-          { "display": "Dummy Some Corporation" }
+          {
+            "display": "kærlighed"
+          },
+          {
+            "display": "adoption"
+          },
+          {
+            "display": "familien"
+          },
+          {
+            "display": "slægtsromaner"
+          },
+          {
+            "display": "romaner"
+          },
+          {
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
+          },
+          {
+            "display": "kærlighed."
+          },
+          {
+            "display": "adoption."
+          },
+          {
+            "display": "familien."
+          },
+          {
+            "display": "slægtsromaner."
+          },
+          {
+            "display": "fao"
+          }
         ]
       },
       "reviews": [
@@ -407,8 +859,11 @@
           ]
         }
       ],
-      "fictionNonfiction": { "display": "Dummy skønlitteratur" },
-      "workYear": "Dummy 1950"
+      "fictionNonfiction": {
+        "display": "SKOENLITTERATUR",
+        "code": "FICTION"
+      },
+      "workYear": null
     }
   }
 }
