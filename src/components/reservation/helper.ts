@@ -53,28 +53,33 @@ export const getFutureDateString = (num: number) => {
 
 const constructReservation = ({
   manifestation: { pid },
-  selectedBranch
+  pickupBranch,
+  expiryDate
 }: {
   manifestation: Manifestation;
-  selectedBranch?: string;
+  pickupBranch?: string;
+  expiryDate?: string;
 }): CreateReservation => {
   const faustId = convertPostIdToFaustId(pid);
 
   return {
     recordId: faustId,
-    ...(selectedBranch ? { pickupBranch: selectedBranch } : {})
+    ...(pickupBranch ? { pickupBranch } : {}),
+    ...(expiryDate ? { expiryDate } : {})
   };
 };
 
 const constructReservations = ({
   manifestations,
-  selectedBranch
+  pickupBranch,
+  expiryDate
 }: {
   manifestations: Manifestation[];
-  selectedBranch?: string;
+  pickupBranch?: string;
+  expiryDate?: string;
 }): CreateReservation[] =>
   manifestations.map((manifestation) =>
-    constructReservation({ manifestation, selectedBranch })
+    constructReservation({ manifestation, pickupBranch, expiryDate })
   );
 
 export const constructReservationData = ({
@@ -87,10 +92,12 @@ export const constructReservationData = ({
   expiryDate: string | null;
 }): CreateReservationBatchV2 => {
   return {
-    reservations: constructReservations(manifestations),
-    ...(manifestations.length > 1 ? { type: "parallel" } : {}),
-    ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
-    ...(expiryDate ? { expiryDate } : {})
+    reservations: constructReservations({
+      manifestations,
+      ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
+      ...(expiryDate ? { expiryDate } : {})
+    }),
+    ...(manifestations.length > 1 ? { type: "parallel" } : {})
   };
 };
 

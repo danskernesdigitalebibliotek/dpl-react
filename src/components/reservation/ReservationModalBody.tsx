@@ -96,6 +96,9 @@ const ReservationModalBody = ({
   const { reservations, holdings } = holdingsData[0];
   const { patron } = userData;
   const authorLine = getAuthorLine(mainManifestation, t);
+  const expiryDate = selectedInterest
+    ? getFutureDateString(selectedInterest)
+    : null;
 
   const saveReservation = () => {
     if (!reservableManifestations) {
@@ -108,9 +111,7 @@ const ReservationModalBody = ({
         data: constructReservationData({
           manifestations: reservableManifestations,
           selectedBranch,
-          expiryDate: selectedInterest
-            ? getFutureDateString(selectedInterest)
-            : null
+          expiryDate
         })
       },
       {
