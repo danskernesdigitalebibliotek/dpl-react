@@ -26,9 +26,9 @@ import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 export interface UserListItemsProps {
   patron: PatronV5;
   branches: AgencyBranch[];
-  selectedBranch: string;
+  selectedBranch: string | null;
   selectBranchHandler: (value: string) => void;
-  selectedInterest: number;
+  selectedInterest: number | null;
   setSelectedInterest: (value: number) => void;
 }
 
@@ -54,6 +54,14 @@ const UserListItems: FC<UserListItemsProps> = ({
     open(modalReservationFormId(type));
   };
 
+  const interestPeriod = selectedInterest
+    ? getNoInterestAfter(selectedInterest, t)
+    : getNoInterestAfter(defaultInterestPeriod, t);
+
+  const pickupBranch = selectedBranch
+    ? getPreferredBranch(selectedBranch, branches)
+    : getPreferredBranch(preferredPickupBranch, branches);
+
   return (
     <>
       {defaultInterestPeriod && (
@@ -61,11 +69,11 @@ const UserListItems: FC<UserListItemsProps> = ({
           <ReservationFormListItem
             icon={LoanHistory}
             title={t("haveNoInterestAfterText")}
-            text={getNoInterestAfter(selectedInterest, t)}
+            text={interestPeriod}
             changeHandler={openModal("interestPeriod")}
           />
           <NoInterestAfterModal
-            selectedInterest={selectedInterest}
+            selectedInterest={selectedInterest ?? defaultInterestPeriod}
             setSelectedInterest={setSelectedInterest}
           />
         </>
@@ -75,12 +83,12 @@ const UserListItems: FC<UserListItemsProps> = ({
           <ReservationFormListItem
             icon={Location}
             title={t("pickupLocationText")}
-            text={getPreferredBranch(selectedBranch, branches)}
+            text={pickupBranch}
             changeHandler={openModal("pickup")}
           />
           <PickupModal
             branches={branches}
-            defaultBranch={selectedBranch}
+            defaultBranch={selectedBranch ?? preferredPickupBranch}
             selectBranchHandler={selectBranchHandler}
           />
         </>

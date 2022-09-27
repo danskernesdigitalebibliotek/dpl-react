@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
@@ -70,18 +70,6 @@ const ReservationModalBody = ({
   const holdingsResponse = useGetHoldingsV3({
     recordid: [faustId]
   });
-
-  // If the user has a preferredPickupBranch or defaultInterestPeriod, use that as default.
-  useEffect(() => {
-    if (!userResponse?.data?.patron) return;
-
-    if (!selectedBranch) {
-      setSelectedBranch(userResponse.data.patron.preferredPickupBranch);
-    }
-    if (!selectedInterest) {
-      setSelectedInterest(userResponse.data.patron.defaultInterestPeriod);
-    }
-  }, [selectedBranch, selectedInterest, userResponse]);
 
   // If we don't have all data for displaying the view render nothing.
   if (!branchResponse.data || !userResponse.data || !holdingsResponse.data) {
@@ -175,7 +163,7 @@ const ReservationModalBody = ({
                 changeHandler={() => {}} // TODO: open modal to switch user data
               />
 
-              {patron && selectedBranch && selectedInterest && (
+              {patron && (
                 <UserListItems
                   patron={patron}
                   branches={branchData}
