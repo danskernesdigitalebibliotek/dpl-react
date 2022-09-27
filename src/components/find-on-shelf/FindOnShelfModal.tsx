@@ -77,7 +77,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     );
   });
 
-  // Sorting of the data below to show branches & manifestations in the correct order.
+  // Sorting of the data below to show branches in the correct order:
+  // 1. Main library branch first
+  // 2. Branches with any available speciments sorted alphabetically
+  // 3. Branches without available speciments sorted alphabetically
   function orderManifestationHoldingsAlphabetically(
     a: ManifestationHoldings,
     b: ManifestationHoldings
