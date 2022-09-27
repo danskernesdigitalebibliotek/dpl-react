@@ -138,7 +138,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             <div className="text-small-caption modal-find-on-shelf__caption">
               {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
             </div>
-            {finalDataToShow.map((libraryBranch) => {
+            {finalDataToShow.map((libraryBranch: ManifestationHoldings) => {
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
