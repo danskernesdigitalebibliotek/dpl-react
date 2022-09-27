@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import { partition } from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
@@ -90,16 +91,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       "da-DK"
     );
   }
-  const availableManifestationHoldings = finalData.filter(
-    (manifestationHolding: ManifestationHoldings) => {
-      return isAnyManifestationAvailableOnBranch(manifestationHolding);
-    }
-  );
-  const unavailableManifestationHoldings = finalData.filter(
-    (manifestationHolding: ManifestationHoldings) => {
-      return !isAnyManifestationAvailableOnBranch(manifestationHolding);
-    }
-  );
+  const [availableManifestationHoldings, unavailableManifestationHoldings] =
+    partition(finalData, isAnyManifestationAvailableOnBranch);
+
   const finalDataAlphabetical = availableManifestationHoldings
     .sort((a: ManifestationHoldings, b: ManifestationHoldings) => {
       return orderManifestationHoldingsAlphabetically(a, b);
