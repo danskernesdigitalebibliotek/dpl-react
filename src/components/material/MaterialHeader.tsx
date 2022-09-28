@@ -75,9 +75,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
 
-  const isPeriodical = manifestation?.materialTypes
-    ?.map((i) => i.specific.toLowerCase())
-    .includes("periodikum");
+  const isPeriodical = manifestation.materialTypes.some(
+    (materialType: Manifestation["materialTypes"][0]) => {
+      return materialType.specific.includes("periodikum");
+    }
+  );
 
   return (
     <header className="material-header">
