@@ -1,6 +1,5 @@
 import * as React from "react";
-import { FC } from "react";
-import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { FC, useState } from "react";
 import partition from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
@@ -18,6 +17,7 @@ import { ManifestationHoldings } from "./types";
 import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
+import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -47,6 +47,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const title = workTitles.join(", ");
   const modalId = findOnShelfModalId(
     convertPostIdToFaustId(manifestations[0].pid)
+  );
+
+  const [selectedPeriodical, setSelectedPeriodical] = useState<string | null>(
+    null
   );
 
   if (isError || !data) {
@@ -136,34 +140,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
             return materialType.specific.includes("periodikum");
           });
         }) && (
-          <div className="periodical-dropdowns">
-            <div className="dropdown dropdown--grey-borders">
-              <select
-                className="dropdown__select"
-                aria-label="Choose periodical year"
-              >
-                <option className="dropdown__option" value="2022">
-                  2022
-                </option>
-              </select>
-              <div className="dropdown__arrows">
-                <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
-              </div>
-            </div>
-            <div className="dropdown dropdown--grey-borders">
-              <select
-                className="dropdown__select"
-                aria-label="Choose periodical week"
-              >
-                <option className="dropdown__option" value="40">
-                  40
-                </option>
-              </select>
-              <div className="dropdown__arrows">
-                <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
-              </div>
-            </div>
-          </div>
+          <FindOnShelfPeriodicalDropdowns
+            manifestationsHoldings={data}
+            setSelectedPeriodical={setSelectedPeriodical}
+          />
         )}
         {isLoading && (
           <p className="text-body-large ml-16 mt-96">{t("loadingText")}</p>
