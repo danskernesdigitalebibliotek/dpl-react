@@ -21,13 +21,14 @@ import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { GroupListItem } from "./MaterialPeriodicalSelect";
 
 interface MaterialHeaderProps {
   wid: WorkId;
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
+  selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -72,6 +73,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
 
+  const isPeriocial = manifestation?.materialTypes
+    ?.map((i) => i.specific.toLowerCase())
+    .includes("periodikum");
+
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -90,7 +95,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {manifestation?.source?.includes("bibliotekskatalog") && (
+        {isPeriocial && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
             selectPeriodicalSelect={selectPeriodicalSelect}

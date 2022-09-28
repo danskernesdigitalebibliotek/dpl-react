@@ -515,6 +515,14 @@ export default {
   }
 } as ComponentMeta<typeof MaterialEntry>;
 
-export const Material: ComponentStory<typeof MaterialEntry> = (
+const Template: ComponentStory<typeof MaterialEntry> = (
   args: MaterialEntryProps
 ) => <MaterialEntry {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Periodical = Template.bind({});
+Periodical.args = {
+  wid: "work-of:870970-basis:06373674"
+};

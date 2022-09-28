@@ -14,6 +14,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
+import { GroupListItem } from "../material/MaterialPeriodicalSelect";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
   config("smsNotificationsForReservationsEnabledConfig") === "1";
@@ -54,48 +55,74 @@ export const getFutureDateString = (num: number) => {
 const constructReservation = ({
   manifestation: { pid },
   pickupBranch,
-  expiryDate
+  expiryDate,
+  periodical
 }: {
   manifestation: Manifestation;
   pickupBranch?: string;
   expiryDate?: string;
+  periodical?: {
+    volumeNumber: string;
+    volumeYear: string;
+  };
 }): CreateReservation => {
   const faustId = convertPostIdToFaustId(pid);
 
   return {
     recordId: faustId,
     ...(pickupBranch ? { pickupBranch } : {}),
-    ...(expiryDate ? { expiryDate } : {})
+    ...(expiryDate ? { expiryDate } : {}),
+    ...(periodical ? { periodical } : {})
   };
 };
 
 const constructReservations = ({
   manifestations,
   pickupBranch,
-  expiryDate
+  expiryDate,
+  periodical
 }: {
   manifestations: Manifestation[];
   pickupBranch?: string;
   expiryDate?: string;
+  periodical?: {
+    volumeNumber: string;
+    volumeYear: string;
+  };
 }): CreateReservation[] =>
   manifestations.map((manifestation) =>
-    constructReservation({ manifestation, pickupBranch, expiryDate })
+    constructReservation({
+      manifestation,
+      pickupBranch,
+      expiryDate,
+      periodical
+    })
   );
 
 export const constructReservationData = ({
   manifestations,
   selectedBranch,
-  expiryDate
+  expiryDate,
+  periodical
 }: {
   manifestations: Manifestation[];
   selectedBranch: string | null;
   expiryDate: string | null;
+  periodical: GroupListItem | null | undefined;
 }): CreateReservationBatchV2 => {
+  const selectedPeriodical = periodical
+    ? {
+        volumeNumber: periodical.volumeNumber,
+        volumeYear: periodical.volumeYear
+      }
+    : null;
+
   return {
     reservations: constructReservations({
       manifestations,
       ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
-      ...(expiryDate ? { expiryDate } : {})
+      ...(expiryDate ? { expiryDate } : {}),
+      ...(selectedPeriodical ? { periodical: selectedPeriodical } : {})
     }),
     ...(manifestations.length > 1 ? { type: "parallel" } : {})
   };

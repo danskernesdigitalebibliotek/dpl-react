@@ -4,6 +4,7 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
+import { GroupListItem } from "../material/MaterialPeriodicalSelect";
 import ReservationModalBody from "./ReservationModalBody";
 
 export const reservationModalId = (faustId: FaustId) =>
@@ -12,12 +13,14 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
+  periodicalSelect?: GroupListItem | null;
 };
 
 const ReservationModal = ({
   mainManifestation,
   mainManifestation: { pid },
-  parallelManifestations
+  parallelManifestations,
+  periodicalSelect
 }: ReservationModalProps) => {
   const t = useText();
   return (
@@ -31,6 +34,7 @@ const ReservationModal = ({
       <ReservationModalBody
         mainManifestation={mainManifestation}
         parallelManifestations={parallelManifestations}
+        periodicalSelect={periodicalSelect}
       />
     </Modal>
   );
