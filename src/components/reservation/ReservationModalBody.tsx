@@ -36,6 +36,7 @@ import {
   getAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
+import { GroupListItem } from "../material/MaterialPeriodicalSelect";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -43,16 +44,21 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
+  periodicalSelect?: GroupListItem | null;
 };
 
 const ReservationModalBody = ({
   mainManifestation,
   mainManifestation: { pid, materialTypes, titles, edition },
-  parallelManifestations
+  parallelManifestations,
+  periodicalSelect
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
-    manifestations: parallelManifestations ?? [mainManifestation],
+    manifestations:
+      parallelManifestations && parallelManifestations.length > 0
+        ? parallelManifestations
+        : [mainManifestation],
     type: mainManifestationType
   });
   const queryClient = useQueryClient();
@@ -99,7 +105,8 @@ const ReservationModalBody = ({
         data: constructReservationData({
           manifestations: reservableManifestations,
           selectedBranch,
-          expiryDate
+          expiryDate,
+          periodical: periodicalSelect
         })
       },
       {
@@ -134,7 +141,10 @@ const ReservationModalBody = ({
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}
               </div>
-              <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
+              <h2 className="text-header-h2 mt-22 mb-8">
+                {titles.main[0]}{" "}
+                {periodicalSelect && periodicalSelect.displayText}
+              </h2>
               <p className="text-body-medium-regular">{authorLine}</p>
             </div>
           </header>
