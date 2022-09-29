@@ -20,7 +20,7 @@ const ReservationModal = ({
   mainManifestation,
   mainManifestation: { pid },
   parallelManifestations,
-  periodicalSelect
+  periodicalSelect = null
 }: ReservationModalProps) => {
   const t = useText();
   return (

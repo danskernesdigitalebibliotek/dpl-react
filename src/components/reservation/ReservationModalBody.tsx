@@ -44,21 +44,18 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
-  periodicalSelect?: GroupListItem | null;
+  selectedPeriodical: GroupListItem | null;
 };
 
 const ReservationModalBody = ({
   mainManifestation,
   mainManifestation: { pid, materialTypes, titles, edition },
   parallelManifestations,
-  periodicalSelect
+  selectedPeriodical
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
-    manifestations:
-      parallelManifestations && parallelManifestations.length > 0
-        ? parallelManifestations
-        : [mainManifestation],
+    manifestations: parallelManifestations || [mainManifestation],
     type: mainManifestationType
   });
   const queryClient = useQueryClient();
@@ -106,7 +103,7 @@ const ReservationModalBody = ({
           manifestations: reservableManifestations,
           selectedBranch,
           expiryDate,
-          periodical: periodicalSelect
+          periodical: selectedPeriodical
         })
       },
       {
@@ -143,7 +140,7 @@ const ReservationModalBody = ({
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
                 {titles.main[0]}{" "}
-                {periodicalSelect && periodicalSelect.displayText}
+                {selectedPeriodical && selectedPeriodical.displayText}
               </h2>
               <p className="text-body-medium-regular">{authorLine}</p>
             </div>
