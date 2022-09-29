@@ -7,7 +7,6 @@ import {
 } from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import { ModalIdsProps } from "../../../core/utils/modal";
-import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { ListView } from "../../../core/utils/types/list-view";
@@ -16,14 +15,18 @@ import {
   mapFBSLoanToLoanMetaDataType,
   mapPublizonLoanToLoanMetaDataType
 } from "../../../core/utils/helpers/mapper";
+import EmptyList from "../materials/utils/empty-list";
+import List from "./list";
 
 const LoanList: FC = () => {
   const t = useText();
   const [view, setView] = useState<string>("list");
-  const [physicalLoans, setPhysicalLoans] =
-    useState<MetaDataType<LoanMetaDataType>[]>();
-  const [digitalLoans, setDigitalLoans] =
-    useState<MetaDataType<LoanMetaDataType>[]>();
+  const [physicalLoans, setPhysicalLoans] = useState<
+    MetaDataType<LoanMetaDataType>[]
+  >([]);
+  const [digitalLoans, setDigitalLoans] = useState<
+    MetaDataType<LoanMetaDataType>[]
+  >([]);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
     []
   );
@@ -75,31 +78,44 @@ const LoanList: FC = () => {
   }, [modalIds?.length, refetch]);
 
   return (
-    <>
-      <h1 className="text-header-h1 m-32">{t("loanListTitleText")}</h1>
-      {physicalLoans && (
-        <List
-          header={t("loanListPhysicalLoansTitleText")}
-          dueDateLabel={t("loanListToBeDeliveredText")}
-          loans={physicalLoans}
-          dueDates={physicalLoansDueDates}
-          setView={setView}
-          view={view as ListView}
-          viewToggleable
+    <div className="loan-list-page">
+      <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
+      {(physicalLoans.length > 0 || digitalLoans.length > 0) && (
+        <>
+          {physicalLoans && (
+            <List
+              emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
+              header={t("loanListPhysicalLoansTitleText")}
+              selectModalMaterial={selectModalMaterial}
+              dueDateLabel={t("loanListToBeDeliveredText")}
+              loans={physicalLoans}
+              dueDates={physicalLoansDueDates}
+              setView={setView}
+              view={view as ListView}
+              viewToggleable
+            />
+          )}
+          {digitalLoans && (
+            <List
+              header={t("loanListDigitalLoansTitleText")}
+              emptyListLabel={t("loanListDigitalLoansEmptyListText")}
+              dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
+              selectModalMaterial={selectModalMaterial}
+              loans={digitalLoans}
+              dueDates={digitalLoansDueDates}
+              setView={setView}
+              view={view as ListView}
+              viewToggleable={false}
+            />
+          )}
+        </>
+      )}
+      {physicalLoans.length === 0 && digitalLoans.length === 0 && (
+        <EmptyList
+          emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
         />
       )}
-      {digitalLoans && (
-        <List
-          header={t("loanListDigitalLoansTitleText")}
-          dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
-          loans={digitalLoans}
-          dueDates={digitalLoansDueDates}
-          setView={setView}
-          view={view as ListView}
-          viewToggleable={false}
-        />
-      )}
-    </>
+    </div>
   );
 };
 

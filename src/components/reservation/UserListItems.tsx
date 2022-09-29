@@ -1,15 +1,10 @@
-import * as React from "react";
+import React, { FC } from "react";
 import Location from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import Subtitles from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
 import Message from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
 import LoanHistory from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
-import { FC } from "react";
 import { useText } from "../../core/utils/text";
 import ReservationFormListItem from "./ReservationFormListItem";
-import {
-  getNoInterestAfter,
-  getPreferredLocation
-} from "../../apps/material/helper";
 import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import EmailModal from "./forms/EmailModal";
@@ -18,10 +13,23 @@ import {
   ModalReservationFormTextType
 } from "./forms/helper";
 import SmsModal from "./forms/SmsModal";
+import { stringifyValue } from "../../core/utils/helpers/general";
+import { useConfig } from "../../core/utils/config";
+import {
+  smsNotificationsIsEnabled,
+  getPreferredBranch,
+  getNoInterestAfter
+} from "./helper";
+import PickupModal from "./forms/PickupModal";
+import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 
 export interface UserListItemsProps {
   patron: PatronV5;
-  branchData: AgencyBranch[];
+  branches: AgencyBranch[];
+  selectedBranch: string | null;
+  selectBranchHandler: (value: string) => void;
+  selectedInterest: number | null;
+  setSelectedInterest: (value: number) => void;
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
@@ -32,56 +40,79 @@ const UserListItems: FC<UserListItemsProps> = ({
     phoneNumber,
     emailAddress
   },
-  branchData
+  branches,
+  selectedBranch,
+  selectBranchHandler,
+  selectedInterest,
+  setSelectedInterest
 }) => {
   const t = useText();
+
+  const config = useConfig();
   const { open } = useModalButtonHandler();
-  const stringifyValue = (value: string | null | undefined) =>
-    value ? String(value) : "";
   const openModal = (type: ModalReservationFormTextType) => () => {
     open(modalReservationFormId(type));
   };
 
+  const interestPeriod = selectedInterest
+    ? getNoInterestAfter(selectedInterest, t)
+    : getNoInterestAfter(defaultInterestPeriod, t);
+
+  const pickupBranch = selectedBranch
+    ? getPreferredBranch(selectedBranch, branches)
+    : getPreferredBranch(preferredPickupBranch, branches);
+
   return (
     <>
       {defaultInterestPeriod && (
-        <ReservationFormListItem
-          icon={LoanHistory}
-          title={t("haveNoInterestAfterText")}
-          text={getNoInterestAfter(defaultInterestPeriod, t)}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
-      )}
-      {preferredPickupBranch && branchData && (
-        <ReservationFormListItem
-          icon={Location}
-          title={t("pickupLocationText")}
-          text={getPreferredLocation(preferredPickupBranch, branchData)}
-          changeHandler={() => {}} // TODO: open modal to switch user data
-        />
-      )}
-      {phoneNumber && (
         <>
           <ReservationFormListItem
-            icon={Subtitles}
-            title={t("receiveSmsWhenMaterialReadyText")}
-            text={stringifyValue(phoneNumber)}
-            changeHandler={openModal("sms")}
+            icon={LoanHistory}
+            title={t("haveNoInterestAfterText")}
+            text={interestPeriod}
+            changeHandler={openModal("interestPeriod")}
           />
-          <SmsModal patron={patron} />
+          <NoInterestAfterModal
+            selectedInterest={selectedInterest ?? defaultInterestPeriod}
+            setSelectedInterest={setSelectedInterest}
+          />
         </>
       )}
-      {emailAddress && (
+      {preferredPickupBranch && branches && (
         <>
           <ReservationFormListItem
-            icon={Message}
-            title={t("receiveEmailWhenMaterialReadyText")}
-            text={stringifyValue(emailAddress)}
-            changeHandler={openModal("email")}
+            icon={Location}
+            title={t("pickupLocationText")}
+            text={pickupBranch}
+            changeHandler={openModal("pickup")}
           />
-          <EmailModal patron={patron} />
+          <PickupModal
+            branches={branches}
+            defaultBranch={selectedBranch ?? preferredPickupBranch}
+            selectBranchHandler={selectBranchHandler}
+          />
         </>
       )}
+      <>
+        {smsNotificationsIsEnabled(config) && (
+          <>
+            <ReservationFormListItem
+              icon={Subtitles}
+              title={t("receiveSmsWhenMaterialReadyText")}
+              text={stringifyValue(phoneNumber)}
+              changeHandler={openModal("sms")}
+            />
+            <SmsModal patron={patron} />
+          </>
+        )}
+        <ReservationFormListItem
+          icon={Message}
+          title={t("receiveEmailWhenMaterialReadyText")}
+          text={stringifyValue(emailAddress)}
+          changeHandler={openModal("email")}
+        />
+        <EmailModal patron={patron} />
+      </>
     </>
   );
 };

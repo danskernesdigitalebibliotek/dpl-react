@@ -5,11 +5,11 @@ import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
   getRenewableMaterials,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  getPageSizeFromConfiguration
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
-import { getRenewedIds, removeLoansWithIds } from "../utils/helpers";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import { mapFBSRenewedLoanToLoanMetaDataType } from "../../../core/utils/helpers/mapper";
 
@@ -29,6 +29,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
+  const { itemsShown, PagerComponent } = usePager(
+    loansModal.length,
+    getPageSizeFromConfiguration("pageSizeLoanList")
+  );
   const [ref, isVisible] = useInView({
     threshold: 0
   });
@@ -36,10 +40,9 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<
     number | null
   >(0);
-  const [loans, setLoans] = useState<MetaDataType<LoanMetaDataType>[]>([]);
-  const [renewedLoans, setRenewedLoans] = useState<
-    MetaDataType<LoanMetaDataType>[]
-  >([]);
+  const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
+  const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
 
   const renewSelected = useCallback(() => {
     mutate(
@@ -49,8 +52,12 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
-            const renewedIds = getRenewedIds(result);
-            const filteredLoans = removeLoansWithIds(loans, renewedIds);
+            const renewedIds = result.map(
+              ({ loanDetails }) => loanDetails.recordId
+            );
+            const filteredLoans = loans.filter(({ id }) => {
+              return renewedIds.indexOf(id) === -1;
+            });
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
 
@@ -65,9 +72,12 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
-    setLoans(loansModal);
     setAllRenewableMaterials(getAmountOfRenewableLoans(loansModal));
   }, [loansModal]);
+
+  useEffect(() => {
+    setDisplayedLoans([...loansModal].splice(0, itemsShown));
+  }, [itemsShown, loansModal]);
 
   const selectAll = () => {
     if (materialsToRenew.length > 0) {
@@ -79,7 +89,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   const onChecked = (faust: string) => {
     const faustNumber = parseInt(faust, 10);
-    const materialsToRenewCopy = materialsToRenew;
+    const materialsToRenewCopy = [...materialsToRenew];
 
     const indexOfItemToRemove = materialsToRenew.indexOf(faustNumber);
     if (indexOfItemToRemove > -1) {
@@ -130,7 +140,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               />
             );
           })}
-          {loans.map((loanMetaData) => {
+          {displayedLoans.map((loanMetaData) => {
             return (
               <SelectableMaterial
                 type={loanMetaData.type}
@@ -143,6 +153,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               />
             );
           })}
+          {PagerComponent}
         </ul>
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">

@@ -15,7 +15,6 @@ import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
-import { getManifestationPid } from "../../core/utils/helpers/general";
 import MaterialDetailsList from "../../components/material/MaterialDetailsList";
 import {
   getUrlQueryParam,
@@ -27,9 +26,13 @@ import {
   getManifestationType,
   getWorkManifestation
 } from "./helper";
-import ReservationModal from "../../components/reservation/reservation-modal";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import {
+  getManifestationPid,
+  materialIsFiction
+} from "../../core/utils/helpers/general";
+import ReservationModal from "../../components/reservation/ReservationModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -54,7 +57,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
-    // if there is no type in the url, <getWorkManif></getWorkManif>estation is used to set the state and url type parameters
+    // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
     if (!type) {
       const workManifestation = getWorkManifestation(work);
       setCurrentManifestation(workManifestation);
@@ -102,6 +105,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return null;
   }
 
+  const parallelManifestations = materialIsFiction(work) ? manifestations : [];
+
   return (
     <main className="material-page">
       <MaterialHeader
@@ -125,10 +130,15 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 manifestation={manifestation}
               />
               <FindOnShelfModal
-                manifestation={manifestation}
+                manifestations={[manifestation]}
+                workTitles={manifestation.titles.main}
+                authors={manifestation.creators}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
               />
-              <ReservationModal manifestation={manifestation} />
+              <ReservationModal
+                mainManifestation={manifestation}
+                parallelManifestations={parallelManifestations}
+              />
             </>
           );
         })}
@@ -156,8 +166,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       )}
       {currentManifestation && (
         <>
-          <FindOnShelfModal manifestation={currentManifestation} />
-          <ReservationModal manifestation={currentManifestation} />
+          <FindOnShelfModal
+            // TODO: when we have a selected manifestations group, pass it
+            // down here as manifestations prop
+            manifestations={[currentManifestation]}
+            workTitles={work.titles.full}
+            authors={work.creators}
+          />
+          <ReservationModal
+            mainManifestation={currentManifestation}
+            parallelManifestations={parallelManifestations}
+          />
         </>
       )}
     </main>

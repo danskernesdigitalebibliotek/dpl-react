@@ -21,6 +21,16 @@ export default {
       defaultValue: "work-of:870970-basis:52557240",
       control: { type: "text" }
     },
+    smsNotificationsForReservationsEnabledConfig: {
+      name: "SMS notifications for reservations is enabled",
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    materialHeaderAllEditionsText: {
+      name: "Text for the fiction edition text",
+      defaultValue: "All editions",
+      control: { type: "text" }
+    },
     materialHeaderAuthorByText: {
       name: "By (author)",
       defaultValue: "Af ",
@@ -388,6 +398,26 @@ export default {
       defaultValue: "Luk reservation modal",
       control: { type: "text" }
     },
+    findOnShelfModalListMaterialText: {
+      name: "Material",
+      defaultValue: "Materiale",
+      control: { type: "text" }
+    },
+    findOnShelfModalListFindOnShelfText: {
+      name: "Find it on shelf",
+      defaultValue: "Find det på hylden",
+      control: { type: "text" }
+    },
+    findOnShelfModalListItemCountText: {
+      name: "Home",
+      defaultValue: "hjemme",
+      control: { type: "text" }
+    },
+    findOnShelfModalNoLocationSpecifiedText: {
+      name: "No location for find on shelf specified",
+      defaultValue: "-",
+      control: { type: "text" }
+    },
     numberInQueueText: {
       name: "Number in queue text",
       defaultValue: "Du er nummer",
@@ -448,6 +478,38 @@ export default {
     modalReservationFormSmsInputFieldDescriptionText: {
       name: "Modal reservation form sms input field description",
       defaultValue: "Telefonnummer",
+      control: { type: "text" }
+    },
+    etAlText: {
+      name: "Et al. Text",
+      defaultValue: "et al.",
+      control: { type: "text" }
+    },
+    modalReservationFormPickupHeaderTitleText: {
+      name: "Modal reservation form pickup header title",
+      defaultValue: "Ændring af afhentningssted",
+      control: { type: "text" }
+    },
+    modalReservationFormPickupHeaderDescriptionText: {
+      name: "Modal reservation form pickup header description",
+      defaultValue:
+        "Hvis du ønsker at ændre dit afhentningssted kan du vælge et nyt hér.",
+      control: { type: "text" }
+    },
+    chooseOneText: {
+      name: "Choose one text",
+      defaultValue: "Vælg en",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterHeaderTitleText: {
+      name: "Modal reservation form no interest after header title",
+      defaultValue: "Ændring af dato",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterHeaderDescriptionText: {
+      name: "Modal reservation form no interest after header description",
+      defaultValue:
+        "Hvis du ønsker at ændre din dato for ikke længere at have interesse i materialet kan du vælge en ny hér.",
       control: { type: "text" }
     }
   }

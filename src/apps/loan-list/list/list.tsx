@@ -11,6 +11,7 @@ import { useModalButtonHandler } from "../../../core/utils/modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import EmptyList from "../materials/utils/empty-list";
 
 export interface ListProps {
   header: string;
@@ -19,6 +20,7 @@ export interface ListProps {
   dueDates: string[];
   view: ListView;
   dueDateLabel: string;
+  emptyListLabel: string;
   viewToggleable: boolean;
 }
 
@@ -29,7 +31,8 @@ const List: FC<ListProps> = ({
   dueDates,
   view,
   dueDateLabel,
-  viewToggleable
+  viewToggleable,
+  emptyListLabel
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -104,7 +107,7 @@ const List: FC<ListProps> = ({
           </div>
         )}
       </div>
-      {loans && (
+      {loans && loans.length > 0 && (
         <Pagination
           dueDateLabel={dueDateLabel}
           dueDates={dueDates}
@@ -112,6 +115,7 @@ const List: FC<ListProps> = ({
           view={view as ListView}
         />
       )}
+      {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
       <RenewLoansModal loansModal={loans} />
     </>
   );

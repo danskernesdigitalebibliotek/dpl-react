@@ -1,5 +1,5 @@
 import { ListData } from "../../components/material/MaterialDetailsList";
-import { AgencyBranch, HoldingsV3 } from "../../core/fbs/model";
+import { HoldingsV3 } from "../../core/fbs/model";
 import {
   creatorsToString,
   filterCreators,
@@ -8,6 +8,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
@@ -16,14 +17,20 @@ export const getWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
 };
 
+export const filterManifestationsByType = (
+  type: string,
+  manifestations: Manifestation[]
+) => manifestations.filter((item) => getManifestationType(item) === type);
+
 export const getManifestationFromType = (
   type: string,
   { manifestations: { all: manifestations } }: Work
 ) => {
   const allManifestations = orderManifestationsByYear(manifestations);
 
-  const allManifestationsThatMatchType = allManifestations.filter(
-    (item) => getManifestationType(item) === type
+  const allManifestationsThatMatchType = filterManifestationsByType(
+    type,
+    allManifestations
   );
 
   return allManifestationsThatMatchType.shift();
@@ -115,28 +122,20 @@ export const getWorkDescriptionListData = ({
   ];
 };
 
-export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
-  const reservationInterestIntervals: { [key: string]: string } = {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText"),
-    default: `${days} ${t("daysText")}`
-  } as const;
-
-  const lookupKey = String(days);
-  return (
-    reservationInterestIntervals[lookupKey] ??
-    reservationInterestIntervals.default
-  );
-};
-
-export const getPreferredLocation = (id: string, array: AgencyBranch[]) => {
-  const locationItem = array.find((item) => item.branchId === id);
-  return locationItem ? locationItem.title : id;
-};
-
 export const totalMaterials = (holdings: HoldingsV3[]) => {
   return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
+};
+
+export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
+  return materials.reduce((acc, curr) => (curr.available ? acc + 1 : acc), 0);
+};
+
+export const isAnyManifestationAvailableOnBranch = (
+  libraryBranches: ManifestationHoldings
+) => {
+  return libraryBranches.some((libraryBranch) => {
+    return libraryBranch.holding.materials.some((material) => {
+      return material.available;
+    });
+  });
 };

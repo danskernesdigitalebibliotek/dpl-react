@@ -1,29 +1,34 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import React, { FC, ReactNode } from "react";
-import { FaustId } from "../../../core/utils/types/ids";
-import { AvailabilityLabel } from "../../availability-label/availability-label";
+import { useText } from "../../../core/utils/text";
+import Pagefold from "../../pagefold/Pagefold";
 
 export interface DisclosureProps {
   mainIconPath?: string;
   title: string;
   children?: ReactNode;
   disclosureIconExpandAltText?: string;
-  faustId?: FaustId;
+  isAvailable?: boolean;
   fullWidth?: boolean;
+  open?: boolean;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
   title,
   children,
   mainIconPath,
-  faustId,
-  fullWidth
+  isAvailable,
+  fullWidth,
+  open
 }) => {
+  const t = useText();
+
   return (
     <details
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
+      open={open}
     >
       <summary className="disclosure__headline text-body-large">
         {mainIconPath && (
@@ -31,10 +36,19 @@ const Disclosure: FC<DisclosureProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span className={`disclosure__text${faustId ? "--shorter" : ""}`}>
+        <span
+          className={`disclosure__text${
+            isAvailable !== undefined ? "--shorter" : ""
+          }`}
+        >
           {title}
         </span>
-        {faustId && <AvailabilityLabel faustIds={[faustId]} />}
+        {isAvailable !== undefined && (
+          <Pagefold
+            text={isAvailable ? t("available") : t("unavailable")}
+            state={isAvailable ? "success" : "alert"}
+          />
+        )}
         <img
           className="disclosure__expand noselect"
           src={ExpandMoreIcon}

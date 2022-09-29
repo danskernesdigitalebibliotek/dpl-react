@@ -1202,6 +1202,7 @@ export type GetMaterialQuery = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
+      code: FictionNonfictionCode;
     } | null;
     titles: {
       __typename?: "WorkTitles";
@@ -1246,6 +1247,11 @@ export type GetMaterialQuery = {
           main: Array<string>;
           original?: Array<string> | null;
         };
+        fictionNonfiction?: {
+          __typename?: "FictionNonfiction";
+          display: string;
+          code: FictionNonfictionCode;
+        } | null;
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
@@ -1293,6 +1299,11 @@ export type GetMaterialQuery = {
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
         >;
+        shelfmark?: {
+          __typename?: "Shelfmark";
+          postfix: string;
+          shelfmark: string;
+        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -1304,6 +1315,11 @@ export type GetMaterialQuery = {
           main: Array<string>;
           original?: Array<string> | null;
         };
+        fictionNonfiction?: {
+          __typename?: "FictionNonfiction";
+          display: string;
+          code: FictionNonfictionCode;
+        } | null;
         publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
@@ -1351,6 +1367,11 @@ export type GetMaterialQuery = {
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
         >;
+        shelfmark?: {
+          __typename?: "Shelfmark";
+          postfix: string;
+          shelfmark: string;
+        } | null;
       };
     };
   } | null;
@@ -1432,6 +1453,11 @@ export type SearchWithPaginationQuery = {
             main: Array<string>;
             original?: Array<string> | null;
           };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1485,6 +1511,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
           >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix: string;
+            shelfmark: string;
+          } | null;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -1496,6 +1527,11 @@ export type SearchWithPaginationQuery = {
             main: Array<string>;
             original?: Array<string> | null;
           };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
           publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -1549,6 +1585,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
           >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix: string;
+            shelfmark: string;
+          } | null;
         };
       };
     }>;
@@ -1596,6 +1637,11 @@ export type ManifestationsSimpleFragment = {
       main: Array<string>;
       original?: Array<string> | null;
     };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
@@ -1640,6 +1686,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
     >;
+    shelfmark?: {
+      __typename?: "Shelfmark";
+      postfix: string;
+      shelfmark: string;
+    } | null;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -1651,6 +1702,11 @@ export type ManifestationsSimpleFragment = {
       main: Array<string>;
       original?: Array<string> | null;
     };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
     publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
@@ -1695,6 +1751,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
     >;
+    shelfmark?: {
+      __typename?: "Shelfmark";
+      postfix: string;
+      shelfmark: string;
+    } | null;
   };
 };
 
@@ -1708,6 +1769,11 @@ export type ManifestationsSimpleFieldsFragment = {
     main: Array<string>;
     original?: Array<string> | null;
   };
+  fictionNonfiction?: {
+    __typename?: "FictionNonfiction";
+    display: string;
+    code: FictionNonfictionCode;
+  } | null;
   publicationYear: { __typename?: "PublicationYear"; display: string };
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   creators: Array<
@@ -1749,6 +1815,11 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
   >;
+  shelfmark?: {
+    __typename?: "Shelfmark";
+    postfix: string;
+    shelfmark: string;
+  } | null;
 };
 
 export type SeriesSimpleFragment = {
@@ -1812,6 +1883,11 @@ export type WorkSmallFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -1856,6 +1932,11 @@ export type WorkSmallFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -1867,6 +1948,11 @@ export type WorkSmallFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -1911,6 +1997,11 @@ export type WorkSmallFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     };
   };
 };
@@ -1967,6 +2058,7 @@ export type WorkMediumFragment = {
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
+    code: FictionNonfictionCode;
   } | null;
   titles: {
     __typename?: "WorkTitles";
@@ -2011,6 +2103,11 @@ export type WorkMediumFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -2055,6 +2152,11 @@ export type WorkMediumFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -2066,6 +2168,11 @@ export type WorkMediumFragment = {
         main: Array<string>;
         original?: Array<string> | null;
       };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
       publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
@@ -2110,6 +2217,11 @@ export type WorkMediumFragment = {
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
       >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix: string;
+        shelfmark: string;
+      } | null;
     };
   };
 };
@@ -2134,6 +2246,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   titles {
     main
     original
+  }
+  fictionNonfiction {
+    display
+    code
   }
   publicationYear {
     display
@@ -2199,6 +2315,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     ... on DigitalArticleService {
       issn
     }
+  }
+  shelfmark {
+    postfix
+    shelfmark
   }
 }
     `;
@@ -2287,6 +2407,7 @@ export const WorkMediumFragmentDoc = `
   }
   fictionNonfiction {
     display
+    code
   }
   workYear
 }
