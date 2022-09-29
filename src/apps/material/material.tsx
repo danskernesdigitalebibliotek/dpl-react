@@ -45,7 +45,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [currentManifestation, setCurrentManifestation] =
     useState<Manifestation | null>(null);
 
-  const [periodicalSelect, setPeriodicalSelect] =
+  const [selectedPeriodical, setSelectedPeriodical] =
     useState<GroupListItem | null>(null);
 
   const { data, isLoading } = useGetMaterialQuery({
@@ -114,8 +114,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         work={work}
         manifestation={currentManifestation}
         selectManifestationHandler={setCurrentManifestation}
-        periodicalSelect={periodicalSelect}
-        selectPeriodicalSelect={setPeriodicalSelect}
+        selectedPeriodical={selectedPeriodical}
+        selectPeriodicalHandler={setSelectedPeriodical}
       />
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
@@ -177,7 +177,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <ReservationModal
             mainManifestation={currentManifestation}
             parallelManifestations={parallelManifestations}
-            periodicalSelect={periodicalSelect}
+            selectedPeriodical={selectedPeriodical}
           />
         </>
       )}

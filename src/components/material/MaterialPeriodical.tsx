@@ -3,20 +3,19 @@ import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialPeriodicalSelect, {
-  GroupList,
   GroupListItem
 } from "./MaterialPeriodicalSelect";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
-  periodicalSelect: GroupListItem | null;
-  selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
+  selectedPeriodical: GroupListItem | null;
+  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   faustId,
-  periodicalSelect,
-  selectPeriodicalSelect
+  selectedPeriodical,
+  selectPeriodicalHandler
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [String(faustId)]
@@ -44,8 +43,8 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   return (
     <MaterialPeriodicalSelect
       groupList={groupByVolumeYear as GroupList}
-      periodicalSelect={periodicalSelect}
-      selectPeriodicalSelect={selectPeriodicalSelect}
+      selectedPeriodical={selectedPeriodical}
+      selectPeriodicalHandler={selectPeriodicalHandler}
     />
   );
 };

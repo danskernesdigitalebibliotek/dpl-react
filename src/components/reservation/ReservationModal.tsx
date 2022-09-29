@@ -13,14 +13,14 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
-  periodicalSelect?: GroupListItem | null;
+  selectedPeriodical?: GroupListItem | null;
 };
 
 const ReservationModal = ({
   mainManifestation,
   mainManifestation: { pid },
   parallelManifestations,
-  periodicalSelect = null
+  selectedPeriodical = null
 }: ReservationModalProps) => {
   const t = useText();
   return (
@@ -34,7 +34,7 @@ const ReservationModal = ({
       <ReservationModalBody
         mainManifestation={mainManifestation}
         parallelManifestations={parallelManifestations}
-        periodicalSelect={periodicalSelect}
+        selectedPeriodical={selectedPeriodical}
       />
     </Modal>
   );

@@ -28,8 +28,8 @@ interface MaterialHeaderProps {
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  periodicalSelect: GroupListItem | null;
-  selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
+  selectedPeriodical: GroupListItem | null;
+  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -43,8 +43,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   manifestation: { pid },
   manifestation,
   selectManifestationHandler,
-  periodicalSelect,
-  selectPeriodicalSelect
+  selectedPeriodical,
+  selectPeriodicalHandler
 }) => {
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -75,7 +75,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
 
-  const isPeriocial = manifestation?.materialTypes
+  const isPeriodical = manifestation?.materialTypes
     ?.map((i) => i.specific.toLowerCase())
     .includes("periodikum");
 
@@ -97,11 +97,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {isPeriocial && (
+        {isPeriodical && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
-            periodicalSelect={periodicalSelect}
-            selectPeriodicalSelect={selectPeriodicalSelect}
+            selectedPeriodical={selectedPeriodical}
+            selectPeriodicalHandler={selectPeriodicalHandler}
           />
         )}
 
