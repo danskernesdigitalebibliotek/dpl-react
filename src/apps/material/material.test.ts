@@ -2,14 +2,23 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
   it("Does the Material have title?", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.get(".text-header-h1").should("be.visible");
   });
 
   it("Check that cover has a src", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.get("img").should("have.attr", "src").and("match", coverUrlPattern);
   });
 
   it("Does the material have favourite buttons?", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
@@ -18,28 +27,46 @@ describe("Material", () => {
   });
 
   it("Does the material have horizontal lines?", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.contains("Nr 1 i serien");
     cy.contains("De syv søstre-serien");
   });
 
   it("Does the material have authors?", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.contains("Lucinda Riley");
   });
 
   it("Does a material have a availibility label", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.contains("bog");
     cy.contains("unavailable");
   });
 
   it("Open material details", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.get("details").last().click();
   });
 
   it("Does the material have a editions with a buttton to reserved", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.contains("reserver");
   });
 
   it("Open modal by clicking on reserver button (reserver bog) and close it with the x bottom", () => {
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=bog"
+    );
     cy.contains("button:visible", "reserver bog").click();
     cy.contains("Afhentes på");
     cy.contains("Hovedbiblioteket");
@@ -52,7 +79,34 @@ describe("Material", () => {
   });
 
   it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("button:visible", "reserver bog").click();
+    cy.contains("button:visible", "Godkend reservation").click();
+    cy.contains("Materialet er hjemme og er nu reserveret til dig!");
+    cy.contains("Du er nummer 3 i køen");
+    cy.contains("button:visible", "Ok").click();
+  });
+
+  //  periodical test.
+  it("Render periodical, change year and Aprove resevation", () => {
+    cy.fixture("material/periodical-fbi-api.json")
+      .then((result) => {
+        cy.intercept("POST", "**/opac/graphql", result);
+      })
+      .as("periodical Graphql query");
+
+    cy.fixture("material/periodical-holdings.json")
+      .then((result) => {
+        cy.intercept("GET", "**/agencyid/catalog/holdings/**", result);
+      })
+      .as("periodical holdings");
+
+    cy.visit(
+      "/iframe.html?id=apps-material--periodical&viewMode=story&type=periodikum"
+    );
+
+    cy.get("#year").select("2021");
+    cy.contains("button:visible", "reserver periodikum").click();
     cy.contains("button:visible", "Godkend reservation").click();
     cy.contains("Materialet er hjemme og er nu reserveret til dig!");
     cy.contains("Du er nummer 3 i køen");
@@ -117,8 +171,6 @@ describe("Material", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
-
-    cy.visit("/iframe.html?args=&id=apps-material--material");
   });
 });
 
