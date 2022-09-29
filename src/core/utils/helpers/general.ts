@@ -194,3 +194,14 @@ export const groupObjectArrayByProperty = <
     // Otherwise create new property.
     return { ...result, [key]: [current] };
   }, {} as Result);
+
+export const getManifestationsPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
+export const stringifyValue = (value: string | null | undefined) =>
+  value ? String(value) : "";
+export const materialIsFiction = ({
+  fictionNonfiction
+}: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+export default {};

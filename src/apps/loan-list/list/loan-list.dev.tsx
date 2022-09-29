@@ -3,11 +3,20 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { configTypes } from "../../../core/utils/helpers/fetcher";
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    [configTypes.fbs]: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
+    [configTypes.publizon]: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
     loanListTitleText: {
       defaultValue: "Dine lånte materialer",
       control: { type: "text" }
@@ -239,6 +248,18 @@ export default {
     },
     bottomDueDateRenewLoanModalButtonText: {
       defaultValue: "Forny mulige",
+      control: { type: "text" }
+    },
+    loanListDigitalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen digitale lån",
+      control: { type: "text" }
+    },
+    loanListPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket ingen fysiske lån",
+      control: { type: "text" }
+    },
+    loanListDigitalPhysicalLoansEmptyListText: {
+      defaultValue: "Du har i øjeblikket 0 lån",
       control: { type: "text" }
     }
   },

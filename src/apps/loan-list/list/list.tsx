@@ -1,4 +1,4 @@
-import React, { useState, FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
@@ -11,6 +11,7 @@ import { useModalButtonHandler } from "../../../core/utils/modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import EmptyList from "../materials/utils/empty-list";
 
 export interface ListProps {
   header: string;
@@ -26,6 +27,7 @@ export interface ListProps {
   dueDates: string[];
   view: ListView;
   dueDateLabel: string;
+  emptyListLabel: string;
   viewToggleable: boolean;
 }
 
@@ -37,7 +39,8 @@ const List: FC<ListProps> = ({
   dueDates,
   view,
   dueDateLabel,
-  viewToggleable
+  viewToggleable,
+  emptyListLabel
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -112,7 +115,7 @@ const List: FC<ListProps> = ({
           </div>
         )}
       </div>
-      {loans && (
+      {loans && loans.length > 0 && (
         <Pagination
           dueDateLabel={dueDateLabel}
           dueDates={dueDates}
@@ -121,6 +124,7 @@ const List: FC<ListProps> = ({
           selectModalMaterial={selectModalMaterial}
         />
       )}
+      {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
       <RenewLoansModal loansModal={loans} />
     </>
   );

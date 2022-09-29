@@ -23,7 +23,8 @@ Danish public libraries.
   - [Create a new application](#create-a-new-application)
     - [Application state-machine](#application-state-machine)
   - [Style your application](#style-your-application)
-  - [Style using the dpl design system library](#style-using-the-dpl-design-system-library)
+  - [Style using the DPL design system](#style-using-the-dpl-design-system)
+    - [Using unreleased design](#using-unreleased-design)
   - [Cross application components](#cross-application-components)
     - [Creating an atom](#creating-an-atom)
     - [Creating a component](#creating-a-component)
@@ -356,11 +357,17 @@ export function WithoutData() {
 
 __Cowabunga!__ You now got styling in your application
 
-### Style using the dpl design system library
+### Style using the DPL design system
 
-If you need to use styling created by this project's sister repository -
+This project includes styling created by its sister repository -
 [the design system](https://github.com/danskernesdigitalebibliotek/dpl-design-system)
--you can run:
+as a npm package.
+
+By default the project should include a release of the design system matching
+the current state of the project.
+
+To update the design system to the latest stable release of the design system
+run:
 
 ```bash
 yarn add @danskernesdigitalebibliotek/dpl-design-system@latest
@@ -372,14 +379,37 @@ to reinstall the package in this project using the same command to get the
 newest styling, because yarn adds a specific version number to the package name
 in package.json.
 
-If you need published but unreleased code from a specific branch, you can also
-use thebranch name, replacing all special characters with dashes (-). For
-example if you want the latest styling from a branch called
-"feature/availability-label", you would run:
+#### Using unreleased design
+
+If you need to work with published but unreleased code from a specific branch
+of the design system, you can also use the branch name as the tag for the npm
+package, replacing all special characters with dashes (`-`).
+
+Example: To use the latest styling from a branch in the design system called
+`feature/availability-label`, run:
 
 ```bash
 yarn add @danskernesdigitalebibliotek/dpl-design-system@feature-availability-label
 ```
+
+If the branch resides in a fork (usually before a pull request is merged) you
+can use [aliasing](https://classic.yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-alias)
+and run:
+
+```bash
+yarn config set "@my-fork:registry" "https://npm.pkg.github.com"
+yarn add @danskernesdigitalebibliotek/dpl-design-system@npm:@my-fork/dpl-design-system@feature-availability-label
+```
+
+If the branch is updated and you want the latest changes to take effect locally
+update the release used:
+
+```bash
+yarn upgrade @danskernesdigitalebibliotek/dpl-design-system
+```
+
+Note that references to unreleased code should never make it into official
+versions of the project.
 
 ### Cross application components
 
