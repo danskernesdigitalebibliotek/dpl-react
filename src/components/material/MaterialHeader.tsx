@@ -28,6 +28,7 @@ interface MaterialHeaderProps {
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
+  periodicalSelect: GroupListItem | null;
   selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
 }
 
@@ -42,6 +43,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   manifestation: { pid },
   manifestation,
   selectManifestationHandler,
+  periodicalSelect,
   selectPeriodicalSelect
 }) => {
   const t = useText();
@@ -98,6 +100,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {isPeriocial && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
+            periodicalSelect={periodicalSelect}
             selectPeriodicalSelect={selectPeriodicalSelect}
           />
         )}
