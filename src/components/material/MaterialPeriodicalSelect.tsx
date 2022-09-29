@@ -13,27 +13,27 @@ export type GroupList = { [key: string]: GroupListItem[] };
 
 interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
-  periodicalSelect: GroupListItem | null;
-  selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
+  selectedPeriodical: GroupListItem | null;
+  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
 }
 
 const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   groupList,
-  periodicalSelect,
-  selectPeriodicalSelect
+  selectedPeriodical,
+  selectPeriodicalHandler
 }) => {
   const lastYear = Object.keys(groupList).sort().pop() || "";
   const t = useText();
   const [year, setYear] = useState<string>(lastYear);
 
-  // Sets periodicalSelect to the last edition on mount and if year changes
+  // Sets selectedPeriodical to the last edition on mount and if year changes
   useEffect(() => {
-    if (periodicalSelect) return;
+    if (selectedPeriodical) return;
     const firstEditions = groupList?.[year]?.[0];
     if (firstEditions) {
-      selectPeriodicalSelect(firstEditions);
+      selectPeriodicalHandler(firstEditions);
     }
-  }, [selectPeriodicalSelect, groupList, year, periodicalSelect]);
+  }, [selectPeriodicalHandler, groupList, year, selectedPeriodical]);
 
   const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) =>
     setYear(event.target.value);
@@ -46,7 +46,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
     );
 
     if (selectedItem) {
-      selectPeriodicalSelect(selectedItem);
+      selectPeriodicalHandler(selectedItem);
     }
   };
 
