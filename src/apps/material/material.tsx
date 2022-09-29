@@ -114,6 +114,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         work={work}
         manifestation={currentManifestation}
         selectManifestationHandler={setCurrentManifestation}
+        periodicalSelect={periodicalSelect}
         selectPeriodicalSelect={setPeriodicalSelect}
       />
       <MaterialDescription pid={pid} work={work} />

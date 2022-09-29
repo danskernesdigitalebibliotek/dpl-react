@@ -9,11 +9,13 @@ import MaterialPeriodicalSelect, {
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
+  periodicalSelect: GroupListItem | null;
   selectPeriodicalSelect: (periodicalSelect: GroupListItem) => void;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   faustId,
+  periodicalSelect,
   selectPeriodicalSelect
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3({
@@ -42,6 +44,7 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   return (
     <MaterialPeriodicalSelect
       groupList={groupByVolumeYear as GroupList}
+      periodicalSelect={periodicalSelect}
       selectPeriodicalSelect={selectPeriodicalSelect}
     />
   );
