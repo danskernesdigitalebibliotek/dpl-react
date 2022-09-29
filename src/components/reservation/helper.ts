@@ -52,6 +52,8 @@ export const getFutureDateString = (num: number) => {
   return futureDate;
 };
 
+type Periodical = Pick<GroupListItem, "volumeNumber" | "volumeYear">;
+
 const constructReservation = ({
   manifestation: { pid },
   pickupBranch,
@@ -61,10 +63,7 @@ const constructReservation = ({
   manifestation: Manifestation;
   pickupBranch?: string;
   expiryDate?: string;
-  periodical?: {
-    volumeNumber: string;
-    volumeYear: string;
-  };
+  periodical?: Periodical;
 }): CreateReservation => {
   const faustId = convertPostIdToFaustId(pid);
 
@@ -85,10 +84,7 @@ const constructReservations = ({
   manifestations: Manifestation[];
   pickupBranch?: string;
   expiryDate?: string;
-  periodical?: {
-    volumeNumber: string;
-    volumeYear: string;
-  };
+  periodical?: Periodical;
 }): CreateReservation[] =>
   manifestations.map((manifestation) =>
     constructReservation({
@@ -108,21 +104,21 @@ export const constructReservationData = ({
   manifestations: Manifestation[];
   selectedBranch: string | null;
   expiryDate: string | null;
-  periodical: GroupListItem | null | undefined;
+  periodical: GroupListItem | null;
 }): CreateReservationBatchV2 => {
-  const selectedPeriodical = periodical
-    ? {
-        volumeNumber: periodical.volumeNumber,
-        volumeYear: periodical.volumeYear
-      }
-    : null;
-
   return {
     reservations: constructReservations({
       manifestations,
       ...(selectedBranch ? { pickupBranch: selectedBranch } : {}),
       ...(expiryDate ? { expiryDate } : {}),
-      ...(selectedPeriodical ? { periodical: selectedPeriodical } : {})
+      ...(periodical
+        ? {
+            periodical: {
+              volumeNumber: periodical.volumeNumber,
+              volumeYear: periodical.volumeYear
+            }
+          }
+        : {})
     }),
     ...(manifestations.length > 1 ? { type: "parallel" } : {})
   };
