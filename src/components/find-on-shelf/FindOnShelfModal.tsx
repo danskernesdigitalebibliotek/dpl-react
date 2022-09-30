@@ -74,7 +74,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const uniqueBranches = Array.from(new Set(allBranches));
   // Grouping pairedManifestationsWithBranches objects based on same branch
   // gives us the desired data structure that we can render.
-  const finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
+  let finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
     return pairedManifestationsWithBranches.filter(
       (manifestationWithBranch) => {
         return manifestationWithBranch.holding.branch.branchId === branch;
@@ -86,6 +86,32 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   // 1. Main library branch first
   // 2. Branches with any available speciments sorted alphabetically
   // 3. Branches without available speciments sorted alphabetically
+
+  // Filtering only for periodicals
+  if (selectedPeriodicalItemNumber) {
+    finalData = finalData.map((branchManifestationHoldings) => {
+      return branchManifestationHoldings
+        .map((manifestationHoldings) => {
+          return {
+            ...manifestationHoldings,
+            holding: {
+              ...manifestationHoldings.holding,
+              materials: manifestationHoldings.holding.materials.filter(
+                (material) => {
+                  return (
+                    material.periodical?.volumeNumber ===
+                    selectedPeriodicalItemNumber
+                  );
+                }
+              )
+            }
+          };
+        })
+        .filter((manifestationHoldings) => {
+          return manifestationHoldings !== null;
+        });
+    });
+  }
   function orderManifestationHoldingsAlphabetically(
     a: ManifestationHoldings,
     b: ManifestationHoldings
@@ -97,7 +123,6 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   }
   const [availableManifestationHoldings, unavailableManifestationHoldings] =
     partition(finalData, isAnyManifestationAvailableOnBranch);
-
   const finalDataAlphabetical = availableManifestationHoldings
     .sort((a: ManifestationHoldings, b: ManifestationHoldings) => {
       return orderManifestationHoldingsAlphabetically(a, b);
@@ -118,37 +143,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         : 1;
     }
   );
-
-  let finalDataToShow: ManifestationHoldings[] = finalDataMainBranchFirst;
-
-  // Filtering only for periodicals
-  if (selectedPeriodicalItemNumber) {
-    finalDataToShow = finalDataMainBranchFirst.map(
-      (branchManifestationHoldings) => {
-        return branchManifestationHoldings
-          .map((manifestationHoldings) => {
-            return {
-              ...manifestationHoldings,
-              holding: {
-                ...manifestationHoldings.holding,
-                materials: manifestationHoldings.holding.materials.filter(
-                  (material) => {
-                    return (
-                      material.periodical?.volumeNumber ===
-                      selectedPeriodicalItemNumber
-                    );
-                  }
-                )
-              }
-            };
-          })
-          .filter((manifestationHoldings) => {
-            return manifestationHoldings !== null;
-          });
-      }
-    );
-  }
-  console.log(finalDataToShow);
+  const finalDataToShow: ManifestationHoldings[] = finalDataMainBranchFirst;
 
   return (
     <Modal
