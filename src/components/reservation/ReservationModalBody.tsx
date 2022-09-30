@@ -61,6 +61,8 @@ const ReservationModalBody = ({
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations:
+      // TODO: We should investigate why we need to check for parallelManifestation length
+      // because it doesn't seem to reflect the possible types.
       parallelManifestations && parallelManifestations.length > 0
         ? parallelManifestations
         : [mainManifestation],
