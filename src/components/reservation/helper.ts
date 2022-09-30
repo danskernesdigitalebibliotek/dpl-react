@@ -14,7 +14,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
-import { GroupListItem } from "../material/MaterialPeriodicalSelect";
+import { GroupListItem } from "../material/periodical/helper";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
   config("smsNotificationsForReservationsEnabledConfig") === "1";

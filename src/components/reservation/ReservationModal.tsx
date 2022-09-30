@@ -4,7 +4,7 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
-import { GroupListItem } from "../material/MaterialPeriodicalSelect";
+import { GroupListItem } from "../material/periodical/helper";
 import ReservationModalBody from "./ReservationModalBody";
 
 export const reservationModalId = (faustId: FaustId) =>
