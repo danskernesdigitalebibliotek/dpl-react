@@ -22,21 +22,24 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler
 }) => {
-  const lastYear = Object.keys(groupList).sort().pop() || "";
   const t = useText();
+  const lastYear = Object.keys(groupList).sort().pop() || "";
   const [year, setYear] = useState<string>(lastYear);
+  const firstEdition = groupList?.[year]?.[0];
 
-  // Sets selectedPeriodical to the last edition on mount and if year changes
+  // Sets selectedPeriodical to the last edition
   useEffect(() => {
     if (selectedPeriodical) return;
-    const firstEditions = groupList?.[year]?.[0];
-    if (firstEditions) {
-      selectPeriodicalHandler(firstEditions);
+    if (firstEdition) {
+      selectPeriodicalHandler(firstEdition);
     }
-  }, [selectPeriodicalHandler, groupList, year, selectedPeriodical]);
+  }, [firstEdition, selectPeriodicalHandler, selectedPeriodical]);
 
-  const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) =>
+  const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(event.target.value);
+    //  updates the selectedPeriodical to the first edition of the selected year
+    selectPeriodicalHandler(groupList[event.target.value][0]);
+  };
 
   const handleSelectEditions = (
     event: React.ChangeEvent<HTMLSelectElement>
