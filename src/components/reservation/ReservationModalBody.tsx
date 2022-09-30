@@ -55,7 +55,10 @@ const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
-    manifestations: parallelManifestations || [mainManifestation],
+    manifestations:
+      parallelManifestations && parallelManifestations?.length > 0
+        ? parallelManifestations
+        : [mainManifestation],
     type: mainManifestationType
   });
   const queryClient = useQueryClient();

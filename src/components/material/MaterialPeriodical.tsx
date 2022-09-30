@@ -3,6 +3,7 @@ import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialPeriodicalSelect, {
+  GroupList,
   GroupListItem
 } from "./MaterialPeriodicalSelect";
 
