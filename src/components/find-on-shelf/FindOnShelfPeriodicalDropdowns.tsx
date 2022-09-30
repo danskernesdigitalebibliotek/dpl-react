@@ -61,7 +61,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
                 return (
                   <option
                     key={periodicalEdition.itemNumber}
-                    value={periodicalEdition.itemNumber}
+                    value={periodicalEdition.volumeNumber}
                   >
                     {periodicalEdition.volumeNumber}
                   </option>

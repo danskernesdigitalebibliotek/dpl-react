@@ -49,9 +49,8 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     convertPostIdToFaustId(manifestations[0].pid)
   );
 
-  const [selectedPeriodical, setSelectedPeriodical] = useState<string | null>(
-    null
-  );
+  const [selectedPeriodicalItemNumber, setSelectedPeriodicalItemNumber] =
+    useState<string | null>(null);
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.
@@ -120,7 +119,36 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     }
   );
 
-  const finalDataToShow = finalDataMainBranchFirst;
+  let finalDataToShow: ManifestationHoldings[] = finalDataMainBranchFirst;
+
+  // Filtering only for periodicals
+  if (selectedPeriodicalItemNumber) {
+    finalDataToShow = finalDataMainBranchFirst.map(
+      (branchManifestationHoldings) => {
+        return branchManifestationHoldings
+          .map((manifestationHoldings) => {
+            return {
+              ...manifestationHoldings,
+              holding: {
+                ...manifestationHoldings.holding,
+                materials: manifestationHoldings.holding.materials.filter(
+                  (material) => {
+                    return (
+                      material.periodical?.volumeNumber ===
+                      selectedPeriodicalItemNumber
+                    );
+                  }
+                )
+              }
+            };
+          })
+          .filter((manifestationHoldings) => {
+            return manifestationHoldings !== null;
+          });
+      }
+    );
+  }
+  console.log(finalDataToShow);
 
   return (
     <Modal
@@ -142,7 +170,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         }) && (
           <FindOnShelfPeriodicalDropdowns
             manifestationsHoldings={data}
-            setSelectedPeriodical={setSelectedPeriodical}
+            setSelectedPeriodical={setSelectedPeriodicalItemNumber}
           />
         )}
         {isLoading && (
