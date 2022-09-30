@@ -49,14 +49,19 @@ type ReservationModalProps = {
 
 const ReservationModalBody = ({
   mainManifestation,
-  mainManifestation: { pid, materialTypes, titles, edition },
+  mainManifestation: {
+    pid,
+    materialTypes,
+    titles: { main: mainTitle },
+    edition
+  },
   parallelManifestations,
   selectedPeriodical
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations:
-      parallelManifestations && parallelManifestations?.length > 0
+      parallelManifestations && parallelManifestations.length > 0
         ? parallelManifestations
         : [mainManifestation],
     type: mainManifestationType
@@ -142,7 +147,7 @@ const ReservationModalBody = ({
                 {materialTypes[0].specific}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {titles.main[0]}{" "}
+                {mainTitle}{" "}
                 {selectedPeriodical && selectedPeriodical.displayText}
               </h2>
               <p className="text-body-medium-regular">{authorLine}</p>
@@ -191,7 +196,7 @@ const ReservationModalBody = ({
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
           modalId={reservationModalId(faustId)}
-          title={titles.main[0]}
+          title={mainTitle[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branchData
