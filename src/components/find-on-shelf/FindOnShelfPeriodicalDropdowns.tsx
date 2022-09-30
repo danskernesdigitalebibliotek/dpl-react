@@ -27,7 +27,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
   );
 
   return (
-    <div className="periodical-dropdowns">
+    <div className="modal-find-on-shelf__periodical-dropdowns">
       <div className="dropdown dropdown--grey-borders">
         <select
           id="find-on-shelf-periodical-year"
