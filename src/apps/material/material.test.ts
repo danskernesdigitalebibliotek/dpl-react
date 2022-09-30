@@ -70,7 +70,7 @@ describe("Material", () => {
   });
 
   //  periodical test.
-  it("Render periodical, change year and Aprove resevation", () => {
+  it("Render periodical + change to 2021, nr. 13 + Aprove resevation", () => {
     cy.fixture("material/periodical-fbi-api.json")
       .then((result) => {
         cy.intercept("POST", "**/opac/graphql", result);
@@ -88,7 +88,9 @@ describe("Material", () => {
     );
 
     cy.get("#year").select("2021");
+    cy.get("#editions").should("have.value", "5258703091");
     cy.contains("button:visible", "reserver periodikum").click();
+    cy.contains("h2", "2021, nr. 13");
     cy.contains("button:visible", "Godkend reservation").click();
     cy.contains("Materialet er hjemme og er nu reserveret til dig!");
     cy.contains("Du er nummer 3 i køen");
