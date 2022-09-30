@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useText } from "../../core/utils/text";
-
-export type GroupListItem = {
-  displayText: string;
-  itemNumber: string;
-  volume: string;
-  volumeNumber: string;
-  volumeYear: string;
-};
+import { useText } from "../../../core/utils/text";
+import { getFirstEditionFromYear, GroupListItem } from "./helper";
 
 export type GroupList = { [key: string]: GroupListItem[] };
 
@@ -25,20 +18,26 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   const t = useText();
   const lastYear = Object.keys(groupList).sort().pop() || "";
   const [year, setYear] = useState<string>(lastYear);
-  const firstEdition = groupList?.[year]?.[0];
 
   // Sets selectedPeriodical to the last edition
   useEffect(() => {
     if (selectedPeriodical) return;
+    const firstEdition = getFirstEditionFromYear(year, groupList);
     if (firstEdition) {
       selectPeriodicalHandler(firstEdition);
     }
-  }, [firstEdition, selectPeriodicalHandler, selectedPeriodical]);
+  }, [groupList, selectPeriodicalHandler, selectedPeriodical, year]);
 
   const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(event.target.value);
-    //  updates the selectedPeriodical to the first edition of the selected year
-    selectPeriodicalHandler(groupList[event.target.value][0]);
+    //  Updates the selectedPeriodical to the first edition of the selected year.
+    const changedEdition = getFirstEditionFromYear(
+      event.target.value,
+      groupList
+    );
+    if (changedEdition) {
+      selectPeriodicalHandler(changedEdition);
+    }
   };
 
   const handleSelectEditions = (

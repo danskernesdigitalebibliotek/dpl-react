@@ -33,7 +33,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
-import { GroupListItem } from "../../components/material/MaterialPeriodicalSelect";
+import { GroupListItem } from "../../components/material/periodical/helper";
 
 export interface MaterialProps {
   wid: WorkId;

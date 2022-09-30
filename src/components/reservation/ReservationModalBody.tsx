@@ -36,7 +36,7 @@ import {
   getAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
-import { GroupListItem } from "../material/MaterialPeriodicalSelect";
+import { GroupListItem } from "../material/periodical/helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
