@@ -13,6 +13,7 @@ const StatusCircleIcon: FC<StatusCircleIconProps> = ({
   children
 }) => {
   const t = useText();
+
   return (
     <div
       className="list-reservation__counter"

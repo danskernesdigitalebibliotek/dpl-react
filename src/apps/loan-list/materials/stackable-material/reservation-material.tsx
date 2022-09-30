@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import MaterialInfo from "./material-info";
 import { MetaDataType } from "../../../../core/utils/types/meta-data-type";

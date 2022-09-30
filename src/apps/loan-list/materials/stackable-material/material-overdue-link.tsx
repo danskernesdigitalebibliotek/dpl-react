@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { isMobile } from "react-device-detect";
-import { useText } from "../../../../core/utils/text";
 import { materialIsOverdue } from "../../utils/helpers";
 
 interface MaterialOverdueLinkProps {
@@ -8,7 +7,10 @@ interface MaterialOverdueLinkProps {
   label: string | null | undefined;
 }
 
-const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({ dueDate,label }) => {
+const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
+  dueDate,
+  label
+}) => {
   if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return <div />;
 
   return (

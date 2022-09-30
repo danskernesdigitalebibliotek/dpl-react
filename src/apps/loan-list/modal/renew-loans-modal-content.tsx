@@ -12,6 +12,7 @@ import { Button } from "../../../components/Buttons/Button";
 import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
 import { MetaDataType } from "../../../core/utils/types/meta-data-type";
 import { mapFBSRenewedLoanToLoanMetaDataType } from "../../../core/utils/helpers/mapper";
+import usePager from "../../../components/result-pager/use-pager";
 
 interface RenewLoansModalContentProps {
   loansModal: MetaDataType<LoanMetaDataType>[];
@@ -40,9 +41,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<
     number | null
   >(0);
-  const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
-  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
-  const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
+  const [loans, setLoans] = useState<MetaDataType<LoanMetaDataType>[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<
+    MetaDataType<LoanMetaDataType>[]
+  >([]);
+  const [renewedLoans, setRenewedLoans] = useState<
+    MetaDataType<LoanMetaDataType>[]
+  >([]);
 
   const renewSelected = useCallback(() => {
     mutate(

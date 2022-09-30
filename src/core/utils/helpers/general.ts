@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import dayjs from "dayjs";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -10,6 +11,7 @@ import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanMetaDataType } from "../types/loan-meta-data-type";
+import { MetaDataType } from "../types/meta-data-type";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
@@ -93,6 +95,21 @@ export const getCoverTint = (index: number) => {
   return undefined;
 };
 
+export const daysBetweenTodayAndDate = (date: string) => {
+  const today = dayjs();
+  const inputDate = dayjs(date);
+
+  return Math.ceil(inputDate.diff(today, "day", true));
+};
+
+export const getColors = () => {
+  return getConf("colors", configuration);
+};
+
+export const getThresholds = () => {
+  return getConf("statusThreshold", configuration);
+};
+
 export const usePrevious = <Type>(value: Type) => {
   const ref = useRef<Type>();
   useEffect(() => {
@@ -121,22 +138,24 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanMetaDataType[]) => {
+export const sortByLoanDate = (list: MetaDataType<LoanMetaDataType>[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort(
     (objA, objB) =>
-      new Date(objA.loanDate || new Date()).getTime() -
-      new Date(objB.loanDate || new Date()).getTime()
+      new Date(objA.loanSpecific?.loanDate || new Date()).getTime() -
+      new Date(objB.loanSpecific?.loanDate || new Date()).getTime()
   );
 };
 
-export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
+export const getDueDatesLoan = (list: MetaDataType<LoanMetaDataType>[]) => {
   return Array.from(
     new Set(
       list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
-        .map(({ dueDate }) => dueDate)
+        .filter(
+          ({ loanSpecific }) => loanSpecific?.dueDate !== (undefined || null)
+        )
+        .map(({ loanSpecific }) => loanSpecific?.dueDate)
     )
   ) as string[];
 };
@@ -156,13 +175,17 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
   return Number(pageSize);
 };
 
-export const getRenewableMaterials = (list: LoanMetaDataType[]) => {
+export const getRenewableMaterials = (
+  list: MetaDataType<LoanMetaDataType>[]
+) => {
   return list
-    .filter(({ isRenewable }) => isRenewable)
+    .filter(({ loanSpecific }) => loanSpecific?.isRenewable)
     .map(({ id }) => parseInt(id, 10));
 };
 
-export const getAmountOfRenewableLoans = (list: LoanMetaDataType[]) => {
+export const getAmountOfRenewableLoans = (
+  list: MetaDataType<LoanMetaDataType>[]
+) => {
   return getRenewableMaterials(list).length;
 };
 

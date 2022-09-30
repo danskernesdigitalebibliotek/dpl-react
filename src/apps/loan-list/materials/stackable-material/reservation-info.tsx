@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useText } from "../../../../core/utils/text";
-import { getPreferredLocation } from "../../../material/helper";
 import { useGetBranches } from "../../../../core/fbs/fbs";
 import { AgencyBranch } from "../../../../core/fbs/model";
 import {
@@ -12,6 +11,7 @@ import {
 import ListReservationStatus from "./list-reservation-status";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
 import { formatDate } from "../../utils/helpers";
+import { getPreferredBranch } from "../../../../components/reservation/helper";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationMetaDataType;
@@ -31,10 +31,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
   useEffect(() => {
     if (branchResponse.data && pickupBranch) {
       setReadyForPickupLabel(
-        getPreferredLocation(
-          pickupBranch,
-          branchResponse.data as AgencyBranch[]
-        )
+        getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
       );
     } else {
       setReadyForPickupLabel(

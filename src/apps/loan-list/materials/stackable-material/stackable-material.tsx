@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
+import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import { useText } from "../../../../core/utils/text";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
@@ -7,7 +7,7 @@ import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
-import { getMaterialInfo, queryMatchesFaust } from "../../utils/helpers";
+import { queryMatchesFaust } from "../../utils/helpers";
 import { MetaDataType } from "../../../../core/utils/types/meta-data-type";
 import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
 import { ReservationMetaDataType } from "../../../../core/utils/types/reservation-meta-data-type";
