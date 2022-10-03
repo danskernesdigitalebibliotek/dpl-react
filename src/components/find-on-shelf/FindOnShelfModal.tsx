@@ -13,7 +13,7 @@ import {
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { ManifestationHoldings } from "./types";
+import { ManifestationHoldings, SelectedPeriodicalEdition } from "./types";
 import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
@@ -49,8 +49,8 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     convertPostIdToFaustId(manifestations[0].pid)
   );
 
-  const [selectedPeriodicalItemNumber, setSelectedPeriodicalItemNumber] =
-    useState<string | null>(null);
+  const [selectedPeriodicalEdition, setSelectedPeriodicalEdition] =
+    useState<SelectedPeriodicalEdition | null>(null);
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.
@@ -88,7 +88,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   // 3. Branches without available speciments sorted alphabetically
 
   // Filtering only for periodicals
-  if (selectedPeriodicalItemNumber) {
+  if (selectedPeriodicalEdition) {
     finalData = finalData.map((branchManifestationHoldings) => {
       return branchManifestationHoldings
         .map((manifestationHoldings) => {
@@ -100,7 +100,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
                 (material) => {
                   return (
                     material.periodical?.volumeNumber ===
-                    selectedPeriodicalItemNumber
+                      selectedPeriodicalEdition.selectedEdition &&
+                    material.periodical.volumeYear ===
+                      selectedPeriodicalEdition.selectedYear
                   );
                 }
               )
@@ -165,7 +167,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         }) && (
           <FindOnShelfPeriodicalDropdowns
             manifestationsHoldings={data}
-            setSelectedPeriodical={setSelectedPeriodicalItemNumber}
+            setSelectedPeriodical={setSelectedPeriodicalEdition}
           />
         )}
         {isLoading && (

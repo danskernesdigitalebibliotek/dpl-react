@@ -4,10 +4,13 @@ import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
 import makePeriodicalEditionsFromHoldings from "../material/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
+import { SelectedPeriodicalEdition } from "./types";
 
 export interface FindOnShelfPeriodicalDropdownProps {
   manifestationsHoldings: HoldingsForBibliographicalRecordV3[];
-  setSelectedPeriodical: (selectedWeek: string | null) => void;
+  setSelectedPeriodical: (
+    selectedWeek: SelectedPeriodicalEdition | null
+  ) => void;
 }
 
 const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
@@ -54,7 +57,12 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
             id="find-on-shelf-periodical-edition"
             className="dropdown__select"
             aria-label="Choose periodical week"
-            onChange={(e) => setSelectedPeriodical(e.target.value)}
+            onChange={(e) =>
+              setSelectedPeriodical({
+                selectedYear,
+                selectedEdition: e.target.value
+              })
+            }
           >
             {sortedperiodicalEditionsArray[selectedYear].map(
               (periodicalEdition) => {
