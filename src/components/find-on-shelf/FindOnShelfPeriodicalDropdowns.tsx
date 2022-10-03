@@ -19,15 +19,15 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
   setSelectedPeriodical
 }) => {
   const t = useText();
-  const periodicalEditionsArray = makePeriodicalEditionsFromHoldings(
+  const periodicalEditions = makePeriodicalEditionsFromHoldings(
     manifestationsHoldings[0].holdings
   );
-  const sortedperiodicalEditionsArray = groupObjectArrayByProperty(
-    periodicalEditionsArray,
+  const groupedPeriodicalEditions = groupObjectArrayByProperty(
+    periodicalEditions,
     "volumeYear"
   );
   const [selectedYear, setSelectedYear] = useState<string>(
-    String(Object.keys(sortedperiodicalEditionsArray).sort().pop())
+    String(Object.keys(groupedPeriodicalEditions).sort().pop())
   );
 
   return (
@@ -39,11 +39,15 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           defaultValue={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
-          {Object.keys(sortedperiodicalEditionsArray)
+          {Object.keys(groupedPeriodicalEditions)
             .sort()
-            .map((item) => (
-              <option key={item} value={item} className="dropdown__option">
-                {item}
+            .map((volumeYear) => (
+              <option
+                key={volumeYear}
+                value={volumeYear}
+                className="dropdown__option"
+              >
+                {volumeYear}
               </option>
             ))}
         </select>
@@ -63,7 +67,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
               })
             }
           >
-            {sortedperiodicalEditionsArray[selectedYear].map(
+            {groupedPeriodicalEditions[selectedYear].map(
               (periodicalEdition) => {
                 return (
                   <option
