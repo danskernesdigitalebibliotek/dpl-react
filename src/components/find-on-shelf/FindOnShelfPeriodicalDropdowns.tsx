@@ -5,6 +5,7 @@ import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
 import makePeriodicalEditionsFromHoldings from "../material/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { SelectedPeriodicalEdition } from "./types";
+import { useText } from "../../core/utils/text";
 
 export interface FindOnShelfPeriodicalDropdownProps {
   manifestationsHoldings: HoldingsForBibliographicalRecordV3[];
@@ -17,6 +18,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
   manifestationsHoldings,
   setSelectedPeriodical
 }) => {
+  const t = useText();
   const periodicalEditionsArray = makePeriodicalEditionsFromHoldings(
     manifestationsHoldings[0].holdings
   );
@@ -24,7 +26,6 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
     periodicalEditionsArray,
     "volumeYear"
   );
-
   const [selectedYear, setSelectedYear] = useState<string>(
     String(Object.keys(sortedperiodicalEditionsArray).sort().pop())
   );
@@ -35,7 +36,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
         <select
           id="find-on-shelf-periodical-year"
           className="dropdown__select"
-          aria-label="Choose periodical year"
+          aria-label={t("findOnShelfModalPeriodicalYearDropdownText")}
           defaultValue={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
@@ -56,7 +57,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           <select
             id="find-on-shelf-periodical-edition"
             className="dropdown__select"
-            aria-label="Choose periodical week"
+            aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
             onChange={(e) =>
               setSelectedPeriodical({
                 selectedYear,
