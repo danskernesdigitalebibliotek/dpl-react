@@ -34,7 +34,6 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
     <div className="modal-find-on-shelf__periodical-dropdowns">
       <div className="dropdown dropdown--grey-borders">
         <select
-          id="find-on-shelf-periodical-year"
           className="dropdown__select"
           aria-label={t("findOnShelfModalPeriodicalYearDropdownText")}
           defaultValue={selectedYear}
@@ -55,7 +54,6 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
       {selectedYear && (
         <div className="dropdown dropdown--grey-borders">
           <select
-            id="find-on-shelf-periodical-edition"
             className="dropdown__select"
             aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
             onChange={(e) =>
