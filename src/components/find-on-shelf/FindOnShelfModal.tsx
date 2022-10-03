@@ -48,7 +48,11 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const modalId = findOnShelfModalId(
     convertPostIdToFaustId(manifestations[0].pid)
   );
-
+  const isPeriodical = manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some((materialType) => {
+      return materialType.specific.includes("periodikum");
+    });
+  });
   const [selectedPeriodicalEdition, setSelectedPeriodicalEdition] =
     useState<SelectedPeriodicalEdition | null>(null);
 
@@ -160,11 +164,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
           {`${title} / ${author}`}
         </h2>
-        {manifestations.some((manifestation) => {
-          return manifestation.materialTypes.some((materialType) => {
-            return materialType.specific.includes("periodikum");
-          });
-        }) && (
+        {isPeriodical && (
           <FindOnShelfPeriodicalDropdowns
             manifestationsHoldings={data}
             setSelectedPeriodical={setSelectedPeriodicalEdition}
