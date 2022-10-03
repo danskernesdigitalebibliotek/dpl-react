@@ -61,7 +61,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-
+  const isPeriodical = manifestation.materialTypes.some(
+    (materialType: Manifestation["materialTypes"][0]) => {
+      return materialType.specific.includes("periodikum");
+    }
+  );
   const author = creatorsText || t("creatorsAreMissingText");
 
   const containsDanish = mainLanguages.some((language) =>
@@ -74,12 +78,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
-
-  const isPeriodical = manifestation.materialTypes.some(
-    (materialType: Manifestation["materialTypes"][0]) => {
-      return materialType.specific.includes("periodikum");
-    }
-  );
 
   return (
     <header className="material-header">
@@ -98,7 +96,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             selectManifestationHandler={selectManifestationHandler}
           />
         </div>
-
         {isPeriodical && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
