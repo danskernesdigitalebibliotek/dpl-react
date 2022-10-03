@@ -18,7 +18,7 @@ describe("Material", () => {
   });
 
   it("Does the material have horizontal lines?", () => {
-    cy.contains("Nr 1 i serien");
+    cy.contains("Nr. 1 in series");
     cy.contains("De syv søstre-serien");
   });
 
@@ -36,26 +36,28 @@ describe("Material", () => {
   });
 
   it("Does the material have a editions with a buttton to reserved", () => {
-    cy.contains("reserver");
+    cy.scrollTo("bottom");
+    cy.contains("Editions (7)").click();
+    cy.contains("Reserve");
   });
 
-  it("Open modal by clicking on reserver button (reserver bog) and close it with the x bottom", () => {
-    cy.contains("button:visible", "reserver bog").click();
-    cy.contains("Afhentes på");
+  it("Open modal by clicking on reserver button (reserve book) and close it with the x bottom", () => {
+    cy.contains("button:visible", "Reserve bog").click();
+    cy.contains("Pick up at");
     cy.contains("Hovedbiblioteket");
     cy.contains("12345678");
     cy.contains("test@test.com");
-    cy.get(`[aria-label="Luk reservation modal"]`).click({
+    cy.get(`[aria-label="Close reservation modal"]`).click({
       multiple: true,
       force: true
     });
   });
 
   it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
-    cy.contains("button:visible", "reserver bog").click();
-    cy.contains("button:visible", "Godkend reservation").click();
-    cy.contains("Materialet er hjemme og er nu reserveret til dig!");
-    cy.contains("Du er nummer 3 i køen");
+    cy.contains("button:visible", "Reserve bog").click();
+    cy.contains("button:visible", "Approve reservation").click();
+    cy.contains("Material is available and reserved for you!");
+    cy.contains("You are number 3 in queue");
     cy.contains("button:visible", "Ok").click();
   });
 
