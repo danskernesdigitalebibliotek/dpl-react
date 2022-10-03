@@ -8,7 +8,7 @@ describe("Search Result", () => {
   });
 
   it("Check search title", () => {
-    cy.contains("Viser resultater for “harry” (9486)");
+    cy.contains("Showing results for “harry” (9486)");
   });
 
   it("Check length of search result list", () => {
@@ -35,7 +35,7 @@ describe("Search Result", () => {
       // TODO: The series string being rendered makes no sense with the dummy data given
       // and the (lack) of knowledge of which properties to use and how to combine them.
       // Therefor when data is in place we can revisit this part of the test.
-      "Nr. 1  i serienDummy Some SeriesNr. 1  i serienDummy Some Series"
+      "Nr. 1  in seriesDummy Some SeriesNr. 1  in seriesDummy Some Series"
     );
   });
 
@@ -49,7 +49,7 @@ describe("Search Result", () => {
   it("Does the search result have authors?", () => {
     cy.get(".search-result-page__list .search-result-item").should(
       "contain.text",
-      "Af Dummy Jens Jensen (Dummy 1839)"
+      "By Dummy Jens Jensen (Dummy 1839)"
     );
   });
 
@@ -64,15 +64,15 @@ describe("Search Result", () => {
   it("Do we have a pager?", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Viser 2 ud af 9486 resultater"
+      "Showing 2 out of 9486 results"
     );
   });
 
   it("Do we have some pager info?", () => {
-    cy.get(".result-pager button").should("contain.text", "VIS FLERE");
+    cy.get(".result-pager button").should("contain.text", "SHOW MORE");
   });
 
-  it("Show more results.", () => {
+  it("Show more", () => {
     cy.get(".result-pager button").click();
   });
 
@@ -83,7 +83,7 @@ describe("Search Result", () => {
   it("The pager info should also have been updated.", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Viser 4 ud af 9486 resultater"
+      "Showing 4 out of 9486 results"
     );
   });
 
