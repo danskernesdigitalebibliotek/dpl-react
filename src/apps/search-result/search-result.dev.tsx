@@ -45,27 +45,27 @@ export default {
     },
     byAuthorText: {
       name: "By (author) Text",
-      defaultValue: "Af",
+      defaultValue: "By",
       control: { type: "text" }
     },
     showMoreText: {
       name: "Show more Text",
-      defaultValue: "vis flere",
+      defaultValue: "show more",
       control: { type: "text" }
     },
     showingText: {
       name: "Showing Text",
-      defaultValue: "Viser",
+      defaultValue: "Showing",
       control: { type: "text" }
     },
     outOfText: {
       name: "Out of Text",
-      defaultValue: "ud af",
+      defaultValue: "out of",
       control: { type: "text" }
     },
     resultsText: {
       name: "Results Text",
-      defaultValue: "resultater",
+      defaultValue: "results",
       control: { type: "text" }
     },
     numberDescriptionText: {
@@ -75,12 +75,12 @@ export default {
     },
     inSeriesText: {
       name: "In series",
-      defaultValue: "i serien",
+      defaultValue: "In series",
       control: { type: "text" }
     },
     showingResultsForText: {
       name: "Showing results for",
-      defaultValue: "Viser resultater for",
+      defaultValue: "Showing results for",
       control: { type: "text" }
     }
   }
