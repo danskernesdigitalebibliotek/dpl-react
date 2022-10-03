@@ -39,13 +39,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   }
 
   if (accessType === "InfomediaService") {
-    const infomediaArticleId = manifestation.access[0].id;
-    return (
-      <MaterialButtonOnlineInfomediaArticle
-        infomediaArticleId={infomediaArticleId}
-        size={size}
-      />
-    );
+    return <MaterialButtonOnlineInfomediaArticle size={size} />;
   }
 
   // Last option is an Internal Library Loan, which practically will never be

@@ -7,13 +7,12 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
-  infomediaArticleId: string;
   size?: ButtonSize;
 }
 
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
-> = ({ infomediaArticleId, size }) => {
+> = ({ size }) => {
   const t = useText();
   const dispatch = useDispatch();
 
