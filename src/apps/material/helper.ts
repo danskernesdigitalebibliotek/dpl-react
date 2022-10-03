@@ -1,3 +1,4 @@
+import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import { HoldingsV3 } from "../../core/fbs/model";
 import {
@@ -8,7 +9,6 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
@@ -138,4 +138,12 @@ export const isAnyManifestationAvailableOnBranch = (
       return material.available;
     });
   });
+};
+
+export const totalBranchesHaveMaterial = (
+  manifestationHoldings: ManifestationHoldings[]
+) => {
+  return manifestationHoldings.filter((branchManifestationHoldings) => {
+    return isAnyManifestationAvailableOnBranch(branchManifestationHoldings);
+  }).length;
 };

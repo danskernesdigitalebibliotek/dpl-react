@@ -1,18 +1,22 @@
-import * as React from "react";
-import { FC } from "react";
-import { useGetHoldingsV3 } from "../../core/fbs/fbs";
-import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
-import { FaustId } from "../../core/utils/types/ids";
-import MaterialPeriodicalSelect from "./MaterialPeriodicalSelect";
+import React, { FC } from "react";
+import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
+import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
+import { FaustId } from "../../../core/utils/types/ids";
+import { GroupListItem } from "./helper";
+import MaterialPeriodicalSelect, {
+  GroupList
+} from "./MaterialPeriodicalSelect";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
-  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
+  selectedPeriodical: GroupListItem | null;
+  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   faustId,
-  selectPeriodicalSelect
+  selectedPeriodical,
+  selectPeriodicalHandler
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [String(faustId)]
@@ -32,12 +36,17 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
     })
     .flat();
 
+  const groupByVolumeYear = groupObjectArrayByProperty(
+    materialsPeriodical,
+    "volumeYear"
+  );
+
   return (
     <MaterialPeriodicalSelect
-      groupList={groupObjectArrayByProperty(materialsPeriodical, "volumeYear")}
-      selectPeriodicalSelect={selectPeriodicalSelect}
+      groupList={groupByVolumeYear as GroupList}
+      selectedPeriodical={selectedPeriodical}
+      selectPeriodicalHandler={selectPeriodicalHandler}
     />
   );
 };
-
 export default MaterialPeriodical;

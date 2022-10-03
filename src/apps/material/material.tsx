@@ -33,6 +33,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
+import { GroupListItem } from "../../components/material/periodical/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -44,9 +45,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [currentManifestation, setCurrentManifestation] =
     useState<Manifestation | null>(null);
 
-  // periodicalSelect must be used later to change the UI and reservation when you have chosen a specific periodical
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [periodicalSelect, setPeriodicalSelect] = useState<string | null>(null);
+  const [selectedPeriodical, setSelectedPeriodical] =
+    useState<GroupListItem | null>(null);
 
   const { data, isLoading } = useGetMaterialQuery({
     wid
@@ -114,7 +114,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         work={work}
         manifestation={currentManifestation}
         selectManifestationHandler={setCurrentManifestation}
-        selectPeriodicalSelect={setPeriodicalSelect}
+        selectedPeriodical={selectedPeriodical}
+        selectPeriodicalHandler={setSelectedPeriodical}
       />
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
@@ -176,6 +177,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <ReservationModal
             mainManifestation={currentManifestation}
             parallelManifestations={parallelManifestations}
+            selectedPeriodical={selectedPeriodical}
           />
         </>
       )}
