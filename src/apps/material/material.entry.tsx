@@ -32,6 +32,8 @@ interface MaterialEntryTextProps {
   findOnShelfModalListMaterialText: string;
   findOnShelfModalNoLocationSpecifiedText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfModalPeriodicalYearDropdownText: string;
+  findOnShelfModalPeriodicalEditionDropdownText: string;
   genreAndFormText: string;
   getOnlineText: string;
   goToEReolenText: string;
