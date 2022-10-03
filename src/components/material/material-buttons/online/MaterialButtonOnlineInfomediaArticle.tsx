@@ -1,5 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../../../core/modal.slice";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
@@ -12,20 +14,18 @@ export interface MaterialButtonOnlineInfomediaArticleProps {
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
 > = ({ infomediaArticleId, size }) => {
+  const t = useText();
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    dispatch(openModal({ modalId: "infomediaModalId" }));
+  };
+
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
-  const t = useText();
-
   if (!isRegistered) {
     return null;
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClick = () => {
-    // TODO: view the article in full text
-    // eslint-disable-next-line
-    console.log(infomediaArticleId);
-  };
 
   return (
     <Button

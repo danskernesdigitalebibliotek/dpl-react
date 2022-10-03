@@ -6,6 +6,7 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   ExternalReview,
   InfomediaReview,
+  InfomediaService,
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -34,6 +35,7 @@ import {
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
+import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -79,7 +81,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   }
 
   // TODO: handle error if data is empty array
-  if (!data?.work) {
+  if (!data?.work || !currentManifestation) {
     return <div>No work data</div>;
   }
 
@@ -102,9 +104,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     t
   });
 
-  if (!currentManifestation) {
-    return null;
-  }
+  const infomediaId = currentManifestation.access.find(
+    (item) => item.__typename === "InfomediaService"
+  ) as InfomediaService;
 
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
 
@@ -186,6 +188,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           />
         </>
       )}
+      {infomediaId && <InfomediaModal infomediaId={infomediaId.id} />}
     </main>
   );
 };
