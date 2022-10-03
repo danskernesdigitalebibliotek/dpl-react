@@ -536,3 +536,8 @@ export const Periodical = Template.bind({});
 Periodical.args = {
   wid: "work-of:870970-basis:06373674"
 };
+
+export const Infomedia = Template.bind({});
+Infomedia.args = {
+  wid: "work-of:870971-avis:35731733"
+};
