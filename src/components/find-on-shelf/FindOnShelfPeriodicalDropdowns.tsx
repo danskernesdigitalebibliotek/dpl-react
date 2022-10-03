@@ -26,8 +26,11 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
     periodicalEditions,
     "volumeYear"
   );
+  const sortedPeriodicalEditions = Object.keys(
+    groupedPeriodicalEditions
+  ).sort();
   const [selectedYear, setSelectedYear] = useState<string>(
-    String(Object.keys(groupedPeriodicalEditions).sort().pop())
+    String(sortedPeriodicalEditions.pop())
   );
 
   return (
@@ -39,17 +42,15 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           defaultValue={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
-          {Object.keys(groupedPeriodicalEditions)
-            .sort()
-            .map((volumeYear) => (
-              <option
-                key={volumeYear}
-                value={volumeYear}
-                className="dropdown__option"
-              >
-                {volumeYear}
-              </option>
-            ))}
+          {sortedPeriodicalEditions.map((volumeYear) => (
+            <option
+              key={volumeYear}
+              value={volumeYear}
+              className="dropdown__option"
+            >
+              {volumeYear}
+            </option>
+          ))}
         </select>
         <div className="dropdown__arrows">
           <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
