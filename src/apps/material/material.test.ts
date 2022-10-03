@@ -91,11 +91,11 @@ describe("Material", () => {
 
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "5258703091");
-    cy.contains("button:visible", "reserver periodikum").click();
+    cy.contains("button:visible", "Reserve periodikum").click();
     cy.contains("h2", "2021, nr. 13");
-    cy.contains("button:visible", "Godkend reservation").click();
-    cy.contains("Materialet er hjemme og er nu reserveret til dig!");
-    cy.contains("Du er nummer 3 i køen");
+    cy.contains("button:visible", "Approve reservation").click();
+    cy.contains("Material is available and reserved for you!");
+    cy.contains("You are number 3 in queue");
     cy.contains("button:visible", "Ok").click();
   });
 
