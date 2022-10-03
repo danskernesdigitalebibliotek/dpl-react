@@ -1,5 +1,4 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
