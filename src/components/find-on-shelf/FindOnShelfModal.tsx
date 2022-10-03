@@ -1,7 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 import partition from "lodash.partition";
-import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
+import {
+  isAnyManifestationAvailableOnBranch,
+  totalBranchesHaveMaterial
+} from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   convertPostIdToFaustId,
@@ -136,7 +139,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         {!isLoading && (
           <>
             <div className="text-small-caption modal-find-on-shelf__caption">
-              {`${finalData.length} ${t("librariesHaveTheMaterialText")}`}
+              {`${totalBranchesHaveMaterial(finalDataToShow)} ${t(
+                "librariesHaveTheMaterialText"
+              )}`}
             </div>
             {finalDataToShow.map((libraryBranch: ManifestationHoldings) => {
               return (
