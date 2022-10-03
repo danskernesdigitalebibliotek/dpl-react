@@ -9,7 +9,7 @@ import { SelectedPeriodicalEdition } from "./types";
 export interface FindOnShelfPeriodicalDropdownProps {
   manifestationsHoldings: HoldingsForBibliographicalRecordV3[];
   setSelectedPeriodical: (
-    selectedWeek: SelectedPeriodicalEdition | null
+    selectedPeriodicalEdition: SelectedPeriodicalEdition
   ) => void;
 }
 
