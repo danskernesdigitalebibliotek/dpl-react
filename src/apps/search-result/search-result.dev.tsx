@@ -75,7 +75,7 @@ export default {
     },
     inSeriesText: {
       name: "In series",
-      defaultValue: "In series",
+      defaultValue: "in series",
       control: { type: "text" }
     },
     showingResultsForText: {
