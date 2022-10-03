@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC, useState } from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
-import makePeriodicalEditionsFromHoldings from "../material/helper";
+import { makePeriodicalEditionsFromHoldings } from "../material/periodical/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { SelectedPeriodicalEdition } from "./types";
 import { useText } from "../../core/utils/text";
