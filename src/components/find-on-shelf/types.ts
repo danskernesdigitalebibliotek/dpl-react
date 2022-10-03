@@ -7,3 +7,8 @@ export type ManifestationHoldings = {
   manifestation: Manifestation;
   holding: HoldingsV3;
 }[];
+
+export type SelectedPeriodicalEdition = {
+  selectedYear: string;
+  selectedEdition: string;
+};
