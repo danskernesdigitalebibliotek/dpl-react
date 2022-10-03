@@ -11,27 +11,27 @@ export default {
   argTypes: {
     altText: {
       name: "Alt text for search button image",
-      defaultValue: "søgeikon",
+      defaultValue: "search icon",
       control: { type: "text" }
     },
     inputPlaceholderText: {
       name: "Input field placeholder",
-      defaultValue: "Søg blandt bibliotekets materialer",
+      defaultValue: "Search among the library's materials",
       control: { type: "text" }
     },
     stringSuggestionAuthorText: {
       name: "String suggestion spec - author",
-      defaultValue: "forfatter",
+      defaultValue: "author",
       control: { type: "text" }
     },
     stringSuggestionWorkText: {
       name: "String suggestion spec - work",
-      defaultValue: "materiale",
+      defaultValue: "material",
       control: { type: "text" }
     },
     stringSuggestionTopicText: {
       name: "String suggestion spec - topic",
-      defaultValue: "emne",
+      defaultValue: "topic",
       control: { type: "text" }
     },
     searchUrl: {
@@ -46,47 +46,47 @@ export default {
     },
     autosuggestBookCategoryText: {
       name: "Book category",
-      defaultValue: "Bøger",
+      defaultValue: "Books",
       control: { type: "text" }
     },
     autosuggestEbookCategoryText: {
       name: "Ebook category",
-      defaultValue: "Ebøger",
+      defaultValue: "E-books",
       control: { type: "text" }
     },
     autosuggestFilmCategoryText: {
       name: "Movie category",
-      defaultValue: "Film",
+      defaultValue: "Movies",
       control: { type: "text" }
     },
     autosuggestAudioBookCategoryText: {
       name: "Audio book category",
-      defaultValue: "Lydbøger",
+      defaultValue: "Audio books",
       control: { type: "text" }
     },
     autosuggestMusicCategoryText: {
       name: "Music category",
-      defaultValue: "Musik",
+      defaultValue: "Music",
       control: { type: "text" }
     },
     autosuggestGameCategoryText: {
       name: "Game category",
-      defaultValue: "Spil",
+      defaultValue: "Games",
       control: { type: "text" }
     },
     autosuggestAnimatedSeriesCategoryText: {
       name: "Animated series category",
-      defaultValue: "Tegneserier",
+      defaultValue: "Animated series",
       control: { type: "text" }
     },
     inText: {
       name: "x 'in' y",
-      defaultValue: "i",
+      defaultValue: "in",
       control: { type: "text" }
     },
     LoadingText: {
       name: "Loading",
-      defaultValue: "Indlæsesr",
+      defaultValue: "Loading",
       control: { type: "text" }
     }
   }
