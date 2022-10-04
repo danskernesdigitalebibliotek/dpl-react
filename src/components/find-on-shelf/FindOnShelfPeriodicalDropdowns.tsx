@@ -72,8 +72,8 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
             defaultValue={selectedPeriodical.volumeNumber}
             onChange={(e) =>
               setSelectedPeriodical({
-                volumeYear: toBeSelectedPeriodical?.volumeYear || "",
-                volumeNumber: toBeSelectedPeriodical?.volumeNumber || "",
+                volumeYear: selectedYear,
+                volumeNumber: e.target.value || "",
                 displayText: toBeSelectedPeriodical?.displayText || "",
                 itemNumber: toBeSelectedPeriodical?.itemNumber || "",
                 volume: toBeSelectedPeriodical?.volume || ""
