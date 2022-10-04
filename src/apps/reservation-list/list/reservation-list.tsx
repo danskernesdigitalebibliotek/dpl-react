@@ -18,7 +18,7 @@ import {
 const ReservationList: FC = () => {
   const t = useText();
 
-  // Date fetch
+  // Data fetch
   const { isSuccess, data } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserReservations();
 
