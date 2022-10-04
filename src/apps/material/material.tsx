@@ -66,6 +66,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       });
       return;
     }
+
     // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
     const manifestationFromType = getManifestationFromType(type, work);
     if (manifestationFromType) {
@@ -135,6 +136,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 workTitles={manifestation.titles.main}
                 authors={manifestation.creators}
                 key={`find-on-shelf-modal-${manifestation.pid}`}
+                selectedPeriodical={selectedPeriodical}
+                setSelectedPeriodical={setSelectedPeriodical}
               />
               <ReservationModal
                 mainManifestation={manifestation}
@@ -173,6 +176,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             manifestations={[currentManifestation]}
             workTitles={work.titles.full}
             authors={work.creators}
+            selectedPeriodical={selectedPeriodical}
+            setSelectedPeriodical={setSelectedPeriodical}
           />
           <ReservationModal
             mainManifestation={currentManifestation}

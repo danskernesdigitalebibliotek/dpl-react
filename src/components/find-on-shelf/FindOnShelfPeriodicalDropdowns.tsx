@@ -2,21 +2,23 @@ import * as React from "react";
 import { FC, useState } from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
-import { makePeriodicalEditionsFromHoldings } from "../material/periodical/helper";
+import {
+  GroupListItem,
+  makePeriodicalEditionsFromHoldings
+} from "../material/periodical/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
-import { SelectedPeriodicalEdition } from "./types";
 import { useText } from "../../core/utils/text";
 
 export interface FindOnShelfPeriodicalDropdownProps {
   manifestationsHoldings: HoldingsForBibliographicalRecordV3[];
-  setSelectedPeriodical: (
-    selectedPeriodicalEdition: SelectedPeriodicalEdition
-  ) => void;
+  setSelectedPeriodical: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: GroupListItem;
 }
 
 const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
   manifestationsHoldings,
-  setSelectedPeriodical
+  setSelectedPeriodical,
+  selectedPeriodical
 }) => {
   const t = useText();
   const periodicalEditions = makePeriodicalEditionsFromHoldings(
@@ -30,7 +32,13 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
     groupedPeriodicalEditions
   ).sort();
   const [selectedYear, setSelectedYear] = useState<string>(
-    String(sortedPeriodicalEditions.pop())
+    selectedPeriodical.volumeYear
+  );
+  const toBeSelectedPeriodical = groupedPeriodicalEditions[
+    Number(selectedYear)
+  ].find(
+    (periodicalEdition) =>
+      periodicalEdition.volumeNumber === selectedPeriodical.volumeNumber
   );
 
   return (
@@ -61,10 +69,14 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           <select
             className="dropdown__select"
             aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
+            defaultValue={selectedPeriodical.volumeNumber}
             onChange={(e) =>
               setSelectedPeriodical({
-                selectedYear,
-                selectedEdition: e.target.value
+                volumeYear: selectedYear,
+                volumeNumber: e.target.value,
+                displayText: toBeSelectedPeriodical?.displayText || "",
+                itemNumber: toBeSelectedPeriodical?.itemNumber || "",
+                volume: toBeSelectedPeriodical?.volume || ""
               })
             }
           >
