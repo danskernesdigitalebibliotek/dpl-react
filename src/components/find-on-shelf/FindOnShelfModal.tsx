@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, useState } from "react";
+import { FC } from "react";
 import partition from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
