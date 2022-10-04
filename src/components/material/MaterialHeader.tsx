@@ -19,15 +19,17 @@ import { Cover } from "../cover/cover";
 import MaterialAvailabilityText from "./MaterialAvailabilityText/MaterialAvailabilityText";
 import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
-import MaterialPeriodical from "./MaterialPeriodical";
+import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { GroupListItem } from "./periodical/helper";
 
 interface MaterialHeaderProps {
   wid: WorkId;
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  selectPeriodicalSelect: (periodicalSelect: string | null) => void;
+  selectedPeriodical: GroupListItem | null;
+  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -41,7 +43,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   manifestation: { pid },
   manifestation,
   selectManifestationHandler,
-  selectPeriodicalSelect
+  selectedPeriodical,
+  selectPeriodicalHandler
 }) => {
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -72,6 +75,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
 
+  const isPeriodical = manifestation?.materialTypes
+    ?.map((i) => i.specific.toLowerCase())
+    .includes("periodikum");
+
   return (
     <header className="material-header">
       <div className="material-header__cover">
@@ -90,10 +97,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         </div>
 
-        {manifestation?.source?.includes("bibliotekskatalog") && (
+        {isPeriodical && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
-            selectPeriodicalSelect={selectPeriodicalSelect}
+            selectedPeriodical={selectedPeriodical}
+            selectPeriodicalHandler={selectPeriodicalHandler}
           />
         )}
 

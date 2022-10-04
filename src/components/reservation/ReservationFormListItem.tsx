@@ -21,7 +21,7 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
       <div className="reservation-modal-list-item-text">
         <h3 className="text-header-h5">{title}</h3>
         <p className="text-small-caption">
-          {text.length > 0 ? text : t("missingDataText")}
+          {text?.length > 0 ? text : t("missingDataText")}
         </p>
       </div>
       <button

@@ -1,0 +1,80 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:06373674",
+      "titles": { "full": ["Alt for damerne"], "original": [] },
+      "abstract": [],
+      "creators": [],
+      "series": [],
+      "seriesMembers": [],
+      "genreAndForm": [],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:06373674",
+            "genreAndForm": [],
+            "source": ["Bibliotekskatalog"],
+            "titles": { "main": ["Alt for damerne"], "original": [] },
+            "fictionNonfiction": {
+              "display": "FAGLITTERATUR",
+              "code": "NONFICTION"
+            },
+            "publicationYear": { "display": "1946" },
+            "materialTypes": [{ "specific": "periodikum" }],
+            "creators": [],
+            "hostPublication": null,
+            "languages": { "main": [{ "display": "dansk" }] },
+            "identifiers": [{ "value": "0002-6506" }],
+            "contributors": [],
+            "edition": null,
+            "audience": { "generalAudience": [] },
+            "physicalDescriptions": [],
+            "accessTypes": [{ "code": "PHYSICAL" }],
+            "access": [
+              { "__typename": "DigitalArticleService", "issn": "00026506" },
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ],
+            "shelfmark": null
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:06373674",
+          "genreAndForm": [],
+          "source": ["Bibliotekskatalog"],
+          "titles": { "main": ["Alt for damerne"], "original": [] },
+          "fictionNonfiction": {
+            "display": "FAGLITTERATUR",
+            "code": "NONFICTION"
+          },
+          "publicationYear": { "display": "1946" },
+          "materialTypes": [{ "specific": "periodikum" }],
+          "creators": [],
+          "hostPublication": null,
+          "languages": { "main": [{ "display": "dansk" }] },
+          "identifiers": [{ "value": "0002-6506" }],
+          "contributors": [],
+          "edition": null,
+          "audience": { "generalAudience": [] },
+          "physicalDescriptions": [],
+          "accessTypes": [{ "code": "PHYSICAL" }],
+          "access": [
+            { "__typename": "DigitalArticleService", "issn": "00026506" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": null
+        }
+      },
+      "materialTypes": [{ "specific": "Tidsskrift" }],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
+      "subjects": {
+        "all": [
+          { "display": "dame- og mandeblade" },
+          { "display": "Viborg amtskommune" }
+        ]
+      },
+      "reviews": [],
+      "fictionNonfiction": { "display": "NONFIKTION", "code": "NONFICTION" },
+      "workYear": null
+    }
+  }
+}

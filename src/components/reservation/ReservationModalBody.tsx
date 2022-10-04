@@ -36,6 +36,7 @@ import {
   getAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
+import { GroupListItem } from "../material/periodical/helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -43,16 +44,28 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
+  selectedPeriodical: GroupListItem | null;
 };
 
 const ReservationModalBody = ({
   mainManifestation,
-  mainManifestation: { pid, materialTypes, titles, edition },
-  parallelManifestations
+  mainManifestation: {
+    pid,
+    materialTypes,
+    titles: { main: mainTitle },
+    edition
+  },
+  parallelManifestations,
+  selectedPeriodical
 }: ReservationModalProps) => {
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
-    manifestations: parallelManifestations ?? [mainManifestation],
+    manifestations:
+      // TODO: We should investigate why we need to check for parallelManifestation length
+      // because it doesn't seem to reflect the possible types.
+      parallelManifestations && parallelManifestations.length > 0
+        ? parallelManifestations
+        : [mainManifestation],
     type: mainManifestationType
   });
   const queryClient = useQueryClient();
@@ -99,7 +112,8 @@ const ReservationModalBody = ({
         data: constructReservationData({
           manifestations: reservableManifestations,
           selectedBranch,
-          expiryDate
+          expiryDate,
+          periodical: selectedPeriodical
         })
       },
       {
@@ -134,7 +148,10 @@ const ReservationModalBody = ({
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}
               </div>
-              <h2 className="text-header-h2 mt-22 mb-8">{titles.main[0]}</h2>
+              <h2 className="text-header-h2 mt-22 mb-8">
+                {mainTitle}{" "}
+                {selectedPeriodical && selectedPeriodical.displayText}
+              </h2>
               <p className="text-body-medium-regular">{authorLine}</p>
             </div>
           </header>
@@ -181,7 +198,7 @@ const ReservationModalBody = ({
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
           modalId={reservationModalId(faustId)}
-          title={titles.main[0]}
+          title={mainTitle[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branchData

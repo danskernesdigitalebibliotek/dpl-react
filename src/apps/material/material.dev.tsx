@@ -33,67 +33,67 @@ export default {
     },
     materialHeaderAuthorByText: {
       name: "By (author)",
-      defaultValue: "Af ",
+      defaultValue: "By",
       control: { type: "text" }
     },
     periodicalSelectYearText: {
       name: "Year",
-      defaultValue: "År",
+      defaultValue: "Year",
       control: { type: "text" }
     },
     periodicalSelectEditionText: {
-      name: "Week",
-      defaultValue: "Udgave",
+      name: "Edition/Week",
+      defaultValue: "Edition",
       control: { type: "text" }
     },
     reserveBookText: {
       name: "Reserve",
-      defaultValue: "RESERVER BOG",
+      defaultValue: "Reserve book",
       control: { type: "text" }
     },
     reserveText: {
       name: "Reserve",
-      defaultValue: "reserver",
+      defaultValue: "Reserve",
       control: { type: "text" }
     },
     findOnBookshelfText: {
       name: "Find on bookshelf",
-      defaultValue: "FIND PÅ HYLDEN",
+      defaultValue: "Find on shelf",
       control: { type: "text" }
     },
     descriptionHeadlineText: {
       name: "Description headline",
-      defaultValue: "Beskrivelse",
+      defaultValue: "Description",
       control: { type: "text" }
     },
     identifierText: {
       name: "Identifier/topic text",
-      defaultValue: "Emneord",
+      defaultValue: "Tags",
       control: { type: "text" }
     },
     inSameSeriesText: {
       name: "In same series as",
-      defaultValue: "I samme serie",
+      defaultValue: "In the same series",
       control: { type: "text" }
     },
     numberDescriptionText: {
       name: "Number",
-      defaultValue: "Nr",
+      defaultValue: "Nr.",
       control: { type: "text" }
     },
     inSeriesText: {
       name: "In series",
-      defaultValue: "i serien",
+      defaultValue: "in series",
       control: { type: "text" }
     },
     loginToSeeReviewText: {
       name: "Login to see Review",
-      defaultValue: "Log ind for at se anmeldensen.",
+      defaultValue: "Login to see the review.",
       control: { type: "text" }
     },
     cantViewReviewText: {
       name: "Cannot view Review",
-      defaultValue: "Kan ikke se anmeldensen.",
+      defaultValue: "Cannot view the review.",
       control: { type: "text" }
     },
     ratingIsText: {
@@ -103,7 +103,7 @@ export default {
     },
     outOfText: {
       name: "X 'out of' Y",
-      defaultValue: "ud af",
+      defaultValue: "out of",
       control: { type: "text" }
     },
     heartsIconText: {
@@ -113,27 +113,27 @@ export default {
     },
     detailsOfTheMaterialText: {
       name: "Details of the material",
-      defaultValue: "Detaljer om materialet",
+      defaultValue: "Details about the material",
       control: { type: "text" }
     },
     editionsText: {
       name: "Editions",
-      defaultValue: "Udgaver",
+      defaultValue: "Editions",
       control: { type: "text" }
     },
     fictionNonfictionText: {
       name: "Fiction Nonfiction",
-      defaultValue: "Emnetal",
+      defaultValue: "Fictional",
       control: { type: "text" }
     },
     detailsText: {
       name: "Details",
-      defaultValue: "Detaljer",
+      defaultValue: "Details",
       control: { type: "text" }
     },
     reviewsText: {
       name: "Reviews",
-      defaultValue: "Anmeldelser",
+      defaultValue: "Reviews",
       control: { type: "text" }
     },
     typeText: {
@@ -143,17 +143,17 @@ export default {
     },
     languageText: {
       name: "Language",
-      defaultValue: "Sprog",
+      defaultValue: "Language",
       control: { type: "text" }
     },
     contributorsText: {
       name: "Contributors",
-      defaultValue: "Bidragsydere",
+      defaultValue: "Contributors",
       control: { type: "text" }
     },
     originalTitleText: {
       name: "Original title",
-      defaultValue: "Originaltitel",
+      defaultValue: "Original title",
       control: { type: "text" }
     },
     isbnText: {
@@ -163,22 +163,22 @@ export default {
     },
     editionText: {
       name: "Edition",
-      defaultValue: "Udgave",
+      defaultValue: "Edition",
       control: { type: "text" }
     },
     scopeText: {
       name: "Scope",
-      defaultValue: "Omfang",
+      defaultValue: "Scope",
       control: { type: "text" }
     },
     publisherText: {
       name: "Publisher",
-      defaultValue: "Forlag",
+      defaultValue: "Publisher",
       control: { type: "text" }
     },
     audienceText: {
       name: "Audience",
-      defaultValue: "Målgruppe",
+      defaultValue: "Audience",
       control: { type: "text" }
     },
     genreAndFormText: {
@@ -193,12 +193,12 @@ export default {
     },
     goToEReolenText: {
       name: "Go to e-Reolen",
-      defaultValue: "Gå til ereolen",
+      defaultValue: "Go to e-Reolen",
       control: { type: "text" }
     },
     readArticleText: {
       name: "Read article",
-      defaultValue: "Læs artiklen",
+      defaultValue: "Read article",
       control: { type: "text" }
     },
     loadingText: {
@@ -208,27 +208,27 @@ export default {
     },
     getOnlineText: {
       name: "Get online",
-      defaultValue: "Få online",
+      defaultValue: "Get online",
       control: { type: "text" }
     },
     seeOnlineText: {
       name: "See online",
-      defaultValue: "Se online",
+      defaultValue: "See online",
       control: { type: "text" }
     },
     cantReserveText: {
       name: "Can't be reserved",
-      defaultValue: "Kan ej reserveres",
+      defaultValue: "Can't be reserved",
       control: { type: "text" }
     },
     goToText: {
       name: "Go to",
-      defaultValue: "Gå til",
+      defaultValue: "Go to",
       control: { type: "text" }
     },
     materialIsLoanedOutText: {
       name: "Material is loaned out",
-      defaultValue: "Materialet er udlånt",
+      defaultValue: "Material is loaned out",
       control: { type: "text" }
     },
     findOnShelfExpandButtonExplanationText: {
@@ -238,129 +238,129 @@ export default {
     },
     materialIsIncludedText: {
       name: "Material is included",
-      defaultValue: "Materialet tæller ikke med i din lånerkvote",
+      defaultValue: "This material doesn't count towards your loan quota",
       control: { type: "text" }
     },
     weHaveShoppedText: {
-      name: "We have shopped",
-      defaultValue: "Vi har købt",
+      name: "We bought",
+      defaultValue: "We bought",
       control: { type: "text" }
     },
     copiesThereIsText: {
       name: "copies there is",
-      defaultValue: "eksemplarer. Der er",
+      defaultValue: "copies. There are",
       control: { type: "text" }
     },
     reservationsForThisMaterialText: {
       name: "Reservations for this material",
-      defaultValue: "reserveringer til dette materiale",
+      defaultValue: "reservations for this material",
       control: { type: "text" }
     },
     youHaveBorrowedText: {
-      name: "You have borrowed",
-      defaultValue: "Du har lånt",
+      name: "You have loaned",
+      defaultValue: "You have loaned",
       control: { type: "text" }
     },
     possibleText: {
       name: "Possible",
-      defaultValue: "mulige",
+      defaultValue: "possible",
       control: { type: "text" }
     },
     thisMonthText: {
       name: "This month",
-      defaultValue: "denne måned",
+      defaultValue: "this month",
       control: { type: "text" }
     },
     approveReservationText: {
       name: "Approve reservation",
-      defaultValue: "Godkend reservation",
+      defaultValue: "Approve reservation",
       control: { type: "text" }
     },
     shiftText: {
-      name: "Shift",
-      defaultValue: "Skift",
+      name: "Change",
+      defaultValue: "Change",
       control: { type: "text" }
     },
     pickupLocationText: {
       name: "Pick up at",
-      defaultValue: "Afhentes på",
+      defaultValue: "Pick up at",
       control: { type: "text" }
     },
     receiveSmsWhenMaterialReadyText: {
-      name: "Receive SMS when the material is ready",
-      defaultValue: "Du får en sms, når materialet er klar",
+      name: "You will receive an SMS when the material is ready",
+      defaultValue: "You will receive an SMS when the material is ready",
       control: { type: "text" }
     },
     receiveEmailWhenMaterialReadyText: {
       name: "Receive mail when the material is ready",
-      defaultValue: "Du får besked, når materialet er klar",
+      defaultValue: "You will receive an email when the material is ready",
       control: { type: "text" }
     },
     haveNoInterestAfterText: {
       name: "Have no interest after",
-      defaultValue: "Har ingen interesse efter",
+      defaultValue: "Have no interest after",
       control: { type: "text" }
     },
     oneMonthText: {
       name: "One month",
-      defaultValue: "1 måned",
+      defaultValue: "1 month",
       control: { type: "text" }
     },
     twoMonthsText: {
       name: "Two months",
-      defaultValue: "2 måneder",
+      defaultValue: "2 months",
       control: { type: "text" }
     },
     threeMonthsText: {
       name: "Three months",
-      defaultValue: "3 måneder",
+      defaultValue: "3 months",
       control: { type: "text" }
     },
     sixMonthsText: {
       name: "Six months",
-      defaultValue: "6 måneder",
+      defaultValue: "6 months",
       control: { type: "text" }
     },
     oneYearText: {
       name: "Twelve months",
-      defaultValue: "12 måneder",
+      defaultValue: "12 months",
       control: { type: "text" }
     },
     daysText: {
       name: "Days",
-      defaultValue: "Dage",
+      defaultValue: "Days",
       control: { type: "text" }
     },
     reservationSuccesTitleText: {
       name: "Reservation Success title",
-      defaultValue: "Materialet er hjemme og er nu reserveret til dig!",
+      defaultValue: "Material is available and reserved for you!",
       control: { type: "text" }
     },
     reservationSuccesIsReservedForYouText: {
       name: "Reservation Success Title",
-      defaultValue: "er reserveret til dig",
+      defaultValue: "is reserved for you",
       control: { type: "text" }
     },
     reservationSuccesPreferredPickupBranchText: {
       name: "Reservation Preferred pickup branch",
       defaultValue:
-        "Materialet er hjemme, og du får beksed så snart der ligger klar til dig - afhentning på",
+        "Material is available and you will get a message when it's ready for pickup - pickup at",
       control: { type: "text" }
     },
     reservationErrorsTitleText: {
       name: "Reservation Error title",
-      defaultValue: "Reservationsfejl",
+      defaultValue: "Failed to reserve the material",
       control: { type: "text" }
     },
     reservationErrorsDescriptionText: {
       name: "Reservation Error description",
       defaultValue:
-        "Der er desværre sket en fejl. Vi beklager ulejligheden. Prøv igen",
+        "We're sorry. Unfortunately, there has been an error. Try again, please.",
       control: { type: "text" }
     },
     tryAginButtonText: {
       name: "Try again button text",
-      defaultValue: "Prøv igen",
+      defaultValue: "Try again",
       control: { type: "text" }
     },
     okButtonText: {
@@ -370,7 +370,7 @@ export default {
     },
     missingDataText: {
       name: "Missing data text",
-      defaultValue: "Mangler data",
+      defaultValue: "Missing data",
       control: { type: "text" }
     },
     reservationModalScreenReaderModalDescriptionText: {
@@ -380,12 +380,12 @@ export default {
     },
     reservationModalCloseModalAriaLabelText: {
       name: "Reservation modal aria label modal two",
-      defaultValue: "Luk reservation modal",
+      defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
     librariesHaveTheMaterialText: {
       name: "Libraries have the material",
-      defaultValue: "biblioteker har materialet",
+      defaultValue: "libraries have material",
       control: { type: "text" }
     },
     findOnShelfModalScreenReaderModalDescriptionText: {
@@ -395,22 +395,22 @@ export default {
     },
     findOnShelfModalCloseModalAriaLabelText: {
       name: "Reservation modal aria label modal two",
-      defaultValue: "Luk reservation modal",
+      defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
     findOnShelfModalListMaterialText: {
       name: "Material",
-      defaultValue: "Materiale",
+      defaultValue: "Material",
       control: { type: "text" }
     },
     findOnShelfModalListFindOnShelfText: {
       name: "Find it on shelf",
-      defaultValue: "Find det på hylden",
+      defaultValue: "Find it on shelf",
       control: { type: "text" }
     },
     findOnShelfModalListItemCountText: {
       name: "Home",
-      defaultValue: "hjemme",
+      defaultValue: "home",
       control: { type: "text" }
     },
     findOnShelfModalNoLocationSpecifiedText: {
@@ -420,33 +420,33 @@ export default {
     },
     numberInQueueText: {
       name: "Number in queue text",
-      defaultValue: "Du er nummer",
+      defaultValue: "You are number",
       control: { type: "text" }
     },
     queueText: {
       name: "Queue text",
-      defaultValue: "i køen",
+      defaultValue: "in queue",
       control: { type: "text" }
     },
     alreadyReservedText: {
       name: "Already reserved text",
-      defaultValue: "Du har allerede reserveret dette materiale",
+      defaultValue: "You already reserved this material",
       control: { type: "text" }
     },
     closeText: {
       name: "Close text",
-      defaultValue: "Luk",
+      defaultValue: "Close",
       control: { type: "text" }
     },
     modalReservationFormEmailHeaderTitleText: {
       name: "Modal reservation form email header title",
-      defaultValue: "Ændring af email",
+      defaultValue: "Change email",
       control: { type: "text" }
     },
     modalReservationFormEmailHeaderDescriptionText: {
       name: "Modal reservation form email header description",
       defaultValue:
-        "Hvis du ønsker at få notifikationer på e-mail kan du indtaste eller ændre den ønskede e-mail hér.",
+        "If you wish to receive notification emails you can add or change your email address here.",
       control: { type: "text" }
     },
     modalReservationFormEmailInputFieldLabelText: {
@@ -456,28 +456,28 @@ export default {
     },
     modalReservationFormEmailInputFieldDescriptionText: {
       name: "Modal reservation form email input field description",
-      defaultValue: "Indtast email",
+      defaultValue: "Add email",
       control: { type: "text" }
     },
     modalReservationFormSmsHeaderTitleText: {
       name: "Modal reservation form sms header title",
-      defaultValue: "Ændring af telefonnummer",
+      defaultValue: "Change phone number",
       control: { type: "text" }
     },
     modalReservationFormSmsHeaderDescriptionText: {
       name: "Modal reservation form sms header description",
       defaultValue:
-        "Hvis du ønsker at få notifikationer på sms kan du indtaste eller ændre dit telefonnummer hér.",
+        "If you wish to receive notification sms you can add or change your phone number here.",
       control: { type: "text" }
     },
     modalReservationFormSmsInputFieldLabelText: {
       name: "Modal reservation form sms input field label",
-      defaultValue: "Telefonnummer",
+      defaultValue: "Phone number",
       control: { type: "text" }
     },
     modalReservationFormSmsInputFieldDescriptionText: {
       name: "Modal reservation form sms input field description",
-      defaultValue: "Telefonnummer",
+      defaultValue: "Phone number",
       control: { type: "text" }
     },
     etAlText: {
@@ -487,34 +487,42 @@ export default {
     },
     modalReservationFormPickupHeaderTitleText: {
       name: "Modal reservation form pickup header title",
-      defaultValue: "Ændring af afhentningssted",
+      defaultValue: "Change pick-up location",
       control: { type: "text" }
     },
     modalReservationFormPickupHeaderDescriptionText: {
       name: "Modal reservation form pickup header description",
       defaultValue:
-        "Hvis du ønsker at ændre dit afhentningssted kan du vælge et nyt hér.",
+        "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
     chooseOneText: {
       name: "Choose one text",
-      defaultValue: "Vælg en",
+      defaultValue: "Choose one",
       control: { type: "text" }
     },
     modalReservationFormNoInterestAfterHeaderTitleText: {
       name: "Modal reservation form no interest after header title",
-      defaultValue: "Ændring af dato",
+      defaultValue: "Change date of interest",
       control: { type: "text" }
     },
     modalReservationFormNoInterestAfterHeaderDescriptionText: {
       name: "Modal reservation form no interest after header description",
       defaultValue:
-        "Hvis du ønsker at ændre din dato for ikke længere at have interesse i materialet kan du vælge en ny hér.",
+        "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
       control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
 
-export const Material: ComponentStory<typeof MaterialEntry> = (
+const Template: ComponentStory<typeof MaterialEntry> = (
   args: MaterialEntryProps
 ) => <MaterialEntry {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Periodical = Template.bind({});
+Periodical.args = {
+  wid: "work-of:870970-basis:06373674"
+};
