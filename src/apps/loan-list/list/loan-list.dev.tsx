@@ -1,5 +1,6 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import dayjs from "dayjs";
 import { withQuery } from "@storybook/addon-queryparams";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
@@ -283,7 +284,7 @@ LoanListDetailsModal.parameters = {
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-09-16"
+    modal: dayjs().add(30, "day").format("YYYY-MM-DD")
   }
 };
 
