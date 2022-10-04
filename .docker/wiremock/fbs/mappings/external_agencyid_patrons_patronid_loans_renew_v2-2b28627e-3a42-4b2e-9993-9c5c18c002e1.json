@@ -1,23 +1,24 @@
 {
-  "id" : "2b28627e-3a42-4b2e-9993-9c5c18c002e1",
-  "name" : "Renew loan(s)",
-  "request" : {
-    "url" : "/external/agencyid/patrons/patronid/loans/renew/v2",
-    "method" : "POST"
+  "id": "2b28627e-3a42-4b2e-9993-9c5c18c002e1",
+  "name": "Renew loan(s)",
+  "request": {
+    "url": "/external/agencyid/patrons/patronid/loans/renew/v2",
+    "method": "POST"
   },
-  "response" : {
-    "status" : 200,
-    "body" : "[\n  {\n    \"renewalStatus\": [{{{pickRandom '\"deniedOtherReason\"' '\"deniedMaterialIsNotLoanable\"' '\"deniedMaxRenewalsReached\"' '\"deniedReserved\"' '\"renewed\"'}}}],\n    \"loanDetails\": {\n      \"loanId\": 956250508,\n      \"materialItemNumber\": \"3846990827\",\n      \"recordId\": \"28847238\",\n      \"periodical\": null,\n      \"loanDate\": \"2022-06-13T16:43:25.325\",\n      \"dueDate\": \"{{now offset='7 days' format='yyyy-MM-dd'}}\",\n      \"loanType\": \"loan\",\n      \"ilBibliographicRecord\": null,\n      \"materialGroup\": {\n        \"name\": \"fon2\",\n        \"description\": \"Flere CD-plader\"\n      }\n    }\n  },  {\n    \"renewalStatus\": [{{{pickRandom '\"deniedOtherReason\"' '\"deniedMaterialIsNotLoanable\"' '\"deniedMaxRenewalsReached\"' '\"deniedReserved\"' '\"renewed\"'}}}],\n    \"loanDetails\": {\n      \"loanId\": 956250508,\n      \"materialItemNumber\": \"3846990827\",\n      \"recordId\": \"53667546\",\n      \"periodical\": null,\n      \"loanDate\": \"2022-06-13T16:43:25.325\",\n      \"dueDate\": \"{{now offset='7 days' format='yyyy-MM-dd'}}\",\n      \"loanType\": \"loan\",\n      \"ilBibliographicRecord\": null,\n      \"materialGroup\": {\n        \"name\": \"fon2\",\n        \"description\": \"Flere CD-plader\"\n      }\n    }\n  }\n]",
-    "headers" : {
-      "content-type" : [ "application/json; charset=utf-8", "application/json" ],
-      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security" : "max-age=15552000"
+  "response": {
+    "status": 200,
+    "body": "[\n  {\n    \"renewalStatus\": [{{{pickRandom '\"deniedOtherReason\"' '\"deniedMaterialIsNotLoanable\"' '\"deniedMaxRenewalsReached\"' '\"deniedReserved\"' '\"renewed\"'}}}],\n    \"loanDetails\": {\n      \"loanId\": 956250508,\n      \"materialItemNumber\": \"3846990827\",\n      \"recordId\": \"28847238\",\n      \"periodical\": null,\n      \"loanDate\": \"2022-06-13T16:43:25.325\",\n      \"dueDate\": \"{{now offset='7 days' format='yyyy-MM-dd'}}\",\n      \"loanType\": \"loan\",\n      \"ilBibliographicRecord\": null,\n      \"materialGroup\": {\n        \"name\": \"fon2\",\n        \"description\": \"Flere CD-plader\"\n      }\n    }\n  },  {\n    \"renewalStatus\": [{{{pickRandom '\"deniedOtherReason\"' '\"deniedMaterialIsNotLoanable\"' '\"deniedMaxRenewalsReached\"' '\"deniedReserved\"' '\"renewed\"'}}}],\n    \"loanDetails\": {\n      \"loanId\": 956250508,\n      \"materialItemNumber\": \"3846990827\",\n      \"recordId\": \"53667546\",\n      \"periodical\": null,\n      \"loanDate\": \"2022-06-13T16:43:25.325\",\n      \"dueDate\": \"{{now offset='7 days' format='yyyy-MM-dd'}}\",\n      \"loanType\": \"loan\",\n      \"ilBibliographicRecord\": null,\n      \"materialGroup\": {\n        \"name\": \"fon2\",\n        \"description\": \"Flere CD-plader\"\n      }\n    }\n  }\n]",
+    "headers": {
+      "content-type": ["application/json; charset=utf-8", "application/json"],
+      "date": "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security": "max-age=15552000",
+      "Access-Control-Allow-Origin": "*"
     },
-    "transformers" : [ "response-template" ]
+    "transformers": ["response-template"]
   },
-  "uuid" : "2b28627e-3a42-4b2e-9993-9c5c18c002e1",
-  "persistent" : true,
-  "priority" : 5,
-  "insertionIndex" : 2,
-  "postServeActions" : [ ]
+  "uuid": "2b28627e-3a42-4b2e-9993-9c5c18c002e1",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 2,
+  "postServeActions": []
 }
