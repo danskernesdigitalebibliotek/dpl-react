@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
-import dayjs from "dayjs";
 import LoanList from "./loan-list.entry";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { configTypes } from "../../../core/utils/helpers/fetcher";
@@ -295,8 +294,7 @@ LoanListDetailsModal.parameters = {
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    // 30 days from now
-    modal: dayjs().add(30, "day").format("YYYY-MM-DD")
+    modal: "2022-09-16"
   }
 };
 
