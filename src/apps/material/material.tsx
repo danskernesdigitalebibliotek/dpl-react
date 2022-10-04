@@ -33,7 +33,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
-import { GroupListItem } from "../../components/material/periodical/helper";
+import { PeriodicalEdition } from "../../components/material/periodical/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -46,7 +46,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     useState<Manifestation | null>(null);
 
   const [selectedPeriodical, setSelectedPeriodical] =
-    useState<GroupListItem | null>(null);
+    useState<PeriodicalEdition | null>(null);
 
   const { data, isLoading } = useGetMaterialQuery({
     wid

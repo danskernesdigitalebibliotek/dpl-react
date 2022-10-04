@@ -14,7 +14,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
-import { GroupListItem } from "../material/periodical/helper";
+import { PeriodicalEdition } from "../material/periodical/helper";
 
 export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
   config("smsNotificationsForReservationsEnabledConfig") === "1";
@@ -52,7 +52,7 @@ export const getFutureDateString = (num: number) => {
   return futureDate;
 };
 
-type Periodical = Pick<GroupListItem, "volumeNumber" | "volumeYear">;
+type Periodical = Pick<PeriodicalEdition, "volumeNumber" | "volumeYear">;
 
 const constructReservation = ({
   manifestation: { pid },
@@ -104,7 +104,7 @@ export const constructReservationData = ({
   manifestations: Manifestation[];
   selectedBranch: string | null;
   expiryDate: string | null;
-  periodical: GroupListItem | null;
+  periodical: PeriodicalEdition | null;
 }): CreateReservationBatchV2 => {
   return {
     reservations: constructReservations({

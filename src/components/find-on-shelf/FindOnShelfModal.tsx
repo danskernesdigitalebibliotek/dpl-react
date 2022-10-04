@@ -18,7 +18,7 @@ import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
-import { GroupListItem } from "../material/periodical/helper";
+import { PeriodicalEdition } from "../material/periodical/helper";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -27,8 +27,8 @@ export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
   workTitles: string[];
   authors: Work["creators"];
-  selectedPeriodical: GroupListItem | null;
-  setSelectedPeriodical: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({

@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
 import {
-  GroupListItem,
+  PeriodicalEdition,
   makePeriodicalEditionsFromHoldings
 } from "../material/periodical/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
@@ -11,8 +11,8 @@ import { useText } from "../../core/utils/text";
 
 export interface FindOnShelfPeriodicalDropdownProps {
   manifestationsHoldings: HoldingsForBibliographicalRecordV3[];
-  setSelectedPeriodical: (selectedPeriodical: GroupListItem) => void;
-  selectedPeriodical: GroupListItem;
+  setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
+  selectedPeriodical: PeriodicalEdition;
 }
 
 const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
@@ -72,8 +72,8 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
             defaultValue={selectedPeriodical.volumeNumber}
             onChange={(e) =>
               setSelectedPeriodical({
-                volumeYear: selectedYear,
-                volumeNumber: e.target.value,
+                volumeYear: toBeSelectedPeriodical?.volumeYear || "",
+                volumeNumber: toBeSelectedPeriodical?.volumeNumber || "",
                 displayText: toBeSelectedPeriodical?.displayText || "",
                 itemNumber: toBeSelectedPeriodical?.itemNumber || "",
                 volume: toBeSelectedPeriodical?.volume || ""
