@@ -102,7 +102,7 @@ export const usePrevious = <Type>(value: Type) => {
 };
 
 export const convertPostIdToFaustId = (postId: Pid) => {
-  const matches = postId.match(/^[0-9]+-[a-z]+:([0-9]+)$/);
+  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }
