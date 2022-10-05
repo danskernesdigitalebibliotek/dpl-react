@@ -35,6 +35,9 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
     return null;
   }
 
+  const headline = data?.infomedia?.article?.headLine;
+  const text = data?.infomedia?.article?.text;
+
   return (
     <Modal
       modalId={infomediaModalId(convertPostIdToFaustId(pid))}
@@ -43,7 +46,9 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
       )}
       closeModalAriaLabelText={t("infomediaModalCloseModalAriaLabelText")}
     >
-      <InfomediaModalBody infomediaArticle={data.infomedia.article} />
+      {headline && text && (
+        <InfomediaModalBody headline={headline} text={text} />
+      )}
     </Modal>
   );
 };
