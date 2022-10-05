@@ -20,7 +20,7 @@ export default defineConfig({
     },
     input: {
       target:
-      // This should come from a url that will be updated if there are any changes
+        // This should come from a url that will be updated if there are any changes
         "https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-material-list/develop/spec/material-list-2.0.0.yaml",
       converterOptions: {
         indent: 2
@@ -94,6 +94,37 @@ export default defineConfig({
     },
     input: {
       target: "src/core/publizon/publizon-adapter.yaml",
+      converterOptions: {
+        indent: 2
+      }
+    }
+  },
+  dplCms: {
+    output: {
+      mode: "split",
+      target: "src/core/dpl-cms/dpl-cms.ts",
+      schemas: "src/core/dpl-cms/model",
+      client: "react-query",
+      override: {
+        mutator: {
+          path: "src/core/dpl-cms/mutator/fetcher.ts",
+          name: "fetcher"
+        },
+        query: {
+          useQuery: true
+        },
+        operations: {
+          "proxy-url:GET": {
+            requestOptions: false
+          }
+        }
+      },
+      prettier: true
+    },
+    input: {
+      // TODO: Needs to be set to HEAD version when ready.
+      target:
+        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/e7a65cef84ab1fcfed53f03e039a5605b91941b5/openapi.json",
       converterOptions: {
         indent: 2
       }
