@@ -1,13 +1,13 @@
 import * as React from "react";
 import { FC } from "react";
-import { ManifestationsSimpleFieldsFragment } from "../../../../core/dbc-gateway/generated/graphql";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: Manifestation;
   size?: ButtonSize;
 }
 
@@ -39,7 +39,12 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   }
 
   if (accessType === "InfomediaService") {
-    return <MaterialButtonOnlineInfomediaArticle size={size} />;
+    return (
+      <MaterialButtonOnlineInfomediaArticle
+        size={size}
+        manifestation={manifestation}
+      />
+    );
   }
 
   // Last option is an Internal Library Loan, which practically will never be
