@@ -23,12 +23,12 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 }) => {
   const t = useText();
 
-  const { id } = mainManifestation.access.find(
+  const infomediaAccess = mainManifestation.access.find(
     (item) => item.__typename === "InfomediaService"
   ) as InfomediaService;
 
   const { data, error } = useGetInfomediaQuery({
-    id
+    id: infomediaAccess?.id
   });
 
   if (!data || error) {
