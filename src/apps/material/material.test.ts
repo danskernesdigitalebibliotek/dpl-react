@@ -1,17 +1,45 @@
+import {
+  // aliasMutation,
+  aliasQuery,
+  hasOperationName
+} from "../../../cypress/utils/graphql-test-utils";
+
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
   it("Does the Material have title?", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".text-header-h1").should("be.visible");
   });
 
   it("Check that cover has a src", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get("img").should("have.attr", "src").and("match", coverUrlPattern);
   });
 
   it("Does the material have favourite buttons?", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".button-favourite").should(
       "have.attr",
@@ -21,28 +49,63 @@ describe("Material", () => {
   });
 
   it("Does the material have horizontal lines?", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("Nr. 1 in series");
     cy.contains("De syv søstre-serien");
   });
 
   it("Does the material have authors?", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("Lucinda Riley");
   });
 
   it("Does a material have a availibility label", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("bog");
     cy.contains("unavailable");
   });
 
   it("Open material details", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get("details").last().click();
   });
 
   it("Does the material have a editions with a buttton to reserved", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.scrollTo("bottom");
     cy.contains("Editions (7)").click();
@@ -50,6 +113,13 @@ describe("Material", () => {
   });
 
   it("Opens modal by clicking on reserver button (reserve book) and close it with the x bottom", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("button:visible", "Reserve bog").click();
     cy.contains("Pick up at");
@@ -63,6 +133,13 @@ describe("Material", () => {
   });
 
   it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/fbi-api.json"
+        });
+      }
+    }).as(" Graphql query");
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("button:visible", "Reserve bog").click();
     cy.contains("button:visible", "Approve reservation").click();
@@ -73,11 +150,13 @@ describe("Material", () => {
 
   //  periodical test.
   it("Render periodical + change to 2021, nr. 13 + Aprove resevation", () => {
-    cy.fixture("material/periodical-fbi-api.json")
-      .then((result) => {
-        cy.intercept("POST", "**/opac/graphql", result);
-      })
-      .as("periodical Graphql query");
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/periodical-fbi-api.json"
+        });
+      }
+    }).as("periodical Graphql query");
 
     cy.fixture("material/periodical-holdings.json")
       .then((result) => {
@@ -99,13 +178,39 @@ describe("Material", () => {
     cy.contains("button:visible", "Ok").click();
   });
 
+  //  infomedia test.
+  it("Render infomedia + Read article + Close modal", () => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getMaterial")) {
+        req.reply({
+          fixture: "material/infomedia-fbi-api.json"
+        });
+      }
+    }).as("infomedia Graphql query");
+
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, "getInfomedia")) {
+        req.reply({
+          fixture: "material/infomedia-article.json"
+        });
+      }
+    }).as("infomedia Graphql query");
+
+    cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
+    cy.contains("button:visible", "Read article").click();
+    cy.contains("h2", "BUTLERENS UTROLIGE HISTORIE");
+    cy.get(`[aria-label="Luk infomedia modal"]`).click();
+  });
+
   beforeEach(() => {
-    // Intercept graphql material query.
-    cy.fixture("material/fbi-api.json")
-      .then((result) => {
-        cy.intercept("POST", "**/opac/graphql", result);
-      })
-      .as("Graphql material query");
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      // Queries
+      aliasQuery(req, "getMaterial");
+      aliasQuery(req, "getInfomedia");
+      // Mutations (not used in this test but it can be used in the future)
+      // aliasMutation(req, "Login");
+      // aliasMutation(req, "BookTrips");
+    });
 
     cy.fixture("material/reservations.json")
       .then((result) => {
