@@ -48,6 +48,10 @@ describe("Find on shelf modal", () => {
     cy.contains("biblioteker har materialet");
   });
 
+  it("Shows the main branch first", () => {
+    cy.get("summary").eq(0).contains("Hovedbiblioteket");
+  });
+
   it("Contains a summary for the main branch with no available speciments", () => {
     cy.get("summary").contains("Hovedbiblioteket");
     cy.get("summary").contains("unavailable");
