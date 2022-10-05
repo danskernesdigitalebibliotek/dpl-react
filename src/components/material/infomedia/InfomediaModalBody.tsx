@@ -13,7 +13,7 @@ const InfomediaModalBody: React.FunctionComponent<InfomediaModalBodyProps> = ({
       {infomediaArticle?.headLine && <h2>{infomediaArticle?.headLine}</h2>}
       {infomediaArticle?.text && (
         <div
-          className=""
+          // Only trusted editors from infomedia have access to write infomedia articles
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: infomediaArticle.text }}
         />
