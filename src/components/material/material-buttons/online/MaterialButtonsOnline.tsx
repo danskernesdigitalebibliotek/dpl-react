@@ -1,5 +1,9 @@
 import * as React from "react";
 import { FC } from "react";
+import {
+  AccessUrl,
+  DigitalArticleService
+} from "../../../../core/dbc-gateway/generated/graphql";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
@@ -13,14 +17,22 @@ export interface MaterialButtonsOnlineProps {
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   manifestation,
+  manifestation: {
+    access: [accessElement],
+    access: [{ __typename: accessType }]
+  },
   size
 }) => {
-  const accessType = manifestation.access[0].__typename;
-
-  if (accessType === "Ereol" || accessType === "AccessUrl") {
-    const { origin, url: externalUrl } = manifestation.access[0];
+  // If the access type is an external type we'll show corresponding button.
+  if (["Ereol", "AccessUrl"].includes(accessType)) {
+    const {
+      origin,
+      url: externalUrl,
+      loginRequired
+    } = accessElement as AccessUrl;
     return (
       <MaterialButtonOnlineExternal
+        loginRequired={loginRequired}
         externalUrl={externalUrl}
         origin={origin}
         size={size}
@@ -29,7 +41,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   }
 
   if (accessType === "DigitalArticleService") {
-    const digitalArticleIssn = manifestation.access[0].issn;
+    const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
       <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
