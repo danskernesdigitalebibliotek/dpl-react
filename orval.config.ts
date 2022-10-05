@@ -20,7 +20,7 @@ export default defineConfig({
     },
     input: {
       target:
-      // This should come from a url that will be updated if there are any changes
+        // This should come from a url that will be updated if there are any changes
         "https://raw.githubusercontent.com/danskernesdigitalebibliotek/ddb-material-list/develop/spec/material-list-2.0.0.yaml",
       converterOptions: {
         indent: 2
@@ -94,6 +94,31 @@ export default defineConfig({
     },
     input: {
       target: "src/core/publizon/publizon-adapter.yaml",
+      converterOptions: {
+        indent: 2
+      }
+    }
+  },
+  dplCmsApi: {
+    output: {
+      mode: "split",
+      target: "src/core/dpl-cms-api/dpl.ts",
+      schemas: "src/core/dpl-cms-api/model",
+      client: "react-query",
+      override: {
+        mutator: {
+          path: "src/core/dpl-cms-api/mutator/fetcher.ts",
+          name: "fetcher"
+        },
+        query: {
+          useQuery: true
+        }
+      },
+      prettier: true
+    },
+    input: {
+      // TODO: Needs to be set to a remote url when the API is ready.
+      target: "src/core/dpl-cms-api/dpl-cms-api.example.json",
       converterOptions: {
         indent: 2
       }

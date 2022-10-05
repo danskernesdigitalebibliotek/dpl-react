@@ -1,0 +1,83 @@
+{
+  "swagger": "2.0",
+  "schemes": ["http"],
+  "info": {
+    "description": "The REST API provide by the core REST module.",
+    "title": "DPL CMS - REST API",
+    "version": "Versioning not supported"
+  },
+  "host": "varnish:8080",
+  "basePath": "/",
+  "securityDefinitions": {
+    "csrf_token": {
+      "type": "apiKey",
+      "name": "X-CSRF-Token",
+      "in": "header",
+      "x-tokenUrl": "http://varnish:8080/user/token"
+    }
+  },
+  "security": [
+    {
+      "csrf_token": []
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/dpl-url-proxy": {
+      "get": {
+        "parameters": [
+          {
+            "name": "_format",
+            "in": "query",
+            "type": "string",
+            "enum": ["json"],
+            "required": true,
+            "description": "Request format",
+            "default": "json"
+          }, 
+          {
+            "name": "url",
+            "description": "A url to an online resource which may be accessible through a proxy which requires rewriting of the url",
+            "type": "string",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "The url with any configured proxies applied"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid url provided"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "summary": "Generate proxy url",
+        "operationId": "proxy-url:GET",
+        "schemes": ["http"],
+        "security": [
+          {
+            "cookie": []
+          }
+        ]
+      }
+    }
+  }
+}
