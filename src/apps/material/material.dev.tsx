@@ -379,8 +379,8 @@ export default {
       control: { type: "text" }
     },
     reservationModalCloseModalAriaLabelText: {
-      name: "Reservation modal aria label modal two",
-      defaultValue: "Close reservation modal",
+      name: "Close Reservation modal",
+      defaultValue: "Luk reservation modal",
       control: { type: "text" }
     },
     librariesHaveTheMaterialText: {
@@ -394,8 +394,8 @@ export default {
       control: { type: "text" }
     },
     findOnShelfModalCloseModalAriaLabelText: {
-      name: "Reservation modal aria label modal two",
-      defaultValue: "Close reservation modal",
+      name: "Close findOnShelf modal",
+      defaultValue: "Luk reservation modal",
       control: { type: "text" }
     },
     findOnShelfModalListMaterialText: {
@@ -520,6 +520,16 @@ export default {
       name: "Modal reservation form no interest after header description",
       defaultValue:
         "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+      control: { type: "text" }
+    },
+    infomediaModalScreenReaderModalDescriptionText: {
+      name: "Infomedia modal screen reader description",
+      defaultValue: "Modal for infomedia",
+      control: { type: "text" }
+    },
+    infomediaModalCloseModalAriaLabelText: {
+      name: "Close infomedia modal",
+      defaultValue: "Luk infomedia modal",
       control: { type: "text" }
     }
   }

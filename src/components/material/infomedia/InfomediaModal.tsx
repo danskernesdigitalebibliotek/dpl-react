@@ -21,8 +21,10 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
   return (
     <Modal
       modalId="infomediaModalId"
-      closeModalAriaLabelText=""
-      screenReaderModalDescriptionText=""
+      screenReaderModalDescriptionText={t(
+        "infomediaModalScreenReaderModalDescriptionText"
+      )}
+      closeModalAriaLabelText={t("infomediaModalCloseModalAriaLabelText")}
     >
       <InfomediaModalBody infomediaArticle={data.infomedia.article} />
     </Modal>
