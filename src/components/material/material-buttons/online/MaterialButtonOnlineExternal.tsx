@@ -1,26 +1,51 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { useState, FC, useEffect } from "react";
+import useProxyUrlGET from "../../../../core/dpl-cms-api/useProxyUrlGET";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineExternalProps {
+  loginRequired: boolean;
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
-  externalUrl = "https://google.com",
+  loginRequired,
+  externalUrl = "",
   origin,
   size
 }) => {
+  const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
+  const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
+    null
+  );
   const t = useText();
-  const externalLinkObject = new URL(externalUrl);
+  const { data, error } = useProxyUrlGET(
+    {
+      url: externalUrl
+    },
+    {
+      enabled:
+        urlWasTranslated === null && loginRequired && externalUrl.length > 0
+    }
+  );
+
+  useEffect(() => {
+    if (urlWasTranslated) {
+      return;
+    }
+
+    if (!error && data?.data?.url) {
+      setTranslatedUrl(new URL(data.data.url));
+      setUrlWasTranslated(true);
+    }
+  }, [data, error, translatedUrl, urlWasTranslated]);
 
   return (
-    <LinkNoStyle url={externalLinkObject}>
+    <LinkNoStyle url={translatedUrl}>
       <Button
         label={`${t("goToText")} ${origin}`}
         buttonType="external-link"
