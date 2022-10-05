@@ -2,6 +2,7 @@
 // the namespace is declared like it is done here. Therefore we'll bypass errors about it.
 /* eslint-disable @typescript-eslint/no-namespace */
 import "@cypress/code-coverage/support";
+import { hasOperationName } from "../utils/graphql-test-utils";
 
 const TOKEN_USER_KEY = "user";
 
@@ -13,6 +14,19 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
 });
 
+Cypress.Commands.add(
+  "interceptGraphql",
+  (operationName: string, fixture: string) => {
+    cy.intercept("POST", "**/opac/graphql", (req) => {
+      if (hasOperationName(req, operationName)) {
+        req.reply({
+          fixture
+        });
+      }
+    }).as(`${operationName} Graphql query`);
+  }
+);
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -21,6 +35,7 @@ declare global {
        * @example cy.createFakeAuthenticatedSession()
        */
       createFakeAuthenticatedSession(): void;
+      interceptGraphql(operationName: string, fixture: string): void;
     }
   }
 }
