@@ -1,17 +1,34 @@
 import React from "react";
-import { useGetInfomediaQuery } from "../../../core/dbc-gateway/generated/graphql";
+import {
+  InfomediaService,
+  useGetInfomediaQuery
+} from "../../../core/dbc-gateway/generated/graphql";
+import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
 import Modal from "../../../core/utils/modal";
+import { useText } from "../../../core/utils/text";
+import { FaustId } from "../../../core/utils/types/ids";
 import InfomediaModalBody from "./InfomediaModalBody";
+import { Manifestation } from "../../../core/utils/types/entities";
+
+export const infomediaModalId = (faustId: FaustId) =>
+  `infomedia-modal-${faustId}`;
 
 interface InfomediaModalProps {
-  infomediaId: string;
+  mainManifestation: Manifestation;
 }
 
 const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
-  infomediaId
+  mainManifestation,
+  mainManifestation: { pid }
 }) => {
+  const t = useText();
+
+  const { id } = mainManifestation.access.find(
+    (item) => item.__typename === "InfomediaService"
+  ) as InfomediaService;
+
   const { data, error } = useGetInfomediaQuery({
-    id: infomediaId
+    id
   });
 
   if (!data || error) {
@@ -20,7 +37,7 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 
   return (
     <Modal
-      modalId="infomediaModalId"
+      modalId={infomediaModalId(convertPostIdToFaustId(pid))}
       screenReaderModalDescriptionText={t(
         "infomediaModalScreenReaderModalDescriptionText"
       )}

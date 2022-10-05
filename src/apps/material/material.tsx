@@ -6,7 +6,6 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   ExternalReview,
   InfomediaReview,
-  InfomediaService,
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -104,10 +103,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     t
   });
 
-  const infomediaId = currentManifestation.access.find(
-    (item) => item.__typename === "InfomediaService"
-  ) as InfomediaService;
-
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
 
   return (
@@ -186,9 +181,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
           />
+          <InfomediaModal mainManifestation={currentManifestation} />
         </>
       )}
-      {infomediaId && <InfomediaModal infomediaId={infomediaId.id} />}
     </main>
   );
 };
