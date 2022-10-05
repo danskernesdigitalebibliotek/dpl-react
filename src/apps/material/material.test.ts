@@ -56,7 +56,7 @@ describe("Material", () => {
     cy.contains("Hovedbiblioteket");
     cy.contains("12345678");
     cy.contains("test@test.com");
-    cy.get(`[aria-label="Close reservation modal"]`).click({
+    cy.get(`[aria-label="Luk reservation modal"]`).click({
       multiple: true,
       force: true
     });
