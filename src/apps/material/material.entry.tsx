@@ -105,6 +105,8 @@ interface MaterialEntryTextProps {
   chooseOneText: string;
   modalReservationFormNoInterestAfterHeaderTitleText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;
+  infomediaModalScreenReaderModalDescriptionText: string;
+  infomediaModalCloseModalAriaLabelText: string;
 }
 interface MaterialEntryUrlProps {
   searchUrl: string;
