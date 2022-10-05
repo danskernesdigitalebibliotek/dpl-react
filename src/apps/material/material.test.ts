@@ -1,7 +1,6 @@
 import {
   // aliasMutation,
-  aliasQuery,
-  hasOperationName
+  aliasQuery
 } from "../../../cypress/utils/graphql-test-utils";
 
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
@@ -90,11 +89,12 @@ describe("Material", () => {
 
   //  periodical test.
   it("Render periodical + change to 2021, nr. 13 + Aprove resevation", () => {
-    cy.fixture("material/periodical-holdings.json")
-      .then((result) => {
-        cy.intercept("GET", "**/agencyid/catalog/holdings/**", result);
-      })
-      .as("periodical holdings");
+    cy.interceptRest(
+      "periodical holdings",
+      "GET",
+      "**/agencyid/catalog/holdings/**",
+      "material/periodical-holdings.json"
+    );
 
     cy.interceptGraphql("getMaterial", "material/periodical-fbi-api.json");
     cy.visit(
@@ -130,29 +130,47 @@ describe("Material", () => {
       // aliasMutation(req, "BookTrips");
     });
 
-    cy.fixture("material/reservations.json")
-      .then((result) => {
-        cy.intercept("POST", "**/patrons/patronid/reservations/**", result);
-      })
-      .as("reservations");
+    cy.interceptRest(
+      "reservations",
+      "POST",
+      "**/patrons/patronid/reservations/**",
+      "material/reservations.json"
+    );
 
-    cy.fixture("material/holdings.json")
-      .then((result) => {
-        cy.intercept("GET", "**/agencyid/catalog/holdings/**", result);
-      })
-      .as("holdings");
+    cy.interceptRest(
+      "holdings",
+      "GET",
+      "**/agencyid/catalog/holdings/**",
+      "material/holdings.json"
+    );
 
-    cy.fixture("material/branches.json")
-      .then((result) => {
-        cy.intercept("GET", "**/agencyid/branches", result);
-      })
-      .as("branches");
+    cy.interceptRest(
+      "branches",
+      "GET",
+      "**/agencyid/branches",
+      "material/branches.json"
+    );
 
-    cy.fixture("material/user.json")
-      .then((result) => {
-        cy.intercept("GET", "**/agencyid/patrons/patronid/v2", result);
-      })
-      .as("user");
+    cy.interceptRest(
+      "user",
+      "GET",
+      "**/agencyid/patrons/patronid/v2",
+      "material/user.json"
+    );
+
+    cy.interceptRest("Cover", "GET", "**/api/v2/covers?**", "cover.json");
+
+    cy.interceptRest(
+      "Availability",
+      "GET",
+      "**/availability/v3?recordid=**",
+      "material/availability.json"
+    );
+
+    // Intercept like button
+    cy.intercept("HEAD", "**/list/default/**", {
+      statusCode: 404
+    }).as("Favorite list service");
 
     // Intercept covers.
     cy.intercept(
@@ -163,23 +181,6 @@ describe("Material", () => {
         fixture: "images/cover.jpg"
       }
     );
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/api/v2/covers?**", result);
-      })
-      .as("Cover service");
-
-    // Intercept availability's service.
-    cy.fixture("material/availability.json")
-      .then((result) => {
-        cy.intercept("GET", "**/availability/v3?recordid=**", result);
-      })
-      .as("Availability service");
-
-    // Intercept like button
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404
-    }).as("Favorite list service");
   });
 });
 

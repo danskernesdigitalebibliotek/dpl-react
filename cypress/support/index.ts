@@ -27,6 +27,18 @@ Cypress.Commands.add(
   }
 );
 
+Cypress.Commands.add(
+  "interceptRest",
+  (name: string, type: string, url: string, fixture: string) => {
+    const method = type === "POST" ? "POST" : "GET";
+    cy.fixture(fixture)
+      .then((result) => {
+        cy.intercept(method, url, result);
+      })
+      .as(name);
+  }
+);
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -36,6 +48,12 @@ declare global {
        */
       createFakeAuthenticatedSession(): void;
       interceptGraphql(operationName: string, fixture: string): void;
+      interceptRest(
+        name: string,
+        type: string,
+        url: string,
+        fixture: string
+      ): void;
     }
   }
 }
