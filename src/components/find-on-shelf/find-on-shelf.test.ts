@@ -55,8 +55,7 @@ describe("Find on shelf modal", () => {
 
   it("Updates branches upon selecting a different volume", () => {
     cy.get("summary").contains("Beder-Malling").parent().contains("available");
-    cy.get("select").eq(0).select("2020");
-    cy.get("select").eq(1).select("37");
+    cy.get("select").eq(1).select("35");
     cy.get("summary")
       .contains("Beder-Malling")
       .parent()
