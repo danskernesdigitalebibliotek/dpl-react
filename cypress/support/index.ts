@@ -14,9 +14,13 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
 });
 
+type InterceptGraphqlParams = {
+  operationName: string;
+  fixture: string;
+};
 Cypress.Commands.add(
   "interceptGraphql",
-  (operationName: string, fixture: string) => {
+  ({ operationName, fixture }: InterceptGraphqlParams) => {
     cy.intercept("POST", "**/opac/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
         req.reply({
@@ -26,11 +30,16 @@ Cypress.Commands.add(
     }).as(`${operationName} Graphql query`);
   }
 );
+type InterceptRestParams = {
+  name: string;
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  url: string;
+  fixture: string;
+};
 
 Cypress.Commands.add(
   "interceptRest",
-  (name: string, type: string, url: string, fixture: string) => {
-    const method = type === "POST" ? "POST" : "GET";
+  ({ name, method = "GET", url, fixture }: InterceptRestParams) => {
     cy.fixture(fixture)
       .then((result) => {
         cy.intercept(method, url, result);
@@ -47,13 +56,8 @@ declare global {
        * @example cy.createFakeAuthenticatedSession()
        */
       createFakeAuthenticatedSession(): void;
-      interceptGraphql(operationName: string, fixture: string): void;
-      interceptRest(
-        name: string,
-        type: string,
-        url: string,
-        fixture: string
-      ): void;
+      interceptGraphql(prams: InterceptGraphqlParams): void;
+      interceptRest(params: InterceptRestParams): void;
     }
   }
 }
