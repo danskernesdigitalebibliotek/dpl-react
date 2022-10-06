@@ -14,6 +14,7 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import fetchMaterial, {
   MaterialProps
 } from "../materials/utils/material-fetch-hoc";
+import fetchDigitalMaterial from "../materials/utils/digital-material-fetch-hoc";
 
 interface RenewStatusType {
   statusText?: string;
@@ -236,4 +237,4 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   );
 };
 
-export default fetchMaterial(MaterialDetails);
+export default fetchDigitalMaterial(fetchMaterial(MaterialDetails));
