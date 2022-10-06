@@ -1,10 +1,11 @@
-import { LoanV2, RenewedLoanV2 } from "../../fbs/model";
+import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
 import { store } from "../../store";
 import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
-import { Product, Loan } from "../../publizon/model";
+import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
+import { ReservationType } from "../types/reservation-type";
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?
@@ -156,6 +157,72 @@ export const mapManifestationToBasicDetailsType = (
     description,
     materialType: materialTypes ? materialTypes[0].specific : undefined
   } as BasicDetailsType;
+};
+
+// Reservation is a reservation from Publizon, and is the equivalent
+// to the ReservationDetailsV2 type in FBS. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
+export const mapPublizonReservationToReservationType = (
+  list: Reservation[]
+): ReservationType[] => {
+  return list.map(
+    ({
+      identifier,
+      createdDateUtc,
+      status,
+      expectedRedeemDateUtc,
+      expireDateUtc
+    }) => {
+      const publizonReservationState: { [key: number]: string } = {
+        1: "reserved", // in publizon Queued
+        2: "readyForPickup", // in publizon Redeemable
+        3: "redeemed", // in publizon Redeemed
+        4: "cancelled", // in publizon Cancelled
+        5: "expired" // in publizon Expired
+      };
+
+      return {
+        identifier,
+        faust: null,
+        dateOfReservation: createdDateUtc,
+        expiryDate: expireDateUtc,
+        state: status ? publizonReservationState[status] : "",
+        pickupDeadline: expectedRedeemDateUtc
+      };
+    }
+  );
+};
+
+// ReservationDetailsV2 is a reservation from FBS, and is the equivalent
+// to the Reservation type in Publizon. These are mapped to the same
+// so digital/physical loans/reservations can use the same components,
+// as their UI is often quite similar
+export const mapFBSReservationToReservationType = (
+  list: ReservationDetailsV2[]
+): ReservationType[] => {
+  return list.map(
+    ({
+      recordId,
+      dateOfReservation,
+      expiryDate,
+      numberInQueue,
+      state,
+      pickupBranch,
+      pickupDeadline
+    }) => {
+      return {
+        identifier: null,
+        faust: recordId as FaustId,
+        dateOfReservation,
+        expiryDate,
+        numberInQueue,
+        state,
+        pickupBranch,
+        pickupDeadline
+      };
+    }
+  );
 };
 
 export default {};

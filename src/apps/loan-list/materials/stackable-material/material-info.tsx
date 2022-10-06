@@ -5,7 +5,7 @@ import { BasicDetailsType } from "../../../../core/utils/types/basic-details-typ
 interface MaterialInfoProps {
   material: BasicDetailsType;
   isbnForCover: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({

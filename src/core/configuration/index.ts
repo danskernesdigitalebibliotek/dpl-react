@@ -2,8 +2,15 @@ import { isMobile } from "react-device-detect";
 import pageSize from "./page-size.json";
 import pageSizeLoanList from "./page-size-loan-list.json";
 import coverTints from "./cover-tints.json";
+import colors from "./colors.json";
+import thresholds from "./status-thresholds.json";
 
-export type ConfScope = "pageSize" | "coverTints" | "pageSizeLoanList";
+export type ConfScope =
+  | "pageSize"
+  | "coverTints"
+  | "pageSizeLoanList"
+  | "colors"
+  | "thresholds";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -36,5 +43,7 @@ export const getDeviceConf = (
 export default {
   pageSize,
   coverTints,
-  pageSizeLoanList
+  pageSizeLoanList,
+  colors,
+  thresholds
 } as Configuration;

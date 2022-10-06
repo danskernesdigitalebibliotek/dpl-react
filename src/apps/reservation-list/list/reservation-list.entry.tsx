@@ -4,8 +4,21 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 
 export interface ReservationListProps {
-  reservationListHeaderText: string;
-  reservationListPhysicalLoansTitleText: string;
+  headerText: string;
+  physicalLoansTitleText: string;
+  readyText: string;
+  materialByAuthorText: string;
+  materialAndAuthorText: string;
+  youAreNumberInLineText: string;
+  expiresSoonText: string;
+  inLineText: string;
+  reservationPickUpLatestText: string;
+  publizonEbookText: string;
+  publizonAudioBookText: string;
+  publizonPodcastText: string;
+  loanBeforeText: string;
+  daysText: string;
+  canBeLoanedInText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (
