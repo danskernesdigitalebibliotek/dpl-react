@@ -4,7 +4,7 @@ describe("Material", () => {
   it("Does the Material have title?", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".text-header-h1").should("be.visible");
@@ -13,7 +13,7 @@ describe("Material", () => {
   it("Check that cover has a src", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -23,7 +23,7 @@ describe("Material", () => {
   it("Does the material have favourite buttons?", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".button-favourite").should(
@@ -36,7 +36,7 @@ describe("Material", () => {
   it("Does the material have horizontal lines?", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("Nr. 1 in series");
@@ -46,7 +46,7 @@ describe("Material", () => {
   it("Does the material have authors?", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("Lucinda Riley");
@@ -55,7 +55,7 @@ describe("Material", () => {
   it("Does a material have a availibility label", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("bog");
@@ -65,7 +65,7 @@ describe("Material", () => {
   it("Open material details", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get("details").last().click();
@@ -74,7 +74,7 @@ describe("Material", () => {
   it("Does the material have a editions with a buttton to reserved", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.scrollTo("bottom");
@@ -85,7 +85,7 @@ describe("Material", () => {
   it("Opens modal by clicking on reserver button (reserve book) and close it with the x bottom", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("button:visible", "Reserve bog").click();
@@ -102,7 +102,7 @@ describe("Material", () => {
   it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/fbi-api.json"
+      fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("button:visible", "Reserve bog").click();
@@ -115,14 +115,14 @@ describe("Material", () => {
   //  periodical test.
   it("Render periodical + change to 2021, nr. 13 + Aprove resevation", () => {
     cy.interceptRest({
-      name: "periodical holdings",
+      aliasName: "periodical holdings",
       url: "**/agencyid/catalog/holdings/**",
-      fixture: "material/periodical-holdings.json"
+      fixtureFilePath: "material/periodical-holdings.json"
     });
 
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/periodical-fbi-api.json"
+      fixtureFilePath: "material/periodical-fbi-api.json"
     });
     cy.visit(
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=periodikum"
@@ -141,11 +141,11 @@ describe("Material", () => {
   it("Render infomedia + Read article + Close modal", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixture: "material/infomedia-fbi-api.json"
+      fixtureFilePath: "material/infomedia-fbi-api.json"
     });
     cy.interceptGraphql({
       operationName: "getInfomedia",
-      fixture: "material/infomedia-article.json"
+      fixtureFilePath: "material/infomedia-article.json"
     });
 
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
@@ -156,40 +156,40 @@ describe("Material", () => {
 
   beforeEach(() => {
     cy.interceptRest({
-      method: "POST",
-      name: "reservations",
+      httpMethod: "POST",
+      aliasName: "reservations",
       url: "**/patrons/patronid/reservations/**",
-      fixture: "material/reservations.json"
+      fixtureFilePath: "material/reservations.json"
     });
 
     cy.interceptRest({
-      name: "holdings",
+      aliasName: "holdings",
       url: "**/agencyid/catalog/holdings/**",
-      fixture: "material/holdings.json"
+      fixtureFilePath: "material/holdings.json"
     });
 
     cy.interceptRest({
-      name: "branches",
+      aliasName: "branches",
       url: "**/agencyid/branches",
-      fixture: "material/branches.json"
+      fixtureFilePath: "material/branches.json"
     });
 
     cy.interceptRest({
-      name: "user",
+      aliasName: "user",
       url: "**/agencyid/patrons/patronid/v2",
-      fixture: "material/user.json"
+      fixtureFilePath: "material/user.json"
     });
 
     cy.interceptRest({
-      name: "Cover",
+      aliasName: "Cover",
       url: "**/api/v2/covers?**",
-      fixture: "cover.json"
+      fixtureFilePath: "cover.json"
     });
 
     cy.interceptRest({
-      name: "Availability",
+      aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixture: "material/availability.json"
+      fixtureFilePath: "material/availability.json"
     });
 
     // Intercept like button
