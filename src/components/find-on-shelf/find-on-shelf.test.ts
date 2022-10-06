@@ -1,4 +1,40 @@
-describe("Find on shelf modal", () => {
+describe("Find on shelf modal - default", () => {
+  beforeEach(() => {
+    // Intercept holdings data call.
+    cy.fixture("material/find-on-shelf-holdings.json")
+      .then((result) => {
+        cy.intercept("GET", "**/external/agencyid/catalog/holdings/**", {
+          statusCode: 200,
+          body: result
+        });
+      })
+      .as("Find on shelf holdings");
+    // Intercept availability data call.
+    cy.fixture("material/find-on-shelf-holdings.json")
+      .then(() => {
+        cy.intercept("GET", "**/external/agencyid/catalog/availability/**", {
+          statusCode: 200,
+          body: [
+            {
+              recordId: "06373674",
+              reservable: true,
+              available: true,
+              reservations: 48
+            }
+          ]
+        });
+      })
+      .as("Find on shelf availability");
+    cy.visit("/iframe.html?id=components-find-on-shelf-modal--default");
+    cy.contains("button:visible", "Find on shelf").click();
+  });
+
+  it("Doesn't contain two dropdowns when it's not a periodical", () => {
+    cy.get("select").should("not.exist");
+  });
+});
+
+describe("Find on shelf modal - periodical", () => {
   beforeEach(() => {
     // Intercept holdings data call.
     cy.fixture("material/find-on-shelf-holdings.json")
@@ -36,12 +72,6 @@ describe("Find on shelf modal", () => {
   it("Contains two dropdowns when it's a periodical", () => {
     cy.get("select").contains("2022");
     cy.get("select").contains("29");
-  });
-
-  it("Doesn't contain two dropdowns when it's not a periodical", () => {
-    cy.visit("/iframe.html?id=components-find-on-shelf-modal--default");
-    cy.contains("button:visible", "Find on shelf").click();
-    cy.get("select").should("not.exist");
   });
 
   it("Contains text with the sum of all available branches", () => {
