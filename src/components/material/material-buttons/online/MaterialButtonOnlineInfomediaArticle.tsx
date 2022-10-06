@@ -2,7 +2,6 @@ import * as React from "react";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../core/modal.slice";
-import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -21,9 +20,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(
-      openModal({ modalId: infomediaModalId(convertPostIdToFaustId(pid)) })
-    );
+    dispatch(openModal({ modalId: infomediaModalId(pid) }));
   };
 
   // TODO: A logged in user with municipality registration can access this.
