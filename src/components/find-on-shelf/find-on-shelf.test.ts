@@ -26,7 +26,7 @@ describe("Find on shelf modal", () => {
       })
       .as("Find on shelf availability");
     cy.visit("/iframe.html?id=components-find-on-shelf-modal--periodical");
-    cy.contains("button:visible", "FIND PÅ HYLDEN").click();
+    cy.contains("button:visible", "Find on shelf").click();
   });
 
   it("Contains headline with the title and authors", () => {
@@ -40,12 +40,12 @@ describe("Find on shelf modal", () => {
 
   it("Doesn't contain two dropdowns when it's not a periodical", () => {
     cy.visit("/iframe.html?id=components-find-on-shelf-modal--default");
-    cy.contains("button:visible", "FIND PÅ HYLDEN").click();
+    cy.contains("button:visible", "Find on shelf").click();
     cy.get("select").should("not.exist");
   });
 
   it("Contains text with the sum of all available branches", () => {
-    cy.contains("biblioteker har materialet");
+    cy.contains("1 libraries have material");
   });
 
   it("Shows the main branch first", () => {
