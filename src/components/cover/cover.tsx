@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
+import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
 import { LinkNoStyle } from "../atoms/link-no-style";
 
@@ -8,9 +9,10 @@ export type CoverProps = {
   animate: boolean;
   size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
-  pid: Pid;
+  id: Pid | string;
   description?: string;
   url?: URL;
+  idType?: GetCoverCollectionType;
 };
 
 export const Cover = ({
@@ -19,7 +21,8 @@ export const Cover = ({
   size,
   animate,
   tint,
-  pid
+  id,
+  idType
 }: CoverProps) => {
   let dataSize: CoverProps["size"] = size;
   if (dataSize === "xsmall") {
@@ -27,9 +30,10 @@ export const Cover = ({
   } else if (dataSize === "xlarge") {
     dataSize = "large";
   }
+
   const { data } = useGetCoverCollection({
-    type: "pid",
-    identifiers: [pid],
+    type: idType || "pid",
+    identifiers: [id],
     sizes: [dataSize]
   });
 
