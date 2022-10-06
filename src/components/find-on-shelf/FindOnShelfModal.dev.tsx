@@ -1,11 +1,14 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 import materialDev from "../../apps/material/material.dev";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import MaterialButtonsFindOnShelf from "../material/material-buttons/physical/MaterialButtonsFindOnShelf";
 import FindOnShelfModal, { FindOnShelfModalProps } from "./FindOnShelfModal";
-import { mockedManifestationData } from "./mocked-data";
+import {
+  mockedManifestationData,
+  mockedPeriodicalManifestationData
+} from "./mocked-data";
 
 export default {
   title: "Components / Find On Shelf Modal",
@@ -32,18 +35,40 @@ export default {
         { __typename: "Corporation", display: "author 3" }
       ],
       control: { type: "object" }
+    },
+    selectedPeriodical: {
+      name: "Selected periodical",
+      defaultValue: null,
+      control: { type: "null" }
+    },
+    setSelectedPeriodical: {
+      name: "Set selected periodical function",
+      defaultValue: null,
+      control: { type: "null" }
     }
   }
 } as ComponentMeta<typeof FindOnShelfModal>;
 
-export const Default: ComponentStory<typeof FindOnShelfModal> = (
+const Template: ComponentStory<typeof FindOnShelfModal> = (
   args: FindOnShelfModalProps
 ) => {
+  const [storySelectedPeriodical, setStorySelectedPeriodical] = useState({
+    volume: "",
+    volumeYear: "2022",
+    displayText: "2022, nr. 29",
+    volumeNumber: "29",
+    itemNumber: "5313131426"
+  });
+  // We would like useState values to be passed to the story so that it rerenders
+  // upon dropdown change.
+  /* eslint-disable no-param-reassign */
+  args.selectedPeriodical = storySelectedPeriodical;
+  args.setSelectedPeriodical = setStorySelectedPeriodical;
+  /* eslint-enable no-param-reassign */
   const {
     manifestations: [{ pid }]
   } = args;
   const FindOnShelfModalWithText = withText(FindOnShelfModal);
-
   return (
     <>
       <MaterialButtonsFindOnShelf
@@ -53,4 +78,12 @@ export const Default: ComponentStory<typeof FindOnShelfModal> = (
       <FindOnShelfModalWithText {...args} />
     </>
   );
+};
+
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Periodical = Template.bind({});
+Periodical.args = {
+  manifestations: mockedPeriodicalManifestationData
 };
