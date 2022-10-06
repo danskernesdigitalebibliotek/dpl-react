@@ -12,8 +12,8 @@ export interface MaterialProps {
 
 type InputProps = {
   digitalMaterial?: Product | null;
-  faust: FaustId | null;
-  identifier: string | null;
+  faust?: FaustId | null;
+  identifier?: string | null;
 };
 
 const fetchMaterial =

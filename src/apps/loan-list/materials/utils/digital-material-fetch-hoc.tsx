@@ -7,8 +7,8 @@ import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/lis
 import { useText } from "../../../../core/utils/text";
 
 type InputProps = {
-  faust: FaustId | null;
-  identifier: string | null;
+  faust?: FaustId | null;
+  identifier?: string | null;
 };
 
 const fetchDigitalMaterial =
