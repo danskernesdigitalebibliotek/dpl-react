@@ -8,7 +8,7 @@ interface CheckBoxProps {
   hideLabel?: boolean;
   selected?: boolean;
   disabled?: boolean;
-  onChecked: (faust: FaustId) => void;
+  onChecked?: (faust: FaustId) => void;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -24,7 +24,7 @@ const CheckBox: FC<CheckBoxProps> = ({
       <input
         id={id}
         className="checkbox__input"
-        onChange={() => onChecked(id as FaustId)}
+        onChange={() => onChecked && onChecked(id as FaustId)}
         checked={selected}
         type="checkbox"
         disabled={disabled}

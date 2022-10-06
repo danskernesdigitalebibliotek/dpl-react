@@ -1,31 +1,30 @@
 import React, { FC } from "react";
-import { formatDate, getAuthorNames } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
-import {
-  FetchMaterial,
-  SelectableMaterialProps,
-  MaterialProps
-} from "./utils/material-fetch-hoc";
+import { LoanType } from "../../../core/utils/types/loan-type";
+import { FaustId } from "../../../core/utils/types/ids";
+import fetchMaterial, { MaterialProps } from "./utils/material-fetch-hoc";
+import fetchDigitalMaterial from "./utils/digital-material-fetch-hoc";
+
+interface SelectableMaterialProps {
+  loan: LoanType;
+  disabled?: boolean;
+  materialsToRenew?: FaustId[];
+  onChecked?: (faust: FaustId) => void;
+}
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
-  loanMetaData,
+  loan,
   material,
   disabled,
   onChecked,
   materialsToRenew
 }) => {
   const t = useText();
-  const { dueDate, id, loanType, renewalStatusList } = loanMetaData || {};
-  const { hostPublication, materialTypes, titles, creators } =
-    material?.manifestation || {};
-
-  const { year } = hostPublication || {};
-  const [{ specific }] = materialTypes || [];
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
+  const { dueDate, faust, identifier, loanType, renewalStatusList } = loan;
+  const { authors, materialType, year, title } = material || {};
 
   return (
     <li>
@@ -35,15 +34,23 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="mr-32">
-          {id && onChecked && (
+          {faust && onChecked && (
             <CheckBox
               onChecked={onChecked}
-              id={id}
+              id={faust}
               selected={
-                materialsToRenew &&
-                materialsToRenew?.indexOf(parseInt(id, 10)) > -1
+                materialsToRenew && materialsToRenew?.indexOf(faust) > -1
               }
               disabled={disabled}
+              label={t("loanListLabelCheckboxMaterialModalText")}
+              hideLabel
+            />
+          )}
+          {identifier && (
+            <CheckBox
+              selected={false}
+              id={identifier}
+              disabled
               label={t("loanListLabelCheckboxMaterialModalText")}
               hideLabel
             />
@@ -52,18 +59,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         <div className="list-materials__content">
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
-              {specific}
+              {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{mainText}</p>
+          <p className="text-header-h5 mt-8">{title}</p>
           <p className="text-small-caption">
-            {creators &&
-              getAuthorNames(
-                creators,
-                t("loanModalMaterialByAuthorText"),
-                t("loanModalMaterialAndAuthorText")
-              )}
-            {year?.year && <> ({year.year})</>}
+            {authors}
+            {year && <> ({year})</>}
           </p>
         </div>
         <div className="list-materials__status">
@@ -96,4 +98,4 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default FetchMaterial(SelectableMaterial);
+export default fetchDigitalMaterial(fetchMaterial(SelectableMaterial));
