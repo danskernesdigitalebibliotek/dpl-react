@@ -1,7 +1,8 @@
-export interface LoanMetaDataType {
+import { ListType } from "./list-type";
+
+export interface LoanType extends ListType {
   dueDate: string | null | undefined;
   loanDate: string | null | undefined;
-  id: string;
   isRenewable: boolean;
   materialItemNumber: string | null | undefined;
   renewalStatusList: string[];
