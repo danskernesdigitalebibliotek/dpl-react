@@ -3,15 +3,13 @@ import {
   InfomediaService,
   useGetInfomediaQuery
 } from "../../../core/dbc-gateway/generated/graphql";
-import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { FaustId } from "../../../core/utils/types/ids";
+import { Pid } from "../../../core/utils/types/ids";
 import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 
-export const infomediaModalId = (faustId: FaustId) =>
-  `infomedia-modal-${faustId}`;
+export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
 interface InfomediaModalProps {
   mainManifestation: Manifestation;
@@ -40,7 +38,7 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 
   return (
     <Modal
-      modalId={infomediaModalId(convertPostIdToFaustId(pid))}
+      modalId={infomediaModalId(pid)}
       screenReaderModalDescriptionText={t(
         "infomediaModalScreenReaderModalDescriptionText"
       )}
