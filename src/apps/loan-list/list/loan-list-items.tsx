@@ -1,23 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
 
 interface LoanListItemProps {
-  loans: LoanMetaDataType[];
+  loans: LoanType[];
   view: ListView;
   dueDates: string[];
-  selectModalMaterial: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
-  }) => void;
   dueDateLabel: string;
 }
 
@@ -25,7 +17,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  selectModalMaterial,
   dueDateLabel
 }) => {
   const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
@@ -50,7 +41,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             uniqueDueDate,
             loans
           );
-          const loanMetaData = loansUniqueDueDate[0] || {};
+          const loan = loansUniqueDueDate[0] || {};
 
           let openModal = false;
           const queryParam = getUrlQueryParam("modal");
@@ -62,13 +53,14 @@ const LoanListItems: FC<LoanListItemProps> = ({
 
           return (
             <div>
-              {loanMetaData && (
+              {loan && (
                 <StackableMaterial
                   dueDateLabel={dueDateLabel}
-                  loanMetaData={loanMetaData}
+                  loan={loan}
+                  identifier={loan.identifier}
+                  faust={loan.faust}
                   openModal={openModal}
-                  key={loanMetaData.id}
-                  selectMaterial={selectModalMaterial}
+                  key={loan.faust || loan.identifier}
                   amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
                   stack={loansUniqueDueDate}
                 />
@@ -77,14 +69,15 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
         })}
       {view === "list" &&
-        loans.map((loanMetaData) => {
+        loans.map((loan) => {
           return (
             <StackableMaterial
               openModal={false}
+              identifier={loan.identifier}
+              faust={loan.faust}
               dueDateLabel={dueDateLabel}
-              selectMaterial={selectModalMaterial}
-              key={loanMetaData.id}
-              loanMetaData={loanMetaData}
+              key={loan.faust || loan.identifier}
+              loan={loan}
             />
           );
         })}
