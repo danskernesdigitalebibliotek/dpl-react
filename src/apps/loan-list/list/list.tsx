@@ -55,6 +55,13 @@ const List: FC<ListProps> = ({
     }
   }, [openRenewLoansModal, setView]);
 
+  const setViewHandler = useCallback(
+    (inputView: ListView) => {
+      setView(inputView);
+    },
+    [setView]
+  );
+
   return (
     <>
       <div className="dpl-list-buttons m-32">
@@ -66,7 +73,7 @@ const List: FC<ListProps> = ({
           <div className="dpl-list-buttons__buttons">
             <div className="dpl-list-buttons__buttons__button">
               <button
-                onClick={() => setView("list")}
+                onClick={() => setViewHandler("list")}
                 className={`dpl-icon-button ${
                   view === "list" ? "dpl-icon-button--selected" : ""
                 }`}
@@ -82,7 +89,7 @@ const List: FC<ListProps> = ({
                   view === "stacked" ? "dpl-icon-button--selected" : ""
                 }`}
                 id="test-stack"
-                onClick={() => setView("stacked")}
+                onClick={() => setViewHandler("stacked")}
                 type="button"
                 aria-label={t("loanListStackText")}
               >
