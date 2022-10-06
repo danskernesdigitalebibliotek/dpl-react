@@ -83,8 +83,10 @@ describe("Find on shelf modal - periodical", () => {
   });
 
   it("Contains a summary for the main branch with no available speciments", () => {
-    cy.get("summary").contains("Hovedbiblioteket");
-    cy.get("summary").contains("unavailable");
+    cy.get("summary")
+      .contains("Hovedbiblioteket")
+      .parent()
+      .contains("unavailable");
   });
 
   it("Updates branches upon selecting a different volume", () => {
