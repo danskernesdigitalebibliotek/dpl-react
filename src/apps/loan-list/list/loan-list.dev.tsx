@@ -261,6 +261,26 @@ export default {
     loanListDigitalPhysicalLoansEmptyListText: {
       defaultValue: "Du har i øjeblikket 0 lån",
       control: { type: "text" }
+    },
+    publizonEbookText: {
+      defaultValue: "E-bog",
+      control: { type: "text" }
+    },
+    publizonAudioBookText: {
+      defaultValue: "Lydbog",
+      control: { type: "text" }
+    },
+    publizonPodcastText: {
+      defaultValue: "Podcast",
+      control: { type: "text" }
+    },
+    materialByAuthorText: {
+      defaultValue: "Af",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      defaultValue: "og",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

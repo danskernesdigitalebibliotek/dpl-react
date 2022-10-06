@@ -67,6 +67,11 @@ export interface LoanListEntryProps {
   loanListDigitalLoansEmptyListText: string;
   loanListPhysicalLoansEmptyListText: string;
   loanListDigitalPhysicalLoansEmptyListText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
+  publizonAudioBookText: string;
+  publizonPodcastText: string;
+  publizonEbookText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
