@@ -21,15 +21,15 @@ import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { GroupListItem } from "./periodical/helper";
+import { PeriodicalEdition } from "./periodical/helper";
 
 interface MaterialHeaderProps {
   wid: WorkId;
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({

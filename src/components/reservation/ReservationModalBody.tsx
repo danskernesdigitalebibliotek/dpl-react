@@ -36,7 +36,7 @@ import {
   getAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
-import { GroupListItem } from "../material/periodical/helper";
+import { PeriodicalEdition } from "../material/periodical/helper";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -44,7 +44,7 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
-  selectedPeriodical: GroupListItem | null;
+  selectedPeriodical: PeriodicalEdition | null;
 };
 
 const ReservationModalBody = ({

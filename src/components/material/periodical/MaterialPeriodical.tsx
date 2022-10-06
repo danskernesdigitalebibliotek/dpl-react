@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
-import { GroupListItem } from "./helper";
+import { PeriodicalEdition } from "./helper";
 import MaterialPeriodicalSelect, {
   GroupList
 } from "./MaterialPeriodicalSelect";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({

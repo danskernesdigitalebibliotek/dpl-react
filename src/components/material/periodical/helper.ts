@@ -1,6 +1,6 @@
 import { HoldingsV3 } from "../../../core/fbs/model/holdingsV3";
 
-export type GroupListItem = {
+export type PeriodicalEdition = {
   displayText: string;
   itemNumber: string;
   volume: string;
@@ -10,7 +10,7 @@ export type GroupListItem = {
 
 export const getFirstEditionFromYear = <T extends string>(
   year: T,
-  groupList: { [key in T]: GroupListItem[] }
+  groupList: { [key in T]: PeriodicalEdition[] }
 ) => {
   return groupList[year][0];
 };

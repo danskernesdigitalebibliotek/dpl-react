@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, useState } from "react";
+import { FC } from "react";
 import partition from "lodash.partition";
 import { isAnyManifestationAvailableOnBranch } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
@@ -13,11 +13,12 @@ import {
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { ManifestationHoldings, SelectedPeriodicalEdition } from "./types";
+import { ManifestationHoldings } from "./types";
 import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
+import { PeriodicalEdition } from "../material/periodical/helper";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -26,12 +27,16 @@ export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
   workTitles: string[];
   authors: Work["creators"];
+  selectedPeriodical: PeriodicalEdition | null;
+  setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   manifestations,
   workTitles,
-  authors
+  authors,
+  selectedPeriodical,
+  setSelectedPeriodical
 }) => {
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
@@ -53,8 +58,6 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       return materialType.specific.includes("periodikum");
     });
   });
-  const [selectedPeriodicalEdition, setSelectedPeriodicalEdition] =
-    useState<SelectedPeriodicalEdition | null>(null);
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.
@@ -92,7 +95,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   // 3. Branches without available speciments sorted alphabetically
 
   // Filtering only for periodicals
-  if (selectedPeriodicalEdition) {
+  if (selectedPeriodical) {
     finalData = finalData.map((branchManifestationHoldings) => {
       return branchManifestationHoldings
         .map((manifestationHoldings) => {
@@ -104,9 +107,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
                 (material) => {
                   return (
                     material.periodical?.volumeNumber ===
-                      selectedPeriodicalEdition.selectedEdition &&
+                      selectedPeriodical.volumeNumber &&
                     material.periodical.volumeYear ===
-                      selectedPeriodicalEdition.selectedYear
+                      selectedPeriodical.volumeYear
                   );
                 }
               )
@@ -164,10 +167,11 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
           {`${title} / ${author}`}
         </h2>
-        {isPeriodical && (
+        {isPeriodical && selectedPeriodical && (
           <FindOnShelfPeriodicalDropdowns
             manifestationsHoldings={data}
-            setSelectedPeriodical={setSelectedPeriodicalEdition}
+            setSelectedPeriodical={setSelectedPeriodical}
+            selectedPeriodical={selectedPeriodical}
           />
         )}
         {isLoading && (

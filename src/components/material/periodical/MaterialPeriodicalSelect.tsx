@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useText } from "../../../core/utils/text";
-import { getFirstEditionFromYear, GroupListItem } from "./helper";
+import { getFirstEditionFromYear, PeriodicalEdition } from "./helper";
 
-export type GroupList = { [key: string]: GroupListItem[] };
+export type GroupList = { [key: string]: PeriodicalEdition[] };
 
 interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
