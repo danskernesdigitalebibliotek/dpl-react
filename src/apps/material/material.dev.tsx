@@ -380,7 +380,7 @@ export default {
     },
     reservationModalCloseModalAriaLabelText: {
       name: "Close Reservation modal",
-      defaultValue: "Luk reservation modal",
+      defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
     librariesHaveTheMaterialText: {
@@ -395,7 +395,7 @@ export default {
     },
     findOnShelfModalCloseModalAriaLabelText: {
       name: "Close findOnShelf modal",
-      defaultValue: "Luk reservation modal",
+      defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
     findOnShelfModalListMaterialText: {
@@ -529,7 +529,7 @@ export default {
     },
     infomediaModalCloseModalAriaLabelText: {
       name: "Close infomedia modal",
-      defaultValue: "Luk infomedia modal",
+      defaultValue: "Close infomedia modal",
       control: { type: "text" }
     }
   }
