@@ -31,13 +31,15 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   useEffect(() => {
     if (branchResponse.data && pickupBranch) {
-      setReadyForPickupLabel(
-        `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
-      );
+      if (pickupDeadline) {
+        setReadyForPickupLabel(
+          `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
+        );
+      }
       setPickupLibrary(
         getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
       );
-    } else {
+    } else if (pickupDeadline) {
       setReadyForPickupLabel(
         `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
       );
