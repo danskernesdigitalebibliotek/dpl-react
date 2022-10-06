@@ -6,8 +6,8 @@ import { MaterialProps } from "./material-fetch-hoc";
 import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
 
 type InputProps = {
-  faust: FaustId | null;
-  identifier: string | null;
+  faust?: FaustId | null;
+  identifier?: string | null;
 };
 
 const fetchDigitalMaterial =
