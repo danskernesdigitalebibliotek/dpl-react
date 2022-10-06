@@ -27,7 +27,7 @@ Cypress.Commands.add(
           fixture
         });
       }
-    }).as(`${operationName} Graphql query`);
+    }).as(`${operationName} GraphQL operation`);
   }
 );
 type InterceptRestParams = {

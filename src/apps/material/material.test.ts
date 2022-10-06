@@ -1,8 +1,3 @@
-import {
-  // aliasMutation,
-  aliasQuery
-} from "../../../cypress/utils/graphql-test-utils";
-
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
@@ -160,15 +155,6 @@ describe("Material", () => {
   });
 
   beforeEach(() => {
-    cy.intercept("POST", "**/opac/graphql", (req) => {
-      // Queries
-      aliasQuery(req, "getMaterial");
-      aliasQuery(req, "getInfomedia");
-      // Mutations (not used in this test but it can be used in the future)
-      // aliasMutation(req, "Login");
-      // aliasMutation(req, "BookTrips");
-    });
-
     cy.interceptRest({
       method: "POST",
       name: "reservations",
