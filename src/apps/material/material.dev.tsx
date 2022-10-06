@@ -418,6 +418,16 @@ export default {
       defaultValue: "-",
       control: { type: "text" }
     },
+    findOnShelfModalPeriodicalYearDropdownText: {
+      name: "Find on shelf modal periodical dropdown - choose year",
+      defaultValue: "Choose periodical year",
+      control: { type: "text" }
+    },
+    findOnShelfModalPeriodicalEditionDropdownText: {
+      name: "Find on shelf modal periodical dropdown - choose edition/volume",
+      defaultValue: "Choose periodical edition",
+      control: { type: "text" }
+    },
     numberInQueueText: {
       name: "Number in queue text",
       defaultValue: "You are number",

@@ -20,6 +20,8 @@ import { ManifestationHoldings } from "./types";
 import { FaustId } from "../../core/utils/types/ids";
 import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
+import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
+import { PeriodicalEdition } from "../material/periodical/helper";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -28,12 +30,16 @@ export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
   workTitles: string[];
   authors: Work["creators"];
+  selectedPeriodical: PeriodicalEdition | null;
+  setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   manifestations,
   workTitles,
-  authors
+  authors,
+  selectedPeriodical,
+  setSelectedPeriodical
 }) => {
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
@@ -50,6 +56,11 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const modalId = findOnShelfModalId(
     convertPostIdToFaustId(manifestations[0].pid)
   );
+  const isPeriodical = manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some((materialType) => {
+      return materialType.specific.includes("periodikum");
+    });
+  });
 
   if (isError || !data) {
     // TODO: handle error once we have established a way to do it.
@@ -73,7 +84,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const uniqueBranches = Array.from(new Set(allBranches));
   // Grouping pairedManifestationsWithBranches objects based on same branch
   // gives us the desired data structure that we can render.
-  const finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
+  let finalData: ManifestationHoldings[] = uniqueBranches.map((branch) => {
     return pairedManifestationsWithBranches.filter(
       (manifestationWithBranch) => {
         return manifestationWithBranch.holding.branch.branchId === branch;
@@ -85,6 +96,34 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   // 1. Main library branch first
   // 2. Branches with any available speciments sorted alphabetically
   // 3. Branches without available speciments sorted alphabetically
+
+  // Filtering only for periodicals
+  if (selectedPeriodical) {
+    finalData = finalData.map((branchManifestationHoldings) => {
+      return branchManifestationHoldings
+        .map((manifestationHoldings) => {
+          return {
+            ...manifestationHoldings,
+            holding: {
+              ...manifestationHoldings.holding,
+              materials: manifestationHoldings.holding.materials.filter(
+                (material) => {
+                  return (
+                    material.periodical?.volumeNumber ===
+                      selectedPeriodical.volumeNumber &&
+                    material.periodical.volumeYear ===
+                      selectedPeriodical.volumeYear
+                  );
+                }
+              )
+            }
+          };
+        })
+        .filter((manifestationHoldings) => {
+          return manifestationHoldings !== null;
+        });
+    });
+  }
   function orderManifestationHoldingsAlphabetically(
     a: ManifestationHoldings,
     b: ManifestationHoldings
@@ -96,7 +135,6 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   }
   const [availableManifestationHoldings, unavailableManifestationHoldings] =
     partition(finalData, isAnyManifestationAvailableOnBranch);
-
   const finalDataAlphabetical = availableManifestationHoldings
     .sort((a: ManifestationHoldings, b: ManifestationHoldings) => {
       return orderManifestationHoldingsAlphabetically(a, b);
@@ -117,8 +155,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         : 1;
     }
   );
-
-  const finalDataToShow = finalDataMainBranchFirst;
+  const finalDataToShow: ManifestationHoldings[] = finalDataMainBranchFirst;
 
   return (
     <Modal
@@ -133,6 +170,13 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
           {`${title} / ${author}`}
         </h2>
+        {isPeriodical && selectedPeriodical && (
+          <FindOnShelfPeriodicalDropdowns
+            manifestationsHoldings={data}
+            setSelectedPeriodical={setSelectedPeriodical}
+            selectedPeriodical={selectedPeriodical}
+          />
+        )}
         {isLoading && (
           <p className="text-body-large ml-16 mt-96">{t("loadingText")}</p>
         )}
