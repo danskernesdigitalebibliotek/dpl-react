@@ -102,6 +102,10 @@ export const usePrevious = <Type>(value: Type) => {
 };
 
 export const convertPostIdToFaustId = (postId: Pid) => {
+  // We have seen post ids containing both letters and numbers
+  // in the last part after the colon.
+  // We are about to have clarified what the proper name of the element.
+  // But for now we will call it faustId.
   const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
