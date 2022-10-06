@@ -1,11 +1,10 @@
 import React, { FC, useCallback, useEffect } from "react";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
@@ -16,14 +15,7 @@ import EmptyList from "../materials/utils/empty-list";
 export interface ListProps {
   header: string;
   setView: (view: string) => void;
-  selectModalMaterial: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
-  }) => void;
-  loans: LoanMetaDataType[];
+  loans: LoanType[];
   dueDates: string[];
   view: ListView;
   dueDateLabel: string;
@@ -33,7 +25,6 @@ export interface ListProps {
 
 const List: FC<ListProps> = ({
   header,
-  selectModalMaterial,
   setView,
   loans,
   dueDates,
@@ -121,7 +112,6 @@ const List: FC<ListProps> = ({
           dueDates={dueDates}
           loans={loans}
           view={view as ListView}
-          selectModalMaterial={selectModalMaterial}
         />
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
