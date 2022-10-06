@@ -1,30 +1,32 @@
 import React, { FC } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import MaterialDetails from "./material-details";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
+import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 interface MaterialDetailsModalProps {
-  material: GetMaterialManifestationQuery | undefined | null;
-  loanMetaData: LoanMetaDataType;
+  material: BasicDetailsType | undefined | null;
+  loan: LoanType;
 }
 
-const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
-  loanMetaData
-}) => {
+const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({ loan }) => {
   const t = useText();
 
   return (
     <Modal
-      modalId={loanMetaData.id}
+      modalId={loan.faust || loan.identifier || ""}
       classNames="modal-details"
       closeModalAriaLabelText={t("materialDetailsCloseModalText")}
       screenReaderModalDescriptionText={t(
         "materialDetailsModalDescriptionText"
       )}
     >
-      <MaterialDetails loanMetaData={loanMetaData} />
+      <MaterialDetails
+        faust={loan.faust}
+        identifier={loan.identifier}
+        loan={loan}
+      />
     </Modal>
   );
 };

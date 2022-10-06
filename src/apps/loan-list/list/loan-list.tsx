@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getDueDatesLoan,
   sortByLoanDate
@@ -12,51 +11,44 @@ import {
   ModalIdsProps,
   useModalButtonHandler
 } from "../../../core/utils/modal";
-import MaterialDetailsModal from "../modal/material-details-modal";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
 import { ListView } from "../../../core/utils/types/list-view";
-import {
-  mapFBSLoanToLoanMetaDataType,
-  queryMatchesFaust,
-  mapPublizonLoanToLoanMetaDataType
-} from "../utils/helpers";
 import EmptyList from "../materials/utils/empty-list";
+import {
+  mapPublizonLoanToLoanType,
+  mapFBSLoanToLoanType
+} from "../../../core/utils/helpers/list-mapper";
 
 const LoanList: FC = () => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<string>("list");
-  const [physicalLoans, setPhysicalLoans] = useState<LoanMetaDataType[]>([]);
-  const [digitalLoans, setDigitalLoans] = useState<LoanMetaDataType[]>([]);
+  const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
+  const [digitalLoans, setDigitalLoans] = useState<LoanType[]>([]);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
     []
   );
   const [digitalLoansDueDates, setDigitalLoansDueDates] = useState<string[]>(
     []
   );
-  const [modalMaterial, setModalMaterial] = useState<
-    GetMaterialManifestationQuery | null | undefined
-  >(null);
-  const [modalLoanDetails, setModalLoanDetails] =
-    useState<LoanMetaDataType | null>(null);
   const { isSuccess, data, refetch } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
   useEffect(() => {
     if (isSuccess && data) {
-      const mapToLoanMetaDataType = mapFBSLoanToLoanMetaDataType(data);
+      const mapToLoanType = mapFBSLoanToLoanType(data);
 
       // The due dates are used for the stacked materials
       // The stacked materials view shows materials stacked by
       // due date, and for this we need a unique list of due dates
-      setPhysicalLoansDueDates(getDueDatesLoan(mapToLoanMetaDataType));
+      setPhysicalLoansDueDates(getDueDatesLoan(mapToLoanType));
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanMetaDataType);
+      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
     }
@@ -64,12 +56,10 @@ const LoanList: FC = () => {
 
   useEffect(() => {
     if (publizonData?.loans) {
-      const mapToLoanMetaDataType = mapPublizonLoanToLoanMetaDataType(
-        publizonData.loans
-      );
+      const mapToLoanType = mapPublizonLoanToLoanType(publizonData.loans);
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanMetaDataType);
+      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
 
       setDigitalLoans(sortedByLoanDate);
 
@@ -80,17 +70,6 @@ const LoanList: FC = () => {
     }
   }, [publizonData]);
 
-  const selectModalMaterial = ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
-  }) => {
-    setModalMaterial(material);
-    setModalLoanDetails(loanMetaData);
-  };
-
   useEffect(() => {
     refetch();
   }, [modalIds?.length, refetch]);
@@ -98,17 +77,6 @@ const LoanList: FC = () => {
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
-    // modal query param: details modal faust
-    const faustFound = queryMatchesFaust(modalString);
-
-    if (modalString && faustFound && physicalLoans) {
-      const loanDetailsForModal = physicalLoans.filter(
-        ({ id }) => id === faustFound
-      );
-      setModalLoanDetails(loanDetailsForModal[0]);
-      open(faustFound);
-      return;
-    }
     // modal query param: modal loans all
     if (modalString === modalIdsConf.allLoansId) {
       open(modalIdsConf.allLoansId);
@@ -124,7 +92,6 @@ const LoanList: FC = () => {
             <List
               emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               header={t("loanListPhysicalLoansTitleText")}
-              selectModalMaterial={selectModalMaterial}
               dueDateLabel={t("loanListToBeDeliveredText")}
               loans={physicalLoans}
               dueDates={physicalLoansDueDates}
@@ -138,7 +105,6 @@ const LoanList: FC = () => {
               header={t("loanListDigitalLoansTitleText")}
               emptyListLabel={t("loanListDigitalLoansEmptyListText")}
               dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
-              selectModalMaterial={selectModalMaterial}
               loans={digitalLoans}
               dueDates={digitalLoansDueDates}
               setView={setView}
@@ -151,12 +117,6 @@ const LoanList: FC = () => {
       {physicalLoans.length === 0 && digitalLoans.length === 0 && (
         <EmptyList
           emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
-        />
-      )}
-      {modalLoanDetails && (
-        <MaterialDetailsModal
-          loanMetaData={modalLoanDetails}
-          material={modalMaterial}
         />
       )}
     </div>
