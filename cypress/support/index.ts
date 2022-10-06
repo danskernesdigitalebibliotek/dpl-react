@@ -14,37 +14,57 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
 });
 
+/**
+ * interceptGraphql is used to make a graphQLrequest that returns fixture data
+ *
+ * @param {string} operationName The name of the operation to be mocked.
+ * @param {string} fixtureFilePath The path to the fixture file to use as response
+ *
+ */
 type InterceptGraphqlParams = {
   operationName: string;
-  fixture: string;
+  fixtureFilePath: string;
 };
 Cypress.Commands.add(
   "interceptGraphql",
-  ({ operationName, fixture }: InterceptGraphqlParams) => {
+  ({ operationName, fixtureFilePath }: InterceptGraphqlParams) => {
     cy.intercept("POST", "**/opac/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
         req.reply({
-          fixture
+          fixture: fixtureFilePath
         });
       }
     }).as(`${operationName} GraphQL operation`);
   }
 );
+/**
+ * interceptRest is used to make a REST HTTP request that returns fixture data
+ *
+ * @param {string} aliasName The name of the alias to use for the request
+ * @param {"GET" | "POST" | "PUT" | "DELETE"} httpMethod The HTTP method to intercept
+ * @param {string} url The URL to intercept
+ * @param {string} fixtureFilePath The path to the fixture file to use as response
+ *
+ */
 type InterceptRestParams = {
-  name: string;
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  aliasName: string;
+  httpMethod?: "GET" | "POST" | "PUT" | "DELETE";
   url: string;
-  fixture: string;
+  fixtureFilePath: string;
 };
-
 Cypress.Commands.add(
   "interceptRest",
-  ({ name, method = "GET", url, fixture }: InterceptRestParams) => {
-    cy.fixture(fixture)
+  ({
+    aliasName,
+    httpMethod = "GET",
+    url,
+    fixtureFilePath
+  }: InterceptRestParams) => {
+    cy.fixture(fixtureFilePath)
       .then((result) => {
-        cy.intercept(method, url, result);
+        cy.intercept(httpMethod, url, result);
       })
-      .as(name);
+      .as(aliasName);
   }
 );
 
