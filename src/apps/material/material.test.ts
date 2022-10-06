@@ -93,7 +93,7 @@ describe("Material", () => {
     cy.contains("Hovedbiblioteket");
     cy.contains("12345678");
     cy.contains("test@test.com");
-    cy.get(`[aria-label="Luk reservation modal"]`).click({
+    cy.get(`[aria-label="Close reservation modal"]`).click({
       multiple: true,
       force: true
     });
@@ -151,7 +151,7 @@ describe("Material", () => {
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
     cy.contains("button:visible", "Read article").click();
     cy.contains("h2", "BUTLERENS UTROLIGE HISTORIE");
-    cy.get(`[aria-label="Luk infomedia modal"]`).click();
+    cy.get(`[aria-label="Close infomedia modal"]`).click();
   });
 
   beforeEach(() => {
