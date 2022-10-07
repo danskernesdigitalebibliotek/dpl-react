@@ -20,8 +20,14 @@ interface ReservationInfoProps {
 const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
   const t = useText();
 
-  const { state, expiryDate, pickupBranch, numberInQueue, pickupDeadline } =
-    reservationInfo;
+  const {
+    state,
+    expiryDate,
+    pickupBranch,
+    numberInQueue,
+    pickupDeadline,
+    pickupNumber
+  } = reservationInfo;
 
   const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
@@ -52,7 +58,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         color={colors.success as string}
         percent={100}
         infoLabel={readyForPickupLabel}
-        label={pickupLibrary}
+        label={[pickupLibrary, pickupNumber || ""]}
       >
         <img src={check} alt="" />
         {t("readyText")}
