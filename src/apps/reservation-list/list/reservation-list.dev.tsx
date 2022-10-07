@@ -91,6 +91,7 @@ export default {
       defaultValue: "Dage",
       control: { type: "text" }
     },
+
     canBeLoanedInText: {
       defaultValue: "Kan lånes om dage",
       control: { type: "text" }
@@ -129,6 +130,10 @@ export default {
     },
     reservationDetailsExpiresLabelText: {
       defaultValue: "Reserveringen udløber",
+      control: { type: "text" }
+    },
+    reservationDetailsPickupDeadlineTitelText: {
+      defaultValue: "Udløbsdato",
       control: { type: "text" }
     },
     reservationDetailsDateOfReservationTitelText: {
