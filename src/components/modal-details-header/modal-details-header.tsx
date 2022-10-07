@@ -56,7 +56,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
           )}
         </div>
         <h2 className="modal-details__title text-header-h2">{title}</h2>
-        <p className="text-body-medium-regular" id="test-authors">
+        <p className="text-body-medium-regular">
           {authors}
           {year && <> ({year})</>}
         </p>
