@@ -1,32 +1,32 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import MaterialDetails from "./material-details";
-import { LoanType } from "../../../core/utils/types/loan-type";
+import { ListType } from "../../../core/utils/types/list-type";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 interface MaterialDetailsModalProps {
   material: BasicDetailsType | undefined | null;
-  loan: LoanType;
+  modalEntity: ListType;
+  children: ReactNode;
 }
 
-const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({ loan }) => {
+const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
+  modalEntity,
+  children
+}) => {
   const t = useText();
 
   return (
     <Modal
-      modalId={loan.faust || loan.identifier || ""}
+      modalId={modalEntity.faust || modalEntity.identifier || ""}
       classNames="modal-details"
       closeModalAriaLabelText={t("materialDetailsCloseModalText")}
       screenReaderModalDescriptionText={t(
         "materialDetailsModalDescriptionText"
       )}
     >
-      <MaterialDetails
-        faust={loan.faust}
-        identifier={loan.identifier}
-        loan={loan}
-      />
+      {children}
     </Modal>
   );
 };
