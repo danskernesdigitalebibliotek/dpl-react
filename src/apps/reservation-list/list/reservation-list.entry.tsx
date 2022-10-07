@@ -19,6 +19,16 @@ export interface ReservationListProps {
   loanBeforeText: string;
   daysText: string;
   canBeLoanedInText: string;
+  reservationDetailsButtonText: string;
+  reservationDetailsOthersInQueueText: string;
+  reservationDetailsNumberInQueueLabelText: string;
+  reservationDetailsNumberInQueueTitelText: string;
+  reservationDetailsPickUpAtTitelText: string;
+  reservationDetailsNoInterestAfterTitelText: string;
+  reservationDetailsPickupDeadlineTitelText: string;
+  reservationDetailsDateOfReservationTitelText: string;
+  reservationDetailsReadyForLoanText: string;
+  reservationDetailsRemoveReservationText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

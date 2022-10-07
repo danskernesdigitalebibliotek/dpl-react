@@ -219,7 +219,8 @@ export const mapFBSReservationToReservationType = (
       state,
       pickupBranch,
       pickupDeadline,
-      pickupNumber
+      pickupNumber,
+      reservationId
     }) => {
       return {
         identifier: null,
@@ -230,7 +231,8 @@ export const mapFBSReservationToReservationType = (
         state,
         pickupBranch,
         pickupDeadline,
-        pickupNumber
+        pickupNumber,
+        reservationId
       };
     }
   );

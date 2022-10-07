@@ -80,8 +80,57 @@ export default {
       defaultValue: "Dage",
       control: { type: "text" }
     },
+
     canBeLoanedInText: {
       defaultValue: "Kan lånes om dage",
+      control: { type: "text" }
+    },
+    reservationDetailsButtonText: {
+      defaultValue: "Fjern din reservering",
+      control: { type: "text" }
+    },
+    reservationDetailsOthersInQueueText: {
+      defaultValue: "Andre står i kø til materialet",
+      control: { type: "text" }
+    },
+    reservationDetailsNumberInQueueLabelText: {
+      defaultValue: "i køen",
+      control: { type: "text" }
+    },
+    reservationDetailsNumberInQueueTitelText: {
+      defaultValue: "Status",
+      control: { type: "text" }
+    },
+    reservationDetailsPickUpAtTitelText: {
+      defaultValue: "Afhentes på",
+      control: { type: "text" }
+    },
+    reservationDetailsListDetailsChangeText: {
+      defaultValue: "Skift",
+      control: { type: "text" }
+    },
+    reservationDetailsPickupDeadlineTitelText: {
+      defaultValue: "Udløbsdato",
+      control: { type: "text" }
+    },
+    reservationDetailsDateOfReservationTitelText: {
+      defaultValue: "Reserveringsdato",
+      control: { type: "text" }
+    },
+    reservationDetailsNoInterestAfterTitelText: {
+      defaultValue: "Har ingen interesse efter",
+      control: { type: "text" }
+    },
+    reservationDetailsReadyForLoanText: {
+      defaultValue: "Klar til lån",
+      control: { type: "text" }
+    },
+    reservationDetailsRemoveReservationText: {
+      defaultValue: "Fjern din reservering",
+      control: { type: "text" }
+    },
+    goToText: {
+      defaultValue: "Gå til",
       control: { type: "text" }
     }
   },
