@@ -8,4 +8,5 @@ export interface ReservationType extends ListType {
   state: string;
   pickupBranch?: string;
   expectedRedeemDateUtc?: string;
+  pickupNumber?: string;
 }
