@@ -7,7 +7,6 @@ interface ListProps {
   header: string;
 }
 const List: FC<ListProps> = ({ list, header }) => {
-
   return (
     <>
       <div className="dpl-list-buttons m-32">
