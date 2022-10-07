@@ -6,7 +6,7 @@ interface ReservationStatusProps {
   percent: number;
   expiresSoonLabel?: string;
   infoLabel?: string;
-  label: string;
+  label: string | string[];
   children: ReactNode;
 }
 
@@ -33,7 +33,13 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
           {infoLabel && (
             <div className="status-label status-label--info">{infoLabel}</div>
           )}
-          <p className="text-small-caption">{label}</p>
+          {typeof label === "string" && (
+            <p className="text-small-caption">{label}</p>
+          )}
+          {typeof label !== "string" &&
+            label.map((localLabel) => {
+              return <p className="text-small-caption">{localLabel}</p>;
+            })}
         </div>
       </div>
     </div>
