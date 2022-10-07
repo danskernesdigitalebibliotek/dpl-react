@@ -10,6 +10,7 @@ import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import MaterialDetailsModal from "../../modal/material-details-modal";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
+import MaterialDetails from "../../modal/material-details";
 
 export interface StackableMaterialProps {
   stack?: LoanType[];
@@ -112,7 +113,13 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       {dueDate && stack && (
         <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
       )}
-      <MaterialDetailsModal loan={loan} material={material} />
+      <MaterialDetailsModal modalEntity={loan} material={material}>
+        <MaterialDetails
+          faust={loan.faust}
+          identifier={loan.identifier}
+          loan={loan}
+        />
+      </MaterialDetailsModal>
     </>
   );
 };
