@@ -80,7 +80,6 @@ export default {
       defaultValue: "Dage",
       control: { type: "text" }
     },
-
     canBeLoanedInText: {
       defaultValue: "Kan lånes om dage",
       control: { type: "text" }
@@ -101,6 +100,10 @@ export default {
       defaultValue: "Status",
       control: { type: "text" }
     },
+    reservationDetailsExpiresTitelText: {
+      defaultValue: "Status",
+      control: { type: "text" }
+    },
     reservationDetailsPickUpAtTitelText: {
       defaultValue: "Afhentes på",
       control: { type: "text" }
@@ -111,6 +114,10 @@ export default {
     },
     reservationDetailsPickupDeadlineTitelText: {
       defaultValue: "Udløbsdato",
+      control: { type: "text" }
+    },
+    reservationDetailsExpiresLabelText: {
+      defaultValue: "Reserveringen udløber",
       control: { type: "text" }
     },
     reservationDetailsDateOfReservationTitelText: {
@@ -131,6 +138,10 @@ export default {
     },
     goToText: {
       defaultValue: "Gå til",
+      control: { type: "text" }
+    },
+    reservationDetailsLoanBeforeText: {
+      defaultValue: "Lånes inden",
       control: { type: "text" }
     }
   },

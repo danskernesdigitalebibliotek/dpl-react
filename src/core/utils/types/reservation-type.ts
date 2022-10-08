@@ -9,5 +9,5 @@ export interface ReservationType extends ListType {
   pickupBranch?: string;
   expectedRedeemDateUtc?: string;
   pickupNumber?: string;
-  reservationId: number;
+  reservationId?: number;
 }
