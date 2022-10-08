@@ -20,8 +20,8 @@ const ReservationDetailsButton: FC<
           params: { reservationid: [reservationId] }
         },
         {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onSuccess: (result) => {
-            debugger
             // todo
           },
           // todo error handling, missing in figma

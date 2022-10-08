@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import MaterialDetails from "./material-details";
 import { ListType } from "../../../core/utils/types/list-type";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
