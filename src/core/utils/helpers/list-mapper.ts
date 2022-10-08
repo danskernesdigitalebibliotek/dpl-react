@@ -179,7 +179,7 @@ export const mapPublizonReservationToReservationType = (
       createdDateUtc,
       status,
       expectedRedeemDateUtc,
-      expireDateUtc,
+      expireDateUtc
     }) => {
       const publizonReservationState: { [key: number]: string } = {
         1: "reserved", // in publizon Queued

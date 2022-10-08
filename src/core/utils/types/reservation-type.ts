@@ -7,7 +7,6 @@ interface Reservation extends ListType {
   pickupDeadline: string;
   numberInQueue: number;
   state: string;
-  pickupBranch: string;
   expectedRedeemDateUtc: string;
   /** The reservation number. This is, contrary to the name, a string containing, as an example, "Reserveringshylde 111" */
   pickupNumber: string;

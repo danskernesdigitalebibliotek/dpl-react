@@ -38,6 +38,17 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { mutate } = useUpdateReservations();
+
+  const {
+    numberInQueue,
+    pickupBranch,
+    expiryDate,
+    pickupDeadline,
+    dateOfReservation,
+    pickupNumber,
+    reservationId
+  } = reservation;
+
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
   const [showBranchesSelect, setShowBranchesSelect] = useState<boolean>(false);
   const [showExpirySelect, setShowExpirySelect] = useState<boolean>(false);
@@ -52,16 +63,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       label: value
     })
   );
-
-  const {
-    numberInQueue,
-    pickupBranch,
-    expiryDate,
-    pickupDeadline,
-    dateOfReservation,
-    pickupNumber,
-    reservationId
-  } = reservation;
 
   useEffect(() => {
     if (branches && pickupBranch) {
