@@ -17,7 +17,7 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
   const t = useText();
 
   const { expiryDate, dateOfReservation, pickupDeadline, state } = reservation;
-  
+
   return (
     <>
       {expiryDate && state === "readyForPickup" && (
