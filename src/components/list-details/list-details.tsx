@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 export interface ListDetailsProps {
   icon: string;
   title: string;
-  labels: string[];
+  labels: string[] | string;
   children?: ReactNode;
 }
 
@@ -25,9 +25,13 @@ const ListDetails: FC<ListDetailsProps> = ({
       <div className="list-details__container">
         <div className="list-details__content">
           <p className="text-header-h5">{title}</p>
-          {labels.map((label: string) => (
-            <p className="text-small-caption">{label}</p>
-          ))}
+          {typeof labels === "string" && (
+            <p className="text-small-caption">{labels}</p>
+          )}
+          {typeof labels !== "string" &&
+            labels.map((label: string) => (
+              <p className="text-small-caption">{label}</p>
+            ))}
         </div>
       </div>
       {children && !showChildren && (

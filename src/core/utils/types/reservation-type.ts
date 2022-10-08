@@ -11,7 +11,7 @@ interface Reservation extends ListType {
   expectedRedeemDateUtc?: string;
   /** The reservation number. This is, contrary to the name, a string containing, as an example, "Reserveringshylde 111" */
   pickupNumber?: string;
-  reservationId: number;
+  reservationId?: number;
 }
 
 export type ReservationType = Nullable<Partial<Reservation>>;
