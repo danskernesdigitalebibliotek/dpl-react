@@ -143,6 +143,14 @@ export default {
     reservationDetailsLoanBeforeText: {
       defaultValue: "Lånes inden",
       control: { type: "text" }
+    },
+    reservationDetailsSaveText: {
+      defaultValue: "Gem",
+      control: { type: "text" }
+    },
+    reservationDetailsCancelText: {
+      defaultValue: "Annuller",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
