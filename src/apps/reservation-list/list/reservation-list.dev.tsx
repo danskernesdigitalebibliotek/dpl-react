@@ -136,8 +136,8 @@ export default {
       defaultValue: "Fjern din reservering",
       control: { type: "text" }
     },
-    goToText: {
-      defaultValue: "Gå til",
+    reservationDetailsGoToEreolenText: {
+      defaultValue: "Gå til ereolen",
       control: { type: "text" }
     },
     reservationDetailsLoanBeforeText: {
@@ -154,3 +154,10 @@ const Template: ComponentStory<typeof ReservationList> = (props) => (
 
 export const ReservationListEntry = Template.bind({});
 ReservationListEntry.args = {};
+
+export const ReservationListDetailsModal = Template.bind({});
+ReservationListDetailsModal.parameters = {
+  query: {
+    modal: 9788740047905
+  }
+};

@@ -29,6 +29,7 @@ export interface ReservationListProps {
   reservationDetailsDateOfReservationTitelText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveReservationText: string;
+  reservationDetailsGoToEreolenText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (
