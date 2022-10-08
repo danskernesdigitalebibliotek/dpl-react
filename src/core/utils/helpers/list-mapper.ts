@@ -183,7 +183,7 @@ export const mapPublizonReservationToReservationType = (
       createdDateUtc,
       status,
       expectedRedeemDateUtc,
-      expireDateUtc,
+      expireDateUtc
     }) => {
       const publizonReservationState: { [key: number]: string } = {
         1: "reserved", // in publizon Queued
@@ -199,7 +199,7 @@ export const mapPublizonReservationToReservationType = (
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
         state: status ? publizonReservationState[status] : "",
-        pickupDeadline: expectedRedeemDateUtc,
+        pickupDeadline: expectedRedeemDateUtc
       };
     }
   );
