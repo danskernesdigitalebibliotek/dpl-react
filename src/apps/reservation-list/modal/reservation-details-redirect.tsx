@@ -1,7 +1,8 @@
 import React, { FC, useCallback } from "react";
+import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
+import Link from "../../../components/atoms/link";
 import { useText } from "../../../core/utils/text";
 import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import MaterialButtonOnlineExternal from "../../../components/material/material-buttons/online/MaterialButtonOnlineExternal";
 import { useDeleteV1UserReservationsIdentifier } from "../../../core/publizon/publizon";
 
 export interface ReservationDetailsRedirectProps {
@@ -40,11 +41,14 @@ const ReservationDetailsRedirect: FC<
       >
         {t("reservationDetailsRemoveReservationText")}
       </button>
-      <MaterialButtonOnlineExternal
-        origin="ereolen"
-        size="small"
-        externalUrl="https://ereolen.dk/user/me/"
-      />
+      <Link
+        id="test-ereolen-button"
+        href={new URL("https://ereolen.dk/user/me/")}
+        className="btn-primary btn-filled btn-small arrow__hover--right-small"
+      >
+        {t("reservationDetailsGoToEreolenText")}
+        <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
+      </Link>
     </div>
   );
 };

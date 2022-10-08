@@ -32,15 +32,13 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
       <div className="modal-details__cover">
         <div className="material-container">
           <span className="material material--large bg-identity-tint-120 material__animate">
-            {pid && (
-              <Cover
-                id={coverId}
-                idType={pid ? "pid" : "isbn"}
-                size="large"
-                animate={false}
-                description={description || ""}
-              />
-            )}
+            <Cover
+              id={coverId}
+              idType={pid ? "pid" : "isbn"}
+              size="large"
+              animate={false}
+              description={description || ""}
+            />
           </span>
         </div>
       </div>
@@ -58,7 +56,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
           )}
         </div>
         <h2 className="modal-details__title text-header-h2">{title}</h2>
-        <p className="text-body-medium-regular">
+        <p className="text-body-medium-regular" id="test-authors">
           {authors}
           {year && <> ({year})</>}
         </p>
