@@ -32,6 +32,7 @@ const DeleteReservationContent: FC<
       <div className="modal-pause__button mt-48">
         <button
           type="button"
+          id="test-delete-reservation-button"
           onClick={deleteReservationCallback}
           className="btn-primary btn-filled btn-large arrow__hover--right-small"
         >
