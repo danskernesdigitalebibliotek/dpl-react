@@ -145,4 +145,11 @@ export const getAuthorLine = (
   return [t("materialHeaderAuthorByText"), author, year].join(" ");
 };
 
+export const excludeBlacklistedBranches = (
+  branches: AgencyBranch[],
+  blacklist: string[]
+) => {
+  return branches.filter((item) => !blacklist.includes(item.branchId));
+};
+
 export default {};
