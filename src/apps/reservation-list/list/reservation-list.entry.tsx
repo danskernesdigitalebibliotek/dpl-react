@@ -30,6 +30,12 @@ export interface ReservationListProps {
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveReservationText: string;
   reservationDetailsGoToEreolenText: string;
+  deleteReservationModalHeaderText: string;
+  deleteReservationModalDeleteQuestionText: string;
+  deleteReservationModalNotRegrettableText: string;
+  deleteReservationModalDeleteText: string;
+  deleteReservationModalCloseModalText: string;
+  deleteReservationModalAriaDescriptionText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

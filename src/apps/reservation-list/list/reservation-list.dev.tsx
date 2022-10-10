@@ -151,6 +151,31 @@ export default {
     reservationDetailsCancelText: {
       defaultValue: "Annuller",
       control: { type: "text" }
+    },
+    deleteReservationModalHeaderText: {
+      defaultValue: "Slet reservering",
+      control: { type: "text" }
+    },
+    deleteReservationModalDeleteQuestionText: {
+      defaultValue: "Vil du slette din reserveringen?",
+      control: { type: "text" }
+    },
+    deleteReservationModalNotRegrettableText: {
+      defaultValue: "Vil du slette din reserveringen?",
+      control: { type: "text" }
+    },
+    deleteReservationModalDeleteText: {
+      defaultValue: "Slet",
+      control: { type: "text" }
+    },
+    deleteReservationModalCloseModalText: {
+      defaultValue: "Luk forny lån modal",
+      control: { type: "text" }
+    },
+    deleteReservationModalAriaDescriptionText: {
+      defaultValue:
+        "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at slette reservationen",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
