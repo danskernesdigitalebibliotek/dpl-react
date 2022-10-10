@@ -3,6 +3,7 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
 import { configTypes } from "../../../core/utils/helpers/fetcher";
+import { getModalIds } from "../../../core/utils/helpers/general";
 
 export default {
   title: "Apps / Reservation list",
@@ -157,11 +158,11 @@ export default {
       control: { type: "text" }
     },
     deleteReservationModalDeleteQuestionText: {
-      defaultValue: "Vil du slette din reserveringen?",
+      defaultValue: "Vil du slette din reservering?",
       control: { type: "text" }
     },
     deleteReservationModalNotRegrettableText: {
-      defaultValue: "Vil du slette din reserveringen?",
+      defaultValue: "Handlingen kan ikke fortrydes",
       control: { type: "text" }
     },
     deleteReservationModalDeleteText: {
@@ -199,5 +200,20 @@ export const ReservationListPhysicalDetailsModal = Template.bind({});
 ReservationListPhysicalDetailsModal.parameters = {
   query: {
     modal: "46985591"
+  }
+};
+
+const { deleteReservation } = getModalIds();
+export const ReservationListDeletePhysicalModal = Template.bind({});
+ReservationListDeletePhysicalModal.parameters = {
+  query: {
+    modal: `46985591&${deleteReservation}67804976`
+  }
+};
+
+export const ReservationListDeleteDigitalModal = Template.bind({});
+ReservationListDeleteDigitalModal.parameters = {
+  query: {
+    modal: `9788740047905&${deleteReservation}9788740047905`
   }
 };
