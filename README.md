@@ -14,6 +14,7 @@ Danish public libraries.
   - [Requirements](#requirements)
   - [Development - alternative (no docker)](#development---alternative-no-docker)
     - [Howto](#howto)
+    - [Step Debugging in Visual Studio Code (no docker)](#step-debugging-in-visual-studio-code-no-docker)
     - [Access tokens](#access-tokens)
     - [Library token](#library-token)
   - [Installation](#installation)
@@ -62,6 +63,16 @@ Danish public libraries.
 - (note: if you enter adgangsplatform again after signing it, you will get
   signed out, and need to log in again. This is not a bug, as you stay logged
   in otherwise.)
+
+#### Step Debugging in Visual Studio Code (no docker)
+
+If you want to enable step debugging you need to:
+
+- Copy .vscode.example/launch.json into .vscode/
+- Mark 1 or more breakpoints on a line in the left gutter on an open file
+- In the top menu in VS Code choose:  Run -> Start Debugging
+- Type in your user password if ask to
+- Start debugging 🤖∿💻
 
 #### Access tokens
 
