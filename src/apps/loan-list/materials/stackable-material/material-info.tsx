@@ -13,8 +13,16 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   isbnForCover,
   children
 }) => {
-  const { authors, materialType, year, title, description, pid } =
-    material || {};
+  const {
+    authors,
+    materialType,
+    year,
+    title,
+    description,
+    pid,
+    periodical,
+    series
+  } = material || {};
   const coverId = pid || isbnForCover;
 
   return (
@@ -37,8 +45,11 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
-            {authors}
-            {year && <>({year})</>}
+            <div>
+              {authors && authors} {year && <>({year})</>}
+            </div>
+            <div>{periodical && periodical}</div>
+            <div>{series && series}</div>
           </p>
         </div>
         {children}

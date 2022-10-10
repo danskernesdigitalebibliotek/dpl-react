@@ -16,5 +16,11 @@ query getMaterialManifestation($faust: String!) {
     creators {
       display
     }
+    series {
+      title
+      numberInSeries {
+        number
+      }
+    }
   }
 }
