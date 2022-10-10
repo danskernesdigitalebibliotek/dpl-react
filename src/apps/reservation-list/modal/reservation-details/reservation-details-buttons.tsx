@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from "react";
-import { useText } from "../../../core/utils/text";
-import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useDeleteReservations } from "../../../core/fbs/fbs";
+import { useText } from "../../../../core/utils/text";
+import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import { useDeleteReservations } from "../../../../core/fbs/fbs";
 
 export interface ReservationDetailsButtonProps {
   reservationId: number;
