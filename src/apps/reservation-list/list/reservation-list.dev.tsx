@@ -163,9 +163,16 @@ const Template: ComponentStory<typeof ReservationList> = (props) => (
 export const ReservationListEntry = Template.bind({});
 ReservationListEntry.args = {};
 
-export const ReservationListDetailsModal = Template.bind({});
-ReservationListDetailsModal.parameters = {
+export const ReservationListDigitalDetailsModal = Template.bind({});
+ReservationListDigitalDetailsModal.parameters = {
   query: {
     modal: 9788740047905
+  }
+};
+
+export const ReservationListPhysicalDetailsModal = Template.bind({});
+ReservationListPhysicalDetailsModal.parameters = {
+  query: {
+    modal: "46985591"
   }
 };
