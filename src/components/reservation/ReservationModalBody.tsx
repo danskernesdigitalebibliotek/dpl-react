@@ -24,7 +24,6 @@ import {
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
-  useGetBranches,
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
@@ -37,6 +36,7 @@ import {
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
+import { useConfig } from "../../core/utils/config";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -58,6 +58,14 @@ const ReservationModalBody = ({
   parallelManifestations,
   selectedPeriodical
 }: ReservationModalProps) => {
+  const t = useText();
+  const config = useConfig();
+  const branches = config<AgencyBranch>("branchesConfig", {
+    jsonParse: true
+  });
+
+  const userListItemsBranches = Array.isArray(branches) ? branches : [];
+
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations:
@@ -73,23 +81,18 @@ const ReservationModalBody = ({
     useState<ReservationResponseV2 | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
-
-  const t = useText();
   const faustId = convertPostIdToFaustId(pid);
-
   const { mutate } = useAddReservationsV2();
-  const branchResponse = useGetBranches();
   const userResponse = useGetPatronInformationByPatronIdV2();
   const holdingsResponse = useGetHoldingsV3({
     recordid: [faustId]
   });
 
   // If we don't have all data for displaying the view render nothing.
-  if (!branchResponse.data || !userResponse.data || !holdingsResponse.data) {
+  if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
 
-  const { data: branchData } = branchResponse as { data: AgencyBranch[] };
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
@@ -183,7 +186,7 @@ const ReservationModalBody = ({
               {patron && (
                 <UserListItems
                   patron={patron}
-                  branches={branchData}
+                  branches={userListItemsBranches}
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
                   selectedInterest={selectedInterest}
@@ -201,7 +204,7 @@ const ReservationModalBody = ({
           title={mainTitle[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
-            branchData
+            userListItemsBranches
           )}
           numberInQueue={reservationDetails.numberInQueue}
         />
