@@ -5,11 +5,12 @@ import { useDeleteReservations } from "../../../core/fbs/fbs";
 
 export interface ReservationDetailsButtonProps {
   reservationId: number;
+  numberInQueue?: number;
 }
 
 const ReservationDetailsButton: FC<
   ReservationDetailsButtonProps & MaterialProps
-> = ({ reservationId }) => {
+> = ({ reservationId, numberInQueue }) => {
   const t = useText();
   const { mutate } = useDeleteReservations();
 
@@ -33,9 +34,11 @@ const ReservationDetailsButton: FC<
 
   return (
     <div className="modal-details__buttons">
-      <div className="my-8 mx-16 text-body-medium-regular">
-        {t("reservationDetailsOthersInQueueText")}
-      </div>
+      {numberInQueue && numberInQueue > 0 && (
+        <div className="my-8 mx-16 text-body-medium-regular">
+          {t("reservationDetailsOthersInQueueText")}
+        </div>
+      )}
       <button
         type="button"
         onClick={deleteReservation}
