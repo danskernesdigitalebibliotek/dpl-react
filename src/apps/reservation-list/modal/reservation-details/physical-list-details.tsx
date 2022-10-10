@@ -11,15 +11,18 @@ import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/i
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
-import { useText } from "../../../core/utils/text";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
-import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useGetBranches, useUpdateReservations } from "../../../core/fbs/fbs";
-import { getPreferredBranch } from "../../../components/reservation/helper";
-import { AgencyBranch } from "../../../core/fbs/model";
-import { formatDate } from "../../loan-list/utils/helpers";
-import ListDetails from "../../../components/list-details/list-details";
-import { Button } from "../../../components/Buttons/Button";
+import { useText } from "../../../../core/utils/text";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import {
+  useGetBranches,
+  useUpdateReservations
+} from "../../../../core/fbs/fbs";
+import { getPreferredBranch } from "../../../../components/reservation/helper";
+import { AgencyBranch } from "../../../../core/fbs/model";
+import { formatDate } from "../../../loan-list/utils/helpers";
+import ListDetails from "../../../../components/list-details/list-details";
+import { Button } from "../../../../components/Buttons/Button";
 
 export interface PhysicalListDetailsProps {
   reservation: ReservationType;

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
-} from "../../loan-list/materials/utils/material-fetch-hoc";
-import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
-import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
+} from "../../../loan-list/materials/utils/material-fetch-hoc";
+import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
+import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import ReservationDetailsButton from "./reservation-details-buttons";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import DigitalListDetails from "./digital-list-details";

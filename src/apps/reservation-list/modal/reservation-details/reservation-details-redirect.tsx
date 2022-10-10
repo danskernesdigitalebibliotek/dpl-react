@@ -1,9 +1,9 @@
 import React, { FC, useCallback } from "react";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
-import { Link } from "../../../components/atoms/link";
-import { useText } from "../../../core/utils/text";
-import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useDeleteV1UserReservationsIdentifier } from "../../../core/publizon/publizon";
+import { Link } from "../../../../components/atoms/link";
+import { useText } from "../../../../core/utils/text";
+import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import { useDeleteV1UserReservationsIdentifier } from "../../../../core/publizon/publizon";
 
 export interface ReservationDetailsRedirectProps {
   reservationId: string;
