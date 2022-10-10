@@ -18,7 +18,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material
 }) => {
-  const { state, identifier } = reservation;
+  const { state, identifier, numberInQueue } = reservation;
 
   const { authors, pid, year, title, description, materialType } =
     material || {};
@@ -42,6 +42,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           {reservation.reservationId && (
             <ReservationDetailsButton
               reservationId={reservation.reservationId}
+              numberInQueue={numberInQueue}
             />
           )}
           {isDigital && reservation.identifier && (
