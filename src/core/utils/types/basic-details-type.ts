@@ -1,11 +1,11 @@
 import { Pid } from "./ids";
 
 export interface BasicDetailsType {
-  authors: string | null | undefined;
+  authors?: string | null;
   pid: Pid | null | undefined;
-  externalProductId: string | null | undefined;
-  materialType: string | null | undefined;
-  description: string | null | undefined;
-  year: string | null | undefined;
-  title: string | null | undefined;
+  externalProductId?: string | null;
+  materialType?: string | null;
+  description?: string | null;
+  year?: string | null;
+  title?: string | null;
 }

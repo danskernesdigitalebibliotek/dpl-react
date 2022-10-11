@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { formatDate } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
-import CheckBox from "./utils/checkbox";
 import StatusBadge from "./utils/status-badge";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { FaustId } from "../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "./utils/material-fetch-hoc";
 import fetchDigitalMaterial from "./utils/digital-material-fetch-hoc";
+import CheckBox from "../../../components/checkbox/Checkbox";
 
 interface SelectableMaterialProps {
   loan: LoanType;
@@ -36,7 +36,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         <div className="mr-32">
           {faust && onChecked && (
             <CheckBox
-              onChecked={onChecked}
+              onChecked={() => onChecked(faust)}
               id={faust}
               selected={
                 materialsToRenew && materialsToRenew?.indexOf(faust) > -1

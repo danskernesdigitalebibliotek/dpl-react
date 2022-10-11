@@ -117,31 +117,6 @@ export default {
       defaultValue: "Vælg element til fornyelse",
       control: { type: "text" }
     },
-
-    loanListMaterialByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    loanModalMaterialByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    materialDetailsByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    loanListMaterialAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
-    },
-    loanModalMaterialAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
-    },
-    materialDetailsAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
-    },
     dueDateRenewLoanModalHeaderText: {
       defaultValue: "Afleveres",
       control: { type: "text" }

@@ -1,28 +1,24 @@
 import { LoanV2, RenewedLoanV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { store } from "../../store";
 import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
+import { UseTextFunction } from "../text";
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?
-export const getContributors = (creators: string[] | undefined) => {
-  const {
-    text: { data: texts }
-  } = store.getState();
-
+export const getContributors = (t: UseTextFunction, creators: string[]) => {
   let returnContentString = "";
   if (creators && creators.length > 0) {
     if (creators.length === 1) {
-      returnContentString = `${texts.materialByAuthorText} ${creators.join(
+      returnContentString = `${t("materialByAuthorText")} ${creators.join(
         ", "
       )}`;
     } else {
-      returnContentString = `${texts.materialByAuthorText} ${creators
+      returnContentString = `${t("materialByAuthorText")} ${creators
         .slice(0, -1)
-        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
+        .join(", ")} ${t("materialAndAuthorText")} ${creators.slice(-1)}`;
     }
   }
   return returnContentString;
@@ -99,7 +95,10 @@ export const mapFBSRenewedLoanToLoanType = (
 // to a manifestation from FBI. These are mapped to the same
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
-export const mapProductToBasicDetailsType = (material: Product) => {
+export const mapProductToBasicDetailsType = (
+  t: UseTextFunction,
+  material: Product
+) => {
   const {
     publicationDate,
     title,
@@ -109,25 +108,26 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     externalProductId
   } = material;
 
-  const {
-    text: { data: texts }
-  } = store.getState();
-
   const digitalProductType: { [key: number]: string } = {
-    1: texts.publizonEbookText,
-    2: texts.publizonAudioBookText,
-    4: texts.publizonAudioBookText
+    1: t("publizonEbookText"),
+    2: t("publizonAudioBookText"),
+    4: t("publizonAudioBookText")
   };
 
   return {
     title,
-    year: getYearFromDataString(publicationDate),
+    year: publicationDate ? getYearFromDataString(publicationDate) : "",
     description,
     materialType: productType ? digitalProductType[productType] : "",
     externalProductId: externalProductId?.id,
-    authors: getContributors(
-      contributors?.map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-    )
+    authors: contributors
+      ? getContributors(
+          t,
+          contributors?.map(
+            ({ firstName, lastName }) => `${firstName} ${lastName}`
+          )
+        )
+      : ""
   } as BasicDetailsType;
 };
 
@@ -136,6 +136,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
+  t: UseTextFunction,
   material: GetMaterialManifestationQuery
 ) => {
   const { hostPublication, abstract, titles, pid, materialTypes, creators } =
@@ -149,7 +150,12 @@ export const mapManifestationToBasicDetailsType = (
   const { year } = yearObject || {};
 
   return {
-    authors: getContributors(creators?.map(({ display }) => display)),
+    authors: creators
+      ? getContributors(
+          t,
+          creators?.map(({ display }) => display)
+        )
+      : "",
     pid,
     title: mainText,
     year,

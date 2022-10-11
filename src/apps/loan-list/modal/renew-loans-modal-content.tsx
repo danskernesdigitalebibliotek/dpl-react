@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useInView } from "react-hook-inview";
-import CheckBox from "../materials/utils/checkbox";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
@@ -13,6 +12,7 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import usePager from "../../../components/result-pager/use-pager";
 import { mapFBSRenewedLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
 import { FaustId } from "../../../core/utils/types/ids";
+import CheckBox from "../../../components/checkbox/Checkbox";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];
@@ -112,7 +112,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         <CheckBox
           selected={materialsToRenew.length === allRenewableMaterials}
           id="checkbox-select-all"
-          onChecked={selectAll}
+          onChecked={() => selectAll()}
           label={checkboxLabel}
         />
         <Button
@@ -164,7 +164,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
-              onChecked={selectAll}
+              onChecked={() => selectAll()}
               id="checkbox-select-all"
               label={checkboxBottomLabel}
             />
