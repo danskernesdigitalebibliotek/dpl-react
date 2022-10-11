@@ -112,7 +112,7 @@ export default {
       defaultValue: "Skift",
       control: { type: "text" }
     },
-    reservationDetailsPickupDeadlineTitelText: {
+    reservationDetailsPickupDeadlineTitleText: {
       defaultValue: "Udløbsdato",
       control: { type: "text" }
     },
@@ -150,6 +150,30 @@ export default {
     },
     reservationDetailsCancelText: {
       defaultValue: "Annuller",
+      control: { type: "text" }
+    },
+    oneMonthText: {
+      defaultValue: "1 måned",
+      control: { type: "text" }
+    },
+    twoMonthsText: {
+      defaultValue: "2 måneder",
+      control: { type: "text" }
+    },
+    threeMonthsText: {
+      defaultValue: "3 måneder",
+      control: { type: "text" }
+    },
+    sixMonthsText: {
+      defaultValue: "6 måneder",
+      control: { type: "text" }
+    },
+    oneYearText: {
+      defaultValue: "1 år",
+      control: { type: "text" }
+    },
+    reservationDetailsNothingSelectedLabelText: {
+      defaultValue: "Vælg",
       control: { type: "text" }
     }
   },
