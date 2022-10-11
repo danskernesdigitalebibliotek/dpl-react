@@ -16,6 +16,11 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
+    dplCmsBaseUrl: {
+      name: "DPL CMS base URL",
+      defaultValue: "http://dpl-cms.docker",
+      control: { type: "text" }
+    },
     wid: {
       name: "Work ID",
       defaultValue: "work-of:870970-basis:52557240",

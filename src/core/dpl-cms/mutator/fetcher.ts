@@ -1,5 +1,5 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
-import { getFectcherUrl, configTypes } from "../../utils/helpers/fetcher";
+import { getFetcherUrl, configTypes } from "../../utils/helpers/fetcher";
 
 const defaultBaseUrl = "http://dpl-cms.docker";
 
@@ -54,8 +54,7 @@ export const fetcher = async <ResponseType>({
   signal?: AbortSignal;
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
-
-  const baseUrlFromConfig = getFectcherUrl(configTypes.fbs);
+  const baseUrlFromConfig = getFetcherUrl(configTypes.dplCms);
   const baseURL = baseUrlFromConfig || defaultBaseUrl;
 
   const authHeaders = token
