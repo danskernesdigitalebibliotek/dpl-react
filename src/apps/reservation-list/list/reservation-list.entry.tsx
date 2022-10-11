@@ -25,11 +25,17 @@ export interface ReservationListProps {
   reservationDetailsNumberInQueueTitelText: string;
   reservationDetailsPickUpAtTitelText: string;
   reservationDetailsNoInterestAfterTitelText: string;
-  reservationDetailsPickupDeadlineTitelText: string;
+  reservationDetailsPickupDeadlineTitleText: string;
   reservationDetailsDateOfReservationTitelText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveReservationText: string;
   reservationDetailsGoToEreolenText: string;
+  oneMonthText: string;
+  twoMonthsText: string;
+  threeMonthsText: string;
+  sixMonthsText: string;
+  oneYearText: string;
+  reservationDetailsNothingSelectedLabelText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (
