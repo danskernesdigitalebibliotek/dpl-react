@@ -4,7 +4,6 @@ import { Product } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
-import { useText } from "../../../../core/utils/text";
 
 export interface MaterialProps {
   material?: BasicDetailsType | null;
@@ -21,8 +20,6 @@ const fetchMaterial =
     Component: ComponentType<P & MaterialProps>
   ): FC<P & InputProps> =>
   ({ identifier, faust, ...props }: InputProps) => {
-    const t = useText();
-
     // If this is a digital book, another HOC fetches the data and this
     // HOC just returns the component
     if (identifier) {
@@ -46,11 +43,11 @@ const fetchMaterial =
 
       useEffect(() => {
         if (data && isSuccessManifestation && data.manifestation) {
-          setMaterial(mapManifestationToBasicDetailsType(t, data));
+          setMaterial(mapManifestationToBasicDetailsType(data));
         } else {
           // todo error handling
         }
-      }, [isSuccessManifestation, data, t]);
+      }, [isSuccessManifestation, data]);
 
       return (
         <div>

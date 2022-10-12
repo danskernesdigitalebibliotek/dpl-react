@@ -4,7 +4,6 @@ import { useGetV1ProductsIdentifier } from "../../../../core/publizon/publizon";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { MaterialProps } from "./material-fetch-hoc";
 import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
-import { useText } from "../../../../core/utils/text";
 
 type InputProps = {
   faust: FaustId | null;
@@ -16,8 +15,6 @@ const fetchDigitalMaterial =
     Component: ComponentType<P & MaterialProps>
   ): FC<P & InputProps> =>
   ({ faust, identifier, ...props }: InputProps) => {
-    const t = useText();
-
     // If this is a physical book, another HOC fetches the data and this
     // HOC just returns the component
     if (faust) {
@@ -41,12 +38,12 @@ const fetchDigitalMaterial =
       useEffect(() => {
         if (productsData && isSuccessDigital && productsData.product) {
           setDigitalMaterial(
-            mapProductToBasicDetailsType(t, productsData.product)
+            mapProductToBasicDetailsType(productsData.product)
           );
         } else {
           // todo error handling
         }
-      }, [productsData, isSuccessDigital, t]);
+      }, [productsData, isSuccessDigital]);
 
       return (
         <div>
