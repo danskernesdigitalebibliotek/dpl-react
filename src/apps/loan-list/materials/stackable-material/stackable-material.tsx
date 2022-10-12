@@ -33,7 +33,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-  const { dueDate, faust, identifier } = loan;
+  const { dueDate, faust, identifier, periodical } = loan;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -80,7 +80,11 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         }`}
       >
         {material && (
-          <MaterialInfo material={material} isbnForCover={identifier || ""}>
+          <MaterialInfo
+            periodical={periodical}
+            material={material}
+            isbnForCover={identifier || ""}
+          >
             <AdditionalMaterialsButton
               label={t("loanListMaterialsDesktopText")}
               showOn="desktop"

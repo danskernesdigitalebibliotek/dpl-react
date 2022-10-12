@@ -10,7 +10,6 @@ interface BasicDetails {
   year: string;
   title: string;
   series: string;
-  periodical: string;
 }
 
 export type BasicDetailsType = Nullable<Partial<BasicDetails>>;

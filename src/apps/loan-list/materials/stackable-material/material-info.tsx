@@ -5,24 +5,18 @@ import { BasicDetailsType } from "../../../../core/utils/types/basic-details-typ
 interface MaterialInfoProps {
   material: BasicDetailsType;
   isbnForCover: string;
+  periodical?: string | null;
   children?: ReactNode;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
   material,
   isbnForCover,
+  periodical,
   children
 }) => {
-  const {
-    authors,
-    materialType,
-    year,
-    title,
-    description,
-    pid,
-    periodical,
-    series
-  } = material || {};
+  const { authors, materialType, year, title, description, pid, series } =
+    material || {};
   const coverId = pid || isbnForCover;
 
   return (
