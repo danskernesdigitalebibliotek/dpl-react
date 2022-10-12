@@ -102,14 +102,11 @@ export const getThresholds = () => {
   return getConf("thresholds", configuration);
 };
 
-export const daysBetweenTodayAndDate = (date?: string) => {
-  if (date) {
-    const inputDate = dayjs(date);
-    const today = dayjs();
+export const daysBetweenTodayAndDate = (date: string) => {
+  const inputDate = dayjs(date);
+  const today = dayjs();
 
-    return Math.ceil(inputDate.diff(today, "day", true));
-  }
-  return 0;
+  return Math.ceil(inputDate.diff(today, "day", true));
 };
 
 export const usePrevious = <Type>(value: Type) => {
