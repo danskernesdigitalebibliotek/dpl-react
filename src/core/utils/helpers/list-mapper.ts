@@ -1,6 +1,9 @@
 import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
+import {
+  GetMaterialManifestationQuery,
+  Series
+} from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
@@ -25,9 +28,26 @@ export const getContributors = (t: UseTextFunction, creators: string[]) => {
   return returnContentString;
 };
 
-//
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
+}
+
+function getSeriesString(
+  series: {
+    title: string;
+    numberInSeries?: {
+      number?: Array<number> | null;
+    } | null;
+  }[]
+) {
+  return series
+    .map(({ title, numberInSeries }) => {
+      if (numberInSeries && numberInSeries.number) {
+        return `${title} ${numberInSeries?.number?.[0]}`;
+      }
+      return title;
+    })
+    .join(", ");
 }
 
 // Loan is a loan from Publizon, and is the equivalent
@@ -58,6 +78,7 @@ export const mapFBSLoanToLoanType = (list: LoanV2[]): LoanType[] => {
     return {
       dueDate: loanDetails.dueDate,
       loanDate: loanDetails.loanDate,
+      periodical: loanDetails.periodical?.displayText || "",
       renewalStatusList,
       isRenewable,
       materialItemNumber: loanDetails.materialItemNumber,
@@ -114,6 +135,7 @@ export const mapProductToBasicDetailsType = (
 
   return {
     title,
+    periodical: null,
     year: publicationDate ? getYearFromDataString(publicationDate) : "",
     description,
     materialType: productType ? digitalProductType[productType] : "",
@@ -137,8 +159,15 @@ export const mapManifestationToBasicDetailsType = (
   t: UseTextFunction,
   material: GetMaterialManifestationQuery
 ) => {
-  const { hostPublication, abstract, titles, pid, materialTypes, creators } =
-    material?.manifestation || {};
+  const {
+    hostPublication,
+    abstract,
+    titles,
+    pid,
+    materialTypes,
+    creators,
+    series
+  } = material?.manifestation || {};
 
   const description = abstract ? abstract[0] : "";
   const {
@@ -158,6 +187,7 @@ export const mapManifestationToBasicDetailsType = (
     title: mainText,
     year,
     description,
+    series: series && series.length > 0 ? getSeriesString(series) : "",
     materialType: materialTypes ? materialTypes[0].specific : undefined
   } as BasicDetailsType;
 };
