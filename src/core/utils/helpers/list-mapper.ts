@@ -4,7 +4,6 @@ import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graph
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
-import { UseTextFunction } from "../text";
 import { store } from "../../store";
 
 // Creates a "by author, author and author"-string
