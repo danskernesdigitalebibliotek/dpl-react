@@ -11,6 +11,8 @@ import { store } from "../../store";
 export const getContributors = (creators: string[]) => {
   let returnContentString = "";
 
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
   const {
     text: { data: texts }
   } = store.getState();
@@ -110,6 +112,8 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     externalProductId
   } = material;
 
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
   const {
     text: { data: texts }
   } = store.getState();
