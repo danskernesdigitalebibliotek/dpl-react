@@ -26,11 +26,8 @@ export const getContributors = (t: UseTextFunction, creators: string[]) => {
 };
 
 //
-function getYearFromDataString(date?: string) {
-  if (date) {
-    return new Date(date).getFullYear();
-  }
-  return "";
+function getYearFromDataString(date: string) {
+  return new Date(date).getFullYear();
 }
 
 // Loan is a loan from Publizon, and is the equivalent
