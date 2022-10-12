@@ -4,22 +4,29 @@ import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graph
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
-import { UseTextFunction } from "../text";
+import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?
-export const getContributors = (t: UseTextFunction, creators: string[]) => {
+export const getContributors = (creators: string[]) => {
   let returnContentString = "";
+
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
+  const {
+    text: { data: texts }
+  } = store.getState();
+
   if (creators && creators.length > 0) {
     if (creators.length === 1) {
-      returnContentString = `${t("materialByAuthorText")} ${creators.join(
+      returnContentString = `${texts.materialByAuthorText} ${creators.join(
         ", "
       )}`;
     } else {
-      returnContentString = `${t("materialByAuthorText")} ${creators
+      returnContentString = `${texts.materialByAuthorText} ${creators
         .slice(0, -1)
-        .join(", ")} ${t("materialAndAuthorText")} ${creators.slice(-1)}`;
+        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
     }
   }
   return returnContentString;
@@ -93,10 +100,7 @@ export const mapFBSRenewedLoanToLoanType = (
 // to a manifestation from FBI. These are mapped to the same
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
-export const mapProductToBasicDetailsType = (
-  t: UseTextFunction,
-  material: Product
-) => {
+export const mapProductToBasicDetailsType = (material: Product) => {
   const {
     publicationDate,
     title,
@@ -106,10 +110,16 @@ export const mapProductToBasicDetailsType = (
     externalProductId
   } = material;
 
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
+  const {
+    text: { data: texts }
+  } = store.getState();
+
   const digitalProductType: { [key: number]: string } = {
-    1: t("publizonEbookText"),
-    2: t("publizonAudioBookText"),
-    4: t("publizonAudioBookText")
+    1: texts.publizonEbookText,
+    2: texts.publizonAudioBookText,
+    4: texts.publizonAudioBookTex
   };
 
   return {
@@ -120,7 +130,6 @@ export const mapProductToBasicDetailsType = (
     externalProductId: externalProductId?.id,
     authors: contributors
       ? getContributors(
-          t,
           contributors?.map(
             ({ firstName, lastName }) => `${firstName} ${lastName}`
           )
@@ -134,7 +143,6 @@ export const mapProductToBasicDetailsType = (
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
-  t: UseTextFunction,
   material: GetMaterialManifestationQuery
 ) => {
   const { hostPublication, abstract, titles, pid, materialTypes, creators } =
@@ -149,10 +157,7 @@ export const mapManifestationToBasicDetailsType = (
 
   return {
     authors: creators
-      ? getContributors(
-          t,
-          creators?.map(({ display }) => display)
-        )
+      ? getContributors(creators?.map(({ display }) => display))
       : "",
     pid,
     title: mainText,
