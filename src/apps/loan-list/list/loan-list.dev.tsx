@@ -45,7 +45,6 @@ export default {
       defaultValue: "Forny flere",
       control: { type: "text" }
     },
-
     loanListLateFeeDesktopText: {
       defaultValue: "Du pålægges et gebyr, når materialet afleveres",
       control: { type: "text" }

@@ -21,6 +21,7 @@ function ResultPager({
       </p>
       <button
         type="button"
+        id="test-paginate-button"
         className="btn-primary btn-outline btn-medium arrow__hover--right-small"
         onClick={setPageHandler}
       >
