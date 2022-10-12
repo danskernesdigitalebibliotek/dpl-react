@@ -1,34 +1,31 @@
 import React, { FC, ReactNode } from "react";
-import { getAuthorNames, getMaterialInfo } from "../../utils/helpers";
-import { LoanMetaDataType } from "../../../../core/utils/helpers/LoanMetaDataType";
-import { GetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
-import { useText } from "../../../../core/utils/text";
 import { Cover } from "../../../../components/cover/cover";
-import { Pid } from "../../../../core/utils/types/ids";
+import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 
 interface MaterialInfoProps {
-  loanMetaData: LoanMetaDataType;
-  material: GetMaterialManifestationQuery;
+  material: BasicDetailsType;
+  isbnForCover: string;
   children: ReactNode;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
-  loanMetaData,
   material,
+  isbnForCover,
   children
 }) => {
-  const t = useText();
-  const { creators, materialType, year, materialTitle, pid, description } =
-    getMaterialInfo(loanMetaData, material);
+  const { authors, materialType, year, title, description, pid } =
+    material || {};
+  const coverId = pid || isbnForCover;
 
   return (
     <div className="list-reservation__material">
       <div>
         <Cover
-          pid={pid as Pid}
+          id={coverId}
+          idType={pid ? "pid" : "isbn"}
           size="small"
           animate={false}
-          description={description}
+          description={description || ""}
         />
       </div>
       <div className="list-reservation__information">
@@ -38,14 +35,9 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           </div>
         </div>
         <div className="list-reservation__about">
-          <h3 className="text-header-h4">{materialTitle}</h3>
+          <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
-            {creators &&
-              getAuthorNames(
-                creators,
-                t("loanListMaterialByAuthorText"),
-                t("loanListMaterialAndAuthorText")
-              )}{" "}
+            {authors}
             {year && <>({year})</>}
           </p>
         </div>

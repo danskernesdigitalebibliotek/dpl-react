@@ -143,7 +143,7 @@ const ReservationModalBody = ({
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover pid={pid} size="medium" animate />
+            <Cover id={pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
                 {materialTypes[0].specific}

@@ -5,44 +5,48 @@ import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { Cover } from "../../../components/cover/cover";
 import { useText } from "../../../core/utils/text";
-import {
-  formatDate,
-  getAuthorNames,
-  materialIsOverdue
-} from "../utils/helpers";
+import { formatDate, materialIsOverdue } from "../utils/helpers";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
-import { Pid } from "../../../core/utils/types/ids";
 import StatusBadge from "../materials/utils/status-badge";
 import IconCheckmark from "../../../components/icon-checkmark/icon-checkmark";
-import {
-  FetchMaterial,
-  MaterialDetailsProps,
+import WarningBar from "../materials/utils/warning-bar";
+import { LoanType } from "../../../core/utils/types/loan-type";
+import fetchMaterial, {
   MaterialProps
 } from "../materials/utils/material-fetch-hoc";
-import WarningBar from "../materials/utils/warning-bar";
+import fetchDigitalMaterial from "../materials/utils/digital-material-fetch-hoc";
 
 interface RenewStatusType {
   statusText?: string;
   buttonText: string;
 }
 
+interface MaterialDetailsProps {
+  loan: LoanType;
+}
+
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
-  loanMetaData,
+  loan,
   material
 }) => {
   const t = useText();
 
   const [renewStatus, setRenewStatus] = useState<RenewStatusType | null>(null);
-  const { creators, hostPublication, materialTypes, titles, pid } =
-    material?.manifestation || {};
+
   const {
-    main: [mainText]
-  } = titles || { main: [] };
-  const { materialItemNumber, dueDate, loanDate, id, isRenewable } =
-    loanMetaData;
+    dueDate,
+    faust,
+    identifier,
+    isRenewable,
+    materialItemNumber,
+    loanDate
+  } = loan;
+  const { authors, materialType, year, title, pid } = material || {};
+
   const [dueDateUpdatable, setDueDateUpdatable] = useState<
     string | undefined | null
   >(dueDate);
+
   const [renewed, setRenewed] = useState<boolean>(false);
   const { mutate } = useRenewLoansV2();
 
@@ -110,16 +114,21 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         <div className="modal-details__cover">
           <div className="material-container">
             <span className="material material--large bg-identity-tint-120 material__animate">
-              <Cover pid={pid as Pid} size="large" animate={false} />
+              <Cover
+                id={pid || identifier || ""}
+                idType={pid ? "pid" : "isbn"}
+                size="large"
+                animate={false}
+              />
             </span>
           </div>
         </div>
         <div className="modal-details__material">
           {dueDateUpdatable && materialIsOverdue(dueDateUpdatable) && (
             <div className="modal-details__tags">
-              {materialTypes && (
+              {materialType && (
                 <div className="status-label status-label--outline ">
-                  {materialTypes[0].specific}
+                  {materialType}
                 </div>
               )}
               <StatusBadge
@@ -128,24 +137,19 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               />
             </div>
           )}
-          <h2 className="modal-details__title text-header-h2">{mainText}</h2>
+          <h2 className="modal-details__title text-header-h2">{title}</h2>
           <p className="text-body-medium-regular">
-            {creators &&
-              getAuthorNames(
-                creators,
-                t("materialDetailsByAuthorText"),
-                t("materialDetailsAndAuthorText")
-              )}
-            {hostPublication?.year && <> ({hostPublication.year.year})</>}
+            {authors}
+            {year && <> ({year})</>}
           </p>
         </div>
       </div>
-      {id && isRenewable && (
+      {faust && isRenewable && (
         <div className="modal-details__buttons">
           {renewStatus === null && (
             <button
               type="button"
-              onClick={() => renew(parseInt(id, 10))}
+              onClick={() => renew(parseInt(faust, 10))}
               className="btn-primary btn-filled btn-small arrow__hover--right-small"
             >
               {t("materialDetailsRenewLoanButtonText")}
@@ -233,4 +237,4 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   );
 };
 
-export default FetchMaterial(MaterialDetails);
+export default fetchDigitalMaterial(fetchMaterial(MaterialDetails));

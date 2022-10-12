@@ -89,7 +89,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
-          pid={manifestationPid}
+          id={manifestationPid}
           description={String(fullTitle)}
           url={materialFullUrl}
           tint={coverTint}

@@ -35,12 +35,6 @@ export interface LoanListEntryProps {
   loanListEmptyPhysicalLoansText: string;
   materialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
-  loanListMaterialByAuthorText: string;
-  loanModalMaterialByAuthorText: string;
-  materialDetailsByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
-  loanModalMaterialAndAuthorText: string;
-  materialDetailsAndAuthorText: string;
   dueDateRenewLoanModalHeaderText: string;
   renewLoanModalHeaderText: string;
   renewLoanModalCloseModalText: string;
@@ -67,6 +61,11 @@ export interface LoanListEntryProps {
   loanListDigitalLoansEmptyListText: string;
   loanListPhysicalLoansEmptyListText: string;
   loanListDigitalPhysicalLoansEmptyListText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
+  publizonAudioBookText: string;
+  publizonPodcastText: string;
+  publizonEbookText: string;
 }
 
 const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;

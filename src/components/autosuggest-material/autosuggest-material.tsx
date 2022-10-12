@@ -60,7 +60,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                     <Cover
                       animate
                       size="xsmall"
-                      pid={item.work.manifestations.first.pid as Pid}
+                      id={item.work.manifestations.first.pid as Pid}
                     />
                   )}
                 </div>

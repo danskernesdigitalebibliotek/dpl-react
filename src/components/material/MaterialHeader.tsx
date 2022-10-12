@@ -82,7 +82,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover pid={coverPid} size="xlarge" animate />
+        <Cover id={coverPid} size="xlarge" animate />
       </div>
       <div className="material-header__content">
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />

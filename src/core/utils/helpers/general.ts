@@ -9,7 +9,7 @@ import configuration, {
 import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
-import { LoanMetaDataType } from "../types/loan-meta-data-type";
+import { LoanType } from "../types/loan-type";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
@@ -125,7 +125,7 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanMetaDataType[]) => {
+export const sortByLoanDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort(
@@ -135,7 +135,7 @@ export const sortByLoanDate = (list: LoanMetaDataType[]) => {
   );
 };
 
-export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
+export const getDueDatesLoan = (list: LoanType[]) => {
   return Array.from(
     new Set(
       list
@@ -145,7 +145,7 @@ export const getDueDatesLoan = (list: LoanMetaDataType[]) => {
   ) as string[];
 };
 
-export const getDueDatesForModal = (list: LoanMetaDataType[], date: string) => {
+export const getDueDatesForModal = (list: LoanType[], date: string) => {
   return list.filter(({ dueDate }) => dueDate === date);
 };
 
@@ -160,13 +160,13 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
   return Number(pageSize);
 };
 
-export const getRenewableMaterials = (list: LoanMetaDataType[]) => {
+export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ id }) => parseInt(id, 10));
+    .map(({ faust }) => faust) as FaustId[];
 };
 
-export const getAmountOfRenewableLoans = (list: LoanMetaDataType[]) => {
+export const getAmountOfRenewableLoans = (list: LoanType[]) => {
   return getRenewableMaterials(list).length;
 };
 
