@@ -28,6 +28,7 @@ interface SearchResultEntryUrlProps {
 interface SearchResultEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
+  blacklistedSearchBranchesConfig?: string;
   branchesConfig: string;
 }
 
