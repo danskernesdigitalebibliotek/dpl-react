@@ -114,7 +114,7 @@ interface MaterialEntryUrlProps {
 }
 interface MaterialEntryConfigProps {
   smsNotificationsForReservationsEnabledConfig: boolean;
-  blacklistedBranchesConfig?: string;
+  blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
 }
 

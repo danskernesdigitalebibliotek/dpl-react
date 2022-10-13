@@ -2,10 +2,14 @@ import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";
 
+export type ReturnValue<T> = T extends string ? string : T[];
+
 export type UseConfigFunction = <T>(
   key: string,
-  options?: { jsonParse?: boolean; stringToArray?: boolean }
-) => string | T[] | undefined;
+  options?: {
+    transformer?: "jsonParse" | "stringToArray";
+  }
+) => ReturnValue<T>;
 
 export const useConfig = (): UseConfigFunction => {
   const { data } = useSelector((state: RootState) => state.config);
@@ -14,10 +18,10 @@ export const useConfig = (): UseConfigFunction => {
     if (!data?.[key]) {
       return undefined;
     }
-    if (options?.jsonParse) {
+    if (options?.transformer === "jsonParse") {
       return JSON.parse(data[key]);
     }
-    if (options?.stringToArray) {
+    if (options?.transformer === "stringToArray") {
       return data[key].split(",");
     }
     return data?.[key];

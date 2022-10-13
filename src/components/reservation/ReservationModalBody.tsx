@@ -61,10 +61,8 @@ const ReservationModalBody = ({
   const t = useText();
   const config = useConfig();
   const branches = config<AgencyBranch>("branchesConfig", {
-    jsonParse: true
+    transformer: "jsonParse"
   });
-
-  const userListItemsBranches = Array.isArray(branches) ? branches : [];
 
   const mainManifestationType = getManifestationType(mainManifestation);
   const { reservableManifestations } = UseReservableManifestations({
@@ -186,7 +184,7 @@ const ReservationModalBody = ({
               {patron && (
                 <UserListItems
                   patron={patron}
-                  branches={userListItemsBranches}
+                  branches={branches}
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
                   selectedInterest={selectedInterest}
@@ -204,7 +202,7 @@ const ReservationModalBody = ({
           title={mainTitle[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
-            userListItemsBranches
+            branches
           )}
           numberInQueue={reservationDetails.numberInQueue}
         />
