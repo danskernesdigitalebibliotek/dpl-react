@@ -19,7 +19,7 @@ import {
   smsNotificationsIsEnabled,
   getPreferredBranch,
   getNoInterestAfter,
-  excludeBlacklistedBranches
+  getWhitelistBranches
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
@@ -53,13 +53,7 @@ const UserListItems: FC<UserListItemsProps> = ({
     transformer: "stringToArray"
   });
 
-  let pickupModalBranches = branches;
-  if (Array.isArray(blacklistBranches)) {
-    pickupModalBranches = excludeBlacklistedBranches(
-      branches,
-      blacklistBranches
-    );
-  }
+  const whitelistBranches = getWhitelistBranches(branches, blacklistBranches);
 
   const { open } = useModalButtonHandler();
   const openModal = (type: ModalReservationFormTextType) => () => {
@@ -90,7 +84,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           />
         </>
       )}
-      {preferredPickupBranch && branches && (
+      {preferredPickupBranch && whitelistBranches && (
         <>
           <ReservationFormListItem
             icon={Location}
@@ -99,7 +93,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             changeHandler={openModal("pickup")}
           />
           <PickupModal
-            branches={pickupModalBranches}
+            branches={whitelistBranches}
             defaultBranch={selectedBranch ?? preferredPickupBranch}
             selectBranchHandler={selectBranchHandler}
           />

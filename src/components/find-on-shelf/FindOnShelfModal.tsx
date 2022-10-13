@@ -22,6 +22,7 @@ import Disclosure from "../material/disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
+import { useConfig } from "../../core/utils/config";
 
 export const findOnShelfModalId = (faustId: FaustId) =>
   `find-on-shelf-modal-${faustId}`;
@@ -41,13 +42,18 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   selectedPeriodical,
   setSelectedPeriodical
 }) => {
+  const config = useConfig();
+  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
+  });
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
     convertPostIdToFaustId(manifestationPid)
   );
   const { data, isError, isLoading } = useGetHoldingsV3({
-    recordid: faustIdArray
+    recordid: faustIdArray,
+    ...(Array.isArray(blacklistBranches) ? { exclude: blacklistBranches } : {})
   });
   const author =
     creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
@@ -78,6 +84,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
       });
     })
     .flat();
+
   const allBranches = data
     .map((item) => item.holdings.map((holding) => holding.branch.branchId))
     .flat();
