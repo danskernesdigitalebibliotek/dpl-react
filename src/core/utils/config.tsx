@@ -2,9 +2,9 @@ import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";
 
-export type ReturnValue<T> = T extends string ? string : T[];
+type ReturnValue<T> = T extends string ? string : T[];
 
-export type UseConfigFunction = <T>(
+type UseConfigFunction = <T>(
   key: string,
   options?: {
     transformer?: "jsonParse" | "stringToArray";
