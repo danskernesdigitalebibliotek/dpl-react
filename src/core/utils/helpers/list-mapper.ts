@@ -32,7 +32,6 @@ export const getContributors = (creators: string[]) => {
   return returnContentString;
 };
 
-//
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
 }
