@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { UseConfigFunction } from "../../core/utils/config";
 import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
@@ -16,8 +15,9 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 
-export const smsNotificationsIsEnabled = (config: UseConfigFunction) =>
-  config("smsNotificationsForReservationsEnabledConfig") === "1";
+export const smsNotificationsIsEnabled = (
+  configValue: string | undefined | string[]
+) => configValue === "1";
 
 export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);

@@ -49,8 +49,8 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const blacklistBranches = config<string>("blacklistedBranchesConfig", {
-    stringToArray: true
+  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
   });
 
   let pickupModalBranches = branches;
@@ -106,7 +106,9 @@ const UserListItems: FC<UserListItemsProps> = ({
         </>
       )}
       <>
-        {smsNotificationsIsEnabled(config) && (
+        {smsNotificationsIsEnabled(
+          config<string>("smsNotificationsForReservationsEnabledConfig")
+        ) && (
           <>
             <ReservationFormListItem
               icon={Subtitles}
