@@ -24,9 +24,12 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   cursorPointer = false
 }) => {
   const config = useConfig();
-  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
+  const blacklistBranches = config<string>(
+    "blacklistedAvailabilityBranchesConfig",
+    {
+      transformer: "stringToArray"
+    }
+  );
 
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
