@@ -88,8 +88,4 @@ export const getStackedItems = (
   return returnLoans;
 };
 
-export const getListItems = (list: LoanType[], itemsShown: number) => {
-  return [...list].splice(0, itemsShown);
-};
-
 export default {};

@@ -12,6 +12,17 @@ function ResultPager({
   hitcount
 }: ResultPagerProps) {
   const t = useText();
+
+  if (itemsShown >= hitcount) {
+    return (
+      <div className="result-pager">
+        <p className="text-small-caption result-pager__title">
+          {t("showingText")} {hitcount} {t("outOfText")} {hitcount}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="result-pager">
       <p className="text-small-caption result-pager__title">
