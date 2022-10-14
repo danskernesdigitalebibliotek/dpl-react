@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState, useEffect } from "react";
 import { Link } from "../../../../components/atoms/link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
@@ -6,6 +6,7 @@ import DateInput from "./date-input";
 import { useUpdateV5 } from "../../../../core/fbs/fbs";
 import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
+import { useConfig } from "../../../../core/utils/config";
 
 interface PauseReservationProps {
   id: string;
@@ -17,9 +18,14 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
-  
+  const config = useConfig();
+  const [startDate, setStartDate] = useState<string>(
+    (config("pauseReservationStartDateConfig") as string) || ""
+  );
+  const [endDate, setEndDate] = useState<string | null>("");
+
   const save = useCallback(() => {
-    if (user) {
+    if (user && startDate && endDate) {
       mutate(
         {
           data: {
@@ -28,7 +34,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
               receiveEmail: user.receiveEmail,
               receivePostalMail: user.receivePostalMail,
               receiveSms: user.receiveSms,
-              onHold: { from: "", to: "" }
+              onHold: { from: startDate, to: endDate }
             }
           }
         },
@@ -42,7 +48,16 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         }
       );
     }
-  }, [mutate, user]);
+  }, [close, endDate, mutate, pauseReservation, startDate, user]);
+
+  useEffect(() => {
+    if (user?.onHold?.from) {
+      setStartDate(user.onHold.from);
+    }
+    if (user?.onHold?.to) {
+      setEndDate(user.onHold.to);
+    }
+  }, [user?.onHold]);
 
   return (
     <Modal
@@ -66,11 +81,13 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <div className="modal-pause__dropdowns mt-24">
           <div className="datepickers">
             <DateInput
-              id="startDate"
+              value={startDate}
+              id="start-date"
               label={t("pauseReservationModalStartDateLabelText")}
             />
             <DateInput
-              id="endDate"
+              value={endDate}
+              id="end-date"
               label={t("pauseReservationModalEndDateLabelText")}
             />
           </div>
