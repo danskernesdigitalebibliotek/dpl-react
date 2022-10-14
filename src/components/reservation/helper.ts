@@ -148,29 +148,8 @@ export const getAuthorLine = (
 export const excludeBlacklistedBranches = (
   branches: AgencyBranch[],
   blacklist: string[]
-) => {
-  return branches.filter((item) => !blacklist.includes(item.branchId));
-};
-
-export const getWhitelistBranches = (
-  branches: string | AgencyBranch[] | undefined,
-  blacklist: string | string[] | undefined
 ): AgencyBranch[] => {
-  // If branches is a sting or undefined its is because somethings went wrong en decoding the config and we return an empty array
-  if (typeof branches === "string" || !branches) {
-    // eslint-disable-next-line no-console
-    console.error(
-      "file: helper.ts ~ line 161 ~ branches - Branches is not an array",
-      branches
-    );
-    return [];
-  }
-
-  if (Array.isArray(branches) && Array.isArray(blacklist)) {
-    return excludeBlacklistedBranches(branches, blacklist);
-  }
-  // Since that not blacklist we return all branches
-  return branches;
+  return branches.filter((item) => !blacklist.includes(item.branchId));
 };
 
 export default {};

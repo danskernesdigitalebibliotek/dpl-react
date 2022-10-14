@@ -60,7 +60,7 @@ const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
-  const branches = config<AgencyBranch>("branchesConfig", {
+  const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
 
