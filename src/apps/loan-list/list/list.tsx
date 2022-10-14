@@ -9,8 +9,8 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
-import EmptyList from "../materials/utils/empty-list";
 import { getModalIds } from "../../../core/utils/helpers/general";
+import EmptyList from "../../../components/empty-list/empty-list";
 
 export interface ListProps {
   header: string;
