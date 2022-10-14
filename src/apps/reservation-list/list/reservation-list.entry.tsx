@@ -50,6 +50,13 @@ export interface ReservationListProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
+  reservationListReadyForPickupTitleText: string;
+  reservationListReadyForPickupEmptyText: string;
+  reservationListPhysicalReservationsEmptyText: string;
+  reservationListPhysicalReservationsHeaderText: string;
+  reservationListDigitalReservationsEmptyText: string;
+  reservationListDigitalReservationsHeaderText: string;
+  reservationListAllEmptyText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

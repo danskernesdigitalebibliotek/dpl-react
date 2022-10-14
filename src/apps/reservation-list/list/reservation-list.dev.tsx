@@ -37,6 +37,22 @@ export default {
       defaultValue: "Klar til lån",
       control: { type: "text" }
     },
+    reservationListReadyForPickupEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 reserveringer klar til lån",
+      control: { type: "text" }
+    },
+    reservationListPhysicalReservationsEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 fysiske reserveringer i kø",
+      control: { type: "text" }
+    },
+    reservationListAllEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 reserveringer",
+      control: { type: "text" }
+    },
+    reservationListDigitalReservationsEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 digitale reserveringer i kø",
+      control: { type: "text" }
+    },
     readyText: {
       defaultValue: "Klar",
       control: { type: "text" }

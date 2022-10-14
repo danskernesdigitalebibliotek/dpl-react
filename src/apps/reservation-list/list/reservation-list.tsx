@@ -21,6 +21,7 @@ import {
   useGetReservationsV2
 } from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
+import EmptyList from "../../../components/empty-list/empty-list";
 
 const ReservationList: FC = () => {
   const t = useText();
@@ -37,6 +38,8 @@ const ReservationList: FC = () => {
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
     useState<ReservationType[]>([]);
+
+  const [allListsEmpty, setAllListsEmpty] = useState<boolean>(true);
 
   const [
     readyForPickupReservationsPublizon,
@@ -57,6 +60,9 @@ const ReservationList: FC = () => {
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (publizonData && publizonData.reservations) {
+      if (publizonData.reservations.length > 0) {
+        setAllListsEmpty(false);
+      }
       setReadyForPickupReservationsPublizon(
         getReadyForPickup(
           mapPublizonReservationToReservationType(publizonData.reservations)
@@ -82,6 +88,9 @@ const ReservationList: FC = () => {
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccess && data) {
+      if (data.length > 0) {
+        setAllListsEmpty(false);
+      }
       setReadyForPickupReservationsFBS(
         sortByOldestPickupDeadline(
           getReadyForPickup(mapFBSReservationToReservationType(data))
@@ -103,21 +112,31 @@ const ReservationList: FC = () => {
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
       {user && <ReservationPause user={user} />}
-      <List
-        header={t("reservationListReadyForPickupTitleText")}
-        list={sortByOldestPickupDeadline([
-          ...readyForPickupReservationsFBS,
-          ...readyForPickupReservationsPublizon
-        ])}
-      />
-      <List
-        header={t("reservationListPhysicalReservationsHeaderText")}
-        list={reservedReservationsFBS}
-      />
-      <List
-        header={t("reservationListDigitalReservationsHeaderText")}
-        list={reservedReservationsPublizon}
-      />
+      {!allListsEmpty && (
+        <>
+          <List
+            header={t("reservationListReadyForPickupTitleText")}
+            emptyListLabel={t("reservationListReadyForPickupEmptyText")}
+            list={sortByOldestPickupDeadline([
+              ...readyForPickupReservationsFBS,
+              ...readyForPickupReservationsPublizon
+            ])}
+          />
+          <List
+            emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
+            header={t("reservationListPhysicalReservationsHeaderText")}
+            list={reservedReservationsFBS}
+          />
+          <List
+            header={t("reservationListDigitalReservationsHeaderText")}
+            emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
+            list={reservedReservationsPublizon}
+          />
+        </>
+      )}
+      {allListsEmpty && (
+        <EmptyList emptyListText={t("reservationListAllEmptyText")} />
+      )}
     </div>
   );
 };
