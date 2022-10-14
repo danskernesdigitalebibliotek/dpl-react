@@ -10,4 +10,5 @@ export interface ReservationType extends ListType {
   expectedRedeemDateUtc?: string;
   pickupNumber?: string;
   reservationId?: number;
+  title?: string | null;
 }

@@ -172,7 +172,8 @@ export const mapPublizonReservationToReservationType = (
       createdDateUtc,
       status,
       expectedRedeemDateUtc,
-      expireDateUtc
+      expireDateUtc,
+      productTitle
     }) => {
       const publizonReservationState: { [key: number]: string } = {
         1: "reserved", // in publizon Queued
@@ -181,9 +182,9 @@ export const mapPublizonReservationToReservationType = (
         4: "cancelled", // in publizon Cancelled
         5: "expired" // in publizon Expired
       };
-
       return {
         identifier,
+        title: productTitle,
         faust: null,
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
