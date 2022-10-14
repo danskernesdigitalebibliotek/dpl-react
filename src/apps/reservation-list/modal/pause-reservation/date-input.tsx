@@ -3,15 +3,28 @@ import React, { FC } from "react";
 interface DateInputProps {
   label: string;
   id: string;
+  value: string;
+  onChange: () => void;
 }
 
-const DateInput: FC<DateInputProps> = ({ label, id }) => {
+const DateInput: FC<DateInputProps> = ({ label, id, value, onChange }) => {
+  // cannot set from/to to yesterday or yesteryear
+  const minDate = new Date().toISOString().split("T")[0];
+
   return (
     <div className="datepicker">
       <span className="datepicker-toggle">
         <label htmlFor={id} className="text-body-medium-regular">
           {label}
-          <input type="date" name={id} id={id} className="datepicker-input" />
+          <input
+            type="date"
+            onChange={onChange}
+            name={id}
+            value={value}
+            id={id}
+            className="datepicker-input"
+            min={minDate}
+          />
         </label>
       </span>
     </div>

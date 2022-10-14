@@ -17,6 +17,10 @@ export default {
       defaultValue: "",
       control: { type: "text" }
     },
+    pauseReservationStartDateConfig: {
+      defaultValue: "2022-06-30",
+      control: { type: "text" }
+    },
     headerText: {
       defaultValue: "Dine reserveringer",
       control: { type: "text" }
@@ -206,7 +210,7 @@ export default {
     },
     pauseReservationModalBreadText: {
       defaultValue:
-        "Sæt fysiske reserveringer på pause i god tid, da reserveringer der allerede bliver behandlet ikke bliver sat på pause. Læs mere (link til side m. systemtekst Se bilag 6 pkt. 1",
+        "Sæt fysiske reserveringer på pause i god tid, da reserveringer der allerede bliver behandlet ikke bliver sat på pause.",
       control: { type: "text" }
     },
     pauseReservationModalCloseModalText: {
@@ -271,5 +275,13 @@ export const ReservationListDeleteDigitalModal = Template.bind({});
 ReservationListDeleteDigitalModal.parameters = {
   query: {
     modal: `9788740047905&${deleteReservation}9788740047905`
+  }
+};
+
+const { pauseReservation } = getModalIds();
+export const ReservationListPauseModal = Template.bind({});
+ReservationListPauseModal.parameters = {
+  query: {
+    modal: pauseReservation
   }
 };
