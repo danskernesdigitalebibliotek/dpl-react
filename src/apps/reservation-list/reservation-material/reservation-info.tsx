@@ -37,17 +37,19 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   useEffect(() => {
     if (branchResponse.data && pickupBranch) {
-      if (pickupDeadline) {
-        setReadyForPickupLabel(
-          `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
-        );
-      }
+      setReadyForPickupLabel(
+        pickupDeadline
+          ? `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
+          : ""
+      );
       setPickupLibrary(
         getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
       );
-    } else if (pickupDeadline) {
+    } else {
       setReadyForPickupLabel(
-        `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
+        pickupDeadline
+          ? `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
+          : ""
       );
     }
   }, [branchResponse, pickupBranch, pickupDeadline, t]);
@@ -79,7 +81,11 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
             : ""
         }
         // todo string interpolation
-        label={`${t("youAreNumberInLineText")} ${numberInQueue}`}
+        label={
+          numberInQueue === 1
+            ? `${t("youAreFirstInQueueText")}`
+            : `${t("youAreNumberInQueueText")} ${numberInQueue - 1}`
+        }
       >
         <span className="counter__value">{numberInQueue}</span>
         <span className="counter__label">{t("inLineText")}</span>
