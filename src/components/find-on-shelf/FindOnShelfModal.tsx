@@ -43,7 +43,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   setSelectedPeriodical
 }) => {
   const config = useConfig();
-  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
   const t = useText();

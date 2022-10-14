@@ -2,21 +2,38 @@ import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";
 
-type ReturnValue<T> = T extends string ? string : T[];
+function config(key: string): string;
 
-type UseConfigFunction = <T>(
+function config<T>(
   key: string,
-  options?: {
-    transformer?: "jsonParse" | "stringToArray";
+  options: {
+    transformer: "jsonParse";
   }
-) => ReturnValue<T>;
+): T;
+
+function config(
+  key: string,
+  options: {
+    transformer: "stringToArray";
+  }
+): string[];
+function config<T>(): T | string | string[] {
+  return [];
+}
+
+type UseConfigFunction = typeof config;
 
 export const useConfig = (): UseConfigFunction => {
   const { data } = useSelector((state: RootState) => state.config);
 
-  return (key, options) => {
+  return (
+    key: string,
+    options?: {
+      transformer?: "jsonParse" | "stringToArray";
+    }
+  ) => {
     if (!data?.[key]) {
-      return undefined;
+      throw new Error(`Config key ${key} not found`);
     }
     if (options?.transformer === "jsonParse") {
       return JSON.parse(data[key]);
