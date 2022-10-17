@@ -5,7 +5,7 @@ describe("Reservation details modal test", () => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
-
+ 
     // Intercept covers.
     cy.fixture("cover.json").then((result) => {
       cy.intercept("GET", "**/covers**", result);
@@ -417,7 +417,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find(".dropdown__select")
-      .should("have.value", "DK-775120");
+      .should("have.value", "Højbjerg");
 
     // ID 13 2.f. header "Not interested after"
     cy.get(".modal-details__list")
