@@ -417,6 +417,15 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(2)
       .find("button")
+      .should("exist")
+      .click();
+
+    // ID 15 2. Dropdown with interest periods
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(2)
+      .find(".dropdown__select")
+      .find(".dropdown__option")
       .should("exist");
 
     // ID 13 2.h. header "Date of reservation"

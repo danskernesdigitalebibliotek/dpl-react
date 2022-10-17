@@ -108,7 +108,7 @@ export default {
       defaultValue: "Afhentes på",
       control: { type: "text" }
     },
-    reservationDetailsListDetailsChangeText: {
+    listDetailsChangeText: {
       defaultValue: "Skift",
       control: { type: "text" }
     },
@@ -172,7 +172,7 @@ export default {
       defaultValue: "1 år",
       control: { type: "text" }
     },
-    reservationDetailsNothingSelectedLabelText: {
+    listDetailsNothingSelectedLabelText: {
       defaultValue: "Vælg",
       control: { type: "text" }
     }
