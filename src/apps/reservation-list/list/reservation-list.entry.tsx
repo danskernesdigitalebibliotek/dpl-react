@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import ReservationList from "./reservation-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
+import { withConfig } from "../../../core/utils/config";
 
 export interface ReservationListProps {
   headerText: string;
@@ -12,6 +13,7 @@ export interface ReservationListProps {
   youAreNumberInLineText: string;
   expiresSoonText: string;
   inLineText: string;
+  blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
   publizonAudioBookText: string;
@@ -36,10 +38,11 @@ export interface ReservationListProps {
   sixMonthsText: string;
   oneYearText: string;
   listDetailsNothingSelectedLabelText: string;
+  branchesConfig: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (
   <ReservationList />
 );
 
-export default withUrls(withText(ReservationListEntry));
+export default withConfig(withUrls(withText(ReservationListEntry)));

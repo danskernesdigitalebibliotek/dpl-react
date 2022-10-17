@@ -14,7 +14,7 @@ import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useGetBranches, useUpdateReservations } from "../../../core/fbs/fbs";
+import { useUpdateReservations } from "../../../core/fbs/fbs";
 import {
   getPreferredBranch,
   hardcodedInterestPeriods
@@ -29,20 +29,23 @@ import ListDetailsDropdown, {
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
+  branches: AgencyBranch[];
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
-  reservation
+  reservation,
+  branches
 }) => {
   const t = useText();
   const { mutate } = useUpdateReservations();
-  const branchResponse = useGetBranches();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
   const [showBranchesSelect, setShowBranchesSelect] = useState<boolean>(false);
   const [showExpirySelect, setShowExpirySelect] = useState<boolean>(false);
-  const [branches, setBranches] = useState<OptionsProps[] | null>(null);
   const [newBranch, setNewBranch] = useState<OptionsProps | null>(null);
   const [newExpiryDate, setNewExpiryDate] = useState<OptionsProps | null>(null);
+  const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
+    null
+  );
   const formatInterestPeriods = Object.entries(hardcodedInterestPeriods(t)).map(
     ([key, value]) => ({
       value: key,
@@ -61,15 +64,13 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   } = reservation;
 
   useEffect(() => {
-    if (branchResponse.data && pickupBranch) {
+    if (branches && pickupBranch) {
       // Map branches to match select options
-      const mappedBranches = branchResponse.data.map(({ title, branchId }) => {
+      const mappedBranches = branches.map(({ title, branchId }) => {
         return { label: title, value: branchId };
       });
-      setBranches(mappedBranches);
-      setPickupBranchFetched(
-        getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
-      );
+      setBranchesOptions(mappedBranches);
+      setPickupBranchFetched(getPreferredBranch(pickupBranch, branches));
 
       // selected branch
       const selected = mappedBranches.filter(
@@ -79,7 +80,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         setNewBranch(selected[0]);
       }
     }
-  }, [branchResponse.data, pickupBranch]);
+  }, [branches, pickupBranch]);
 
   const changeExpiryDate = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
@@ -96,8 +97,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   const changeNewBranch = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      if (branches) {
-        const selectedBranch = branches.filter(
+      if (branchesOptions) {
+        const selectedBranch = branchesOptions.filter(
           ({ value }) => value === e.target.value
         );
         if (selectedBranch.length > 0) {
@@ -105,7 +106,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         }
       }
     },
-    [branches]
+    [branchesOptions]
   );
 
   const save = useCallback(() => {
@@ -144,9 +145,11 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   const cancel = useCallback(() => {
     // Reset branch to original branch
-    if (branches) {
+    if (branchesOptions) {
       let originalBranch: OptionsProps[] = [];
-      originalBranch = branches.filter(({ value }) => value === pickupBranch);
+      originalBranch = branchesOptions.filter(
+        ({ value }) => value === pickupBranch
+      );
       if (originalBranch.length > 0) {
         setNewBranch(originalBranch[0]);
       }
@@ -157,7 +160,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     // reset to "change" links
     setShowBranchesSelect(false);
     setShowExpirySelect(false);
-  }, [branches, pickupBranch]);
+  }, [branchesOptions, pickupBranch]);
 
   return (
     <>
@@ -177,12 +180,12 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           title={t("reservationDetailsPickUpAtTitelText")}
           labels={[pickupBranchFetched, pickupNumber || ""]}
         >
-          {branches && (
+          {branchesOptions && (
             <ListDetailsDropdown
               showSelect={showBranchesSelect}
               setShowSelect={setShowBranchesSelect}
               onDropdownChange={changeNewBranch}
-              options={branches}
+              options={branchesOptions}
               selected={newBranch}
             />
           )}

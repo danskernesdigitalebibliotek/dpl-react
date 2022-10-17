@@ -9,11 +9,6 @@ describe("Reservation details modal test", () => {
       "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
     );
 
-    // Intercept branches.
-    cy.fixture("material/branches.json").then((result) => {
-      cy.intercept("GET", "**/agencyid/branches", result);
-    });
-
     // Intercept covers.
     cy.fixture("cover.json").then((result) => {
       cy.intercept("GET", "**/covers**", result);
@@ -396,7 +391,32 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find("button")
-      .should("exist");
+      .should("exist")
+      .click();
+
+    // ID 16 2. Dropdown with pickup libraries
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .find(".dropdown__option")
+      .should(
+        "have.text",
+        "VælgHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
+      );
+
+    // ID 16 3. user selects library
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .select("DK-775120");
+
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .should("have.value", "Højbjerg");
 
     // ID 13 2.f. header "Not interested after"
     cy.get(".modal-details__list")
@@ -435,26 +455,31 @@ describe("Reservation details modal test", () => {
         statusCode: 201,
         body: { code: 101, message: "OK" }
       }
-    ).as("put-new-expiry-date");
+    ).as("put-library-branch-and-expiry-date");
 
     // ID 15 2.g user clicks save
+    // ID 16 4. user clicks save
     cy.get(".modal-details__list").find("#test-save-physical-details").click();
 
     // ID 15 2.h system updates
-    cy.get("@put-new-expiry-date").should((response) => {
+    // ID 16 5. user clicks save
+    cy.get("@put-library-branch-and-expiry-date").should((response) => {
       expect(response).to.have.property("response");
     });
 
     // ID 15 2.i still on "detaljevisning"
+    // ID 16 6. user clicks save
     cy.get(".modal").should("exist");
 
+    // ID 16 6.b user clicks save
     // ID 15 2.i.b pick up library change link
     cy.get(".modal-details__list")
       .find(".list-details")
       .eq(1)
       .find("button")
       .should("exist");
-      
+
+    // ID 16 6.c user clicks save
     // ID 15 2.i.c expiry date change link
     cy.get(".modal-details__list")
       .find(".list-details")
