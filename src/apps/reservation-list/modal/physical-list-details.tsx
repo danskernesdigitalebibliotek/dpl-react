@@ -224,6 +224,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         <Button
           label={t("reservationDetailsSaveText")}
           buttonType="none"
+          id="test-save-physical-details"
           variant="filled"
           disabled={false}
           onClick={save}

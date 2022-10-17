@@ -420,13 +420,48 @@ describe("Reservation details modal test", () => {
       .should("exist")
       .click();
 
-    // ID 15 2. Dropdown with interest periods
+    // ID 15 2.a&b&c&d&e Dropdown with interest periods
     cy.get(".modal-details__list")
       .find(".list-details")
       .eq(2)
       .find(".dropdown__select")
       .find(".dropdown__option")
+      .should("have.text", "Vælg1 måned2 måneder3 måneder6 måneder1 år");
+
+    cy.intercept(
+      "PUT",
+      "**/external/v1/agencyid/patrons/patronid/reservations**",
+      {
+        statusCode: 201,
+        body: { code: 101, message: "OK" }
+      }
+    ).as("put-new-expiry-date");
+
+    // ID 15 2.g user clicks save
+    cy.get(".modal-details__list").find("#test-save-physical-details").click();
+
+    // ID 15 2.h system updates
+    cy.get("@put-new-expiry-date").should((response) => {
+      expect(response).to.have.property("response");
+    });
+
+    // ID 15 2.i still on "detaljevisning"
+    cy.get(".modal").should("exist");
+
+    // ID 15 2.i.b pick up library change link
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find("button")
       .should("exist");
+      
+    // ID 15 2.i.c expiry date change link
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(2)
+      .find("button")
+      .should("exist")
+      .click();
 
     // ID 13 2.h. header "Date of reservation"
     cy.get(".modal-details__list")
