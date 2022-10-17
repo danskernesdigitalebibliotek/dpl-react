@@ -35,7 +35,7 @@ export interface ReservationListProps {
   threeMonthsText: string;
   sixMonthsText: string;
   oneYearText: string;
-  reservationDetailsNothingSelectedLabelText: string;
+  listDetailsNothingSelectedLabelText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (
