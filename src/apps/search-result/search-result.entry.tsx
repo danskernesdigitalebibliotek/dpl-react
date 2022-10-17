@@ -43,10 +43,13 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
-  const pageSize = getPageSize({
-    desktop: pageSizeDesktop,
-    mobile: pageSizeMobile
-  });
+  const pageSize = getPageSize(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSize"
+  );
 
   return (
     <div>

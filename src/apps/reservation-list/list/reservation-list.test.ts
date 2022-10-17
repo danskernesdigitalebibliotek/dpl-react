@@ -210,7 +210,7 @@ describe("Reservation list", () => {
         ]
       }
     ).as("physical_reservations");
-    
+
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       statusCode: 200,
       body: {
@@ -365,7 +365,9 @@ describe("Reservation list", () => {
       code: 101,
       message: "OK"
     }).as("product");
+  });
 
+  it("Reservations list", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
@@ -378,9 +380,7 @@ describe("Reservation list", () => {
       "@product",
       "@user"
     ]);
-  });
 
-  it("Reservations list", () => {
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".reservation-list-page")
@@ -483,13 +483,16 @@ describe("Reservation list", () => {
 
     // ID 11 2.c The list "physical reservations"
     cy.get(".list-reservation-container").eq(1).should("exist");
+
     // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(1)
       .find("h2")
       .should("have.text", "Fysiske9");
+
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
     // todo
+
     // ID 11 2.c.iii. Every material is showed with
     // ID 11 2.c.iii.2. text: "You are at the front of the queue"
     cy.get(".list-reservation-container")
@@ -498,6 +501,7 @@ describe("Reservation list", () => {
       .eq(0)
       .find(".list-reservation__deadline p")
       .should("have.text", "Du er forrest i køen");
+
     // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
     cy.get(".list-reservation-container")
       .eq(1)
@@ -531,6 +535,351 @@ describe("Reservation list", () => {
       .eq(0)
       .find(".counter")
       .should("exist");
+  });
+
+  it("Reservations list pagination", () => {
+    cy.visit(
+      "/iframe.html?id=apps-reservation-list--reservation-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
+    );
+    // ID 11 2.b.iv more than "ready for pickup" 10 reservations the items paginate (here 2, because of config in cy.visit)
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".test-result-pager")
+      .should("exist");
+
+    // ID 11 2.c.iv more than 10 physical reservations the items paginate (here 2, because of config in cy.visit)
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(2)
+      .find(".test-result-pager")
+      .should("exist");
+
+    // ID 11 2.d.iv more than 10 digital reservations the items paginate (here 2, because of config in cy.visit)
+    cy.get(".list-reservation-container")
+      .eq(2)
+      .find(".list-reservation")
+      .should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(2)
+      .find(".test-result-pager")
+      .should("exist");
+  });
+
+  it("Reservations list ready for pickup empty", () => {
+    cy.intercept(
+      "GET",
+      "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
+      {
+        statusCode: 200,
+        body: [
+          {
+            reservationId: 67804976,
+            recordId: "46985591",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-09-21",
+            dateOfReservation: "2022-06-14T09:00:50.059",
+            numberInQueue: 1,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67805006,
+            recordId: "39429977",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-11",
+            dateOfReservation: "2022-06-14T09:01:36.523",
+            numberInQueue: 2,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "13c3f730-b71c-4164-bc41-b439ce9bf115",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67807688,
+            recordId: "20401206",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-11",
+            dateOfReservation: "2022-06-14T10:19:23.429",
+            numberInQueue: 1,
+            periodical: {
+              volume: null,
+              volumeYear: "2018",
+              displayText: "2018, nr. 9",
+              volumeNumber: "9"
+            },
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "634696e7-f5b2-49ae-8038-6546c5943f85",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67842154,
+            recordId: "42825115",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:01:48.102",
+            numberInQueue: 1,
+            periodical: {
+              volume: null,
+              volumeYear: "2022",
+              displayText: "2022, 03, April-Maj#Forårshaven",
+              volumeNumber: "03, April-Maj#Forårshaven"
+            },
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "b5a3f150-e45c-4cce-952e-ed6edc553eab",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67842199,
+            recordId: "42825115",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:03:10.578",
+            numberInQueue: 1,
+            periodical: {
+              volume: null,
+              volumeYear: "2021",
+              displayText: "2021, 5, Juni-Juli",
+              volumeNumber: "5, Juni-Juli"
+            },
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "76288332-23f6-4d29-8edc-8dbf9937d8fc",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67842207,
+            recordId: "42825115",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:03:41.134",
+            numberInQueue: 1,
+            periodical: {
+              volume: null,
+              volumeYear: "2021",
+              displayText: "2021, 5#Sommerens blomster",
+              volumeNumber: "5#Sommerens blomster"
+            },
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "49429a5f-f63e-4221-a96a-dc7aa27c5ec0",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67843684,
+            recordId: "62448784",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:37:31.768",
+            numberInQueue: 4,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "cfac37ef-564e-423d-a491-3d64f4c383d1",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67843804,
+            recordId: "62623462",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:40:27.055",
+            numberInQueue: 59,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "163bbc01-2a07-4f29-be98-d65ddeadb1ba",
+            reservationType: "normal"
+          },
+
+          {
+            reservationId: 67843846,
+            recordId: "62485124",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-15T11:41:24.075",
+            numberInQueue: 206,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "cae4db22-e267-4087-bdaa-d880bef19b52",
+            reservationType: "normal"
+          }
+        ]
+      }
+    );
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [
+          {
+            productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
+            identifier: "123",
+            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            status: 1,
+            productTitle: "Bargums synder",
+            expireDateUtc: "2023-01-27T19:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+          },
+          {
+            productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
+            identifier: "456",
+            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            status: 1,
+            productTitle: "Aargums synder",
+            expireDateUtc: "2023-01-27T19:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+          },
+          {
+            productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
+            identifier: "2344564754345",
+            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            status: 1,
+            productTitle: "Bargums synder",
+            expireDateUtc: "2022-12-27T19:37:15.63Z",
+            expectedRedeemDateUtc: "2022-12-27T19:37:15.63Z"
+          }
+        ],
+        code: 101,
+        message: "OK"
+      }
+    });
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+
+    // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".dpl-list-empty")
+      .should("exist")
+      .should("have.text", "Du har i øjeblikket 0 reserveringer klar til lån");
+
+    cy.intercept(
+      "GET",
+      "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
+      {
+        statusCode: 200,
+        body: [
+          {
+            reservationId: 67789642,
+            recordId: "48991963",
+            state: "readyForPickup",
+            pickupBranch: "DK-775100",
+            pickupDeadline: "2022-06-21",
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-13T17:08:58.505",
+            numberInQueue: null,
+            periodical: null,
+            pickupNumber: "Reserveringshylde 74",
+            ilBibliographicRecord: null,
+            transactionId: "480fc2fe-5b19-49bc-a206-6e306c2a2a56",
+            reservationType: "normal"
+          }
+        ]
+      }
+    );
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [
+          {
+            productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
+            identifier: "23324342",
+            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            status: 2,
+            productTitle: "Bargums synder",
+            expireDateUtc: "2023-01-27T19:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+          }
+        ],
+        code: 101,
+        message: "OK"
+      }
+    });
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+    // ID 11 2.c.v. No physical reservations text: "At the moment you have 0 reservations on physical items"
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".dpl-list-empty")
+      .should("exist")
+      .should("have.text", "Du har i øjeblikket 0 fysiske reserveringer i kø");
+
+    // ID 11 2.d.v. No digital reservations text: "At the moment you have 0 reservations on digital items"
+    cy.get(".list-reservation-container")
+      .eq(2)
+      .find(".dpl-list-empty")
+      .should("exist")
+      .should("have.text", "Du har i øjeblikket 0 digitale reserveringer i kø");
+
+    cy.intercept(
+      "GET",
+      "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
+      {
+        statusCode: 200,
+        body: []
+      }
+    );
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    });
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+
+    // ID 11 2: user has no reservations
+    // ID 11 2.a. header "Your reservations"
+    cy.get(".reservation-list-page")
+      .find("h1")
+      .should("have.text", "Dine reserveringer");
+      
+    // ID 11 2.b. Text: "At the moment you have 0 reservations"
+    cy.get(".dpl-list-empty")
+      .should("exist")
+      .should("have.text", "Du har i øjeblikket 0 reserveringer");
   });
 });
 

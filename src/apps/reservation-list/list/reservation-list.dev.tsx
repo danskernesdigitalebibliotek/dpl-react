@@ -9,6 +9,16 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    pageSizeDesktop: {
+      name: "Number of search result items on desktop",
+      defaultValue: 20,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      name: "Number of search result items on mobile",
+      defaultValue: 10,
+      control: { type: "number" }
+    },
     [configTypes.fbs]: {
       defaultValue: "",
       control: { type: "text" }

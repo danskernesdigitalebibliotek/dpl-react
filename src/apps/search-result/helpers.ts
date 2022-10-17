@@ -23,7 +23,10 @@ export const getPageSizeFromDataAttributes = ({
   return Number(pageSize);
 };
 
-export const getPageSize = (pageSizes: Partial<PageSizeDataAttributes>) => {
+export const getPageSize = (
+  pageSizes: Partial<PageSizeDataAttributes>,
+  configName: "pageSize" | "pageSizeReservationList"
+) => {
   const { desktop, mobile } = pageSizes;
   let pageSize = 0;
   if (desktop && mobile) {
@@ -31,7 +34,7 @@ export const getPageSize = (pageSizes: Partial<PageSizeDataAttributes>) => {
       pageSizes as PageSizeDataAttributes
     );
   } else {
-    pageSize = getPageSizeFromConfiguration("pageSize");
+    pageSize = getPageSizeFromConfiguration(configName);
   }
 
   return pageSize;
