@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useText } from "../../../core/utils/text";
-import { useGetBranches } from "../../../core/fbs/fbs";
 import { AgencyBranch } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
@@ -15,9 +14,13 @@ import ReservationStatus from "./reservation-status";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
+  branches: AgencyBranch[];
 }
 
-const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
+const ReservationInfo: FC<ReservationInfoProps> = ({
+  reservationInfo,
+  branches
+}) => {
   const t = useText();
 
   const {
@@ -31,26 +34,23 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
-  const branchResponse = useGetBranches();
   const colors = getColors();
   const thresholds = getThresholds();
 
   useEffect(() => {
-    if (branchResponse.data && pickupBranch) {
+    if (branches && pickupBranch) {
       if (pickupDeadline) {
         setReadyForPickupLabel(
           `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
         );
       }
-      setPickupLibrary(
-        getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
-      );
+      setPickupLibrary(getPreferredBranch(pickupBranch, branches));
     } else if (pickupDeadline) {
       setReadyForPickupLabel(
         `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
       );
     }
-  }, [branchResponse, pickupBranch, pickupDeadline, t]);
+  }, [branches, pickupBranch, pickupDeadline, t]);
 
   if (state === "readyForPickup") {
     return (
