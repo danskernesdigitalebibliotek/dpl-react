@@ -20,7 +20,8 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   pid,
   description,
   materialType,
-  isbnForCover
+  isbnForCover,
+  children
 }) => {
   const coverId = pid || isbnForCover;
 
