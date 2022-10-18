@@ -2,11 +2,30 @@ import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";
 
-export type UseConfigFunction = (key: string) => unknown;
+export type ReturnValue<T> = T extends string ? string : T[];
+
+export type UseConfigFunction = <T>(
+  key: string,
+  options?: {
+    transformer?: "jsonParse" | "stringToArray";
+  }
+) => ReturnValue<T>;
+
 export const useConfig = (): UseConfigFunction => {
   const { data } = useSelector((state: RootState) => state.config);
 
-  return (key: string) => data?.[key];
+  return (key, options) => {
+    if (!data?.[key]) {
+      return undefined;
+    }
+    if (options?.transformer === "jsonParse") {
+      return JSON.parse(data[key]);
+    }
+    if (options?.transformer === "stringToArray") {
+      return data[key].split(",");
+    }
+    return data?.[key];
+  };
 };
 
 export const withConfig = <T,>(Component: React.ComponentType<T>) => {
