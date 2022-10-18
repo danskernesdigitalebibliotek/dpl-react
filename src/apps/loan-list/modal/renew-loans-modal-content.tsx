@@ -21,6 +21,7 @@ interface RenewLoansModalContentProps {
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
+  pageSize: number;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
@@ -28,14 +29,12 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel,
   buttonBottomLabel,
+  pageSize,
   checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
   const { close } = useModalButtonHandler();
-  const { itemsShown, PagerComponent } = usePager(
-    loansModal.length,
-    getPageSizeFromConfiguration("pageSizeLoanList")
-  );
+  const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
   const [ref, isVisible] = useInView({ threshold: 0 });
   const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
   const [renewableMaterials, setRenewableMaterials] = useState<number>(0);
