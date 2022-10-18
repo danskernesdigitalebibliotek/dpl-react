@@ -4,9 +4,12 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
-export interface LoanListEntryProps {
+export interface LoanListEntryConfigProps {
   fbsBaseUrlConfig: string;
   publizonBaseUrlConfig: string;
+}
+
+export interface LoanListEntryTextProps {
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
@@ -70,12 +73,14 @@ export interface LoanListEntryProps {
   publizonEbookText: string;
 }
 
-export interface LoanListEntryWithPageSizeProps extends LoanListEntryProps {
+export interface LoanListEntryWithPageSizeProps
+  extends LoanListEntryTextProps,
+    LoanListEntryConfigProps {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
 
-const LoanListEntry: React.FC<LoanListEntryWithPageSizeProps> = ({
+const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
