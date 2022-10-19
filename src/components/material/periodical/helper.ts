@@ -1,3 +1,4 @@
+import { Periodical } from "../../../core/fbs/model";
 import { HoldingsV3 } from "../../../core/fbs/model/holdingsV3";
 
 export type PeriodicalEdition = {
@@ -7,6 +8,15 @@ export type PeriodicalEdition = {
   volumeNumber: string;
   volumeYear: string;
 };
+
+// This type is necessary to mimic structure of the return type for
+// groupObjectArrayByProperty() where the keys are optionally undefined
+// as opposed to PeriodicalEdition type defined above.
+export interface PartialPeriodicalEdition
+  extends Omit<Periodical, "displayText"> {
+  itemNumber: string;
+  displayText?: string;
+}
 
 export const getFirstEditionFromYear = <T extends string>(
   year: T,
@@ -26,6 +36,36 @@ export function makePeriodicalEditionsFromHoldings(holdings: HoldingsV3[]) {
       });
     })
     .flat();
+}
+
+export function filterAndSortPeriodicalEditions(baseData: {
+  [key: string]: PartialPeriodicalEdition[];
+}) {
+  const periodicalEditions = Object.entries(baseData);
+  const filteredEditions = periodicalEditions.map((yearAndEditions) => {
+    return yearAndEditions[1].reduce((acc, edition) => {
+      if (!edition.volumeNumber) {
+        return acc;
+      }
+      const includesValueAlready = acc.includes(edition.volumeNumber);
+      if (!includesValueAlready) {
+        acc.push(edition.volumeNumber);
+      }
+      return acc;
+    }, [] as string[]);
+  });
+  const allYears = periodicalEditions.map(
+    (yearEditionPair) => yearEditionPair[0]
+  );
+  const filteredPeriodicalEditionsObj = allYears.reduce((acc, curr, index) => {
+    // Sort editions array
+    // eslint-disable-next-line no-param-reassign
+    acc[curr] = filteredEditions[index].sort((a, b) => {
+      return a.localeCompare(b, "da-DK");
+    });
+    return acc;
+  }, {} as { [key: string]: string[] });
+  return filteredPeriodicalEditionsObj;
 }
 
 export default {};
