@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useText } from "../../../core/utils/text";
-import { getFirstEditionFromYear, PeriodicalEdition } from "./helper";
+import {
+  filterAndSortPeriodicalEditions,
+  getFirstEditionFromYear,
+  PeriodicalEdition
+} from "./helper";
 
 export type GroupList = { [key: string]: PeriodicalEdition[] };
 
@@ -18,6 +22,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   const t = useText();
   const lastYear = Object.keys(groupList).sort().pop() || "";
   const [year, setYear] = useState<string>(lastYear);
+  const periodicalEditions = filterAndSortPeriodicalEditions(groupList);
 
   // Sets selectedPeriodical to the last edition
   useEffect(() => {
@@ -58,7 +63,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
         <label htmlFor="year">{t("periodicalSelectYearText")}</label>
         <div className="material-periodical-select__border-container">
           <select id="year" defaultValue={year} onChange={handleSelectYear}>
-            {Object.keys(groupList)
+            {Object.keys(periodicalEditions)
               .sort()
               .map((item) => (
                 <option key={item} value={item}>
@@ -74,10 +79,10 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
           <label htmlFor="editions">{t("periodicalSelectEditionText")}</label>
           <div className="material-periodical-select__border-container">
             <select id="editions" onChange={handleSelectEditions}>
-              {groupList[year].map((item) => {
+              {periodicalEditions[year].map((item) => {
                 return (
-                  <option key={item.itemNumber} value={item.itemNumber}>
-                    {item.volumeNumber}
+                  <option key={item} value={item}>
+                    {item}
                   </option>
                 );
               })}
