@@ -61,7 +61,7 @@ export function filterAndSortPeriodicalEditions(baseData: {
     // Sort editions array
     // eslint-disable-next-line no-param-reassign
     acc[curr] = filteredEditions[index].sort((a, b) => {
-      return a.localeCompare(b, "da-DK");
+      return a.localeCompare(b, "da-DK", { numeric: true });
     });
     return acc;
   }, {} as { [key: string]: string[] });
