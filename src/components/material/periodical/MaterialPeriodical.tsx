@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
+import { useConfig } from "../../../core/utils/config";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
 import { PeriodicalEdition } from "./helper";
@@ -18,6 +19,10 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler
 }) => {
+  const config = useConfig();
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
+  });
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [String(faustId)],
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
