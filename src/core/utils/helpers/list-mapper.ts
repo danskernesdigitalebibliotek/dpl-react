@@ -189,12 +189,14 @@ export const mapPublizonReservationToReservationType = (
         5: "expired" // in publizon Expired
       };
 
+      const state = status ? publizonReservationState[status] : null;
+
       return {
         identifier,
         faust: null,
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
-        state: status ? publizonReservationState[status] : "",
+        state,
         pickupDeadline: expectedRedeemDateUtc
       };
     }
