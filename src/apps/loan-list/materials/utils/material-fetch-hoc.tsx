@@ -49,17 +49,15 @@ const fetchMaterial =
         }
       }, [isSuccessManifestation, data]);
 
+      if (!material) return <div />;
+
       return (
-        <div>
-          {material && (
-            <Component
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...(props as P)}
-              material={material}
-              faust={faust}
-            />
-          )}
-        </div>
+        <Component
+          /* eslint-disable-next-line react/jsx-props-no-spreading */
+          {...(props as P)}
+          material={material}
+          faust={faust}
+        />
       );
     }
     return null;

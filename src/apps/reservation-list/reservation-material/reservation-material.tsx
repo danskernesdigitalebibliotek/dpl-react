@@ -21,19 +21,21 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   }, []);
 
   return (
-    <button
-      type="button"
-      onClick={(e) => openDetailsModal(e)}
-      className="list-reservation my-32"
-    >
-      {material && (
-        <MaterialInfo
-          material={material}
-          isbnForCover={reservation.identifier || ""}
-        />
-      )}
-      <ReservationInfo reservationInfo={reservation} />
-    </button>
+    <li>
+      <button
+        type="button"
+        onClick={(e) => openDetailsModal(e)}
+        className="list-reservation my-32"
+      >
+        {material && (
+          <MaterialInfo
+            material={material}
+            isbnForCover={reservation.identifier || ""}
+          />
+        )}
+        <ReservationInfo reservationInfo={reservation} />
+      </button>
+    </li>
   );
 };
 
