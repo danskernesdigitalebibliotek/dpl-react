@@ -1,12 +1,15 @@
 import { ListType } from "./list-type";
+import { Nullable } from "./nullable";
 
-export interface ReservationType extends ListType {
-  dateOfReservation: string | undefined;
-  expiryDate: string | null | undefined;
-  pickupDeadline: string | null | undefined;
-  numberInQueue?: number | undefined;
+interface Reservation extends ListType {
+  dateOfReservation: string;
+  expiryDate: string;
+  pickupDeadline: string;
+  numberInQueue: number;
   state: string;
-  pickupBranch?: string;
-  expectedRedeemDateUtc?: string;
-  pickupNumber?: string;
+  pickupBranch: string;
+  expectedRedeemDateUtc: string;
+  pickupNumber: string;
 }
+
+export type ReservationType = Nullable<Partial<Reservation>>;
