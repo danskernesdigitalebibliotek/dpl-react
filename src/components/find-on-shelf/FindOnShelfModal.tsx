@@ -53,7 +53,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   );
   const { data, isError, isLoading } = useGetHoldingsV3({
     recordid: faustIdArray,
-    ...(Array.isArray(blacklistBranches) ? { exclude: blacklistBranches } : {})
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
   const author =
     creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
