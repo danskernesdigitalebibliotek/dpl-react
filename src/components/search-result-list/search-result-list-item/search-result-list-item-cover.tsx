@@ -3,7 +3,7 @@ import { Cover, CoverProps } from "../../cover/cover";
 
 type SearchResultListItemCoverProps = Omit<CoverProps, "animate" | "size">;
 const SearchResultListItemCover: React.FC<SearchResultListItemCoverProps> = ({
-  pid,
+  id,
   description,
   url,
   tint
@@ -11,7 +11,7 @@ const SearchResultListItemCover: React.FC<SearchResultListItemCoverProps> = ({
   return (
     <Cover
       animate
-      pid={pid}
+      id={id}
       size="small"
       description={String(description)}
       url={url}

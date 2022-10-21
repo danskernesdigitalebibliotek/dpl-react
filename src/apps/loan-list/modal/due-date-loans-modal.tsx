@@ -6,11 +6,11 @@ import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { formatDate, materialIsOverdue } from "../utils/helpers";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface DueDateLoansModalProps {
   dueDate: string;
-  loansModal: LoanMetaDataType[];
+  loansModal: LoanType[];
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({

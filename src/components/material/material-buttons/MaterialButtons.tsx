@@ -21,18 +21,20 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   const hasPhysicalAccess = manifestation.accessTypes.some(
     (type) => type.code === AccessTypeCode.Physical
   );
+
   const faustId = convertPostIdToFaustId(pid);
 
-  if (hasPhysicalAccess) {
-    return (
-      <>
-        <MaterialButtonsPhysical manifestation={manifestation} size={size} />
-        <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
-      </>
-    );
-  }
-
-  return <MaterialButtonsOnline manifestation={manifestation} size={size} />;
+  return (
+    <>
+      {hasPhysicalAccess && (
+        <>
+          <MaterialButtonsPhysical manifestation={manifestation} size={size} />
+          <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
+        </>
+      )}
+      <MaterialButtonsOnline manifestation={manifestation} size={size} />
+    </>
+  );
 };
 
 export default MaterialButtons;

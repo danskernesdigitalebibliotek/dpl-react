@@ -1,14 +1,11 @@
 import dayjs from "dayjs";
-import { LoanV2 } from "../../../core/fbs/model/loanV2";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
-import { Loan } from "../../../core/publizon/model";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
-import { GetMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { LoanType } from "../../../core/utils/types/loan-type";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
-  list: LoanMetaDataType[]
+  list: LoanType[]
 ) => {
   return list.filter(({ dueDate }) => dueDate === date);
 };
@@ -21,9 +18,15 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
 
-export const removeLoansWithIds = (list: LoanMetaDataType[], ids: string[]) => {
-  return list.filter(({ id }) => {
-    return ids.indexOf(id) === -1;
+export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
+  return list.filter(({ faust, identifier }) => {
+    if (faust) {
+      return ids.indexOf(faust) === -1;
+    }
+    if (identifier) {
+      return ids.indexOf(identifier) === -1;
+    }
+    return false;
   });
 };
 
@@ -66,11 +69,11 @@ export const queryMatchesFaust = (query: string | null) => {
 
 export const getStackedItems = (
   view: ListView,
-  list: LoanMetaDataType[],
+  list: LoanType[],
   itemsShown: number,
   dueDates: string[] | undefined | null[]
 ) => {
-  let returnLoans: LoanMetaDataType[] = [];
+  let returnLoans: LoanType[] = [];
   if (view === "stacked" && dueDates) {
     // I mean... this...
     // If the due date is null, the stacked item still has to be shown
@@ -85,92 +88,8 @@ export const getStackedItems = (
   return returnLoans;
 };
 
-export const getListItems = (list: LoanMetaDataType[], itemsShown: number) => {
+export const getListItems = (list: LoanType[], itemsShown: number) => {
   return [...list].splice(0, itemsShown);
-};
-
-export const mapPublizonLoanToLoanMetaDataType = (
-  list: Loan[]
-): LoanMetaDataType[] => {
-  return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
-    return {
-      dueDate: loanExpireDateUtc,
-      loanDate: orderDateUtc,
-      id: libraryBook?.identifier || "",
-      isRenewable: false,
-      materialItemNumber: libraryBook?.identifier || "",
-      renewalStatusList: [],
-      loanType: null
-    };
-  });
-};
-
-export const mapFBSLoanToLoanMetaDataType = (
-  list: LoanV2[]
-): LoanMetaDataType[] => {
-  return list.map(({ loanDetails, isRenewable, renewalStatusList }) => {
-    return {
-      dueDate: loanDetails.dueDate,
-      loanDate: loanDetails.loanDate,
-      renewalStatusList,
-      id: loanDetails.recordId,
-      isRenewable,
-      materialItemNumber: loanDetails.materialItemNumber,
-      loanType: loanDetails.loanType
-    };
-  });
-};
-
-export const mapFBSRenewedLoanToLoanMetaDataType = (
-  list: RenewedLoanV2[]
-): LoanMetaDataType[] => {
-  return list.map(({ loanDetails }) => {
-    return {
-      dueDate: loanDetails.dueDate,
-      loanDate: loanDetails.loanDate,
-      renewalStatusList: [],
-      id: loanDetails.recordId,
-      isRenewable: false,
-      materialItemNumber: loanDetails.materialItemNumber,
-      loanType: loanDetails.loanType
-    };
-  });
-};
-
-export const getMaterialInfo = (
-  loanMetaData: LoanMetaDataType,
-  material: GetMaterialManifestationQuery | undefined | null
-) => {
-  const { dueDate, id, loanType, loanDate, renewalStatusList } = loanMetaData;
-  const { hostPublication, materialTypes, titles, creators, pid, abstract } =
-    material?.manifestation || {};
-
-  const description = abstract ? abstract[0] : "";
-
-  const { year: yearObject } = hostPublication || {};
-  const { year } = yearObject || {};
-
-  const [{ specific: materialType }] = materialTypes || [];
-  const {
-    main: [mainText]
-  } = titles || { main: [] };
-
-  const materialTitle = mainText;
-
-  return {
-    dueDate,
-    creators,
-    id,
-    loanType,
-    renewalStatusList,
-    year,
-    titles,
-    materialType,
-    materialTitle,
-    pid,
-    description,
-    loanDate
-  };
 };
 
 export default {};

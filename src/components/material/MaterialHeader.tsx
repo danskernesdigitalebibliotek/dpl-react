@@ -82,7 +82,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover pid={coverPid} size="xlarge" animate />
+        <Cover id={coverPid} size="xlarge" animate />
       </div>
       <div className="material-header__content">
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
@@ -104,11 +104,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         )}
 
-        <div className="material-header__button">
-          {manifestation && <MaterialButtons manifestation={manifestation} />}
-        </div>
         {manifestation && (
-          <MaterialAvailabilityText manifestation={manifestation} />
+          <>
+            <div className="material-header__button">
+              <MaterialButtons manifestation={manifestation} />
+            </div>
+            <MaterialAvailabilityText manifestation={manifestation} />
+          </>
         )}
       </div>
     </header>

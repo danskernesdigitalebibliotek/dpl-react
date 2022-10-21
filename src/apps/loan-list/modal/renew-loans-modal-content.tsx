@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useInView } from "react-hook-inview";
-import CheckBox from "../materials/utils/checkbox";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
@@ -9,12 +8,14 @@ import {
   getPageSizeFromConfiguration
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
-import { LoanMetaDataType } from "../../../core/utils/types/loan-meta-data-type";
-import { mapFBSRenewedLoanToLoanMetaDataType } from "../utils/helpers";
+import { LoanType } from "../../../core/utils/types/loan-type";
 import usePager from "../../../components/result-pager/use-pager";
+import { mapFBSRenewedLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
+import { FaustId } from "../../../core/utils/types/ids";
+import CheckBox from "../../../components/checkbox/Checkbox";
 
 interface RenewLoansModalContentProps {
-  loansModal: LoanMetaDataType[];
+  loansModal: LoanType[];
   buttonLabel: string;
   checkboxLabel: string;
   buttonBottomLabel: string;
@@ -36,18 +37,21 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const [ref, isVisible] = useInView({
     threshold: 0
   });
-  const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
+  const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
   const [allRenewableMaterials, setAllRenewableMaterials] = useState<
     number | null
   >(0);
-  const [loans, setLoans] = useState<LoanMetaDataType[]>([]);
-  const [displayedLoans, setDisplayedLoans] = useState<LoanMetaDataType[]>([]);
-  const [renewedLoans, setRenewedLoans] = useState<LoanMetaDataType[]>([]);
+  const [loans, setLoans] = useState<LoanType[]>([]);
+  const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
+  const [renewedLoans, setRenewedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
+    const numberMaterialIds = materialsToRenew.map((materialId) =>
+      parseInt(materialId, 10)
+    );
     mutate(
       {
-        data: materialsToRenew
+        data: numberMaterialIds
       },
       {
         onSuccess: (result) => {
@@ -55,13 +59,16 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             const renewedIds = result.map(
               ({ loanDetails }) => loanDetails.recordId
             );
-            const filteredLoans = loans.filter(({ id }) => {
-              return renewedIds.indexOf(id) === -1;
+            const filteredLoans = loans.filter(({ faust }) => {
+              if (faust) {
+                return renewedIds.indexOf(faust) === -1;
+              }
+              return false;
             });
             setMaterialsToRenew([]);
             setLoans(filteredLoans);
 
-            setRenewedLoans(mapFBSRenewedLoanToLoanMetaDataType(result));
+            setRenewedLoans(mapFBSRenewedLoanToLoanType(result));
           }
         },
         // todo error handling, missing in figma
@@ -87,15 +94,14 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     }
   };
 
-  const onChecked = (faust: string) => {
-    const faustNumber = parseInt(faust, 10);
+  const onChecked = (faust: FaustId) => {
     const materialsToRenewCopy = [...materialsToRenew];
 
-    const indexOfItemToRemove = materialsToRenew.indexOf(faustNumber);
+    const indexOfItemToRemove = materialsToRenew.indexOf(faust);
     if (indexOfItemToRemove > -1) {
       materialsToRenewCopy.splice(indexOfItemToRemove, 1);
     } else {
-      materialsToRenewCopy.push(parseInt(faust, 10));
+      materialsToRenewCopy.push(faust);
     }
     setMaterialsToRenew(materialsToRenewCopy);
   };
@@ -106,7 +112,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         <CheckBox
           selected={materialsToRenew.length === allRenewableMaterials}
           id="checkbox-select-all"
-          onChecked={selectAll}
+          onChecked={() => selectAll()}
           label={checkboxLabel}
         />
         <Button
@@ -128,24 +134,28 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               : ""
           }`}
         >
-          {renewedLoans.map((loanMetaData) => {
+          {renewedLoans.map((loanType) => {
             return (
               <SelectableMaterial
-                key={loanMetaData.id}
+                key={loanType.faust}
+                faust={loanType.faust}
+                identifier={loanType.identifier}
                 disabled
                 onChecked={onChecked}
-                loanMetaData={loanMetaData}
+                loan={loanType}
               />
             );
           })}
-          {displayedLoans.map((loanMetaData) => {
+          {displayedLoans.map((loanType) => {
             return (
               <SelectableMaterial
-                key={loanMetaData.id}
+                faust={loanType.faust}
+                identifier={loanType.identifier}
+                key={loanType.faust}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
-                disabled={!loanMetaData.isRenewable}
-                loanMetaData={loanMetaData}
+                disabled={!loanType.isRenewable}
+                loan={loanType}
               />
             );
           })}
@@ -154,7 +164,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
-              onChecked={selectAll}
+              onChecked={() => selectAll()}
               id="checkbox-select-all"
               label={checkboxBottomLabel}
             />

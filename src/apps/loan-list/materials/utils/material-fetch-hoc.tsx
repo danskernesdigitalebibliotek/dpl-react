@@ -1,82 +1,68 @@
-import React, { useEffect, useState, ComponentType } from "react";
-import {
-  GetMaterialManifestationQuery,
-  useGetMaterialManifestationQuery
-} from "../../../../core/dbc-gateway/generated/graphql";
-import { LoanMetaDataType } from "../../../../core/utils/types/loan-meta-data-type";
+import React, { useEffect, useState, ComponentType, FC } from "react";
+import { useGetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { Product } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
-
-export interface MaterialDetailsProps {
-  loanMetaData: LoanMetaDataType;
-}
-
-export interface SelectableMaterialProps {
-  loanMetaData: LoanMetaDataType;
-  disabled?: boolean;
-  materialsToRenew?: number[];
-  onChecked?: (faust: FaustId) => void;
-}
-
-export interface StackableMaterialProps {
-  stack?: LoanMetaDataType[];
-  loanMetaData: LoanMetaDataType;
-  amountOfMaterialsWithDueDate?: number;
-  dueDateLabel?: string;
-  openModal?: boolean;
-  selectMaterial?: ({
-    material,
-    loanMetaData
-  }: {
-    material: GetMaterialManifestationQuery | undefined | null;
-    loanMetaData: LoanMetaDataType;
-  }) => void;
-}
+import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
+import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
 
 export interface MaterialProps {
-  material: GetMaterialManifestationQuery;
+  material?: BasicDetailsType | null;
 }
 
-type InputProps = { loanMetaData: LoanMetaDataType } & (
-  | StackableMaterialProps
-  | SelectableMaterialProps
-  | MaterialDetailsProps
-);
-export type WithMaterialProps = MaterialProps &
-  (SelectableMaterialProps | StackableMaterialProps | MaterialDetailsProps);
+type InputProps = {
+  digitalMaterial?: Product | null;
+  faust: FaustId | null;
+  identifier: string | null;
+};
 
-export function FetchMaterial(
-  WrappedComponent: ComponentType<WithMaterialProps>
-) {
-  const WithFetchMaterial = ({ loanMetaData, ...props }: InputProps) => {
-    const [material, setMaterial] = useState<GetMaterialManifestationQuery>();
-    // Todo error handling
-    const { isSuccess: isSuccessManifestation, data } =
-      useGetMaterialManifestationQuery({
-        faust: loanMetaData?.id
-      });
-    useEffect(() => {
-      if (data && isSuccessManifestation) {
-        setMaterial(data);
-      }
-    }, [isSuccessManifestation, data]);
+const fetchMaterial =
+  <P extends object>(
+    Component: ComponentType<P & MaterialProps>
+  ): FC<P & InputProps> =>
+  ({ identifier, faust, ...props }: InputProps) => {
+    // If this is a digital book, another HOC fetches the data and this
+    // HOC just returns the component
+    if (identifier) {
+      return (
+        <Component
+          /* eslint-disable-next-line react/jsx-props-no-spreading */
+          {...(props as P)}
+          identifier={identifier}
+        />
+      );
+    }
 
-    return (
-      <>
-        {material && (
-          <WrappedComponent
-            loanMetaData={loanMetaData}
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...props}
-            material={material}
-          />
-        )}
-        {/* todo loading screen missing in figma */}
-        {!material && <div />}
-      </>
-    );
+    if (faust) {
+      const [material, setMaterial] = useState<BasicDetailsType>();
+
+      // Todo error handling
+      const { isSuccess: isSuccessManifestation, data } =
+        useGetMaterialManifestationQuery({
+          faust
+        });
+
+      useEffect(() => {
+        if (data && isSuccessManifestation && data.manifestation) {
+          setMaterial(mapManifestationToBasicDetailsType(data));
+        } else {
+          // todo error handling
+        }
+      }, [isSuccessManifestation, data]);
+
+      return (
+        <div>
+          {material && (
+            <Component
+              /* eslint-disable-next-line react/jsx-props-no-spreading */
+              {...(props as P)}
+              material={material}
+              faust={faust}
+            />
+          )}
+        </div>
+      );
+    }
+    return null;
   };
 
-  return WithFetchMaterial;
-}
-
-export default FetchMaterial;
+export default fetchMaterial;

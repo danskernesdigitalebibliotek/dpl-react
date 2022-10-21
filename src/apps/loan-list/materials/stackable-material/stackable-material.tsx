@@ -1,23 +1,29 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
 import { useText } from "../../../../core/utils/text";
-import {
-  FetchMaterial,
-  StackableMaterialProps,
-  MaterialProps
-} from "../utils/material-fetch-hoc";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import DueDateLoansModal from "../../modal/due-date-loans-modal";
 import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
+import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
+import { LoanType } from "../../../../core/utils/types/loan-type";
+import MaterialDetailsModal from "../../modal/material-details-modal";
+import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
+
+export interface StackableMaterialProps {
+  stack?: LoanType[];
+  loan: LoanType;
+  amountOfMaterialsWithDueDate?: number;
+  dueDateLabel?: string;
+  openModal?: boolean;
+}
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
   material,
   openModal,
-  selectMaterial,
-  loanMetaData,
+  loan,
   dueDateLabel,
   stack
 }) => {
@@ -26,8 +32,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-  const [showModal, setShowModal] = useState(false);
-  const { dueDate, id } = loanMetaData;
+  const { dueDate, faust, identifier } = loan;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
@@ -46,7 +51,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 
   const openDueDateModal = useCallback(() => {
     if (stack && dueDate) {
-      setShowModal(true);
       open(dueDate);
     }
   }, [stack, open, dueDate]);
@@ -60,15 +64,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const selectListMaterial = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (selectMaterial) {
-        selectMaterial({
-          material,
-          loanMetaData
-        });
-      }
-      open(id);
+      open(faust || identifier || "");
     },
-    [id, loanMetaData, material, open, selectMaterial]
+    [faust, identifier, open]
   );
 
   return (
@@ -80,23 +78,21 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           additionalMaterials > 0 ? "list-reservation--stacked" : ""
         }`}
       >
-        <MaterialInfo loanMetaData={loanMetaData} material={material}>
-          <AdditionalMaterialsButton
-            label={t("loanListMaterialsDesktopText")}
-            openDueDateModal={openDueDateModal}
-            additionalMaterials={additionalMaterials}
-            screenReaderLabel={t("loanListMaterialsModalDesktopText")}
-          />
-          <MaterialOverdueLink
-            label={t("loanListLateFeeDesktopText")}
-            dueDate={dueDate}
-          />
-        </MaterialInfo>
-        <MaterialStatus
-          loanMetaData={loanMetaData}
-          material={material}
-          dueDateLabel={dueDateLabel || ""}
-        >
+        {material && (
+          <MaterialInfo material={material} isbnForCover={identifier || ""}>
+            <AdditionalMaterialsButton
+              label={t("loanListMaterialsDesktopText")}
+              openDueDateModal={openDueDateModal}
+              additionalMaterials={additionalMaterials}
+              screenReaderLabel={t("loanListMaterialsModalDesktopText")}
+            />
+            <MaterialOverdueLink
+              label={t("loanListLateFeeDesktopText")}
+              dueDate={dueDate}
+            />
+          </MaterialInfo>
+        )}
+        <MaterialStatus loan={loan} dueDateLabel={dueDateLabel || ""}>
           <AdditionalMaterialsButton
             label={t("loanListMaterialsMobileText")}
             screenReaderLabel={t("loanListMaterialsModalMobileText")}
@@ -109,11 +105,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           />
         </MaterialStatus>
       </button>
-      {showModal && dueDate && stack && (
+      {dueDate && stack && (
         <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
       )}
+      <MaterialDetailsModal loan={loan} material={material} />
     </>
   );
 };
 
-export default FetchMaterial(StackableMaterial);
+export default fetchDigitalMaterial(fetchMaterial(StackableMaterial));

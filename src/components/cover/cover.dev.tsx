@@ -19,7 +19,7 @@ export default {
       name: "Use animation",
       control: { type: "boolean" }
     },
-    pid: {
+    id: {
       name: "PID",
       control: { type: "text" }
     },
@@ -33,7 +33,7 @@ export default {
     }
   },
   args: {
-    pid: "870970-basis:45234401",
+    id: "870970-basis:45234401",
     size: "small",
     animate: true,
     tint: "120",

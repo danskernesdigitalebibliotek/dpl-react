@@ -85,8 +85,8 @@ export const getWorkDescriptionListData = ({
     {
       label: t("isbnText"),
       value:
-        (manifestation?.identifiers?.[0].value ?? "") ||
-        (fallBackManifestation?.identifiers?.[0].value ?? ""),
+        (manifestation?.identifiers?.[0]?.value ?? "") ||
+        (fallBackManifestation?.identifiers?.[0]?.value ?? ""),
       type: "standard"
     },
     {
