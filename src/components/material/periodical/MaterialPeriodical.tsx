@@ -19,7 +19,8 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   selectPeriodicalHandler
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [String(faustId)]
+    recordid: [String(faustId)],
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
   if (isLoading || isError || !data) return null;

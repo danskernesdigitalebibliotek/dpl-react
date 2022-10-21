@@ -1,5 +1,6 @@
 import React from "react";
 import GuardedApp from "../../components/guarded-app";
+import { withConfig } from "../../core/utils/config";
 import { getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
@@ -24,8 +25,15 @@ interface SearchResultEntryUrlProps {
   authUrl: string;
 }
 
+interface SearchResultEntryConfigProps {
+  blacklistedAvailabilityBranchesConfig: string;
+  blacklistedPickupBranchesConfig?: string;
+  branchesConfig: string;
+}
+
 export interface SearchResultEntryProps
   extends SearchResultEntryUrlProps,
+    SearchResultEntryConfigProps,
     SearchResultEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;
@@ -59,4 +67,4 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withUrls(withText(SearchResultEntry));
+export default withConfig(withUrls(withText(SearchResultEntry)));

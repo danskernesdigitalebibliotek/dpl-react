@@ -14,7 +14,6 @@ export interface AvailabilityLabelProps {
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
 }
-
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
@@ -31,7 +30,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds,
-    ...(Array.isArray(blacklistBranches) ? { exclude: blacklistBranches } : {})
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
   if (isLoading || isError) {
