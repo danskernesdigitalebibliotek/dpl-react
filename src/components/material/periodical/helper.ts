@@ -9,6 +9,8 @@ export type PeriodicalEdition = {
   volumeYear: string;
 };
 
+export type GroupList = { [key: string]: PeriodicalEdition[] };
+
 // This type is necessary to mimic structure of the return type for
 // groupObjectArrayByProperty() where the keys are optionally undefined
 // as opposed to PeriodicalEdition type defined above.

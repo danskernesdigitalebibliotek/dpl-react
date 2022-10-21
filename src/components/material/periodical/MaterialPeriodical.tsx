@@ -2,10 +2,8 @@ import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
-import { PeriodicalEdition } from "./helper";
-import MaterialPeriodicalSelect, {
-  GroupList
-} from "./MaterialPeriodicalSelect";
+import { GroupList, PeriodicalEdition } from "./helper";
+import MaterialPeriodicalSelect from "./MaterialPeriodicalSelect";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
