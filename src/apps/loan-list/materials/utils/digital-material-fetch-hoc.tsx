@@ -45,7 +45,7 @@ const fetchDigitalMaterial =
         }
       }, [productsData, isSuccessDigital]);
 
-      if (!digitalMaterial) return <div />;
+      if (!digitalMaterial) return null;
 
       return (
         <Component

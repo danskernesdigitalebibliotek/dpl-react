@@ -49,7 +49,7 @@ const fetchMaterial =
         }
       }, [isSuccessManifestation, data]);
 
-      if (!material) return <div />;
+      if (!material) return null;
 
       return (
         <Component
