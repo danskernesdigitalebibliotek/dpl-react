@@ -1,3 +1,4 @@
+import { mapValues, uniq } from "lodash";
 import { Periodical } from "../../../core/fbs/model";
 import { HoldingsV3 } from "../../../core/fbs/model/holdingsV3";
 
@@ -43,31 +44,19 @@ export function makePeriodicalEditionsFromHoldings(holdings: HoldingsV3[]) {
 export function filterAndSortPeriodicalEditions(baseData: {
   [key: string]: PartialPeriodicalEdition[];
 }) {
-  const periodicalEditions = Object.entries(baseData);
-  const filteredEditions = periodicalEditions.map((yearAndEditions) => {
-    return yearAndEditions[1].reduce((acc, edition) => {
-      if (!edition.volumeNumber) {
-        return acc;
-      }
-      const includesValueAlready = acc.includes(edition.volumeNumber);
-      if (!includesValueAlready) {
-        acc.push(edition.volumeNumber);
-      }
-      return acc;
-    }, [] as string[]);
+  const yearVolumes = mapValues(baseData, (editions) => {
+    return editions.map((edition) => edition.volumeNumber);
   });
-  const allYears = periodicalEditions.map(
-    (yearEditionPair) => yearEditionPair[0]
-  );
-  const filteredPeriodicalEditionsObj = allYears.reduce((acc, curr, index) => {
-    // Sort editions array
-    // eslint-disable-next-line no-param-reassign
-    acc[curr] = filteredEditions[index].sort((a, b) => {
+  const yearVolumesSorted = mapValues(yearVolumes, (volumes) => {
+    const volumesNoUndefined = volumes.filter((volume) => !!volume);
+    return (volumesNoUndefined as string[]).sort((a, b) => {
       return a.localeCompare(b, "da-DK", { numeric: true });
     });
-    return acc;
-  }, {} as { [key: string]: string[] });
-  return filteredPeriodicalEditionsObj;
+  });
+  const yearVolumesSortedUnique = mapValues(yearVolumesSorted, (volumes) => {
+    return uniq(volumes);
+  });
+  return yearVolumesSortedUnique;
 }
 
 export function handleSelectYear(
