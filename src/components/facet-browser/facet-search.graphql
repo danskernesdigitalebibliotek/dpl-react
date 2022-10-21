@@ -1,0 +1,15 @@
+query searchFacet(
+  $q: SearchQuery!
+  $facets: [FacetField!]!
+  $facetLimit: Int!
+) {
+  search(q: $q) {
+    facets(facets: $facets) {
+      name
+      values(limit: $facetLimit) {
+        term
+        score
+      }
+    }
+  }
+}
