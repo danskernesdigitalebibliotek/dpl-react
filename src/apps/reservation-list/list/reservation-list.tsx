@@ -1,32 +1,97 @@
 import React, { useEffect, useState, FC } from "react";
 import { useText } from "../../../core/utils/text";
 import { useGetReservationsV2 } from "../../../core/fbs/fbs";
-import { ReservationDetailsV2 } from "../../../core/fbs/model/reservationDetailsV2";
+import { ReservationType } from "../../../core/utils/types/reservation-type";
+import {
+  getReadyForPickup,
+  sortByOldestPickupDeadline,
+  getReserved
+} from "../utils/helpers";
+import { useGetV1UserReservations } from "../../../core/publizon/publizon";
+import {
+  mapFBSReservationToReservationType,
+  mapPublizonReservationToReservationType
+} from "../../../core/utils/helpers/list-mapper";
+import List from "./list";
 
 const ReservationList: FC = () => {
   const t = useText();
-  const { isSuccess, data } = useGetReservationsV2();
-  const [reservations, setReservations] = useState<ReservationDetailsV2[]>([]);
 
+  // Data fetch
+  const { isSuccess, data } = useGetReservationsV2();
+  const { data: publizonData } = useGetV1UserReservations();
+
+  // State
+  const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
+    useState<ReservationType[]>([]);
+
+  const [
+    readyForPickupReservationsPublizon,
+    setReadyForPickupReservationsPublizon
+  ] = useState<ReservationType[]>([]);
+
+  const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
+    ReservationType[]
+  >([]);
+
+  const [reservedReservationsPublizon, setReservedReservationsPublizon] =
+    useState<ReservationType[]>([]);
+
+  // Set digital reservations
+  // The digital "ready for pickup"-reservations are mixed with the
+  // phyiscal "ready for pickup"-reservations. The digital
+  // "reserved"-reservations have their own list
+  useEffect(() => {
+    if (publizonData && publizonData.reservations) {
+      setReadyForPickupReservationsPublizon(
+        getReadyForPickup(
+          mapPublizonReservationToReservationType(publizonData.reservations)
+        )
+      );
+      setReservedReservationsPublizon(
+        getReserved(
+          mapPublizonReservationToReservationType(publizonData.reservations)
+        )
+      );
+    }
+  }, [publizonData]);
+
+  // Set digital reservations
+  // The physical "ready for pickup"-reservations are mixed with the
+  // digital "ready for pickup"-reservations. The phyiscal
+  // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccess && data) {
-      setReservations(data);
+      setReadyForPickupReservationsFBS(
+        sortByOldestPickupDeadline(
+          getReadyForPickup(mapFBSReservationToReservationType(data))
+        )
+      );
+      setReservedReservationsFBS(
+        getReserved(mapFBSReservationToReservationType(data))
+      );
     }
   }, [isSuccess, data]);
 
   return (
-    <>
-      <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
-      <div className="dpl-list-buttons m-32">
-        <h2 className="dpl-list-buttons__header">
-          {t("reservationListPhysicalLoansTitleText")}
-          <div className="dpl-list-buttons__power">{reservations.length}</div>
-        </h2>
-      </div>
-      {/* Todo */}
-      {reservations.length > 0 &&
-        reservations.map(({ reservationId }) => <div>{reservationId}</div>)}
-    </>
+    <div className="reservation-list-page">
+      <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
+      <List
+        header={t("reservationListReadyForPickupTitleText")}
+        list={sortByOldestPickupDeadline([
+          ...readyForPickupReservationsFBS,
+          ...readyForPickupReservationsPublizon
+        ])}
+      />
+      <List
+        header={t("reservationListPhysicalReservationsHeaderText")}
+        list={reservedReservationsFBS}
+      />
+      <List
+        header={t("reservationListDigitalReservationsHeaderText")}
+        list={reservedReservationsPublizon}
+      />
+    </div>
   );
 };
 

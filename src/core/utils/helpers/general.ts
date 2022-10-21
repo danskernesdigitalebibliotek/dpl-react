@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import dayjs from "dayjs";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -91,6 +92,21 @@ export const getCoverTint = (index: number) => {
     return coverTints[tintKey];
   }
   return undefined;
+};
+
+export const getColors = () => {
+  return getConf("colors", configuration);
+};
+
+export const getThresholds = () => {
+  return getConf("thresholds", configuration);
+};
+
+export const daysBetweenTodayAndDate = (date: string) => {
+  const inputDate = dayjs(date);
+  const today = dayjs();
+
+  return inputDate.diff(today, "day");
 };
 
 export const usePrevious = <Type>(value: Type) => {

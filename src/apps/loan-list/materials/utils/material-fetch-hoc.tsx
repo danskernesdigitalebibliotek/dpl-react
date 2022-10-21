@@ -11,8 +11,8 @@ export interface MaterialProps {
 
 type InputProps = {
   digitalMaterial?: Product | null;
-  faust: FaustId | null;
-  identifier: string | null;
+  faust?: FaustId | null;
+  identifier?: string | null;
 };
 
 const fetchMaterial =
@@ -49,17 +49,15 @@ const fetchMaterial =
         }
       }, [isSuccessManifestation, data]);
 
+      if (!material) return null;
+
       return (
-        <div>
-          {material && (
-            <Component
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...(props as P)}
-              material={material}
-              faust={faust}
-            />
-          )}
-        </div>
+        <Component
+          /* eslint-disable-next-line react/jsx-props-no-spreading */
+          {...(props as P)}
+          material={material}
+          faust={faust}
+        />
       );
     }
     return null;

@@ -6,8 +6,8 @@ import { MaterialProps } from "./material-fetch-hoc";
 import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
 
 type InputProps = {
-  faust: FaustId | null;
-  identifier: string | null;
+  faust?: FaustId | null;
+  identifier?: string | null;
 };
 
 const fetchDigitalMaterial =
@@ -45,17 +45,15 @@ const fetchDigitalMaterial =
         }
       }, [productsData, isSuccessDigital]);
 
+      if (!digitalMaterial) return null;
+
       return (
-        <div>
-          {digitalMaterial && (
-            <Component
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...(props as P)}
-              identifier={identifier}
-              material={digitalMaterial}
-            />
-          )}
-        </div>
+        <Component
+          /* eslint-disable-next-line react/jsx-props-no-spreading */
+          {...(props as P)}
+          identifier={identifier}
+          material={digitalMaterial}
+        />
       );
     }
     return null;
