@@ -5,7 +5,7 @@ export const hasCorrectAccessType = (
   desiredAccessType: AccessTypeCode,
   manifest: Manifestation
 ) => {
-  return !!manifest.accessTypes.some((type) => type.code === desiredAccessType);
+  return manifest.accessTypes.some((type) => type.code === desiredAccessType);
 };
 
 export default {};
