@@ -4,6 +4,7 @@ import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
+import { hasCorrectAccessType } from "./helper";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
@@ -18,15 +19,6 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestation: { pid },
   size
 }) => {
-  const hasCorrectAccessType = (
-    desiredAccessType: AccessTypeCode,
-    manifest: Manifestation
-  ) => {
-    return !!manifest.accessTypes.some(
-      (type) => type.code === desiredAccessType
-    );
-  };
-
   const faustId = convertPostIdToFaustId(pid);
 
   return (
