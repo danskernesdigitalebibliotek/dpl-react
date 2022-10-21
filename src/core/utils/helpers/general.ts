@@ -106,7 +106,7 @@ export const daysBetweenTodayAndDate = (date: string) => {
   const inputDate = dayjs(date);
   const today = dayjs();
 
-  return Math.ceil(inputDate.diff(today, "day", true));
+  return inputDate.diff(today, "day");
 };
 
 export const usePrevious = <Type>(value: Type) => {

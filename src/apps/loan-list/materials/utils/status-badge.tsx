@@ -18,8 +18,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   const dueD = dayjs(dueDate);
   const today = dayjs();
 
-  const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
-
+  const daysBetweenTodayAndDue = dueD.diff(today, "day");
   if (daysBetweenTodayAndDue <= statusThreshold.danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
