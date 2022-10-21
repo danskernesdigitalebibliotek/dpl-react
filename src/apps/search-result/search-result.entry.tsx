@@ -16,6 +16,20 @@ interface SearchResultEntryTextProps {
   numberDescriptionText: string;
   inSeriesText: string;
   showingResultsForText: string;
+  facetBrowserModalScreenReaderModalDescriptionText: string;
+  facetBrowserModalCloseModalAriaLabelText: string;
+  accessTypesText: string;
+  childrenOrAdultsText: string;
+  creatorsText: string;
+  fictionNonfictionText: string;
+  genreAndFormText: string;
+  mainLanguagesText: string;
+  materialTypesText: string;
+  subjectsText: string;
+  workTypesText: string;
+  showResultsText: string;
+  filterListText: string;
+  clearAllText: string;
 }
 
 interface SearchResultEntryUrlProps {
