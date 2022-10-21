@@ -20,7 +20,7 @@ export interface PartialPeriodicalEdition
 
 export const getFirstEditionFromYear = <T extends string>(
   year: T,
-  groupList: { [key in T]: PeriodicalEdition[] }
+  groupList: { [key in T]: string[] }
 ) => {
   return groupList[year][0];
 };
