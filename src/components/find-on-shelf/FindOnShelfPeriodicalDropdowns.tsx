@@ -8,6 +8,7 @@ import {
   filterAndSortPeriodicalEditions,
   handleSelectYear,
   GroupList,
+  handleSelectEdition
 } from "../material/periodical/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -42,12 +43,24 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
     selectedPeriodical.volumeYear
   );
 
-  const toBeSelectedPeriodical = groupedPeriodicalEditionsBase[
-    Number(selectedYear)
-  ].find(
-    (periodicalEdition) =>
-      periodicalEdition.volumeNumber === selectedPeriodical.volumeNumber
-  );
+  const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectYear(
+      event,
+      setSelectedYear,
+      setSelectedPeriodical,
+      periodicalEditions,
+      groupedPeriodicalEditionsBase as GroupList
+    );
+  };
+
+  const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectEdition(
+      event,
+      groupedPeriodicalEditionsBase as GroupList,
+      selectedYear,
+      setSelectedPeriodical
+    );
+  };
 
   return (
     <div className="modal-find-on-shelf__periodical-dropdowns">
@@ -56,7 +69,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           className="dropdown__select"
           aria-label={t("findOnShelfModalPeriodicalYearDropdownText")}
           defaultValue={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
+          onChange={handleYearSelect}
         >
           {sortedPeriodicalYears.map((volumeYear) => (
             <option
@@ -77,16 +90,8 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           <select
             className="dropdown__select"
             aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
-            defaultValue={selectedPeriodical.volumeNumber}
-            onChange={(e) =>
-              setSelectedPeriodical({
-                volumeYear: selectedYear,
-                volumeNumber: e.target.value || "",
-                displayText: toBeSelectedPeriodical?.displayText || "",
-                itemNumber: toBeSelectedPeriodical?.itemNumber || "",
-                volume: toBeSelectedPeriodical?.volume || ""
-              })
-            }
+            value={selectedPeriodical.volumeNumber}
+            onChange={handleEditionSelect}
           >
             {periodicalEditions[selectedYear].map((periodicalEdition) => {
               return (

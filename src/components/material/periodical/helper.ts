@@ -70,4 +70,41 @@ export function filterAndSortPeriodicalEditions(baseData: {
   return filteredPeriodicalEditionsObj;
 }
 
+export function handleSelectYear(
+  event: React.ChangeEvent<HTMLSelectElement>,
+  setYear: (value: React.SetStateAction<string>) => void,
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void,
+  periodicalEditions: { [key: string]: string[] },
+  groupList: GroupList
+) {
+  setYear(event.target.value);
+  // Updates the selectedPeriodical to the first edition of the selected year.
+  const changedEdition = getFirstEditionFromYear(
+    event.target.value,
+    periodicalEditions
+  );
+  const changedFullPeriodicalEdition = groupList[event.target.value].find(
+    (edition) => {
+      return edition.volumeNumber === changedEdition;
+    }
+  );
+  if (changedFullPeriodicalEdition) {
+    selectPeriodicalHandler(changedFullPeriodicalEdition);
+  }
+}
+
+export function handleSelectEdition(
+  event: React.ChangeEvent<HTMLSelectElement>,
+  groupList: GroupList,
+  year: string,
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void
+) {
+  const changedFullPeriodicalEdition = groupList[year].find((edition) => {
+    return edition.volumeNumber === event.target.value;
+  });
+  if (changedFullPeriodicalEdition) {
+    selectPeriodicalHandler(changedFullPeriodicalEdition);
+  }
+}
+
 export default {};

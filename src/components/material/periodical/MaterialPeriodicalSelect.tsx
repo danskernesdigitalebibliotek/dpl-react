@@ -4,10 +4,10 @@ import {
   filterAndSortPeriodicalEditions,
   getFirstEditionFromYear,
   GroupList,
+  handleSelectEdition,
+  handleSelectYear,
   PeriodicalEdition
 } from "./helper";
-
-export type GroupList = { [key: string]: PeriodicalEdition[] };
 
 interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
@@ -43,32 +43,18 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
     groupList
   ]);
 
-  const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setYear(event.target.value);
-    //  Updates the selectedPeriodical to the first edition of the selected year.
-    const changedEdition = getFirstEditionFromYear(
-      event.target.value,
-      periodicalEditions
+  const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectYear(
+      event,
+      setYear,
+      selectPeriodicalHandler,
+      periodicalEditions,
+      groupList
     );
-    const changedFullPeriodicalEdition = groupList[event.target.value].find(
-      (edition) => {
-        return edition.volumeNumber === changedEdition;
-      }
-    );
-    if (changedFullPeriodicalEdition) {
-      selectPeriodicalHandler(changedFullPeriodicalEdition);
-    }
   };
 
-  const handleSelectEditions = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const changedFullPeriodicalEdition = groupList[year].find((edition) => {
-      return edition.volumeNumber === event.target.value;
-    });
-    if (changedFullPeriodicalEdition) {
-      selectPeriodicalHandler(changedFullPeriodicalEdition);
-    }
+  const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectEdition(event, groupList, year, selectPeriodicalHandler);
   };
 
   return (
@@ -76,7 +62,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
       <div className="material-periodical-select">
         <label htmlFor="year">{t("periodicalSelectYearText")}</label>
         <div className="material-periodical-select__border-container">
-          <select id="year" defaultValue={year} onChange={handleSelectYear}>
+          <select id="year" defaultValue={year} onChange={handleYearSelect}>
             {Object.keys(periodicalEditions)
               .sort()
               .map((item) => (
@@ -95,7 +81,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
             <select
               id="editions"
               value={selectedPeriodical?.volumeNumber}
-              onChange={handleSelectEditions}
+              onChange={handleEditionSelect}
             >
               {periodicalEditions[year].map((item) => {
                 return (
