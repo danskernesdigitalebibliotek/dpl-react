@@ -46,46 +46,62 @@ function Modal({
 
   return (
     <div
-      className={clsx(
-        "modal",
-        {
-          "modal-show": modalIds.includes(modalId)
-        },
-        classNames
-      )}
-      style={{
-        // some elements are designed with z-index which means they pop up over the modal
-        // so I add 10 to the z-index of the modal
-        // the index of the modalid is used, so the newest modal is always on top of
-        // the remaining modals
-        zIndex: modalIds.indexOf(modalId) + 10
+      className="modal__backdrop"
+      role="button"
+      tabIndex={0}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) dispatch(closeModal({ modalId }));
       }}
-      role="dialog"
+      // TODO is this the right way to handle this?
+      onKeyPress={(e) => {
+        if (e.key === "Escape") dispatch(closeModal({ modalId }));
+      }}
     >
-      <div className="modal__screen-reader-description" id={`modal-${modalId}`}>
-        {screenReaderModalDescriptionText}
-      </div>
-      <button
-        type="button"
-        /* A focusable element in a modal must have focus when opened,
-        or else the screen reader will remain on the main page */
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-        className="btn-ui modal-btn-close"
-        aria-describedby={`modal-${modalId}`}
+      <div
+        className={clsx(
+          "modal",
+          {
+            "modal-show": modalIds.includes(modalId)
+          },
+          classNames
+        )}
         style={{
-          // same as comment above
+          // some elements are designed with z-index which means they pop up over the modal
+          // so I add 10 to the z-index of the modal
+          // the index of the modalid is used, so the newest modal is always on top of
+          // the remaining modals
           zIndex: modalIds.indexOf(modalId) + 10
         }}
-        aria-label={closeModalAriaLabelText}
-        onClick={() => {
-          dispatch(closeModal({ modalId }));
-        }}
+        role="dialog"
       >
-        <img src={CloseIcon} alt="" />
-        {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
-      </button>
-      {children}
+        <div
+          className="modal__screen-reader-description"
+          id={`modal-${modalId}`}
+        >
+          {screenReaderModalDescriptionText}
+        </div>
+        <button
+          type="button"
+          /* A focusable element in a modal must have focus when opened,
+        or else the screen reader will remain on the main page */
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus
+          className="btn-ui modal-btn-close"
+          aria-describedby={`modal-${modalId}`}
+          style={{
+            // same as comment above
+            zIndex: modalIds.indexOf(modalId) + 10
+          }}
+          aria-label={closeModalAriaLabelText}
+          onClick={() => {
+            dispatch(closeModal({ modalId }));
+          }}
+        >
+          <img src={CloseIcon} alt="" />
+          {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
+        </button>
+        {children}
+      </div>
     </div>
   );
 }
