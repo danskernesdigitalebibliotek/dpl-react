@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useText } from "../../../core/utils/text";
 import {
   filterAndSortPeriodicalEditions,
-  getFirstEditionFromYear,
+  getLatestEditionFromYear,
   GroupList,
   handleSelectEdition,
   handleSelectYear,
@@ -28,7 +28,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   // Sets selectedPeriodical to the last edition
   useEffect(() => {
     if (selectedPeriodical) return;
-    const firstEdition = getFirstEditionFromYear(year, periodicalEditions);
+    const firstEdition = getLatestEditionFromYear(year, periodicalEditions);
     const firstFullPeriodicalEdition = groupList[year].find((edition) => {
       return edition.volumeNumber === firstEdition;
     });

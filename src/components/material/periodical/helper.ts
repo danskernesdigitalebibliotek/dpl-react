@@ -21,11 +21,11 @@ export interface PartialPeriodicalEdition
   displayText?: string;
 }
 
-export const getFirstEditionFromYear = <T extends string>(
+export const getLatestEditionFromYear = <T extends string>(
   year: T,
   groupList: { [key in T]: string[] }
 ) => {
-  return groupList[year][0];
+  return groupList[year][groupList[year].length - 1];
 };
 
 // This makes a array of all periodical editions
@@ -82,7 +82,7 @@ export function handleSelectYear(
 ) {
   setYear(year);
   // Updates the selectedPeriodical to the first edition of the selected year.
-  const changedEdition = getFirstEditionFromYear(year, periodicalEditions);
+  const changedEdition = getLatestEditionFromYear(year, periodicalEditions);
   handleSelectEdition(groupList, year, changedEdition, selectPeriodicalHandler);
 }
 
