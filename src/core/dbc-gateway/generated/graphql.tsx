@@ -37,9 +37,11 @@ export type AccessType = {
 };
 
 export enum AccessTypeCode {
+  /** @deprecated No longer supported */
   NotSpecified = "NOT_SPECIFIED",
   Online = "ONLINE",
-  Physical = "PHYSICAL"
+  Physical = "PHYSICAL",
+  Unknown = "UNKNOWN"
 }
 
 export type AccessUrl = {
@@ -504,7 +506,10 @@ export type Manifestation = {
   physicalDescriptions: Array<PhysicalDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
   pid: Scalars["String"];
-  /** The publication year of the manifestation - OBS! was datePublished */
+  /**
+   * The publication year of the manifestation - OBS! was datePublished
+   * @deprecated use edition.publicationYear instead.
+   */
   publicationYear: PublicationYear;
   /** Publisher of this manifestion */
   publisher: Array<Scalars["String"]>;
@@ -929,6 +934,8 @@ export type SearchResponse = {
   facets: Array<FacetResult>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
+  /** Will return the facets that best match the input query and filters */
+  intelligentFacets: Array<FacetResult>;
   /** The works matching the given search query. Use offset and limit for pagination. */
   works: Array<Work>;
 };
@@ -936,6 +943,11 @@ export type SearchResponse = {
 /** The simple search response */
 export type SearchResponseFacetsArgs = {
   facets: Array<FacetField>;
+};
+
+/** The simple search response */
+export type SearchResponseIntelligentFacetsArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The simple search response */
@@ -1649,6 +1661,28 @@ export type SuggestionsFromQueryStringQuery = {
           first: { __typename?: "Manifestation"; pid: string };
         };
       } | null;
+    }>;
+  };
+};
+
+export type SearchFacetQueryVariables = Exact<{
+  q: SearchQuery;
+  facets: Array<FacetField> | FacetField;
+  facetLimit: Scalars["Int"];
+}>;
+
+export type SearchFacetQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResponse";
+    facets: Array<{
+      __typename?: "FacetResult";
+      name: string;
+      values: Array<{
+        __typename?: "FacetValue";
+        term: string;
+        score?: number | null;
+      }>;
     }>;
   };
 };
@@ -2620,5 +2654,30 @@ export const useSuggestionsFromQueryStringQuery = <
       SuggestionsFromQueryStringQuery,
       SuggestionsFromQueryStringQueryVariables
     >(SuggestionsFromQueryStringDocument, variables),
+    options
+  );
+export const SearchFacetDocument = `
+    query searchFacet($q: SearchQuery!, $facets: [FacetField!]!, $facetLimit: Int!) {
+  search(q: $q) {
+    facets(facets: $facets) {
+      name
+      values(limit: $facetLimit) {
+        term
+        score
+      }
+    }
+  }
+}
+    `;
+export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
+  variables: SearchFacetQueryVariables,
+  options?: UseQueryOptions<SearchFacetQuery, TError, TData>
+) =>
+  useQuery<SearchFacetQuery, TError, TData>(
+    ["searchFacet", variables],
+    fetcher<SearchFacetQuery, SearchFacetQueryVariables>(
+      SearchFacetDocument,
+      variables
+    ),
     options
   );
