@@ -8,6 +8,7 @@ import {
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
+import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 
 interface SearchResultProps {
   q: string;
@@ -70,6 +71,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
           <SearchResultList resultItems={resultItems} />
           {PagerComponent}
+          <FacetBrowserModal q={q} />
         </>
       )}
     </div>
