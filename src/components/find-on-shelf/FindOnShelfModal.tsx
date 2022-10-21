@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import partition from "lodash.partition";
+import { partition } from "lodash";
 import {
   isAnyManifestationAvailableOnBranch,
   totalBranchesHaveMaterial
