@@ -21,6 +21,9 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   const hasPhysicalAccess = manifestation.accessTypes.some(
     (type) => type.code === AccessTypeCode.Physical
   );
+  const hasOnlineAccess = manifestation.accessTypes.some(
+    (type) => type.code === AccessTypeCode.Online
+  );
 
   const faustId = convertPostIdToFaustId(pid);
 
@@ -32,7 +35,9 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
         </>
       )}
-      <MaterialButtonsOnline manifestation={manifestation} size={size} />
+      {hasOnlineAccess && (
+        <MaterialButtonsOnline manifestation={manifestation} size={size} />
+      )}
     </>
   );
 };
