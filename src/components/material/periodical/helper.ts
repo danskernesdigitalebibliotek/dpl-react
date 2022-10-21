@@ -59,41 +59,31 @@ export function filterAndSortPeriodicalEditions(baseData: {
   return yearVolumesSortedUnique;
 }
 
-export function handleSelectYear(
-  event: React.ChangeEvent<HTMLSelectElement>,
-  setYear: (value: React.SetStateAction<string>) => void,
-  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void,
-  periodicalEditions: { [key: string]: string[] },
-  groupList: GroupList
+export function handleSelectEdition(
+  groupList: GroupList,
+  year: string,
+  editionToMatch: string,
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void
 ) {
-  setYear(event.target.value);
-  // Updates the selectedPeriodical to the first edition of the selected year.
-  const changedEdition = getFirstEditionFromYear(
-    event.target.value,
-    periodicalEditions
-  );
-  const changedFullPeriodicalEdition = groupList[event.target.value].find(
-    (edition) => {
-      return edition.volumeNumber === changedEdition;
-    }
-  );
+  const changedFullPeriodicalEdition = groupList[year].find((edition) => {
+    return edition.volumeNumber === editionToMatch;
+  });
   if (changedFullPeriodicalEdition) {
     selectPeriodicalHandler(changedFullPeriodicalEdition);
   }
 }
 
-export function handleSelectEdition(
-  event: React.ChangeEvent<HTMLSelectElement>,
-  groupList: GroupList,
+export function handleSelectYear(
   year: string,
-  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void
+  setYear: (value: React.SetStateAction<string>) => void,
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void,
+  periodicalEditions: { [key: string]: string[] },
+  groupList: GroupList
 ) {
-  const changedFullPeriodicalEdition = groupList[year].find((edition) => {
-    return edition.volumeNumber === event.target.value;
-  });
-  if (changedFullPeriodicalEdition) {
-    selectPeriodicalHandler(changedFullPeriodicalEdition);
-  }
+  setYear(year);
+  // Updates the selectedPeriodical to the first edition of the selected year.
+  const changedEdition = getFirstEditionFromYear(year, periodicalEditions);
+  handleSelectEdition(groupList, year, changedEdition, selectPeriodicalHandler);
 }
 
 export default {};

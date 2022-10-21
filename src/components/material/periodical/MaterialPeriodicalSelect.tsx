@@ -45,7 +45,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
 
   const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     handleSelectYear(
-      event,
+      event.target.value,
       setYear,
       selectPeriodicalHandler,
       periodicalEditions,
@@ -54,7 +54,12 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   };
 
   const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    handleSelectEdition(event, groupList, year, selectPeriodicalHandler);
+    handleSelectEdition(
+      groupList,
+      year,
+      event.target.value,
+      selectPeriodicalHandler
+    );
   };
 
   return (

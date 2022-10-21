@@ -45,7 +45,7 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
 
   const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     handleSelectYear(
-      event,
+      event.target.value,
       setSelectedYear,
       setSelectedPeriodical,
       periodicalEditions,
@@ -55,9 +55,9 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
 
   const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     handleSelectEdition(
-      event,
       groupedPeriodicalEditionsBase as GroupList,
       selectedYear,
+      event.target.value,
       setSelectedPeriodical
     );
   };
