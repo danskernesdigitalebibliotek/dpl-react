@@ -3,7 +3,6 @@ import { getStackedItems, getListItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
-import { getPageSizeFromConfiguration } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface PaginationProps {
