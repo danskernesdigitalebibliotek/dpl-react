@@ -22,6 +22,7 @@ export interface ListProps {
   dueDateLabel: string;
   emptyListLabel: string;
   viewToggleable: boolean;
+  pageSize: number;
 }
 
 const List: FC<ListProps> = ({
@@ -32,7 +33,8 @@ const List: FC<ListProps> = ({
   view,
   dueDateLabel,
   viewToggleable,
-  emptyListLabel
+  emptyListLabel,
+  pageSize
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -119,6 +121,7 @@ const List: FC<ListProps> = ({
       </div>
       {loans && loans.length > 0 && (
         <Pagination
+          pageSize={pageSize}
           dueDateLabel={dueDateLabel}
           dueDates={dueDates}
           loans={loans}

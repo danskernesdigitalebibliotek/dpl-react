@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
+import { getPageSize } from "../../../core/utils/helpers/general";
 
 export interface LoanListEntryProps {
   fbsBaseUrlConfig: string;
@@ -9,6 +10,7 @@ export interface LoanListEntryProps {
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
+  materialOverdueUrl: string;
   loanListRenewMultipleButtonText: string;
   loanListListText: string;
   loanListStackText: string;
@@ -68,6 +70,23 @@ export interface LoanListEntryProps {
   publizonEbookText: string;
 }
 
-const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
+export interface LoanListEntryWithPageSizeProps extends LoanListEntryProps {
+  pageSizeDesktop?: number;
+  pageSizeMobile?: number;
+}
 
+const LoanListEntry: React.FC<LoanListEntryWithPageSizeProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
+  const pageSize = getPageSize(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeLoanList"
+  );
+
+  return <LoanList pageSize={pageSize} />;
+};
 export default withUrls(withText(LoanListEntry));

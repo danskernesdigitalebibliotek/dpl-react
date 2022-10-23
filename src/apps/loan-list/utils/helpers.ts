@@ -32,7 +32,7 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
 
 export const materialIsOverdue = (date: string | undefined) => {
   if (date) {
-    return dayjs().isAfter(dayjs(date));
+    return dayjs().isAfter(dayjs(date), "day");
   }
   return false;
 };

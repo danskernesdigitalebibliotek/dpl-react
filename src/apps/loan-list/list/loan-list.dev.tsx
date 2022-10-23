@@ -9,6 +9,10 @@ export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    materialOverdueUrl: {
+      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+      control: { type: "text" }
+    },
     [configTypes.fbs]: {
       defaultValue: "",
       control: { type: "text" }
@@ -255,6 +259,14 @@ export default {
     materialAndAuthorText: {
       defaultValue: "og",
       control: { type: "text" }
+    },
+    pageSizeDesktop: {
+      defaultValue: 10,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      defaultValue: 5,
+      control: { type: "number" }
     }
   },
   decorators: [withQuery]

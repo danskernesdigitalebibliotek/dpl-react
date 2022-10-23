@@ -14,14 +14,14 @@ interface StatusCircleProps {
 
 const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
-
   const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
   const daysBetweenLoanAndDue = daysBetweenTodayAndDate(loanDate);
 
   const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
   const colors = getColors();
+
   let color = colors.default;
-  if (daysBetweenTodayAndDue <= statusThreshold.danger) {
+  if (daysBetweenTodayAndDue < statusThreshold.danger) {
     color = colors.danger;
   } else if (daysBetweenTodayAndDue <= statusThreshold.warning) {
     color = colors.warning;

@@ -1,14 +1,17 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 describe("Loan list", () => {
+  before(() => {});
   beforeEach(() => {
     cy.window().then((win) => {
+      const wednesday20220603 = new Date("2022-10-21T10:00:00.000").getTime();
+
+      // Sets time to a specific date
+      // https://github.com/cypress-io/cypress/issues/7577
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
-    const wednesday20220713 = new Date("2022-06-03T12:30:00.000Z");
-
-    // Sets time to a specific date
-    cy.clock(wednesday20220713);
 
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
       statusCode: 200,
@@ -22,32 +25,14 @@ describe("Loan list", () => {
             materialItemNumber: "3846990827",
             recordId: "28847238",
             periodical: null,
-            loanDate: "2022-06-02T16:43:25.325",
-            dueDate: "2022-07-15",
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
             loanType: "loan",
             ilBibliographicRecord: null,
             materialGroup: {
               name: "fon2",
               description: "Flere CD-plader"
-            }
-          }
-        },
-        {
-          isRenewable: false,
-          renewalStatusList: ["deniedOtherReason"],
-          isLongtermLoan: false,
-          loanDetails: {
-            loanId: 956442515,
-            materialItemNumber: "3841518429",
-            recordId: "27215815",
-            periodical: null,
-            loanDate: "2022-06-01T16:43:25.325",
-            dueDate: "2022-06-03",
-            loanType: "loan",
-            ilBibliographicRecord: null,
-            materialGroup: {
-              name: "lydbog",
-              description: "Lydbog"
             }
           }
         },
@@ -65,8 +50,9 @@ describe("Loan list", () => {
               displayText: "Nr. , år 2015",
               volumeNumber: null
             },
-            loanDate: "2022-06-03T16:43:25.325",
-            dueDate: "2022-07-15",
+            loanDate: "2022-10-15T16:43:25.325",
+            // To be handed in today, renders a warning
+            dueDate: "2022-10-21",
             loanType: "loan",
             ilBibliographicRecord: null,
             materialGroup: {
@@ -83,8 +69,29 @@ describe("Loan list", () => {
             materialItemNumber: "3846990827",
             recordId: "28843238",
             periodical: null,
-            loanDate: "2022-06-03T16:43:25.325",
-            dueDate: "2022-06-04",
+            // Should be at the top of the list (the list is sorted by loandate)
+            loanDate: "2022-10-14T16:43:25.325",
+            // 2022-10-21 + 7 should not render a warning
+            dueDate: "2022-10-28",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250509,
+            materialItemNumber: "3846990827",
+            recordId: "28843238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // 2022-10-21 + 6 should render a warning
+            dueDate: "2022-10-27",
             loanType: "loan",
             ilBibliographicRecord: null,
             materialGroup: {
@@ -103,8 +110,8 @@ describe("Loan list", () => {
           {
             orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
             orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-06-02T06:32:30Z",
-            loanExpireDateUtc: "2022-07-15T06:32:30Z",
+            orderDateUtc: "2022-10-20T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
             isSubscriptionLoan: false,
             libraryBook: {
               identifier: "9788771076940",
@@ -115,24 +122,11 @@ describe("Loan list", () => {
             fileExtensionType: 3
           },
           {
-            orderId: "58058e94-a03f-4018-bec1-816ee7894ab8",
-            orderNumber: "3c060277-3218-4ad2-98fe-a57bce1cf1e6",
-            orderDateUtc: "2022-06-01T06:32:30Z",
-            loanExpireDateUtc: "2022-06-03T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788711524245",
-              identifierType: 3,
-              title: "Fuldmåne i oktober",
-              publishersName: "Lindhardt og Ringhof"
-            },
-            fileExtensionType: 1
-          },
-          {
             orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
             orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-06-03T06:32:30Z",
-            loanExpireDateUtc: "2022-07-15T06:32:30Z",
+            orderDateUtc: "2022-10-19T06:32:30Z",
+            // No warning badge
+            loanExpireDateUtc: "2022-10-28T06:32:30Z",
             isSubscriptionLoan: false,
             libraryBook: {
               identifier: "9788771076951",
@@ -145,8 +139,10 @@ describe("Loan list", () => {
           {
             orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
             orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-06-03T06:32:30Z",
-            loanExpireDateUtc: "2022-06-04T06:32:30Z",
+            // Should be top of the list
+            orderDateUtc: "2022-10-18T06:32:30Z",
+            // Warning badge
+            loanExpireDateUtc: "2022-10-27T06:32:30Z",
             isSubscriptionLoan: false,
             libraryBook: {
               identifier: "9788771076950",
@@ -247,375 +243,416 @@ describe("Loan list", () => {
   });
 
   it("Loan list basics (physical loans)", () => {
-    // Renew button disabled on no renewable loans
-    cy.get("#test-renew-button").should("have.attr", "disabled");
+    // 2.a. header: Your loans
+    cy.get(".loan-list-page")
+      .find(".text-header-h1")
+      .should("have.text", "Dine lånte materialer");
 
-    // The header visible
-    cy.get(".text-header-h1").should("have.text", "Dine lånte materialer");
-
-    // The list physical loans visible
-    cy.get(".dpl-list-buttons__header").eq(0).contains("Fysiske lån");
-
-    // Sort icons visible
-    cy.get(".dpl-icon-button").should("have.length", 2);
-
-    // List selected by default
-    cy.get("#test-list").should(
-      "have.class",
-      "dpl-icon-button dpl-icon-button--selected"
-    );
-
-    // Renew button visible
-    cy.get("#test-renew-button").should("be.visible");
-
-    // should have "soon to expire" in status label
-    cy.get(".list-reservation")
-      .eq(3)
-      .find(".status-label--warning")
-      .should("have.text", "Udløber snart");
-
-    // should contain "icon"
-    cy.get(".list-reservation")
+    // 2.b. header: physical loans
+    cy.get(".loan-list-page")
+      .find("h2")
       .eq(0)
-      .find(".list-reservation__counter")
-      .should("have.text", "0dage");
+      .should("have.text", "Fysiske lån4");
 
-    cy.get(".list-reservation")
-      .eq(1)
-      .find(".list-reservation__counter")
-      .should("have.text", "42dage");
+    // 2.b.i: Toggle: two icons that changes the list view
+    cy.get(".loan-list-page")
+      .find(".dpl-list-buttons__buttons")
+      .find("#test-list")
+      .should("exist")
+      // 2.b.i.1. List is chosen as default
+      .should("have.class", "dpl-icon-button--selected");
 
-    cy.get(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__counter")
-      .should("have.text", "42dage");
+    cy.get(".loan-list-page")
+      .find(".dpl-list-buttons__buttons")
+      .find("#test-stack")
+      .should("exist");
 
-    cy.get(".list-reservation")
-      .eq(3)
-      .find(".list-reservation__counter")
-      .should("have.text", "1dage");
+    // 2.b.ii. Button: renew several
+    cy.get(".loan-list-page")
+      .find("#test-renew-button")
+      .should("exist")
+      // disabled on no renewable
+      .should("have.attr", "disabled");
 
-    // should have "expired" in status label
-    cy.get(".list-reservation")
+    // 2.b.iii. Loans sorted by oldest loandate on top
+    cy.get(".list-reservation-container")
       .eq(0)
-      .find(".status-label--danger")
-      .should("have.text", "Overskredet");
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 28-10-2022");
 
-    cy.get(".list-reservation")
-      .eq(1)
-      .find(".status-label--danger")
-      .should("not.exist");
-
-    cy.get(".list-reservation")
-      .eq(1)
-      .find(".status-label--warning")
-      .should("not.exist");
-
-    // Has a cover
-    cy.get(".cover")
-      .find("img")
+    // 2.b.iv. Loans have...
+    // ID 42 2.a. Material cover
+    cy.get(".list-reservation-container")
+      .find(".list-reservation .cover img")
       .should("have.attr", "src")
       .should(
         "include",
         "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
       );
 
-    // Sorted by oldest loan date first
-    cy.get(".list-reservation")
+    // ID 42 2.b. Material types including accessibility of material
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .find(".status-label")
       .eq(0)
-      .find("#due-date")
-      .should("have.text", "Afleveres 03-06-2022");
+      .should("have.text", "Dummy bog");
 
-    // fee link on expired loan
-    // Not mobile version on desktop view
-    cy.get(".list-reservation")
+    // ID 42 2.c. full title
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
       .eq(0)
-      .find("#test-material-overdue-mobile")
-      .should("not.be.visible");
+      .find("h3")
+      .should("have.text", "Dummy Some Title");
 
-    // Desktop version on desktop view
-    cy.get(".list-reservation")
+    // ID 42 2.d. authors & ID 42 2.f. year published
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
       .eq(0)
-      .find("#test-material-overdue-desktop")
+      .find(".list-reservation__about p")
+      .should(
+        "have.text",
+        "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"
+      );
+
+    // Todo serial title
+    // Todo serial number
+    // todo Nummer
+    // todo Årgang
+
+    // 2.b.iv.3. Link
+    // 2.b.iv.3.a. text: You will be charged a fee, when the item is returned
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__information a")
       .should("be.visible")
       .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
-      .should("have.attr", "href");
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
+    // 2.b.iv.3.c. Only shown if loan is overdue
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__information a")
+      .should("not.exist");
 
-    // Desktop version on desktop view, not on loan not expired
-    cy.get(".list-reservation")
+    // 2.b.iv.3.c. Only shown if loan is overdue
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
       .eq(1)
-      .find("#test-material-overdue-desktop")
+      .find(".list-reservation__information a")
       .should("not.exist");
 
-    // As loans are not stacked, the stacked button should not exist
-    cy.get(".list-reservation")
+    // 2.b.iv.5. Icon: “{X} days"
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
       .eq(0)
-      .find("#test-additional-materials-desktop")
-      .should("not.exist");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-mobile")
-      .should("not.exist");
-
-    // Stack loans
-    cy.get("#test-stack").click();
-
-    // now that loans are stacked, the stacked button should exist
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-desktop")
-      .should("be.visible")
-      .should("have.text", "+ 1 andre materialer")
-      .should("have.attr", "type")
-      .should("include", "button");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-mobile")
-      .should("not.be.visible");
-
-    // ^not on unstacked loans though
-    cy.get(".list-reservation")
+      .find(".counter")
+      .should("have.text", "7dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
       .eq(1)
-      .find("#test-additional-materials-desktop")
+      .find(".counter")
+      .should("have.text", "0dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(2)
+      .find(".counter")
+      .should("have.text", "0dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(3)
+      .find(".counter")
+      .should("have.text", "6dage");
+    // 2.b.iv.6. Label:
+    // 2.b.iv.6.a. Expired with red background, if loan is overdue
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".status-label--danger")
+      .should("have.text", "Overskredet")
+      .should("have.css", "background-color")
+      .should("include", "rgb(213, 54, 74)");
+
+    // 2.b.iv.6.b. “Expiring soon” with yellow background, if _less than_ 7 days to hand in
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(1)
+      .find(".status-label--warning")
+      .should("have.text", "Udløber snart")
+      .should("have.css", "background")
+      .should("include", "rgb(247, 191, 66)");
+
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(3)
+      .find(".status-label--warning")
+      .should("have.text", "Udløber snart")
+      .should("have.css", "background")
+      .should("include", "rgb(247, 191, 66)");
+
+    // 2.b.iv.6.c. No label if _more than 7_ days to hand in
+    // So the spec sort of doesnt say what happens _on_ 7 days to hand in, but right now there is no warning
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".status-label--warning")
       .should("not.exist");
 
-    // The mobile specifics
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".status-label--danger")
+      .should("not.exist");
+
+    // 2.b.iv.7. Text: "Due date dd.mm.yyyy"
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 28-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(1)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 21-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 20-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(3)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 27-10-2022");
+
+    // // The mobile specifics
     cy.viewport(320, 1480);
-
-    // Expire link on mobile
-    cy.get(".list-reservation")
-      .eq(1)
-      .find("#test-material-overdue-mobile")
-      .should("be.visible")
-      .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
-      .should("have.attr", "href");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-material-overdue-desktop")
-      .should("not.exist");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-material-overdue-mobile")
-      .should("not.exist");
-
-    // Renew button not visible on mobile
-    cy.get("#test-renew-button").should("not.be.visible");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-mobile")
-      .should("be.visible")
-      .should("have.text", "+ 1 andre materialer")
-      .should("have.attr", "type")
-      .should("include", "button");
-
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-desktop")
+    // 2.b.ii.1. renew button not showed on mobile
+    cy.get(".loan-list-page")
+      .find("#test-renew-button")
       .should("not.be.visible");
   });
 
   it("Loan list basics (digital loans)", () => {
-    // The list physical loans visible
-    cy.get(".dpl-list-buttons__header").eq(1).contains("Digitale lån");
-
-    // should have "soon to expire" in status label
-    cy.get(".list-reservation-container")
+    // 2.c. List: “Digitale loans" and number of digital loans
+    cy.get(".loan-list-page")
+      .find("h2")
       .eq(1)
-      .find(".list-reservation")
-      .eq(3)
-      .find(".status-label--warning")
-      .should("have.text", "Udløber snart");
+      .should("have.text", "Digitale lån3");
 
-    // should contain "icon"
+    //   // 2.c.i. Loans sorted by oldest loandate on top
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find(".list-reservation__counter")
-      .should("have.text", "0dage");
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 27-10-2022");
 
+    // 2.c.ii. Loans have...
+    // ID 42 2.a. Material cover
     cy.get(".list-reservation-container")
       .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find(".list-reservation__counter")
-      .should("have.text", "42dage");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__counter")
-      .should("have.text", "42dage");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(3)
-      .find(".list-reservation__counter")
-      .should("have.text", "1dage");
-
-    // should have "expired" in status label
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".status-label--danger")
-      .should("have.text", "Overskredet");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find(".status-label--danger")
-      .should("not.exist");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find(".status-label--warning")
-      .should("not.exist");
-
-    // Has a cover
-    cy.get(".cover")
-      .find("img")
+      .find(".list-reservation .cover img")
       .should("have.attr", "src")
       .should(
         "include",
         "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
       );
 
-    // Sorted by oldest loan date first
+    // ID 42 2.b. Material types including accessibility of material
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .find(".status-label")
+      .eq(0)
+      .should("have.text", "E-bog");
+
+    // ID 42 2.c. full title
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("#due-date")
-      .should("have.text", "Udløber 03-06-2022");
+      .find("h3")
+      .should("have.text", "Mordet i det blå tog");
 
-    // fee link on expired loan
-    // Not mobile version on desktop view
+    // ID 42 2.d. authors & ID 42 2.f. year published
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("#test-material-overdue-mobile")
-      .should("not.be.visible");
+      .find(".list-reservation__about p")
+      .should("have.text", "Af Agatha Christie og Jutta Larsen(2014)");
 
-    // Desktop version on desktop view
+    // Todo serial title
+    // Todo serial number
+    // todo Nummer
+    // todo Årgang
+    // 2.c.ii.3 Icon: “{X} days"
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("#test-material-overdue-desktop")
-      .should("be.visible")
-      .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
-      .should("have.attr", "href");
+      .find(".counter")
+      .should("have.text", "6dage");
 
-    // Desktop version on desktop view, not on loan not expired
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(1)
-      .find("#test-material-overdue-desktop")
-      .should("not.exist");
+      .find(".counter")
+      .should("have.text", "7dage");
 
-    // As loans are not stacked, the stacked button should not exist
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".counter")
+      .should("have.text", "3dage");
+
+    // 2.c.ii.4. Text: "Due date dd.mm.yyyy”
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("#test-additional-materials-desktop")
-      .should("not.exist");
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 27-10-2022");
 
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 24-10-2022");
+
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 24-10-2022");
+  });
+
+  it("It opens loans group modal (physical)", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        }
+      ]
+    }).as("physical_loans");
+  });
+
+  it("It opens loans group modal (digital)", () => {
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        loans: [
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-20T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076940",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          },
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-19T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076951",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          }
+        ]
+      }
+    }).as("digital_loans");
+
+    // stack links
+    // 2.b.iv.4. Link:
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.wait(["@digital_loans", "@work"]);
+    cy.get(".loan-list-page").find("#test-stack").click();
+
+    // 2.b.iv.4.a. Text: "+ {X} other items"
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("#test-additional-materials-mobile")
-      .should("not.exist");
-
-    // Stack loans
-    cy.get("#test-stack").click();
-
-    // now that loans are stacked, the stacked button should exist
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-additional-materials-desktop")
-      .should("be.visible")
+      .find(".list-reservation__information .list-reservation__note-desktop")
+      .eq(0)
       .should("have.text", "+ 1 andre materialer")
-      .should("have.attr", "type")
-      .should("include", "button");
+      .click();
 
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-additional-materials-mobile")
-      .should("not.be.visible");
-
-    // ^not on unstacked loans though
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-desktop")
-      .should("not.exist");
-
-    // The mobile specifics
-    cy.viewport(320, 1480);
-
-    // Expire link on mobile
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find("#test-material-overdue-mobile")
-      .should("be.visible")
-      .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
-      .should("have.attr", "href");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find("#test-material-overdue-desktop")
-      .should("not.be.visible");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-material-overdue-mobile")
-      .should("not.exist");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-additional-materials-mobile")
-      .should("be.visible")
-      .should("have.text", "+ 1 andre materialer")
-      .should("have.attr", "type")
-      .should("include", "button");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-additional-materials-desktop")
-      .should("not.be.visible");
+    // 2.b.iv.8.b. Click on a group of loans with same due date opens the group modal
+    // 2.b.iv.4.b. group modal opens
+    cy.get(".modal-loan").should("exist");
   });
 
   it("It opens details modal (digital loans)", () => {
+    // 2.c.ii.6. Link: Click on loan in list opens loan details modal
     cy.get(".modal-detail").should("not.exist");
     cy.get(".list-reservation-container")
       .eq(1)
@@ -625,19 +662,7 @@ describe("Loan list", () => {
     cy.get(".modal-details").should("be.visible");
   });
 
-  it("It opens group modal (digital loans)", () => {
-    cy.get("#test-stack").click();
-    cy.get(".modal-loan").should("not.exist");
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(1)
-      .find("#test-additional-materials-desktop")
-      .click();
-    cy.get(".modal-loan").should("be.visible");
-  });
-
-  it("Empty phyiscal and digital loan list", () => {
+  it("Empty physical and digital loan list", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
       statusCode: 200,
       body: []
@@ -650,28 +675,26 @@ describe("Loan list", () => {
     cy.get(".dpl-list-empty").should("have.text", "Du har i øjeblikket 0 lån");
   });
 
-  it("It opens details modal", () => {
+  it("It opens details modal (physical loans)", () => {
+    // 2.b.iv.8. Link:
+    // 2.b.iv.8.a. Click on loan in list opens loan details modal
     cy.get(".modal-detail").should("not.exist");
-    cy.get(".list-reservation").eq(0).click();
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .click();
     cy.get(".modal-details").should("be.visible");
   });
 
-  it("It opens group modal", () => {
-    cy.get("#test-stack").click();
-    cy.get(".modal-loan").should("not.exist");
-    cy.get(".list-reservation")
-      .eq(0)
-      .find("#test-additional-materials-desktop")
-      .click();
-    cy.get(".modal-loan").should("be.visible");
-  });
-
-  it("Empty phyiscal loan list", () => {
+  it("Empty physical loan list", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
       statusCode: 200,
       body: []
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+
+    // 2.b.iv.9. No physical loans, the text: "You have no physical loans at the moment"
     cy.get(".dpl-list-empty").should(
       "have.text",
       "Du har i øjeblikket ingen fysiske lån"
@@ -684,6 +707,7 @@ describe("Loan list", () => {
       body: []
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    // 2.d No digital loans, the text: "You have 0 loans at the moment"
     cy.get(".dpl-list-empty").should(
       "have.text",
       "Du har i øjeblikket ingen digitale lån"
@@ -691,118 +715,25 @@ describe("Loan list", () => {
   });
 
   it("Pagination is shown", () => {
-    const physicalLoans: {
-      isRenewable: false;
-      renewalStatusList: string[];
-      isLongtermLoan: boolean;
-      loanDetails: {
-        loanId: number;
-        materialItemNumber: string;
-        recordId: string;
-        periodical: null;
-        loanDate: string;
-        dueDate: string;
-        loanType: string;
-        ilBibliographicRecord: null;
-        materialGroup: { name: string; description: string };
-      };
-    }[] = [];
-    const arrayOf52 = Array.from(Array(52).keys());
-    arrayOf52.forEach(() => {
-      physicalLoans.push({
-        isRenewable: false,
-        renewalStatusList: ["deniedOtherReason"],
-        isLongtermLoan: false,
-        loanDetails: {
-          loanId: 956250508,
-          materialItemNumber: "3846990827",
-          recordId: "28847238",
-          periodical: null,
-          loanDate: "2022-06-02T16:43:25.325",
-          dueDate: "2022-07-15",
-          loanType: "loan",
-          ilBibliographicRecord: null,
-          materialGroup: {
-            name: "fon2",
-            description: "Flere CD-plader"
-          }
-        }
-      });
-    });
+    cy.visit(
+      "/iframe.html?id=apps-loan-list--loan-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
+    );
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-      statusCode: 200,
-      body: physicalLoans
-    }).as("physical_loans");
-
-    const digitalLoans: {
-      orderId: string;
-      orderNumber: string;
-      orderDateUtc: string;
-      loanExpireDateUtc: string;
-      isSubscriptionLoan: boolean;
-      libraryBook: {
-        identifier: string;
-        identifierType: number;
-        title: string;
-        publishersName: string;
-      };
-      fileExtensionType: number;
-    }[] = [];
-    const arrayOf51 = Array.from(Array(51).keys());
-    arrayOf51.forEach(() => {
-      digitalLoans.push({
-        orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-        orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-        orderDateUtc: "2022-06-02T06:32:30Z",
-        loanExpireDateUtc: "2022-07-15T06:32:30Z",
-        isSubscriptionLoan: false,
-        libraryBook: {
-          identifier: "9788771076940",
-          identifierType: 15,
-          title: "Tættere end man tror",
-          publishersName: "Jentas"
-        },
-        fileExtensionType: 3
-      });
-    });
-
-    cy.intercept("GET", "**/v1/user/**", {
-      statusCode: 200,
-      body: {
-        loans: digitalLoans
-      }
-    }).as("digital_loans");
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
-
-    cy.intercept("POST", "**/opac/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:22629344",
-            titles: { main: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
-            materialTypes: [{ specific: "Dummy bog" }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
-    }).as("work");
-
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
-    cy.get("#test-paginate-button").should("have.length", 1);
+
+    // 2.b.iv.9.v. If more than 25 loans -> pagination (because of pageSizeDesktop/pageSizeMobile the limit is 2 not 25)
+    cy.get(".loan-list-page").find(".result-pager").should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .should("have.length", 2);
+
+    // 2.c.iv. If more than 10 loans -> pagination (because of pageSizeDesktop/pageSizeMobile the limit is 2 not 25)
+    cy.get(".loan-list-page").find(".result-pager").should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .should("have.length", 2);
   });
 });
 
