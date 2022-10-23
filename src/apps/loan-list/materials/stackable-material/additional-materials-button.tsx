@@ -37,7 +37,6 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
         type="button"
         onClick={(e) => openDueDateModalCallBack(e)}
         aria-describedby={`materials-modal-${showOn}-text`}
-        id={`test-additional-materials-${showOn}`}
         className={`list-reservation__note-${showOn}`}
       >
         + {additionalMaterials} {label}
