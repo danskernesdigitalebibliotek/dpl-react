@@ -21,7 +21,6 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   return (
     <Link
       href={materialOverdueUrl}
-      id={`test-material-overdue-${showOn}`}
       className={`list-reservation__note-${showOn} color-signal-alert`}
     >
       {label}
