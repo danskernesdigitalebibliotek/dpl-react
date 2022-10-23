@@ -103,10 +103,12 @@ export const getThresholds = () => {
 };
 
 export const daysBetweenTodayAndDate = (date: string) => {
-  const inputDate = dayjs(date);
-  const today = dayjs();
+  const inputDate = dayjs(new Date(date));
+  const today = dayjs(new Date());
 
-  return inputDate.diff(today, "day");
+  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
+  // and we need it to be rounded up
+  return Math.ceil(inputDate.diff(today, "day", true));
 };
 
 export const usePrevious = <Type>(value: Type) => {
@@ -223,5 +225,44 @@ export const stringifyValue = (value: string | null | undefined) =>
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+interface PageSizeDataAttributes {
+  desktop: number;
+  mobile: number;
+}
+
+export const getPageSizeFromDataAttributes = ({
+  desktop,
+  mobile
+}: PageSizeDataAttributes) => {
+  const { pageSize } = getDeviceConf("pageSize", {
+    pageSize: {
+      mobile: {
+        pageSize: mobile
+      },
+      desktop: {
+        pageSize: desktop
+      }
+    }
+  });
+  return Number(pageSize);
+};
+
+export const getPageSize = (
+  pageSizes: Partial<PageSizeDataAttributes>,
+  configName: ConfScope
+) => {
+  const { desktop, mobile } = pageSizes;
+  let pageSize = 0;
+  if (desktop && mobile) {
+    pageSize = getPageSizeFromDataAttributes(
+      pageSizes as PageSizeDataAttributes
+    );
+  } else {
+    pageSize = getPageSizeFromConfiguration(configName);
+  }
+
+  return pageSize;
+};
 
 export default {};
