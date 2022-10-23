@@ -5,7 +5,7 @@ import { useDeleteReservations } from "../../../core/fbs/fbs";
 
 export interface ReservationDetailsButtonProps {
   reservationId: number;
-  numberInQueue?: number;
+  numberInQueue?: number | null;
 }
 
 const ReservationDetailsButton: FC<
