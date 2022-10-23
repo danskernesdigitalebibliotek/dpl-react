@@ -11,13 +11,15 @@ interface PaginationProps {
   dueDates: string[];
   loans: LoanType[];
   dueDateLabel: string;
+  pageSize: number;
 }
 
 const Pagination: FC<PaginationProps> = ({
   view,
   dueDates,
   loans,
-  dueDateLabel
+  dueDateLabel,
+  pageSize
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
   // So, this is necessary due to the stacked items
@@ -31,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({
 
   const { itemsShown, PagerComponent } = usePager(
     loans.length,
-    getPageSizeFromConfiguration("pageSizeLoanList"),
+    pageSize,
     overrideItemsShown
   );
 
