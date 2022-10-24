@@ -46,7 +46,7 @@ function Modal({
 
   return (
     <div
-      className="modal__backdrop"
+      className="modal-backdrop"
       role="button"
       tabIndex={0}
       onClick={(e) => {
