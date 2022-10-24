@@ -41,7 +41,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("GET", "**v1/products**", {
+    cy.intercept("GET", "**v1/products/**", {
       product: {
         createdUtc: "2014-11-04T12:20:19.347Z",
         updatedUtc: "2017-02-23T13:04:56.617Z",
@@ -113,14 +113,12 @@ describe("Reservation details modal test", () => {
       );
 
     // ID 43 2.c. full title
-    cy.get(".modal")
-      .find("h2")
-      .should("have.text", "Mitfordmordene første bog");
+    cy.get(".modal").find("h2").should("have.text", "Mordet i det blå tog");
 
     // ID 43 2.d. authors
     cy.get(".modal")
       .find("#test-authors")
-      .should("have.text", "Af Jessica  Fellowes og Kirsten Heltner (2018)");
+      .should("have.text", "Af Agatha Christie og Jutta Larsen (2014)");
 
     // Todo serial title
     // Todo serial number
@@ -202,7 +200,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("GET", "**v1/products**", {
+    cy.intercept("GET", "**v1/products/**", {
       product: {
         createdUtc: "2014-11-04T12:20:19.347Z",
         updatedUtc: "2017-02-23T13:04:56.617Z",
