@@ -5,17 +5,20 @@ describe("Reservation details modal test", () => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
-    const clockDate = new Date(
-      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
-    );
 
     // Intercept covers.
     cy.fixture("cover.json").then((result) => {
       cy.intercept("GET", "**/covers**", result);
     });
 
+    const clockDate = new Date(
+      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
+    ).getTime();
+
     // Sets time to a specific date
-    cy.clock(clockDate);
+    // https://github.com/cypress-io/cypress/issues/7577
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.clock(clockDate).then((clock: any) => clock.bind(window));
   });
 
   it("It shows digital reservation details modal", () => {
@@ -416,7 +419,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find(".dropdown__select")
-      .should("have.value", "Højbjerg");
+      .should("have.value", "DK-775120");
 
     // ID 13 2.f. header "Not interested after"
     cy.get(".modal-details__list")
