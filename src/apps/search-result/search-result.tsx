@@ -8,6 +8,12 @@ import {
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
+import { useConfig } from "../../core/utils/config";
+import { AgencyBranch } from "../../core/fbs/model";
+import {
+  excludeBlacklistedBranches,
+  cleanBranchesId
+} from "../../components/reservation/helper";
 
 interface SearchResultProps {
   q: string;
@@ -15,6 +21,20 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const config = useConfig();
+  const branches = config<AgencyBranch[]>("branchesConfig", {
+    transformer: "jsonParse"
+  });
+  const blacklistBranches = config("blacklistedSearchBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
+  const whitelistBranches = excludeBlacklistedBranches(
+    branches,
+    blacklistBranches
+  );
+  const cleanBranches = cleanBranchesId(whitelistBranches);
+
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
     0
@@ -31,7 +51,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     {
       q: { all: q },
       offset: page * pageSize,
-      limit: pageSize
+      limit: pageSize,
+      ...(cleanBranches
+        ? {
+            filters: {
+              branchId: cleanBranches
+            }
+          }
+        : {})
     },
     {
       // If the component is used in Storybook context
