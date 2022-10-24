@@ -25,7 +25,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   const { faust, identifier } = reservation;
 
   const config = useConfig();
-  let branchesFromConfig = config<AgencyBranch[]>("branchesConfig", {
+  const inputBranches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
 
@@ -33,11 +33,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
     transformer: "stringToArray"
   });
 
+  let branches = inputBranches;
   if (Array.isArray(blacklistBranches)) {
-    branchesFromConfig = excludeBlacklistedBranches(
-      branchesFromConfig,
-      blacklistBranches
-    );
+    branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
   }
 
   const openDetailsModal = useCallback(
@@ -61,14 +59,11 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
             isbnForCover={reservation.identifier || ""}
           />
         )}
-        <ReservationInfo
-          branches={branchesFromConfig}
-          reservationInfo={reservation}
-        />
+        <ReservationInfo branches={branches} reservationInfo={reservation} />
       </button>
       <MaterialDetailsModal modalEntity={reservation} material={material}>
         <ReservationDetails
-          branches={branchesFromConfig}
+          branches={branches}
           faust={reservation.faust}
           identifier={reservation.identifier}
           reservation={reservation}
