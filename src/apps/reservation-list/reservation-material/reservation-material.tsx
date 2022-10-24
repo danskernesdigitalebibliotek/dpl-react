@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, FC, MouseEvent } from "react";
+import React, { useCallback, FC, MouseEvent } from "react";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
