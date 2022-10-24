@@ -113,7 +113,7 @@ describe("Material", () => {
   });
 
   //  periodical test.
-  it("Render periodical + change to 2021, nr. 13 + Aprove resevation", () => {
+  it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
     cy.interceptRest({
       aliasName: "periodical holdings",
       url: "**/agencyid/catalog/holdings/**",
@@ -128,9 +128,9 @@ describe("Material", () => {
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=periodikum"
     );
     cy.get("#year").select("2021");
-    cy.get("#editions").should("have.value", "5258703091");
+    cy.get("#editions").should("have.value", "52");
     cy.contains("button:visible", "Reserve periodikum").click();
-    cy.contains("h2", "2021, nr. 13");
+    cy.contains("h2", "2021, nr. 52");
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");
     cy.contains("You are number 3 in queue");
