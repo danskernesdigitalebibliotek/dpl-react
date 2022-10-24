@@ -153,7 +153,9 @@ const ReservationModalBody = ({
                 {mainTitle}{" "}
                 {selectedPeriodical && selectedPeriodical.displayText}
               </h2>
-              <p className="text-body-medium-regular">{authorLine}</p>
+              {authorLine && (
+                <p className="text-body-medium-regular">{authorLine}</p>
+              )}
             </div>
           </header>
           <div>

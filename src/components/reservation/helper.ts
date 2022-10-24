@@ -133,7 +133,7 @@ export const getAuthorLine = (
     creatorsToString(
       flattenCreators(filterCreators(creators, ["Person"])),
       t
-    ) || t("creatorsAreMissingText");
+    ) || null;
 
   let year = "";
   if (publicationYear) {
@@ -142,7 +142,9 @@ export const getAuthorLine = (
   if (materialIsFiction(manifestation)) {
     year = `(${t("materialHeaderAllEditionsText")})`;
   }
-  return [t("materialHeaderAuthorByText"), author, year].join(" ");
+  return !author
+    ? null
+    : [t("materialHeaderAuthorByText"), author, year].join(" ");
 };
 
 export const excludeBlacklistedBranches = (
