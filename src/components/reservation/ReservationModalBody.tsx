@@ -177,7 +177,7 @@ const ReservationModalBody = ({
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={edition?.summary ?? ""}
+                text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
 
               {patron && (
