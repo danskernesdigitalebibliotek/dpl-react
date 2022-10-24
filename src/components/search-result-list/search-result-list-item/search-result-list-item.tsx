@@ -54,7 +54,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
   const firstInSeries = series?.[0];
-  const { title: seriesTitle, numberInSeries } = firstInSeries;
+  const { title: seriesTitle, numberInSeries } = firstInSeries || {};
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
 
   const handleClick = useCallback(() => {
