@@ -178,7 +178,6 @@ const ReservationModalBody = ({
                 icon={Various}
                 title={t("editionText")}
                 text={edition?.summary ?? ""}
-                changeHandler={() => {}} // TODO: open modal to switch user data
               />
 
               {patron && (
