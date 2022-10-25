@@ -48,6 +48,5 @@ export default {
   pageSizeLoanList,
   colors,
   thresholds,
-  modalIds,
-  thresholds
+  modalIds
 } as Configuration;

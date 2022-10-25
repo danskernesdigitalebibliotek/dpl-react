@@ -16,11 +16,11 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
   classNames
 }) => {
   const config = useConfig();
-  const branches = config<AgencyBranch>("branchesConfig", {
+  const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
 
-  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
 
