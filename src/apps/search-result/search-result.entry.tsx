@@ -1,7 +1,7 @@
 import React from "react";
 import GuardedApp from "../../components/guarded-app";
 import { withConfig } from "../../core/utils/config";
-import { getPageSize, getParams } from "../../core/utils/helpers/general";
+import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
@@ -50,13 +50,10 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
-  const pageSize = getPageSize(
-    {
-      desktop: pageSizeDesktop,
-      mobile: pageSizeMobile
-    },
-    "pageSize"
-  );
+  const pageSize = pageSizeGlobal({
+    desktop: pageSizeDesktop,
+    mobile: pageSizeMobile
+  });
 
   return (
     <div>

@@ -234,7 +234,7 @@ interface PageSizeDataAttributes {
 export const getPageSizeFromDataAttributes = ({
   desktop,
   mobile
-}: PageSizeDataAttributes) => {
+}: Partial<PageSizeDataAttributes>) => {
   const { pageSize } = getDeviceConf("pageSize", {
     pageSize: {
       mobile: {
@@ -248,18 +248,15 @@ export const getPageSizeFromDataAttributes = ({
   return Number(pageSize);
 };
 
-export const getPageSize = (
+export const pageSizeGlobal = (
   pageSizes: Partial<PageSizeDataAttributes>,
-  configName: ConfScope
+  configName?: ConfScope
 ) => {
-  const { desktop, mobile } = pageSizes;
   let pageSize = 0;
-  if (desktop && mobile) {
-    pageSize = getPageSizeFromDataAttributes(
-      pageSizes as PageSizeDataAttributes
-    );
+  if (pageSizes?.desktop && pageSizes?.mobile) {
+    pageSize = getPageSizeFromDataAttributes(pageSizes);
   } else {
-    pageSize = getPageSizeFromConfiguration(configName);
+    pageSize = getPageSizeFromConfiguration(configName || "pageSize");
   }
 
   return pageSize;
