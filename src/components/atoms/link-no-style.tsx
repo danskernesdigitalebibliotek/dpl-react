@@ -18,7 +18,7 @@ export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
     <Link
       href={url}
       isNewTab={isNewTab}
-      className={`"hide-linkstyle" ${className}`}
+      className={`hide-linkstyle${` ${className}` || ""}`}
     >
       {children}
     </Link>
