@@ -1,5 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
-import set from "lodash.set";
+import { set } from "lodash";
 import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
 import {
   useGetPatronInformationByPatronIdV2,
