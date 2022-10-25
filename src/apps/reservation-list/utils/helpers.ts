@@ -1,6 +1,4 @@
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import { AgencyBranch } from "../../../core/fbs/model";
-import { ReturnValue } from "../../../core/utils/config";
 
 export const getReadyForPickup = (list: ReservationType[]) => {
   return [...list].filter(({ state }) => state === "readyForPickup");
