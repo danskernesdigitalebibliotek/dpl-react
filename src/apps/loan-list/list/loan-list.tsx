@@ -22,7 +22,11 @@ import {
   mapFBSLoanToLoanType
 } from "../../../core/utils/helpers/list-mapper";
 
-const LoanList: FC = () => {
+interface LoanListProps {
+  pageSize: number;
+}
+
+const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<string>("list");
@@ -90,6 +94,7 @@ const LoanList: FC = () => {
         <>
           {physicalLoans && (
             <List
+              pageSize={pageSize}
               emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               header={t("loanListPhysicalLoansTitleText")}
               dueDateLabel={t("loanListToBeDeliveredText")}
@@ -102,6 +107,7 @@ const LoanList: FC = () => {
           )}
           {digitalLoans && (
             <List
+              pageSize={pageSize}
               header={t("loanListDigitalLoansTitleText")}
               emptyListLabel={t("loanListDigitalLoansEmptyListText")}
               dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}

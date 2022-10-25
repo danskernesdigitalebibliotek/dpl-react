@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import { Link } from "../../../../components/atoms/link";
+import { useUrls } from "../../../../core/utils/url";
 import { materialIsOverdue } from "../../utils/helpers";
 
 interface MaterialOverdueLinkProps {
@@ -12,15 +14,16 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   label,
   showOn
 }) => {
-  if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return <div />;
+  const { materialOverdueUrl } = useUrls();
+  if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return null;
 
   return (
-    <a
-      href="todo"
+    <Link
+      href={materialOverdueUrl}
       className={`list-reservation__note-${showOn} color-signal-alert`}
     >
       {label}
-    </a>
+    </Link>
   );
 };
 
