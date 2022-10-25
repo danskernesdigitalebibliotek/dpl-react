@@ -39,7 +39,7 @@ const ReservationList: FC = () => {
 
   // Set digital reservations
   // The digital "ready for pickup"-reservations are mixed with the
-  // phyiscal "ready for pickup"-reservations. The digital
+  // physical "ready for pickup"-reservations. The digital
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (publizonData && publizonData.reservations) {
@@ -58,7 +58,7 @@ const ReservationList: FC = () => {
 
   // Set digital reservations
   // The physical "ready for pickup"-reservations are mixed with the
-  // digital "ready for pickup"-reservations. The phyiscal
+  // digital "ready for pickup"-reservations. The physical
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccess && data) {

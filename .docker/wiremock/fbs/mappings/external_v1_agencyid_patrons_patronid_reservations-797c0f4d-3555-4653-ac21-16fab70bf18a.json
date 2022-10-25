@@ -1,24 +1,24 @@
 {
-  "id": "797c0f4d-3555-4653-ac21-16fab70bf18a",
-  "name": "Reservations",
-  "request": {
-    "urlPathPattern": "/external/v1/agencyid/patrons/patronid/reservations?reservationid=.*",
-    "method": "DELETE"
+  "id" : "797c0f4d-3555-4653-ac21-16fab70bf18a",
+  "name" : "Reservations",
+  "request" : {
+    "urlPathPattern" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "DELETE"
   },
-  "response": {
-    "status": 200,
-    "body": "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
-    "headers": {
-      "content-type": "application/json",
-      "date": "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security": "max-age=15552000",
-      "vary": "Origin"
+  "response" : {
+    "status" : 200,
+    "body" : "{\n  \"code\": 101,\n  \"message\": \"OK\"\n}",
+    "headers" : {
+      "content-type" : "application/json",
+      "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
+      "strict-transport-security" : "max-age=15552000",
+      "vary" : "Origin"
     },
-    "transformers": ["response-template"]
+    "transformers" : [ "response-template" ]
   },
-  "uuid": "797c0f4d-3555-4653-ac21-16fab70bf18a",
-  "persistent": true,
-  "priority": 5,
-  "insertionIndex": 8,
-  "postServeActions": []
+  "uuid" : "797c0f4d-3555-4653-ac21-16fab70bf18a",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 10,
+  "postServeActions" : [ ]
 }
