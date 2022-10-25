@@ -22,9 +22,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation
 }) => {
   const { open } = useModalButtonHandler();
+  const config = useConfig();
   const { faust, identifier } = reservation;
 
-  const config = useConfig();
   const inputBranches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
