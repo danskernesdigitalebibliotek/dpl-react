@@ -65,7 +65,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   useEffect(() => {
     if (branches && pickupBranch) {
-      // Map branches to match select options
+      // Map branches to match select options.
       const mappedBranches = branches.map(({ title, branchId }) => {
         return { label: title, value: branchId };
       });
