@@ -55,7 +55,7 @@ describe("Search Result", () => {
 
   it("Does a search result have the expected number of availibility labels?", () => {
     cy.get(
-      ".search-result-page__list :nth-child(1) .search-result-item .search-result-item__availability"
+      ".search-result-page__list :nth-child(2) .search-result-item .search-result-item__availability"
     )
       .find("a")
       .should("have.length", 20);
