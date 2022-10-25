@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent } from "react";
+import React, { useCallback, FC, MouseEvent } from "react";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
@@ -19,50 +19,31 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation
 }) => {
   const { open } = useModalButtonHandler();
-
-  function stopPropagationFunction(e: Event | MouseEvent) {
-    e.stopPropagation();
-  }
-
   const { faust, identifier } = reservation;
-
-  useEffect(() => {
-    document
-      .querySelector(".list-reservation a")
-      ?.addEventListener("click", stopPropagationFunction, true);
-
-    return () => {
-      document
-        .querySelector(".list-reservation a")
-        ?.removeEventListener("click", stopPropagationFunction, true);
-    };
-  }, []);
 
   const openDetailsModal = useCallback(
     (e: MouseEvent) => {
-      stopPropagationFunction(e);
+      e.stopPropagation();
       open(faust || identifier || "");
     },
     [faust, identifier, open]
   );
 
   return (
-    <div>
-      {reservation && (
-        <button
-          type="button"
-          onClick={(e) => openDetailsModal(e)}
-          className="list-reservation my-32"
-        >
-          {material && (
-            <MaterialInfo
-              material={material}
-              isbnForCover={reservation.identifier || ""}
-            />
-          )}
-          <ReservationInfo reservationInfo={reservation} />
-        </button>
-      )}
+    <li>
+      <button
+        type="button"
+        onClick={(e) => openDetailsModal(e)}
+        className="list-reservation my-32"
+      >
+        {material && (
+          <MaterialInfo
+            material={material}
+            isbnForCover={reservation.identifier || ""}
+          />
+        )}
+        <ReservationInfo reservationInfo={reservation} />
+      </button>
       <MaterialDetailsModal modalEntity={reservation} material={material}>
         <ReservationDetails
           faust={reservation.faust}
@@ -70,7 +51,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
           reservation={reservation}
         />
       </MaterialDetailsModal>
-    </div>
+    </li>
   );
 };
 

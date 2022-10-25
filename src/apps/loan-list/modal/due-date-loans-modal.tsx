@@ -18,7 +18,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   loansModal
 }) => {
   const t = useText();
-  const aMonthAgo = dayjs().subtract(7, "month").format("YYYY-MM-DD");
+  const aMonthAgo = dayjs().subtract(1, "month").format("YYYY-MM-DD");
 
   return (
     <Modal

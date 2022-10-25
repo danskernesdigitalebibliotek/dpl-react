@@ -8,7 +8,7 @@ import {
 
 interface StatusCircleProps {
   dueDate: string;
-  loanDate: string | undefined;
+  loanDate: string;
 }
 
 const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {

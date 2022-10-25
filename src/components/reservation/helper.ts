@@ -148,7 +148,7 @@ export const getAuthorLine = (
 export const excludeBlacklistedBranches = (
   branches: AgencyBranch[],
   blacklist: string[]
-) => {
+): AgencyBranch[] => {
   return branches.filter((item) => !blacklist.includes(item.branchId));
 };
 

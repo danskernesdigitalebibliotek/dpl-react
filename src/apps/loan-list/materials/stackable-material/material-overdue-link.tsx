@@ -1,24 +1,23 @@
 import React, { FC } from "react";
-import { isMobile } from "react-device-detect";
 import { materialIsOverdue } from "../../utils/helpers";
 
 interface MaterialOverdueLinkProps {
   dueDate: string | null | undefined;
   label: string | null | undefined;
+  showOn: "mobile" | "desktop";
 }
 
 const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   dueDate,
-  label
+  label,
+  showOn
 }) => {
   if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return <div />;
 
   return (
     <a
       href="todo"
-      className={`list-reservation__note-${
-        isMobile ? "mobile" : "desktop"
-      } color-signal-alert`}
+      className={`list-reservation__note-${showOn} color-signal-alert`}
     >
       {label}
     </a>
