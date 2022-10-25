@@ -2,14 +2,21 @@ import React, { FC } from "react";
 
 interface DateInputProps {
   label: string;
+  minDateInput?: string;
   id: string;
   value: string;
-  onChange: () => void;
+  onChange: (date: string) => void;
 }
 
-const DateInput: FC<DateInputProps> = ({ label, id, value, onChange }) => {
+const DateInput: FC<DateInputProps> = ({
+  label,
+  id,
+  value,
+  onChange,
+  minDateInput
+}) => {
   // cannot set from/to to yesterday or yesteryear
-  const minDate = new Date().toISOString().split("T")[0];
+  const minDate = minDateInput || new Date().toISOString().split("T")[0];
 
   return (
     <div className="datepicker">
@@ -18,7 +25,7 @@ const DateInput: FC<DateInputProps> = ({ label, id, value, onChange }) => {
           {label}
           <input
             type="date"
-            onChange={onChange}
+            onChange={({ target }) => onChange(target.value)}
             name={id}
             value={value}
             id={id}

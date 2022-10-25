@@ -4,9 +4,9 @@ import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getReadyForPickup,
-  sortByOldestPickupDeadline,
   getReservedDigital,
-  getReservedPhysical
+  getReservedPhysical,
+  sortByOldestPickupDeadline
 } from "../utils/helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
@@ -102,7 +102,7 @@ const ReservationList: FC = () => {
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
-      <ReservationPause user={user} />
+      {user && <ReservationPause user={user} />}
       <List
         header={t("reservationListReadyForPickupTitleText")}
         list={sortByOldestPickupDeadline([

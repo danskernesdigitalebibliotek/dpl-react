@@ -2,37 +2,53 @@ import React, { FC } from "react";
 
 export interface TextInputProps {
   label: string;
-  type: "text" | "password";
+  type: "text" | "password" | "number" | "email";
   id: string;
-  description: string;
+  description?: string;
+  validation?: string;
   onChange: (value: string) => void;
-  value?: string;
+  value?: string | number;
+  className?: string;
+  pattern?: string;
+  inputmode?: "numeric";
 }
 
 const TextInput: FC<TextInputProps> = ({
   id,
   label,
   description,
+  validation,
   type,
   onChange,
-  value
+  value,
+  className,
+  pattern,
+  inputmode
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
   return (
-    <div className="dpl-input">
+    <div className={`dpl-input ${className || ""}`}>
       <label htmlFor={id}>{label}</label>
       <input
-        aria-describedby={`description-${id}`}
+        aria-describedby={description ?? (`description-${id}` || "")}
         id={id}
         type={type}
+        pattern={pattern}
+        inputMode={inputmode}
         onChange={handleChange}
         value={value}
+        aria-labelledby={validation ? `validation-${id}` : ""}
       />
       {description && (
         <div className="dpl-input__description" id={`description-${id}`}>
           {description}
+        </div>
+      )}
+      {validation && (
+        <div id={`validation-${id}`} className="dpl-input__validation">
+          {validation}
         </div>
       )}
     </div>

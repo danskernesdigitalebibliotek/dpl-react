@@ -45,8 +45,8 @@ export interface ReservationListProps {
   pauseReservationModalHeaderText: string;
   pauseReservationModalBreadText: string;
   pauseReservationModalCloseModalText: string;
-  pauseReservationModalStartDateLabelText: string;
-  pauseReservationModalEndDateLabelText: string;
+  pauseReservationStartDateLabelText: string;
+  pauseReservationEndDateLabelText: string;
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;

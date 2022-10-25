@@ -217,11 +217,11 @@ export default {
       defaultValue: "Luk sæt reservationer på pause modal",
       control: { type: "text" }
     },
-    pauseReservationModalStartDateLabelText: {
+    pauseReservationStartDateLabelText: {
       defaultValue: "Startdato",
       control: { type: "text" }
     },
-    pauseReservationModalEndDateLabelText: {
+    pauseReservationEndDateLabelText: {
       defaultValue: "Slutdato",
       control: { type: "text" }
     },

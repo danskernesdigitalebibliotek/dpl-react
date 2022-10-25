@@ -7,23 +7,33 @@ interface CheckBoxProps {
   hideLabel?: boolean;
   selected?: boolean;
   disabled?: boolean;
-  onChecked?: () => void;
+  className?: string;
+  onChecked?: (value: boolean) => void;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
   id,
   label,
   hideLabel,
+  className,
   selected,
   onChecked,
   disabled
 }) => {
+  const checkboxChecked = (checked: boolean) => {
+    if (onChecked) {
+      onChecked(checked);
+    }
+  };
+
   return (
-    <div className="checkbox">
+    <div className={`checkbox ${className || ""}`}>
       <input
         id={id}
         className="checkbox__input"
-        onChange={onChecked}
+        onChange={(e) => {
+          checkboxChecked(e.target.checked);
+        }}
         checked={selected}
         type="checkbox"
         disabled={disabled}
