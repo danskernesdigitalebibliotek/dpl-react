@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
-import { getPageSize } from "../../../core/utils/helpers/general";
+import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
 export interface LoanListEntryProps {
   fbsBaseUrlConfig: string;
@@ -79,7 +79,7 @@ const LoanListEntry: React.FC<LoanListEntryWithPageSizeProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  const pageSize = getPageSize(
+  const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
       mobile: pageSizeMobile
