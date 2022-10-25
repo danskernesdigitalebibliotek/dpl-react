@@ -25,14 +25,17 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   const config = useConfig();
   const { faust, identifier } = reservation;
 
+  // Get library branches from config
   const inputBranches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
 
+  // Get the library branches where the user cannot pick up books at
   const blacklistBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
 
+  // Remove the branches where the user cannot pick up books from the library branches
   let branches = inputBranches;
   if (Array.isArray(blacklistBranches)) {
     branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
