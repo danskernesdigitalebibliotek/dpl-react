@@ -85,16 +85,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
           setCampaignData(data);
         },
         onError: () => {
-          setCampaignData({
-            data: {
-              text: "Have you ever wanted to not be alone? This is a fake campaign, so try it today! 🏆",
-              image: {
-                url: "https://picsum.photos/id/777/300/200",
-                alt: "I am an image."
-              },
-              url: "http://localhost/?path=/story/apps-search-result--search-result"
-            }
-          });
+          // TODO: when we handle errors - handle this error
         }
       }
     );
