@@ -9,14 +9,17 @@ import ReservationDetailsButton from "./reservation-details-buttons";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import DigitalListDetails from "./digital-list-details";
 import PhysicalListDetails from "./physical-list-details";
+import { AgencyBranch } from "../../../core/fbs/model";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
+  branches: AgencyBranch[];
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
-  material
+  material,
+  branches
 }) => {
   const { state, identifier, numberInQueue } = reservation;
 
@@ -52,7 +55,12 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           )}
           <div className="modal-details__list">
             {isDigital && <DigitalListDetails reservation={reservation} />}
-            {!isDigital && <PhysicalListDetails reservation={reservation} />}
+            {!isDigital && (
+              <PhysicalListDetails
+                branches={branches}
+                reservation={reservation}
+              />
+            )}
           </div>
         </>
       )}

@@ -11,6 +11,7 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
 import EmptyList from "../materials/utils/empty-list";
+import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 
 export interface ListProps {
   header: string;
@@ -21,6 +22,7 @@ export interface ListProps {
   dueDateLabel: string;
   emptyListLabel: string;
   viewToggleable: boolean;
+  pageSize: number;
 }
 
 const List: FC<ListProps> = ({
@@ -31,7 +33,8 @@ const List: FC<ListProps> = ({
   view,
   dueDateLabel,
   viewToggleable,
-  emptyListLabel
+  emptyListLabel,
+  pageSize
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -77,6 +80,7 @@ const List: FC<ListProps> = ({
                 className={`dpl-icon-button ${
                   view === "list" ? "dpl-icon-button--selected" : ""
                 }`}
+                id="test-list"
                 type="button"
                 aria-label={t("loanListListText")}
               >
@@ -96,12 +100,14 @@ const List: FC<ListProps> = ({
                 <IconStack />
               </button>
             </div>
-            <div className="dpl-list-buttons__buttons__button">
+            <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
               <button
                 type="button"
                 onClick={() => {
                   openRenewLoansModal();
                 }}
+                disabled={getAmountOfRenewableLoans(loans) === 0}
+                id="test-renew-button"
                 aria-describedby={t(
                   "loanListRenewMultipleButtonExplanationText"
                 )}
@@ -115,6 +121,7 @@ const List: FC<ListProps> = ({
       </div>
       {loans && loans.length > 0 && (
         <Pagination
+          pageSize={pageSize}
           dueDateLabel={dueDateLabel}
           dueDates={dueDates}
           loans={loans}

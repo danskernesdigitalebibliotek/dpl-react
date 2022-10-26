@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import dayjs from "dayjs";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
-import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
@@ -15,7 +14,7 @@ import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useGetBranches, useUpdateReservations } from "../../../core/fbs/fbs";
+import { useUpdateReservations } from "../../../core/fbs/fbs";
 import {
   getPreferredBranch,
   hardcodedInterestPeriods
@@ -24,24 +23,29 @@ import { AgencyBranch } from "../../../core/fbs/model";
 import { formatDate } from "../../loan-list/utils/helpers";
 import ListDetails from "../../../components/list-details/list-details";
 import { Button } from "../../../components/Buttons/Button";
+import ListDetailsDropdown, {
+  OptionsProps
+} from "../../../components/list-details-dropdown/list-details-dropdown";
 
-export interface PhysicalListDetailsProps {
+interface PhysicalListDetailsProps {
   reservation: ReservationType;
+  branches: AgencyBranch[];
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
-  reservation
+  reservation,
+  branches
 }) => {
   const t = useText();
   const { mutate } = useUpdateReservations();
-  const branchResponse = useGetBranches();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
-  const [branches, setBranches] = useState<AgencyBranch[]>([]);
-  const [selectedBranch, setSelectedBranch] = useState<AgencyBranch>();
-  const [selectedExpiryDate, setSelectedExpiryDate] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
+  const [showBranchesSelect, setShowBranchesSelect] = useState<boolean>(false);
+  const [showExpirySelect, setShowExpirySelect] = useState<boolean>(false);
+  const [newBranch, setNewBranch] = useState<OptionsProps | null>(null);
+  const [newExpiryDate, setNewExpiryDate] = useState<OptionsProps | null>(null);
+  const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
+    null
+  );
   const formatInterestPeriods = Object.entries(hardcodedInterestPeriods(t)).map(
     ([key, value]) => ({
       value: key,
@@ -60,20 +64,23 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   } = reservation;
 
   useEffect(() => {
-    if (branchResponse.data && pickupBranch) {
-      setBranches(branchResponse.data);
-      setPickupBranchFetched(
-        getPreferredBranch(pickupBranch, branchResponse.data as AgencyBranch[])
-      );
+    if (branches && pickupBranch) {
+      // Map branches to match select options.
+      const mappedBranches = branches.map(({ title, branchId }) => {
+        return { label: title, value: branchId };
+      });
+      setBranchesOptions(mappedBranches);
+      setPickupBranchFetched(getPreferredBranch(pickupBranch, branches));
+
       // selected branch
-      const selected: AgencyBranch[] = branchResponse.data.filter(
-        ({ branchId }) => branchId === pickupBranch
+      const selected = mappedBranches.filter(
+        ({ value }) => value === pickupBranch
       );
       if (selected.length > 0) {
-        setSelectedBranch(selected[0]);
+        setNewBranch(selected[0]);
       }
     }
-  }, [branchResponse.data, pickupBranch]);
+  }, [branches, pickupBranch]);
 
   const changeExpiryDate = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
@@ -82,30 +89,32 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       );
 
       if (newEpiryDate.length > 0) {
-        setSelectedExpiryDate(newEpiryDate[0]);
+        setNewExpiryDate(newEpiryDate[0]);
       }
     },
-    [formatInterestPeriods, setSelectedExpiryDate]
+    [formatInterestPeriods, setNewExpiryDate]
   );
 
-  const changeSelectedBranch = useCallback(
+  const changeNewBranch = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      const newBranch = branches.filter(
-        ({ branchId }) => branchId === e.target.value
-      );
-      if (newBranch.length > 0) {
-        setSelectedBranch(newBranch[0]);
+      if (branchesOptions) {
+        const selectedBranch = branchesOptions.filter(
+          ({ value }) => value === e.target.value
+        );
+        if (selectedBranch.length > 0) {
+          setNewBranch(selectedBranch[0]);
+        }
       }
     },
-    [branches]
+    [branchesOptions]
   );
 
   const save = useCallback(() => {
     if (reservationId) {
-      let newExpiryDate = expiryDate || "";
-      if (selectedExpiryDate) {
-        newExpiryDate = dayjs(expiryDate)
-          .add(parseInt(selectedExpiryDate.value, 10), "days")
+      let selectedExpiryDate = expiryDate || "";
+      if (newExpiryDate) {
+        selectedExpiryDate = dayjs(expiryDate)
+          .add(parseInt(newExpiryDate.value, 10), "days")
           .format("YYYY-MM-DD");
       }
       mutate(
@@ -113,8 +122,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           data: {
             reservations: [
               {
-                expiryDate: newExpiryDate,
-                pickupBranch: selectedBranch?.branchId,
+                expiryDate: selectedExpiryDate,
+                pickupBranch: newBranch?.value,
                 reservationId
               }
             ]
@@ -124,25 +133,34 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onSuccess: (result) => {
             // todo
+            setShowBranchesSelect(false);
+            setShowExpirySelect(false);
           },
           // todo error handling, missing in figma
           onError: () => {}
         }
       );
     }
-  }, [mutate, reservationId, selectedBranch, selectedExpiryDate]);
+  }, [expiryDate, mutate, reservationId, newBranch?.value, newExpiryDate]);
 
   const cancel = useCallback(() => {
     // Reset branch to original branch
-    const originalBranch = branches.filter(
-      ({ branchId }) => branchId === pickupBranch
-    );
-    if (originalBranch.length > 0) {
-      setSelectedBranch(originalBranch[0]);
+    if (branchesOptions) {
+      let originalBranch: OptionsProps[] = [];
+      originalBranch = branchesOptions.filter(
+        ({ value }) => value === pickupBranch
+      );
+      if (originalBranch.length > 0) {
+        setNewBranch(originalBranch[0]);
+      }
     }
     // Reset expiry date to original expiryDate
-    setSelectedExpiryDate(null);
-  }, [branches, expiryDate, pickupBranch]);
+    setNewExpiryDate(null);
+
+    // reset to "change" links
+    setShowBranchesSelect(false);
+    setShowExpirySelect(false);
+  }, [branchesOptions, pickupBranch]);
 
   return (
     <>
@@ -162,27 +180,15 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           title={t("reservationDetailsPickUpAtTitelText")}
           labels={[pickupBranchFetched, pickupNumber || ""]}
         >
-          <div className="dropdown">
-            <select
-              className="dropdown__select"
-              onChange={(e) => changeSelectedBranch(e)}
-            >
-              {/* todo when does the value change */}
-              {branches.map(({ title: branchTitle, branchId }) => (
-                <option
-                  key={branchId}
-                  selected={selectedBranch?.branchId === branchId}
-                  className="dropdown__option"
-                  value={branchId}
-                >
-                  {branchTitle}
-                </option>
-              ))}
-            </select>
-            <div className="dropdown__arrows">
-              <img className="dropdown__arrow" src={ExpandIcon} alt="" />
-            </div>
-          </div>
+          {branchesOptions && (
+            <ListDetailsDropdown
+              showSelect={showBranchesSelect}
+              setShowSelect={setShowBranchesSelect}
+              onDropdownChange={changeNewBranch}
+              options={branchesOptions}
+              selected={newBranch}
+            />
+          )}
         </ListDetails>
       )}
       {expiryDate && (
@@ -191,37 +197,13 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           title={t("reservationDetailsNoInterestAfterTitelText")}
           labels={[formatDate(expiryDate)]}
         >
-          <div className="dropdown">
-            <select
-              className="dropdown__select"
-              onChange={(e) => changeExpiryDate(e)}
-            >
-              {/* todo when does the value change */}
-              <option
-                key={null}
-                selected={selectedExpiryDate === null}
-                className="dropdown__option"
-                disabled
-              >
-                {t("reservationDetailsNothingSelectedLabelText")}
-              </option>
-              {formatInterestPeriods.map(({ label, value }) => {
-                return (
-                  <option
-                    key={value}
-                    selected={selectedExpiryDate?.value === value}
-                    className="dropdown__option"
-                    value={value}
-                  >
-                    {label}
-                  </option>
-                );
-              })}
-            </select>
-            <div className="dropdown__arrows">
-              <img className="dropdown__arrow" src={ExpandIcon} alt="" />
-            </div>
-          </div>
+          <ListDetailsDropdown
+            showSelect={showExpirySelect}
+            setShowSelect={setShowExpirySelect}
+            onDropdownChange={changeExpiryDate}
+            options={formatInterestPeriods}
+            selected={newExpiryDate}
+          />
         </ListDetails>
       )}
       {pickupDeadline && (
@@ -245,6 +227,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         <Button
           label={t("reservationDetailsSaveText")}
           buttonType="none"
+          id="test-save-physical-details"
           variant="filled"
           disabled={false}
           onClick={save}

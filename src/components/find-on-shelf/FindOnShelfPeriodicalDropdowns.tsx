@@ -4,7 +4,11 @@ import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
 import {
   PeriodicalEdition,
-  makePeriodicalEditionsFromHoldings
+  makePeriodicalEditionsFromHoldings,
+  filterAndSortPeriodicalEditions,
+  handleSelectYear,
+  GroupList,
+  handleSelectEdition
 } from "../material/periodical/helper";
 import { groupObjectArrayByProperty } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -21,25 +25,42 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
   selectedPeriodical
 }) => {
   const t = useText();
-  const periodicalEditions = makePeriodicalEditionsFromHoldings(
+  const periodicalEditionsBase = makePeriodicalEditionsFromHoldings(
     manifestationsHoldings[0].holdings
   );
-  const groupedPeriodicalEditions = groupObjectArrayByProperty(
-    periodicalEditions,
+  const groupedPeriodicalEditionsBase = groupObjectArrayByProperty(
+    periodicalEditionsBase,
     "volumeYear"
   );
-  const sortedPeriodicalEditions = Object.keys(
-    groupedPeriodicalEditions
-  ).sort();
+
+  const periodicalEditions = filterAndSortPeriodicalEditions(
+    groupedPeriodicalEditionsBase
+  );
+
+  const sortedPeriodicalYears = Object.keys(periodicalEditions).sort();
+
   const [selectedYear, setSelectedYear] = useState<string>(
     selectedPeriodical.volumeYear
   );
-  const toBeSelectedPeriodical = groupedPeriodicalEditions[
-    Number(selectedYear)
-  ].find(
-    (periodicalEdition) =>
-      periodicalEdition.volumeNumber === selectedPeriodical.volumeNumber
-  );
+
+  const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectYear(
+      event.target.value,
+      setSelectedYear,
+      setSelectedPeriodical,
+      periodicalEditions,
+      groupedPeriodicalEditionsBase as GroupList
+    );
+  };
+
+  const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectEdition(
+      groupedPeriodicalEditionsBase as GroupList,
+      selectedYear,
+      event.target.value,
+      setSelectedPeriodical
+    );
+  };
 
   return (
     <div className="modal-find-on-shelf__periodical-dropdowns">
@@ -48,9 +69,9 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           className="dropdown__select"
           aria-label={t("findOnShelfModalPeriodicalYearDropdownText")}
           defaultValue={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
+          onChange={handleYearSelect}
         >
-          {sortedPeriodicalEditions.map((volumeYear) => (
+          {sortedPeriodicalYears.map((volumeYear) => (
             <option
               key={volumeYear}
               value={volumeYear}
@@ -69,29 +90,16 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
           <select
             className="dropdown__select"
             aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
-            defaultValue={selectedPeriodical.volumeNumber}
-            onChange={(e) =>
-              setSelectedPeriodical({
-                volumeYear: selectedYear,
-                volumeNumber: e.target.value || "",
-                displayText: toBeSelectedPeriodical?.displayText || "",
-                itemNumber: toBeSelectedPeriodical?.itemNumber || "",
-                volume: toBeSelectedPeriodical?.volume || ""
-              })
-            }
+            value={selectedPeriodical.volumeNumber}
+            onChange={handleEditionSelect}
           >
-            {groupedPeriodicalEditions[selectedYear].map(
-              (periodicalEdition) => {
-                return (
-                  <option
-                    key={periodicalEdition.itemNumber}
-                    value={periodicalEdition.volumeNumber}
-                  >
-                    {periodicalEdition.volumeNumber}
-                  </option>
-                );
-              }
-            )}
+            {periodicalEditions[selectedYear].map((periodicalEdition) => {
+              return (
+                <option key={periodicalEdition} value={periodicalEdition}>
+                  {periodicalEdition}
+                </option>
+              );
+            })}
           </select>
           <div className="dropdown__arrows">
             <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />

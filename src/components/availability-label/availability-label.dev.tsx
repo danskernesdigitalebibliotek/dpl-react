@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
+import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import {
   AvailabilityLabelProps,
@@ -29,6 +30,11 @@ export default {
     selected: {
       name: "selected",
       control: { type: "boolean" }
+    },
+    blacklistedAvailabilityBranchesConfig: {
+      name: "Blacklisted Availability branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
     }
   },
   args: {
@@ -42,7 +48,10 @@ export default {
 
 const Template: ComponentStory<typeof AvailabilityLabel> = (
   args: AvailabilityLabelProps
-) => <AvailabilityLabel {...args} />;
+) => {
+  const ConfiguredAvailabilityLabel = withConfig(AvailabilityLabel);
+  return <ConfiguredAvailabilityLabel {...args} />;
+};
 
 export const Available = Template.bind({});
 Available.args = {

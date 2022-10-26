@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
 import materialDev from "../../apps/material/material.dev";
+import { withConfig } from "../../core/utils/config";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import MaterialButtonsFindOnShelf from "../material/material-buttons/physical/MaterialButtonsFindOnShelf";
@@ -45,6 +46,11 @@ export default {
       name: "Set selected periodical function",
       defaultValue: null,
       control: { type: "null" }
+    },
+    blacklistedPickupBranchesConfig: {
+      name: "Blacklisted Pickup branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof FindOnShelfModal>;
@@ -68,14 +74,16 @@ const Template: ComponentStory<typeof FindOnShelfModal> = (
   const {
     manifestations: [{ pid }]
   } = args;
-  const FindOnShelfModalWithText = withText(FindOnShelfModal);
+  const FindOnShelfModalWithConfigAndText = withConfig(
+    withText(FindOnShelfModal)
+  );
   return (
     <>
       <MaterialButtonsFindOnShelf
         size="small"
         faustIds={[convertPostIdToFaustId(pid)]}
       />
-      <FindOnShelfModalWithText {...args} />
+      <FindOnShelfModalWithConfigAndText {...args} />
     </>
   );
 };
