@@ -1,4 +1,9 @@
 import React from "react";
+import { formatFilters } from "../../apps/search-result/helpers";
+import {
+  FilterItemTerm,
+  TagOnclickHandler
+} from "../../apps/search-result/types";
 import {
   FacetField,
   FacetResult,
@@ -12,28 +17,33 @@ export const FacetBrowserModalId = "facet-browser-modal";
 
 interface FacetBrowserModalProps {
   q: string;
+  filterHandler: TagOnclickHandler;
+  filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 
 const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
-  q
+  q,
+  filterHandler,
+  filters
 }) => {
   const t = useText();
 
   const { data, isLoading, isError } = useSearchFacetQuery({
     q: { all: q },
     facets: [
+      FacetField.MainLanguages,
       FacetField.AccessTypes,
       FacetField.ChildrenOrAdults,
       FacetField.Creators,
       FacetField.FictionNonfiction,
       FacetField.FictionalCharacter,
       FacetField.GenreAndForm,
-      FacetField.MainLanguages,
       FacetField.MaterialTypes,
       FacetField.Subjects,
       FacetField.WorkTypes
     ],
-    facetLimit: 10
+    facetLimit: 10,
+    ...(filters ? { filters: { ...formatFilters(filters) } } : {})
   });
 
   if (isLoading || isError || !data) {
@@ -49,8 +59,11 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       )}
       closeModalAriaLabelText={t("facetBrowserModalCloseModalAriaLabelText")}
     >
-      {/* TODO Is it necessary to have "as FacetResult[]" ? */}
-      <FacetBrowserModalBody facets={data.search.facets as FacetResult[]} />
+      <FacetBrowserModalBody
+        facets={data.search.facets as FacetResult[]}
+        filterHandler={filterHandler}
+        filters={filters}
+      />
     </Modal>
   );
 };

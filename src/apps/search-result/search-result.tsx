@@ -9,6 +9,8 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
+import { formatFilters } from "./helpers";
+import useFilterHandler from "./useFilterHandler";
 
 interface SearchResultProps {
   q: string;
@@ -21,6 +23,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     0
   );
   const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const { filters, filterHandler } = useFilterHandler();
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
@@ -32,7 +35,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     {
       q: { all: q },
       offset: page * pageSize,
-      limit: pageSize
+      limit: pageSize,
+      ...(filters ? { filters: { ...formatFilters(filters) } } : {})
     },
     {
       // If the component is used in Storybook context
@@ -53,11 +57,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           };
         };
 
-        setResultItems([...resultItems, ...resultWorks]);
+        // TODO: Why this? Why not just set the resultWorks?
+        // setResultItems([...resultItems, ...resultWorks]);
+        setResultItems([...resultWorks]);
 
-        if (!hitcount) {
-          setHitCount(resultCount);
-        }
+        // if (!hitcount) {
+        setHitCount(resultCount);
+        // }
       }
     }
   );
@@ -71,7 +77,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
           <SearchResultList resultItems={resultItems} />
           {PagerComponent}
-          <FacetBrowserModal q={q} />
+          <FacetBrowserModal
+            q={q}
+            filters={filters}
+            filterHandler={filterHandler}
+          />
         </>
       )}
     </div>
