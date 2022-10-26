@@ -25,10 +25,16 @@ const useFilterHandler = () => {
     }
 
     if (action === "remove") {
+      const copy = { ...filters };
       if (Object.keys(filters).includes(facet)) {
-        const copy = { ...filters };
-        delete copy[facet][term.term];
-        setFilters(copy);
+        // this removes the facet if it's the last term
+        if (Object.keys(filters[facet]).length === 1) {
+          delete copy[facet];
+          setFilters(copy);
+        } else {
+          delete copy[facet][term.term];
+          setFilters(copy);
+        }
       }
     }
   };
