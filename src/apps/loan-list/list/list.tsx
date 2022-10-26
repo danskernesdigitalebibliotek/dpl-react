@@ -129,7 +129,7 @@ const List: FC<ListProps> = ({
         />
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
-      <RenewLoansModal loansModal={loans} />
+      <RenewLoansModal pageSize={pageSize} loansModal={loans} />
     </>
   );
 };

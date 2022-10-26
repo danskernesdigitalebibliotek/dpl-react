@@ -140,6 +140,14 @@ export default {
       defaultValue: "Luk materialedetalje modal",
       control: { type: "text" }
     },
+    materialDetailsButtonRenewedText: {
+      defaultValue: "Fornyet",
+      control: { type: "text" }
+    },
+    materialDetailsButtonNotRenewableText: {
+      defaultValue: "Kan ikke fornyes",
+      control: { type: "text" }
+    },
     renewLoanModalDescriptionText: {
       defaultValue: "Denne modal gør det muligt at forny lån",
       control: { type: "text" }

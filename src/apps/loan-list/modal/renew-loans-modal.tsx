@@ -7,9 +7,13 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface RenewLoansModalProps {
   loansModal: LoanType[];
+  pageSize: number;
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
+const RenewLoansModal: FC<RenewLoansModalProps> = ({
+  loansModal,
+  pageSize
+}) => {
   const t = useText();
 
   return (
@@ -30,6 +34,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({ loansModal }) => {
               </div>
             </div>
             <RenewLoansModalContent
+              pageSize={pageSize}
               loansModal={loansModal}
               buttonLabel={t("renewLoanModalButtonText")}
               checkboxLabel={t("renewLoanModalCheckboxText")}
