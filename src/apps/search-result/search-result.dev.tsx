@@ -109,47 +109,47 @@ export default {
       defaultValue: "Close facet browser modal",
       control: { type: "text" }
     },
-    accessTypesText: {
+    facetAccessTypesText: {
       name: "Access types text",
       defaultValue: "Access types",
       control: { type: "text" }
     },
-    childrenOrAdultsText: {
+    facetChildrenOrAdultsText: {
       name: "Children or adults text",
       defaultValue: "Children or adults",
       control: { type: "text" }
     },
-    creatorsText: {
+    facetCreatorsText: {
       name: "Creators text",
       defaultValue: "Creators",
       control: { type: "text" }
     },
-    fictionNonfictionText: {
+    facetFictionNonfictionText: {
       name: "Fiction or nonfiction text",
       defaultValue: "Fiction or nonfiction",
       control: { type: "text" }
     },
-    genreAndFormText: {
+    facetGenreAndFormText: {
       name: "Genre and form text",
       defaultValue: "Genre and form",
       control: { type: "text" }
     },
-    mainLanguagesText: {
+    facetMainLanguagesText: {
       name: "Main languages text",
       defaultValue: "Main languages",
       control: { type: "text" }
     },
-    materialTypesText: {
+    facetMaterialTypesText: {
       name: "Material types text",
       defaultValue: "Material types",
       control: { type: "text" }
     },
-    subjectsText: {
+    facetSubjectsText: {
       name: "Subjects text",
       defaultValue: "Subjects",
       control: { type: "text" }
     },
-    workTypesText: {
+    facetWorkTypesText: {
       name: "Work types text",
       defaultValue: "Work types",
       control: { type: "text" }
@@ -167,6 +167,11 @@ export default {
     clearAllText: {
       name: "Clear all text",
       defaultValue: "Clear all",
+      control: { type: "text" }
+    },
+    addMoreFiltersText: {
+      name: "Add more filters text",
+      defaultValue: "+ FLERE FILTRE",
       control: { type: "text" }
     }
   }

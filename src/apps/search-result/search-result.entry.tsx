@@ -18,18 +18,19 @@ interface SearchResultEntryTextProps {
   showingResultsForText: string;
   facetBrowserModalScreenReaderModalDescriptionText: string;
   facetBrowserModalCloseModalAriaLabelText: string;
-  accessTypesText: string;
-  childrenOrAdultsText: string;
-  creatorsText: string;
-  fictionNonfictionText: string;
-  genreAndFormText: string;
-  mainLanguagesText: string;
-  materialTypesText: string;
-  subjectsText: string;
-  workTypesText: string;
+  facetAccessTypesText: string;
+  facetChildrenOrAdultsText: string;
+  facetCreatorsText: string;
+  facetFictionNonfictionText: string;
+  facetGenreAndFormText: string;
+  facetMainLanguagesText: string;
+  facetMaterialTypesText: string;
+  facetSubjectsText: string;
+  facetWorkTypesText: string;
   showResultsText: string;
   filterListText: string;
   clearAllText: string;
+  addMoreFiltersText: string;
 }
 
 interface SearchResultEntryUrlProps {
