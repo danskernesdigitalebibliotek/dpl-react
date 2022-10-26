@@ -19,7 +19,7 @@ const Tag: React.FunctionComponent<TagProps> = ({
         "tag tag--outlined",
         selected && "tag--outlined-selected"
       )}
-      onClick={onClick ?? undefined}
+      onClick={onClick}
     >
       {children}
     </button>
