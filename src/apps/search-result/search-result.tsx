@@ -11,6 +11,7 @@ import { Work } from "../../core/utils/types/entities";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { formatFilters } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
+import { isObjectEmpty } from "../../core/utils/helpers/general";
 
 interface SearchResultProps {
   q: string;
@@ -36,7 +37,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
-      ...(filters ? { filters: { ...formatFilters(filters) } } : {})
+      ...(isObjectEmpty(filters)
+        ? {}
+        : { filters: { ...formatFilters(filters) } })
     },
     {
       // If the component is used in Storybook context
@@ -57,9 +60,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           };
         };
 
-        // TODO: Why this? Why not just set the resultWorks?
-        // setResultItems([...resultItems, ...resultWorks]);
-        setResultItems([...resultWorks]);
+        if (isObjectEmpty(filters)) {
+          setResultItems((prev) => [...prev, ...resultWorks]);
+          return;
+        }
+
+        setResultItems(resultWorks);
 
         // if (!hitcount) {
         setHitCount(resultCount);
@@ -74,6 +80,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     <div className="search-result-page">
       {worksAreLoaded && (
         <>
+          <pre>{JSON.stringify(filters, null, 2)}</pre>
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
           <SearchResultList resultItems={resultItems} />
           {PagerComponent}
