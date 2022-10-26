@@ -119,6 +119,8 @@ export type ComplexSearchFilters = {
 /** The search response */
 export type ComplexSearchResponse = {
   __typename?: "ComplexSearchResponse";
+  /** Error message, for instance if CQL is invalid */
+  errorMessage?: Maybe<Scalars["String"]>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
   /** The works matching the given search query. Use offset and limit for pagination. */
@@ -781,6 +783,7 @@ export type QueryManifestationsArgs = {
 };
 
 export type QueryRecommendArgs = {
+  branchId?: InputMaybe<Scalars["String"]>;
   faust?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -1428,6 +1431,7 @@ export type SearchWithPaginationQueryVariables = Exact<{
   q: SearchQuery;
   offset: Scalars["Int"];
   limit: Scalars["PaginationLimit"];
+  filters?: InputMaybe<SearchFilters>;
 }>;
 
 export type SearchWithPaginationQuery = {
@@ -1669,6 +1673,7 @@ export type SearchFacetQueryVariables = Exact<{
   q: SearchQuery;
   facets: Array<FacetField> | FacetField;
   facetLimit: Scalars["Int"];
+  filters?: InputMaybe<SearchFilters>;
 }>;
 
 export type SearchFacetQuery = {
@@ -2593,8 +2598,8 @@ export const useGetInfomediaQuery = <
     options
   );
 export const SearchWithPaginationDocument = `
-    query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
-  search(q: $q) {
+    query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!, $filters: SearchFilters) {
+  search(q: $q, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
       ...WorkSmall
@@ -2657,8 +2662,8 @@ export const useSuggestionsFromQueryStringQuery = <
     options
   );
 export const SearchFacetDocument = `
-    query searchFacet($q: SearchQuery!, $facets: [FacetField!]!, $facetLimit: Int!) {
-  search(q: $q) {
+    query searchFacet($q: SearchQuery!, $facets: [FacetField!]!, $facetLimit: Int!, $filters: SearchFilters) {
+  search(q: $q, filters: $filters) {
     facets(facets: $facets) {
       name
       values(limit: $facetLimit) {
