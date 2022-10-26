@@ -3,9 +3,10 @@ import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import IconCheckmark from "../../../components/icon-checkmark/icon-checkmark";
+import { FaustId } from "../../../core/utils/types/ids";
 
 interface RenewButtonProps {
-  faust: string;
+  faust: FaustId;
   setDueDate: (date: string) => void;
 }
 
@@ -64,7 +65,7 @@ const RenewButton: FC<RenewButtonProps> = ({ faust, setDueDate }) => {
 
   return (
     <div className="modal-details__buttons">
-      {renewable && faust && (
+      {renewable && (
         <button
           type="button"
           onClick={() => renew(parseInt(faust, 10))}
