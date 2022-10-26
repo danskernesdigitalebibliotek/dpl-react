@@ -18,7 +18,7 @@ export interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   dueDateLabel?: string;
   openModal?: boolean;
-  pageSize?: number;
+  pageSize: number;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
