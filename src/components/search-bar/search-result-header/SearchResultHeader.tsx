@@ -25,7 +25,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
       <Tag
         onClick={() => dispatch(openModal({ modalId: FacetBrowserModalId }))}
       >
-        + FLERE FILTRE
+        {t("addMoreFiltersText")}
       </Tag>
     </>
   );
