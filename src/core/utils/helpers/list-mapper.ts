@@ -47,7 +47,7 @@ function getSeriesString(
   return series
     .map(({ title, numberInSeries }) => {
       if (numberInSeries && numberInSeries.number) {
-        return `${title} ${numberInSeries?.number?.[0]}`;
+        return `${title} ${numberInSeries.number?.[0]}`;
       }
       return title;
     })
