@@ -180,7 +180,12 @@ export const mapManifestationToBasicDetailsType = (
   } = titles || { main: [] };
   const { year: yearObject } = hostPublication || {};
   const { year } = yearObject || {};
-  const contributors = creators?.map(({ display }) => display);
+
+  let contributors = null;
+  const inputContributorsArray = creators?.map(({ display }) => display);
+  if (inputContributorsArray) {
+    contributors = getContributors(inputContributorsArray);
+  }
 
   return {
     authors: contributors || "",
