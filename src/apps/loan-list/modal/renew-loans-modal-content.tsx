@@ -4,8 +4,7 @@ import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
   getRenewableMaterials,
-  getAmountOfRenewableLoans,
-  getPageSizeFromConfiguration
+  getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";

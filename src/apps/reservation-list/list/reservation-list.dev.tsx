@@ -127,10 +127,6 @@ export default {
       defaultValue: "Udløbsdato",
       control: { type: "text" }
     },
-    reservationDetailsExpiresLabelText: {
-      defaultValue: "Reserveringen udløber",
-      control: { type: "text" }
-    },
     reservationDetailsPickupDeadlineTitelText: {
       defaultValue: "Udløbsdato",
       control: { type: "text" }
@@ -193,10 +189,6 @@ export default {
     },
     listDetailsNothingSelectedLabelText: {
       defaultValue: "Vælg",
-      control: { type: "text" }
-    },
-    reservationDetailsLoanBeforeText: {
-      defaultValue: "Lånes inden",
       control: { type: "text" }
     }
   },

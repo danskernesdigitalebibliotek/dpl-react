@@ -14,8 +14,10 @@ export interface LoanListEntryTextProps {
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
   materialOverdueUrl: string;
+  materialDetailsButtonRenewedText: string;
   loanListRenewMultipleButtonText: string;
   loanListListText: string;
+  materialDetailsButtonNotRenewableText: string;
   loanListStackText: string;
   loanListRenewMultipleButtonExplanationText: string;
   loanListLateFeeDesktopText: string;

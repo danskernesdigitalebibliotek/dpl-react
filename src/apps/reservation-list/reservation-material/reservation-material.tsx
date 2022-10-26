@@ -65,12 +65,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         <ReservationInfo branches={branches} reservationInfo={reservation} />
       </button>
       <MaterialDetailsModal modalEntity={reservation} material={material}>
-        <ReservationDetails
-          branches={branches}
-          faust={reservation.faust}
-          identifier={reservation.identifier}
-          reservation={reservation}
-        />
+        <ReservationDetails branches={branches} reservation={reservation} />
       </MaterialDetailsModal>
     </li>
   );

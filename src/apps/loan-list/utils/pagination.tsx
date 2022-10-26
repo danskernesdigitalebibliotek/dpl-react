@@ -50,6 +50,7 @@ const Pagination: FC<PaginationProps> = ({
   return (
     <>
       <LoanListItems
+        pageSize={pageSize}
         dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}
