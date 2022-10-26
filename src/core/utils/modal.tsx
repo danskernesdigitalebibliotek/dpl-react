@@ -47,15 +47,7 @@ function Modal({
   return (
     <div
       className="modal-backdrop"
-      role="button"
-      tabIndex={0}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) dispatch(closeModal({ modalId }));
-      }}
-      // TODO is this the right way to handle this?
-      onKeyPress={(e) => {
-        if (e.key === "Escape") dispatch(closeModal({ modalId }));
-      }}
+      // TODO: Close the modal when clicking backdrop.
     >
       <div
         className={clsx(
