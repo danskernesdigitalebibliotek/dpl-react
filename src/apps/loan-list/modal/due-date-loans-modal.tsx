@@ -11,11 +11,13 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 interface DueDateLoansModalProps {
   dueDate: string;
   loansModal: LoanType[];
+  pageSize: number;
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
-  loansModal
+  loansModal,
+  pageSize
 }) => {
   const t = useText();
   const aMonthAgo = dayjs().subtract(1, "month").format("YYYY-MM-DD");
@@ -53,6 +55,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
             )}
             <RenewLoansModalContent
+              pageSize={pageSize}
               loansModal={loansModal}
               buttonLabel={t("dueDateRenewLoanModalButtonText")}
               checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}

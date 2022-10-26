@@ -18,6 +18,7 @@ export interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   dueDateLabel?: string;
   openModal?: boolean;
+  pageSize?: number;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
@@ -26,7 +27,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   openModal,
   loan,
   dueDateLabel,
-  stack
+  stack,
+  pageSize
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -111,7 +113,11 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         </MaterialStatus>
       </button>
       {dueDate && stack && (
-        <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
+        <DueDateLoansModal
+          pageSize={pageSize}
+          dueDate={dueDate}
+          loansModal={stack}
+        />
       )}
       <MaterialDetailsModal modalEntity={loan} material={material}>
         <MaterialDetails
