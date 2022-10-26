@@ -1,4 +1,4 @@
-query getMaterialManifestation($faust: String!) {
+query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
     pid
     titles {

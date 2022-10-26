@@ -119,6 +119,8 @@ export type ComplexSearchFilters = {
 /** The search response */
 export type ComplexSearchResponse = {
   __typename?: "ComplexSearchResponse";
+  /** Error message, for instance if CQL is invalid */
+  errorMessage?: Maybe<Scalars["String"]>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
   /** The works matching the given search query. Use offset and limit for pagination. */
@@ -781,6 +783,7 @@ export type QueryManifestationsArgs = {
 };
 
 export type QueryRecommendArgs = {
+  branchId?: InputMaybe<Scalars["String"]>;
   faust?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -1137,11 +1140,11 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
-export type GetMaterialManifestationQueryVariables = Exact<{
+export type GetManifestationViaMaterialByFaustQueryVariables = Exact<{
   faust: Scalars["String"];
 }>;
 
-export type GetMaterialManifestationQuery = {
+export type GetManifestationViaMaterialByFaustQuery = {
   __typename?: "Query";
   manifestation?: {
     __typename?: "Manifestation";
@@ -2496,8 +2499,8 @@ export const WorkMediumFragmentDoc = `
   workYear
 }
     ${WorkSmallFragmentDoc}`;
-export const GetMaterialManifestationDocument = `
-    query getMaterialManifestation($faust: String!) {
+export const GetManifestationViaMaterialByFaustDocument = `
+    query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
     pid
     titles {
@@ -2524,19 +2527,23 @@ export const GetMaterialManifestationDocument = `
   }
 }
     `;
-export const useGetMaterialManifestationQuery = <
-  TData = GetMaterialManifestationQuery,
+export const useGetManifestationViaMaterialByFaustQuery = <
+  TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
 >(
-  variables: GetMaterialManifestationQueryVariables,
-  options?: UseQueryOptions<GetMaterialManifestationQuery, TError, TData>
+  variables: GetManifestationViaMaterialByFaustQueryVariables,
+  options?: UseQueryOptions<
+    GetManifestationViaMaterialByFaustQuery,
+    TError,
+    TData
+  >
 ) =>
-  useQuery<GetMaterialManifestationQuery, TError, TData>(
-    ["getMaterialManifestation", variables],
+  useQuery<GetManifestationViaMaterialByFaustQuery, TError, TData>(
+    ["getManifestationViaMaterialByFaust", variables],
     fetcher<
-      GetMaterialManifestationQuery,
-      GetMaterialManifestationQueryVariables
-    >(GetMaterialManifestationDocument, variables),
+      GetManifestationViaMaterialByFaustQuery,
+      GetManifestationViaMaterialByFaustQueryVariables
+    >(GetManifestationViaMaterialByFaustDocument, variables),
     options
   );
 export const GetMaterialDocument = `
