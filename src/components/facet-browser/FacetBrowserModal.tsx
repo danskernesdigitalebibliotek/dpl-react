@@ -9,6 +9,7 @@ import {
   FacetResult,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import { isObjectEmpty } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
@@ -43,7 +44,9 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       FacetField.WorkTypes
     ],
     facetLimit: 10,
-    ...(filters ? { filters: { ...formatFilters(filters) } } : {})
+    ...(isObjectEmpty(filters)
+      ? {}
+      : { filters: { ...formatFilters(filters) } })
   });
 
   if (isLoading || isError || !data) {
