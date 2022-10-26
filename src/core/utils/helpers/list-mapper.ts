@@ -1,6 +1,9 @@
 import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
+import {
+  GetManifestationViaMaterialByFaustQuery,
+  Creator
+} from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
@@ -162,7 +165,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
-  material: GetMaterialManifestationQuery
+  material: GetManifestationViaMaterialByFaustQuery
 ) => {
   const {
     hostPublication,
@@ -180,11 +183,10 @@ export const mapManifestationToBasicDetailsType = (
   } = titles || { main: [] };
   const { year: yearObject } = hostPublication || {};
   const { year } = yearObject || {};
+  const contributors = creators?.map((con: Creator) => con.display);
 
   return {
-    authors: creators
-      ? getContributors(creators?.map(({ display }) => display))
-      : "",
+    authors: contributors || "",
     pid,
     title: mainText,
     year,
