@@ -675,6 +675,18 @@
         "description": "The search response",
         "fields": [
           {
+            "name": "errorMessage",
+            "description": "Error message, for instance if CQL is invalid",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "hitcount",
             "description": "Total number of works found. May be used for pagination.",
             "args": [],
@@ -5105,6 +5117,18 @@
             "name": "recommend",
             "description": "Get recommendations",
             "args": [
+              {
+                "name": "branchId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
               {
                 "name": "faust",
                 "description": null,
