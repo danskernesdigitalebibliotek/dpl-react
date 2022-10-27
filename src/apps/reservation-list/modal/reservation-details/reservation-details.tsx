@@ -1,16 +1,16 @@
 import React, { FC } from "react";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
-} from "../../loan-list/materials/utils/material-fetch-hoc";
-import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
+} from "../../../loan-list/materials/utils/material-fetch-hoc";
+import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
 import DigitalListDetails from "./digital-list-details";
-import ReservationDetailsButton from "./reservation-details/reservation-details-buttons";
-import { AgencyBranch } from "../../../core/fbs/model";
+import ReservationDetailsButton from "./reservation-details-buttons";
+import { AgencyBranch } from "../../../../core/fbs/model";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
-import { useText } from "../../../core/utils/text";
-import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
-import PhysicalListDetails from "./reservation-details/physical-list-details";
+import { useText } from "../../../../core/utils/text";
+import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
+import PhysicalListDetails from "./physical-list-details";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
