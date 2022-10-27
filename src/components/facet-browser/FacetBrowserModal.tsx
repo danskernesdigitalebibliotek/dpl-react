@@ -29,7 +29,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
 }) => {
   const t = useText();
 
-  const { data, isLoading, isError } = useSearchFacetQuery({
+  const { data, isLoading } = useSearchFacetQuery({
     q: { all: q },
     facets: [
       FacetField.MainLanguages,
@@ -49,10 +49,6 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       : { filters: { ...formatFilters(filters) } })
   });
 
-  if (isLoading || isError || !data) {
-    return null;
-  }
-
   return (
     <Modal
       classNames="modal-right modal--no-padding"
@@ -62,11 +58,13 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       )}
       closeModalAriaLabelText={t("facetBrowserModalCloseModalAriaLabelText")}
     >
-      <FacetBrowserModalBody
-        facets={data.search.facets as FacetResult[]}
-        filterHandler={filterHandler}
-        filters={filters}
-      />
+      {isLoading || !data ? null : (
+        <FacetBrowserModalBody
+          facets={data.search.facets as FacetResult[]}
+          filterHandler={filterHandler}
+          filters={filters}
+        />
+      )}
     </Modal>
   );
 };

@@ -3,7 +3,6 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/search-result.list";
 import {
-  SearchResponse,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -12,6 +11,7 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { formatFilters } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
 import { isObjectEmpty } from "../../core/utils/helpers/general";
+import { TagOnclickHandler } from "./types";
 
 interface SearchResultProps {
   q: string;
@@ -20,17 +20,20 @@ interface SearchResultProps {
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
-  const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
-    0
-  );
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const [hitcount, setHitCount] = useState<number>(0);
+  const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
+
+  const filteringHandler: TagOnclickHandler = (filterInfo) => {
+    filterHandler(filterInfo);
+    resetPager();
+  };
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
   useEffect(() => {
     setResultItems([]);
-  }, [q, pageSize]);
+  }, [q, pageSize, filters]);
 
   useSearchWithPaginationQuery(
     {
@@ -42,14 +45,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         : { filters: { ...formatFilters(filters) } })
     },
     {
-      // If the component is used in Storybook context
-      // the same query and other parameters might come twice within the global stale time.
-      // If that happens the onssuccess handler will not be called and we cannot
-      // see the functionality of it properly.
-      // By setting it to zero here we basically disable the cache for search queries,
-      // which is tolerable since the same query probably won't occur in production
-      // within a reasonable global stale time.
-      staleTime: 0,
       onSuccess: (result) => {
         const {
           search: { works: resultWorks, hitcount: resultCount }
@@ -60,16 +55,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           };
         };
 
-        if (isObjectEmpty(filters)) {
-          setResultItems((prev) => [...prev, ...resultWorks]);
-          return;
-        }
-
-        setResultItems(resultWorks);
-
-        // if (!hitcount) {
         setHitCount(resultCount);
-        // }
+
+        setResultItems([...resultItems, ...resultWorks]);
       }
     }
   );
@@ -80,17 +68,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     <div className="search-result-page">
       {worksAreLoaded && (
         <>
-          <pre>{JSON.stringify(filters, null, 2)}</pre>
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
           <SearchResultList resultItems={resultItems} />
           {PagerComponent}
-          <FacetBrowserModal
-            q={q}
-            filters={filters}
-            filterHandler={filterHandler}
-          />
         </>
       )}
+      <FacetBrowserModal
+        q={q}
+        filters={filters}
+        filterHandler={filteringHandler}
+      />
     </div>
   );
 };
