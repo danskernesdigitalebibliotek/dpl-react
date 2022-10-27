@@ -195,7 +195,7 @@ export default {
     deleteReservationModalAriaDescriptionText: {
       defaultValue:
         "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at slette reservationen",
-             control: { type: "text" }
+      control: { type: "text" }
     },
     oneMonthText: {
       defaultValue: "1 måned",
