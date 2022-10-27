@@ -11,7 +11,9 @@ const CampaignBody: FC<CampaignBodyProps> = ({ campaignData }) => {
     <section className="campaign">
       {campaignData.image && campaignData.image.url && (
         <img
-          className="campaign__image"
+          className={`campaign__image ${
+            !campaignData.text ? "campaign__image--full-width" : ""
+          }`}
           src={campaignData.image.url}
           alt={campaignData.image.alt}
         />
