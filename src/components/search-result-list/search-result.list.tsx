@@ -19,62 +19,12 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
       {
         data: [
           {
-            name: "mainLanguages",
+            name: "language",
             values: [
               {
-                key: "eng",
-                term: "Engelsk",
-                score: 30805
-              },
-              {
-                key: "dan",
-                term: "Dansk",
-                score: 7543
-              },
-              {
-                key: "ger",
-                term: "Tysk",
-                score: 2465
-              },
-              {
-                key: "mul",
-                term: "flere sprog",
-                score: 1510
-              },
-              {
-                key: "swe",
-                term: "Svensk",
-                score: 1140
-              }
-            ]
-          },
-          {
-            name: "materialTypes",
-            values: [
-              {
-                key: "bog",
-                term: "bog",
-                score: 17832
-              },
-              {
-                key: "artikel",
-                term: "artikel",
-                score: 11768
-              },
-              {
-                key: "cd (musik)",
-                term: "cd (musik)",
-                score: 2988
-              },
-              {
-                key: "grammofonplade",
-                term: "grammofonplade",
-                score: 2591
-              },
-              {
-                key: "ebog",
-                term: "e-bog",
-                score: 2538
+                key: "dansk",
+                term: "dansk",
+                score: 2
               }
             ]
           }
