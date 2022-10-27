@@ -1,20 +1,23 @@
 import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { store } from "../../store";
 import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
+import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?
-export const getContributors = (creators: string[] | undefined) => {
+export const getContributors = (creators: string[]) => {
+  let returnContentString = "";
+
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
   const {
     text: { data: texts }
   } = store.getState();
 
-  let returnContentString = "";
   if (creators && creators.length > 0) {
     if (creators.length === 1) {
       returnContentString = `${texts.materialByAuthorText} ${creators.join(
@@ -29,12 +32,8 @@ export const getContributors = (creators: string[] | undefined) => {
   return returnContentString;
 };
 
-//
-function getYearFromDataString(date?: string) {
-  if (date) {
-    return new Date(date).getFullYear();
-  }
-  return "";
+function getYearFromDataString(date: string) {
+  return new Date(date).getFullYear();
 }
 
 // Loan is a loan from Publizon, and is the equivalent
@@ -110,6 +109,8 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     externalProductId
   } = material;
 
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
   const {
     text: { data: texts }
   } = store.getState();
@@ -117,18 +118,22 @@ export const mapProductToBasicDetailsType = (material: Product) => {
   const digitalProductType: { [key: number]: string } = {
     1: texts.publizonEbookText,
     2: texts.publizonAudioBookText,
-    4: texts.publizonAudioBookText
+    4: texts.publizonAudioBookTex
   };
 
   return {
     title,
-    year: getYearFromDataString(publicationDate),
+    year: publicationDate ? getYearFromDataString(publicationDate) : "",
     description,
     materialType: productType ? digitalProductType[productType] : "",
     externalProductId: externalProductId?.id,
-    authors: getContributors(
-      contributors?.map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-    )
+    authors: contributors
+      ? getContributors(
+          contributors?.map(
+            ({ firstName, lastName }) => `${firstName} ${lastName}`
+          )
+        )
+      : ""
   } as BasicDetailsType;
 };
 
@@ -150,7 +155,9 @@ export const mapManifestationToBasicDetailsType = (
   const { year } = yearObject || {};
 
   return {
-    authors: getContributors(creators?.map(({ display }) => display)),
+    authors: creators
+      ? getContributors(creators?.map(({ display }) => display))
+      : "",
     pid,
     title: mainText,
     year,
@@ -182,12 +189,14 @@ export const mapPublizonReservationToReservationType = (
         5: "expired" // in publizon Expired
       };
 
+      const state = status ? publizonReservationState[status] : null;
+
       return {
         identifier,
         faust: null,
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
-        state: status ? publizonReservationState[status] : "",
+        state,
         pickupDeadline: expectedRedeemDateUtc
       };
     }

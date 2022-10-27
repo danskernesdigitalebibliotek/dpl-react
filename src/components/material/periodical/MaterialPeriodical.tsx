@@ -1,16 +1,15 @@
 import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
+import { useConfig } from "../../../core/utils/config";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
-import { GroupListItem } from "./helper";
-import MaterialPeriodicalSelect, {
-  GroupList
-} from "./MaterialPeriodicalSelect";
+import { GroupList, PeriodicalEdition } from "./helper";
+import MaterialPeriodicalSelect from "./MaterialPeriodicalSelect";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
@@ -18,8 +17,13 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler
 }) => {
+  const config = useConfig();
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
+  });
   const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [String(faustId)]
+    recordid: [String(faustId)],
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
   if (isLoading || isError || !data) return null;

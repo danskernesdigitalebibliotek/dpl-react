@@ -1,11 +1,14 @@
 import { Pid } from "./ids";
+import { Nullable } from "./nullable";
 
-export interface BasicDetailsType {
-  authors: string | null | undefined;
-  pid: Pid | null | undefined;
-  externalProductId: string | null | undefined;
-  materialType: string | null | undefined;
-  description: string | null | undefined;
-  year: string | null | undefined;
-  title: string | null | undefined;
+interface BasicDetails {
+  authors: string;
+  pid: Pid;
+  externalProductId: string;
+  materialType: string;
+  description: string;
+  year: string;
+  title: string;
 }
+
+export type BasicDetailsType = Nullable<Partial<BasicDetails>>;

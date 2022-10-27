@@ -18,6 +18,7 @@ export interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   dueDateLabel?: string;
   openModal?: boolean;
+  pageSize: number;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
@@ -26,7 +27,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   openModal,
   loan,
   dueDateLabel,
-  stack
+  stack,
+  pageSize
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -83,11 +85,13 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           <MaterialInfo material={material} isbnForCover={identifier || ""}>
             <AdditionalMaterialsButton
               label={t("loanListMaterialsDesktopText")}
+              showOn="desktop"
               openDueDateModal={openDueDateModal}
               additionalMaterials={additionalMaterials}
               screenReaderLabel={t("loanListMaterialsModalDesktopText")}
             />
             <MaterialOverdueLink
+              showOn="desktop"
               label={t("loanListLateFeeDesktopText")}
               dueDate={dueDate}
             />
@@ -96,18 +100,24 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         <MaterialStatus loan={loan} dueDateLabel={dueDateLabel || ""}>
           <AdditionalMaterialsButton
             label={t("loanListMaterialsMobileText")}
+            showOn="mobile"
             screenReaderLabel={t("loanListMaterialsModalMobileText")}
             openDueDateModal={openDueDateModal}
             additionalMaterials={additionalMaterials}
           />
           <MaterialOverdueLink
             label={t("loanListLateFeeMobileText")}
+            showOn="mobile"
             dueDate={dueDate}
           />
         </MaterialStatus>
       </button>
       {dueDate && stack && (
-        <DueDateLoansModal dueDate={dueDate} loansModal={stack} />
+        <DueDateLoansModal
+          pageSize={pageSize}
+          dueDate={dueDate}
+          loansModal={stack}
+        />
       )}
       <MaterialDetailsModal modalEntity={loan} material={material}>
         <MaterialDetails

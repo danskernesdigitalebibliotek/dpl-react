@@ -333,7 +333,9 @@ export enum IdentifierType {
   Music = "MUSIC",
   NotSpecified = "NOT_SPECIFIED",
   OrderNumber = "ORDER_NUMBER",
-  Publizon = "PUBLIZON"
+  Publizon = "PUBLIZON",
+  Upc = "UPC",
+  Uri = "URI"
 }
 
 export type InfomediaArticle = {
@@ -739,6 +741,7 @@ export type Query = {
   /** Get recommendations */
   recommend: RecommendationResponse;
   refWorks: Scalars["String"];
+  relatedSubjects?: Maybe<Array<Scalars["String"]>>;
   ris: Scalars["String"];
   search: SearchResponse;
   suggest: SuggestResponse;
@@ -781,6 +784,11 @@ export type QueryRecommendArgs = {
 
 export type QueryRefWorksArgs = {
   pid: Scalars["String"];
+};
+
+export type QueryRelatedSubjectsArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  q: Array<Scalars["String"]>;
 };
 
 export type QueryRisArgs = {
@@ -1288,7 +1296,12 @@ export type GetMaterialQuery = {
         }>;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
-          | { __typename: "AccessUrl"; origin: string; url: string }
+          | {
+              __typename: "AccessUrl";
+              origin: string;
+              url: string;
+              loginRequired: boolean;
+            }
           | { __typename: "DigitalArticleService"; issn: string }
           | {
               __typename: "Ereol";
@@ -1356,7 +1369,12 @@ export type GetMaterialQuery = {
         }>;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
-          | { __typename: "AccessUrl"; origin: string; url: string }
+          | {
+              __typename: "AccessUrl";
+              origin: string;
+              url: string;
+              loginRequired: boolean;
+            }
           | { __typename: "DigitalArticleService"; issn: string }
           | {
               __typename: "Ereol";
@@ -1500,7 +1518,12 @@ export type SearchWithPaginationQuery = {
             code: AccessTypeCode;
           }>;
           access: Array<
-            | { __typename: "AccessUrl"; origin: string; url: string }
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
             | { __typename: "DigitalArticleService"; issn: string }
             | {
                 __typename: "Ereol";
@@ -1574,7 +1597,12 @@ export type SearchWithPaginationQuery = {
             code: AccessTypeCode;
           }>;
           access: Array<
-            | { __typename: "AccessUrl"; origin: string; url: string }
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
             | { __typename: "DigitalArticleService"; issn: string }
             | {
                 __typename: "Ereol";
@@ -1675,7 +1703,12 @@ export type ManifestationsSimpleFragment = {
     }>;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
-      | { __typename: "AccessUrl"; origin: string; url: string }
+      | {
+          __typename: "AccessUrl";
+          origin: string;
+          url: string;
+          loginRequired: boolean;
+        }
       | { __typename: "DigitalArticleService"; issn: string }
       | {
           __typename: "Ereol";
@@ -1740,7 +1773,12 @@ export type ManifestationsSimpleFragment = {
     }>;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
-      | { __typename: "AccessUrl"; origin: string; url: string }
+      | {
+          __typename: "AccessUrl";
+          origin: string;
+          url: string;
+          loginRequired: boolean;
+        }
       | { __typename: "DigitalArticleService"; issn: string }
       | {
           __typename: "Ereol";
@@ -1804,7 +1842,12 @@ export type ManifestationsSimpleFieldsFragment = {
   }>;
   accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
   access: Array<
-    | { __typename: "AccessUrl"; origin: string; url: string }
+    | {
+        __typename: "AccessUrl";
+        origin: string;
+        url: string;
+        loginRequired: boolean;
+      }
     | { __typename: "DigitalArticleService"; issn: string }
     | {
         __typename: "Ereol";
@@ -1921,7 +1964,12 @@ export type WorkSmallFragment = {
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
-        | { __typename: "AccessUrl"; origin: string; url: string }
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
         | { __typename: "DigitalArticleService"; issn: string }
         | {
             __typename: "Ereol";
@@ -1986,7 +2034,12 @@ export type WorkSmallFragment = {
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
-        | { __typename: "AccessUrl"; origin: string; url: string }
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
         | { __typename: "DigitalArticleService"; issn: string }
         | {
             __typename: "Ereol";
@@ -2141,7 +2194,12 @@ export type WorkMediumFragment = {
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
-        | { __typename: "AccessUrl"; origin: string; url: string }
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
         | { __typename: "DigitalArticleService"; issn: string }
         | {
             __typename: "Ereol";
@@ -2206,7 +2264,12 @@ export type WorkMediumFragment = {
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
-        | { __typename: "AccessUrl"; origin: string; url: string }
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
         | { __typename: "DigitalArticleService"; issn: string }
         | {
             __typename: "Ereol";
@@ -2300,6 +2363,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     ... on AccessUrl {
       origin
       url
+      loginRequired
     }
     ... on InfomediaService {
       id

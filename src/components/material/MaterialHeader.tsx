@@ -21,15 +21,15 @@ import MaterialHeaderText from "./MaterialHeaderText";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { GroupListItem } from "./periodical/helper";
+import { PeriodicalEdition } from "./periodical/helper";
 
 interface MaterialHeaderProps {
   wid: WorkId;
   work: Work;
   manifestation: Manifestation;
   selectManifestationHandler: (manifestation: Manifestation) => void;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -61,7 +61,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-
+  const isPeriodical = manifestation.materialTypes.some(
+    (materialType: Manifestation["materialTypes"][0]) => {
+      return materialType.specific.includes("periodikum");
+    }
+  );
   const author = creatorsText || t("creatorsAreMissingText");
 
   const containsDanish = mainLanguages.some((language) =>
@@ -74,10 +78,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
-
-  const isPeriodical = manifestation?.materialTypes
-    ?.map((i) => i.specific.toLowerCase())
-    .includes("periodikum");
 
   return (
     <header className="material-header">
@@ -96,7 +96,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             selectManifestationHandler={selectManifestationHandler}
           />
         </div>
-
         {isPeriodical && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
@@ -105,11 +104,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           />
         )}
 
-        <div className="material-header__button">
-          {manifestation && <MaterialButtons manifestation={manifestation} />}
-        </div>
         {manifestation && (
-          <MaterialAvailabilityText manifestation={manifestation} />
+          <>
+            <div className="material-header__button">
+              <MaterialButtons manifestation={manifestation} />
+            </div>
+            <MaterialAvailabilityText manifestation={manifestation} />
+          </>
         )}
       </div>
     </header>

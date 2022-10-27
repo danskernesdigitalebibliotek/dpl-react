@@ -2,15 +2,22 @@ import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
+import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
-export interface LoanListEntryProps {
+export interface LoanListEntryConfigProps {
   fbsBaseUrlConfig: string;
   publizonBaseUrlConfig: string;
+}
+
+export interface LoanListEntryTextProps {
   loanListTitleText: string;
   loanListPhysicalLoansTitleText: string;
   loanListDigitalLoansTitleText: string;
+  materialOverdueUrl: string;
+  materialDetailsButtonRenewedText: string;
   loanListRenewMultipleButtonText: string;
   loanListListText: string;
+  materialDetailsButtonNotRenewableText: string;
   loanListStackText: string;
   loanListRenewMultipleButtonExplanationText: string;
   loanListLateFeeDesktopText: string;
@@ -35,12 +42,6 @@ export interface LoanListEntryProps {
   loanListEmptyPhysicalLoansText: string;
   materialDetailsModalOverdueText: string;
   materialDetailsOverdueText: string;
-  loanListMaterialByAuthorText: string;
-  loanModalMaterialByAuthorText: string;
-  materialDetailsByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
-  loanModalMaterialAndAuthorText: string;
-  materialDetailsAndAuthorText: string;
   dueDateRenewLoanModalHeaderText: string;
   renewLoanModalHeaderText: string;
   renewLoanModalCloseModalText: string;
@@ -74,6 +75,25 @@ export interface LoanListEntryProps {
   publizonEbookText: string;
 }
 
-const LoanListEntry: FC<LoanListEntryProps> = () => <LoanList />;
+export interface LoanListEntryWithPageSizeProps
+  extends LoanListEntryTextProps,
+    LoanListEntryConfigProps {
+  pageSizeDesktop?: number;
+  pageSizeMobile?: number;
+}
 
+const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
+  const pageSize = pageSizeGlobal(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeLoanList"
+  );
+
+  return <LoanList pageSize={pageSize} />;
+};
 export default withUrls(withText(LoanListEntry));

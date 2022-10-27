@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useText } from "../../../core/utils/text";
-import { getFirstEditionFromYear, GroupListItem } from "./helper";
-
-export type GroupList = { [key: string]: GroupListItem[] };
+import {
+  filterAndSortPeriodicalEditions,
+  getLatestEditionFromYear,
+  GroupList,
+  handleSelectEdition,
+  handleSelectYear,
+  PeriodicalEdition
+} from "./helper";
 
 interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
-  selectedPeriodical: GroupListItem | null;
-  selectPeriodicalHandler: (selectedPeriodical: GroupListItem) => void;
+  selectedPeriodical: PeriodicalEdition | null;
+  selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
 }
 
 const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
@@ -18,47 +23,52 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   const t = useText();
   const lastYear = Object.keys(groupList).sort().pop() || "";
   const [year, setYear] = useState<string>(lastYear);
+  const periodicalEditions = filterAndSortPeriodicalEditions(groupList);
 
   // Sets selectedPeriodical to the last edition
   useEffect(() => {
     if (selectedPeriodical) return;
-    const firstEdition = getFirstEditionFromYear(year, groupList);
-    if (firstEdition) {
-      selectPeriodicalHandler(firstEdition);
+    const firstEdition = getLatestEditionFromYear(year, periodicalEditions);
+    const firstFullPeriodicalEdition = groupList[year].find((edition) => {
+      return edition.volumeNumber === firstEdition;
+    });
+    if (firstFullPeriodicalEdition) {
+      selectPeriodicalHandler(firstFullPeriodicalEdition);
     }
-  }, [groupList, selectPeriodicalHandler, selectedPeriodical, year]);
+  }, [
+    selectPeriodicalHandler,
+    selectedPeriodical,
+    year,
+    periodicalEditions,
+    groupList
+  ]);
 
-  const handleSelectYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setYear(event.target.value);
-    //  Updates the selectedPeriodical to the first edition of the selected year.
-    const changedEdition = getFirstEditionFromYear(
+  const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectYear(
       event.target.value,
+      setYear,
+      selectPeriodicalHandler,
+      periodicalEditions,
       groupList
     );
-    if (changedEdition) {
-      selectPeriodicalHandler(changedEdition);
-    }
   };
 
-  const handleSelectEditions = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedItem = groupList[year].find(
-      (item) => item.itemNumber === event.target.value
+  const handleEditionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectEdition(
+      groupList,
+      year,
+      event.target.value,
+      selectPeriodicalHandler
     );
-
-    if (selectedItem) {
-      selectPeriodicalHandler(selectedItem);
-    }
   };
 
   return (
-    <div className="text-small-caption material-periodical ">
+    <div className="text-small-caption material-periodical">
       <div className="material-periodical-select">
         <label htmlFor="year">{t("periodicalSelectYearText")}</label>
         <div className="material-periodical-select__border-container">
-          <select id="year" defaultValue={year} onChange={handleSelectYear}>
-            {Object.keys(groupList)
+          <select id="year" defaultValue={year} onChange={handleYearSelect}>
+            {Object.keys(periodicalEditions)
               .sort()
               .map((item) => (
                 <option key={item} value={item}>
@@ -73,11 +83,15 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
         <div className="material-periodical-select">
           <label htmlFor="editions">{t("periodicalSelectEditionText")}</label>
           <div className="material-periodical-select__border-container">
-            <select id="editions" onChange={handleSelectEditions}>
-              {groupList[year].map((item) => {
+            <select
+              id="editions"
+              value={selectedPeriodical?.volumeNumber}
+              onChange={handleEditionSelect}
+            >
+              {periodicalEditions[year].map((item) => {
                 return (
-                  <option key={item.itemNumber} value={item.itemNumber}>
-                    {item.volumeNumber}
+                  <option key={item} value={item}>
+                    {item}
                   </option>
                 );
               })}

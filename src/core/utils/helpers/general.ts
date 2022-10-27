@@ -106,14 +106,13 @@ export const getThresholds = () => {
   return getConf("thresholds", configuration);
 };
 
-export const daysBetweenTodayAndDate = (date?: string) => {
-  if (date) {
-    const inputDate = dayjs(date);
-    const today = dayjs();
+export const daysBetweenTodayAndDate = (date: string) => {
+  const inputDate = dayjs(new Date(date));
+  const today = dayjs(new Date());
 
-    return Math.ceil(inputDate.diff(today, "day", true));
-  }
-  return 0;
+  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
+  // and we need it to be rounded up
+  return Math.ceil(inputDate.diff(today, "day", true));
 };
 
 export const usePrevious = <Type>(value: Type) => {
@@ -125,7 +124,11 @@ export const usePrevious = <Type>(value: Type) => {
 };
 
 export const convertPostIdToFaustId = (postId: Pid) => {
-  const matches = postId.match(/^[0-9]+-[a-z]+:([0-9]+)$/);
+  // We have seen post ids containing both letters and numbers
+  // in the last part after the colon.
+  // We are about to have clarified what the proper name of the element.
+  // But for now we will call it faustId.
+  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }
@@ -226,5 +229,41 @@ export const stringifyValue = (value: string | null | undefined) =>
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+interface PageSizeDataAttributes {
+  desktop: number;
+  mobile: number;
+}
+
+export const getPageSizeFromDataAttributes = ({
+  desktop,
+  mobile
+}: Partial<PageSizeDataAttributes>) => {
+  const { pageSize } = getDeviceConf("pageSize", {
+    pageSize: {
+      mobile: {
+        pageSize: mobile
+      },
+      desktop: {
+        pageSize: desktop
+      }
+    }
+  });
+  return Number(pageSize);
+};
+
+export const pageSizeGlobal = (
+  pageSizes: Partial<PageSizeDataAttributes>,
+  configName?: ConfScope
+) => {
+  let pageSize = 0;
+  if (pageSizes?.desktop && pageSizes?.mobile) {
+    pageSize = getPageSizeFromDataAttributes(pageSizes);
+  } else {
+    pageSize = getPageSizeFromConfiguration(configName || "pageSize");
+  }
+
+  return pageSize;
+};
 
 export default {};

@@ -1,9 +1,9 @@
 import React from "react";
 import GuardedApp from "../../components/guarded-app";
-import { getParams } from "../../core/utils/helpers/general";
+import { withConfig } from "../../core/utils/config";
+import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import { getPageSize } from "./helpers";
 import SearchResult from "./search-result";
 
 interface SearchResultEntryTextProps {
@@ -24,8 +24,15 @@ interface SearchResultEntryUrlProps {
   authUrl: string;
 }
 
+interface SearchResultEntryConfigProps {
+  blacklistedAvailabilityBranchesConfig: string;
+  blacklistedPickupBranchesConfig?: string;
+  branchesConfig: string;
+}
+
 export interface SearchResultEntryProps
   extends SearchResultEntryUrlProps,
+    SearchResultEntryConfigProps,
     SearchResultEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;
@@ -43,7 +50,7 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
-  const pageSize = getPageSize({
+  const pageSize = pageSizeGlobal({
     desktop: pageSizeDesktop,
     mobile: pageSizeMobile
   });
@@ -59,4 +66,4 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withUrls(withText(SearchResultEntry));
+export default withConfig(withUrls(withText(SearchResultEntry)));

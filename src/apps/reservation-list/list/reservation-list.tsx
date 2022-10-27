@@ -1,8 +1,8 @@
 import React, { useEffect, useState, FC } from "react";
+import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import { useSelector } from "react-redux";
 import {
   getReadyForPickup,
   sortByOldestPickupDeadline,

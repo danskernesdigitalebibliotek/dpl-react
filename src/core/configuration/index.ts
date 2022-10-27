@@ -47,6 +47,6 @@ export default {
   coverTints,
   pageSizeLoanList,
   colors,
-  thresholds,
-  modalIds
+  modalIds,
+  thresholds
 } as Configuration;

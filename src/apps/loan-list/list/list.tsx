@@ -11,6 +11,7 @@ import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
 import EmptyList from "../materials/utils/empty-list";
 import { getModalIds } from "../../../core/utils/helpers/general";
+import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 
 export interface ListProps {
   header: string;
@@ -21,6 +22,7 @@ export interface ListProps {
   dueDateLabel: string;
   emptyListLabel: string;
   viewToggleable: boolean;
+  pageSize: number;
 }
 
 const List: FC<ListProps> = ({
@@ -31,7 +33,8 @@ const List: FC<ListProps> = ({
   view,
   dueDateLabel,
   viewToggleable,
-  emptyListLabel
+  emptyListLabel,
+  pageSize
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -56,6 +59,13 @@ const List: FC<ListProps> = ({
     }
   }, [allLoansId, openRenewLoansModal, setView]);
 
+  const setViewHandler = useCallback(
+    (inputView: ListView) => {
+      setView(inputView);
+    },
+    [setView]
+  );
+
   return (
     <>
       <div className="dpl-list-buttons m-32">
@@ -67,10 +77,11 @@ const List: FC<ListProps> = ({
           <div className="dpl-list-buttons__buttons">
             <div className="dpl-list-buttons__buttons__button">
               <button
-                onClick={() => setView("list")}
+                onClick={() => setViewHandler("list")}
                 className={`dpl-icon-button ${
                   view === "list" ? "dpl-icon-button--selected" : ""
                 }`}
+                id="test-list"
                 type="button"
                 aria-label={t("loanListListText")}
               >
@@ -83,19 +94,21 @@ const List: FC<ListProps> = ({
                   view === "stacked" ? "dpl-icon-button--selected" : ""
                 }`}
                 id="test-stack"
-                onClick={() => setView("stacked")}
+                onClick={() => setViewHandler("stacked")}
                 type="button"
                 aria-label={t("loanListStackText")}
               >
                 <IconStack />
               </button>
             </div>
-            <div className="dpl-list-buttons__buttons__button">
+            <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
               <button
                 type="button"
                 onClick={() => {
                   openRenewLoansModal();
                 }}
+                disabled={getAmountOfRenewableLoans(loans) === 0}
+                id="test-renew-button"
                 aria-describedby={t(
                   "loanListRenewMultipleButtonExplanationText"
                 )}
@@ -109,6 +122,7 @@ const List: FC<ListProps> = ({
       </div>
       {loans && loans.length > 0 && (
         <Pagination
+          pageSize={pageSize}
           dueDateLabel={dueDateLabel}
           dueDates={dueDates}
           loans={loans}
@@ -116,7 +130,7 @@ const List: FC<ListProps> = ({
         />
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
-      <RenewLoansModal loansModal={loans} />
+      <RenewLoansModal pageSize={pageSize} loansModal={loans} />
     </>
   );
 };

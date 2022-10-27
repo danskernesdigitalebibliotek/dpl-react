@@ -15,7 +15,7 @@ const List: FC<ListProps> = ({ list, header }) => {
           <div className="dpl-list-buttons__power">{list.length}</div>
         </h2>
       </div>
-      <div className="list-reservation-container m-32">
+      <ul className="list-reservation-container m-32">
         {list.map((reservation) => (
           <ReservationMaterial
             key={reservation.identifier || reservation.faust}
@@ -24,7 +24,7 @@ const List: FC<ListProps> = ({ list, header }) => {
             reservation={reservation}
           />
         ))}
-      </div>
+      </ul>
     </>
   );
 };

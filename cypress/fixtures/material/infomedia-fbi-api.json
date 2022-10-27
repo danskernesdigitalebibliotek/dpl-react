@@ -1,0 +1,108 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870971-avis:35731733",
+      "titles": { "full": ["Butlerens utrolige historie"], "original": [] },
+      "abstract": [
+        "Filmen ' The Butler' tager afsæt i en avisartikel, der blev til under usædvanlige omstændigheder. Politiken har talt med Wil Haygood, Washington Post-journalisten, der gik på jagt efter en person, der havde arbejdet i Det Hvide Hus i raceadskillelsens tid - og fandt Eugene Allen"
+      ],
+      "creators": [
+        { "display": "Jakob Nielsen", "__typename": "Person" },
+        { "display": "Will Haygood", "__typename": "Person" }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "genreAndForm": [],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870971-avis:35731733",
+            "genreAndForm": [],
+            "source": ["Avisartikler"],
+            "titles": {
+              "main": ["Butlerens utrolige historie"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "FAGLITTERATUR",
+              "code": "NONFICTION"
+            },
+            "publicationYear": { "display": "2013" },
+            "materialTypes": [{ "specific": "avisartikel" }],
+            "creators": [
+              { "display": "Jakob Nielsen", "__typename": "Person" },
+              { "display": "Will Haygood", "__typename": "Person" }
+            ],
+            "hostPublication": {
+              "title": "Politiken, 2013-09-19",
+              "creator": null,
+              "publisher": null,
+              "year": null
+            },
+            "languages": { "main": [{ "display": "dansk" }] },
+            "identifiers": [],
+            "contributors": [],
+            "edition": null,
+            "audience": { "generalAudience": [] },
+            "physicalDescriptions": [{ "numberOfPages": null }],
+            "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+            "access": [
+              { "__typename": "InfomediaService", "id": "e3fba430" },
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ],
+            "shelfmark": null
+          }
+        ],
+        "latest": {
+          "pid": "870971-avis:35731733",
+          "genreAndForm": [],
+          "source": ["Avisartikler"],
+          "titles": { "main": ["Butlerens utrolige historie"], "original": [] },
+          "fictionNonfiction": {
+            "display": "FAGLITTERATUR",
+            "code": "NONFICTION"
+          },
+          "publicationYear": { "display": "2013" },
+          "materialTypes": [{ "specific": "avisartikel" }],
+          "creators": [
+            { "display": "Jakob Nielsen", "__typename": "Person" },
+            { "display": "Will Haygood", "__typename": "Person" }
+          ],
+          "hostPublication": {
+            "title": "Politiken, 2013-09-19",
+            "creator": null,
+            "publisher": null,
+            "year": null
+          },
+          "languages": { "main": [{ "display": "dansk" }] },
+          "identifiers": [],
+          "contributors": [],
+          "edition": null,
+          "audience": { "generalAudience": [] },
+          "physicalDescriptions": [{ "numberOfPages": null }],
+          "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
+          "access": [
+            { "__typename": "InfomediaService", "id": "e3fba430" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": null
+        }
+      },
+      "materialTypes": [{ "specific": "Avisartikel" }],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
+      "subjects": {
+        "all": [
+          { "display": "Eugene Allen" },
+          { "display": "hvide" },
+          { "display": "raceadskillelse" },
+          { "display": "sorte" },
+          { "display": "USA" },
+          { "display": "Det Hvide Hus" }
+        ]
+      },
+      "reviews": [],
+      "fictionNonfiction": { "display": "NONFIKTION", "code": "NONFICTION" },
+      "workYear": null
+    }
+  }
+}

@@ -1,5 +1,4 @@
-import React, { FC, useState, ReactNode } from "react";
-import { useText } from "../../core/utils/text";
+import React, { FC, ReactNode } from "react";
 
 export interface ListDetailsProps {
   icon: string;
@@ -14,9 +13,6 @@ const ListDetails: FC<ListDetailsProps> = ({
   labels,
   children
 }) => {
-  const t = useText();
-  const [showChildren, setShowChildren] = useState<boolean>(false);
-
   return (
     <div className="list-details">
       <div className="list-details__icon">
@@ -34,16 +30,7 @@ const ListDetails: FC<ListDetailsProps> = ({
             ))}
         </div>
       </div>
-      {children && !showChildren && (
-        <button
-          type="button"
-          className="link-tag"
-          onClick={() => setShowChildren(true)}
-        >
-          {t("reservationDetailsListDetailsChangeText")}
-        </button>
-      )}
-      {children && showChildren && children}
+      {children}
     </div>
   );
 };

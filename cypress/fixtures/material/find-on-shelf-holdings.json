@@ -1,0 +1,119 @@
+[
+  {
+    "recordId": "06373674",
+    "reservable": true,
+    "reservations": 48,
+    "holdings": [
+      {
+        "branch": { "branchId": "DK-775127", "title": "Tranbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5313131426",
+            "available": false,
+            "periodical": {
+              "volume": null,
+              "volumeYear": "2022",
+              "displayText": "2022, nr. 29",
+              "volumeNumber": "29"
+            },
+            "materialGroup": {
+              "name": "uindb",
+              "description": "Enkeltnumre, tidsskrifter"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775127", "title": "Tranbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5313137426",
+            "available": false,
+            "periodical": {
+              "volume": null,
+              "volumeYear": "2022",
+              "displayText": "2022, nr. 29",
+              "volumeNumber": "29"
+            },
+            "materialGroup": {
+              "name": "uindb",
+              "description": "Enkeltnumre, tidsskrifter"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5313131418",
+            "available": true,
+            "periodical": {
+              "volume": null,
+              "volumeYear": "2022",
+              "displayText": "2022, nr. 29",
+              "volumeNumber": "29"
+            },
+            "materialGroup": {
+              "name": "uindb",
+              "description": "Enkeltnumre, tidsskrifter"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775100", "title": "Hovedbiblioteket" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5258721529",
+            "available": true,
+            "periodical": {
+              "volume": null,
+              "volumeYear": "2020",
+              "displayText": "2020, nr. 45",
+              "volumeNumber": "45"
+            },
+            "materialGroup": {
+              "name": "uindb",
+              "description": "Enkeltnumre, tidsskrifter"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": { "locationId": "læs", "title": "Læsesal" },
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5313126015",
+            "available": false,
+            "periodical": {
+              "volume": null,
+              "volumeYear": "2022",
+              "displayText": "2022, nr. 35",
+              "volumeNumber": "35"
+            },
+            "materialGroup": {
+              "name": "uindb",
+              "description": "Enkeltnumre, tidsskrifter"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
