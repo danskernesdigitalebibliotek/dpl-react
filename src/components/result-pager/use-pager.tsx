@@ -9,6 +9,11 @@ const usePager = (
   const [itemsShown, setitemsShown] = useState(pageSize);
   const [page, setPage] = useState<number>(0);
 
+  const resetPager = () => {
+    setPage(0);
+    setitemsShown(pageSize);
+  };
+
   const pagehandler = () => {
     const currentPage = page + 1;
     const itemsOnPage = (currentPage + 1) * pageSize;
@@ -30,7 +35,7 @@ const usePager = (
     />
   ) : null;
 
-  return { itemsShown, PagerComponent, page };
+  return { itemsShown, PagerComponent, page, resetPager };
 };
 
 export default usePager;
