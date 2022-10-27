@@ -120,10 +120,6 @@ export default {
       defaultValue: "Afhentes på",
       control: { type: "text" }
     },
-    reservationDetailsListDetailsChangeText: {
-      defaultValue: "Skift",
-      control: { type: "text" }
-    },
     listDetailsChangeText: {
       defaultValue: "Skift",
       control: { type: "text" }
