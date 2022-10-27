@@ -8,7 +8,7 @@ import { useModalButtonHandler } from "../../../../core/utils/modal";
 
 export interface ReservationDetailsButtonProps {
   reservationId: number;
-  numberInQueue?: number;
+  numberInQueue?: number | null;
 }
 
 const ReservationDetailsButton: FC<

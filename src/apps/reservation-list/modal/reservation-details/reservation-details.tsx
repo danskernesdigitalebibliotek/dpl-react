@@ -18,7 +18,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material
 }) => {
-  const { state, identifier, numberInQueue } = reservation;
+  const { identifier, numberInQueue } = reservation;
 
   const { authors, pid, year, title, description, materialType } =
     material || {};
@@ -36,7 +36,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             title={title}
             pid={pid}
             description={description}
-            readyForPickup={state === "readyForPickup"}
             materialType={materialType}
           />
           {reservation.reservationId && (

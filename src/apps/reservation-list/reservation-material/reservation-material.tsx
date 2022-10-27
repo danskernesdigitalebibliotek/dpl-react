@@ -1,4 +1,3 @@
-import React, { useEffect, useCallback, FC, MouseEvent } from "react";
 import React, { useCallback, FC, MouseEvent } from "react";
 import fetchMaterial, {
   MaterialProps
@@ -8,8 +7,6 @@ import ReservationInfo from "./reservation-info";
 import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
 import MaterialInfo from "../../loan-list/materials/stackable-material/material-info";
 import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
-import ReservationDetails from "../modal/reservation-details/reservation-details";
-import { useModalButtonHandler } from "../../../core/utils/modal";
 import ReservationDetails from "../modal/reservation-details";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useConfig } from "../../../core/utils/config";

@@ -7,10 +7,10 @@ import ModalDetailsHeader from "../../../components/modal-details-header/modal-d
 import DigitalListDetails from "./digital-list-details";
 import PhysicalListDetails from "./physical-list-details";
 import { AgencyBranch } from "../../../core/fbs/model";
-import ReservationDetailsButton from "./reservation-details-buttons";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../core/utils/text";
 import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
+import ReservationDetailsButton from "./reservation-details/reservation-details-buttons";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
