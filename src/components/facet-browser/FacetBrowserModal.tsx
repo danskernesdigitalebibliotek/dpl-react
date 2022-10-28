@@ -60,6 +60,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       filters: formatFilters(filters)
     },
     {
+      keepPreviousData: true,
       placeholderData: {
         search: {
           facets: getPlaceHolderFacets(knownFacets)
