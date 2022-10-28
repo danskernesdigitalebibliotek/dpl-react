@@ -45,6 +45,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         : { filters: { ...formatFilters(filters) } })
     },
     {
+      staleTime: 0,
       onSuccess: (result) => {
         const {
           search: { works: resultWorks, hitcount: resultCount }
