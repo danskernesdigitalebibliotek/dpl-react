@@ -34,31 +34,30 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
-  useSearchWithPaginationQuery(
-    {
-      q: { all: q },
-      offset: page * pageSize,
-      limit: pageSize,
-      filters: formatFilters(filters)
-    },
-    {
-      staleTime: 0,
-      onSuccess: (result) => {
-        const {
-          search: { works: resultWorks, hitcount: resultCount }
-        } = result as {
-          search: {
-            works: Work[];
-            hitcount: SearchWithPaginationQuery["search"]["hitcount"];
-          };
-        };
+  const { data } = useSearchWithPaginationQuery({
+    q: { all: q },
+    offset: page * pageSize,
+    limit: pageSize,
+    filters: formatFilters(filters)
+  });
 
-        setHitCount(resultCount);
-
-        setResultItems([...resultItems, ...resultWorks]);
-      }
+  useEffect(() => {
+    if (!data) {
+      return;
     }
-  );
+
+    const {
+      search: { works: resultWorks, hitcount: resultCount }
+    } = data as {
+      search: {
+        works: Work[];
+        hitcount: SearchWithPaginationQuery["search"]["hitcount"];
+      };
+    };
+
+    setHitCount(resultCount);
+    setResultItems((prev) => [...prev, ...resultWorks]);
+  }, [data]);
 
   const worksAreLoaded = Boolean(resultItems.length);
 
