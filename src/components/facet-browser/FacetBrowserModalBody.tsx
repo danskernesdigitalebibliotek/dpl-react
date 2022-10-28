@@ -7,19 +7,30 @@ import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { capitalizeFirstLetter } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
-import Disclosure from "../material/disclosures/disclosure";
 import Tag from "../tag/Tag";
+import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
   filterHandler: TagOnclickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
+  openFacets: string[];
+  setOpenFacets: (openFacets: string[]) => void;
 }
 
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
-> = ({ facets, filterHandler, filters }) => {
+> = ({ facets, filterHandler, filters, openFacets, setOpenFacets }) => {
   const t = useText();
+
+  const toggleFacets = (facet: string) => () => {
+    if (openFacets.includes(facet)) {
+      setOpenFacets(openFacets.filter((f) => f !== facet));
+    } else {
+      setOpenFacets([...openFacets, facet]);
+    }
+  };
+
   return (
     <section className="facet-browser">
       <header className="facet-browser__header">
@@ -40,11 +51,13 @@ const FacetBrowserModalBody: React.FunctionComponent<
         if (values.length === 0) return null;
 
         return (
-          <Disclosure
+          <FacetBrowserDisclosure
             key={name}
             fullWidth
             removeHeadlinePadding
             title={t(`facet${capitalizeFirstLetter(name)}Text`)}
+            showContent={openFacets.includes(name)}
+            onClick={toggleFacets(name)}
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
@@ -81,7 +94,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 {t("showMoreText")}
               </button>
             )}
-          </Disclosure>
+          </FacetBrowserDisclosure>
         );
       })}
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatFilters } from "../../apps/search-result/helpers";
 import {
   FilterItemTerm,
@@ -28,6 +28,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
   filters
 }) => {
   const t = useText();
+  const [openFacets, setOpenFacets] = useState<string[]>([]);
 
   const { data, isLoading } = useSearchFacetQuery({
     q: { all: q },
@@ -63,6 +64,8 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
           facets={data.search.facets as FacetResult[]}
           filterHandler={filterHandler}
           filters={filters}
+          openFacets={openFacets}
+          setOpenFacets={setOpenFacets}
         />
       )}
     </Modal>
