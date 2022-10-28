@@ -9,7 +9,6 @@ import {
   FacetResult,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { isObjectEmpty } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
@@ -58,9 +57,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       q: { all: q },
       facets: knownFacets,
       facetLimit: 10,
-      ...(isObjectEmpty(filters)
-        ? {}
-        : { filters: { ...formatFilters(filters) } })
+      filters: formatFilters(filters)
     },
     {
       placeholderData: {

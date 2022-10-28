@@ -10,7 +10,6 @@ import { Work } from "../../core/utils/types/entities";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { formatFilters } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
-import { isObjectEmpty } from "../../core/utils/helpers/general";
 import { TagOnclickHandler } from "./types";
 
 interface SearchResultProps {
@@ -40,9 +39,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
-      ...(isObjectEmpty(filters)
-        ? {}
-        : { filters: { ...formatFilters(filters) } })
+      filters: formatFilters(filters)
     },
     {
       staleTime: 0,
