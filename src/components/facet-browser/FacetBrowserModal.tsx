@@ -30,25 +30,46 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
   const t = useText();
   const [openFacets, setOpenFacets] = useState<string[]>([]);
 
-  const { data, isLoading } = useSearchFacetQuery({
-    q: { all: q },
-    facets: [
-      FacetField.MainLanguages,
-      FacetField.AccessTypes,
-      FacetField.ChildrenOrAdults,
-      FacetField.Creators,
-      FacetField.FictionNonfiction,
-      FacetField.FictionalCharacter,
-      FacetField.GenreAndForm,
-      FacetField.MaterialTypes,
-      FacetField.Subjects,
-      FacetField.WorkTypes
-    ],
-    facetLimit: 10,
-    ...(isObjectEmpty(filters)
-      ? {}
-      : { filters: { ...formatFilters(filters) } })
-  });
+  const knownFacets = [
+    FacetField.MainLanguages,
+    FacetField.AccessTypes,
+    FacetField.ChildrenOrAdults,
+    FacetField.Creators,
+    FacetField.FictionNonfiction,
+    FacetField.FictionalCharacter,
+    FacetField.GenreAndForm,
+    FacetField.MaterialTypes,
+    FacetField.Subjects,
+    FacetField.WorkTypes
+  ];
+
+  const getPlaceHolderFacets = (facets: string[]) =>
+    facets.map((facet) => ({
+      name: facet,
+      values: [
+        {
+          term: ""
+        }
+      ]
+    }));
+
+  const { data, isLoading } = useSearchFacetQuery(
+    {
+      q: { all: q },
+      facets: knownFacets,
+      facetLimit: 10,
+      ...(isObjectEmpty(filters)
+        ? {}
+        : { filters: { ...formatFilters(filters) } })
+    },
+    {
+      placeholderData: {
+        search: {
+          facets: getPlaceHolderFacets(knownFacets)
+        }
+      }
+    }
+  );
 
   return (
     <Modal

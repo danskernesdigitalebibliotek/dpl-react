@@ -65,6 +65,12 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
                 const selected = Boolean(filters[name] && filters[name][term]);
 
+                // If there is no term name (eg. when using placeholder data, see: FacetBrowserModal)
+                // then do not render term.
+                if (!termItem.term) {
+                  return null;
+                }
+
                 return (
                   <Tag
                     key={term}
@@ -79,7 +85,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                     }
                     selected={selected}
                   >
-                    {termItem.term} ({termItem.score})
+                    {termItem.term} {termItem?.score && `(${termItem.score})`}
                   </Tag>
                 );
               })}
