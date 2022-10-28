@@ -5,6 +5,7 @@ import { useText } from "../../core/utils/text";
 import Pagefold from "../pagefold/Pagefold";
 
 export interface FacetBrowserDisclosureProps {
+  id: string;
   mainIconPath?: string;
   title: string;
   children?: ReactNode;
@@ -16,6 +17,7 @@ export interface FacetBrowserDisclosureProps {
 }
 
 const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
+  id,
   title,
   children,
   mainIconPath,
@@ -32,11 +34,16 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
     }
   }, [onClick]);
 
+  const disclosureId = `facet-${id}`;
+
   return (
     <div
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
+      role="button"
+      aria-controls={disclosureId}
+      aria-expanded={showContent}
     >
       <div
         className={clsx(
@@ -72,7 +79,7 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
           alt=""
         />
       </div>
-      {showContent && children}
+      {showContent && <div id={disclosureId}>{children}</div>}
     </div>
   );
 };

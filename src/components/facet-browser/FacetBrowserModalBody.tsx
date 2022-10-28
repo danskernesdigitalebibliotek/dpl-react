@@ -52,6 +52,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
         return (
           <FacetBrowserDisclosure
+            id={name}
             key={name}
             fullWidth
             removeHeadlinePadding
