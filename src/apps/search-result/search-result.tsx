@@ -7,11 +7,12 @@ import {
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
-import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
-import { formatFilters } from "./helpers";
-import useFilterHandler from "./useFilterHandler";
-import { isObjectEmpty } from "../../core/utils/helpers/general";
-import { TagOnclickHandler } from "./types";
+import { useConfig } from "../../core/utils/config";
+import { AgencyBranch } from "../../core/fbs/model";
+import {
+  excludeBlacklistedBranches,
+  cleanBranchesId
+} from "../../components/reservation/helper";
 
 interface SearchResultProps {
   q: string;
@@ -19,6 +20,20 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const config = useConfig();
+  const branches = config<AgencyBranch[]>("branchesConfig", {
+    transformer: "jsonParse"
+  });
+  const blacklistBranches = config("blacklistedSearchBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
+  const whitelistBranches = excludeBlacklistedBranches(
+    branches,
+    blacklistBranches
+  );
+  const cleanBranches = cleanBranchesId(whitelistBranches);
+
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
@@ -40,9 +55,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
-      ...(isObjectEmpty(filters)
-        ? {}
-        : { filters: { ...formatFilters(filters) } })
+      ...(cleanBranches
+        ? {
+            filters: {
+              branchId: cleanBranches
+            }
+          }
+        : {})
     },
     {
       staleTime: 0,
