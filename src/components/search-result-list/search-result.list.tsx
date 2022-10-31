@@ -1,45 +1,71 @@
 import React, { useEffect, useState } from "react";
+import { formatFilters } from "../../apps/search-result/helpers";
+import { FilterItemTerm } from "../../apps/search-result/types";
+import {
+  FacetField,
+  useSearchFacetQuery
+} from "../../core/dbc-gateway/generated/graphql";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
-import { CampaignMatchPOST200 } from "../../core/dpl-cms/model";
-import { getCoverTint } from "../../core/utils/helpers/general";
+import {
+  CampaignMatchPOST200,
+  CampaignMatchPOSTBodyItem
+} from "../../core/dpl-cms/model";
+import { getCoverTint, isObjectEmpty } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import Campaign from "../campaign/campaign";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
   resultItems: Work[];
+  filters: { [key: string]: { [key: string]: FilterItemTerm } };
+  q: string;
 }
-const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
+const SearchResultList: React.FC<SearchResultListProps> = ({
+  resultItems,
+  filters,
+  q
+}) => {
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
+  const { data } = useSearchFacetQuery({
+    q: { all: q },
+    facets: [
+      FacetField.MainLanguages,
+      FacetField.AccessTypes,
+      FacetField.ChildrenOrAdults,
+      FacetField.Creators,
+      FacetField.FictionNonfiction,
+      FacetField.FictionalCharacter,
+      FacetField.GenreAndForm,
+      FacetField.MaterialTypes,
+      FacetField.Subjects,
+      FacetField.WorkTypes
+    ],
+    facetLimit: 10,
+    ...(isObjectEmpty(filters)
+      ? {}
+      : { filters: { ...formatFilters(filters) } })
+  });
+
   useEffect(() => {
-    mutate(
-      {
-        data: [
-          {
-            name: "language",
-            values: [
-              {
-                key: "dansk",
-                term: "dansk",
-                score: 2
-              }
-            ]
-          }
-        ]
-      },
-      {
-        onSuccess: (data) => {
-          setCampaignData(data);
+    if (data) {
+      mutate(
+        {
+          data: data.search.facets as CampaignMatchPOSTBodyItem[]
         },
-        onError: () => {
-          // TODO: when we handle errors - handle this error
+        {
+          onSuccess: (campaign) => {
+            setCampaignData(campaign);
+          },
+          onError: () => {
+            // TODO: when we handle errors - handle this error
+          }
         }
-      }
-    );
-  }, [mutate]);
+      );
+    }
+  }, [mutate, data]);
 
   return (
     <ul className="search-result-page__list my-32">

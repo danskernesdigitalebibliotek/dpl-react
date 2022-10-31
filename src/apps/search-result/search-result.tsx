@@ -70,7 +70,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {worksAreLoaded && (
         <>
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
-          <SearchResultList resultItems={resultItems} />
+          <SearchResultList resultItems={resultItems} filters={filters} q={q} />
           {PagerComponent}
         </>
       )}
