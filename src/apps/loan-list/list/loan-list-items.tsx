@@ -11,13 +11,15 @@ interface LoanListItemProps {
   view: ListView;
   dueDates: string[];
   dueDateLabel: string;
+  pageSize: number;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  dueDateLabel
+  dueDateLabel,
+  pageSize
 }) => {
   const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
 
@@ -55,6 +57,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <div>
               {loan && (
                 <StackableMaterial
+                  pageSize={pageSize}
                   dueDateLabel={dueDateLabel}
                   loan={loan}
                   identifier={loan.identifier}
@@ -72,6 +75,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loan) => {
           return (
             <StackableMaterial
+              pageSize={pageSize}
               openModal={false}
               identifier={loan.identifier}
               faust={loan.faust}

@@ -127,6 +127,10 @@ export default {
       defaultValue: "Udløbsdato",
       control: { type: "text" }
     },
+    reservationDetailsPickupDeadlineTitelText: {
+      defaultValue: "Udløbsdato",
+      control: { type: "text" }
+    },
     reservationDetailsExpiresLabelText: {
       defaultValue: "Reserveringen udløber",
       control: { type: "text" }

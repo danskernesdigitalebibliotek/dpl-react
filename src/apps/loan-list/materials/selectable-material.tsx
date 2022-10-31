@@ -11,7 +11,7 @@ import CheckBox from "../../../components/checkbox/Checkbox";
 interface SelectableMaterialProps {
   loan: LoanType;
   disabled?: boolean;
-  materialsToRenew?: FaustId[];
+  materialsToRenew: FaustId[];
   onChecked?: (faust: FaustId) => void;
 }
 
@@ -38,9 +38,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <CheckBox
               onChecked={() => onChecked(faust)}
               id={faust}
-              selected={
-                materialsToRenew && materialsToRenew?.indexOf(faust) > -1
-              }
+              selected={materialsToRenew?.indexOf(faust) > -1}
               disabled={disabled}
               label={t("loanListLabelCheckboxMaterialModalText")}
               hideLabel
