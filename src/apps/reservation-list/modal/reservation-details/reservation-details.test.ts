@@ -302,7 +302,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("DELETE", "**/external/v1/agencyid/**", {
+    cy.intercept("DELETE", "**/user/reservations/**", {
       code: 101,
       message: "OK"
     }).as("delete-reservation");
