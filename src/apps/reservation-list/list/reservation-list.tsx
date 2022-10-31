@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
-import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getReadyForPickup,
@@ -34,13 +33,6 @@ const ReservationList: FC = () => {
   const { isSuccess, data, refetch: refetchFBS } = useGetReservationsV2();
   const { data: publizonData, refetch: refetchPublizon } =
     useGetV1UserReservations();
-
-const ReservationList: FC = () => {
-  const t = useText();
-
-  // Data fetch
-  const { isSuccess, data } = useGetReservationsV2();
-  const { data: publizonData } = useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
