@@ -131,9 +131,10 @@ describe("Reservation details modal test", () => {
     // ID 17 2.c. the link "Remove your reservation"
     cy.get(".modal")
       .find("button.link-tag")
-      .should("have.text", "Fjern din reservering");
+      .should("have.text", "Fjern din reservering")
+      .click();
 
-    cy.get(".modal").find("button.link-tag").click();
+    cy.get(".modal").find("#test-delete-reservation-button").click();
 
     cy.get("@delete-reservation").should((response) => {
       expect(response).to.have.property("response");
@@ -302,7 +303,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("DELETE", "**/user/reservations/**", {
+    cy.intercept("DELETE", "**/external/v1/agencyid/patrons/patronid/**", {
       code: 101,
       message: "OK"
     }).as("delete-reservation");
@@ -354,6 +355,8 @@ describe("Reservation details modal test", () => {
       .find("button")
       .should("have.text", "Fjern din reservering")
       .click();
+
+    cy.get(".modal").find("#test-delete-reservation-button").click();
 
     cy.get("@delete-reservation").should((response) => {
       expect(response).to.have.property("response");
