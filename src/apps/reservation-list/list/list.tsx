@@ -33,7 +33,7 @@ const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
           <div className="dpl-list-buttons__power">{list.length}</div>
         </h2>
       </div>
-      <div className="list-reservation-container m-32">
+      <ul className="list-reservation-container m-32">
         {displayedReservations.length === 0 && (
           <EmptyList emptyListText={emptyListLabel} />
         )}
@@ -46,7 +46,7 @@ const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
           />
         ))}
         {PagerComponent}
-      </div>
+      </ul>
     </>
   );
 };

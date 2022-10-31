@@ -12,6 +12,7 @@ interface MaterialEntryTextProps {
   audienceText: string;
   cantReserveText: string;
   cantViewReviewText: string;
+  chooseOneText: string;
   closeText: string;
   contributorsText: string;
   copiesThereIsText: string;
@@ -31,6 +32,8 @@ interface MaterialEntryTextProps {
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
   findOnShelfModalNoLocationSpecifiedText: string;
+  findOnShelfModalPeriodicalEditionDropdownText: string;
+  findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
   genreAndFormText: string;
   getOnlineText: string;
@@ -39,6 +42,8 @@ interface MaterialEntryTextProps {
   haveNoInterestAfterText: string;
   heartsIconText: string;
   identifierText: string;
+  infomediaModalCloseModalAriaLabelText: string;
+  infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
   isbnText: string;
@@ -55,6 +60,8 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
   modalReservationFormEmailInputFieldLabelText: string;
+  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
+  modalReservationFormNoInterestAfterHeaderTitleText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
   modalReservationFormPickupHeaderTitleText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
@@ -100,16 +107,17 @@ interface MaterialEntryTextProps {
   typeText: string;
   weHaveShoppedText: string;
   youHaveBorrowedText: string;
-  chooseOneText: string;
-  modalReservationFormNoInterestAfterHeaderTitleText: string;
-  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
 }
 interface MaterialEntryUrlProps {
-  searchUrl: string;
+  dplCmsBaseUrl: string;
   materialUrl: string;
+  searchUrl: string;
 }
 interface MaterialEntryConfigProps {
   smsNotificationsForReservationsEnabledConfig: boolean;
+  blacklistedPickupBranchesConfig?: string;
+  blacklistedAvailabilityBranchesConfig?: string;
+  branchesConfig: string;
 }
 
 export interface MaterialEntryProps

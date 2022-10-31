@@ -1,18 +1,18 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useInView } from "react-hook-inview";
-import CheckBox from "../materials/utils/checkbox";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
   getRenewableMaterials,
-  getAmountOfRenewableLoans,
-  getPageSizeFromConfiguration
+  getAmountOfRenewableLoans
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import usePager from "../../../components/result-pager/use-pager";
-import { mapFBSRenewedLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
 import { FaustId } from "../../../core/utils/types/ids";
+import CheckBox from "../../../components/checkbox/Checkbox";
+import modalIdsConf from "../../../core/configuration/modal-ids.json";
+import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];
@@ -20,6 +20,7 @@ interface RenewLoansModalContentProps {
   checkboxLabel: string;
   buttonBottomLabel: string;
   checkboxBottomLabel: string;
+  pageSize: number;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
@@ -27,23 +28,16 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   checkboxLabel,
   buttonLabel,
   buttonBottomLabel,
+  pageSize,
   checkboxBottomLabel
 }) => {
   const { mutate } = useRenewLoansV2();
-  const { itemsShown, PagerComponent } = usePager(
-    loansModal.length,
-    getPageSizeFromConfiguration("pageSizeLoanList")
-  );
-  const [ref, isVisible] = useInView({
-    threshold: 0
-  });
+  const { close } = useModalButtonHandler();
+  const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
+  const [ref, isVisible] = useInView({ threshold: 0 });
   const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
-  const [allRenewableMaterials, setAllRenewableMaterials] = useState<
-    number | null
-  >(0);
-  const [loans, setLoans] = useState<LoanType[]>([]);
+  const [renewableMaterials, setRenewableMaterials] = useState<number>(0);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
-  const [renewedLoans, setRenewedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
     const numberMaterialIds = materialsToRenew.map((materialId) =>
@@ -56,30 +50,18 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
-            const renewedIds = result.map(
-              ({ loanDetails }) => loanDetails.recordId
-            );
-            const filteredLoans = loans.filter(({ faust }) => {
-              if (faust) {
-                return renewedIds.indexOf(faust) === -1;
-              }
-              return false;
-            });
-            setMaterialsToRenew([]);
-            setLoans(filteredLoans);
-
-            setRenewedLoans(mapFBSRenewedLoanToLoanType(result));
+            close(modalIdsConf.allLoansId);
           }
         },
         // todo error handling, missing in figma
         onError: () => {}
       }
     );
-  }, [loans, materialsToRenew, mutate]);
+  }, [close, materialsToRenew, mutate]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
-    setAllRenewableMaterials(getAmountOfRenewableLoans(loansModal));
+    setRenewableMaterials(getAmountOfRenewableLoans(loansModal));
   }, [loansModal]);
 
   useEffect(() => {
@@ -110,17 +92,17 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     <>
       <div className="modal-loan__buttons" ref={ref}>
         <CheckBox
-          selected={materialsToRenew.length === allRenewableMaterials}
+          selected={materialsToRenew.length === renewableMaterials}
           id="checkbox-select-all"
-          onChecked={selectAll}
+          onChecked={() => selectAll()}
           label={checkboxLabel}
         />
         <Button
-          label={`${buttonLabel} (${allRenewableMaterials})`}
+          label={`${buttonLabel} (${renewableMaterials})`}
           buttonType="none"
           id="renew-several"
           variant="filled"
-          disabled={allRenewableMaterials === 0}
+          disabled={renewableMaterials === 0}
           collapsible={false}
           onClick={renewSelected}
           size="small"
@@ -134,18 +116,6 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               : ""
           }`}
         >
-          {renewedLoans.map((loanType) => {
-            return (
-              <SelectableMaterial
-                key={loanType.faust}
-                faust={loanType.faust}
-                identifier={loanType.identifier}
-                disabled
-                onChecked={onChecked}
-                loan={loanType}
-              />
-            );
-          })}
           {displayedLoans.map((loanType) => {
             return (
               <SelectableMaterial
@@ -164,15 +134,15 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
-              onChecked={selectAll}
+              onChecked={() => selectAll()}
               id="checkbox-select-all"
               label={checkboxBottomLabel}
             />
             <Button
-              label={`${buttonBottomLabel} (${allRenewableMaterials})`}
+              label={`${buttonBottomLabel} (${renewableMaterials})`}
               buttonType="none"
               variant="filled"
-              disabled={allRenewableMaterials === 0}
+              disabled={renewableMaterials === 0}
               collapsible={false}
               onClick={renewSelected}
               size="small"

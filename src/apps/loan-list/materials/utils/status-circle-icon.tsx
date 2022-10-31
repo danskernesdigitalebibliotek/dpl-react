@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from "react";
-import { useText } from "../../../../core/utils/text";
 
 interface StatusCircleIconProps {
   color: string;
@@ -12,23 +11,15 @@ const StatusCircleIcon: FC<StatusCircleIconProps> = ({
   percent,
   children
 }) => {
-  const t = useText();
-
   return (
     <div
-      className="list-reservation__counter"
-      aria-label={t("loanListStatusCircleIconAriaLabelText")}
+      className="counter"
+      aria-hidden
+      style={{
+        background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${color} ${percent}%, #DBDBDB 0)`
+      }}
     >
-      <div
-        role="progressbar"
-        className="counter"
-        aria-hidden
-        style={{
-          background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${color} ${percent}%, #DBDBDB 0)`
-        }}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   );
 };

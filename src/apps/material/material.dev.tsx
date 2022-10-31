@@ -16,6 +16,11 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
+    dplCmsBaseUrl: {
+      name: "DPL CMS base URL",
+      defaultValue: "http://dpl-cms.docker",
+      control: { type: "text" }
+    },
     wid: {
       name: "Work ID",
       defaultValue: "work-of:870970-basis:52557240",
@@ -24,6 +29,22 @@ export default {
     smsNotificationsForReservationsEnabledConfig: {
       name: "SMS notifications for reservations is enabled",
       defaultValue: "1",
+      control: { type: "text" }
+    },
+    blacklistedPickupBranchesConfig: {
+      name: "Blacklisted Pickup branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
+    blacklistedAvailabilityBranchesConfig: {
+      name: "Blacklisted Availability branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
+    branchesConfig: {
+      name: "Branches",
+      defaultValue:
+        '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
       control: { type: "text" }
     },
     materialHeaderAllEditionsText: {
@@ -379,7 +400,7 @@ export default {
       control: { type: "text" }
     },
     reservationModalCloseModalAriaLabelText: {
-      name: "Reservation modal aria label modal two",
+      name: "Close Reservation modal",
       defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
@@ -394,7 +415,7 @@ export default {
       control: { type: "text" }
     },
     findOnShelfModalCloseModalAriaLabelText: {
-      name: "Reservation modal aria label modal two",
+      name: "Close findOnShelf modal",
       defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
@@ -416,6 +437,16 @@ export default {
     findOnShelfModalNoLocationSpecifiedText: {
       name: "No location for find on shelf specified",
       defaultValue: "-",
+      control: { type: "text" }
+    },
+    findOnShelfModalPeriodicalYearDropdownText: {
+      name: "Find on shelf modal periodical dropdown - choose year",
+      defaultValue: "Choose periodical year",
+      control: { type: "text" }
+    },
+    findOnShelfModalPeriodicalEditionDropdownText: {
+      name: "Find on shelf modal periodical dropdown - choose edition/volume",
+      defaultValue: "Choose periodical edition",
       control: { type: "text" }
     },
     numberInQueueText: {
@@ -511,6 +542,16 @@ export default {
       defaultValue:
         "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
       control: { type: "text" }
+    },
+    infomediaModalScreenReaderModalDescriptionText: {
+      name: "Infomedia modal screen reader description",
+      defaultValue: "Modal for infomedia",
+      control: { type: "text" }
+    },
+    infomediaModalCloseModalAriaLabelText: {
+      name: "Close infomedia modal",
+      defaultValue: "Close infomedia modal",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -525,4 +566,9 @@ Default.args = {};
 export const Periodical = Template.bind({});
 Periodical.args = {
   wid: "work-of:870970-basis:06373674"
+};
+
+export const Infomedia = Template.bind({});
+Infomedia.args = {
+  wid: "work-of:870971-avis:35731733"
 };

@@ -3,7 +3,7 @@ import ReservationList from "./reservation-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
-import { getPageSize } from "../../search-result/helpers";
+import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
 export interface ReservationListProps {
   headerText: string;
@@ -15,6 +15,7 @@ export interface ReservationListProps {
   youAreFirstInQueueText: string;
   expiresSoonText: string;
   inLineText: string;
+  blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
   publizonAudioBookText: string;
@@ -28,11 +29,20 @@ export interface ReservationListProps {
   reservationDetailsNumberInQueueTitelText: string;
   reservationDetailsPickUpAtTitelText: string;
   reservationDetailsNoInterestAfterTitelText: string;
+  reservationDetailsPickupDeadlineTitleText: string;
+  reservationDetailsGoToEreolenText: string;
+  reservationDetailsExpiresLabelText: string;
+  oneMonthText: string;
+  twoMonthsText: string;
+  threeMonthsText: string;
+  sixMonthsText: string;
+  oneYearText: string;
+  listDetailsNothingSelectedLabelText: string;
+  branchesConfig: string;
   reservationDetailsPickupDeadlineTitelText: string;
   reservationDetailsDateOfReservationTitelText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveReservationText: string;
-  reservationDetailsGoToEreolenText: string;
   deleteReservationModalHeaderText: string;
   deleteReservationModalDeleteQuestionText: string;
   deleteReservationModalNotRegrettableText: string;
@@ -66,7 +76,7 @@ const ReservationListEntry: FC<ReservationListProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  const pageSize = getPageSize(
+  const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
       mobile: pageSizeMobile

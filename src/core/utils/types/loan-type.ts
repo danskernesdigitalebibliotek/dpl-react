@@ -1,10 +1,10 @@
 import { ListType } from "./list-type";
 
 export interface LoanType extends ListType {
-  dueDate: string | null | undefined;
-  loanDate: string | null | undefined;
+  dueDate?: string | null;
+  loanDate?: string | null;
   isRenewable: boolean;
-  materialItemNumber: string | null | undefined;
+  materialItemNumber?: string | null;
   renewalStatusList: string[];
   loanType: string | null;
 }

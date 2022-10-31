@@ -16,7 +16,7 @@ const MaterialAvailabilityText: React.FC<Props> = ({
       {manifestation.accessTypes.map((item) => {
         if (item.code === "PHYSICAL")
           return <MaterialAvailabilityTextPhysical pid={pid} />;
-        if (item.code === "ONLINE" && identifiers)
+        if (item.code === "ONLINE" && identifiers.length > 0)
           return <MaterialAvailabilityTextOnline isbn={identifiers[0].value} />;
         return null;
       })}

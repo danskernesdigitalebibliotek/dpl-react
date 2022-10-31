@@ -3,10 +3,7 @@ import { getStackedItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
-import {
-  getListItems,
-  getPageSizeFromConfiguration
-} from "../../../core/utils/helpers/general";
+import { getListItems } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface PaginationProps {
@@ -14,13 +11,15 @@ interface PaginationProps {
   dueDates: string[];
   loans: LoanType[];
   dueDateLabel: string;
+  pageSize: number;
 }
 
 const Pagination: FC<PaginationProps> = ({
   view,
   dueDates,
   loans,
-  dueDateLabel
+  dueDateLabel,
+  pageSize
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
   // So, this is necessary due to the stacked items
@@ -34,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({
 
   const { itemsShown, PagerComponent } = usePager(
     loans.length,
-    getPageSizeFromConfiguration("pageSizeLoanList"),
+    pageSize,
     overrideItemsShown
   );
 
@@ -52,6 +51,7 @@ const Pagination: FC<PaginationProps> = ({
   return (
     <>
       <LoanListItems
+        pageSize={pageSize}
         dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}

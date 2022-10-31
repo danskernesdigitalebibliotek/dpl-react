@@ -68,6 +68,7 @@ fragment ManifestationsSimpleFields on Manifestation {
     ... on AccessUrl {
       origin
       url
+      loginRequired
     }
     ... on InfomediaService {
       id

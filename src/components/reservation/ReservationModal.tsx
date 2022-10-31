@@ -4,7 +4,7 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
-import { GroupListItem } from "../material/periodical/helper";
+import { PeriodicalEdition } from "../material/periodical/helper";
 import ReservationModalBody from "./ReservationModalBody";
 
 export const reservationModalId = (faustId: FaustId) =>
@@ -13,7 +13,7 @@ export const reservationModalId = (faustId: FaustId) =>
 type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
-  selectedPeriodical?: GroupListItem | null;
+  selectedPeriodical?: PeriodicalEdition | null;
 };
 
 const ReservationModal = ({

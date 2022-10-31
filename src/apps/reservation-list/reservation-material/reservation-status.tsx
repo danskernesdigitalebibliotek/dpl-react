@@ -20,9 +20,14 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
 }) => {
   return (
     <div className="list-reservation__status">
-      <StatusCircleIcon color={color} percent={percent}>
-        {children}
-      </StatusCircleIcon>
+      <div
+        className="list-reservation__counter"
+        // todo create meaningful aria-explanation
+      >
+        <StatusCircleIcon color={color} percent={percent}>
+          {children}
+        </StatusCircleIcon>
+      </div>
       <div>
         <div className="list-reservation__deadline">
           {expiresSoonLabel && (
