@@ -24,13 +24,15 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
           {text?.length > 0 ? text : t("missingDataText")}
         </p>
       </div>
-      <button
-        onClick={changeHandler}
-        type="button"
-        className="link-tag text-small-caption cursor-pointer"
-      >
-        {t("shiftText")}
-      </button>
+      {changeHandler && (
+        <button
+          onClick={changeHandler}
+          type="button"
+          className="link-tag text-small-caption cursor-pointer"
+        >
+          {t("shiftText")}
+        </button>
+      )}
     </div>
   );
 };
