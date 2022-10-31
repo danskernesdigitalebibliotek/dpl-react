@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { CampaignMatchPOST200Data } from "../../core/dpl-cms/model";
 import { LinkNoStyle } from "../atoms/link-no-style";
-import CampaignBody from "./campaign-body";
+import CampaignBody from "./CampaignBody";
 
 export interface CampaignProps {
   campaignData: CampaignMatchPOST200Data;

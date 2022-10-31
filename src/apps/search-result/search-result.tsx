@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
-import SearchResultList from "../../components/search-result-list/search-result.list";
+import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
