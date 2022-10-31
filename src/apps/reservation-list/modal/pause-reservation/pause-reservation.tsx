@@ -100,7 +100,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
               id="test-ereolen-button"
-              // href={new URL("todo")}
+              href={new URL("https://ereolen.dk/user/me/")}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}
