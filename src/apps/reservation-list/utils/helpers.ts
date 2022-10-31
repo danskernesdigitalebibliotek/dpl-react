@@ -22,6 +22,7 @@ export const getReservedDigital = (list: ReservationType[]) => {
         (objA.title || "").localeCompare(objB.title || "")
     );
 };
+
 export const getReservedPhysical = (list: ReservationType[]) => {
   return [...list]
     .filter(({ state }) => state === "reserved")

@@ -210,7 +210,7 @@ describe("Reservation list", () => {
         ]
       }
     ).as("physical_reservations");
-    
+
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       statusCode: 200,
       body: {

@@ -179,7 +179,7 @@ export const mapPublizonReservationToReservationType = (
       createdDateUtc,
       status,
       expectedRedeemDateUtc,
-      productTitle
+      productTitle,
       expireDateUtc
     }) => {
       const publizonReservationState: { [key: number]: string } = {
@@ -198,6 +198,7 @@ export const mapPublizonReservationToReservationType = (
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
         state,
+        title: productTitle,
         pickupDeadline: expectedRedeemDateUtc
       };
     }

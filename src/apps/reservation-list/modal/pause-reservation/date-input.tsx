@@ -4,7 +4,7 @@ interface DateInputProps {
   label: string;
   id: string;
   value: string;
-  onChange: () => void;
+  onChange: (date: string) => void;
 }
 
 const DateInput: FC<DateInputProps> = ({ label, id, value, onChange }) => {
@@ -18,7 +18,7 @@ const DateInput: FC<DateInputProps> = ({ label, id, value, onChange }) => {
           {label}
           <input
             type="date"
-            onChange={onChange}
+            onChange={({ target }) => onChange(target.value)}
             name={id}
             value={value}
             id={id}

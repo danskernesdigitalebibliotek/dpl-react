@@ -1,4 +1,10 @@
-import React, { FC, useCallback, useState, useEffect } from "react";
+import React, {
+  FC,
+  useCallback,
+  useState,
+  useEffect,
+  ChangeEvent
+} from "react";
 import { Link } from "../../../../components/atoms/link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
@@ -39,7 +45,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           }
         },
         {
-          onSuccess: (result) => {
+          onSuccess: () => {
             // todo
             close(pauseReservation as string);
           },
@@ -81,12 +87,14 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <div className="modal-pause__dropdowns mt-24">
           <div className="datepickers">
             <DateInput
+              onChange={setStartDate}
               value={startDate}
               id="start-date"
               label={t("pauseReservationModalStartDateLabelText")}
             />
             <DateInput
-              value={endDate}
+              onChange={setEndDate}
+              value={endDate || ""}
               id="end-date"
               label={t("pauseReservationModalEndDateLabelText")}
             />
@@ -98,7 +106,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
               id="test-ereolen-button"
-              // href={new URL("todo")}
+              href={new URL("https://ereolen.dk/user/me/")}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}
