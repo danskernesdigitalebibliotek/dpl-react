@@ -1,6 +1,5 @@
 import { Pid } from "./ids";
-
-type Nullable<T> = { [K in keyof T]: T[K] | null };
+import { Nullable } from "./nullable";
 
 interface BasicDetails {
   authors: string;

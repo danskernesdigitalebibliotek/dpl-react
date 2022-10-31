@@ -1,837 +1,740 @@
-// Todo - these will be re-added
-// import { TOKEN_LIBRARY_KEY } from "../../../core/token";
+import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
-// describe("Loan list", () => {
-//   beforeEach(() => {
-//     cy.window().then((win) => {
-//       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
-//     });
-//   });
+describe("Loan list", () => {
+  before(() => {});
+  beforeEach(() => {
+    cy.window().then((win) => {
+      const wednesday20220603 = new Date("2022-10-21T10:00:00.000").getTime();
 
-//   it("Loads loan list with loan overdue", () => {
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+      // Sets time to a specific date
+      // https://github.com/cypress-io/cypress/issues/7577
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
+      win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
+    });
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956442399,
+            materialItemNumber: "5043689640",
+            recordId: "49421257",
+            periodical: {
+              volume: null,
+              volumeYear: "2015",
+              displayText: "Nr. , år 2015",
+              volumeNumber: null
+            },
+            loanDate: "2022-10-15T16:43:25.325",
+            // To be handed in today, renders a warning
+            dueDate: "2022-10-21",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "standard",
+              description: "31 dages lånetid til alm lånere"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250509,
+            materialItemNumber: "3846990827",
+            recordId: "28843238",
+            periodical: null,
+            // Should be at the top of the list (the list is sorted by loandate)
+            loanDate: "2022-10-14T16:43:25.325",
+            // 2022-10-21 + 7 should not render a warning
+            dueDate: "2022-10-28",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250509,
+            materialItemNumber: "3846990827",
+            recordId: "28843238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // 2022-10-21 + 6 should render a warning
+            dueDate: "2022-10-27",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        }
+      ]
+    }).as("physical_loans");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
-//     cy.get(".list-reservation").should(
-//       "have.text",
-//       "Dummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Du pålægges et gebyr, når materialet afleveres0dageOverskredetAfleveres 14-07-2022Du pålægges et gebyr, når materialet afleveres"
-//     );
-//   });
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        loans: [
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-20T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076940",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          },
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-19T06:32:30Z",
+            // No warning badge
+            loanExpireDateUtc: "2022-10-28T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076951",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          },
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            // Should be top of the list
+            orderDateUtc: "2022-10-18T06:32:30Z",
+            // Warning badge
+            loanExpireDateUtc: "2022-10-27T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076950",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          }
+        ]
+      }
+    }).as("digital_loans");
 
-//   it("Loads loan list with material with warning", () => {
-//     const wednesday20220713 = new Date("2022-07-13T12:30:00.000Z");
+    // Intercept covers.
+    cy.fixture("cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("cover");
 
-//     // Sets time to a specific date, in this case 2022-07-13
-//     cy.clock(wednesday20220713);
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    cy.intercept("POST", "**/opac/**", {
+      statusCode: 200,
+      body: {
+        data: {
+          manifestation: {
+            pid: "870970-basis:22629344",
+            titles: { main: ["Dummy Some Title"] },
+            abstract: ["Dummy Some abstract ..."],
+            hostPublication: { year: { year: 2006 } },
+            materialTypes: [{ specific: "Dummy bog" }],
+            creators: [
+              { display: "Dummy Jens Jensen" },
+              { display: "Dummy Some Corporation" }
+            ]
+          }
+        }
+      }
+    }).as("work");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    cy.intercept("GET", "**v1/products/**", {
+      product: {
+        createdUtc: "2014-11-04T12:20:19.347Z",
+        updatedUtc: "2017-02-23T13:04:56.617Z",
+        title: "Mordet i det blå tog",
+        isActive: true,
+        languageCode: "dan",
+        coverUri: null,
+        thumbnailUri: null,
+        productType: 1,
+        externalProductId: {
+          idType: 15,
+          id: "9788711321683"
+        },
+        internalProductId: "fa07f75d-5c00-4429-90c9-76e2bb5eb526",
+        contributors: [
+          {
+            type: "A01",
+            firstName: "Agatha",
+            lastName: "Christie"
+          },
+          {
+            type: "B06",
+            firstName: "Jutta",
+            lastName: "Larsen"
+          }
+        ],
+        format: "epub",
+        fileSizeInBytes: 899,
+        durationInSeconds: null,
+        publisher: "Lindhardt og Ringhof",
+        publicationDate: "2014-11-07T00:00:00Z",
+        description:
+          'I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: "Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden."',
+        productCategories: [
+          {
+            description: "Skønlitteratur og relaterede emner",
+            code: "F"
+          },
+          {
+            description: "Klassiske krimier",
+            code: "FFC"
+          }
+        ],
+        costFree: true
+      },
+      code: 101,
+      message: "OK"
+    }).as("product");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.wait([
+      "@physical_loans",
+      "@digital_loans",
+      "@work",
+      "@cover",
+      "@product"
+    ]);
+  });
 
-//     cy.get(".list-reservation").should(
-//       "have.text",
-//       "Dummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)1dageUdløber snartAfleveres 14-07-2022"
-//     );
-//   });
+  it("Loan list basics (physical loans)", () => {
+    // 2.a. header: Your loans
+    cy.get(".loan-list-page")
+      .find(".text-header-h1")
+      .should("have.text", "Dine lånte materialer");
 
-//   it("Loads loan list with material with without warning", () => {
-//     const thursday20220707 = new Date("2022-07-07T12:30:00.000Z");
+    // 2.b. header: physical loans
+    cy.get(".loan-list-page")
+      .find("h2")
+      .eq(0)
+      .should("have.text", "Fysiske lån4");
 
-//     // Sets time to a specific date, in this case 2022-07-07
-//     cy.clock(thursday20220707);
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    // 2.b.i: Toggle: two icons that changes the list view
+    cy.get(".loan-list-page")
+      .find(".dpl-list-buttons__buttons")
+      .find("#test-list")
+      .should("exist")
+      // 2.b.i.1. List is chosen as default
+      .should("have.class", "dpl-icon-button--selected");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    cy.get(".loan-list-page")
+      .find(".dpl-list-buttons__buttons")
+      .find("#test-stack")
+      .should("exist");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    // 2.b.ii. Button: renew several
+    cy.get(".loan-list-page")
+      .find("#test-renew-button")
+      .should("exist")
+      // disabled on no renewable
+      .should("have.attr", "disabled");
 
-//     cy.get(".list-reservation").should(
-//       "have.text",
-//       "Dummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)7dageAfleveres 14-07-2022"
-//     );
-//   });
+    // 2.b.iii. Loans sorted by oldest loandate on top
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 28-10-2022");
 
-//   it("Loads loan list and stacks material with same duedate", () => {
-//     const thursday20220707 = new Date("2022-07-07T12:30:00.000Z");
+    // 2.b.iv. Loans have...
+    // ID 42 2.a. Material cover
+    cy.get(".list-reservation-container")
+      .find(".list-reservation .cover img")
+      .should("have.attr", "src")
+      .should(
+        "include",
+        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
+      );
 
-//     // Sets time to a specific date, in this case 2022-07-07
-//     cy.clock(thursday20220707);
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    // ID 42 2.b. Material types including accessibility of material
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .find(".status-label")
+      .eq(0)
+      .should("have.text", "Dummy bog");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    // ID 42 2.c. full title
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .find("h3")
+      .should("have.text", "Dummy Some Title");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    // ID 42 2.d. authors & ID 42 2.f. year published
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__about p")
+      .should(
+        "have.text",
+        "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"
+      );
 
-//     cy.get(".list-reservation").should("have.length", 2);
-//     cy.get("#test-stack").click();
-//     cy.get(".list-reservation").should("have.length", 1);
-//   });
+    // Todo serial title
+    // Todo serial number
+    // todo Nummer
+    // todo Årgang
 
-//   it("It opens modal of materials with same due date", () => {
-//     const thursday20220707 = new Date("2022-07-07T12:30:00.000Z");
+    // 2.b.iv.3. Link
+    // 2.b.iv.3.a. text: You will be charged a fee, when the item is returned
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__information a")
+      .should("be.visible")
+      .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
+    // 2.b.iv.3.c. Only shown if loan is overdue
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__information a")
+      .should("not.exist");
 
-//     // Sets time to a specific date, in this case 2022-07-07
-//     cy.clock(thursday20220707);
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956235757,
-//             materialItemNumber: "5367667038",
-//             recordId: "62128216",
-//             periodical: null,
-//             loanDate: "2022-06-13T15:30:25.845",
-//             dueDate: "2022-07-14",
-//             loanType: "interLibraryLoan",
-//             ilBibliographicRecord: {
-//               author: "Johannessen, Charlotte U.",
-//               bibliographicCategory: "mono",
-//               edition: "2. utgave",
-//               isbn: "9788244624312",
-//               issn: null,
-//               language: "nor",
-//               mediumType: "a xx",
-//               periodicalNumber: null,
-//               periodicalVolume: null,
-//               placeOfPublication: "Oslo",
-//               publicationDate: "2022",
-//               publicationDateOfComponent: null,
-//               publisher: "KF",
-//               recordId: "62128216",
-//               title:
-//                 "Små barn i sårbare livssituasjoner : hvordan kan barnehagen oppdage, forebygge og hjelpe barn i risiko for omsorgssvikt?"
-//             },
-//             materialGroup: {
-//               name: "fje",
-//               description: "Fjernlån 31 dage"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: true,
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    // 2.b.iv.3.c. Only shown if loan is overdue
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(1)
+      .find(".list-reservation__information a")
+      .should("not.exist");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    // 2.b.iv.5. Icon: “{X} days"
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .find(".counter")
+      .should("have.text", "7dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(1)
+      .find(".counter")
+      .should("have.text", "0dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(2)
+      .find(".counter")
+      .should("have.text", "0dage");
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(3)
+      .find(".counter")
+      .should("have.text", "6dage");
+    // 2.b.iv.6. Label:
+    // 2.b.iv.6.a. Expired with red background, if loan is overdue
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".status-label--danger")
+      .should("have.text", "Overskredet")
+      .should("have.css", "background-color")
+      .should("include", "rgb(213, 54, 74)");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    // 2.b.iv.6.b. “Expiring soon” with yellow background, if _less than_ 7 days to hand in
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(1)
+      .find(".status-label--warning")
+      .should("have.text", "Udløber snart")
+      .should("have.css", "background")
+      .should("include", "rgb(247, 191, 66)");
 
-//     cy.get("#test-stack").click();
-//     cy.get("#test-more-materials").click();
-//     cy.get(".modal").find(".list-materials").should("have.length", 4);
-//     cy.get(".modal")
-//       .find("#renew-several")
-//       .should("have.text", "Forny mulige (1)");
-//     cy.get(".modal")
-//       .find(".list-materials")
-//       .eq(0)
-//       .should(
-//         "have.text",
-//         "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
-//       );
-//     cy.get(".modal")
-//       .find(".list-materials")
-//       .eq(1)
-//       .should(
-//         "have.text",
-//         "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Materialet kan ikke fornyes flere gangeAfleveres \n            14-07-2022"
-//       );
-//     cy.get(".modal")
-//       .find(".list-materials")
-//       .eq(2)
-//       .should(
-//         "have.text",
-//         "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006) Materialet er reserveret af andreAfleveres \n            14-07-2022"
-//       );
-//     cy.get(".modal")
-//       .find(".list-materials")
-//       .eq(3)
-//       .should(
-//         "have.text",
-//         "Vælg element til fornyelseDummy bogDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)Afleveres \n            14-07-2022"
-//       );
-//   });
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(3)
+      .find(".status-label--warning")
+      .should("have.text", "Udløber snart")
+      .should("have.css", "background")
+      .should("include", "rgb(247, 191, 66)");
 
-//   it("It sorts loan list by loanDate", () => {
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-10T16:43:25.325",
-//             dueDate: "2022-07-10",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-11T16:43:25.325",
-//             dueDate: "2022-07-11",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956235757,
-//             materialItemNumber: "5367667038",
-//             recordId: "62128216",
-//             periodical: null,
-//             loanDate: "2022-06-13T15:30:25.845",
-//             dueDate: "2022-07-12",
-//             loanType: "interLibraryLoan",
-//             ilBibliographicRecord: {
-//               author: "Johannessen, Charlotte U.",
-//               bibliographicCategory: "mono",
-//               edition: "2. utgave",
-//               isbn: "9788244624312",
-//               issn: null,
-//               language: "nor",
-//               mediumType: "a xx",
-//               periodicalNumber: null,
-//               periodicalVolume: null,
-//               placeOfPublication: "Oslo",
-//               publicationDate: "2022",
-//               publicationDateOfComponent: null,
-//               publisher: "KF",
-//               recordId: "62128216",
-//               title:
-//                 "Små barn i sårbare livssituasjoner : hvordan kan barnehagen oppdage, forebygge og hjelpe barn i risiko for omsorgssvikt?"
-//             },
-//             materialGroup: {
-//               name: "fje",
-//               description: "Fjernlån 31 dage"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    // 2.b.iv.6.c. No label if _more than 7_ days to hand in
+    // So the spec sort of doesnt say what happens _on_ 7 days to hand in, but right now there is no warning
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".status-label--warning")
+      .should("not.exist");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".status-label--danger")
+      .should("not.exist");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    // 2.b.iv.7. Text: "Due date dd.mm.yyyy"
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 28-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(1)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 21-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 20-10-2022");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(3)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Afleveres 27-10-2022");
 
-//     cy.get(".list-reservation")
-//       .eq(0)
-//       .find("#due-date")
-//       .should("have.text", "Afleveres 10-07-2022");
-//     cy.get(".list-reservation")
-//       .eq(1)
-//       .find("#due-date")
-//       .should("have.text", "Afleveres 11-07-2022");
-//     cy.get(".list-reservation")
-//       .eq(2)
-//       .find("#due-date")
-//       .should("have.text", "Afleveres 12-07-2022");
-//   });
+    // // The mobile specifics
+    cy.viewport(320, 1480);
+    // 2.b.ii.1. renew button not showed on mobile
+    cy.get(".loan-list-page")
+      .find("#test-renew-button")
+      .should("not.be.visible");
+  });
 
-//   it("It opens material details modal", () => {
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-10T16:43:25.325",
-//             dueDate: "2022-07-10",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+  it("Loan list basics (digital loans)", () => {
+    // 2.c. List: “Digitale loans" and number of digital loans
+    cy.get(".loan-list-page")
+      .find("h2")
+      .eq(1)
+      .should("have.text", "Digitale lån3");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    //   // 2.c.i. Loans sorted by oldest loandate on top
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 27-10-2022");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    // 2.c.ii. Loans have...
+    // ID 42 2.a. Material cover
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation .cover img")
+      .should("have.attr", "src")
+      .should(
+        "include",
+        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
+      );
 
-//     cy.get(".list-reservation").eq(0).click();
-//     cy.get(".modal-details__container").should(
-//       "have.text",
-//       "Dummy bogOverskredetDummy Some TitleAf Dummy Jens Jensen og Dummy Some Corporation (2006)forny dit lånAfleveringsdatoen for lånet er overskredet, derfor pålægges du et gebyr, når materialet afleveresLæs mereAfleveres10-07-2022Udlånsdato10-06-2022Materialenummer3846990827"
-//     );
-//   });
+    // ID 42 2.b. Material types including accessibility of material
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .find(".status-label")
+      .eq(0)
+      .should("have.text", "E-bog");
 
-//   it("Renew possible button in due-date modal fixed in bottom", () => {
-//     const thursday20220707 = new Date("2022-07-07T12:30:00.000Z");
+    // ID 42 2.c. full title
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find("h3")
+      .should("have.text", "Mordet i det blå tog");
 
-//     // Sets time to a specific date, in this case 2022-07-07
-//     cy.clock(thursday20220707);
-//     cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
-//       statusCode: 200,
-//       body: [
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedMaxRenewalsReached"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: false,
-//           renewalStatusList: ["deniedOtherReason"],
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956235757,
-//             materialItemNumber: "5367667038",
-//             recordId: "62128216",
-//             periodical: null,
-//             loanDate: "2022-06-13T15:30:25.845",
-//             dueDate: "2022-07-14",
-//             loanType: "interLibraryLoan",
-//             ilBibliographicRecord: {
-//               author: "Johannessen, Charlotte U.",
-//               bibliographicCategory: "mono",
-//               edition: "2. utgave",
-//               isbn: "9788244624312",
-//               issn: null,
-//               language: "nor",
-//               mediumType: "a xx",
-//               periodicalNumber: null,
-//               periodicalVolume: null,
-//               placeOfPublication: "Oslo",
-//               publicationDate: "2022",
-//               publicationDateOfComponent: null,
-//               publisher: "KF",
-//               recordId: "62128216",
-//               title:
-//                 "Små barn i sårbare livssituasjoner : hvordan kan barnehagen oppdage, forebygge og hjelpe barn i risiko for omsorgssvikt?"
-//             },
-//             materialGroup: {
-//               name: "fje",
-//               description: "Fjernlån 31 dage"
-//             }
-//           }
-//         },
-//         {
-//           isRenewable: true,
-//           isLongtermLoan: false,
-//           loanDetails: {
-//             loanId: 956250508,
-//             materialItemNumber: "3846990827",
-//             recordId: "28847238",
-//             periodical: null,
-//             loanDate: "2022-06-13T16:43:25.325",
-//             dueDate: "2022-07-14",
-//             loanType: "loan",
-//             ilBibliographicRecord: null,
-//             materialGroup: {
-//               name: "fon2",
-//               description: "Flere CD-plader"
-//             }
-//           }
-//         }
-//       ]
-//     }).as("loans");
+    // ID 42 2.d. authors & ID 42 2.f. year published
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__about p")
+      .should("have.text", "Af Agatha Christie og Jutta Larsen(2014)");
 
-//     cy.intercept("POST", "**/opac/**", {
-//       statusCode: 200,
-//       body: {
-//         data: {
-//           manifestation: {
-//             pid: "870970-basis:27215815",
-//             titles: { main: ["Dummy Some Title"] },
-//             abstract: ["Dummy Some abstract ..."],
-//             hostPublication: { year: { year: 2006 } },
-//             materialTypes: [{ specific: "Dummy bog" }],
-//             creators: [
-//               { display: "Dummy Jens Jensen" },
-//               { display: "Dummy Some Corporation" }
-//             ]
-//           }
-//         }
-//       }
-//     }).as("work");
+    // Todo serial title
+    // Todo serial number
+    // todo Nummer
+    // todo Årgang
+    // 2.c.ii.3 Icon: “{X} days"
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".counter")
+      .should("have.text", "6dage");
 
-//     cy.intercept("GET", "**covers**", {
-//       statusCode: 200,
-//       body: []
-//     }).as("cover");
-//     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-//     cy.wait(["@loans", "@work", "@cover"]);
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(1)
+      .find(".counter")
+      .should("have.text", "7dage");
 
-//     cy.get("#test-stack").click();
-//     cy.get("#test-more-materials").click();
-//     cy.get(".modal").find(".modal-loan__buttons").should("exist");
-//     cy.get(".modal").find(".modal-loan__buttons--bottom").should("not.exist");
-//     // Add duration to scroll, if I don't it scrolls to fast for the eventlistener
-//     // to work...
-//     cy.get(".modal-loan__container").scrollTo("bottom", { duration: 50 });
-//     cy.get(".modal")
-//       .find(".modal-loan__buttons")
-//       .eq(0)
-//       .should("not.be.visible");
-//     cy.get(".modal").find(".modal-loan__buttons--bottom").should("exist");
-//   });
-// });
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".counter")
+      .should("have.text", "3dage");
+
+    // 2.c.ii.4. Text: "Due date dd.mm.yyyy”
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 27-10-2022");
+
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 24-10-2022");
+
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Udløber 24-10-2022");
+  });
+
+  it("It opens loans group modal (physical)", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250508,
+            materialItemNumber: "3846990827",
+            recordId: "28847238",
+            periodical: null,
+            loanDate: "2022-10-16T16:43:25.325",
+            // Should have been handed in yesterday, renders a overdue-warning
+            dueDate: "2022-10-20",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        }
+      ]
+    }).as("physical_loans");
+  });
+
+  it("It opens loans group modal (digital)", () => {
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        loans: [
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-20T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076940",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          },
+          {
+            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
+            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
+            orderDateUtc: "2022-10-19T06:32:30Z",
+            loanExpireDateUtc: "2022-10-24T06:32:30Z",
+            isSubscriptionLoan: false,
+            libraryBook: {
+              identifier: "9788771076951",
+              identifierType: 15,
+              title: "Tættere end man tror",
+              publishersName: "Jentas"
+            },
+            fileExtensionType: 3
+          }
+        ]
+      }
+    }).as("digital_loans");
+
+    // stack links
+    // 2.b.iv.4. Link:
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.wait(["@digital_loans", "@work"]);
+    cy.get(".loan-list-page").find("#test-stack").click();
+
+    // 2.b.iv.4.a. Text: "+ {X} other items"
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .find(".list-reservation__information .list-reservation__note-desktop")
+      .eq(0)
+      .should("have.text", "+ 1 andre materialer")
+      .click();
+
+    // 2.b.iv.8.b. Click on a group of loans with same due date opens the group modal
+    // 2.b.iv.4.b. group modal opens
+    cy.get(".modal-loan").should("exist");
+  });
+
+  it("It opens details modal (digital loans)", () => {
+    // 2.c.ii.6. Link: Click on loan in list opens loan details modal
+    cy.get(".modal-detail").should("not.exist");
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(0)
+      .click();
+    cy.get(".modal-details").should("be.visible");
+  });
+
+  it("Empty physical and digital loan list", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: []
+    });
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: []
+    });
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.get(".dpl-list-empty").should("have.text", "Du har i øjeblikket 0 lån");
+  });
+
+  it("It opens details modal (physical loans)", () => {
+    // 2.b.iv.8. Link:
+    // 2.b.iv.8.a. Click on loan in list opens loan details modal
+    cy.get(".modal-detail").should("not.exist");
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .eq(0)
+      .click();
+    cy.get(".modal-details").should("be.visible");
+  });
+
+  it("Empty physical loan list", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: []
+    });
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+
+    // 2.b.iv.9. No physical loans, the text: "You have no physical loans at the moment"
+    cy.get(".dpl-list-empty").should(
+      "have.text",
+      "Du har i øjeblikket ingen fysiske lån"
+    );
+  });
+
+  it("Empty digital loan list", () => {
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: []
+    });
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    // 2.d No digital loans, the text: "You have 0 loans at the moment"
+    cy.get(".dpl-list-empty").should(
+      "have.text",
+      "Du har i øjeblikket ingen digitale lån"
+    );
+  });
+
+  it("Pagination is shown", () => {
+    cy.visit(
+      "/iframe.html?id=apps-loan-list--loan-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
+    );
+
+    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
+
+    // 2.b.iv.9.v. If more than 25 loans -> pagination (because of pageSizeDesktop/pageSizeMobile the limit is 2 not 25)
+    cy.get(".loan-list-page").find(".result-pager").should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(0)
+      .find(".list-reservation")
+      .should("have.length", 2);
+
+    // 2.c.iv. If more than 10 loans -> pagination (because of pageSizeDesktop/pageSizeMobile the limit is 2 not 25)
+    cy.get(".loan-list-page").find(".result-pager").should("have.length", 2);
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .should("have.length", 2);
+  });
+});
 
 export {};

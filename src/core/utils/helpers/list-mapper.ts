@@ -32,12 +32,8 @@ export const getContributors = (creators: string[]) => {
   return returnContentString;
 };
 
-//
-function getYearFromDataString(date?: string) {
-  if (date) {
-    return new Date(date).getFullYear();
-  }
-  return "";
+function getYearFromDataString(date: string) {
+  return new Date(date).getFullYear();
 }
 
 // Loan is a loan from Publizon, and is the equivalent
@@ -183,8 +179,8 @@ export const mapPublizonReservationToReservationType = (
       createdDateUtc,
       status,
       expectedRedeemDateUtc,
-      expireDateUtc,
       productTitle
+      expireDateUtc
     }) => {
       const publizonReservationState: { [key: number]: string } = {
         1: "reserved", // in publizon Queued
@@ -193,13 +189,15 @@ export const mapPublizonReservationToReservationType = (
         4: "cancelled", // in publizon Cancelled
         5: "expired" // in publizon Expired
       };
+
+      const state = status ? publizonReservationState[status] : null;
+
       return {
         identifier,
-        title: productTitle,
         faust: null,
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
-        state: status ? publizonReservationState[status] : "",
+        state,
         pickupDeadline: expectedRedeemDateUtc
       };
     }

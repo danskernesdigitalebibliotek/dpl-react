@@ -1,7 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useText } from "../../../core/utils/text";
+<<<<<<< HEAD
 import { useGetBranches } from "../../../core/fbs/fbs";
+=======
+>>>>>>> release/4
 import { AgencyBranch } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
@@ -15,9 +18,19 @@ import ReservationStatus from "./reservation-status";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
+<<<<<<< HEAD
 }
 
 const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
+=======
+  branches: AgencyBranch[];
+}
+
+const ReservationInfo: FC<ReservationInfoProps> = ({
+  reservationInfo,
+  branches
+}) => {
+>>>>>>> release/4
   const t = useText();
 
   const {
@@ -31,11 +44,15 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
+<<<<<<< HEAD
   const branchResponse = useGetBranches();
+=======
+>>>>>>> release/4
   const colors = getColors();
   const thresholds = getThresholds();
 
   useEffect(() => {
+<<<<<<< HEAD
     if (branchResponse.data && pickupBranch) {
       setReadyForPickupLabel(
         pickupDeadline
@@ -53,6 +70,21 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
       );
     }
   }, [branchResponse, pickupBranch, pickupDeadline, t]);
+=======
+    if (branches && pickupBranch) {
+      if (pickupDeadline) {
+        setReadyForPickupLabel(
+          `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
+        );
+      }
+      setPickupLibrary(getPreferredBranch(pickupBranch, branches));
+    } else if (pickupDeadline) {
+      setReadyForPickupLabel(
+        `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
+      );
+    }
+  }, [branches, pickupBranch, pickupDeadline, t]);
+>>>>>>> release/4
 
   if (state === "readyForPickup") {
     return (
@@ -81,11 +113,15 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
             : ""
         }
         // todo string interpolation
+<<<<<<< HEAD
         label={
           numberInQueue === 1
             ? `${t("youAreFirstInQueueText")}`
             : `${t("youAreNumberInQueueText")} ${numberInQueue - 1}`
         }
+=======
+        label={`${t("youAreNumberInLineText")} ${numberInQueue}`}
+>>>>>>> release/4
       >
         <span className="counter__value">{numberInQueue}</span>
         <span className="counter__label">{t("inLineText")}</span>

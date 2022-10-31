@@ -49,17 +49,14 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const blacklistBranches = config<string>("blacklistedPickupBranchesConfig", {
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
 
-  let pickupModalBranches = branches;
-  if (Array.isArray(blacklistBranches)) {
-    pickupModalBranches = excludeBlacklistedBranches(
-      branches,
-      blacklistBranches
-    );
-  }
+  const whitelistBranches = excludeBlacklistedBranches(
+    branches,
+    blacklistBranches
+  );
 
   const { open } = useModalButtonHandler();
   const openModal = (type: ModalReservationFormTextType) => () => {
@@ -90,7 +87,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           />
         </>
       )}
-      {preferredPickupBranch && branches && (
+      {preferredPickupBranch && whitelistBranches && (
         <>
           <ReservationFormListItem
             icon={Location}
@@ -99,7 +96,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             changeHandler={openModal("pickup")}
           />
           <PickupModal
-            branches={pickupModalBranches}
+            branches={whitelistBranches}
             defaultBranch={selectedBranch ?? preferredPickupBranch}
             selectBranchHandler={selectBranchHandler}
           />
@@ -107,7 +104,7 @@ const UserListItems: FC<UserListItemsProps> = ({
       )}
       <>
         {smsNotificationsIsEnabled(
-          config<string>("smsNotificationsForReservationsEnabledConfig")
+          config("smsNotificationsForReservationsEnabledConfig")
         ) && (
           <>
             <ReservationFormListItem

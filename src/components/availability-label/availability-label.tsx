@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
+import { useConfig } from "../../core/utils/config";
 
 export interface AvailabilityLabelProps {
   manifestText?: string;
@@ -13,7 +14,6 @@ export interface AvailabilityLabelProps {
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
 }
-
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   selected = false,
@@ -22,9 +22,15 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false
 }) => {
+  const config = useConfig();
+  const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
-    recordid: faustIds
+    recordid: faustIds,
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
   if (isLoading || isError) {
