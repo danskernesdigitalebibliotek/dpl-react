@@ -12,7 +12,7 @@ import {
 } from "../../core/dpl-cms/model";
 import { getCoverTint, isObjectEmpty } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
-import Campaign from "../campaign/Campaigns";
+import Campaign from "../campaign/Campaign";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 
 export interface SearchResultListProps {
