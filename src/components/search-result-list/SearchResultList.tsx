@@ -20,6 +20,20 @@ export interface SearchResultListProps {
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
   q: string;
 }
+
+export const allFacetFields = [
+  FacetField.MainLanguages,
+  FacetField.AccessTypes,
+  FacetField.ChildrenOrAdults,
+  FacetField.Creators,
+  FacetField.FictionNonfiction,
+  FacetField.FictionalCharacter,
+  FacetField.GenreAndForm,
+  FacetField.MaterialTypes,
+  FacetField.Subjects,
+  FacetField.WorkTypes
+];
+
 const SearchResultList: React.FC<SearchResultListProps> = ({
   resultItems,
   filters,
@@ -31,18 +45,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   );
   const { data } = useSearchFacetQuery({
     q: { all: q },
-    facets: [
-      FacetField.MainLanguages,
-      FacetField.AccessTypes,
-      FacetField.ChildrenOrAdults,
-      FacetField.Creators,
-      FacetField.FictionNonfiction,
-      FacetField.FictionalCharacter,
-      FacetField.GenreAndForm,
-      FacetField.MaterialTypes,
-      FacetField.Subjects,
-      FacetField.WorkTypes
-    ],
+    facets: allFacetFields,
     facetLimit: 10,
     ...(isObjectEmpty(filters)
       ? {}

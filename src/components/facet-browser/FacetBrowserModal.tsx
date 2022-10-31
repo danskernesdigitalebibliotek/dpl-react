@@ -5,13 +5,13 @@ import {
   TagOnclickHandler
 } from "../../apps/search-result/types";
 import {
-  FacetField,
   FacetResult,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { isObjectEmpty } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
+import { allFacetFields } from "../search-result-list/SearchResultList";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
 
 export const FacetBrowserModalId = "facet-browser-modal";
@@ -32,18 +32,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
 
   const { data, isLoading } = useSearchFacetQuery({
     q: { all: q },
-    facets: [
-      FacetField.MainLanguages,
-      FacetField.AccessTypes,
-      FacetField.ChildrenOrAdults,
-      FacetField.Creators,
-      FacetField.FictionNonfiction,
-      FacetField.FictionalCharacter,
-      FacetField.GenreAndForm,
-      FacetField.MaterialTypes,
-      FacetField.Subjects,
-      FacetField.WorkTypes
-    ],
+    facets: allFacetFields,
     facetLimit: 10,
     ...(isObjectEmpty(filters)
       ? {}
