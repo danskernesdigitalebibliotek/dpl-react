@@ -1,23 +1,28 @@
 import React, { FC } from "react";
-import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import { ReservationType } from "../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
-} from "../../../loan-list/materials/utils/material-fetch-hoc";
-import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
-import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
-import ReservationDetailsButton from "./reservation-details-buttons";
-import ReservationDetailsRedirect from "./reservation-details-redirect";
+} from "../../loan-list/materials/utils/material-fetch-hoc";
+import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
 import DigitalListDetails from "./digital-list-details";
 import PhysicalListDetails from "./physical-list-details";
+import { AgencyBranch } from "../../../core/fbs/model";
+import ReservationDetailsButton from "./reservation-details-buttons";
+import ReservationDetailsRedirect from "./reservation-details-redirect";
+import { useText } from "../../../core/utils/text";
+import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
+  branches: AgencyBranch[];
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
-  material
+  material,
+  branches
 }) => {
+  const t = useText();
   const { state, identifier, numberInQueue } = reservation;
 
   const { authors, pid, year, title, description, materialType } =
@@ -36,9 +41,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             title={title}
             pid={pid}
             description={description}
-            readyForPickup={state === "readyForPickup"}
             materialType={materialType}
-          />
+          >
+            {state === "readyForPickup" && (
+              <div className="status-label status-label--info">
+                {t("reservationDetailsReadyForLoanText")}
+              </div>
+            )}
+          </ModalDetailsHeader>
           {reservation.reservationId && (
             <ReservationDetailsButton
               reservationId={reservation.reservationId}
@@ -52,7 +62,12 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           )}
           <div className="modal-details__list">
             {isDigital && <DigitalListDetails reservation={reservation} />}
-            {!isDigital && <PhysicalListDetails reservation={reservation} />}
+            {!isDigital && (
+              <PhysicalListDetails
+                branches={branches}
+                reservation={reservation}
+              />
+            )}
           </div>
         </>
       )}
