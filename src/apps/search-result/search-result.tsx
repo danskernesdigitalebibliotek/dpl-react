@@ -13,6 +13,9 @@ import {
   excludeBlacklistedBranches,
   cleanBranchesId
 } from "../../components/reservation/helper";
+import useFilterHandler from "./useFilterHandler";
+import { TagOnclickHandler } from "./types";
+import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 
 interface SearchResultProps {
   q: string;
