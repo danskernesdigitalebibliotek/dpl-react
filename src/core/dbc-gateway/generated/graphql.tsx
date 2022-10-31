@@ -1685,6 +1685,7 @@ export type SearchFacetQuery = {
       name: string;
       values: Array<{
         __typename?: "FacetValue";
+        key: string;
         term: string;
         score?: number | null;
       }>;
@@ -2667,6 +2668,7 @@ export const SearchFacetDocument = `
     facets(facets: $facets) {
       name
       values(limit: $facetLimit) {
+        key
         term
         score
       }
