@@ -875,7 +875,7 @@ describe("Reservation list", () => {
     cy.get(".reservation-list-page")
       .find("h1")
       .should("have.text", "Dine reserveringer");
-      
+
     // ID 11 2.b. Text: "At the moment you have 0 reservations"
     cy.get(".dpl-list-empty")
       .should("exist")

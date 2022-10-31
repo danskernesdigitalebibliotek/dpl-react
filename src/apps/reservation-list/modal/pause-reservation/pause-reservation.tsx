@@ -39,7 +39,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           }
         },
         {
-          onSuccess: (result) => {
+          onSuccess: () => {
             // todo
             close(pauseReservation as string);
           },

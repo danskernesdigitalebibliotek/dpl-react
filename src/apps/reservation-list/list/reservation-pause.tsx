@@ -1,10 +1,10 @@
 import React, { useState, FC, useEffect } from "react";
+import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import { PatronV5 } from "../../../core/fbs/model";
-import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 
 interface ReservationPauseProps {
   user: PatronV5;
