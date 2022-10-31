@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatFilters } from "../../apps/search-result/helpers";
+import { formatFacetTerms } from "../../apps/search-result/helpers";
 import {
   FilterItemTerm,
   TagOnclickHandler
@@ -57,7 +57,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       q: { all: q },
       facets: knownFacets,
       facetLimit: 10,
-      filters: formatFilters(filters)
+      filters: formatFacetTerms(filters)
     },
     {
       keepPreviousData: true,

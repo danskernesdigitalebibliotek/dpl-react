@@ -1,6 +1,6 @@
 import { FilterItemTerm } from "./types";
 
-export const formatFilters = (filters: {
+export const formatFacetTerms = (filters: {
   [key: string]: { [key: string]: FilterItemTerm };
 }) => {
   return Object.keys(filters).reduce(

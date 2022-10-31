@@ -8,7 +8,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
-import { formatFilters } from "./helpers";
+import { formatFacetTerms } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
 import { FilterItemTerm, TagOnclickHandler } from "./types";
 import { useConfig } from "../../core/utils/config";
@@ -61,7 +61,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     branchIdList: string[]
   ) => {
     return {
-      ...formatFilters(facets),
+      ...formatFacetTerms(facets),
       ...(cleanBranches ? { branchId: branchIdList } : {})
     };
   };
