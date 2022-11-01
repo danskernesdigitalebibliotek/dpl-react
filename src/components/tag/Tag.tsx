@@ -15,6 +15,7 @@ const Tag: React.FunctionComponent<TagProps> = ({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       className={clsx(
         "tag tag--outlined",
         selected && "tag--outlined-selected"
