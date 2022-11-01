@@ -53,8 +53,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const author = creatorsText || t("creatorsAreMissingText");
   const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
-  const firstInSeries = series?.[0];
-  const { title: seriesTitle, numberInSeries } = firstInSeries;
+  // const firstInSeries = series?.[0];
+  // const { title: seriesTitle, numberInSeries } = firstInSeries;
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
 
   const handleClick = useCallback(() => {
@@ -98,7 +98,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
           <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
-          {numberInSeries && seriesTitle && (
+          {/* {numberInSeries && seriesTitle && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
                 numberInSeries.number?.[0]
@@ -111,7 +111,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
                 }
               ]}
             />
-          )}
+          )} */}
         </div>
 
         <h2 className="search-result-item__title text-header-h4">

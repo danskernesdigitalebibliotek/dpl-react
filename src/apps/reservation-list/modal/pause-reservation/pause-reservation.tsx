@@ -84,13 +84,12 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           startDate={startDate}
           endDate={endDate}
         />
-
         <div className="modal-pause__text-link mt-24 color-secondary-gray">
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
               id="test-ereolen-button"
-              href={new URL("todo")}
+              href={new URL("https://ereolen.dk/user/me/")}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}

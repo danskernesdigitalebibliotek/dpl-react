@@ -3,6 +3,7 @@ import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import { excludeBlacklistedBranches } from "../../../components/reservation/helper";
 import { AgencyBranch } from "../../../core/fbs/model";
 import { useConfig } from "../../../core/utils/config";
+import { useText } from "../../../core/utils/text";
 
 interface BranchesDropdownProps {
   selected: string;
@@ -15,6 +16,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
   onChange,
   classNames
 }) => {
+  const t = useText();
   const config = useConfig();
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
@@ -34,7 +36,9 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
 
   return (
     <>
-      <p className="text-body-medium mt-32 mb-8">Afhent reserveringer på</p>
+      <p className="text-body-medium mt-32 mb-8">
+        {t("pickupBranchesDropdownLabelText")}
+      </p>
       <div className={`dropdown mb-32 ${classNames || ""}`}>
         {pickupModalBranches && (
           <>
@@ -48,7 +52,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
                   selected={selected === ""}
                   disabled
                 >
-                  sdf todo
+                  {t("pickupBranchesDropdownNothingSelectedText")}
                 </option>
               )}
               {pickupModalBranches.map(({ branchId, title }) => (

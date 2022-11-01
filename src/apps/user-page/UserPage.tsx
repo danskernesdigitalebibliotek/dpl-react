@@ -11,8 +11,10 @@ import CheckBox from "../../components/checkbox/Checkbox";
 import BranchesDropdown from "./util/BranchesDropdown";
 import DateInputs from "../reservation-list/modal/pause-reservation/date-inputs";
 import { useConfig } from "../../core/utils/config";
+import { useText } from "../../core/utils/text";
 
 const UserPage: FC = () => {
+  const t = useText();
   const { data: userData, refetch: refetchUser } =
     useGetPatronInformationByPatronIdV2();
   const config = useConfig();
@@ -36,14 +38,14 @@ const UserPage: FC = () => {
     if (pincode && confirmPincode) {
       if (pincode.length !== pincodeLength) {
         setPincodeValidation(
-          `Pinkoden skal være (tal) tal lang ${pincodeLength}`
+          `${t("userPagePincodeTooShortValidationText")} ${pincodeLength}`
         );
       }
       if (pincode !== confirmPincode) {
-        setPincodeValidation("De er ikke ens todo");
+        setPincodeValidation(t("userPagePincodesNotTheSameText"));
       }
     }
-  }, [pincode, confirmPincode, pincodeLength]);
+  }, [pincode, confirmPincode, pincodeLength, t]);
 
   const changeUser = (newValue: string | boolean, key: string) => {
     const copyUser = JSON.parse(JSON.stringify(user));
@@ -80,16 +82,20 @@ const UserPage: FC = () => {
 
   return (
     <form className="dpl-user-page">
-      <h1 className="text-header-h1 my-32">Brugeroplysninger todo</h1>
+      <h1 className="text-header-h1 my-32">{t("userPageHeaderText")}</h1>
       {user && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
-            Stamoplysninger todo
+            {t("userPageBasicDetailsHeaderText")}
           </h2>
           <div className="dpl-user-info">
-            <div className="dpl-user-info__label">Navn todo</div>
+            <div className="dpl-user-info__label">
+              {t("userPageBasicDetailsNameLabelText")}
+            </div>
             <div className="dpl-user-info__text">{user.name}</div>
-            <div className="dpl-user-info__label">Adresse todo</div>
+            <div className="dpl-user-info__label">
+              {t("userPageBasicDetailsAddressLabelText")}
+            </div>
             <div className="dpl-user-info__text">
               <div>{user.address?.coName}</div>
               <div>{user.address?.street}</div>
@@ -101,15 +107,20 @@ const UserPage: FC = () => {
         </>
       )}
       <h2 className="text-body-small-regular mt-32 mb-16">
-        Kontaktoplysninger todo
+        {t("userPageContactInfoHeaderText")}
       </h2>
+      {t("userPageContactInfoBreadText") && (
+        <p className="text-body-small-regular mb-32">
+          {t("userPageContactInfoBreadText")}
+        </p>
+      )}
       <TextInput
         className="dpl-input__half-on-desktop"
         id="phone-input"
         type="number"
         onChange={(newPhoneNumber) => changeUser(newPhoneNumber, "phoneNumber")}
         value={user?.phoneNumber}
-        label="Mobiltelefonnr. todo"
+        label={t("userPageContactPhoneLabelText")}
       />
       <CheckBox
         className="mt-32 mb-16"
@@ -119,7 +130,7 @@ const UserPage: FC = () => {
         id="phone-messages"
         selected={user?.receiveSms}
         disabled={false}
-        label="Modtager beskeder om dine lån lån, reserveringer osv. todo"
+        label={t("userPageContactPhoneCheckboxText")}
       />
       <TextInput
         className="dpl-input__half-on-desktop"
@@ -127,7 +138,7 @@ const UserPage: FC = () => {
         type="email"
         onChange={(newEmail) => changeUser(newEmail, "emailAddress")}
         value={user?.emailAddress}
-        label="E-mail todo"
+        label={t("userPageContactEmailLabelText")}
       />
       <CheckBox
         className="mt-32 mb-16"
@@ -137,17 +148,17 @@ const UserPage: FC = () => {
         id="email-messages"
         selected={user?.receiveEmail}
         disabled={false}
-        label="Modtager beskeder om dine lån lån, reserveringer osv. todo"
+        label={t("userPageContactEmailCheckboxText")}
       />
       <StatusBar />
       <h2 className="text-body-small-regular mt-32 mb-16">
-        Reserveringer todo
+        {t("userPageChangePickupHeaderText")}
       </h2>
-      <p className="text-body-small-regular">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostru
-      </p>
+      {t("userPageChangePickupBreadText") && (
+        <p className="text-body-small-regular">
+          {t("userPageChangePickupBreadText")}
+        </p>
+      )}
       <BranchesDropdown
         classNames="dropdown__half-on-desktop"
         selected={user?.preferredPickupBranch || ""}
@@ -156,12 +167,10 @@ const UserPage: FC = () => {
         }
       />
       <p className="text-body-medium mt-32 mb-8">
-        Sæt fysiske reserverinnger på pause
+        {t("userPagePauseReservationsHeaderText")}
       </p>
       <p className="text-body-small-regular">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostru
+        {t("userPagePauseReservationsBreadText")}
       </p>
       <CheckBox
         className="mt-32 mb-16"
@@ -169,11 +178,12 @@ const UserPage: FC = () => {
         onChecked={() =>
           setReservationPauseSectionVisible(!reservationPauseSectionVisible)
         }
+        ariaLabel={t("userPageOpenPauseReservationsSectionAriaText")}
         selected={reservationPauseSectionVisible}
-        label="åben reservationssektion todo"
+        label={t("userPageOpenPauseReservationsSectionText")}
       />
       {reservationPauseSectionVisible && (
-        <div>
+        <section>
           <DateInputs
             setStartDate={(newStartDate) =>
               changeUser(newStartDate, "onHold.from")
@@ -182,11 +192,13 @@ const UserPage: FC = () => {
             startDate={user?.onHold?.from || ""}
             endDate={user?.onHold?.to || ""}
           />
-        </div>
+        </section>
       )}
-      <p className="text-body-medium mt-32 mb-8">PINKODE</p>
+      <h2 className="text-body-small-regular mt-32 mb-16">
+        {t("userPageChangePincodeHeaderText")}
+      </h2>
       <p className="text-body-small-regular">
-        Indtast din nye pinkode for at ændre på din nuværende pinkode.
+        {t("userPageChangePincodeBreadText")}
       </p>
       <div className="dpl-pincode-container">
         <TextInput
@@ -197,7 +209,7 @@ const UserPage: FC = () => {
           inputmode="numeric"
           onChange={(newPin) => setPincode(newPin)}
           value={pincode}
-          label="Pinkode todo"
+          label={t("userPagePincodeLabelText")}
           validation={pincodeValidation}
         />
         <TextInput
@@ -208,7 +220,7 @@ const UserPage: FC = () => {
           type="password"
           onChange={(newPin) => setConfirmPincode(newPin)}
           value={confirmPincode}
-          label="Bekræft pinkode todo"
+          label={t("userPageConfirmPincodeLabelText")}
         />
       </div>
       <button
@@ -217,12 +229,14 @@ const UserPage: FC = () => {
         type="button"
         onClick={save}
       >
-        GEM BRUGEROPLYSNINGER
+        {t("userPageSaveButtonText")}
       </button>
       <div className="text-body-small-regular mt-32">
+        {t("userPageDeleteProfileText")}
         På mange digitale materialer, er der er begrænsning på, hvor mange du
         kan låne pr. måned. Der findes dog en række materialer uden begrænsning.
         <a href="todo" className="text-links">
+          {t("userPageDeleteProfileLinkText")}
           Se titler du altid kan låne
         </a>
       </div>

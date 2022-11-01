@@ -1,8 +1,10 @@
 import React, { useEffect, useState, FC } from "react";
 import { useGetV1LibraryProfile } from "../../../core/publizon/publizon";
 import { LibraryProfile } from "../../../core/publizon/model";
+import { useText } from "../../../core/utils/text";
 
 const StatusBar: FC = () => {
+  const t = useText();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
     null
@@ -51,24 +53,28 @@ const StatusBar: FC = () => {
       {libraryProfile && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
-            DIGITALE LÅN (EREOLEN)
+            {t("userPageStatusBarHeaderText")}
           </h2>
           <div className="text-body-small-regular">
-            På mange digitale materialer, er der er begrænsning på, hvor mange
-            du kan låne pr. måned. Der findes dog en række materialer uden
-            begrænsning.
+            {t("userPageStatusBarBreadText")}
             <a href="todo" className="text-links">
-              Se titler du altid kan låne
+              {t("userPageStatusBarLinkText")}
             </a>
           </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
-              <h3 className="text-small-caption">Lån pr. måned</h3>
+              <h3 className="text-small-caption">
+                {t("userPageStatusBarLoanHeaderText")}
+              </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">Ebøger</div>
                   <div className="text-label">
-                    {userEbookLoans} ud af
+                    {t("userPageStatusBarLoansEbooksText")}
+                  </div>
+                  <div className="text-label">
+                    {/* todo string interpolation */}
+                    {/* todo string interpolation aria label */}
+                    {userEbookLoans} ud af{" "}
                     {libraryProfile.maxConcurrentEbookLoansPerBorrower}
                   </div>
                 </div>
@@ -81,9 +87,13 @@ const StatusBar: FC = () => {
               </div>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">Lydbøger</div>
                   <div className="text-label">
-                    {userAudioBookLoans} ud af
+                    {t("userPageStatusBarLoansAudioBooksText")}
+                  </div>
+                  <div className="text-label">
+                    {/* todo string interpolation */}
+                    {/* todo string interpolation aria label */}
+                    {userAudioBookLoans} ud af{" "}
                     {libraryProfile.maxConcurrentAudioLoansPerBorrower}
                   </div>
                 </div>
@@ -96,12 +106,18 @@ const StatusBar: FC = () => {
               </div>
             </div>
             <div className="dpl-status mt-32">
-              <h3 className="text-small-caption">Reserveringer pr. måned</h3>
+              <h3 className="text-small-caption">
+                {t("userPageStatusBarReservationHeaderText")}
+              </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">Ebøger</div>
                   <div className="text-label">
-                    {userEbookReservations} ud af
+                    {t("userPageStatusBarReservationsEbooksText")}
+                  </div>
+                  <div className="text-label">
+                    {/* todo string interpolation */}
+                    {/* todo string interpolation aria label */}
+                    {userEbookReservations} ud af{" "}
                     {libraryProfile.maxConcurrentEbookReservationsPerBorrower}
                   </div>
                 </div>
@@ -114,9 +130,13 @@ const StatusBar: FC = () => {
               </div>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">Lydbøger</div>
                   <div className="text-label">
-                    {userAudioBookReservations} ud af
+                    {t("userPageStatusBarReservationsAudioBooksText")}
+                  </div>
+                  <div className="text-label">
+                    {/* todo string interpolation */}
+                    {/* todo string interpolation aria label */}
+                    {userAudioBookReservations} ud af{" "}
                     {libraryProfile.maxConcurrentAudioReservationsPerBorrower}
                   </div>
                 </div>

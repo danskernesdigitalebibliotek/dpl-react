@@ -9,6 +9,7 @@ interface CheckBoxProps {
   disabled?: boolean;
   className?: string;
   onChecked?: (value: boolean) => void;
+  ariaLabel?: string;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -18,7 +19,8 @@ const CheckBox: FC<CheckBoxProps> = ({
   className,
   selected,
   onChecked,
-  disabled
+  disabled,
+  ariaLabel
 }) => {
   const checkboxChecked = (checked: boolean) => {
     if (onChecked) {
@@ -36,6 +38,7 @@ const CheckBox: FC<CheckBoxProps> = ({
         }}
         checked={selected}
         type="checkbox"
+        aria-label={ariaLabel}
         disabled={disabled}
       />
       <label className="checkbox__label" htmlFor={id}>
