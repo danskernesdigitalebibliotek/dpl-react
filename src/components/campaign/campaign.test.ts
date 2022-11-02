@@ -51,35 +51,32 @@ describe("Campaign", () => {
   });
 
   it("Shows a full campaign", () => {
-    // Intercept campaign data call - full campaign.
     cy.fixture("search-result/campaign.json")
       .then((result) => {
         cy.intercept("POST", "**/dpl_campaign/match", result);
       })
-      .as("Campaign service");
+      .as("Campaign service - full campaign");
 
     cy.get("section").contains("Lorem ipsum Harry Potter");
   });
 
   it("Shows a text-only campaign without an image", () => {
-    // Intercept campaign data call - full campaign.
     cy.fixture("search-result/campaign-text-only.json")
       .then((result) => {
         cy.intercept("POST", "**/dpl_campaign/match", result);
       })
-      .as("Campaign service");
+      .as("Campaign service - text only campaign");
 
     cy.get("section").should("contain.text", "Harry Potter");
     cy.get("section").find("img").should("not.exist");
   });
 
   it("Shows an image-only campaign without text", () => {
-    // Intercept campaign data call - full campaign.
     cy.fixture("search-result/campaign-image-only.json")
       .then((result) => {
         cy.intercept("POST", "**/dpl_campaign/match", result);
       })
-      .as("Campaign service");
+      .as("Campaign service - image only campaign");
 
     cy.get("img")
       .should("be.visible")
