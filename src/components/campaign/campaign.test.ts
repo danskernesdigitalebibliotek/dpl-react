@@ -69,6 +69,7 @@ describe("Campaign", () => {
       })
       .as("Campaign service");
 
+    cy.get("section").should("contain.text", "Harry Potter");
     cy.get("section").find("img").should("not.exist");
   });
 
@@ -80,6 +81,11 @@ describe("Campaign", () => {
       })
       .as("Campaign service");
 
+    cy.get("img")
+      .should("be.visible")
+      .and("have.prop", "naturalWidth")
+      .should("be.greaterThan", 0);
+    cy.get("img").should("have.attr", "alt");
     cy.get("section").find("Lorem ipsum Harry Potter").should("not.exist");
   });
 });
