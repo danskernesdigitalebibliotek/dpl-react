@@ -5,12 +5,12 @@ import fetchMaterial, {
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
 import DigitalListDetails from "./digital-list-details";
-import PhysicalListDetails from "./physical-list-details";
-import { AgencyBranch } from "../../../../core/fbs/model";
 import ReservationDetailsButton from "./reservation-details-buttons";
+import { AgencyBranch } from "../../../../core/fbs/model";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
+import PhysicalListDetails from "./physical-list-details";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
