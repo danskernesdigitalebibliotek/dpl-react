@@ -6,11 +6,13 @@ import { useText } from "../../../core/utils/text";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import { PatronV5 } from "../../../core/fbs/model";
 
-interface ReservationPauseProps {
+interface ReservationPauseTogglerProps {
   user: PatronV5;
 }
 
-const ReservationPause: FC<ReservationPauseProps> = ({ user }) => {
+const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
+  user
+}) => {
   const t = useText();
   const { open } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
@@ -64,4 +66,4 @@ const ReservationPause: FC<ReservationPauseProps> = ({ user }) => {
   );
 };
 
-export default ReservationPause;
+export default ReservationPauseToggler;

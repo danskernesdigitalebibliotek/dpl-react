@@ -15,7 +15,7 @@ import {
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import List from "./list";
-import ReservationPause from "./reservation-pause";
+import ReservationPauseToggler from "./reservation-pause-toggler";
 import {
   useGetPatronInformationByPatronIdV2,
   useGetReservationsV2
@@ -106,7 +106,7 @@ const ReservationList: FC = () => {
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
-      {user && <ReservationPause user={user} />}
+      {user && <ReservationPauseToggler user={user} />}
       <List
         header={t("reservationListReadyForPickupTitleText")}
         list={sortByOldestPickupDeadline([
