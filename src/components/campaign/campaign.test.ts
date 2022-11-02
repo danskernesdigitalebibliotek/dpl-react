@@ -63,7 +63,13 @@ describe("Campaign", () => {
       .should("be.greaterThan", 0);
     cy.get("img").should("have.attr", "alt");
     cy.get("section").contains("Harry Potter");
-    cy.get("ul a").eq(0).should("have.attr", "href");
+    cy.get("a")
+      .first()
+      .should(
+        "have.attr",
+        "href",
+        "http://localhost/?path=/story/apps-search-result--search-result"
+      );
   });
 
   it("Shows a text-only campaign without an image", () => {
