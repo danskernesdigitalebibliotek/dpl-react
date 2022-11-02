@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React from "react";
 import { Link } from "./link";
 
@@ -15,11 +14,12 @@ export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   isNewTab = false,
   className
 }) => {
-  const classes = {
-    link: clsx("hide-linkstyle", { className })
-  };
   return (
-    <Link href={url} isNewTab={isNewTab} className={classes.link}>
+    <Link
+      href={url}
+      isNewTab={isNewTab}
+      className={`hide-linkstyle ${className || ""}`}
+    >
       {children}
     </Link>
   );
