@@ -53,6 +53,7 @@ const ReservationDetailsRedirect: FC<
         </button>
         <Link
           id="test-ereolen-button"
+          // todo get from config
           href={new URL("https://ereolen.dk/user/me/")}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
         >
