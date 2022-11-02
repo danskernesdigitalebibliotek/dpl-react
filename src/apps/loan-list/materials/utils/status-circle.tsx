@@ -19,8 +19,8 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
 
   const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
   const colors = getColors();
-  let color = colors.default;
 
+  let color = colors.default;
   if (daysBetweenTodayAndDue < statusThreshold.danger) {
     color = colors.danger;
   } else if (daysBetweenTodayAndDue <= statusThreshold.warning) {

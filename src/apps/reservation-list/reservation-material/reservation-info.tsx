@@ -67,6 +67,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }
 
   if (state === "reserved" && pickupBranch && numberInQueue && expiryDate) {
+    // todo string interpolation
     const numberInLineLabel =
       numberInQueue === 1
         ? t("youAreFirstInQueueText")
@@ -83,7 +84,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
             ? t("expiresSoonText")
             : ""
         }
-        // todo string interpolation
         label={numberInLineLabel}
       >
         <span className="counter__value">{numberInQueue}</span>

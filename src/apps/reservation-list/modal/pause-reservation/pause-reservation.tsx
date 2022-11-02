@@ -40,7 +40,6 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         },
         {
           onSuccess: () => {
-            // todo
             close(pauseReservation as string);
           },
           // todo error handling, missing in figma
