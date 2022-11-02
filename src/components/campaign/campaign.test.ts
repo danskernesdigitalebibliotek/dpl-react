@@ -50,14 +50,20 @@ describe("Campaign", () => {
     );
   });
 
-  it("Shows a full campaign", () => {
+  it("Shows a full campaign with image, text & link", () => {
     cy.fixture("search-result/campaign.json")
       .then((result) => {
         cy.intercept("POST", "**/dpl_campaign/match", result);
       })
       .as("Campaign service - full campaign");
 
-    cy.get("section").contains("Lorem ipsum Harry Potter");
+    cy.get("img")
+      .should("be.visible")
+      .and("have.prop", "naturalWidth")
+      .should("be.greaterThan", 0);
+    cy.get("img").should("have.attr", "alt");
+    cy.get("section").contains("Harry Potter");
+    cy.get("ul a").eq(0).should("have.attr", "href");
   });
 
   it("Shows a text-only campaign without an image", () => {
