@@ -5,22 +5,20 @@ describe("Reservation details modal test", () => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
-    const clockDate = new Date(
-      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
-    );
-
-    // Intercept branches.
-    cy.fixture("material/branches.json").then((result) => {
-      cy.intercept("GET", "**/agencyid/branches", result);
-    });
 
     // Intercept covers.
     cy.fixture("cover.json").then((result) => {
       cy.intercept("GET", "**/covers**", result);
     });
 
+    const clockDate = new Date(
+      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
+    ).getTime();
+
     // Sets time to a specific date
-    cy.clock(clockDate);
+    // https://github.com/cypress-io/cypress/issues/7577
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.clock(clockDate).then((clock: any) => clock.bind(window));
   });
 
   it("It shows digital reservation details modal", () => {
@@ -43,7 +41,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("GET", "**v1/products**", {
+    cy.intercept("GET", "**v1/products/**", {
       product: {
         createdUtc: "2014-11-04T12:20:19.347Z",
         updatedUtc: "2017-02-23T13:04:56.617Z",
@@ -115,14 +113,12 @@ describe("Reservation details modal test", () => {
       );
 
     // ID 43 2.c. full title
-    cy.get(".modal")
-      .find("h2")
-      .should("have.text", "Mitfordmordene første bog");
+    cy.get(".modal").find("h2").should("have.text", "Mordet i det blå tog");
 
     // ID 43 2.d. authors
     cy.get(".modal")
       .find("#test-authors")
-      .should("have.text", "Af Jessica  Fellowes og Kirsten Heltner (2018)");
+      .should("have.text", "Af Agatha Christie og Jutta Larsen (2014)");
 
     // Todo serial title
     // Todo serial number
@@ -205,7 +201,7 @@ describe("Reservation details modal test", () => {
       }
     });
 
-    cy.intercept("GET", "**v1/products**", {
+    cy.intercept("GET", "**v1/products/**", {
       product: {
         createdUtc: "2014-11-04T12:20:19.347Z",
         updatedUtc: "2017-02-23T13:04:56.617Z",
@@ -399,7 +395,32 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find("button")
-      .should("exist");
+      .should("exist")
+      .click();
+
+    // ID 16 2. Dropdown with pickup libraries
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .find(".dropdown__option")
+      .should(
+        "have.text",
+        "VælgHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
+      );
+
+    // ID 16 3. user selects library
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .select("DK-775120");
+
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find(".dropdown__select")
+      .should("have.value", "DK-775120");
 
     // ID 13 2.f. header "Not interested after"
     cy.get(".modal-details__list")
@@ -420,7 +441,56 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(2)
       .find("button")
+      .should("exist")
+      .click();
+
+    // ID 15 2.a&b&c&d&e Dropdown with interest periods
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(2)
+      .find(".dropdown__select")
+      .find(".dropdown__option")
+      .should("have.text", "Vælg1 måned2 måneder3 måneder6 måneder1 år");
+
+    cy.intercept(
+      "PUT",
+      "**/external/v1/agencyid/patrons/patronid/reservations**",
+      {
+        statusCode: 201,
+        body: { code: 101, message: "OK" }
+      }
+    ).as("put-library-branch-and-expiry-date");
+
+    // ID 15 2.g user clicks save
+    // ID 16 4. user clicks save
+    cy.get(".modal-details__list").find("#test-save-physical-details").click();
+
+    // ID 15 2.h system updates
+    // ID 16 5. user clicks save
+    cy.get("@put-library-branch-and-expiry-date").should((response) => {
+      expect(response).to.have.property("response");
+    });
+
+    // ID 15 2.i still on "detaljevisning"
+    // ID 16 6. user clicks save
+    cy.get(".modal").should("exist");
+
+    // ID 16 6.b user clicks save
+    // ID 15 2.i.b pick up library change link
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(1)
+      .find("button")
       .should("exist");
+
+    // ID 16 6.c user clicks save
+    // ID 15 2.i.c expiry date change link
+    cy.get(".modal-details__list")
+      .find(".list-details")
+      .eq(2)
+      .find("button")
+      .should("exist")
+      .click();
 
     // ID 13 2.h. header "Date of reservation"
     cy.get(".modal-details__list")
