@@ -27,9 +27,9 @@ interface LoanListProps {
 }
 
 const LoanList: FC<LoanListProps> = ({ pageSize }) => {
+  const { allLoansId } = getModalIds();
   const { open } = useModalButtonHandler();
   const t = useText();
-  const { allLoansId } = getModalIds();
   const [view, setView] = useState<string>("list");
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
   const [digitalLoans, setDigitalLoans] = useState<LoanType[]>([]);
