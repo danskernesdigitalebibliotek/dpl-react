@@ -1,6 +1,6 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
-describe("Find on shelf modal - default", () => {
+describe("Campaign", () => {
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
