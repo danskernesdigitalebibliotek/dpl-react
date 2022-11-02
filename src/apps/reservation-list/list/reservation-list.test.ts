@@ -10,12 +10,6 @@ describe("Reservation list", () => {
     // Sets time to a specific date
     cy.clock(wednesday20220713);
 
-    cy.fixture("material/branches.json")
-      .then((result) => {
-        cy.intercept("GET", "**/agencyid/branches", result);
-      })
-      .as("branches");
-
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
@@ -372,7 +366,6 @@ describe("Reservation list", () => {
     cy.wait([
       "@physical_reservations",
       "@digital_reservations",
-      "@branches",
       "@work",
       "@cover",
       "@product",
