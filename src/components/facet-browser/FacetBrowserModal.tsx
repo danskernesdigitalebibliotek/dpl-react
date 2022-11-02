@@ -11,8 +11,8 @@ import {
 import { isObjectEmpty } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
-import { allFacetFields } from "../search-result-list/SearchResultList";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
+import { allFacetFields } from "./helper";
 
 export const FacetBrowserModalId = "facet-browser-modal";
 

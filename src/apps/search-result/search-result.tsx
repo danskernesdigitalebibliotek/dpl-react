@@ -3,7 +3,6 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
-  FacetField,
   SearchWithPaginationQuery,
   useSearchFacetQuery,
   useSearchWithPaginationQuery
@@ -26,24 +25,12 @@ import {
 import { isObjectEmpty } from "../../core/utils/helpers/general";
 import { formatFilters } from "./helpers";
 import Campaign from "../../components/campaign/Campaign";
+import { allFacetFields } from "../../components/facet-browser/helper";
 
 interface SearchResultProps {
   q: string;
   pageSize: number;
 }
-
-export const allFacetFields = [
-  FacetField.MainLanguages,
-  FacetField.AccessTypes,
-  FacetField.ChildrenOrAdults,
-  FacetField.Creators,
-  FacetField.FictionNonfiction,
-  FacetField.FictionalCharacter,
-  FacetField.GenreAndForm,
-  FacetField.MaterialTypes,
-  FacetField.Subjects,
-  FacetField.WorkTypes
-];
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const config = useConfig();
