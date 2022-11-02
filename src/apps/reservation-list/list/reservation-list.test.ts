@@ -438,7 +438,7 @@ describe("Reservation list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find("#test-list-authors")
+      .find(".list-reservation__about p")
       .should(
         "have.text",
         "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"

@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useCallback,
-  useState,
-  useEffect,
-  ChangeEvent
-} from "react";
+import React, { FC, useCallback, useState, useEffect } from "react";
 import { Link } from "../../../../components/atoms/link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
