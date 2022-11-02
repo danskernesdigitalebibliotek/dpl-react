@@ -10,7 +10,7 @@ export interface ModalDetailsHeaderProps {
   description: string | undefined | null;
   materialType: string | undefined | null;
   isbnForCover: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({

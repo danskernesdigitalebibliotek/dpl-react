@@ -4,12 +4,14 @@ import pageSizeLoanList from "./page-size-loan-list.json";
 import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
 import thresholds from "./status-thresholds.json";
+import modalIds from "./modal-ids.json";
 
 export type ConfScope =
   | "pageSize"
   | "coverTints"
   | "pageSizeLoanList"
   | "colors"
+  | "modalIds"
   | "thresholds";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
@@ -45,5 +47,6 @@ export default {
   coverTints,
   pageSizeLoanList,
   colors,
+  modalIds,
   thresholds
 } as Configuration;
