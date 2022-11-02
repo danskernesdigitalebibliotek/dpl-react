@@ -18,9 +18,11 @@ const CampaignBody: FC<CampaignBodyProps> = ({ campaignData }) => {
           alt={campaignData.image.alt}
         />
       )}
-      <h4 className="campaign__title campaign__title--ellipsis">
-        {campaignData.text}
-      </h4>
+      {campaignData.text && (
+        <h4 className="campaign__title campaign__title--ellipsis">
+          {campaignData.text}
+        </h4>
+      )}
     </section>
   );
 };
