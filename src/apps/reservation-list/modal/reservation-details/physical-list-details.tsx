@@ -130,9 +130,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           }
         },
         {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
-            // todo
+          onSuccess: () => {
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
           },

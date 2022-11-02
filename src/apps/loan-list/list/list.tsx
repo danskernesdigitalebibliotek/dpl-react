@@ -11,8 +11,8 @@ import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
 import EmptyList from "../materials/utils/empty-list";
 import {
-  getModalIds,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  getModalIds
 } from "../../../core/utils/helpers/general";
 
 export interface ListProps {

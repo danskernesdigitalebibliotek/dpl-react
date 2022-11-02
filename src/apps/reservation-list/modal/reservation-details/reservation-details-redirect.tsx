@@ -16,28 +16,29 @@ const ReservationDetailsRedirect: FC<
   ReservationDetailsRedirectProps & MaterialProps
 > = ({ reservationId }) => {
   const t = useText();
-  const modalIds = getModalIds();
-  const modalId = `${modalIds.deleteReservation}${reservationId}`;
   const { mutate } = useDeleteV1UserReservationsIdentifier();
   const { open, close } = useModalButtonHandler();
+  const modalIds = getModalIds();
+  const modalId = `${modalIds.deleteReservation}${reservationId}`;
 
   const deleteReservation = useCallback(() => {
-    mutate(
-      {
-        identifier: reservationId
-      },
-      {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        onSuccess: (result) => {
-          // todo
-          close(modalId);
+    if (reservationId) {
+      mutate(
+        {
+          identifier: reservationId
         },
-        // todo error handling, missing in figma
-        onError: () => {
-          close(modalId);
+        {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          onSuccess: (result) => {
+            close(modalId);
+          },
+          // todo error handling, missing in figma
+          onError: () => {
+            close(modalId);
+          }
         }
-      }
-    );
+      );
+    }
   }, [close, modalId, mutate, reservationId]);
 
   return (
@@ -52,6 +53,7 @@ const ReservationDetailsRedirect: FC<
         </button>
         <Link
           id="test-ereolen-button"
+          // todo get from config
           href={new URL("https://ereolen.dk/user/me/")}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
         >
