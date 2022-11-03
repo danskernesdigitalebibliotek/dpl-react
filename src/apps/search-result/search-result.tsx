@@ -4,7 +4,6 @@ import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
   SearchWithPaginationQuery,
-  useSearchFacetQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
@@ -22,10 +21,8 @@ import {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem
 } from "../../core/dpl-cms/model";
-import { isObjectEmpty } from "../../core/utils/helpers/general";
-import { formatFilters } from "./helpers";
 import Campaign from "../../components/campaign/Campaign";
-import { allFacetFields } from "../../components/facet-browser/helper";
+import { useGetFacets } from "../../components/facet-browser/helper";
 
 interface SearchResultProps {
   q: string;
@@ -57,14 +54,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     filterHandler(filterInfo);
     resetPager();
   };
-  const { data } = useSearchFacetQuery({
-    q: { all: q },
-    facets: allFacetFields,
-    facetLimit: 10,
-    ...(isObjectEmpty(filters)
-      ? {}
-      : { filters: { ...formatFilters(filters) } })
-  });
+  const { facets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
@@ -73,10 +63,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [q, pageSize, filters]);
 
   useEffect(() => {
-    if (data) {
+    if (facets) {
       mutate(
         {
-          data: data.search.facets as CampaignMatchPOSTBodyItem[]
+          data: facets as CampaignMatchPOSTBodyItem[]
         },
         {
           onSuccess: (campaign) => {
@@ -88,7 +78,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         }
       );
     }
-  }, [mutate, data]);
+  }, [mutate, facets]);
 
   useSearchWithPaginationQuery(
     {
@@ -114,9 +104,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
             hitcount: SearchWithPaginationQuery["search"]["hitcount"];
           };
         };
-
         setHitCount(resultCount);
-
         setResultItems([...resultItems, ...resultWorks]);
       }
     }
