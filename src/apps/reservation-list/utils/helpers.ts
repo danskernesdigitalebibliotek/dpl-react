@@ -13,6 +13,7 @@ export const sortByOldestPickupDeadline = (list: ReservationType[]) => {
 };
 
 export const getReservedDigital = (list: ReservationType[]) => {
+  // Sorts by pickupDeadline, then title
   return [...list]
     .filter(({ state }) => state === "reserved")
     .sort(
