@@ -52,8 +52,8 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
         return (
           <FacetBrowserDisclosure
-            id={name}
             key={name}
+            id={name}
             fullWidth
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}

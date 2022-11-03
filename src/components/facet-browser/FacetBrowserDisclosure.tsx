@@ -1,15 +1,11 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode, useCallback } from "react";
-import { useText } from "../../core/utils/text";
-import Pagefold from "../pagefold/Pagefold";
 
 export interface FacetBrowserDisclosureProps {
   id: string;
-  mainIconPath?: string;
   title: string;
   children?: ReactNode;
-  isAvailable?: boolean;
   fullWidth?: boolean;
   showContent?: boolean;
   removeHeadlinePadding?: boolean;
@@ -20,14 +16,11 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
   id,
   title,
   children,
-  mainIconPath,
-  isAvailable,
   fullWidth,
   showContent = false,
   removeHeadlinePadding,
   onClick
 }) => {
-  const t = useText();
   const onClickHandler = useCallback(() => {
     if (onClick) {
       onClick();
@@ -55,24 +48,8 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
         role="button"
         tabIndex={0}
       >
-        {mainIconPath && (
-          <div className="disclosure__icon bg-identity-tint-120">
-            <img className="invert" src={mainIconPath} alt="" />
-          </div>
-        )}
-        <span
-          className={`disclosure__text${
-            isAvailable !== undefined ? "--shorter" : ""
-          }`}
-        >
-          {title}
-        </span>
-        {isAvailable !== undefined && (
-          <Pagefold
-            text={isAvailable ? t("available") : t("unavailable")}
-            state={isAvailable ? "success" : "alert"}
-          />
-        )}
+        <span className="disclosure__text">{title}</span>
+
         <img
           className="disclosure__expand noselect"
           src={ExpandMoreIcon}
