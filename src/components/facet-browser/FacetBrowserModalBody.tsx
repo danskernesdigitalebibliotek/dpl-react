@@ -1,10 +1,10 @@
 import React from "react";
+import { upperFirst } from "lodash";
 import {
   FilterItemTerm,
   TagOnclickHandler
 } from "../../apps/search-result/types";
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
-import { capitalizeFirstLetter } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import Tag from "../tag/Tag";
@@ -56,7 +56,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
             key={name}
             fullWidth
             removeHeadlinePadding
-            title={t(`facet${capitalizeFirstLetter(name)}Text`)}
+            title={t(`facet${upperFirst(name)}Text`)}
             showContent={openFacets.includes(name)}
             onClick={toggleFacets(name)}
           >
