@@ -11,21 +11,21 @@ import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/i
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
-import { useText } from "../../../core/utils/text";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
-import { MaterialProps } from "../../loan-list/materials/utils/material-fetch-hoc";
-import { useUpdateReservations } from "../../../core/fbs/fbs";
+import { useText } from "../../../../core/utils/text";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import { useUpdateReservations } from "../../../../core/fbs/fbs";
 import {
   getPreferredBranch,
   hardcodedInterestPeriods
-} from "../../../components/reservation/helper";
-import { AgencyBranch } from "../../../core/fbs/model";
-import { formatDate } from "../../loan-list/utils/helpers";
-import ListDetails from "../../../components/list-details/list-details";
-import { Button } from "../../../components/Buttons/Button";
+} from "../../../../components/reservation/helper";
+import { AgencyBranch } from "../../../../core/fbs/model";
+import { formatDate } from "../../../loan-list/utils/helpers";
+import ListDetails from "../../../../components/list-details/list-details";
+import { Button } from "../../../../components/Buttons/Button";
 import ListDetailsDropdown, {
   OptionsProps
-} from "../../../components/list-details-dropdown/list-details-dropdown";
+} from "../../../../components/list-details-dropdown/list-details-dropdown";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -130,9 +130,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           }
         },
         {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
-            // todo
+          onSuccess: () => {
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
           },
