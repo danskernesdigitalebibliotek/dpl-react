@@ -3,11 +3,16 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 describe("Campaign", () => {
   beforeEach(() => {
     // Intercept graphql search query.
-    cy.fixture("search-result/fbi-api.json")
-      .then((result) => {
-        cy.intercept("POST", "**/opac/graphql**", result);
-      })
-      .as("Graphql search query");
+    cy.interceptGraphql({
+      operationName: "searchWithPagination",
+      fixtureFilePath: "search-result/fbi-api"
+    });
+
+    // Intercept graphql facet query.
+    cy.interceptGraphql({
+      operationName: "searchFacet",
+      fixtureFilePath: "search-result/facet-query-result"
+    });
 
     // Intercept all images from Cloudinary.
     cy.intercept(
@@ -53,7 +58,7 @@ describe("Campaign", () => {
   it("Shows a full campaign with image, text & link", () => {
     cy.fixture("search-result/campaign.json")
       .then((result) => {
-        cy.intercept("POST", "**/dpl_campaign/match", result);
+        cy.intercept("**/dpl_campaign/match", result);
       })
       .as("Campaign service - full campaign");
 
