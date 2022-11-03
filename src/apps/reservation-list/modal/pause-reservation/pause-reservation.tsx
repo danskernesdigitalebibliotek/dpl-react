@@ -56,7 +56,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
     if (user?.onHold?.to) {
       setEndDate(user.onHold.to);
     }
-  }, [user?.onHold]);
+  }, [user?.onHold?.from, user?.onHold?.to]);
 
   return (
     <Modal
