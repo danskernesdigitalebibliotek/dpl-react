@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { formatFacetTerms } from "../../apps/search-result/helpers";
 import {
   FilterItemTerm,
-  TagOnclickHandler
+  TermOnClickHandler
 } from "../../apps/search-result/types";
 import {
   FacetField,
@@ -17,7 +17,7 @@ export const FacetBrowserModalId = "facet-browser-modal";
 
 interface FacetBrowserModalProps {
   q: string;
-  filterHandler: TagOnclickHandler;
+  filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 

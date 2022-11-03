@@ -6,7 +6,7 @@ export type FilterItem = {
   term: FilterItemTerm;
 };
 
-export type TagOnclickHandler = ({
+export type TermOnClickHandler = ({
   filterItem,
   action
 }: {

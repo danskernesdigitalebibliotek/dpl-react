@@ -2,7 +2,7 @@ import React from "react";
 import { upperFirst } from "lodash";
 import {
   FilterItemTerm,
-  TagOnclickHandler
+  TermOnClickHandler
 } from "../../apps/search-result/types";
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
@@ -12,7 +12,7 @@ import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
-  filterHandler: TagOnclickHandler;
+  filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
   openFacets: string[];
   setOpenFacets: (openFacets: string[]) => void;

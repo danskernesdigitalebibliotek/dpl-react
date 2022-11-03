@@ -10,7 +10,7 @@ import { Work } from "../../core/utils/types/entities";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { formatFacetTerms } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
-import { FilterItemTerm, TagOnclickHandler } from "./types";
+import { FilterItemTerm, TermOnClickHandler } from "./types";
 import { useConfig } from "../../core/utils/config";
 import { AgencyBranch } from "../../core/fbs/model";
 import {
@@ -43,7 +43,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
 
-  const filteringHandler: TagOnclickHandler = (filterInfo) => {
+  const filteringHandler: TermOnClickHandler = (filterInfo) => {
     filterHandler(filterInfo);
     resetPager();
   };

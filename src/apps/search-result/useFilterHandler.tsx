@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { FilterItemTerm, TagOnclickHandler } from "./types";
+import { FilterItemTerm, TermOnClickHandler } from "./types";
 
 const useFilterHandler = () => {
   const [filters, setFilters] = useState<{
     [key: string]: { [key: FilterItemTerm["key"]]: FilterItemTerm };
   }>({});
 
-  const filterHandler: TagOnclickHandler = ({
+  const filterHandler: TermOnClickHandler = ({
     filterItem: { facet, term },
     action
   }) => {
