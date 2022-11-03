@@ -98,6 +98,10 @@ export const getColors = () => {
   return getConf("colors", configuration);
 };
 
+export const getModalIds = () => {
+  return getConf("modalIds", configuration);
+};
+
 export const getThresholds = () => {
   return getConf("thresholds", configuration);
 };

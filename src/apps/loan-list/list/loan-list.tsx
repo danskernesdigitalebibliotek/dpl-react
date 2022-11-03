@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
   getDueDatesLoan,
+  getModalIds,
   sortByLoanDate
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
@@ -11,7 +12,6 @@ import {
   ModalIdsProps,
   useModalButtonHandler
 } from "../../../core/utils/modal";
-import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -27,6 +27,7 @@ interface LoanListProps {
 }
 
 const LoanList: FC<LoanListProps> = ({ pageSize }) => {
+  const { allLoansId } = getModalIds();
   const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<string>("list");
@@ -82,10 +83,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     const modalString = getUrlQueryParam("modal");
 
     // modal query param: modal loans all
-    if (modalString === modalIdsConf.allLoansId) {
-      open(modalIdsConf.allLoansId);
+    if (modalString === allLoansId) {
+      open(allLoansId);
     }
-  }, [physicalLoans, open]);
+  }, [physicalLoans, open, allLoansId]);
 
   return (
     <div className="loan-list-page">

@@ -7,11 +7,13 @@ import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
-import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
 import EmptyList from "../materials/utils/empty-list";
-import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
+import {
+  getAmountOfRenewableLoans,
+  getModalIds
+} from "../../../core/utils/helpers/general";
 
 export interface ListProps {
   header: string;
@@ -38,16 +40,17 @@ const List: FC<ListProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const { allLoansId } = getModalIds();
 
   const openRenewLoansModal = useCallback(() => {
-    open(modalIdsConf.allLoansId);
-  }, [open]);
+    open(allLoansId as string);
+  }, [allLoansId, open]);
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
     // If the query param has all loans id, the modal should be opened
-    if (modalString === modalIdsConf.allLoansId) {
+    if (modalString === allLoansId) {
       openRenewLoansModal();
     }
 
@@ -56,7 +59,7 @@ const List: FC<ListProps> = ({
     if (isDate(modalString)) {
       setView("stacked");
     }
-  }, [openRenewLoansModal, setView]);
+  }, [allLoansId, openRenewLoansModal, setView]);
 
   const setViewHandler = useCallback(
     (inputView: ListView) => {
