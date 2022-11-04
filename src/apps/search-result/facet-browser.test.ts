@@ -78,7 +78,7 @@ describe("The Facet Browser", () => {
       fixtureFilePath: "search-result/facet-browser/searchWithPagination"
     });
 
-    cy.contains("button", "Joanne K. Rowling")
+    cy.contains(".modal button", "Joanne K. Rowling")
       .click()
       .should("have.attr", "aria-pressed", "false");
 
