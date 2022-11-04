@@ -12,6 +12,8 @@ export interface FacetBrowserDisclosureProps {
   onClick?: () => void;
 }
 
+// It was not possible to use the Disclosure component thats already in the project
+// because we don't have control over the open attribute
 const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
   id,
   title,
@@ -34,19 +36,18 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
-      role="button"
       aria-controls={disclosureId}
       aria-expanded={showContent}
+      onClick={onClickHandler}
+      onKeyDown={onClickHandler}
+      role="button"
+      tabIndex={0}
     >
       <div
         className={clsx(
           "disclosure__headline text-body-large",
           removeHeadlinePadding && "disclosure__headline--no-padding"
         )}
-        onClick={onClickHandler}
-        onKeyDown={onClickHandler}
-        role="button"
-        tabIndex={0}
       >
         <span className="disclosure__text">{title}</span>
 

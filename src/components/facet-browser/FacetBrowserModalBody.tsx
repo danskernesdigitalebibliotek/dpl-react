@@ -75,15 +75,17 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 return (
                   <Tag
                     key={term}
-                    onClick={() =>
+                    onClick={(e) => {
+                      // This to prevent the disclosure from closing when clicking on a tag because event bobbling
+                      e.stopPropagation();
                       filterHandler({
                         filterItem: {
                           facet: name,
                           term: termItem
                         },
                         action: selected ? "remove" : "add"
-                      })
-                    }
+                      });
+                    }}
                     selected={selected}
                   >
                     {termItem.term} {termItem?.score && `(${termItem.score})`}

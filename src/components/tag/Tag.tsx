@@ -3,7 +3,7 @@ import React from "react";
 
 type TagProps = {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
 };
 
