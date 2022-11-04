@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { openModal } from "../../../core/modal.slice";
 import { useText } from "../../../core/utils/text";
 import { FacetBrowserModalId } from "../../facet-browser/FacetBrowserModal";
-import Tag from "../../tag/Tag";
+import ButtonTag from "../../Buttons/ButtonTag";
 
 export interface SearchResultHeaderProps {
   hitcount: string;
@@ -22,11 +22,11 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
       <h1 className="text-header-h2 mb-16 search-result-title">
         {`${t("showingResultsForText")} “${q}” (${hitcount})`}
       </h1>
-      <Tag
+      <ButtonTag
         onClick={() => dispatch(openModal({ modalId: FacetBrowserModalId }))}
       >
         {t("addMoreFiltersText")}
-      </Tag>
+      </ButtonTag>
     </>
   );
 };

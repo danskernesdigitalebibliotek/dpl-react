@@ -7,7 +7,7 @@ import {
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
-import Tag from "../tag/Tag";
+import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 
 interface FacetBrowserModalBodyProps {
@@ -73,7 +73,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 }
 
                 return (
-                  <Tag
+                  <ButtonTag
                     key={term}
                     onClick={(e) => {
                       // This to prevent the disclosure from closing when clicking on a tag because event bobbling
@@ -89,7 +89,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                     selected={selected}
                   >
                     {termItem.term} {termItem?.score && `(${termItem.score})`}
-                  </Tag>
+                  </ButtonTag>
                 );
               })}
             </div>
