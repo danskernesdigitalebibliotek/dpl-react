@@ -48,6 +48,13 @@ function Modal({
     <div
       className="modal-backdrop"
       // TODO: Close the modal when clicking backdrop.
+      style={{
+        // some elements are designed with z-index which means they pop up over the modal
+        // so I add 10 to the z-index of the modal
+        // the index of the modalid is used, so the newest modal is always on top of
+        // the remaining modals
+        zIndex: modalIds.indexOf(modalId) + 10
+      }}
     >
       <div
         className={clsx(
@@ -57,13 +64,6 @@ function Modal({
           },
           classNames
         )}
-        style={{
-          // some elements are designed with z-index which means they pop up over the modal
-          // so I add 10 to the z-index of the modal
-          // the index of the modalid is used, so the newest modal is always on top of
-          // the remaining modals
-          zIndex: modalIds.indexOf(modalId) + 10
-        }}
         role="dialog"
       >
         <div
@@ -89,7 +89,7 @@ function Modal({
             dispatch(closeModal({ modalId }));
           }}
         >
-          <img src={CloseIcon} alt="" />
+          <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
           {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
         </button>
         {children}
