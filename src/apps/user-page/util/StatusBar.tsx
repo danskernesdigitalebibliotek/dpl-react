@@ -2,13 +2,23 @@ import React, { useEffect, useState, FC } from "react";
 import { useGetV1LibraryProfile } from "../../../core/publizon/publizon";
 import { LibraryProfile } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
+import { useGetV1UserLoans } from "../../../core/publizon/publizon";
+import { UserData } from "../../../core/publizon/model";
 
 const StatusBar: FC = () => {
   const t = useText();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
+  const { isSuccess, data } = useGetV1UserLoans();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
     null
   );
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    if (isSuccess && data && data.userData) {
+      setUserData(data.userData);
+    }
+  }, [isSuccess, data]);
 
   useEffect(() => {
     if (libraryProfileFetched) {
@@ -17,10 +27,17 @@ const StatusBar: FC = () => {
   }, [libraryProfileFetched]);
 
   // Todo where do I get these numbers from?
-  const userEbookLoans = 1;
-  const userAudioBookLoans = 4;
-  const userEbookReservations = 1;
-  const userAudioBookReservations = 2;
+
+  let userEbookLoans = 0;
+  if (userData?.ebookLoansRemaining) {
+    userEbookLoans = Math.abs(userData?.ebookLoansRemaining) || 0;
+  }
+  let userAudioBookLoans = 0;
+  if (userData?.audiobookLoansRemaining) {
+    userAudioBookLoans = Math.abs(userData?.audiobookLoansRemaining) || 0;
+  }
+  const userEbookReservations = 1; // todo afventer svar
+  const userAudioBookReservations = 2; // todo afventer svar
   let eBookLoanPerent = 100;
   if (libraryProfile?.maxConcurrentEbookLoansPerBorrower) {
     eBookLoanPerent =
@@ -107,7 +124,7 @@ const StatusBar: FC = () => {
             </div>
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
-                {t("userPageStatusBarReservationHeaderText")}
+                {t("userPageStatusBarReservationsHeaderText")}
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
@@ -153,6 +170,6 @@ const StatusBar: FC = () => {
       )}
     </div>
   );
-};
+};;
 
 export default StatusBar;

@@ -12,13 +12,16 @@ import BranchesDropdown from "./util/BranchesDropdown";
 import DateInputs from "../reservation-list/modal/pause-reservation/date-inputs";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
+import { Link } from "../../components/atoms/link";
 
 const UserPage: FC = () => {
   const t = useText();
+
   const { data: userData, refetch: refetchUser } =
     useGetPatronInformationByPatronIdV2();
   const config = useConfig();
   const pincodeLength = parseInt(config("pincodeLengthConfig"), 10) || 4;
+  const deletePatronLink = config("deletePatronLinkConfig");
   const [user, setUser] = useState<PatronV5 | null>(null);
   const [pincodeValidation, setPincodeValidation] = useState<string>();
   const [pincode, setPincode] = useState<string>("");
@@ -232,12 +235,11 @@ const UserPage: FC = () => {
         {t("userPageSaveButtonText")}
       </button>
       <div className="text-body-small-regular mt-32">
-        {t("userPageDeleteProfileText")}
-        På mange digitale materialer, er der er begrænsning på, hvor mange du
-        kan låne pr. måned. Der findes dog en række materialer uden begrænsning.
+        {t("userPageDeleteProfileText")}{" "}
         <a href="todo" className="text-links">
-          {t("userPageDeleteProfileLinkText")}
-          Se titler du altid kan låne
+          <Link href={new URL(deletePatronLink)} className="link-tag">
+            {t("userPageDeleteProfileLinkText")}
+          </Link>
         </a>
       </div>
     </form>

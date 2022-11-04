@@ -9,6 +9,7 @@ interface UserPageConfigProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   pincodeLengthConfig: number;
+  deletePatronLinkConfig: string;
 }
 interface UserPageTextProps {
   userPageHeaderText: string;
@@ -42,6 +43,9 @@ interface UserPageTextProps {
   userPageChangePincodeBreadText: string;
   userPagePincodeLabelText: string;
   userPageConfirmPincodeLabelText: string;
+  userPageStatusBarReservationsHeaderText: string;
+  userPageStatusBarLoanHeaderText: string;
+  userPageDeleteProfileLinkText: string;
 }
 
 export interface UserPageProps extends UserPageConfigProps, UserPageTextProps {}
