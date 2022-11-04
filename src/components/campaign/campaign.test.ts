@@ -1,5 +1,12 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
+export function isImageLoaded(cy: Cypress.cy & EventEmitter) {
+  cy.get("img")
+    .should("be.visible")
+    .and("have.prop", "naturalWidth")
+    .should("be.greaterThan", 0);
+}
+
 describe("Campaign", () => {
   beforeEach(() => {
     // Intercept graphql search query.
@@ -62,10 +69,7 @@ describe("Campaign", () => {
       })
       .as("Campaign service - full campaign");
 
-    cy.get("img")
-      .should("be.visible")
-      .and("have.prop", "naturalWidth")
-      .should("be.greaterThan", 0);
+    isImageLoaded(cy);
     cy.get("img").should("have.attr", "alt");
     cy.get("section").contains("Harry Potter");
     cy.get("a")
@@ -95,13 +99,10 @@ describe("Campaign", () => {
       })
       .as("Campaign service - image only campaign");
 
-    cy.get("img")
-      .should("be.visible")
-      .and("have.prop", "naturalWidth")
-      .should("be.greaterThan", 0);
+    isImageLoaded(cy);
     cy.get("img").should("have.attr", "alt");
     cy.get("section").find("Lorem ipsum Harry Potter").should("not.exist");
   });
 });
 
-export {};
+export default {};
