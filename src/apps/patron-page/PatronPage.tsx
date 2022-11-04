@@ -14,15 +14,15 @@ import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Link } from "../../components/atoms/link";
 
-const UserPage: FC = () => {
+const PatronPage: FC = () => {
   const t = useText();
 
-  const { data: userData, refetch: refetchUser } =
+  const { data: patronData, refetch: refetchUser } =
     useGetPatronInformationByPatronIdV2();
   const config = useConfig();
   const pincodeLength = parseInt(config("pincodeLengthConfig"), 10) || 4;
   const deletePatronLink = config("deletePatronLinkConfig");
-  const [user, setUser] = useState<PatronV5 | null>(null);
+  const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pincodeValidation, setPincodeValidation] = useState<string>();
   const [pincode, setPincode] = useState<string>("");
   const [confirmPincode, setConfirmPincode] = useState<string>("");
@@ -30,34 +30,34 @@ const UserPage: FC = () => {
     useState<boolean>(false);
   const { mutate } = useUpdateV5();
   useEffect(() => {
-    if (userData && userData.patron) {
-      setReservationPauseSectionVisible(userData.patron.onHold !== null);
-      setUser(userData.patron);
+    if (patronData && patronData.patron) {
+      setReservationPauseSectionVisible(patronData.patron.onHold !== null);
+      setPatron(patronData.patron);
     }
-  }, [userData]);
+  }, [patronData]);
 
   useEffect(() => {
     setPincodeValidation("");
     if (pincode && confirmPincode) {
       if (pincode.length !== pincodeLength) {
         setPincodeValidation(
-          `${t("userPagePincodeTooShortValidationText")} ${pincodeLength}`
+          `${t("patronPagePincodeTooShortValidationText")} ${pincodeLength}`
         );
       }
       if (pincode !== confirmPincode) {
-        setPincodeValidation(t("userPagePincodesNotTheSameText"));
+        setPincodeValidation(t("patronPagePincodesNotTheSameText"));
       }
     }
   }, [pincode, confirmPincode, pincodeLength, t]);
 
   const changeUser = (newValue: string | boolean, key: string) => {
-    const copyUser = JSON.parse(JSON.stringify(user));
+    const copyUser = JSON.parse(JSON.stringify(patron));
     set(copyUser, key, newValue);
-    setUser(copyUser);
+    setPatron(copyUser);
   };
   const save = () => {
-    if (user) {
-      const data: UpdatePatronRequestV4 = { patron: user };
+    if (patron) {
+      const data: UpdatePatronRequestV4 = { patron: patron };
       if (
         confirmPincode &&
         confirmPincode.length === pincodeLength &&
@@ -65,7 +65,7 @@ const UserPage: FC = () => {
       ) {
         data.pincodeChange = {
           pincode: confirmPincode,
-          libraryCardNumber: user.patronId.toString()
+          libraryCardNumber: patron.patronId.toString()
         };
       }
       mutate(
@@ -84,37 +84,37 @@ const UserPage: FC = () => {
   };
 
   return (
-    <form className="dpl-user-page">
-      <h1 className="text-header-h1 my-32">{t("userPageHeaderText")}</h1>
-      {user && (
+    <form className="dpl-patron-page">
+      <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
+      {patron && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
-            {t("userPageBasicDetailsHeaderText")}
+            {t("patronPageBasicDetailsHeaderText")}
           </h2>
-          <div className="dpl-user-info">
-            <div className="dpl-user-info__label">
-              {t("userPageBasicDetailsNameLabelText")}
+          <div className="dpl-patron-info">
+            <div className="dpl-patron-info__label">
+              {t("patronPageBasicDetailsNameLabelText")}
             </div>
-            <div className="dpl-user-info__text">{user.name}</div>
-            <div className="dpl-user-info__label">
-              {t("userPageBasicDetailsAddressLabelText")}
+            <div className="dpl-patron-info__text">{patron.name}</div>
+            <div className="dpl-patron-info__label">
+              {t("patronPageBasicDetailsAddressLabelText")}
             </div>
-            <div className="dpl-user-info__text">
-              <div>{user.address?.coName}</div>
-              <div>{user.address?.street}</div>
-              <div>{user.address?.postalCode}</div>
-              <div>{user.address?.city}</div>
-              <div>{user.address?.country}</div>
+            <div className="dpl-patron-info__text">
+              <div>{patron.address?.coName}</div>
+              <div>{patron.address?.street}</div>
+              <div>{patron.address?.postalCode}</div>
+              <div>{patron.address?.city}</div>
+              <div>{patron.address?.country}</div>
             </div>
           </div>
         </>
       )}
       <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("userPageContactInfoHeaderText")}
+        {t("patronPageContactInfoHeaderText")}
       </h2>
-      {t("userPageContactInfoBreadText") && (
+      {t("patronPageContactInfoBreadText") && (
         <p className="text-body-small-regular mb-32">
-          {t("userPageContactInfoBreadText")}
+          {t("patronPageContactInfoBreadText")}
         </p>
       )}
       <TextInput
@@ -122,8 +122,8 @@ const UserPage: FC = () => {
         id="phone-input"
         type="number"
         onChange={(newPhoneNumber) => changeUser(newPhoneNumber, "phoneNumber")}
-        value={user?.phoneNumber}
-        label={t("userPageContactPhoneLabelText")}
+        value={patron?.phoneNumber}
+        label={t("patronPageContactPhoneLabelText")}
       />
       <CheckBox
         className="mt-32 mb-16"
@@ -131,17 +131,17 @@ const UserPage: FC = () => {
           changeUser(newReceiveSms, "receiveSms")
         }
         id="phone-messages"
-        selected={user?.receiveSms}
+        selected={patron?.receiveSms}
         disabled={false}
-        label={t("userPageContactPhoneCheckboxText")}
+        label={t("patronPageContactPhoneCheckboxText")}
       />
       <TextInput
         className="dpl-input__half-on-desktop"
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changeUser(newEmail, "emailAddress")}
-        value={user?.emailAddress}
-        label={t("userPageContactEmailLabelText")}
+        value={patron?.emailAddress}
+        label={t("patronPageContactEmailLabelText")}
       />
       <CheckBox
         className="mt-32 mb-16"
@@ -149,31 +149,31 @@ const UserPage: FC = () => {
           changeUser(newReceiveEmail, "receiveEmail")
         }
         id="email-messages"
-        selected={user?.receiveEmail}
+        selected={patron?.receiveEmail}
         disabled={false}
-        label={t("userPageContactEmailCheckboxText")}
+        label={t("patronPageContactEmailCheckboxText")}
       />
       <StatusBar />
       <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("userPageChangePickupHeaderText")}
+        {t("patronPageChangePickupHeaderText")}
       </h2>
-      {t("userPageChangePickupBreadText") && (
+      {t("patronPageChangePickupBreadText") && (
         <p className="text-body-small-regular">
-          {t("userPageChangePickupBreadText")}
+          {t("patronPageChangePickupBreadText")}
         </p>
       )}
       <BranchesDropdown
         classNames="dropdown__half-on-desktop"
-        selected={user?.preferredPickupBranch || ""}
+        selected={patron?.preferredPickupBranch || ""}
         onChange={(newPreferredPickupBranch) =>
           changeUser(newPreferredPickupBranch, "preferredPickupBranch")
         }
       />
       <p className="text-body-medium mt-32 mb-8">
-        {t("userPagePauseReservationsHeaderText")}
+        {t("patronPagePauseReservationsHeaderText")}
       </p>
       <p className="text-body-small-regular">
-        {t("userPagePauseReservationsBreadText")}
+        {t("patronPagePauseReservationsBreadText")}
       </p>
       <CheckBox
         className="mt-32 mb-16"
@@ -181,9 +181,9 @@ const UserPage: FC = () => {
         onChecked={() =>
           setReservationPauseSectionVisible(!reservationPauseSectionVisible)
         }
-        ariaLabel={t("userPageOpenPauseReservationsSectionAriaText")}
+        ariaLabel={t("patronPageOpenPauseReservationsSectionAriaText")}
         selected={reservationPauseSectionVisible}
-        label={t("userPageOpenPauseReservationsSectionText")}
+        label={t("patronPageOpenPauseReservationsSectionText")}
       />
       {reservationPauseSectionVisible && (
         <section>
@@ -192,16 +192,16 @@ const UserPage: FC = () => {
               changeUser(newStartDate, "onHold.from")
             }
             setEndDate={(newEndDate) => changeUser(newEndDate, "onHold.to")}
-            startDate={user?.onHold?.from || ""}
-            endDate={user?.onHold?.to || ""}
+            startDate={patron?.onHold?.from || ""}
+            endDate={patron?.onHold?.to || ""}
           />
         </section>
       )}
       <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("userPageChangePincodeHeaderText")}
+        {t("patronPageChangePincodeHeaderText")}
       </h2>
       <p className="text-body-small-regular">
-        {t("userPageChangePincodeBreadText")}
+        {t("patronPageChangePincodeBreadText")}
       </p>
       <div className="dpl-pincode-container">
         <TextInput
@@ -212,7 +212,7 @@ const UserPage: FC = () => {
           inputmode="numeric"
           onChange={(newPin) => setPincode(newPin)}
           value={pincode}
-          label={t("userPagePincodeLabelText")}
+          label={t("patronPagePincodeLabelText")}
           validation={pincodeValidation}
         />
         <TextInput
@@ -223,7 +223,7 @@ const UserPage: FC = () => {
           type="password"
           onChange={(newPin) => setConfirmPincode(newPin)}
           value={confirmPincode}
-          label={t("userPageConfirmPincodeLabelText")}
+          label={t("patronPageConfirmPincodeLabelText")}
         />
       </div>
       <button
@@ -232,13 +232,13 @@ const UserPage: FC = () => {
         type="button"
         onClick={save}
       >
-        {t("userPageSaveButtonText")}
+        {t("patronPageSaveButtonText")}
       </button>
       <div className="text-body-small-regular mt-32">
-        {t("userPageDeleteProfileText")}{" "}
+        {t("patronPageDeleteProfileText")}{" "}
         <a href="todo" className="text-links">
           <Link href={new URL(deletePatronLink)} className="link-tag">
-            {t("userPageDeleteProfileLinkText")}
+            {t("patronPageDeleteProfileLinkText")}
           </Link>
         </a>
       </div>
@@ -246,4 +246,4 @@ const UserPage: FC = () => {
   );
 };
 
-export default UserPage;
+export default PatronPage;

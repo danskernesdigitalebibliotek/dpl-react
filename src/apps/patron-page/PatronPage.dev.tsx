@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { configTypes } from "../../core/utils/helpers/fetcher";
-import UserPage from "./UserPage.entry";
+import PatronPage from "./PatronPage.entry";
 
 export default {
   title: "Apps / User page",
-  component: UserPage,
+  component: PatronPage,
   argTypes: {
     // Config
     [configTypes.fbs]: {
@@ -35,90 +35,90 @@ export default {
       control: { type: "text" }
     },
     // Texts
-    userPageHeaderText: {
+    patronPageHeaderText: {
       defaultValue: "User profile page",
       control: { type: "text" }
     },
-    userPageBasicDetailsHeaderText: {
+    patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }
     },
-    userPageBasicDetailsNameLabelText: {
+    patronPageBasicDetailsNameLabelText: {
       defaultValue: "Name",
       control: { type: "text" }
     },
-    userPageBasicDetailsAddressLabelText: {
+    patronPageBasicDetailsAddressLabelText: {
       defaultValue: "Address",
       control: { type: "text" }
     },
-    userPageContactInfoHeaderText: {
+    patronPageContactInfoHeaderText: {
       defaultValue: "Contact information",
       control: { type: "text" }
     },
-    userPageContactInfoBreadText: {
+    patronPageContactInfoBreadText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    userPageContactPhoneLabelText: {
+    patronPageContactPhoneLabelText: {
       defaultValue: "Phone number",
       control: { type: "text" }
     },
-    userPageContactPhoneCheckboxText: {
+    patronPageContactPhoneCheckboxText: {
       defaultValue:
         "Receive text messages about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    userPageContactEmailLabelText: {
+    patronPageContactEmailLabelText: {
       defaultValue: "E-mail",
       control: { type: "text" }
     },
-    userPageContactEmailCheckboxText: {
+    patronPageContactEmailCheckboxText: {
       defaultValue:
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    userPageStatusBarHeaderText: {
+    patronPageStatusBarHeaderText: {
       defaultValue: "Digital loans (eReolen)",
       control: { type: "text" }
     },
-    userPageStatusBarBreadText: {
+    patronPageStatusBarBreadText: {
       defaultValue:
         "There is a number of materials without limitation to amounts of loans per month.",
       control: { type: "text" }
     },
-    userPageStatusBarLinkText: {
+    patronPageStatusBarLinkText: {
       defaultValue: "Click here, to see titles always eligible to be loaned",
       control: { type: "text" }
     },
-    userPageStatusBarLoanHeaderText: {
+    patronPageStatusBarLoanHeaderText: {
       defaultValue: "Loans per month",
       control: { type: "text" }
     },
-    userPageStatusBarReservationsHeaderText: {
+    patronPageStatusBarReservationsHeaderText: {
       defaultValue: "Reservations per month",
       control: { type: "text" }
     },
-    userPageStatusBarLoansEbooksText: {
+    patronPageStatusBarLoansEbooksText: {
       defaultValue: "E-books",
       control: { type: "text" }
     },
-    userPageStatusBarLoansAudioBooksText: {
+    patronPageStatusBarLoansAudioBooksText: {
       defaultValue: "Audiobooks",
       control: { type: "text" }
     },
-    userPageStatusBarReservationsEbooksText: {
+    patronPageStatusBarReservationsEbooksText: {
       defaultValue: "E-books",
       control: { type: "text" }
     },
-    userPageStatusBarReservationsAudioBooksText: {
+    patronPageStatusBarReservationsAudioBooksText: {
       defaultValue: "Audiobooks",
       control: { type: "text" }
     },
-    userPageChangePickupHeaderText: {
+    patronPageChangePickupHeaderText: {
       defaultValue: "Reservations",
       control: { type: "text" }
     },
-    userPageChangePickupBreadText: {
+    patronPageChangePickupBreadText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -130,19 +130,19 @@ export default {
       defaultValue: "Nothing selected",
       control: { type: "text" }
     },
-    userPagePauseReservationsHeaderText: {
+    patronPagePauseReservationsHeaderText: {
       defaultValue: "Pause physical reservations",
       control: { type: "text" }
     },
-    userPagePauseReservationsBreadText: {
+    patronPagePauseReservationsBreadText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    userPageOpenPauseReservationsSectionText: {
+    patronPageOpenPauseReservationsSectionText: {
       defaultValue: "Open pause reservation section",
       control: { type: "text" }
     },
-    userPageOpenPauseReservationsSectionAriaText: {
+    patronPageOpenPauseReservationsSectionAriaText: {
       defaultValue:
         "This checkbox opens a section where you can put your current reservations on a pause, when the time period picked has ended, the reservations will be resumed",
       control: { type: "text" }
@@ -155,48 +155,48 @@ export default {
       defaultValue: "To",
       control: { type: "text" }
     },
-    userPageChangePincodeHeaderText: {
+    patronPageChangePincodeHeaderText: {
       defaultValue: "Pincode",
       control: { type: "text" }
     },
-    userPageChangePincodeBreadText: {
+    patronPageChangePincodeBreadText: {
       defaultValue: "Change current pin by entering a new pin and saving",
       control: { type: "text" }
     },
-    userPagePincodeLabelText: {
+    patronPagePincodeLabelText: {
       defaultValue: "New pin",
       control: { type: "text" }
     },
-    userPageConfirmPincodeLabelText: {
+    patronPageConfirmPincodeLabelText: {
       defaultValue: "Confirm new pin",
       control: { type: "text" }
     },
-    userPagePincodeTooShortValidationText: {
+    patronPagePincodeTooShortValidationText: {
       defaultValue: "The pincode is too short, it should be {number} long",
       control: { type: "text" }
     },
-    userPagePincodesNotTheSameText: {
+    patronPagePincodesNotTheSameText: {
       defaultValue: "The pincodes are not the same",
       control: { type: "text" }
     },
-    userPageSaveButtonText: {
+    patronPageSaveButtonText: {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    userPageDeleteProfileText: {
+    patronPageDeleteProfileText: {
       defaultValue: "Do you wish to delete your library profile?",
       control: { type: "text" }
     },
-    userPageDeleteProfileLinkText: {
+    patronPageDeleteProfileLinkText: {
       defaultValue: "Delete your profile",
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof UserPage>;
+} as ComponentMeta<typeof PatronPage>;
 
-const Template: ComponentStory<typeof UserPage> = (props) => (
-  <UserPage {...props} />
+const Template: ComponentStory<typeof PatronPage> = (props) => (
+  <PatronPage {...props} />
 );
 
-export const UserPageEntry = Template.bind({});
-UserPageEntry.args = {};
+export const PatronPageEntry = Template.bind({});
+PatronPageEntry.args = {};

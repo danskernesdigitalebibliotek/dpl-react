@@ -12,11 +12,11 @@ const StatusBar: FC = () => {
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
     null
   );
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [patronData, setPatronData] = useState<UserData | null>(null);
 
   useEffect(() => {
     if (isSuccess && data && data.userData) {
-      setUserData(data.userData);
+      setPatronData(data.userData);
     }
   }, [isSuccess, data]);
 
@@ -28,40 +28,40 @@ const StatusBar: FC = () => {
 
   // Todo where do I get these numbers from?
 
-  let userEbookLoans = 0;
-  if (userData?.ebookLoansRemaining) {
-    userEbookLoans = Math.abs(userData?.ebookLoansRemaining) || 0;
+  let patronEbookLoans = 0;
+  if (patronData?.ebookLoansRemaining) {
+    patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
   }
-  let userAudioBookLoans = 0;
-  if (userData?.audiobookLoansRemaining) {
-    userAudioBookLoans = Math.abs(userData?.audiobookLoansRemaining) || 0;
+  let patronAudioBookLoans = 0;
+  if (patronData?.audiobookLoansRemaining) {
+    patronAudioBookLoans = Math.abs(patronData?.audiobookLoansRemaining) || 0;
   }
-  const userEbookReservations = 1; // todo afventer svar
-  const userAudioBookReservations = 2; // todo afventer svar
+  const patronEbookReservations = 1; // todo afventer svar
+  const patronAudioBookReservations = 2; // todo afventer svar
   let eBookLoanPerent = 100;
   if (libraryProfile?.maxConcurrentEbookLoansPerBorrower) {
     eBookLoanPerent =
-      (userEbookLoans / libraryProfile.maxConcurrentEbookLoansPerBorrower) *
+      (patronEbookLoans / libraryProfile.maxConcurrentEbookLoansPerBorrower) *
       100;
   }
   let audioBookLoanPercent = 100;
   if (libraryProfile?.maxConcurrentAudioLoansPerBorrower) {
     audioBookLoanPercent =
-      (userAudioBookLoans / libraryProfile.maxConcurrentAudioLoansPerBorrower) *
+      (patronAudioBookLoans / libraryProfile.maxConcurrentAudioLoansPerBorrower) *
       100;
   }
 
   let eBookReservationPerent = 100;
   if (libraryProfile?.maxConcurrentEbookReservationsPerBorrower) {
     eBookReservationPerent =
-      (userEbookReservations /
+      (patronEbookReservations /
         libraryProfile.maxConcurrentEbookReservationsPerBorrower) *
       100;
   }
   let audioBookReservationPercent = 100;
   if (libraryProfile?.maxConcurrentAudioReservationsPerBorrower) {
     audioBookReservationPercent =
-      (userAudioBookReservations /
+      (patronAudioBookReservations /
         libraryProfile.maxConcurrentAudioReservationsPerBorrower) *
       100;
   }
@@ -70,28 +70,28 @@ const StatusBar: FC = () => {
       {libraryProfile && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
-            {t("userPageStatusBarHeaderText")}
+            {t("patronPageStatusBarHeaderText")}
           </h2>
           <div className="text-body-small-regular">
-            {t("userPageStatusBarBreadText")}
+            {t("patronPageStatusBarBreadText")}
             <a href="todo" className="text-links">
-              {t("userPageStatusBarLinkText")}
+              {t("patronPageStatusBarLinkText")}
             </a>
           </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
-                {t("userPageStatusBarLoanHeaderText")}
+                {t("patronPageStatusBarLoanHeaderText")}
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("userPageStatusBarLoansEbooksText")}
+                    {t("patronPageStatusBarLoansEbooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
                     {/* todo string interpolation aria label */}
-                    {userEbookLoans} ud af{" "}
+                    {patronEbookLoans} ud af{" "}
                     {libraryProfile.maxConcurrentEbookLoansPerBorrower}
                   </div>
                 </div>
@@ -105,12 +105,12 @@ const StatusBar: FC = () => {
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("userPageStatusBarLoansAudioBooksText")}
+                    {t("patronPageStatusBarLoansAudioBooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
                     {/* todo string interpolation aria label */}
-                    {userAudioBookLoans} ud af{" "}
+                    {patronAudioBookLoans} ud af{" "}
                     {libraryProfile.maxConcurrentAudioLoansPerBorrower}
                   </div>
                 </div>
@@ -124,17 +124,17 @@ const StatusBar: FC = () => {
             </div>
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
-                {t("userPageStatusBarReservationsHeaderText")}
+                {t("patronPageStatusBarReservationsHeaderText")}
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("userPageStatusBarReservationsEbooksText")}
+                    {t("patronPageStatusBarReservationsEbooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
                     {/* todo string interpolation aria label */}
-                    {userEbookReservations} ud af{" "}
+                    {patronEbookReservations} ud af{" "}
                     {libraryProfile.maxConcurrentEbookReservationsPerBorrower}
                   </div>
                 </div>
@@ -148,12 +148,12 @@ const StatusBar: FC = () => {
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("userPageStatusBarReservationsAudioBooksText")}
+                    {t("patronPageStatusBarReservationsAudioBooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
                     {/* todo string interpolation aria label */}
-                    {userAudioBookReservations} ud af{" "}
+                    {patronAudioBookReservations} ud af{" "}
                     {libraryProfile.maxConcurrentAudioReservationsPerBorrower}
                   </div>
                 </div>
@@ -170,6 +170,6 @@ const StatusBar: FC = () => {
       )}
     </div>
   );
-};;
+};
 
 export default StatusBar;
