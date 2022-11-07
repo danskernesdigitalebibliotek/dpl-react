@@ -123,28 +123,28 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       };
     };
 
-    setHitCount(resultCount);
-    setResultItems((prev) => [...prev, ...resultWorks]);
-  }, [data]);
+    // if page has change then append the new result to the existing result
+    if (page > 0) {
+      setResultItems((prev) => [...prev, ...resultWorks]);
+      return;
+    }
 
-  const worksAreLoaded = Boolean(resultItems.length);
+    setHitCount(resultCount);
+    setResultItems(resultWorks);
+  }, [data, page]);
 
   return (
     <div className="search-result-page">
-      {worksAreLoaded && (
-        <>
-          <SearchResultHeader
-            hitcount={String(hitcount)}
-            q={q}
-            filters={filters}
-            filterHandler={filteringHandler}
-          />
-          {campaignData && campaignData.data && (
-            <Campaign campaignData={campaignData.data} />
-          )}
-          <SearchResultList resultItems={resultItems} />
-          {PagerComponent}
-        </>
+      <SearchResultHeader
+        hitcount={String(hitcount)}
+        q={q}
+        filters={filters}
+        filterHandler={filteringHandler}
+      />
+      <SearchResultList resultItems={resultItems} />
+      {PagerComponent}
+      {campaignData && campaignData.data && (
+        <Campaign campaignData={campaignData.data} />
       )}
       <FacetBrowserModal
         q={q}

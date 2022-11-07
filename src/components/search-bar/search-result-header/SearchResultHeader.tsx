@@ -48,20 +48,18 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
     }
   );
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <>
       <h1 className="text-header-h2 mb-16 search-result-title">
         {`${t("showingResultsForText")} “${q}” (${hitcount})`}
       </h1>
-      <FacetLine
-        filters={filters}
-        facets={data.search.facets as FacetResult[]}
-        filterHandler={filterHandler}
-      />
+      {data && (
+        <FacetLine
+          filters={filters}
+          facets={data.search.facets as FacetResult[]}
+          filterHandler={filterHandler}
+        />
+      )}
       <FacetLineSelected filters={filters} filterHandler={filterHandler} />
     </>
   );
