@@ -1,12 +1,12 @@
 import React, { useEffect, useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
-import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getReadyForPickup,
   sortByOldestPickupDeadline,
-  getReserved
+  getReservedDigital,
+  getReservedPhysical
 } from "../utils/helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
@@ -15,10 +15,19 @@ import {
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import List from "./list";
+import ReservationPauseToggler from "./reservation-pause-toggler";
+import {
+  useGetPatronInformationByPatronIdV2,
+  useGetReservationsV2
+} from "../../../core/fbs/fbs";
+import { PatronV5 } from "../../../core/fbs/model";
 
 const ReservationList: FC = () => {
   const t = useText();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+
+  const { data: userData, refetch: refetchUser } =
+    useGetPatronInformationByPatronIdV2();
 
   // Data fetch
   const { isSuccess, data, refetch: refetchFBS } = useGetReservationsV2();
@@ -37,6 +46,7 @@ const ReservationList: FC = () => {
   const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
     ReservationType[]
   >([]);
+  const [user, setUser] = useState<PatronV5 | null>(null);
 
   const [reservedReservationsPublizon, setReservedReservationsPublizon] =
     useState<ReservationType[]>([]);
@@ -53,12 +63,22 @@ const ReservationList: FC = () => {
         )
       );
       setReservedReservationsPublizon(
-        getReserved(
+        getReservedDigital(
           mapPublizonReservationToReservationType(publizonData.reservations)
         )
       );
     }
   }, [publizonData]);
+
+  // Set digital reservations
+  // The physical "ready for pickup"-reservations are mixed with the
+  // digital "ready for pickup"-reservations. The physical
+  // "reserved"-reservations have their own list
+  useEffect(() => {
+    if (userData && userData.patron) {
+      setUser(userData.patron);
+    }
+  }, [userData]);
 
   // Set digital reservations
   // The physical "ready for pickup"-reservations are mixed with the
@@ -72,7 +92,7 @@ const ReservationList: FC = () => {
         )
       );
       setReservedReservationsFBS(
-        getReserved(mapFBSReservationToReservationType(data))
+        getReservedPhysical(mapFBSReservationToReservationType(data))
       );
     }
   }, [isSuccess, data]);
@@ -80,11 +100,13 @@ const ReservationList: FC = () => {
   useEffect(() => {
     refetchFBS();
     refetchPublizon();
-  }, [modalIds.length, refetchFBS, refetchPublizon]);
+    refetchUser();
+  }, [modalIds.length, refetchFBS, refetchPublizon, refetchUser]);
 
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
+      {user && <ReservationPauseToggler user={user} />}
       <List
         header={t("reservationListReadyForPickupTitleText")}
         list={sortByOldestPickupDeadline([

@@ -17,6 +17,10 @@ export default {
       defaultValue: "",
       control: { type: "text" }
     },
+    pauseReservationStartDateConfig: {
+      defaultValue: "2022-06-30",
+      control: { type: "text" }
+    },
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted branches",
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
@@ -56,8 +60,12 @@ export default {
       defaultValue: "og",
       control: { type: "text" }
     },
-    youAreNumberInLineText: {
+    youAreNumberInQueueText: {
       defaultValue: "Du er nummer {tal her} i køen",
+      control: { type: "text" }
+    },
+    youAreFirstInQueueText: {
+      defaultValue: "Du er forrest i køen",
       control: { type: "text" }
     },
     expiresSoonText: {
@@ -185,12 +193,64 @@ export default {
       control: { type: "text" }
     },
     deleteReservationModalCloseModalText: {
-      defaultValue: "Luk forny lån modal",
+      defaultValue: "Luk slet reserveringer modal",
       control: { type: "text" }
     },
     deleteReservationModalAriaDescriptionText: {
       defaultValue:
         "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at slette reservationen",
+      control: { type: "text" }
+    },
+    reservationListPauseReservationText: {
+      defaultValue: "Sæt fysiske reserveringer på pause",
+      control: { type: "text" }
+    },
+    reservationListOnHoldAriaText: {
+      defaultValue: "Reserveringerne er sat på pause i tidsrummet",
+      control: { type: "text" }
+    },
+    reservationListPauseReservationAriaModalText: {
+      defaultValue:
+        "Denne knap åbner en modal der dækker hele vinduet og der gør det muligt at sætte alle dine reservationer på pause",
+      control: { type: "text" }
+    },
+    pauseReservationModalAriaDescriptionText: {
+      defaultValue:
+        "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at sætte reservationener på pause",
+      control: { type: "text" }
+    },
+    pauseReservationModalHeaderText: {
+      defaultValue: "Sæt reserveringer på pause",
+      control: { type: "text" }
+    },
+    pauseReservationModalBreadText: {
+      defaultValue:
+        "Sæt fysiske reserveringer på pause i god tid, da reserveringer der allerede bliver behandlet ikke bliver sat på pause.",
+      control: { type: "text" }
+    },
+    pauseReservationModalCloseModalText: {
+      defaultValue: "Luk sæt reservationer på pause modal",
+      control: { type: "text" }
+    },
+    pauseReservationModalStartDateLabelText: {
+      defaultValue: "Startdato",
+      control: { type: "text" }
+    },
+    pauseReservationModalEndDateLabelText: {
+      defaultValue: "Slutdato",
+      control: { type: "text" }
+    },
+    pauseReservationModalBelowInputsTextText: {
+      defaultValue:
+        "Bemærk der kan være en forsinkelse på, hvornår pausen begynder.",
+      control: { type: "text" }
+    },
+    pauseReservationModalLinkText: {
+      defaultValue: "Læs mere",
+      control: { type: "text" }
+    },
+    pauseReservationModalSaveButtonLabelText: {
+      defaultValue: "Gem",
       control: { type: "text" }
     },
     oneMonthText: {
@@ -254,5 +314,13 @@ export const ReservationListDeleteDigitalModal = Template.bind({});
 ReservationListDeleteDigitalModal.parameters = {
   query: {
     modal: `9788740047905&${deleteReservation}9788740047905`
+  }
+};
+
+const { pauseReservation } = getModalIds();
+export const ReservationListPauseModal = Template.bind({});
+ReservationListPauseModal.parameters = {
+  query: {
+    modal: pauseReservation
   }
 };

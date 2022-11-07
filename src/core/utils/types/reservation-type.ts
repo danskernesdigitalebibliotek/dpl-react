@@ -11,6 +11,7 @@ interface Reservation extends ListType {
   /** The reservation number. This is, contrary to the name, a string containing, as an example, "Reserveringshylde 111" */
   pickupNumber: string;
   pickupBranch: string;
+  title: string;
   reservationId: number;
 }
 

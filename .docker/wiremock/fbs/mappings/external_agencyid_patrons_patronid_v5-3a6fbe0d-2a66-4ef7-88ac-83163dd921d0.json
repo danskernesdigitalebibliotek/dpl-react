@@ -6,7 +6,7 @@
     "method": "PUT",
     "bodyPatterns": [
       {
-        "equalToJson": "{\n\t\"patron\": {\n\t\t\"emailAddress\": \"itkdev@mkb.aarhus.dk\",\n\t\t\"phoneNumber\": \"\",\n\t\t\"preferredPickupBranch\": \"DK-775100\",\n\t\t\"receiveEmail\": true,\n\t\t\"receivePostalMail\": false,\n\t\t\"receiveSms\": true,\n\t\t\"onHold\": {\n\t\t\t\"from\": \"2022-06-30\",\n\t\t\t\"to\": \"2022-07-30\"\n\t\t}\n\t},\n\t\"pincodeChange\": {\n\t\t\"pincode\": 54321,\n\t\t\"libraryCardNumber\": \"3208090000\"\n\t}\n}",
+        "equalToJson": "{\n\t\"patron\": {\n\t\t\"preferredPickupBranch\":\"${json-unit.any-string}\",\n\t\t\"receiveEmail\":\"${json-unit.any-boolean}\",\n\t\t\"receivePostalMail\":\"${json-unit.any-boolean}\",\n\t\t\"receiveSms\":  \"${json-unit.any-boolean}\",\n\t\t\"onHold\": {\n\t\t\t\"from\": \"${json-unit.any-string}\",\n\t\t\t\"to\": \"${json-unit.any-string}\"\n\t\t}\n\t}\n}",
         "ignoreArrayOrder": true,
         "ignoreExtraElements": true
       }
@@ -25,6 +25,6 @@
   "uuid": "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
   "persistent": true,
   "priority": 5,
-  "insertionIndex": 5,
+  "insertionIndex": 6,
   "postServeActions": []
 }
