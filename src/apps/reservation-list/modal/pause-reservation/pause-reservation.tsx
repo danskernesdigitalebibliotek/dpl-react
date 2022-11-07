@@ -24,7 +24,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const [startDate, setStartDate] = useState<string>(
     (config("pauseReservationStartDateConfig") as string) || ""
   );
-  const [endDate, setEndDate] = useState<string | null>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   const save = useCallback(() => {
     if (user && startDate && endDate) {
