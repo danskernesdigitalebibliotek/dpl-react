@@ -1,6 +1,6 @@
 import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { GetMaterialManifestationQuery } from "../../dbc-gateway/generated/graphql";
+import { GetManifestationViaMaterialByFaustQuery } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
@@ -36,6 +36,24 @@ function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
 }
 
+function getSeriesString(
+  series: {
+    title: string;
+    numberInSeries?: {
+      number?: Array<number> | null;
+    } | null;
+  }[]
+) {
+  return series
+    .map(({ title, numberInSeries }) => {
+      if (numberInSeries && numberInSeries.number) {
+        return `${title} ${numberInSeries.number?.[0]}`;
+      }
+      return title;
+    })
+    .join(", ");
+}
+
 // Loan is a loan from Publizon, and is the equivalent
 // to the LoanV2 type in FBS. These are mapped to the same
 // so digital/physical loans/reservations can use the same components,
@@ -64,6 +82,7 @@ export const mapFBSLoanToLoanType = (list: LoanV2[]): LoanType[] => {
     return {
       dueDate: loanDetails.dueDate,
       loanDate: loanDetails.loanDate,
+      periodical: loanDetails.periodical?.displayText || "",
       renewalStatusList,
       isRenewable,
       materialItemNumber: loanDetails.materialItemNumber,
@@ -123,6 +142,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 
   return {
     title,
+    periodical: null,
     year: publicationDate ? getYearFromDataString(publicationDate) : "",
     description,
     materialType: productType ? digitalProductType[productType] : "",
@@ -142,10 +162,17 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
-  material: GetMaterialManifestationQuery
+  material: GetManifestationViaMaterialByFaustQuery
 ) => {
-  const { hostPublication, abstract, titles, pid, materialTypes, creators } =
-    material?.manifestation || {};
+  const {
+    hostPublication,
+    abstract,
+    titles,
+    pid,
+    materialTypes,
+    creators,
+    series
+  } = material?.manifestation || {};
 
   const description = abstract ? abstract[0] : "";
   const {
@@ -154,14 +181,19 @@ export const mapManifestationToBasicDetailsType = (
   const { year: yearObject } = hostPublication || {};
   const { year } = yearObject || {};
 
+  let contributors = null;
+  const inputContributorsArray = creators?.map(({ display }) => display);
+  if (inputContributorsArray) {
+    contributors = getContributors(inputContributorsArray);
+  }
+
   return {
-    authors: creators
-      ? getContributors(creators?.map(({ display }) => display))
-      : "",
+    authors: contributors || "",
     pid,
     title: mainText,
     year,
     description,
+    series: series && series.length > 0 ? getSeriesString(series) : "",
     materialType: materialTypes ? materialTypes[0].specific : undefined
   } as BasicDetailsType;
 };

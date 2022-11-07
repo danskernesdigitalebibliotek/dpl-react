@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { FilterItemTerm, TermOnClickHandler } from "./types";
 
+export type Filter = {
+  [key: string]: { [key: FilterItemTerm["key"]]: FilterItemTerm };
+};
+
 const useFilterHandler = () => {
-  const [filters, setFilters] = useState<{
-    [key: string]: { [key: FilterItemTerm["key"]]: FilterItemTerm };
-  }>({});
+  const [filters, setFilters] = useState<Filter>({});
 
   const filterHandler: TermOnClickHandler = ({
     filterItem: { facet, term },

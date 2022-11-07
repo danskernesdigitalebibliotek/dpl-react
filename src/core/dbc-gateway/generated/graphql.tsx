@@ -152,6 +152,7 @@ export type Corporation = Creator &
     roles: Array<Role>;
     /** Sub corporation or conference/meeting */
     sub?: Maybe<Scalars["String"]>;
+    type: SubjectType;
     /** Year of the conference */
     year?: Maybe<Scalars["String"]>;
   };
@@ -297,6 +298,8 @@ export type HostPublication = {
   __typename?: "HostPublication";
   /** Creator of the host publication if host publication is book */
   creator?: Maybe<Scalars["String"]>;
+  /** Edition statement for the host publication */
+  edition?: Maybe<Scalars["String"]>;
   /** ISBN of the publication this manifestation can be found in */
   isbn?: Maybe<Scalars["String"]>;
   /** ISSN of the publication this manifestation can be found in */
@@ -533,6 +536,10 @@ export type Manifestation = {
   titles: ManifestationTitles;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
+  /** Worktypes for this manifestations work */
+  workTypes: Array<WorkType>;
+  /** The year this work was originally published or produced */
+  workYear?: Maybe<Scalars["String"]>;
 };
 
 export type ManifestationPart = {
@@ -692,6 +699,7 @@ export type Person = Creator &
     roles: Array<Role>;
     /** A roman numeral added to the person, like Christian IV */
     romanNumeral?: Maybe<Scalars["String"]>;
+    type: SubjectType;
   };
 
 export type PhysicalDescription = {
@@ -726,6 +734,8 @@ export type Printing = {
   printing: Scalars["String"];
   /** A year as displayable text and as number */
   publicationYear?: Maybe<PublicationYear>;
+  /** Publisher of printing when other than the original publisher of the edition (260*b) */
+  publisher?: Maybe<Scalars["String"]>;
   /** Properties 'printing' and 'publicationYear' as one string, e.g.: '11. oplag, 2020' */
   summary: Scalars["String"];
 };
@@ -987,6 +997,8 @@ export type Shelfmark = {
 
 export type Subject = {
   display: Scalars["String"];
+  /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
+  type: SubjectType;
 };
 
 export type SubjectContainer = {
@@ -1006,12 +1018,16 @@ export type SubjectText = Subject & {
 export enum SubjectType {
   FictionalCharacter = "FICTIONAL_CHARACTER",
   FilmNationality = "FILM_NATIONALITY",
+  Laesekompasset = "LAESEKOMPASSET",
   LibraryOfCongressSubjectHeading = "LIBRARY_OF_CONGRESS_SUBJECT_HEADING",
   Location = "LOCATION",
+  MedicalSubjectHeading = "MEDICAL_SUBJECT_HEADING",
   MusicalInstrumentation = "MUSICAL_INSTRUMENTATION",
   MusicCountryOfOrigin = "MUSIC_COUNTRY_OF_ORIGIN",
   MusicTimePeriod = "MUSIC_TIME_PERIOD",
+  NationalAgriculturalLibrary = "NATIONAL_AGRICULTURAL_LIBRARY",
   TimePeriod = "TIME_PERIOD",
+  Title = "TITLE",
   Topic = "TOPIC"
 }
 
@@ -1048,6 +1064,7 @@ export type TimePeriod = Subject & {
   __typename?: "TimePeriod";
   display: Scalars["String"];
   period: Range;
+  type: SubjectType;
 };
 
 export type Translation = {
@@ -1140,11 +1157,11 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
-export type GetMaterialManifestationQueryVariables = Exact<{
+export type GetManifestationViaMaterialByFaustQueryVariables = Exact<{
   faust: Scalars["String"];
 }>;
 
-export type GetMaterialManifestationQuery = {
+export type GetManifestationViaMaterialByFaustQuery = {
   __typename?: "Query";
   manifestation?: {
     __typename?: "Manifestation";
@@ -1160,6 +1177,14 @@ export type GetMaterialManifestationQuery = {
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
+    series: Array<{
+      __typename?: "Series";
+      title: string;
+      numberInSeries?: {
+        __typename?: "NumberInSeries";
+        number?: Array<number> | null;
+      } | null;
+    }>;
   } | null;
 };
 
@@ -1685,6 +1710,7 @@ export type SearchFacetQuery = {
       name: string;
       values: Array<{
         __typename?: "FacetValue";
+        key: string;
         term: string;
         score?: number | null;
       }>;
@@ -2515,8 +2541,8 @@ export const WorkMediumFragmentDoc = `
   workYear
 }
     ${WorkSmallFragmentDoc}`;
-export const GetMaterialManifestationDocument = `
-    query getMaterialManifestation($faust: String!) {
+export const GetManifestationViaMaterialByFaustDocument = `
+    query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
     pid
     titles {
@@ -2534,22 +2560,32 @@ export const GetMaterialManifestationDocument = `
     creators {
       display
     }
+    series {
+      title
+      numberInSeries {
+        number
+      }
+    }
   }
 }
     `;
-export const useGetMaterialManifestationQuery = <
-  TData = GetMaterialManifestationQuery,
+export const useGetManifestationViaMaterialByFaustQuery = <
+  TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
 >(
-  variables: GetMaterialManifestationQueryVariables,
-  options?: UseQueryOptions<GetMaterialManifestationQuery, TError, TData>
+  variables: GetManifestationViaMaterialByFaustQueryVariables,
+  options?: UseQueryOptions<
+    GetManifestationViaMaterialByFaustQuery,
+    TError,
+    TData
+  >
 ) =>
-  useQuery<GetMaterialManifestationQuery, TError, TData>(
-    ["getMaterialManifestation", variables],
+  useQuery<GetManifestationViaMaterialByFaustQuery, TError, TData>(
+    ["getManifestationViaMaterialByFaust", variables],
     fetcher<
-      GetMaterialManifestationQuery,
-      GetMaterialManifestationQueryVariables
-    >(GetMaterialManifestationDocument, variables),
+      GetManifestationViaMaterialByFaustQuery,
+      GetManifestationViaMaterialByFaustQueryVariables
+    >(GetManifestationViaMaterialByFaustDocument, variables),
     options
   );
 export const GetMaterialDocument = `
@@ -2667,6 +2703,7 @@ export const SearchFacetDocument = `
     facets(facets: $facets) {
       name
       values(limit: $facetLimit) {
+        key
         term
         score
       }

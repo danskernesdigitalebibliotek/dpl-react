@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
-import SearchResultList from "../../components/search-result-list/search-result.list";
+import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
-import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { formatFacetTerms } from "./helpers";
 import useFilterHandler from "./useFilterHandler";
 import { FilterItemTerm, TermOnClickHandler } from "./types";
@@ -18,6 +17,14 @@ import {
   cleanBranchesId
 } from "../../components/reservation/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
+import {
+  CampaignMatchPOST200,
+  CampaignMatchPOSTBodyItem
+} from "../../core/dpl-cms/model";
+import Campaign from "../../components/campaign/Campaign";
+import { useGetFacets } from "../../components/facet-browser/helper";
+import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 
 interface SearchResultProps {
   q: string;
@@ -41,11 +48,15 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [hitcount, setHitCount] = useState<number>(0);
   const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
-
+  const { mutate } = useCampaignMatchPOST();
+  const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
+    null
+  );
   const filteringHandler: TermOnClickHandler = (filterInfo) => {
     filterHandler(filterInfo);
     resetPager();
   };
+  const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
@@ -59,6 +70,24 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
+
+  useEffect(() => {
+    if (campaignFacets) {
+      mutate(
+        {
+          data: campaignFacets as CampaignMatchPOSTBodyItem[]
+        },
+        {
+          onSuccess: (campaign) => {
+            setCampaignData(campaign);
+          },
+          onError: () => {
+            // TODO: when we handle errors - handle this error
+          }
+        }
+      );
+    }
+  }, [mutate, campaignFacets]);
 
   const createFilters = (
     facets: {
@@ -104,6 +133,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {worksAreLoaded && (
         <>
           <SearchResultHeader hitcount={String(hitcount)} q={q} />
+          {campaignData && campaignData.data && (
+            <Campaign campaignData={campaignData.data} />
+          )}
           <SearchResultList resultItems={resultItems} />
           {PagerComponent}
         </>
