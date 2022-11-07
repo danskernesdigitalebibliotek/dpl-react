@@ -50,7 +50,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { track } = useStatistics();
   useEffect(() => {
     track({ internalSearch: q });
-  }, [track, q]);
+    // We actaully just want to track if the query changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q]);
 
   useSearchWithPaginationQuery(
     {
