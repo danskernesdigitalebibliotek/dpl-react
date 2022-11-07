@@ -153,7 +153,9 @@ const ReservationModalBody = ({
                 {mainTitle}{" "}
                 {selectedPeriodical && selectedPeriodical.displayText}
               </h2>
-              <p className="text-body-medium-regular">{authorLine}</p>
+              {authorLine && (
+                <p className="text-body-medium-regular">{authorLine}</p>
+              )}
             </div>
           </header>
           <div>
@@ -177,8 +179,7 @@ const ReservationModalBody = ({
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={edition?.summary ?? ""}
-                changeHandler={() => {}} // TODO: open modal to switch user data
+                text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
 
               {patron && (

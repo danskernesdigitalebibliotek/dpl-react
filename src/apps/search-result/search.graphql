@@ -1,8 +1,13 @@
-query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!) {
-  search(q: $q) {
+query searchWithPagination(
+  $q: SearchQuery!
+  $offset: Int!
+  $limit: PaginationLimit!
+  $filters: SearchFilters
+) {
+  search(q: $q, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
-     ...WorkSmall
+      ...WorkSmall
     }
   }
 }

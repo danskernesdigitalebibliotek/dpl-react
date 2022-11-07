@@ -1,10 +1,9 @@
 import React from "react";
 import GuardedApp from "../../components/guarded-app";
 import { withConfig } from "../../core/utils/config";
-import { getParams } from "../../core/utils/helpers/general";
+import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import { getPageSize } from "./helpers";
 import SearchResult from "./search-result";
 
 interface SearchResultEntryTextProps {
@@ -28,6 +27,7 @@ interface SearchResultEntryUrlProps {
 interface SearchResultEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
+  blacklistedSearchBranchesConfig?: string;
   branchesConfig: string;
 }
 
@@ -51,7 +51,7 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
-  const pageSize = getPageSize({
+  const pageSize = pageSizeGlobal({
     desktop: pageSizeDesktop,
     mobile: pageSizeMobile
   });

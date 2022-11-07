@@ -19,9 +19,12 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
   const config = useConfig();
-  const startDateConfig = config("pauseReservationStartDateConfig");
-  const [startDate, setStartDate] = useState<string>(startDateConfig || "");
-  const [endDate, setEndDate] = useState<string>("");
+  // todo this should not be "as string" but config<string>, so this is a todo
+  // to change the config method to support this
+  const [startDate, setStartDate] = useState<string>(
+    (config("pauseReservationStartDateConfig") as string) || ""
+  );
+  const [endDate, setEndDate] = useState<string | null>("");
 
   const save = useCallback(() => {
     if (user && startDate && endDate) {
@@ -38,9 +41,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           }
         },
         {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
-            // todo
+          onSuccess: () => {
             close(pauseReservation as string);
           },
           // todo error handling, missing in figma
@@ -57,7 +58,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
     if (user?.onHold?.to) {
       setEndDate(user.onHold.to);
     }
-  }, [user?.onHold]);
+  }, [user?.onHold?.from, user?.onHold?.to]);
 
   return (
     <Modal

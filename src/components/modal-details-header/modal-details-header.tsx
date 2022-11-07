@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { useText } from "../../core/utils/text";
+import React, { FC, ReactNode } from "react";
 import { Pid } from "../../core/utils/types/ids";
 import { Cover } from "../cover/cover";
 
@@ -9,9 +8,9 @@ export interface ModalDetailsHeaderProps {
   title: string | undefined | null;
   pid?: Pid | null;
   description: string | undefined | null;
-  readyForPickup: boolean;
   materialType: string | undefined | null;
   isbnForCover: string;
+  children?: ReactNode;
 }
 
 const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
@@ -20,11 +19,10 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   title,
   pid,
   description,
-  readyForPickup,
   materialType,
-  isbnForCover
+  isbnForCover,
+  children
 }) => {
-  const t = useText();
   const coverId = pid || isbnForCover;
 
   return (
@@ -49,11 +47,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
               {materialType}
             </div>
           )}
-          {readyForPickup && (
-            <div className="status-label status-label--info">
-              {t("reservationDetailsReadyForLoanText")}
-            </div>
-          )}
+          {children}
         </div>
         <h2 className="modal-details__title text-header-h2">{title}</h2>
         <p className="text-body-medium-regular" id="test-authors">

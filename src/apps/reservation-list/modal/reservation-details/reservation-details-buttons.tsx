@@ -29,7 +29,6 @@ const ReservationDetailsButton: FC<
         {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onSuccess: (result) => {
-            // todo
             close(modalId);
           },
           // todo error handling, missing in figma
