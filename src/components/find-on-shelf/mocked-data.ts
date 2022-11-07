@@ -164,7 +164,7 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
     },
     materialTypes: [
       {
-        specific: "periodikum"
+        specific: "tidsskrift"
       }
     ],
     creators: [],

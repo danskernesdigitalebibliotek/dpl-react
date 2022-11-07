@@ -64,7 +64,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   );
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
-      return materialType.specific.includes("periodikum");
+      return materialType.specific.includes("tidsskrift");
     });
   });
 

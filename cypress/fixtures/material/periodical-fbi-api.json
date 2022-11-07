@@ -20,7 +20,7 @@
               "code": "NONFICTION"
             },
             "publicationYear": { "display": "1946" },
-            "materialTypes": [{ "specific": "periodikum" }],
+            "materialTypes": [{ "specific": "tidsskrift" }],
             "creators": [],
             "hostPublication": null,
             "languages": { "main": [{ "display": "dansk" }] },
@@ -47,7 +47,7 @@
             "code": "NONFICTION"
           },
           "publicationYear": { "display": "1946" },
-          "materialTypes": [{ "specific": "periodikum" }],
+          "materialTypes": [{ "specific": "tidsskrift" }],
           "creators": [],
           "hostPublication": null,
           "languages": { "main": [{ "display": "dansk" }] },
