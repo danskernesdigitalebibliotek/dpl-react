@@ -1,9 +1,10 @@
 import React, { useEffect, useState, FC } from "react";
-import { useGetV1LibraryProfile } from "../../../core/publizon/publizon";
-import { LibraryProfile } from "../../../core/publizon/model";
+import {
+  useGetV1LibraryProfile,
+  useGetV1UserLoans
+} from "../../../core/publizon/publizon";
+import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
-import { useGetV1UserLoans } from "../../../core/publizon/publizon";
-import { UserData } from "../../../core/publizon/model";
 
 const StatusBar: FC = () => {
   const t = useText();
@@ -47,7 +48,8 @@ const StatusBar: FC = () => {
   let audioBookLoanPercent = 100;
   if (libraryProfile?.maxConcurrentAudioLoansPerBorrower) {
     audioBookLoanPercent =
-      (patronAudioBookLoans / libraryProfile.maxConcurrentAudioLoansPerBorrower) *
+      (patronAudioBookLoans /
+        libraryProfile.maxConcurrentAudioLoansPerBorrower) *
       100;
   }
 

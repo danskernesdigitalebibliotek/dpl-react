@@ -57,7 +57,7 @@ const PatronPage: FC = () => {
   };
   const save = () => {
     if (patron) {
-      const data: UpdatePatronRequestV4 = { patron: patron };
+      const data: UpdatePatronRequestV4 = { patron };
       if (
         confirmPincode &&
         confirmPincode.length === pincodeLength &&
@@ -109,122 +109,131 @@ const PatronPage: FC = () => {
           </div>
         </>
       )}
-      <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("patronPageContactInfoHeaderText")}
-      </h2>
-      {t("patronPageContactInfoBreadText") && (
-        <p className="text-body-small-regular mb-32">
-          {t("patronPageContactInfoBreadText")}
-        </p>
-      )}
-      <TextInput
-        className="dpl-input__half-on-desktop"
-        id="phone-input"
-        type="number"
-        onChange={(newPhoneNumber) => changeUser(newPhoneNumber, "phoneNumber")}
-        value={patron?.phoneNumber}
-        label={t("patronPageContactPhoneLabelText")}
-      />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveSms: boolean) =>
-          changeUser(newReceiveSms, "receiveSms")
-        }
-        id="phone-messages"
-        selected={patron?.receiveSms}
-        disabled={false}
-        label={t("patronPageContactPhoneCheckboxText")}
-      />
-      <TextInput
-        className="dpl-input__half-on-desktop"
-        id="email-address-input"
-        type="email"
-        onChange={(newEmail) => changeUser(newEmail, "emailAddress")}
-        value={patron?.emailAddress}
-        label={t("patronPageContactEmailLabelText")}
-      />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveEmail: boolean) =>
-          changeUser(newReceiveEmail, "receiveEmail")
-        }
-        id="email-messages"
-        selected={patron?.receiveEmail}
-        disabled={false}
-        label={t("patronPageContactEmailCheckboxText")}
-      />
+      <div id="patron-page-contact-info">
+        <h2 className="text-body-small-regular mt-32 mb-16">
+          {t("patronPageContactInfoHeaderText")}
+        </h2>
+        {t("patronPageContactInfoBreadText") && (
+          <p className="text-body-small-regular mb-32">
+            {t("patronPageContactInfoBreadText")}
+          </p>
+        )}
+        <TextInput
+          className="dpl-input__half-on-desktop"
+          id="phone-input"
+          type="number"
+          onChange={(newPhoneNumber) =>
+            changeUser(newPhoneNumber, "phoneNumber")
+          }
+          value={patron?.phoneNumber}
+          label={t("patronPageContactPhoneLabelText")}
+        />
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveSms: boolean) =>
+            changeUser(newReceiveSms, "receiveSms")
+          }
+          id="phone-messages"
+          selected={patron?.receiveSms}
+          disabled={false}
+          label={t("patronPageContactPhoneCheckboxText")}
+        />
+        <TextInput
+          className="dpl-input__half-on-desktop"
+          id="email-address-input"
+          type="email"
+          onChange={(newEmail) => changeUser(newEmail, "emailAddress")}
+          value={patron?.emailAddress}
+          label={t("patronPageContactEmailLabelText")}
+        />
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveEmail: boolean) =>
+            changeUser(newReceiveEmail, "receiveEmail")
+          }
+          id="email-messages"
+          selected={patron?.receiveEmail}
+          disabled={false}
+          label={t("patronPageContactEmailCheckboxText")}
+        />
+      </div>
       <StatusBar />
-      <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("patronPageChangePickupHeaderText")}
-      </h2>
-      {t("patronPageChangePickupBreadText") && (
+      <div id="pickup-reservations-section">
+        <h2 className="text-body-small-regular mt-32 mb-16">
+          {t("patronPageChangePickupHeaderText")}
+        </h2>
+        {t("patronPageChangePickupBreadText") && (
+          <p className="text-body-small-regular">
+            {t("patronPageChangePickupBreadText")}
+          </p>
+        )}
+        <BranchesDropdown
+          classNames="dropdown__half-on-desktop"
+          selected={patron?.preferredPickupBranch || ""}
+          onChange={(newPreferredPickupBranch) =>
+            changeUser(newPreferredPickupBranch, "preferredPickupBranch")
+          }
+        />
+
+        <h3 className="text-body-small-regular mt-32 mb-16">
+          {t("patronPagePauseReservationsHeaderText")}
+        </h3>
         <p className="text-body-small-regular">
-          {t("patronPageChangePickupBreadText")}
+          {t("patronPagePauseReservationsBreadText")}
         </p>
-      )}
-      <BranchesDropdown
-        classNames="dropdown__half-on-desktop"
-        selected={patron?.preferredPickupBranch || ""}
-        onChange={(newPreferredPickupBranch) =>
-          changeUser(newPreferredPickupBranch, "preferredPickupBranch")
-        }
-      />
-      <p className="text-body-medium mt-32 mb-8">
-        {t("patronPagePauseReservationsHeaderText")}
-      </p>
-      <p className="text-body-small-regular">
-        {t("patronPagePauseReservationsBreadText")}
-      </p>
-      <CheckBox
-        className="mt-32 mb-16"
-        id="show-reservation-pause-section"
-        onChecked={() =>
-          setReservationPauseSectionVisible(!reservationPauseSectionVisible)
-        }
-        ariaLabel={t("patronPageOpenPauseReservationsSectionAriaText")}
-        selected={reservationPauseSectionVisible}
-        label={t("patronPageOpenPauseReservationsSectionText")}
-      />
-      {reservationPauseSectionVisible && (
-        <section>
-          <DateInputs
-            setStartDate={(newStartDate) =>
-              changeUser(newStartDate, "onHold.from")
-            }
-            setEndDate={(newEndDate) => changeUser(newEndDate, "onHold.to")}
-            startDate={patron?.onHold?.from || ""}
-            endDate={patron?.onHold?.to || ""}
+        <CheckBox
+          className="mt-32 mb-16"
+          id="show-reservation-pause-section"
+          onChecked={() =>
+            setReservationPauseSectionVisible(!reservationPauseSectionVisible)
+          }
+          ariaLabel={t("patronPageOpenPauseReservationsSectionAriaText")}
+          selected={reservationPauseSectionVisible}
+          label={t("patronPageOpenPauseReservationsSectionText")}
+        />
+        {reservationPauseSectionVisible && (
+          <section>
+            <DateInputs
+              setStartDate={(newStartDate) =>
+                changeUser(newStartDate, "onHold.from")
+              }
+              setEndDate={(newEndDate) => changeUser(newEndDate, "onHold.to")}
+              startDate={patron?.onHold?.from || ""}
+              endDate={patron?.onHold?.to || ""}
+            />
+          </section>
+        )}
+      </div>
+      <div id="pincode-section">
+        <h2 className="text-body-small-regular mt-32 mb-16">
+          {t("patronPageChangePincodeHeaderText")}
+        </h2>
+        <p className="text-body-small-regular">
+          {t("patronPageChangePincodeBreadText")}
+        </p>
+        <div className="dpl-pincode-container">
+          <TextInput
+            className="dpl-input__half-on-desktop"
+            id="pincode-input"
+            type="password"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            onChange={(newPin) => setPincode(newPin)}
+            value={pincode}
+            label={t("patronPagePincodeLabelText")}
+            validation={pincodeValidation}
           />
-        </section>
-      )}
-      <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("patronPageChangePincodeHeaderText")}
-      </h2>
-      <p className="text-body-small-regular">
-        {t("patronPageChangePincodeBreadText")}
-      </p>
-      <div className="dpl-pincode-container">
-        <TextInput
-          className="dpl-input__half-on-desktop"
-          id="pincode-input"
-          type="password"
-          pattern="[0-9]*"
-          inputmode="numeric"
-          onChange={(newPin) => setPincode(newPin)}
-          value={pincode}
-          label={t("patronPagePincodeLabelText")}
-          validation={pincodeValidation}
-        />
-        <TextInput
-          className="dpl-input__half-on-desktop"
-          id="pincode-input"
-          pattern="[0-9]*"
-          inputmode="numeric"
-          type="password"
-          onChange={(newPin) => setConfirmPincode(newPin)}
-          value={confirmPincode}
-          label={t("patronPageConfirmPincodeLabelText")}
-        />
+          <TextInput
+            className="dpl-input__half-on-desktop"
+            id="pincode-confirm-input"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            type="password"
+            onChange={(newPin) => setConfirmPincode(newPin)}
+            value={confirmPincode}
+            label={t("patronPageConfirmPincodeLabelText")}
+          />
+        </div>
       </div>
       <button
         disabled={Boolean(pincodeValidation)}

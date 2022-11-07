@@ -48,7 +48,9 @@ interface PatronPageTextProps {
   patronPageDeleteProfileLinkText: string;
 }
 
-export interface PatronPageProps extends PatronPageConfigProps, PatronPageTextProps {}
+export interface PatronPageProps
+  extends PatronPageConfigProps,
+    PatronPageTextProps {}
 
 const LoanListEntry: FC<PatronPageProps> = () => <PatronPage />;
 
