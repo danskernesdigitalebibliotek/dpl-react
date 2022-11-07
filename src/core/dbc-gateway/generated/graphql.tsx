@@ -152,6 +152,7 @@ export type Corporation = Creator &
     roles: Array<Role>;
     /** Sub corporation or conference/meeting */
     sub?: Maybe<Scalars["String"]>;
+    type: SubjectType;
     /** Year of the conference */
     year?: Maybe<Scalars["String"]>;
   };
@@ -297,6 +298,8 @@ export type HostPublication = {
   __typename?: "HostPublication";
   /** Creator of the host publication if host publication is book */
   creator?: Maybe<Scalars["String"]>;
+  /** Edition statement for the host publication */
+  edition?: Maybe<Scalars["String"]>;
   /** ISBN of the publication this manifestation can be found in */
   isbn?: Maybe<Scalars["String"]>;
   /** ISSN of the publication this manifestation can be found in */
@@ -533,6 +536,10 @@ export type Manifestation = {
   titles: ManifestationTitles;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
+  /** Worktypes for this manifestations work */
+  workTypes: Array<WorkType>;
+  /** The year this work was originally published or produced */
+  workYear?: Maybe<Scalars["String"]>;
 };
 
 export type ManifestationPart = {
@@ -692,6 +699,7 @@ export type Person = Creator &
     roles: Array<Role>;
     /** A roman numeral added to the person, like Christian IV */
     romanNumeral?: Maybe<Scalars["String"]>;
+    type: SubjectType;
   };
 
 export type PhysicalDescription = {
@@ -726,6 +734,8 @@ export type Printing = {
   printing: Scalars["String"];
   /** A year as displayable text and as number */
   publicationYear?: Maybe<PublicationYear>;
+  /** Publisher of printing when other than the original publisher of the edition (260*b) */
+  publisher?: Maybe<Scalars["String"]>;
   /** Properties 'printing' and 'publicationYear' as one string, e.g.: '11. oplag, 2020' */
   summary: Scalars["String"];
 };
@@ -987,6 +997,8 @@ export type Shelfmark = {
 
 export type Subject = {
   display: Scalars["String"];
+  /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
+  type: SubjectType;
 };
 
 export type SubjectContainer = {
@@ -1006,12 +1018,16 @@ export type SubjectText = Subject & {
 export enum SubjectType {
   FictionalCharacter = "FICTIONAL_CHARACTER",
   FilmNationality = "FILM_NATIONALITY",
+  Laesekompasset = "LAESEKOMPASSET",
   LibraryOfCongressSubjectHeading = "LIBRARY_OF_CONGRESS_SUBJECT_HEADING",
   Location = "LOCATION",
+  MedicalSubjectHeading = "MEDICAL_SUBJECT_HEADING",
   MusicalInstrumentation = "MUSICAL_INSTRUMENTATION",
   MusicCountryOfOrigin = "MUSIC_COUNTRY_OF_ORIGIN",
   MusicTimePeriod = "MUSIC_TIME_PERIOD",
+  NationalAgriculturalLibrary = "NATIONAL_AGRICULTURAL_LIBRARY",
   TimePeriod = "TIME_PERIOD",
+  Title = "TITLE",
   Topic = "TOPIC"
 }
 
@@ -1048,6 +1064,7 @@ export type TimePeriod = Subject & {
   __typename?: "TimePeriod";
   display: Scalars["String"];
   period: Range;
+  type: SubjectType;
 };
 
 export type Translation = {

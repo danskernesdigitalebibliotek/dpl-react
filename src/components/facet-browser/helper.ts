@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { isObjectEmpty } from "../../core/utils/helpers/general";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
   SearchFacetQuery,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { formatFilters } from "../../apps/search-result/helpers";
+import { formatFacetTerms } from "../../apps/search-result/helpers";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -21,19 +20,38 @@ export const allFacetFields = [
   FacetField.WorkTypes
 ];
 
+const getPlaceHolderFacets = (facets: string[]) =>
+  facets.map((facet) => ({
+    name: facet,
+    values: [
+      {
+        key: "",
+        term: ""
+      }
+    ]
+  }));
+
 export function useGetFacets(query: string, filters: Filter) {
   const [facets, setFacets] = useState<
     SearchFacetQuery["search"]["facets"] | undefined
   >(undefined);
 
-  const { data, isLoading } = useSearchFacetQuery({
-    q: { all: query },
-    facets: allFacetFields,
-    facetLimit: 10,
-    ...(isObjectEmpty(filters)
-      ? {}
-      : { filters: { ...formatFilters(filters) } })
-  });
+  const { data, isLoading } = useSearchFacetQuery(
+    {
+      q: { all: query },
+      facets: allFacetFields,
+      facetLimit: 10,
+      filters: formatFacetTerms(filters)
+    },
+    {
+      keepPreviousData: true,
+      placeholderData: {
+        search: {
+          facets: getPlaceHolderFacets(allFacetFields)
+        }
+      }
+    }
+  );
 
   useEffect(() => {
     if (!data) {
