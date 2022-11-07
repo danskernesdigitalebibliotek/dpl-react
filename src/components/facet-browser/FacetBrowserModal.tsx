@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { formatFacetTerms } from "../../apps/search-result/helpers";
 import {
   FilterItemTerm,
   TermOnClickHandler
 } from "../../apps/search-result/types";
-import {
-  FacetField,
-  FacetResult,
-  useSearchFacetQuery
-} from "../../core/dbc-gateway/generated/graphql";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
+import { useGetFacets } from "./helper";
 
 export const FacetBrowserModalId = "facet-browser-modal";
 
@@ -29,45 +24,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
   const t = useText();
   const [openFacets, setOpenFacets] = useState<string[]>([]);
 
-  const knownFacets = [
-    FacetField.MainLanguages,
-    FacetField.AccessTypes,
-    FacetField.ChildrenOrAdults,
-    FacetField.Creators,
-    FacetField.FictionNonfiction,
-    FacetField.FictionalCharacter,
-    FacetField.GenreAndForm,
-    FacetField.MaterialTypes,
-    FacetField.Subjects,
-    FacetField.WorkTypes
-  ];
-
-  const getPlaceHolderFacets = (facets: string[]) =>
-    facets.map((facet) => ({
-      name: facet,
-      values: [
-        {
-          term: ""
-        }
-      ]
-    }));
-
-  const { data, isLoading } = useSearchFacetQuery(
-    {
-      q: { all: q },
-      facets: knownFacets,
-      facetLimit: 10,
-      filters: formatFacetTerms(filters)
-    },
-    {
-      keepPreviousData: true,
-      placeholderData: {
-        search: {
-          facets: getPlaceHolderFacets(knownFacets)
-        }
-      }
-    }
-  );
+  const { facets, isLoading } = useGetFacets(q, filters);
 
   return (
     <Modal
@@ -78,9 +35,9 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       )}
       closeModalAriaLabelText={t("facetBrowserModalCloseModalAriaLabelText")}
     >
-      {isLoading || !data ? null : (
+      {isLoading || !facets ? null : (
         <FacetBrowserModalBody
-          facets={data.search.facets as FacetResult[]}
+          facets={facets}
           filterHandler={filterHandler}
           filters={filters}
           openFacets={openFacets}

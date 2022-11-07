@@ -887,6 +887,22 @@
             "deprecationReason": null
           },
           {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "SubjectType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "year",
             "description": "Year of the conference",
             "args": [],
@@ -1736,6 +1752,18 @@
           {
             "name": "creator",
             "description": "Creator of the host publication if host publication is book",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "edition",
+            "description": "Edition statement for the host publication",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3455,6 +3483,42 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "workTypes",
+            "description": "Worktypes for this manifestations work",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "WorkType",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "workYear",
+            "description": "The year this work was originally published or produced",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -4572,6 +4636,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "SubjectType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -4765,6 +4845,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "PublicationYear",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher",
+            "description": "Publisher of printing when other than the original publisher of the edition (260*b)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -6759,6 +6851,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": "The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "SubjectType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6916,6 +7024,12 @@
             "deprecationReason": null
           },
           {
+            "name": "LAESEKOMPASSET",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "LIBRARY_OF_CONGRESS_SUBJECT_HEADING",
             "description": null,
             "isDeprecated": false,
@@ -6923,6 +7037,12 @@
           },
           {
             "name": "LOCATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MEDICAL_SUBJECT_HEADING",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -6946,7 +7066,19 @@
             "deprecationReason": null
           },
           {
+            "name": "NATIONAL_AGRICULTURAL_LIBRARY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "TIME_PERIOD",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TITLE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7171,6 +7303,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Range",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "SubjectType",
                 "ofType": null
               }
             },

@@ -7,17 +7,89 @@
  */
 import {
   useQuery,
+  useMutation,
   UseQueryOptions,
+  UseMutationOptions,
   QueryFunction,
+  MutationFunction,
   UseQueryResult,
   QueryKey
 } from "react-query";
-import type { ProxyUrlGET200, ProxyUrlGETParams } from "./model";
+import type {
+  CampaignMatchPOST200,
+  CampaignMatchPOSTBodyItem,
+  CampaignMatchPOSTParams,
+  ProxyUrlGET200,
+  ProxyUrlGETParams
+} from "./model";
 import { fetcher, ErrorType, BodyType } from "./mutator/fetcher";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
+
+/**
+ * @summary Get campaign matching search result facets
+ */
+export const campaignMatchPOST = (
+  campaignMatchPOSTBodyItem: CampaignMatchPOSTBodyItem[],
+  params?: CampaignMatchPOSTParams
+) => {
+  return fetcher<CampaignMatchPOST200>({
+    url: `/dpl_campaign/match`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: campaignMatchPOSTBodyItem,
+    params
+  });
+};
+
+export type CampaignMatchPOSTMutationResult = NonNullable<
+  Awaited<ReturnType<typeof campaignMatchPOST>>
+>;
+export type CampaignMatchPOSTMutationBody = BodyType<
+  CampaignMatchPOSTBodyItem[]
+>;
+export type CampaignMatchPOSTMutationError = ErrorType<void>;
+
+export const useCampaignMatchPOST = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof campaignMatchPOST>>,
+    TError,
+    {
+      data: BodyType<CampaignMatchPOSTBodyItem[]>;
+      params?: CampaignMatchPOSTParams;
+    },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof campaignMatchPOST>>,
+    {
+      data: BodyType<CampaignMatchPOSTBodyItem[]>;
+      params?: CampaignMatchPOSTParams;
+    }
+  > = (props) => {
+    const { data, params } = props ?? {};
+
+    return campaignMatchPOST(data, params);
+  };
+
+  return useMutation<
+    Awaited<ReturnType<typeof campaignMatchPOST>>,
+    TError,
+    {
+      data: BodyType<CampaignMatchPOSTBodyItem[]>;
+      params?: CampaignMatchPOSTParams;
+    },
+    TContext
+  >(mutationFn, mutationOptions);
+};
 
 /**
  * @summary Generate proxy url

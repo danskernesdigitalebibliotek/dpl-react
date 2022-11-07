@@ -1,0 +1,10 @@
+{
+  "data": {
+    "text": "Lorem ipsum Harry Potter dolor sit amet, consectetur adipiscing elit. Nunc pellentesque, nulla et tempor iaculis, elit dui dictum nisl, quis porta.",
+    "image": {
+      "url": "https://picsum.photos/id/777/300/200",
+      "alt": "I am a campaign image."
+    },
+    "url": "http://localhost/?path=/story/apps-search-result--search-result"
+  }
+}
