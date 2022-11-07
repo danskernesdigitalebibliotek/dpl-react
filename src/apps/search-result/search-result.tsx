@@ -53,10 +53,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
-  // Tracking whenever the search query changes.
-  const { track } = useStatistics();
+  const { track } = useStatistics("page");
   useEffect(() => {
-    track({ internalSearch: q });
+    track(10, "On site search string", q);
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
