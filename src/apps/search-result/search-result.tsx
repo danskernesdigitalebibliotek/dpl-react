@@ -14,6 +14,7 @@ import {
   excludeBlacklistedBranches,
   cleanBranchesId
 } from "../../components/reservation/helper";
+import { useStatistics } from "../../core/statistics/useStatistics";
 
 interface SearchResultProps {
   q: string;
@@ -28,13 +29,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const blacklistBranches = config("blacklistedSearchBranchesConfig", {
     transformer: "stringToArray"
   });
-
   const whitelistBranches = excludeBlacklistedBranches(
     branches,
     blacklistBranches
   );
   const cleanBranches = cleanBranchesId(whitelistBranches);
-
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
     0
@@ -42,10 +41,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { PagerComponent, page } = usePager(hitcount, pageSize);
 
   // If q changes (eg. in Storybook context)
-  //  then make sure that we reset the entire result set.
+  // then make sure that we reset the entire result set.
   useEffect(() => {
     setResultItems([]);
   }, [q, pageSize]);
+
+  // Tracking whenever the search query changes.
+  const { track } = useStatistics();
+  useEffect(() => {
+    track({ internalSearch: q });
+  }, [track, q]);
 
   useSearchWithPaginationQuery(
     {
