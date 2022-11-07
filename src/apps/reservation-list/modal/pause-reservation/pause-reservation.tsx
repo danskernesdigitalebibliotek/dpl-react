@@ -2,11 +2,11 @@ import React, { FC, useCallback, useState, useEffect } from "react";
 import { Link } from "../../../../components/atoms/link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
-import DateInput from "./date-input";
 import { useUpdateV5 } from "../../../../core/fbs/fbs";
 import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
+import DateInput from "../../../../components/date-input/date-input";
 
 interface PauseReservationProps {
   id: string;

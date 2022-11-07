@@ -75,12 +75,6 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     }
   }, [publizonData]);
 
-  useEffect(() => {
-    if (userData && userData.patron) {
-      setUser(userData.patron);
-    }
-  }, [userData]);
-
   // Set digital reservations
   // The physical "ready for pickup"-reservations are mixed with the
   // digital "ready for pickup"-reservations. The physical
@@ -123,7 +117,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
-      {user && <ReservationPause user={user} />}
+      {user && <ReservationPauseToggler user={user} />}
       {!allListsEmpty && (
         <>
           <List
@@ -154,22 +148,6 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           <EmptyList emptyListText={t("reservationListAllEmptyText")} />
         </div>
       )}
-      {user && <ReservationPauseToggler user={user} />}
-      <List
-        header={t("reservationListReadyForPickupTitleText")}
-        list={sortByOldestPickupDeadline([
-          ...readyForPickupReservationsFBS,
-          ...readyForPickupReservationsPublizon
-        ])}
-      />
-      <List
-        header={t("reservationListPhysicalReservationsHeaderText")}
-        list={reservedReservationsFBS}
-      />
-      <List
-        header={t("reservationListDigitalReservationsHeaderText")}
-        list={reservedReservationsPublizon}
-      />
     </div>
   );
 };

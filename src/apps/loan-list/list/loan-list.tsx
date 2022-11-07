@@ -16,11 +16,11 @@ import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { ListView } from "../../../core/utils/types/list-view";
+import EmptyList from "../../../components/empty-list/empty-list";
 import {
   mapPublizonLoanToLoanType,
   mapFBSLoanToLoanType
 } from "../../../core/utils/helpers/list-mapper";
-import EmptyList from "../../../components/empty-list/empty-list";
 
 interface LoanListProps {
   pageSize: number;

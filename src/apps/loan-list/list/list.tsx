@@ -2,18 +2,18 @@ import React, { FC, useCallback, useEffect } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
+import Pagination from "../utils/pagination";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import EmptyList from "../../../components/empty-list/empty-list";
 import {
   getAmountOfRenewableLoans,
   getModalIds
 } from "../../../core/utils/helpers/general";
-import EmptyList from "../../../components/empty-list/empty-list";
-import Pagination from "../utils/pagination";
 
 export interface ListProps {
   header: string;
