@@ -434,7 +434,7 @@ describe("Reservation list", () => {
       .find(".list-reservation__about p")
       .should(
         "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"
+        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
