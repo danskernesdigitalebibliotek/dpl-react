@@ -77,19 +77,12 @@ export type TextFunctionPlaceholders = (placeholders: {
   [key: string]: string;
 }) => string;
 
-const processTexts = (
-  texts: string[],
-  placeholders: Record<string, string>
-) => {
-  return texts.reduce((acc: string[], text: string) => {
-    const newEntry = text.replace(/@\w+/g, (match) => {
+const processTexts = (texts: string[], placeholders: Record<string, string>) =>
+  texts.map((text: string) =>
+    text.replace(/@\w+/g, (match) => {
       return placeholders[match] || match;
-    });
-
-    acc.push(newEntry);
-    return acc;
-  }, []);
-};
+    })
+  );
 
 export const useTextV2 = () => {
   const { data } = useSelector((state: RootState) => state.text);
