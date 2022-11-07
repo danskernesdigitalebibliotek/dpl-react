@@ -6,6 +6,11 @@ describe("Patron page", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
+    cy.intercept({
+      method: "PUT",
+      url: "**/external/agencyid/patrons/patronid/v5"
+    }).as("PUT-patron");
+
     cy.intercept("GET", "**/v1/library/profile", {
       id: 816,
       name: "Aarhus Bibliotek",
@@ -147,20 +152,40 @@ describe("Patron page", () => {
       .find("#phone-input")
       .should("have.value", "1234567890");
 
+    // ID 37 2. user adds/changes email/phone
+    cy.get(".dpl-patron-page #patron-page-contact-info")
+      .find("#phone-input")
+      .type("21");
+
     // ID 36 2.d.i.a. Til- eller fravælg notifikationer via SMS
     cy.get(".dpl-patron-page #patron-page-contact-info")
       .find("#phone-messages")
       .should("not.be.checked");
+
+    // ID 37 2.a. User activates/deactivates notification checkboxes
+    cy.get(".dpl-patron-page #patron-page-contact-info")
+      .find("#phone-messages")
+      .check({ force: true });
 
     // ID 36 2.d.ii. Tilføj skift eller slet e-mailadresse
     cy.get(".dpl-patron-page #patron-page-contact-info")
       .find("#email-address-input")
       .should("have.value", "itkdev@mkb.aarhus.dk");
 
+    // ID 37 2. user adds/changes email/phone
+    cy.get(".dpl-patron-page #patron-page-contact-info")
+      .find("#email-address-input")
+      .type("dd");
+
     // ID 36 2.d.ii.a. Til- eller fravælg notifikationer via email
     cy.get(".dpl-patron-page #patron-page-contact-info")
       .find("#email-messages")
       .should("be.checked");
+
+    // ID 37 2.a. User activates/deactivates notification checkboxes
+    cy.get(".dpl-patron-page #patron-page-contact-info")
+      .find("#email-messages")
+      .uncheck({ force: true });
 
     // ID 36 2.f. reservations
     cy.get(".dpl-patron-page #pickup-reservations-section")
@@ -201,11 +226,38 @@ describe("Patron page", () => {
     cy.get(".dpl-patron-page #pincode-section")
       .find("#pincode-input")
       .should("exist");
-      
+
     // ID 36 2.g.iii. Input field: confirm pin
     cy.get(".dpl-patron-page #pincode-section")
       .find("#pincode-confirm-input")
       .should("exist");
+
+    cy.get(".dpl-patron-page #pincode-section")
+      .find("#pincode-input")
+      .type("1234");
+
+    cy.get(".dpl-patron-page #pincode-section")
+      .find("#pincode-confirm-input")
+      .type("1234");
+
+    // ID 41 2. click delete your profile, 3. refered to page
+    cy.get(".dpl-patron-page #delete-patron-link")
+      .should("have.attr", "href")
+      .should(
+        "include",
+        "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80"
+      );
+
+    // ID 37 3. The user clicks save
+    cy.get(".dpl-patron-page").find("#save-user-patron").click();
+    cy.wait("@PUT-patron").then(({ request }) => {
+      assert.equal(request?.body.patron.emailAddress, "itkdev@mkb.aarhus.dkdd");
+      assert.equal(request?.body.patron.phoneNumber, "123456789021");
+      assert.equal(request?.body.patron.receiveEmail, false);
+      assert.equal(request?.body.patron.receiveSms, true);
+      assert.equal(request?.body.pincodeChange.pincode, "1234");
+      assert.equal(request?.body.pincodeChange.libraryCardNumber, "10101010");
+    });
   });
 });
 

@@ -55,9 +55,20 @@ const PatronPage: FC = () => {
     set(copyUser, key, newValue);
     setPatron(copyUser);
   };
+
   const save = () => {
     if (patron) {
-      const data: UpdatePatronRequestV4 = { patron };
+      const data: UpdatePatronRequestV4 = {
+        patron: {
+          emailAddress: patron.emailAddress,
+          receivePostalMail: patron.receivePostalMail,
+          phoneNumber: patron.phoneNumber,
+          onHold: patron.onHold,
+          preferredPickupBranch: patron.preferredPickupBranch,
+          receiveEmail: patron.receiveEmail,
+          receiveSms: patron.receiveSms
+        }
+      };
       if (
         confirmPincode &&
         confirmPincode.length === pincodeLength &&
@@ -236,6 +247,7 @@ const PatronPage: FC = () => {
         </div>
       </div>
       <button
+        id="save-user-patron"
         disabled={Boolean(pincodeValidation)}
         className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
         type="button"
@@ -245,11 +257,13 @@ const PatronPage: FC = () => {
       </button>
       <div className="text-body-small-regular mt-32">
         {t("patronPageDeleteProfileText")}{" "}
-        <a href="todo" className="text-links">
-          <Link href={new URL(deletePatronLink)} className="link-tag">
-            {t("patronPageDeleteProfileLinkText")}
-          </Link>
-        </a>
+        <Link
+          id="delete-patron-link"
+          href={new URL(deletePatronLink)}
+          className="link-tag"
+        >
+          {t("patronPageDeleteProfileLinkText")}
+        </Link>
       </div>
     </form>
   );
