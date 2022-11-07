@@ -86,12 +86,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
             ? t("expiresSoonText")
             : ""
         }
-        // todo string interpolation
-        label={
-          numberInQueue === 1
-            ? `${t("youAreFirstInQueueText")}`
-            : `${t("youAreNumberInQueueText")} ${numberInQueue - 1}`
-        }
+        label={numberInLineLabel}
       >
         <span className="counter__value">{numberInQueue}</span>
         <span className="counter__label">{t("inLineText")}</span>
