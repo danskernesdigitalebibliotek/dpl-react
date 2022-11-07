@@ -7,15 +7,15 @@ import {
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
+import { formatFacetTerms } from "./helpers";
+import useFilterHandler from "./useFilterHandler";
+import { FilterItemTerm, TermOnClickHandler } from "./types";
 import { useConfig } from "../../core/utils/config";
 import { AgencyBranch } from "../../core/fbs/model";
 import {
   excludeBlacklistedBranches,
   cleanBranchesId
 } from "../../components/reservation/helper";
-import useFilterHandler from "./useFilterHandler";
-import { TagOnclickHandler } from "./types";
-import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
   CampaignMatchPOST200,
@@ -23,6 +23,7 @@ import {
 } from "../../core/dpl-cms/model";
 import Campaign from "../../components/campaign/Campaign";
 import { useGetFacets } from "../../components/facet-browser/helper";
+import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 
 interface SearchResultProps {
   q: string;
@@ -50,11 +51,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  const filteringHandler: TagOnclickHandler = (filterInfo) => {
+  const filteringHandler: TermOnClickHandler = (filterInfo) => {
     filterHandler(filterInfo);
     resetPager();
   };
-  const { facets } = useGetFacets(q, filters);
+  const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
@@ -63,10 +64,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [q, pageSize, filters]);
 
   useEffect(() => {
-    if (facets) {
+    if (campaignFacets) {
       mutate(
         {
-          data: facets as CampaignMatchPOSTBodyItem[]
+          data: campaignFacets as CampaignMatchPOSTBodyItem[]
         },
         {
           onSuccess: (campaign) => {
@@ -78,37 +79,44 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         }
       );
     }
-  }, [mutate, facets]);
+  }, [mutate, campaignFacets]);
 
-  useSearchWithPaginationQuery(
-    {
-      q: { all: q },
-      offset: page * pageSize,
-      limit: pageSize,
-      ...(cleanBranches
-        ? {
-            filters: {
-              branchId: cleanBranches
-            }
-          }
-        : {})
+  const createFilters = (
+    facets: {
+      [key: string]: { [key: string]: FilterItemTerm };
     },
-    {
-      staleTime: 0,
-      onSuccess: (result) => {
-        const {
-          search: { works: resultWorks, hitcount: resultCount }
-        } = result as {
-          search: {
-            works: Work[];
-            hitcount: SearchWithPaginationQuery["search"]["hitcount"];
-          };
-        };
-        setHitCount(resultCount);
-        setResultItems([...resultItems, ...resultWorks]);
-      }
+    branchIdList: string[]
+  ) => {
+    return {
+      ...formatFacetTerms(facets),
+      ...(cleanBranches ? { branchId: branchIdList } : {})
+    };
+  };
+
+  const { data } = useSearchWithPaginationQuery({
+    q: { all: q },
+    offset: page * pageSize,
+    limit: pageSize,
+    filters: createFilters(filters, cleanBranches)
+  });
+
+  useEffect(() => {
+    if (!data) {
+      return;
     }
-  );
+
+    const {
+      search: { works: resultWorks, hitcount: resultCount }
+    } = data as {
+      search: {
+        works: Work[];
+        hitcount: SearchWithPaginationQuery["search"]["hitcount"];
+      };
+    };
+
+    setHitCount(resultCount);
+    setResultItems((prev) => [...prev, ...resultWorks]);
+  }, [data]);
 
   const worksAreLoaded = Boolean(resultItems.length);
 

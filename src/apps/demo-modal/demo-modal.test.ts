@@ -17,10 +17,7 @@ describe("Opens demo modal", () => {
       .should("contain", "demo-modal-two");
     cy.get(".modal").find("button.modal-btn-close").should("exist");
     // Close the second modal again
-    cy.get(".modal")
-      .find("button.modal-btn-close")
-      .first()
-      .click({ force: true });
+    cy.get(".modal").find("button.modal-btn-close").first().click();
     // We expect it to be closed
     cy.get(".modal").find("h1#demo-modal-two-header").should("not.exist");
     cy.get(".modal").find("button#demo-modal-two-button").should("be.visible");

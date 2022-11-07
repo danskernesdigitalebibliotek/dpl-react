@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   FilterItemTerm,
-  TagOnclickHandler
+  TermOnClickHandler
 } from "../../apps/search-result/types";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -12,7 +12,7 @@ export const FacetBrowserModalId = "facet-browser-modal";
 
 interface FacetBrowserModalProps {
   q: string;
-  filterHandler: TagOnclickHandler;
+  filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 

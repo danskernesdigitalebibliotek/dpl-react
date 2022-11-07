@@ -176,7 +176,7 @@ export default {
     },
     addMoreFiltersText: {
       name: "Add more filters text",
-      defaultValue: "+ FLERE FILTRE",
+      defaultValue: "+ more filters",
       control: { type: "text" }
     }
   }

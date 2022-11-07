@@ -266,12 +266,4 @@ export const pageSizeGlobal = (
   return pageSize;
 };
 
-export const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-export const isObjectEmpty = (obj: object) => {
-  return Object.keys(obj).length === 0;
-};
-
 export default {};

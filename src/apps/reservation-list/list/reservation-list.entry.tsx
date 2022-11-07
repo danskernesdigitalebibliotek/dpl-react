@@ -10,9 +10,12 @@ export interface ReservationListProps {
   readyText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
-  youAreNumberInLineText: string;
+  pauseReservationStartDateConfig: string;
+  youAreNumberInQueueText: string;
+  youAreFirstInQueueText: string;
   expiresSoonText: string;
   inLineText: string;
+  youAreNumberInLineText: string;
   blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
@@ -47,6 +50,18 @@ export interface ReservationListProps {
   deleteReservationModalDeleteText: string;
   deleteReservationModalCloseModalText: string;
   deleteReservationModalAriaDescriptionText: string;
+  reservationListPauseReservationText: string;
+  reservationListOnHoldAriaText: string;
+  reservationListPauseReservationAriaModalText: string;
+  pauseReservationModalAriaDescriptionText: string;
+  pauseReservationModalHeaderText: string;
+  pauseReservationModalBreadText: string;
+  pauseReservationModalCloseModalText: string;
+  pauseReservationModalStartDateLabelText: string;
+  pauseReservationModalEndDateLabelText: string;
+  pauseReservationModalBelowInputsTextText: string;
+  pauseReservationModalLinkText: string;
+  pauseReservationModalSaveButtonLabelText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = () => (

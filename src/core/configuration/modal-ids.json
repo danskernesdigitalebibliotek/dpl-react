@@ -1,4 +1,5 @@
 {
   "allLoansId": "all-loans-id",
+  "pauseReservation": "pause-reservation",
   "deleteReservation": "delete-reservation"
 }

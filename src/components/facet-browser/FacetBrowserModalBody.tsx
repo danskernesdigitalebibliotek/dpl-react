@@ -1,18 +1,18 @@
 import React from "react";
+import { upperFirst } from "lodash";
 import {
   FilterItemTerm,
-  TagOnclickHandler
+  TermOnClickHandler
 } from "../../apps/search-result/types";
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
-import { capitalizeFirstLetter } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
-import Tag from "../tag/Tag";
+import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
-  filterHandler: TagOnclickHandler;
+  filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
   openFacets: string[];
   setOpenFacets: (openFacets: string[]) => void;
@@ -53,9 +53,10 @@ const FacetBrowserModalBody: React.FunctionComponent<
         return (
           <FacetBrowserDisclosure
             key={name}
+            id={name}
             fullWidth
             removeHeadlinePadding
-            title={t(`facet${capitalizeFirstLetter(name)}Text`)}
+            title={t(`facet${upperFirst(name)}Text`)}
             showContent={openFacets.includes(name)}
             onClick={toggleFacets(name)}
           >
@@ -65,22 +66,30 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
                 const selected = Boolean(filters[name] && filters[name][term]);
 
+                // If there is no term name (eg. when using placeholder data, see: FacetBrowserModal)
+                // then do not render term.
+                if (!termItem.term) {
+                  return null;
+                }
+
                 return (
-                  <Tag
+                  <ButtonTag
                     key={term}
-                    onClick={() =>
+                    onClick={(e) => {
+                      // This to prevent the disclosure from closing when clicking on a tag because event bobbling
+                      e.stopPropagation();
                       filterHandler({
                         filterItem: {
                           facet: name,
                           term: termItem
                         },
                         action: selected ? "remove" : "add"
-                      })
-                    }
+                      });
+                    }}
                     selected={selected}
                   >
-                    {termItem.term} ({termItem.score})
-                  </Tag>
+                    {termItem.term} {termItem?.score && `(${termItem.score})`}
+                  </ButtonTag>
                 );
               })}
             </div>
