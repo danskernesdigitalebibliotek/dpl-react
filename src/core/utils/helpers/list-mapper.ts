@@ -194,7 +194,6 @@ export const mapPublizonReservationToReservationType = (
 
       return {
         identifier,
-        title: productTitle,
         faust: null,
         dateOfReservation: createdDateUtc,
         expiryDate: expireDateUtc,
