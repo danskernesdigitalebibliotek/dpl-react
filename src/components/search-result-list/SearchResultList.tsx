@@ -8,13 +8,19 @@ export interface SearchResultListProps {
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
+  const worksAreLoaded = Boolean(resultItems.length);
+
   return (
-    <ul className="search-result-page__list my-16">
-      {resultItems.map((item, i) => (
-        <li key={item.workId}>
-          <SearchResultListItem item={item} coverTint={getCoverTint(i)} />
-        </li>
-      ))}
+    <ul className="search-result-page__list my-32">
+      {worksAreLoaded && (
+        <>
+          {resultItems.map((item, i) => (
+            <li key={item.workId}>
+              <SearchResultListItem item={item} coverTint={getCoverTint(i)} />
+            </li>
+          ))}
+        </>
+      )}
     </ul>
   );
 };
