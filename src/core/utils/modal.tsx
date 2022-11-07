@@ -46,13 +46,8 @@ function Modal({
 
   return (
     <div
-      className={clsx(
-        "modal",
-        {
-          "modal-show": modalIds.includes(modalId)
-        },
-        classNames
-      )}
+      className="modal-backdrop"
+      // TODO: Close the modal when clicking backdrop.
       style={{
         // some elements are designed with z-index which means they pop up over the modal
         // so I add 10 to the z-index of the modal
@@ -60,32 +55,45 @@ function Modal({
         // the remaining modals
         zIndex: modalIds.indexOf(modalId) + 10
       }}
-      role="dialog"
     >
-      <div className="modal__screen-reader-description" id={`modal-${modalId}`}>
-        {screenReaderModalDescriptionText}
-      </div>
-      <button
-        type="button"
-        /* A focusable element in a modal must have focus when opened,
-        or else the screen reader will remain on the main page */
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-        className="btn-ui modal-btn-close"
-        aria-describedby={`modal-${modalId}`}
-        style={{
-          // same as comment above
-          zIndex: modalIds.indexOf(modalId) + 10
-        }}
-        aria-label={closeModalAriaLabelText}
-        onClick={() => {
-          dispatch(closeModal({ modalId }));
-        }}
+      <div
+        className={clsx(
+          "modal",
+          {
+            "modal-show": modalIds.includes(modalId)
+          },
+          classNames
+        )}
+        role="dialog"
       >
-        <img src={CloseIcon} alt="" />
-        {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
-      </button>
-      {children}
+        <div
+          className="modal__screen-reader-description"
+          id={`modal-${modalId}`}
+        >
+          {screenReaderModalDescriptionText}
+        </div>
+        <button
+          type="button"
+          /* A focusable element in a modal must have focus when opened,
+        or else the screen reader will remain on the main page */
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus
+          className="btn-ui modal-btn-close"
+          aria-describedby={`modal-${modalId}`}
+          style={{
+            // same as comment above
+            zIndex: modalIds.indexOf(modalId) + 10
+          }}
+          aria-label={closeModalAriaLabelText}
+          onClick={() => {
+            dispatch(closeModal({ modalId }));
+          }}
+        >
+          <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
+          {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
+        </button>
+        {children}
+      </div>
     </div>
   );
 }

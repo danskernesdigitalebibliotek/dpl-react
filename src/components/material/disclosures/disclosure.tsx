@@ -1,4 +1,5 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
 import { useText } from "../../../core/utils/text";
 import Pagefold from "../../pagefold/Pagefold";
@@ -11,6 +12,7 @@ export interface DisclosureProps {
   isAvailable?: boolean;
   fullWidth?: boolean;
   open?: boolean;
+  removeHeadlinePadding?: boolean;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
@@ -19,7 +21,8 @@ const Disclosure: FC<DisclosureProps> = ({
   mainIconPath,
   isAvailable,
   fullWidth,
-  open
+  open,
+  removeHeadlinePadding
 }) => {
   const t = useText();
 
@@ -30,7 +33,12 @@ const Disclosure: FC<DisclosureProps> = ({
       }`}
       open={open}
     >
-      <summary className="disclosure__headline text-body-large">
+      <summary
+        className={clsx(
+          "disclosure__headline text-body-large",
+          removeHeadlinePadding && "disclosure__headline--no-padding"
+        )}
+      >
         {mainIconPath && (
           <div className="disclosure__icon bg-identity-tint-120">
             <img className="invert" src={mainIconPath} alt="" />
