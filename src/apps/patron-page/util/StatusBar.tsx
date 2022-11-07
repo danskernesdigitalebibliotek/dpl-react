@@ -27,8 +27,8 @@ const StatusBar: FC = () => {
     }
   }, [libraryProfileFetched]);
 
+  
   // Todo where do I get these numbers from?
-
   let patronEbookLoans = 0;
   if (patronData?.ebookLoansRemaining) {
     patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
@@ -68,7 +68,7 @@ const StatusBar: FC = () => {
       100;
   }
   return (
-    <div className="dpl-status-loans">
+    <section className="dpl-status-loans">
       {libraryProfile && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
@@ -170,7 +170,7 @@ const StatusBar: FC = () => {
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 };
 
