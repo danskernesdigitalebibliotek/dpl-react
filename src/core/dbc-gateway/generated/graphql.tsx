@@ -1140,11 +1140,11 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
-export type GetMaterialManifestationQueryVariables = Exact<{
+export type GetManifestationViaMaterialByFaustQueryVariables = Exact<{
   faust: Scalars["String"];
 }>;
 
-export type GetMaterialManifestationQuery = {
+export type GetManifestationViaMaterialByFaustQuery = {
   __typename?: "Query";
   manifestation?: {
     __typename?: "Manifestation";
@@ -1160,6 +1160,14 @@ export type GetMaterialManifestationQuery = {
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
+    series: Array<{
+      __typename?: "Series";
+      title: string;
+      numberInSeries?: {
+        __typename?: "NumberInSeries";
+        number?: Array<number> | null;
+      } | null;
+    }>;
   } | null;
 };
 
@@ -2515,8 +2523,8 @@ export const WorkMediumFragmentDoc = `
   workYear
 }
     ${WorkSmallFragmentDoc}`;
-export const GetMaterialManifestationDocument = `
-    query getMaterialManifestation($faust: String!) {
+export const GetManifestationViaMaterialByFaustDocument = `
+    query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
     pid
     titles {
@@ -2534,22 +2542,32 @@ export const GetMaterialManifestationDocument = `
     creators {
       display
     }
+    series {
+      title
+      numberInSeries {
+        number
+      }
+    }
   }
 }
     `;
-export const useGetMaterialManifestationQuery = <
-  TData = GetMaterialManifestationQuery,
+export const useGetManifestationViaMaterialByFaustQuery = <
+  TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
 >(
-  variables: GetMaterialManifestationQueryVariables,
-  options?: UseQueryOptions<GetMaterialManifestationQuery, TError, TData>
+  variables: GetManifestationViaMaterialByFaustQueryVariables,
+  options?: UseQueryOptions<
+    GetManifestationViaMaterialByFaustQuery,
+    TError,
+    TData
+  >
 ) =>
-  useQuery<GetMaterialManifestationQuery, TError, TData>(
-    ["getMaterialManifestation", variables],
+  useQuery<GetManifestationViaMaterialByFaustQuery, TError, TData>(
+    ["getManifestationViaMaterialByFaust", variables],
     fetcher<
-      GetMaterialManifestationQuery,
-      GetMaterialManifestationQueryVariables
-    >(GetMaterialManifestationDocument, variables),
+      GetManifestationViaMaterialByFaustQuery,
+      GetManifestationViaMaterialByFaustQueryVariables
+    >(GetManifestationViaMaterialByFaustDocument, variables),
     options
   );
 export const GetMaterialDocument = `
