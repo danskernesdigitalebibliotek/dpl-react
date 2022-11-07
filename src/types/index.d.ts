@@ -1,7 +1,7 @@
 declare global {
   interface Window {
     wts: {
-      push(props: [string, string, { [key: string]: string }]): void;
+      push(props: ["send", EventType, EventData]): void;
     };
   }
 }
