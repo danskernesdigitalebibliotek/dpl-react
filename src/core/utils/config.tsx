@@ -32,8 +32,8 @@ export const useConfig = (): UseConfigFunction => {
       transformer?: "jsonParse" | "stringToArray";
     }
   ) => {
-    if (!data?.[key]) {
-      throw new Error(`Config key ${key} not found`);
+    if (typeof data[key] !== "string") {
+      throw new Error(`Config entry "${key}" is not defined.`);
     }
     if (options?.transformer === "jsonParse") {
       return JSON.parse(data[key]);

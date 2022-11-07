@@ -1,14 +1,16 @@
 {
-  "id" : "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
-  "name" : "Patron (update - onHold)",
-  "request" : {
-    "url" : "/external/agencyid/patrons/patronid/v5",
-    "method" : "PUT",
-    "bodyPatterns" : [ {
-      "equalToJson" : "{\n\t\"patron\": {\n\t\t\"preferredPickupBranch\":\"${json-unit.any-string}\",\n\t\t\"receiveEmail\":\"${json-unit.any-boolean}\",\n\t\t\"receivePostalMail\":\"${json-unit.any-boolean}\",\n\t\t\"receiveSms\":  \"${json-unit.any-boolean}\",\n\t\t\"onHold\": {\n\t\t\t\"from\": \"${json-unit.any-string}\",\n\t\t\t\"to\": \"${json-unit.any-string}\"\n\t\t}\n\t}\n}",
-      "ignoreArrayOrder" : true,
-      "ignoreExtraElements" : true
-    } ]
+  "id": "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
+  "name": "Patron (update - onHold)",
+  "request": {
+    "url": "/external/agencyid/patrons/patronid/v5",
+    "method": "PUT",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\n\t\"patron\": {\n\t\t\"preferredPickupBranch\":\"${json-unit.any-string}\",\n\t\t\"receiveEmail\":\"${json-unit.any-boolean}\",\n\t\t\"receivePostalMail\":\"${json-unit.any-boolean}\",\n\t\t\"receiveSms\":  \"${json-unit.any-boolean}\",\n\t\t\"onHold\": {\n\t\t\t\"from\": \"${json-unit.any-string}\",\n\t\t\t\"to\": \"${json-unit.any-string}\"\n\t\t}\n\t}\n}",
+        "ignoreArrayOrder": true,
+        "ignoreExtraElements": true
+      }
+    ]
   },
   "response" : {
     "status" : 200,
@@ -20,9 +22,9 @@
     },
     "transformers" : [ "response-template" ]
   },
-  "uuid" : "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
-  "persistent" : true,
-  "priority" : 5,
-  "insertionIndex" : 6,
-  "postServeActions" : [ ]
+  "uuid": "3a6fbe0d-2a66-4ef7-88ac-83163dd921d0",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 6,
+  "postServeActions": []
 }

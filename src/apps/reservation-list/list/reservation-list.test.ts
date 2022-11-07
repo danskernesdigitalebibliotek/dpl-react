@@ -365,22 +365,20 @@ describe("Reservation list", () => {
       code: 101,
       message: "OK"
     }).as("product");
-  });
-
-  it("Reservations list", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
     cy.wait([
       "@physical_reservations",
       "@digital_reservations",
-      "@branches",
       "@work",
       "@cover",
       "@product",
       "@user"
     ]);
+  });
 
+  it("Reservations list", () => {
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".reservation-list-page")
@@ -438,7 +436,7 @@ describe("Reservation list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find("#test-list-authors")
+      .find(".list-reservation__about p")
       .should(
         "have.text",
         "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"
@@ -483,16 +481,13 @@ describe("Reservation list", () => {
 
     // ID 11 2.c The list "physical reservations"
     cy.get(".list-reservation-container").eq(1).should("exist");
-
     // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(1)
       .find("h2")
       .should("have.text", "Fysiske9");
-
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
     // todo
-
     // ID 11 2.c.iii. Every material is showed with
     // ID 11 2.c.iii.2. text: "You are at the front of the queue"
     cy.get(".list-reservation-container")

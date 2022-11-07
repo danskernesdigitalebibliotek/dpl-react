@@ -11,10 +11,12 @@ export interface ReservationListProps {
   readyText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
+  pauseReservationStartDateConfig: string;
   youAreNumberInQueueText: string;
   youAreFirstInQueueText: string;
   expiresSoonText: string;
   inLineText: string;
+  youAreNumberInLineText: string;
   blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;

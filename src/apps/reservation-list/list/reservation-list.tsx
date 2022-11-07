@@ -15,7 +15,7 @@ import {
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import List from "./list";
-import ReservationPause from "./reservation-pause";
+import ReservationPauseToggler from "./reservation-pause-toggler";
 import {
   useGetPatronInformationByPatronIdV2,
   useGetReservationsV2
@@ -86,6 +86,16 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // digital "ready for pickup"-reservations. The physical
   // "reserved"-reservations have their own list
   useEffect(() => {
+    if (userData && userData.patron) {
+      setUser(userData.patron);
+    }
+  }, [userData]);
+
+  // Set digital reservations
+  // The physical "ready for pickup"-reservations are mixed with the
+  // digital "ready for pickup"-reservations. The physical
+  // "reserved"-reservations have their own list
+  useEffect(() => {
     if (isSuccess && data) {
       setReadyForPickupReservationsFBS(
         sortByOldestPickupDeadline(
@@ -144,6 +154,22 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           <EmptyList emptyListText={t("reservationListAllEmptyText")} />
         </div>
       )}
+      {user && <ReservationPauseToggler user={user} />}
+      <List
+        header={t("reservationListReadyForPickupTitleText")}
+        list={sortByOldestPickupDeadline([
+          ...readyForPickupReservationsFBS,
+          ...readyForPickupReservationsPublizon
+        ])}
+      />
+      <List
+        header={t("reservationListPhysicalReservationsHeaderText")}
+        list={reservedReservationsFBS}
+      />
+      <List
+        header={t("reservationListDigitalReservationsHeaderText")}
+        list={reservedReservationsPublizon}
+      />
     </div>
   );
 };

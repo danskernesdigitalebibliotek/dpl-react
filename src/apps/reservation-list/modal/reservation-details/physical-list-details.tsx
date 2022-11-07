@@ -131,7 +131,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         },
         {
           onSuccess: () => {
-            // todo
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
           },

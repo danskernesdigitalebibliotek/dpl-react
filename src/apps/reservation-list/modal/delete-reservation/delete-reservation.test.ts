@@ -1,7 +1,7 @@
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
 describe("Delete reservation modal test", () => {
-  beforeEach(() => {
+  before(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });

@@ -19,10 +19,12 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
   const config = useConfig();
+  // todo this should not be "as string" but config<string>, so this is a todo
+  // to change the config method to support this
   const [startDate, setStartDate] = useState<string>(
     (config("pauseReservationStartDateConfig") as string) || ""
   );
-  const [endDate, setEndDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string | null>("");
 
   const save = useCallback(() => {
     if (user && startDate && endDate) {
@@ -40,7 +42,6 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         },
         {
           onSuccess: () => {
-            // todo
             close(pauseReservation as string);
           },
           // todo error handling, missing in figma
@@ -57,7 +58,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
     if (user?.onHold?.to) {
       setEndDate(user.onHold.to);
     }
-  }, [user?.onHold]);
+  }, [user?.onHold?.from, user?.onHold?.to]);
 
   return (
     <Modal
@@ -81,14 +82,14 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <div className="modal-pause__dropdowns mt-24">
           <div className="datepickers">
             <DateInput
+              onChange={setStartDate}
               value={startDate}
               id="start-date"
-              onChange={setStartDate}
               label={t("pauseReservationModalStartDateLabelText")}
             />
             <DateInput
               onChange={setEndDate}
-              value={endDate}
+              value={endDate || ""}
               id="end-date"
               label={t("pauseReservationModalEndDateLabelText")}
             />

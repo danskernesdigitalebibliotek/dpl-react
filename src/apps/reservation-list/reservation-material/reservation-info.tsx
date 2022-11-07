@@ -69,6 +69,12 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }
 
   if (state === "reserved" && pickupBranch && numberInQueue && expiryDate) {
+    // todo string interpolation
+    const numberInLineLabel =
+      numberInQueue === 1
+        ? t("youAreFirstInQueueText")
+        : `${t("youAreNumberInQueueText")} ${numberInQueue - 1}`;
+
     return (
       <ReservationStatus
         color={colors.default as string}
