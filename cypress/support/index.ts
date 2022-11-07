@@ -2,7 +2,10 @@
 // the namespace is declared like it is done here. Therefore we'll bypass errors about it.
 /* eslint-disable @typescript-eslint/no-namespace */
 import "@cypress/code-coverage/support";
+import installCollector from "cypress-terminal-report/src/installLogsCollector";
 import { hasOperationName } from "../utils/graphql-test-utils";
+
+installCollector();
 
 const TOKEN_USER_KEY = "user";
 
