@@ -19,6 +19,8 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
   const config = useConfig();
+  // todo this should not be "as string" but config<string>, so this is a todo
+  // to change the config method to support this
   const [startDate, setStartDate] = useState<string>(
     (config("pauseReservationStartDateConfig") as string) || ""
   );
