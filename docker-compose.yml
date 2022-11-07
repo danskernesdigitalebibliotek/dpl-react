@@ -36,7 +36,7 @@ services:
 
   wiremock-fbs:
     image: wiremock/wiremock:2.32.0-alpine
-    command: "--enable-stub-cors  --global-response-templating --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
+    command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
     ports:
       - "8080"
     volumes:
