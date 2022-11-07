@@ -119,6 +119,8 @@ export type ComplexSearchFilters = {
 /** The search response */
 export type ComplexSearchResponse = {
   __typename?: "ComplexSearchResponse";
+  /** Error message, for instance if CQL is invalid */
+  errorMessage?: Maybe<Scalars["String"]>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
   /** The works matching the given search query. Use offset and limit for pagination. */
@@ -781,6 +783,7 @@ export type QueryManifestationsArgs = {
 };
 
 export type QueryRecommendArgs = {
+  branchId?: InputMaybe<Scalars["String"]>;
   faust?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -1662,6 +1665,29 @@ export type SuggestionsFromQueryStringQuery = {
           first: { __typename?: "Manifestation"; pid: string };
         };
       } | null;
+    }>;
+  };
+};
+
+export type SearchFacetQueryVariables = Exact<{
+  q: SearchQuery;
+  facets: Array<FacetField> | FacetField;
+  facetLimit: Scalars["Int"];
+  filters?: InputMaybe<SearchFilters>;
+}>;
+
+export type SearchFacetQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResponse";
+    facets: Array<{
+      __typename?: "FacetResult";
+      name: string;
+      values: Array<{
+        __typename?: "FacetValue";
+        term: string;
+        score?: number | null;
+      }>;
     }>;
   };
 };
@@ -2633,5 +2659,30 @@ export const useSuggestionsFromQueryStringQuery = <
       SuggestionsFromQueryStringQuery,
       SuggestionsFromQueryStringQueryVariables
     >(SuggestionsFromQueryStringDocument, variables),
+    options
+  );
+export const SearchFacetDocument = `
+    query searchFacet($q: SearchQuery!, $facets: [FacetField!]!, $facetLimit: Int!, $filters: SearchFilters) {
+  search(q: $q, filters: $filters) {
+    facets(facets: $facets) {
+      name
+      values(limit: $facetLimit) {
+        term
+        score
+      }
+    }
+  }
+}
+    `;
+export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
+  variables: SearchFacetQueryVariables,
+  options?: UseQueryOptions<SearchFacetQuery, TError, TData>
+) =>
+  useQuery<SearchFacetQuery, TError, TData>(
+    ["searchFacet", variables],
+    fetcher<SearchFacetQuery, SearchFacetQueryVariables>(
+      SearchFacetDocument,
+      variables
+    ),
     options
   );

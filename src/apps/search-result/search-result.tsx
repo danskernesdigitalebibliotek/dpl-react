@@ -3,11 +3,14 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/search-result.list";
 import {
-  SearchResponse,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
+import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
+import { formatFacetTerms } from "./helpers";
+import useFilterHandler from "./useFilterHandler";
+import { FilterItemTerm, TermOnClickHandler } from "./types";
 import { useConfig } from "../../core/utils/config";
 import { AgencyBranch } from "../../core/fbs/model";
 import {
@@ -36,57 +39,57 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const cleanBranches = cleanBranchesId(whitelistBranches);
 
   const [resultItems, setResultItems] = useState<Work[]>([]);
-  const [hitcount, setHitCount] = useState<SearchResponse["hitcount"] | number>(
-    0
-  );
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const [hitcount, setHitCount] = useState<number>(0);
+  const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
+  const { filters, filterHandler } = useFilterHandler();
+
+  const filteringHandler: TermOnClickHandler = (filterInfo) => {
+    filterHandler(filterInfo);
+    resetPager();
+  };
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
   useEffect(() => {
     setResultItems([]);
-  }, [q, pageSize]);
+  }, [q, pageSize, filters]);
 
-  useSearchWithPaginationQuery(
-    {
-      q: { all: q },
-      offset: page * pageSize,
-      limit: pageSize,
-      ...(cleanBranches
-        ? {
-            filters: {
-              branchId: cleanBranches
-            }
-          }
-        : {})
+  const createFilters = (
+    facets: {
+      [key: string]: { [key: string]: FilterItemTerm };
     },
-    {
-      // If the component is used in Storybook context
-      // the same query and other parameters might come twice within the global stale time.
-      // If that happens the onssuccess handler will not be called and we cannot
-      // see the functionality of it properly.
-      // By setting it to zero here we basically disable the cache for search queries,
-      // which is tolerable since the same query probably won't occur in production
-      // within a reasonable global stale time.
-      staleTime: 0,
-      onSuccess: (result) => {
-        const {
-          search: { works: resultWorks, hitcount: resultCount }
-        } = result as {
-          search: {
-            works: Work[];
-            hitcount: SearchWithPaginationQuery["search"]["hitcount"];
-          };
-        };
+    branchIdList: string[]
+  ) => {
+    return {
+      ...formatFacetTerms(facets),
+      ...(cleanBranches ? { branchId: branchIdList } : {})
+    };
+  };
 
-        setResultItems([...resultItems, ...resultWorks]);
+  const { data } = useSearchWithPaginationQuery({
+    q: { all: q },
+    offset: page * pageSize,
+    limit: pageSize,
+    filters: createFilters(filters, cleanBranches)
+  });
 
-        if (!hitcount) {
-          setHitCount(resultCount);
-        }
-      }
+  useEffect(() => {
+    if (!data) {
+      return;
     }
-  );
+
+    const {
+      search: { works: resultWorks, hitcount: resultCount }
+    } = data as {
+      search: {
+        works: Work[];
+        hitcount: SearchWithPaginationQuery["search"]["hitcount"];
+      };
+    };
+
+    setHitCount(resultCount);
+    setResultItems((prev) => [...prev, ...resultWorks]);
+  }, [data]);
 
   const worksAreLoaded = Boolean(resultItems.length);
 
@@ -99,6 +102,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
           {PagerComponent}
         </>
       )}
+      <FacetBrowserModal
+        q={q}
+        filters={filters}
+        filterHandler={filteringHandler}
+      />
     </div>
   );
 };
