@@ -71,13 +71,9 @@ export const useText = (): UseTextFunction => {
   return (key: string) => data?.[key] ?? key;
 };
 
-export type TextFunctionSimple = () => string;
-export type TextFunctionPlural = (count: number) => string;
-export type TextFunctionPlaceholders = (placeholders: {
-  [key: string]: string;
-}) => string;
+type Placeholders = Record<string, string>;
 
-const processTexts = (texts: string[], placeholders: Record<string, string>) =>
+const processTexts = (texts: string[], placeholders: Placeholders) =>
   texts.map((text: string) =>
     text.replace(/@\w+/g, (match) => {
       return placeholders[match] || match;
@@ -93,7 +89,7 @@ export const useTextV2 = () => {
       placeholders,
       count
     }: {
-      placeholders?: { [key: string]: string };
+      placeholders?: Placeholders;
       count?: number;
     } = {}
   ) => {
