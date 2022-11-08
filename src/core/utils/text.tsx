@@ -2,16 +2,48 @@ import { RootState, useSelector } from "../store";
 import { addTextEntries } from "../text.slice";
 import withSuffix from "./withSuffix";
 
+type Placeholders = Record<string, string>;
 type TextDefinitionTypes = "simple" | "plural";
 type TextDefinition = {
   type: TextDefinitionTypes;
   text: string[];
 };
-const constructTextDefinitionFromEntry = (incoming: string): TextDefinition => {
-  const textDefinitionError = "Error in text definition";
-  try {
-    const textDefinition = JSON.parse(incoming);
+export type UseTextFunction = (
+  key: string,
+  options?: {
+    placeholders?: Placeholders;
+    count?: number;
+  }
+) => string;
 
+const isAJsonObjectString = (str: string) => str.match(/^\{.*\}$/);
+
+// This function is trying to convert a text string given to an application
+// into a text definition object.
+//
+// If the text string is a Json object it will be validated.
+// If it is valid it will be returned as is
+// or otherwise transformed into a text definition object with an error.
+//
+// If the text string is a string it will be converted to a "simple" text definition.
+const constructTextDefinitionFromRawTextTextEntry = (
+  rawText: string
+): TextDefinition => {
+  // String converted to "simple" text definition.
+  if (!isAJsonObjectString(rawText)) {
+    return {
+      type: "simple",
+      text: [rawText]
+    };
+  }
+
+  const textDefinitionError = "Error in text definition";
+
+  // Let's try to parse the string as a Json object.
+  try {
+    const textDefinition = JSON.parse(rawText);
+
+    // Validate the text definition object.
     if (
       typeof textDefinition === "object" &&
       Object.keys(textDefinition).length === 2 &&
@@ -43,19 +75,19 @@ const constructTextDefinitionFromEntry = (incoming: string): TextDefinition => {
 
       return textDefinition;
     }
-    // If we were able to parse the incoming string,
+    // If we were able to parse the rawText string,
     // but it did not match the expected format,
     // we make sure to log an error.
     // eslint-disable-next-line no-console
-    console.error(`Unknown text definition format: ${incoming}`);
+    console.error(`Unknown text definition format: ${rawText}`);
 
-    // We do not want to break the app if we are unable to parse the incoming string.
+    // We do not want to break the app if we are unable to parse the rawText string.
   } catch (error: unknown) {
     // Instead we are logging an error to the console.
     const message = error instanceof Error ? error.message : "Unknown error";
     // eslint-disable-next-line no-console
     console.error(
-      `Could not parse incoming text format: ${incoming}. Message: ${message}`
+      `Could not parse rawText text format: ${rawText}. Message: ${message}`
     );
   }
 
@@ -65,14 +97,6 @@ const constructTextDefinitionFromEntry = (incoming: string): TextDefinition => {
   };
 };
 
-export type UseTextFunction = (key: string) => string;
-export const useText = (): UseTextFunction => {
-  const { data } = useSelector((state: RootState) => state.text);
-  return (key: string) => data?.[key] ?? key;
-};
-
-type Placeholders = Record<string, string>;
-
 const processTexts = (texts: string[], placeholders: Placeholders) =>
   texts.map((text: string) =>
     text.replace(/@\w+/g, (match) => {
@@ -80,20 +104,13 @@ const processTexts = (texts: string[], placeholders: Placeholders) =>
     })
   );
 
-export const useTextV2 = () => {
+export const useText = (): UseTextFunction => {
   const { data } = useSelector((state: RootState) => state.text);
 
-  return (
-    key: string,
-    {
-      placeholders,
-      count
-    }: {
-      placeholders?: Placeholders;
-      count?: number;
-    } = {}
-  ) => {
-    const textDefinition = constructTextDefinitionFromEntry(data?.[key] ?? key);
+  return (key: string, { placeholders, count } = {}) => {
+    const textDefinition = constructTextDefinitionFromRawTextTextEntry(
+      data?.[key] ?? key
+    );
     const processedTexts = placeholders
       ? processTexts(textDefinition.text, placeholders)
       : textDefinition.text;
