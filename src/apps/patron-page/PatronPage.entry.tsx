@@ -8,7 +8,7 @@ interface PatronPageConfigProps {
   publizonBaseUrlConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
-  pincodeLengthConfig: number;
+  pincodeLengthConfig: string;
   deletePatronLinkConfig: string;
 }
 interface PatronPageTextProps {

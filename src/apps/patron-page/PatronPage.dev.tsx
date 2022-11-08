@@ -26,7 +26,7 @@ export default {
       control: { type: "text" }
     },
     pincodeLengthConfig: {
-      defaultValue: 4,
+      defaultValue: "4",
       control: { type: "number" }
     },
     deletePatronLinkConfig: {
