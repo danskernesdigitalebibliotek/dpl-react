@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  formatFacetTerms,
-  getPlaceHolderFacets,
-  lineFacets
-} from "../../../apps/search-result/helpers";
+
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -13,6 +9,11 @@ import {
   useSearchFacetQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
+import {
+  formatFacetTerms,
+  getPlaceHolderFacets,
+  lineFacets
+} from "../../facet-browser/helper";
 import FacetLine from "../../facet-line/FacetLine";
 import FacetLineSelected from "../../facet-line/FacetLineSelected";
 
