@@ -112,37 +112,6 @@ describe("Material", () => {
     cy.contains("button:visible", "Ok").click();
   });
 
-  //  periodical test.
-  it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
-    cy.interceptRest({
-      aliasName: "periodical holdings",
-      url: "**/agencyid/catalog/holdings/**",
-      fixtureFilePath: "material/periodical-holdings.json"
-    });
-
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/periodical-fbi-api.json"
-    });
-    cy.visit(
-      "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
-    );
-    cy.get("#year").select("2021");
-    cy.get("#editions").should("have.value", "52");
-    cy.contains("button:visible", "Reserve tidsskrift").click();
-    cy.contains("h2", "2021, nr. 52");
-    cy.log("periodical Availability");
-    cy.interceptRest({
-      aliasName: "periodical Availability",
-      url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/periodical-availability.json"
-    });
-    cy.contains("button:visible", "Approve reservation").click();
-    cy.contains("Material is available and reserved for you!");
-    cy.contains("You are number 3 in queue");
-    cy.contains("button:visible", "Ok").click();
-  });
-
   //  infomedia test.
   it("Render infomedia + Read article + Close modal", () => {
     cy.interceptGraphql({
