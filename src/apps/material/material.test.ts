@@ -131,6 +131,12 @@ describe("Material", () => {
     cy.get("#editions").should("have.value", "52");
     cy.contains("button:visible", "Reserve tidsskrift").click();
     cy.contains("h2", "2021, nr. 52");
+    cy.log("periodical Availability");
+    cy.interceptRest({
+      aliasName: "periodical Availability",
+      url: "**/availability/v3?recordid=**",
+      fixtureFilePath: "material/periodical-availability.json"
+    });
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");
     cy.contains("You are number 3 in queue");
