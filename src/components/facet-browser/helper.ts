@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { FilterItemTerm } from "../../apps/search-result/types";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
   SearchFacetQuery,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { formatFacetTerms } from "../../apps/search-result/helpers";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -20,7 +20,23 @@ export const allFacetFields = [
   FacetField.WorkTypes
 ];
 
-const getPlaceHolderFacets = (facets: string[]) =>
+export const lineFacets = [
+  FacetField.FictionNonfiction,
+  FacetField.WorkTypes,
+  FacetField.GenreAndForm
+];
+
+export const defaultFacetLineTerms = [
+  "Faglitteratur",
+  "Skønlitteratur",
+  "Film",
+  "Spil",
+  "Musik"
+];
+
+export const showFacetAsSelect = ["genreAndForm"];
+
+export const getPlaceHolderFacets = (facets: string[]) =>
   facets.map((facet) => ({
     name: facet,
     values: [
@@ -30,6 +46,18 @@ const getPlaceHolderFacets = (facets: string[]) =>
       }
     ]
   }));
+
+export const formatFacetTerms = (filters: {
+  [key: string]: { [key: string]: FilterItemTerm };
+}) => {
+  return Object.keys(filters).reduce(
+    (acc, key) => ({
+      ...acc,
+      [key]: Object.keys(filters[key])
+    }),
+    {}
+  );
+};
 
 export function useGetFacets(query: string, filters: Filter) {
   const [facets, setFacets] = useState<

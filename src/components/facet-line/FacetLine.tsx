@@ -1,10 +1,7 @@
 import { upperFirst } from "lodash";
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  defaultFacetLineTerms,
-  showFacetAsSelect
-} from "../../apps/search-result/helpers";
+
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -17,6 +14,10 @@ import { openModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import { FacetBrowserModalId } from "../facet-browser/FacetBrowserModal";
+import {
+  defaultFacetLineTerms,
+  showFacetAsSelect
+} from "../facet-browser/helper";
 import Dropdown from "./Dropdown";
 
 type FacetLineProps = {

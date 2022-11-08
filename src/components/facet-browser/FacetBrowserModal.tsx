@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-
-import {
-  formatFacetTerms,
-  getPlaceHolderFacets,
-  BowserFacets
-} from "../../apps/search-result/helpers";
+import React from "react";
 import {
   FilterItemTerm,
   TermOnClickHandler
 } from "../../apps/search-result/types";
-import {
-  FacetResult,
-  useSearchFacetQuery
-} from "../../core/dbc-gateway/generated/graphql";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
