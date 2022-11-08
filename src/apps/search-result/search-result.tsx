@@ -8,7 +8,10 @@ import {
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
-import { formatFacetTerms } from "./helpers";
+import {
+  formatFacetTerms,
+  useGetFacets
+} from "../../components/facet-browser/helper";
 import useFilterHandler from "./useFilterHandler";
 import { FilterItemTerm, TermOnClickHandler } from "./types";
 import { useConfig } from "../../core/utils/config";
@@ -24,7 +27,6 @@ import {
   CampaignMatchPOSTBodyItem
 } from "../../core/dpl-cms/model";
 import Campaign from "../../components/campaign/Campaign";
-import { useGetFacets } from "../../components/facet-browser/helper";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 
 interface SearchResultProps {
@@ -141,11 +143,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         filters={filters}
         filterHandler={filteringHandler}
       />
-      <SearchResultList resultItems={resultItems} />
-      {PagerComponent}
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
+      <SearchResultList resultItems={resultItems} />
+      {PagerComponent}
       <FacetBrowserModal
         q={q}
         filters={filters}
