@@ -49,6 +49,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
   const { mutate } = useCampaignMatchPOST();
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
@@ -127,6 +128,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [data]);
 
   const worksAreLoaded = Boolean(resultItems.length);
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      setIsFirstLoad(false);
+      return;
+    }
+    track(11, "OSS Results", hitcount);
+    // We actaully just want to track if the hitcount changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hitcount]);
 
   return (
     <div className="search-result-page">
