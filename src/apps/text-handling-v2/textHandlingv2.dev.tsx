@@ -1,12 +1,12 @@
 import React from "react";
-import { useTextV2, withText } from "../../core/utils/text";
+import { useText, withText } from "../../core/utils/text";
 
 export default {
   title: "Apps / Text Handling v2",
   argTypes: {
     "version-2SimpleText": {
       name: "Version 2 simple text",
-      defaultValue: '{"type":"simple","text":["This is a test"]}',
+      defaultValue: "This is a @simple test",
       control: { type: "text" }
     },
     "version-2PlaceholdersText": {
@@ -25,21 +25,25 @@ export default {
 };
 
 const Template = () => {
-  const t2 = useTextV2();
-  const simple = t2("version-2SimpleText");
-  const placeholders = t2("version-2PlaceholdersText", {
+  const t = useText();
+  const simple = t("version-2SimpleText", {
+    placeholders: {
+      "@simple": "simple"
+    }
+  });
+  const placeholders = t("version-2PlaceholdersText", {
     placeholders: {
       "@placeholder": "teddy bear",
       "@result": "Yes"
     }
   });
-  const plural1 = t2("version-2PluralText", {
+  const plural1 = t("version-2PluralText", {
     count: 1,
     placeholders: {
       "@count": "1"
     }
   });
-  const plural2 = t2("version-2PluralText", {
+  const plural2 = t("version-2PluralText", {
     count: 10,
     placeholders: {
       "@count": "10"
