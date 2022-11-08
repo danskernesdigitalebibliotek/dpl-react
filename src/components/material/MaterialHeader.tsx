@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { isEqual } from "lodash";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
@@ -22,6 +23,7 @@ import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
+import { useStatistics } from "../../core/statistics/useStatistics";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -78,6 +80,25 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
+  const { track } = useStatistics("page");
+
+  // This is used to track whether the user is changing between manterial types or just clicking the same button over
+  const [manifestationMaterialTypes, setManifestationMaterialTypes] = useState<
+    string[]
+  >([]);
+
+  useEffect(() => {
+    const newManifestationMaterialTypes = manifestation.materialTypes.map(
+      (item) => item.specific
+    );
+    if (isEqual(manifestationMaterialTypes, newManifestationMaterialTypes)) {
+      return;
+    }
+    track(24, "Materialetype", newManifestationMaterialTypes);
+    setManifestationMaterialTypes(newManifestationMaterialTypes);
+    // We actaully just want to track if the currently selected manifestation changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [manifestation]);
 
   return (
     <header className="material-header">
