@@ -112,23 +112,6 @@ describe("Material", () => {
     cy.contains("button:visible", "Ok").click();
   });
 
-  //  infomedia test.
-  it("Render infomedia + Read article + Close modal", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
-    });
-    cy.interceptGraphql({
-      operationName: "getInfomedia",
-      fixtureFilePath: "material/infomedia-article.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
-    cy.contains("button:visible", "Read article").click();
-    cy.contains("h2", "BUTLERENS UTROLIGE HISTORIE");
-    cy.get(`[aria-label="Close infomedia modal"]`).click();
-  });
-
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",
