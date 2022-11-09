@@ -29,12 +29,16 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
       </p>
       {numberInQueue && (
         <p className="text-body-medium-regular pb-24">
-          {t("numberInQueueText")} {numberInQueue} {t("queueText")}
+          {t("numberInQueueText", {
+            placeholders: { "@number": numberInQueue }
+          })}
         </p>
       )}
       <p className="text-body-medium-regular pb-48">
-        {t("reservationSuccesPreferredPickupBranchText")}{" "}
-        {preferredPickupBranch}.
+        {t("reservationSuccessPreferredPickupBranchText", {
+          placeholders: { "@branch": preferredPickupBranch }
+        })}
+        .
       </p>
       <Button
         classNames="reservation-modal__confirm-button"

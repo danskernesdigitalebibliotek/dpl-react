@@ -23,14 +23,19 @@ const MaterialAvailabilityTextPhysical: React.FC<
 
   const { reservations, holdings } = data[0];
 
+  const materialsInStockInfoText = t("materialsInStockInfoText", {
+    count: totalMaterials(holdings),
+    placeholders: { "@count": totalMaterials(holdings) }
+  });
+  const materialReservationInfoText = t("materialReservationInfoText", {
+    count: reservations,
+    placeholders: { "@count": reservations }
+  });
+
   return (
-    <MaterialAvailabilityTextParagraph>{`${t(
-      "weHaveShoppedText"
-    )} ${totalMaterials(holdings)} ${t(
-      "copiesThereIsText"
-    )} ${reservations} ${t(
-      "reservationsForThisMaterialText"
-    )}`}</MaterialAvailabilityTextParagraph>
+    <MaterialAvailabilityTextParagraph>
+      {materialsInStockInfoText}. {materialReservationInfoText}
+    </MaterialAvailabilityTextParagraph>
   );
 };
 

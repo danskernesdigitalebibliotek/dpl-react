@@ -133,6 +133,15 @@ const ReservationModalBody = ({
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
 
+  const materialsInStockInfoText = t("materialsInStockInfoText", {
+    count: totalMaterials(holdings),
+    placeholders: { "@count": totalMaterials(holdings) }
+  });
+  const materialReservationInfoText = t("materialReservationInfoText", {
+    count: reservations,
+    placeholders: { "@count": reservations }
+  });
+
   return (
     <Modal
       modalId={reservationModalId(faustId)}
@@ -161,9 +170,7 @@ const ReservationModalBody = ({
           <div>
             <div className="reservation-modal-submit">
               <p className="text-small-caption">
-                {`${t("weHaveShoppedText")} ${totalMaterials(holdings)} ${t(
-                  "copiesThereIsText"
-                )} ${reservations} ${t("reservationsForThisMaterialText")}`}
+                {materialsInStockInfoText}. {materialReservationInfoText}
               </p>
               <Button
                 label={t("approveReservationText")}

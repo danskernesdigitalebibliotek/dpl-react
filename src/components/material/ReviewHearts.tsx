@@ -18,14 +18,14 @@ const ReviewHearts: React.FC<ReviewHeartsProps> = ({ amountOfHearts }) => {
     { length: Number(heartArray[1]) - Number(heartArray[0]) },
     (_, i) => i + 1
   );
+  const ariaLabel = t("ratingIsText", {
+    placeholders: {
+      "@heartCount": filledHeartsArray.length,
+      "@numberOfHeartsPossible": heartArray[1]
+    }
+  });
   return (
-    <div
-      className="mb-4"
-      role="figure"
-      aria-label={`${t("ratingIsText")} ${filledHeartsArray.length} ${t(
-        "outOfText"
-      )} ${heartArray[1]} ${t("heartsIconText")}`}
-    >
+    <div className="mb-4" role="figure" aria-label={ariaLabel}>
       {filledHeartsArray.map(() => {
         return <img src={HeartIconFilled} className="review__heart" alt="" />;
       })}
