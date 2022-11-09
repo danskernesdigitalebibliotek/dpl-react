@@ -37,6 +37,8 @@ import {
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
+import StockAndReservationInfo from "../material/StockAndReservationInfo";
+import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -133,15 +135,6 @@ const ReservationModalBody = ({
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
 
-  const materialsInStockInfoText = t("materialsInStockInfoText", {
-    count: totalMaterials(holdings),
-    placeholders: { "@count": totalMaterials(holdings) }
-  });
-  const materialReservationInfoText = t("materialReservationInfoText", {
-    count: reservations,
-    placeholders: { "@count": reservations }
-  });
-
   return (
     <Modal
       modalId={reservationModalId(faustId)}
@@ -169,9 +162,12 @@ const ReservationModalBody = ({
           </header>
           <div>
             <div className="reservation-modal-submit">
-              <p className="text-small-caption">
-                {materialsInStockInfoText}. {materialReservationInfoText}
-              </p>
+              <MaterialAvailabilityTextParagraph>
+                <StockAndReservationInfo
+                  stockCount={totalMaterials(holdings)}
+                  reservationCount={reservations}
+                />
+              </MaterialAvailabilityTextParagraph>
               <Button
                 label={t("approveReservationText")}
                 buttonType="none"
