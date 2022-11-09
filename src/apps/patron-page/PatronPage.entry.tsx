@@ -52,6 +52,6 @@ export interface PatronPageProps
   extends PatronPageConfigProps,
     PatronPageTextProps {}
 
-const LoanListEntry: FC<PatronPageProps> = () => <PatronPage />;
+const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
-export default withConfig(withText(LoanListEntry));
+export default withConfig(withText(PatronPageEntry));
