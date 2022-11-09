@@ -108,7 +108,7 @@ describe("Material", () => {
     cy.contains("button:visible", "Reserve bog").click();
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");
-    cy.contains("You are number 3 in queue");
+    cy.contains("You are number 3 in the queue");
     cy.contains("button:visible", "Ok").click();
   });
 
@@ -133,7 +133,7 @@ describe("Material", () => {
     cy.contains("h2", "2021, nr. 52");
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");
-    cy.contains("You are number 3 in queue");
+    cy.contains("You are number 3 in the queue");
     cy.contains("button:visible", "Ok").click();
   });
 
@@ -209,4 +209,4 @@ describe("Material", () => {
   });
 });
 
-export {};
+export default {};
