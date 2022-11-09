@@ -5,6 +5,7 @@ import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
 import { useConfig } from "../../core/utils/config";
+import { useStatistics } from "../../core/statistics/useStatistics";
 
 export interface AvailabilityLabelProps {
   manifestText?: string;
@@ -26,7 +27,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
-
+  const { track } = useStatistics("page");
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds,
@@ -39,6 +40,12 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
 
   const isAvailable = data?.some((item) => item.available);
   const availabilityText = isAvailable ? t("available") : t("unavailable");
+
+  // Track material availability (status) if the button is active - also meaning
+  // it is displayed on the material page
+  if (selected) {
+    track(38, "Materiale Status", availabilityText);
+  }
   const availableTriangleCss = isAvailable ? "success" : "alert";
 
   const classes = {
