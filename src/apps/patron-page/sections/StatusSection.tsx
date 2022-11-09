@@ -6,7 +6,7 @@ import {
 import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
 
-const StatusBar: FC = () => {
+const StatusSection: FC = () => {
   const t = useText();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
@@ -72,23 +72,23 @@ const StatusBar: FC = () => {
       {libraryProfile && (
         <>
           <h2 className="text-body-small-regular mt-32 mb-16">
-            {t("patronPageStatusBarHeaderText")}
+            {t("patronPageStatusSectionHeaderText")}
           </h2>
           <div className="text-body-small-regular">
-            {t("patronPageStatusBarBreadText")}
+            {t("patronPageStatusSectionBreadText")}
             <a href="todo" className="text-links">
-              {t("patronPageStatusBarLinkText")}
+              {t("patronPageStatusSectionLinkText")}
             </a>
           </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
-                {t("patronPageStatusBarLoanHeaderText")}
+                {t("patronPageStatusSectionLoanHeaderText")}
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("patronPageStatusBarLoansEbooksText")}
+                    {t("patronPageStatusSectionLoansEbooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
@@ -107,7 +107,7 @@ const StatusBar: FC = () => {
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("patronPageStatusBarLoansAudioBooksText")}
+                    {t("patronPageStatusSectionLoansAudioBooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
@@ -126,12 +126,12 @@ const StatusBar: FC = () => {
             </div>
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
-                {t("patronPageStatusBarReservationsHeaderText")}
+                {t("patronPageStatusSectionReservationsHeaderText")}
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("patronPageStatusBarReservationsEbooksText")}
+                    {t("patronPageStatusSectionReservationsEbooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
@@ -150,7 +150,7 @@ const StatusBar: FC = () => {
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
                   <div className="text-label">
-                    {t("patronPageStatusBarReservationsAudioBooksText")}
+                    {t("patronPageStatusSectionReservationsAudioBooksText")}
                   </div>
                   <div className="text-label">
                     {/* todo string interpolation */}
@@ -174,4 +174,4 @@ const StatusBar: FC = () => {
   );
 };
 
-export default StatusBar;
+export default StatusSection;

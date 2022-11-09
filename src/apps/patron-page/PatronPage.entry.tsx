@@ -22,13 +22,13 @@ interface PatronPageTextProps {
   patronPageContactPhoneCheckboxText: string;
   patronPageContactEmailLabelText: string;
   patronPageContactEmailCheckboxText: string;
-  patronPageStatusBarHeaderText: string;
-  patronPageStatusBarBreadText: string;
-  patronPageStatusBarLinkText: string;
-  patronPageStatusBarLoansEbooksText: string;
-  patronPageStatusBarLoansAudioBooksText: string;
-  patronPageStatusBarReservationsEbooksText: string;
-  patronPageStatusBarReservationsAudioBooksText: string;
+  patronPageStatusSectionHeaderText: string;
+  patronPageStatusSectionBreadText: string;
+  patronPageStatusSectionLinkText: string;
+  patronPageStatusSectionLoansEbooksText: string;
+  patronPageStatusSectionLoansAudioBooksText: string;
+  patronPageStatusSectionReservationsEbooksText: string;
+  patronPageStatusSectionReservationsAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
   patronPageChangePickupBreadText: string;
   pickupBranchesDropdownLabelText: string;
@@ -43,8 +43,8 @@ interface PatronPageTextProps {
   patronPageChangePincodeBreadText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
-  patronPageStatusBarReservationsHeaderText: string;
-  patronPageStatusBarLoanHeaderText: string;
+  patronPageStatusSectionReservationsHeaderText: string;
+  patronPageStatusSectionLoanHeaderText: string;
   patronPageDeleteProfileLinkText: string;
 }
 

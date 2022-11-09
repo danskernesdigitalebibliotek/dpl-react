@@ -77,40 +77,40 @@ export default {
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    patronPageStatusBarHeaderText: {
+    patronPageStatusSectionHeaderText: {
       defaultValue: "Digital loans (eReolen)",
       control: { type: "text" }
     },
-    patronPageStatusBarBreadText: {
+    patronPageStatusSectionBreadText: {
       defaultValue:
         "There is a number of materials without limitation to amounts of loans per month.",
       control: { type: "text" }
     },
-    patronPageStatusBarLinkText: {
+    patronPageStatusSectionLinkText: {
       defaultValue: "Click here, to see titles always eligible to be loaned",
       control: { type: "text" }
     },
-    patronPageStatusBarLoanHeaderText: {
+    patronPageStatusSectionLoanHeaderText: {
       defaultValue: "Loans per month",
       control: { type: "text" }
     },
-    patronPageStatusBarReservationsHeaderText: {
+    patronPageStatusSectionReservationsHeaderText: {
       defaultValue: "Reservations per month",
       control: { type: "text" }
     },
-    patronPageStatusBarLoansEbooksText: {
+    patronPageStatusSectionLoansEbooksText: {
       defaultValue: "E-books",
       control: { type: "text" }
     },
-    patronPageStatusBarLoansAudioBooksText: {
+    patronPageStatusSectionLoansAudioBooksText: {
       defaultValue: "Audiobooks",
       control: { type: "text" }
     },
-    patronPageStatusBarReservationsEbooksText: {
+    patronPageStatusSectionReservationsEbooksText: {
       defaultValue: "E-books",
       control: { type: "text" }
     },
-    patronPageStatusBarReservationsAudioBooksText: {
+    patronPageStatusSectionReservationsAudioBooksText: {
       defaultValue: "Audiobooks",
       control: { type: "text" }
     },

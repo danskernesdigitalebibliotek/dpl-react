@@ -6,7 +6,6 @@ import {
   useGetPatronInformationByPatronIdV2,
   useUpdateV5
 } from "../../core/fbs/fbs";
-import StatusBar from "./util/StatusBar";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Link } from "../../components/atoms/link";
@@ -14,6 +13,7 @@ import BasicDetailsSection from "./sections/BasicDetailsSection";
 import ContactInfoSection from "./sections/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
+import StatusSection from "./sections/StatusSection";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -87,7 +87,7 @@ const PatronPage: FC = () => {
       {patron && (
         <ContactInfoSection changePatron={changePatron} patron={patron} />
       )}
-      <StatusBar />
+      <StatusSection />
       {patron && (
         <ReservationDetailsSection
           changePatron={changePatron}
