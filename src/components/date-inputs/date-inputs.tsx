@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import DateInput from "../../../../components/date-input/date-input";
-import { useText } from "../../../../core/utils/text";
+import { useText } from "../../core/utils/text";
+import DateInput from "./date-input";
 
 interface DateInputsProps {
   setStartDate: (date: string) => void;
