@@ -95,6 +95,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       return;
     }
     track(24, "Materialetype", newManifestationMaterialTypes);
+    track(30, "Materiale Kilde", manifestation.source);
     setManifestationMaterialTypes(newManifestationMaterialTypes);
     // We actaully just want to track if the currently selected manifestation changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
