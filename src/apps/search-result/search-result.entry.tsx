@@ -7,18 +7,13 @@ import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
 
 interface SearchResultEntryTextProps {
-  etAlText: string;
+  addMoreFiltersText: string;
   byAuthorText: string;
-  showMoreText: string;
-  showingText: string;
-  outOfText: string;
-  resultsText: string;
-  numberDescriptionText: string;
-  inSeriesText: string;
-  showingResultsForText: string;
-  facetBrowserModalScreenReaderModalDescriptionText: string;
-  facetBrowserModalCloseModalAriaLabelText: string;
+  clearAllText: string;
+  etAlText: string;
   facetAccessTypesText: string;
+  facetBrowserModalCloseModalAriaLabelText: string;
+  facetBrowserModalScreenReaderModalDescriptionText: string;
   facetChildrenOrAdultsText: string;
   facetCreatorsText: string;
   facetFictionNonfictionText: string;
@@ -27,10 +22,13 @@ interface SearchResultEntryTextProps {
   facetMaterialTypesText: string;
   facetSubjectsText: string;
   facetWorkTypesText: string;
-  showResultsText: string;
   filterListText: string;
-  clearAllText: string;
-  addMoreFiltersText: string;
+  inSeriesText: string;
+  numberDescriptionText: string;
+  resultPagerStatusText: string;
+  showingResultsForText: string;
+  showMoreText: string;
+  showResultsText: string;
 }
 
 interface SearchResultEntryUrlProps {

@@ -12,7 +12,7 @@ export default {
     "version-2PlaceholdersText": {
       name: "Version 2 placeholders text",
       defaultValue:
-        '{"type":"simple","text":["This is a text with a @placeholder embedded. Does it work? @result it does!"]}',
+        "This is a text with a @placeholder embedded. Does it work? @result it does!",
       control: { type: "text" }
     },
     "version-2PluralText": {
