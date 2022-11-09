@@ -2,7 +2,7 @@ import { RootState, useSelector } from "../store";
 import { addTextEntries } from "../text.slice";
 import withSuffix from "./withSuffix";
 
-type Placeholders = Record<string, string>;
+type Placeholders = Record<string, string | number>;
 type TextDefinitionTypes = "simple" | "plural";
 type TextDefinition = {
   type: TextDefinitionTypes;
@@ -100,7 +100,7 @@ const constructTextDefinitionFromRawTextTextEntry = (
 const processTexts = (texts: string[], placeholders: Placeholders) =>
   texts.map((text: string) =>
     text.replace(/@\w+/g, (match) => {
-      return placeholders[match] || match;
+      return String(placeholders[match] || match);
     })
   );
 
