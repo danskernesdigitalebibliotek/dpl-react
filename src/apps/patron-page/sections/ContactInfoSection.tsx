@@ -29,7 +29,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         className="dpl-input__half-on-desktop"
         id="phone-input"
         type="number"
-        onChange={(newPhoneNumber) => changePatron(newPhoneNumber, "phoneNumber")}
+        onChange={(newPhoneNumber) =>
+          changePatron(newPhoneNumber, "phoneNumber")
+        }
         value={patron?.phoneNumber}
         label={t("patronPageContactPhoneLabelText")}
       />

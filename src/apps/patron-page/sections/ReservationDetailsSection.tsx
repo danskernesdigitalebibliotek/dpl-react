@@ -19,8 +19,9 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
     useState<boolean>(false);
 
   useEffect(() => {
+    // If onhold has values, the section should be visible
     if (patron.onHold) {
-      setReservationPauseSectionVisible(patron.onHold !== null);
+      setReservationPauseSectionVisible(true);
     }
   }, [patron.onHold]);
 

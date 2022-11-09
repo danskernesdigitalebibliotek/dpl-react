@@ -17,10 +17,12 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
   const [confirmPincode, setConfirmPincode] = useState<string>("");
 
   useEffect(() => {
+    // Set pincode to null, so it is only saved if it is validated
     changePincode(null);
     setPincodeValidation("");
     if (pincode && confirmPincode) {
       if (pincode.length !== pincodeLength) {
+        // todo string interpolation
         setPincodeValidation(
           `${t("patronPagePincodeTooShortValidationText")} ${pincodeLength}`
         );
