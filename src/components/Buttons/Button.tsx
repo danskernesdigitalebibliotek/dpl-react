@@ -6,7 +6,7 @@ import { ButtonSize } from "../../core/utils/types/button";
 
 export type ButtonProps = {
   label: string;
-  buttonType: "none" | "default" | "external-link" | "search" | "submit";
+  buttonType: "none" | "default" | "external-link" | "search";
   disabled: boolean;
   collapsible: boolean;
   size: ButtonSize;

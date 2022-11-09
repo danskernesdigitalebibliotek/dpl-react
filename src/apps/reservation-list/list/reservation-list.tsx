@@ -4,9 +4,9 @@ import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getReadyForPickup,
+  sortByOldestPickupDeadline,
   getReservedDigital,
-  getReservedPhysical,
-  sortByOldestPickupDeadline
+  getReservedPhysical
 } from "../utils/helpers";
 import { ModalIdsProps } from "../../../core/utils/modal";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
