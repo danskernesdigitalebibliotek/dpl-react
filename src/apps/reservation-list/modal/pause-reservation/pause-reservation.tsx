@@ -6,8 +6,7 @@ import { useUpdateV5 } from "../../../../core/fbs/fbs";
 import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
-import DateInputs from "./date-inputs";
-
+import DateInputs from "../../../../components/date-inputs/date-inputs";
 interface PauseReservationProps {
   id: string;
   user: PatronV5;

@@ -27,7 +27,6 @@ const StatusSection: FC = () => {
     }
   }, [libraryProfileFetched]);
 
-  
   // Todo where do I get these numbers from?
   let patronEbookLoans = 0;
   if (patronData?.ebookLoansRemaining) {
@@ -120,49 +119,6 @@ const StatusSection: FC = () => {
                   <div
                     className="bg-identity-primary"
                     style={{ width: `${audioBookLoanPercent}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="dpl-status mt-32">
-              <h3 className="text-small-caption">
-                {t("patronPageStatusSectionReservationsHeaderText")}
-              </h3>
-              <div className="dpl-progress-bar text-small-caption color-secondary-gray">
-                <div className="dpl-progress-bar__header">
-                  <div className="text-label">
-                    {t("patronPageStatusSectionReservationsEbooksText")}
-                  </div>
-                  <div className="text-label">
-                    {/* todo string interpolation */}
-                    {/* todo string interpolation aria label */}
-                    {patronEbookReservations} ud af{" "}
-                    {libraryProfile.maxConcurrentEbookReservationsPerBorrower}
-                  </div>
-                </div>
-                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${eBookReservationPerent}%` }}
-                  />
-                </div>
-              </div>
-              <div className="dpl-progress-bar text-small-caption color-secondary-gray">
-                <div className="dpl-progress-bar__header">
-                  <div className="text-label">
-                    {t("patronPageStatusSectionReservationsAudioBooksText")}
-                  </div>
-                  <div className="text-label">
-                    {/* todo string interpolation */}
-                    {/* todo string interpolation aria label */}
-                    {patronAudioBookReservations} ud af{" "}
-                    {libraryProfile.maxConcurrentAudioReservationsPerBorrower}
-                  </div>
-                </div>
-                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${audioBookReservationPercent}%` }}
                   />
                 </div>
               </div>
