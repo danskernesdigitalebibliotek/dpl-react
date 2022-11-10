@@ -369,6 +369,7 @@ describe("Reservation list", () => {
       "@physical_reservations",
       "@digital_reservations",
       "@work",
+      "@product",
       "@cover",
       "@user"
     ]);
