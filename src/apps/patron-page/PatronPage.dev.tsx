@@ -4,7 +4,7 @@ import { configTypes } from "../../core/utils/helpers/fetcher";
 import PatronPage from "./PatronPage.entry";
 
 export default {
-  title: "Apps / User page",
+  title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
     // Config
