@@ -177,4 +177,7 @@ fragment WorkMedium on Work {
     code
   }
   workYear
+  dk5MainEntry {
+    display
+  }
 }
