@@ -35,6 +35,7 @@ import {
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
+import { useStatistics } from "../../core/statistics/useStatistics";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -42,16 +43,28 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
-
   const [currentManifestation, setCurrentManifestation] =
     useState<Manifestation | null>(null);
-
   const [selectedPeriodical, setSelectedPeriodical] =
     useState<PeriodicalEdition | null>(null);
-
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+  const { track } = useStatistics("page");
+  useEffect(() => {
+    if (data?.work?.genreAndForm) {
+      track(25, "Materiale Genre", data.work.genreAndForm);
+    }
+    if (data?.work?.mainLanguages) {
+      track(
+        29,
+        "Materiale Genre",
+        data.work.mainLanguages.map((language) => language.display)
+      );
+    }
+    // In this case we only want to track once - on work data load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   // This useEffect selects the current manifestation
   useEffect(() => {
