@@ -4,8 +4,10 @@ import {
   AccessUrl,
   DigitalArticleService
 } from "../../../../core/dbc-gateway/generated/graphql";
+import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
+import { WorkId } from "../../../../core/utils/types/ids";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
@@ -13,6 +15,7 @@ import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomedi
 export interface MaterialButtonsOnlineProps {
   manifestation: Manifestation;
   size?: ButtonSize;
+  workId: WorkId;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -21,8 +24,13 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     access: [accessElement],
     access: [{ __typename: accessType }]
   },
-  size
+  size,
+  workId
 }) => {
+  const { track } = useStatistics("click");
+  const trackOnlineView = () => {
+    track(51, "Se online", workId);
+  };
   // If the access type is an external type we'll show corresponding button.
   if (["Ereol", "AccessUrl"].includes(accessType)) {
     const {
@@ -36,6 +44,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         externalUrl={externalUrl}
         origin={origin}
         size={size}
+        trackOnlineView={trackOnlineView}
       />
     );
   }
@@ -55,6 +64,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       <MaterialButtonOnlineInfomediaArticle
         size={size}
         manifestation={manifestation}
+        trackOnlineView={trackOnlineView}
       />
     );
   }

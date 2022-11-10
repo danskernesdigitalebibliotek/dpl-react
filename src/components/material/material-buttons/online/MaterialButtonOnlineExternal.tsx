@@ -10,13 +10,15 @@ export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
+  trackOnlineView: () => void;
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   loginRequired,
   externalUrl = "",
   origin,
-  size
+  size,
+  trackOnlineView
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
@@ -54,6 +56,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         collapsible={false}
         size={size || "large"}
         iconClassNames="invert"
+        onClick={trackOnlineView}
       />
     </LinkNoStyle>
   );

@@ -150,6 +150,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               <MaterialMainfestationItem
                 key={manifestation.pid}
                 manifestation={manifestation}
+                workId={wid}
               />
               <FindOnShelfModal
                 manifestations={[manifestation]}
