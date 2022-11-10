@@ -6,19 +6,15 @@ const usePager = (
   pageSize: number,
   overrideItemsShown?: () => number
 ) => {
-  const [itemsShown, setitemsShown] = useState(pageSize);
+  const [itemsShown, setitemsShown] = useState(
+    pageSize >= hitcount ? hitcount : pageSize
+  );
   const [page, setPage] = useState<number>(0);
 
   const pagehandler = () => {
     const currentPage = page + 1;
     const itemsOnPage = (currentPage + 1) * pageSize;
     setPage(currentPage);
-
-    if (itemsOnPage >= hitcount) {
-      setitemsShown(hitcount);
-      return;
-    }
-
     setitemsShown(itemsOnPage);
   };
 
