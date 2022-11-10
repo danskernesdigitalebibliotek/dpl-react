@@ -34,7 +34,7 @@ function ResultPager({
       </p>
       <button
         type="button"
-        className="test-result-pager btn-primary btn-outline btn-medium arrow__hover--right-small"
+        className="btn-primary btn-outline btn-medium arrow__hover--right-small"
         onClick={setPageHandler}
       >
         {/* TODO: Solve casing in CSS */}

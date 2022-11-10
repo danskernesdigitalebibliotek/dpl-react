@@ -539,7 +539,7 @@ describe("Reservation list", () => {
       .should("have.length", 2);
     cy.get(".list-reservation-container")
       .eq(0)
-      .find(".test-result-pager")
+      .find(".result-pager")
       .should("exist");
 
     // ID 11 2.c.iv more than 10 physical reservations the items paginate (here 2, because of config in cy.visit)
@@ -549,7 +549,7 @@ describe("Reservation list", () => {
       .should("have.length", 2);
     cy.get(".list-reservation-container")
       .eq(2)
-      .find(".test-result-pager")
+      .find(".result-pager")
       .should("exist");
 
     // ID 11 2.d.iv more than 10 digital reservations the items paginate (here 2, because of config in cy.visit)
@@ -559,7 +559,7 @@ describe("Reservation list", () => {
       .should("have.length", 2);
     cy.get(".list-reservation-container")
       .eq(2)
-      .find(".test-result-pager")
+      .find(".result-pager")
       .should("exist");
   });
 
