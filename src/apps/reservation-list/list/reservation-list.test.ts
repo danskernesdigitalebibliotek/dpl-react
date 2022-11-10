@@ -5,10 +5,13 @@ describe("Reservation list", () => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
-    const wednesday20220713 = new Date("2022-06-03T12:30:00.000Z");
+
+    const wednesday20220713 = new Date("2022-06-03T12:30:00.000Z").getTime();
 
     // Sets time to a specific date
-    cy.clock(wednesday20220713);
+    // https://github.com/cypress-io/cypress/issues/7577
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.clock(wednesday20220713).then((clock: any) => clock.bind(window));
 
     cy.intercept(
       "GET",
@@ -367,7 +370,6 @@ describe("Reservation list", () => {
       "@digital_reservations",
       "@work",
       "@cover",
-      "@product",
       "@user"
     ]);
   });
