@@ -79,7 +79,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         }
       );
     }
-  }, [mutate, campaignFacets]);
+    // TODO Replace this with a proper solution e.g. from a third party.
+    // useEffect does shallow equality check for dependencies. This does not
+    // work well objects with. Stringify to create a stable dependency.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mutate, JSON.stringify(campaignFacets)]);
 
   const createFilters = (
     facets: {
