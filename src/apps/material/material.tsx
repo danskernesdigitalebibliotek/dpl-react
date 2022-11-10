@@ -162,6 +162,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               <ReservationModal
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
+                workId={wid}
               />
             </>
           );
@@ -203,6 +204,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             mainManifestation={currentManifestation}
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
+            workId={wid}
           />
           <InfomediaModal mainManifestation={currentManifestation} />
         </>
