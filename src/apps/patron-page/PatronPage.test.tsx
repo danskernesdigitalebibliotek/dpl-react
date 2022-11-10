@@ -100,7 +100,7 @@ describe("Patron page", () => {
     cy.wait(["@LibraryProfile", "@Loans", "@User"]);
   });
 
-  it("Reservations list", () => {
+  it("Patron page", () => {
     // ID 36 2. The system shows
     // ID 36 2.a. Header
     cy.get(".dpl-patron-page")
