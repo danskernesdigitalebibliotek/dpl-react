@@ -4,7 +4,8 @@ import { useQueryClient } from "react-query";
 import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
 import {
   useGetPatronInformationByPatronIdV2,
-  useUpdateV5
+  useUpdateV5,
+  getGetPatronInformationByPatronIdV2QueryKey
 } from "../../core/fbs/fbs";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
@@ -71,7 +72,9 @@ const PatronPage: FC = () => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries(useGetPatronInformationByPatronIdV2);
+            queryClient.invalidateQueries(
+              getGetPatronInformationByPatronIdV2QueryKey()
+            );
           },
           // todo error handling, missing in figma
           onError: () => {}

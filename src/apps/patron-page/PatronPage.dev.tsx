@@ -94,20 +94,12 @@ export default {
       defaultValue: "Loans per month",
       control: { type: "text" }
     },
-    patronPageStatusSectionReservationsHeaderText: {
-      defaultValue: "Reservations per month",
-      control: { type: "text" }
-    },
     patronPageStatusSectionLoansEbooksText: {
       defaultValue: "E-books",
       control: { type: "text" }
     },
     patronPageStatusSectionLoansAudioBooksText: {
       defaultValue: "Audiobooks",
-      control: { type: "text" }
-    },
-    patronPageStatusSectionReservationsEbooksText: {
-      defaultValue: "E-books",
       control: { type: "text" }
     },
     patronPageStatusSectionReservationsAudioBooksText: {
@@ -189,6 +181,10 @@ export default {
     },
     patronPageDeleteProfileLinkText: {
       defaultValue: "Delete your profile",
+      control: { type: "text" }
+    },
+    patronPageStatusSectionReservationsText: {
+      defaultValue: "You can reserve {number} ebooks and {number} audiobooks",
       control: { type: "text" }
     }
   }

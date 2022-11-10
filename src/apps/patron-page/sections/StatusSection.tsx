@@ -27,7 +27,6 @@ const StatusSection: FC = () => {
     }
   }, [libraryProfileFetched]);
 
-  // Todo where do I get these numbers from?
   let patronEbookLoans = 0;
   if (patronData?.ebookLoansRemaining) {
     patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
@@ -36,8 +35,6 @@ const StatusSection: FC = () => {
   if (patronData?.audiobookLoansRemaining) {
     patronAudioBookLoans = Math.abs(patronData?.audiobookLoansRemaining) || 0;
   }
-  const patronEbookReservations = 1; // todo afventer svar
-  const patronAudioBookReservations = 2; // todo afventer svar
   let eBookLoanPerent = 100;
   if (libraryProfile?.maxConcurrentEbookLoansPerBorrower) {
     eBookLoanPerent =
@@ -52,20 +49,6 @@ const StatusSection: FC = () => {
       100;
   }
 
-  let eBookReservationPerent = 100;
-  if (libraryProfile?.maxConcurrentEbookReservationsPerBorrower) {
-    eBookReservationPerent =
-      (patronEbookReservations /
-        libraryProfile.maxConcurrentEbookReservationsPerBorrower) *
-      100;
-  }
-  let audioBookReservationPercent = 100;
-  if (libraryProfile?.maxConcurrentAudioReservationsPerBorrower) {
-    audioBookReservationPercent =
-      (patronAudioBookReservations /
-        libraryProfile.maxConcurrentAudioReservationsPerBorrower) *
-      100;
-  }
   return (
     <section className="dpl-status-loans">
       {libraryProfile && (
@@ -78,6 +61,11 @@ const StatusSection: FC = () => {
             <a href="todo" className="text-links">
               {t("patronPageStatusSectionLinkText")}
             </a>
+          </div>
+          <div className="text-body-small-regular">
+            {t("patronPageStatusSectionReservationsText")}
+            {libraryProfile?.maxConcurrentEbookReservationsPerBorrower}
+            {libraryProfile?.maxConcurrentAudioReservationsPerBorrower}
           </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">

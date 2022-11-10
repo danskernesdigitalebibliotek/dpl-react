@@ -27,7 +27,6 @@ interface PatronPageTextProps {
   patronPageStatusSectionLinkText: string;
   patronPageStatusSectionLoansEbooksText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
-  patronPageStatusSectionReservationsEbooksText: string;
   patronPageStatusSectionReservationsAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
   patronPageChangePickupBreadText: string;
@@ -43,9 +42,9 @@ interface PatronPageTextProps {
   patronPageChangePincodeBreadText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
-  patronPageStatusSectionReservationsHeaderText: string;
   patronPageStatusSectionLoanHeaderText: string;
   patronPageDeleteProfileLinkText: string;
+  patronPageStatusSectionReservationsText: string;
 }
 
 export interface PatronPageProps

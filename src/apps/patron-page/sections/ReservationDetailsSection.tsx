@@ -2,8 +2,8 @@ import React, { useState, FC, useEffect } from "react";
 import { PatronV5 } from "../../../core/fbs/model";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import BranchesDropdown from "../util/BranchesDropdown";
-import DateInputs from "../../reservation-list/modal/pause-reservation/date-inputs";
 import { useText } from "../../../core/utils/text";
+import DateInputs from "../../../components/date-inputs/date-inputs";
 
 interface ReservationDetailsSectionProps {
   patron: PatronV5;
