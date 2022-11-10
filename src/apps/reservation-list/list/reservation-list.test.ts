@@ -362,19 +362,12 @@ describe("Reservation list", () => {
       code: 101,
       message: "OK"
     }).as("product");
-    cy.visit(
-      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
-    );
-    cy.wait([
-      "@physical_reservations",
-      "@digital_reservations",
-      "@work",
-      "@cover",
-      "@user"
-    ]);
   });
 
   it("Reservations list", () => {
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".reservation-list-page")
@@ -532,6 +525,7 @@ describe("Reservation list", () => {
     cy.visit(
       "/iframe.html?id=apps-reservation-list--reservation-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
+
     // ID 11 2.b.iv more than "ready for pickup" 10 reservations the items paginate (here 2, because of config in cy.visit)
     cy.get(".list-reservation-container")
       .eq(0)
@@ -728,7 +722,7 @@ describe("Reservation list", () => {
           }
         ]
       }
-    );
+    ).as("physical_reservations");
 
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
@@ -765,11 +759,13 @@ describe("Reservation list", () => {
         code: 101,
         message: "OK"
       }
-    });
+    }).as("digital_reservations");
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".list-reservation-container")
@@ -801,7 +797,7 @@ describe("Reservation list", () => {
           }
         ]
       }
-    );
+    ).as("physical_reservations");
 
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
@@ -820,11 +816,14 @@ describe("Reservation list", () => {
         code: 101,
         message: "OK"
       }
-    });
+    }).as("digital_reservations");
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
+
     // ID 11 2.c.v. No physical reservations text: "At the moment you have 0 reservations on physical items"
     cy.get(".list-reservation-container")
       .eq(1)
@@ -846,7 +845,7 @@ describe("Reservation list", () => {
         statusCode: 200,
         body: []
       }
-    );
+    ).as("physical_reservations");
 
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
@@ -855,12 +854,13 @@ describe("Reservation list", () => {
         code: 101,
         message: "OK"
       }
-    });
+    }).as("digital_reservations");
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
     // ID 11 2: user has no reservations
     // ID 11 2.a. header "Your reservations"
     cy.get(".reservation-list-page")
