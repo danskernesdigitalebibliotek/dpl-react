@@ -62,6 +62,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         data.work.mainLanguages.map((language) => language.display)
       );
     }
+    if (data?.work?.dk5MainEntry) {
+      track(25, "Materiale Målgruppe", data.work.dk5MainEntry.display);
+    }
     // In this case we only want to track once - on work data load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
