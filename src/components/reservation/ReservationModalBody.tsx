@@ -111,8 +111,6 @@ const ReservationModalBody = ({
       return;
     }
 
-    track(50, "Reserver", workId);
-
     // Save reservation to FBS.
     mutate(
       {
@@ -125,9 +123,11 @@ const ReservationModalBody = ({
       },
       {
         onSuccess: (res) => {
-          // this state is used to show the success or error modal
+          // Track only if the reservation has been successfully saved.
+          track(50, "Reserver", workId);
+          // This state is used to show the success or error modal.
           setReservationResponse(res);
-          // because after a successful reservation the holdings (reservations) are updated
+          // Because after a successful reservation the holdings (reservations) are updated.
           queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
         }
       }
