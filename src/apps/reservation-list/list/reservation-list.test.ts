@@ -6,12 +6,12 @@ describe("Reservation list", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    const wednesday20220713 = new Date("2022-06-03T12:30:00.000Z").getTime();
+    const wednesday20220603 = new Date("2022-06-03T12:30:00.000Z").getTime();
 
     // Sets time to a specific date
     // https://github.com/cypress-io/cypress/issues/7577
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cy.clock(wednesday20220713).then((clock: any) => clock.bind(window));
+    cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
 
     cy.intercept(
       "GET",
@@ -362,12 +362,21 @@ describe("Reservation list", () => {
       code: 101,
       message: "OK"
     }).as("product");
-  });
 
-  it("Reservations list", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+    cy.wait([
+      "@product",
+      "@physical_reservations",
+      "@digital_reservations",
+      "@work",
+      "@cover",
+      "@user"
+    ]);
+  });
+
+  it("Reservations list", () => {
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".reservation-list-page")
@@ -428,7 +437,7 @@ describe("Reservation list", () => {
       .find(".list-reservation__about p")
       .should(
         "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation(2006)"
+        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
@@ -485,7 +494,6 @@ describe("Reservation list", () => {
       .eq(0)
       .find(".list-reservation__deadline p")
       .should("have.text", "Du er forrest i køen");
-
     // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
     cy.get(".list-reservation-container")
       .eq(1)
@@ -518,42 +526,6 @@ describe("Reservation list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
-      .should("exist");
-  });
-
-  it("Reservations list pagination", () => {
-    cy.visit(
-      "/iframe.html?id=apps-reservation-list--reservation-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
-    );
-
-    // ID 11 2.b.iv more than "ready for pickup" 10 reservations the items paginate (here 2, because of config in cy.visit)
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .should("have.length", 2);
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".result-pager")
-      .should("exist");
-
-    // ID 11 2.c.iv more than 10 physical reservations the items paginate (here 2, because of config in cy.visit)
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .should("have.length", 2);
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".result-pager")
-      .should("exist");
-
-    // ID 11 2.d.iv more than 10 digital reservations the items paginate (here 2, because of config in cy.visit)
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".list-reservation")
-      .should("have.length", 2);
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".result-pager")
       .should("exist");
   });
 

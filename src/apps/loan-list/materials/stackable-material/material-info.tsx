@@ -37,8 +37,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
-            {authors}
-            {year && <>({year})</>}
+            {authors} {year && <>({year})</>}
           </p>
         </div>
         {children}
