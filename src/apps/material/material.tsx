@@ -65,6 +65,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (data?.work?.dk5MainEntry) {
       track(31, "Materiale - DK5-nummer", data.work.dk5MainEntry.display);
     }
+    if (data?.work?.fictionNonfiction) {
+      track(
+        32,
+        "Materiale Fiktion/nonfiktion",
+        data.work.fictionNonfiction.display
+      );
     }
     // In this case we only want to track once - on work data load
     // eslint-disable-next-line react-hooks/exhaustive-deps
