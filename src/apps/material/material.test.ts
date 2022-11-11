@@ -59,7 +59,7 @@ describe("Material", () => {
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.contains("bog");
-    cy.contains("unavailable");
+    cy.contains("available");
   });
 
   it("Open material details", () => {

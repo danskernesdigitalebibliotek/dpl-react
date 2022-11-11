@@ -8,6 +8,47 @@ export function isImageLoaded(cy: Cypress.cy & EventEmitter) {
 }
 
 describe("Campaign", () => {
+  it("Shows a full campaign with image, text & link", () => {
+    cy.wait([
+      "@searchFacet GraphQL operation",
+      "@searchWithPagination GraphQL operation",
+      "@Campaign service - full campaign"
+    ]);
+    isImageLoaded(cy);
+    cy.get("img").should("have.attr", "alt");
+    cy.get("section").contains("Harry Potter");
+    cy.get("a")
+      .first()
+      .should(
+        "have.attr",
+        "href",
+        "http://localhost/?path=/story/apps-search-result--search-result"
+      );
+  });
+
+  it.only("Shows a text-only campaign without an image", () => {
+    cy.wait([
+      "@searchFacet GraphQL operation",
+      "@searchWithPagination GraphQL operation",
+      "@Campaign service - text only campaign"
+    ]);
+    cy.get("section").should("contain.text", "Harry Potter");
+    cy.get("section").find("img").should("not.exist");
+  });
+
+  it("Shows an image-only campaign without text", () => {
+    cy.interceptRest({
+      httpMethod: "POST",
+      aliasName: "Campaign service - image only campaign",
+      url: "**/dpl_campaign/match",
+      fixtureFilePath: "search-result/campaign-image-only.json"
+    });
+
+    isImageLoaded(cy);
+    cy.get("img").should("have.attr", "alt");
+    cy.get("section").find("Lorem ipsum Harry Potter").should("not.exist");
+  });
+
   beforeEach(() => {
     // Intercept graphql search query.
     cy.interceptGraphql({
@@ -32,24 +73,18 @@ describe("Campaign", () => {
     ).as("Harry Potter cover");
 
     // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
+    cy.interceptRest({
+      aliasName: "Cover service",
+      url: "**/api/v2/covers?**",
+      fixtureFilePath: "cover.json"
+    });
 
     // Intercept availability service.
-    cy.intercept("GET", "**/availability/v3**", {
-      statusCode: 200,
-      body: [
-        {
-          recordId: "99999999",
-          reservable: true,
-          available: true,
-          reservations: 5
-        }
-      ]
-    }).as("Availability service");
+    cy.interceptRest({
+      aliasName: "Availability service",
+      url: "**/availability/v3?recordid=**",
+      fixtureFilePath: "material/availability.json"
+    });
 
     // Intercept material list service.
     cy.intercept("HEAD", "**/list/default/**", {
@@ -57,51 +92,22 @@ describe("Campaign", () => {
       body: {}
     }).as("Material list service");
 
+    cy.interceptRest({
+      aliasName: "Campaign service - full campaign",
+      url: "**/dpl_campaign/match",
+      fixtureFilePath: "search-result/campaign.json"
+    });
+
+    cy.interceptRest({
+      httpMethod: "POST",
+      aliasName: "Campaign service - text only campaign",
+      url: "**/dpl_campaign/match",
+      fixtureFilePath: "search-result/campaign-text-only.json"
+    });
+
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
-  });
-
-  it("Shows a full campaign with image, text & link", () => {
-    cy.fixture("search-result/campaign.json")
-      .then((result) => {
-        cy.intercept("**/dpl_campaign/match", result);
-      })
-      .as("Campaign service - full campaign");
-
-    isImageLoaded(cy);
-    cy.get("img").should("have.attr", "alt");
-    cy.get("section").contains("Harry Potter");
-    cy.get("a")
-      .first()
-      .should(
-        "have.attr",
-        "href",
-        "http://localhost/?path=/story/apps-search-result--search-result"
-      );
-  });
-
-  it("Shows a text-only campaign without an image", () => {
-    cy.fixture("search-result/campaign-text-only.json")
-      .then((result) => {
-        cy.intercept("POST", "**/dpl_campaign/match", result);
-      })
-      .as("Campaign service - text only campaign");
-
-    cy.get("section").should("contain.text", "Harry Potter");
-    cy.get("section").find("img").should("not.exist");
-  });
-
-  it("Shows an image-only campaign without text", () => {
-    cy.fixture("search-result/campaign-image-only.json")
-      .then((result) => {
-        cy.intercept("POST", "**/dpl_campaign/match", result);
-      })
-      .as("Campaign service - image only campaign");
-
-    isImageLoaded(cy);
-    cy.get("img").should("have.attr", "alt");
-    cy.get("section").find("Lorem ipsum Harry Potter").should("not.exist");
   });
 });
 
