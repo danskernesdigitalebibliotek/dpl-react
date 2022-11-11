@@ -18,6 +18,13 @@ export type UseTextFunction = (
 
 const isAJsonObjectString = (str: string) => str.match(/^\{.*\}$/);
 
+class TextDefinitionError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "TextDefinitionError";
+  }
+}
+
 // This function is trying to convert a text string given to an application
 // into a text definition object.
 //
@@ -37,8 +44,6 @@ const constructTextDefinitionFromRawTextTextEntry = (
     };
   }
 
-  const textDefinitionError = "Error in text definition";
-
   // Let's try to parse the string as a Json object.
   try {
     const textDefinition = JSON.parse(rawText);
@@ -56,44 +61,31 @@ const constructTextDefinitionFromRawTextTextEntry = (
       const text = textDefinition?.text ?? [];
 
       if (["simple"].includes(type) && text.length !== 1) {
-        // We deliberately want to write an error to the console:
-        // eslint-disable-next-line no-console
-        console.error(
+        throw new TextDefinitionError(
           "Simple text definitions must have exactly one text entry"
         );
-        textDefinition.text = [textDefinitionError];
       }
 
       if (["plural"].includes(type) && text.length !== 2) {
-        // We deliberately want to write an error to the console:
-        // eslint-disable-next-line no-console
-        console.error(
+        throw new TextDefinitionError(
           "Plural text definitions must have exactly two text entries"
         );
-        textDefinition.text = [textDefinitionError, textDefinitionError];
       }
 
       return textDefinition;
     }
-    // If we were able to parse the rawText string,
-    // but it did not match the expected format,
-    // we make sure to log an error.
-    // eslint-disable-next-line no-console
-    console.error(`Unknown text definition format: ${rawText}`);
-
-    // We do not want to break the app if we are unable to parse the rawText string.
   } catch (error: unknown) {
     // Instead we are logging an error to the console.
     const message = error instanceof Error ? error.message : "Unknown error";
-    // eslint-disable-next-line no-console
-    console.error(
+    throw new TextDefinitionError(
       `Could not parse rawText text format: ${rawText}. Message: ${message}`
     );
   }
 
+  // If we got this far the text definition is invalid.
   return {
     type: "simple",
-    text: [textDefinitionError]
+    text: ["Unknown text entry"]
   };
 };
 
