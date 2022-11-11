@@ -5,7 +5,7 @@ describe("The periodical material", () => {
     cy.wait([
       "@getMaterial GraphQL operation",
       "@Periodical holdings",
-      "@Periodical availability",
+      "@Availability",
       "@Cover"
     ]);
     cy.get("#year").select("2021");
@@ -30,9 +30,9 @@ describe("The periodical material", () => {
       fixtureFilePath: "material/periodical-fbi-api.json"
     });
     cy.interceptRest({
-      aliasName: "Periodical availability",
+      aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/periodical-availability.json"
+      fixtureFilePath: "material/availability.json"
     });
     cy.interceptRest({
       aliasName: "Cover",
