@@ -2,10 +2,17 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("The periodical material", () => {
   it("Render periodical + Change to 2021, nr. 52 + Approve reservation", () => {
+    cy.wait([
+      "@getMaterial GraphQL operation",
+      "@Periodical holdings",
+      "@Periodical availability",
+      "@Cover"
+    ]);
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "52");
     cy.contains("button:visible", "Reserve tidsskrift").click();
     cy.contains("h2", "2021, nr. 52");
+    cy.wait("@user");
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");
     cy.contains("You are number 3 in queue");
