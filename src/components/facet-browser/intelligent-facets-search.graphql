@@ -1,0 +1,13 @@
+query intelligentFacets ($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
+  search(q: $q) {
+    hitcount
+    intelligentFacets(limit: $facetsLimit) {
+      name
+      values(limit: $valuesLimit) {
+        key
+        term
+        score
+      }
+    }
+  }
+}
