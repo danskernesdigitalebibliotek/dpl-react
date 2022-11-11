@@ -241,7 +241,7 @@ describe("Patron page", () => {
       .type("1234");
 
     // ID 41 2. click delete your profile, 3. refered to page
-    cy.get(".dpl-patron-page #delete-patron-link")
+    cy.get(".dpl-patron-page [data-cy='delete-patron-link']")
       .should("have.attr", "href")
       .should(
         "include",

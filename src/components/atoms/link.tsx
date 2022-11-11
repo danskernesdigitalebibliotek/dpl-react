@@ -18,6 +18,7 @@ export const Link: React.FC<LinkProps> = ({
   return (
     <a
       id={id}
+      data-cy={id}
       href={String(href)}
       target={isNewTab ? "_blank" : ""}
       rel="noreferrer"
