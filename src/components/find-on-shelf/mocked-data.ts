@@ -17,9 +17,6 @@ export const mockedManifestationData: Manifestation[] = [
       display: "SKOENLITTERATUR",
       code: "FICTION" as FictionNonfictionCode
     },
-    publicationYear: {
-      display: "2016"
-    },
     materialTypes: [
       {
         specific: "bog"
@@ -50,7 +47,10 @@ export const mockedManifestationData: Manifestation[] = [
       }
     ],
     edition: {
-      summary: "1. udgave, 3. oplag (2018)"
+      summary: "1. udgave, 3. oplag (2018)",
+      publicationYear: {
+        display: "2016"
+      }
     },
     audience: {
       generalAudience: []
@@ -85,9 +85,6 @@ export const mockedManifestationData: Manifestation[] = [
       display: "SKOENLITTERATUR",
       code: "FICTION" as FictionNonfictionCode
     },
-    publicationYear: {
-      display: "2016"
-    },
     materialTypes: [
       {
         specific: "lydbog (cd-mp3)"
@@ -121,7 +118,10 @@ export const mockedManifestationData: Manifestation[] = [
       }
     ],
     edition: {
-      summary: "1. lydbogsudgave"
+      summary: "1. lydbogsudgave",
+      publicationYear: {
+        display: "2016"
+      }
     },
     audience: {
       generalAudience: []
@@ -159,9 +159,6 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
       display: "FAGLITTERATUR",
       code: "NONFICTION" as FictionNonfictionCode
     },
-    publicationYear: {
-      display: "1946"
-    },
     materialTypes: [
       {
         specific: "periodikum"
@@ -182,7 +179,12 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
       }
     ],
     contributors: [],
-    edition: null,
+    edition: {
+      summary: "",
+      publicationYear: {
+        display: "1946"
+      }
+    },
     audience: {
       generalAudience: []
     },

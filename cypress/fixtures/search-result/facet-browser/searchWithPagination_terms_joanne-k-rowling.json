@@ -208,9 +208,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1998"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -237,7 +234,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1998"
+                  "summary": "1998",
+                  "publicationYear": {
+                    "display": "1998"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -272,9 +272,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -301,7 +298,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2002"
+                  "summary": "1. bogklubudgave, 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -336,9 +336,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -365,7 +362,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -400,9 +400,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -432,7 +429,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 1999"
+                  "summary": "2. udgave, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -467,9 +467,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -496,7 +493,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -531,9 +531,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -564,7 +561,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -599,9 +599,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -628,7 +625,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -663,9 +663,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -695,7 +692,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2001"
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -730,9 +730,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -765,7 +762,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2001"
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -802,9 +802,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -835,7 +832,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2002"
+                  "summary": "2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -872,9 +872,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -905,7 +902,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Bogklubudgave, 2002"
+                  "summary": "Bogklubudgave, 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -940,9 +940,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -969,7 +966,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "3. udgave, 2004"
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1004,9 +1004,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1036,7 +1033,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006"
+                  "summary": "2. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1073,9 +1073,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -1106,7 +1103,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1141,9 +1141,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1174,7 +1171,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2012"
+                  "summary": "5. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1209,9 +1209,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2020"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1245,7 +1242,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "9. udgave, 2020"
+                  "summary": "9. udgave, 2020",
+                  "publicationYear": {
+                    "display": "2020"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1280,9 +1280,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2008"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1313,7 +1310,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Særudgave, 2008"
+                  "summary": "Særudgave, 2008",
+                  "publicationYear": {
+                    "display": "2008"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1348,9 +1348,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1381,7 +1378,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6 udgave, 2015"
+                  "summary": "6 udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1416,9 +1416,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1452,7 +1449,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1. illustrerede udgave, 7. udgave, 2015"
+                  "summary": "1. illustrerede udgave, 7. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1487,9 +1487,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1520,7 +1517,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "8. udgave, 2018"
+                  "summary": "8. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1556,9 +1556,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "1998"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -1585,7 +1582,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "1998"
+                "summary": "1998",
+                "publicationYear": {
+                  "display": "1998"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -1810,9 +1810,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1839,7 +1836,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "3. oplag, 2000"
+                  "summary": "3. oplag, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1874,9 +1874,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1903,7 +1900,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2003"
+                  "summary": "1. bogklubudgave, 2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -1938,9 +1938,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -1970,7 +1967,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 2000"
+                  "summary": "2. udgave, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2005,9 +2005,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -2034,7 +2031,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2069,9 +2069,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -2101,7 +2098,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2136,9 +2136,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -2169,7 +2166,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2206,9 +2206,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -2239,7 +2236,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2274,9 +2274,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2303,7 +2300,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "3. udgave, 2004"
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2338,9 +2338,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2370,7 +2367,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006"
+                  "summary": "2. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2407,9 +2407,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -2440,7 +2437,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2006"
+                  "summary": "2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2477,9 +2477,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -2510,7 +2507,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2545,9 +2545,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2578,7 +2575,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2012"
+                  "summary": "5. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2613,9 +2613,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2646,7 +2643,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2015"
+                  "summary": "6. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2681,9 +2681,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2017"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2717,7 +2714,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2017"
+                  "summary": "Illustreret udgave, 7. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2752,9 +2752,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -2785,7 +2782,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "8. udgave, 2018"
+                  "summary": "8. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -2821,9 +2821,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "2000"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -2850,7 +2847,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "3. oplag, 2000"
+                "summary": "3. oplag, 2000",
+                "publicationYear": {
+                  "display": "2000"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -3075,9 +3075,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -3108,7 +3105,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3143,9 +3143,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3172,7 +3169,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. udgave, 2005"
+                  "summary": "1. udgave, 2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3207,9 +3207,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "ebog"
@@ -3236,7 +3233,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3273,9 +3273,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -3302,7 +3299,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3337,9 +3337,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -3370,7 +3367,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3405,9 +3405,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3434,7 +3431,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2006"
+                  "summary": "1. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3469,9 +3469,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3501,7 +3498,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 2006"
+                  "summary": "2. udgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3536,9 +3536,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -3569,7 +3566,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3604,9 +3604,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3637,7 +3634,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "4. udgave, 2012"
+                  "summary": "4. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3672,9 +3672,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3705,7 +3702,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1., i.e 5. udgave, 2015"
+                  "summary": "1., i.e 5. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3740,9 +3740,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -3773,7 +3770,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2018"
+                  "summary": "6. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -3809,9 +3809,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "2005"
-              },
               "materialTypes": [
                 {
                   "specific": "lydbog (cd)"
@@ -3842,7 +3839,10 @@
                 }
               ],
               "edition": {
-                "summary": "2005"
+                "summary": "2005",
+                "publicationYear": {
+                  "display": "2005"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -4067,9 +4067,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4096,7 +4093,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4131,9 +4131,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -4164,7 +4161,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4199,9 +4199,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -4228,7 +4225,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4263,9 +4263,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -4295,7 +4292,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4330,9 +4330,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4359,7 +4356,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2003"
+                  "summary": "1. bogklubudgave, 2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4394,9 +4394,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4426,7 +4423,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 2001"
+                  "summary": "2. udgave, 2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4461,9 +4461,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4490,7 +4487,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "3. udgave, 2004"
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4525,9 +4525,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4557,7 +4554,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006"
+                  "summary": "2. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4592,9 +4592,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -4625,7 +4622,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2006"
+                  "summary": "2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4660,9 +4660,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -4693,7 +4690,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4728,9 +4728,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4761,7 +4758,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2012"
+                  "summary": "5. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4796,9 +4796,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2019"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4832,7 +4829,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Illustreret udgave, 8. udgave, 2019"
+                  "summary": "Illustreret udgave, 8. udgave, 2019",
+                  "publicationYear": {
+                    "display": "2019"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4867,9 +4867,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4900,7 +4897,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2015"
+                  "summary": "6. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -4935,9 +4935,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -4968,7 +4965,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "7. udgave, 2018"
+                  "summary": "7. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5004,9 +5004,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "2000"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -5033,7 +5030,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "2000"
+                "summary": "2000",
+                "publicationYear": {
+                  "display": "2000"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -5258,9 +5258,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2022"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5297,7 +5294,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2022"
+                  "summary": "Illustreret udgave, 7. udgave, 2022",
+                  "publicationYear": {
+                    "display": "2022"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5332,9 +5332,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5361,7 +5358,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2003"
+                  "summary": "2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5396,9 +5396,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -5429,7 +5426,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2003"
+                  "summary": "2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5464,9 +5464,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -5496,7 +5493,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2003"
+                  "summary": "2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5531,9 +5531,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5560,7 +5557,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2004"
+                  "summary": "1. bogklubudgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5595,9 +5595,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -5624,7 +5621,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2003"
+                  "summary": "2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5659,9 +5659,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5691,7 +5688,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 2004"
+                  "summary": "2. udgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5726,9 +5726,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -5759,7 +5756,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2006"
+                  "summary": "2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5794,9 +5794,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5826,7 +5823,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006"
+                  "summary": "2. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5861,9 +5861,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -5894,7 +5891,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5929,9 +5929,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -5962,7 +5959,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "4. udgave, 2012"
+                  "summary": "4. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -5997,9 +5997,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6030,7 +6027,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2015"
+                  "summary": "5. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6065,9 +6065,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6098,7 +6095,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2018"
+                  "summary": "6. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6133,9 +6133,6 @@
               "fictionNonfiction": {
                 "display": "skønlitteratur",
                 "code": "FICTION"
-              },
-              "publicationYear": {
-                "display": "2022"
               },
               "materialTypes": [
                 {
@@ -6173,7 +6170,10 @@
                 }
               ],
               "edition": {
-                "summary": "Illustreret udgave, 7. udgave, 2022"
+                "summary": "Illustreret udgave, 7. udgave, 2022",
+                "publicationYear": {
+                  "display": "2022"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -6403,9 +6403,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6432,7 +6429,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6467,9 +6467,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6499,7 +6496,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 1999"
+                  "summary": "2. udgave, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6536,9 +6536,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -6569,7 +6566,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6604,9 +6604,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2003"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6633,7 +6630,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2003"
+                  "summary": "1. bogklubudgave, 2003",
+                  "publicationYear": {
+                    "display": "2003"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6668,9 +6668,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "punktskrift"
@@ -6697,7 +6694,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6732,9 +6732,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "diskette"
@@ -6764,7 +6761,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2001"
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6799,9 +6799,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -6832,7 +6829,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2001"
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6867,9 +6867,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -6896,7 +6893,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "3. udgave, 2004"
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -6933,9 +6933,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -6966,7 +6963,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2004"
+                  "summary": "2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7001,9 +7001,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2006"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7033,7 +7030,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006"
+                  "summary": "2. bogklubudgave, 2006",
+                  "publicationYear": {
+                    "display": "2006"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7070,9 +7070,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -7103,7 +7100,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7138,9 +7138,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7171,7 +7168,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2012"
+                  "summary": "5. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7206,9 +7206,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7239,7 +7236,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2015"
+                  "summary": "6. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7276,9 +7276,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2016"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7312,7 +7309,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2016"
+                  "summary": "Illustreret udgave, 7. udgave, 2016",
+                  "publicationYear": {
+                    "display": "2016"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7347,9 +7347,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7380,7 +7377,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "8. udgave, 2018"
+                  "summary": "8. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7417,9 +7417,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2021"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7453,7 +7450,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "9. udgave, 2021"
+                  "summary": "9. udgave, 2021",
+                  "publicationYear": {
+                    "display": "2021"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7489,9 +7489,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "1999"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -7518,7 +7515,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "1999"
+                "summary": "1999",
+                "publicationYear": {
+                  "display": "1999"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -7743,9 +7743,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2007"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7772,7 +7769,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2007"
+                  "summary": "2007",
+                  "publicationYear": {
+                    "display": "2007"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7807,9 +7807,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2007"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -7840,7 +7837,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2007"
+                  "summary": "2007",
+                  "publicationYear": {
+                    "display": "2007"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7875,9 +7875,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2007"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -7904,7 +7901,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. udgave, 2007"
+                  "summary": "2. udgave, 2007",
+                  "publicationYear": {
+                    "display": "2007"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -7939,9 +7939,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2009"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd-mp3)"
@@ -7972,7 +7969,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2009"
+                  "summary": "2009",
+                  "publicationYear": {
+                    "display": "2009"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8007,9 +8007,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2012"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8040,7 +8037,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "4. udgave, 2012"
+                  "summary": "4. udgave, 2012",
+                  "publicationYear": {
+                    "display": "2012"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8075,9 +8075,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8108,7 +8105,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2015"
+                  "summary": "5. udgave, 2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8143,9 +8143,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2018"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8176,7 +8173,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2018"
+                  "summary": "6. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8212,9 +8212,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "2007"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -8241,7 +8238,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "2007"
+                "summary": "2007",
+                "publicationYear": {
+                  "display": "2007"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -8453,9 +8453,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8482,7 +8479,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Special edition, 1999"
+                  "summary": "Special edition, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8517,9 +8517,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -8550,7 +8547,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "DBC (dist.), 2002"
+                  "summary": "DBC (dist.), 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8585,9 +8585,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -8618,7 +8615,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8653,9 +8653,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8682,7 +8679,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Paperback edition, 2004"
+                  "summary": "Paperback edition, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8717,9 +8717,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1997"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8749,7 +8746,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1997"
+                  "summary": "1997",
+                  "publicationYear": {
+                    "display": "1997"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8784,9 +8784,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -8817,7 +8814,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8852,9 +8852,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -8885,7 +8882,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8920,9 +8920,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1997"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -8952,7 +8949,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, New pbk. edition 1997, 1997"
+                  "summary": "Bloomsbury, New pbk. edition 1997, 1997",
+                  "publicationYear": {
+                    "display": "1997"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -8987,9 +8987,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2001"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9016,7 +9013,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, New edition 2001, 2001"
+                  "summary": "Bloomsbury, New edition 2001, 2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9051,9 +9051,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9080,7 +9077,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9115,9 +9115,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1998"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9147,7 +9144,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1998"
+                  "summary": "1998",
+                  "publicationYear": {
+                    "display": "1998"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9184,9 +9184,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -9217,7 +9214,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9256,9 +9256,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9285,7 +9282,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, New edition 2000, 2000"
+                  "summary": "Bloomsbury, New edition 2000, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9320,9 +9320,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9349,7 +9346,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Adult edition, 2004"
+                  "summary": "Adult edition, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9385,9 +9385,6 @@
                 "fictionNonfiction": {
                   "display": "skønlitteratur",
                   "code": "FICTION"
-                },
-                "publicationYear": {
-                  "display": "1999"
                 },
                 "materialTypes": [
                   {
@@ -9425,7 +9422,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "HNP, 1999"
+                  "summary": "HNP, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9460,9 +9460,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2010"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9489,7 +9486,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Signature edition, 2010"
+                  "summary": "Signature edition, 2010",
+                  "publicationYear": {
+                    "display": "2010"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9524,9 +9524,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2014"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9556,7 +9553,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, new edition 2014, 2014"
+                  "summary": "Bloomsbury, new edition 2014, 2014",
+                  "publicationYear": {
+                    "display": "2014"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9593,9 +9593,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2015"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -9626,7 +9623,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2015"
+                  "summary": "2015",
+                  "publicationYear": {
+                    "display": "2015"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9662,9 +9662,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "1999"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -9691,7 +9688,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "Special edition, 1999"
+                "summary": "Special edition, 1999",
+                "publicationYear": {
+                  "display": "1999"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -9926,9 +9926,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -9959,7 +9956,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "DBC (dist.), 2002"
+                  "summary": "DBC (dist.), 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -9994,9 +9994,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -10027,7 +10024,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10062,9 +10062,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10091,7 +10088,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Paperback edition, 2004"
+                  "summary": "Paperback edition, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10130,9 +10130,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10162,7 +10159,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10197,9 +10197,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "ca. 2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10232,7 +10229,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "ca. 2002"
+                  "summary": "ca. 2002",
+                  "publicationYear": {
+                    "display": "ca. 2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10267,9 +10267,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10299,7 +10296,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10334,9 +10334,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -10367,7 +10364,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10402,9 +10402,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -10435,7 +10432,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10470,9 +10470,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10499,7 +10496,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10534,9 +10534,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10566,7 +10563,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, New pbk. edition 1998, 2002"
+                  "summary": "Bloomsbury, New pbk. edition 1998, 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10603,9 +10603,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -10636,7 +10633,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10671,9 +10671,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -10704,7 +10701,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Bloomsbury, 2000"
+                  "summary": "Bloomsbury, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10741,9 +10741,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -10774,7 +10771,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "New edition 2004, 2004"
+                  "summary": "New edition 2004, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10811,9 +10811,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -10844,7 +10841,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10881,9 +10881,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -10910,7 +10907,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Complete & unabridged, 2000"
+                  "summary": "Complete & unabridged, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -10945,9 +10945,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -10974,7 +10971,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Adult edition, 2004"
+                  "summary": "Adult edition, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11009,9 +11009,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2010"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11038,7 +11035,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Signature edition, 2010"
+                  "summary": "Signature edition, 2010",
+                  "publicationYear": {
+                    "display": "2010"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11073,9 +11073,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11102,7 +11099,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, new pbk. edition 2002, 2002"
+                  "summary": "Bloomsbury, new pbk. edition 2002, 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11137,9 +11137,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2014"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11169,7 +11166,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, Pbk. edition 2014, 2014"
+                  "summary": "Bloomsbury, Pbk. edition 2014, 2014",
+                  "publicationYear": {
+                    "display": "2014"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11206,9 +11206,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "201-"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -11242,7 +11239,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "HNP, Bloomsbury, New edition 201?, 201-"
+                  "summary": "HNP, Bloomsbury, New edition 201?, 201-",
+                  "publicationYear": {
+                    "display": "201-"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11279,9 +11279,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2016"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11312,7 +11309,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2016"
+                  "summary": "2016",
+                  "publicationYear": {
+                    "display": "2016"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11348,9 +11348,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "2002"
-              },
               "materialTypes": [
                 {
                   "specific": "lydbog (bånd)"
@@ -11381,7 +11378,10 @@
                 }
               ],
               "edition": {
-                "summary": "DBC (dist.), 2002"
+                "summary": "DBC (dist.), 2002",
+                "publicationYear": {
+                  "display": "2002"
+                }
               },
               "audience": {
                 "generalAudience": []
@@ -11616,9 +11616,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11645,7 +11642,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, 1999"
+                  "summary": "Bloomsbury, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11680,9 +11680,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2005"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -11713,7 +11710,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2005"
+                  "summary": "2005",
+                  "publicationYear": {
+                    "display": "2005"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11748,9 +11748,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11780,7 +11777,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11815,9 +11815,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11847,7 +11844,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11882,9 +11882,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -11911,7 +11908,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -11946,9 +11946,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -11979,7 +11976,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12014,9 +12014,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12046,7 +12043,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury New pbk. edition 1999, 1999"
+                  "summary": "Bloomsbury New pbk. edition 1999, 1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12081,9 +12081,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2002"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -12114,7 +12111,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2002"
+                  "summary": "2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12149,9 +12149,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -12182,7 +12179,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12221,9 +12221,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "1999"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12253,7 +12250,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "1999"
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12288,9 +12288,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12317,7 +12314,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, New pbk. edition 2004, 2004"
+                  "summary": "Bloomsbury, New pbk. edition 2004, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12354,9 +12354,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -12387,7 +12384,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12422,9 +12422,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -12451,7 +12448,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, 2000"
+                  "summary": "Bloomsbury, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12486,9 +12486,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12515,7 +12512,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "New edition 2004, 2004"
+                  "summary": "New edition 2004, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12552,9 +12552,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -12585,7 +12582,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2000"
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12624,9 +12624,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12653,7 +12650,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "New edition 2000, 2000"
+                  "summary": "New edition 2000, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12690,9 +12690,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (bånd)"
@@ -12719,7 +12716,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Complete & unabridged, 2000"
+                  "summary": "Complete & unabridged, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12755,9 +12755,6 @@
                 "fictionNonfiction": {
                   "display": "skønlitteratur",
                   "code": "FICTION"
-                },
-                "publicationYear": {
-                  "display": "2004"
                 },
                 "materialTypes": [
                   {
@@ -12795,7 +12792,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Bloomsbury, HNP, 2004"
+                  "summary": "Bloomsbury, HNP, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12830,9 +12830,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2010"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12859,7 +12856,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Signature edition, 2010"
+                  "summary": "Signature edition, 2010",
+                  "publicationYear": {
+                    "display": "2010"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12894,9 +12894,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2004"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12923,7 +12920,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, new pbk. edition 2004, 2004"
+                  "summary": "Bloomsbury, new pbk. edition 2004, 2004",
+                  "publicationYear": {
+                    "display": "2004"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -12958,9 +12958,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2014"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -12990,7 +12987,10 @@
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "Bloomsbury, Pbk. edition 2014, 2014"
+                  "summary": "Bloomsbury, Pbk. edition 2014, 2014",
+                  "publicationYear": {
+                    "display": "2014"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -13025,9 +13025,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2000"
-                },
                 "materialTypes": [
                   {
                     "specific": "lydbog (cd)"
@@ -13061,7 +13058,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "HNP, Bloomsbury, 2000"
+                  "summary": "HNP, Bloomsbury, 2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -13098,9 +13098,6 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "publicationYear": {
-                  "display": "2017"
-                },
                 "materialTypes": [
                   {
                     "specific": "bog"
@@ -13131,7 +13128,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "2017"
+                  "summary": "2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
                 },
                 "audience": {
                   "generalAudience": []
@@ -13167,9 +13167,6 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "publicationYear": {
-                "display": "1999"
-              },
               "materialTypes": [
                 {
                   "specific": "bog"
@@ -13196,7 +13193,10 @@
               ],
               "contributors": [],
               "edition": {
-                "summary": "Bloomsbury, 1999"
+                "summary": "Bloomsbury, 1999",
+                "publicationYear": {
+                  "display": "1999"
+                }
               },
               "audience": {
                 "generalAudience": []

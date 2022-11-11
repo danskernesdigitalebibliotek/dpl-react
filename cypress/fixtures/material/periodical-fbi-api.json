@@ -19,14 +19,15 @@
               "display": "FAGLITTERATUR",
               "code": "NONFICTION"
             },
-            "publicationYear": { "display": "1946" },
             "materialTypes": [{ "specific": "periodikum" }],
             "creators": [],
             "hostPublication": null,
             "languages": { "main": [{ "display": "dansk" }] },
             "identifiers": [{ "value": "0002-6506" }],
             "contributors": [],
-            "edition": null,
+            "edition": {
+              "publicationYear": { "display": "1946" }
+            },
             "audience": { "generalAudience": [] },
             "physicalDescriptions": [],
             "accessTypes": [{ "code": "PHYSICAL" }],
@@ -46,14 +47,15 @@
             "display": "FAGLITTERATUR",
             "code": "NONFICTION"
           },
-          "publicationYear": { "display": "1946" },
           "materialTypes": [{ "specific": "periodikum" }],
           "creators": [],
           "hostPublication": null,
           "languages": { "main": [{ "display": "dansk" }] },
           "identifiers": [{ "value": "0002-6506" }],
           "contributors": [],
-          "edition": null,
+          "edition": {
+          "publicationYear": { "display": "1946" }
+          },
           "audience": { "generalAudience": [] },
           "physicalDescriptions": [],
           "accessTypes": [{ "code": "PHYSICAL" }],
