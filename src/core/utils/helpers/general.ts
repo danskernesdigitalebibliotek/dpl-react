@@ -17,8 +17,8 @@ export const orderManifestationsByYear = (
   order: "asc" | "desc" = "desc"
 ) => {
   return manifestations.sort((a, b) => {
-    const currentDate = Number(a.publicationYear.display);
-    const prevDate = Number(b.publicationYear.display);
+    const currentDate = Number(a.edition?.publicationYear?.display);
+    const prevDate = Number(b.edition?.publicationYear?.display);
     if (order === "desc") {
       return prevDate - currentDate;
     }
@@ -75,7 +75,8 @@ export const getFirstPublishedManifestation = (
 
 export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
-    getFirstPublishedManifestation(manifestations)?.publicationYear.display
+    getFirstPublishedManifestation(manifestations)?.edition?.publicationYear
+      ?.display
   );
 };
 
