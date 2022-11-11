@@ -1727,6 +1727,30 @@ export type SearchFacetQuery = {
   };
 };
 
+export type IntelligentFacetsQueryVariables = Exact<{
+  q: SearchQuery;
+  facetsLimit: Scalars["Int"];
+  valuesLimit: Scalars["Int"];
+}>;
+
+export type IntelligentFacetsQuery = {
+  __typename?: "Query";
+  search: {
+    __typename?: "SearchResponse";
+    hitcount: number;
+    intelligentFacets: Array<{
+      __typename?: "FacetResult";
+      name: string;
+      values: Array<{
+        __typename?: "FacetValue";
+        key: string;
+        term: string;
+        score?: number | null;
+      }>;
+    }>;
+  };
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -2770,6 +2794,36 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     ["searchFacet", variables],
     fetcher<SearchFacetQuery, SearchFacetQueryVariables>(
       SearchFacetDocument,
+      variables
+    ),
+    options
+  );
+export const IntelligentFacetsDocument = `
+    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
+  search(q: $q) {
+    hitcount
+    intelligentFacets(limit: $facetsLimit) {
+      name
+      values(limit: $valuesLimit) {
+        key
+        term
+        score
+      }
+    }
+  }
+}
+    `;
+export const useIntelligentFacetsQuery = <
+  TData = IntelligentFacetsQuery,
+  TError = unknown
+>(
+  variables: IntelligentFacetsQueryVariables,
+  options?: UseQueryOptions<IntelligentFacetsQuery, TError, TData>
+) =>
+  useQuery<IntelligentFacetsQuery, TError, TData>(
+    ["intelligentFacets", variables],
+    fetcher<IntelligentFacetsQuery, IntelligentFacetsQueryVariables>(
+      IntelligentFacetsDocument,
       variables
     ),
     options
