@@ -27,7 +27,6 @@
               "display": "FAGLITTERATUR",
               "code": "NONFICTION"
             },
-            "publicationYear": { "display": "2013" },
             "materialTypes": [{ "specific": "avisartikel" }],
             "creators": [
               { "display": "Jakob Nielsen", "__typename": "Person" },
@@ -42,7 +41,9 @@
             "languages": { "main": [{ "display": "dansk" }] },
             "identifiers": [],
             "contributors": [],
-            "edition": null,
+            "edition": {
+              "publicationYear": { "display": "2013" }
+            },
             "audience": { "generalAudience": [] },
             "physicalDescriptions": [{ "numberOfPages": null }],
             "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],
@@ -62,7 +63,6 @@
             "display": "FAGLITTERATUR",
             "code": "NONFICTION"
           },
-          "publicationYear": { "display": "2013" },
           "materialTypes": [{ "specific": "avisartikel" }],
           "creators": [
             { "display": "Jakob Nielsen", "__typename": "Person" },
@@ -77,7 +77,9 @@
           "languages": { "main": [{ "display": "dansk" }] },
           "identifiers": [],
           "contributors": [],
-          "edition": null,
+          "edition": {
+            "publicationYear": { "display": "2013" }
+          },
           "audience": { "generalAudience": [] },
           "physicalDescriptions": [{ "numberOfPages": null }],
           "accessTypes": [{ "code": "PHYSICAL" }, { "code": "ONLINE" }],

@@ -29,7 +29,7 @@ describe("The Facet Browser", () => {
 
   it("renders the logic of selected terms and open facets", () => {
     cy.log("renders all results");
-    cy.contains("h1", "“harry” (703)");
+    cy.contains("h1", "“harry” (848)");
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
@@ -84,7 +84,7 @@ describe("The Facet Browser", () => {
 
     cy.get(`[aria-label="Close facet browser modal"]`).click();
 
-    cy.contains("h1", "“harry” (703)");
+    cy.contains("h1", "“harry” (848)");
   });
 
   beforeEach(() => {
