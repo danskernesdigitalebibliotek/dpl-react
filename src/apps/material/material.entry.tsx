@@ -55,6 +55,7 @@ interface MaterialEntryTextProps {
   materialIsLoanedOutText: string;
   materialReservationInfoText: string;
   missingDataText: string;
+  materialsInStockInfoText: string;
   modalReservationFormEmailHeaderDescriptionText: string;
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
