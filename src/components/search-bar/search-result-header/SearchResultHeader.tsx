@@ -6,6 +6,7 @@ import {
 } from "../../../apps/search-result/types";
 import {
   FacetResult,
+  useIntelligentFacetsQuery,
   useSearchFacetQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
@@ -48,6 +49,12 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
       }
     }
   );
+
+  const { data: intelligentFacets } = useIntelligentFacetsQuery({
+    q: { all: q },
+    facetsLimit: 5,
+    valuesLimit: 5
+  });
 
   return (
     <>
