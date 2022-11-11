@@ -19,9 +19,6 @@ fragment ManifestationsSimpleFields on Manifestation {
     display
     code
   }
-  publicationYear {
-    display
-  }
   materialTypes {
     specific
   }
@@ -50,6 +47,9 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   edition {
     summary
+    publicationYear {
+      display
+    }
   }
   audience {
     generalAudience
