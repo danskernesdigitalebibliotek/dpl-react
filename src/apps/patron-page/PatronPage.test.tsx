@@ -96,7 +96,7 @@ describe("Patron page", () => {
         secondaryAddress: null
       }
     }).as("User");
-    cy.visit("/iframe.html?path=/story/apps-user-page--patron-page-entry");
+    cy.visit("/iframe.html?path=/story/apps-patron-page--patron-page-entry");
     cy.wait(["@LibraryProfile", "@Loans", "@User"]);
   });
 
