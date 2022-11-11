@@ -34,6 +34,7 @@ const TextInput: FC<TextInputProps> = ({
       <input
         aria-describedby={description ?? (`description-${id}` || "")}
         id={id}
+        data-cy={id}
         type={type}
         pattern={pattern}
         inputMode={inputmode}

@@ -37,7 +37,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
   }, [changePincode, confirmPincode, pincode, pincodeLength, t]);
 
   return (
-    <section id="pincode-section">
+    <section data-cy="pincode-section">
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageChangePincodeHeaderText")}
       </h2>

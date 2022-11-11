@@ -99,7 +99,7 @@ const PatronPage: FC = () => {
       )}
       {patron && <PincodeSection changePincode={setPin} />}
       <button
-        id="save-user-patron"
+        data-cy="save-user-patron"
         className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
         type="button"
         onClick={save}

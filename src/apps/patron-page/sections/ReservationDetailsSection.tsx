@@ -26,7 +26,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
   }, [patron.onHold]);
 
   return (
-    <section id="pickup-reservations-section">
+    <section data-cy="pickup-reservations-section">
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageChangePickupHeaderText")}
       </h2>

@@ -32,6 +32,7 @@ const CheckBox: FC<CheckBoxProps> = ({
     <div className={`checkbox ${className || ""}`}>
       <input
         id={id}
+        data-cy={id}
         className="checkbox__input"
         onChange={(e) => {
           checkboxChecked(e.target.checked);

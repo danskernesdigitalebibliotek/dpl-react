@@ -143,78 +143,65 @@ describe("Patron page", () => {
       .should("have.text", "Hack Kampmanns Plads 28000Aarhus CDK");
 
     // ID 36 2.d. Contact info
-    cy.get(".dpl-patron-page #patron-page-contact-info")
+    cy.get("[data-cy='patron-page-contact-info']")
       .find("h2")
       .should("have.text", "Contact information");
 
     // ID 36 2.d.i. Tilføj, skift eller slet telefonnummer
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#phone-input")
-      .should("have.value", "1234567890");
+    cy.get("[data-cy='phone-input']").should("have.value", "1234567890");
 
     // ID 37 2. user adds/changes email/phone
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#phone-input")
-      .type("21");
+    cy.get("[data-cy='phone-input']").type("21");
 
     // ID 36 2.d.i.a. Til- eller fravælg notifikationer via SMS
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#phone-messages")
-      .should("not.be.checked");
+    cy.get("[data-cy='phone-messages']").should("not.be.checked");
 
     // ID 37 2.a. User activates/deactivates notification checkboxes
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#phone-messages")
-      .check({ force: true });
+    cy.get("[data-cy='phone-messages']").check({ force: true });
 
     // ID 36 2.d.ii. Tilføj skift eller slet e-mailadresse
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#email-address-input")
-      .should("have.value", "itkdev@mkb.aarhus.dk");
+    cy.get("[data-cy='email-address-input']").should(
+      "have.value",
+      "itkdev@mkb.aarhus.dk"
+    );
 
     // ID 37 2. user adds/changes email/phone
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#email-address-input")
-      .type("dd");
+    cy.get("[data-cy='email-address-input']").type("dd");
 
     // ID 36 2.d.ii.a. Til- eller fravælg notifikationer via email
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#email-messages")
-      .should("be.checked");
+    cy.get("[data-cy='email-messages']").should("be.checked");
 
     // ID 37 2.a. User activates/deactivates notification checkboxes
-    cy.get(".dpl-patron-page #patron-page-contact-info")
-      .find("#email-messages")
-      .uncheck({ force: true });
+    cy.get("[data-cy='email-messages']").uncheck({ force: true });
 
     // ID 36 2.f. reservations
-    cy.get(".dpl-patron-page #pickup-reservations-section")
+    cy.get("[data-cy='pickup-reservations-section']")
       .find("h2")
       .should("have.text", "Reservations");
 
     // ID 36 2.f.i. change pickup library
     // ID 36 2.f.i.a. options with possible pickup libraries (not blacklisted)
-    cy.get(".dpl-patron-page #pickup-reservations-section")
+    cy.get("[data-cy='pickup-reservations-section']")
       .find("select")
       .should(
         "have.text",
         "HøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
       );
     // ID 36 2.f.ii. pause reservations
-    cy.get(".dpl-patron-page #show-reservation-pause-section").should("exist");
+    cy.get("[data-cy='show-reservation-pause-section']").should("exist");
 
     // ID 36 2.f.ii.a. Checkbox with text: pause reservations
-    cy.get(".dpl-patron-page #pickup-reservations-section")
+    cy.get("[data-cy='pickup-reservations-section']")
       .find("h3")
       .should("have.text", "Pause physical reservations");
 
     // ID 36 2.g. Change pin
-    cy.get(".dpl-patron-page #pincode-section")
+    cy.get("[data-cy='pincode-section']")
       .find("h2")
       .should("have.text", "Pincode");
 
     // ID 36 2.g.i. Info/help text
-    cy.get(".dpl-patron-page #pincode-section")
+    cy.get("[data-cy='pincode-section']")
       .find("p")
       .eq(0)
       .should(
@@ -223,25 +210,17 @@ describe("Patron page", () => {
       );
 
     // ID 36 2.g.ii. Input field: pin
-    cy.get(".dpl-patron-page #pincode-section")
-      .find("#pincode-input")
-      .should("exist");
+    cy.get("[data-cy='pincode-input']").should("exist");
 
     // ID 36 2.g.iii. Input field: confirm pin
-    cy.get(".dpl-patron-page #pincode-section")
-      .find("#pincode-confirm-input")
-      .should("exist");
+    cy.get("[data-cy='pincode-confirm-input']").should("exist");
 
-    cy.get(".dpl-patron-page #pincode-section")
-      .find("#pincode-input")
-      .type("1234");
+    cy.get("[data-cy='pincode-input']").type("1234");
 
-    cy.get(".dpl-patron-page #pincode-section")
-      .find("#pincode-confirm-input")
-      .type("1234");
+    cy.get("[data-cy='pincode-confirm-input']").type("1234");
 
     // ID 41 2. click delete your profile, 3. refered to page
-    cy.get(".dpl-patron-page [data-cy='delete-patron-link']")
+    cy.get("[data-cy='delete-patron-link']")
       .should("have.attr", "href")
       .should(
         "include",
@@ -249,7 +228,7 @@ describe("Patron page", () => {
       );
 
     // ID 37 3. The user clicks save
-    cy.get(".dpl-patron-page").find("#save-user-patron").click();
+    cy.get("[data-cy='save-user-patron']").click();
     cy.wait("@PUT-patron").then(({ request }) => {
       assert.equal(request?.body.patron.emailAddress, "itkdev@mkb.aarhus.dkdd");
       assert.equal(request?.body.patron.phoneNumber, "123456789021");

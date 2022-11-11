@@ -16,7 +16,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const t = useText();
 
   return (
-    <section id="patron-page-contact-info">
+    <section data-cy="patron-page-contact-info">
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
