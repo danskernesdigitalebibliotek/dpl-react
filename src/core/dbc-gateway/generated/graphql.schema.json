@@ -372,57 +372,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CatalogueCodes",
-        "description": null,
-        "fields": [
-          {
-            "name": "nationalBibliography",
-            "description": "Catalogue codes for the national bibliography ",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "otherCatalogues",
-            "description": "other catalogue codes ",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "ChildOrAdult",
         "description": null,
         "fields": [
@@ -2933,18 +2882,6 @@
             "deprecationReason": null
           },
           {
-            "name": "catalogueCodes",
-            "description": "CatalogueCodes for nationalBibliography and others",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "CatalogueCodes",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "classifications",
             "description": "Classification codes for this manifestation from any classification system",
             "args": [],
@@ -3287,22 +3224,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "publicationYear",
-            "description": "The publication year of the manifestation - OBS! was datePublished",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "PublicationYear",
-                "ofType": null
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "use edition.publicationYear instead."
           },
           {
             "name": "publisher",
@@ -6788,13 +6709,9 @@
             "description": "A postfix to the shelfmark, eg. 99.4 Christensen, Inger. f. 1935",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
