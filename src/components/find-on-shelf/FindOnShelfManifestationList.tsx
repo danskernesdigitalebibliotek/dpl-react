@@ -34,7 +34,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             sublocation={branchHolding.holding.sublocation?.title}
             title={branchHolding.manifestation.titles.main.join(", ")}
             publicationYear={
-              branchHolding.manifestation.publicationYear.display
+              branchHolding.manifestation.edition?.publicationYear?.display
             }
             numberAvailable={totalAvailableMaterials(
               branchHolding.holding.materials
