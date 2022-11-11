@@ -20,20 +20,18 @@ const DateInput: FC<DateInputProps> = ({
 
   return (
     <div className="datepicker">
-      <span className="datepicker-toggle">
-        <label htmlFor={id} className="text-body-medium-regular">
-          {label}
-          <input
-            type="date"
-            onChange={({ target }) => onChange(target.value)}
-            name={id}
-            value={value}
-            id={id}
-            className="datepicker-input"
-            min={minDate}
-          />
-        </label>
-      </span>
+      <label htmlFor={id} className="text-body-medium-regular">
+        {label}
+      </label>
+      <input
+        type="date"
+        onChange={({ target }) => onChange(target.value)}
+        name={id}
+        value={value}
+        id={id}
+        className="datepicker-input"
+        min={minDate}
+      />
     </div>
   );
 };
