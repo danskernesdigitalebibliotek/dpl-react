@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
-import { useGetMaterialManifestationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { useGetManifestationViaMaterialByFaustQuery } from "../../../../core/dbc-gateway/generated/graphql";
 import { Product } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
@@ -37,7 +37,7 @@ const fetchMaterial =
 
       // Todo error handling
       const { isSuccess: isSuccessManifestation, data } =
-        useGetMaterialManifestationQuery({
+        useGetManifestationViaMaterialByFaustQuery({
           faust
         });
 
