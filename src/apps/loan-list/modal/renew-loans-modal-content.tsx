@@ -34,6 +34,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const { mutate } = useRenewLoansV2();
   const { close } = useModalButtonHandler();
   const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
+  // TODO: Investigate if we can use useIntersection instead of useInView
+  // and then we can remove the react-hook-inview dependency.
+  // useIntersection documentation:
+  // https://github.com/streamich/react-use/blob/master/docs/useIntersection.md#useintersection
   const [ref, isVisible] = useInView({ threshold: 0 });
   const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
   const [renewableMaterials, setRenewableMaterials] = useState<number>(0);
