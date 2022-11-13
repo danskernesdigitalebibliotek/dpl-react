@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDeepCompareEffect } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
@@ -59,11 +60,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   // If q changes (eg. in Storybook context)
   //  then make sure that we reset the entire result set.
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (campaignFacets) {
       mutate(
         {
@@ -79,11 +80,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         }
       );
     }
-    // TODO Replace this with a proper solution e.g. from a third party.
-    // useEffect does shallow equality check for dependencies. This does not
-    // work well objects with. Stringify to create a stable dependency.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mutate, JSON.stringify(campaignFacets)]);
+  }, [campaignFacets, mutate]);
 
   const createFilters = (
     facets: {
