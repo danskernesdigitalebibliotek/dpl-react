@@ -1,21 +1,24 @@
 import React, { FC } from "react";
+import { Link } from "../../../components/atoms/link";
 
 interface MenuNotificationProps {
   notificationNumber: number;
   notificationText: string;
   notificationColor: string;
+  notificationLink: URL;
 }
 
 const MenuNotification: FC<MenuNotificationProps> = ({
   notificationNumber,
   notificationText,
-  notificationColor
+  notificationColor,
+  notificationLink
 }) => {
   return (
     <div className="modal-profile__notification-item">
-      <a
+      <Link
+        href={new URL(notificationLink)}
         className="list-dashboard shadow-medium-hover arrow__hover--right-small"
-        href="/"
       >
         <div className={`number number--${notificationColor}`}>
           {notificationNumber}
@@ -23,9 +26,9 @@ const MenuNotification: FC<MenuNotificationProps> = ({
         <span className="list-dashboard__title text-header-h4">
           {notificationText}
         </span>
-        {/* <div className={`status-label status-label--${severityClass}`}>
-                  overskredet
-                </div> */}
+        {/* <div className={`status-label status-label--${notificationColor}`}>
+          overskredet
+        </div> */}
         <div className="list-dashboard__dot" />
         <svg
           width="61"
@@ -42,7 +45,7 @@ const MenuNotification: FC<MenuNotificationProps> = ({
             fill="currentColor"
           />
         </svg>
-      </a>
+      </Link>
     </div>
   );
 };
