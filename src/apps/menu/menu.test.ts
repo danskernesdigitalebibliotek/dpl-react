@@ -274,7 +274,7 @@ describe("Menu", () => {
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".number--warning")
       .should("exist")
-      .should("have.text", "3");
+      .should("have.text", "2");
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".list-dashboard__title")
       .should("exist")
