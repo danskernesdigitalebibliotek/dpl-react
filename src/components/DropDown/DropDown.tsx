@@ -10,7 +10,7 @@ export type DropdownItem = {
   selected?: boolean;
 };
 
-type DropDownProps = {
+type DropdownProps = {
   list: DropdownItem[];
   ariaLabel: string;
   arrowIcon: "triangles" | "chevron";
@@ -20,7 +20,7 @@ type DropDownProps = {
   placeholder?: string;
 };
 
-const DropDown: React.FunctionComponent<DropDownProps> = ({
+const Dropdown: React.FunctionComponent<DropdownProps> = ({
   arrowIcon,
   ariaLabel,
   list,
@@ -69,4 +69,4 @@ const DropDown: React.FunctionComponent<DropDownProps> = ({
   );
 };
 
-export default DropDown;
+export default Dropdown;
