@@ -1,8 +1,9 @@
 import React, { useEffect, useState, FC } from "react";
-import { getStackedItems, getListItems } from "./helpers";
+import { getStackedItems } from "./helpers";
 import LoanListItems from "../list/loan-list-items";
 import { ListView } from "../../../core/utils/types/list-view";
 import usePager from "../../../components/result-pager/use-pager";
+import { getListItems } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface PaginationProps {
@@ -39,7 +40,7 @@ const Pagination: FC<PaginationProps> = ({
   useEffect(() => {
     if (loans) {
       if (view === "list") {
-        setDisplayedLoans(getListItems(loans, itemsShown));
+        setDisplayedLoans(getListItems(loans, itemsShown) as LoanType[]);
       } else {
         const stackedLoans = getStackedItems(view, loans, itemsShown, dueDates);
         setDisplayedLoans([...stackedLoans]);

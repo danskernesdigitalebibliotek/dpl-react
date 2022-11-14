@@ -32,23 +32,21 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupNumber
   } = reservationInfo;
 
-  const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
+  // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const colors = getColors();
   const thresholds = getThresholds();
 
+  let readyForPickupLabel = "";
+  if (pickupDeadline) {
+    readyForPickupLabel = pickupBranch
+      ? `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
+      : `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`;
+  }
+
   useEffect(() => {
     if (branches && pickupBranch) {
-      if (pickupDeadline) {
-        setReadyForPickupLabel(
-          `${t("reservationPickUpLatestText")} ${formatDate(pickupDeadline)}`
-        );
-      }
       setPickupLibrary(getPreferredBranch(pickupBranch, branches));
-    } else if (pickupDeadline) {
-      setReadyForPickupLabel(
-        `${t("loanBeforeText")} ${formatDate(pickupDeadline)}`
-      );
     }
   }, [branches, pickupBranch, pickupDeadline, t]);
 

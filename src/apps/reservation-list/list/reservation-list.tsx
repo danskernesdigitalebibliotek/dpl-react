@@ -21,8 +21,13 @@ import {
   useGetReservationsV2
 } from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
+import EmptyList from "../../../components/empty-list/empty-list";
 
-const ReservationList: FC = () => {
+export interface ReservationListProps {
+  pageSize: number;
+}
+
+const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const t = useText();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
@@ -103,25 +108,46 @@ const ReservationList: FC = () => {
     refetchUser();
   }, [modalIds.length, refetchFBS, refetchPublizon, refetchUser]);
 
+  const allListsEmpty =
+    readyForPickupReservationsFBS.length === 0 &&
+    readyForPickupReservationsPublizon.length === 0 &&
+    reservedReservationsFBS.length === 0 &&
+    reservedReservationsPublizon.length === 0;
+
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
       {user && <ReservationPauseToggler user={user} />}
-      <List
-        header={t("reservationListReadyForPickupTitleText")}
-        list={sortByOldestPickupDeadline([
-          ...readyForPickupReservationsFBS,
-          ...readyForPickupReservationsPublizon
-        ])}
-      />
-      <List
-        header={t("reservationListPhysicalReservationsHeaderText")}
-        list={reservedReservationsFBS}
-      />
-      <List
-        header={t("reservationListDigitalReservationsHeaderText")}
-        list={reservedReservationsPublizon}
-      />
+      {!allListsEmpty && (
+        <>
+          <List
+            pageSize={pageSize}
+            header={t("reservationListReadyForPickupTitleText")}
+            emptyListLabel={t("reservationListReadyForPickupEmptyText")}
+            list={sortByOldestPickupDeadline([
+              ...readyForPickupReservationsFBS,
+              ...readyForPickupReservationsPublizon
+            ])}
+          />
+          <List
+            pageSize={pageSize}
+            emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
+            header={t("reservationListPhysicalReservationsHeaderText")}
+            list={reservedReservationsFBS}
+          />
+          <List
+            pageSize={pageSize}
+            header={t("reservationListDigitalReservationsHeaderText")}
+            emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
+            list={reservedReservationsPublizon}
+          />
+        </>
+      )}
+      {allListsEmpty && (
+        <div className="m-32">
+          <EmptyList emptyListText={t("reservationListAllEmptyText")} />
+        </div>
+      )}
     </div>
   );
 };

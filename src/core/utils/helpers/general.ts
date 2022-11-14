@@ -11,6 +11,7 @@ import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
+import { ListType } from "../types/list-type";
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
@@ -229,6 +230,10 @@ export const stringifyValue = (value: string | null | undefined) =>
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+export const getListItems = (list: ListType[], itemsShown: number) => {
+  return [...list].splice(0, itemsShown);
+};
 
 interface PageSizeDataAttributes {
   desktop: number;
