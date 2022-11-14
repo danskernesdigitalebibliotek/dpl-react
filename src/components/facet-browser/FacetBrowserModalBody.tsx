@@ -43,7 +43,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
         // Remove facets disclosures with no tags
         if (values.length === 0) return null;
 
-        const hasChosenTerms = Boolean(filters[name]);
+        const hasSelectedTerms = Boolean(filters[name]);
 
         return (
           <FacetBrowserDisclosure
@@ -52,7 +52,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
             fullWidth
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}
-            showContent={hasChosenTerms}
+            showContent={hasSelectedTerms}
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
