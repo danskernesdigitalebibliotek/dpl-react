@@ -14,7 +14,7 @@ describe("The Facet Browser", () => {
   });
 
   it("renders all terms in a facet when clicked", () => {
-    cy.contains("Main languages").click();
+    cy.get('[aria-controls="facet-mainLanguages"]').click();
     cy.contains("button", "Engelsk");
     cy.contains("button", "flere sprog");
     cy.contains("button", "Tysk");
@@ -23,17 +23,17 @@ describe("The Facet Browser", () => {
     cy.contains("button", "Sproget kan ikke bestemmes");
     cy.contains("button", "Fransk");
     cy.contains("button", "Latin");
-    cy.contains("Main languages").click();
+    cy.get('[aria-controls="facet-mainLanguages"]').click();
     cy.get(`[aria-label="Close facet browser modal"]`).click();
   });
 
   it("renders the logic of selected terms and open facets", () => {
     cy.log("renders all results");
-    cy.contains("h1", "“harry” (848)");
+    cy.contains("h1", "“harry” (843)");
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
-    cy.contains("Creators").click();
+    cy.get('[aria-controls="facet-creators"]').click();
     cy.interceptGraphql({
       operationName: "searchFacet",
       fixtureFilePath:
@@ -85,7 +85,7 @@ describe("The Facet Browser", () => {
 
     cy.get(`[aria-label="Close facet browser modal"]`).click();
 
-    cy.contains("h1", "“harry” (848)");
+    cy.contains("h1", "“harry” (843)");
   });
 
   beforeEach(() => {
@@ -97,6 +97,11 @@ describe("The Facet Browser", () => {
     cy.interceptGraphql({
       operationName: "searchWithPagination",
       fixtureFilePath: "search-result/facet-browser/searchWithPagination"
+    });
+
+    cy.interceptGraphql({
+      operationName: "intelligentFacets",
+      fixtureFilePath: "search-result/facet-browser/intelligentFacets.json"
     });
 
     cy.interceptRest({
