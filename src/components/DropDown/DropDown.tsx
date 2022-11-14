@@ -1,8 +1,6 @@
-import React from "react";
 import clsx from "clsx";
-
-import iconTriangle from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-triangle.svg";
-import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import React from "react";
+import DropdownIcon from "./DropdownIcon";
 
 export type DropdownItem = {
   title: string;
@@ -12,32 +10,7 @@ export type DropdownItem = {
   selected?: boolean;
 };
 
-export const DropdownIcon = ({
-  arrowIcon
-}: {
-  arrowIcon: "triangles" | "chevron";
-}) => {
-  if (arrowIcon === "triangles") {
-    return (
-      <span>
-        <img className="dropdown__arrow" src={iconTriangle} alt="" />
-        <img
-          className="dropdown__arrow dropdown__arrow--bottom"
-          src={iconTriangle}
-          alt=""
-        />
-      </span>
-    );
-  }
-
-  if (arrowIcon === "chevron") {
-    return <img className="dropdown__arrow" src={iconExpandMore} alt="" />;
-  }
-
-  return null;
-};
-
-export type DropdownProps = {
+type DropDownProps = {
   list: DropdownItem[];
   ariaLabel: string;
   arrowIcon: "triangles" | "chevron";
@@ -47,7 +20,7 @@ export type DropdownProps = {
   placeholder?: string;
 };
 
-const Dropdown: React.FC<DropdownProps> = ({
+const DropDown: React.FunctionComponent<DropDownProps> = ({
   arrowIcon,
   ariaLabel,
   list,
@@ -62,7 +35,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     option: clsx("dropdown__option", innerClassNames?.option),
     arrowWrapper: clsx("dropdown__arrows", innerClassNames?.arrowWrapper)
   };
-
   return (
     <div className={classes.root}>
       <select
@@ -97,4 +69,4 @@ const Dropdown: React.FC<DropdownProps> = ({
   );
 };
 
-export default Dropdown;
+export default DropDown;
