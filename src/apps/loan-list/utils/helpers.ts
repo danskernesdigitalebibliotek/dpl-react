@@ -30,9 +30,6 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
   });
 };
 
-export const materialIsOverdue = (date: string | undefined) =>
-  dayjs().isAfter(dayjs(date), "day");
-
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (
   creators: {
