@@ -21,6 +21,7 @@ const FacetLineSelected: React.FunctionComponent<FacetLineSelectedProps> = ({
           <>
             {Object.entries(value).map(([label, term]) => {
               return (
+                // TODO: change this className to follow BEM in dpl-design-system
                 <li className="facet-line-selected-terms">
                   <ButtonTag
                     selected
