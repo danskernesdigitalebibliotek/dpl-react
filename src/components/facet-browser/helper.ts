@@ -20,22 +20,6 @@ export const allFacetFields = [
   FacetField.WorkTypes
 ];
 
-export const lineFacets = [
-  FacetField.FictionNonfiction,
-  FacetField.WorkTypes,
-  FacetField.GenreAndForm
-];
-
-export const defaultFacetLineTerms = [
-  "Faglitteratur",
-  "Skønlitteratur",
-  "Film",
-  "Spil",
-  "Musik"
-];
-
-export const showFacetAsSelect = ["genreAndForm"];
-
 export const getPlaceHolderFacets = (facets: string[]) =>
   facets.map((facet) => ({
     name: facet,
