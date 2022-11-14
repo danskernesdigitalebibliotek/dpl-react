@@ -1,32 +1,68 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import { openModal } from "../../../core/modal.slice";
+import {
+  formatFacetTerms,
+  getPlaceHolderFacets,
+  lineFacets
+} from "../../../apps/search-result/helpers";
+import {
+  FilterItemTerm,
+  TermOnClickHandler
+} from "../../../apps/search-result/types";
+import {
+  FacetResult,
+  useSearchFacetQuery
+} from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
-import { FacetBrowserModalId } from "../../facet-browser/helper";
-import ButtonTag from "../../Buttons/ButtonTag";
+import FacetLine from "../../facet-line/FacetLine";
+import FacetLineSelected from "../../facet-line/FacetLineSelected";
 
 export interface SearchResultHeaderProps {
   hitcount: string;
   q: string;
+  filters: { [key: string]: { [key: string]: FilterItemTerm } };
+  filterHandler: TermOnClickHandler;
 }
 
 const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   hitcount,
-  q
+  q,
+  filters,
+  filterHandler
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+
+  const { data } = useSearchFacetQuery(
+    {
+      q: { all: q },
+      facets: lineFacets,
+      facetLimit: 10,
+      filters: formatFacetTerms(filters)
+    },
+    {
+      keepPreviousData: true,
+      placeholderData: {
+        search: {
+          facets: getPlaceHolderFacets(lineFacets)
+        }
+      }
+    }
+  );
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <>
       <h1 className="text-header-h2 mb-16 search-result-title">
         {`${t("showingResultsForText")} “${q}” (${hitcount})`}
       </h1>
-      <ButtonTag
-        onClick={() => dispatch(openModal({ modalId: FacetBrowserModalId }))}
-      >
-        {t("addMoreFiltersText")}
-      </ButtonTag>
+      <FacetLine
+        filters={filters}
+        facets={data.search.facets as FacetResult[]}
+        filterHandler={filterHandler}
+      />
+      <FacetLineSelected filters={filters} filterHandler={filterHandler} />
     </>
   );
 };
