@@ -97,7 +97,10 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
                         action: "add"
                       })
                     }
-                    removeAriaPressed={Boolean(filters?.[name]?.[term])}
+                    // We need to remove aria-pressed from FacetLineFilters buttonTag(term) if a term is selected.
+                    // Because buttonTag is a reusable component that is used both in FacetLineFilters and FacetLineSelected,
+                    // the selected term in facetLineFilters will therefore no longer be a toggle button
+                    selected={filters?.[name]?.[term] ? undefined : false}
                   >
                     {`${term} (${score})`}
                   </ButtonTag>
