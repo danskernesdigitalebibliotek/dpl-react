@@ -1,0 +1,59 @@
+{
+  "data": {
+    "search": {
+      "hitcount": 9518,
+      "intelligentFacets": [
+        {
+          "name": "genreAndForm",
+          "values": [
+            {
+              "key": "krimi",
+              "term": "krimi",
+              "score": 284
+            },
+            {
+              "key": "politiromaner",
+              "term": "politiromaner",
+              "score": 23
+            },
+            {
+              "key": "spænding",
+              "term": "spænding",
+              "score": 16
+            }
+          ]
+        },
+        {
+          "name": "mainLanguages",
+          "values": [
+            {
+              "key": "dan",
+              "term": "Dansk",
+              "score": 1291
+            },
+            {
+              "key": "ger",
+              "term": "Tysk",
+              "score": 364
+            },
+            {
+              "key": "und",
+              "term": "Sproget kan ikke bestemmes",
+              "score": 220
+            }
+          ]
+        },
+        {
+          "name": "materialTypes",
+          "values": [
+            {
+              "key": "lydbog (net)",
+              "term": "lydbog (net)",
+              "score": 207
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
