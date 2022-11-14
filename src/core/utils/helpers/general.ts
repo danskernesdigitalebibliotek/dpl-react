@@ -12,13 +12,19 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 
+export const getManifestationPublicationYear = (
+  manifestation: Manifestation
+): string | null => {
+  return manifestation.edition?.publicationYear?.display || null;
+};
+
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
   order: "asc" | "desc" = "desc"
 ) => {
   return manifestations.sort((a, b) => {
-    const currentDate = Number(a.edition?.publicationYear?.display);
-    const prevDate = Number(b.edition?.publicationYear?.display);
+    const currentDate = Number(getManifestationPublicationYear(a));
+    const prevDate = Number(getManifestationPublicationYear(b));
     if (order === "desc") {
       return prevDate - currentDate;
     }
@@ -75,8 +81,9 @@ export const getFirstPublishedManifestation = (
 
 export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
-    getFirstPublishedManifestation(manifestations)?.edition?.publicationYear
-      ?.display
+    getManifestationPublicationYear(
+      getFirstPublishedManifestation(manifestations)
+    )
   );
 };
 

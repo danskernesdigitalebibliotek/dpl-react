@@ -9,7 +9,7 @@ export interface FindOnShelfManifestationListItemProps {
   location: string | undefined;
   sublocation: string | undefined;
   title: string;
-  publicationYear?: string;
+  publicationYear: string | null;
   numberAvailable: number;
 }
 

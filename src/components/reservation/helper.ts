@@ -10,6 +10,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getManifestationPublicationYear,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -128,7 +129,8 @@ export const getAuthorLine = (
   manifestation: Manifestation,
   t: UseTextFunction
 ) => {
-  const { creators, edition } = manifestation;
+  const { creators } = manifestation;
+  const publicationYear = getManifestationPublicationYear(manifestation);
   const author =
     creatorsToString(
       flattenCreators(filterCreators(creators, ["Person"])),
@@ -136,8 +138,8 @@ export const getAuthorLine = (
     ) || null;
 
   let year = "";
-  if (edition?.publicationYear) {
-    year = `(${edition.publicationYear.display})`;
+  if (publicationYear) {
+    year = publicationYear;
   }
   if (materialIsFiction(manifestation)) {
     year = `(${t("materialHeaderAllEditionsText")})`;
