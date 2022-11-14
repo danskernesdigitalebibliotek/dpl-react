@@ -6,15 +6,9 @@ import {
 } from "../../../apps/search-result/types";
 import {
   FacetResult,
-  useIntelligentFacetsQuery,
-  useSearchFacetQuery
+  useIntelligentFacetsQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
-import {
-  formatFacetTerms,
-  getPlaceHolderFacets,
-  lineFacets
-} from "../../facet-browser/helper";
 import FacetLine from "../../facet-line/FacetLine";
 import FacetLineSelected from "../../facet-line/FacetLineSelected";
 
@@ -33,24 +27,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
 }) => {
   const t = useText();
 
-  const { data } = useSearchFacetQuery(
-    {
-      q: { all: q },
-      facets: lineFacets,
-      facetLimit: 10,
-      filters: formatFacetTerms(filters)
-    },
-    {
-      keepPreviousData: true,
-      placeholderData: {
-        search: {
-          facets: getPlaceHolderFacets(lineFacets)
-        }
-      }
-    }
-  );
-
-  const { data: intelligentFacets } = useIntelligentFacetsQuery({
+  const { data } = useIntelligentFacetsQuery({
     q: { all: q },
     facetsLimit: 5,
     valuesLimit: 5
@@ -64,7 +41,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
       {data && (
         <FacetLine
           filters={filters}
-          facets={data.search.facets as FacetResult[]}
+          facets={data.search.intelligentFacets as FacetResult[]}
           filterHandler={filterHandler}
         />
       )}
