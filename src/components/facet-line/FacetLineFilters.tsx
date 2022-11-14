@@ -13,7 +13,7 @@ import {
 import { openModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
-import Dropdown from "../DropDown/DropDown";
+import Dropdown from "../Dropdown/Dropdown";
 
 import { FacetBrowserModalId } from "../facet-browser/FacetBrowserModal";
 
