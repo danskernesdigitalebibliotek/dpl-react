@@ -3,10 +3,10 @@ import React from "react";
 import DropdownIcon from "./DropdownIcon";
 
 export type DropdownItem = {
-  title: string;
+  label: string;
   href?: string;
   disabled?: boolean;
-  value?: unknown;
+  value: string;
   selected?: boolean;
 };
 
@@ -43,21 +43,21 @@ const DropDown: React.FunctionComponent<DropDownProps> = ({
         onChange={handleOnChange ? (e) => handleOnChange(e) : undefined}
       >
         {placeholder && (
-          <option value="" disabled selected>
+          <option hidden selected>
             {placeholder}
           </option>
         )}
 
-        {list.map(({ title, disabled, selected }) => {
+        {list.map(({ label, value, disabled, selected }) => {
           return (
             <option
-              value={title}
-              key={title}
+              key={label}
+              value={value}
               className={classes.option}
               disabled={disabled}
               selected={selected}
             >
-              {title}
+              {label}
             </option>
           );
         })}
