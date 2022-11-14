@@ -1,8 +1,18 @@
 import React, { useState } from "react";
+
+import {
+  formatFacetTerms,
+  getPlaceHolderFacets,
+  BowserFacets
+} from "../../apps/search-result/helpers";
 import {
   FilterItemTerm,
   TermOnClickHandler
 } from "../../apps/search-result/types";
+import {
+  FacetResult,
+  useSearchFacetQuery
+} from "../../core/dbc-gateway/generated/graphql";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
@@ -22,7 +32,6 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
   filters
 }) => {
   const t = useText();
-  const [openFacets, setOpenFacets] = useState<string[]>([]);
 
   const { facets, isLoading } = useGetFacets(q, filters);
 
@@ -40,8 +49,6 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
           facets={facets}
           filterHandler={filterHandler}
           filters={filters}
-          openFacets={openFacets}
-          setOpenFacets={setOpenFacets}
         />
       )}
     </Modal>
