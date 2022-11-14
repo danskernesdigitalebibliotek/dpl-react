@@ -1,5 +1,5 @@
-import React from "react";
-import { upperFirst } from "lodash";
+import React, { useEffect } from "react";
+import { upperFirst, mapValues } from "lodash";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -9,6 +9,7 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
+import { useStatistics } from "../../core/statistics/useStatistics";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -30,6 +31,23 @@ const FacetBrowserModalBody: React.FunctionComponent<
       setOpenFacets([...openFacets, facet]);
     }
   };
+  const { track } = useStatistics("page");
+
+  useEffect(() => {
+    const areFiltersEmpty = Object.keys(filters).length === 0;
+    if (areFiltersEmpty) {
+      return;
+    }
+    track(
+      20,
+      "Søgning Facet",
+      mapValues(filters, (filter) => {
+        return Object.keys(filter);
+      })
+    );
+    // We only want to track when filters change value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   return (
     <section className="facet-browser">

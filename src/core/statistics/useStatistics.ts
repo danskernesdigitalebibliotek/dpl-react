@@ -3,7 +3,7 @@
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
 
 export type CustomClickParameter = {
-  [key: number]: number | { [key: number]: string };
+  [key: number]: number | { [key: number]: string } | { [x: string]: string[] };
 };
 
 export type EventData = {
@@ -37,7 +37,7 @@ export function useStatistics(eventType: EventType) {
     track: (
       id: number,
       name: string,
-      trackedData: string | number | string[]
+      trackedData: string | number | string[] | { [x: string]: string[] }
     ) => {
       const eventData: EventData = {
         linkId: name,
