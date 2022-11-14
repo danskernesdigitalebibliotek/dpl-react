@@ -30,13 +30,13 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   const t = useText();
   const dispatch = useDispatch();
 
-  const formatValuesToDropdown = (values: FacetValue[]) => {
+  const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
     return values.map((value) => {
       return {
-        title: value.term,
-        value,
-        disabled: Boolean(filters?.genreAndForm?.[value.term]),
-        selected: Boolean(filters?.genreAndForm?.[value.term])
+        label: value.term,
+        value: value.term,
+        disabled: Boolean(filters?.[facet]?.[value.term]),
+        selected: Boolean(filters?.[facet]?.[value.term])
       };
     });
   };
@@ -66,7 +66,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             <li className="facet-line__item">
               <DropDown
                 placeholder={t(`facet${upperFirst(name)}Text`)}
-                list={formatValuesToDropdown(values)}
+                list={formatValuesToDropdown(name, values)}
                 ariaLabel={name}
                 arrowIcon="chevron"
                 classNames="dropdown--grey-borders"
