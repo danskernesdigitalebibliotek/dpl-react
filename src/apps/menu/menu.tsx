@@ -136,7 +136,7 @@ const Menu: FC = () => {
           </div>
           <Link
             href={menuViewYourProfileTextUrl}
-            className={"link-tag modal-header__link color-secondary-gray"}
+            className="link-tag modal-header__link color-secondary-gray"
           >
             {t("menuViewYourProfileText")}
           </Link>
