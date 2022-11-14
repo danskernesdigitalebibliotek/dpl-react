@@ -14,7 +14,7 @@ import { openModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import { FacetBrowserModalId } from "../facet-browser/FacetBrowserModal";
-import Dropdown from "./Dropdown";
+import DropDown from "../DropDown/DropDown";
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
@@ -64,7 +64,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
         if (values.length > 1) {
           return (
             <li className="facet-line__item">
-              <Dropdown
+              <DropDown
                 placeholder={t(`facet${upperFirst(name)}Text`)}
                 list={formatValuesToDropdown(values)}
                 ariaLabel={name}
