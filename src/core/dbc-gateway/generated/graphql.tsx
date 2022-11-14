@@ -76,14 +76,6 @@ export type Audience = {
   schoolUse: Array<SchoolUse>;
 };
 
-export type CatalogueCodes = {
-  __typename?: "CatalogueCodes";
-  /** Catalogue codes for the national bibliography  */
-  nationalBibliography: Array<Maybe<Scalars["String"]>>;
-  /** other catalogue codes  */
-  otherCatalogues: Array<Maybe<Scalars["String"]>>;
-};
-
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
   code: ChildOrAdultCode;
@@ -473,8 +465,6 @@ export type Manifestation = {
   accessTypes: Array<AccessType>;
   /** Different kinds of definitions of appropriate audience for this manifestation */
   audience?: Maybe<Audience>;
-  /** CatalogueCodes for nationalBibliography and others */
-  catalogueCodes?: Maybe<CatalogueCodes>;
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
   /** Contributors to the manifestation, actors, illustrators etc */
@@ -511,11 +501,6 @@ export type Manifestation = {
   physicalDescriptions: Array<PhysicalDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
   pid: Scalars["String"];
-  /**
-   * The publication year of the manifestation - OBS! was datePublished
-   * @deprecated use edition.publicationYear instead.
-   */
-  publicationYear: PublicationYear;
   /** Publisher of this manifestion */
   publisher: Array<Scalars["String"]>;
   /** The creation date of the record describing this manifestation in the format YYYYMMDD */
@@ -990,7 +975,7 @@ export type Series = {
 export type Shelfmark = {
   __typename?: "Shelfmark";
   /** A postfix to the shelfmark, eg. 99.4 Christensen, Inger. f. 1935 */
-  postfix: Scalars["String"];
+  postfix?: Maybe<Scalars["String"]>;
   /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found, e.g. 99.4 */
   shelfmark: Scalars["String"];
 };
@@ -1301,7 +1286,6 @@ export type GetMaterialQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -1326,7 +1310,14 @@ export type GetMaterialQuery = {
           | { __typename?: "Corporation"; display: string }
           | { __typename?: "Person"; display: string }
         >;
-        edition?: { __typename?: "Edition"; summary: string } | null;
+        edition?: {
+          __typename?: "Edition";
+          summary: string;
+          publicationYear?: {
+            __typename?: "PublicationYear";
+            display: string;
+          } | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1355,7 +1346,7 @@ export type GetMaterialQuery = {
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
-          postfix: string;
+          postfix?: string | null;
           shelfmark: string;
         } | null;
       }>;
@@ -1374,7 +1365,6 @@ export type GetMaterialQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        publicationYear: { __typename?: "PublicationYear"; display: string };
         materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -1399,7 +1389,14 @@ export type GetMaterialQuery = {
           | { __typename?: "Corporation"; display: string }
           | { __typename?: "Person"; display: string }
         >;
-        edition?: { __typename?: "Edition"; summary: string } | null;
+        edition?: {
+          __typename?: "Edition";
+          summary: string;
+          publicationYear?: {
+            __typename?: "PublicationYear";
+            display: string;
+          } | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1428,7 +1425,7 @@ export type GetMaterialQuery = {
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
-          postfix: string;
+          postfix?: string | null;
           shelfmark: string;
         } | null;
       };
@@ -1518,7 +1515,6 @@ export type SearchWithPaginationQuery = {
             display: string;
             code: FictionNonfictionCode;
           } | null;
-          publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
@@ -1546,7 +1542,14 @@ export type SearchWithPaginationQuery = {
             | { __typename?: "Corporation"; display: string }
             | { __typename?: "Person"; display: string }
           >;
-          edition?: { __typename?: "Edition"; summary: string } | null;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1578,7 +1581,7 @@ export type SearchWithPaginationQuery = {
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
-            postfix: string;
+            postfix?: string | null;
             shelfmark: string;
           } | null;
         }>;
@@ -1597,7 +1600,6 @@ export type SearchWithPaginationQuery = {
             display: string;
             code: FictionNonfictionCode;
           } | null;
-          publicationYear: { __typename?: "PublicationYear"; display: string };
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
@@ -1625,7 +1627,14 @@ export type SearchWithPaginationQuery = {
             | { __typename?: "Corporation"; display: string }
             | { __typename?: "Person"; display: string }
           >;
-          edition?: { __typename?: "Edition"; summary: string } | null;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1657,7 +1666,7 @@ export type SearchWithPaginationQuery = {
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
-            postfix: string;
+            postfix?: string | null;
             shelfmark: string;
           } | null;
         };
@@ -1736,7 +1745,6 @@ export type ManifestationsSimpleFragment = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
-    publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1758,7 +1766,14 @@ export type ManifestationsSimpleFragment = {
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
-    edition?: { __typename?: "Edition"; summary: string } | null;
+    edition?: {
+      __typename?: "Edition";
+      summary: string;
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -1787,7 +1802,7 @@ export type ManifestationsSimpleFragment = {
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
-      postfix: string;
+      postfix?: string | null;
       shelfmark: string;
     } | null;
   }>;
@@ -1806,7 +1821,6 @@ export type ManifestationsSimpleFragment = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
-    publicationYear: { __typename?: "PublicationYear"; display: string };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -1828,7 +1842,14 @@ export type ManifestationsSimpleFragment = {
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
-    edition?: { __typename?: "Edition"; summary: string } | null;
+    edition?: {
+      __typename?: "Edition";
+      summary: string;
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -1857,7 +1878,7 @@ export type ManifestationsSimpleFragment = {
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
-      postfix: string;
+      postfix?: string | null;
       shelfmark: string;
     } | null;
   };
@@ -1878,7 +1899,6 @@ export type ManifestationsSimpleFieldsFragment = {
     display: string;
     code: FictionNonfictionCode;
   } | null;
-  publicationYear: { __typename?: "PublicationYear"; display: string };
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -1900,7 +1920,14 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename?: "Corporation"; display: string }
     | { __typename?: "Person"; display: string }
   >;
-  edition?: { __typename?: "Edition"; summary: string } | null;
+  edition?: {
+    __typename?: "Edition";
+    summary: string;
+    publicationYear?: {
+      __typename?: "PublicationYear";
+      display: string;
+    } | null;
+  } | null;
   audience?: { __typename?: "Audience"; generalAudience: Array<string> } | null;
   physicalDescriptions: Array<{
     __typename?: "PhysicalDescription";
@@ -1926,7 +1953,7 @@ export type ManifestationsSimpleFieldsFragment = {
   >;
   shelfmark?: {
     __typename?: "Shelfmark";
-    postfix: string;
+    postfix?: string | null;
     shelfmark: string;
   } | null;
 };
@@ -1997,7 +2024,6 @@ export type WorkSmallFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -2019,7 +2045,14 @@ export type WorkSmallFragment = {
         | { __typename?: "Corporation"; display: string }
         | { __typename?: "Person"; display: string }
       >;
-      edition?: { __typename?: "Edition"; summary: string } | null;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2048,7 +2081,7 @@ export type WorkSmallFragment = {
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
-        postfix: string;
+        postfix?: string | null;
         shelfmark: string;
       } | null;
     }>;
@@ -2067,7 +2100,6 @@ export type WorkSmallFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -2089,7 +2121,14 @@ export type WorkSmallFragment = {
         | { __typename?: "Corporation"; display: string }
         | { __typename?: "Person"; display: string }
       >;
-      edition?: { __typename?: "Edition"; summary: string } | null;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2118,7 +2157,7 @@ export type WorkSmallFragment = {
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
-        postfix: string;
+        postfix?: string | null;
         shelfmark: string;
       } | null;
     };
@@ -2228,7 +2267,6 @@ export type WorkMediumFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -2250,7 +2288,14 @@ export type WorkMediumFragment = {
         | { __typename?: "Corporation"; display: string }
         | { __typename?: "Person"; display: string }
       >;
-      edition?: { __typename?: "Edition"; summary: string } | null;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2279,7 +2324,7 @@ export type WorkMediumFragment = {
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
-        postfix: string;
+        postfix?: string | null;
         shelfmark: string;
       } | null;
     }>;
@@ -2298,7 +2343,6 @@ export type WorkMediumFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      publicationYear: { __typename?: "PublicationYear"; display: string };
       materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -2320,7 +2364,14 @@ export type WorkMediumFragment = {
         | { __typename?: "Corporation"; display: string }
         | { __typename?: "Person"; display: string }
       >;
-      edition?: { __typename?: "Edition"; summary: string } | null;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2349,7 +2400,7 @@ export type WorkMediumFragment = {
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
-        postfix: string;
+        postfix?: string | null;
         shelfmark: string;
       } | null;
     };
@@ -2381,9 +2432,6 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     display
     code
   }
-  publicationYear {
-    display
-  }
   materialTypes {
     specific
   }
@@ -2412,6 +2460,9 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   edition {
     summary
+    publicationYear {
+      display
+    }
   }
   audience {
     generalAudience

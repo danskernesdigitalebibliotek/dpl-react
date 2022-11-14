@@ -3,6 +3,7 @@ import ReservationList from "./reservation-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
+import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
 export interface ReservationListProps {
   headerText: string;
@@ -62,10 +63,29 @@ export interface ReservationListProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
+  reservationListReadyForPickupTitleText: string;
+  reservationListReadyForPickupEmptyText: string;
+  reservationListPhysicalReservationsEmptyText: string;
+  reservationListPhysicalReservationsHeaderText: string;
+  reservationListDigitalReservationsEmptyText: string;
+  reservationListDigitalReservationsHeaderText: string;
+  reservationListAllEmptyText: string;
+  pageSizeDesktop: number;
+  pageSizeMobile: number;
 }
 
-const ReservationListEntry: FC<ReservationListProps> = () => (
-  <ReservationList />
-);
+const ReservationListEntry: FC<ReservationListProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
+  const pageSize = pageSizeGlobal(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeReservationList"
+  );
+  return <ReservationList pageSize={pageSize} />;
+};
 
 export default withConfig(withUrls(withText(ReservationListEntry)));

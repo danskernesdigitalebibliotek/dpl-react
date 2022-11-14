@@ -4,6 +4,7 @@ import { totalAvailableMaterials } from "../../apps/material/helper";
 import { useText } from "../../core/utils/text";
 import { ManifestationHoldings } from "./types";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
+import { getManifestationPublicationYear } from "../../core/utils/helpers/general";
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
@@ -33,9 +34,9 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             location={branchHolding.holding.location?.title}
             sublocation={branchHolding.holding.sublocation?.title}
             title={branchHolding.manifestation.titles.main.join(", ")}
-            publicationYear={
-              branchHolding.manifestation.publicationYear.display
-            }
+            publicationYear={getManifestationPublicationYear(
+              branchHolding.manifestation
+            )}
             numberAvailable={totalAvailableMaterials(
               branchHolding.holding.materials
             )}

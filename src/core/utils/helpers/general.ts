@@ -11,14 +11,21 @@ import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
+import { ListType } from "../types/list-type";
+
+export const getManifestationPublicationYear = (
+  manifestation: Manifestation
+): string | null => {
+  return manifestation.edition?.publicationYear?.display || null;
+};
 
 export const orderManifestationsByYear = (
   manifestations: Manifestation[],
   order: "asc" | "desc" = "desc"
 ) => {
   return manifestations.sort((a, b) => {
-    const currentDate = Number(a.publicationYear.display);
-    const prevDate = Number(b.publicationYear.display);
+    const currentDate = Number(getManifestationPublicationYear(a));
+    const prevDate = Number(getManifestationPublicationYear(b));
     if (order === "desc") {
       return prevDate - currentDate;
     }
@@ -75,7 +82,9 @@ export const getFirstPublishedManifestation = (
 
 export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
-    getFirstPublishedManifestation(manifestations)?.publicationYear.display
+    getManifestationPublicationYear(
+      getFirstPublishedManifestation(manifestations)
+    )
   );
 };
 
@@ -229,6 +238,10 @@ export const stringifyValue = (value: string | null | undefined) =>
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+export const getListItems = (list: ListType[], itemsShown: number) => {
+  return [...list].splice(0, itemsShown);
+};
 
 interface PageSizeDataAttributes {
   desktop: number;

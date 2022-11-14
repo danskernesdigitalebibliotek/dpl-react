@@ -9,6 +9,16 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    pageSizeDesktop: {
+      name: "Number of search result items on desktop",
+      defaultValue: 20,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      name: "Number of search result items on mobile",
+      defaultValue: 10,
+      control: { type: "number" }
+    },
     [configTypes.fbs]: {
       defaultValue: "",
       control: { type: "text" }
@@ -46,6 +56,22 @@ export default {
     },
     reservationListReadyForPickupTitleText: {
       defaultValue: "Klar til lån",
+      control: { type: "text" }
+    },
+    reservationListReadyForPickupEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 reserveringer klar til lån",
+      control: { type: "text" }
+    },
+    reservationListPhysicalReservationsEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 fysiske reserveringer i kø",
+      control: { type: "text" }
+    },
+    reservationListAllEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 reserveringer",
+      control: { type: "text" }
+    },
+    reservationListDigitalReservationsEmptyText: {
+      defaultValue: "Du har i øjeblikket 0 digitale reserveringer i kø",
       control: { type: "text" }
     },
     readyText: {

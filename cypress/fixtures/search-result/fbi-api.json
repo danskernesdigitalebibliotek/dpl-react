@@ -300,9 +300,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -344,7 +341,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -367,9 +367,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -411,7 +408,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -434,9 +434,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -478,7 +475,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -501,9 +501,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -545,7 +542,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -568,9 +568,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -612,7 +609,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -635,9 +635,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -679,7 +676,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -702,9 +702,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -746,7 +743,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -769,9 +769,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -813,7 +810,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -836,9 +836,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -880,7 +877,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -903,9 +903,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -947,7 +944,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -970,9 +970,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1014,7 +1011,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1037,9 +1037,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1081,7 +1078,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1104,9 +1104,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1148,7 +1145,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1171,9 +1171,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1215,7 +1212,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1238,9 +1238,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1282,7 +1279,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1305,9 +1305,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1349,7 +1346,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1372,9 +1372,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1416,7 +1413,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1439,9 +1439,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1483,7 +1480,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1506,9 +1506,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1550,7 +1547,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1573,9 +1573,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1617,7 +1614,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1930,9 +1930,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -1974,7 +1971,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -1997,9 +1997,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2041,7 +2038,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2064,9 +2064,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2108,7 +2105,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2131,9 +2131,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2175,7 +2172,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2198,9 +2198,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2242,7 +2239,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2265,9 +2265,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2309,7 +2306,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2332,9 +2332,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2376,7 +2373,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2399,9 +2399,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2443,7 +2440,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2466,9 +2466,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2510,7 +2507,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2533,9 +2533,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2577,7 +2574,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
@@ -2600,9 +2600,6 @@
                     "Dummy Some Title: Original"
                   ]
                 },
-                "publicationYear": {
-                  "display": "Dummy 1839"
-                },
                 "materialTypes": [
                   {
                     "specific": "Dummy bog"
@@ -2644,7 +2641,10 @@
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005"
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
                 },
                 "audience": {
                   "generalAudience": [
