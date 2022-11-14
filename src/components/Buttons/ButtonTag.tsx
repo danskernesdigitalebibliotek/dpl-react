@@ -8,16 +8,14 @@ type ButtonTagProps = {
   size?: "small" | "large";
   selected?: boolean;
   removable?: boolean;
-  removeAriaPressed?: boolean;
 };
 
 const ButtonTag: React.FunctionComponent<ButtonTagProps> = ({
   onClick,
-  selected = false,
+  selected,
   children,
   size,
-  removable = false,
-  removeAriaPressed = false
+  removable = false
 }) => {
   const className = clsx(
     "tag",
@@ -29,7 +27,7 @@ const ButtonTag: React.FunctionComponent<ButtonTagProps> = ({
   return (
     <button
       type="button"
-      aria-pressed={removeAriaPressed ? undefined : selected}
+      aria-pressed={selected ?? undefined}
       className={className}
       onClick={onClick}
     >
