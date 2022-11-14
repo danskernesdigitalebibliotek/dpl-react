@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link } from "../../components/atoms/link";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
+import { Link } from "../../components/atoms/link";
 import MenuNavigationList from "./menu-navigation-list/menu-navigation-list";
 import MenuNotification from "./menu-notification/menu-notification";
 import { useConfig } from "../../core/utils/config";

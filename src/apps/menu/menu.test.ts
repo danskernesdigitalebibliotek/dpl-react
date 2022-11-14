@@ -260,7 +260,7 @@ describe("Menu", () => {
       .should("have.attr", "href")
       .and("include", "/");
 
-    // 2.c.i. “x lån overskredet”
+    // 2.c.i. “x lån overskredet -- x loans expired"”
     cy.get(".modal-profile__notification-item:first-of-type")
       .find(".number--danger")
       .should("exist")
@@ -268,9 +268,9 @@ describe("Menu", () => {
     cy.get(".modal-profile__notification-item:first-of-type")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "lån overskredet");
+      .should("have.text", "loans expired");
 
-    // 2.c.ii. “x lån udløber snart”
+    // 2.c.ii. “x lån udløber snart -- x loans expiring soon”
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".number--warning")
       .should("exist")
@@ -278,7 +278,7 @@ describe("Menu", () => {
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "lån udløber snart");
+      .should("have.text", "loans expiring soon");
 
     // 2.c.iii. “x reservering klar” eller “x reserveringer klar”. Engelsk: "x reservation ready for pickup" eller "x reservations ready for pickup"
     cy.get(".modal-profile__notification-item:nth-of-type(3)")
