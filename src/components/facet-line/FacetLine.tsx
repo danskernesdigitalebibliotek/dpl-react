@@ -14,10 +14,6 @@ import { openModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import { FacetBrowserModalId } from "../facet-browser/FacetBrowserModal";
-import {
-  defaultFacetLineTerms,
-  showFacetAsSelect
-} from "../facet-browser/helper";
 import Dropdown from "./Dropdown";
 
 type FacetLineProps = {
@@ -45,26 +41,27 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
     });
   };
 
-  const handleDropdownOnchange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const genreAndForm = facets.find((facet) => facet.name === "genreAndForm");
-    const term = genreAndForm?.values.find(
-      (value) => value.term === e.target.value
-    );
-    if (term) {
-      filterHandler({
-        filterItem: {
-          facet: "genreAndForm",
-          term: term as FilterItemTerm
-        },
-        action: "add"
-      });
-    }
+  const handleDropdownOnchange = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    facet: string
+  ) => {
+    const term = facets
+      .find((item) => item.name === facet)
+      ?.values.find((item) => item.term === e.target.value) as FilterItemTerm;
+
+    filterHandler({
+      filterItem: {
+        facet,
+        term
+      },
+      action: "add"
+    });
   };
 
   return (
     <ul className="facet-line mt-48">
       {facets.map(({ name, values }) => {
-        if (showFacetAsSelect.includes(name)) {
+        if (values.length > 1) {
           return (
             <li className="facet-line__item">
               <Dropdown
@@ -77,7 +74,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
                   select: "dropdown__select--inline",
                   arrowWrapper: "dropdown__arrows--inline "
                 }}
-                handleOnChange={handleDropdownOnchange}
+                handleOnChange={(e) => handleDropdownOnchange(e, name)}
               />
             </li>
           );
@@ -87,28 +84,25 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
           <>
             {values.map((termObj) => {
               const { term, score } = termObj;
-              if (defaultFacetLineTerms.includes(term)) {
-                return (
-                  <li className="facet-line__item">
-                    <ButtonTag
-                      key={term}
-                      onClick={() =>
-                        filterHandler({
-                          filterItem: {
-                            facet: name,
-                            term: termObj as FilterItemTerm
-                          },
-                          action: "add"
-                        })
-                      }
-                      removeAriaPressed={Boolean(filters?.[name]?.[term])}
-                    >
-                      {`${term} (${score})`}
-                    </ButtonTag>
-                  </li>
-                );
-              }
-              return null;
+              return (
+                <li className="facet-line__item">
+                  <ButtonTag
+                    key={term}
+                    onClick={() =>
+                      filterHandler({
+                        filterItem: {
+                          facet: name,
+                          term: termObj as FilterItemTerm
+                        },
+                        action: "add"
+                      })
+                    }
+                    removeAriaPressed={Boolean(filters?.[name]?.[term])}
+                  >
+                    {`${term} (${score})`}
+                  </ButtonTag>
+                </li>
+              );
             })}
           </>
         );
