@@ -20,9 +20,15 @@ export interface EventDataWithCustomClickParameter extends EventData {
 // 2. click - for measuring actions that don't cause page load;
 // 3. link - clicking a link that triggers a new page load
 // 4. pageupdate - information on the page changes without a new page load
-type EventType = "page" | "click" | "link" | "pageupdate";
+export type EventType = "page" | "click" | "link" | "pageupdate";
 
-export function useStatistics(eventType: EventType) {
+export type TrackParameters = {
+  id: number;
+  name: string;
+  trackedData: string | number | string[];
+};
+
+export function useStatistics() {
   // If the global wts object doesn't exist, it means we are in dev environment.
   // Here instead of actually tracking we just log the data to the console.
   if (!window.wts) {
@@ -39,16 +45,13 @@ export function useStatistics(eventType: EventType) {
   }
 
   return {
-    track: (
-      id: number,
-      name: string,
-      trackedData: string | number | string[]
-    ) => {
+    track: (eventType: EventType, trackParameters: TrackParameters) => {
       const eventData: EventDataWithCustomClickParameter = {
-        linkId: name,
+        linkId: trackParameters.name,
         customClickParameter: {}
       };
-      eventData.customClickParameter[id] = trackedData;
+      eventData.customClickParameter[trackParameters.id] =
+        trackParameters.trackedData;
       window.wts.push(["send", eventType, eventData]);
     }
   };
