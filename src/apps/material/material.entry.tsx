@@ -15,7 +15,6 @@ interface MaterialEntryTextProps {
   chooseOneText: string;
   closeText: string;
   contributorsText: string;
-  copiesThereIsText: string;
   creatorsAreMissingText: string;
   daysText: string;
   descriptionHeadlineText: string;
@@ -40,7 +39,6 @@ interface MaterialEntryTextProps {
   goToEReolenText: string;
   goToText: string;
   haveNoInterestAfterText: string;
-  heartsIconText: string;
   identifierText: string;
   infomediaModalCloseModalAriaLabelText: string;
   infomediaModalScreenReaderModalDescriptionText: string;
@@ -55,7 +53,9 @@ interface MaterialEntryTextProps {
   materialHeaderAuthorByText: string;
   materialIsIncludedText: string;
   materialIsLoanedOutText: string;
+  materialReservationInfoText: string;
   missingDataText: string;
+  materialsInStockInfoText: string;
   modalReservationFormEmailHeaderDescriptionText: string;
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
@@ -73,12 +73,12 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   oneMonthText: string;
   oneYearText: string;
+  onlineLimitMonthInfoText: string;
   originalTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
   periodicalSelectYearText: string;
   pickupLocationText: string;
-  possibleText: string;
   publisherText: string;
   queueText: string;
   ratingIsText: string;
@@ -89,9 +89,8 @@ interface MaterialEntryTextProps {
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
   reservationModalScreenReaderModalDescriptionText: string;
-  reservationsForThisMaterialText: string;
   reservationSuccesIsReservedForYouText: string;
-  reservationSuccesPreferredPickupBranchText: string;
+  reservationSuccessPreferredPickupBranchText: string;
   reservationSuccesTitleText: string;
   reserveBookText: string;
   reserveText: string;
@@ -100,13 +99,10 @@ interface MaterialEntryTextProps {
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;
-  thisMonthText: string;
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
   typeText: string;
-  weHaveShoppedText: string;
-  youHaveBorrowedText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

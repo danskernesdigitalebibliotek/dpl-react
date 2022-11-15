@@ -53,19 +53,9 @@ export default {
       defaultValue: "show more",
       control: { type: "text" }
     },
-    showingText: {
-      name: "Showing Text",
-      defaultValue: "Showing",
-      control: { type: "text" }
-    },
-    outOfText: {
-      name: "Out of Text",
-      defaultValue: "out of",
-      control: { type: "text" }
-    },
-    resultsText: {
-      name: "Results Text",
-      defaultValue: "results",
+    resultPagerStatusText: {
+      name: "Result pager status text",
+      defaultValue: "Showing @itemsShown out of @hitcount results",
       control: { type: "text" }
     },
     numberDescriptionText: {

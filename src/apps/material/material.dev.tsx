@@ -119,17 +119,13 @@ export default {
     },
     ratingIsText: {
       name: "Rating is",
-      defaultValue: "Rating of this item is",
+      defaultValue:
+        "Rating of this item is @heartCount out of @numberOfHeartsPossible hearts",
       control: { type: "text" }
     },
     outOfText: {
       name: "X 'out of' Y",
       defaultValue: "out of",
-      control: { type: "text" }
-    },
-    heartsIconText: {
-      name: "Hearts icon text",
-      defaultValue: "hearts",
       control: { type: "text" }
     },
     detailsOfTheMaterialText: {
@@ -262,34 +258,22 @@ export default {
       defaultValue: "This material doesn't count towards your loan quota",
       control: { type: "text" }
     },
-    weHaveShoppedText: {
-      name: "We bought",
-      defaultValue: "We bought",
+    materialsInStockInfoText: {
+      name: "Materials in stock info text",
+      defaultValue:
+        '{"type":"plural","text":["We have 1 copy of the material in stock","We have @count copies of the material in stock"]}',
       control: { type: "text" }
     },
-    copiesThereIsText: {
-      name: "copies there is",
-      defaultValue: "copies. There are",
+    materialReservationInfoText: {
+      name: "Material Reservation info text",
+      defaultValue:
+        '{"type":"plural","text":["1 copy has been reserved","@count copies have been reserved"]}',
       control: { type: "text" }
     },
-    reservationsForThisMaterialText: {
-      name: "Reservations for this material",
-      defaultValue: "reservations for this material",
-      control: { type: "text" }
-    },
-    youHaveBorrowedText: {
-      name: "You have loaned",
-      defaultValue: "You have loaned",
-      control: { type: "text" }
-    },
-    possibleText: {
-      name: "Possible",
-      defaultValue: "possible",
-      control: { type: "text" }
-    },
-    thisMonthText: {
-      name: "This month",
-      defaultValue: "this month",
+    onlineLimitMonthInfoText: {
+      name: "Online limit info text",
+      defaultValue:
+        "You have borrowed @count out of @limit possible e-books this month",
       control: { type: "text" }
     },
     approveReservationText: {
@@ -362,10 +346,10 @@ export default {
       defaultValue: "is reserved for you",
       control: { type: "text" }
     },
-    reservationSuccesPreferredPickupBranchText: {
+    reservationSuccessPreferredPickupBranchText: {
       name: "Reservation Preferred pickup branch",
       defaultValue:
-        "Material is available and you will get a message when it's ready for pickup - pickup at",
+        "Material is available and you will get a message when it is ready for pickup - pickup at @branch",
       control: { type: "text" }
     },
     reservationErrorsTitleText: {
@@ -451,12 +435,7 @@ export default {
     },
     numberInQueueText: {
       name: "Number in queue text",
-      defaultValue: "You are number",
-      control: { type: "text" }
-    },
-    queueText: {
-      name: "Queue text",
-      defaultValue: "in queue",
+      defaultValue: "You are number @number in the queue",
       control: { type: "text" }
     },
     alreadyReservedText: {

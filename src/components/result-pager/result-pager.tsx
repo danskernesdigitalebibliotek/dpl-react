@@ -28,9 +28,9 @@ function ResultPager({
   return (
     <div className="result-pager">
       <p className="text-small-caption result-pager__title">
-        {/* TODO: interpolate these strings */}
-        {t("showingText")} {itemsShown} {t("outOfText")} {hitcount}{" "}
-        {t("resultsText")}
+        {t("resultPagerStatusText", {
+          placeholders: { "@itemsShown": itemsShown, "@hitcount": hitcount }
+        })}
       </p>
       <button
         type="button"
