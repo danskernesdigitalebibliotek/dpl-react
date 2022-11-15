@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
-import { useInView } from "react-hook-inview";
+import { useIntersection } from "react-use";
 import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
@@ -34,11 +34,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const { mutate } = useRenewLoansV2();
   const { close } = useModalButtonHandler();
   const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
-  // TODO: Investigate if we can use useIntersection instead of useInView
-  // and then we can remove the react-hook-inview dependency.
-  // useIntersection documentation:
-  // https://github.com/streamich/react-use/blob/master/docs/useIntersection.md#useintersection
-  const [ref, isVisible] = useInView({ threshold: 0 });
+  const intersectionRef = React.useRef(null);
+  const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
+    threshold: 0
+  }) || { isIntersecting: false };
   const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
   const [renewableMaterials, setRenewableMaterials] = useState<number>(0);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
@@ -94,7 +93,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 
   return (
     <>
-      <div className="modal-loan__buttons" ref={ref}>
+      <div className="modal-loan__buttons" ref={intersectionRef}>
         <CheckBox
           selected={materialsToRenew.length === renewableMaterials}
           id="checkbox-select-all"
