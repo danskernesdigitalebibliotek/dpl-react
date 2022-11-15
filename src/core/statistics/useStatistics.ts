@@ -3,13 +3,18 @@
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
 
 export type CustomClickParameter = {
-  [key: number]: number | { [key: number]: string } | { [x: string]: string[] };
+  [key: number]:
+    | number
+    | { [key: number]: string }
+    | { [key: string]: string[] };
 };
 
-export type EventData = {
-  linkId: string;
+export interface EventData {
+  [key: string]: string | number | Record<string, unknown>;
+}
+export interface EventDataWithCustomClickParameter extends EventData {
   customClickParameter: CustomClickParameter;
-};
+}
 
 // 1. page - when a page request is simulated
 // 2. click - for measuring actions that don't cause page load;
@@ -39,7 +44,7 @@ export function useStatistics(eventType: EventType) {
       name: string,
       trackedData: string | number | string[] | { [x: string]: string[] }
     ) => {
-      const eventData: EventData = {
+      const eventData: EventDataWithCustomClickParameter = {
         linkId: name,
         customClickParameter: {}
       };
