@@ -31,6 +31,7 @@ export interface LoanListEntryTextProps {
   loanListMaterialsModalMobileText: string;
   loanListStatusCircleAriaLabelText: string;
   loanListStatusBadgeDangerText: string;
+  resultPagerStatusText: string;
   loanListStatusBadgeWarningText: string;
   loanListDeniedMaxRenewalsReachedText: string;
   loanListDeniedOtherReasonText: string;

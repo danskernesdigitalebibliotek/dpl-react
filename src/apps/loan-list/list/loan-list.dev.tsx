@@ -264,6 +264,11 @@ export default {
       defaultValue: "Af",
       control: { type: "text" }
     },
+    resultPagerStatusText: {
+      name: "Result pager status text",
+      defaultValue: "Showing @itemsShown out of @hitcount results",
+      control: { type: "text" }
+    },
     materialAndAuthorText: {
       defaultValue: "og",
       control: { type: "text" }
