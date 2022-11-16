@@ -2,28 +2,23 @@
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
 
-export type CustomClickParameter = Record<
-  number,
-  number | Record<number, string> | Record<string, string>
->;
-
 export interface EventData {
   [key: string]: string | number | Record<string, unknown>;
 }
 export interface EventDataWithCustomClickParameter extends EventData {
-  customClickParameter: CustomClickParameter;
+  customClickParameter: Record<number, string>;
 }
 
 // 1. page - when a page request is simulated
 // 2. click - for measuring actions that don't cause page load;
 // 3. link - clicking a link that triggers a new page load
 // 4. pageupdate - information on the page changes without a new page load
-export type EventType = "page" | "click" | "link" | "pageupdate";
+export type EventType = "click" | "link";
 
 export type TrackParameters = {
   id: number;
   name: string;
-  trackedData: string | number | string[];
+  trackedData: string;
 };
 
 export type EventAction = "send";
