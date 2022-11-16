@@ -28,12 +28,14 @@ export type TrackParameters = {
   trackedData: string | number | string[];
 };
 
+export type EventAction = "send";
+
 export function useStatistics() {
   // If the global wts object doesn't exist, it means we are in dev environment.
   // Here instead of actually tracking we just log the data to the console.
   if (!window.wts) {
     window.wts = {
-      push(trackingProps: ["send", EventType, EventData]) {
+      push(trackingProps: [EventAction, EventType, EventData]) {
         // eslint-disable-next-line no-console
         console.log(
           `Tracking: ${trackingProps[0]}, ${trackingProps[1]}, ${JSON.stringify(
