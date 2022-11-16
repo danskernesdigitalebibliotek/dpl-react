@@ -147,6 +147,23 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hitcount]);
 
+  useEffect(() => {
+    if (campaignData?.data?.title) {
+      track("click", {
+        id: 28,
+        name: "Kampagnevisning",
+        trackedData: campaignData.data.title
+      });
+      track("click", {
+        id: 62,
+        name: "KampagnePlus Titel",
+        trackedData: campaignData.data.title
+      });
+    }
+    // We only want to track when campaignData changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [campaignData]);
+
   return (
     <div className="search-result-page">
       {worksAreLoaded && (
