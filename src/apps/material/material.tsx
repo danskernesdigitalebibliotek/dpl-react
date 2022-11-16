@@ -62,7 +62,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (data?.work?.mainLanguages) {
       track("click", {
         id: 29,
-        name: "Materiale Genre",
+        name: "Materiale Sprog",
         trackedData: data.work.mainLanguages
           .map((language) => language.display)
           .join(", ")
