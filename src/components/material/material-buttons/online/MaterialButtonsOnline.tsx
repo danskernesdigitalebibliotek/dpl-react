@@ -27,9 +27,9 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   size,
   workId
 }) => {
-  const { track } = useStatistics("click");
+  const { track } = useStatistics();
   const trackOnlineView = () => {
-    track(51, "Se online", workId);
+    track("click", { id: 51, name: "Se online", trackedData: workId });
   };
   // If the access type is an external type we'll show corresponding button.
   if (["Ereol", "AccessUrl"].includes(accessType)) {

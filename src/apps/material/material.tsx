@@ -50,27 +50,37 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
-  const { track } = useStatistics("page");
+  const { track } = useStatistics();
   useEffect(() => {
     if (data?.work?.genreAndForm) {
-      track(25, "Materiale Genre", data.work.genreAndForm);
+      track("click", {
+        id: 25,
+        name: "Materiale Genre",
+        trackedData: data.work.genreAndForm.join(", ")
+      });
     }
     if (data?.work?.mainLanguages) {
-      track(
-        29,
-        "Materiale Genre",
-        data.work.mainLanguages.map((language) => language.display)
-      );
+      track("click", {
+        id: 29,
+        name: "Materiale Genre",
+        trackedData: data.work.mainLanguages
+          .map((language) => language.display)
+          .join(", ")
+      });
     }
     if (data?.work?.dk5MainEntry) {
-      track(31, "Materiale - DK5-nummer", data.work.dk5MainEntry.display);
+      track("click", {
+        id: 31,
+        name: "Materiale - DK5-nummer",
+        trackedData: data.work.dk5MainEntry.display
+      });
     }
     if (data?.work?.fictionNonfiction) {
-      track(
-        32,
-        "Materiale Fiktion/nonfiktion",
-        data.work.fictionNonfiction.display
-      );
+      track("click", {
+        id: 32,
+        name: "Materiale Fiktion/nonfiktion",
+        trackedData: data.work.fictionNonfiction.display
+      });
     }
     // In this case we only want to track once - on work data load
     // eslint-disable-next-line react-hooks/exhaustive-deps

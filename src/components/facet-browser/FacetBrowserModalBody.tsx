@@ -31,20 +31,22 @@ const FacetBrowserModalBody: React.FunctionComponent<
       setOpenFacets([...openFacets, facet]);
     }
   };
-  const { track } = useStatistics("page");
+  const { track } = useStatistics();
 
   useEffect(() => {
     const areFiltersEmpty = Object.keys(filters).length === 0;
     if (areFiltersEmpty) {
       return;
     }
-    track(
-      20,
-      "Søgning Facet",
-      mapValues(filters, (filter) => {
-        return Object.keys(filter);
-      })
-    );
+    track("click", {
+      id: 20,
+      name: "Søgning Facet",
+      trackedData: JSON.stringify(
+        mapValues(filters, (filter) => {
+          return Object.keys(filter);
+        })
+      )
+    });
     // We only want to track when filters change value.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);

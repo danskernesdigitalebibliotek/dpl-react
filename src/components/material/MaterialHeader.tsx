@@ -80,7 +80,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
-  const { track } = useStatistics("page");
+  const { track } = useStatistics();
 
   // This is used to track whether the user is changing between manterial types or just clicking the same button over
   const [manifestationMaterialTypes, setManifestationMaterialTypes] = useState<
@@ -94,8 +94,16 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     if (isEqual(manifestationMaterialTypes, newManifestationMaterialTypes)) {
       return;
     }
-    track(24, "Materialetype", newManifestationMaterialTypes);
-    track(30, "Materiale Kilde", manifestation.source);
+    track("click", {
+      id: 24,
+      name: "Materialetype",
+      trackedData: newManifestationMaterialTypes.join(", ")
+    });
+    track("click", {
+      id: 30,
+      name: "Materiale Kilde",
+      trackedData: manifestation.source.join(", ")
+    });
     setManifestationMaterialTypes(newManifestationMaterialTypes);
     // We actaully just want to track if the currently selected manifestation changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps

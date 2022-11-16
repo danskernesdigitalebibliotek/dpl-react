@@ -90,7 +90,7 @@ const ReservationModalBody = ({
   const holdingsResponse = useGetHoldingsV3({
     recordid: [faustId]
   });
-  const { track } = useStatistics("click");
+  const { track } = useStatistics();
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -126,7 +126,7 @@ const ReservationModalBody = ({
       {
         onSuccess: (res) => {
           // Track only if the reservation has been successfully saved.
-          track(50, "Reserver", workId);
+          track("click", { id: 50, name: "Reserver", trackedData: workId });
           // This state is used to show the success or error modal.
           setReservationResponse(res);
           // Because after a successful reservation the holdings (reservations) are updated.

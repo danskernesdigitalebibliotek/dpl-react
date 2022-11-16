@@ -59,10 +59,14 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const firstInSeries = series?.[0];
   const { title: seriesTitle, numberInSeries } = firstInSeries || {};
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
-  const { track } = useStatistics("click");
+  const { track } = useStatistics();
 
   const handleClick = useCallback(() => {
-    track(42, "Søgning - Resultatnummer klik", resultNumber);
+    track("click", {
+      id: 42,
+      name: "Søgning - Resultatnummer klik",
+      trackedData: resultNumber.toString()
+    });
     redirectTo(materialFullUrl);
     // We only want to call this on materialFullUrl change
     // eslint-disable-next-line react-hooks/exhaustive-deps

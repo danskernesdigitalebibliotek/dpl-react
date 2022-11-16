@@ -68,7 +68,7 @@ const SearchHeader: React.FC = () => {
   const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
     number | null
   >(null);
-  const { track } = useStatistics("click");
+  const { track } = useStatistics();
 
   // Make sure to only assign the data once.
   useEffect(() => {
@@ -219,7 +219,11 @@ const SearchHeader: React.FC = () => {
       selectedItem.work?.workId &&
       isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
     ) {
-      track(54, "Autosuggest - klik", selectedItem.work.titles.main);
+      track("click", {
+        id: 54,
+        name: "Autosuggest - klik",
+        trackedData: selectedItem.work.titles.main.join(", ")
+      });
       redirectTo(
         constructMaterialUrl(materialUrl, selectedItem.work.workId as WorkId)
       );
@@ -236,7 +240,11 @@ const SearchHeader: React.FC = () => {
       const highlightedCategoryIndex =
         highlightedIndexAfterClick - (textData.length + materialData.length);
       const selectedItemString = determineSuggestionTerm(changes.selectedItem);
-      track(54, "Autosuggest - klik", selectedItemString);
+      track("click", {
+        id: 54,
+        name: "Autosuggest - klik",
+        trackedData: selectedItemString
+      });
       redirectTo(
         constructSearchUrlWithFilter({
           searchUrl,
@@ -248,7 +256,11 @@ const SearchHeader: React.FC = () => {
       );
     }
     // Otherwise redirect to search result page & track autosuggest click.
-    track(54, "Autosuggest - klik", determineSuggestionTerm(selectedItem));
+    track("click", {
+      id: 54,
+      name: "Autosuggest - klik",
+      trackedData: determineSuggestionTerm(selectedItem)
+    });
     redirectTo(
       constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
     );

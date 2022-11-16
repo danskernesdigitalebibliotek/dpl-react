@@ -27,7 +27,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
-  const { track } = useStatistics("page");
+  const { track } = useStatistics();
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds,
@@ -44,7 +44,11 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   // Track material availability (status) if the button is active - also meaning
   // it is displayed on the material page
   if (selected) {
-    track(38, "Materiale Status", availabilityText);
+    track("click", {
+      id: 38,
+      name: "Materiale Status",
+      trackedData: availabilityText
+    });
   }
   const availableTriangleCss = isAvailable ? "success" : "alert";
 

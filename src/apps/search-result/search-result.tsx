@@ -138,7 +138,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       setIsFirstLoad(false);
       return;
     }
-    track(11, "OSS Results", hitcount);
+    track("click", {
+      id: 11,
+      name: "OSS Results",
+      trackedData: hitcount.toString()
+    });
     // We actaully just want to track if the hitcount changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hitcount]);
