@@ -125,11 +125,11 @@ describe("Material", () => {
       fixtureFilePath: "material/periodical-fbi-api.json"
     });
     cy.visit(
-      "/iframe.html?id=apps-material--periodical&viewMode=story&type=periodikum"
+      "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
     );
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "52");
-    cy.contains("button:visible", "Reserve periodikum").click();
+    cy.contains("button:visible", "Reserve tidsskrift").click();
     cy.contains("h2", "2021, nr. 52");
     cy.contains("button:visible", "Approve reservation").click();
     cy.contains("Material is available and reserved for you!");

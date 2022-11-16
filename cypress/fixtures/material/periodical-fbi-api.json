@@ -19,7 +19,7 @@
               "display": "FAGLITTERATUR",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "periodikum" }],
+            "materialTypes": [{ "specific": "tidsskrift" }],
             "creators": [],
             "hostPublication": null,
             "languages": { "main": [{ "display": "dansk" }] },
@@ -47,7 +47,7 @@
             "display": "FAGLITTERATUR",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "periodikum" }],
+          "materialTypes": [{ "specific": "tidsskrift" }],
           "creators": [],
           "hostPublication": null,
           "languages": { "main": [{ "display": "dansk" }] },

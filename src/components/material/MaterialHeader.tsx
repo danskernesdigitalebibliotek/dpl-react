@@ -63,9 +63,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   );
   const isPeriodical = manifestation.materialTypes.some(
     (materialType: Manifestation["materialTypes"][0]) => {
-      return materialType.specific.includes("periodikum");
+      return materialType.specific.includes("tidsskrift");
     }
   );
+
   const author = creatorsText || t("creatorsAreMissingText");
 
   const containsDanish = mainLanguages.some((language) =>
@@ -96,6 +97,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             selectManifestationHandler={selectManifestationHandler}
           />
         </div>
+
         {isPeriodical && (
           <MaterialPeriodical
             faustId={convertPostIdToFaustId(pid)}
@@ -103,7 +105,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             selectPeriodicalHandler={selectPeriodicalHandler}
           />
         )}
-
         {manifestation && (
           <>
             <div className="material-header__button">
