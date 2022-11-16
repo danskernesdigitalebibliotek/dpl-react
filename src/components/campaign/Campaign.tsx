@@ -7,6 +7,10 @@ import CampaignBody from "./CampaignBody";
 export interface CampaignProps {
   campaignData: CampaignMatchPOST200Data;
 }
+
+// In order to see campaigns in development mode, you will most likely need a
+// browser plugin such as Chrome's "Allow CORS: Access-Control-Allow-Origin"
+// in order to bypass CORS policy for dpl-cms data calls
 const Campaign: FC<CampaignProps> = ({ campaignData }) => {
   if (campaignData.url) {
     return (
