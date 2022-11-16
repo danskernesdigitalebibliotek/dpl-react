@@ -9,6 +9,8 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
+import { useModalButtonHandler } from "../../core/utils/modal";
+import { FacetBrowserModalId } from "./helper";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -21,6 +23,7 @@ interface FacetBrowserModalBodyProps {
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
 > = ({ facets, filterHandler, filters, openFacets, setOpenFacets }) => {
+  const { close } = useModalButtonHandler();
   const t = useText();
 
   const toggleFacets = (facet: string) => () => {
@@ -115,6 +118,9 @@ const FacetBrowserModalBody: React.FunctionComponent<
         collapsible={false}
         size="medium"
         variant="filled"
+        onClick={() => {
+          close(FacetBrowserModalId);
+        }}
       />
     </section>
   );

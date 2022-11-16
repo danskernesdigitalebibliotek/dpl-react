@@ -6,9 +6,7 @@ import {
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
-import { useGetFacets } from "./helper";
-
-export const FacetBrowserModalId = "facet-browser-modal";
+import { FacetBrowserModalId, useGetFacets } from "./helper";
 
 interface FacetBrowserModalProps {
   q: string;
