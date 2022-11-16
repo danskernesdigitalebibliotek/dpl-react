@@ -67,7 +67,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   const { track } = useStatistics();
   useEffect(() => {
-    track("page", { id: 10, name: "On site search string", trackedData: q });
+    track("click", { id: 10, name: "On site search string", trackedData: q });
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
