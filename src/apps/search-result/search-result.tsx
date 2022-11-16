@@ -150,11 +150,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   useEffect(() => {
     if (campaignData?.data?.title) {
       track("click", {
-        id: 28,
-        name: "Kampagnevisning",
-        trackedData: campaignData.data.title
-      });
-      track("click", {
         id: 62,
         name: "KampagnePlus Titel",
         trackedData: campaignData.data.title
