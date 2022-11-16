@@ -66,7 +66,11 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
           return (
             <li className="facet-line__item">
               <Dropdown
-                placeholder={t(`facet${upperFirst(name)}Text`)}
+                placeholder={{
+                  label: t(`facet${upperFirst(name)}Text`),
+                  selected: true,
+                  hidden: true
+                }}
                 list={formatValuesToDropdown(name, values)}
                 ariaLabel={name}
                 arrowIcon="chevron"

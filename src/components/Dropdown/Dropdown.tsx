@@ -17,7 +17,13 @@ type DropdownProps = {
   classNames?: string;
   innerClassNames?: { select?: string; option?: string; arrowWrapper?: string };
   handleOnChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  placeholder?: string;
+  placeholder?: {
+    label: string;
+    selected?: boolean;
+    disabled?: boolean;
+    hidden?: boolean;
+  };
+  defaultValue?: string;
 };
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -27,7 +33,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   classNames,
   innerClassNames,
   handleOnChange,
-  placeholder
+  placeholder,
+  defaultValue
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -41,10 +48,16 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
         className={classes.select}
         aria-label={ariaLabel}
         onChange={handleOnChange ? (e) => handleOnChange(e) : undefined}
+        defaultValue={defaultValue ?? undefined}
       >
         {placeholder && (
-          <option hidden selected>
-            {placeholder}
+          <option
+            className={classes.option}
+            hidden={placeholder.hidden ?? undefined}
+            selected={placeholder.selected ?? undefined}
+            disabled={placeholder.disabled ?? undefined}
+          >
+            {placeholder.label}
           </option>
         )}
 
