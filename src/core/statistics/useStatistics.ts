@@ -2,12 +2,10 @@
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
 
-export type CustomClickParameter = {
-  [key: number]:
-    | number
-    | { [key: number]: string }
-    | { [key: string]: string[] };
-};
+export type CustomClickParameter = Record<
+  number,
+  number | Record<number, string> | Record<string, string>
+>;
 
 export interface EventData {
   [key: string]: string | number | Record<string, unknown>;
