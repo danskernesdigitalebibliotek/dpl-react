@@ -9,15 +9,22 @@ export interface EventDataWithCustomClickParameter extends EventData {
   customClickParameter: Record<number, string>;
 }
 
+// There are four kinds of event types:
 // 1. page - when a page request is simulated
 // 2. click - for measuring actions that don't cause page load;
 // 3. link - clicking a link that triggers a new page load
 // 4. pageupdate - information on the page changes without a new page load
+// We currently only support click and link, as we don't track any page or pageupdate data.
 export type EventType = "click" | "link";
 
 export type TrackParameters = {
+  // id here is the WTK id for an event - specified to us by the project owners (DDF)
+  // each specific event they want to track has a corresponding id.
   id: number;
+  // The name of the tracked event is also provided to us by DDF - it helps them
+  // distinguish the tracked data.
   name: string;
+  // trackedData encapsulates desired content to be tracked.
   trackedData: string;
 };
 
