@@ -1,6 +1,6 @@
 const task = require("@cypress/code-coverage/task");
 const browserify = require("@cypress/browserify-preprocessor");
-
+const logsPrinter = require("cypress-terminal-report/src/installLogsPrinter");
 // In order to use both babelrc and typescript in browserify
 // we copy the functionality from @cypress/code-coverage/use-babelrc
 // and merge it with the typescript setting.
@@ -10,6 +10,9 @@ const { browserifyOptions } = browserify.defaultOptions;
 browserifyOptions.transform[1][1].babelrc = true;
 
 module.exports = (on, config) => {
+  logsPrinter(on, {
+    printLogsToConsole: "always"
+  });
   task(on, config);
   on(
     "file:preprocessor",
