@@ -96,16 +96,12 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
                 });
               };
 
+              // Removes the selected term from the filter line because it is now displayed in the selected line
+              if (filters?.[name]?.[term]) return null;
+
               return (
                 <li className="facet-line__item">
-                  <ButtonTag
-                    key={term}
-                    onClick={onClickHandler}
-                    // We need to remove aria-pressed from FacetLineFilters buttonTag(term) if a term is selected.
-                    // Because buttonTag is a reusable component that is used both in FacetLineFilters and FacetLineSelected,
-                    // the selected term in facetLineFilters will therefore no longer be a toggle button
-                    selected={filters?.[name]?.[term] ? undefined : false}
-                  >
+                  <ButtonTag key={term} onClick={onClickHandler}>
                     {`${term} (${score})`}
                   </ButtonTag>
                 </li>
