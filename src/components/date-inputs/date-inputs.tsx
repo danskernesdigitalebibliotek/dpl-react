@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { useText } from "../../core/utils/text";
 import DateInput from "./date-input";
 
+// Todo create meaningful types for this when redoing dates in the mapping file
 interface DateInputsProps {
   setStartDate: (date: string) => void;
   setEndDate: (date: string) => void;
