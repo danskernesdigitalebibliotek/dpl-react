@@ -233,6 +233,11 @@ export default {
       defaultValue: "See online",
       control: { type: "text" }
     },
+    listenOnlineText: {
+      name: "Listen online",
+      defaultValue: "Listen online",
+      control: { type: "text" }
+    },
     cantReserveText: {
       name: "Can't be reserved",
       defaultValue: "Can't be reserved",
