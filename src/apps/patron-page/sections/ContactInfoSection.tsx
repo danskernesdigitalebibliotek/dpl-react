@@ -27,7 +27,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         </p>
       )}
       <TextInput
-        className="dpl-input input_desktop"
+        className="dpl-input input__desktop"
         id="phone-input"
         type="number"
         onChange={(newPhoneNumber) =>
@@ -47,7 +47,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         label={t("patronPageContactPhoneCheckboxText")}
       />
       <TextInput
-        className="dpl-input input_desktop"
+        className="dpl-input input__desktop"
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}

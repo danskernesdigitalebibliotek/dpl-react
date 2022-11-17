@@ -40,7 +40,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
         </p>
       )}
       <BranchesDropdown
-        classNames="dropdow dropdown_desktop"
+        classNames="dropdow dropdown__desktop"
         selected={patron?.preferredPickupBranch || ""}
         onChange={(newPreferredPickupBranch) =>
           changePatron(newPreferredPickupBranch, "preferredPickupBranch")
