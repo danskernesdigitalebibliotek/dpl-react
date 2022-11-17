@@ -15,6 +15,7 @@ export type ButtonProps = {
   iconClassNames?: string;
   id?: string;
   classNames?: string;
+  dataCy?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -27,7 +28,8 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   iconClassNames,
   id,
-  classNames
+  classNames,
+  dataCy
 }) => {
   const iconClassName = `btn-icon ${clsx({ "btn-collapsible": collapsible }, [
     iconClassNames
@@ -55,6 +57,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      data-cy={dataCy || "button"}
       type="button"
       className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small ${
         classNames ?? ""
