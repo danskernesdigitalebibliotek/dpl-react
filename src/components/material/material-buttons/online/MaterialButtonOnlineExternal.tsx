@@ -53,10 +53,10 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     materialTypes: MaterialType["specific"][]
   ) => {
     if (sourceName.includes("ereol")) {
-      return `${t("goToText")} ereolen`;
+      return t("goToText", { placeholders: { "@source": "ereolen" } });
     }
     if (sourceName.includes("filmstriben")) {
-      return `${t("goToText")} filmstriben`;
+      return t("goToText", { placeholders: { "@source": "filmstriben" } });
     }
     if (materialTypes.find((element) => element.includes("lydbog"))) {
       return t("listenOnlineText");
