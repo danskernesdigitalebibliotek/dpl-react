@@ -14,12 +14,6 @@ describe("The facet line", () => {
       .click()
       .should("not.have.attr", "aria-pressed", "false");
 
-    cy.contains(".facet-line-selected-terms button", "lydbog").should(
-      "have.attr",
-      "aria-pressed",
-      "true"
-    );
-
     cy.contains(".facet-line-selected-terms button", "lydbog")
       .should("have.attr", "aria-pressed", "true")
       .click();
