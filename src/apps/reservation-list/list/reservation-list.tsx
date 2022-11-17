@@ -153,7 +153,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           ) : (
             <List
               pageSize={pageSize}
-              header={t("reservationListPhysicalReservationsheaderText")}
+              header={t("reservationListPhysicalReservationsHeaderText")}
               list={reservedReservationsFBS}
             />
           )}
