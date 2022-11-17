@@ -63,4 +63,6 @@ export function useGetFacets(query: string, filters: Filter) {
   return { facets, isLoading };
 }
 
+export const FacetBrowserModalId = "facet-browser-modal";
+
 export default {};

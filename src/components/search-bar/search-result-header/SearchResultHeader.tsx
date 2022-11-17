@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../core/modal.slice";
 import { useText } from "../../../core/utils/text";
-import { FacetBrowserModalId } from "../../facet-browser/FacetBrowserModal";
+import { FacetBrowserModalId } from "../../facet-browser/helper";
 import ButtonTag from "../../Buttons/ButtonTag";
 
 export interface SearchResultHeaderProps {
