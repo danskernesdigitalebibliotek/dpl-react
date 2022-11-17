@@ -97,6 +97,7 @@ interface MaterialEntryTextProps {
   reviewsText: string;
   scopeText: string;
   seeOnlineText: string;
+  listenOnlineText: string;
   shiftText: string;
   sixMonthsText: string;
   threeMonthsText: string;
