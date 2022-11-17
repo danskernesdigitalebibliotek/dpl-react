@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import DropdownIcon from "./DropdownIcon";
 
-export type DropdownItem = {
+export type Option = {
   label: string;
   href?: string;
   disabled?: boolean;
@@ -11,7 +11,7 @@ export type DropdownItem = {
 };
 
 type DropdownProps = {
-  list: DropdownItem[];
+  options: Option[];
   ariaLabel: string;
   arrowIcon: "triangles" | "chevron";
   classNames?: string;
@@ -23,7 +23,7 @@ type DropdownProps = {
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
   arrowIcon,
   ariaLabel,
-  list,
+  options,
   classNames,
   innerClassNames,
   handleOnChange,
@@ -35,20 +35,21 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
     option: clsx("dropdown__option", innerClassNames?.option),
     arrowWrapper: clsx("dropdown__arrows", innerClassNames?.arrowWrapper)
   };
+
+  const checkHandleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (handleOnChange && e.target.value) handleOnChange(e);
+    return undefined;
+  };
+
   return (
     <div className={classes.root}>
       <select
         className={classes.select}
         aria-label={ariaLabel}
-        onChange={handleOnChange ? (e) => handleOnChange(e) : undefined}
+        onChange={checkHandleOnChange}
       >
-        {placeholder && (
-          <option hidden selected>
-            {placeholder}
-          </option>
-        )}
-
-        {list.map(({ label, value, disabled, selected }) => {
+        {placeholder && <option value="">{placeholder}</option>}
+        {options.map(({ label, value, disabled, selected }) => {
           return (
             <option
               key={label}
