@@ -22,28 +22,37 @@ export const Link: React.FC<LinkProps> = ({
     redirectTo(href);
   };
 
+  if (!trackClick) {
+    return (
+      <a
+        id={id}
+        href={String(href)}
+        target={isNewTab ? "_blank" : ""}
+        rel="noreferrer"
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    // If we want to track this click we have to first NOT set the href attribute
-    // & instead redirect through an onclick handler
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a
-      id={id}
-      // eslint-disable-next-line no-script-url
-      href={trackClick ? "javascript:void(0)" : String(href)}
-      target={isNewTab ? "_blank" : ""}
-      rel="noreferrer"
-      className={className}
-      onClick={
-        trackClick
-          ? () => {
-              trackClick();
-              redirect();
-            }
-          : undefined
-      }
+    <span
+      onClick={() => {
+        trackClick();
+        redirect();
+      }}
+      role="button"
+      tabIndex={0}
+      onKeyUp={(e) => {
+        if (e.key === "Enter") {
+          trackClick();
+          redirect();
+        }
+      }}
     >
       {children}
-    </a>
+    </span>
   );
 };
 
