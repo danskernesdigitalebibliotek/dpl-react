@@ -46,7 +46,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
       </p>
       <div className="dpl-pincode-container">
         <TextInput
-          className="dpl-input__half-on-desktop"
+          className="dpl-input input_desktop"
           id="pincode-input"
           type="password"
           pattern="[0-9]*"
@@ -57,7 +57,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
           validation={pincodeValidation}
         />
         <TextInput
-          className="dpl-input__half-on-desktop"
+          className="dpl-input input_desktop"
           id="pincode-confirm-input"
           pattern="[0-9]*"
           inputmode="numeric"

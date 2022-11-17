@@ -8,6 +8,16 @@ interface BasicDetailsSectionProps {
 
 const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {
   const t = useText();
+  const {
+    address: { coName, street, postalCode, city, country } = {
+      coName: "",
+      street: "",
+      postalCode: "",
+      city: "",
+      country: ""
+    },
+    name
+  } = patron || {};
 
   return (
     <section>
@@ -18,16 +28,16 @@ const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {
         <div className="dpl-patron-info__label">
           {t("patronPageBasicDetailsNameLabelText")}
         </div>
-        <div className="dpl-patron-info__text">{patron.name}</div>
+        <div className="dpl-patron-info__text">{name}</div>
         <div className="dpl-patron-info__label">
           {t("patronPageBasicDetailsAddressLabelText")}
         </div>
         <div className="dpl-patron-info__text">
-          <div>{patron.address?.coName}</div>
-          <div>{patron.address?.street}</div>
-          <div>{patron.address?.postalCode}</div>
-          <div>{patron.address?.city}</div>
-          <div>{patron.address?.country}</div>
+          <div>{coName}</div>
+          <div>{street}</div>
+          <div>{postalCode}</div>
+          <div>{city}</div>
+          <div>{country}</div>
         </div>
       </div>
     </section>

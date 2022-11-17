@@ -5,9 +5,13 @@ import BranchesDropdown from "../util/BranchesDropdown";
 import { useText } from "../../../core/utils/text";
 import DateInputs from "../../../components/date-inputs/date-inputs";
 
+export interface ChangePatronProps {
+  (newValue: string | boolean, key: string): void;
+}
+
 interface ReservationDetailsSectionProps {
   patron: PatronV5;
-  changePatron: (newValue: string | boolean, key: string) => void;
+  changePatron: ChangePatronProps;
 }
 
 const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
@@ -36,7 +40,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
         </p>
       )}
       <BranchesDropdown
-        classNames="dropdown__half-on-desktop"
+        classNames="dropdow dropdown_desktop"
         selected={patron?.preferredPickupBranch || ""}
         onChange={(newPreferredPickupBranch) =>
           changePatron(newPreferredPickupBranch, "preferredPickupBranch")

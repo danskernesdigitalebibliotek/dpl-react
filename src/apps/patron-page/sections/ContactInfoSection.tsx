@@ -3,10 +3,11 @@ import { PatronV5 } from "../../../core/fbs/model";
 import TextInput from "../../../components/atoms/input/TextInput";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useText } from "../../../core/utils/text";
+import { ChangePatronProps } from "./ReservationDetailsSection";
 
 interface ContactInfoSectionProps {
   patron: PatronV5;
-  changePatron: (newValue: string | boolean, key: string) => void;
+  changePatron: ChangePatronProps;
 }
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
@@ -26,7 +27,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         </p>
       )}
       <TextInput
-        className="dpl-input__half-on-desktop"
+        className="dpl-input input_desktop"
         id="phone-input"
         type="number"
         onChange={(newPhoneNumber) =>
@@ -46,7 +47,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         label={t("patronPageContactPhoneCheckboxText")}
       />
       <TextInput
-        className="dpl-input__half-on-desktop"
+        className="dpl-input input_desktop"
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}

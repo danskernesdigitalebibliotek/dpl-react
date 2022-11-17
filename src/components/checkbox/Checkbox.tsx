@@ -22,7 +22,7 @@ const CheckBox: FC<CheckBoxProps> = ({
   disabled,
   ariaLabel
 }) => {
-  const checkboxChecked = (checked: boolean) => {
+  const checkedHandler = (checked: boolean) => {
     if (onChecked) {
       onChecked(checked);
     }
@@ -35,7 +35,7 @@ const CheckBox: FC<CheckBoxProps> = ({
         data-cy={id}
         className="checkbox__input"
         onChange={(e) => {
-          checkboxChecked(e.target.checked);
+          checkedHandler(e.target.checked);
         }}
         checked={selected}
         type="checkbox"

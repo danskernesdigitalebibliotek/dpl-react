@@ -48,6 +48,9 @@ const PatronPage: FC = () => {
     // The user can actually save if there is no patron, this seem to be a consistent design decision
     // I will revisit when I get an answer to this question.
     if (patron) {
+      // The save patron request is done in another section of the code, but in that section
+      // it is saved differently. Here, we save the input from the user, in the other scenario,
+      // the checkboxes (subscribe to texts, subscribe to emails) will be set automatically
       const data: UpdatePatronRequestV4 = {
         patron: {
           emailAddress: patron.emailAddress,
