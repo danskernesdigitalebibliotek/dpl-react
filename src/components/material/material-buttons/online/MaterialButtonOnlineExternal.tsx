@@ -2,6 +2,7 @@ import React, { useState, FC, useEffect } from "react";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import { Manifestation } from "../../../../core/utils/types/entities";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
@@ -10,13 +11,15 @@ export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
+  manifestation: Manifestation;
 }
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   loginRequired,
   externalUrl = "",
   origin,
-  size
+  size,
+  manifestation
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
@@ -44,10 +47,27 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   }, [data, error, translatedUrl, urlWasTranslated]);
 
+  const label = (sourceName: string, materialTypes: string[]) => {
+    if (sourceName.includes("ereol")) {
+      return `${t("goToText")} ereolen`;
+    }
+    if (sourceName.includes("filmstriben")) {
+      return `${t("goToText")} filmstriben`;
+    }
+    if (materialTypes.find((element) => element.includes("lydbog"))) {
+      return t("listenOnlineText");
+    }
+    return t("seeOnlineText");
+  };
   return (
     <LinkNoStyle url={translatedUrl}>
       <Button
-        label={`${t("goToText")} ${origin}`}
+        label={label(
+          origin,
+          manifestation.materialTypes.map(
+            (materialType) => materialType.specific
+          )
+        )}
         buttonType="external-link"
         variant="filled"
         disabled={false}
