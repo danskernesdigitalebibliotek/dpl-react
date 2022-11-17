@@ -1737,7 +1737,6 @@ export type IntelligentFacetsQuery = {
   __typename?: "Query";
   search: {
     __typename?: "SearchResponse";
-    hitcount: number;
     intelligentFacets: Array<{
       __typename?: "FacetResult";
       name: string;
@@ -2801,7 +2800,6 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
 export const IntelligentFacetsDocument = `
     query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
   search(q: $q) {
-    hitcount
     intelligentFacets(limit: $facetsLimit) {
       name
       values(limit: $valuesLimit) {
