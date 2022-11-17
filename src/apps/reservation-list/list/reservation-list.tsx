@@ -35,9 +35,17 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     useGetPatronInformationByPatronIdV2();
 
   // Data fetch
-  const { isSuccess, data, refetch: refetchFBS } = useGetReservationsV2();
-  const { data: publizonData, refetch: refetchPublizon } =
-    useGetV1UserReservations();
+  const {
+    isSuccess,
+    data,
+    isLoading: isLoadingFBS,
+    refetch: refetchFBS
+  } = useGetReservationsV2();
+  const {
+    data: publizonData,
+    isLoading: isLoadingPublizon,
+    refetch: refetchPublizon
+  } = useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
@@ -112,7 +120,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     readyForPickupReservationsFBS.length === 0 &&
     readyForPickupReservationsPublizon.length === 0 &&
     reservedReservationsFBS.length === 0 &&
-    reservedReservationsPublizon.length === 0;
+    reservedReservationsPublizon.length === 0 &&
+    !isLoadingFBS &&
+    !isLoadingPublizon;
 
   const pickupListEmpty =
     readyForPickupReservationsFBS.length === 0 &&
@@ -127,15 +137,17 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
       {user && <ReservationPauseToggler user={user} />}
       {allListsEmpty ? (
-        <div className="m-32">
+        <div className="list-reservation-container m-32">
           <EmptyList emptyListText={t("reservationListAllEmptyText")} />
         </div>
       ) : (
         <>
           {pickupListEmpty ? (
-            <EmptyList
-              emptyListText={t("reservationListReadyForPickupEmptyText")}
-            />
+            <div className="list-reservation-container m-32">
+              <EmptyList
+                emptyListText={t("reservationListReadyForPickupEmptyText")}
+              />
+            </div>
           ) : (
             <List
               pageSize={pageSize}
@@ -147,9 +159,13 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
             />
           )}
           {physicalListEmpty ? (
-            <EmptyList
-              emptyListText={t("reservationListPhysicalReservationsEmptyText")}
-            />
+            <div className="list-reservation-container m-32">
+              <EmptyList
+                emptyListText={t(
+                  "reservationListPhysicalReservationsEmptyText"
+                )}
+              />
+            </div>
           ) : (
             <List
               pageSize={pageSize}
@@ -158,9 +174,11 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
             />
           )}
           {digitalListEmpty ? (
-            <EmptyList
-              emptyListText={t("reservationListDigitalReservationsEmptyText")}
-            />
+            <div className="list-reservation-container m-32">
+              <EmptyList
+                emptyListText={t("reservationListDigitalReservationsEmptyText")}
+              />
+            </div>
           ) : (
             <List
               pageSize={pageSize}

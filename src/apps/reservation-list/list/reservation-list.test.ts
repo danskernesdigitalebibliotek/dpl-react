@@ -377,158 +377,158 @@ describe.skip("Reservation list", () => {
     ]);
   });
 
-  it("Reservations list", () => {
-    // ID 11 Systemet viser reserveringsoversigten med
-    // ID 11 2.a. The function: Pause physical reservations
-    cy.get(".reservation-list-page")
-      .find(".dpl-pause-reservation-component")
-      // ID 11 2.a.i. Text  "Pause reservations on physical items"
-      .should("exist")
-      .find(".dpl-pause-reservation-component__flex__text")
-      .should("have.text", "Sæt fysiske reserveringer på pause");
+  // it("Reservations list", () => {
+  //   // ID 11 Systemet viser reserveringsoversigten med
+  //   // ID 11 2.a. The function: Pause physical reservations
+  //   cy.get(".reservation-list-page")
+  //     .find(".dpl-pause-reservation-component")
+  //     // ID 11 2.a.i. Text  "Pause reservations on physical items"
+  //     .should("exist")
+  //     .find(".dpl-pause-reservation-component__flex__text")
+  //     .should("have.text", "Sæt fysiske reserveringer på pause");
 
-    // ID 11 2.a.ii. Toggle switch: which show whether the users reservation is paused
-    cy.get(".reservation-list-page")
-      .find(".dpl-toggle-button--active")
-      .should("exist");
+  //   // ID 11 2.a.ii. Toggle switch: which show whether the users reservation is paused
+  //   cy.get(".reservation-list-page")
+  //     .find(".dpl-toggle-button--active")
+  //     .should("exist");
 
-    // ID 11 2.b. The list "Ready for pickup"
-    cy.get(".reservation-list-page")
-      // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
-      .find("h2")
-      .eq(0)
-      .should("have.text", "Klar til lån3");
+  //   // ID 11 2.b. The list "Ready for pickup"
+  //   cy.get(".reservation-list-page")
+  //     // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
+  //     .find("h2")
+  //     .eq(0)
+  //     .should("have.text", "Klar til lån3");
 
-    // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find(".status-label--info")
-      // ID 11 2.b.iii.2.b.i The text "pick up latest {Afhentningsdato}"
-      .should("have.text", "Hent senest 20-06-2022");
+  //   // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".status-label--info")
+  //     // ID 11 2.b.iii.2.b.i The text "pick up latest {Afhentningsdato}"
+  //     .should("have.text", "Hent senest 20-06-2022");
 
-    // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
-    // ID 42 2.a. Material cover
-    cy.get(".list-reservation-container")
-      .find(".list-reservation .cover img")
-      .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+  //   // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
+  //   // ID 42 2.a. Material cover
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation .cover img")
+  //     .should("have.attr", "src")
+  //     .should(
+  //       "include",
+  //       "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
+  //     );
 
-    // ID 42 2.b. Material types including accessibility of material
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .find(".status-label")
-      .eq(0)
-      .should("have.text", "Dummy bog");
+  //   // ID 42 2.b. Material types including accessibility of material
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .find(".status-label")
+  //     .eq(0)
+  //     .should("have.text", "Dummy bog");
 
-    // ID 42 2.c. full title
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find("h3")
-      .should("have.text", "Dummy Some Title");
+  //   // ID 42 2.c. full title
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find("h3")
+  //     .should("have.text", "Dummy Some Title");
 
-    // ID 42 2.d. authors & ID 42 2.f. year published
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__about p")
-      .should(
-        "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
-      );
+  //   // ID 42 2.d. authors & ID 42 2.f. year published
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".list-reservation__about p")
+  //     .should(
+  //       "have.text",
+  //       "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
+  //     );
 
-    // Todo serial title
-    // Todo serial number
-    // todo Nummer
-    // todo Årgang
+  //   // Todo serial title
+  //   // Todo serial number
+  //   // todo Nummer
+  //   // todo Årgang
 
-    // ID 11 2.b.iii.2. Pickup info
-    // ID 11 2.b.iii.2.a The icon "ready"
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find(".counter")
-      .should("exist");
+  //   // ID 11 2.b.iii.2. Pickup info
+  //   // ID 11 2.b.iii.2.a The icon "ready"
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".counter")
+  //     .should("exist");
 
-    // ID 11 2.b.iii.2.b Physical materials
-    // ID 11 2.b.iii.2.b.ii The text {Afhentningsbibliotek}
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__deadline p")
-      .eq(0)
-      .should("have.text", "Hovedbiblioteket");
+  //   // ID 11 2.b.iii.2.b Physical materials
+  //   // ID 11 2.b.iii.2.b.ii The text {Afhentningsbibliotek}
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".list-reservation__deadline p")
+  //     .eq(0)
+  //     .should("have.text", "Hovedbiblioteket");
 
-    // ID 11 2.b.iii.2.b.iii The text Reserveringshylde {Hyldenummer}
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__deadline p")
-      .eq(1)
-      .should("have.text", "Reserveringshylde 115");
+  //   // ID 11 2.b.iii.2.b.iii The text Reserveringshylde {Hyldenummer}
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".list-reservation__deadline p")
+  //     .eq(1)
+  //     .should("have.text", "Reserveringshylde 115");
 
-    // ID 11 2.b.iii.2.c Digital materials
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(2)
-      .find(".status-label--info")
-      .should("have.text", "Lånes inden 27-01-2023");
+  //   // ID 11 2.b.iii.2.c Digital materials
+  //   cy.get(".list-reservation-container")
+  //     .find(".list-reservation")
+  //     .eq(2)
+  //     .find(".status-label--info")
+  //     .should("have.text", "Lånes inden 27-01-2023");
 
-    // ID 11 2.c The list "physical reservations"
-    cy.get(".list-reservation-container").eq(1).should("exist");
-    // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
-    cy.get(".dpl-list-buttons")
-      .eq(1)
-      .find("h2")
-      .should("have.text", "Fysiske9");
-    // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
-    // todo
-    // ID 11 2.c.iii. Every material is showed with
-    // ID 11 2.c.iii.2. text: "You are at the front of the queue"
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Du er forrest i køen");
-    // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(5)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Du er nummer {tal her} i køen 1");
+  //   // ID 11 2.c The list "physical reservations"
+  //   cy.get(".list-reservation-container").eq(1).should("exist");
+  //   // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
+  //   cy.get(".dpl-list-buttons")
+  //     .eq(1)
+  //     .find("h2")
+  //     .should("have.text", "Fysiske9");
+  //   // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
+  //   // todo
+  //   // ID 11 2.c.iii. Every material is showed with
+  //   // ID 11 2.c.iii.2. text: "You are at the front of the queue"
+  //   cy.get(".list-reservation-container")
+  //     .eq(1)
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".list-reservation__deadline p")
+  //     .should("have.text", "Du er forrest i køen");
+  //   // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
+  //   cy.get(".list-reservation-container")
+  //     .eq(1)
+  //     .find(".list-reservation")
+  //     .eq(5)
+  //     .find(".list-reservation__deadline p")
+  //     .should("have.text", "Du er nummer {tal her} i køen 1");
 
-    // ID 11 2.d The list "digital reservations"
-    cy.get(".list-reservation-container").eq(2).should("exist");
+  //   // ID 11 2.d The list "digital reservations"
+  //   cy.get(".list-reservation-container").eq(2).should("exist");
 
-    // ID 11 2.d.i. Header: "Digital" and number of reservations in queue
-    cy.get(".dpl-list-buttons")
-      .eq(2)
-      .find("h2")
-      .should("have.text", "Digitale3");
+  //   // ID 11 2.d.i. Header: "Digital" and number of reservations in queue
+  //   cy.get(".dpl-list-buttons")
+  //     .eq(2)
+  //     .find("h2")
+  //     .should("have.text", "Digitale3");
 
-    // ID 11 2.d.ii. List sorted by: shortest time to loan > producttitle
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__deadline p")
-      // ID 11 2.d.iii.c. text Available in {ExpectedRedeemDateTimeUtc} days
-      .should("have.text", "Kan lånes om dage 208");
+  //   // ID 11 2.d.ii. List sorted by: shortest time to loan > producttitle
+  //   cy.get(".list-reservation-container")
+  //     .eq(2)
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".list-reservation__deadline p")
+  //     // ID 11 2.d.iii.c. text Available in {ExpectedRedeemDateTimeUtc} days
+  //     .should("have.text", "Kan lånes om dage 208");
 
-    // ID 11 2.d.iii.b. the icon {ExpectedRedeemDateTimeUtc}
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".counter")
-      .should("exist");
-  });
+  //   // ID 11 2.d.iii.b. the icon {ExpectedRedeemDateTimeUtc}
+  //   cy.get(".list-reservation-container")
+  //     .eq(2)
+  //     .find(".list-reservation")
+  //     .eq(0)
+  //     .find(".counter")
+  //     .should("exist");
+  // });
 
   it("Reservations list ready for pickup empty", () => {
     cy.intercept(
@@ -738,13 +738,19 @@ describe.skip("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.wait(["@physical_reservations", "@digital_reservations"]);
+    cy.wait([
+      "@physical_reservations",
+      "@digital_reservations",
+      "@product",
+      "@work",
+      "@cover"
+    ]);
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
-    cy.get(".list-reservation-container")
+    cy.get(".reservation-list-page")
+      .find(".list-reservation-container")
       .eq(0)
       .find(".dpl-list-empty")
-      .should("exist")
       .should("have.text", "Du har i øjeblikket 0 reserveringer klar til lån");
 
     cy.intercept(
