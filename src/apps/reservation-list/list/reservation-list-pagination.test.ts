@@ -366,14 +366,17 @@ describe("Reservation list pagination", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
-    cy.wait([
-      "@product",
-      "@physical_reservations",
-      "@digital_reservations",
-      "@work",
-      "@cover",
-      "@user"
-    ]);
+    cy.wait(
+      [
+        "@product",
+        "@physical_reservations",
+        "@digital_reservations",
+        "@work",
+        "@cover",
+        "@user"
+      ],
+      { requestTimeout: 30000 }
+    );
   });
 
   it("Paginates reservation list", () => {
@@ -413,4 +416,4 @@ describe("Reservation list pagination", () => {
   });
 });
 
-export {};
+export { };
