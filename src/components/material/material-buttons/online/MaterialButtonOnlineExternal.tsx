@@ -1,4 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
+import { MaterialType } from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -47,7 +48,10 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   }, [data, error, translatedUrl, urlWasTranslated]);
 
-  const label = (sourceName: string, materialTypes: string[]) => {
+  const label = (
+    sourceName: string,
+    materialTypes: MaterialType["specific"][]
+  ) => {
     if (sourceName.includes("ereol")) {
       return `${t("goToText")} ereolen`;
     }
