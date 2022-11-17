@@ -245,7 +245,7 @@ export default {
     },
     goToText: {
       name: "Go to",
-      defaultValue: "Go to",
+      defaultValue: "Go to @source",
       control: { type: "text" }
     },
     materialIsLoanedOutText: {
