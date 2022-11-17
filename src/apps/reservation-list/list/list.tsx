@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from "react";
-import EmptyList from "../../../components/empty-list/empty-list";
 import usePager from "../../../components/result-pager/use-pager";
 import { getListItems } from "../../../core/utils/helpers/general";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
@@ -8,10 +7,9 @@ import ReservationMaterial from "../reservation-material/reservation-material";
 interface ListProps {
   list: ReservationType[];
   header: string;
-  emptyListLabel: string;
   pageSize: number;
 }
-const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
+const List: FC<ListProps> = ({ list, header, pageSize }) => {
   const [displayedReservations, setDisplayedReservations] = useState<
     ReservationType[]
   >([]);
@@ -34,9 +32,6 @@ const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
         </h2>
       </div>
       <ul className="list-reservation-container m-32">
-        {displayedReservations.length === 0 && (
-          <EmptyList emptyListText={emptyListLabel} />
-        )}
         {displayedReservations.map((reservation) => (
           <ReservationMaterial
             key={reservation.identifier || reservation.faust}

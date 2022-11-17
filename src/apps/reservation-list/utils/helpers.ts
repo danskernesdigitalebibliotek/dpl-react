@@ -14,7 +14,7 @@ export const sortByOldestPickupDeadline = (list: ReservationType[]) => {
 
 export const getReservedDigital = (list: ReservationType[]) => {
   // Sorts by pickupDeadline, then title
-  return [...list]
+  return list
     .filter(({ state }) => state === "reserved")
     .sort(
       (objA, objB) =>
@@ -25,7 +25,7 @@ export const getReservedDigital = (list: ReservationType[]) => {
 };
 
 export const getReservedPhysical = (list: ReservationType[]) => {
-  return [...list]
+  return list
     .filter(({ state }) => state === "reserved")
     .sort(
       (objA, objB) => (objA.numberInQueue || 0) - (objB.numberInQueue || 0)
