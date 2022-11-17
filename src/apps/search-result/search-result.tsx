@@ -134,6 +134,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const worksAreLoaded = Boolean(resultItems.length);
 
   useEffect(() => {
+    // We want to disregard the first search result length because it is always 0
+    // (we set it using setHitCount useEffect() above)
     if (isFirstLoad) {
       setIsFirstLoad(false);
       return;
