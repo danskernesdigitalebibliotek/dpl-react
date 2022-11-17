@@ -169,6 +169,7 @@ const ReservationModalBody = ({
                 />
               </MaterialAvailabilityTextParagraph>
               <Button
+                dataCy="reservation-modal-submit-button"
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
