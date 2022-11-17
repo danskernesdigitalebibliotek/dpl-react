@@ -1,5 +1,8 @@
 import React, { useState, FC, useEffect } from "react";
-import { MaterialType } from "../../../../core/dbc-gateway/generated/graphql";
+import {
+  AccessUrl,
+  MaterialType
+} from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -14,6 +17,22 @@ export interface MaterialButtonOnlineExternalProps {
   size?: ButtonSize;
   manifestation: Manifestation;
 }
+
+export const getOnlineMaterialType = (
+  sourceName: AccessUrl["origin"],
+  materialTypes: MaterialType["specific"][]
+) => {
+  if (sourceName.includes("ereol")) {
+    return "ebook";
+  }
+  if (sourceName.includes("filmstriben")) {
+    return "emovie";
+  }
+  if (materialTypes.find((element) => element.includes("lydbog"))) {
+    return "audiobook";
+  }
+  return "unknown";
+};
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   loginRequired,
@@ -49,19 +68,20 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   }, [data, error, translatedUrl, urlWasTranslated]);
 
   const label = (
-    sourceName: string,
+    sourceName: AccessUrl["origin"],
     materialTypes: MaterialType["specific"][]
   ) => {
-    if (sourceName.includes("ereol")) {
-      return t("goToText", { placeholders: { "@source": "ereolen" } });
+    const onlineMaterialType = getOnlineMaterialType(sourceName, materialTypes);
+    switch (onlineMaterialType) {
+      case "ebook":
+        return t("goToText", { placeholders: { "@source": "ereolen" } });
+      case "emovie":
+        return t("goToText", { placeholders: { "@source": "filmstriben" } });
+      case "audiobook":
+        return t("listenOnlineText");
+      default:
+        return t("seeOnlineText");
     }
-    if (sourceName.includes("filmstriben")) {
-      return t("goToText", { placeholders: { "@source": "filmstriben" } });
-    }
-    if (materialTypes.find((element) => element.includes("lydbog"))) {
-      return t("listenOnlineText");
-    }
-    return t("seeOnlineText");
   };
   return (
     <LinkNoStyle url={translatedUrl}>
