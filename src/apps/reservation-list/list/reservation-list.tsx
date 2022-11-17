@@ -114,39 +114,61 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     reservedReservationsFBS.length === 0 &&
     reservedReservationsPublizon.length === 0;
 
+  const pickupListEmpty =
+    readyForPickupReservationsFBS.length === 0 &&
+    readyForPickupReservationsPublizon.length === 0;
+
+  const physicalListEmpty = reservedReservationsFBS.length === 0;
+
+  const digitalListEmpty = reservedReservationsPublizon.length === 0;
+
   return (
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
       {user && <ReservationPauseToggler user={user} />}
-      {!allListsEmpty && (
-        <>
-          <List
-            pageSize={pageSize}
-            header={t("reservationListReadyForPickupTitleText")}
-            emptyListLabel={t("reservationListReadyForPickupEmptyText")}
-            list={sortByOldestPickupDeadline([
-              ...readyForPickupReservationsFBS,
-              ...readyForPickupReservationsPublizon
-            ])}
-          />
-          <List
-            pageSize={pageSize}
-            emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
-            header={t("reservationListPhysicalReservationsHeaderText")}
-            list={reservedReservationsFBS}
-          />
-          <List
-            pageSize={pageSize}
-            header={t("reservationListDigitalReservationsHeaderText")}
-            emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
-            list={reservedReservationsPublizon}
-          />
-        </>
-      )}
-      {allListsEmpty && (
+      {allListsEmpty ? (
         <div className="m-32">
           <EmptyList emptyListText={t("reservationListAllEmptyText")} />
         </div>
+      ) : (
+        <>
+          {pickupListEmpty ? (
+            <EmptyList
+              emptyListText={t("reservationListReadyForPickupEmptyText")}
+            />
+          ) : (
+            <List
+              pageSize={pageSize}
+              header={t("reservationListReadyForPickupTitleText")}
+              list={sortByOldestPickupDeadline([
+                ...readyForPickupReservationsFBS,
+                ...readyForPickupReservationsPublizon
+              ])}
+            />
+          )}
+          {physicalListEmpty ? (
+            <EmptyList
+              emptyListText={t("reservationListPhysicalReservationsEmptyText")}
+            />
+          ) : (
+            <List
+              pageSize={pageSize}
+              header={t("reservationListPhysicalReservationsheaderText")}
+              list={reservedReservationsFBS}
+            />
+          )}
+          {digitalListEmpty ? (
+            <EmptyList
+              emptyListText={t("reservationListDigitalReservationsEmptyText")}
+            />
+          ) : (
+            <List
+              pageSize={pageSize}
+              header={t("reservationListDigitalReservationsHeaderText")}
+              list={reservedReservationsPublizon}
+            />
+          )}
+        </>
       )}
     </div>
   );
