@@ -131,4 +131,4 @@ describe("Search Result", () => {
   });
 });
 
-export { };
+export {};
