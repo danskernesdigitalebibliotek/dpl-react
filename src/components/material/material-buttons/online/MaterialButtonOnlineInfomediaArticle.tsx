@@ -11,11 +11,16 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
   manifestation: Manifestation;
+  dataCy?: string;
 }
 
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
-> = ({ size, manifestation: { pid } }) => {
+> = ({
+  size,
+  manifestation: { pid },
+  dataCy = "material-button-online-infomedia-article"
+}) => {
   const t = useText();
   const dispatch = useDispatch();
 
@@ -38,6 +43,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       collapsible={false}
       size={size || "large"}
       onClick={onClick}
+      dataCy={dataCy}
     />
   );
 };

@@ -13,6 +13,7 @@ export interface DisclosureProps {
   fullWidth?: boolean;
   open?: boolean;
   removeHeadlinePadding?: boolean;
+  dataCy?: string;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
@@ -22,7 +23,8 @@ const Disclosure: FC<DisclosureProps> = ({
   isAvailable,
   fullWidth,
   open,
-  removeHeadlinePadding
+  removeHeadlinePadding,
+  dataCy = "disclosure"
 }) => {
   const t = useText();
 
@@ -32,6 +34,7 @@ const Disclosure: FC<DisclosureProps> = ({
         fullWidth ? "disclosure--full-width" : ""
       }`}
       open={open}
+      data-cy={dataCy}
     >
       <summary
         className={clsx(
@@ -45,6 +48,7 @@ const Disclosure: FC<DisclosureProps> = ({
           </div>
         )}
         <span
+          data-cy="disclosure-title"
           className={`disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
           }`}
