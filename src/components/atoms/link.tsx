@@ -15,17 +15,16 @@ export const Link: React.FC<LinkProps> = ({
   isNewTab,
   className,
   id,
-  dataCy = "link"
+  dataCy
 }) => {
   return (
     <a
       id={id}
-      data-cy={id}
+      data-cy={dataCy || id}
       href={String(href)}
       target={isNewTab ? "_blank" : ""}
       rel="noreferrer"
       className={className}
-      data-cy={dataCy}
     >
       {children}
     </a>
