@@ -68,6 +68,15 @@ Cypress.Commands.add(
   }
 );
 
+// Data cy attribute selector helpers.
+Cypress.Commands.add("getBySel", (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args);
+});
+
+Cypress.Commands.add("getBySelLike", (selector, ...args) => {
+  return cy.get(`[data-test*=${selector}]`, ...args);
+});
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -78,6 +87,8 @@ declare global {
       createFakeAuthenticatedSession(): void;
       interceptGraphql(prams: InterceptGraphqlParams): void;
       interceptRest(params: InterceptRestParams): void;
+      getBySel(selector: string, ...args: unknown[]): Chainable;
+      getBySelLike(selector: string, ...args: unknown[]): Chainable;
     }
   }
 }
