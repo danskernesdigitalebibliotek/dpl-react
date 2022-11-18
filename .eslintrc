@@ -68,7 +68,13 @@
     // We like to use arrow function syntax also for functional components.
     "react/function-component-definition": "off",
     // No complaints about missing trailing comma
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/comma-dangle": "off",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "useDeepCompareEffect"
+      }
+    ]
   },
   "overrides": [
     {
