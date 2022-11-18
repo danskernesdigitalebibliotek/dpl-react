@@ -35,9 +35,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     return values.map((value) => {
       return {
         label: value.term,
-        value: value.key,
-        disabled: Boolean(filters?.[facet]?.[value.term]),
-        selected: Boolean(filters?.[facet]?.[value.term])
+        value: value.key
       };
     });
   };
