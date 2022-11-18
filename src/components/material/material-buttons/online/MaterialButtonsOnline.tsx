@@ -13,6 +13,7 @@ import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomedi
 export interface MaterialButtonsOnlineProps {
   manifestation: Manifestation;
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -21,7 +22,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     access: [accessElement],
     access: [{ __typename: accessType }]
   },
-  size
+  size,
+  dataCy = "material-buttons-online"
 }) => {
   // If the access type is an external type we'll show corresponding button.
   if (["Ereol", "AccessUrl"].includes(accessType)) {
@@ -37,6 +39,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         origin={origin}
         size={size}
         manifestation={manifestation}
+        dataCy={`${dataCy}-external`}
       />
     );
   }
@@ -47,6 +50,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
         size={size}
+        dataCy={`${dataCy}-digital-article`}
       />
     );
   }
@@ -56,6 +60,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       <MaterialButtonOnlineInfomediaArticle
         size={size}
         manifestation={manifestation}
+        dataCy={`${dataCy}-infomedia-article`}
       />
     );
   }

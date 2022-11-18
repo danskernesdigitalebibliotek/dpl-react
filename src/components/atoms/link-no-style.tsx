@@ -6,19 +6,22 @@ export interface LinkNoStyleProps {
   children: React.ReactNode;
   isNewTab?: boolean;
   className?: string;
+  dataCy?: string;
 }
 
 export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   url,
   children,
   isNewTab = false,
-  className
+  className,
+  dataCy = "link-no-style"
 }) => {
   return (
     <Link
       href={url}
       isNewTab={isNewTab}
       className={`hide-linkstyle ${className || ""}`}
+      dataCy={dataCy}
     >
       {children}
     </Link>

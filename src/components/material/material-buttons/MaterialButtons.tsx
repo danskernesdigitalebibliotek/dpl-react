@@ -12,12 +12,14 @@ import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 export interface MaterialButtonsProps {
   manifestation: Manifestation;
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestation,
   manifestation: { pid },
-  size
+  size,
+  dataCy = "material-buttons"
 }) => {
   const faustId = convertPostIdToFaustId(pid);
 
@@ -25,12 +27,24 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
     <>
       {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) && (
         <>
-          <MaterialButtonsPhysical manifestation={manifestation} size={size} />
-          <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
+          <MaterialButtonsPhysical
+            manifestation={manifestation}
+            size={size}
+            dataCy={`${dataCy}-physical`}
+          />
+          <MaterialButtonsFindOnShelf
+            size={size}
+            faustIds={[faustId]}
+            dataCy={`${dataCy}-find-on-shelf`}
+          />
         </>
       )}
       {hasCorrectAccessType(AccessTypeCode.Online, manifestation) && (
-        <MaterialButtonsOnline manifestation={manifestation} size={size} />
+        <MaterialButtonsOnline
+          manifestation={manifestation}
+          size={size}
+          dataCy={`${dataCy}-find-on-shelf`}
+        />
       )}
     </>
   );

@@ -13,6 +13,7 @@ export interface AvailabilityLabelProps {
   faustIds: string[];
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
+  dataCy?: string;
 }
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
@@ -20,7 +21,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   url,
   faustIds,
   handleSelectManifestation,
-  cursorPointer = false
+  cursorPointer = false,
+  dataCy = "availability-label"
 }) => {
   const config = useConfig();
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
@@ -70,17 +72,24 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       onKeyPress={handleSelectManifestation ?? undefined}
       role="button"
       tabIndex={0}
+      data-cy={dataCy}
     >
       <div className={classes.triangle} />
       <img className={classes.check} src={CheckIcon} alt="check-icon" />
       {manifestText && (
         <>
-          <p className="text-label-semibold ml-24">{manifestText}</p>
+          <p
+            className="text-label-semibold ml-24"
+            data-cy="availability-label-type"
+          >
+            {manifestText}
+          </p>
           <div className="availability-label--divider ml-4" />
         </>
       )}
       <p
         className={`text-label-normal ${manifestText ? "ml-4" : "ml-24"} mr-8`}
+        data-cy="availability-label-status"
       >
         {availabilityText}
       </p>

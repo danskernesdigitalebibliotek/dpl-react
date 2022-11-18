@@ -6,6 +6,7 @@ export interface LinkProps {
   isNewTab?: boolean;
   className?: string;
   id?: string;
+  dataCy?: string;
 }
 
 export const Link: React.FC<LinkProps> = ({
@@ -13,7 +14,8 @@ export const Link: React.FC<LinkProps> = ({
   children,
   isNewTab,
   className,
-  id
+  id,
+  dataCy = "link"
 }) => {
   return (
     <a
@@ -23,6 +25,7 @@ export const Link: React.FC<LinkProps> = ({
       target={isNewTab ? "_blank" : ""}
       rel="noreferrer"
       className={className}
+      data-cy={dataCy}
     >
       {children}
     </a>

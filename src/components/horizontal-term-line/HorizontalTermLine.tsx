@@ -8,15 +8,17 @@ export interface HorizontalTermLineProps {
     url: URL;
     term: string;
   }[];
+  dataCy?: string;
 }
 
 const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   title,
   subTitle,
-  linkList
+  linkList,
+  dataCy = "horizontal-term-line"
 }) => {
   return (
-    <div className="text-small-caption horizontal-term-line">
+    <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
       <p className="text-label-bold">
         {title || ""}{" "}
         {subTitle && (
