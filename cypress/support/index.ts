@@ -69,7 +69,7 @@ Cypress.Commands.add(
 );
 
 // Data cy attribute selector helpers.
-const visible = (checkVisible) => (checkVisible ? ":visible" : "");
+const visible = (checkVisible: boolean) => (checkVisible ? ":visible" : "");
 Cypress.Commands.add("getBySel", (selector, checkVisible = false, ...args) => {
   return cy.get(`[data-cy="${selector}"]${visible(checkVisible)}`, ...args);
 });
