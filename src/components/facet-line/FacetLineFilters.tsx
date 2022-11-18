@@ -35,7 +35,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     return values.map((value) => {
       return {
         label: value.term,
-        value: value.term,
+        value: value.key,
         disabled: Boolean(filters?.[facet]?.[value.term]),
         selected: Boolean(filters?.[facet]?.[value.term])
       };
@@ -48,7 +48,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   ) => {
     const term = facets
       .find((item) => item.name === facet)
-      ?.values.find((item) => item.term === e.target.value) as FilterItemTerm;
+      ?.values.find((item) => item.key === e.target.value) as FilterItemTerm;
 
     filterHandler({
       filterItem: {
