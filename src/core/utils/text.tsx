@@ -111,8 +111,16 @@ export const useText = (): UseTextFunction => {
     const textDefinition = constructTextDefinitionFromRawTextTextEntry(
       data?.[key] ?? key
     );
-    const processedTexts = placeholders
-      ? processTexts(textDefinition.text, placeholders)
+
+    const textPlaceholders = { ...(placeholders ?? {}) };
+    // If we are in plural mode we make sure
+    // that we do not also need to specify a count placeholder.
+    if (textDefinition.type === "plural") {
+      textPlaceholders["@count"] = String(count);
+    }
+
+    const processedTexts = textPlaceholders
+      ? processTexts(textDefinition.text, textPlaceholders)
       : textDefinition.text;
 
     switch (textDefinition.type) {
