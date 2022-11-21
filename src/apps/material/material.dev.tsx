@@ -233,6 +233,11 @@ export default {
       defaultValue: "See online",
       control: { type: "text" }
     },
+    listenOnlineText: {
+      name: "Listen online",
+      defaultValue: "Listen online",
+      control: { type: "text" }
+    },
     cantReserveText: {
       name: "Can't be reserved",
       defaultValue: "Can't be reserved",
@@ -240,7 +245,7 @@ export default {
     },
     goToText: {
       name: "Go to",
-      defaultValue: "Go to",
+      defaultValue: "Go to @source",
       control: { type: "text" }
     },
     materialIsLoanedOutText: {

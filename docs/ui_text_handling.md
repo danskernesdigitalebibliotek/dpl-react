@@ -98,12 +98,12 @@ export default HelloUser;
 
 ### Plural example
 
-Some times you want two versions of a text be shown
+Sometimes you want two versions of a text be shown
 depending on if you have one or multiple items being referenced in the text.
 
 That can be accommodated by using the plural text definition.
 
-Let's say that the authenticated user has a list of unread message in an inbox.
+Let's say that an authenticated user has a list of unread messages in an inbox.
 You could have a text key called: `inboxStatusText`.
 The value from the data prop is:
 
@@ -112,7 +112,7 @@ The value from the data prop is:
 "You have @count messages in the inbox"]}.
 ```
 
-You would the need to reference it like this:
+You would then need to reference it like this:
 
 ```tsx
 import * as React from "react";

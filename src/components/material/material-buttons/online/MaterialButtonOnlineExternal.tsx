@@ -1,7 +1,12 @@
 import React, { useState, FC, useEffect } from "react";
+import {
+  AccessUrl,
+  MaterialType
+} from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import { Manifestation } from "../../../../core/utils/types/entities";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
@@ -11,14 +16,32 @@ export interface MaterialButtonOnlineExternalProps {
   origin: string;
   size?: ButtonSize;
   trackOnlineView: () => void;
+  manifestation: Manifestation;
 }
+
+export const getOnlineMaterialType = (
+  sourceName: AccessUrl["origin"],
+  materialTypes: MaterialType["specific"][]
+) => {
+  if (sourceName.includes("ereol")) {
+    return "ebook";
+  }
+  if (sourceName.includes("filmstriben")) {
+    return "emovie";
+  }
+  if (materialTypes.find((element) => element.includes("lydbog"))) {
+    return "audiobook";
+  }
+  return "unknown";
+};
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   loginRequired,
   externalUrl = "",
   origin,
   size,
-  trackOnlineView
+  trackOnlineView,
+  manifestation
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
@@ -46,10 +69,31 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   }, [data, error, translatedUrl, urlWasTranslated]);
 
+  const label = (
+    sourceName: AccessUrl["origin"],
+    materialTypes: MaterialType["specific"][]
+  ) => {
+    const onlineMaterialType = getOnlineMaterialType(sourceName, materialTypes);
+    switch (onlineMaterialType) {
+      case "ebook":
+        return t("goToText", { placeholders: { "@source": "ereolen" } });
+      case "emovie":
+        return t("goToText", { placeholders: { "@source": "filmstriben" } });
+      case "audiobook":
+        return t("listenOnlineText");
+      default:
+        return t("seeOnlineText");
+    }
+  };
   return (
     <LinkNoStyle url={translatedUrl}>
       <Button
-        label={`${t("goToText")} ${origin}`}
+        label={label(
+          origin,
+          manifestation.materialTypes.map(
+            (materialType) => materialType.specific
+          )
+        )}
         buttonType="external-link"
         variant="filled"
         disabled={false}

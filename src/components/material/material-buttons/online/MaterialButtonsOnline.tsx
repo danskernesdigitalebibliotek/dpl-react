@@ -50,6 +50,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         origin={origin}
         size={size}
         trackOnlineView={trackOnlineView}
+        manifestation={manifestation}
       />
     );
   }
