@@ -11,6 +11,7 @@ However, they are only shown in case certain criteria are met. We check for this
 by contacting the dpl-cms API.
 
 ## How campaign setup works in dpl-cms
+
 Dpl-cms is a cms system based on Drupal, where the system administrators can set
 up campaigns they want to show to their users. Drupal also allows the cms system
 to act as an API endpoint that we then can contact from our apps.
@@ -26,6 +27,7 @@ have "Harry Potter" as one of the most relevant subjects.
 Campaigns in dpl-cms can use triggers such as subject, main language, etc.
 
 ## Showing campaigns in dpl-react when in development mode
+
 You first need to make sure to have a campaign set up in your locally running
 dpl-cms (
 [run this repo locally](https://github.com/danskernesdigitalebibliotek/dpl-cms))
