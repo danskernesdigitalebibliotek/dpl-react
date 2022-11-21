@@ -251,7 +251,7 @@ describe("Menu", () => {
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")
       .should("exist")
-      .should("have.text", "Testkort ITK CMS Merkur");
+      .and("have.text", "Testkort ITK CMS Merkur");
 
     // 2.b. Linket “Se din profil”, som linker til Lånerstatus Dashboard. Engelsk tekst: "My account"
     cy.get(".modal-header__link")
