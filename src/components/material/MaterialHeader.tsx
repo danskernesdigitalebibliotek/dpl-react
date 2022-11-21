@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { isEqual } from "lodash";
 import { useDeepCompareEffect } from "react-use";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
@@ -83,33 +82,26 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
   const { track } = useStatistics();
-
-  // This is used to track whether the user is changing between manterial types or just clicking the same button over
-  const [manifestationMaterialTypes, setManifestationMaterialTypes] = useState<
-    string[]
-  >([]);
+  // This is used to track whether the user is changing between material types or just clicking the same button over
+  const manifestationMaterialTypes = manifestation.materialTypes.map(
+    (item) => item.specific
+  );
 
   useDeepCompareEffect(() => {
-    const newManifestationMaterialTypes = manifestation.materialTypes.map(
-      (item) => item.specific
-    );
-    if (isEqual(manifestationMaterialTypes, newManifestationMaterialTypes)) {
-      return;
-    }
     track("click", {
       id: statistics.materialType.id,
       name: statistics.materialType.name,
-      trackedData: newManifestationMaterialTypes.join(", ")
+      trackedData: manifestationMaterialTypes.join(", ")
     });
     track("click", {
       id: statistics.materialSource.id,
       name: statistics.materialSource.name,
       trackedData: manifestation.source.join(", ")
     });
-    setManifestationMaterialTypes(newManifestationMaterialTypes);
-    // We actaully just want to track if the currently selected manifestation changes.
+    // We just want to track if the currently selected manifestation changes (which should be once - on initial render)
+    // and when the currently selected manifestation's material type changes - on availability button click.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [manifestation]);
+  }, [manifestationMaterialTypes]);
 
   return (
     <header className="material-header">
