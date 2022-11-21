@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:57021",
   "integrationFolder": "./src",
-  "testFiles": "**/*.test.*"
+  "testFiles": "**/*.test.*",
+  "defaultCommandTimeout": 10000
 }
