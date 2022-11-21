@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDeepCompareEffect } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
@@ -60,7 +61,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
@@ -70,8 +71,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
-
-  useEffect(() => {
+  
+  useDeepCompareEffect(() => {
     if (campaignFacets) {
       mutate(
         {
@@ -87,7 +88,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         }
       );
     }
-  }, [mutate, campaignFacets]);
+  }, [campaignFacets, mutate]);
 
   const createFilters = (
     facets: {

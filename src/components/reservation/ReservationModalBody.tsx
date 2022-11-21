@@ -37,6 +37,8 @@ import {
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
+import StockAndReservationInfo from "../material/StockAndReservationInfo";
+import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -160,11 +162,12 @@ const ReservationModalBody = ({
           </header>
           <div>
             <div className="reservation-modal-submit">
-              <p className="text-small-caption">
-                {`${t("weHaveShoppedText")} ${totalMaterials(holdings)} ${t(
-                  "copiesThereIsText"
-                )} ${reservations} ${t("reservationsForThisMaterialText")}`}
-              </p>
+              <MaterialAvailabilityTextParagraph>
+                <StockAndReservationInfo
+                  stockCount={totalMaterials(holdings)}
+                  reservationCount={reservations}
+                />
+              </MaterialAvailabilityTextParagraph>
               <Button
                 label={t("approveReservationText")}
                 buttonType="none"

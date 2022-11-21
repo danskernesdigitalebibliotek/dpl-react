@@ -36,6 +36,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         externalUrl={externalUrl}
         origin={origin}
         size={size}
+        manifestation={manifestation}
       />
     );
   }

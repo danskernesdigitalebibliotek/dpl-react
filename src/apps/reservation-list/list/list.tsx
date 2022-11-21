@@ -1,12 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
+import EmptyList from "../../../components/empty-list/empty-list";
+import usePager from "../../../components/result-pager/use-pager";
+import { getListItems } from "../../../core/utils/helpers/general";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import ReservationMaterial from "../reservation-material/reservation-material";
 
 interface ListProps {
   list: ReservationType[];
   header: string;
+  emptyListLabel: string;
+  pageSize: number;
 }
-const List: FC<ListProps> = ({ list, header }) => {
+const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
+  const [displayedReservations, setDisplayedReservations] = useState<
+    ReservationType[]
+  >([]);
+  const { itemsShown, PagerComponent } = usePager(list.length, pageSize);
+
+  useEffect(() => {
+    if (list) {
+      setDisplayedReservations(
+        getListItems(list, itemsShown) as ReservationType[]
+      );
+    }
+  }, [itemsShown, list]);
+
   return (
     <>
       <div className="dpl-list-buttons m-32">
@@ -16,7 +34,10 @@ const List: FC<ListProps> = ({ list, header }) => {
         </h2>
       </div>
       <ul className="list-reservation-container m-32">
-        {list.map((reservation) => (
+        {displayedReservations.length === 0 && (
+          <EmptyList emptyListText={emptyListLabel} />
+        )}
+        {displayedReservations.map((reservation) => (
           <ReservationMaterial
             key={reservation.identifier || reservation.faust}
             identifier={reservation.identifier}
@@ -24,6 +45,7 @@ const List: FC<ListProps> = ({ list, header }) => {
             reservation={reservation}
           />
         ))}
+        {PagerComponent}
       </ul>
     </>
   );

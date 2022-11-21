@@ -2,8 +2,8 @@ import * as React from "react";
 import { totalMaterials } from "../../../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
-import { useText } from "../../../../core/utils/text";
 import { Pid } from "../../../../core/utils/types/ids";
+import StockAndReservationInfo from "../../StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 
 interface MaterialAvailabilityTextPhysicalProps {
@@ -13,7 +13,6 @@ interface MaterialAvailabilityTextPhysicalProps {
 const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
 > = ({ pid }) => {
-  const t = useText();
   const faustId = convertPostIdToFaustId(pid);
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: [faustId]
@@ -24,13 +23,12 @@ const MaterialAvailabilityTextPhysical: React.FC<
   const { reservations, holdings } = data[0];
 
   return (
-    <MaterialAvailabilityTextParagraph>{`${t(
-      "weHaveShoppedText"
-    )} ${totalMaterials(holdings)} ${t(
-      "copiesThereIsText"
-    )} ${reservations} ${t(
-      "reservationsForThisMaterialText"
-    )}`}</MaterialAvailabilityTextParagraph>
+    <MaterialAvailabilityTextParagraph>
+      <StockAndReservationInfo
+        stockCount={totalMaterials(holdings)}
+        reservationCount={reservations}
+      />
+    </MaterialAvailabilityTextParagraph>
   );
 };
 

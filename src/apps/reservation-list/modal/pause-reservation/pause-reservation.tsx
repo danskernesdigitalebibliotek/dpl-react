@@ -6,7 +6,7 @@ import { useUpdateV5 } from "../../../../core/fbs/fbs";
 import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
-import DateInput from "../../../../components/date-input/date-input";
+import DateInputs from "../../../../components/date-inputs/date-inputs";
 
 interface PauseReservationProps {
   id: string;
@@ -24,7 +24,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const [startDate, setStartDate] = useState<string>(
     (config("pauseReservationStartDateConfig") as string) || ""
   );
-  const [endDate, setEndDate] = useState<string | null>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   const save = useCallback(() => {
     if (user && startDate && endDate) {
@@ -79,23 +79,12 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           </p>
         </div>
 
-        <div className="modal-pause__dropdowns mt-24">
-          <div className="datepickers">
-            <DateInput
-              onChange={setStartDate}
-              value={startDate}
-              id="start-date"
-              label={t("pauseReservationModalStartDateLabelText")}
-            />
-            <DateInput
-              onChange={setEndDate}
-              value={endDate || ""}
-              id="end-date"
-              label={t("pauseReservationModalEndDateLabelText")}
-            />
-          </div>
-        </div>
-
+        <DateInputs
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          startDate={startDate}
+          endDate={endDate}
+        />
         <div className="modal-pause__text-link mt-24 color-secondary-gray">
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsTextText")}

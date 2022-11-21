@@ -1,6 +1,7 @@
 import { isMobile } from "react-device-detect";
 import pageSize from "./page-size.json";
 import pageSizeLoanList from "./page-size-loan-list.json";
+import pageSizeReservationList from "./page-size-reservation-list.json";
 import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
 import thresholds from "./status-thresholds.json";
@@ -10,6 +11,7 @@ export type ConfScope =
   | "pageSize"
   | "coverTints"
   | "pageSizeLoanList"
+  | "pageSizeReservationList"
   | "colors"
   | "modalIds"
   | "thresholds";
@@ -46,6 +48,7 @@ export default {
   pageSize,
   coverTints,
   pageSizeLoanList,
+  pageSizeReservationList,
   colors,
   modalIds,
   thresholds

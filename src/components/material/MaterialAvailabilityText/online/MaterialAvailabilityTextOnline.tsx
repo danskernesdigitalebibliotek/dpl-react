@@ -33,12 +33,13 @@ const MaterialAvailabilityTextOnline: React.FC<
 
   if (productsIsLoading || productsIsError || !productsData) return null;
 
-  // const costFree = productsData.product?.costFree;
-  const availabilityText = productsData.product?.costFree
-    ? t("materialIsIncludedText")
-    : `${t("youHaveBorrowedText")} X ${t("outOfText")} Y [materialte-type] ${t(
-        "thisMonthText"
-      )}`;
+  let availabilityText = t("onlineLimitMonthInfoText", {
+    placeholders: { "@count": "X", "@limit": "Y" }
+  });
+
+  if (productsData.product?.costFree) {
+    availabilityText = t("materialIsIncludedText");
+  }
 
   return (
     <MaterialAvailabilityTextParagraph>
