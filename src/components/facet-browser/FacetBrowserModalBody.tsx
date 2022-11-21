@@ -44,7 +44,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
       name: statistics.searchFacets.name,
       trackedData: JSON.stringify(
         mapValues(filters, (filter) => {
-          return Object.keys(filter);
+          return Object.keys(filter).join(", ");
         })
       )
     });
