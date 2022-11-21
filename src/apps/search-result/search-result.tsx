@@ -17,6 +17,7 @@ import {
   excludeBlacklistedBranches,
   cleanBranchesId
 } from "../../components/reservation/helper";
+import { useStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
   CampaignMatchPOST200,
@@ -59,10 +60,17 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
-  //  then make sure that we reset the entire result set.
+  // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
   }, [q, pageSize, filters]);
+
+  const { track } = useStatistics();
+  useEffect(() => {
+    track("click", { id: 10, name: "On site search string", trackedData: q });
+    // We actaully just want to track if the query changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q]);
 
   useDeepCompareEffect(() => {
     if (campaignFacets) {
