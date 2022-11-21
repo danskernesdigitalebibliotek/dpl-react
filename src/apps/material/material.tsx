@@ -24,7 +24,8 @@ import {
   getWorkDescriptionListData,
   getManifestationFromType,
   getManifestationType,
-  getWorkManifestation
+  getWorkManifestation,
+  getInfomediaId
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -102,8 +103,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     work,
     t
   });
-
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
+  const infomediaId = getInfomediaId(currentManifestation);
 
   return (
     <main className="material-page">
@@ -187,7 +188,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
           />
-          <InfomediaModal mainManifestation={currentManifestation} />
+          {infomediaId && (
+            <InfomediaModal
+              mainManifestation={currentManifestation}
+              infoMediaId={infomediaId}
+            />
+          )}
         </>
       )}
     </main>
