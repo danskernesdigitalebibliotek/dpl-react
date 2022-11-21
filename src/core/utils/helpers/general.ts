@@ -14,6 +14,7 @@ import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ReservationType } from "../types/reservation-type";
+import { FeeV2 } from "../../fbs/model/feeV2";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -300,6 +301,15 @@ export const getReadyForPickup = (list: ReservationType[]) => {
   return [...list].filter(({ state }) => state === "readyForPickup");
 };
 
+export const tallyUpFees = (fees: FeeV2[]) => {
+  let total = 0;
+  Object.values(fees).forEach(({ amount }) => {
+    total += amount;
+  });
+  return total;
+};
+
+// Loans overdue
 export const filterLoansOverdue = (loans: LoanType[]) => {
   return loans.filter(({ dueDate }) => {
     return materialIsOverdue(dueDate);
@@ -341,6 +351,15 @@ export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+// Loans with more than warning-threshold days until due
+export const filterLoansNotOverdue = (loans: LoanType[]) => {
+  const { warning } = <{ warning: number }>getThresholds();
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return daysUntilExpiration - warning > 0;
+  });
+};
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
