@@ -6,6 +6,7 @@ import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
 import { useConfig } from "../../core/utils/config";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export interface AvailabilityLabelProps {
   manifestText?: string;
@@ -45,8 +46,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   // it is displayed on the material page
   if (selected) {
     track("click", {
-      id: 38,
-      name: "Materiale Status",
+      id: statistics.materialStatus.id,
+      name: statistics.materialStatus.name,
       trackedData: availabilityText
     });
   }

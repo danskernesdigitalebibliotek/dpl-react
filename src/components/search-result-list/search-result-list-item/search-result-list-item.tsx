@@ -28,6 +28,7 @@ import { TypedDispatch } from "../../../core/store";
 import { guardedRequest } from "../../../core/guardedRequests.slice";
 import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
+import { statistics } from "../../../core/statistics/statistics";
 
 export interface SearchResultListItemProps {
   item: Work;
@@ -63,8 +64,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
 
   const handleClick = useCallback(() => {
     track("click", {
-      id: 42,
-      name: "Søgning - Resultatnummer klik",
+      id: statistics.searchResultNumberClick.id,
+      name: statistics.searchResultNumberClick.name,
       trackedData: resultNumber.toString()
     });
     redirectTo(materialFullUrl);

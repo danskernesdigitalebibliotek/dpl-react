@@ -10,6 +10,7 @@ import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -39,8 +40,8 @@ const FacetBrowserModalBody: React.FunctionComponent<
       return;
     }
     track("click", {
-      id: 20,
-      name: "Søgning Facet",
+      id: statistics.searchFacets.id,
+      name: statistics.searchFacets.name,
       trackedData: JSON.stringify(
         mapValues(filters, (filter) => {
           return Object.keys(filter);

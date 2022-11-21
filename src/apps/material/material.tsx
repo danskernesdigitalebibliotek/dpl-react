@@ -36,6 +36,7 @@ import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -54,15 +55,15 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   useEffect(() => {
     if (data?.work?.genreAndForm) {
       track("click", {
-        id: 25,
-        name: "Materiale Genre",
+        id: statistics.materialGenre.id,
+        name: statistics.materialGenre.name,
         trackedData: data.work.genreAndForm.join(", ")
       });
     }
     if (data?.work?.mainLanguages) {
       track("click", {
-        id: 29,
-        name: "Materiale Sprog",
+        id: statistics.materialLanguage.id,
+        name: statistics.materialLanguage.name,
         trackedData: data.work.mainLanguages
           .map((language) => language.display)
           .join(", ")
@@ -70,15 +71,15 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
     if (data?.work?.dk5MainEntry) {
       track("click", {
-        id: 31,
-        name: "Materiale - DK5-nummer",
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
         trackedData: data.work.dk5MainEntry.display
       });
     }
     if (data?.work?.fictionNonfiction) {
       track("click", {
-        id: 32,
-        name: "Materiale Fiktion/nonfiktion",
+        id: statistics.materialFictionNonFiction.id,
+        name: statistics.materialFictionNonFiction.name,
         trackedData: data.work.fictionNonfiction.display
       });
     }

@@ -20,6 +20,7 @@ import { useText } from "../../core/utils/text";
 import Category from "../../core/utils/types/material-type";
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -220,8 +221,8 @@ const SearchHeader: React.FC = () => {
       isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
     ) {
       track("click", {
-        id: 54,
-        name: "Autosuggest - klik",
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
         trackedData: selectedItem.work.titles.main.join(", ")
       });
       redirectTo(
@@ -241,8 +242,8 @@ const SearchHeader: React.FC = () => {
         highlightedIndexAfterClick - (textData.length + materialData.length);
       const selectedItemString = determineSuggestionTerm(changes.selectedItem);
       track("click", {
-        id: 54,
-        name: "Autosuggest - klik",
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
         trackedData: selectedItemString
       });
       redirectTo(
@@ -257,8 +258,8 @@ const SearchHeader: React.FC = () => {
     }
     // Otherwise redirect to search result page & track autosuggest click.
     track("click", {
-      id: 54,
-      name: "Autosuggest - klik",
+      id: statistics.autosuggestClick.id,
+      name: statistics.autosuggestClick.name,
       trackedData: determineSuggestionTerm(selectedItem)
     });
     redirectTo(

@@ -25,6 +25,7 @@ import {
 import Campaign from "../../components/campaign/Campaign";
 import { useGetFacets } from "../../components/facet-browser/helper";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
+import { statistics } from "../../core/statistics/statistics";
 
 interface SearchResultProps {
   q: string;
@@ -67,7 +68,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   const { track } = useStatistics();
   useEffect(() => {
-    track("click", { id: 10, name: "On site search string", trackedData: q });
+    track("click", {
+      id: statistics.searchQuery.id,
+      name: statistics.searchQuery.name,
+      trackedData: q
+    });
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
@@ -141,8 +146,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       return;
     }
     track("click", {
-      id: 11,
-      name: "OSS Results",
+      id: statistics.searchResultCount.id,
+      name: statistics.searchResultCount.name,
       trackedData: hitcount.toString()
     });
     // We actaully just want to track if the hitcount changes.
@@ -152,8 +157,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   useEffect(() => {
     if (campaignData?.data?.title) {
       track("click", {
-        id: 62,
-        name: "KampagnePlus Titel",
+        id: statistics.campaignShown.id,
+        name: statistics.campaignShown.name,
         trackedData: campaignData.data.title
       });
     }

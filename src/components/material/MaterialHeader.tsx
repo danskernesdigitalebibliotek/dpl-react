@@ -24,6 +24,7 @@ import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -95,13 +96,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       return;
     }
     track("click", {
-      id: 24,
-      name: "Materialetype",
+      id: statistics.materialType.id,
+      name: statistics.materialType.name,
       trackedData: newManifestationMaterialTypes.join(", ")
     });
     track("click", {
-      id: 30,
-      name: "Materiale Kilde",
+      id: statistics.materialSource.id,
+      name: statistics.materialSource.name,
       trackedData: manifestation.source.join(", ")
     });
     setManifestationMaterialTypes(newManifestationMaterialTypes);

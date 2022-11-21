@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { CampaignMatchPOST200Data } from "../../core/dpl-cms/model";
+import { statistics } from "../../core/statistics/statistics";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { LinkNoStyle } from "../atoms/link-no-style";
 import CampaignBody from "./CampaignBody";
@@ -17,8 +18,8 @@ const Campaign: FC<CampaignProps> = ({ campaignData }) => {
   const trackClick = () => {
     if (campaignData.title) {
       track("link", {
-        id: 48,
-        name: "Kampagneklik",
+        id: statistics.campaignClick.id,
+        name: statistics.campaignClick.name,
         trackedData: campaignData.title
       });
     }

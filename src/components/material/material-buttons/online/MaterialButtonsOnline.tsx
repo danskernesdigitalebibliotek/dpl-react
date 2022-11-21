@@ -4,6 +4,7 @@ import {
   AccessUrl,
   DigitalArticleService
 } from "../../../../core/dbc-gateway/generated/graphql";
+import { statistics } from "../../../../core/statistics/statistics";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -29,7 +30,11 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 }) => {
   const { track } = useStatistics();
   const trackOnlineView = () => {
-    track("click", { id: 51, name: "Se online", trackedData: workId });
+    track("click", {
+      id: statistics.onlineReservation.id,
+      name: statistics.onlineReservation.name,
+      trackedData: workId
+    });
   };
   // If the access type is an external type we'll show corresponding button.
   if (["Ereol", "AccessUrl"].includes(accessType)) {

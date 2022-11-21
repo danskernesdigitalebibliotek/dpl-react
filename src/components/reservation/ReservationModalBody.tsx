@@ -40,6 +40,7 @@ import { useConfig } from "../../core/utils/config";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
+import { statistics } from "../../core/statistics/statistics";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -126,7 +127,11 @@ const ReservationModalBody = ({
       {
         onSuccess: (res) => {
           // Track only if the reservation has been successfully saved.
-          track("click", { id: 50, name: "Reserver", trackedData: workId });
+          track("click", {
+            id: statistics.reservation.id,
+            name: statistics.reservation.name,
+            trackedData: workId
+          });
           // This state is used to show the success or error modal.
           setReservationResponse(res);
           // Because after a successful reservation the holdings (reservations) are updated.
