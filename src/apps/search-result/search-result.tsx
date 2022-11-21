@@ -71,7 +71,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
-  
+
   useDeepCompareEffect(() => {
     if (campaignFacets) {
       mutate(
