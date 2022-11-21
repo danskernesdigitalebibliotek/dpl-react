@@ -4,6 +4,7 @@ import {
   InfomediaReview,
   LibrariansReview
 } from "../../core/dbc-gateway/generated/graphql";
+import { createJSXkey } from "../../core/utils/helpers/general";
 import ReviewExternal from "./ReviewExternal";
 import ReviewInfomedia from "./ReviewInfomedia";
 import ReviewLibrarian from "./ReviewLibrarian";
@@ -17,14 +18,17 @@ export const MaterialReviews: React.FC<MaterialReviewsProps> = ({
 }) => {
   return (
     <ul className="reviews">
-      {listOfReviews.map((review) => {
+      {listOfReviews.map((review, i) => {
+        const key = createJSXkey([review.author, review.date, i]);
         if (review.__typename === "ExternalReview") {
-          return <ReviewExternal review={review} />;
+          return <ReviewExternal key={key} review={review} />;
         }
         if (review.__typename === "InfomediaReview") {
-          return <ReviewInfomedia review={review} />;
+          return <ReviewInfomedia key={key} review={review} />;
         }
-        return <ReviewLibrarian review={review as LibrariansReview} />;
+        return (
+          <ReviewLibrarian key={key} review={review as LibrariansReview} />
+        );
       })}
     </ul>
   );

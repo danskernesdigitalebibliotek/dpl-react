@@ -4,7 +4,8 @@ import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2 } from "../../../core/fbs/fbs";
 import {
   getRenewableMaterials,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  createJSXkey
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -119,12 +120,12 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               : ""
           }`}
         >
-          {displayedLoans.map((loanType) => {
+          {displayedLoans.map((loanType, i) => {
             return (
               <SelectableMaterial
                 faust={loanType.faust}
                 identifier={loanType.identifier}
-                key={loanType.faust}
+                key={createJSXkey([loanType.faust, i])}
                 materialsToRenew={materialsToRenew}
                 onChecked={onChecked}
                 disabled={!loanType.isRenewable}

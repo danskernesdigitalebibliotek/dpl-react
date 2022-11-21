@@ -4,7 +4,10 @@ import { totalAvailableMaterials } from "../../apps/material/helper";
 import { useText } from "../../core/utils/text";
 import { ManifestationHoldings } from "./types";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
-import { getManifestationPublicationYear } from "../../core/utils/helpers/general";
+import {
+  createJSXkey,
+  getManifestationPublicationYear
+} from "../../core/utils/helpers/general";
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
@@ -26,7 +29,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
           {t("findOnShelfModalListItemCountText")}
         </span>
       </li>
-      {libraryBranchHoldings.map((branchHolding) => {
+      {libraryBranchHoldings.map((branchHolding, i) => {
         return (
           <FindOnShelfManifestationListItem
             shelfmark={branchHolding.manifestation.shelfmark}
@@ -40,7 +43,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
             numberAvailable={totalAvailableMaterials(
               branchHolding.holding.materials
             )}
-            key={branchHolding.holding.branch.branchId}
+            key={createJSXkey([branchHolding.holding.branch.branchId, i])}
           />
         );
       })}

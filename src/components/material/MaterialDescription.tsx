@@ -1,5 +1,6 @@
 import React from "react";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import { createJSXkey } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   constructSearchUrl
@@ -42,9 +43,10 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       )}
       <div className="material-description__links mt-32">
         {inSeries &&
-          inSeries.map((seriesItem) => {
+          inSeries.map((seriesItem, i) => {
             return (
               <HorizontalTermLine
+                key={createJSXkey([seriesItem.title, i])}
                 title={`${t("numberDescriptionText")} ${
                   seriesItem.numberInSeries?.number
                 }`}

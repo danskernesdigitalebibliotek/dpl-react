@@ -123,11 +123,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation: Manifestation) => {
           return (
-            <>
-              <MaterialMainfestationItem
-                key={manifestation.pid}
-                manifestation={manifestation}
-              />
+            <div key={manifestation.pid}>
+              <MaterialMainfestationItem manifestation={manifestation} />
               <FindOnShelfModal
                 manifestations={[manifestation]}
                 workTitles={manifestation.titles.main}
@@ -140,7 +137,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
               />
-            </>
+            </div>
           );
         })}
       </Disclosure>

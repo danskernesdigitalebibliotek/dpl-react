@@ -5,6 +5,7 @@ import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import { createJSXkey } from "../../../core/utils/helpers/general";
 
 interface LoanListItemProps {
   loans: LoanType[];
@@ -34,7 +35,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
   return (
     <div className="list-reservation-container m-32">
       {view === "stacked" &&
-        localDueDates.map((uniqueDueDate: string | null) => {
+        localDueDates.map((uniqueDueDate: string | null, i) => {
           // Stack items:
           // if multiple items have the same due date, they are "stacked"
           // which means styling making it look like there are multiple materials,
@@ -54,7 +55,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
           }
 
           return (
-            <div>
+            <div key={createJSXkey([loan.faust, loan.identifier, i])}>
               {loan && (
                 <StackableMaterial
                   pageSize={pageSize}
@@ -63,7 +64,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   identifier={loan.identifier}
                   faust={loan.faust}
                   openModal={openModal}
-                  key={loan.faust || loan.identifier}
                   amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
                   stack={loansUniqueDueDate}
                 />
@@ -72,7 +72,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
         })}
       {view === "list" &&
-        loans.map((loan) => {
+        loans.map((loan, i) => {
           return (
             <StackableMaterial
               pageSize={pageSize}
@@ -80,7 +80,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
               identifier={loan.identifier}
               faust={loan.faust}
               dueDateLabel={dueDateLabel}
-              key={loan.faust || loan.identifier}
+              key={createJSXkey([loan.faust, loan.identifier, i])}
               loan={loan}
             />
           );

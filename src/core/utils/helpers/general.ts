@@ -279,4 +279,13 @@ export const pageSizeGlobal = (
   return pageSize;
 };
 
+export const createJSXkey = (
+  elements: (string | number | null | undefined)[]
+) => {
+  const filteredElements = elements
+    .filter((element) => element)
+    .map((element) => String(element).replace(/ /g, "-"));
+  return filteredElements.join("-");
+};
+
 export default {};

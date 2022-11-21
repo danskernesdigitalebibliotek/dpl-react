@@ -72,7 +72,7 @@ const ModalReservationFormSelect = ({
               {t("chooseOneText")}
             </option>
             {items.map(({ label, value }) => (
-              <option className="dropdown__option" value={value}>
+              <option key={value} className="dropdown__option" value={value}>
                 {label}
               </option>
             ))}

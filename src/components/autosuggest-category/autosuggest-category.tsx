@@ -3,6 +3,7 @@ import { UseComboboxPropGetters } from "downshift";
 import * as React from "react";
 import { FC } from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import { createJSXkey } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 
@@ -39,7 +40,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
                   "autosuggest__text--highlight": highlightedIndex === index
                 }
               )}`}
-              key={item}
+              key={createJSXkey([item.term, index])}
               {...getItemProps({ item, index })}
             >
               {`${item.term} ${t("inText")}`}

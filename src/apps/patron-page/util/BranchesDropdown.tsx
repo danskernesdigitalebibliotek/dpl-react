@@ -57,6 +57,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
               )}
               {pickupModalBranches.map(({ branchId, title }) => (
                 <option
+                  key={branchId}
                   selected={selected === branchId}
                   className="dropdown__option"
                   value={branchId}

@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import { createJSXkey } from "../../../core/utils/helpers/general";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
@@ -42,8 +43,15 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             <p className="text-small-caption">{label}</p>
           )}
           {typeof label !== "string" &&
-            label.map((localLabel) => {
-              return <p className="text-small-caption">{localLabel}</p>;
+            label.map((localLabel, i) => {
+              return (
+                <p
+                  key={createJSXkey([localLabel, i])}
+                  className="text-small-caption"
+                >
+                  {localLabel}
+                </p>
+              );
             })}
         </div>
       </div>

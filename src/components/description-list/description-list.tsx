@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createJSXkey } from "../../core/utils/helpers/general";
 
 export interface DescriptionListProps {
   classNames?: string;
@@ -11,10 +12,10 @@ const DescriptionList: React.FC<DescriptionListProps> = ({
 }) => {
   return (
     <dl className={`list-description ${classNames ?? ""}`}>
-      {data.map((item) => {
+      {data.map((item, i) => {
         const { label, value } = item;
         return (
-          <div>
+          <div key={createJSXkey([label, i])}>
             <dt>{label}</dt>
             <dd>{value}</dd>
           </div>

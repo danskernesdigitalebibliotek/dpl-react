@@ -26,7 +26,9 @@ const ListDetails: FC<ListDetailsProps> = ({
           )}
           {typeof labels !== "string" &&
             labels.map((label: string) => (
-              <p className="text-small-caption">{label}</p>
+              <p key={label} className="text-small-caption">
+                {label}
+              </p>
             ))}
         </div>
       </div>

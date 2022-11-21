@@ -1,7 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
 import EmptyList from "../../../components/empty-list/empty-list";
 import usePager from "../../../components/result-pager/use-pager";
-import { getListItems } from "../../../core/utils/helpers/general";
+import {
+  createJSXkey,
+  getListItems
+} from "../../../core/utils/helpers/general";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import ReservationMaterial from "../reservation-material/reservation-material";
 
@@ -37,9 +40,9 @@ const List: FC<ListProps> = ({ list, header, emptyListLabel, pageSize }) => {
         {displayedReservations.length === 0 && (
           <EmptyList emptyListText={emptyListLabel} />
         )}
-        {displayedReservations.map((reservation) => (
+        {displayedReservations.map((reservation, i) => (
           <ReservationMaterial
-            key={reservation.identifier || reservation.faust}
+            key={createJSXkey([reservation.identifier, reservation.faust, i])}
             identifier={reservation.identifier}
             faust={reservation.faust}
             reservation={reservation}

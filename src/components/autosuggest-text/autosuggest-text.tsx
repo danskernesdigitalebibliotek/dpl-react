@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { createJSXkey } from "../../core/utils/helpers/general";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestTextItem from "./autosuggest-text-item";
 
@@ -45,6 +46,7 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
           };
           return (
             <AutosuggestTextItem
+              key={createJSXkey([item.term, index])}
               classes={classes}
               item={item}
               index={index}
