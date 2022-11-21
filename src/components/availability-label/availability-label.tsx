@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
@@ -35,22 +35,29 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
+  const isAvailable = data?.some((item) => item.available);
+  const availabilityText = isAvailable ? t("available") : t("unavailable");
+
+  useEffect(() => {
+    // Track material availability (status) if the button is active - also meaning
+    // it is displayed on the material page and represent the active manifestation
+    // material type
+    if (selected) {
+      track("click", {
+        id: statistics.materialStatus.id,
+        name: statistics.materialStatus.name,
+        trackedData: availabilityText
+      });
+    }
+    // We only want to track if the faustIds change (once - on load), or the selected
+    // status changes (on select of the availability button)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [faustIds.toString(), selected]);
+
   if (isLoading || isError) {
     return null;
   }
 
-  const isAvailable = data?.some((item) => item.available);
-  const availabilityText = isAvailable ? t("available") : t("unavailable");
-
-  // Track material availability (status) if the button is active - also meaning
-  // it is displayed on the material page
-  if (selected) {
-    track("click", {
-      id: statistics.materialStatus.id,
-      name: statistics.materialStatus.name,
-      trackedData: availabilityText
-    });
-  }
   const availableTriangleCss = isAvailable ? "success" : "alert";
 
   const classes = {
