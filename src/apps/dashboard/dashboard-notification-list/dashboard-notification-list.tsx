@@ -157,6 +157,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationLink={new URL(reservationsUrl)}
           />
         )}
+        {/* <DashboardNotification
+              notificationNumber={5}
+              notificationText="test5"
+              notificationColor="neutral"
+              notificationLink={new URL("https://www.google.dk")}
+            /> */}
       </div>
     </div>
   );
