@@ -2,5 +2,9 @@
   "baseUrl": "http://localhost:57021",
   "integrationFolder": "./src",
   "testFiles": "**/*.test.*",
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "retries": {
+    "runMode": 3,
+    "openMode": 0
+  }
 }
