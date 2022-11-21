@@ -34,6 +34,7 @@ const FacetLineSelected: React.FunctionComponent<FacetLineSelectedProps> = ({
                         action: "remove"
                       })
                     }
+                    dataCy={`facet-line-selected-term-${label}`}
                   >
                     {label}
                   </ButtonTag>
