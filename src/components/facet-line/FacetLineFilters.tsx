@@ -97,7 +97,12 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
 
               return (
                 <li className="facet-line__item">
-                  <ButtonTag key={term} onClick={onClickHandler}>
+                  <ButtonTag
+                    key={term}
+                    onClick={onClickHandler}
+                    selected={false}
+                    dataCy={`facet-line-term-${term}`}
+                  >
                     {`${term} (${score})`}
                   </ButtonTag>
                 </li>
@@ -107,7 +112,10 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
         );
       })}
       <li className="facet-line__item">
-        <ButtonTag onClick={() => open(FacetBrowserModalId)}>
+        <ButtonTag
+          onClick={() => open(FacetBrowserModalId)}
+          dataCy="facet-line-open-browser"
+        >
           {t("addMoreFiltersText")}
         </ButtonTag>
       </li>
