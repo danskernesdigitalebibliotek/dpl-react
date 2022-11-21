@@ -76,6 +76,16 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         trackedData: data.work.dk5MainEntry.display
       });
     }
+    // We can afford to only check the latest manifestation because audience doesn't
+    // vary between a specific work's manifestations (information provided by DDF)
+    if (data?.work?.manifestations.latest.audience?.generalAudience) {
+      track("click", {
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
+        trackedData:
+          data.work.manifestations.latest.audience.generalAudience.join(", ")
+      });
+    }
     if (data?.work?.fictionNonfiction) {
       track("click", {
         id: statistics.materialFictionNonFiction.id,
