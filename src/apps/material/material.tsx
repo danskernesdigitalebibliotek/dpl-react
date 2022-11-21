@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
+import { useDeepCompareEffect } from "react-use";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   ExternalReview,
@@ -52,7 +53,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     wid
   });
   const { track } = useStatistics();
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (data?.work?.genreAndForm) {
       track("click", {
         id: statistics.materialGenre.id,

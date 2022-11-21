@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { isEqual } from "lodash";
+import { useDeepCompareEffect } from "react-use";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
@@ -88,7 +89,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     string[]
   >([]);
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const newManifestationMaterialTypes = manifestation.materialTypes.map(
       (item) => item.specific
     );

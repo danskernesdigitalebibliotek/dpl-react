@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { upperFirst, mapValues } from "lodash";
+import { useDeepCompareEffect } from "react-use";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -34,7 +35,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
   };
   const { track } = useStatistics();
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const areFiltersEmpty = Object.keys(filters).length === 0;
     if (areFiltersEmpty) {
       return;

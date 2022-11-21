@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
+import { useDeepCompareEffect } from "react-use";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
@@ -38,7 +39,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const isAvailable = data?.some((item) => item.available);
   const availabilityText = isAvailable ? t("available") : t("unavailable");
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     // Track material availability (status) if the button is active - also meaning
     // it is displayed on the material page and represent the active manifestation
     // material type
@@ -52,7 +53,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     // We only want to track if the faustIds change (once - on load), or the selected
     // status changes (on select of the availability button)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [faustIds.toString(), selected]);
+  }, [faustIds, selected]);
 
   if (isLoading || isError) {
     return null;
