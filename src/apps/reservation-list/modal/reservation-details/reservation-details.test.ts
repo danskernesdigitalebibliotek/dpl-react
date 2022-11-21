@@ -606,4 +606,4 @@ describe("Reservation details modal test", () => {
   });
 });
 
-export { };
+export default {};
