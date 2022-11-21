@@ -151,7 +151,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hitcount]);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     if (campaignData?.data?.title) {
       track("click", {
         id: statistics.campaignShown.id,
