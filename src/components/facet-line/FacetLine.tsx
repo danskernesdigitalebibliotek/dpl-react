@@ -23,9 +23,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
 }) => {
   const { data } = useIntelligentFacetsQuery({
     q: { all: q },
-    // facetsLimit and valuesLimit is set to 5 because that is the value represented in the example.
-    // https://fbi-api.dbc.dk/documentation#Intelligent-Facets
-    facetsLimit: 5,
+    facetsLimit: 6,
     valuesLimit: 5
   });
 
