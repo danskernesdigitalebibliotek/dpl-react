@@ -26,9 +26,6 @@ const MenuNotification: FC<MenuNotificationProps> = ({
         <span className="list-dashboard__title text-header-h4">
           {notificationText}
         </span>
-        {/* <div className={`status-label status-label--${notificationColor}`}>
-          overskredet
-        </div> */}
         <div className="list-dashboard__dot" />
         <svg
           width="61"
