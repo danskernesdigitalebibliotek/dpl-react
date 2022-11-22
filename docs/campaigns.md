@@ -15,10 +15,12 @@ by contacting the dpl-cms API.
 Dpl-cms is a cms system based on Drupal, where the system administrators can set
 up campaigns they want to show to their users. Drupal also allows the cms system
 to act as an API endpoint that we then can contact from our apps.
-The cms administratots can specify the content (image, text) and the visibility
+
+The cms administrators can specify the content (image, text) and the visibility
 criteria for each campaign they create. The visibility criteria is based on
-search filter facets. Does that sound familiar? Yes, we use anoter API to get
-that very data in THIS project - in the search result app.
+search filter facets.
+Does that sound familiar? Yes, we use another API to get that very data
+in THIS project - in the search result app.
 The facets differ based on the search string the user uses for their search.
 
 As an example, the dpl-cms admin could wish to show a Harry Potter related
