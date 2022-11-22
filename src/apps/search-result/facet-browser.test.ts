@@ -51,37 +51,45 @@ describe("The Facet Browser", () => {
   });
 
   it("renders all facets", () => {
-    cy.get('[aria-controls="facet-mainLanguages"]')
+    cy.getBySel("facet-browser-mainLanguages")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-accessTypes"]')
+
+    cy.getBySel("facet-browser-accessTypes")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-childrenOrAdults"]')
+
+    cy.getBySel("facet-browser-childrenOrAdults")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-creators"]')
+
+    cy.getBySel("facet-browser-creators").scrollIntoView().should("be.visible");
+
+    cy.getBySel("facet-browser-fictionNonfiction")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-fictionNonfiction"]')
+
+    cy.getBySel("facet-browser-fictionNonfiction")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-genreAndForm"]')
+
+    cy.getBySel("facet-browser-genreAndForm")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-materialTypes"]')
+
+    cy.getBySel("facet-browser-materialTypes")
       .scrollIntoView()
       .should("be.visible");
-    cy.get('[aria-controls="facet-subjects"]')
-      .scrollIntoView()
-      .should("be.visible");
-    cy.get('[aria-controls="facet-workTypes"]')
+
+    cy.getBySel("facet-browser-subjects").scrollIntoView().should("be.visible");
+
+    cy.getBySel("facet-browser-workTypes")
       .scrollIntoView()
       .should("be.visible");
   });
 
   it("renders all terms in a facet when clicked", () => {
-    cy.get('[aria-controls="facet-mainLanguages"]')
+    cy.getBySel("facet-browser-mainLanguages")
       .should("be.visible")
       .and("have.attr", "aria-expanded", "false")
       .click();
@@ -99,11 +107,11 @@ describe("The Facet Browser", () => {
     cy.getBySel("facet-browser-mainLanguages-Spansk").should("be.visible");
     cy.getBySel("facet-browser-mainLanguages-Latin").should("be.visible");
 
-    cy.get('[aria-controls="facet-mainLanguages"]')
+    cy.getBySel("facet-browser-mainLanguages")
       .should("be.visible")
       .and("have.attr", "aria-expanded", "true")
       .click();
-    cy.get(`[aria-label="Close facet browser modal"]`).click();
+    cy.getBySel("modal-facet-browser-modal-close-button").click();
   });
 
   it("renders the logic of selected terms and open facets", () => {
@@ -112,7 +120,7 @@ describe("The Facet Browser", () => {
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
-    cy.get('[aria-controls="facet-creators"]').click();
+    cy.getBySel("facet-browser-creators").click();
     cy.interceptGraphql({
       operationName: "searchFacet",
       fixtureFilePath:
@@ -128,14 +136,14 @@ describe("The Facet Browser", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.get(`[aria-label="Close facet browser modal"]`).click();
+    cy.getBySel("modal-facet-browser-modal-close-button").click();
     cy.contains("h1", "“harry” (36)");
 
     cy.log(
       "Open the modal and check if creators are opened and Joanne K. Rowling is selected"
     );
     cy.getBySel("facet-line-open-browser").click();
-    cy.get(`[aria-controls="facet-creators"]`)
+    cy.getBySel("facet-browser-creators")
       .should("be.visible")
       .and("have.attr", "aria-expanded", "true");
 
@@ -163,7 +171,7 @@ describe("The Facet Browser", () => {
       .click()
       .should("have.attr", "aria-pressed", "false");
 
-    cy.get(`[aria-label="Close facet browser modal"]`).click();
+    cy.getBySel("modal-facet-browser-modal-close-button").click();
 
     cy.contains("h1", "“harry” (843)");
   });

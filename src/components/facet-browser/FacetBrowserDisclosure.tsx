@@ -10,6 +10,7 @@ export interface FacetBrowserDisclosureProps {
   showContent?: boolean;
   removeHeadlinePadding?: boolean;
   onClick?: () => void;
+  cyData?: string;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
@@ -20,7 +21,8 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
   children,
   fullWidth,
   showContent = false,
-  removeHeadlinePadding
+  removeHeadlinePadding,
+  cyData
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
@@ -32,6 +34,7 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
 
   return (
     <div
+      data-cy={cyData}
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
