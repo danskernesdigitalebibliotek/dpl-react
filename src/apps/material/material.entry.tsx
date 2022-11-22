@@ -103,6 +103,7 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   twoMonthsText: string;
   typeText: string;
+  saveButtonText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;
