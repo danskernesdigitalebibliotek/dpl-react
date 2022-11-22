@@ -1,6 +1,5 @@
 import { upperFirst } from "lodash";
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import {
   FilterItemTerm,
@@ -10,12 +9,11 @@ import {
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
-import { openModal } from "../../core/modal.slice";
+import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
-
-import { FacetBrowserModalId } from "../facet-browser/FacetBrowserModal";
+import { FacetBrowserModalId } from "../facet-browser/helper";
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
@@ -29,7 +27,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   filterHandler
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+  const { open } = useModalButtonHandler();
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
     return values.map((value) => {
@@ -109,9 +107,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
         );
       })}
       <li className="facet-line__item">
-        <ButtonTag
-          onClick={() => dispatch(openModal({ modalId: FacetBrowserModalId }))}
-        >
+        <ButtonTag onClick={() => open(FacetBrowserModalId)}>
           {t("addMoreFiltersText")}
         </ButtonTag>
       </li>
