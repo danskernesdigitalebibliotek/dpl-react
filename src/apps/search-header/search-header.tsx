@@ -225,9 +225,11 @@ const SearchHeader: React.FC = () => {
         name: statistics.autosuggestClick.name,
         trackedData: selectedItem.work.titles.main.join(", ")
       });
-      redirectTo(
-        constructMaterialUrl(materialUrl, selectedItem.work.workId as WorkId)
-      );
+      setTimeout(() => {
+        redirectTo(
+          constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
+        );
+      }, 500);
       return;
     }
     // If this item is shown as a category suggestion
@@ -246,15 +248,19 @@ const SearchHeader: React.FC = () => {
         name: statistics.autosuggestClick.name,
         trackedData: selectedItemString
       });
-      redirectTo(
-        constructSearchUrlWithFilter({
-          searchUrl,
-          selectedItemString,
-          filter: {
-            materialType: autosuggestCategoryList[highlightedCategoryIndex].type
-          }
-        })
-      );
+      setTimeout(() => {
+        redirectTo(
+          constructSearchUrlWithFilter({
+            searchUrl,
+            selectedItemString,
+            filter: {
+              materialType:
+                autosuggestCategoryList[highlightedCategoryIndex].type
+            }
+          })
+        );
+      }, 500);
+      return;
     }
     // Otherwise redirect to search result page & track autosuggest click.
     track("click", {
@@ -262,9 +268,11 @@ const SearchHeader: React.FC = () => {
       name: statistics.autosuggestClick.name,
       trackedData: determineSuggestionTerm(selectedItem)
     });
-    redirectTo(
-      constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
-    );
+    setTimeout(() => {
+      redirectTo(
+        constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
+      );
+    }, 500);
   }
 
   // This is the main Downshift hook.
