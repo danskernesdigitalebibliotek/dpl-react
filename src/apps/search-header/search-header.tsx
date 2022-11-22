@@ -224,12 +224,11 @@ const SearchHeader: React.FC = () => {
         id: statistics.autosuggestClick.id,
         name: statistics.autosuggestClick.name,
         trackedData: selectedItem.work.titles.main.join(", ")
-      });
-      setTimeout(() => {
+      }).then(() => {
         redirectTo(
           constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
         );
-      }, 500);
+      });
       return;
     }
     // If this item is shown as a category suggestion
@@ -247,8 +246,7 @@ const SearchHeader: React.FC = () => {
         id: statistics.autosuggestClick.id,
         name: statistics.autosuggestClick.name,
         trackedData: selectedItemString
-      });
-      setTimeout(() => {
+      }).then(() => {
         redirectTo(
           constructSearchUrlWithFilter({
             searchUrl,
@@ -259,7 +257,7 @@ const SearchHeader: React.FC = () => {
             }
           })
         );
-      }, 500);
+      });
       return;
     }
     // Otherwise redirect to search result page & track autosuggest click.
@@ -267,12 +265,11 @@ const SearchHeader: React.FC = () => {
       id: statistics.autosuggestClick.id,
       name: statistics.autosuggestClick.name,
       trackedData: determineSuggestionTerm(selectedItem)
-    });
-    setTimeout(() => {
+    }).then(() => {
       redirectTo(
         constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
       );
-    }, 500);
+    });
   }
 
   // This is the main Downshift hook.

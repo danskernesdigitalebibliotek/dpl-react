@@ -67,10 +67,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
       id: statistics.searchResultNumberClick.id,
       name: statistics.searchResultNumberClick.name,
       trackedData: resultNumber.toString()
-    });
-    setTimeout(() => {
+    }).then(() => {
       redirectTo(materialFullUrl);
-    }, 500);
+    });
     // We only want to call this on materialFullUrl change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [materialFullUrl]);
