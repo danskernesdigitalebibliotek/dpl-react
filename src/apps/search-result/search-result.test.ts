@@ -128,6 +128,13 @@ describe("Search Result", () => {
       statusCode: 404,
       body: {}
     }).as("Material list service");
+
+    // Intercept campaign query.
+    cy.fixture("search-result/campaign.json")
+      .then((result) => {
+        cy.intercept("**/dpl_campaign/match", result);
+      })
+      .as("Campaign service - full campaign");
   });
 });
 
