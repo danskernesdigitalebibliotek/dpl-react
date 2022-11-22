@@ -14,7 +14,7 @@ describe("The Facet Browser", () => {
 
     cy.interceptGraphql({
       operationName: "intelligentFacets",
-      fixtureFilePath: "search-result/facet-browser/intelligentFacets.json"
+      fixtureFilePath: "search-result/facet-line/intelligentFacets"
     });
 
     cy.interceptRest({
