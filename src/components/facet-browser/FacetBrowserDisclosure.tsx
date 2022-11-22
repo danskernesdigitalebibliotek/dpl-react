@@ -36,7 +36,7 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
         fullWidth ? "disclosure--full-width" : ""
       }`}
       aria-controls={disclosureId}
-      aria-expanded={showContent}
+      aria-expanded={isOpen}
       onClick={toggleOpen}
       onKeyDown={toggleOpen}
       role="button"
