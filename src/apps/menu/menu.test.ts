@@ -251,44 +251,44 @@ describe("Menu", () => {
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")
       .should("exist")
-      .should("have.text", "Testkort ITK CMS Merkur");
+      .and("have.text", "Testkort ITK CMS Merkur");
 
     // 2.b. Linket “Se din profil”, som linker til Lånerstatus Dashboard. Engelsk tekst: "My account"
     cy.get(".modal-header__link")
       .should("exist")
-      .should("have.text", "My Account")
-      .should("have.attr", "href")
+      .and("have.text", "My Account")
+      .and("have.attr", "href")
       .and("include", "/");
 
     // 2.c.i. “x lån overskredet -- x loans expired"”
     cy.get(".modal-profile__notification-item:first-of-type")
       .find(".number--danger")
       .should("exist")
-      .should("have.text", "1");
+      .and("have.text", "1");
     cy.get(".modal-profile__notification-item:first-of-type")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "loans expired");
+      .and("have.text", "loans expired");
 
     // 2.c.ii. “x lån udløber snart -- x loans expiring soon”
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".number--warning")
       .should("exist")
-      .should("have.text", "2");
+      .and("have.text", "2");
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "loans expiring soon");
+      .and("have.text", "loans expiring soon");
 
     // 2.c.iii. “x reservering klar” eller “x reserveringer klar”. Engelsk: "x reservation ready for pickup" eller "x reservations ready for pickup"
     cy.get(".modal-profile__notification-item:nth-of-type(3)")
       .find(".number--info")
       .should("exist")
-      .should("have.text", "1");
+      .and("have.text", "1");
     cy.get(".modal-profile__notification-item:nth-of-type(3)")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "reservations ready for pickup");
+      .and("have.text", "reservations ready for pickup");
 
     // 2.d. Menupunkterne
     // 2.d.i. “Lån” viser det samlede antal lån, og linker til Udlånsoversigten. Engelsk tekst: "Loans"
@@ -296,45 +296,45 @@ describe("Menu", () => {
       .find(".link-filters__tag-wrapper:first-of-type")
       .find(".link-filters__tag")
       .should("exist")
-      .should("have.text", "Loans");
+      .and("have.text", "Loans");
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:first-of-type")
       .find(".link-filters__counter")
       .should("exist")
-      .should("have.text", "4");
+      .and("have.text", "4");
     // 2.d.ii. “Reserveringer” linker til Reserveringsoversigten, og viser det samlede antal reserveringer. Engelsk: "Reservations"
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:nth-of-type(2)")
       .find(".link-filters__tag")
       .should("exist")
-      .should("have.text", "Reservations");
+      .and("have.text", "Reservations");
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:nth-of-type(2)")
       .find(".link-filters__counter")
       .should("exist")
-      .should("have.text", "2");
+      .and("have.text", "2");
     // 2.d.iii. “Huskeliste” linker til Huskelisten, og viser det samlede antal materialer på huskelisten. Engelsk tekst: "My list"
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:nth-of-type(3)")
       .find(".link-filters__tag")
       .should("exist")
-      .should("have.text", "My list");
+      .and("have.text", "My list");
     // 2.d.iv. “Gebyrer & Erstatninger” linker til Gebyrer og erstatninger, og viser det samlede antal af gebyrer og erstatninger. Engelsk: "Fees & Replacement costs"
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:nth-of-type(4)")
       .find(".link-filters__tag")
       .should("exist")
-      .should("have.text", "Fees & Replacement costs");
+      .and("have.text", "Fees & Replacement costs");
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper:nth-of-type(4)")
       .find(".link-filters__counter")
       .should("exist")
-      .should("have.text", "2");
+      .and("have.text", "2");
     // 2.e. “Log ud” knappen. Engelsk tekst: "Log out"
     cy.get(".modal-profile__btn-logout")
       .find("button")
       .should("exist")
-      .should("have.text", "Log Out");
+      .and("have.text", "Log Out");
   });
 });
 
