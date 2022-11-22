@@ -52,12 +52,12 @@ describe("The facet line", () => {
   });
 
   it("renders facets with multiple terms as a drop down", () => {
-    cy.get('[aria-label="genreAndForm"]')
+    cy.getBySel("facet-line-genreAndForm-dropdown")
       .should("be.visible")
       .find("option")
       .should("have.length", 4);
 
-    cy.get('[aria-label="mainLanguages"]')
+    cy.getBySel("facet-line-mainLanguages-dropdown")
       .should("be.visible")
       .find("option")
       .should("have.length", 4);
@@ -69,7 +69,7 @@ describe("The facet line", () => {
       fixtureFilePath:
         "search-result/facet-browser/searchWithPagination_terms_krimi"
     });
-    cy.get('[aria-label="genreAndForm"]').select("krimi");
+    cy.getBySel("facet-line-genreAndForm-dropdown").select("krimi");
 
     cy.getBySel("facet-line-selected-term-krimi")
       .should("be.visible")
@@ -92,7 +92,7 @@ describe("The facet line", () => {
       "true"
     );
 
-    cy.get('[aria-label="genreAndForm"]').select("krimi");
+    cy.getBySel("facet-line-genreAndForm-dropdown").select("krimi");
     cy.getBySel("facet-line-selected-term-krimi").should(
       "have.attr",
       "aria-pressed",
@@ -109,14 +109,14 @@ describe("The facet line", () => {
       .should("have.attr", "aria-pressed", "true")
       .click();
 
-    cy.get('[aria-label="genreAndForm"]').select("krimi");
+    cy.getBySel("facet-line-genreAndForm-dropdown").select("krimi");
     cy.getBySel("facet-line-selected-term-krimi")
       .should("have.attr", "aria-pressed", "true")
       .click();
   });
 
   it("Renders selected term in facet browser as selected", () => {
-    cy.get('[aria-label="genreAndForm"]').select("krimi");
+    cy.getBySel("facet-line-genreAndForm-dropdown").select("krimi");
 
     cy.getBySel("facet-line-open-browser").click();
 
@@ -126,7 +126,7 @@ describe("The facet line", () => {
       "true"
     );
 
-    cy.get(`[aria-label="Close facet browser modal"]`).click();
+    cy.getBySel("modal-facet-browser-modal-close-button").click();
 
     cy.getBySel("facet-line-selected-term-krimi")
       .should("be.visible")
@@ -135,13 +135,13 @@ describe("The facet line", () => {
 
     cy.getBySel("facet-line-open-browser").click();
 
-    cy.get(`[aria-controls="facet-genreAndForm"]`).should(
+    cy.getBySel("facet-browser-genreAndForm").should(
       "have.attr",
       "aria-expanded",
       "false"
     );
 
-    cy.get(`[aria-label="Close facet browser modal"]`).click();
+    cy.getBySel("modal-facet-browser-modal-close-button").click();
   });
 });
 export {};

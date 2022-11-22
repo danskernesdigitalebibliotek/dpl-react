@@ -18,6 +18,7 @@ type DropdownProps = {
   innerClassNames?: { select?: string; option?: string; arrowWrapper?: string };
   handleOnChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   placeholder?: string;
+  cyData?: string;
 };
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -27,7 +28,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   classNames,
   innerClassNames,
   handleOnChange,
-  placeholder
+  placeholder,
+  cyData
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -44,6 +46,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   return (
     <div className={classes.root}>
       <select
+        data-cy={cyData}
         className={classes.select}
         aria-label={ariaLabel}
         onChange={checkHandleOnChange}
