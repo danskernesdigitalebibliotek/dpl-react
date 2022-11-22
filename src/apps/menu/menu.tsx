@@ -114,6 +114,12 @@ const Menu: FC = () => {
     }
   }, [fbsFees]);
 
+  /*
+  TODO: Find a proper way to handle tabindex when this menu is active.
+  All content behind the overlay cannot be targetable
+  while the menu is open.
+  */
+
   return (
     <div className="modal-backdrop">
       <div className="modal modal-show modal-profile modal-right">
