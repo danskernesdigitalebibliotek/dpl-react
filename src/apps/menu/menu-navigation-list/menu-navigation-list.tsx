@@ -33,8 +33,7 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
   };
   return (
     <>
-      {menuNavigationData.map(({ name, link, dataId }: MenuNavigationData) => {
-        return (
+      {menuNavigationData.map(({ name, link, dataId }: MenuNavigationData) => (
           <div className="link-filters__tag-wrapper">
             <a href={link} className="link-tag link-tag link-filters__tag">
               {name}
