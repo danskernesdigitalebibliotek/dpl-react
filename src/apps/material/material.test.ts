@@ -99,8 +99,8 @@ describe("Material", () => {
     cy.getBySel("material-editions-disclosure")
       .should("contain", "Editions (7)")
       .click()
-      .then(($disclosure) => {
-        cy.wrap($disclosure).should("contain", "Reserve");
+      .then((disclosure) => {
+        cy.wrap(disclosure).should("contain", "Reserve");
       });
   });
 
@@ -214,9 +214,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
 
-    cy.get(
-      '[data-cy="material-header-buttons-find-on-shelf-infomedia-article"]'
-    )
+    cy.getBySel("material-header-buttons-find-on-shelf-infomedia-article")
       .should("be.visible")
       .and("contain", "Read article")
       .click();
@@ -282,6 +280,12 @@ describe("Material", () => {
         fixture: "images/cover.jpg"
       }
     );
+    // Intercept url "translation".
+    cy.interceptRest({
+      aliasName: "UrlProxy",
+      url: "**/dpl-url-proxy?url=**",
+      fixtureFilePath: "material/dpl-url-proxy.json"
+    });
   });
 });
 
