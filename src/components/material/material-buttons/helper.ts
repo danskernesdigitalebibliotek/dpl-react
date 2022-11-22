@@ -8,4 +8,17 @@ export const hasCorrectAccessType = (
   return manifest.accessTypes.some((type) => type.code === desiredAccessType);
 };
 
+export const isArticle = (manifestation: Manifestation) => {
+  const allMaterialTypes = manifestation.materialTypes.map((materialType) =>
+    materialType.specific.toLowerCase()
+  );
+  if (
+    allMaterialTypes.includes("tidsskriftartikel") ||
+    allMaterialTypes.includes("avisartikel")
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export default {};
