@@ -47,11 +47,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const cleanBranches = cleanBranchesId(whitelistBranches);
   const [resultItems, setResultItems] = useState<Work[]>([]);
-  const [hitcount, setHitCount] = useState<number>(0);
-  const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
+  const [hitcount, setHitCount] = useState<number | null>(null);
+  const { PagerComponent, page, resetPager } = usePager(
+    hitcount === null ? 0 : hitcount,
+    pageSize
+  );
   const { filters, filterHandler } = useFilterHandler();
   const { mutate } = useCampaignMatchPOST();
-  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
@@ -138,14 +140,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   useEffect(() => {
     // We want to disregard the first search result length because it is always 0
     // (we set it using setHitCount useEffect() above)
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
+    if (hitcount === null) {
       return;
     }
     track("click", {
       id: statistics.searchResultCount.id,
       name: statistics.searchResultCount.name,
-      trackedData: hitcount.toString()
+      trackedData: hitcount ? hitcount.toString() : "0"
     });
     // We actaully just want to track if the hitcount changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
