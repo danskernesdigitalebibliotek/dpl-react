@@ -74,8 +74,8 @@ const SearchHeader: React.FC = () => {
   // Make sure to only assign the data once.
   useEffect(() => {
     if (data) {
-      const arayOfResults = data.suggest.result;
-      setSuggestItems(arayOfResults);
+      const arrayOfResults = data.suggest.result;
+      setSuggestItems(arrayOfResults);
     }
   }, [data]);
   const originalData = suggestItems;
