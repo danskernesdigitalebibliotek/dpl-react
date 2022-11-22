@@ -254,3 +254,43 @@ future analysis and the project should always pass through static analysis.
 If there are discrepancies between the automated checks and the standards
 defined here then developers are encouraged to point this out so the automated
 checks or these standards can be updated accordingly.
+
+## Writing frontend tests
+
+The frontend tests are executed in
+[Cypress](https://docs.cypress.io/guides/overview/why-cypress).
+
+The test files are placed alongside the application components
+and are named following pattern: "*.test.ts". Eg.: material.test.ts.
+
+### Test structuring
+
+After quite a lot of bad experiences with unstable tests
+and reading both the official documentation
+and articles about the best practices we have ended up with a recommendation of
+how to write the tests.
+
+According to [this article](https://medium.com/@theomakaurii/when-to-use-commands-vs-assertions-when-testing-36e41d9a71c)
+it is important to distinguish between commands and assertions.
+Commands are used in the beginning of a statement and yields a chainable element
+that can be followed by one or more assertions in the end.
+
+So first we target an element.
+Next we can make one or more assertions on the element.
+
+We have created some helper commands for targeting an element:
+getBySel, getBySelLike and getBySelStartEnd.
+They look for elements as advised by the
+[Selecting Elements](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements)
+section from the Cypress documentation about best practices.
+
+Example of a statement:
+
+```typescript
+// Targeting.
+cy.getBySel("reservation-success-title-text")
+  // Assertion.
+  .should("be.visible")
+  // Another assertion.
+  .and("contain", "Material is available and reserved for you!");
+```
