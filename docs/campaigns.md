@@ -28,6 +28,8 @@ campaign to all the users whose search string retreives search facets which
 have "Harry Potter" as one of the most relevant subjects.
 Campaigns in dpl-cms can use triggers such as subject, main language, etc.
 
+## React code example
+
 An example code snippet for retreiving a campaign from our react apps would then
 look something like this:
 
