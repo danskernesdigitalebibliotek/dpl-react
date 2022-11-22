@@ -529,6 +529,11 @@ export default {
       defaultValue: "Close infomedia modal",
       control: { type: "text" }
     },
+    saveButtonText: {
+      name: "Save button text",
+      defaultValue: "Save",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
