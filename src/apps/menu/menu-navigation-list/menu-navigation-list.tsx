@@ -34,16 +34,15 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
   return (
     <>
       {menuNavigationData.map(({ name, link, dataId }: MenuNavigationData) => (
-          <div className="link-filters__tag-wrapper">
-            <a href={link} className="link-tag link-tag link-filters__tag">
-              {name}
-            </a>
-            {dataMap[dataId] !== 0 && (
-              <span className="link-filters__counter">{dataMap[dataId]}</span>
-            )}
-          </div>
-        );
-      })}
+        <div className="link-filters__tag-wrapper">
+          <a href={link} className="link-tag link-tag link-filters__tag">
+            {name}
+          </a>
+          {dataMap[dataId] !== 0 && (
+            <span className="link-filters__counter">{dataMap[dataId]}</span>
+          )}
+        </div>
+      ))}
     </>
   );
 };
