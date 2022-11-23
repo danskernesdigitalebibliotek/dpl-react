@@ -17,7 +17,6 @@ export interface MaterialButtonOnlineInfomediaArticleProps {
 
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
-> = ({ size, manifestation: { pid }, trackOnlineView }) => {
 > = ({
   size,
   manifestation: { pid },

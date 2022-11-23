@@ -17,7 +17,7 @@ export const Link: React.FC<LinkProps> = ({
   isNewTab,
   className,
   id,
-  trackClick
+  trackClick,
   dataCy
 }) => {
   const redirect = (redirectToNewTab: boolean) => {
@@ -48,7 +48,6 @@ export const Link: React.FC<LinkProps> = ({
       data-cy={dataCy || id}
       role="button"
       tabIndex={0}
-      rel="noreferrer"
       onClick={() => {
         trackClick();
         redirect(isNewTab || false);

@@ -27,7 +27,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     access: [{ __typename: accessType }]
   },
   size,
-  workId
+  workId,
   dataCy = "material-buttons-online"
 }) => {
   const { track } = useStatistics();

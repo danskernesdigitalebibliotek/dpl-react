@@ -21,7 +21,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestation,
   manifestation: { pid },
   size,
-  workId
+  workId,
   dataCy = "material-buttons"
 }) => {
   const faustId = convertPostIdToFaustId(pid);

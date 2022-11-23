@@ -15,7 +15,7 @@ export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   children,
   isNewTab = false,
   className,
-  trackClick
+  trackClick,
   dataCy = "link-no-style"
 }) => {
   return (
