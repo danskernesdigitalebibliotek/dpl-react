@@ -23,6 +23,9 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
 }) => {
   const faustId = convertPostIdToFaustId(pid);
 
+  // We don't want to show physical buttons/find on shelf for articles because
+  // articles appear as a part of journal/periodical publications and can't be
+  // physically loaned for themseleves.
   return (
     <>
       {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) &&
