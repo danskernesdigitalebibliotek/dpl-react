@@ -558,3 +558,8 @@ export const Infomedia = Template.bind({});
 Infomedia.args = {
   wid: "work-of:870971-avis:35731733"
 };
+
+export const Digital = Template.bind({});
+Digital.args = {
+  wid: "work-of:870971-tsart:34310815"
+};
