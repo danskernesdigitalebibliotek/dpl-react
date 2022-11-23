@@ -12,14 +12,17 @@ export interface CampaignProps {
 
 const Campaign: FC<CampaignProps> = ({ campaignData }) => {
   const { track } = useStatistics();
+  if (!campaignData.title) {
+    return null;
+  }
+  // campaignData.title will always be defined because we exit the component if
+  // not, but Typescript still thinks it might so we assign it with "as string"
   const trackClick = () => {
-    if (campaignData.title) {
-      track("link", {
-        id: statistics.campaignClick.id,
-        name: statistics.campaignClick.name,
-        trackedData: campaignData.title
-      });
-    }
+    return track("link", {
+      id: statistics.campaignClick.id,
+      name: statistics.campaignClick.name,
+      trackedData: campaignData.title as string
+    });
   };
   if (campaignData.url) {
     return (

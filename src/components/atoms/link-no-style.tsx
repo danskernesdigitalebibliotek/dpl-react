@@ -6,7 +6,7 @@ export interface LinkNoStyleProps {
   children: React.ReactNode;
   isNewTab?: boolean;
   className?: string;
-  trackClick?: () => void;
+  trackClick?: () => Promise<unknown>;
   dataCy?: string;
 }
 

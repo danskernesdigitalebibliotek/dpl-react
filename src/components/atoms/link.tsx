@@ -7,7 +7,7 @@ export interface LinkProps {
   isNewTab?: boolean;
   className?: string;
   id?: string;
-  trackClick?: () => void;
+  trackClick?: () => Promise<unknown>;
   dataCy?: string;
 }
 
@@ -49,13 +49,15 @@ export const Link: React.FC<LinkProps> = ({
       role="button"
       tabIndex={0}
       onClick={() => {
-        trackClick();
-        redirect(isNewTab || false);
+        trackClick().then(() => {
+          redirect(isNewTab || false);
+        });
       }}
       onKeyUp={(e) => {
         if (e.key === "Enter") {
-          trackClick();
-          redirect(isNewTab || false);
+          trackClick().then(() => {
+            redirect(isNewTab || false);
+          });
         }
       }}
       className={className}
