@@ -13,7 +13,7 @@ export const isArticle = (manifestation: Manifestation) => {
     materialType.specific.toLowerCase()
   );
   if (
-    allMaterialTypes.includes("tidsskriftartikel") ||
+    allMaterialTypes.includes("tidsskriftsartikel") ||
     allMaterialTypes.includes("avisartikel")
   ) {
     return true;
