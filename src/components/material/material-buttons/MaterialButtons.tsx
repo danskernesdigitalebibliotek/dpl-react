@@ -26,7 +26,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   return (
     <>
       {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) &&
-        !isArticle(manifestation) === true && (
+        !isArticle(manifestation) && (
           <>
             <MaterialButtonsPhysical
               manifestation={manifestation}
