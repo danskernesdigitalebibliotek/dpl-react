@@ -18,7 +18,10 @@ export const Link: React.FC<LinkProps> = ({
   id,
   trackClick
 }) => {
-  const redirect = () => {
+  const redirect = (redirectToNewTab: boolean) => {
+    if (redirectToNewTab) {
+      window.open(href.href, "_blank");
+    }
     redirectTo(href);
   };
 
@@ -39,18 +42,21 @@ export const Link: React.FC<LinkProps> = ({
 
   return (
     <span
-      onClick={() => {
-        trackClick();
-        redirect();
-      }}
+      id={id}
+      data-cy={id}
       role="button"
       tabIndex={0}
+      onClick={() => {
+        trackClick();
+        redirect(isNewTab || false);
+      }}
       onKeyUp={(e) => {
         if (e.key === "Enter") {
           trackClick();
-          redirect();
+          redirect(isNewTab || false);
         }
       }}
+      className={className}
     >
       {children}
     </span>
