@@ -42,7 +42,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       )}
       <div className="material-description__links mt-32">
         {inSeries &&
-          inSeries.map((seriesItem) => {
+          inSeries.map((seriesItem, i) => {
             return (
               <HorizontalTermLine
                 title={`${t("numberDescriptionText")} ${
@@ -55,6 +55,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                     term: seriesItem.title
                   }
                 ]}
+                dataCy={`material-description-series-${i}`}
               />
             );
           })}
@@ -62,12 +63,14 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
           <HorizontalTermLine
             title={t("inSameSeriesText")}
             linkList={seriesMembersList}
+            dataCy="material-description-series-members"
           />
         )}
         {subjectsList && (
           <HorizontalTermLine
             title={t("identifierText")}
             linkList={subjectsList}
+            dataCy="material-description-identifier"
           />
         )}
         {fictionNonfiction && (
@@ -79,6 +82,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 term: fictionNonfiction.display
               }
             ]}
+            dataCy="material-description-fiction-nonfiction"
           />
         )}
       </div>

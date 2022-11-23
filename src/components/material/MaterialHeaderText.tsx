@@ -18,7 +18,7 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
   return (
     <>
       <h1 className="text-header-h1 mb-16">{title}</h1>
-      <p className="text-body-large">
+      <p data-cy="material-header-author-text" className="text-body-large">
         <span>{t("materialHeaderAuthorByText")} </span>
         <LinkNoStyle
           url={constructSearchUrl(searchUrl, author)}

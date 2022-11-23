@@ -11,11 +11,13 @@ import { findOnShelfModalId } from "../../../find-on-shelf/FindOnShelfModal";
 export interface MaterialButtonsFindOnShelfProps {
   size?: ButtonSize;
   faustIds: FaustId[];
+  dataCy?: string;
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   size,
-  faustIds
+  faustIds,
+  dataCy = "material-buttons-find-on-shelf"
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -49,6 +51,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
           disabled
           collapsible={false}
           size="large"
+          dataCy={dataCy}
         />
       );
     }
@@ -61,6 +64,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         collapsible={false}
         size="large"
         onClick={onClick}
+        dataCy={dataCy}
       />
     );
   }
@@ -81,6 +85,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
       onKeyUp={(e) => onKeyUp(e.key)}
       tabIndex={0}
       type="button"
+      data-cy={dataCy}
     >
       {t("findOnBookshelfText")}
     </button>

@@ -92,6 +92,14 @@ const constructTextDefinitionFromRawTextTextEntry = (
 const processTexts = (texts: string[], placeholders: Placeholders) =>
   texts.map((text: string) =>
     text.replace(/@\w+/g, (match) => {
+      // If the placeholder value is zero we need to handle it specifically.
+      if (placeholders[match] === 0) {
+        return "0";
+      }
+      // Otherwise we check if we have a value for the placeholder.
+      // We return the value of the placeholder if found.
+      // Otherwise we return the placeholder itself
+      // to show that the placeholder value cannot be found.
       return String(placeholders[match] || match);
     })
   );
@@ -99,16 +107,28 @@ const processTexts = (texts: string[], placeholders: Placeholders) =>
 export const useText = (): UseTextFunction => {
   const { data } = useSelector((state: RootState) => state.text);
 
-  return (key: string, { placeholders, count } = {}) => {
+  return (key: string, { placeholders, count } = { count: 0 }) => {
     const textDefinition = constructTextDefinitionFromRawTextTextEntry(
       data?.[key] ?? key
     );
-    const processedTexts = placeholders
-      ? processTexts(textDefinition.text, placeholders)
+
+    const textPlaceholders = { ...(placeholders ?? {}) };
+    // If we are in plural mode we make sure
+    // that we do not also need to specify a count placeholder.
+    if (textDefinition.type === "plural") {
+      textPlaceholders["@count"] = String(count);
+    }
+
+    const processedTexts = textPlaceholders
+      ? processTexts(textDefinition.text, textPlaceholders)
       : textDefinition.text;
 
     switch (textDefinition.type) {
       case "plural":
+        // If count is 0 we need the second text because it is the plural form.
+        if (count === 0) {
+          return processedTexts[1];
+        }
         // If count is 1 we select the first text entry
         // otherwise we select the second text entry.
         return processedTexts[1 % (count ?? 1)];

@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  InfomediaService,
-  useGetInfomediaQuery
-} from "../../../core/dbc-gateway/generated/graphql";
+import { useGetInfomediaQuery } from "../../../core/dbc-gateway/generated/graphql";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { Pid } from "../../../core/utils/types/ids";
@@ -13,20 +10,17 @@ export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
 interface InfomediaModalProps {
   mainManifestation: Manifestation;
+  infoMediaId: string;
 }
 
 const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
-  mainManifestation,
-  mainManifestation: { pid }
+  mainManifestation: { pid },
+  infoMediaId
 }) => {
   const t = useText();
 
-  const infomediaAccess = mainManifestation.access.find(
-    (item) => item.__typename === "InfomediaService"
-  ) as InfomediaService;
-
   const { data, error } = useGetInfomediaQuery({
-    id: infomediaAccess?.id
+    id: infoMediaId
   });
 
   if (!data || error) {

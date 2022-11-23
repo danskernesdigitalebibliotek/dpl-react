@@ -147,3 +147,14 @@ export const totalBranchesHaveMaterial = (
     return isAnyManifestationAvailableOnBranch(branchManifestationHoldings);
   }).length;
 };
+
+export const getInfomediaId = (manifestation: Manifestation) => {
+  const access = manifestation?.access || [];
+  return access.reduce<string | null>((acc, curr) => {
+    const { __typename: type } = curr;
+    if (type === "InfomediaService") {
+      return curr.id;
+    }
+    return acc;
+  }, null);
+};
