@@ -26,7 +26,11 @@ const Campaign: FC<CampaignProps> = ({ campaignData }) => {
   };
   if (campaignData.url) {
     return (
-      <LinkNoStyle url={new URL(campaignData.url)} trackClick={trackClick}>
+      <LinkNoStyle
+        url={new URL(campaignData.url)}
+        trackClick={trackClick}
+        className="cursor-pointer"
+      >
         <CampaignBody campaignData={campaignData} />
       </LinkNoStyle>
     );
