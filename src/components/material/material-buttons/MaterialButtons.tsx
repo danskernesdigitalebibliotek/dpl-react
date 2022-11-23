@@ -25,21 +25,21 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
 
   return (
     <>
-      {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) && 
+      {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) &&
         !isArticle(manifestation) === true && (
-        <>
-          <MaterialButtonsPhysical
-            manifestation={manifestation}
-            size={size}
-            dataCy={`${dataCy}-physical`}
-          />
-          <MaterialButtonsFindOnShelf
-            size={size}
-            faustIds={[faustId]}
-            dataCy={`${dataCy}-find-on-shelf`}
-          />
-        </>
-      )}
+          <>
+            <MaterialButtonsPhysical
+              manifestation={manifestation}
+              size={size}
+              dataCy={`${dataCy}-physical`}
+            />
+            <MaterialButtonsFindOnShelf
+              size={size}
+              faustIds={[faustId]}
+              dataCy={`${dataCy}-find-on-shelf`}
+            />
+          </>
+        )}
       {hasCorrectAccessType(AccessTypeCode.Online, manifestation) && (
         <MaterialButtonsOnline
           manifestation={manifestation}
