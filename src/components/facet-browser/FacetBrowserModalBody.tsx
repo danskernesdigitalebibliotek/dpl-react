@@ -13,7 +13,7 @@ import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { FacetBrowserModalId } from "./helper";
+import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -45,11 +45,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
     track("click", {
       id: statistics.searchFacets.id,
       name: statistics.searchFacets.name,
-      trackedData: JSON.stringify(
-        mapValues(filters, (filter) => {
-          return Object.keys(filter).join(", ");
-        })
-      )
+      trackedData: getAllFilterPathsAsString(filters)
     });
     // We only want to track when filters change value.
     // eslint-disable-next-line react-hooks/exhaustive-deps
