@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { mapValues } from "lodash";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
@@ -6,6 +7,7 @@ import {
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { formatFacetTerms } from "../../apps/search-result/helpers";
+import { FilterItemTerm } from "../../apps/search-result/types";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -64,5 +66,27 @@ export function useGetFacets(query: string, filters: Filter) {
 }
 
 export const FacetBrowserModalId = "facet-browser-modal";
+
+export function getAllFilterPathsAsString(filterObject: {
+  [key: string]: { [key: string]: FilterItemTerm };
+}) {
+  const mappedFilterValues = mapValues(filterObject, (filter) => {
+    return Object.keys(filter);
+  });
+  const filterNames = Object.keys(mappedFilterValues);
+  let allFilterPathsAsString = "";
+  filterNames.forEach((filterName) => {
+    for (let i = 0; i < mappedFilterValues[filterName].length; i += 1) {
+      const filterValue = mappedFilterValues[filterName][i];
+      if (allFilterPathsAsString !== "") {
+        allFilterPathsAsString = allFilterPathsAsString.concat(";");
+      }
+      allFilterPathsAsString = allFilterPathsAsString.concat(
+        `facet.${filterName}:${filterValue}`
+      );
+    }
+  });
+  return allFilterPathsAsString;
+}
 
 export default {};
