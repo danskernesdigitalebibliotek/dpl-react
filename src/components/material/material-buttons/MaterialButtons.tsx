@@ -14,6 +14,7 @@ export interface MaterialButtonsProps {
   manifestation: Manifestation;
   size?: ButtonSize;
   workId: WorkId;
+  dataCy?: string;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
@@ -21,6 +22,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestation: { pid },
   size,
   workId
+  dataCy = "material-buttons"
 }) => {
   const faustId = convertPostIdToFaustId(pid);
 
@@ -28,8 +30,16 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
     <>
       {hasCorrectAccessType(AccessTypeCode.Physical, manifestation) && (
         <>
-          <MaterialButtonsPhysical manifestation={manifestation} size={size} />
-          <MaterialButtonsFindOnShelf size={size} faustIds={[faustId]} />
+          <MaterialButtonsPhysical
+            manifestation={manifestation}
+            size={size}
+            dataCy={`${dataCy}-physical`}
+          />
+          <MaterialButtonsFindOnShelf
+            size={size}
+            faustIds={[faustId]}
+            dataCy={`${dataCy}-find-on-shelf`}
+          />
         </>
       )}
       {hasCorrectAccessType(AccessTypeCode.Online, manifestation) && (
@@ -37,6 +47,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           manifestation={manifestation}
           size={size}
           workId={workId}
+          dataCy={`${dataCy}-find-on-shelf`}
         />
       )}
     </>

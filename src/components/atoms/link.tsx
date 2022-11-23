@@ -8,6 +8,7 @@ export interface LinkProps {
   className?: string;
   id?: string;
   trackClick?: () => void;
+  dataCy?: string;
 }
 
 export const Link: React.FC<LinkProps> = ({
@@ -17,6 +18,7 @@ export const Link: React.FC<LinkProps> = ({
   className,
   id,
   trackClick
+  dataCy
 }) => {
   const redirect = (redirectToNewTab: boolean) => {
     if (redirectToNewTab) {
@@ -43,9 +45,10 @@ export const Link: React.FC<LinkProps> = ({
   return (
     <span
       id={id}
-      data-cy={id}
+      data-cy={dataCy || id}
       role="button"
       tabIndex={0}
+      rel="noreferrer"
       onClick={() => {
         trackClick();
         redirect(isNewTab || false);

@@ -11,12 +11,14 @@ export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
   faustId: FaustId;
+  dataCy?: string;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustId,
-  size
+  size,
+  dataCy = "material-button-physical"
 }) => {
   const t = useText();
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
 
   return (
     <Button
+      dataCy={dataCy}
       label={
         size === "small"
           ? t("reserveText")

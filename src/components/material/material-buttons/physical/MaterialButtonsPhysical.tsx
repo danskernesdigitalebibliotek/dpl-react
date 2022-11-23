@@ -11,11 +11,13 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 export interface MaterialButtonsPhysicalProps {
   manifestation: Manifestation;
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   manifestation: { pid, materialTypes },
-  size
+  size,
+  dataCy = "material-buttons-physical"
 }) => {
   const faustId = convertPostIdToFaustId(pid);
   const { data, isLoading } = useGetAvailabilityV3({
@@ -46,6 +48,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const manifestationMaterialType = materialTypes[0].specific;
   return (
     <MaterialButtonReservePhysical
+      dataCy={dataCy}
       manifestationMaterialType={manifestationMaterialType}
       faustId={faustId}
       size={size}

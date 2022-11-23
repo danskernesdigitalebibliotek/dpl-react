@@ -7,11 +7,16 @@ import { Button } from "../../../Buttons/Button";
 export interface MaterialButtonOnlineDigitalArticleProps {
   digitalArticleIssn: string;
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
-> = ({ digitalArticleIssn, size }) => {
+> = ({
+  digitalArticleIssn,
+  size,
+  dataCy = "material-button-online-digital-article"
+}) => {
   // TODO: A logged in user with municipality registration can access this.
   const isRegistered = true;
   const t = useText();
@@ -37,6 +42,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
       collapsible={false}
       size={size || "large"}
       onClick={onClick}
+      dataCy={dataCy}
     />
   );
 };

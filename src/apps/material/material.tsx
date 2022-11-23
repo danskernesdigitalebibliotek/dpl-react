@@ -25,7 +25,8 @@ import {
   getWorkDescriptionListData,
   getManifestationFromType,
   getManifestationType,
-  getWorkManifestation
+  getWorkManifestation,
+  getInfomediaId
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -147,8 +148,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     work,
     t
   });
-
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
+  const infomediaId = getInfomediaId(currentManifestation);
 
   return (
     <main className="material-page">
@@ -165,6 +166,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         mainIconPath={VariousIcon}
         title={`${t("editionsText")} (${manifestations.length})`}
         disclosureIconExpandAltText=""
+        dataCy="material-editions-disclosure"
       >
         {manifestations.map((manifestation: Manifestation) => {
           return (
@@ -195,6 +197,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         mainIconPath={Receipt}
         title={t("detailsText")}
         disclosureIconExpandAltText=""
+        dataCy="material-details-disclosure"
       >
         <MaterialDetailsList
           className="pl-80 pb-48"
@@ -202,7 +205,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         />
       </Disclosure>
       {reviews && reviews.length >= 1 && (
-        <Disclosure title={t("reviewsText")} mainIconPath={CreateIcon}>
+        <Disclosure
+          title={t("reviewsText")}
+          mainIconPath={CreateIcon}
+          dataCy="material-reviews-disclosure"
+        >
           <MaterialReviews
             listOfReviews={
               reviews as Array<
@@ -229,7 +236,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             selectedPeriodical={selectedPeriodical}
             workId={wid}
           />
-          <InfomediaModal mainManifestation={currentManifestation} />
+          {infomediaId && (
+            <InfomediaModal
+              mainManifestation={currentManifestation}
+              infoMediaId={infomediaId}
+            />
+          )}
         </>
       )}
     </main>

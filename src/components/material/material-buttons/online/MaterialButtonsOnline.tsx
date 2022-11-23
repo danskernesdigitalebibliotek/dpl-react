@@ -17,6 +17,7 @@ export interface MaterialButtonsOnlineProps {
   manifestation: Manifestation;
   size?: ButtonSize;
   workId: WorkId;
+  dataCy?: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -27,6 +28,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   },
   size,
   workId
+  dataCy = "material-buttons-online"
 }) => {
   const { track } = useStatistics();
   const trackOnlineView = () => {
@@ -51,6 +53,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         size={size}
         trackOnlineView={trackOnlineView}
         manifestation={manifestation}
+        dataCy={`${dataCy}-external`}
       />
     );
   }
@@ -61,6 +64,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       <MaterialButtonOnlineDigitalArticle
         digitalArticleIssn={digitalArticleIssn}
         size={size}
+        dataCy={`${dataCy}-digital-article`}
       />
     );
   }
@@ -71,6 +75,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         size={size}
         manifestation={manifestation}
         trackOnlineView={trackOnlineView}
+        dataCy={`${dataCy}-infomedia-article`}
       />
     );
   }

@@ -88,6 +88,7 @@ function Modal({
           onClick={() => {
             dispatch(closeModal({ modalId }));
           }}
+          data-cy={`modal-${modalId}-close-button`}
         >
           <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
           {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}

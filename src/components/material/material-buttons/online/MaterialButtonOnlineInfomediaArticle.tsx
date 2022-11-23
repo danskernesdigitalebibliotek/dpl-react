@@ -12,11 +12,18 @@ export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
   manifestation: Manifestation;
   trackOnlineView: () => void;
+  dataCy?: string;
 }
 
 const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
 > = ({ size, manifestation: { pid }, trackOnlineView }) => {
+> = ({
+  size,
+  manifestation: { pid },
+  trackOnlineView,
+  dataCy = "material-button-online-infomedia-article"
+}) => {
   const t = useText();
   const dispatch = useDispatch();
 
@@ -40,6 +47,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       collapsible={false}
       size={size || "large"}
       onClick={onClick}
+      dataCy={dataCy}
     />
   );
 };

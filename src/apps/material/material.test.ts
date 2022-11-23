@@ -38,9 +38,12 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.contains("Nr. 1 in series");
-    cy.contains("De syv søstre-serien");
+
+    cy.getBySel("material-description-series-0")
+      .should("be.visible")
+      .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
   });
 
   it("Does the material have authors?", () => {
@@ -49,17 +52,27 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.contains("Lucinda Riley");
+
+    cy.getBySel("material-header-author-text")
+      .should("be.visible")
+      .and("contain", "Lucinda Riley");
   });
 
-  it("Does a material have a availibility label", () => {
+  it("Does a material have an availability label", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.contains("bog");
-    cy.contains("unavailable");
+
+    cy.getBySel("availability-label")
+      .find('[data-cy="availability-label-type"]')
+      .contains("bog")
+      .eq(0)
+      .parent()
+      .find('[data-cy="availability-label-status"]')
+      .should("have.text", "unavailable");
   });
 
   it("Open material details", () => {
@@ -67,8 +80,10 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.get("details").last().click();
+
+    cy.getBySel("material-details-disclosure").click();
   });
 
   it("Does the material have a editions with a buttton to reserved", () => {
@@ -76,10 +91,17 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
     cy.scrollTo("bottom");
-    cy.contains("Editions (7)").click();
-    cy.contains("Reserve");
+
+    cy.getBySel("material-editions-disclosure")
+      .should("contain", "Editions (7)")
+      .click()
+      .then((disclosure) => {
+        cy.wrap(disclosure).should("contain", "Reserve");
+      });
   });
 
   it("Opens modal by clicking on reserver button (reserve book) and close it with the x bottom", () => {
@@ -87,16 +109,26 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.contains("button:visible", "Reserve bog").click();
-    cy.contains("Pick up at");
-    cy.contains("Hovedbiblioteket");
-    cy.contains("12345678");
-    cy.contains("test@test.com");
-    cy.get(`[aria-label="Close reservation modal"]`).click({
-      multiple: true,
-      force: true
-    });
+
+    cy.getBySel("material-header-buttons-physical")
+      .should("be.visible")
+      .and("contain", "Reserve bog")
+      .click();
+
+    cy.getBySel("reservation-modal-list-item-text")
+      .should("be.visible")
+      .and("contain", "Pick up at")
+      .and("contain", "Hovedbiblioteket")
+      .and("contain", "12345678")
+      .and("contain", "test@test.com");
+
+    cy.getBySelStartEnd(
+      "modal-reservation-modal-",
+      "-close-button",
+      true
+    ).click();
   });
 
   it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
@@ -105,11 +137,28 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.contains("button:visible", "Reserve bog").click();
-    cy.contains("button:visible", "Approve reservation").click();
-    cy.contains("Material is available and reserved for you!");
-    cy.contains("You are number 3 in the queue");
-    cy.contains("button:visible", "Ok").click();
+
+    cy.getBySel("material-header-buttons-physical")
+      .should("be.visible")
+      .and("contain", "Reserve bog")
+      .click();
+
+    cy.getBySel("reservation-modal-submit-button", true)
+      .and("contain", "Approve reservation")
+      .click();
+
+    cy.getBySel("reservation-success-title-text")
+      .should("be.visible")
+      .and("contain", "Material is available and reserved for you!");
+
+    cy.getBySel("number-in-queue-text")
+      .should("be.visible")
+      .and("contain", "You are number 3 in the queue");
+
+    cy.getBySel("reservation-success-close-button")
+      .should("be.visible")
+      .and("contain", "Ok")
+      .click();
   });
 
   //  periodical test.
@@ -129,12 +178,27 @@ describe("Material", () => {
     );
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "52");
-    cy.contains("button:visible", "Reserve tidsskrift").click();
-    cy.contains("h2", "2021, nr. 52");
-    cy.contains("button:visible", "Approve reservation").click();
-    cy.contains("Material is available and reserved for you!");
-    cy.contains("You are number 3 in the queue");
-    cy.contains("button:visible", "Ok").click();
+    cy.getBySel("material-header-buttons-physical")
+      .should("be.visible")
+      .and("contain", "Reserve tidsskrift")
+      .click();
+
+    cy.get("h2").should("contain", "2021, nr. 52");
+
+    cy.getBySel("reservation-modal-submit-button", true).click();
+
+    cy.getBySel("reservation-success-title-text")
+      .should("be.visible")
+      .and("contain", "Material is available and reserved for you!");
+
+    cy.getBySel("number-in-queue-text")
+      .should("be.visible")
+      .and("contain", "You are number 3 in the queue");
+
+    cy.getBySel("reservation-success-close-button")
+      .should("be.visible")
+      .and("contain", "Ok")
+      .click();
   });
 
   //  infomedia test.
@@ -149,9 +213,19 @@ describe("Material", () => {
     });
 
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
-    cy.contains("button:visible", "Read article").click();
-    cy.contains("h2", "BUTLERENS UTROLIGE HISTORIE");
-    cy.get(`[aria-label="Close infomedia modal"]`).click();
+
+    cy.getBySel("material-header-buttons-find-on-shelf-infomedia-article")
+      .should("be.visible")
+      .and("contain", "Read article")
+      .click();
+
+    cy.get("h2")
+      .should("be.visible")
+      .and("contain", "BUTLERENS UTROLIGE HISTORIE");
+
+    cy.getBySelStartEnd("modal-infomedia-modal-", "-close-button")
+      .should("be.visible")
+      .click();
   });
 
   beforeEach(() => {
@@ -206,6 +280,12 @@ describe("Material", () => {
         fixture: "images/cover.jpg"
       }
     );
+    // Intercept url "translation".
+    cy.interceptRest({
+      aliasName: "UrlProxy",
+      url: "**/dpl-url-proxy?url=**",
+      fixtureFilePath: "material/dpl-url-proxy.json"
+    });
   });
 });
 
