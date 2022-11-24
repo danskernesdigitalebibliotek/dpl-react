@@ -19,23 +19,13 @@ interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
   filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  openFacets: string[];
-  setOpenFacets: (openFacets: string[]) => void;
 }
 
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
-> = ({ facets, filterHandler, filters, openFacets, setOpenFacets }) => {
-  const { close } = useModalButtonHandler();
+> = ({ facets, filterHandler, filters }) => {
   const t = useText();
-
-  const toggleFacets = (facet: string) => () => {
-    if (openFacets.includes(facet)) {
-      setOpenFacets(openFacets.filter((f) => f !== facet));
-    } else {
-      setOpenFacets([...openFacets, facet]);
-    }
-  };
+  const { close } = useModalButtonHandler();
   const { track } = useStatistics();
 
   useDeepCompareEffect(() => {
@@ -70,15 +60,17 @@ const FacetBrowserModalBody: React.FunctionComponent<
         // Remove facets disclosures with no tags
         if (values.length === 0) return null;
 
+        const hasSelectedTerms = Boolean(filters[name]);
+
         return (
           <FacetBrowserDisclosure
             key={name}
+            cyData={`facet-browser-${name}`}
             id={name}
             fullWidth
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}
-            showContent={openFacets.includes(name)}
-            onClick={toggleFacets(name)}
+            showContent={hasSelectedTerms}
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
@@ -107,6 +99,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                       });
                     }}
                     selected={selected}
+                    dataCy={`facet-browser-${name}-${term}`}
                   >
                     {termItem.term} {termItem?.score && `(${termItem.score})`}
                   </ButtonTag>

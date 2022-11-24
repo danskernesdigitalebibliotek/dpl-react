@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { mapValues } from "lodash";
+import { FilterItemTerm } from "../../apps/search-result/types";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
@@ -22,7 +23,7 @@ export const allFacetFields = [
   FacetField.WorkTypes
 ];
 
-const getPlaceHolderFacets = (facets: string[]) =>
+export const getPlaceHolderFacets = (facets: string[]) =>
   facets.map((facet) => ({
     name: facet,
     values: [
@@ -32,6 +33,18 @@ const getPlaceHolderFacets = (facets: string[]) =>
       }
     ]
   }));
+
+export const formatFacetTerms = (filters: {
+  [key: string]: { [key: string]: FilterItemTerm };
+}) => {
+  return Object.keys(filters).reduce(
+    (acc, key) => ({
+      ...acc,
+      [key]: Object.keys(filters[key])
+    }),
+    {}
+  );
+};
 
 export function useGetFacets(query: string, filters: Filter) {
   const [facets, setFacets] = useState<
