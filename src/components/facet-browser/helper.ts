@@ -76,15 +76,14 @@ export function getAllFilterPathsAsString(filterObject: {
   const filterNames = Object.keys(mappedFilterValues);
   let allFilterPathsAsString = "";
   filterNames.forEach((filterName) => {
-    for (let i = 0; i < mappedFilterValues[filterName].length; i += 1) {
-      const filterValue = mappedFilterValues[filterName][i];
+    mappedFilterValues[filterName].forEach((filterValue) => {
       if (allFilterPathsAsString !== "") {
         allFilterPathsAsString = allFilterPathsAsString.concat(";");
       }
       allFilterPathsAsString = allFilterPathsAsString.concat(
         `facet.${filterName}:${filterValue}`
       );
-    }
+    });
   });
   return allFilterPathsAsString;
 }
