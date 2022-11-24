@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import { Url } from "url";
-import { url } from "inspector";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import { Link } from "../../../components/atoms/link";
@@ -10,8 +8,8 @@ interface DashBoardFeesProps {
   intermediateText: string;
   totalOwedText: string;
   payOwedText: string;
-  intermediateUrl: Url;
-  payOwedUrl: Url;
+  intermediateUrl: URL;
+  payOwedUrl: URL;
 }
 
 const DashboardFees: FC<DashBoardFeesProps> = ({
@@ -38,7 +36,7 @@ const DashboardFees: FC<DashBoardFeesProps> = ({
             <div className="link-filters">
               <div className="link-filters__tag-wrapper">
                 <Link
-                  href={{ intermediateUrl }}
+                  href={intermediateUrl}
                   className="link-tag link-tag link-filters__tag"
                 >
                   {intermediateText}
@@ -54,7 +52,7 @@ const DashboardFees: FC<DashBoardFeesProps> = ({
                 </div>
                 <div>
                   <Link
-                    href={{ payOwedUrl }}
+                    href={payOwedUrl}
                     className="text-body-medium-regular color-primary-black"
                   >
                     {totalOwedText}
