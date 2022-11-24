@@ -26,10 +26,10 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
   map x menu-content to y data-content.
   */
   const dataMap: { [key: string]: number } = {
-    "1": loansCount, // Loans
-    "2": reservationCount, // Reservations
-    "3": 0, // TODO: Get count of "My List"
-    "4": feeCount // Fees & Replacement costs
+    "1": loansCount, // Loans.
+    "2": reservationCount, // Reservations.
+    // TODO: Get count of "My List".
+    "4": feeCount // Fees & Replacement costs.
   };
   return (
     <>
@@ -38,7 +38,7 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
           <a href={link} className="link-tag link-tag link-filters__tag">
             {name}
           </a>
-          {dataMap[dataId] !== 0 && (
+          {dataMap[dataId] && (
             <span className="link-filters__counter">{dataMap[dataId]}</span>
           )}
         </div>

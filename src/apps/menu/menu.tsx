@@ -60,7 +60,7 @@ const Menu: FC = () => {
     menuLogOutUrl
   } = useUrls();
 
-  // Get menu navigation data from config
+  // Get menu navigation data from config.
   const menuNavigationData = config<MenuNavigationDataType[]>(
     "menuNavigationDataConfig",
     {
@@ -82,17 +82,17 @@ const Menu: FC = () => {
     }
   }, [publizonData, fbsData]);
 
-  // Set count of loans overdue
+  // Set count of loans overdue.
   useEffect(() => {
     setLoansOverdue(filterLoansOverdue(loans).length);
   }, [loans]);
 
-  // Set count of loans soon to be overdue
+  // Set count of loans soon to be overdue.
   useEffect(() => {
     setLoansSoonOverdue(filterLoansSoonOverdue(loans).length);
   }, [loans]);
 
-  // Set count of reservations- and ready-for-pickup
+  // Set count of reservations- and ready-for-pickup.
   useEffect(() => {
     if (patronReservations) {
       setReservationsReadyForPickup(
@@ -102,12 +102,12 @@ const Menu: FC = () => {
     }
   }, [patronReservations]);
 
-  // Set count of loans
+  // Set count of loans.
   useEffect(() => {
     setLoansCount(loans.length);
   }, [loans]);
 
-  // Set count of fees
+  // Set count of fees.
   useEffect(() => {
     if (fbsFees) {
       setFeeCount(fbsFees.length);
@@ -118,6 +118,15 @@ const Menu: FC = () => {
   TODO: Find a proper way to handle tabindex when this menu is active.
   All content behind the overlay cannot be targetable
   while the menu is open.
+  */
+
+  /*
+  TODO: Add data-cy to all elements regarding cypress tests in this file,
+  for reduced flakyness.
+  */
+
+  /*
+  TODO: Find a way generally to handle loading state in app.
   */
 
   return (
@@ -138,7 +147,10 @@ const Menu: FC = () => {
               <img src={profileIcon} alt="" />
             </div>
           </div>
-          <div className="modal-header__name text-header-h4">
+          <div
+            className="modal-header__name text-header-h4"
+            data-cy="menu-patron-name"
+          >
             {userData?.patron?.name}
           </div>
           <Link
