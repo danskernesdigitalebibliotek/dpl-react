@@ -1,3 +1,4 @@
+import { intersection } from "lodash";
 import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../../core/utils/types/entities";
 
@@ -13,8 +14,8 @@ export const isArticle = (manifestation: Manifestation) => {
     materialType.specific.toLowerCase()
   );
   if (
-    allMaterialTypes.includes("tidsskriftsartikel") ||
-    allMaterialTypes.includes("avisartikel")
+    intersection(allMaterialTypes, ["tidsskriftsartikel", "avisartikel"])
+      .length > 0
   ) {
     return true;
   }
