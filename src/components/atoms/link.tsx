@@ -1,4 +1,5 @@
 import React from "react";
+import { redirectTo } from "../../core/utils/helpers/url";
 
 export interface LinkProps {
   href: URL;
@@ -6,6 +7,7 @@ export interface LinkProps {
   isNewTab?: boolean;
   className?: string;
   id?: string;
+  trackClick?: () => Promise<unknown>;
   dataCy?: string;
 }
 
@@ -15,19 +17,53 @@ export const Link: React.FC<LinkProps> = ({
   isNewTab,
   className,
   id,
+  trackClick,
   dataCy
 }) => {
+  const redirect = (redirectToNewTab: boolean) => {
+    if (redirectToNewTab) {
+      window.open(href.href, "_blank");
+    }
+    redirectTo(href);
+  };
+
+  if (!trackClick) {
+    return (
+      <a
+        id={id}
+        data-cy={id}
+        href={String(href)}
+        target={isNewTab ? "_blank" : ""}
+        rel="noreferrer"
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <a
+    <span
       id={id}
       data-cy={dataCy || id}
-      href={String(href)}
-      target={isNewTab ? "_blank" : ""}
-      rel="noreferrer"
+      role="button"
+      tabIndex={0}
+      onClick={() => {
+        trackClick().then(() => {
+          redirect(isNewTab || false);
+        });
+      }}
+      onKeyUp={(e) => {
+        if (e.key === "Enter") {
+          trackClick().then(() => {
+            redirect(isNewTab || false);
+          });
+        }
+      }}
       className={className}
     >
       {children}
-    </a>
+    </span>
   );
 };
 

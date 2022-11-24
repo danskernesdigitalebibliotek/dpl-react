@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
+import { useDeepCompareEffect } from "react-use";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   ExternalReview,
@@ -36,6 +37,8 @@ import {
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -43,16 +46,58 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
-
   const [currentManifestation, setCurrentManifestation] =
     useState<Manifestation | null>(null);
-
   const [selectedPeriodical, setSelectedPeriodical] =
     useState<PeriodicalEdition | null>(null);
-
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+  const { track } = useStatistics();
+  useDeepCompareEffect(() => {
+    if (data?.work?.genreAndForm) {
+      track("click", {
+        id: statistics.materialGenre.id,
+        name: statistics.materialGenre.name,
+        trackedData: data.work.genreAndForm.join(", ")
+      });
+    }
+    if (data?.work?.mainLanguages) {
+      track("click", {
+        id: statistics.materialLanguage.id,
+        name: statistics.materialLanguage.name,
+        trackedData: data.work.mainLanguages
+          .map((language) => language.display)
+          .join(", ")
+      });
+    }
+    if (data?.work?.dk5MainEntry) {
+      track("click", {
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
+        trackedData: data.work.dk5MainEntry.display
+      });
+    }
+    // We can afford to only check the latest manifestation because audience doesn't
+    // vary between a specific work's manifestations (information provided by DDF)
+    if (data?.work?.manifestations.latest.audience?.generalAudience) {
+      track("click", {
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
+        trackedData:
+          data.work.manifestations.latest.audience.generalAudience.join(", ")
+      });
+    }
+    if (data?.work?.fictionNonfiction) {
+      track("click", {
+        id: statistics.materialFictionNonFiction.id,
+        name: statistics.materialFictionNonFiction.name,
+        trackedData: data.work.fictionNonfiction.display
+      });
+    }
+    // In this case we only want to track once - on work data load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   // This useEffect selects the current manifestation
   useEffect(() => {
@@ -129,6 +174,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               <MaterialMainfestationItem
                 key={manifestation.pid}
                 manifestation={manifestation}
+                workId={wid}
               />
               <FindOnShelfModal
                 manifestations={[manifestation]}
@@ -141,6 +187,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               <ReservationModal
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
+                workId={wid}
               />
             </>
           );
@@ -187,6 +234,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             mainManifestation={currentManifestation}
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
+            workId={wid}
           />
           {infomediaId && (
             <InfomediaModal

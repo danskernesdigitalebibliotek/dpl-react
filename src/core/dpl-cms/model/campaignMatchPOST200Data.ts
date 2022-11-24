@@ -11,6 +11,10 @@ import type { CampaignMatchPOST200DataImage } from "./campaignMatchPOST200DataIm
  * The matching campaign
  */
 export type CampaignMatchPOST200Data = {
+  /** The campaign id */
+  id?: string;
+  /** The title of the campaign */
+  title?: string;
   /** The text to be shown for the campaign */
   text?: string;
   /** The image to be shown for the campaign */

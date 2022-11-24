@@ -27,10 +27,13 @@ import {
 import { TypedDispatch } from "../../../core/store";
 import { guardedRequest } from "../../../core/guardedRequests.slice";
 import { Work } from "../../../core/utils/types/entities";
+import { useStatistics } from "../../../core/statistics/useStatistics";
+import { statistics } from "../../../core/statistics/statistics";
 
 export interface SearchResultListItemProps {
   item: Work;
   coverTint: CoverProps["tint"];
+  resultNumber: number;
 }
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
@@ -41,7 +44,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     manifestations: { all: manifestations },
     workId
   },
-  coverTint
+  coverTint,
+  resultNumber
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
@@ -56,9 +60,18 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const firstInSeries = series?.[0];
   const { title: seriesTitle, numberInSeries } = firstInSeries || {};
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
+  const { track } = useStatistics();
 
   const handleClick = useCallback(() => {
-    redirectTo(materialFullUrl);
+    track("click", {
+      id: statistics.searchResultNumberClick.id,
+      name: statistics.searchResultNumberClick.name,
+      trackedData: resultNumber.toString()
+    }).then(() => {
+      redirectTo(materialFullUrl);
+    });
+    // We only want to call this on materialFullUrl change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [materialFullUrl]);
 
   const addToListRequest = (id: ButtonFavouriteId) => {

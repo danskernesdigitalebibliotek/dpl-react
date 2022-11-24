@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import ResultPager from "./result-pager";
 
 const usePager = (
-  hitcount: number,
+  hitcount: number | null,
   pageSize: number,
   overrideItemsShown?: () => number
 ) => {
+  if (hitcount === null) {
+    // eslint-disable-next-line no-param-reassign
+    hitcount = 0;
+  }
+
   const [itemsShown, setitemsShown] = useState(
     pageSize >= hitcount ? hitcount : pageSize
   );

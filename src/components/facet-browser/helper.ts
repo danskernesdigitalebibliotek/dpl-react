@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { mapValues } from "lodash";
 import { FilterItemTerm } from "../../apps/search-result/types";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
@@ -76,5 +77,26 @@ export function useGetFacets(query: string, filters: Filter) {
 }
 
 export const FacetBrowserModalId = "facet-browser-modal";
+
+export function getAllFilterPathsAsString(filterObject: {
+  [key: string]: { [key: string]: FilterItemTerm };
+}) {
+  const mappedFilterValues = mapValues(filterObject, (filter) => {
+    return Object.keys(filter);
+  });
+  const filterNames = Object.keys(mappedFilterValues);
+  let allFilterPathsAsString = "";
+  filterNames.forEach((filterName) => {
+    mappedFilterValues[filterName].forEach((filterValue) => {
+      if (allFilterPathsAsString !== "") {
+        allFilterPathsAsString = allFilterPathsAsString.concat(";");
+      }
+      allFilterPathsAsString = allFilterPathsAsString.concat(
+        `facet.${filterName}:${filterValue}`
+      );
+    });
+  });
+  return allFilterPathsAsString;
+}
 
 export default {};

@@ -28,6 +28,7 @@ import {
 } from "../../core/dpl-cms/model";
 import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
+import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 
 interface SearchResultProps {
@@ -49,8 +50,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const cleanBranches = cleanBranchesId(whitelistBranches);
   const [resultItems, setResultItems] = useState<Work[]>([]);
-  const [hitcount, setHitCount] = useState<number>(0);
-  const { PagerComponent, page, resetPager } = usePager(hitcount, pageSize);
+  const [hitcount, setHitCount] = useState<number | null>(null);
+  const { PagerComponent, page, resetPager } = usePager(
+    hitcount === null ? 0 : hitcount,
+    pageSize
+  );
   const { filters, filterHandler } = useFilterHandler();
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
@@ -70,7 +74,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   const { track } = useStatistics();
   useEffect(() => {
-    track("click", { id: 10, name: "On site search string", trackedData: q });
+    track("click", {
+      id: statistics.searchQuery.id,
+      name: statistics.searchQuery.name,
+      trackedData: q
+    });
     // We actaully just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
@@ -135,6 +143,33 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setHitCount(resultCount);
     setResultItems(resultWorks);
   }, [data, page]);
+
+  useEffect(() => {
+    // We want to disregard the first search result length because it is always 0
+    // (we set it using setHitCount useEffect() above)
+    if (hitcount === null) {
+      return;
+    }
+    track("click", {
+      id: statistics.searchResultCount.id,
+      name: statistics.searchResultCount.name,
+      trackedData: hitcount ? hitcount.toString() : "0"
+    });
+    // We actaully just want to track if the hitcount changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hitcount]);
+
+  useEffect(() => {
+    if (campaignData?.data?.title) {
+      track("click", {
+        id: statistics.campaignShown.id,
+        name: statistics.campaignShown.name,
+        trackedData: campaignData.data.title
+      });
+    }
+    // We only want to track when campaignData changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [campaignData]);
 
   return (
     <div className="search-result-page">

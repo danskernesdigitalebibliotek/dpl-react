@@ -1237,6 +1237,7 @@ export type GetMaterialQuery = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
+    dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     titles: {
       __typename?: "WorkTitles";
       full: Array<string>;
@@ -2240,6 +2241,7 @@ export type WorkMediumFragment = {
     display: string;
     code: FictionNonfictionCode;
   } | null;
+  dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
   titles: {
     __typename?: "WorkTitles";
     full: Array<string>;
@@ -2613,6 +2615,9 @@ export const WorkMediumFragmentDoc = `
     code
   }
   workYear
+  dk5MainEntry {
+    display
+  }
 }
     ${WorkSmallFragmentDoc}`;
 export const GetManifestationViaMaterialByFaustDocument = `

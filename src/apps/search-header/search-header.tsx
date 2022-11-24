@@ -19,6 +19,8 @@ import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
 import Category from "../../core/utils/types/material-type";
 import { findNonWorkSuggestion } from "./helpers";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -67,12 +69,13 @@ const SearchHeader: React.FC = () => {
   const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
     number | null
   >(null);
+  const { track } = useStatistics();
 
   // Make sure to only assign the data once.
   useEffect(() => {
     if (data) {
-      const arayOfResults = data.suggest.result;
-      setSuggestItems(arayOfResults);
+      const arrayOfResults = data.suggest.result;
+      setSuggestItems(arrayOfResults);
     }
   }, [data]);
   const originalData = suggestItems;
@@ -217,9 +220,15 @@ const SearchHeader: React.FC = () => {
       selectedItem.work?.workId &&
       isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
     ) {
-      redirectTo(
-        constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
-      );
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItem.work.titles.main.join(", ")
+      }).then(() => {
+        redirectTo(
+          constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
+        );
+      });
       return;
     }
     // If this item is shown as a category suggestion
@@ -233,20 +242,34 @@ const SearchHeader: React.FC = () => {
       const highlightedCategoryIndex =
         highlightedIndexAfterClick - (textData.length + materialData.length);
       const selectedItemString = determineSuggestionTerm(changes.selectedItem);
-      redirectTo(
-        constructSearchUrlWithFilter({
-          searchUrl,
-          selectedItemString,
-          filter: {
-            materialType: autosuggestCategoryList[highlightedCategoryIndex].type
-          }
-        })
-      );
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItemString
+      }).then(() => {
+        redirectTo(
+          constructSearchUrlWithFilter({
+            searchUrl,
+            selectedItemString,
+            filter: {
+              materialType:
+                autosuggestCategoryList[highlightedCategoryIndex].type
+            }
+          })
+        );
+      });
+      return;
     }
-    // Otherwise redirect to search result page.
-    redirectTo(
-      constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
-    );
+    // Otherwise redirect to search result page & track autosuggest click.
+    track("click", {
+      id: statistics.autosuggestClick.id,
+      name: statistics.autosuggestClick.name,
+      trackedData: determineSuggestionTerm(selectedItem)
+    }).then(() => {
+      redirectTo(
+        constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
+      );
+    });
   }
 
   // This is the main Downshift hook.

@@ -18,7 +18,11 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
     <ul className="search-result-page__list my-32" data-cy="search-result-list">
       {resultItems.map((item, i) => (
         <li key={item.workId}>
-          <SearchResultListItem item={item} coverTint={getCoverTint(i)} />
+          <SearchResultListItem
+            item={item}
+            coverTint={getCoverTint(i)}
+            resultNumber={i + 1}
+          />
         </li>
       ))}
     </ul>

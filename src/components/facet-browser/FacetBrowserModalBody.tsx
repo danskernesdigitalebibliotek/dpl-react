@@ -1,5 +1,6 @@
 import React from "react";
-import { upperFirst } from "lodash";
+import { isEmpty, upperFirst } from "lodash";
+import { useDeepCompareEffect } from "react-use";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -9,8 +10,10 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { FacetBrowserModalId } from "./helper";
+import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -23,6 +26,20 @@ const FacetBrowserModalBody: React.FunctionComponent<
 > = ({ facets, filterHandler, filters }) => {
   const t = useText();
   const { close } = useModalButtonHandler();
+  const { track } = useStatistics();
+
+  useDeepCompareEffect(() => {
+    if (isEmpty(filters)) {
+      return;
+    }
+    track("click", {
+      id: statistics.searchFacets.id,
+      name: statistics.searchFacets.name,
+      trackedData: getAllFilterPathsAsString(filters)
+    });
+    // We only want to track when filters change value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   return (
     <section className="facet-browser">

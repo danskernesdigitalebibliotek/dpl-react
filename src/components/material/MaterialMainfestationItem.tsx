@@ -14,9 +14,11 @@ import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
+import { WorkId } from "../../core/utils/types/ids";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
+  workId: WorkId;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
@@ -34,7 +36,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     physicalDescriptions,
     genreAndForm
   },
-  manifestation
+  manifestation,
+  workId
 }) => {
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
@@ -149,7 +152,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <MaterialButtons manifestation={manifestation} size="small" />
+        <MaterialButtons
+          manifestation={manifestation}
+          size="small"
+          workId={workId}
+        />
       </div>
     </div>
   );
