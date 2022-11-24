@@ -7,8 +7,6 @@ import {
   SearchFacetQuery,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { formatFacetTerms } from "../../apps/search-result/helpers";
-import { FilterItemTerm } from "../../apps/search-result/types";
 
 export const allFacetFields = [
   FacetField.MainLanguages,

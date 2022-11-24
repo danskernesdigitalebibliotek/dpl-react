@@ -31,7 +31,6 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 
-
 interface SearchResultProps {
   q: string;
   pageSize: number;
