@@ -7,12 +7,14 @@ type DigitalModalBodyProps = {
   email: string;
   handleOnChange: Dispatch<SetStateAction<string>>;
   handleSubmit: () => void;
+  isLoading: boolean;
 };
 
 const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
   email,
   handleOnChange,
-  handleSubmit
+  handleSubmit,
+  isLoading
 }) => {
   const t = useText();
 
@@ -21,7 +23,12 @@ const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
       title={t("orderDigitalCopyTitleText")}
       description={[t("orderDigitalCopyDescriptionText")]}
       onSubmit={handleSubmit}
-      buttonLabel={t("orderDigitalCopyButtonText")}
+      buttonLabel={
+        isLoading
+          ? t("orderDigitalCopyButtonLoadingText")
+          : t("orderDigitalCopyButtonText")
+      }
+      disabledButton={isLoading}
     >
       <TextInput
         type="email"

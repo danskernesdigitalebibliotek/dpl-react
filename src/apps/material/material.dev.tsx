@@ -560,6 +560,43 @@ export default {
       defaultValue: "Order digital copy",
       control: { type: "text" }
     },
+    orderDigitalCopyButtonLoadingText: {
+      name: "Order digital copy button loading text",
+      defaultValue: "Ordering digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessTitleText: {
+      name: "Order digital copy success title text",
+      defaultValue: "Digital copy ordered",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessDescriptionText: {
+      name: "Order digital copy success description text",
+      defaultValue:
+        "The digital copy has been ordered. You will receive an email when the digital copy is ready.",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessButtonText: {
+      name: "Order digital copy success button text",
+      defaultValue: "Close",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorTitleText: {
+      name: "Order digital copy error title text",
+      defaultValue: "Error ordering digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorDescriptionText: {
+      name: "Order digital copy error description text",
+      defaultValue:
+        "An error occurred while ordering the digital copy. Please try again later.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorButtonText: {
+      name: "Order digital copy error button text",
+      defaultValue: "Close",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",

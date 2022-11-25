@@ -41,6 +41,7 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
 import { isDigitalArticleService } from "../../components/material/material-buttons/helper";
+import { getDigitalArticleIssn } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -244,10 +245,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               infoMediaId={infomediaId}
             />
           )}
+          {isDigitalArticleService(currentManifestation) && (
+            <DigitalModal
+              digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
+            />
+          )}
         </>
-      )}
-      {isDigitalArticleService(currentManifestation) && (
-        <DigitalModal manifestation={currentManifestation} />
       )}
     </main>
   );
