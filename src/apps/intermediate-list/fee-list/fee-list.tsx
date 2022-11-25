@@ -33,9 +33,13 @@ const FeeList: FC = () => {
 
   return (
     <div>
+      <p>
+        UBETALTE GEBYRER - <b>INDEN xx/xx/xxxx</b>
+      </p>
       {feeItems &&
         Object.keys(feeItems).map((key) => {
           const feeItemsObj = feeItems[key];
+          console.log(feeItems);
           return <FeeListItem itemData={feeItemsObj} />;
         })}
     </div>
