@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import Pagination from "../utils/pagination";
+import PaginatedLoans from "../utils/PaginatedLoans";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
@@ -125,7 +125,7 @@ const List: FC<ListProps> = ({
         )}
       </div>
       {loans && loans.length > 0 && (
-        <Pagination
+        <PaginatedLoans
           pageSize={pageSize}
           dueDates={dueDates}
           loans={loans}
