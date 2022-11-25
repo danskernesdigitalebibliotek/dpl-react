@@ -129,6 +129,10 @@ const Menu: FC = () => {
   TODO: Find a way generally to handle loading state in app.
   */
 
+  /*
+  TODO: Add check if user is authenticated, else show login prompt or directly redirect. TBD.
+  */
+
   return (
     <div className="modal-backdrop">
       <div className="modal modal-show modal-profile modal-right">

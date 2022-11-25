@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import Menu from "./menu";
-import GuardedApp from "../../components/guarded-app";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
@@ -19,10 +18,6 @@ export interface MenuProps {
   menuLogOutUrl: string;
 }
 
-const MenuEntry: FC<MenuProps> = () => (
-  <GuardedApp app="menu">
-    <Menu />
-  </GuardedApp>
-);
+const MenuEntry: FC<MenuProps> = () => <Menu />;
 
 export default withUrls(withConfig(withText(MenuEntry)));
