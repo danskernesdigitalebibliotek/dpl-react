@@ -4,7 +4,7 @@ import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Button } from "../../../Buttons/Button";
-import { digitalModalId } from "../../digital-modal/DigitalModal";
+import { createDigitalModalId } from "../../digital-modal/helper";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   digitalArticleIssn: string;
@@ -30,8 +30,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
   }
 
   const onClick = () => {
-    console.log(digitalArticleIssn);
-    open(digitalModalId());
+    open(createDigitalModalId(digitalArticleIssn));
   };
 
   return (

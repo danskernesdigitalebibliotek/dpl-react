@@ -109,6 +109,13 @@ interface MaterialEntryTextProps {
   orderDigitalCopyTitleText: string;
   orderDigitalCopyDescriptionText: string;
   orderDigitalCopyButtonText: string;
+  orderDigitalCopyButtonLoadingText: string;
+  orderDigitalCopySuccessTitleText: string;
+  orderDigitalCopySuccessDescriptionText: string;
+  orderDigitalCopySuccessButtonText: string;
+  orderDigitalCopyErrorTitleText: string;
+  orderDigitalCopyErrorDescriptionText: string;
+  orderDigitalCopyErrorButtonText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

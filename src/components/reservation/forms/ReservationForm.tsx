@@ -8,6 +8,7 @@ export interface ReservationFormProps {
   children?: React.ReactNode;
   onSubmit: () => void;
   buttonLabel?: string;
+  disabledButton?: boolean;
 }
 
 const ReservationForm = ({
@@ -15,7 +16,8 @@ const ReservationForm = ({
   description,
   children,
   onSubmit,
-  buttonLabel
+  buttonLabel,
+  disabledButton
 }: ReservationFormProps) => {
   const t = useText();
 
@@ -36,7 +38,7 @@ const ReservationForm = ({
             <Button
               label={buttonLabel || t("saveButtonText")}
               buttonType="none"
-              disabled={false}
+              disabled={disabledButton ?? false}
               collapsible={false}
               size="xlarge"
               variant="filled"
