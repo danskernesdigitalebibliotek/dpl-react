@@ -10,7 +10,6 @@ interface PaginationProps {
   view: ListView;
   dueDates: string[];
   loans: LoanType[];
-  dueDateLabel: string;
   pageSize: number;
 }
 
@@ -18,7 +17,6 @@ const Pagination: FC<PaginationProps> = ({
   view,
   dueDates,
   loans,
-  dueDateLabel,
   pageSize
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
@@ -52,7 +50,6 @@ const Pagination: FC<PaginationProps> = ({
     <>
       <LoanListItems
         pageSize={pageSize}
-        dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}

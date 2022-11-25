@@ -20,9 +20,9 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
     <Modal
       modalId={modalEntity.faust || modalEntity.identifier || ""}
       classNames="modal-details"
-      closeModalAriaLabelText={t("materialDetailsCloseModalText")}
+      closeModalAriaLabelText={t("materialDetailsCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t(
-        "materialDetailsModalDescriptionText"
+        "materialDetailsModalAriaDescriptionText"
       )}
     >
       {children}

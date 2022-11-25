@@ -4,6 +4,7 @@ import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 
 interface RenewLoansModalProps {
   loansModal: LoanType[];
@@ -20,8 +21,8 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
     <Modal
       modalId={modalIdsConf.allLoansId}
       classNames="modal-loan"
-      closeModalAriaLabelText={t("renewLoanModalCloseModalText")}
-      screenReaderModalDescriptionText={t("renewLoanModalDescriptionText")}
+      closeModalAriaLabelText={t("groupModalCloseModalAriaLabelText")}
+      screenReaderModalDescriptionText={t("groupModalAriaDescriptionText")}
     >
       <div className="modal-loan__container">
         {loansModal && (
@@ -29,17 +30,13 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             <div className="modal-loan__header">
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("renewLoanModalHeaderText")}
+                  {t("groupModalHeaderText")}
                 </h1>
               </div>
             </div>
             <RenewLoansModalContent
               pageSize={pageSize}
               loansModal={loansModal}
-              buttonLabel={t("renewLoanModalButtonText")}
-              checkboxLabel={t("renewLoanModalCheckboxText")}
-              buttonBottomLabel={t("bottomRenewLoanModalButtonText")}
-              checkboxBottomLabel={t("bottomRenewLoanModalCheckboxText")}
             />
           </>
         )}

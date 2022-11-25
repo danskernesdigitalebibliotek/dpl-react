@@ -35,7 +35,6 @@ const fetchMaterial =
     if (faust) {
       const [material, setMaterial] = useState<BasicDetailsType>();
 
-      // Todo error handling
       const { isSuccess: isSuccessManifestation, data } =
         useGetManifestationViaMaterialByFaustQuery({
           faust
@@ -45,7 +44,7 @@ const fetchMaterial =
         if (data && isSuccessManifestation && data.manifestation) {
           setMaterial(mapManifestationToBasicDetailsType(data));
         } else {
-          // todo error handling
+          // todo error handling, missing in figma
         }
       }, [isSuccessManifestation, data]);
 

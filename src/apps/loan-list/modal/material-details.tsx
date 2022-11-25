@@ -68,7 +68,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           <ListDetails
             icon={LoansIcon}
             labels={formatDate(dueDate)}
-            title={t("materialDetailsHandInLabelText")}
+            title={t("materialDetailsDueDateLabelText")}
           />
         )}
         {loanDate && (

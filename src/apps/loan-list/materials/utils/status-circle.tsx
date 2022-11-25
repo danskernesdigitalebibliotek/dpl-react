@@ -27,13 +27,23 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
     color = colors.warning;
   }
 
+  const daysUntilDuedate =
+    daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0;
   return (
-    <StatusCircleIcon percent={percent} color={color as string}>
+    <StatusCircleIcon
+      ariaLabel={t("loanListStatusCircleAriaLabelText", {
+        count: daysUntilDuedate,
+        placeholders: { "@count": daysUntilDuedate }
+      })}
+      percent={percent}
+      color={color as string}
+    >
       <span className="counter__value">
-        {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
+        {t("loanListMaterialDaysText", {
+          count: daysUntilDuedate,
+          placeholders: { "@count": daysUntilDuedate }
+        })}
       </span>
-      {/* todo string interpolation */}
-      <span className="counter__label">{t("loanListDaysText")}</span>
     </StatusCircleIcon>
   );
 };

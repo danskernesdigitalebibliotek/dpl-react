@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import { Link } from "../../../../components/atoms/link";
 import { getCurrentLocation } from "../../../../core/utils/helpers/url";
+import { useUrls } from "../../../../core/utils/url";
 
 interface WarningBarProps {
   linkText: string;
@@ -9,9 +10,8 @@ interface WarningBarProps {
 }
 
 const WarningBar: FC<WarningBarProps> = ({ linkText, overdueText }) => {
-  /* todo link til gebyrer */
-  const url = new URL("/", getCurrentLocation());
-
+  const { feesPageUrl } = useUrls();
+  const feesPage = new URL(feesPageUrl, getCurrentLocation());
   return (
     <div className="warning-bar bg-global-secondary">
       <div className="warning-bar__left">
@@ -19,8 +19,10 @@ const WarningBar: FC<WarningBarProps> = ({ linkText, overdueText }) => {
         <div>
           <p className="text-body-medium-regular color-primary-black">
             {overdueText}
-
-            <Link href={url} className="link-tag color-secondary-gray ml-8">
+            <Link
+              href={feesPage}
+              className="link-tag color-secondary-gray ml-8"
+            >
               {linkText}
             </Link>
           </p>

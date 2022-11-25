@@ -24,7 +24,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
         className="list-reservation__counter"
         // todo create meaningful aria-explanation
       >
-        <StatusCircleIcon color={color} percent={percent}>
+        <StatusCircleIcon ariaLabel="todo" color={color} percent={percent}>
           {children}
         </StatusCircleIcon>
       </div>

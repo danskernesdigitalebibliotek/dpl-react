@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { formatDate } from "../utils/helpers";
+import { formatDate, getStatusText, isDigital } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import StatusBadge from "./utils/status-badge";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -40,16 +40,16 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               id={faust}
               selected={materialsToRenew?.indexOf(faust) > -1}
               disabled={disabled}
-              label={t("loanListLabelCheckboxMaterialModalText")}
+              label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
               hideLabel
             />
           )}
-          {identifier && (
+          {isDigital(loan) && identifier && (
             <CheckBox
               selected={false}
               id={identifier}
               disabled
-              label={t("loanListLabelCheckboxMaterialModalText")}
+              label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
               hideLabel
             />
           )}
@@ -67,27 +67,26 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div className="list-materials__status">
-          {/* todo this will be changed, everything with these statusses will be revised */}
           {renewalStatusList && (
-            <span className="text-small-caption">
-              {renewalStatusList.includes("deniedMaxRenewalsReached") && (
-                <>{t("LoanListDeniedMaxRenewalsReachedText")}</>
-              )}
-              {(renewalStatusList.includes("deniedOtherReason") ||
-                renewalStatusList.includes("deniedReserved")) && (
-                <> {t("LoanListDeniedOtherReasonText")}</>
-              )}
-              {/* todo "Lånet er fornyet i dag" -> this information is lacking in fbs */}
+            <>
+              {renewalStatusList.map((text) => (
+                <span className="text-small-caption">
+                  {getStatusText(text, t)}
+                </span>
+              ))}
               {loanType === "interLibraryLoan" && (
-                <>{t("loanListDeniedInterLibraryLoanText")}</>
+                <span className="text-small-caption">
+                  {t("groupModalRenewLoanDeniedInterLibraryLoanText")}
+                </span>
               )}
-            </span>
+            </>
           )}
           {dueDate && (
             <StatusBadge
               dueDate={dueDate}
-              neutralText={`${t("loanListToBeDeliveredMaterialText")} 
-            ${formatDate(dueDate)}`}
+              neutralText={t("groupModalDueDateMaterialText", {
+                placeholders: { "@count": formatDate(dueDate) }
+              })}
             />
           )}
         </div>

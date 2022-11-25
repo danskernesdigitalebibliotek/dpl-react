@@ -98,7 +98,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               pageSize={pageSize}
               emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               header={t("loanListPhysicalLoansTitleText")}
-              dueDateLabel={t("loanListToBeDeliveredText")}
               loans={physicalLoans}
               dueDates={physicalLoansDueDates}
               setView={setView}
@@ -111,7 +110,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               pageSize={pageSize}
               header={t("loanListDigitalLoansTitleText")}
               emptyListLabel={t("loanListDigitalLoansEmptyListText")}
-              dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
               loans={digitalLoans}
               dueDates={digitalLoansDueDates}
               setView={setView}

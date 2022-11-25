@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { UseTextFunction } from "../../../core/utils/text";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
@@ -16,6 +17,17 @@ export const formatDate = (date: string) => {
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
+};
+
+export const getStatusText = (status: string, t: UseTextFunction) => {
+  switch (status) {
+    case "deniedMaxRenewalsReached":
+      return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
+    case "renewed":
+      return t("groupModalRenewLoanDeniedReservedText");
+    default:
+      return "";
+  }
 };
 
 export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
@@ -61,6 +73,11 @@ export const queryMatchesFaust = (query: string | null) => {
   const returnValue =
     faustFound && faustFound.length > 0 ? faustFound[0] : null;
   return returnValue;
+};
+
+export const isDigital = (loan: LoanType) => {
+  if (loan.identifier) return true;
+  return false;
 };
 
 export const getStackedItems = (

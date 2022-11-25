@@ -16,7 +16,6 @@ export interface StackableMaterialProps {
   stack?: LoanType[];
   loan: LoanType;
   amountOfMaterialsWithDueDate?: number;
-  dueDateLabel?: string;
   openModal?: boolean;
   pageSize: number;
 }
@@ -26,7 +25,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   material,
   openModal,
   loan,
-  dueDateLabel,
   stack,
   pageSize
 }) => {
@@ -88,32 +86,20 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             isbnForCover={identifier || ""}
           >
             <AdditionalMaterialsButton
-              label={t("loanListMaterialsDesktopText")}
               showOn="desktop"
               openDueDateModal={openDueDateModal}
               additionalMaterials={additionalMaterials}
-              screenReaderLabel={t("loanListMaterialsModalDesktopText")}
             />
-            <MaterialOverdueLink
-              showOn="desktop"
-              label={t("loanListLateFeeDesktopText")}
-              dueDate={dueDate}
-            />
+            <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
           </MaterialInfo>
         )}
-        <MaterialStatus loan={loan} dueDateLabel={dueDateLabel || ""}>
+        <MaterialStatus loan={loan}>
           <AdditionalMaterialsButton
-            label={t("loanListMaterialsMobileText")}
             showOn="mobile"
-            screenReaderLabel={t("loanListMaterialsModalMobileText")}
             openDueDateModal={openDueDateModal}
             additionalMaterials={additionalMaterials}
           />
-          <MaterialOverdueLink
-            label={t("loanListLateFeeMobileText")}
-            showOn="mobile"
-            dueDate={dueDate}
-          />
+          <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
         </MaterialStatus>
       </button>
       {dueDate && stack && (
