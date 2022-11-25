@@ -5,13 +5,13 @@ import React from "react";
 import Fees from "./intermediate-list.entry";
 
 export default {
-  title: "Apps / Fees",
+  title: "Apps / Intermediate-list",
 
   component: Fees
 } as ComponentMeta<typeof Fees>;
 
 const Template: ComponentStory<typeof Fees> = (props) => <Fees {...props} />;
 
-export const FeesEntry = Template.bind({});
+export const IntermediateListEntry = Template.bind({});
 
-FeesEntry.args = {};
+IntermediateListEntry.args = {};

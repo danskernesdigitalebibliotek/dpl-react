@@ -1,5 +1,5 @@
 import addMount from "../../core/addMount";
 
-import Fees from "./intermediate-list.entry";
+import IntermedateList from "./intermediate-list.entry";
 
-addMount({ appName: "Fees", app: Fees });
+addMount({ appName: "Fees", app: IntermedateList });

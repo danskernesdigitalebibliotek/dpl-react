@@ -1,11 +1,13 @@
 import React, { FC } from "react";
 
-import Fees from "./fees";
+import IntermedateList from "./intermediate-list";
 
-export interface FeesProps {
+export interface IntermedateListProps {
   TestText: string;
 }
 
-const MenuEntry: FC<FeesProps> = () => <Fees />;
+const IntermedateListEntry: FC<IntermedateListProps> = () => (
+  <IntermedateList />
+);
 
-export default MenuEntry;
+export default IntermedateListEntry;

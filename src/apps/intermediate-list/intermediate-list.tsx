@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import FeeList from "./fee-list/fee-list";
 
-const Fees: FC = () => {
+const IntermedateList: FC = () => {
   return (
     <>
       <h1>Gebyrer og erstatninger</h1>
@@ -10,9 +10,9 @@ const Fees: FC = () => {
         system, hvor betalingen sker gennem løsningen Mit betalingsoverblik.
         Gebyrer fra før denne dato kan stadig betales her på siden.
       </span>
-      <FeeList testTest="" />
+      <FeeList />
     </>
   );
 };
 
-export default Fees;
+export default IntermedateList;
