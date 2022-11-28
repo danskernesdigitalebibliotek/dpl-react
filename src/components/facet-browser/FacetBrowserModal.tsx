@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -20,7 +20,6 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
   filters
 }) => {
   const t = useText();
-  const [openFacets, setOpenFacets] = useState<string[]>([]);
 
   const { facets, isLoading } = useGetFacets(q, filters);
 
@@ -38,8 +37,6 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
           facets={facets}
           filterHandler={filterHandler}
           filters={filters}
-          openFacets={openFacets}
-          setOpenFacets={setOpenFacets}
         />
       )}
     </Modal>

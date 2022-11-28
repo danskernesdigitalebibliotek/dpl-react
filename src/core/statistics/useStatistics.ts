@@ -55,6 +55,12 @@ export function useStatistics() {
       eventData.customClickParameter[trackParameters.id] =
         trackParameters.trackedData;
       window.wts.push(["send", eventType, eventData]);
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resolved");
+        }, 500);
+      });
     }
   };
 }

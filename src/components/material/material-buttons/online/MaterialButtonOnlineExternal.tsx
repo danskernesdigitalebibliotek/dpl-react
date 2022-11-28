@@ -15,6 +15,7 @@ export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
+  trackOnlineView: () => void;
   manifestation: Manifestation;
   dataCy?: string;
 }
@@ -40,6 +41,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   externalUrl = "",
   origin,
   size,
+  trackOnlineView,
   manifestation,
   dataCy = "material-button-online-external"
 }) => {
@@ -100,6 +102,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         collapsible={false}
         size={size || "large"}
         iconClassNames="invert"
+        onClick={trackOnlineView}
       />
     </LinkNoStyle>
   );

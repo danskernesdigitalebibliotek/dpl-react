@@ -1,6 +1,6 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
-import React, { FC, ReactNode, useCallback } from "react";
+import React, { FC, ReactNode, useCallback, useState } from "react";
 
 export interface FacetBrowserDisclosureProps {
   id: string;
@@ -10,6 +10,7 @@ export interface FacetBrowserDisclosureProps {
   showContent?: boolean;
   removeHeadlinePadding?: boolean;
   onClick?: () => void;
+  cyData?: string;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
@@ -21,25 +22,26 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
   fullWidth,
   showContent = false,
   removeHeadlinePadding,
-  onClick
+  cyData
 }) => {
-  const onClickHandler = useCallback(() => {
-    if (onClick) {
-      onClick();
-    }
-  }, [onClick]);
+  const [isOpen, setIsOpen] = useState<boolean>(showContent);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
 
   const disclosureId = `facet-${id}`;
 
   return (
     <div
+      data-cy={cyData}
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
       aria-controls={disclosureId}
-      aria-expanded={showContent}
-      onClick={onClickHandler}
-      onKeyDown={onClickHandler}
+      aria-expanded={isOpen}
+      onClick={toggleOpen}
+      onKeyDown={toggleOpen}
       role="button"
       tabIndex={0}
     >
@@ -57,7 +59,7 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
           alt=""
         />
       </div>
-      {showContent && <div id={disclosureId}>{children}</div>}
+      {(showContent || isOpen) && <div id={disclosureId}>{children}</div>}
     </div>
   );
 };

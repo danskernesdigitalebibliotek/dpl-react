@@ -1,3 +1,6 @@
+codecov:
+  branch: develop
+
 # PR comments and annotations duplicate information that is also available in
 # the Codecov UI
 comment: false
