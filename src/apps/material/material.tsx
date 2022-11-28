@@ -248,6 +248,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           {isDigitalArticleService(currentManifestation) && (
             <DigitalModal
               digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
+              pid={currentManifestation.pid}
             />
           )}
         </>
