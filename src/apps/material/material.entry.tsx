@@ -104,6 +104,11 @@ interface MaterialEntryTextProps {
   twoMonthsText: string;
   typeText: string;
   saveButtonText: string;
+  orderDigitalCopyModalScreenReaderModalDescriptionText: string;
+  orderDigitalCopyModalCloseModalAriaLabelText: string;
+  orderDigitalCopyTitleText: string;
+  orderDigitalCopyDescriptionText: string;
+  orderDigitalCopyButtonText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;
