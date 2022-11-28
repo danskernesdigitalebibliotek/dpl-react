@@ -19,6 +19,8 @@ import type {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem,
   CampaignMatchPOSTParams,
+  DplDasDigitalArticleOrderPOSTBody,
+  DplDasDigitalArticleOrderPOSTParams,
   ProxyUrlGET200,
   ProxyUrlGETParams
 } from "./model";
@@ -86,6 +88,68 @@ export const useCampaignMatchPOST = <
     {
       data: BodyType<CampaignMatchPOSTBodyItem[]>;
       params?: CampaignMatchPOSTParams;
+    },
+    TContext
+  >(mutationFn, mutationOptions);
+};
+
+/**
+ * @summary Digital Article Order
+ */
+export const dplDasDigitalArticleOrderPOST = (
+  dplDasDigitalArticleOrderPOSTBody: BodyType<DplDasDigitalArticleOrderPOSTBody>,
+  params?: DplDasDigitalArticleOrderPOSTParams
+) => {
+  return fetcher<void>({
+    url: `/dpl_das/order`,
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    data: dplDasDigitalArticleOrderPOSTBody,
+    params
+  });
+};
+
+export type DplDasDigitalArticleOrderPOSTMutationResult = NonNullable<
+  Awaited<ReturnType<typeof dplDasDigitalArticleOrderPOST>>
+>;
+export type DplDasDigitalArticleOrderPOSTMutationBody =
+  BodyType<DplDasDigitalArticleOrderPOSTBody>;
+export type DplDasDigitalArticleOrderPOSTMutationError = ErrorType<unknown>;
+
+export const useDplDasDigitalArticleOrderPOST = <
+  TError = ErrorType<unknown>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof dplDasDigitalArticleOrderPOST>>,
+    TError,
+    {
+      data: BodyType<DplDasDigitalArticleOrderPOSTBody>;
+      params?: DplDasDigitalArticleOrderPOSTParams;
+    },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof dplDasDigitalArticleOrderPOST>>,
+    {
+      data: BodyType<DplDasDigitalArticleOrderPOSTBody>;
+      params?: DplDasDigitalArticleOrderPOSTParams;
+    }
+  > = (props) => {
+    const { data, params } = props ?? {};
+
+    return dplDasDigitalArticleOrderPOST(data, params);
+  };
+
+  return useMutation<
+    Awaited<ReturnType<typeof dplDasDigitalArticleOrderPOST>>,
+    TError,
+    {
+      data: BodyType<DplDasDigitalArticleOrderPOSTBody>;
+      params?: DplDasDigitalArticleOrderPOSTParams;
     },
     TContext
   >(mutationFn, mutationOptions);
