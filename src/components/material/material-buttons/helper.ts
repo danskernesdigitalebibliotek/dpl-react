@@ -13,13 +13,10 @@ export const isArticle = (manifestation: Manifestation) => {
   const allMaterialTypes = manifestation.materialTypes.map((materialType) =>
     materialType.specific.toLowerCase()
   );
-  if (
+  return (
     intersection(allMaterialTypes, ["tidsskriftsartikel", "avisartikel"])
       .length > 0
-  ) {
-    return true;
-  }
-  return false;
+  );
 };
 
 export default {};
