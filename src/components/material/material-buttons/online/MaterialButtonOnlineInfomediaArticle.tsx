@@ -2,6 +2,12 @@ import * as React from "react";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../core/modal.slice";
+import {
+  appendQueryParametersToUrl,
+  getCurrentLocation,
+  redirectTo
+} from "../../../../core/utils/helpers/url";
+import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -25,6 +31,24 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const dispatch = useDispatch();
 
   const onClick = () => {
+    if (userIsAnonymous()) {
+      // redirect to login with a link back
+      const { href: urlToOpenModal } = appendQueryParametersToUrl(
+        new URL(getCurrentLocation()),
+        {
+          modal: infomediaModalId(pid)
+        }
+      );
+      const CLIENT_ID = process.env.STORYBOOK_CLIENT_ID;
+      const baseLoginUrl = new URL(
+        `https://login.bib.dk/oauth/authorize?response_type=code&client_id=${CLIENT_ID}`
+      );
+      const redirectUrl = appendQueryParametersToUrl(baseLoginUrl, {
+        redirect_uri: urlToOpenModal
+      });
+      redirectTo(redirectUrl);
+      return;
+    }
     dispatch(openModal({ modalId: infomediaModalId(pid) }));
   };
 
