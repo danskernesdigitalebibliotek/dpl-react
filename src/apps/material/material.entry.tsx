@@ -109,6 +109,7 @@ interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;
   materialUrl: string;
   searchUrl: string;
+  authUrl: string;
 }
 interface MaterialEntryConfigProps {
   smsNotificationsForReservationsEnabledConfig: boolean;
