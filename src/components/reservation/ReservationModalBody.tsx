@@ -4,7 +4,7 @@ import { useQueryClient } from "react-query";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
-import { FaustId } from "../../core/utils/types/ids";
+import { FaustId, WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
 import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
@@ -37,8 +37,10 @@ import {
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
+import { useStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
+import { statistics } from "../../core/statistics/statistics";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -47,6 +49,7 @@ type ReservationModalProps = {
   mainManifestation: Manifestation;
   parallelManifestations?: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
+  workId: WorkId;
 };
 
 const ReservationModalBody = ({
@@ -58,7 +61,8 @@ const ReservationModalBody = ({
     edition
   },
   parallelManifestations,
-  selectedPeriodical
+  selectedPeriodical,
+  workId
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
@@ -87,6 +91,7 @@ const ReservationModalBody = ({
   const holdingsResponse = useGetHoldingsV3({
     recordid: [faustId]
   });
+  const { track } = useStatistics();
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -121,9 +126,15 @@ const ReservationModalBody = ({
       },
       {
         onSuccess: (res) => {
-          // this state is used to show the success or error modal
+          // Track only if the reservation has been successfully saved.
+          track("click", {
+            id: statistics.reservation.id,
+            name: statistics.reservation.name,
+            trackedData: workId
+          });
+          // This state is used to show the success or error modal.
           setReservationResponse(res);
-          // because after a successful reservation the holdings (reservations) are updated
+          // Because after a successful reservation the holdings (reservations) are updated.
           queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
         }
       }

@@ -1,5 +1,6 @@
 import React from "react";
-import { upperFirst } from "lodash";
+import { isEmpty, upperFirst } from "lodash";
+import { useDeepCompareEffect } from "react-use";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -9,30 +10,36 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { FacetBrowserModalId } from "./helper";
+import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
   filterHandler: TermOnClickHandler;
   filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  openFacets: string[];
-  setOpenFacets: (openFacets: string[]) => void;
 }
 
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
-> = ({ facets, filterHandler, filters, openFacets, setOpenFacets }) => {
-  const { close } = useModalButtonHandler();
+> = ({ facets, filterHandler, filters }) => {
   const t = useText();
+  const { close } = useModalButtonHandler();
+  const { track } = useStatistics();
 
-  const toggleFacets = (facet: string) => () => {
-    if (openFacets.includes(facet)) {
-      setOpenFacets(openFacets.filter((f) => f !== facet));
-    } else {
-      setOpenFacets([...openFacets, facet]);
+  useDeepCompareEffect(() => {
+    if (isEmpty(filters)) {
+      return;
     }
-  };
+    track("click", {
+      id: statistics.searchFacets.id,
+      name: statistics.searchFacets.name,
+      trackedData: getAllFilterPathsAsString(filters)
+    });
+    // We only want to track when filters change value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   return (
     <section className="facet-browser">
@@ -53,15 +60,17 @@ const FacetBrowserModalBody: React.FunctionComponent<
         // Remove facets disclosures with no tags
         if (values.length === 0) return null;
 
+        const hasSelectedTerms = Boolean(filters[name]);
+
         return (
           <FacetBrowserDisclosure
             key={name}
+            cyData={`facet-browser-${name}`}
             id={name}
             fullWidth
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}
-            showContent={openFacets.includes(name)}
-            onClick={toggleFacets(name)}
+            showContent={hasSelectedTerms}
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
@@ -90,6 +99,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                       });
                     }}
                     selected={selected}
+                    dataCy={`facet-browser-${name}-${term}`}
                   >
                     {termItem.term} {termItem?.score && `(${termItem.score})`}
                   </ButtonTag>

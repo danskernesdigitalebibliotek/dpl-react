@@ -17,6 +17,7 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
   manifestation: Manifestation;
+  trackOnlineView: () => void;
   dataCy?: string;
 }
 
@@ -25,6 +26,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
 > = ({
   size,
   manifestation: { pid },
+  trackOnlineView,
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
@@ -49,6 +51,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       redirectTo(redirectUrl);
       return;
     }
+    trackOnlineView();
     dispatch(openModal({ modalId: infomediaModalId(pid) }));
   };
 

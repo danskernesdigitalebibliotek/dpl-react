@@ -28,6 +28,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClick = () => {
     // TODO: open modal and start registering flow for digital articles
+    // TODO: this modal will also have to track WorkId on submit of reservation
     // eslint-disable-next-line
     console.log(digitalArticleIssn);
   };

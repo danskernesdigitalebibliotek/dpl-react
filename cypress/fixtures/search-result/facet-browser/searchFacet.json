@@ -5,111 +5,370 @@
         {
           "name": "mainLanguages",
           "values": [
-            { "term": "Engelsk", "score": 4918 },
-            { "term": "Dansk", "score": 2285 },
-            { "term": "flere sprog", "score": 716 },
-            { "term": "Tysk", "score": 463 },
-            { "term": "Svensk", "score": 315 },
-            { "term": "Sproget kan ikke bestemmes", "score": 221 },
-            { "term": "Fransk", "score": 182 },
-            { "term": "Italiensk", "score": 171 },
-            { "term": "Spansk", "score": 138 },
-            { "term": "Latin", "score": 93 }
+            {
+              "key": "eng",
+              "term": "Engelsk",
+              "score": 4914
+            },
+            {
+              "key": "dan",
+              "term": "Dansk",
+              "score": 2284
+            },
+            {
+              "key": "mul",
+              "term": "flere sprog",
+              "score": 716
+            },
+            {
+              "key": "ger",
+              "term": "Tysk",
+              "score": 462
+            },
+            {
+              "key": "swe",
+              "term": "Svensk",
+              "score": 315
+            },
+            {
+              "key": "und",
+              "term": "Sproget kan ikke bestemmes",
+              "score": 222
+            },
+            {
+              "key": "fre",
+              "term": "Fransk",
+              "score": 182
+            },
+            {
+              "key": "ita",
+              "term": "Italiensk",
+              "score": 171
+            },
+            {
+              "key": "spa",
+              "term": "Spansk",
+              "score": 138
+            },
+            {
+              "key": "lat",
+              "term": "Latin",
+              "score": 93
+            }
           ]
         },
         {
           "name": "accessTypes",
           "values": [
-            { "term": "Fysisk", "score": 7260 },
-            { "term": "Digital", "score": 2450 }
+            {
+              "key": "physical",
+              "term": "Fysisk",
+              "score": 7259
+            },
+            {
+              "key": "online",
+              "term": "Digital",
+              "score": 2444
+            }
           ]
         },
         {
           "name": "childrenOrAdults",
           "values": [
-            { "term": "voksenmaterialer", "score": 8710 },
-            { "term": "børnematerialer", "score": 860 }
+            {
+              "key": "voksenmaterialer",
+              "term": "voksenmaterialer",
+              "score": 8703
+            },
+            {
+              "key": "børnematerialer",
+              "term": "børnematerialer",
+              "score": 861
+            }
           ]
         },
         {
           "name": "creators",
           "values": [
-            { "term": "Joanne K. Rowling", "score": 214 },
-            { "term": "Jo Nesbø", "score": 83 },
-            { "term": "Harry Haue", "score": 82 },
-            { "term": "Michael Connelly", "score": 79 },
-            { "term": "Jon Bokenkamp", "score": 74 },
-            { "term": "Harry Lahrmann", "score": 73 },
-            { "term": "Harry Rasmussen", "score": 64 },
-            { "term": "Harry Søiberg", "score": 62 },
-            { "term": "Duke Ellington", "score": 61 },
-            { "term": "Harry Belafonte", "score": 57 }
+            {
+              "key": "Joanne K. Rowling",
+              "term": "Joanne K. Rowling",
+              "score": 214
+            },
+            {
+              "key": "Jo Nesbø",
+              "term": "Jo Nesbø",
+              "score": 83
+            },
+            {
+              "key": "Harry Haue",
+              "term": "Harry Haue",
+              "score": 82
+            },
+            {
+              "key": "Michael Connelly",
+              "term": "Michael Connelly",
+              "score": 79
+            },
+            {
+              "key": "Jon Bokenkamp",
+              "term": "Jon Bokenkamp",
+              "score": 74
+            },
+            {
+              "key": "Harry Lahrmann",
+              "term": "Harry Lahrmann",
+              "score": 73
+            },
+            {
+              "key": "Harry Rasmussen",
+              "term": "Harry Rasmussen",
+              "score": 64
+            },
+            {
+              "key": "Harry Søiberg",
+              "term": "Harry Søiberg",
+              "score": 62
+            },
+            {
+              "key": "Duke Ellington",
+              "term": "Duke Ellington",
+              "score": 61
+            },
+            {
+              "key": "Harry Belafonte",
+              "term": "Harry Belafonte",
+              "score": 57
+            }
           ]
         },
         {
           "name": "fictionNonfiction",
           "values": [
-            { "term": "Faglitteratur", "score": 3961 },
-            { "term": "Skønlitteratur", "score": 1791 }
+            {
+              "key": "nonfiktion",
+              "term": "Faglitteratur",
+              "score": 3956
+            },
+            {
+              "key": "fiktion",
+              "term": "Skønlitteratur",
+              "score": 1790
+            }
           ]
         },
-        { "name": "fictionalCharacter", "values": [] },
+        {
+          "name": "fictionalCharacter",
+          "values": []
+        },
         {
           "name": "genreAndForm",
           "values": [
-            { "term": "jazz", "score": 770 },
-            { "term": "rock", "score": 414 },
-            { "term": "krimi", "score": 278 },
-            { "term": "swing", "score": 227 },
-            { "term": "evergreen", "score": 197 },
-            { "term": "filmmusik - soundtracks", "score": 166 },
-            { "term": "pop", "score": 145 },
-            { "term": "tv-serier", "score": 134 },
-            { "term": "eventyrlige fortællinger", "score": 119 },
-            { "term": "jazz-dansk", "score": 106 }
+            {
+              "key": "jazz",
+              "term": "jazz",
+              "score": 770
+            },
+            {
+              "key": "rock",
+              "term": "rock",
+              "score": 414
+            },
+            {
+              "key": "krimi",
+              "term": "krimi",
+              "score": 276
+            },
+            {
+              "key": "swing",
+              "term": "swing",
+              "score": 227
+            },
+            {
+              "key": "evergreen",
+              "term": "evergreen",
+              "score": 197
+            },
+            {
+              "key": "filmmusik - soundtracks",
+              "term": "filmmusik - soundtracks",
+              "score": 166
+            },
+            {
+              "key": "pop",
+              "term": "pop",
+              "score": 145
+            },
+            {
+              "key": "tv-serier",
+              "term": "tv-serier",
+              "score": 134
+            },
+            {
+              "key": "eventyrlige fortællinger",
+              "term": "eventyrlige fortællinger",
+              "score": 119
+            },
+            {
+              "key": "jazz-dansk",
+              "term": "jazz-dansk",
+              "score": 106
+            }
           ]
         },
         {
           "name": "materialTypes",
           "values": [
-            { "term": "bog", "score": 2567 },
-            { "term": "cd (musik)", "score": 2211 },
-            { "term": "grammofonplade", "score": 792 },
-            { "term": "artikel", "score": 1416 },
-            { "term": "dvd", "score": 582 },
-            { "term": "node", "score": 290 },
-            { "term": "e-bog", "score": 393 },
-            { "term": "bånd", "score": 292 },
-            { "term": "tidsskriftsartikel", "score": 451 },
-            { "term": "blu-ray", "score": 176 }
+            {
+              "key": "bog",
+              "term": "bog",
+              "score": 2565
+            },
+            {
+              "key": "cd (musik)",
+              "term": "cd (musik)",
+              "score": 2211
+            },
+            {
+              "key": "grammofonplade",
+              "term": "grammofonplade",
+              "score": 792
+            },
+            {
+              "key": "artikel",
+              "term": "artikel",
+              "score": 1417
+            },
+            {
+              "key": "dvd",
+              "term": "dvd",
+              "score": 582
+            },
+            {
+              "key": "node",
+              "term": "node",
+              "score": 290
+            },
+            {
+              "key": "ebog",
+              "term": "e-bog",
+              "score": 387
+            },
+            {
+              "key": "bånd",
+              "term": "bånd",
+              "score": 292
+            },
+            {
+              "key": "tidsskriftsartikel",
+              "term": "tidsskriftsartikel",
+              "score": 451
+            },
+            {
+              "key": "blu-ray",
+              "term": "blu-ray",
+              "score": 176
+            }
           ]
         },
         {
           "name": "subjects",
           "values": [
-            { "term": "vokal", "score": 1311 },
-            { "term": "instrumental", "score": 655 },
-            { "term": "jazz", "score": 543 },
-            { "term": "rock", "score": 448 },
-            { "term": "Harry Potter", "score": 400 },
-            { "term": "magi", "score": 311 },
-            { "term": "troldmænd", "score": 308 },
-            { "term": "swing", "score": 304 },
-            { "term": "krimi", "score": 280 },
-            { "term": "fantasy", "score": 279 }
+            {
+              "key": "vokal",
+              "term": "vokal",
+              "score": 1311
+            },
+            {
+              "key": "instrumental",
+              "term": "instrumental",
+              "score": 655
+            },
+            {
+              "key": "jazz",
+              "term": "jazz",
+              "score": 543
+            },
+            {
+              "key": "rock",
+              "term": "rock",
+              "score": 448
+            },
+            {
+              "key": "Harry Potter",
+              "term": "Harry Potter",
+              "score": 400
+            },
+            {
+              "key": "magi",
+              "term": "magi",
+              "score": 312
+            },
+            {
+              "key": "troldmænd",
+              "term": "troldmænd",
+              "score": 309
+            },
+            {
+              "key": "swing",
+              "term": "swing",
+              "score": 304
+            },
+            {
+              "key": "fantasy",
+              "term": "fantasy",
+              "score": 280
+            },
+            {
+              "key": "krimi",
+              "term": "krimi",
+              "score": 278
+            }
           ]
         },
         {
           "name": "workTypes",
           "values": [
-            { "term": "Bøger", "score": 3011 },
-            { "term": "Musik", "score": 2705 },
-            { "term": "Artikler", "score": 2205 },
-            { "term": "Film", "score": 682 },
-            { "term": "Noder", "score": 290 },
-            { "term": "Anmeldelser", "score": 233 },
-            { "term": "Periodika", "score": 27 },
-            { "term": "Spil", "score": 25 }
+            {
+              "key": "literature",
+              "term": "Bøger",
+              "score": 3004
+            },
+            {
+              "key": "music",
+              "term": "Musik",
+              "score": 2705
+            },
+            {
+              "key": "article",
+              "term": "Artikler",
+              "score": 2206
+            },
+            {
+              "key": "movie",
+              "term": "Film",
+              "score": 682
+            },
+            {
+              "key": "sheetmusic",
+              "term": "Noder",
+              "score": 290
+            },
+            {
+              "key": "review",
+              "term": "Anmeldelser",
+              "score": 234
+            },
+            {
+              "key": "periodica",
+              "term": "Periodika",
+              "score": 27
+            },
+            {
+              "key": "game",
+              "term": "Spil",
+              "score": 25
+            }
           ]
         }
       ]

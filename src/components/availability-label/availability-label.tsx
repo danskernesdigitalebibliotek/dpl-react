@@ -1,10 +1,13 @@
 import React from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
+import { useDeepCompareEffect } from "react-use";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
 import { useConfig } from "../../core/utils/config";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export interface AvailabilityLabelProps {
   manifestText?: string;
@@ -28,19 +31,36 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
-
+  const { track } = useStatistics();
   const t = useText();
   const { data, isLoading, isError } = useGetAvailabilityV3({
     recordid: faustIds,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
 
+  const isAvailable = data?.some((item) => item.available);
+  const availabilityText = isAvailable ? t("available") : t("unavailable");
+
+  useDeepCompareEffect(() => {
+    // Track material availability (status) if the button is active - also meaning
+    // it is displayed on the material page and represent the active manifestation
+    // material type
+    if (selected) {
+      track("click", {
+        id: statistics.materialStatus.id,
+        name: statistics.materialStatus.name,
+        trackedData: availabilityText
+      });
+    }
+    // We only want to track if the faustIds change (once - on load), or the selected
+    // status changes (on select of the availability button)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [faustIds, selected]);
+
   if (isLoading || isError) {
     return null;
   }
 
-  const isAvailable = data?.some((item) => item.available);
-  const availabilityText = isAvailable ? t("available") : t("unavailable");
   const availableTriangleCss = isAvailable ? "success" : "alert";
 
   const classes = {
