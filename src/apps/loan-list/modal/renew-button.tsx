@@ -7,10 +7,10 @@ import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface RenewButtonProps {
   faust: FaustId;
-  setDueDate: (date: string) => void;
+  renewable: boolean;
 }
 
-const RenewButton: FC<RenewButtonProps> = ({ faust }) => {
+const RenewButton: FC<RenewButtonProps> = ({ faust, renewable }) => {
   const t = useText();
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
@@ -43,6 +43,7 @@ const RenewButton: FC<RenewButtonProps> = ({ faust }) => {
     <div className="modal-details__buttons">
       <button
         type="button"
+        disabled={!renewable}
         onClick={() => renew(parseInt(faust, 10))}
         className="btn-primary btn-filled btn-small arrow__hover--right-small"
       >

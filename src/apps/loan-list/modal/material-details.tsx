@@ -25,7 +25,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const {
-    dueDate: dueDateFromLoan,
+    dueDate,
     faust,
     identifier,
     isRenewable,
@@ -34,7 +34,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   } = loan;
   const { authors, materialType, year, title, pid, description } =
     material || {};
-  const [dueDate, setDueDate] = useState<string>(dueDateFromLoan || "");
 
   return (
     <div className="modal-details__container">
@@ -52,9 +51,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           dangerText={t("materialDetailsOverdueText")}
         />
       </ModalDetailsHeader>
-      {faust && isRenewable && (
-        <RenewButton faust={faust} setDueDate={setDueDate} />
-      )}
+      {faust && <RenewButton faust={faust} renewable={isRenewable} />}
       {dueDate && materialIsOverdue(dueDate) && (
         <div className="modal-details__warning">
           <WarningBar
