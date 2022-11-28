@@ -43,7 +43,7 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
         {/* if somehow it is possible to break text in one div into two lines */}
         {/* where the first line has another font size AND is only the first "word" */}
         {/* then this should be changed to do that */}
-        {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
+        {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}{" "}
       </span>
       <span className="counter__label">
         {daysBetweenTodayAndDue === 1
