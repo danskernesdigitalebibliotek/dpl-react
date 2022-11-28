@@ -28,6 +28,7 @@ export interface ReservationListProps {
   publizonPodcastText: string;
   reservationListLoanBeforeText: string;
   reservationListDaysText: string;
+  reservationListDayText: string;
   reservationListAvailableInText: string;
   reservationDetailsButtonRemoveText: string;
   reservationDetailsChangeText: string;

@@ -31,6 +31,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupNumber
   } = reservationInfo;
 
+  const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
+
   // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const colors = getColors();
@@ -62,14 +64,15 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       >
         <div className="counter__value">
           <img src={check} alt="" />
-          {t("reservationListReadyText")}
+          <span className="counter__label">
+            {t("reservationListReadyText")}
+          </span>
         </div>
       </ReservationStatus>
     );
   }
 
   if (state === "reserved" && pickupBranch && numberInQueue && expiryDate) {
-    // todo string interpolation
     const numberInLineLabel =
       numberInQueue === 1
         ? t("reservationListFirstInQueueText")
@@ -86,12 +89,14 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         percent={(1 / numberInQueue) * 100}
         label={numberInLineLabel}
       >
-        <div className="counter__value">
-          {t("reservationListInQueueText", {
-            count: numberInQueue,
-            placeholders: { "@count": numberInQueue }
-          })}
-        </div>
+        {/* I am not using string interpolation here because of styling */}
+        {/* if somehow it is possible to break text in one div into two lines */}
+        {/* where the first line has another font size AND is only the first "word" */}
+        {/* then this should be changed to do that */}
+        <span className="counter__value">{numberInQueue}</span>
+        <span className="counter__label">
+          {t("reservationListInQueueText")}
+        </span>
       </ReservationStatus>
     );
   }
@@ -105,11 +110,20 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
           placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
         })}
       >
-        <div className="counter__value">
-          {t("reservationListDaysText", {
-            placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
-          })}
-        </div>
+        <span className="counter__value">
+          {/* I am not using string interpolation here because of styling */}
+          {/* if somehow it is possible to break text in one div into two lines */}
+          {/* where the first line has another font size AND is only the first "word" */}
+          {/* then this should be changed to do that */}
+          {daysBetweenTodayAndDate(pickupDeadline) > 0
+            ? daysBetweenTodayAndPickup
+            : 0}{" "}
+        </span>
+        <span className="counter__label">
+          {daysBetweenTodayAndPickup === 1
+            ? t("reservationListDayText")
+            : t("reservationListDaysText")}
+        </span>
       </ReservationStatus>
     );
   }

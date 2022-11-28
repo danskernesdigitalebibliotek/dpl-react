@@ -106,7 +106,7 @@ export default {
       control: { type: "text" }
     },
     reservationListInQueueText: {
-      defaultValue: "@count queued",
+      defaultValue: "queued",
       control: { type: "text" }
     },
     reservationPickUpLatestText: {
@@ -134,7 +134,11 @@ export default {
       control: { type: "text" }
     },
     reservationListDaysText: {
-      defaultValue: "@count dage",
+      defaultValue: "days",
+      control: { type: "text" }
+    },
+    reservationListDayText: {
+      defaultValue: "day",
       control: { type: "text" }
     },
     reservationDetailsButtonRemoveText: {
