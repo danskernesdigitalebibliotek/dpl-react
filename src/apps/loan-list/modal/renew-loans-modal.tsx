@@ -4,7 +4,6 @@ import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanType } from "../../../core/utils/types/loan-type";
-import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 
 interface RenewLoansModalProps {
   loansModal: LoanType[];

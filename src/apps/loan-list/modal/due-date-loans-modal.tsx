@@ -7,7 +7,6 @@ import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { formatDate, materialIsOverdue } from "../utils/helpers";
 import { LoanType } from "../../../core/utils/types/loan-type";
-import { getAmountOfRenewableLoans } from "../../../core/utils/helpers/general";
 
 interface DueDateLoansModalProps {
   dueDate: string;

@@ -28,7 +28,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   stack,
   pageSize
 }) => {
-  const t = useText();
   const { open } = useModalButtonHandler();
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
