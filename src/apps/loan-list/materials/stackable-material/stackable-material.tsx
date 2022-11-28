@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
-import { useText } from "../../../../core/utils/text";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import DueDateLoansModal from "../../modal/due-date-loans-modal";
 import MaterialStatus from "./material-status";
