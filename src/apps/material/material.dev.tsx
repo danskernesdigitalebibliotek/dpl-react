@@ -208,11 +208,6 @@ export default {
       defaultValue: "Creators are missing",
       control: { type: "text" }
     },
-    goToEReolenText: {
-      name: "Go to e-Reolen",
-      defaultValue: "Go to e-Reolen",
-      control: { type: "text" }
-    },
     readArticleText: {
       name: "Read article",
       defaultValue: "Read article",
