@@ -1,32 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { useMutation } from "react-query";
 import { DigitalArticleService } from "../../../core/dbc-gateway/generated/graphql";
+import { useDplDasDigitalArticleOrderPOST } from "../../../core/dpl-cms/dpl-cms";
 import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
+import { Pid } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalError from "./DigitalModalError";
 import DigitalModalSuccess from "./DigitalModalSuccess";
-import { createDigitalModalId, orderDigitalCopy } from "./helper";
+import { createDigitalModalId } from "./helper";
 
-type DigitalModalProps = { digitalArticleIssn: DigitalArticleService["issn"] };
+type DigitalModalProps = {
+  digitalArticleIssn: DigitalArticleService["issn"];
+  pid: Pid;
+};
 
 const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
-  digitalArticleIssn
+  digitalArticleIssn,
+  pid
 }) => {
   const modalId = createDigitalModalId(digitalArticleIssn);
   const t = useText();
-  const [responseState, setResponseState] = useState<string | null>(null);
   const [email, setEmail] = useState<string>("");
-  const { mutate, isLoading } = useMutation(orderDigitalCopy, {
-    onSuccess: (data) => {
-      if (data.status === 204) {
-        setResponseState("success");
-        return;
+  const { mutate, isLoading, isSuccess, isError } =
+    useDplDasDigitalArticleOrderPOST();
+
+  const orderDigitalCopy = () => {
+    mutate({
+      data: {
+        pid,
+        email
       }
-      setResponseState("error");
-    }
-  });
+    });
+  };
 
   // Pre fill the email field with the patron's email
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
@@ -46,11 +52,11 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         "orderDigitalCopyModalCloseModalAriaLabelText"
       )}
     >
-      {responseState === "success" && <DigitalModalSuccess modalId={modalId} />}
-      {responseState === "error" && <DigitalModalError modalId={modalId} />}
-      {responseState === null && (
+      {isSuccess && <DigitalModalSuccess modalId={modalId} />}
+      {isError && <DigitalModalError modalId={modalId} />}
+      {!isSuccess && !isError && (
         <DigitalModalBody
-          handleSubmit={() => mutate()}
+          handleSubmit={orderDigitalCopy}
           email={email}
           handleOnChange={setEmail}
           isLoading={isLoading}
