@@ -1,7 +1,8 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useIntersection } from "react-use";
+import { useQueryClient } from "react-query";
 import SelectableMaterial from "../materials/selectable-material";
-import { useRenewLoansV2 } from "../../../core/fbs/fbs";
+import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import {
   getAmountOfRenewableLoans,
   getRenewableMaterials
@@ -26,6 +27,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
 }) => {
   const { mutate } = useRenewLoansV2();
   const t = useText();
+  const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
@@ -47,6 +49,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
+            queryClient.invalidateQueries(getGetLoansV2QueryKey());
             close(modalIdsConf.allLoansId);
           }
         },

@@ -1,6 +1,7 @@
 import React, { useCallback, FC } from "react";
+import { useQueryClient } from "react-query";
 import { useText } from "../../../core/utils/text";
-import { useRenewLoansV2 } from "../../../core/fbs/fbs";
+import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import { FaustId } from "../../../core/utils/types/ids";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
@@ -11,6 +12,7 @@ interface RenewButtonProps {
 
 const RenewButton: FC<RenewButtonProps> = ({ faust }) => {
   const t = useText();
+  const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
   const { mutate } = useRenewLoansV2();
 
@@ -23,6 +25,7 @@ const RenewButton: FC<RenewButtonProps> = ({ faust }) => {
         {
           onSuccess: (result) => {
             if (result) {
+              queryClient.invalidateQueries(getGetLoansV2QueryKey());
               close(faust);
             }
           },
@@ -33,7 +36,7 @@ const RenewButton: FC<RenewButtonProps> = ({ faust }) => {
         }
       );
     },
-    [close, faust, mutate]
+    [close, faust, mutate, queryClient]
   );
 
   return (
