@@ -23,28 +23,26 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
       {expiryDate && state === "readyForPickup" && (
         <ListDetails
           icon={ReservationsIcon}
-          title={t("reservationDetailsExpiresTitelText")}
-          // todo string interpolation
-          labels={`${t("reservationDetailsExpiresLabelText")} ${formatDate(
-            expiryDate
-          )}`}
+          title={t("reservationDetailsStatusTitleText")}
+          labels={t("reservationDetailsExpiresText", {
+            placeholders: { "@count": formatDate(expiryDate) }
+          })}
         />
       )}
       {pickupDeadline && state === "reserved" && (
         <ListDetails
           icon={ReservationsIcon}
-          title={t("reservationDetailsExpiresTitelText")}
-          // todo string interpolation
-          labels={`${t("reservationDetailsLoanBeforeText")} ${formatDate(
-            pickupDeadline
-          )}`}
+          title={t("reservationDetailsStatusTitleText")}
+          labels={t("reservationDetailsBorrowBeforeText", {
+            placeholders: { "@count": formatDate(pickupDeadline) }
+          })}
         />
       )}
       {dateOfReservation && (
         <ListDetails
           icon={LoansIcon}
-          title={t("reservationDetailsDateOfReservationTitelText")}
-          labels={[formatDate(dateOfReservation)]}
+          labels={formatDate(dateOfReservation)}
+          title={t("reservationDetailsDateOfReservationTitleText")}
         />
       )}
     </>

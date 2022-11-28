@@ -7,6 +7,7 @@ import { useDeleteV1UserReservationsIdentifier } from "../../../../core/publizon
 import DeleteReservationModal from "../delete-reservation/delete-reservation-modal";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { useUrls } from "../../../../core/utils/url";
 
 export interface ReservationDetailsRedirectProps {
   reservationId: string;
@@ -16,6 +17,7 @@ const ReservationDetailsRedirect: FC<
   ReservationDetailsRedirectProps & MaterialProps
 > = ({ reservationId }) => {
   const t = useText();
+  const { ereolenMyPageUrl } = useUrls();
   const { mutate } = useDeleteV1UserReservationsIdentifier();
   const { open, close } = useModalButtonHandler();
   const modalIds = getModalIds();
@@ -49,15 +51,15 @@ const ReservationDetailsRedirect: FC<
           onClick={() => open(modalId)}
           className="link-tag mx-16"
         >
-          {t("reservationDetailsRemoveReservationText")}
+          {t("reservationDetailsRemoveDigitalReservationText")}
         </button>
         <Link
           id="test-ereolen-button"
           // todo get from config
-          href={new URL("https://ereolen.dk/user/me/")}
+          href={new URL(ereolenMyPageUrl)}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
         >
-          {t("reservationDetailsGoToEreolenText")}
+          {t("reservationDetailsDigitalReservationGoToEreolenText")}
           <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
         </Link>
       </div>

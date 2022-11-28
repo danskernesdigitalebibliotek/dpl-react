@@ -7,6 +7,7 @@ import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
+import { useUrls } from "../../../../core/utils/url";
 
 interface PauseReservationProps {
   id: string;
@@ -15,6 +16,7 @@ interface PauseReservationProps {
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
+  const { pauseReservationInfoUrl } = useUrls();
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
@@ -78,7 +80,6 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBreadText")}
           </p>
         </div>
-
         <DateInputs
           setStartDate={setStartDate}
           setEndDate={setEndDate}
@@ -90,7 +91,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
               id="test-ereolen-button"
-              href={new URL("https://ereolen.dk/user/me/")}
+              href={new URL(pauseReservationInfoUrl)}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}

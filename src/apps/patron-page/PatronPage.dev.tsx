@@ -139,11 +139,11 @@ export default {
         "This checkbox opens a section where you can put your current reservations on a pause, when the time period picked has ended, the reservations will be resumed",
       control: { type: "text" }
     },
-    pauseReservationStartDateLabelText: {
+    dateInputsStartDateLabelText: {
       defaultValue: "From",
       control: { type: "text" }
     },
-    pauseReservationEndDateLabelText: {
+    dateInputsEndDateLabelText: {
       defaultValue: "To",
       control: { type: "text" }
     },

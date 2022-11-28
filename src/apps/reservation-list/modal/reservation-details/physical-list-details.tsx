@@ -166,16 +166,18 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {numberInQueue && (
         <ListDetails
           icon={EbookIcon}
-          title={t("reservationDetailsNumberInQueueTitelText")}
+          title={t("reservationDetailsStatusTitleText")}
           labels={[
-            `${t("reservationDetailsNumberInQueueLabelText")} ${numberInQueue}`
+            t("reservationDetailsNumberInQueueLabelText", {
+              placeholders: { "@count": numberInQueue }
+            })
           ]}
         />
       )}
       {pickupBranchFetched && (
         <ListDetails
           icon={LocationIcon}
-          title={t("reservationDetailsPickUpAtTitelText")}
+          title={t("reservationDetailsPickUpAtTitleText")}
           labels={[pickupBranchFetched, pickupNumber || ""]}
         >
           {branchesOptions && (
@@ -192,7 +194,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {expiryDate && (
         <ListDetails
           icon={LoanHistoryIcon}
-          title={t("reservationDetailsNoInterestAfterTitelText")}
+          title={t("reservationDetailsNoInterestAfterTitleText")}
           labels={[formatDate(expiryDate)]}
         >
           <ListDetailsDropdown
@@ -214,7 +216,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {dateOfReservation && (
         <ListDetails
           icon={LoansIcon}
-          title={t("reservationDetailsDateOfReservationTitelText")}
+          title={t("reservationDetailsDateOfReservationTitleText")}
           labels={[formatDate(dateOfReservation)]}
         />
       )}

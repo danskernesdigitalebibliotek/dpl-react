@@ -53,7 +53,7 @@ const ReservationDetailsButton: FC<
           onClick={() => open(modalId)}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
         >
-          {t("reservationDetailsButtonText")}
+          {t("reservationDetailsButtonRemoveText")}
         </button>
       </div>
       <DeleteReservationModal

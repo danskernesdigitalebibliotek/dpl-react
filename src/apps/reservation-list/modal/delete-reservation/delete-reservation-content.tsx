@@ -36,7 +36,7 @@ const DeleteReservationContent: FC<
           onClick={deleteReservationCallback}
           className="btn-primary btn-filled btn-large arrow__hover--right-small"
         >
-          {t("deleteReservationModalDeleteText")}
+          {t("deleteReservationModalDeleteButtonText")}
         </button>
       </div>
     </>

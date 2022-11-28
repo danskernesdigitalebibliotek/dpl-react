@@ -134,7 +134,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   return (
     <div className="reservation-list-page">
-      <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
+      <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
       {user && <ReservationPauseToggler user={user} />}
       {allListsEmpty ? (
         <div className="list-reservation-container m-32">

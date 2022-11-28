@@ -4,7 +4,6 @@ import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon
 interface ReservationStatusProps {
   color: string;
   percent: number;
-  expiresSoonLabel?: string;
   infoLabel?: string;
   label: string | string[];
   children: ReactNode;
@@ -13,7 +12,6 @@ interface ReservationStatusProps {
 const ReservationStatus: FC<ReservationStatusProps> = ({
   color,
   percent,
-  expiresSoonLabel,
   infoLabel,
   label,
   children
@@ -30,11 +28,6 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       </div>
       <div>
         <div className="list-reservation__deadline">
-          {expiresSoonLabel && (
-            <div className="status-label status-label--warning">
-              {expiresSoonLabel}
-            </div>
-          )}
           {infoLabel && (
             <div className="status-label status-label--info">{infoLabel}</div>
           )}
