@@ -3,6 +3,7 @@ import { useEffect, FC } from "react";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../core/modal.slice";
 import {
+  getToken,
   setToken,
   TOKEN_LIBRARY_KEY,
   TOKEN_USER_KEY
@@ -82,7 +83,14 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   }, [pid, dispatch]);
 
   const onClick = () => {
-    if (userIsAnonymous()) {
+    const userToken = getToken("user");
+    console.log({ userToken });
+    const isUserAnonymous = userIsAnonymous();
+    console.log({ isUserAnonymous });
+
+    if (userIsAnonymous() || !getToken("user")) {
+      console.log("User is anonymous and doesn't have any token");
+
       // redirect to login with a link back
       const { href: urlToOpenModal } = appendQueryParametersToUrl(
         new URL(getCurrentLocation()),
