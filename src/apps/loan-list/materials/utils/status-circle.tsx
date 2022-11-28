@@ -39,10 +39,16 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
       color={color as string}
     >
       <span className="counter__value">
-        {t("loanListMaterialDaysText", {
-          count: daysUntilDuedate,
-          placeholders: { "@count": daysUntilDuedate }
-        })}
+        {/* I am not using string interpolation here because of styling */}
+        {/* if somehow it is possible to break text in one div into two lines */}
+        {/* where the first line has another font size AND is only the first "word" */}
+        {/* then this should be changed to do that */}
+        {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
+      </span>
+      <span className="counter__label">
+        {daysBetweenTodayAndDue === 1
+          ? t("loanListMaterialDaysText")
+          : t("loanListMaterialDayText")}
       </span>
     </StatusCircleIcon>
   );

@@ -146,7 +146,13 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: '{"type":"plural","text":["1 day","@count days"]}'
+      defaultValue: "days"
+    },
+    loanListMaterialDayText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "day"
     },
     loanListAdditionalMaterialsText: {
       control: {
