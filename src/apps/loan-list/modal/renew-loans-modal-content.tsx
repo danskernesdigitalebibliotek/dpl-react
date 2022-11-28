@@ -57,7 +57,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         onError: () => {}
       }
     );
-  }, [close, materialsToRenew, mutate]);
+  }, [close, materialsToRenew, mutate, queryClient]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
