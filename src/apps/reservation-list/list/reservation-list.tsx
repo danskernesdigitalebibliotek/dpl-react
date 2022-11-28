@@ -1,5 +1,4 @@
 import React, { useEffect, useState, FC } from "react";
-import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
@@ -8,7 +7,6 @@ import {
   getReservedDigital,
   getReservedPhysical
 } from "../utils/helpers";
-import { ModalIdsProps } from "../../../core/utils/modal";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
   mapFBSReservationToReservationType,
@@ -29,23 +27,13 @@ export interface ReservationListProps {
 
 const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const t = useText();
-  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
-  const { data: userData, refetch: refetchUser } =
-    useGetPatronInformationByPatronIdV2();
+  const { data: userData } = useGetPatronInformationByPatronIdV2();
 
   // Data fetch
-  const {
-    isSuccess,
-    data,
-    isLoading: isLoadingFBS,
-    refetch: refetchFBS
-  } = useGetReservationsV2();
-  const {
-    data: publizonData,
-    isLoading: isLoadingPublizon,
-    refetch: refetchPublizon
-  } = useGetV1UserReservations();
+  const { isSuccess, data, isLoading: isLoadingFBS } = useGetReservationsV2();
+  const { data: publizonData, isLoading: isLoadingPublizon } =
+    useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
@@ -109,12 +97,6 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       );
     }
   }, [isSuccess, data]);
-
-  useEffect(() => {
-    refetchFBS();
-    refetchPublizon();
-    refetchUser();
-  }, [modalIds.length, refetchFBS, refetchPublizon, refetchUser]);
 
   const allListsEmpty =
     readyForPickupReservationsFBS.length === 0 &&

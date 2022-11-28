@@ -1,7 +1,11 @@
 import React, { FC, useCallback } from "react";
+import { useQueryClient } from "react-query";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
-import { useDeleteReservations } from "../../../../core/fbs/fbs";
+import {
+  useDeleteReservations,
+  getGetReservationsV2QueryKey
+} from "../../../../core/fbs/fbs";
 import DeleteReservationModal from "../delete-reservation/delete-reservation-modal";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
@@ -15,6 +19,7 @@ const ReservationDetailsButton: FC<
   ReservationDetailsButtonProps & MaterialProps
 > = ({ reservationId, numberInQueue }) => {
   const t = useText();
+  const queryClient = useQueryClient();
   const modalIds = getModalIds();
   const { mutate } = useDeleteReservations();
   const { open, close } = useModalButtonHandler();
@@ -27,8 +32,8 @@ const ReservationDetailsButton: FC<
           params: { reservationid: [reservationId] }
         },
         {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
+          onSuccess: () => {
+            queryClient.invalidateQueries(getGetReservationsV2QueryKey());
             close(modalId);
           },
           // todo error handling, missing in figma
@@ -38,7 +43,7 @@ const ReservationDetailsButton: FC<
         }
       );
     }
-  }, [close, modalId, mutate, reservationId]);
+  }, [close, modalId, mutate, queryClient, reservationId]);
 
   return (
     <>
