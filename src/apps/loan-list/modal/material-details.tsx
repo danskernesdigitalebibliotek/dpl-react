@@ -46,10 +46,12 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         materialType={materialType}
         isbnForCover={identifier || ""}
       >
-        <StatusBadge
-          dueDate={dueDate}
-          dangerText={t("materialDetailsOverdueText")}
-        />
+        {dueDate && (
+          <StatusBadge
+            dueDate={dueDate}
+            dangerText={t("materialDetailsOverdueText")}
+          />
+        )}
       </ModalDetailsHeader>
       {faust && <RenewButton faust={faust} renewable={isRenewable} />}
       {dueDate && materialIsOverdue(dueDate) && (
