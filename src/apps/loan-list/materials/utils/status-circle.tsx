@@ -47,8 +47,8 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
       </span>
       <span className="counter__label">
         {daysBetweenTodayAndDue === 1
-          ? t("loanListMaterialDaysText")
-          : t("loanListMaterialDayText")}
+          ? t("loanListMaterialDayText")
+          : t("loanListMaterialDaysText")}
       </span>
     </StatusCircleIcon>
   );
