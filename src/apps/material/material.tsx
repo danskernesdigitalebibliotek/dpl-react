@@ -39,6 +39,8 @@ import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import DigitalModal from "../../components/material/digital-modal/DigitalModal";
+import { isDigitalArticleService } from "../../components/material/material-buttons/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -243,6 +245,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             />
           )}
         </>
+      )}
+      {isDigitalArticleService(currentManifestation) && (
+        <DigitalModal manifestation={currentManifestation} />
       )}
     </main>
   );

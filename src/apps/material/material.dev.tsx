@@ -534,6 +534,32 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
+    orderDigitalCopyModalScreenReaderModalDescriptionText: {
+      name: "Order digital copy modal screen reader description",
+      defaultValue: "Modal for Order digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyModalCloseModalAriaLabelText: {
+      name: "Close order digital copy modal",
+      defaultValue: "Close Order digital copy modal",
+      control: { type: "text" }
+    },
+    orderDigitalCopyTitleText: {
+      name: "Order digital copy title text",
+      defaultValue: "Order digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyDescriptionText: {
+      name: "Order digital copy description text",
+      defaultValue:
+        "You can order a digital copy of this material. The digital copy will be sent to your email address.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyButtonText: {
+      name: "Order digital copy button text",
+      defaultValue: "Order digital copy",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
