@@ -3,11 +3,12 @@ import { FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import { IssnId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
-  digitalArticleIssn: string;
+  digitalArticleIssn: IssnId;
   size?: ButtonSize;
   dataCy?: string;
 }
