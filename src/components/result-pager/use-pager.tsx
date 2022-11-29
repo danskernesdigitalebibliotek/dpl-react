@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ResultPager from "./result-pager";
 
 const usePager = (
-  hitcount: number | null,
+  hitcount: number,
   pageSize: number,
   overrideItemsShown?: () => number
 ) => {
