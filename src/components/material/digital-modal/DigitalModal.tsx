@@ -21,11 +21,15 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   const modalId = createDigitalModalId(digitalArticleIssn);
   const t = useText();
   const [email, setEmail] = useState<string>("");
-  const { mutate, isLoading, isSuccess, isError } =
-    useDplDasDigitalArticleOrderPOST();
+  const {
+    mutate: articleOrder,
+    isLoading: articleOrderLoading,
+    isSuccess: articleOrderSuccess,
+    isError: articleOrderError
+  } = useDplDasDigitalArticleOrderPOST();
 
   const orderDigitalCopy = () => {
-    mutate({
+    articleOrder({
       data: {
         pid,
         email
@@ -51,16 +55,16 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         "orderDigitalCopyModalCloseModalAriaLabelText"
       )}
     >
-      {(isSuccess || isError) && (
-        <DigitalModalFeedback modalId={modalId} isError={isError} />
+      {(articleOrderSuccess || articleOrderError) && (
+        <DigitalModalFeedback modalId={modalId} isError={articleOrderError} />
       )}
 
-      {!isSuccess && !isError && (
+      {!articleOrderSuccess && !articleOrderError && (
         <DigitalModalBody
           handleSubmit={orderDigitalCopy}
           email={email}
           handleOnChange={setEmail}
-          isLoading={isLoading}
+          isLoading={articleOrderLoading}
         />
       )}
     </Modal>
