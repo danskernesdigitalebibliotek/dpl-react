@@ -54,10 +54,9 @@ const ReservationDetailsRedirect: FC<
           {t("reservationDetailsRemoveDigitalReservationText")}
         </button>
         <Link
-          id="test-ereolen-button"
-          // todo get from config
           href={new URL(ereolenMyPageUrl)}
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
+          id="go-to-ereolen-button"
         >
           {t("reservationDetailsDigitalReservationGoToEreolenText")}
           <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />

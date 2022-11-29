@@ -74,7 +74,7 @@ export default {
       control: { type: "text" }
     },
     reservationListPhysicalReservationsEmptyText: {
-      defaultValue: "At the moment you have 0 phyiscal reservations",
+      defaultValue: "At the moment you have 0 physical reservations",
       control: { type: "text" }
     },
     reservationListAllEmptyText: {

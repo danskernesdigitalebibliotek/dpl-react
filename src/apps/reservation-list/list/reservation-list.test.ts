@@ -1,7 +1,7 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 // TODO: Test suite is failing in GH. Needs to be looked at.
-describe.skip("Reservation list", () => {
+describe("Reservation list", () => {
   before(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
@@ -13,6 +13,20 @@ describe.skip("Reservation list", () => {
     // https://github.com/cypress-io/cypress/issues/7577
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
+
+    cy.interceptRest({
+      aliasName: "work",
+      httpMethod: "POST",
+      url: "**/opac/**",
+      fixtureFilePath: "reservation-list/work.json"
+    });
+
+    cy.interceptRest({
+      aliasName: "product",
+      httpMethod: "GET",
+      url: "**v1/products/**",
+      fixtureFilePath: "reservation-list/product.json"
+    });
 
     cy.intercept(
       "GET",
@@ -294,90 +308,13 @@ describe.skip("Reservation list", () => {
         cy.intercept("GET", "**/covers**", result);
       })
       .as("cover");
-
-    cy.intercept("POST", "**/opac/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:22629344",
-            titles: { main: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
-            materialTypes: [{ specific: "Dummy bog" }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
-    }).as("work");
-
-    cy.intercept("GET", "**v1/products/**", {
-      product: {
-        createdUtc: "2014-11-04T12:20:19.347Z",
-        updatedUtc: "2017-02-23T13:04:56.617Z",
-        title: "Mordet i det blå tog",
-        isActive: true,
-        languageCode: "dan",
-        coverUri: null,
-        thumbnailUri: null,
-        productType: 1,
-        externalProductId: {
-          idType: 15,
-          id: "9788711321683"
-        },
-        internalProductId: "fa07f75d-5c00-4429-90c9-76e2bb5eb526",
-        contributors: [
-          {
-            type: "A01",
-            firstName: "Agatha",
-            lastName: "Christie"
-          },
-          {
-            type: "B06",
-            firstName: "Jutta",
-            lastName: "Larsen"
-          }
-        ],
-        format: "epub",
-        fileSizeInBytes: 899,
-        durationInSeconds: null,
-        publisher: "Lindhardt og Ringhof",
-        publicationDate: "2014-11-07T00:00:00Z",
-        description:
-          'I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: "Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden."',
-        productCategories: [
-          {
-            description: "Skønlitteratur og relaterede emner",
-            code: "F"
-          },
-          {
-            description: "Klassiske krimier",
-            code: "FFC"
-          }
-        ],
-        costFree: true
-      },
-      code: 101,
-      message: "OK"
-    }).as("product");
-
-    cy.visit(
-      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
-    );
-    cy.wait([
-      "@product",
-      "@physical_reservations",
-      "@digital_reservations",
-      "@work",
-      "@cover",
-      "@user"
-    ]);
   });
 
   it("Reservations list", () => {
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".reservation-list-page")
@@ -385,7 +322,7 @@ describe.skip("Reservation list", () => {
       // ID 11 2.a.i. Text  "Pause reservations on physical items"
       .should("exist")
       .find(".dpl-pause-reservation-component__flex__text")
-      .should("have.text", "Sæt fysiske reserveringer på pause");
+      .should("have.text", "Pause your reservations");
 
     // ID 11 2.a.ii. Toggle switch: which show whether the users reservation is paused
     cy.get(".reservation-list-page")
@@ -397,7 +334,7 @@ describe.skip("Reservation list", () => {
       // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
       .find("h2")
       .eq(0)
-      .should("have.text", "Klar til lån3");
+      .should("have.text", "Ready for pickup3");
 
     // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
     cy.get(".list-reservation-container")
@@ -405,7 +342,7 @@ describe.skip("Reservation list", () => {
       .eq(0)
       .find(".status-label--info")
       // ID 11 2.b.iii.2.b.i The text "pick up latest {Afhentningsdato}"
-      .should("have.text", "Hent senest 20-06-2022");
+      .should("have.text", "Pick up before 20-06-2022");
 
     // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
     // ID 42 2.a. Material cover
@@ -438,7 +375,7 @@ describe.skip("Reservation list", () => {
       .find(".list-reservation__about p")
       .should(
         "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
@@ -471,20 +408,13 @@ describe.skip("Reservation list", () => {
       .eq(1)
       .should("have.text", "Reserveringshylde 115");
 
-    // ID 11 2.b.iii.2.c Digital materials
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(2)
-      .find(".status-label--info")
-      .should("have.text", "Lånes inden 27-01-2023");
-
     // ID 11 2.c The list "physical reservations"
     cy.get(".list-reservation-container").eq(1).should("exist");
     // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(1)
       .find("h2")
-      .should("have.text", "Fysiske9");
+      .should("have.text", "Physical reservations9");
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
     // todo
     // ID 11 2.c.iii. Every material is showed with
@@ -494,14 +424,14 @@ describe.skip("Reservation list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Du er forrest i køen");
+      .should("have.text", "You are at the front of the queue");
     // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(5)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Du er nummer {tal her} i køen 1");
+      .should("have.text", "There are 1 people in the queue before you");
 
     // ID 11 2.d The list "digital reservations"
     cy.get(".list-reservation-container").eq(2).should("exist");
@@ -510,7 +440,7 @@ describe.skip("Reservation list", () => {
     cy.get(".dpl-list-buttons")
       .eq(2)
       .find("h2")
-      .should("have.text", "Digitale3");
+      .should("have.text", "Digital reservations3");
 
     // ID 11 2.d.ii. List sorted by: shortest time to loan > producttitle
     cy.get(".list-reservation-container")
@@ -519,7 +449,7 @@ describe.skip("Reservation list", () => {
       .eq(0)
       .find(".list-reservation__deadline p")
       // ID 11 2.d.iii.c. text Available in {ExpectedRedeemDateTimeUtc} days
-      .should("have.text", "Kan lånes om dage 208");
+      .should("have.text", "Available in 208 days");
 
     // ID 11 2.d.iii.b. the icon {ExpectedRedeemDateTimeUtc}
     cy.get(".list-reservation-container")
@@ -738,20 +668,15 @@ describe.skip("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.wait([
-      "@physical_reservations",
-      "@digital_reservations",
-      "@product",
-      "@work",
-      "@cover"
-    ]);
-
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".reservation-list-page")
       .find(".list-reservation-container")
       .eq(0)
       .find(".dpl-list-empty")
-      .should("have.text", "Du har i øjeblikket 0 reserveringer klar til lån");
+      .should(
+        "have.text",
+        "At the moment you have 0 reservations ready for pickup"
+      );
 
     cy.intercept(
       "GET",
@@ -801,21 +726,22 @@ describe.skip("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.wait(["@physical_reservations", "@digital_reservations"]);
-
     // ID 11 2.c.v. No physical reservations text: "At the moment you have 0 reservations on physical items"
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".dpl-list-empty")
       .should("exist")
-      .should("have.text", "Du har i øjeblikket 0 fysiske reserveringer i kø");
+      .should("have.text", "At the moment you have 0 physical reservations");
 
     // ID 11 2.d.v. No digital reservations text: "At the moment you have 0 reservations on digital items"
     cy.get(".list-reservation-container")
       .eq(2)
       .find(".dpl-list-empty")
       .should("exist")
-      .should("have.text", "Du har i øjeblikket 0 digitale reserveringer i kø");
+      .should(
+        "have.text",
+        "At the moment you have 0 reservations on digital items"
+      );
 
     cy.intercept(
       "GET",
@@ -839,17 +765,16 @@ describe.skip("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.wait(["@physical_reservations", "@digital_reservations"]);
     // ID 11 2: user has no reservations
     // ID 11 2.a. header "Your reservations"
     cy.get(".reservation-list-page")
       .find("h1")
-      .should("have.text", "Dine reserveringer");
+      .should("have.text", "Your reservations");
 
     // ID 11 2.b. Text: "At the moment you have 0 reservations"
     cy.get(".dpl-list-empty")
       .should("exist")
-      .should("have.text", "Du har i øjeblikket 0 reserveringer");
+      .should("have.text", "At the moment you have 0 reservations");
   });
 });
 

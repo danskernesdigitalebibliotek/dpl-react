@@ -1,7 +1,7 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 // TODO: Test suite is failing in GH. Needs to be looked at.
-describe.skip("Reservation list pagination", () => {
+describe("Reservation list pagination", () => {
   before(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");

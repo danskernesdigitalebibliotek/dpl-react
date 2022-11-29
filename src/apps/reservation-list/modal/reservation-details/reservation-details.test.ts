@@ -117,35 +117,35 @@ describe("Reservation details modal test", () => {
 
     // ID 43 2.d. authors
     cy.get(".modal")
-      .find("#test-authors")
-      .should("have.text", "Af Agatha Christie og Jutta Larsen (2014)");
+      .find("[data-cy='modal-authors']")
+      .should("have.text", "By Agatha Christie and Jutta Larsen (2014)");
 
     // Todo serial title
     // Todo serial number
 
     // ID 43 2.b. Material types including accessibility of material
-    cy.get(".modal").find(".status-label").eq(0).should("have.text", "E-bog");
+    cy.get(".modal").find(".status-label").eq(0).should("have.text", "E-book");
     // ID 43 2.b. Material types including accessibility of material
     // ID 17 2.b.ii "Ready for loan" if the reservation is ready for loan, or else it will not be shown
 
     // ID 17 2.c. the link "Remove your reservation"
     cy.get(".modal")
       .find("button.link-tag")
-      .should("have.text", "Fjern din reservering")
+      .should("have.text", "Remove your reservation")
       .click();
 
-    cy.get(".modal").find("#test-delete-reservation-button").click();
+    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
     // TODO: This assertion is failing. Please fix.
     // Also I don't get why a fixture is being tested.
-    // cy.get("@delete-reservation").should((response) => {
-    //   expect(response).to.have.property("response");
-    // });
+    cy.get("@delete-reservation").should((response) => {
+      expect(response).to.have.property("response");
+    });
 
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
-      .find("#test-ereolen-button")
-      .should("have.text", "Gå til ereolen")
+      .find("[data-cy='go-to-ereolen-button']")
+      .should("have.text", "Go to eReolen")
       .should("have.attr", "href")
       // ID 17 2.d.i. link to "ereolen.dk/user/me"
       .should("include", "ereolen.dk/user/me");
@@ -153,7 +153,7 @@ describe("Reservation details modal test", () => {
     cy.get(".modal")
       .find(".status-label")
       .eq(1)
-      .should("have.text", "Klar til lån");
+      .should("have.text", "Ready for pickup");
 
     // ID 17 2.e. header "status"
     cy.get(".modal-details__list")
@@ -167,14 +167,14 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Reserveringen udløber 27-01-2023");
+      .should("have.text", "Your reservation expires 27-01-2023!");
 
     // ID 17 2.f. header "date of reservation"
     cy.get(".modal-details__list")
       .find(".list-details")
       .eq(1)
       .find(".text-header-h5")
-      .should("have.text", "Reserveringsdato");
+      .should("have.text", "Date of reservation");
 
     // ID 2.e.i.2 the text "{createdutc}"
     cy.get(".modal-details__list")
@@ -262,7 +262,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Lånes inden 27-01-2023");
+      .should("have.text", "Borrow before 27-01-2023");
   });
 
   it("It shows physical reservation details modal", () => {
@@ -329,10 +329,10 @@ describe("Reservation details modal test", () => {
 
     // ID 43 2.d. authors
     cy.get(".modal")
-      .find("#test-authors")
+      .find("[data-cy='modal-authors']")
       .should(
         "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
@@ -349,23 +349,23 @@ describe("Reservation details modal test", () => {
       .find(".modal-details__buttons")
       .eq(0)
       .find(".text-body-medium-regular")
-      .should("have.text", "Andre står i kø til materialet");
+      .should("have.text", "Others are queueing for this material");
 
     // ID 13 button: “Remove you reservation”
     cy.get(".modal")
       .find(".modal-details__buttons")
       .eq(0)
       .find("button")
-      .should("have.text", "Fjern din reservering")
+      .should("have.text", "Remove your reservation")
       .click();
 
-    cy.get(".modal").find("#test-delete-reservation-button").click();
+    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
     // TODO: This assertion is failing. Please fix.
     // Also I don't get why a fixture is being tested.
-    // cy.get("@delete-reservation").should((response) => {
-    //   expect(response).to.have.property("response");
-    // });
+    cy.get("@delete-reservation").should((response) => {
+      expect(response).to.have.property("response");
+    });
 
     // ID 13 2.d. header "status"
     cy.get(".modal-details__list")
@@ -379,14 +379,14 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "i køen 1");
+      .should("have.text", "1 queued");
 
     // ID 13 2.e. header "pickup branch"
     cy.get(".modal-details__list")
       .find(".list-details")
       .eq(1)
       .find(".text-header-h5")
-      .should("have.text", "Afhentes på");
+      .should("have.text", "Pickup branch");
 
     // ID 13 2.e.i. text "{pickupBranch}"
     cy.get(".modal-details__list")
@@ -411,7 +411,7 @@ describe("Reservation details modal test", () => {
       .find(".dropdown__option")
       .should(
         "have.text",
-        "VælgHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
+        "PickHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
       );
 
     // ID 16 3. user selects library
@@ -432,7 +432,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(2)
       .find(".text-header-h5")
-      .should("have.text", "Har ingen interesse efter");
+      .should("have.text", "Not interested after");
 
     // ID 13 2.f.i. text "{expiryDate}"
     cy.get(".modal-details__list")
@@ -455,7 +455,7 @@ describe("Reservation details modal test", () => {
       .eq(2)
       .find(".dropdown__select")
       .find(".dropdown__option")
-      .should("have.text", "Vælg1 måned2 måneder3 måneder6 måneder1 år");
+      .should("have.text", "Pick1 month2 months3 months6 months1 year");
 
     cy.intercept(
       "PUT",
@@ -468,15 +468,15 @@ describe("Reservation details modal test", () => {
 
     // ID 15 2.g user clicks save
     // ID 16 4. user clicks save
-    cy.get(".modal-details__list").find("#test-save-physical-details").click();
+    cy.get(".modal-details__list")
+      .find("[data-cy='save-physical-details']")
+      .click();
 
     // ID 15 2.h system updates
     // ID 16 5. user clicks save
-    // TODO: This assertion is failing. Please fix.
-    // Also I don't get why a fixture is being tested.
-    // cy.get("@put-library-branch-and-expiry-date").should((response) => {
-    //   expect(response).to.have.property("response");
-    // });
+    cy.get("@put-library-branch-and-expiry-date").should((response) => {
+      expect(response).to.have.property("response");
+    });
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
@@ -504,7 +504,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(3)
       .find(".text-header-h5")
-      .should("have.text", "Reserveringsdato");
+      .should("have.text", "Date of reservation");
 
     // ID 13 2.h.i. text "{dateOfReservation}"
     cy.get(".modal-details__list")
@@ -573,7 +573,7 @@ describe("Reservation details modal test", () => {
     cy.get(".modal")
       .find(".status-label")
       .eq(1)
-      .should("have.text", "Klar til lån");
+      .should("have.text", "Ready for pickup");
 
     // ID 13 2.b. Text: “Others in queue” if numberInQueue > 0
     cy.get(".modal")
@@ -595,7 +595,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(2)
       .find(".text-header-h5")
-      .should("have.text", "Udløbsdato");
+      .should("have.text", "Pickup deadline");
 
     // ID 13 2.h.i. text "{pickupDeadline}" if reservation is ready for pickup
     cy.get(".modal-details__list")
