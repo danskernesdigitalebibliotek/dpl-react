@@ -6,8 +6,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { Pid } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
-import DigitalModalError from "./DigitalModalError";
-import DigitalModalSuccess from "./DigitalModalSuccess";
+import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId } from "./helper";
 
 type DigitalModalProps = {
@@ -52,8 +51,10 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         "orderDigitalCopyModalCloseModalAriaLabelText"
       )}
     >
-      {isSuccess && <DigitalModalSuccess modalId={modalId} />}
-      {isError && <DigitalModalError modalId={modalId} />}
+      {(isSuccess || isError) && (
+        <DigitalModalFeedback modalId={modalId} isError={isError} />
+      )}
+
       {!isSuccess && !isError && (
         <DigitalModalBody
           handleSubmit={orderDigitalCopy}
