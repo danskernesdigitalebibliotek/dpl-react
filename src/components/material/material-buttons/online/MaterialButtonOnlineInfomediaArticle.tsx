@@ -19,7 +19,7 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
   manifestation: Manifestation;
-  trackOnlineView: () => void;
+  trackOnlineView: () => Promise<unknown>;
   dataCy?: string;
 }
 
@@ -44,6 +44,15 @@ const MaterialButtonOnlineInfomediaArticle: FC<
     // to this page with an open modal.
     const userToken = getToken(TOKEN_USER_KEY);
     if (userIsAnonymous() || !userToken) {
+      // If we are in storybook context just redirect to the login story.
+      if (process.env.STORYBOOK_CLIENT_ID && window.top) {
+        const { origin } = new URL(getCurrentLocation());
+        const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
+        // We don't use redirectTo() because that would redirect inside the storybook iframe.
+        window.top.location.href = storybookRedirect;
+        return;
+      }
+
       const { pathname, search } = appendQueryParametersToUrl(
         new URL(getCurrentLocation()),
         {
@@ -55,15 +64,9 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       const redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
         "current-path": localPathToOpenModal
       });
-      // If we are in storybook context just redirect to the login story.
-      if (process.env.STORYBOOK_CLIENT_ID && window.top) {
-        const { origin } = new URL(getCurrentLocation());
-        const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
-        // We don't use redirectTo() because that would redirect inside the storybook iframe.
-        window.top.location.href = storybookRedirect;
-        return;
-      }
-      redirectTo(redirectUrl);
+      trackOnlineView().then(() => {
+        redirectTo(redirectUrl);
+      });
       return;
     }
     trackOnlineView();

@@ -32,7 +32,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 }) => {
   const { track } = useStatistics();
   const trackOnlineView = () => {
-    track("click", {
+    return track("click", {
       id: statistics.onlineReservation.id,
       name: statistics.onlineReservation.name,
       trackedData: workId
