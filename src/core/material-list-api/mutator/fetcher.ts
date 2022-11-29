@@ -1,6 +1,6 @@
 import { getToken, TOKEN_USER_KEY } from "../../token";
 
-const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
+const baseURL = "http://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
   url,

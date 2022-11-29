@@ -1,7 +1,7 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
 import { getFetcherUrl, configTypes } from "../../utils/helpers/fetcher";
 
-const defaultBaseUrl = "https://fbs-openplatform.dbc.dk";
+const defaultBaseUrl = "http://fbs-openplatform.dbc.dk";
 
 type FetchParams =
   | string

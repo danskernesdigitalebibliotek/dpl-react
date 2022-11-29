@@ -1,6 +1,6 @@
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
 
-const baseURL = "https://cover.dandigbib.org"; // use your own URL here or environment variable
+const baseURL = "http://cover.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
   url,
@@ -36,8 +36,7 @@ export const fetcher = async <ResponseType>({
   const body = data ? JSON.stringify(data) : null;
 
   const response = await fetch(
-    `${baseURL}${url}${
-      params ? `?${new URLSearchParams(params as FetchParams)}` : ""
+    `${baseURL}${url}${params ? `?${new URLSearchParams(params as FetchParams)}` : ""
     }`,
     {
       method,

@@ -20,7 +20,7 @@ export const fetcher = <TData, TVariables>(
       // For now the endpoint is hardcoded. (although it is unclear which agency id to use)
       // When we get wiser of when the library id and profile is changing
       // we will update it with a dynamic version:
-      "https://fbi-api.dbc.dk/opac/graphql",
+      "http://fbi-api.dbc.dk/opac/graphql",
       {
         method: "POST",
         ...{
