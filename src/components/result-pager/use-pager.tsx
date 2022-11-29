@@ -6,23 +6,14 @@ const usePager = (
   pageSize: number,
   overrideItemsShown?: () => number
 ) => {
-  if (hitcount === null) {
-    // eslint-disable-next-line no-param-reassign
-    hitcount = 0;
-  }
-
   const [itemsShown, setItemsShown] = useState(
     pageSize >= hitcount ? hitcount : pageSize
   );
   const [page, setPage] = useState<number>(0);
 
-  const resetPager = () => {
-    setPage(0);
-    setItemsShown(pageSize);
-  };
-
   useEffect(() => {
-    setItemsShown(pageSize >= hitcount ? hitcount : pageSize);
+    const onLastPage = pageSize > hitcount;
+    setItemsShown(onLastPage ? hitcount : pageSize);
   }, [hitcount, pageSize]);
 
   const pagehandler = () => {
@@ -43,7 +34,7 @@ const usePager = (
     />
   ) : null;
 
-  return { itemsShown, PagerComponent, page, resetPager };
+  return { itemsShown, PagerComponent, page };
 };
 
 export default usePager;

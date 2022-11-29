@@ -50,11 +50,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const cleanBranches = cleanBranchesId(whitelistBranches);
   const [resultItems, setResultItems] = useState<Work[]>([]);
-  const [hitcount, setHitCount] = useState<number | null>(null);
-  const { PagerComponent, page, resetPager } = usePager(
-    hitcount === null ? 0 : hitcount,
-    pageSize
-  );
+  const [hitcount, setHitCount] = useState<number>(0);
+  const { PagerComponent, page } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
@@ -62,7 +59,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const filteringHandler: TermOnClickHandler = (filterInfo) => {
     filterHandler(filterInfo);
-    resetPager();
   };
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
@@ -134,13 +130,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       };
     };
 
+    setHitCount(resultCount);
+
     // if page has change then append the new result to the existing result
     if (page > 0) {
       setResultItems((prev) => [...prev, ...resultWorks]);
       return;
     }
 
-    setHitCount(resultCount);
     setResultItems(resultWorks);
   }, [data, page]);
 
