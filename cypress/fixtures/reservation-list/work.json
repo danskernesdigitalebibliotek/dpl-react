@@ -6,6 +6,9 @@
       "abstract": ["Dummy Some abstract ..."],
       "hostPublication": { "year": { "year": 2006 } },
       "materialTypes": [{ "specific": "Dummy bog" }],
+      "series": [
+        { "numberInSeries": { "number": [1] }, "title": "Detektivbureau Nr. 2" }
+      ],
       "creators": [
         { "display": "Dummy Jens Jensen" },
         { "display": "Dummy Some Corporation" }
