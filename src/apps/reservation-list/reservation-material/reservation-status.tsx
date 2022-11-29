@@ -2,7 +2,8 @@ import React, { FC, ReactNode } from "react";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
-  color: string;
+  color?: string;
+  ariaLabel: string;
   percent: number;
   infoLabel?: string;
   label: string | string[];
@@ -14,14 +15,13 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   percent,
   infoLabel,
   label,
+  ariaLabel,
   children
 }) => {
   return (
     <div className="list-reservation__status">
-      <div
-        className="list-reservation__counter"
-        // todo create meaningful aria-explanation
-      >
+      <div className="list-reservation__counter">
+        {/* todo add aria label */}
         <StatusCircleIcon color={color} percent={percent}>
           {children}
         </StatusCircleIcon>

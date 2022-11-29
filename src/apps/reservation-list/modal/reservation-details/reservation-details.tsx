@@ -42,6 +42,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             pid={pid}
             description={description}
             materialType={materialType}
+            series={material.series}
           >
             {state === "readyForPickup" && (
               <div className="status-label status-label--info">

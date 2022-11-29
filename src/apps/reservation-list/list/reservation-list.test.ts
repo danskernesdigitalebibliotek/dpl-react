@@ -1,6 +1,5 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
-// TODO: Test suite is failing in GH. Needs to be looked at.
 describe("Reservation list", () => {
   before(() => {
     cy.window().then((win) => {
@@ -323,7 +322,6 @@ describe("Reservation list", () => {
       .should("exist")
       .find(".dpl-pause-reservation-component__flex__text")
       .should("have.text", "Pause your reservations");
-
     // ID 11 2.a.ii. Toggle switch: which show whether the users reservation is paused
     cy.get(".reservation-list-page")
       .find(".dpl-toggle-button--active")
@@ -368,20 +366,34 @@ describe("Reservation list", () => {
       .find("h3")
       .should("have.text", "Dummy Some Title");
 
-    // ID 42 2.d. authors & ID 42 2.f. year published
+    // ID 42 2.d. serial title and number
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__about p")
+      .eq(2)
+      .should("have.text", "Detektivbureau Nr. 2 1");
+
+    // ID 42 2.e. authors & ID 42 2.f. year published
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__about p")
+      .eq(0)
       .should(
         "have.text",
         "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
 
-    // Todo serial title
-    // Todo serial number
-    // todo Nummer
-    // todo Årgang
+    // ID 42 2.d. & 42 2.d. number and year
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__about p")
+      .eq(1)
+      .should("have.text", "2022, 03, April-Maj#Forårshaven");
 
     // ID 11 2.b.iii.2. Pickup info
     // ID 11 2.b.iii.2.a The icon "ready"
@@ -416,7 +428,7 @@ describe("Reservation list", () => {
       .find("h2")
       .should("have.text", "Physical reservations9");
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
-    // todo
+
     // ID 11 2.c.iii. Every material is showed with
     // ID 11 2.c.iii.2. text: "You are at the front of the queue"
     cy.get(".list-reservation-container")

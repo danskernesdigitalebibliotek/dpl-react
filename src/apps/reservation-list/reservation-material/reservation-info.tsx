@@ -35,7 +35,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
 
   // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
-  const colors = getColors();
+  const { success } = getColors();
 
   let readyForPickupLabel = "";
   if (pickupDeadline) {
@@ -57,12 +57,13 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   if (state === "readyForPickup") {
     return (
       <ReservationStatus
-        color={colors.success as string}
+        ariaLabel={t("reservationListStatusIconReadyForPickupAriaLabelText")}
+        color={success as string}
         percent={100}
         infoLabel={readyForPickupLabel}
         label={[pickupLibrary, pickupNumber || ""]}
       >
-        <div className="counter__value">
+        <div className="counter__value" aria-hidden="true">
           <img src={check} alt="" />
           <span className="counter__label">
             {t("reservationListReadyText")}
@@ -83,7 +84,10 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
 
     return (
       <ReservationStatus
-        color={colors.default as string}
+        ariaLabel={t("reservationListStatusIconQueuedAriaLabelText", {
+          count: numberInQueue,
+          placeholders: { "@count": numberInQueue }
+        })}
         // The decision regarding this is, that if the user is number 4
         // in the queue for a material, the "percent-wheel-thing" should be 1/4 full.
         percent={(1 / numberInQueue) * 100}
@@ -93,8 +97,10 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         {/* if somehow it is possible to break text in one div into two lines */}
         {/* where the first line has another font size AND is only the first "word" */}
         {/* then this should be changed to do that */}
-        <span className="counter__value">{numberInQueue}</span>
-        <span className="counter__label">
+        <span className="counter__value" aria-hidden="true">
+          {numberInQueue}
+        </span>
+        <span className="counter__label" aria-hidden="true">
           {t("reservationListInQueueText")}
         </span>
       </ReservationStatus>
@@ -104,13 +110,16 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   if (state === "reserved" && !pickupBranch && pickupDeadline) {
     return (
       <ReservationStatus
-        color={colors.default as string}
+        ariaLabel={t("reservationListStatusIconReadyInAriaLabelText", {
+          count: daysBetweenTodayAndPickup,
+          placeholders: { "@count": daysBetweenTodayAndPickup }
+        })}
         percent={daysBetweenTodayAndDate(pickupDeadline) / 100}
         label={t("reservationListAvailableInText", {
           placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
         })}
       >
-        <span className="counter__value">
+        <span className="counter__value" aria-hidden="true">
           {/* I am not using string interpolation here because of styling */}
           {/* if somehow it is possible to break text in one div into two lines */}
           {/* where the first line has another font size AND is only the first "word" */}
@@ -119,7 +128,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
             ? daysBetweenTodayAndPickup
             : 0}{" "}
         </span>
-        <span className="counter__label">
+        <span className="counter__label" aria-hidden="true">
           {daysBetweenTodayAndPickup === 1
             ? t("reservationListDayText")
             : t("reservationListDaysText")}

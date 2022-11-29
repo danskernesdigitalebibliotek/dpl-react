@@ -120,9 +120,6 @@ describe("Reservation details modal test", () => {
       .find("[data-cy='modal-authors']")
       .should("have.text", "By Agatha Christie and Jutta Larsen (2014)");
 
-    // Todo serial title
-    // Todo serial number
-
     // ID 43 2.b. Material types including accessibility of material
     cy.get(".modal").find(".status-label").eq(0).should("have.text", "E-book");
     // ID 43 2.b. Material types including accessibility of material
@@ -136,7 +133,6 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    // TODO: This assertion is failing. Please fix.
     // Also I don't get why a fixture is being tested.
     cy.get("@delete-reservation").should((response) => {
       expect(response).to.have.property("response");
@@ -287,23 +283,11 @@ describe("Reservation details modal test", () => {
       ]
     });
 
-    cy.intercept("POST", "**/opac/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:27215815",
-            titles: { main: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
-            materialTypes: [{ specific: "Dummy bog" }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
+    cy.interceptRest({
+      aliasName: "work",
+      httpMethod: "POST",
+      url: "**/opac/**",
+      fixtureFilePath: "reservation-list/work.json"
     });
 
     cy.intercept("DELETE", "**/external/v1/agencyid/patrons/patronid/**", {
@@ -327,6 +311,12 @@ describe("Reservation details modal test", () => {
     // ID 43 2.c. full title
     cy.get(".modal").find("h2").should("have.text", "Dummy Some Title");
 
+    // Serial title
+    // Serial number
+    cy.get(".list-reservation-container")
+      .find("[data-cy='modal-series']")
+      .should("have.text", "Detektivbureau Nr. 2 1");
+
     // ID 43 2.d. authors
     cy.get(".modal")
       .find("[data-cy='modal-authors']")
@@ -334,9 +324,6 @@ describe("Reservation details modal test", () => {
         "have.text",
         "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
-
-    // Todo serial title
-    // Todo serial number
 
     // ID 43 2.b. Material types including accessibility of material
     cy.get(".modal")
@@ -361,7 +348,6 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    // TODO: This assertion is failing. Please fix.
     // Also I don't get why a fixture is being tested.
     cy.get("@delete-reservation").should((response) => {
       expect(response).to.have.property("response");
@@ -536,23 +522,11 @@ describe("Reservation details modal test", () => {
       ]
     });
 
-    cy.intercept("POST", "**/opac/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:27215815",
-            titles: { main: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
-            materialTypes: [{ specific: "Dummy bog" }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
+    cy.interceptRest({
+      aliasName: "work",
+      httpMethod: "POST",
+      url: "**/opac/**",
+      fixtureFilePath: "reservation-list/work.json"
     });
 
     cy.visit(

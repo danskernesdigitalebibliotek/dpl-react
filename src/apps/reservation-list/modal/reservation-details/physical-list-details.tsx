@@ -175,7 +175,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   return (
     <>
-      {/* todo when does the value change */}
       {numberInQueue && (
         <ListDetails
           icon={EbookIcon}

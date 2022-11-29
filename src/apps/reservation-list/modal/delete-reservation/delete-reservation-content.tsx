@@ -18,10 +18,12 @@ const DeleteReservationContent: FC<
   return (
     <>
       <h1 className="text-header-h3">
+        {/* todo make plural when modal works with plural */}
         {t("deleteReservationModalHeaderText")}
       </h1>
       <div className="mt-48 color-secondary-gray">
         <p className="text-body-medium-regular">
+          {/* todo make plural when modal works with plural */}
           {t("deleteReservationModalDeleteQuestionText")}
         </p>
         <p className="text-body-medium-regular">
@@ -36,6 +38,7 @@ const DeleteReservationContent: FC<
           onClick={deleteReservationCallback}
           className="btn-primary btn-filled btn-large arrow__hover--right-small"
         >
+          {/* todo make plural when modal works with plural */}
           {t("deleteReservationModalDeleteButtonText")}
         </button>
       </div>

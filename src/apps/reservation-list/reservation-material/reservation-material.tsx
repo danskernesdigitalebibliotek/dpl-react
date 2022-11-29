@@ -58,6 +58,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
       >
         {material && (
           <MaterialInfo
+            periodical={reservation.periodical}
             material={material}
             isbnForCover={reservation.identifier || ""}
           />
