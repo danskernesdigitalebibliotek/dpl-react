@@ -328,9 +328,9 @@ describe("Reservation list", () => {
       .should("exist");
 
     // ID 11 2.b. The list "Ready for pickup"
-    cy.get(".reservation-list-page")
-      // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
-      .find("h2")
+    cy.get(".reservation-list-page");
+    // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
+    cy.get("[data-cy='reservation-list-header']")
       .eq(0)
       .should("have.text", "Ready for pickup3");
 
@@ -425,7 +425,7 @@ describe("Reservation list", () => {
     // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(1)
-      .find("h2")
+      .find("[data-cy='reservation-list-header']")
       .should("have.text", "Physical reservations9");
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
 
@@ -451,7 +451,7 @@ describe("Reservation list", () => {
     // ID 11 2.d.i. Header: "Digital" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(2)
-      .find("h2")
+      .find("[data-cy='reservation-list-header']")
       .should("have.text", "Digital reservations3");
 
     // ID 11 2.d.ii. List sorted by: shortest time to loan > producttitle

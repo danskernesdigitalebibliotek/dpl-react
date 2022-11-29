@@ -31,33 +31,42 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const { data: userData } = useGetPatronInformationByPatronIdV2();
 
   // Data fetch
-  const { isSuccess, data, isLoading: isLoadingFBS } = useGetReservationsV2();
-  const { data: publizonData, isLoading: isLoadingPublizon } =
-    useGetV1UserReservations();
+  const {
+    isSuccess: isSuccessFBS,
+    data,
+    isLoading: isLoadingFBS,
+    isError: isErrorFBS
+  } = useGetReservationsV2();
+
+  const {
+    isSuccess: isSuccessPublizon,
+    data: publizonData,
+    isLoading: isLoadingPublizon,
+    isError: isErrorPublizon
+  } = useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
-    useState<ReservationType[]>([]);
+    useState<ReservationType[]>(null);
 
   const [
     readyForPickupReservationsPublizon,
     setReadyForPickupReservationsPublizon
-  ] = useState<ReservationType[]>([]);
+  ] = useState<ReservationType[]>(null);
 
-  const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
-    ReservationType[]
-  >([]);
+  const [reservedReservationsFBS, setReservedReservationsFBS] =
+    useState<ReservationType[]>(null);
   const [user, setUser] = useState<PatronV5 | null>(null);
 
   const [reservedReservationsPublizon, setReservedReservationsPublizon] =
-    useState<ReservationType[]>([]);
+    useState<ReservationType[]>(null);
 
   // Set digital reservations
   // The digital "ready for pickup"-reservations are mixed with the
   // physical "ready for pickup"-reservations. The digital
   // "reserved"-reservations have their own list
   useEffect(() => {
-    if (publizonData && publizonData.reservations) {
+    if (isSuccessPublizon && publizonData && publizonData.reservations) {
       setReadyForPickupReservationsPublizon(
         getReadyForPickup(
           mapPublizonReservationToReservationType(publizonData.reservations)
@@ -69,7 +78,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         )
       );
     }
-  }, [publizonData]);
+  }, [publizonData, isSuccessPublizon]);
 
   // Set digital reservations
   // The physical "ready for pickup"-reservations are mixed with the
@@ -86,7 +95,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // digital "ready for pickup"-reservations. The physical
   // "reserved"-reservations have their own list
   useEffect(() => {
-    if (isSuccess && data) {
+    if (isSuccessFBS && data) {
       setReadyForPickupReservationsFBS(
         sortByOldestPickupDeadline(
           getReadyForPickup(mapFBSReservationToReservationType(data))
@@ -96,23 +105,15 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         getReservedPhysical(mapFBSReservationToReservationType(data))
       );
     }
-  }, [isSuccess, data]);
+  }, [isSuccessFBS, data]);
 
   const allListsEmpty =
-    readyForPickupReservationsFBS.length === 0 &&
-    readyForPickupReservationsPublizon.length === 0 &&
-    reservedReservationsFBS.length === 0 &&
-    reservedReservationsPublizon.length === 0 &&
+    readyForPickupReservationsFBS?.length === 0 &&
+    readyForPickupReservationsPublizon?.length === 0 &&
+    reservedReservationsFBS?.length === 0 &&
+    reservedReservationsPublizon?.length === 0 &&
     !isLoadingFBS &&
     !isLoadingPublizon;
-
-  const pickupListEmpty =
-    readyForPickupReservationsFBS.length === 0 &&
-    readyForPickupReservationsPublizon.length === 0;
-
-  const physicalListEmpty = reservedReservationsFBS.length === 0;
-
-  const digitalListEmpty = reservedReservationsPublizon.length === 0;
 
   return (
     <div className="reservation-list-page">
@@ -124,48 +125,32 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         </div>
       ) : (
         <>
-          {pickupListEmpty ? (
-            <div className="list-reservation-container m-32">
-              <EmptyList
-                emptyListText={t("reservationListReadyForPickupEmptyText")}
+          {readyForPickupReservationsFBS !== null &&
+            readyForPickupReservationsPublizon !== null && (
+              <List
+                pageSize={pageSize}
+                header={t("reservationListReadyForPickupTitleText")}
+                reservations={sortByOldestPickupDeadline([
+                  ...readyForPickupReservationsFBS,
+                  ...readyForPickupReservationsPublizon
+                ])}
+                emptyListLabel={t("reservationListReadyForPickupEmptyText")}
               />
-            </div>
-          ) : (
-            <List
-              pageSize={pageSize}
-              header={t("reservationListReadyForPickupTitleText")}
-              list={sortByOldestPickupDeadline([
-                ...readyForPickupReservationsFBS,
-                ...readyForPickupReservationsPublizon
-              ])}
-            />
-          )}
-          {physicalListEmpty ? (
-            <div className="list-reservation-container m-32">
-              <EmptyList
-                emptyListText={t(
-                  "reservationListPhysicalReservationsEmptyText"
-                )}
-              />
-            </div>
-          ) : (
+            )}
+          {reservedReservationsFBS !== null && (
             <List
               pageSize={pageSize}
               header={t("reservationListPhysicalReservationsHeaderText")}
-              list={reservedReservationsFBS}
+              reservations={reservedReservationsFBS}
+              emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
             />
           )}
-          {digitalListEmpty ? (
-            <div className="list-reservation-container m-32">
-              <EmptyList
-                emptyListText={t("reservationListDigitalReservationsEmptyText")}
-              />
-            </div>
-          ) : (
+          {reservedReservationsPublizon !== null && (
             <List
               pageSize={pageSize}
               header={t("reservationListDigitalReservationsHeaderText")}
-              list={reservedReservationsPublizon}
+              reservations={reservedReservationsPublizon}
+              emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
             />
           )}
         </>
