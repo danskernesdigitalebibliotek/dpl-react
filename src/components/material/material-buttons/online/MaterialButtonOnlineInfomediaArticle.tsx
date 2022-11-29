@@ -40,27 +40,20 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   // }, []);
 
   const onClick = () => {
+    // Redirect anonymous users to the login platform, including a return link
+    // to this page with an open modal.
     const userToken = getToken(TOKEN_USER_KEY);
-    console.log({ userToken });
-    const isUserAnonymous = userIsAnonymous();
-    console.log({ isUserAnonymous });
-
-    if (userIsAnonymous() || !getToken("user")) {
-      console.log("User is anonymous and doesn't have any token");
-
-      // link back from the login platform - with an open modal id
+    if (userIsAnonymous() || !userToken) {
       const { pathname, search } = appendQueryParametersToUrl(
         new URL(getCurrentLocation()),
         {
           modal: infomediaModalId(pid)
         }
       );
-      const urlToOpenModal = `${pathname}${search}`;
-      console.log({ urlToOpenModal });
+      const localPathToOpenModal = `${pathname}${search}`;
       const baseAuthUrl = authUrl;
-      console.log({ baseAuthUrl });
       const redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
-        "current-path": urlToOpenModal
+        "current-path": localPathToOpenModal
       });
       // If we are in storybook context just redirect to the login story.
       if (process.env.STORYBOOK_CLIENT_ID && window.top) {
