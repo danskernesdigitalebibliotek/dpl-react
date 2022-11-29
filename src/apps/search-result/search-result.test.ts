@@ -1,7 +1,7 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
-  it("should render the site", () => {
+  it("Should render the site", () => {
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
@@ -62,7 +62,7 @@ describe("Search Result", () => {
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
-  it.skip("Do we have a pager?", () => {
+  it("Do we have a pager?", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
       "Showing 2 out of 9486 results"
