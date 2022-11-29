@@ -59,8 +59,15 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       const baseAuthUrl = authUrl;
       console.log({ baseAuthUrl });
       const redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
-        redirect_uri: urlToOpenModal
+        "current-path": urlToOpenModal
       });
+      // if we are in storybook context
+      // if (process.env.STORYBOOK_CLIENT_ID) {
+      //   redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
+      //     client_id: process.env.STORYBOOK_CLIENT_ID,
+      //     redirect_uri: urlToOpenModal
+      //   });
+      // }
       console.log({ redirectUrl });
       redirectTo(redirectUrl);
       return;
