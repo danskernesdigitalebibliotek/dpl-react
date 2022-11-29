@@ -62,14 +62,14 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       const redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
         "current-path": urlToOpenModal
       });
-      // if we are in storybook context
-      // if (process.env.STORYBOOK_CLIENT_ID) {
-      //   redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
-      //     client_id: process.env.STORYBOOK_CLIENT_ID,
-      //     redirect_uri: urlToOpenModal
-      //   });
-      // }
-      console.log({ redirectUrl });
+      // If we are in storybook context just redirect to the login story.
+      if (process.env.STORYBOOK_CLIENT_ID && window.top) {
+        const { origin } = new URL(getCurrentLocation());
+        const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
+        // We don't use redirectTo() because that would redirect inside the storybook iframe.
+        window.top.location.href = storybookRedirect;
+        return;
+      }
       redirectTo(redirectUrl);
       return;
     }
