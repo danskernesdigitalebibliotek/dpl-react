@@ -4,7 +4,7 @@ import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
-import { hasCorrectAccessType, isArticle } from "./helper";
+import { hasCorrectAccess, hasCorrectAccessType, isArticle } from "./helper";
 import { WorkId } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
@@ -46,14 +46,15 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             />
           </>
         )}
-      {hasCorrectAccessType(AccessTypeCode.Online, manifestation) && (
-        <MaterialButtonsOnline
-          manifestation={manifestation}
-          size={size}
-          workId={workId}
-          dataCy={`${dataCy}-find-on-shelf`}
-        />
-      )}
+      {hasCorrectAccessType(AccessTypeCode.Online, manifestation) ||
+        (hasCorrectAccess("DigitalArticleService", manifestation) && (
+          <MaterialButtonsOnline
+            manifestation={manifestation}
+            size={size}
+            workId={workId}
+            dataCy={`${dataCy}-find-on-shelf`}
+          />
+        ))}
     </>
   );
 };
