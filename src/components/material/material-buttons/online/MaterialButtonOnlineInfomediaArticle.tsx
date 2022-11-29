@@ -12,6 +12,7 @@ import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
+import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
 
@@ -32,6 +33,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
 }) => {
   const t = useText();
   const dispatch = useDispatch();
+  const { authUrl } = useUrls();
 
   // useEffect(() => {
   //   // do stuff here upon coming back from teh login site
@@ -54,7 +56,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
         }
       );
       console.log({ urlToOpenModal });
-      const baseAuthUrl = new URL(t("authUrl"));
+      const baseAuthUrl = authUrl;
       console.log({ baseAuthUrl });
       const redirectUrl = appendQueryParametersToUrl(baseAuthUrl, {
         redirect_uri: urlToOpenModal
