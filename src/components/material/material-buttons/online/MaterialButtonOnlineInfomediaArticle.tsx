@@ -41,7 +41,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
     const userToken = getToken(TOKEN_USER_KEY);
     if (userIsAnonymous() || !userToken) {
       // If we are in storybook context just redirect to the login story.
-      if (process.env.STORYBOOK_CLIENT_ID && window.top) {
+      if (!process && window.top) {
         const { origin } = new URL(getCurrentLocation());
         const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
         // We don't use redirectTo() because that would redirect inside the storybook iframe.
