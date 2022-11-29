@@ -123,3 +123,32 @@ export const removeQueryParametersFromUrl = (url: URL, parameter: string) => {
   url.searchParams.delete(parameter);
   return url;
 };
+
+type RedirectToLoginAndBackParams = {
+  authUrl: URL;
+  returnUrl: URL;
+  trackingFunction?: () => Promise<unknown>;
+};
+export function redirectToLoginAndBack({
+  authUrl,
+  returnUrl,
+  trackingFunction
+}: RedirectToLoginAndBackParams) {
+  // If we are in storybook context just redirect to the login story.
+  if (process !== undefined && window.top) {
+    const { origin } = new URL(getCurrentLocation());
+    const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
+    // We don't use redirectTo() because that would redirect inside the storybook iframe.
+    window.top.location.href = storybookRedirect;
+    return;
+  }
+  const { pathname, search } = returnUrl;
+  const localPathToReturnTo = `${pathname}${search}`;
+  const redirectUrl = appendQueryParametersToUrl(authUrl, {
+    "current-path": localPathToReturnTo
+  });
+  if (trackingFunction) {
+    trackingFunction().then(() => redirectTo(redirectUrl));
+  }
+  redirectTo(redirectUrl);
+}
