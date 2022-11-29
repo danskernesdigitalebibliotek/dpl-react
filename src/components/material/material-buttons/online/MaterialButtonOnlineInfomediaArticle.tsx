@@ -35,10 +35,6 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const dispatch = useDispatch();
   const { authUrl } = useUrls();
 
-  // useEffect(() => {
-  //   // do stuff here upon coming back from teh login site
-  // }, []);
-
   const onClick = () => {
     // Redirect anonymous users to the login platform, including a return link
     // to this page with an open modal.
