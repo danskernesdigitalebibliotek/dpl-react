@@ -49,12 +49,13 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       console.log("User is anonymous and doesn't have any token");
 
       // link back from the login platform - with an open modal id
-      const { href: urlToOpenModal } = appendQueryParametersToUrl(
+      const { pathname, search } = appendQueryParametersToUrl(
         new URL(getCurrentLocation()),
         {
           modal: infomediaModalId(pid)
         }
       );
+      const urlToOpenModal = `${pathname}${search}`;
       console.log({ urlToOpenModal });
       const baseAuthUrl = authUrl;
       console.log({ baseAuthUrl });
