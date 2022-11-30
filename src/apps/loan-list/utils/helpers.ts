@@ -23,7 +23,7 @@ export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":
       return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
-    case "renewed":
+    case "deniedOtherReason":
       return t("groupModalRenewLoanDeniedReservedText");
     default:
       return "";

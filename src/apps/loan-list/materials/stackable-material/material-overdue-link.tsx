@@ -20,7 +20,7 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   return (
     <Link
       href={materialOverdueUrl}
-      className={`list-reservation__note-${showOn} color-signal-alert`}
+      className={`list-reservation__note list-reservation__note--${showOn} color-signal-alert`}
     >
       {t("loanListMaterialLateFeeText")}
     </Link>

@@ -644,7 +644,7 @@ describe("Loan list", () => {
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find(".list-reservation__information .list-reservation__note-desktop")
+      .find(".list-reservation__note--desktop")
       .eq(0)
       .should("have.text", "+ 1 other material")
       .click();

@@ -29,7 +29,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { allLoansId } = getModalIds();
   const { open } = useModalButtonHandler();
   const t = useText();
-  const [view, setView] = useState<ListView>("stack");
+  const [view, setView] = useState<ListView>("list");
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>(null);
   const [digitalLoans, setDigitalLoans] = useState<LoanType[]>(null);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(

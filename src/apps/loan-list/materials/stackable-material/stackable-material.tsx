@@ -17,7 +17,6 @@ export interface StackableMaterialProps {
   amountOfMaterialsWithDueDate?: number;
   openModal?: boolean;
   pageSize: number;
-  error: string;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
@@ -26,8 +25,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   openModal,
   loan,
   stack,
-  pageSize,
-  error
+  pageSize
 }) => {
   const { open } = useModalButtonHandler();
   const [additionalMaterials] = useState(
@@ -79,7 +77,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           additionalMaterials > 0 ? "list-reservation--stacked" : ""
         }`}
       >
-        {error && <div className="list-reservation__material">{error}</div>}
         {material && (
           <MaterialInfo
             periodical={periodical}

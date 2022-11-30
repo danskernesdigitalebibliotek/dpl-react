@@ -21,7 +21,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
   pageSize
 }) => {
   const t = useText();
-  console.log(loans);
+
   return (
     // explanation for screen readers used in additional-materials-button
     // It is located here to avoid duplicate ids in the dom
