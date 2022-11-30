@@ -1,28 +1,31 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { useState } from "react";
 import { useText } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
 import ReservationForm from "../../reservation/forms/ReservationForm";
 
 type DigitalModalBodyProps = {
-  email: string;
-  handleOnChange: Dispatch<SetStateAction<string>>;
-  handleSubmit: () => void;
+  userEmail: string;
+  handleSubmit: (email: string) => void;
   isLoading: boolean;
 };
 
 const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
-  email,
-  handleOnChange,
+  userEmail,
   handleSubmit,
   isLoading
 }) => {
   const t = useText();
+  const [email, setEmail] = useState<string>(userEmail);
+
+  const handleOnSubmit = () => {
+    handleSubmit(email);
+  };
 
   return (
     <ReservationForm
       title={t("orderDigitalCopyTitleText")}
       description={[t("orderDigitalCopyDescriptionText")]}
-      onSubmit={handleSubmit}
+      onSubmit={handleOnSubmit}
       buttonLabel={
         isLoading
           ? t("orderDigitalCopyButtonLoadingText")
@@ -35,7 +38,7 @@ const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
         label="Email"
         id="email-order-digital-copy"
         value={email}
-        onChange={handleOnChange}
+        onChange={setEmail}
       />
     </ReservationForm>
   );

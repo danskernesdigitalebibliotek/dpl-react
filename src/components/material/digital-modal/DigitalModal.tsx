@@ -19,7 +19,8 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
 }) => {
   const modalId = createDigitalModalId(digitalArticleIssn);
   const t = useText();
-  const [email, setEmail] = useState<string>("");
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
   const {
     mutate: articleOrder,
     isLoading: articleOrderLoading,
@@ -27,7 +28,7 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
     isError: articleOrderError
   } = useDplDasDigitalArticleOrderPOST();
 
-  const orderDigitalCopy = () => {
+  const orderDigitalCopy = (email: string) => {
     articleOrder({
       data: {
         pid,
@@ -36,12 +37,15 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
     });
   };
 
-  // Pre fill the email field with the patron's email
+  // Pre fill the email field with the patron's email or set it to an empty string
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   useEffect(() => {
-    if (patronData?.patron?.emailAddress) {
-      setEmail(patronData.patron.emailAddress);
+    if (!patronData) return;
+    if (patronData.patron?.emailAddress) {
+      setUserEmail(patronData.patron.emailAddress);
+      return;
     }
+    setUserEmail("");
   }, [patronData]);
 
   return (
@@ -58,14 +62,15 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         <DigitalModalFeedback modalId={modalId} isError={articleOrderError} />
       )}
 
-      {!articleOrderSuccess && !articleOrderError && (
-        <DigitalModalBody
-          handleSubmit={orderDigitalCopy}
-          email={email}
-          handleOnChange={setEmail}
-          isLoading={articleOrderLoading}
-        />
-      )}
+      {!articleOrderSuccess &&
+        !articleOrderError &&
+        typeof userEmail === "string" && (
+          <DigitalModalBody
+            userEmail={userEmail}
+            handleSubmit={orderDigitalCopy}
+            isLoading={articleOrderLoading}
+          />
+        )}
     </Modal>
   );
 };
