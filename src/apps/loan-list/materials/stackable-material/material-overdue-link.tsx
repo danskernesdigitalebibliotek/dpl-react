@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Link } from "../../../../components/atoms/link";
 import { useUrls } from "../../../../core/utils/url";
-import { materialIsOverdue } from "../../utils/helpers";
+import { materialIsOverdue } from "../../../../core/utils/helpers/general";
 
 interface MaterialOverdueLinkProps {
   dueDate: string | null | undefined;

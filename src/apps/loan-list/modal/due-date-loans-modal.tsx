@@ -5,7 +5,8 @@ import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
-import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
+import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface DueDateLoansModalProps {
