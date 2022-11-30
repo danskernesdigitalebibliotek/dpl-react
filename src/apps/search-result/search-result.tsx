@@ -51,6 +51,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const cleanBranches = cleanBranchesId(whitelistBranches);
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
+  const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
   const { PagerComponent, page } = usePager(hitcount, pageSize);
   const { filters, filterHandler } = useFilterHandler();
   const { mutate } = useCampaignMatchPOST();
@@ -142,9 +143,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [data, page]);
 
   useEffect(() => {
-    // We want to disregard the first search result length because it is always 0
-    // (we set it using setHitCount useEffect() above)
-    if (hitcount === null) {
+    // We want to disregard the first hitcount because it is always 0 and doesn't
+    // represent reality (the number is set manually by us in the code). We only
+    // track all the following hitcount values that are based on the data.
+    if (!canWeTrackHitcount) {
+      setCanWeTrackHitcount(true);
       return;
     }
     track("click", {
