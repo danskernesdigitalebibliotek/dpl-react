@@ -29,10 +29,10 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
           <p className="text-small-caption" id="due-date">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {
-                  placeholders: { "@count": formatDate(dueDate) }
+                  placeholders: { "@date": formatDate(dueDate) }
                 })
               : t("loanListToBeDeliveredText", {
-                  placeholders: { "@count": formatDate(dueDate) }
+                  placeholders: { "@date": formatDate(dueDate) }
                 })}
           </p>
           {children}

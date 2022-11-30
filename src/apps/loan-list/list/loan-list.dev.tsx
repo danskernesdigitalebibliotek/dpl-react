@@ -215,19 +215,19 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Due date @count"
+      defaultValue: "Due date @date"
     },
     groupModalDueDateMaterialText: {
       control: {
         type: "text"
       },
-      defaultValue: "Afleveres @count"
+      defaultValue: "Afleveres @date"
     },
     loanListToBeDeliveredText: {
       control: {
         type: "text"
       },
-      defaultValue: "Due date @count"
+      defaultValue: "Due date @date"
     },
     materialAndAuthorText: {
       control: {

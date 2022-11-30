@@ -85,7 +85,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <StatusBadge
               dueDate={dueDate}
               neutralText={t("groupModalDueDateMaterialText", {
-                placeholders: { "@count": formatDate(dueDate) }
+                placeholders: { "@date": formatDate(dueDate) }
               })}
             />
           )}
