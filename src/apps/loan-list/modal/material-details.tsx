@@ -31,9 +31,10 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     identifier,
     isRenewable,
     materialItemNumber,
-    loanDate
+    loanDate,
+    periodical
   } = loan;
-  const { authors, materialType, year, title, pid, description } =
+  const { authors, materialType, year, title, pid, description, series } =
     material || {};
 
   return (
@@ -42,6 +43,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         year={year}
         authors={authors}
         title={title}
+        periodical={periodical}
+        series={series}
         pid={pid}
         description={description}
         materialType={materialType}
