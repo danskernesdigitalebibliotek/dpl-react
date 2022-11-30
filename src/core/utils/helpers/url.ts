@@ -134,14 +134,6 @@ export function redirectToLoginAndBack({
   returnUrl,
   trackingFunction
 }: RedirectToLoginAndBackParams) {
-  // If we are in storybook context just redirect to the login story.
-  if (authUrl.pathname === "/iframe.html" && window.top) {
-    const { origin } = new URL(getCurrentLocation());
-    const storybookRedirect = `${origin}/?path=/story/sb-utilities-adgangsplatformen--sign-in`;
-    // We don't use redirectTo() because that would redirect inside the storybook iframe.
-    window.top.location.href = storybookRedirect;
-    return;
-  }
   const { pathname, search } = returnUrl;
   const localPathToReturnTo = `${pathname}${search}`;
   const redirectUrl = appendQueryParametersToUrl(authUrl, {
