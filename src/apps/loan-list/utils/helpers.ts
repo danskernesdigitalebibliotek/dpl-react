@@ -75,10 +75,7 @@ export const queryMatchesFaust = (query: string | null) => {
   return returnValue;
 };
 
-export const isDigital = (loan: LoanType) => {
-  if (loan.identifier) return true;
-  return false;
-};
+export const isDigital = (loan: LoanType) => Boolean(loan.identifier);
 
 export const getStackedItems = (
   view: ListView,
