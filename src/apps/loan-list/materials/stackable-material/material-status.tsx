@@ -18,7 +18,9 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
 
   return (
     <div className="list-reservation__status">
-      <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+      <div className="list-reservation__counter">
+        <StatusCircle loanDate={loanDate} dueDate={dueDate} />
+      </div>
       <div>
         <div className="list-reservation__deadline">
           <StatusBadge

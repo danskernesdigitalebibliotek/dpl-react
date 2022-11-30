@@ -30,26 +30,28 @@ const fetchDigitalMaterial =
     if (identifier) {
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
+      const [error, setError] = useState<string>(null);
 
-      const { data: productsData, isSuccess: isSuccessDigital } =
+      const { data: productsData, error: isErrorDigital } =
         useGetV1ProductsIdentifier(identifier);
 
       useEffect(() => {
-        if (productsData && isSuccessDigital && productsData.product) {
+        if (productsData && productsData.product) {
+          console.log(productsData.product);
           setDigitalMaterial(
             mapProductToBasicDetailsType(productsData.product)
           );
-        } else {
+        } else if (isErrorDigital) {
+          setError("åhåh");
           // todo error handling, missing in figma
         }
-      }, [productsData, isSuccessDigital]);
-
-      if (!digitalMaterial) return null;
+      }, [productsData]);
 
       return (
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
           {...(props as P)}
+          error={error}
           identifier={identifier}
           material={digitalMaterial}
         />

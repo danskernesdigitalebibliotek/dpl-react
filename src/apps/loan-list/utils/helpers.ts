@@ -5,7 +5,7 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import { UseTextFunction } from "../../../core/utils/text";
 
 export const removeLoansWithDuplicateDueDate = (
-  date: string | null,
+  date: string,
   list: LoanType[]
 ) => {
   return list.filter(({ dueDate }) => dueDate === date);
@@ -87,7 +87,7 @@ export const getStackedItems = (
   dueDates: string[] | undefined | null[]
 ) => {
   let returnLoans: LoanType[] = [];
-  if (view === "stacked" && dueDates) {
+  if (view === "stack" && dueDates) {
     // I mean... this...
     // If the due date is null, the stacked item still has to be shown
     let dueDatesCopy = [...dueDates, null];
