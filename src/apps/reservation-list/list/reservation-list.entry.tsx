@@ -20,7 +20,6 @@ export interface ReservationListProps {
   reservationListFirstInQueueText: string;
   expiresSoonText: string;
   reservationListInQueueText: string;
-  youAreNumberInLineText: string;
   blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
