@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC, useCallback } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
   getAmountOfRenewableLoans,
@@ -30,8 +30,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const [view, setView] = useState<ListView>("list");
-  const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>(null);
-  const [digitalLoans, setDigitalLoans] = useState<LoanType[]>(null);
+  const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
+  const [digitalLoans, setDigitalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
     []
   );
@@ -76,7 +76,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   return (
     <div className="loan-list-page">
       <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-      {(physicalLoans?.length > 0 || digitalLoans?.length > 0) && (
+      {((physicalLoans && physicalLoans.length > 0) ||
+        (digitalLoans && digitalLoans?.length > 0)) && (
         <>
           {physicalLoans && (
             <List

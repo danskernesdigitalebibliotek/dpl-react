@@ -346,6 +346,10 @@ export default {
     showMoreText: {
       defaultValue: "show more",
       control: { type: "text" }
+    },
+    groupModalGoToMaterialText: {
+      defaultValue: "Go to material details",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

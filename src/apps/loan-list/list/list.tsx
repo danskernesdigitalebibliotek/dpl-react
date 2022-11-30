@@ -37,7 +37,7 @@ const List: FC<ListProps> = ({
   const { itemsShown, PagerComponent } = usePager(
     loans.length,
     pageSize,
-    view === "list" ? null : overrideItemsShown
+    view === "list" ? undefined : overrideItemsShown
   );
 
   useEffect(() => {

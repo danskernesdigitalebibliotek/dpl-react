@@ -83,12 +83,14 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           <div className="list-materials__status">
             <StatusMessage loan={loan} />
             <div>
-              <StatusBadge
-                dueDate={dueDate}
-                neutralText={t("groupModalDueDateMaterialText", {
-                  placeholders: { "@count": formatDate(dueDate) }
-                })}
-              />
+              {dueDate && (
+                <StatusBadge
+                  dueDate={dueDate}
+                  neutralText={t("groupModalDueDateMaterialText", {
+                    placeholders: { "@count": formatDate(dueDate) }
+                  })}
+                />
+              )}
               <button
                 type="button"
                 className="list-reservation__note"
