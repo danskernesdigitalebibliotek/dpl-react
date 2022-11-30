@@ -1,5 +1,4 @@
 import React, { useEffect, useState, FC } from "react";
-import { useSelector } from "react-redux";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
   getDueDatesLoan,
@@ -8,10 +7,7 @@ import {
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
-import {
-  ModalIdsProps,
-  useModalButtonHandler
-} from "../../../core/utils/modal";
+import { useModalButtonHandler } from "../../../core/utils/modal";
 import List from "./list";
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -39,9 +35,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const [digitalLoansDueDates, setDigitalLoansDueDates] = useState<string[]>(
     []
   );
-  const { isSuccess, data, refetch } = useGetLoansV2();
+  const { isSuccess, data } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
-  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -76,10 +71,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   }, [publizonData]);
 
   useEffect(() => {
-    refetch();
-  }, [modalIds?.length, refetch]);
-
-  useEffect(() => {
     const modalString = getUrlQueryParam("modal");
 
     // modal query param: modal loans all
@@ -98,7 +89,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               pageSize={pageSize}
               emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
               header={t("loanListPhysicalLoansTitleText")}
-              dueDateLabel={t("loanListToBeDeliveredText")}
               loans={physicalLoans}
               dueDates={physicalLoansDueDates}
               setView={setView}
@@ -111,7 +101,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               pageSize={pageSize}
               header={t("loanListDigitalLoansTitleText")}
               emptyListLabel={t("loanListDigitalLoansEmptyListText")}
-              dueDateLabel={t("loanListToBeDeliveredDigitalMaterialText")}
               loans={digitalLoans}
               dueDates={digitalLoansDueDates}
               setView={setView}

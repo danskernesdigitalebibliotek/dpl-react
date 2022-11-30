@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { UseTextFunction } from "../../../core/utils/text";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string | null,
@@ -18,6 +19,17 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
 
+export const getStatusText = (status: string, t: UseTextFunction) => {
+  switch (status) {
+    case "deniedMaxRenewalsReached":
+      return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
+    case "renewed":
+      return t("groupModalRenewLoanDeniedReservedText");
+    default:
+      return "";
+  }
+};
+
 export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
   return list.filter(({ faust, identifier }) => {
     if (faust) {
@@ -29,9 +41,6 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
     return false;
   });
 };
-
-export const materialIsOverdue = (date: string | undefined) =>
-  dayjs().isAfter(dayjs(date), "day");
 
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (
@@ -62,6 +71,8 @@ export const queryMatchesFaust = (query: string | null) => {
     faustFound && faustFound.length > 0 ? faustFound[0] : null;
   return returnValue;
 };
+
+export const isDigital = (loan: LoanType) => Boolean(loan.identifier);
 
 export const getStackedItems = (
   view: ListView,

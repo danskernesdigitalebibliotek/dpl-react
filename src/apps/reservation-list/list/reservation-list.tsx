@@ -2,11 +2,11 @@ import React, { useEffect, useState, FC } from "react";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
-  getReadyForPickup,
   sortByOldestPickupDeadline,
   getReservedDigital,
   getReservedPhysical
 } from "../utils/helpers";
+import { getReadyForPickup } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
   mapFBSReservationToReservationType,

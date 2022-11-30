@@ -1,10 +1,12 @@
 {
   "data": {
+    "id": "1999",
+    "title": "Campaign title",
     "text": "Lorem ipsum Harry Potter dolor sit amet, consectetur adipiscing elit. Nunc pellentesque, nulla et tempor iaculis, elit dui dictum nisl, quis porta.",
     "image": {
       "url": null,
       "alt": null
     },
-    "url": null
+    "url": "http://localhost/?path=/story/apps-search-result--search-result"
   }
 }

@@ -21,8 +21,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   return (
     <div className="list-reservation__status">
       <div className="list-reservation__counter">
-        {/* todo add aria label */}
-        <StatusCircleIcon color={color} percent={percent}>
+        <StatusCircleIcon ariaLabel={ariaLabel} color={color} percent={percent}>
           {children}
         </StatusCircleIcon>
       </div>

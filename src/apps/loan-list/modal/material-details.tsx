@@ -1,9 +1,10 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import { useText } from "../../../core/utils/text";
-import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
+import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import StatusBadge from "../materials/utils/status-badge";
 import WarningBar from "../materials/utils/warning-bar";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -25,7 +26,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const {
-    dueDate: dueDateFromLoan,
+    dueDate,
     faust,
     identifier,
     isRenewable,
@@ -34,7 +35,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   } = loan;
   const { authors, materialType, year, title, pid, description } =
     material || {};
-  const [dueDate, setDueDate] = useState<string>(dueDateFromLoan || "");
 
   return (
     <div className="modal-details__container">
@@ -47,14 +47,14 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         materialType={materialType}
         isbnForCover={identifier || ""}
       >
-        <StatusBadge
-          dueDate={dueDate}
-          dangerText={t("materialDetailsOverdueText")}
-        />
+        {dueDate && (
+          <StatusBadge
+            dueDate={dueDate}
+            dangerText={t("materialDetailsOverdueText")}
+          />
+        )}
       </ModalDetailsHeader>
-      {faust && isRenewable && (
-        <RenewButton faust={faust} setDueDate={setDueDate} />
-      )}
+      {faust && <RenewButton faust={faust} renewable={isRenewable} />}
       {dueDate && materialIsOverdue(dueDate) && (
         <div className="modal-details__warning">
           <WarningBar
@@ -68,7 +68,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           <ListDetails
             icon={LoansIcon}
             labels={formatDate(dueDate)}
-            title={t("materialDetailsHandInLabelText")}
+            title={t("materialDetailsDueDateLabelText")}
           />
         )}
         {loanDate && (
