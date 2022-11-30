@@ -12,6 +12,7 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
+import { ReservationType } from "../types/reservation-type";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -277,6 +278,30 @@ export const pageSizeGlobal = (
   }
 
   return pageSize;
+};
+
+export const materialIsOverdue = (date: string | undefined | null) =>
+  dayjs().isAfter(dayjs(date), "day");
+
+export const getReadyForPickup = (list: ReservationType[]) => {
+  return [...list].filter(({ state }) => state === "readyForPickup");
+};
+
+export const filterLoansOverdue = (loans: LoanType[]) => {
+  return loans.filter(({ dueDate }) => {
+    return materialIsOverdue(dueDate);
+  });
+};
+export const filterLoansSoonOverdue = (loans: LoanType[]) => {
+  const { warning } = <{ warning: number }>getThresholds();
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return (
+      daysUntilExpiration - warning <= 0 &&
+      daysUntilExpiration - warning >= -warning
+    );
+  });
 };
 
 export default {};

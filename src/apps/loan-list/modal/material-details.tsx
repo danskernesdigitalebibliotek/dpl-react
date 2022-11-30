@@ -3,7 +3,8 @@ import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/buil
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import { useText } from "../../../core/utils/text";
-import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
+import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import StatusBadge from "../materials/utils/status-badge";
 import WarningBar from "../materials/utils/warning-bar";
 import { LoanType } from "../../../core/utils/types/loan-type";

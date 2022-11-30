@@ -8,9 +8,10 @@ export interface CampaignBodyProps {
 
 const CampaignBody: FC<CampaignBodyProps> = ({ campaignData }) => {
   return (
-    <section className="campaign mt-35">
+    <section className="campaign mt-35" data-cy="campaign-body">
       {campaignData.image && campaignData.image.url && (
         <img
+          data-cy="campaign-image"
           className={`campaign__image ${
             !campaignData.text ? "campaign__image--full-width" : ""
           }`}

@@ -45,6 +45,10 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
     "volumeYear"
   );
 
+  if (!groupByVolumeYear || !selectedPeriodical || !selectPeriodicalHandler) {
+    return null;
+  }
+
   return (
     <MaterialPeriodicalSelect
       groupList={groupByVolumeYear as GroupList}

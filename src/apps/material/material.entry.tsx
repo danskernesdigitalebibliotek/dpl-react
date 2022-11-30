@@ -36,7 +36,6 @@ interface MaterialEntryTextProps {
   findOnShelfModalScreenReaderModalDescriptionText: string;
   genreAndFormText: string;
   getOnlineText: string;
-  goToEReolenText: string;
   goToText: string;
   haveNoInterestAfterText: string;
   identifierText: string;
