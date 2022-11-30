@@ -31,15 +31,20 @@ const fetchDigitalMaterial =
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
 
-      const { data: productsData } = useGetV1ProductsIdentifier(identifier);
+      const { data: productsData, isSuccess: isSuccessDigital } =
+        useGetV1ProductsIdentifier(identifier);
 
       useEffect(() => {
-        if (productsData && productsData.product) {
+        if (productsData && isSuccessDigital && productsData.product) {
           setDigitalMaterial(
             mapProductToBasicDetailsType(productsData.product)
           );
+        } else {
+          // todo error handling, missing in figma
         }
-      }, [productsData]);
+      }, [productsData, isSuccessDigital]);
+
+      if (!digitalMaterial) return null;
 
       return (
         <Component
