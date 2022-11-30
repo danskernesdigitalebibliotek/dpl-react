@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import { Link } from "../../../../components/atoms/link";
-import { getCurrentLocation } from "../../../../core/utils/helpers/url";
 import { useUrls } from "../../../../core/utils/url";
 
 interface WarningBarProps {
