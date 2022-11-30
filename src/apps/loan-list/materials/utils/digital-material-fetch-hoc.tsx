@@ -31,7 +31,6 @@ const fetchDigitalMaterial =
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
 
-      // Todo error handling
       const { data: productsData, isSuccess: isSuccessDigital } =
         useGetV1ProductsIdentifier(identifier);
 
@@ -41,7 +40,7 @@ const fetchDigitalMaterial =
             mapProductToBasicDetailsType(productsData.product)
           );
         } else {
-          // todo error handling
+          // todo error handling, missing in figma
         }
       }, [productsData, isSuccessDigital]);
 

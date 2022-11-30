@@ -5,12 +5,12 @@ import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import { useText } from "../../../core/utils/text";
 
 interface LoanListItemProps {
   loans: LoanType[];
   view: ListView;
   dueDates: string[];
-  dueDateLabel: string;
   pageSize: number;
 }
 
@@ -18,9 +18,9 @@ const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  dueDateLabel,
   pageSize
 }) => {
+  const t = useText();
   const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
 
   useEffect(() => {
@@ -32,7 +32,15 @@ const LoanListItems: FC<LoanListItemProps> = ({
   }, [dueDates, view]);
 
   return (
-    <div className="list-reservation-container m-32">
+    // explanation for screen readers used in additional-materials-button
+    // It is located here to avoid duplicate ids in the dom
+    <div className="list-reservation-container my-32">
+      <div
+        className="list-reservation__hidden-explanation"
+        id="materials-modal-text"
+      >
+        {t("loanListDueDateModalAriaLabelText")}
+      </div>
       {view === "stacked" &&
         localDueDates.map((uniqueDueDate: string | null) => {
           // Stack items:
@@ -58,7 +66,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
               {loan && (
                 <StackableMaterial
                   pageSize={pageSize}
-                  dueDateLabel={dueDateLabel}
                   loan={loan}
                   identifier={loan.identifier}
                   faust={loan.faust}
@@ -79,7 +86,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
               openModal={false}
               identifier={loan.identifier}
               faust={loan.faust}
-              dueDateLabel={dueDateLabel}
               key={loan.faust || loan.identifier}
               loan={loan}
             />

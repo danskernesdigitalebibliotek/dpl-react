@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
-import Pagination from "../utils/pagination";
+import PaginatedLoans from "../utils/PaginatedLoans";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import RenewLoansModal from "../modal/renew-loans-modal";
@@ -21,7 +21,6 @@ export interface ListProps {
   loans: LoanType[];
   dueDates: string[];
   view: ListView;
-  dueDateLabel: string;
   emptyListLabel: string;
   viewToggleable: boolean;
   pageSize: number;
@@ -33,7 +32,6 @@ const List: FC<ListProps> = ({
   loans,
   dueDates,
   view,
-  dueDateLabel,
   viewToggleable,
   emptyListLabel,
   pageSize
@@ -70,7 +68,7 @@ const List: FC<ListProps> = ({
 
   return (
     <>
-      <div className="dpl-list-buttons m-32">
+      <div className="dpl-list-buttons my-32">
         <h2 className="dpl-list-buttons__header">
           {header}
           <div className="dpl-list-buttons__power">{loans.length}</div>
@@ -85,7 +83,7 @@ const List: FC<ListProps> = ({
                 }`}
                 id="test-list"
                 type="button"
-                aria-label={t("loanListListText")}
+                aria-label={t("loanListAriaLabelListButtonText")}
               >
                 <IconList />
               </button>
@@ -98,12 +96,18 @@ const List: FC<ListProps> = ({
                 id="test-stack"
                 onClick={() => setViewHandler("stacked")}
                 type="button"
-                aria-label={t("loanListStackText")}
+                aria-label={t("loanListAriaLabelStackButtonText")}
               >
                 <IconStack />
               </button>
             </div>
             <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
+              <div
+                id="renew-multiple-modal"
+                className="dpl-list-buttons__screen-reader-description"
+              >
+                {t("loanListRenewMultipleButtonExplanationText")}
+              </div>
               <button
                 type="button"
                 onClick={() => {
@@ -111,9 +115,7 @@ const List: FC<ListProps> = ({
                 }}
                 disabled={getAmountOfRenewableLoans(loans) === 0}
                 id="test-renew-button"
-                aria-describedby={t(
-                  "loanListRenewMultipleButtonExplanationText"
-                )}
+                aria-describedby="renew-multiple-modal"
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
                 {t("loanListRenewMultipleButtonText")}
@@ -123,9 +125,8 @@ const List: FC<ListProps> = ({
         )}
       </div>
       {loans && loans.length > 0 && (
-        <Pagination
+        <PaginatedLoans
           pageSize={pageSize}
-          dueDateLabel={dueDateLabel}
           dueDates={dueDates}
           loans={loans}
           view={view as ListView}

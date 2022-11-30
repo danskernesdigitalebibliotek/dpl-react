@@ -6,19 +6,17 @@ import usePager from "../../../components/result-pager/use-pager";
 import { getListItems } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
-interface PaginationProps {
+interface PaginatedLoansProps {
   view: ListView;
   dueDates: string[];
   loans: LoanType[];
-  dueDateLabel: string;
   pageSize: number;
 }
 
-const Pagination: FC<PaginationProps> = ({
+const PaginatedLoans: FC<PaginatedLoansProps> = ({
   view,
   dueDates,
   loans,
-  dueDateLabel,
   pageSize
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
@@ -52,7 +50,6 @@ const Pagination: FC<PaginationProps> = ({
     <>
       <LoanListItems
         pageSize={pageSize}
-        dueDateLabel={dueDateLabel}
         dueDates={dueDates}
         loans={displayedLoans}
         view={view}
@@ -62,4 +59,4 @@ const Pagination: FC<PaginationProps> = ({
   );
 };
 
-export default Pagination;
+export default PaginatedLoans;
