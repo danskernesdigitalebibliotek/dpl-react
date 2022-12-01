@@ -51,6 +51,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
+    } else {
+      setPhysicalLoans([]);
     }
   }, [isSuccess, data]);
 
@@ -61,6 +63,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
       setDigitalLoans(sortedByLoanDate);
+    } else {
+      setDigitalLoans([]);
     }
   }, [publizonData]);
 
@@ -76,8 +80,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   return (
     <div className="loan-list-page">
       <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-      {((physicalLoans && physicalLoans.length > 0) ||
-        (digitalLoans && digitalLoans?.length > 0)) && (
+      {((Array.isArray(physicalLoans) && physicalLoans.length > 0) ||
+        (Array.isArray(digitalLoans) && digitalLoans.length > 0)) && (
         <>
           {physicalLoans && (
             <List
@@ -118,11 +122,14 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           )}
         </>
       )}
-      {physicalLoans?.length === 0 && digitalLoans?.length === 0 && (
-        <EmptyList
-          emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
-        />
-      )}
+      {Array.isArray(physicalLoans) &&
+        physicalLoans.length === 0 &&
+        Array.isArray(digitalLoans) &&
+        digitalLoans.length === 0 && (
+          <EmptyList
+            emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
+          />
+        )}
     </div>
   );
 };
