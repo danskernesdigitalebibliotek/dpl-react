@@ -6,7 +6,7 @@ import {
 import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
-import Link from "../../../components/atoms/link";
+import { Link } from "../../../components/atoms/link";
 
 const StatusSection: FC = () => {
   const t = useText();
@@ -30,6 +30,13 @@ const StatusSection: FC = () => {
     }
   }, [libraryProfileFetched]);
 
+  const {
+    maxConcurrentAudioLoansPerBorrower,
+    maxConcurrentEbookLoansPerBorrower,
+    maxConcurrentAudioReservationsPerBorrower,
+    maxConcurrentEbookReservationsPerBorrower
+  } = libraryProfile || {};
+
   let patronEbookLoans = 0;
   if (patronData?.ebookLoansRemaining) {
     patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
@@ -39,17 +46,15 @@ const StatusSection: FC = () => {
     patronAudioBookLoans = Math.abs(patronData?.audiobookLoansRemaining) || 0;
   }
   let eBookLoanPerent = 100;
-  if (libraryProfile?.maxConcurrentEbookLoansPerBorrower) {
+  if (maxConcurrentEbookLoansPerBorrower) {
     eBookLoanPerent =
-      (patronEbookLoans / libraryProfile.maxConcurrentEbookLoansPerBorrower) *
-      100;
+      (patronEbookLoans / maxConcurrentEbookLoansPerBorrower) * 100;
   }
+
   let audioBookLoanPercent = 100;
-  if (libraryProfile?.maxConcurrentAudioLoansPerBorrower) {
+  if (maxConcurrentAudioLoansPerBorrower) {
     audioBookLoanPercent =
-      (patronAudioBookLoans /
-        libraryProfile.maxConcurrentAudioLoansPerBorrower) *
-      100;
+      (patronAudioBookLoans / maxConcurrentAudioLoansPerBorrower) * 100;
   }
 
   return (
@@ -65,16 +70,18 @@ const StatusSection: FC = () => {
               {t("patronPageStatusSectionLinkText")}
             </Link>
           </div>
-          <div className="text-body-small-regular">
-            {t("patronPageStatusSectionReservationsText", {
-              placeholders: {
-                "@countEbooks":
-                  libraryProfile?.maxConcurrentEbookReservationsPerBorrower,
-                "@countAudiobooks":
-                  libraryProfile?.maxConcurrentAudioReservationsPerBorrower
-              }
-            })}
-          </div>
+          {maxConcurrentEbookReservationsPerBorrower &&
+            maxConcurrentAudioReservationsPerBorrower && (
+              <div className="text-body-small-regular">
+                {t("patronPageStatusSectionReservationsText", {
+                  placeholders: {
+                    "@countEbooks": maxConcurrentEbookReservationsPerBorrower,
+                    "@countAudiobooks":
+                      maxConcurrentAudioReservationsPerBorrower
+                  }
+                })}
+              </div>
+            )}
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
@@ -85,27 +92,27 @@ const StatusSection: FC = () => {
                   <div className="text-label">
                     {t("patronPageStatusSectionLoansEbooksText")}
                   </div>
-                  <div
-                    className="text-label"
-                    aria-label={t(
-                      "patronPageStatusSectionOutOfAriaLabelEbooksText",
-                      {
+                  {maxConcurrentEbookLoansPerBorrower && (
+                    <div
+                      className="text-label"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelEbooksText",
+                        {
+                          placeholders: {
+                            "@this": patronEbookLoans,
+                            "@that": maxConcurrentEbookLoansPerBorrower
+                          }
+                        }
+                      )}
+                    >
+                      {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronEbookLoans,
-                          "@that":
-                            libraryProfile.maxConcurrentEbookLoansPerBorrower
+                          "@that": maxConcurrentEbookLoansPerBorrower
                         }
-                      }
-                    )}
-                  >
-                    {t("patronPageStatusSectionOutOfText", {
-                      placeholders: {
-                        "@this": patronEbookLoans,
-                        "@that":
-                          libraryProfile.maxConcurrentEbookLoansPerBorrower
-                      }
-                    })}
-                  </div>
+                      })}
+                    </div>
+                  )}
                 </div>
                 <div
                   aria-hidden
@@ -122,27 +129,27 @@ const StatusSection: FC = () => {
                   <div className="text-label">
                     {t("patronPageStatusSectionLoansAudioBooksText")}
                   </div>
-                  <div
-                    className="text-label"
-                    aria-label={t(
-                      "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
-                      {
+                  {maxConcurrentAudioLoansPerBorrower && (
+                    <div
+                      className="text-label"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
+                        {
+                          placeholders: {
+                            "@this": patronAudioBookLoans,
+                            "@that": maxConcurrentAudioLoansPerBorrower
+                          }
+                        }
+                      )}
+                    >
+                      {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronAudioBookLoans,
-                          "@that":
-                            libraryProfile.maxConcurrentAudioLoansPerBorrower
+                          "@that": maxConcurrentAudioLoansPerBorrower
                         }
-                      }
-                    )}
-                  >
-                    {t("patronPageStatusSectionOutOfText", {
-                      placeholders: {
-                        "@this": patronAudioBookLoans,
-                        "@that":
-                          libraryProfile.maxConcurrentAudioLoansPerBorrower
-                      }
-                    })}
-                  </div>
+                      })}
+                    </div>
+                  )}
                 </div>
                 <div
                   aria-hidden
