@@ -5,9 +5,12 @@ import {
 } from "../../../core/publizon/publizon";
 import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
+import { useUrls } from "../../../core/utils/url";
+import Link from "../../../components/atoms/link";
 
 const StatusSection: FC = () => {
   const t = useText();
+  const { alwaysLoanableEreolenLink } = useUrls();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
@@ -57,15 +60,20 @@ const StatusSection: FC = () => {
             {t("patronPageStatusSectionHeaderText")}
           </h2>
           <div className="text-body-small-regular">
-            {t("patronPageStatusSectionBreadText")}
-            <a href="todo" className="text-links">
+            {t("patronPageStatusSectionBreadText")}{" "}
+            <Link href={alwaysLoanableEreolenLink}>
               {t("patronPageStatusSectionLinkText")}
-            </a>
+            </Link>
           </div>
           <div className="text-body-small-regular">
-            {t("patronPageStatusSectionReservationsText")}
-            {libraryProfile?.maxConcurrentEbookReservationsPerBorrower}
-            {libraryProfile?.maxConcurrentAudioReservationsPerBorrower}
+            {t("patronPageStatusSectionReservationsText", {
+              placeholders: {
+                "@countEbooks":
+                  libraryProfile?.maxConcurrentEbookReservationsPerBorrower,
+                "@countAudiobooks":
+                  libraryProfile?.maxConcurrentAudioReservationsPerBorrower
+              }
+            })}
           </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
@@ -77,14 +85,32 @@ const StatusSection: FC = () => {
                   <div className="text-label">
                     {t("patronPageStatusSectionLoansEbooksText")}
                   </div>
-                  <div className="text-label">
-                    {/* todo string interpolation */}
-                    {/* todo string interpolation aria label */}
-                    {patronEbookLoans} ud af{" "}
-                    {libraryProfile.maxConcurrentEbookLoansPerBorrower}
+                  <div
+                    className="text-label"
+                    aria-label={t(
+                      "patronPageStatusSectionOutOfAriaLabelEbooksText",
+                      {
+                        placeholders: {
+                          "@this": patronEbookLoans,
+                          "@that":
+                            libraryProfile.maxConcurrentEbookLoansPerBorrower
+                        }
+                      }
+                    )}
+                  >
+                    {t("patronPageStatusSectionOutOfText", {
+                      placeholders: {
+                        "@this": patronEbookLoans,
+                        "@that":
+                          libraryProfile.maxConcurrentEbookLoansPerBorrower
+                      }
+                    })}
                   </div>
                 </div>
-                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                <div
+                  aria-hidden
+                  className="dpl-progress-bar__progress-bar bg-global-secondary"
+                >
                   <div
                     className="bg-identity-primary"
                     style={{ width: `${eBookLoanPerent}%` }}
@@ -96,14 +122,32 @@ const StatusSection: FC = () => {
                   <div className="text-label">
                     {t("patronPageStatusSectionLoansAudioBooksText")}
                   </div>
-                  <div className="text-label">
-                    {/* todo string interpolation */}
-                    {/* todo string interpolation aria label */}
-                    {patronAudioBookLoans} ud af{" "}
-                    {libraryProfile.maxConcurrentAudioLoansPerBorrower}
+                  <div
+                    className="text-label"
+                    aria-label={t(
+                      "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
+                      {
+                        placeholders: {
+                          "@this": patronAudioBookLoans,
+                          "@that":
+                            libraryProfile.maxConcurrentAudioLoansPerBorrower
+                        }
+                      }
+                    )}
+                  >
+                    {t("patronPageStatusSectionOutOfText", {
+                      placeholders: {
+                        "@this": patronAudioBookLoans,
+                        "@that":
+                          libraryProfile.maxConcurrentAudioLoansPerBorrower
+                      }
+                    })}
                   </div>
                 </div>
-                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                <div
+                  aria-hidden
+                  className="dpl-progress-bar__progress-bar bg-global-secondary"
+                >
                   <div
                     className="bg-identity-primary"
                     style={{ width: `${audioBookLoanPercent}%` }}
