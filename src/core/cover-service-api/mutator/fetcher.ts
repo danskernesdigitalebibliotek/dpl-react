@@ -1,7 +1,8 @@
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
-import getFetcherUrl, { configTypes } from "../../utils/helpers/fetcher";
-
-const defaultBaseUrl = "https://cover.dandigbib.org"; // use your own URL here or environment variable
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
 
 type FetchParams =
   | string
@@ -22,8 +23,7 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const baseUrlFromConfig = getFetcherUrl(configTypes.cover);
-  const baseURL = baseUrlFromConfig || defaultBaseUrl;
+  const baseURL = getServiceBaseUrl(serviceUrlKeys.cover);
 
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};

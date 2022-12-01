@@ -38,6 +38,36 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
+    fbsBaseUrl: {
+      name: "Base url for the FBS API",
+      defaultValue: "https://fbs-openplatform.dbc.dk",
+      control: { type: "text" }
+    },
+    publizonBaseUrl: {
+      name: "Base url for the Publizon API",
+      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
+      control: { type: "text" }
+    },
+    dplCmsBaseUrl: {
+      name: "Base url for the DPL CMS API",
+      defaultValue: "https://dpl-cms.docker",
+      control: { type: "text" }
+    },
+    coverBaseUrl: {
+      name: "Base url for the cover service",
+      defaultValue: "https://cover.dandigbib.org",
+      control: { type: "text" }
+    },
+    materialListBaseUrl: {
+      name: "Base url for the material list service",
+      defaultValue: "https://prod.materiallist.dandigbib.org",
+      control: { type: "text" }
+    },
+    fbiBaseUrl: {
+      name: "Base url for the FBI API",
+      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
+      control: { type: "text" }
+    },
     etAlText: {
       name: "Et al. Text",
       defaultValue: "et al.",
