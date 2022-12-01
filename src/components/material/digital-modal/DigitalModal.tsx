@@ -62,15 +62,13 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         <DigitalModalFeedback modalId={modalId} isError={articleOrderError} />
       )}
 
-      {!articleOrderSuccess &&
-        !articleOrderError &&
-        typeof userEmail === "string" && (
-          <DigitalModalBody
-            userEmail={userEmail}
-            handleSubmit={orderDigitalCopy}
-            isLoading={articleOrderLoading}
-          />
-        )}
+      {!articleOrderSuccess && !articleOrderError && userEmail !== null && (
+        <DigitalModalBody
+          userEmail={userEmail}
+          handleSubmit={orderDigitalCopy}
+          isLoading={articleOrderLoading}
+        />
+      )}
     </Modal>
   );
 };
