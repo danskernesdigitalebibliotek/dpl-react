@@ -9,7 +9,7 @@ import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
-import FacetBrowserDisclosure from "./FacetBrowserDisclosure";
+import DisclosureCustomOpening from "../material/disclosures/DisclosureCustomOpening";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
@@ -63,7 +63,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
         const hasSelectedTerms = Boolean(filters[name]);
 
         return (
-          <FacetBrowserDisclosure
+          <DisclosureCustomOpening
             key={name}
             cyData={`facet-browser-${name}`}
             id={name}
@@ -116,7 +116,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 {t("showMoreText")}
               </button>
             )}
-          </FacetBrowserDisclosure>
+          </DisclosureCustomOpening>
         );
       })}
 

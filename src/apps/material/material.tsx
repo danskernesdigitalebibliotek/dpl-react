@@ -39,6 +39,7 @@ import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import DisclosureCustomOpening from "../../components/material/disclosures/DisclosureCustomOpening";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -205,7 +206,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         />
       </Disclosure>
       {reviews && reviews.length >= 1 && (
-        <Disclosure
+        <DisclosureCustomOpening
+          id="reviews"
           title={t("reviewsText")}
           mainIconPath={CreateIcon}
           dataCy="material-reviews-disclosure"
@@ -217,7 +219,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               >
             }
           />
-        </Disclosure>
+        </DisclosureCustomOpening>
       )}
       {currentManifestation && (
         <>
