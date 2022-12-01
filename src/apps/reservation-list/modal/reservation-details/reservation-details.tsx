@@ -24,7 +24,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { state, identifier, numberInQueue } = reservation;
-
   const { authors, pid, year, title, description, materialType } =
     material || {};
 

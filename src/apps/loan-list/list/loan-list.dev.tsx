@@ -247,11 +247,17 @@ export default {
       },
       defaultValue: "Close material details modal"
     },
-    materialDetailsDueDateLabelText: {
+    materialDetailsPhysicalDueDateLabelText: {
       control: {
         type: "text"
       },
       defaultValue: "Afleveres"
+    },
+    materialDetailsDigitalDueDateLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Udløber"
     },
     materialDetailsLinkToPageWithFeesText: {
       control: {
@@ -353,6 +359,10 @@ export default {
     },
     groupModalReturnLibraryText: {
       defaultValue: "Can be returned to all branches of Samsøs libraries",
+      control: { type: "text" }
+    },
+    materialDetailsGoToEreolenText: {
+      defaultValue: "Go to eReolen",
       control: { type: "text" }
     }
   },
