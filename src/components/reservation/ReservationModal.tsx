@@ -15,6 +15,7 @@ type ReservationModalProps = {
   parallelManifestations?: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
   workId: WorkId;
+  faustIds: FaustId[];
 };
 
 const ReservationModal = ({
@@ -22,7 +23,8 @@ const ReservationModal = ({
   mainManifestation: { pid },
   parallelManifestations,
   selectedPeriodical = null,
-  workId
+  workId,
+  faustIds
 }: ReservationModalProps) => {
   const t = useText();
   return (
@@ -38,6 +40,7 @@ const ReservationModal = ({
         parallelManifestations={parallelManifestations}
         selectedPeriodical={selectedPeriodical}
         workId={workId}
+        faustIds={faustIds}
       />
     </Modal>
   );

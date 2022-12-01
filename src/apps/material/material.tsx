@@ -10,7 +10,7 @@ import {
   LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { WorkId } from "../../core/utils/types/ids";
+import { WorkId, Pid, FaustId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -31,6 +31,7 @@ import {
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
+  convertPostIdToFaustId,
   getManifestationPid,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -151,6 +152,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
   const infomediaId = getInfomediaId(currentManifestation);
 
+  // create list of faustIds for all manifestations
+  const faustIds = manifestations.map((manifestation) =>
+    convertPostIdToFaustId(manifestation.pid as Pid)
+  ) as FaustId[];
+
   return (
     <main className="material-page">
       <MaterialHeader
@@ -188,6 +194,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
                 workId={wid}
+                faustIds={faustIds}
               />
             </>
           );
@@ -235,6 +242,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
             workId={wid}
+            faustIds={faustIds}
           />
           {infomediaId && (
             <InfomediaModal

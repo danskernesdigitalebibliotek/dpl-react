@@ -41,6 +41,7 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
+import useManifestationPreferred from "./useManifestationPreferred";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -50,6 +51,7 @@ type ReservationModalProps = {
   parallelManifestations?: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
   workId: WorkId;
+  faustIds: FaustId[];
 };
 
 const ReservationModalBody = ({
@@ -62,7 +64,8 @@ const ReservationModalBody = ({
   },
   parallelManifestations,
   selectedPeriodical,
-  workId
+  workId,
+  faustIds
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
@@ -92,6 +95,10 @@ const ReservationModalBody = ({
     recordid: [faustId]
   });
   const { track } = useStatistics();
+  const { isOtherManifestationPreferred } = useManifestationPreferred(
+    faustIds,
+    mainManifestation.pid
+  );
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -196,7 +203,7 @@ const ReservationModalBody = ({
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
-
+              {isOtherManifestationPreferred && <h1>HEJ</h1>}
               {patron && (
                 <UserListItems
                   patron={patron}
