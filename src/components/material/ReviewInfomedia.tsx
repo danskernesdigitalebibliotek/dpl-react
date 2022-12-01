@@ -4,6 +4,7 @@ import {
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
+import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
 
@@ -17,6 +18,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
     id
   });
   const t = useText();
+
+  // If there is an anchor we scroll down to it.
+  useScrollToLocation(data);
+
   if (error) {
     return null;
   }
@@ -40,8 +45,9 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
       </li>
     );
   }
+
   return (
-    <li className="review text-small-caption">
+    <li className="review text-small-caption" id={review.id}>
       {(review.author || review.date) && (
         <ReviewMetadata author={review.author} date={date} />
       )}
