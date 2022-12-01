@@ -10,8 +10,8 @@ export interface ModalDetailsHeaderProps {
   description: string | undefined | null;
   materialType: string | undefined | null;
   isbnForCover: string;
-  periodical?: string;
-  series?: string;
+  periodical?: string | null;
+  series?: string | null;
   children?: ReactNode;
 }
 
