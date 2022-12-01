@@ -52,12 +52,12 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
 
   return (
     <div className="dpl-list-buttons__buttons">
-      {/* <div
+      <div
         id="renew-multiple-modal"
         className="dpl-list-buttons__screen-reader-description"
       >
         {t("loanListRenewMultipleButtonExplanationText")}
-      </div> */}
+      </div>
       <div className="dpl-list-buttons__buttons__button">
         <button
           onClick={() => setViewHandler("list")}
