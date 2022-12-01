@@ -67,7 +67,8 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
         />
       )}
       {/* eslint-enable react/no-danger */}
-      {review.origin && (
+      {/* We want to make sure a link can be made out of the review origin (includes a ".") */}
+      {review.origin && review.origin.includes(".") && (
         <ReviewMetadata
           author={review.author}
           date={date}
