@@ -1,6 +1,7 @@
 import { getToken, TOKEN_USER_KEY } from "../../token";
+import getFetcherUrl, { configTypes } from "../../utils/helpers/fetcher";
 
-const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
+const defaultBaseUrl = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
 
 export const fetcher = async <ResponseType>({
   url,
@@ -23,6 +24,9 @@ export const fetcher = async <ResponseType>({
 
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
+
+  const baseUrlFromConfig = getFetcherUrl(configTypes.materialList);
+  const baseURL = baseUrlFromConfig || defaultBaseUrl;
 
   const userToken = getToken(TOKEN_USER_KEY);
   const authHeaders = userToken
