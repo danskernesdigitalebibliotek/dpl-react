@@ -3,8 +3,15 @@ import {
   InfomediaReview,
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import {
+  appendQueryParametersToUrl,
+  getCurrentLocation,
+  redirectToLoginAndBack
+} from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { useUrls } from "../../core/utils/url";
 import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
+import { Button } from "../Buttons/Button";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
 
@@ -18,6 +25,18 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
     id
   });
   const t = useText();
+  const { authUrl } = useUrls();
+
+  const onClick = (reviewId: string) => {
+    const returnUrl = appendQueryParametersToUrl(
+      new URL(getCurrentLocation()),
+      {
+        disclosure: "disclosure-reviews"
+      }
+    );
+    returnUrl.hash = reviewId;
+    redirectToLoginAndBack({ authUrl, returnUrl });
+  };
 
   // If there is an anchor we scroll down to it.
   useScrollToLocation(data);
@@ -38,9 +57,21 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
         )}
         {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
-          {infomedia.error === "BORROWER_NOT_LOGGED_IN"
-            ? t("loginToSeeReviewText")
-            : t("cantViewReviewText")}
+          {infomedia.error === "BORROWER_NOT_LOGGED_IN" ? (
+            <Button
+              label={t("loginToSeeReviewText")}
+              buttonType="none"
+              disabled={false}
+              collapsible={false}
+              size="xsmall"
+              variant="outline"
+              onClick={() => {
+                onClick(review.id);
+              }}
+            />
+          ) : (
+            t("cantViewReviewText")
+          )}
         </div>
       </li>
     );
