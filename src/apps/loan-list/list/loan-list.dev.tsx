@@ -350,6 +350,10 @@ export default {
     groupModalGoToMaterialText: {
       defaultValue: "Go to material details",
       control: { type: "text" }
+    },
+    groupModalReturnLibraryText: {
+      defaultValue: "Can be returned to all branches of Samsøs libraries",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

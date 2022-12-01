@@ -63,6 +63,7 @@ export interface LoanListEntryTextProps {
   groupModalHeaderText: string;
   resultPagerStatusText: string;
   showMoreText: string;
+  groupModalReturnLibraryText: string;
 }
 
 export interface LoanListEntryWithPageSizeProps
