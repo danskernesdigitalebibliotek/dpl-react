@@ -36,7 +36,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         dueDates &&
         dueDates.map((uniqueDueDate: string) => {
           // Stack items:
-          // if multiple items have the same due date, they are "stack"
+          // if multiple items have the same due date, they are a "stack"
           // which means styling making it look like there are multiple materials,
           // but only _one_ with said due date is visible.
           const loansUniqueDueDate = removeLoansWithDuplicateDueDate(
