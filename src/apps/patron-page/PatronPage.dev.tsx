@@ -1,19 +1,21 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { configTypes } from "../../core/utils/helpers/fetcher";
 import PatronPage from "./PatronPage.entry";
+import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
     // Config
-    [configTypes.fbs]: {
-      defaultValue: "",
+    [serviceUrlKeys.fbs]: {
+      name: "Base url for the FBS API",
+      defaultValue: "https://fbs-openplatform.dbc.dk",
       control: { type: "text" }
     },
-    [configTypes.publizon]: {
-      defaultValue: "",
+    [serviceUrlKeys.publizon]: {
+      name: "Base url for the Publizon API",
+      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {

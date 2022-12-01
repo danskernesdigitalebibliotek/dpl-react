@@ -2,8 +2,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
-import { configTypes } from "../../../core/utils/helpers/fetcher";
 import { getModalIds } from "../../../core/utils/helpers/general";
+import { serviceUrlKeys } from "../../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 
 export default {
   title: "Apps / Reservation list",
@@ -19,12 +19,14 @@ export default {
       defaultValue: 10,
       control: { type: "number" }
     },
-    [configTypes.fbs]: {
-      defaultValue: "",
+    [serviceUrlKeys.fbs]: {
+      name: "Base url for the FBS API",
+      defaultValue: "https://fbs-openplatform.dbc.dk",
       control: { type: "text" }
     },
-    [configTypes.publizon]: {
-      defaultValue: "",
+    [serviceUrlKeys.publizon]: {
+      name: "Base url for the Publizon API",
+      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
       control: { type: "text" }
     },
     pauseReservationStartDateConfig: {

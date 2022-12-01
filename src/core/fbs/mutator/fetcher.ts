@@ -1,7 +1,8 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
-import getFetcherUrl, { configTypes } from "../../utils/helpers/fetcher";
-
-const defaultBaseUrl = "https://fbs-openplatform.dbc.dk";
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
 
 type FetchParams =
   | string
@@ -55,8 +56,7 @@ export const fetcher = async <ResponseType>({
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
 
-  const baseUrlFromConfig = getFetcherUrl(configTypes.fbs);
-  const baseURL = baseUrlFromConfig || defaultBaseUrl;
+  const baseURL = getServiceBaseUrl(serviceUrlKeys.fbs);
 
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)

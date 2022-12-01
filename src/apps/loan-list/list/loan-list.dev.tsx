@@ -1,8 +1,8 @@
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { configTypes } from "../../../core/utils/helpers/fetcher";
 import { getModalIds } from "../../../core/utils/helpers/general";
+import { serviceUrlKeys } from "../../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 import LoanList from "./loan-list.entry";
 
 export default {
@@ -18,12 +18,14 @@ export default {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
     },
-    fbsBaseUrl: {
-      defaultValue: "",
+    [serviceUrlKeys.fbs]: {
+      name: "Base url for the FBS API",
+      defaultValue: "https://fbs-openplatform.dbc.dk",
       control: { type: "text" }
     },
-    [configTypes.publizon]: {
-      defaultValue: "",
+    [serviceUrlKeys.publizon]: {
+      name: "Base url for the Publizon API",
+      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
       control: { type: "text" }
     },
     pageSizeDesktop: {
