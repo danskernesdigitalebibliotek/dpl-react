@@ -257,7 +257,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Udløber"
+      defaultValue: "Expires"
     },
     materialDetailsLinkToPageWithFeesText: {
       control: {
