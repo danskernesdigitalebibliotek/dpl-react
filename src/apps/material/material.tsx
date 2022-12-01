@@ -152,6 +152,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
   const infomediaId = getInfomediaId(currentManifestation);
 
+  // Get disclosure URL parameter from the current URL to see if it should be open
+  const shouldOpenReviewDisclosure =
+    window.location.search.includes("disclosure-reviews");
+
   return (
     <main className="material-page">
       <MaterialHeader
@@ -210,7 +214,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           id="reviews"
           title={t("reviewsText")}
           mainIconPath={CreateIcon}
-          dataCy="material-reviews-disclosure"
+          showContent={shouldOpenReviewDisclosure}
+          cyData="material-reviews-disclosure"
         >
           <MaterialReviews
             listOfReviews={
