@@ -40,18 +40,18 @@ const DisclosureCustomOpening: FC<DisclosureCustomOpeningProps> = ({
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
-      aria-controls={disclosureId}
-      aria-expanded={isOpen}
-      onClick={toggleOpen}
-      onKeyDown={toggleOpen}
-      role="button"
-      tabIndex={0}
     >
       <div
         className={clsx(
           "disclosure__headline text-body-large",
           removeHeadlinePadding && "disclosure__headline--no-padding"
         )}
+        aria-controls={disclosureId}
+        aria-expanded={isOpen}
+        onClick={toggleOpen}
+        onKeyDown={toggleOpen}
+        role="button"
+        tabIndex={0}
       >
         {mainIconPath && (
           <div className="disclosure__icon bg-identity-tint-120">
