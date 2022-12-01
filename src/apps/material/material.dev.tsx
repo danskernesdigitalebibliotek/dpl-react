@@ -556,3 +556,12 @@ export const Infomedia = Template.bind({});
 Infomedia.args = {
   wid: "work-of:870971-avis:35731733"
 };
+export const HarryPotter = Template.bind({});
+HarryPotter.args = {
+  wid: "work-of:870970-basis:22629344"
+};
+
+export const TurenGårTilRom = Template.bind({});
+TurenGårTilRom.args = {
+  wid: "work-of:870970-basis:61991484"
+};
