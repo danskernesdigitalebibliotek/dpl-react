@@ -1,4 +1,7 @@
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../token";
+import getFetcherUrl, { configTypes } from "../utils/helpers/fetcher";
+
+const defaultBaseUrl = "https://fbi-api.dbc.dk/opac/graphql";
 
 export const fetcher = <TData, TVariables>(
   query: string,
@@ -16,11 +19,14 @@ export const fetcher = <TData, TVariables>(
       ? ({ Authorization: `Bearer ${token}` } as object)
       : {};
 
+    const baseUrlFromConfig = getFetcherUrl(configTypes.fbi);
+    const baseURL = baseUrlFromConfig || defaultBaseUrl;
+
     const res = await fetch(
       // For now the endpoint is hardcoded. (although it is unclear which agency id to use)
       // When we get wiser of when the library id and profile is changing
       // we will update it with a dynamic version:
-      "https://fbi-api.dbc.dk/opac/graphql",
+      baseURL,
       {
         method: "POST",
         ...{
