@@ -4,7 +4,7 @@ import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
 
 export interface SearchHeaderTextProps {
-  altText?: string;
+  searchHeaderIconAltText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;

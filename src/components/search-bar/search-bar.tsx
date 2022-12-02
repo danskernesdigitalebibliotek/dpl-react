@@ -25,7 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ getInputProps }) => {
       <input
         type="image"
         src={searchIcon}
-        alt={t("altText")}
+        alt={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
       />
     </>

@@ -9,7 +9,7 @@ export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
-    altText: {
+    searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",
       control: { type: "text" }
