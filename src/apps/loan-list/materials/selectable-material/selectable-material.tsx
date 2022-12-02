@@ -34,7 +34,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const selectListMaterial = useCallback(
     (e: MouseEvent) => {
       e.stopPropagation();
-      open(faust || identifier || "");
+      if (faust) {
+        open(faust);
+      }
+      if (identifier) {
+        open(identifier);
+      }
     },
     [faust, identifier, open]
   );
@@ -52,7 +57,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               <CheckBox
                 onChecked={() => onChecked(faust)}
                 id={faust}
-                selected={materialsToRenew?.indexOf(faust) > -1}
+                selected={Boolean(materialsToRenew?.indexOf(faust) > -1)}
                 disabled={disabled}
                 label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
                 hideLabel

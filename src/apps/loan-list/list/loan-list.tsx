@@ -20,6 +20,7 @@ import {
 } from "../../../core/utils/helpers/list-mapper";
 import ToggleListViewButtons from "./ToggleListViewButtons";
 import ListHeader from "./ListHeader";
+import { loansAreEmpty } from "../utils/helpers";
 
 interface LoanListProps {
   pageSize: number;
@@ -122,14 +123,11 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           )}
         </>
       )}
-      {Array.isArray(physicalLoans) &&
-        physicalLoans.length === 0 &&
-        Array.isArray(digitalLoans) &&
-        digitalLoans.length === 0 && (
-          <EmptyList
-            emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
-          />
-        )}
+      {loansAreEmpty(physicalLoans) && loansAreEmpty(digitalLoans) && (
+        <EmptyList
+          emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
+        />
+      )}
     </div>
   );
 };

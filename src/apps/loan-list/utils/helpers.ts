@@ -14,6 +14,8 @@ export const removeLoansWithDuplicateDueDate = (
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
+export const loansAreEmpty = (list: LoanType[] | null) =>
+  Array.isArray(list) && list.length === 0;
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
