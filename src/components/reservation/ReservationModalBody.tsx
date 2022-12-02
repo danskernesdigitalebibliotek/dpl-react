@@ -27,7 +27,7 @@ import {
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
-import { Manifestation } from "../../core/utils/types/entities";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
   getFutureDateString,
   getPreferredBranch,
@@ -41,7 +41,7 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
-import useManifestationPreferred from "./useManifestationPreferred";
+import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -51,7 +51,7 @@ type ReservationModalProps = {
   parallelManifestations?: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
   workId: WorkId;
-  faustIds: FaustId[];
+  work: Work;
 };
 
 const ReservationModalBody = ({
@@ -65,7 +65,7 @@ const ReservationModalBody = ({
   parallelManifestations,
   selectedPeriodical,
   workId,
-  faustIds
+  work
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
@@ -95,10 +95,8 @@ const ReservationModalBody = ({
     recordid: [faustId]
   });
   const { track } = useStatistics();
-  const { isOtherManifestationPreferred } = useManifestationPreferred(
-    faustIds,
-    mainManifestation.pid
-  );
+  const { isOtherManifestationPreferred, otherManifestationPreferred } =
+    useAlternativeAvailableManifestation(work, mainManifestation.pid);
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -203,7 +201,11 @@ const ReservationModalBody = ({
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
-              {isOtherManifestationPreferred && <h1>HEJ</h1>}
+              {isOtherManifestationPreferred && (
+                <pre>
+                  {JSON.stringify(otherManifestationPreferred, null, 2)}
+                </pre>
+              )}
               {patron && (
                 <UserListItems
                   patron={patron}
