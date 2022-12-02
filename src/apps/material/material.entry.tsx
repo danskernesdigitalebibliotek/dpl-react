@@ -103,6 +103,8 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   twoMonthsText: string;
   typeText: string;
+  skipQueueMaterialIsAvailableInAnotherEditionText: string;
+  skipQueueMaterialIsAvailableInAnotherEditionReservationsText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

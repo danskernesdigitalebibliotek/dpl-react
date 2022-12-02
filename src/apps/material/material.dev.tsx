@@ -536,6 +536,17 @@ export default {
       name: "Url where user can authenticate",
       defaultValue: "",
       control: { type: "text" }
+    },
+    skipQueueMaterialIsAvailableInAnotherEditionText: {
+      name: "Skip queue material is available in another edition",
+      defaultValue:
+        "Skip the queue - The material is available in another edition",
+      control: { type: "text" }
+    },
+    skipQueueMaterialIsAvailableInAnotherEditionReservationsText: {
+      name: "Skip queue reservations cont",
+      defaultValue: "reservations",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

@@ -42,6 +42,7 @@ import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
 import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
+import PromoBar from "../promo-bar/PromoBar";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -95,8 +96,10 @@ const ReservationModalBody = ({
     recordid: [faustId]
   });
   const { track } = useStatistics();
-  const { isOtherManifestationPreferred, otherManifestationPreferred } =
-    useAlternativeAvailableManifestation(work, mainManifestation.pid);
+  const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
+    work,
+    mainManifestation.pid
+  );
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -201,10 +204,21 @@ const ReservationModalBody = ({
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
-              {isOtherManifestationPreferred && (
-                <pre>
-                  {JSON.stringify(otherManifestationPreferred, null, 2)}
-                </pre>
+              {otherManifestationPreferred && (
+                <PromoBar
+                  classNames="px-35"
+                  sticky
+                  type="info"
+                  text={`${t(
+                    "skipQueueMaterialIsAvailableInAnotherEditionText"
+                  )}
+                    - ${otherManifestationPreferred.titles.main}
+                    - ${getAuthorLine(otherManifestationPreferred, t)}
+                    - ${t(
+                      "skipQueueMaterialIsAvailableInAnotherEditionReservationsText"
+                    )}:
+                    ${otherManifestationPreferred.reservations}`}
+                />
               )}
               {patron && (
                 <UserListItems
