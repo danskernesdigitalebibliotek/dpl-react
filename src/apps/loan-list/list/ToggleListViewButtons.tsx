@@ -1,10 +1,8 @@
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { ListView } from "../../../core/utils/types/list-view";
-import { getUrlQueryParam } from "../../../core/utils/helpers/url";
-import { isDate } from "../../../core/utils/helpers/date";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import RenewLoansModal from "../modal/renew-loans-modal";
