@@ -256,8 +256,10 @@ describe("Loan list", () => {
       // 2.b.i.1. List is chosen as default
       .should("have.class", "dpl-icon-button--selected");
 
-    cy.get(".loan-list-page").find(".dpl-list-buttons__buttons");
-    cy.find("[data-cy='stack']").should("exist");
+    cy.get(".loan-list-page")
+      .find(".dpl-list-buttons__buttons")
+      .find("[data-cy='stack']")
+      .should("exist");
 
     // 2.b.ii. Button: renew several
     cy.get(".loan-list-page")
