@@ -1,4 +1,5 @@
 import * as React from "react";
+import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
@@ -34,4 +35,4 @@ const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
   return <SearchHeader />;
 };
 
-export default withUrls(withText(SearchHeaderEntry));
+export default withConfig(withUrls(withText(SearchHeaderEntry)));

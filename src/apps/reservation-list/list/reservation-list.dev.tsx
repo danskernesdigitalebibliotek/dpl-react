@@ -29,6 +29,26 @@ export default {
       defaultValue: "https://pubhub-openplatform.test.dbc.dk",
       control: { type: "text" }
     },
+    [serviceUrlKeys.dplCms]: {
+      name: "Base url for the DPL CMS API",
+      defaultValue: "https://dpl-cms.docker",
+      control: { type: "text" }
+    },
+    [serviceUrlKeys.cover]: {
+      name: "Base url for the cover service",
+      defaultValue: "https://cover.dandigbib.org",
+      control: { type: "text" }
+    },
+    [serviceUrlKeys.materialList]: {
+      name: "Base url for the material list service",
+      defaultValue: "https://prod.materiallist.dandigbib.org",
+      control: { type: "text" }
+    },
+    [serviceUrlKeys.fbi]: {
+      name: "Base url for the FBI API",
+      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
+      control: { type: "text" }
+    },
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",
       control: { type: "text" }

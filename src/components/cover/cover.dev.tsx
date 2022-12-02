@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
+import { withUrls } from "../../core/utils/url";
 
 export default {
   title: "Components / Cover",
@@ -42,7 +43,10 @@ export default {
   }
 } as ComponentMeta<typeof Cover>;
 
-const Template: ComponentStory<typeof Cover> = (args) => <Cover {...args} />;
+const WrappedCover = withUrls(Cover);
+const Template: ComponentStory<typeof Cover> = (args) => (
+  <WrappedCover {...args} />
+);
 
 export const item = Template.bind({});
 item.args = {};

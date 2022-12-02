@@ -2,6 +2,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
+import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
+import { withUrls } from "../../core/utils/url";
 import {
   AvailabilityLabelProps,
   AvailabilityLabel
@@ -42,14 +44,19 @@ export default {
     manifestText: "Bog",
     availabilityText: "Hjemme",
     url: new URL("/", getCurrentLocation()),
-    selected: false
+    selected: false,
+    [serviceUrlKeys.fbs]: {
+      name: "Base url for the FBS API",
+      defaultValue: "https://fbs-openplatform.dbc.dk",
+      control: { type: "text" }
+    }
   }
 } as ComponentMeta<typeof AvailabilityLabel>;
 
 const Template: ComponentStory<typeof AvailabilityLabel> = (
   args: AvailabilityLabelProps
 ) => {
-  const ConfiguredAvailabilityLabel = withConfig(AvailabilityLabel);
+  const ConfiguredAvailabilityLabel = withUrls(withConfig(AvailabilityLabel));
   return <ConfiguredAvailabilityLabel {...args} />;
 };
 
