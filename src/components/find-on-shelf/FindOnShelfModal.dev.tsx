@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
 import materialDev from "../../apps/material/material.dev";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
@@ -17,6 +18,7 @@ export default {
   title: "Components / Find On Shelf Modal",
   component: FindOnShelfModal,
   argTypes: {
+    ...serviceUrlArgs,
     // Spread material app argTypes so that we get access to system strings.
     // -> t() function strings in this story.
     ...materialDev.argTypes,
@@ -52,36 +54,6 @@ export default {
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted Pickup branches",
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.publizon]: {
-      name: "Base url for the Publizon API",
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.dplCms]: {
-      name: "Base url for the DPL CMS API",
-      defaultValue: "https://dpl-cms.docker",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.cover]: {
-      name: "Base url for the cover service",
-      defaultValue: "https://cover.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbi]: {
-      name: "Base url for the FBI API",
-      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
       control: { type: "text" }
     }
   }

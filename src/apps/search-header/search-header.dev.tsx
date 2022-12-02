@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
-import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchHeaderEntry, {
   SearchHeaderEntryProps
 } from "./search-header.entry";
@@ -10,6 +10,7 @@ export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
+    ...serviceUrlArgs,
     altText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",
@@ -43,36 +44,6 @@ export default {
     materialUrl: {
       name: "Base material page url",
       defaultValue: "/work/:workid",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.publizon]: {
-      name: "Base url for the Publizon API",
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.dplCms]: {
-      name: "Base url for the DPL CMS API",
-      defaultValue: "https://dpl-cms.docker",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.cover]: {
-      name: "Base url for the cover service",
-      defaultValue: "https://cover.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbi]: {
-      name: "Base url for the FBI API",
-      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
       control: { type: "text" }
     },
     autosuggestBookCategoryText: {

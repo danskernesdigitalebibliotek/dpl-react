@@ -1,43 +1,14 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import PatronPage from "./PatronPage.entry";
-import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.publizon]: {
-      name: "Base url for the Publizon API",
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.dplCms]: {
-      name: "Base url for the DPL CMS API",
-      defaultValue: "https://dpl-cms.docker",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.cover]: {
-      name: "Base url for the cover service",
-      defaultValue: "https://cover.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbi]: {
-      name: "Base url for the FBI API",
-      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
-      control: { type: "text" }
-    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
