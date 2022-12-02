@@ -16,6 +16,12 @@ export interface MenuProps {
   menuNotificationReadyForPickupUrl: string;
   menuLogOutText: string;
   menuLogOutUrl: string;
+  fbsBaseUrl: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
 }
 
 const MenuEntry: FC<MenuProps> = () => <Menu />;
