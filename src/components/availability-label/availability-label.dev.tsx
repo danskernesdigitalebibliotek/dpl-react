@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
@@ -16,6 +17,7 @@ export default {
   title: "Components/Availability Label",
   component: AvailabilityLabel,
   argTypes: {
+    ...serviceUrlArgs,
     faustIds: {
       name: "Faust Ids",
       control: { type: "array" }
@@ -44,12 +46,7 @@ export default {
     manifestText: "Bog",
     availabilityText: "Hjemme",
     url: new URL("/", getCurrentLocation()),
-    selected: false,
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    }
+    selected: false
   }
 } as ComponentMeta<typeof AvailabilityLabel>;
 

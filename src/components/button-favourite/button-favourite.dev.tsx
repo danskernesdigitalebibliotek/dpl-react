@@ -7,7 +7,7 @@ import ButtonFavourite, {
   ButtonFavouriteProps
 } from "./button-favourite";
 import { withUrls } from "../../core/utils/url";
-import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 const WrappedButtonFavourite = withUrls(ButtonFavourite);
 
@@ -16,14 +16,10 @@ export default {
   component: WrappedButtonFavourite,
 
   argTypes: {
+    ...serviceUrlArgs,
     id: {
       control: "text",
       defaultValue: "work-of:870970-basis:45234401"
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof WrappedButtonFavourite>;

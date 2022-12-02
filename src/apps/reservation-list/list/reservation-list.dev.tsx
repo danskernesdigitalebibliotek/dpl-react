@@ -3,12 +3,13 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
 import { getModalIds } from "../../../core/utils/helpers/general";
-import { serviceUrlKeys } from "../../../core/utils/reduxMiddleware/extractServiceBaseUrls";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    ...serviceUrlArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       defaultValue: 20,
@@ -18,36 +19,6 @@ export default {
       name: "Number of search result items on mobile",
       defaultValue: 10,
       control: { type: "number" }
-    },
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.publizon]: {
-      name: "Base url for the Publizon API",
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.dplCms]: {
-      name: "Base url for the DPL CMS API",
-      defaultValue: "https://dpl-cms.docker",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.cover]: {
-      name: "Base url for the cover service",
-      defaultValue: "https://cover.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbi]: {
-      name: "Base url for the FBI API",
-      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
-      control: { type: "text" }
     },
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",

@@ -1,14 +1,15 @@
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import { getModalIds } from "../../../core/utils/helpers/general";
-import { serviceUrlKeys } from "../../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 import LoanList from "./loan-list.entry";
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
     feesPageUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
@@ -16,36 +17,6 @@ export default {
     },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbs]: {
-      name: "Base url for the FBS API",
-      defaultValue: "https://fbs-openplatform.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.publizon]: {
-      name: "Base url for the Publizon API",
-      defaultValue: "https://pubhub-openplatform.test.dbc.dk",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.dplCms]: {
-      name: "Base url for the DPL CMS API",
-      defaultValue: "https://dpl-cms.docker",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.cover]: {
-      name: "Base url for the cover service",
-      defaultValue: "https://cover.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.materialList]: {
-      name: "Base url for the material list service",
-      defaultValue: "https://prod.materiallist.dandigbib.org",
-      control: { type: "text" }
-    },
-    [serviceUrlKeys.fbi]: {
-      name: "Base url for the FBI API",
-      defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
       control: { type: "text" }
     },
     pageSizeDesktop: {
