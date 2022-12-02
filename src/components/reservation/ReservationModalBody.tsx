@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  materialIsFiction
+} from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId, WorkId } from "../../core/utils/types/ids";
@@ -204,7 +207,7 @@ const ReservationModalBody = ({
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
-              {otherManifestationPreferred && (
+              {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
                   classNames="px-35"
                   sticky
