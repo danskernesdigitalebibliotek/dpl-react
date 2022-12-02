@@ -40,16 +40,6 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
     open(allLoansId as string);
   }, [allLoansId, open]);
 
-  useEffect(() => {
-    const modalString = getUrlQueryParam("modal");
-
-    // If the queryparme is a date, the view should be stacked
-    // because the modal it opens can only be opened in the stacked view
-    if (isDate(modalString)) {
-      setView("stack");
-    }
-  }, [setView]);
-
   return (
     <div className="dpl-list-buttons__buttons">
       <div
@@ -76,7 +66,7 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
           className={`dpl-icon-button ${
             view === "stack" ? "dpl-icon-button--selected" : ""
           }`}
-          id="test-stack"
+          data-cy="stack"
           onClick={() => setViewHandler("stack")}
           type="button"
           aria-label={t("loanListAriaLabelStackButtonText")}
