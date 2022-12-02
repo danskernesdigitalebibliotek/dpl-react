@@ -134,8 +134,8 @@ export function redirectToLoginAndBack({
   returnUrl,
   trackingFunction
 }: RedirectToLoginAndBackParams) {
-  const { pathname, search } = returnUrl;
-  const localPathToReturnTo = `${pathname}${search}`;
+  const { pathname, search, hash } = returnUrl;
+  const localPathToReturnTo = `${pathname}${search}${hash || ""}`;
   const redirectUrl = appendQueryParametersToUrl(authUrl, {
     "current-path": localPathToReturnTo
   });
