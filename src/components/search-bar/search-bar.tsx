@@ -11,14 +11,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ getInputProps }) => {
   const t = useText();
   return (
     <>
+      <label htmlFor="search-header-field" className="hide-visually">
+        {t("searchHeaderInputLabel")}
+      </label>
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable react/jsx-props-no-spreading */}
       <input
         name="q"
+        id="search-header-field"
         className="header__menu-search-input text-body-medium-regular"
         type="text"
         autoComplete="off"
         placeholder={t("inputPlaceholderText")}
+        aria-label={t("inputPlaceholderText")}
         {...getInputProps()}
       />
       {/* eslint-enable react/jsx-props-no-spreading */}
@@ -26,6 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ getInputProps }) => {
         type="image"
         src={searchIcon}
         alt={t("searchHeaderIconAltText")}
+        aria-label={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
       />
     </>

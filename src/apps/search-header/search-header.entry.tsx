@@ -5,6 +5,7 @@ import SearchHeader from "./search-header";
 
 export interface SearchHeaderTextProps {
   searchHeaderIconAltText?: string;
+  searchHeaderInputLabel?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;

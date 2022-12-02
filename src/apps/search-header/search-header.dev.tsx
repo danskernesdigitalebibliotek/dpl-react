@@ -14,6 +14,11 @@ export default {
       defaultValue: "search icon",
       control: { type: "text" }
     },
+    searchHeaderInputLabel: {
+      name: "Search header input label",
+      defaultValue: "The main search field used to search for literature.",
+      control: { type: "text" }
+    },
     inputPlaceholderText: {
       name: "Input field placeholder",
       defaultValue: "Search among the library's materials",
