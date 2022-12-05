@@ -159,7 +159,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
-    <main className="material-page">
+    <section className="material-page">
       <MaterialHeader
         wid={wid}
         work={work}
@@ -262,7 +262,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           )}
         </>
       )}
-    </main>
+    </section>
   );
 };
 
