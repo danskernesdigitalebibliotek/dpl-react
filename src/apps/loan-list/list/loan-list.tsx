@@ -21,6 +21,7 @@ import {
 import ToggleListViewButtons from "./ToggleListViewButtons";
 import ListHeader from "./ListHeader";
 import { loansAreEmpty } from "../utils/helpers";
+import RenewLoansModal from "../modal/renew-loans-modal";
 
 interface LoanListProps {
   pageSize: number;
@@ -128,6 +129,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
         />
       )}
+      <RenewLoansModal pageSize={pageSize} loansModal={physicalLoans} />
     </div>
   );
 };

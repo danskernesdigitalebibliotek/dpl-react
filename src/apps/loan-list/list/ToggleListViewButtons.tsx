@@ -1,12 +1,13 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { ListView } from "../../../core/utils/types/list-view";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
-import RenewLoansModal from "../modal/renew-loans-modal";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { isDate } from "../../../core/utils/helpers/date";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 
 export interface ToggleListViewButtonsProps {
   setView: (view: ListView) => void;
@@ -19,9 +20,7 @@ export interface ToggleListViewButtonsProps {
 const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
   setView,
   view,
-  disableRenewLoansButton,
-  pageSize,
-  loans
+  disableRenewLoansButton
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -86,7 +85,6 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
           </button>
         </div>
       </div>
-      <RenewLoansModal pageSize={pageSize} loansModal={loans} />
     </div>
   );
 };
