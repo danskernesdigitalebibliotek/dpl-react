@@ -10,7 +10,7 @@ import { getCurrentUnixTime } from "./utils/helpers/date";
 import {
   appendQueryParametersToUrl,
   getCurrentLocation,
-  redirectTo,
+  redirectToLoginAndBack,
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
 import { GuardedAppId } from "./utils/types/ids";
@@ -102,19 +102,13 @@ export const guardedRequest = createAsyncThunk(
         // And redirect to external login.
         const { authUrl } = getUrlsFromState(getState() as RootState);
         if (authUrl) {
-          const { pathname, search } = appendQueryParametersToUrl(
+          const returnUrl = appendQueryParametersToUrl(
             new URL(getCurrentLocation()),
             {
               [AUTH_PARAM]: "1"
             }
           );
-          const redirectUrl = appendQueryParametersToUrl(authUrl, {
-            "current-path": `${pathname}${search}`
-          });
-          // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
-          // eslint-disable-next-line no-console
-          console.debug("REDIRECTING TO AUTH URL:", String(redirectUrl));
-          redirectTo(redirectUrl);
+          redirectToLoginAndBack({ authUrl, returnUrl });
         }
       });
     }

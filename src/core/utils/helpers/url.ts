@@ -123,3 +123,24 @@ export const removeQueryParametersFromUrl = (url: URL, parameter: string) => {
   url.searchParams.delete(parameter);
   return url;
 };
+
+type RedirectToLoginAndBackParams = {
+  authUrl: URL;
+  returnUrl: URL;
+  trackingFunction?: () => Promise<unknown>;
+};
+export function redirectToLoginAndBack({
+  authUrl,
+  returnUrl,
+  trackingFunction
+}: RedirectToLoginAndBackParams) {
+  const { pathname, search } = returnUrl;
+  const localPathToReturnTo = `${pathname}${search}`;
+  const redirectUrl = appendQueryParametersToUrl(authUrl, {
+    "current-path": localPathToReturnTo
+  });
+  if (trackingFunction) {
+    trackingFunction().then(() => redirectTo(redirectUrl));
+  }
+  redirectTo(redirectUrl);
+}

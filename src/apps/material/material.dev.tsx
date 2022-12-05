@@ -531,6 +531,11 @@ export default {
       name: "Close infomedia modal",
       defaultValue: "Close infomedia modal",
       control: { type: "text" }
+    },
+    authUrl: {
+      name: "Url where user can authenticate",
+      defaultValue: "",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
