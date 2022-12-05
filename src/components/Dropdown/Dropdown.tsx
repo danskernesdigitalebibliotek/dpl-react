@@ -4,10 +4,8 @@ import DropdownIcon from "./DropdownIcon";
 
 export type Option = {
   label: string;
-  href?: string;
   disabled?: boolean;
   value: string;
-  selected?: boolean;
 };
 
 type DropdownProps = {
@@ -17,8 +15,9 @@ type DropdownProps = {
   classNames?: string;
   innerClassNames?: { select?: string; option?: string; arrowWrapper?: string };
   handleOnChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  placeholder?: string;
+  placeholder?: Option;
   cyData?: string;
+  defaultValue?: string;
 };
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -29,7 +28,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   innerClassNames,
   handleOnChange,
   placeholder,
-  cyData
+  cyData,
+  defaultValue
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -51,15 +51,25 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
         aria-label={ariaLabel}
         onChange={checkHandleOnChange}
       >
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map(({ label, value, disabled, selected }) => {
+        {placeholder && (
+          <option
+            className={classes.option}
+            value={placeholder.value}
+            selected={placeholder.value === defaultValue}
+            disabled={placeholder.disabled}
+          >
+            {placeholder.label}
+          </option>
+        )}
+
+        {options.map(({ label, value, disabled }) => {
           return (
             <option
               key={label}
               value={value}
               className={classes.option}
               disabled={disabled}
-              selected={selected}
+              selected={value === defaultValue}
             >
               {label}
             </option>
