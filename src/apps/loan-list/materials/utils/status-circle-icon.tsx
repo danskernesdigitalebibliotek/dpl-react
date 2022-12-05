@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import { getColors } from "../../../../core/utils/helpers/general";
 
 interface StatusCircleIconProps {
-  color: string;
+  color?: string;
   ariaLabel: string;
   percent: number;
   children: ReactNode;
