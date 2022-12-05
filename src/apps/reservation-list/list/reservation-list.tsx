@@ -34,32 +34,31 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const {
     isSuccess: isSuccessFBS,
     data,
-    isLoading: isLoadingFBS,
-    isError: isErrorFBS
+    isLoading: isLoadingFBS
   } = useGetReservationsV2();
 
   const {
     isSuccess: isSuccessPublizon,
     data: publizonData,
-    isLoading: isLoadingPublizon,
-    isError: isErrorPublizon
+    isLoading: isLoadingPublizon
   } = useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
-    useState<ReservationType[]>(null);
+    useState<ReservationType[] | null>(null);
 
   const [
     readyForPickupReservationsPublizon,
     setReadyForPickupReservationsPublizon
-  ] = useState<ReservationType[]>(null);
+  ] = useState<ReservationType[] | null>(null);
 
-  const [reservedReservationsFBS, setReservedReservationsFBS] =
-    useState<ReservationType[]>(null);
+  const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
+    ReservationType[] | null
+  >(null);
   const [user, setUser] = useState<PatronV5 | null>(null);
 
   const [reservedReservationsPublizon, setReservedReservationsPublizon] =
-    useState<ReservationType[]>(null);
+    useState<ReservationType[] | null>(null);
 
   // Set digital reservations
   // The digital "ready for pickup"-reservations are mixed with the

@@ -82,7 +82,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           {t("pauseReservationModalHeaderText")}
         </h1>
         <div className="mt-48 color-secondary-gray">
-          <p className="text-body-medium-regular">
+          <p className="text-body-medium-regular mb-32">
             {t("pauseReservationModalBreadText")}
           </p>
         </div>
@@ -97,7 +97,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
               id="pause-reservation-info-link"
-              href={new URL(pauseReservationInfoUrl)}
+              href={pauseReservationInfoUrl}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}

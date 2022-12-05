@@ -6,7 +6,6 @@ import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
 import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
-import { Periodical } from "../../../apps/material/material.dev";
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?

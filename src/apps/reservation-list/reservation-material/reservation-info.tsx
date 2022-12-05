@@ -31,8 +31,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupNumber
   } = reservationInfo;
 
-  const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
-
   // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
@@ -108,6 +106,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }
 
   if (state === "reserved" && !pickupBranch && pickupDeadline) {
+    const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
     return (
       <ReservationStatus
         ariaLabel={t("reservationListStatusIconReadyInAriaLabelText", {
