@@ -45,7 +45,7 @@ export interface LoanListEntryTextProps {
   materialAndAuthorText: string;
   materialByAuthorText: string;
   materialDetailsCloseModalAriaLabelText: string;
-  materialDetailsDueDateLabelText: string;
+  materialDetailsPhysicalDueDateLabelText: string;
   materialDetailsLinkToPageWithFeesText: string;
   materialDetailsLoanDateLabelText: string;
   materialDetailsMaterialNumberLabelText: string;
@@ -63,6 +63,8 @@ export interface LoanListEntryTextProps {
   groupModalHeaderText: string;
   resultPagerStatusText: string;
   showMoreText: string;
+  groupModalReturnLibraryText: string;
+  materialDetailsGoToEreolenText: string;
 }
 
 export interface LoanListEntryWithPageSizeProps

@@ -18,7 +18,7 @@ export default {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
     },
-    [configTypes.fbs]: {
+    fbsBaseUrl: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -247,11 +247,17 @@ export default {
       },
       defaultValue: "Close material details modal"
     },
-    materialDetailsDueDateLabelText: {
+    materialDetailsPhysicalDueDateLabelText: {
       control: {
         type: "text"
       },
       defaultValue: "Afleveres"
+    },
+    materialDetailsDigitalDueDateLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expires"
     },
     materialDetailsLinkToPageWithFeesText: {
       control: {
@@ -345,6 +351,18 @@ export default {
     },
     showMoreText: {
       defaultValue: "show more",
+      control: { type: "text" }
+    },
+    groupModalGoToMaterialText: {
+      defaultValue: "Go to material details",
+      control: { type: "text" }
+    },
+    groupModalReturnLibraryText: {
+      defaultValue: "Can be returned to all branches of Samsøs libraries",
+      control: { type: "text" }
+    },
+    materialDetailsGoToEreolenText: {
+      defaultValue: "Go to eReolen",
       control: { type: "text" }
     }
   },
