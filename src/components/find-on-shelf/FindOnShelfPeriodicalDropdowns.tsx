@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC, useState } from "react";
-import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import Dropdown from "../Dropdown/Dropdown";
 import { HoldingsForBibliographicalRecordV3 } from "../../core/fbs/model";
 import {
   PeriodicalEdition,
@@ -64,47 +64,32 @@ const FindOnShelfPeriodicalDropdown: FC<FindOnShelfPeriodicalDropdownProps> = ({
 
   return (
     <div className="modal-find-on-shelf__periodical-dropdowns">
-      <div className="dropdown dropdown--grey-borders">
-        <select
-          className="dropdown__select"
-          aria-label={t("findOnShelfModalPeriodicalYearDropdownText")}
-          defaultValue={selectedYear}
-          onChange={handleYearSelect}
-        >
-          {sortedPeriodicalYears.map((volumeYear) => (
-            <option
-              key={volumeYear}
-              value={volumeYear}
-              className="dropdown__option"
-            >
-              {volumeYear}
-            </option>
-          ))}
-        </select>
-        <div className="dropdown__arrows">
-          <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
-        </div>
-      </div>
+      <Dropdown
+        classNames="dropdown--grey-borders"
+        options={sortedPeriodicalYears.map((volumeYear) => ({
+          label: volumeYear,
+          value: volumeYear
+        }))}
+        arrowIcon="chevron"
+        defaultValue={selectedYear}
+        handleOnChange={handleYearSelect}
+        ariaLabel={t("findOnShelfModalPeriodicalYearDropdownText")}
+      />
+
       {selectedYear && (
-        <div className="dropdown dropdown--grey-borders">
-          <select
-            className="dropdown__select"
-            aria-label={t("findOnShelfModalPeriodicalEditionDropdownText")}
-            value={selectedPeriodical.volumeNumber}
-            onChange={handleEditionSelect}
-          >
-            {periodicalEditions[selectedYear].map((periodicalEdition) => {
-              return (
-                <option key={periodicalEdition} value={periodicalEdition}>
-                  {periodicalEdition}
-                </option>
-              );
-            })}
-          </select>
-          <div className="dropdown__arrows">
-            <img className="dropdown__arrow" src={ExpandMoreIcon} alt="" />
-          </div>
-        </div>
+        <Dropdown
+          classNames="dropdown--grey-borders"
+          options={periodicalEditions[selectedYear].map(
+            (periodicalEdition) => ({
+              label: periodicalEdition,
+              value: periodicalEdition
+            })
+          )}
+          arrowIcon="chevron"
+          defaultValue={selectedPeriodical.volumeNumber}
+          handleOnChange={handleEditionSelect}
+          ariaLabel={t("findOnShelfModalPeriodicalEditionDropdownText")}
+        />
       )}
     </div>
   );

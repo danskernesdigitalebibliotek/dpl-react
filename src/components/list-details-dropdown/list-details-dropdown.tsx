@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
-import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import Dropdown from "../Dropdown/Dropdown";
 import { useText } from "../../core/utils/text";
 
 export interface OptionsProps {
@@ -36,36 +36,21 @@ const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
         </button>
       )}
       {showSelect && (
-        <div className="dropdown">
-          <select
-            className="dropdown__select"
-            onChange={(e) => onDropdownChange(e)}
-          >
-            <option
-              key={null}
-              selected={selected === null}
-              className="dropdown__option"
-              disabled
-            >
-              {t("listDetailsNothingSelectedLabelText")}
-            </option>
-            {options.map(({ label, value }: OptionsProps) => {
-              return (
-                <option
-                  key={value}
-                  selected={selected?.value === value}
-                  className="dropdown__option"
-                  value={value}
-                >
-                  {label}
-                </option>
-              );
-            })}
-          </select>
-          <div className="dropdown__arrows">
-            <img className="dropdown__arrow" src={ExpandIcon} alt="" />
-          </div>
-        </div>
+        <Dropdown
+          defaultValue={selected?.value}
+          placeholder={{
+            label: t("listDetailsNothingSelectedLabelText"),
+            disabled: true,
+            value: ""
+          }}
+          options={options.map(({ value, label }) => ({
+            value,
+            label
+          }))}
+          ariaLabel=""
+          arrowIcon="chevron"
+          handleOnChange={(e) => onDropdownChange(e)}
+        />
       )}
     </>
   );
