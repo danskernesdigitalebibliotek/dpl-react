@@ -4,10 +4,7 @@ import CheckBox from "../../../components/checkbox/Checkbox";
 import BranchesDropdown from "../util/BranchesDropdown";
 import { useText } from "../../../core/utils/text";
 import DateInputs from "../../../components/date-inputs/date-inputs";
-
-export interface ChangePatronProps {
-  (newValue: string | boolean, key: string): void;
-}
+import { ChangePatronProps } from "../../../components/contact-info-section/ContactInfoSection";
 
 interface ReservationDetailsSectionProps {
   patron: PatronV5;

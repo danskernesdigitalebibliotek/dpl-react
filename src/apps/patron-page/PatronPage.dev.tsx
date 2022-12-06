@@ -56,28 +56,28 @@ export default {
       defaultValue: "Address",
       control: { type: "text" }
     },
-    patronPageContactInfoHeaderText: {
+    patronContactInfoHeaderText: {
       defaultValue: "Contact information",
       control: { type: "text" }
     },
-    patronPageContactInfoBreadText: {
+    patronContactInfoBreadText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    patronPageContactPhoneLabelText: {
+    patronContactPhoneLabelText: {
       defaultValue: "Phone number",
       control: { type: "text" }
     },
-    patronPageContactPhoneCheckboxText: {
+    patronContactPhoneCheckboxText: {
       defaultValue:
         "Receive text messages about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    patronPageContactEmailLabelText: {
+    patronContactEmailLabelText: {
       defaultValue: "E-mail",
       control: { type: "text" }
     },
-    patronPageContactEmailCheckboxText: {
+    patronContactEmailCheckboxText: {
       defaultValue:
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }

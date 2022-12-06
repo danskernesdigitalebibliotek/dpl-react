@@ -11,7 +11,7 @@ import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Link } from "../../components/atoms/link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
-import ContactInfoSection from "./sections/ContactInfoSection";
+import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";

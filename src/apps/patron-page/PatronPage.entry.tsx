@@ -18,12 +18,12 @@ interface PatronPageTextProps {
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
-  patronPageContactInfoHeaderText: string;
-  patronPageContactInfoBreadText: string;
-  patronPageContactPhoneLabelText: string;
-  patronPageContactPhoneCheckboxText: string;
-  patronPageContactEmailLabelText: string;
-  patronPageContactEmailCheckboxText: string;
+  patronContactInfoHeaderText: string;
+  patronContactInfoBreadText: string;
+  patronContactPhoneLabelText: string;
+  patronContactPhoneCheckboxText: string;
+  patronContactEmailLabelText: string;
+  patronContactEmailCheckboxText: string;
   patronPageStatusSectionHeaderText: string;
   patronPageStatusSectionBreadText: string;
   patronPageStatusSectionLinkText: string;
