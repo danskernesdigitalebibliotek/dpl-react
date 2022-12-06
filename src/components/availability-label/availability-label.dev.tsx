@@ -3,7 +3,6 @@ import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
-import { serviceUrlKeys } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 import { withUrls } from "../../core/utils/url";
 import {
   AvailabilityLabelProps,
