@@ -13,7 +13,7 @@ export const serviceUrlKeys: Record<Api, ApiBaseUrlKey> = {
   fbi: "fbiBaseUrl"
 } as const;
 
-type ServiceBaseUrls = Record<Api, ApiBaseUrlKey> | Record<string, string>;
+type ServiceBaseUrls = Record<Api, ApiBaseUrlKey> | Record<string, never>;
 type ServiceBaseUrlKey = keyof typeof serviceBaseUrls;
 
 // ServiceBaseUrls "store". We use this to store the base urls for the different services.
@@ -25,7 +25,7 @@ const filterUrls = (
 ) =>
   Object.keys(urls)
     .filter(filterFunction)
-    .reduce<Record<string, string>>((obj, key) => {
+    .reduce((obj, key) => {
       return { ...obj, ...{ [key]: urls[key as Api] } };
     }, {});
 
