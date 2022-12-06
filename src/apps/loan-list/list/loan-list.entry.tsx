@@ -3,7 +3,6 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
-import { withConfig } from "../../../core/utils/config";
 
 export interface LoanListEntryConfigProps {
   fbsBaseUrlConfig: string;
@@ -89,4 +88,4 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default withConfig(withUrls(withText(LoanListEntry)));
+export default withUrls(withText(LoanListEntry));
