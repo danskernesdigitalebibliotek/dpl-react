@@ -133,11 +133,6 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    // Also I don't get why a fixture is being tested.
-    cy.get("@delete-reservation").should((response) => {
-      expect(response).to.have.property("response");
-    });
-
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
       .find("[data-cy='go-to-ereolen-button']")
@@ -348,11 +343,6 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    // Also I don't get why a fixture is being tested.
-    cy.get("@delete-reservation").should((response) => {
-      expect(response).to.have.property("response");
-    });
-
     // ID 13 2.d. header "status"
     cy.get(".modal-details__list")
       .find(".list-details")
@@ -457,12 +447,6 @@ describe("Reservation details modal test", () => {
     cy.get(".modal-details__list")
       .find("[data-cy='save-physical-details']")
       .click();
-
-    // ID 15 2.h system updates
-    // ID 16 5. user clicks save
-    cy.get("@put-library-branch-and-expiry-date").should((response) => {
-      expect(response).to.have.property("response");
-    });
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save

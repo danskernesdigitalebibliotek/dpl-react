@@ -59,7 +59,11 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
           {year && <> ({year})</>}
         </p>
         {periodical && <p className="text-body-medium-regular">{periodical}</p>}
-        {series && <p className="text-body-medium-regular">{series}</p>}
+        {series && (
+          <p data-cy="modal-series" className="text-body-medium-regular">
+            {series}
+          </p>
+        )}
       </div>
     </div>
   );

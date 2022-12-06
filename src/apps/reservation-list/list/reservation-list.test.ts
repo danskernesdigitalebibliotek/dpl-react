@@ -316,14 +316,13 @@ describe("Reservation list", () => {
 
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
-    cy.get(".reservation-list-page")
-      .find(".dpl-pause-reservation-component")
+    cy.get(".dpl-pause-reservation-component")
       // ID 11 2.a.i. Text  "Pause reservations on physical items"
       .should("exist")
       .find(".dpl-pause-reservation-component__flex__text")
       .should("have.text", "Pause your reservations");
     // ID 11 2.a.ii. Toggle switch: which show whether the users reservation is paused
-    cy.get(".reservation-list-page")
+    cy.get(".dpl-pause-reservation-component")
       .find(".dpl-toggle-button--active")
       .should("exist");
 
