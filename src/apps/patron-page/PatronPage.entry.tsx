@@ -10,9 +10,11 @@ interface PatronPageConfigProps {
   branchesConfig: string;
   pincodeLengthConfig: string;
   deletePatronLinkConfig: string;
+  alwaysLoanableEreolenLink: string;
 }
 interface PatronPageTextProps {
   patronPageHeaderText: string;
+  patronPagePincodeTooShortValidationText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
@@ -27,17 +29,19 @@ interface PatronPageTextProps {
   patronPageStatusSectionLinkText: string;
   patronPageStatusSectionLoansEbooksText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
-  patronPageStatusSectionReservationsAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
   patronPageChangePickupBreadText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
   patronPagePauseReservationsHeaderText: string;
   patronPagePauseReservationsBreadText: string;
+  patronPageSaveButtonText: string;
+  patronPageDeleteProfileText: string;
+  patronPagePincodesNotTheSameText: string;
   patronPageOpenPauseReservationsSectionText: string;
   patronPageOpenPauseReservationsSectionAriaText: string;
-  pauseReservationEndDateLabelText: string;
-  pauseReservationStartDateLabelText: string;
+  dateInputsEndDateLabelText: string;
+  dateInputsStartDateLabelText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageChangePincodeBreadText: string;
   patronPagePincodeLabelText: string;

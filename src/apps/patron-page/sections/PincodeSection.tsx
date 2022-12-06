@@ -22,9 +22,12 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
     setPincodeValidation("");
     if (pincode && confirmPincode) {
       if (pincode.length !== pincodeLength) {
-        // todo string interpolation
         setPincodeValidation(
-          `${t("patronPagePincodeTooShortValidationText")} ${pincodeLength}`
+          t("patronPagePincodeTooShortValidationText", {
+            placeholders: {
+              "@count": pincodeLength
+            }
+          })
         );
         return;
       }
