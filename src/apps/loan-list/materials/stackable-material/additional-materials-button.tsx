@@ -29,7 +29,7 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
       onClick={(e) => openDueDateModalCallBack(e)}
       // in loan-list-items.tsx
       aria-describedby="materials-modal-text"
-      className={`list-reservation__note-${showOn}`}
+      className={`list-reservation__note list-reservation__note--${showOn}`}
     >
       {t("loanListAdditionalMaterialsText", {
         count: additionalMaterials,

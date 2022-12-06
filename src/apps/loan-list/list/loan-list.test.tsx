@@ -233,13 +233,7 @@ describe("Loan list", () => {
     }).as("product");
 
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.wait([
-      "@physical_loans",
-      "@digital_loans",
-      "@work",
-      "@cover",
-      "@product"
-    ]);
+    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
   });
 
   it("Loan list basics (physical loans)", () => {
@@ -264,7 +258,7 @@ describe("Loan list", () => {
 
     cy.get(".loan-list-page")
       .find(".dpl-list-buttons__buttons")
-      .find("#test-stack")
+      .find("[data-cy='stack']")
       .should("exist");
 
     // 2.b.ii. Button: renew several
@@ -594,64 +588,6 @@ describe("Loan list", () => {
         }
       ]
     }).as("physical_loans");
-  });
-
-  it("It opens loans group modal (digital)", () => {
-    cy.intercept("GET", "**/v1/user/**", {
-      statusCode: 200,
-      body: {
-        loans: [
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-10-20T06:32:30Z",
-            loanExpireDateUtc: "2022-10-24T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076940",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          },
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-10-19T06:32:30Z",
-            loanExpireDateUtc: "2022-10-24T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076951",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          }
-        ]
-      }
-    }).as("digital_loans");
-
-    // stack links
-    // 2.b.iv.4. Link:
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.wait(["@digital_loans", "@work"]);
-    cy.get(".loan-list-page").find("#test-stack").click();
-
-    // 2.b.iv.4.a. Text: "+ {X} other items"
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__information .list-reservation__note-desktop")
-      .eq(0)
-      .should("have.text", "+ 1 other material")
-      .click();
-
-    // 2.b.iv.8.b. Click on a group of loans with same due date opens the group modal
-    // 2.b.iv.4.b. group modal opens
-    cy.get(".modal-loan").should("exist");
   });
 
   it("It opens details modal (digital loans)", () => {

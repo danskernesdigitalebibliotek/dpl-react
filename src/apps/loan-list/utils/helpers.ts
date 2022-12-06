@@ -5,7 +5,7 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import { UseTextFunction } from "../../../core/utils/text";
 
 export const removeLoansWithDuplicateDueDate = (
-  date: string | null,
+  date: string,
   list: LoanType[]
 ) => {
   return list.filter(({ dueDate }) => dueDate === date);
@@ -14,6 +14,8 @@ export const removeLoansWithDuplicateDueDate = (
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
+export const loansAreEmpty = (list: LoanType[] | null) =>
+  Array.isArray(list) && list.length === 0;
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
@@ -23,7 +25,7 @@ export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":
       return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
-    case "renewed":
+    case "deniedOtherReason":
       return t("groupModalRenewLoanDeniedReservedText");
     default:
       return "";
@@ -81,7 +83,7 @@ export const getStackedItems = (
   dueDates: string[] | undefined | null[]
 ) => {
   let returnLoans: LoanType[] = [];
-  if (view === "stacked" && dueDates) {
+  if (view === "stack" && dueDates) {
     // I mean... this...
     // If the due date is null, the stacked item still has to be shown
     let dueDatesCopy = [...dueDates, null];

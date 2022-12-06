@@ -6,7 +6,7 @@ import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface RenewLoansModalProps {
-  loansModal: LoanType[];
+  loansModal: LoanType[] | null;
   pageSize: number;
 }
 
