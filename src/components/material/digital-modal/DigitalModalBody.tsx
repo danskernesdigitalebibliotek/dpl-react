@@ -35,7 +35,7 @@ const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
     >
       <TextInput
         type="email"
-        label="Email"
+        label={t("orderDigitalCopyEmailLabelText")}
         id="email-order-digital-copy"
         value={email}
         onChange={setEmail}
