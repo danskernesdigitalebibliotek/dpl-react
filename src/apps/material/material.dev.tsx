@@ -597,6 +597,11 @@ export default {
       defaultValue: "Close",
       control: { type: "text" }
     },
+    orderDigitalCopyEmailLabelText: {
+      name: "Order digital copy error email text",
+      defaultValue: "Email",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
