@@ -162,8 +162,7 @@ describe("Material", () => {
   });
 
   //  periodical test.
-  // TODO: skip until it has been fixed.
-  it.skip("Render periodical + change to 2021, nr. 52 + Approve resevation", () => {
+  it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
     cy.interceptRest({
       aliasName: "periodical holdings",
       url: "**/agencyid/catalog/holdings/**",
