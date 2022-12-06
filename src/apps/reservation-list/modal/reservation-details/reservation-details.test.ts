@@ -19,9 +19,62 @@ describe("Reservation details modal test", () => {
     // https://github.com/cypress-io/cypress/issues/7577
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.clock(clockDate).then((clock: any) => clock.bind(window));
+
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      statusCode: 200,
+      body: {
+        authenticateStatus: "VALID",
+        patron: {
+          address: {
+            coName: null,
+            street: "Hack Kampmanns Plads 2",
+            postalCode: "8000",
+            city: "Aarhus C",
+            country: "DK"
+          },
+          allowBookings: false,
+          birthday: "1990-05-07",
+          blockStatus: null,
+          defaultInterestPeriod: 180,
+          emailAddress: "test@test.dk",
+          name: "Testkort ITK CMS Merkur",
+          notificationProtocols: ["DIGITAL_POST"],
+          onHold: { from: "some date", to: "some date" },
+          patronId: 10101010,
+          phoneNumber: null,
+          preferredLanguage: "da",
+          preferredPickupBranch: "DK-775100",
+          receiveEmail: true,
+          receivePostalMail: false,
+          receiveSms: false,
+          resident: true,
+          secondaryAddress: null
+        }
+      }
+    }).as("user");
   });
 
   it("It shows digital reservation details modal", () => {
+    cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
+      statusCode: 200,
+      body: [
+        {
+          reservationId: 67804976,
+          recordId: "46985591",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "normal"
+        }
+      ]
+    });
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: {
@@ -176,6 +229,26 @@ describe("Reservation details modal test", () => {
   });
 
   it("It shows digital reservation details modal, material queued", () => {
+    cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
+      statusCode: 200,
+      body: [
+        {
+          reservationId: 67804976,
+          recordId: "46985591",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "normal"
+        }
+      ]
+    });
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: {
@@ -277,7 +350,6 @@ describe("Reservation details modal test", () => {
         }
       ]
     });
-
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
@@ -288,11 +360,12 @@ describe("Reservation details modal test", () => {
     cy.intercept("DELETE", "**/external/v1/agencyid/patrons/patronid/**", {
       code: 101,
       message: "OK"
-    }).as("delete-reservation");
+    });
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
+
     // ID 43 2.a. Material cover (coverservice)
     cy.get(".modal")
       .find(".cover")
@@ -485,6 +558,25 @@ describe("Reservation details modal test", () => {
   });
 
   it("It shows physical reservation details modal (ready for pickup)", () => {
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [
+          {
+            productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
+            identifier: "123",
+            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            status: 1,
+            productTitle: "Bargums synder",
+            expireDateUtc: "2023-01-27T19:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+          }
+        ],
+        code: 101,
+        message: "OK"
+      }
+    });
+
     cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
       statusCode: 200,
       body: [
