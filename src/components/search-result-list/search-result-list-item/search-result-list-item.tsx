@@ -98,7 +98,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     <article
       className="search-result-item arrow arrow__hover--right-small"
       onClick={handleClick}
-      onKeyUp={handleClick}
+      onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
