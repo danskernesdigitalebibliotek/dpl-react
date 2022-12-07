@@ -5,20 +5,24 @@ import { useText } from "../../core/utils/text";
 
 export interface SearchBarProps {
   getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
+  getLabelProps: UseComboboxPropGetters<unknown>["getLabelProps"];
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ getInputProps }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  getInputProps,
+  getLabelProps
+}) => {
   const t = useText();
   return (
     <>
-      <label htmlFor="search-header-field" className="hide-visually">
+      {/* The downshift combobox uses prop spreading by design & associated control is desctructured too */}
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading */}
+      <label className="hide-visually" {...getLabelProps()}>
         {t("searchHeaderInputLabel")}
       </label>
-      {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable react/jsx-props-no-spreading */}
       <input
         name="q"
-        id="search-header-field"
         className="header__menu-search-input text-body-medium-regular"
         type="text"
         autoComplete="off"
