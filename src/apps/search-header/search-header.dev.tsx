@@ -18,7 +18,7 @@ export default {
     },
     searchHeaderInputLabel: {
       name: "Search header input label",
-      defaultValue: "The main search field used to search for literature.",
+      defaultValue: "The main search field.",
       control: { type: "text" }
     },
     inputPlaceholderText: {
