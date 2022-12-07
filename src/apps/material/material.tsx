@@ -153,8 +153,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const infomediaId = getInfomediaId(currentManifestation);
 
   // Get disclosure URL parameter from the current URL to see if it should be open
-  const shouldOpenReviewDisclosure =
-    window.location.search.includes("disclosure-reviews");
+  const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
     <main className="material-page">
