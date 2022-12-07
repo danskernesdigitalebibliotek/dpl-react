@@ -161,33 +161,6 @@ describe("Material", () => {
       .click();
   });
 
-  //  infomedia test.
-  it("Render infomedia + Read article + Close modal", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
-    });
-    cy.interceptGraphql({
-      operationName: "getInfomedia",
-      fixtureFilePath: "material/infomedia-article.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
-
-    cy.getBySel("material-header-buttons-find-on-shelf-infomedia-article")
-      .should("be.visible")
-      .and("contain", "Read article")
-      .click();
-
-    cy.get("h2")
-      .should("be.visible")
-      .and("contain", "BUTLERENS UTROLIGE HISTORIE");
-
-    cy.getBySelStartEnd("modal-infomedia-modal-", "-close-button")
-      .should("be.visible")
-      .click();
-  });
-
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",
