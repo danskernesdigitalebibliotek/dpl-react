@@ -103,7 +103,7 @@ export default {
       control: { type: "text" }
     },
     reservationPickUpLatestText: {
-      defaultValue: "Pick up before @count",
+      defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
     publizonEbookText: {
@@ -119,7 +119,7 @@ export default {
       control: { type: "text" }
     },
     reservationListLoanBeforeText: {
-      defaultValue: "Borrow before @count",
+      defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
     reservationListAvailableInText: {
@@ -191,11 +191,11 @@ export default {
       control: { type: "text" }
     },
     reservationDetailsBorrowBeforeText: {
-      defaultValue: "Borrow before @count",
+      defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
     reservationDetailsExpiresText: {
-      defaultValue: "Your reservation expires @count!",
+      defaultValue: "Your reservation expires @date!",
       control: { type: "text" }
     },
     reservationDetailsSaveText: {

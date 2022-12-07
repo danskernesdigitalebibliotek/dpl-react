@@ -25,7 +25,7 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
           icon={ReservationsIcon}
           title={t("reservationDetailsStatusTitleText")}
           labels={t("reservationDetailsExpiresText", {
-            placeholders: { "@count": formatDate(expiryDate) }
+            placeholders: { "@date": formatDate(expiryDate) }
           })}
         />
       )}
@@ -34,7 +34,7 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
           icon={ReservationsIcon}
           title={t("reservationDetailsStatusTitleText")}
           labels={t("reservationDetailsBorrowBeforeText", {
-            placeholders: { "@count": formatDate(pickupDeadline) }
+            placeholders: { "@date": formatDate(pickupDeadline) }
           })}
         />
       )}

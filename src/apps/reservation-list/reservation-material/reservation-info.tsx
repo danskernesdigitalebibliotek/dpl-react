@@ -39,10 +39,10 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   if (pickupDeadline) {
     readyForPickupLabel = pickupBranch
       ? t("reservationPickUpLatestText", {
-          placeholders: { "@count": formatDate(pickupDeadline) }
+          placeholders: { "@date": formatDate(pickupDeadline) }
         })
       : t("reservationListLoanBeforeText", {
-          placeholders: { "@count": formatDate(pickupDeadline) }
+          placeholders: { "@date": formatDate(pickupDeadline) }
         });
   }
 
@@ -76,8 +76,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       numberInQueue === 1
         ? t("reservationListFirstInQueueText")
         : t("reservationListNumberInQueueText", {
-            count: numberInQueue - 1,
-            placeholders: { "@count": numberInQueue - 1 }
+            count: numberInQueue - 1
           });
 
     return (
