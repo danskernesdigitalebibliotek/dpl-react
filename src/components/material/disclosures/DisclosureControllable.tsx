@@ -2,7 +2,7 @@ import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
 
-export interface DisclosureCustomOpeningProps {
+export interface DisclosureControllableProps {
   id: string;
   title: string;
   children?: ReactNode;
@@ -16,7 +16,7 @@ export interface DisclosureCustomOpeningProps {
 
 // It was not possible to use the Disclosure component thats already in the project
 // because we don't have control over the open attribute
-const DisclosureCustomOpening: FC<DisclosureCustomOpeningProps> = ({
+const DisclosureControllable: FC<DisclosureControllableProps> = ({
   id,
   title,
   children,
@@ -71,4 +71,4 @@ const DisclosureCustomOpening: FC<DisclosureCustomOpeningProps> = ({
   );
 };
 
-export default DisclosureCustomOpening;
+export default DisclosureControllable;
