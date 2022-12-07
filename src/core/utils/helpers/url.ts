@@ -144,3 +144,13 @@ export function redirectToLoginAndBack({
   }
   redirectTo(redirectUrl);
 }
+
+// Checks whether a valid URL can be made out of a given string.
+export const isUrlValid = (text: string) => {
+  try {
+    const url = new URL(text);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (err) {
+    return false;
+  }
+};
