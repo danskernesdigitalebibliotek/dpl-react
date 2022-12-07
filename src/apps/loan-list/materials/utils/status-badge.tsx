@@ -3,7 +3,7 @@ import statusThreshold from "../../../../core/configuration/status-thresholds.js
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
 
 interface StatusBadgeProps {
-  dueDate: string;
+  dueDate?: string | null;
   warningText?: string;
   dangerText?: string;
   neutralText?: string;
@@ -15,6 +15,8 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   dangerText,
   neutralText
 }) => {
+  if (!dueDate) return null;
+
   const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
   if (daysBetweenTodayAndDue < statusThreshold.danger && dangerText) {
     return (

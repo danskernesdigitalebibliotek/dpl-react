@@ -1,11 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import MaterialEntry, { MaterialEntryProps } from "./material.entry";
 
 export default {
   title: "Apps / Material",
   component: MaterialEntry,
   argTypes: {
+    ...serviceUrlArgs,
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",
@@ -14,11 +16,6 @@ export default {
     materialUrl: {
       name: "Path to the material page",
       defaultValue: "/work/:workid",
-      control: { type: "text" }
-    },
-    dplCmsBaseUrl: {
-      name: "DPL CMS base URL",
-      defaultValue: "http://dpl-cms.docker",
       control: { type: "text" }
     },
     wid: {
