@@ -6,6 +6,7 @@ import {
 import {
   appendQueryParametersToUrl,
   getCurrentLocation,
+  isUrlValid,
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
@@ -98,8 +99,8 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
         />
       )}
       {/* eslint-enable react/no-danger */}
-      {/* We want to make sure a link can be made out of the review origin (includes a ".") */}
-      {review.origin && review.origin.includes(".") && (
+      {/* We want to make sure a link can be made out of the review origin. */}
+      {review.origin && isUrlValid(review.origin) && (
         <ReviewMetadata
           author={review.author}
           date={date}
