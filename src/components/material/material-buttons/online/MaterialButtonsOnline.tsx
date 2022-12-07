@@ -45,6 +45,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       url: externalUrl,
       loginRequired
     } = accessElement as AccessUrl;
+    // TODO:  We have experienced that externalUrl is not always valid.
+    // We should use isUrlValid helper function to check is it is valid.
     return (
       <MaterialButtonOnlineExternal
         loginRequired={loginRequired}
