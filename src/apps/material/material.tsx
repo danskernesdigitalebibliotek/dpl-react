@@ -39,6 +39,9 @@ import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import DigitalModal from "../../components/material/digital-modal/DigitalModal";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import { getDigitalArticleIssn } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -240,6 +243,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             <InfomediaModal
               mainManifestation={currentManifestation}
               infoMediaId={infomediaId}
+            />
+          )}
+          {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
+            <DigitalModal
+              digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
+              pid={currentManifestation.pid}
             />
           )}
         </>

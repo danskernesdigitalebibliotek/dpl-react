@@ -9,3 +9,6 @@ export * from "./campaignMatchPOSTParams";
 export * from "./campaignMatchPOSTBodyItem";
 export * from "./campaignMatchPOST200DataImage";
 export * from "./campaignMatchPOSTBodyItemValuesItem";
+export * from "./dplDasDigitalArticleOrderPOSTFormat";
+export * from "./dplDasDigitalArticleOrderPOSTParams";
+export * from "./dplDasDigitalArticleOrderPOSTBody";

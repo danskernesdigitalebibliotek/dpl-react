@@ -1,11 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Menu from "./menu.entry";
 
 export default {
   title: "Apps / Menu",
   component: Menu,
   argTypes: {
+    ...serviceUrlArgs,
     menuViewYourProfileText: {
       defaultValue: "My Account",
       control: { type: "text" }

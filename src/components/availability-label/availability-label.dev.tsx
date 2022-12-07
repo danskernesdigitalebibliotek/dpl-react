@@ -1,7 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
+import { withUrls } from "../../core/utils/url";
 import {
   AvailabilityLabelProps,
   AvailabilityLabel
@@ -14,6 +16,7 @@ export default {
   title: "Components/Availability Label",
   component: AvailabilityLabel,
   argTypes: {
+    ...serviceUrlArgs,
     faustIds: {
       name: "Faust Ids",
       control: { type: "array" }
@@ -49,7 +52,7 @@ export default {
 const Template: ComponentStory<typeof AvailabilityLabel> = (
   args: AvailabilityLabelProps
 ) => {
-  const ConfiguredAvailabilityLabel = withConfig(AvailabilityLabel);
+  const ConfiguredAvailabilityLabel = withUrls(withConfig(AvailabilityLabel));
   return <ConfiguredAvailabilityLabel {...args} />;
 };
 
