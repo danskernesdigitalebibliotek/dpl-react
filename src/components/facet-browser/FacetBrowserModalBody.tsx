@@ -9,7 +9,7 @@ import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
-import DisclosureControllable from "../material/disclosures/DisclosureControllable";
+import DisclosureControllable from "../Disclosures/DisclosureControllable";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";

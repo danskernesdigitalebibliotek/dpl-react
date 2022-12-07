@@ -39,7 +39,7 @@ import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import DisclosureControllable from "../../components/material/disclosures/DisclosureControllable";
+import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 
 export interface MaterialProps {
   wid: WorkId;
