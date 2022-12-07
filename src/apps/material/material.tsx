@@ -12,7 +12,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import Disclosure from "../../components/material/disclosures/disclosure";
+import Disclosure from "../../components/Disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
