@@ -43,13 +43,6 @@ describe("Material - Periodical", () => {
       fixtureFilePath: "material/periodical-fbi-api.json"
     });
 
-    cy.interceptRest({
-      httpMethod: "POST",
-      aliasName: "reservations",
-      url: "**/patrons/patronid/reservations/**",
-      fixtureFilePath: "material/reservations.json"
-    });
-
     cy.visit(
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
     );
@@ -64,6 +57,13 @@ describe("Material - Periodical", () => {
       .click();
 
     cy.get("h2").should("contain", "2021, nr. 52");
+
+    cy.interceptRest({
+      httpMethod: "POST",
+      aliasName: "reservations",
+      url: "**/patrons/patronid/reservations/**",
+      fixtureFilePath: "material/reservations.json"
+    });
 
     cy.getBySel("reservation-modal-submit-button", true).click();
 
