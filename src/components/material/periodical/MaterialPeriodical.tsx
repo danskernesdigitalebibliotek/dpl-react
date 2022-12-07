@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import React, { FC } from "react";
 import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
@@ -45,7 +46,11 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
     "volumeYear"
   );
 
-  if (!groupByVolumeYear || !selectPeriodicalHandler) {
+  if (
+    !groupByVolumeYear ||
+    !selectPeriodicalHandler ||
+    isEmpty(groupByVolumeYear)
+  ) {
     return null;
   }
 
