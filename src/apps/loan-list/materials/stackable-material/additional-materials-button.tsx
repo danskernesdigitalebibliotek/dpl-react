@@ -1,20 +1,18 @@
 import React, { useCallback, FC, MouseEvent } from "react";
+import { useText } from "../../../../core/utils/text";
 
 interface AdditionalMaterialsButtonProps {
   additionalMaterials: number;
   openDueDateModal: () => void;
-  label: string;
-  screenReaderLabel: string;
   showOn: "mobile" | "desktop";
 }
 
 const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
   additionalMaterials,
   openDueDateModal,
-  label,
-  screenReaderLabel,
   showOn
 }) => {
+  const t = useText();
   const openDueDateModalCallBack = useCallback(
     (e: MouseEvent) => {
       e.stopPropagation();
@@ -26,22 +24,18 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
   if (additionalMaterials < 1) return <div />;
 
   return (
-    <>
-      <div
-        className="list-reservation__hidden-explanation"
-        id={`materials-modal-${showOn}-text`}
-      >
-        {screenReaderLabel}
-      </div>
-      <button
-        type="button"
-        onClick={(e) => openDueDateModalCallBack(e)}
-        aria-describedby={`materials-modal-${showOn}-text`}
-        className={`list-reservation__note-${showOn}`}
-      >
-        + {additionalMaterials} {label}
-      </button>
-    </>
+    <button
+      type="button"
+      onClick={(e) => openDueDateModalCallBack(e)}
+      // in loan-list-items.tsx
+      aria-describedby="materials-modal-text"
+      className={`list-reservation__note list-reservation__note--${showOn}`}
+    >
+      {t("loanListAdditionalMaterialsText", {
+        count: additionalMaterials,
+        placeholders: { "@count": additionalMaterials }
+      })}
+    </button>
   );
 };
 

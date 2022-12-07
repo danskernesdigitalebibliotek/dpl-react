@@ -137,7 +137,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
   const digitalProductType: { [key: number]: string } = {
     1: texts.publizonEbookText,
     2: texts.publizonAudioBookText,
-    4: texts.publizonAudioBookTex
+    4: texts.publizonPodcastText
   };
 
   return {

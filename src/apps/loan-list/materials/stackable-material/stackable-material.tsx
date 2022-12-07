@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
-import { useText } from "../../../../core/utils/text";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import DueDateLoansModal from "../../modal/due-date-loans-modal";
 import MaterialStatus from "./material-status";
@@ -16,7 +15,6 @@ export interface StackableMaterialProps {
   stack?: LoanType[];
   loan: LoanType;
   amountOfMaterialsWithDueDate?: number;
-  dueDateLabel?: string;
   openModal?: boolean;
   pageSize: number;
 }
@@ -26,11 +24,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   material,
   openModal,
   loan,
-  dueDateLabel,
   stack,
   pageSize
 }) => {
-  const t = useText();
   const { open } = useModalButtonHandler();
   const [additionalMaterials] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
@@ -88,32 +84,20 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
             isbnForCover={identifier || ""}
           >
             <AdditionalMaterialsButton
-              label={t("loanListMaterialsDesktopText")}
               showOn="desktop"
               openDueDateModal={openDueDateModal}
               additionalMaterials={additionalMaterials}
-              screenReaderLabel={t("loanListMaterialsModalDesktopText")}
             />
-            <MaterialOverdueLink
-              showOn="desktop"
-              label={t("loanListLateFeeDesktopText")}
-              dueDate={dueDate}
-            />
+            <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
           </MaterialInfo>
         )}
-        <MaterialStatus loan={loan} dueDateLabel={dueDateLabel || ""}>
+        <MaterialStatus loan={loan}>
           <AdditionalMaterialsButton
-            label={t("loanListMaterialsMobileText")}
             showOn="mobile"
-            screenReaderLabel={t("loanListMaterialsModalMobileText")}
             openDueDateModal={openDueDateModal}
             additionalMaterials={additionalMaterials}
           />
-          <MaterialOverdueLink
-            label={t("loanListLateFeeMobileText")}
-            showOn="mobile"
-            dueDate={dueDate}
-          />
+          <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
         </MaterialStatus>
       </button>
       {dueDate && stack && (

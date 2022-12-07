@@ -1,10 +1,12 @@
 {
   "data": {
+    "id": "1999",
+    "title": "Campaign title",
     "text": null,
     "image": {
       "url": "https://picsum.photos/id/777/300/200",
       "alt": "I am a campaign image."
     },
-    "url": null
+    "url": "http://localhost/?path=/story/apps-search-result--search-result"
   }
 }

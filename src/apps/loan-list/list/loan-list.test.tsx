@@ -233,26 +233,20 @@ describe("Loan list", () => {
     }).as("product");
 
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.wait([
-      "@physical_loans",
-      "@digital_loans",
-      "@work",
-      "@cover",
-      "@product"
-    ]);
+    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
   });
 
   it("Loan list basics (physical loans)", () => {
     // 2.a. header: Your loans
     cy.get(".loan-list-page")
       .find(".text-header-h1")
-      .should("have.text", "Dine lånte materialer");
+      .should("have.text", "Your loans");
 
     // 2.b. header: physical loans
     cy.get(".loan-list-page")
       .find("h2")
       .eq(0)
-      .should("have.text", "Fysiske lån4");
+      .should("have.text", "Physical loans4");
 
     // 2.b.i: Toggle: two icons that changes the list view
     cy.get(".loan-list-page")
@@ -264,7 +258,7 @@ describe("Loan list", () => {
 
     cy.get(".loan-list-page")
       .find(".dpl-list-buttons__buttons")
-      .find("#test-stack")
+      .find("[data-cy='stack']")
       .should("exist");
 
     // 2.b.ii. Button: renew several
@@ -280,7 +274,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Afleveres 28-10-2022");
+      .should("have.text", "Due date 28-10-2022");
 
     // 2.b.iv. Loans have...
     // ID 42 2.a. Material cover
@@ -313,7 +307,7 @@ describe("Loan list", () => {
       .find(".list-reservation__about p")
       .should(
         "have.text",
-        "Af Dummy Jens Jensen og Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
@@ -328,7 +322,10 @@ describe("Loan list", () => {
       .eq(2)
       .find(".list-reservation__information a")
       .should("be.visible")
-      .should("have.text", "Du pålægges et gebyr, når materialet afleveres")
+      .should(
+        "have.text",
+        "You will be charged a fee, when the item is returned"
+      )
       .should("have.attr", "href")
       .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
     // 2.b.iv.3.c. Only shown if loan is overdue
@@ -350,22 +347,22 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
-      .should("have.text", "7dage");
+      .should("have.text", "7 days");
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(1)
       .find(".counter")
-      .should("have.text", "0dage");
+      .should("have.text", "0 days");
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(2)
       .find(".counter")
-      .should("have.text", "0dage");
+      .should("have.text", "0 days");
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(3)
       .find(".counter")
-      .should("have.text", "6dage");
+      .should("have.text", "6 days");
     // 2.b.iv.6. Label:
     // 2.b.iv.6.a. Expired with red background, if loan is overdue
     cy.get(".list-reservation-container")
@@ -373,7 +370,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(2)
       .find(".status-label--danger")
-      .should("have.text", "Overskredet")
+      .should("have.text", "Expired")
       .should("have.css", "background-color")
       .should("include", "rgb(213, 54, 74)");
 
@@ -383,7 +380,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(1)
       .find(".status-label--warning")
-      .should("have.text", "Udløber snart")
+      .should("have.text", "Expiring soon")
       .should("have.css", "background")
       .should("include", "rgb(247, 191, 66)");
 
@@ -392,7 +389,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(3)
       .find(".status-label--warning")
-      .should("have.text", "Udløber snart")
+      .should("have.text", "Expiring soon")
       .should("have.css", "background")
       .should("include", "rgb(247, 191, 66)");
 
@@ -418,25 +415,25 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Afleveres 28-10-2022");
+      .should("have.text", "Due date 28-10-2022");
     cy.get(".list-reservation-container")
       .eq(0)
       .find(".list-reservation")
       .eq(1)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Afleveres 21-10-2022");
+      .should("have.text", "Due date 21-10-2022");
     cy.get(".list-reservation-container")
       .eq(0)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Afleveres 20-10-2022");
+      .should("have.text", "Due date 20-10-2022");
     cy.get(".list-reservation-container")
       .eq(0)
       .find(".list-reservation")
       .eq(3)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Afleveres 27-10-2022");
+      .should("have.text", "Due date 27-10-2022");
 
     // // The mobile specifics
     cy.viewport(320, 1480);
@@ -451,7 +448,7 @@ describe("Loan list", () => {
     cy.get(".loan-list-page")
       .find("h2")
       .eq(1)
-      .should("have.text", "Digitale lån3");
+      .should("have.text", "Digital loans3");
 
     //   // 2.c.i. Loans sorted by oldest loandate on top
     cy.get(".list-reservation-container")
@@ -459,7 +456,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Udløber 27-10-2022");
+      .should("have.text", "Due date 27-10-2022");
 
     // 2.c.ii. Loans have...
     // ID 42 2.a. Material cover
@@ -478,7 +475,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .find(".status-label")
       .eq(0)
-      .should("have.text", "E-bog");
+      .should("have.text", "E-book");
 
     // ID 42 2.c. full title
     cy.get(".list-reservation-container")
@@ -494,7 +491,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__about p")
-      .should("have.text", "Af Agatha Christie og Jutta Larsen (2014)");
+      .should("have.text", "By Agatha Christie and Jutta Larsen (2014)");
 
     // Todo serial title
     // Todo serial number
@@ -506,21 +503,21 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
-      .should("have.text", "6dage");
+      .should("have.text", "6 days");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(1)
       .find(".counter")
-      .should("have.text", "7dage");
+      .should("have.text", "7 days");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".counter")
-      .should("have.text", "3dage");
+      .should("have.text", "3 days");
 
     // 2.c.ii.4. Text: "Due date dd.mm.yyyy”
     cy.get(".list-reservation-container")
@@ -528,21 +525,21 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Udløber 27-10-2022");
+      .should("have.text", "Due date 27-10-2022");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Udløber 24-10-2022");
+      .should("have.text", "Due date 24-10-2022");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Udløber 24-10-2022");
+      .should("have.text", "Due date 24-10-2022");
   });
 
   it("It opens loans group modal (physical)", () => {
@@ -593,64 +590,6 @@ describe("Loan list", () => {
     }).as("physical_loans");
   });
 
-  it("It opens loans group modal (digital)", () => {
-    cy.intercept("GET", "**/v1/user/**", {
-      statusCode: 200,
-      body: {
-        loans: [
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-10-20T06:32:30Z",
-            loanExpireDateUtc: "2022-10-24T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076940",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          },
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-10-19T06:32:30Z",
-            loanExpireDateUtc: "2022-10-24T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076951",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          }
-        ]
-      }
-    }).as("digital_loans");
-
-    // stack links
-    // 2.b.iv.4. Link:
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.wait(["@digital_loans", "@work"]);
-    cy.get(".loan-list-page").find("#test-stack").click();
-
-    // 2.b.iv.4.a. Text: "+ {X} other items"
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(0)
-      .find(".list-reservation__information .list-reservation__note-desktop")
-      .eq(0)
-      .should("have.text", "+ 1 andre materialer")
-      .click();
-
-    // 2.b.iv.8.b. Click on a group of loans with same due date opens the group modal
-    // 2.b.iv.4.b. group modal opens
-    cy.get(".modal-loan").should("exist");
-  });
-
   it("It opens details modal (digital loans)", () => {
     // 2.c.ii.6. Link: Click on loan in list opens loan details modal
     cy.get(".modal-detail").should("not.exist");
@@ -672,7 +611,10 @@ describe("Loan list", () => {
       body: []
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.get(".dpl-list-empty").should("have.text", "Du har i øjeblikket 0 lån");
+    cy.get(".dpl-list-empty").should(
+      "have.text",
+      "You have 0 loans at the moment"
+    );
   });
 
   it("It opens details modal (physical loans)", () => {
@@ -697,7 +639,7 @@ describe("Loan list", () => {
     // 2.b.iv.9. No physical loans, the text: "You have no physical loans at the moment"
     cy.get(".dpl-list-empty").should(
       "have.text",
-      "Du har i øjeblikket ingen fysiske lån"
+      "You have no physical loans at the moment"
     );
   });
 
@@ -710,7 +652,7 @@ describe("Loan list", () => {
     // 2.d No digital loans, the text: "You have 0 loans at the moment"
     cy.get(".dpl-list-empty").should(
       "have.text",
-      "Du har i øjeblikket ingen digitale lån"
+      "You have no digital loans at the moment"
     );
   });
 

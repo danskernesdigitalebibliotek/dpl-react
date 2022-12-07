@@ -45,7 +45,7 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
     "volumeYear"
   );
 
-  if (!groupByVolumeYear || !selectedPeriodical || !selectPeriodicalHandler) {
+  if (!groupByVolumeYear || !selectPeriodicalHandler) {
     return null;
   }
 

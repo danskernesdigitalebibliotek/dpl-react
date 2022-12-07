@@ -2,9 +2,10 @@ import dayjs from "dayjs";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { UseTextFunction } from "../../../core/utils/text";
 
 export const removeLoansWithDuplicateDueDate = (
-  date: string | null,
+  date: string,
   list: LoanType[]
 ) => {
   return list.filter(({ dueDate }) => dueDate === date);
@@ -13,9 +14,22 @@ export const removeLoansWithDuplicateDueDate = (
 export const formatDate = (date: string) => {
   return dayjs(date).format("DD-MM-YYYY");
 };
+export const loansAreEmpty = (list: LoanType[] | null) =>
+  Array.isArray(list) && list.length === 0;
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
+};
+
+export const getStatusText = (status: string, t: UseTextFunction) => {
+  switch (status) {
+    case "deniedMaxRenewalsReached":
+      return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
+    case "deniedOtherReason":
+      return t("groupModalRenewLoanDeniedReservedText");
+    default:
+      return "";
+  }
 };
 
 export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
@@ -29,9 +43,6 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
     return false;
   });
 };
-
-export const materialIsOverdue = (date: string | undefined) =>
-  dayjs().isAfter(dayjs(date), "day");
 
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (
@@ -63,6 +74,8 @@ export const queryMatchesFaust = (query: string | null) => {
   return returnValue;
 };
 
+export const isDigital = (loan: LoanType) => Boolean(loan.identifier);
+
 export const getStackedItems = (
   view: ListView,
   list: LoanType[],
@@ -70,7 +83,7 @@ export const getStackedItems = (
   dueDates: string[] | undefined | null[]
 ) => {
   let returnLoans: LoanType[] = [];
-  if (view === "stacked" && dueDates) {
+  if (view === "stack" && dueDates) {
     // I mean... this...
     // If the due date is null, the stacked item still has to be shown
     let dueDatesCopy = [...dueDates, null];

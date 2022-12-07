@@ -1,16 +1,16 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { isDate } from "../../../core/utils/helpers/date";
+import { useText } from "../../../core/utils/text";
 
 interface LoanListItemProps {
   loans: LoanType[];
   view: ListView;
-  dueDates: string[];
-  dueDateLabel: string;
+  dueDates?: string[];
   pageSize: number;
 }
 
@@ -18,25 +18,25 @@ const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  dueDateLabel,
   pageSize
 }) => {
-  const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
-
-  useEffect(() => {
-    if (view === "stacked") {
-      // Publizon material sometimes have due dates that are "null"
-      // These should also be displayed stacked
-      setLocalDueDates([...dueDates, null]);
-    }
-  }, [dueDates, view]);
+  const t = useText();
 
   return (
-    <div className="list-reservation-container m-32">
-      {view === "stacked" &&
-        localDueDates.map((uniqueDueDate: string | null) => {
+    // explanation for screen readers used in additional-materials-button
+    // It is located here to avoid duplicate ids in the dom
+    <div className="list-reservation-container my-32">
+      <div
+        className="list-reservation__hidden-explanation"
+        id="materials-modal-text"
+      >
+        {t("loanListDueDateModalAriaLabelText")}
+      </div>
+      {view === "stack" &&
+        dueDates &&
+        dueDates.map((uniqueDueDate: string) => {
           // Stack items:
-          // if multiple items have the same due date, they are "stacked"
+          // if multiple items have the same due date, they are a "stack"
           // which means styling making it look like there are multiple materials,
           // but only _one_ with said due date is visible.
           const loansUniqueDueDate = removeLoansWithDuplicateDueDate(
@@ -58,7 +58,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
               {loan && (
                 <StackableMaterial
                   pageSize={pageSize}
-                  dueDateLabel={dueDateLabel}
                   loan={loan}
                   identifier={loan.identifier}
                   faust={loan.faust}
@@ -79,7 +78,6 @@ const LoanListItems: FC<LoanListItemProps> = ({
               openModal={false}
               identifier={loan.identifier}
               faust={loan.faust}
-              dueDateLabel={dueDateLabel}
               key={loan.faust || loan.identifier}
               loan={loan}
             />

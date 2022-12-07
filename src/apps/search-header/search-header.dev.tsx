@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchHeaderEntry, {
   SearchHeaderEntryProps
 } from "./search-header.entry";
@@ -9,6 +10,7 @@ export default {
   title: "Apps / Search Header",
   component: SearchHeaderEntry,
   argTypes: {
+    ...serviceUrlArgs,
     altText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",

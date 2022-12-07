@@ -1,9 +1,11 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
+import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../core/utils/text";
-import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { formatDate, isDigital } from "../utils/helpers";
+import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import StatusBadge from "../materials/utils/status-badge";
 import WarningBar from "../materials/utils/warning-bar";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -14,6 +16,7 @@ import fetchDigitalMaterial from "../materials/utils/digital-material-fetch-hoc"
 import ListDetails from "../../../components/list-details/list-details";
 import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
 import RenewButton from "./renew-button";
+import { Link } from "../../../components/atoms/link";
 
 interface MaterialDetailsProps {
   loan: LoanType;
@@ -25,16 +28,16 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const {
-    dueDate: dueDateFromLoan,
+    dueDate,
     faust,
     identifier,
     isRenewable,
     materialItemNumber,
-    loanDate
+    loanDate,
+    periodical
   } = loan;
-  const { authors, materialType, year, title, pid, description } =
+  const { authors, materialType, year, title, pid, description, series } =
     material || {};
-  const [dueDate, setDueDate] = useState<string>(dueDateFromLoan || "");
 
   return (
     <div className="modal-details__container">
@@ -42,18 +45,34 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         year={year}
         authors={authors}
         title={title}
+        periodical={periodical}
+        series={series}
         pid={pid}
         description={description}
         materialType={materialType}
         isbnForCover={identifier || ""}
       >
-        <StatusBadge
-          dueDate={dueDate}
-          dangerText={t("materialDetailsOverdueText")}
-        />
+        {dueDate && (
+          <StatusBadge
+            dueDate={dueDate}
+            dangerText={t("materialDetailsOverdueText")}
+          />
+        )}
       </ModalDetailsHeader>
-      {faust && isRenewable && (
-        <RenewButton faust={faust} setDueDate={setDueDate} />
+      {!isDigital(loan) && faust && (
+        <RenewButton faust={faust} renewable={isRenewable} />
+      )}
+      {isDigital(loan) && (
+        <div className="modal-details__buttons">
+          {/* todo create a component for ereolen-redirect (also replace url) */}
+          <Link
+            href={new URL("https://ereolen.dk/user/me/")}
+            className="btn-primary btn-filled btn-small arrow__hover--right-small"
+          >
+            {t("materialDetailsGoToEreolenText")}
+            <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
+          </Link>
+        </div>
       )}
       {dueDate && materialIsOverdue(dueDate) && (
         <div className="modal-details__warning">
@@ -64,11 +83,18 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         </div>
       )}
       <div className="modal-details__list">
-        {dueDate && (
+        {dueDate && !isDigital(loan) && (
           <ListDetails
             icon={LoansIcon}
             labels={formatDate(dueDate)}
-            title={t("materialDetailsHandInLabelText")}
+            title={t("materialDetailsPhysicalDueDateLabelText")}
+          />
+        )}
+        {dueDate && isDigital(loan) && (
+          <ListDetails
+            icon={LoansIcon}
+            labels={formatDate(dueDate)}
+            title={t("materialDetailsDigitalDueDateLabelText")}
           />
         )}
         {loanDate && (

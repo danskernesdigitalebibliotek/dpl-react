@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
+import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 
 interface PatronPageConfigProps {
-  fbsBaseUrlConfig: string;
-  publizonBaseUrlConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   pincodeLengthConfig: string;
@@ -53,4 +52,4 @@ export interface PatronPageProps
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
-export default withConfig(withText(PatronPageEntry));
+export default withConfig(withUrls(withText(PatronPageEntry)));

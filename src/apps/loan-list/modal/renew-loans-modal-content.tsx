@@ -1,10 +1,11 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useIntersection } from "react-use";
-import SelectableMaterial from "../materials/selectable-material";
-import { useRenewLoansV2 } from "../../../core/fbs/fbs";
+import { useQueryClient } from "react-query";
+import SelectableMaterial from "../materials/selectable-material/selectable-material";
+import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import {
-  getRenewableMaterials,
-  getAmountOfRenewableLoans
+  getAmountOfRenewableLoans,
+  getRenewableMaterials
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -13,33 +14,28 @@ import { FaustId } from "../../../core/utils/types/ids";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import { useText } from "../../../core/utils/text";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];
-  buttonLabel: string;
-  checkboxLabel: string;
-  buttonBottomLabel: string;
-  checkboxBottomLabel: string;
   pageSize: number;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   loansModal,
-  checkboxLabel,
-  buttonLabel,
-  buttonBottomLabel,
-  pageSize,
-  checkboxBottomLabel
+  pageSize
 }) => {
   const { mutate } = useRenewLoansV2();
+  const t = useText();
+  const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
+  const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
   const intersectionRef = React.useRef(null);
   const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
     threshold: 0
   }) || { isIntersecting: false };
   const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
-  const [renewableMaterials, setRenewableMaterials] = useState<number>(0);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
@@ -53,6 +49,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       {
         onSuccess: (result) => {
           if (result) {
+            queryClient.invalidateQueries(getGetLoansV2QueryKey());
             close(modalIdsConf.allLoansId);
           }
         },
@@ -60,11 +57,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         onError: () => {}
       }
     );
-  }, [close, materialsToRenew, mutate]);
+  }, [close, materialsToRenew, mutate, queryClient]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
-    setRenewableMaterials(getAmountOfRenewableLoans(loansModal));
   }, [loansModal]);
 
   useEffect(() => {
@@ -98,10 +94,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           selected={materialsToRenew.length === renewableMaterials}
           id="checkbox-select-all"
           onChecked={() => selectAll()}
-          label={checkboxLabel}
+          label={t("groupModalCheckboxText")}
         />
         <Button
-          label={`${buttonLabel} (${renewableMaterials})`}
+          label={t("groupModalButtonText", {
+            count: renewableMaterials,
+            placeholders: { "@count": renewableMaterials }
+          })}
           buttonType="none"
           id="renew-several"
           variant="filled"
@@ -139,10 +138,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
             <CheckBox
               onChecked={() => selectAll()}
               id="checkbox-select-all"
-              label={checkboxBottomLabel}
+              label={t("groupModalCheckboxText")}
             />
             <Button
-              label={`${buttonBottomLabel} (${renewableMaterials})`}
+              label={t("groupModalButtonText", {
+                count: renewableMaterials,
+                placeholders: { "@count": renewableMaterials }
+              })}
               buttonType="none"
               variant="filled"
               disabled={renewableMaterials === 0}

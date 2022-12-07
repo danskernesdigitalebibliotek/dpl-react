@@ -5,7 +5,8 @@ import StatusCircle from "../materials/utils/status-circle";
 import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
-import { formatDate, materialIsOverdue } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
+import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface DueDateLoansModalProps {
@@ -26,9 +27,11 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
     <Modal
       modalId={dueDate}
       classNames="modal-loan"
-      closeModalAriaLabelText={t("dueDateRenewLoanCloseModalText")}
+      closeModalAriaLabelText={t(
+        "groupModalDueDateRenewLoanCloseModalAriaLabelText"
+      )}
       screenReaderModalDescriptionText={t(
-        "dueDateRenewLoanModalDescriptionText"
+        "groupModalDueDateAriaDescriptionText"
       )}
     >
       <div className="modal-loan__container">
@@ -42,25 +45,26 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
               <div>
                 <h1 className="modal-loan__title text-header-h2">
-                  {t("dueDateRenewLoanModalHeaderText")} {formatDate(dueDate)}
+                  {t("groupModalDueDateHeaderText", {
+                    placeholders: { "@date": formatDate(dueDate) }
+                  })}
                 </h1>
+                <div className="text-body-large">
+                  {t("groupModalReturnLibraryText")}
+                </div>
               </div>
             </div>
             {materialIsOverdue(dueDate) && (
               <div className="modal-details__warning">
                 <WarningBar
-                  linkText={t("dueDateLinkToPageWithFeesText")}
-                  overdueText={t("dueDateWarningLoanOverdueText")}
+                  linkText={t("groupModalDueDateLinkToPageWithFeesText")}
+                  overdueText={t("groupModalDueDateWarningLoanOverdueText")}
                 />
               </div>
             )}
             <RenewLoansModalContent
               pageSize={pageSize}
               loansModal={loansModal}
-              buttonLabel={t("dueDateRenewLoanModalButtonText")}
-              checkboxLabel={t("dueDateRenewLoanModalCheckboxText")}
-              checkboxBottomLabel={t("bottomDueDateRenewLoanModalCheckboxText")}
-              buttonBottomLabel={t("bottomDueDateRenewLoanModalButtonText")}
             />
           </>
         )}
