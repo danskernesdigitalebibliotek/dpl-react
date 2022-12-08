@@ -255,6 +255,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             <DigitalModal
               digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
               pid={currentManifestation.pid}
+              workId={wid}
             />
           )}
         </>

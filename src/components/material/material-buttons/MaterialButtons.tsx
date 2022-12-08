@@ -46,15 +46,15 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             />
           </>
         )}
-      {hasCorrectAccessType(AccessTypeCode.Online, manifestation) ||
-        (hasCorrectAccess("DigitalArticleService", manifestation) && (
-          <MaterialButtonsOnline
-            manifestation={manifestation}
-            size={size}
-            workId={workId}
-            dataCy={`${dataCy}-find-on-shelf`}
-          />
-        ))}
+      {(hasCorrectAccessType(AccessTypeCode.Online, manifestation) ||
+        hasCorrectAccess("DigitalArticleService", manifestation)) && (
+        <MaterialButtonsOnline
+          manifestation={manifestation}
+          size={size}
+          workId={workId}
+          dataCy={`${dataCy}-find-on-shelf`}
+        />
+      )}
     </>
   );
 };
