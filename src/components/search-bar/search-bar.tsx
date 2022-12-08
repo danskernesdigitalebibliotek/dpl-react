@@ -35,7 +35,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="image"
         src={searchIcon}
         alt={t("searchHeaderIconAltText")}
-        aria-label={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
       />
     </>
