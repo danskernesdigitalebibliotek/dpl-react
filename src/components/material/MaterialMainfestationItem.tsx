@@ -127,7 +127,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {creatorsText}
           {edition?.publicationYear?.display &&
-            ` (${edition?.publicationYear?.display})`}
+            ` (${edition.publicationYear.display})`}
         </p>
 
         <div
