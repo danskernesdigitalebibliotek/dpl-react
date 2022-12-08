@@ -11,9 +11,14 @@ export default {
   component: SearchHeaderEntry,
   argTypes: {
     ...serviceUrlArgs,
-    altText: {
+    searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",
+      control: { type: "text" }
+    },
+    searchHeaderInputLabel: {
+      name: "Search header input label",
+      defaultValue: "The main search field.",
       control: { type: "text" }
     },
     inputPlaceholderText: {
