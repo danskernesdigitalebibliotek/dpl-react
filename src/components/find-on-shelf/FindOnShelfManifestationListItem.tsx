@@ -41,7 +41,7 @@ const FindOnShelfManifestationListItem: FC<
     <li className="find-on-shelf__row text-body-medium-regular">
       <span className="find-on-shelf__material-text">
         {title}
-        {publicationYear ?? ""}
+        {publicationYear && ` (${publicationYear})`}
       </span>
       <span>
         {locationArray.length
