@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDplDasDigitalArticleOrderPOST } from "../../../core/dpl-cms/dpl-cms";
 import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
+import { statistics } from "../../../core/statistics/statistics";
+import { useStatistics } from "../../../core/statistics/useStatistics";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { IssnId, Pid } from "../../../core/utils/types/ids";
+import { IssnId, Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId } from "./helper";
@@ -11,15 +13,18 @@ import { createDigitalModalId } from "./helper";
 type DigitalModalProps = {
   digitalArticleIssn: IssnId;
   pid: Pid;
+  workId: WorkId;
 };
 
 const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   digitalArticleIssn,
-  pid
+  pid,
+  workId
 }) => {
   const modalId = createDigitalModalId(digitalArticleIssn);
   const t = useText();
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const { track } = useStatistics();
 
   const {
     mutate: articleOrder,
@@ -29,12 +34,24 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   } = useDplDasDigitalArticleOrderPOST();
 
   const orderDigitalCopy = (email: string) => {
-    articleOrder({
-      data: {
-        pid,
-        email
+    articleOrder(
+      {
+        data: {
+          pid,
+          email
+        }
+      },
+      {
+        onSuccess: () => {
+          // Track only if the reservation has been successfully saved.
+          track("click", {
+            id: statistics.reservation.id,
+            name: statistics.reservation.name,
+            trackedData: workId
+          });
+        }
       }
-    });
+    );
   };
 
   // Pre fill the email field with the patron's email or set it to an empty string
