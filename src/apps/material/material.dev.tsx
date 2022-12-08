@@ -607,13 +607,13 @@ export default {
       defaultValue: "",
       control: { type: "text" }
     },
-    skipQueueMaterialIsAvailableInAnotherEditionText: {
+    materialIsAvailableInAnotherEditionText: {
       name: "Skip queue material is available in another edition",
       defaultValue:
         "Skip the queue - The material is available in another edition",
       control: { type: "text" }
     },
-    skipQueueMaterialIsAvailableInAnotherEditionReservationsText: {
+    materialIsAvailableInAnotherEditionReservationsText: {
       name: "Skip queue reservations cont",
       defaultValue: "reservations",
       control: { type: "text" }
@@ -646,6 +646,7 @@ HarryPotter.args = {
 export const TurenGårTilRom = Template.bind({});
 TurenGårTilRom.args = {
   wid: "work-of:870970-basis:61991484"
+};
 
 export const Digital = Template.bind({});
 Digital.args = {

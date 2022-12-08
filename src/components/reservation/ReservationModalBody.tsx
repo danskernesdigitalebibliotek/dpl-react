@@ -212,13 +212,11 @@ const ReservationModalBody = ({
                   classNames="px-35"
                   sticky
                   type="info"
-                  text={`${t(
-                    "skipQueueMaterialIsAvailableInAnotherEditionText"
-                  )}
+                  text={`${t("materialIsAvailableInAnotherEditionText")}
                     - ${otherManifestationPreferred.titles.main}
                     - ${getAuthorLine(otherManifestationPreferred, t)}
                     - ${t(
-                      "skipQueueMaterialIsAvailableInAnotherEditionReservationsText"
+                      "materialIsAvailableInAnotherEditionReservationsText"
                     )}:
                     ${otherManifestationPreferred.reservations}`}
                 />
