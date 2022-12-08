@@ -18,7 +18,7 @@ import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { ManifestationHoldings } from "./types";
 import { FaustId } from "../../core/utils/types/ids";
-import Disclosure from "../material/disclosures/disclosure";
+import Disclosure from "../Disclosures/disclosure";
 import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";

@@ -2,13 +2,14 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
-import { configTypes } from "../../../core/utils/helpers/fetcher";
 import { getModalIds } from "../../../core/utils/helpers/general";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    ...serviceUrlArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       defaultValue: 20,
@@ -18,14 +19,6 @@ export default {
       name: "Number of search result items on mobile",
       defaultValue: 10,
       control: { type: "number" }
-    },
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
-      control: { type: "text" }
     },
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",

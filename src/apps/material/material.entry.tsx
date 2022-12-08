@@ -105,6 +105,20 @@ interface MaterialEntryTextProps {
   typeText: string;
   skipQueueMaterialIsAvailableInAnotherEditionText: string;
   skipQueueMaterialIsAvailableInAnotherEditionReservationsText: string;
+  saveButtonText: string;
+  orderDigitalCopyModalScreenReaderModalDescriptionText: string;
+  orderDigitalCopyModalCloseModalAriaLabelText: string;
+  orderDigitalCopyTitleText: string;
+  orderDigitalCopyDescriptionText: string;
+  orderDigitalCopyButtonText: string;
+  orderDigitalCopyButtonLoadingText: string;
+  orderDigitalCopySuccessTitleText: string;
+  orderDigitalCopySuccessDescriptionText: string;
+  orderDigitalCopySuccessButtonText: string;
+  orderDigitalCopyErrorTitleText: string;
+  orderDigitalCopyErrorDescriptionText: string;
+  orderDigitalCopyErrorButtonText: string;
+  orderDigitalCopyEmailLabelText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

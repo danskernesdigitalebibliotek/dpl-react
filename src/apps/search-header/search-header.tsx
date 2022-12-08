@@ -278,6 +278,7 @@ const SearchHeader: React.FC = () => {
     highlightedIndex,
     getItemProps,
     getInputProps,
+    getLabelProps,
     getComboboxProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
@@ -301,7 +302,10 @@ const SearchHeader: React.FC = () => {
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
-        <SearchBar getInputProps={getInputProps} />
+        <SearchBar
+          getInputProps={getInputProps}
+          getLabelProps={getLabelProps}
+        />
         {isDataPresent && isAutosuggestOpen && (
           <Autosuggest
             textData={textData}

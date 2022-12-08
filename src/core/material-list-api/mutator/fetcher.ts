@@ -1,6 +1,8 @@
 import { getToken, TOKEN_USER_KEY } from "../../token";
-
-const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -24,6 +26,7 @@ export const fetcher = async <ResponseType>({
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
 
+  const baseURL = getServiceBaseUrl(serviceUrlKeys.materialList);
   const userToken = getToken(TOKEN_USER_KEY);
   const authHeaders = userToken
     ? ({ Authorization: `Bearer ${userToken}` } as object)

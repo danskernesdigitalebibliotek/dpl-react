@@ -1,21 +1,14 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { configTypes } from "../../core/utils/helpers/fetcher";
 import PatronPage from "./PatronPage.entry";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }

@@ -2,7 +2,7 @@ import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
 
-export interface FacetBrowserDisclosureProps {
+export interface DisclosureControllableProps {
   id: string;
   title: string;
   children?: ReactNode;
@@ -11,18 +11,20 @@ export interface FacetBrowserDisclosureProps {
   removeHeadlinePadding?: boolean;
   onClick?: () => void;
   cyData?: string;
+  mainIconPath?: string;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
 // because we don't have control over the open attribute
-const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
+const DisclosureControllable: FC<DisclosureControllableProps> = ({
   id,
   title,
   children,
   fullWidth,
   showContent = false,
   removeHeadlinePadding,
-  cyData
+  cyData,
+  mainIconPath
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
@@ -30,7 +32,7 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
     setIsOpen(!isOpen);
   }, [isOpen]);
 
-  const disclosureId = `facet-${id}`;
+  const disclosureId = `disclosure-${id}`;
 
   return (
     <div
@@ -40,17 +42,22 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
       }`}
       aria-controls={disclosureId}
       aria-expanded={isOpen}
-      onClick={toggleOpen}
-      onKeyDown={toggleOpen}
-      role="button"
-      tabIndex={0}
     >
       <div
         className={clsx(
           "disclosure__headline text-body-large",
           removeHeadlinePadding && "disclosure__headline--no-padding"
         )}
+        onClick={toggleOpen}
+        onKeyDown={toggleOpen}
+        role="button"
+        tabIndex={0}
       >
+        {mainIconPath && (
+          <div className="disclosure__icon bg-identity-tint-120">
+            <img className="invert" src={mainIconPath} alt="" />
+          </div>
+        )}
         <span className="disclosure__text">{title}</span>
 
         <img
@@ -59,9 +66,9 @@ const FacetBrowserDisclosure: FC<FacetBrowserDisclosureProps> = ({
           alt=""
         />
       </div>
-      {(showContent || isOpen) && <div id={disclosureId}>{children}</div>}
+      {isOpen && <div id={disclosureId}>{children}</div>}
     </div>
   );
 };
 
-export default FacetBrowserDisclosure;
+export default DisclosureControllable;

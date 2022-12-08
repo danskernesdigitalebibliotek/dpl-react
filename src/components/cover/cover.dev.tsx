@@ -2,6 +2,8 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
+import { withUrls } from "../../core/utils/url";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Components / Cover",
@@ -33,6 +35,7 @@ export default {
     }
   },
   args: {
+    ...serviceUrlArgs,
     id: "870970-basis:45234401",
     size: "small",
     animate: true,
@@ -42,7 +45,10 @@ export default {
   }
 } as ComponentMeta<typeof Cover>;
 
-const Template: ComponentStory<typeof Cover> = (args) => <Cover {...args} />;
+const WrappedCover = withUrls(Cover);
+const Template: ComponentStory<typeof Cover> = (args) => (
+  <WrappedCover {...args} />
+);
 
 export const item = Template.bind({});
 item.args = {};
