@@ -77,7 +77,7 @@ export const getCreatorTextFromManifestations = (
 export const getFirstPublishedManifestation = (
   manifestations: Manifestation[]
 ) => {
-  const ordered = orderManifestationsByYear(manifestations);
+  const ordered = orderManifestationsByYear(manifestations, "asc");
   return ordered[0];
 };
 
