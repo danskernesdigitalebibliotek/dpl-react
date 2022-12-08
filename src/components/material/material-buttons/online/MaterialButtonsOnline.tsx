@@ -9,6 +9,7 @@ import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
+import { hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
@@ -60,7 +61,10 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     );
   }
 
-  if (accessType === "DigitalArticleService") {
+  if (
+    accessType === "DigitalArticleService" &&
+    hasCorrectMaterialType("tidsskriftsartikel", manifestation.materialTypes)
+  ) {
     const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
       <MaterialButtonOnlineDigitalArticle
