@@ -29,4 +29,13 @@ export const isArticle = (manifestation: Manifestation) => {
   );
 };
 
+export const hasCorrectMaterialType = (
+  desiredMaterialType: string,
+  allMaterialTypes: Manifestation["materialTypes"]
+) => {
+  return allMaterialTypes.some(
+    (type) => type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
+  );
+};
+
 export default {};
