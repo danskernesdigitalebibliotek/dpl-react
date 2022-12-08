@@ -12,14 +12,14 @@ import {
   mapFBSReservationToReservationType,
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
-import List from "./list";
 import ReservationPauseToggler from "./reservation-pause-toggler";
 import {
   useGetPatronInformationByPatronIdV2,
   useGetReservationsV2
 } from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
-import EmptyList from "../../../components/empty-list/empty-list";
+import EmptyReservations from "./EmptyReservations";
+import DisplayedReservations from "./DisplayedReservations";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -118,41 +118,17 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     <div className="reservation-list-page">
       <h1 className="text-header-h1 m-32">{t("reservationListHeaderText")}</h1>
       {user && <ReservationPauseToggler user={user} />}
-      {allListsEmpty ? (
-        <div className="list-reservation-container m-32">
-          <EmptyList emptyListText={t("reservationListAllEmptyText")} />
-        </div>
-      ) : (
-        <>
-          {readyForPickupReservationsFBS !== null &&
-            readyForPickupReservationsPublizon !== null && (
-              <List
-                pageSize={pageSize}
-                header={t("reservationListReadyForPickupTitleText")}
-                reservations={sortByOldestPickupDeadline([
-                  ...readyForPickupReservationsFBS,
-                  ...readyForPickupReservationsPublizon
-                ])}
-                emptyListLabel={t("reservationListReadyForPickupEmptyText")}
-              />
-            )}
-          {reservedReservationsFBS !== null && (
-            <List
-              pageSize={pageSize}
-              header={t("reservationListPhysicalReservationsHeaderText")}
-              reservations={reservedReservationsFBS}
-              emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
-            />
-          )}
-          {reservedReservationsPublizon !== null && (
-            <List
-              pageSize={pageSize}
-              header={t("reservationListDigitalReservationsHeaderText")}
-              reservations={reservedReservationsPublizon}
-              emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
-            />
-          )}
-        </>
+      {allListsEmpty && <EmptyReservations />}
+      {!allListsEmpty && (
+        <DisplayedReservations
+          readyForPickupReservationsFBS={readyForPickupReservationsFBS}
+          readyForPickupReservationsPublizon={
+            readyForPickupReservationsPublizon
+          }
+          reservedReservationsFBS={reservedReservationsFBS}
+          reservedReservationsPublizon={reservedReservationsPublizon}
+          pageSize={pageSize}
+        />
       )}
     </div>
   );
