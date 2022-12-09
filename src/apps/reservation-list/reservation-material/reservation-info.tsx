@@ -76,7 +76,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       numberInQueue === 1
         ? t("reservationListFirstInQueueText")
         : t("reservationListNumberInQueueText", {
-            count: numberInQueue - 1
+            placeholders: { "@count": numberInQueue - 1 }
           });
 
     return (
