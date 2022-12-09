@@ -212,13 +212,15 @@ const ReservationModalBody = ({
                   classNames="px-35"
                   sticky
                   type="info"
-                  text={`${t("materialIsAvailableInAnotherEditionText")}
-                    - ${otherManifestationPreferred.titles.main}
-                    - ${getAuthorLine(otherManifestationPreferred, t)}
-                    - ${t(
-                      "materialIsAvailableInAnotherEditionReservationsText"
-                    )}:
-                    ${otherManifestationPreferred.reservations}`}
+                  text={t("materialIsAvailableInAnotherEditionText", {
+                    count: otherManifestationPreferred.reservations,
+                    placeholders: {
+                      "@title": otherManifestationPreferred.titles.main[0],
+                      "@authorAndYear":
+                        getAuthorLine(otherManifestationPreferred, t) ?? "",
+                      "@reservations": otherManifestationPreferred.reservations
+                    }
+                  })}
                 />
               )}
               {patron && (

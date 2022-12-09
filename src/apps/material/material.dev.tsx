@@ -610,12 +610,7 @@ export default {
     materialIsAvailableInAnotherEditionText: {
       name: "Skip queue material is available in another edition",
       defaultValue:
-        "Skip the queue - The material is available in another edition",
-      control: { type: "text" }
-    },
-    materialIsAvailableInAnotherEditionReservationsText: {
-      name: "Skip queue reservations cont",
-      defaultValue: "reservations",
+        '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
       control: { type: "text" }
     }
   }
