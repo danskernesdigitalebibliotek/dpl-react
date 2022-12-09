@@ -74,6 +74,9 @@ export const getCreatorTextFromManifestations = (
   return creatorsToString(creators, t);
 };
 
+// We deliberately left this function here although we don't use it anywhere in the
+// project. It can be used if ever needed to retrieve a chronologically oldest edition,
+// provided a manifestation object.
 export const getFirstPublishedManifestation = (
   manifestations: Manifestation[]
 ) => {
