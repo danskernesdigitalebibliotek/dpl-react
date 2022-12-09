@@ -27,14 +27,16 @@ const Wrapper = ({ children }: { children: ReactNode }) => (
 
 test("Should strings with placeholders", () => {
   const { result } = renderHook(() => useText(), { wrapper: Wrapper });
+  // We name it t, because that is how we normally use it in the code.
+  const t = result.current;
 
   act(() => {
-    const simpleOutput = result.current("simpleText", {
+    const simpleOutput = t("simpleText", {
       placeholders: {
         "@simple": "simple"
       }
     });
-    const placeholdersOutput = result.current("placeholdersText", {
+    const placeholdersOutput = t("placeholdersText", {
       placeholders: {
         "@placeholder": "placeholder",
         "@result": "yes"
@@ -50,15 +52,17 @@ test("Should strings with placeholders", () => {
 
 test("Should handle plural text definitions", () => {
   const { result } = renderHook(() => useText(), { wrapper: Wrapper });
+  // We name it t, because that is how we normally use it in the code.
+  const t = result.current;
 
   act(() => {
-    const pluralTextZeroOutput = result.current("pluralText", {
+    const pluralTextZeroOutput = t("pluralText", {
       count: 0
     });
-    const pluralTextOneOutput = result.current("pluralText", {
+    const pluralTextOneOutput = t("pluralText", {
       count: 1
     });
-    const pluralTextMultipleOutput = result.current("pluralText", {
+    const pluralTextMultipleOutput = t("pluralText", {
       count: 10,
       placeholders: { "@count": 10 }
     });
