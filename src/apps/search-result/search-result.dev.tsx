@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";
@@ -8,6 +9,7 @@ export default {
   title: "Apps / Search Result",
   component: SearchResultEntry,
   argTypes: {
+    ...serviceUrlArgs,
     q: {
       name: "Search string",
       defaultValue: "harry",

@@ -13,7 +13,6 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getFirstPublishedYear,
   getManifestationPid
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
@@ -42,7 +41,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     series,
     creators,
     manifestations: { all: manifestations },
-    workId
+    workId,
+    workYear
   },
   coverTint,
   resultNumber
@@ -55,7 +55,6 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     t
   );
   const author = creatorsText || t("creatorsAreMissingText");
-  const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
   const firstInSeries = series?.[0];
   const { title: seriesTitle, numberInSeries } = firstInSeries || {};
@@ -98,7 +97,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     <article
       className="search-result-item arrow arrow__hover--right-small"
       onClick={handleClick}
-      onKeyUp={handleClick}
+      onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
       <div className="search-result-item__cover">
         <SearchResultListItemCover
@@ -132,9 +131,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </h2>
 
         {author && (
-          <p className="text-small-caption">{`${t(
-            "byAuthorText"
-          )} ${author} (${datePublished})`}</p>
+          <p className="text-small-caption">
+            {`${t("byAuthorText")} ${author}`}
+            {workYear && ` (${workYear})`}
+          </p>
         )}
       </div>
       <div className="search-result-item__availability">

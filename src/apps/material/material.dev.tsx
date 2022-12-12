@@ -1,11 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import MaterialEntry, { MaterialEntryProps } from "./material.entry";
 
 export default {
   title: "Apps / Material",
   component: MaterialEntry,
   argTypes: {
+    ...serviceUrlArgs,
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",
@@ -14,11 +16,6 @@ export default {
     materialUrl: {
       name: "Path to the material page",
       defaultValue: "/work/:workid",
-      control: { type: "text" }
-    },
-    dplCmsBaseUrl: {
-      name: "DPL CMS base URL",
-      defaultValue: "http://dpl-cms.docker",
       control: { type: "text" }
     },
     wid: {
@@ -532,6 +529,79 @@ export default {
       defaultValue: "Close infomedia modal",
       control: { type: "text" }
     },
+    saveButtonText: {
+      name: "Save button text",
+      defaultValue: "Save",
+      control: { type: "text" }
+    },
+    orderDigitalCopyModalScreenReaderModalDescriptionText: {
+      name: "Order digital copy modal screen reader description",
+      defaultValue: "Modal for Order digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyModalCloseModalAriaLabelText: {
+      name: "Close order digital copy modal",
+      defaultValue: "Close Order digital copy modal",
+      control: { type: "text" }
+    },
+    orderDigitalCopyTitleText: {
+      name: "Order digital copy title text",
+      defaultValue: "Order digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyDescriptionText: {
+      name: "Order digital copy description text",
+      defaultValue:
+        "You can order a digital copy of this material. The digital copy will be sent to your email address.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyButtonText: {
+      name: "Order digital copy button text",
+      defaultValue: "Order digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyButtonLoadingText: {
+      name: "Order digital copy button loading text",
+      defaultValue: "Ordering digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessTitleText: {
+      name: "Order digital copy success title text",
+      defaultValue: "Digital copy ordered",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessDescriptionText: {
+      name: "Order digital copy success description text",
+      defaultValue:
+        "The digital copy has been ordered. You will receive an email when the digital copy is ready.",
+      control: { type: "text" }
+    },
+    orderDigitalCopySuccessButtonText: {
+      name: "Order digital copy success button text",
+      defaultValue: "Close",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorTitleText: {
+      name: "Order digital copy error title text",
+      defaultValue: "Error ordering digital copy",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorDescriptionText: {
+      name: "Order digital copy error description text",
+      defaultValue:
+        "An error occurred while ordering the digital copy. Please try again later.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyErrorButtonText: {
+      name: "Order digital copy error button text",
+      defaultValue: "Close",
+      control: { type: "text" }
+    },
+    orderDigitalCopyEmailLabelText: {
+      name: "Order digital copy error email text",
+      defaultValue: "Email",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
@@ -555,4 +625,9 @@ Periodical.args = {
 export const Infomedia = Template.bind({});
 Infomedia.args = {
   wid: "work-of:870971-avis:35731733"
+};
+
+export const Digital = Template.bind({});
+Digital.args = {
+  wid: "work-of:870971-tsart:34310815"
 };

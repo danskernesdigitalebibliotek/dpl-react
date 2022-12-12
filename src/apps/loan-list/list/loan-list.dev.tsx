@@ -1,7 +1,7 @@
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { configTypes } from "../../../core/utils/helpers/fetcher";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
 
@@ -9,6 +9,7 @@ export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
     feesPageUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
@@ -16,14 +17,6 @@ export default {
     },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
       control: { type: "text" }
     },
     pageSizeDesktop: {
@@ -247,11 +240,17 @@ export default {
       },
       defaultValue: "Close material details modal"
     },
-    materialDetailsDueDateLabelText: {
+    materialDetailsPhysicalDueDateLabelText: {
       control: {
         type: "text"
       },
       defaultValue: "Afleveres"
+    },
+    materialDetailsDigitalDueDateLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expires"
     },
     materialDetailsLinkToPageWithFeesText: {
       control: {
@@ -345,6 +344,18 @@ export default {
     },
     showMoreText: {
       defaultValue: "show more",
+      control: { type: "text" }
+    },
+    groupModalGoToMaterialText: {
+      defaultValue: "Go to material details",
+      control: { type: "text" }
+    },
+    groupModalReturnLibraryText: {
+      defaultValue: "Can be returned to all branches of Samsøs libraries",
+      control: { type: "text" }
+    },
+    materialDetailsGoToEreolenText: {
+      defaultValue: "Go to eReolen",
       control: { type: "text" }
     }
   },

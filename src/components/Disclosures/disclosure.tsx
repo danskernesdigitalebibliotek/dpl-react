@@ -1,8 +1,8 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
-import { useText } from "../../../core/utils/text";
-import Pagefold from "../../pagefold/Pagefold";
+import { useText } from "../../core/utils/text";
+import Pagefold from "../pagefold/Pagefold";
 
 export interface DisclosureProps {
   mainIconPath?: string;

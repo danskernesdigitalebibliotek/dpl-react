@@ -11,10 +11,14 @@ import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/i
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
+import { useQueryClient } from "react-query";
 import { useText } from "../../../../core/utils/text";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
-import { useUpdateReservations } from "../../../../core/fbs/fbs";
+import {
+  useUpdateReservations,
+  getGetReservationsV2QueryKey
+} from "../../../../core/fbs/fbs";
 import {
   getPreferredBranch,
   hardcodedInterestPeriods
@@ -37,6 +41,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   branches
 }) => {
   const t = useText();
+  const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
   const [showBranchesSelect, setShowBranchesSelect] = useState<boolean>(false);
@@ -133,13 +138,21 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           onSuccess: () => {
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
+            queryClient.invalidateQueries(getGetReservationsV2QueryKey());
           },
           // todo error handling, missing in figma
           onError: () => {}
         }
       );
     }
-  }, [expiryDate, mutate, reservationId, newBranch?.value, newExpiryDate]);
+  }, [
+    reservationId,
+    expiryDate,
+    newExpiryDate,
+    mutate,
+    newBranch?.value,
+    queryClient
+  ]);
 
   const cancel = useCallback(() => {
     // Reset branch to original branch
@@ -162,20 +175,21 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   return (
     <>
-      {/* todo when does the value change */}
       {numberInQueue && (
         <ListDetails
           icon={EbookIcon}
-          title={t("reservationDetailsNumberInQueueTitelText")}
+          title={t("reservationDetailsStatusTitleText")}
           labels={[
-            `${t("reservationDetailsNumberInQueueLabelText")} ${numberInQueue}`
+            t("reservationDetailsNumberInQueueLabelText", {
+              placeholders: { "@count": numberInQueue }
+            })
           ]}
         />
       )}
       {pickupBranchFetched && (
         <ListDetails
           icon={LocationIcon}
-          title={t("reservationDetailsPickUpAtTitelText")}
+          title={t("reservationDetailsPickUpAtTitleText")}
           labels={[pickupBranchFetched, pickupNumber || ""]}
         >
           {branchesOptions && (
@@ -192,7 +206,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {expiryDate && (
         <ListDetails
           icon={LoanHistoryIcon}
-          title={t("reservationDetailsNoInterestAfterTitelText")}
+          title={t("reservationDetailsNoInterestAfterTitleText")}
           labels={[formatDate(expiryDate)]}
         >
           <ListDetailsDropdown
@@ -214,7 +228,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {dateOfReservation && (
         <ListDetails
           icon={LoansIcon}
-          title={t("reservationDetailsDateOfReservationTitelText")}
+          title={t("reservationDetailsDateOfReservationTitleText")}
           labels={[formatDate(dateOfReservation)]}
         />
       )}
@@ -225,7 +239,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         <Button
           label={t("reservationDetailsSaveText")}
           buttonType="none"
-          id="test-save-physical-details"
+          dataCy="save-physical-details"
           variant="filled"
           disabled={false}
           onClick={save}

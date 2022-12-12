@@ -49,6 +49,9 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
                     placeholders: { "@date": formatDate(dueDate) }
                   })}
                 </h1>
+                <div className="text-body-large">
+                  {t("groupModalReturnLibraryText")}
+                </div>
               </div>
             </div>
             {materialIsOverdue(dueDate) && (

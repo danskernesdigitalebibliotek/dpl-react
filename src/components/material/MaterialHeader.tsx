@@ -66,7 +66,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   );
   const isPeriodical = manifestation.materialTypes.some(
     (materialType: Manifestation["materialTypes"][0]) => {
-      return materialType.specific.includes("tidsskrift");
+      return materialType.specific === "tidsskrift";
     }
   );
 

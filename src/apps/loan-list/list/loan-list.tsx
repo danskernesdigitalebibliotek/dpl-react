@@ -1,6 +1,7 @@
 import React, { useEffect, useState, FC } from "react";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
+  getAmountOfRenewableLoans,
   getDueDatesLoan,
   getModalIds,
   sortByLoanDate
@@ -17,6 +18,10 @@ import {
   mapPublizonLoanToLoanType,
   mapFBSLoanToLoanType
 } from "../../../core/utils/helpers/list-mapper";
+import ToggleListViewButtons from "./ToggleListViewButtons";
+import ListHeader from "./ListHeader";
+import { loansAreEmpty } from "../utils/helpers";
+import RenewLoansModal from "../modal/renew-loans-modal";
 
 interface LoanListProps {
   pageSize: number;
@@ -26,13 +31,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { allLoansId } = getModalIds();
   const { open } = useModalButtonHandler();
   const t = useText();
-  const [view, setView] = useState<string>("list");
-  const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
-  const [digitalLoans, setDigitalLoans] = useState<LoanType[]>([]);
+  const [view, setView] = useState<ListView>("list");
+  const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
+  const [digitalLoans, setDigitalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
-    []
-  );
-  const [digitalLoansDueDates, setDigitalLoansDueDates] = useState<string[]>(
     []
   );
   const { isSuccess, data } = useGetLoansV2();
@@ -51,6 +53,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
+    } else {
+      setPhysicalLoans([]);
     }
   }, [isSuccess, data]);
 
@@ -60,13 +64,9 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
-
       setDigitalLoans(sortedByLoanDate);
-
-      // The due dates are used for the stacked materials
-      // The stacked materials view shows materials stacked by
-      // due date, and for this we need a unique list of due dates
-      setDigitalLoansDueDates(getDueDatesLoan(sortedByLoanDate));
+    } else {
+      setDigitalLoans([]);
     }
   }, [publizonData]);
 
@@ -82,39 +82,54 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   return (
     <div className="loan-list-page">
       <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-      {(physicalLoans.length > 0 || digitalLoans.length > 0) && (
+      {((Array.isArray(physicalLoans) && physicalLoans.length > 0) ||
+        (Array.isArray(digitalLoans) && digitalLoans.length > 0)) && (
         <>
           {physicalLoans && (
             <List
               pageSize={pageSize}
               emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
-              header={t("loanListPhysicalLoansTitleText")}
               loans={physicalLoans}
               dueDates={physicalLoansDueDates}
-              setView={setView}
-              view={view as ListView}
-              viewToggleable
-            />
+              view={view}
+            >
+              <ListHeader
+                header={t("loanListPhysicalLoansTitleText")}
+                amount={physicalLoans.length}
+              >
+                <ToggleListViewButtons
+                  disableRenewLoansButton={
+                    getAmountOfRenewableLoans(physicalLoans) === 0
+                  }
+                  view={view}
+                  setView={setView}
+                  loans={physicalLoans}
+                  pageSize={pageSize}
+                />
+              </ListHeader>
+            </List>
           )}
           {digitalLoans && (
             <List
               pageSize={pageSize}
-              header={t("loanListDigitalLoansTitleText")}
               emptyListLabel={t("loanListDigitalLoansEmptyListText")}
               loans={digitalLoans}
-              dueDates={digitalLoansDueDates}
-              setView={setView}
-              view={view as ListView}
-              viewToggleable={false}
-            />
+              view="list"
+            >
+              <ListHeader
+                header={t("loanListDigitalLoansTitleText")}
+                amount={digitalLoans.length}
+              />
+            </List>
           )}
         </>
       )}
-      {physicalLoans.length === 0 && digitalLoans.length === 0 && (
+      {loansAreEmpty(physicalLoans) && loansAreEmpty(digitalLoans) && (
         <EmptyList
           emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
         />
       )}
+      <RenewLoansModal pageSize={pageSize} loansModal={physicalLoans} />
     </div>
   );
 };

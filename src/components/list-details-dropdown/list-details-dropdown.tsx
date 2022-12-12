@@ -32,7 +32,7 @@ const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
           className="link-tag"
           onClick={() => setShowSelect(true)}
         >
-          {t("listDetailsChangeText")}
+          {t("reservationDetailsChangeText")}
         </button>
       )}
       {showSelect && (

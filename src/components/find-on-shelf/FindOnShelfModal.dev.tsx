@@ -1,9 +1,11 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
 import materialDev from "../../apps/material/material.dev";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
+import { withUrls } from "../../core/utils/url";
 import MaterialButtonsFindOnShelf from "../material/material-buttons/physical/MaterialButtonsFindOnShelf";
 import FindOnShelfModal, { FindOnShelfModalProps } from "./FindOnShelfModal";
 import {
@@ -15,6 +17,7 @@ export default {
   title: "Components / Find On Shelf Modal",
   component: FindOnShelfModal,
   argTypes: {
+    ...serviceUrlArgs,
     // Spread material app argTypes so that we get access to system strings.
     // -> t() function strings in this story.
     ...materialDev.argTypes,
@@ -74,8 +77,8 @@ const Template: ComponentStory<typeof FindOnShelfModal> = (
   const {
     manifestations: [{ pid }]
   } = args;
-  const FindOnShelfModalWithConfigAndText = withConfig(
-    withText(FindOnShelfModal)
+  const FindOnShelfModalWithConfigAndText = withUrls(
+    withConfig(withText(FindOnShelfModal))
   );
   return (
     <>

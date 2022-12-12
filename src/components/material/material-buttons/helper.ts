@@ -1,6 +1,16 @@
 import { intersection } from "lodash";
-import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
+import {
+  Access,
+  AccessTypeCode
+} from "../../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../../core/utils/types/entities";
+
+export const hasCorrectAccess = (
+  desiredAccess: Access["__typename"],
+  manifest: Manifestation
+) => {
+  return manifest.access.some(({ __typename }) => __typename === desiredAccess);
+};
 
 export const hasCorrectAccessType = (
   desiredAccessType: AccessTypeCode,

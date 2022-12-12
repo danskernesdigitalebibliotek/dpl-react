@@ -24,14 +24,14 @@ const DateInputs: FC<DateInputsProps> = ({
         value={startDate}
         id="start-date"
         onChange={setStartDate}
-        label={t("pauseReservationStartDateLabelText")}
+        label={t("dateInputsStartDateLabelText")}
       />
       <DateInput
         onChange={setEndDate}
         minDateInput={startDate || ""}
         value={endDate}
         id="end-date"
-        label={t("pauseReservationEndDateLabelText")}
+        label={t("dateInputsEndDateLabelText")}
       />
     </div>
   );
