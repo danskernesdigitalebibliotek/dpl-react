@@ -6,8 +6,23 @@ import Fees from "./intermediate-list.entry";
 
 export default {
   title: "Apps / Intermediate-list",
-
-  component: Fees
+  component: Fees,
+  byAuthorText: {
+    defaultValue: "By",
+    control: { type: "text" }
+  },
+  totalFeeAmountText: {
+    defaultValue: "Fee",
+    control: { type: "text" }
+  },
+  feeCreatedText: {
+    defaultValue: "Fee created",
+    control: { type: "text" }
+  },
+  otherMaterialsText: {
+    defaultValue: "Other materials",
+    control: { type: "text" }
+  }
 } as ComponentMeta<typeof Fees>;
 
 const Template: ComponentStory<typeof Fees> = (props) => <Fees {...props} />;

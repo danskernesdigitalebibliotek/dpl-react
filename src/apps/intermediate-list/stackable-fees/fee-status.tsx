@@ -2,11 +2,18 @@ import React, { FC, ReactNode } from "react";
 import StatusBadge from "../../loan-list/materials/utils/status-badge";
 
 interface FeeStatusProps {
+  dueDate: string;
   dueDateLabel: string;
   children: ReactNode;
+  reasonMessage: string;
 }
 
-const FeeStatus: FC<FeeStatusProps> = ({ dueDateLabel, children }) => {
+const FeeStatus: FC<FeeStatusProps> = ({
+  dueDate,
+  dueDateLabel,
+  children,
+  reasonMessage
+}) => {
   // const t = useText();
   // const { dueDate, loanDate } = loan;
 
@@ -17,11 +24,11 @@ const FeeStatus: FC<FeeStatusProps> = ({ dueDateLabel, children }) => {
       <div className="list-reservation__deadline">
         <StatusBadge
           dueDate="01-01-2002"
-          dangerText="test"
+          dangerText={reasonMessage}
           warningText="test"
         />
         <p className="text-small-caption" id="due-date">
-          {dueDateLabel}
+          {dueDateLabel} {dueDate}
         </p>
         {children}
       </div>

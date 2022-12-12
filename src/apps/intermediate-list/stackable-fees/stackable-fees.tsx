@@ -12,20 +12,30 @@ import FeeStatus from "./fee-status";
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate?: number;
   fee: FeeV2;
+  feeData: FeeV2;
+  totalFeeAmountText: string;
+  FeeCreatedText: string;
+  byAuthorText: string;
+  otherMaterialsText: string;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
   fee,
-  material
+  material,
+  feeData,
+  totalFeeAmountText,
+  FeeCreatedText,
+  byAuthorText,
+  otherMaterialsText
 }) => {
   // const t = useText();
   // const { open } = useModalButtonHandler();
+  const { amount, creationDate, reasonMessage } = feeData;
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
 
-  console.log(fee);
   // const { materialItemNumber } = fee.materials;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
@@ -75,9 +85,13 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
         }`}
       >
         {fee && (
-          <FeeInfo material={material} isbnForCover="">
+          <FeeInfo
+            material={material}
+            isbnForCover=""
+            byAuthorText={byAuthorText}
+          >
             <AdditionalFeesButton
-              label="label"
+              label={otherMaterialsText}
               showOn="desktop"
               // openDueDateModal={openDueDateModal}
               additionalFees={additionalFees}
@@ -86,7 +100,11 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
           </FeeInfo>
         )}
         <div className="list-reservation__status">
-          <FeeStatus dueDateLabel="Hallo testing">
+          <FeeStatus
+            dueDate={creationDate}
+            dueDateLabel={FeeCreatedText}
+            reasonMessage={reasonMessage}
+          >
             {/* <AdditionalMaterialsButton
             label={t("loanListMaterialsMobileText")}
             showOn="mobile"
@@ -96,7 +114,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
           /> */}
           </FeeStatus>
           <div className="list-reservation__fee">
-            <p className="text-body-medium-medium">Gebyr 30,-</p>
+            <p className="text-body-medium-medium">
+              {totalFeeAmountText} {amount},-
+            </p>
           </div>
         </div>
       </button>

@@ -8,7 +8,18 @@ import {
   getFeesPrePaymentChangeDate
 } from "../utils/intermediate-list-helper";
 
-const FeeList: FC = () => {
+interface FeeListProps {
+  totalFeeAmountText: string;
+  FeeCreatedText: string;
+  byAuthorText: string;
+  otherMaterialsText: string;
+}
+const FeeList: FC<FeeListProps> = ({
+  totalFeeAmountText,
+  FeeCreatedText,
+  byAuthorText,
+  otherMaterialsText
+}) => {
   const { data: fbsFees } = useGetFeesV2<FeeV2>();
   const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
     FeeV2[] | boolean
@@ -32,7 +43,13 @@ const FeeList: FC = () => {
             UBETALTE GEBYRER - <b>INDEN 27/10/2020</b>
           </p>
           {Object.values(itemsPrePaymentChange).map((itemData) => (
-            <FeeListItem itemData={itemData} />
+            <FeeListItem
+              itemData={itemData}
+              totalFeeAmountText={totalFeeAmountText}
+              FeeCreatedText={FeeCreatedText}
+              byAuthorText={byAuthorText}
+              otherMaterialsText={otherMaterialsText}
+            />
           ))}
         </div>
       )}
@@ -42,7 +59,13 @@ const FeeList: FC = () => {
             UBETALTE GEBYRER - <b>EFTER 27/10/2020</b>
           </p>
           {Object.values(itemsPostPaymentChange).map((itemData) => (
-            <FeeListItem itemData={itemData} />
+            <FeeListItem
+              itemData={itemData}
+              totalFeeAmountText={totalFeeAmountText}
+              FeeCreatedText={FeeCreatedText}
+              byAuthorText={byAuthorText}
+              otherMaterialsText={otherMaterialsText}
+            />
           ))}
         </div>
       )}

@@ -22,8 +22,6 @@ const AdditionalFeesButton: FC<AdditionalFeesButtonProps> = ({
   //   },
   //   [openDueDateModal]
   // );
-  console.log("hallo");
-  console.log(additionalFees);
   if (additionalFees < 1) return <div />;
 
   return (

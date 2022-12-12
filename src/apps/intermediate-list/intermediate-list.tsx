@@ -1,11 +1,13 @@
 import React, { FC } from "react";
 import { Link } from "../../components/atoms/link";
+import { useText } from "../../core/utils/text";
 import FeeList from "./fee-list/fee-list";
 
 const IntermedateList: FC = () => {
+  const t = useText();
   return (
     <>
-      <h1>Gebyrer og erstatninger</h1>
+      <h1>Gebyrer og erstatninger {t("totalFeeAmountText")}</h1>
       <span>
         Gebyrer og erstatninger som du har fået 27/10 2020 overgår til et nyt
         system, hvor betalingen sker gennem løsningen Mit betalingsoverblik.
@@ -14,7 +16,12 @@ const IntermedateList: FC = () => {
           Se gebyrer og erstatningstakster
         </Link>
       </span>
-      <FeeList />
+      <FeeList
+        totalFeeAmountText={t("totalFeeAmountText")}
+        FeeCreatedText={t("feeCreatedText")}
+        byAuthorText={t("byAuthorText")}
+        otherMaterialsText={t("otherMaterialsText")}
+      />
     </>
   );
 };
