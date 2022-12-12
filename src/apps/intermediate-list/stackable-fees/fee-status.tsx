@@ -13,19 +13,17 @@ const FeeStatus: FC<FeeStatusProps> = ({ dueDateLabel, children }) => {
   // if (!dueDate || !loanDate) return <div />;
 
   return (
-    <div className="list-reservation__status">
-      <div>
-        <div className="list-reservation__deadline">
-          <StatusBadge
-            dueDate="01-01-2002"
-            dangerText="test"
-            warningText="test"
-          />
-          <p className="text-small-caption" id="due-date">
-            {dueDateLabel}
-          </p>
-          {children}
-        </div>
+    <div>
+      <div className="list-reservation__deadline">
+        <StatusBadge
+          dueDate="01-01-2002"
+          dangerText="test"
+          warningText="test"
+        />
+        <p className="text-small-caption" id="due-date">
+          {dueDateLabel}
+        </p>
+        {children}
       </div>
     </div>
   );

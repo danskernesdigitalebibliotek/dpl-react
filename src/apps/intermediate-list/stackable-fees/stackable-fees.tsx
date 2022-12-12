@@ -24,6 +24,8 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
+
+  console.log(fee);
   // const { materialItemNumber } = fee.materials;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
@@ -83,15 +85,20 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
             />
           </FeeInfo>
         )}
-        <FeeStatus dueDateLabel="Hallo testing">
-          {/* <AdditionalMaterialsButton
+        <div className="list-reservation__status">
+          <FeeStatus dueDateLabel="Hallo testing">
+            {/* <AdditionalMaterialsButton
             label={t("loanListMaterialsMobileText")}
             showOn="mobile"
             screenReaderLabel={t("loanListMaterialsModalMobileText")}
             openDueDateModal={openDueDateModal}
             additionalMaterials={additionalMaterials}
           /> */}
-        </FeeStatus>
+          </FeeStatus>
+          <div className="list-reservation__fee">
+            <p className="text-body-medium-medium">Gebyr 30,-</p>
+          </div>
+        </div>
       </button>
       {/* {dueDate && stack && (
         <DueDateLoansModal

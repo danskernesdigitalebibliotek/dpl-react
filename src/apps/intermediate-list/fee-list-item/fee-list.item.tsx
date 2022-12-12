@@ -9,6 +9,7 @@ export interface FeeListItemProps {
 }
 const FeeListItem: FC<FeeListItemProps> = ({ itemData }) => {
   const { materials } = itemData;
+  console.log(itemData);
   return (
     <StackableFees
       amountOfMaterialsWithDueDate={materials.length}
