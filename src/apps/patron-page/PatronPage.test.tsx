@@ -105,7 +105,7 @@ describe("Patron page", () => {
     // ID 36 2.a. Header
     cy.get(".dpl-patron-page")
       .find("h1")
-      .should("have.text", "User profile page");
+      .should("have.text", "Patron profile page");
 
     // ID 36 2.b. Digital loans - quota
     cy.get(".dpl-patron-page .dpl-status-loans")
