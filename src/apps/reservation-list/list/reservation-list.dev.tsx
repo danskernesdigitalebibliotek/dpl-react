@@ -257,7 +257,7 @@ export default {
       defaultValue: "Pause reservations on physical items",
       control: { type: "text" }
     },
-    pauseReservationModalBreadText: {
+    pauseReservationModalBodyText: {
       defaultValue:
         "Pause your reservations early, since reservations that are already being processed, will not be paused.",
       control: { type: "text" }

@@ -65,7 +65,7 @@ const StatusSection: FC = () => {
             {t("patronPageStatusSectionHeaderText")}
           </h2>
           <div className="text-body-small-regular">
-            {t("patronPageStatusSectionBreadText")}{" "}
+            {t("patronPageStatusSectionBodyText")}{" "}
             <Link href={alwaysLoanableEreolenLink}>
               {t("patronPageStatusSectionLinkText")}
             </Link>
