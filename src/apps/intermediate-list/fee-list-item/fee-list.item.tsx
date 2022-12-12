@@ -13,7 +13,7 @@ const FeeListItem: FC<FeeListItemProps> = ({ itemData }) => {
     <StackableFees
       amountOfMaterialsWithDueDate={materials.length}
       fee={materials}
-      faust={itemData.materials[0].recordId as FaustId}
+      faust={materials[0].recordId as FaustId}
     />
   );
 };

@@ -19,12 +19,11 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   fee,
   material
 }) => {
-  const t = useText();
-  const { open } = useModalButtonHandler();
+  // const t = useText();
+  // const { open } = useModalButtonHandler();
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-
   // const { materialItemNumber } = fee.materials;
 
   function stopPropagationFunction(e: Event | MouseEvent) {
@@ -75,24 +74,24 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
       >
         {fee && (
           <FeeInfo material={material} isbnForCover="">
-            {/* <AdditionalFeesButton
+            <AdditionalFeesButton
               label="label"
               showOn="desktop"
               // openDueDateModal={openDueDateModal}
               additionalFees={additionalFees}
               screenReaderLabel="screenreadertext"
-            /> */}
+            />
           </FeeInfo>
         )}
-        {/* <FeeStatus dueDateLabel=""> */}
-        {/* <AdditionalMaterialsButton
+        <FeeStatus dueDateLabel="Hallo testing">
+          {/* <AdditionalMaterialsButton
             label={t("loanListMaterialsMobileText")}
             showOn="mobile"
             screenReaderLabel={t("loanListMaterialsModalMobileText")}
             openDueDateModal={openDueDateModal}
             additionalMaterials={additionalMaterials}
           /> */}
-        {/* </FeeStatus> */}
+        </FeeStatus>
       </button>
       {/* {dueDate && stack && (
         <DueDateLoansModal
