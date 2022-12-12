@@ -46,7 +46,7 @@ describe("Material - Infomedia", () => {
   });
 
   it("Render infomedia + Read article + Close modal", () => {
-    cy.getBySel("material-header-buttons-find-on-shelf-infomedia-article")
+    cy.getBySel("material-header-buttons-online-infomedia-article")
       .should("be.visible")
       .and("contain", "Read article")
       .click();
