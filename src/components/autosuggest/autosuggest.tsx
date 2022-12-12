@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
@@ -46,7 +47,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
       {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <ul
-        className="autosuggest pb-16"
+        className={`autosuggest pb-16 ${clsx({ "hide-visually": !isOpen })}`}
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
       >
