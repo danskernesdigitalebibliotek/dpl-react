@@ -195,6 +195,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
                 workId={wid}
+                work={work}
               />
             </>
           );
@@ -244,6 +245,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
             workId={wid}
+            work={work}
           />
           {infomediaId && (
             <InfomediaModal
