@@ -31,9 +31,9 @@ export const isArticle = (manifestation: Manifestation) => {
 
 export const hasCorrectMaterialType = (
   desiredMaterialType: string,
-  allMaterialTypes: Manifestation["materialTypes"]
+  manifestation: Manifestation
 ) => {
-  return allMaterialTypes.some(
+  return manifestation.materialTypes.some(
     (type) => type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
   );
 };
