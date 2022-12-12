@@ -9,6 +9,7 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    // Config
     ...serviceUrlArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
@@ -19,6 +20,15 @@ export default {
       name: "Number of search result items on mobile",
       defaultValue: 10,
       control: { type: "number" }
+    },
+    ereolenMyPageUrl: {
+      defaultValue: "https://ereolen.dk/user/me/",
+      control: { type: "text" }
+    },
+    pauseReservationInfoUrl: {
+      defaultValue:
+        "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80",
+      control: { type: "text" }
     },
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",
@@ -35,265 +45,294 @@ export default {
         '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
       control: { type: "text" }
     },
-    headerText: {
-      defaultValue: "Dine reserveringer",
+    // Texts
+    reservationListHeaderText: {
+      defaultValue: "Your reservations",
       control: { type: "text" }
     },
     reservationListPhysicalReservationsHeaderText: {
-      defaultValue: "Fysiske",
+      defaultValue: "Physical reservations",
       control: { type: "text" }
     },
     reservationListDigitalReservationsHeaderText: {
-      defaultValue: "Digitale",
+      defaultValue: "Digital reservations",
       control: { type: "text" }
     },
     reservationListReadyForPickupTitleText: {
-      defaultValue: "Klar til lån",
+      defaultValue: "Ready for pickup",
       control: { type: "text" }
     },
     reservationListReadyForPickupEmptyText: {
-      defaultValue: "Du har i øjeblikket 0 reserveringer klar til lån",
+      defaultValue: "At the moment you have 0 reservations ready for pickup",
       control: { type: "text" }
     },
     reservationListPhysicalReservationsEmptyText: {
-      defaultValue: "Du har i øjeblikket 0 fysiske reserveringer i kø",
+      defaultValue: "At the moment you have 0 physical reservations",
       control: { type: "text" }
     },
     reservationListAllEmptyText: {
-      defaultValue: "Du har i øjeblikket 0 reserveringer",
+      defaultValue: "At the moment you have 0 reservations",
       control: { type: "text" }
     },
     reservationListDigitalReservationsEmptyText: {
-      defaultValue: "Du har i øjeblikket 0 digitale reserveringer i kø",
+      defaultValue: "At the moment you have 0 reservations on digital items",
       control: { type: "text" }
     },
-    readyText: {
-      defaultValue: "Klar",
+    reservationListReadyText: {
+      defaultValue: "Ready",
       control: { type: "text" }
     },
     materialByAuthorText: {
-      defaultValue: "Af",
+      defaultValue: "By",
       control: { type: "text" }
     },
     materialAndAuthorText: {
-      defaultValue: "og",
+      defaultValue: "and",
       control: { type: "text" }
     },
-    youAreNumberInQueueText: {
-      defaultValue: "Du er nummer {tal her} i køen",
+    reservationListNumberInQueueText: {
+      defaultValue: "There are @count people in the queue before you",
       control: { type: "text" }
     },
-    youAreFirstInQueueText: {
-      defaultValue: "Du er forrest i køen",
+    reservationListFirstInQueueText: {
+      defaultValue: "You are at the front of the queue",
       control: { type: "text" }
     },
-    expiresSoonText: {
-      defaultValue: "Udløber snart",
-      control: { type: "text" }
-    },
-    inLineText: {
-      defaultValue: "I køen",
+    reservationListInQueueText: {
+      defaultValue: "queued",
       control: { type: "text" }
     },
     reservationPickUpLatestText: {
-      defaultValue: "Hent senest",
+      defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
     publizonEbookText: {
-      defaultValue: "E-bog",
+      defaultValue: "E-book",
       control: { type: "text" }
     },
     publizonAudioBookText: {
-      defaultValue: "Lydbog",
+      defaultValue: "Audiobook",
       control: { type: "text" }
     },
     publizonPodcastText: {
       defaultValue: "Podcast",
       control: { type: "text" }
     },
-    loanBeforeText: {
-      defaultValue: "Lånes inden",
+    reservationListLoanBeforeText: {
+      defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
-    daysText: {
-      defaultValue: "Dage",
+    reservationListAvailableInText: {
+      defaultValue: "Available in @count days",
       control: { type: "text" }
     },
-    canBeLoanedInText: {
-      defaultValue: "Kan lånes om dage",
+    reservationListDaysText: {
+      defaultValue: "days",
       control: { type: "text" }
     },
-    reservationDetailsButtonText: {
-      defaultValue: "Fjern din reservering",
+    reservationListDayText: {
+      defaultValue: "day",
+      control: { type: "text" }
+    },
+    reservationDetailsButtonRemoveText: {
+      defaultValue: "Remove your reservation",
       control: { type: "text" }
     },
     reservationDetailsOthersInQueueText: {
-      defaultValue: "Andre står i kø til materialet",
+      defaultValue: "Others are queueing for this material",
       control: { type: "text" }
     },
     reservationDetailsNumberInQueueLabelText: {
-      defaultValue: "i køen",
+      defaultValue: "@count queued",
       control: { type: "text" }
     },
-    reservationDetailsNumberInQueueTitelText: {
+    reservationDetailsStatusTitleText: {
       defaultValue: "Status",
       control: { type: "text" }
     },
-    reservationDetailsExpiresTitelText: {
-      defaultValue: "Status",
+    reservationDetailsExpiresTitleText: {
+      defaultValue: "Pickup deadline",
       control: { type: "text" }
     },
-    reservationDetailsPickUpAtTitelText: {
-      defaultValue: "Afhentes på",
+    reservationDetailsDigitalMaterialExpiresTitleText: {
+      defaultValue: "Borrow before",
       control: { type: "text" }
     },
-    listDetailsChangeText: {
-      defaultValue: "Skift",
+    reservationDetailsPickUpAtTitleText: {
+      defaultValue: "Pickup branch",
+      control: { type: "text" }
+    },
+    reservationDetailsChangeText: {
+      defaultValue: "Apply changes",
       control: { type: "text" }
     },
     reservationDetailsPickupDeadlineTitleText: {
-      defaultValue: "Udløbsdato",
+      defaultValue: "Pickup deadline",
       control: { type: "text" }
     },
-    reservationDetailsPickupDeadlineTitelText: {
-      defaultValue: "Udløbsdato",
+    reservationDetailsDateOfReservationTitleText: {
+      defaultValue: "Date of reservation",
       control: { type: "text" }
     },
-    reservationDetailsExpiresLabelText: {
-      defaultValue: "Reserveringen udløber",
-      control: { type: "text" }
-    },
-    reservationDetailsDateOfReservationTitelText: {
-      defaultValue: "Reserveringsdato",
-      control: { type: "text" }
-    },
-    reservationDetailsNoInterestAfterTitelText: {
-      defaultValue: "Har ingen interesse efter",
+    reservationDetailsNoInterestAfterTitleText: {
+      defaultValue: "Not interested after",
       control: { type: "text" }
     },
     reservationDetailsReadyForLoanText: {
-      defaultValue: "Klar til lån",
+      defaultValue: "Ready for pickup",
       control: { type: "text" }
     },
-    reservationDetailsRemoveReservationText: {
-      defaultValue: "Fjern din reservering",
+    reservationDetailsRemoveDigitalReservationText: {
+      defaultValue: "Remove your reservation",
       control: { type: "text" }
     },
-    reservationDetailsGoToEreolenText: {
-      defaultValue: "Gå til ereolen",
+    reservationDetailsDigitalReservationGoToEreolenText: {
+      defaultValue: "Go to eReolen",
       control: { type: "text" }
     },
-    reservationDetailsLoanBeforeText: {
-      defaultValue: "Lånes inden",
+    reservationDetailsBorrowBeforeText: {
+      defaultValue: "Borrow before @date",
+      control: { type: "text" }
+    },
+    reservationDetailsExpiresText: {
+      defaultValue: "Your reservation expires @date!",
       control: { type: "text" }
     },
     reservationDetailsSaveText: {
-      defaultValue: "Gem",
+      defaultValue: "Save",
       control: { type: "text" }
     },
     reservationDetailsCancelText: {
-      defaultValue: "Annuller",
+      defaultValue: "Cancel",
       control: { type: "text" }
     },
     deleteReservationModalHeaderText: {
-      defaultValue: "Slet reservering",
+      defaultValue:
+        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
       control: { type: "text" }
     },
     deleteReservationModalDeleteQuestionText: {
-      defaultValue: "Vil du slette din reservering?",
+      defaultValue:
+        '{"type":"plural","text":["Do you want to cancel your reservation?","Do you want to cancel your reservations?"]}',
       control: { type: "text" }
     },
     deleteReservationModalNotRegrettableText: {
-      defaultValue: "Handlingen kan ikke fortrydes",
+      defaultValue: "You cannot regret this action",
       control: { type: "text" }
     },
-    deleteReservationModalDeleteText: {
-      defaultValue: "Slet",
+    deleteReservationModalDeleteButtonText: {
+      defaultValue:
+        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
       control: { type: "text" }
     },
     deleteReservationModalCloseModalText: {
-      defaultValue: "Luk slet reserveringer modal",
+      defaultValue: "Close delete reservation modal",
       control: { type: "text" }
     },
     deleteReservationModalAriaDescriptionText: {
       defaultValue:
-        "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at slette reservationen",
+        "This button opens a modal that covers the entire page and contains the possibility to delete a selected reservation, or multiple selected reservations",
       control: { type: "text" }
     },
     reservationListPauseReservationText: {
-      defaultValue: "Sæt fysiske reserveringer på pause",
+      defaultValue: "Pause your reservations",
       control: { type: "text" }
     },
     reservationListOnHoldAriaText: {
-      defaultValue: "Reserveringerne er sat på pause i tidsrummet",
+      defaultValue:
+        "Reservations have been paused in the following time span: ",
       control: { type: "text" }
     },
     reservationListPauseReservationAriaModalText: {
       defaultValue:
-        "Denne knap åbner en modal der dækker hele vinduet og der gør det muligt at sætte alle dine reservationer på pause",
+        "This button opens a modal that covers the entire page and contains the possibility to pause physical reservations",
       control: { type: "text" }
     },
     pauseReservationModalAriaDescriptionText: {
       defaultValue:
-        "Denne knap åbner en modal der dækker hele vinduet og der giver dig mulighed for at sætte reservationener på pause",
+        "This modal makes it possible to pause your physical reservations",
       control: { type: "text" }
     },
     pauseReservationModalHeaderText: {
-      defaultValue: "Sæt reserveringer på pause",
+      defaultValue: "Pause reservations on physical items",
       control: { type: "text" }
     },
     pauseReservationModalBreadText: {
       defaultValue:
-        "Sæt fysiske reserveringer på pause i god tid, da reserveringer der allerede bliver behandlet ikke bliver sat på pause.",
+        "Pause your reservations early, since reservations that are already being processed, will not be paused.",
       control: { type: "text" }
     },
     pauseReservationModalCloseModalText: {
-      defaultValue: "Luk sæt reservationer på pause modal",
+      defaultValue: "Close pause reservations modal",
       control: { type: "text" }
     },
-    pauseReservationStartDateLabelText: {
-      defaultValue: "Startdato",
+    dateInputsStartDateLabelText: {
+      defaultValue: "Start date",
       control: { type: "text" }
     },
-    pauseReservationEndDateLabelText: {
-      defaultValue: "Slutdato",
+    dateInputsEndDateLabelText: {
+      defaultValue: "End date",
       control: { type: "text" }
     },
     pauseReservationModalBelowInputsTextText: {
-      defaultValue:
-        "Bemærk der kan være en forsinkelse på, hvornår pausen begynder.",
+      defaultValue: "",
       control: { type: "text" }
     },
     pauseReservationModalLinkText: {
-      defaultValue: "Læs mere",
+      defaultValue:
+        "Read more about pausing reservertions and what that means here",
       control: { type: "text" }
     },
     pauseReservationModalSaveButtonLabelText: {
-      defaultValue: "Gem",
+      defaultValue: "Save",
       control: { type: "text" }
     },
     oneMonthText: {
-      defaultValue: "1 måned",
+      defaultValue: "1 month",
       control: { type: "text" }
     },
     twoMonthsText: {
-      defaultValue: "2 måneder",
+      defaultValue: "2 months",
       control: { type: "text" }
     },
     threeMonthsText: {
-      defaultValue: "3 måneder",
+      defaultValue: "3 months",
       control: { type: "text" }
     },
     sixMonthsText: {
-      defaultValue: "6 måneder",
+      defaultValue: "6 months",
       control: { type: "text" }
     },
     oneYearText: {
-      defaultValue: "1 år",
+      defaultValue: "1 year",
       control: { type: "text" }
     },
     listDetailsNothingSelectedLabelText: {
-      defaultValue: "Vælg",
+      defaultValue: "Pick",
+      control: { type: "text" }
+    },
+    showMoreText: {
+      name: "Show more Text",
+      defaultValue: "show more",
+      control: { type: "text" }
+    },
+    resultPagerStatusText: {
+      name: "Result pager status text",
+      defaultValue: "Showing @itemsShown out of @hitcount results",
+      control: { type: "text" }
+    },
+    reservationListStatusIconReadyForPickupAriaLabelText: {
+      defaultValue: "This material is ready for pickup",
+      control: { type: "text" }
+    },
+    reservationListStatusIconQueuedAriaLabelText: {
+      defaultValue:
+        '{"type":"plural","text":["You are the only person queued for this material","This material has @count people in queue before you"]}',
+      control: { type: "text" }
+    },
+    reservationListStatusIconReadyInAriaLabelText: {
+      defaultValue:
+        '{"type":"plural","text":["This material is ready in 1 day","This material is ready in @count days"]}',
       control: { type: "text" }
     }
   },

@@ -35,8 +35,8 @@ interface PatronPageTextProps {
   patronPagePauseReservationsBreadText: string;
   patronPageOpenPauseReservationsSectionText: string;
   patronPageOpenPauseReservationsSectionAriaText: string;
-  pauseReservationEndDateLabelText: string;
-  pauseReservationStartDateLabelText: string;
+  dateInputsEndDateLabelText: string;
+  dateInputsStartDateLabelText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageChangePincodeBreadText: string;
   patronPagePincodeLabelText: string;

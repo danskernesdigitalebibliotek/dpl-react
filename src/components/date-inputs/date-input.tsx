@@ -24,6 +24,7 @@ const DateInput: FC<DateInputProps> = ({
         {label}
       </label>
       <input
+        data-cy={id}
         type="date"
         onChange={({ target }) => onChange(target.value)}
         name={id}

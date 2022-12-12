@@ -254,10 +254,11 @@ export const mapFBSReservationToReservationType = (
       pickupBranch,
       pickupDeadline,
       pickupNumber,
-      reservationId
+      reservationId,
+      periodical
     }) => {
       return {
-        identifier: null,
+        periodical: periodical?.displayText || "",
         faust: recordId as FaustId,
         dateOfReservation,
         expiryDate,
