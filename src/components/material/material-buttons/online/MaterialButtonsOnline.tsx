@@ -63,7 +63,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   if (
     accessType === "DigitalArticleService" &&
-    hasCorrectMaterialType("tidsskriftsartikel", manifestation.materialTypes)
+    hasCorrectMaterialType("tidsskriftsartikel", manifestation)
   ) {
     const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
