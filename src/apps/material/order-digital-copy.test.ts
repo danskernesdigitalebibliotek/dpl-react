@@ -54,33 +54,27 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .and("contain", "Faglig formidling er ikke kun skriveteknik");
 
-    cy.getBySel("material-header-buttons-find-on-shelf-digital-article").should(
+    cy.getBySel("material-header-buttons-online-digital-article").should(
       "be.visible"
     );
   });
 
   it("render modal to order digital copy", () => {
-    cy.getBySel("material-header-buttons-find-on-shelf-digital-article")
+    cy.getBySel("material-header-buttons-online-digital-article")
       .should("be.visible")
       .click();
 
-    cy.getBySel("email-order-digital-copy")
-      .should("be.visible")
-      .and("have.value", "test@test.com");
+    cy.getBySel("email-order-digital-copy").should("be.visible");
 
-    cy.getBySel("button")
+    cy.getBySel("order-digital-button")
       .should("be.visible")
       .and("contain", "Order digital copy");
   });
 
-  it("order digital copy with fail", () => {
-    cy.getBySel("material-header-buttons-find-on-shelf-digital-article")
+  it("shows an error message if ordering fails", () => {
+    cy.getBySel("material-header-buttons-online-digital-article")
       .should("be.visible")
       .click();
-
-    cy.getBySel("email-order-digital-copy")
-      .should("be.visible")
-      .and("have.value", "test@test.com");
 
     cy.intercept("POST", "**/dpl_das/order", {
       statusCode: 500,
@@ -90,33 +84,54 @@ describe("Material - Order digital copy", () => {
       }
     });
 
-    cy.getBySel("button").should("be.visible").click();
+    cy.getBySel("order-digital-button").should("be.visible").click();
 
-    cy.contains("Error ordering digital copy");
-    cy.getBySel("button").should("be.visible").and("contain", "Close").click();
+    cy.getBySel("order-digital-feedback-title").should(
+      "contain",
+      "Error ordering digital copy"
+    );
+
+    cy.getBySel("order-digital-feedback-button")
+      .should("be.visible")
+      .and("contain", "Close")
+      .click();
   });
 
-  it("order digital copy with succes", () => {
-    cy.getBySel("material-header-buttons-find-on-shelf-digital-article")
+  it("uses the patron email adress by default", () => {
+    cy.getBySel("material-header-buttons-online-digital-article")
       .should("be.visible")
       .click();
 
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
       .and("have.value", "test@test.com");
+  });
+
+  it("shows a confirmation message when an order is completed", () => {
+    cy.getBySel("material-header-buttons-online-digital-article")
+      .should("be.visible")
+      .click();
+
+    cy.getBySel("email-order-digital-copy")
+      .should("be.visible")
+      .clear()
+      .type("new-mail.test.com");
 
     cy.intercept("POST", "**/dpl_das/order", {
-      statusCode: 200,
+      statusCode: 201,
       body: {
         pid: "870971-tsart:34310815",
-        email: "test@test.com"
+        email: "new-mail.test.com"
       }
     });
 
-    cy.getBySel("button").should("be.visible").click();
+    cy.getBySel("order-digital-button").should("be.visible").click();
 
     cy.contains("Digital copy ordered");
-    cy.getBySel("button").should("be.visible").and("contain", "Close").click();
+    cy.getBySel("order-digital-feedback-button")
+      .should("be.visible")
+      .and("contain", "Close")
+      .click();
   });
 });
 

@@ -52,7 +52,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           manifestation={manifestation}
           size={size}
           workId={workId}
-          dataCy={`${dataCy}-find-on-shelf`}
+          dataCy={`${dataCy}-online`}
         />
       )}
     </>

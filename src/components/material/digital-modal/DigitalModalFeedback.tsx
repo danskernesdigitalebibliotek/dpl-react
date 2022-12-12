@@ -16,6 +16,7 @@ const DigitalModalFeedback: React.FunctionComponent<
 
   return (
     <ReservationForm
+      cyData="order-digital-feedback"
       title={
         isError
           ? t("orderDigitalCopyErrorTitleText")
