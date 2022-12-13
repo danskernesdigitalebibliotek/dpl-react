@@ -1346,9 +1346,63 @@ export type GetFavoriteMaterialManifestationQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
+    workYear?: string | null;
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
+    reviews: Array<
+      | {
+          __typename: "ExternalReview";
+          author?: string | null;
+          date?: string | null;
+          rating?: string | null;
+          urls: Array<{
+            __typename?: "AccessUrl";
+            origin: string;
+            url: string;
+          }>;
+        }
+      | {
+          __typename: "InfomediaReview";
+          author?: string | null;
+          date?: string | null;
+          origin?: string | null;
+          rating?: string | null;
+          id: string;
+        }
+      | {
+          __typename: "LibrariansReview";
+          author?: string | null;
+          date?: string | null;
+          sections: Array<{
+            __typename?: "LibrariansReviewSection";
+            code: LibrariansReviewSectionCode;
+            heading?: string | null;
+            text: string;
+          }>;
+        }
+    >;
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
+    dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     titles: {
       __typename?: "WorkTitles";
       full: Array<string>;
@@ -3929,10 +3983,10 @@ export const WorkMediumFragmentDoc = `
 export const GetFavoriteMaterialManifestationDocument = `
     query getFavoriteMaterialManifestation($pid: String!) {
   work(pid: $pid) {
-    ...WorkSmall
+    ...WorkMedium
   }
 }
-    ${WorkSmallFragmentDoc}`;
+    ${WorkMediumFragmentDoc}`;
 export const useGetFavoriteMaterialManifestationQuery = <
   TData = GetFavoriteMaterialManifestationQuery,
   TError = unknown

@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
-import { configTypes } from "../../core/utils/helpers/fetcher";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FavoritesListEntry, {
   FavoritesListEntryProps
 } from "./FavoritesList.entry";
@@ -10,10 +10,7 @@ export default {
   title: "Apps / Favorite list",
   component: FavoritesListEntry,
   argTypes: {
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
+    ...serviceUrlArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       defaultValue: 50,
@@ -23,6 +20,16 @@ export default {
       name: "Number of search result items on mobile",
       defaultValue: 20,
       control: { type: "number" }
+    },
+    showMoreText: {
+      name: "Show more Text",
+      defaultValue: "show more",
+      control: { type: "text" }
+    },
+    resultPagerStatusText: {
+      name: "Result pager status text",
+      defaultValue: "Showing @itemsShown out of @hitcount results",
+      control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
       name: "Blacklisted Availability branches",

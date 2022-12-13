@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
+import { List } from "../../core/material-list-api/model";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
@@ -11,27 +13,35 @@ export interface FavoritesListProps {
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
   const { data } = useGetList("default");
-  const [materials, setMaterials] = useState<Pid[]>([
-    "870970-basis:51374975",
-    "870970-basis:53063403",
-    "870970-basis:51363035",
-    "870970-basis:29630364"
-  ]);
+  const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
+  const [materials, setMaterials] = useState([]);
+  const { itemsShown, PagerComponent } = usePager(materials.length, pageSize);
 
   useEffect(() => {
+    setDisplayedMaterials([...materials].splice(0, itemsShown));
+  }, [itemsShown, materials]);
+  useEffect(() => {
     console.log(data);
+    // @ts-ignore
+    if (data && data.materials) {
+      // @ts-ignore
+      setMaterials(data.materials);
+    }
   }, [data]);
+
   return (
     <div className="search-result-page">
       <h1 className="text-header-h2 mb-16 search-result-title">
         {t("favoritesListHeaderText")}
       </h1>
-      <p className="text-small-caption my-32">
-        {/* todo string interpolation */}
-        {materials.length} {t("favoritesListMaterialsText")}
-      </p>
+      {materials.length > 0 && (
+        <p className="text-small-caption my-32">
+          {/* todo string interpolation */}
+          {materials.length} {t("favoritesListMaterialsText")}
+        </p>
+      )}
       <ul className="search-result-page__list my-32">
-        {materials.map((pid) => {
+        {displayedMaterials.map((pid) => {
           return (
             <li key={pid}>
               <SearchResultListItemAdapter key={pid} pid={pid} />
@@ -39,6 +49,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
           );
         })}
       </ul>
+      {PagerComponent}
     </div>
   );
 };

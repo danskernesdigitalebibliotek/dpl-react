@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import SearchResultListItem from "../../../components/search-result-list/search-result-list-item/search-result-list-item";
 import { Pid } from "../../../core/utils/types/ids";
 import { useGetFavoriteMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
@@ -17,12 +17,15 @@ const SearchResultListItemAdapter: FC<SearchResultListItemAdapterProps> = ({
 
   return (
     <div>
-      {data && (
-        <SearchResultListItem
-          key={data.work?.workId}
-          item={data.work as Work}
-          coverTint="100"
-        />
+      {data && data.work && (
+        <>
+          {pid}
+          <SearchResultListItem
+            key={data.work?.workId}
+            item={data.work as Work}
+            coverTint="100"
+          />
+        </>
       )}
     </div>
   );

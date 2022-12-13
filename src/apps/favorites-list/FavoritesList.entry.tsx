@@ -18,6 +18,8 @@ interface FavoritesListTextEntryProps {
   favoritesListHeaderText: string;
   byAuthorText: string;
   etAlText: string;
+  showMoreText: string;
+  resultPagerStatusText: string;
 }
 
 export interface FavoritesListEntryProps
