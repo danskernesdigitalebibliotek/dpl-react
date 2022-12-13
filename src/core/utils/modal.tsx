@@ -65,6 +65,7 @@ function Modal({
           classNames
         )}
         role="dialog"
+        aria-label={screenReaderModalDescriptionText}
       >
         <div
           className="modal__screen-reader-description"
