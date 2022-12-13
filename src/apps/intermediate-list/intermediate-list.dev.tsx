@@ -7,10 +7,6 @@ import Fees from "./intermediate-list.entry";
 export default {
   title: "Apps / Intermediate-list",
   component: Fees,
-  byAuthorText: {
-    defaultValue: "By",
-    control: { type: "text" }
-  },
   totalFeeAmountText: {
     defaultValue: "Fee",
     control: { type: "text" }

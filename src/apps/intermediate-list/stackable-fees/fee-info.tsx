@@ -6,14 +6,8 @@ interface FeeInfoProps {
   material: any;
   isbnForCover: string;
   children: ReactNode;
-  byAuthorText: string;
 }
-const FeeInfo: FC<FeeInfoProps> = ({
-  material,
-  isbnForCover,
-  children,
-  byAuthorText
-}) => {
+const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
   const { authors, materialType, year, title, description, pid, series } =
     material || {};
   const coverId = pid || isbnForCover;
@@ -38,11 +32,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
             <div>
-              {authors && (
-                <>
-                  {byAuthorText} {authors}
-                </>
-              )}
+              {authors && authors}
               {year && <>({year})</>}
             </div>
             <div>{series && series}</div>

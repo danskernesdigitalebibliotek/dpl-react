@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
-import { useText } from "../../../core/utils/text";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import FeeInfo from "./fee-info";
@@ -8,36 +7,35 @@ import fetchMaterial, {
 } from "../../loan-list/materials/utils/material-fetch-hoc";
 import AdditionalFeesButton from "./additional-fees-button";
 import FeeStatus from "./fee-status";
+import FeeDetailsModal from "../modal/fee-details-modal";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate?: number;
   fee: FeeV2;
+  faust: string;
   feeData: FeeV2;
   totalFeeAmountText: string;
   FeeCreatedText: string;
-  byAuthorText: string;
   otherMaterialsText: string;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
   fee,
+  faust,
   material,
   feeData,
   totalFeeAmountText,
   FeeCreatedText,
-  byAuthorText,
   otherMaterialsText
 }) => {
-  // const t = useText();
-  // const { open } = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const { amount, creationDate, reasonMessage } = feeData;
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
 
   // const { materialItemNumber } = fee.materials;
-
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
   }
@@ -65,31 +63,26 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   //   }
   // }, [openDueDateModal, openModal]);
 
-  // const selectListMaterial = useCallback(
-  //   (e: MouseEvent) => {
-  //     stopPropagationFunction(e);
-  //     open(faust || identifier || "");
-  //   },
-  //   [faust, identifier, open]
-  // );
+  const selectListMaterial = useCallback(
+    (e: MouseEvent) => {
+      stopPropagationFunction(e);
+      console.log(`hallo? ${faust}`);
+      open(faust || "");
+    },
+    [faust, open]
+  );
 
   return (
     <>
       <button
         type="button"
-        onClick={(e) => {
-          console.log("waheyu");
-        }}
+        onClick={(e) => selectListMaterial(e)}
         className={`list-reservation my-32 ${
           additionalFees > 0 ? "list-reservation--stacked" : ""
         }`}
       >
         {fee && (
-          <FeeInfo
-            material={material}
-            isbnForCover=""
-            byAuthorText={byAuthorText}
-          >
+          <FeeInfo material={material} isbnForCover="">
             <AdditionalFeesButton
               label={otherMaterialsText}
               showOn="desktop"
@@ -127,13 +120,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
           loansModal={stack}
         />
       )} */}
-      {/* <MaterialDetailsModal modalEntity={loan} material={material}>
-        <MaterialDetails
-          faust={loan.faust}
-          identifier={loan.identifier}
-          loan={loan}
-        />
-      </MaterialDetailsModal> */}
+      <FeeDetailsModal faust={faust} material={material}>
+        <h1>Hello WOrld! :D:D:D</h1>
+      </FeeDetailsModal>
     </>
   );
 };

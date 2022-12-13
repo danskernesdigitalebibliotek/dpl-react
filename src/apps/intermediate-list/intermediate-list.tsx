@@ -19,7 +19,6 @@ const IntermedateList: FC = () => {
       <FeeList
         totalFeeAmountText={t("totalFeeAmountText")}
         FeeCreatedText={t("feeCreatedText")}
-        byAuthorText={t("byAuthorText")}
         otherMaterialsText={t("otherMaterialsText")}
       />
     </>

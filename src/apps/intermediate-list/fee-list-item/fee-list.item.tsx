@@ -8,14 +8,12 @@ export interface FeeListItemProps {
   itemData: any;
   totalFeeAmountText: string;
   FeeCreatedText: string;
-  byAuthorText: string;
   otherMaterialsText: string;
 }
 const FeeListItem: FC<FeeListItemProps> = ({
   itemData,
   totalFeeAmountText,
   FeeCreatedText,
-  byAuthorText,
   otherMaterialsText
 }) => {
   const { materials } = itemData;
@@ -28,7 +26,6 @@ const FeeListItem: FC<FeeListItemProps> = ({
       totalFeeAmountText={totalFeeAmountText}
       feeData={itemData}
       FeeCreatedText={FeeCreatedText}
-      byAuthorText={byAuthorText}
       otherMaterialsText={otherMaterialsText}
     />
   );

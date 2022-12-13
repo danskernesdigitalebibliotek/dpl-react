@@ -7,7 +7,6 @@ import IntermedateList from "./intermediate-list";
 export interface IntermedateListProps {
   totalFeeAmountText: string;
   feeCreatedText: string;
-  byAuthorText: string;
   otherMaterialsText: string;
 }
 

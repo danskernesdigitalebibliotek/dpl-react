@@ -11,13 +11,11 @@ import {
 interface FeeListProps {
   totalFeeAmountText: string;
   FeeCreatedText: string;
-  byAuthorText: string;
   otherMaterialsText: string;
 }
 const FeeList: FC<FeeListProps> = ({
   totalFeeAmountText,
   FeeCreatedText,
-  byAuthorText,
   otherMaterialsText
 }) => {
   const { data: fbsFees } = useGetFeesV2<FeeV2>();
@@ -47,7 +45,6 @@ const FeeList: FC<FeeListProps> = ({
               itemData={itemData}
               totalFeeAmountText={totalFeeAmountText}
               FeeCreatedText={FeeCreatedText}
-              byAuthorText={byAuthorText}
               otherMaterialsText={otherMaterialsText}
             />
           ))}
@@ -63,7 +60,6 @@ const FeeList: FC<FeeListProps> = ({
               itemData={itemData}
               totalFeeAmountText={totalFeeAmountText}
               FeeCreatedText={FeeCreatedText}
-              byAuthorText={byAuthorText}
               otherMaterialsText={otherMaterialsText}
             />
           ))}
