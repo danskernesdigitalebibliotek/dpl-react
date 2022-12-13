@@ -17,7 +17,6 @@ const FeeListItem: FC<FeeListItemProps> = ({
   otherMaterialsText
 }) => {
   const { materials } = itemData;
-  console.log(itemData);
   return (
     <StackableFees
       amountOfMaterialsWithDueDate={materials.length}
