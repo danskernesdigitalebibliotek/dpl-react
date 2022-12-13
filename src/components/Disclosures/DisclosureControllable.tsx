@@ -66,7 +66,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
           alt=""
         />
       </div>
-      {isOpen && <div id={disclosureId}>{children}</div>}
+      <div id={disclosureId} className={clsx({ "hide-visually": !isOpen })}>
+        {children}
+      </div>
     </div>
   );
 };
