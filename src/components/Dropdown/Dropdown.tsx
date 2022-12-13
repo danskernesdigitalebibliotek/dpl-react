@@ -43,6 +43,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
     return undefined;
   };
 
+  const optionsList = placeholder ? [placeholder, ...options] : options;
+
   return (
     <div className={classes.root}>
       <select
@@ -51,30 +53,17 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
         aria-label={ariaLabel}
         onChange={checkHandleOnChange}
       >
-        {placeholder && (
+        {optionsList.map(({ label, value, disabled }) => (
           <option
+            key={label}
+            value={value}
             className={classes.option}
-            value={placeholder.value}
-            selected={placeholder.value === defaultValue}
-            disabled={placeholder.disabled}
+            disabled={disabled}
+            selected={value === defaultValue}
           >
-            {placeholder.label}
+            {label}
           </option>
-        )}
-
-        {options.map(({ label, value, disabled }) => {
-          return (
-            <option
-              key={label}
-              value={value}
-              className={classes.option}
-              disabled={disabled}
-              selected={value === defaultValue}
-            >
-              {label}
-            </option>
-          );
-        })}
+        ))}
       </select>
       <div className={classes.arrowWrapper}>
         <DropdownIcon arrowIcon={arrowIcon} />
