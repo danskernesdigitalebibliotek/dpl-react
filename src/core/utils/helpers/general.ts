@@ -127,6 +127,14 @@ export const daysBetweenTodayAndDate = (date: string) => {
   // and we need it to be rounded up
   return Math.ceil(inputDate.diff(today, "day", true));
 };
+export const daysBetweenDates = (firstData: string, secondDate: string) => {
+  const inputFirstDate = dayjs(new Date(firstData));
+  const inputSecondDate = dayjs(new Date(secondDate));
+
+  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
+  // and we need it to be rounded up
+  return Math.ceil(inputFirstDate.diff(inputSecondDate, "day", true));
+};
 
 export const usePrevious = <Type>(value: Type) => {
   const ref = useRef<Type>();
