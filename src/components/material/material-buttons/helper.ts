@@ -28,7 +28,7 @@ export const hasCorrectMaterialType = (
 };
 
 export const isArticle = (manifestation: Manifestation) => {
-  return !!(
+  return (
     hasCorrectMaterialType("tidsskriftsartikel", manifestation) ||
     hasCorrectMaterialType("avisartikel", manifestation)
   );
