@@ -8,11 +8,13 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 interface RenewLoansModalProps {
   loansModal: LoanType[] | null;
   pageSize: number;
+  openLoanDetailsModal: (modalId: string) => void;
 }
 
 const RenewLoansModal: FC<RenewLoansModalProps> = ({
   loansModal,
-  pageSize
+  pageSize,
+  openLoanDetailsModal
 }) => {
   const t = useText();
 
@@ -36,6 +38,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
             <RenewLoansModalContent
               pageSize={pageSize}
               loansModal={loansModal}
+              openLoanDetailsModal={openLoanDetailsModal}
             />
           </>
         )}

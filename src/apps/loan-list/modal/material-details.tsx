@@ -19,7 +19,7 @@ import RenewButton from "./renew-button";
 import { Link } from "../../../components/atoms/link";
 
 interface MaterialDetailsProps {
-  loan: LoanType;
+  loan: LoanType | null;
 }
 
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
@@ -27,6 +27,11 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
+
+  if (!loan) {
+    return null;
+  }
+
   const {
     dueDate,
     faust,

@@ -18,12 +18,14 @@ import { useText } from "../../../core/utils/text";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];
+  openLoanDetailsModal: (modalId: string) => void;
   pageSize: number;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   loansModal,
-  pageSize
+  pageSize,
+  openLoanDetailsModal
 }) => {
   const { mutate } = useRenewLoansV2();
   const t = useText();
@@ -125,6 +127,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {displayedLoans.map((loanType) => {
             return (
               <SelectableMaterial
+                openLoanDetailsModal={openLoanDetailsModal}
                 faust={loanType.faust}
                 identifier={loanType.identifier}
                 key={loanType.faust}

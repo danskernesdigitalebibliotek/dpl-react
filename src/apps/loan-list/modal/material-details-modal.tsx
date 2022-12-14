@@ -1,24 +1,21 @@
 import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { ListType } from "../../../core/utils/types/list-type";
-import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 interface MaterialDetailsModalProps {
-  material: BasicDetailsType | undefined | null;
-  modalEntity: ListType;
+  modalId?: string;
   children: ReactNode;
 }
 
 const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
-  modalEntity,
+  modalId,
   children
 }) => {
   const t = useText();
 
   return (
     <Modal
-      modalId={modalEntity.faust || modalEntity.identifier || ""}
+      modalId={modalId}
       classNames="modal-details"
       closeModalAriaLabelText={t("materialDetailsCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t(

@@ -11,12 +11,14 @@ import { useModalButtonHandler } from "../../../../core/utils/modal";
 import MaterialDetailsModal from "../../modal/material-details-modal";
 import MaterialDetails from "../../modal/material-details";
 import StatusMessage from "./StatusMessage";
+import { getModalIds } from "../../../../core/utils/helpers/general";
 
 interface SelectableMaterialProps {
   loan: LoanType;
   disabled?: boolean;
   materialsToRenew: FaustId[];
   onChecked?: (faust: FaustId) => void;
+    openLoanDetailsModal: (modalId: string) => void;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -24,25 +26,28 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   material,
   disabled,
   onChecked,
-  materialsToRenew
+  materialsToRenew,
+  openLoanDetailsModal
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const { loanDetails } = getModalIds();
   const { dueDate, faust, identifier } = loan;
   const { authors, materialType, year, title } = material || {};
 
-  const selectListMaterial = useCallback(
+
+    const openLoanDetailsModalHandler = useCallback(
     (e: MouseEvent) => {
-      e.stopPropagation();
+      stopPropagationFunction(e);
       if (faust) {
-        open(faust);
+        openLoanDetailsModal(faust);
       }
       if (identifier) {
-        open(identifier);
+        openLoanDetailsModal(identifier);
       }
     },
-    [faust, identifier, open]
-  );
+    [faust, identifier, openLoanDetailsModal]
+
 
   return (
     <>
@@ -99,7 +104,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               <button
                 type="button"
                 className="list-reservation__note"
-                onClick={(e) => selectListMaterial(e)}
+                onClick={(e) => openLoanDetailsModalHandler(e)}
               >
                 {t("groupModalGoToMaterialText")}
               </button>
