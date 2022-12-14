@@ -60,7 +60,7 @@ export interface ReservationListProps {
   reservationListPauseReservationAriaModalText: string;
   pauseReservationModalAriaDescriptionText: string;
   pauseReservationModalHeaderText: string;
-  pauseReservationModalBreadText: string;
+  pauseReservationModalBodyText: string;
   pauseReservationModalCloseModalText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;

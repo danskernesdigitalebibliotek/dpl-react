@@ -105,7 +105,7 @@ describe("Patron page", () => {
     // ID 36 2.a. Header
     cy.get(".dpl-patron-page")
       .find("h1")
-      .should("have.text", "User profile page");
+      .should("have.text", "Patron profile page");
 
     // ID 36 2.b. Digital loans - quota
     cy.get(".dpl-patron-page .dpl-status-loans")
@@ -116,11 +116,11 @@ describe("Patron page", () => {
     cy.get(".dpl-patron-page .dpl-status-loans")
       .find(".text-label")
       .eq(1)
-      .should("have.text", "2 ud af 7");
+      .should("have.text", "2 out of 7");
     cy.get(".dpl-patron-page .dpl-status-loans")
       .find(".text-label")
       .eq(3)
-      .should("have.text", "2 ud af 8");
+      .should("have.text", "2 out of 8");
 
     // ID 36 2.c. basic information
     // ID 36 2.c.i. Name

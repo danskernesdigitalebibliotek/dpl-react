@@ -21,9 +21,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
-      {t("patronPageContactInfoBreadText") && (
+      {t("patronPageContactInfoBodyText") && (
         <p className="text-body-small-regular mb-32">
-          {t("patronPageContactInfoBreadText")}
+          {t("patronPageContactInfoBodyText")}
         </p>
       )}
       <TextInput
