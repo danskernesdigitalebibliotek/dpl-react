@@ -8,6 +8,8 @@ export interface IntermedateListProps {
   totalFeeAmountText: string;
   feeCreatedText: string;
   otherMaterialsText: string;
+  materialByAuthorText: string;
+  loanListDaysText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

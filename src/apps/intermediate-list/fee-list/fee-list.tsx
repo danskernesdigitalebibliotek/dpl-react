@@ -28,11 +28,12 @@ const FeeList: FC<FeeListProps> = ({
 
   useEffect(() => {
     if (fbsFees) {
+      console.log(fbsFees);
+
       setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
       setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
     }
   }, [fbsFees]);
-
   return (
     <div>
       {itemsPrePaymentChange && (

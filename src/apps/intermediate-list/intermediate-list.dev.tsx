@@ -18,6 +18,18 @@ export default {
   otherMaterialsText: {
     defaultValue: "Other materials",
     control: { type: "text" }
+  },
+  materialByAuthorText: {
+    defaultValue: "Af",
+    control: { type: "text" }
+  },
+  loanListDaysText: {
+    defaultValue: "Days",
+    control: { type: "text" }
+  },
+  turnedInText: {
+    defaultValue: "Turned in",
+    control: { type: "text" }
   }
 } as ComponentMeta<typeof Fees>;
 
