@@ -244,6 +244,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <ReservationModal
             mainManifestation={currentManifestation}
             parallelManifestations={parallelManifestations}
+            selectedPeriodical={selectedPeriodical}
             isMainModal
             workId={wid}
             work={work}
