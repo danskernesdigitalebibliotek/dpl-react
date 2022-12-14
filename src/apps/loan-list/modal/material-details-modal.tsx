@@ -12,7 +12,9 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
   children
 }) => {
   const t = useText();
-
+  if (!modalId) {
+    return null;
+  }
   return (
     <Modal
       modalId={modalId}

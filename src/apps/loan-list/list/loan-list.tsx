@@ -26,7 +26,8 @@ import ToggleListViewButtons from "./ToggleListViewButtons";
 import ListHeader from "./ListHeader";
 import {
   loansAreEmpty,
-  removeLoansWithDuplicateDueDate
+  removeLoansWithDuplicateDueDate,
+  getFromListByKey
 } from "../utils/helpers";
 import RenewLoansModal from "../modal/renew-loans-modal";
 import MaterialDetails from "../modal/material-details";
@@ -51,7 +52,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const [view, setView] = useState<ListView>("list");
   const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const [dueDate, setDueDate] = useState<string | null>(null);
-  const [modalDetailsId, setModalDetailsId] = useState<string>();
+  const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
   const [digitalLoans, setDigitalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansDueDates, setPhysicalLoansDueDates] = useState<string[]>(
@@ -62,17 +63,17 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
   useEffect(() => {
     let loanForModal = null;
-    if (physicalLoans) {
-      loanForModal = physicalLoans.filter(
-        ({ faust }) => modalDetailsId === faust
-      );
-      if (!loanForModal && digitalLoans) {
-        loanForModal = digitalLoans.filter(
-          ({ identifier }) => modalDetailsId === identifier
-        );
-      }
+    if (physicalLoans && modalDetailsId) {
+      loanForModal = getFromListByKey(physicalLoans, "faust", modalDetailsId);
     }
-    if (loanForModal) {
+    if (loanForModal?.length === 0 && digitalLoans && modalDetailsId) {
+      loanForModal = getFromListByKey(
+        digitalLoans,
+        "identifier",
+        modalDetailsId
+      );
+    }
+    if (loanForModal && loanForModal.length > 0) {
       setModalLoan(loanForModal[0]);
     }
   }, [digitalLoans, modalDetailsId, physicalLoans]);
@@ -107,6 +108,14 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     }
   }, [publizonData]);
 
+  const openLoanDetailsModal = useCallback(
+    (modalId: string) => {
+      setModalDetailsId(modalId);
+      open(`${loanDetails}${modalId}`);
+    },
+    [loanDetails, open]
+  );
+
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
@@ -117,7 +126,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
   useEffect(() => {
     const modalString = getUrlQueryParam("modal");
-    // modal query param: modal loans all
+    // if there is a loan details query param, loan details modal should be opened
     if (modalString && modalString.includes(loanDetails as string)) {
       const loanDetailsModalId = getLoanDetailsModalId(modalString);
       if (loanDetailsModalId) {
@@ -141,14 +150,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       }
     }
   }, [allLoansId, loanDetails, open, openDueDateModal]);
-
-  const openLoanDetailsModal = useCallback(
-    (modalId: string) => {
-      open(`${loanDetails}${modalId}`);
-      setModalDetailsId(modalId);
-    },
-    [loanDetails, open]
-  );
 
   return (
     <>
@@ -214,7 +215,11 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       within the components, it is not possible to hide the loan list when a modal is present
       which is necessary to comply with WCAG (so the screen readers cannot "catch" focusable html
       elements below the modal) */}
-      <RenewLoansModal pageSize={pageSize} loansModal={physicalLoans} />
+      <RenewLoansModal
+        openLoanDetailsModal={openLoanDetailsModal}
+        pageSize={pageSize}
+        loansModal={physicalLoans}
+      />
       <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
         <MaterialDetails
           faust={modalLoan?.faust}
@@ -225,6 +230,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       {dueDate && physicalLoans && (
         <DueDateLoansModal
           pageSize={pageSize}
+          openLoanDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={removeLoansWithDuplicateDueDate(dueDate, physicalLoans)}
         />

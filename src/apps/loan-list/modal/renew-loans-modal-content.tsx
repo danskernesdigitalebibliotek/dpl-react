@@ -1,7 +1,6 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useIntersection } from "react-use";
 import { useQueryClient } from "react-query";
-import SelectableMaterial from "../materials/selectable-material/selectable-material";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import {
   getAmountOfRenewableLoans,
@@ -15,6 +14,7 @@ import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
+import SelectableMaterial from "../materials/selectable-material/selectable-material";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];

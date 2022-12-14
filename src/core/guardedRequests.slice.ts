@@ -7,7 +7,7 @@ import { addItem } from "./material-list-api/material-list";
 // eslint-disable-next-line import/no-cycle
 import { persistor } from "./store";
 import type { RootState } from "./store";
-import { getCurrentUnixTime } from "./utils/helpers/date";
+import getCurrentUnixTime from "./utils/helpers/date";
 import {
   appendQueryParametersToUrl,
   getCurrentLocation,
