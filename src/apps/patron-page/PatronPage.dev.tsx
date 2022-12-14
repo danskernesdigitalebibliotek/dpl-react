@@ -159,7 +159,7 @@ export default {
     },
     patronPagePincodeTooShortValidationText: {
       defaultValue:
-        "The pincode is too short, it should be @count characters long",
+        "The pincode is too short, it should be @pincodeLength characters long",
       control: { type: "text" }
     },
     patronPagePincodesNotTheSameText: {
