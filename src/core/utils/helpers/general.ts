@@ -125,6 +125,7 @@ export const daysBetweenTodayAndDate = (date: string) => {
 
   // Math.ceil 0 diff last param true is because "diff()" rounds the number down
   // and we need it to be rounded up
+  // todo figure out if ceil is correct (talk to ddb)
   return Math.ceil(inputDate.diff(today, "day", true));
 };
 export const daysBetweenDates = (firstData: string, secondDate: string) => {
@@ -133,6 +134,7 @@ export const daysBetweenDates = (firstData: string, secondDate: string) => {
 
   // Math.ceil 0 diff last param true is because "diff()" rounds the number down
   // and we need it to be rounded up
+  // todo figure out if ceil is correct (talk to ddb)
   return Math.ceil(inputFirstDate.diff(inputSecondDate, "day", true));
 };
 
