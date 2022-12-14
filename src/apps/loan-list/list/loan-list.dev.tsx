@@ -372,7 +372,7 @@ const { dueDateModal, loanDetails, allLoansId } = getModalIds();
 export const LoanListDetailsModal = Template.bind({});
 LoanListDetailsModal.parameters = {
   query: {
-    modal: `${loanDetails}9788771076951`
+    modal: `${loanDetails}28847238`
   }
 };
 
