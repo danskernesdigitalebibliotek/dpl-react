@@ -25,7 +25,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
         setPincodeValidation(
           t("patronPagePincodeTooShortValidationText", {
             placeholders: {
-              "@count": pincodeLength
+              "@pincodeLength": pincodeLength
             }
           })
         );
