@@ -16,6 +16,7 @@ type ReservationModalProps = {
   selectedPeriodical?: PeriodicalEdition | null;
   workId: WorkId;
   work: Work;
+  isMainModal?: boolean;
 };
 
 const ReservationModal = ({
@@ -24,12 +25,16 @@ const ReservationModal = ({
   parallelManifestations,
   selectedPeriodical = null,
   workId,
-  work
+  work,
+  isMainModal
 }: ReservationModalProps) => {
   const t = useText();
+
   return (
     <Modal
-      modalId={reservationModalId(convertPostIdToFaustId(pid))}
+      modalId={`${reservationModalId(convertPostIdToFaustId(pid))}${
+        isMainModal ? "main" : ""
+      }`}
       screenReaderModalDescriptionText={t(
         "reservationModalScreenReaderModalDescriptionText"
       )}
@@ -41,6 +46,7 @@ const ReservationModal = ({
         selectedPeriodical={selectedPeriodical}
         workId={workId}
         work={work}
+        isMainModal={isMainModal}
       />
     </Modal>
   );
