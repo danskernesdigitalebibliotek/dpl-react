@@ -1,9 +1,9 @@
-import React, { useCallback, FC, MouseEvent } from "react";
+import React, { FC } from "react";
+import { useText } from "../../../core/utils/text";
 
 interface AdditionalFeesButtonProps {
   additionalFees: number;
   // openDueDateModal: () => void;
-  label: string;
   screenReaderLabel: string;
   showOn: "mobile" | "desktop";
 }
@@ -11,10 +11,10 @@ interface AdditionalFeesButtonProps {
 const AdditionalFeesButton: FC<AdditionalFeesButtonProps> = ({
   additionalFees,
   // openDueDateModal,
-  label,
   screenReaderLabel,
   showOn
 }) => {
+  const t = useText();
   // const openDueDateModalCallBack = useCallback(
   //   (e: MouseEvent) => {
   //     e.stopPropagation();
@@ -38,7 +38,7 @@ const AdditionalFeesButton: FC<AdditionalFeesButtonProps> = ({
         aria-describedby={`materials-modal-${showOn}-text`}
         className={`list-reservation__note-${showOn}`}
       >
-        + {additionalFees} {label}
+        + {additionalFees} {t("otherMaterialsText")}
       </button>
     </>
   );

@@ -1,24 +1,16 @@
+import dayjs from "dayjs";
 import React, { FC, ReactNode } from "react";
+import { useText } from "../../../core/utils/text";
 import StatusBadge from "../../loan-list/materials/utils/status-badge";
 
 interface FeeStatusProps {
   dueDate: string;
-  dueDateLabel: string;
-  children: ReactNode;
   reasonMessage: string;
 }
 
-const FeeStatus: FC<FeeStatusProps> = ({
-  dueDate,
-  dueDateLabel,
-  children,
-  reasonMessage
-}) => {
-  // const t = useText();
-  // const { dueDate, loanDate } = loan;
-
-  // if (!dueDate || !loanDate) return <div />;
-
+const FeeStatus: FC<FeeStatusProps> = ({ dueDate, reasonMessage }) => {
+  const t = useText();
+  const dueDateFormatted = dayjs(dueDate).format("DD. MM. YYYY");
   return (
     <div>
       <div className="list-reservation__deadline">
@@ -28,9 +20,8 @@ const FeeStatus: FC<FeeStatusProps> = ({
           warningText="test"
         />
         <p className="text-small-caption" id="due-date">
-          {dueDateLabel} {dueDate}
+          {t("feeCreatedText")} {dueDateFormatted}
         </p>
-        {children}
       </div>
     </div>
   );

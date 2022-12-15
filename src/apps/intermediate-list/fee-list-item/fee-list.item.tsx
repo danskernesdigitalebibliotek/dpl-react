@@ -6,26 +6,15 @@ import StackableFees from "../stackable-fees/stackable-fees";
 
 export interface FeeListItemProps {
   itemData: any;
-  totalFeeAmountText: string;
-  FeeCreatedText: string;
-  otherMaterialsText: string;
 }
-const FeeListItem: FC<FeeListItemProps> = ({
-  itemData,
-  totalFeeAmountText,
-  FeeCreatedText,
-  otherMaterialsText
-}) => {
+const FeeListItem: FC<FeeListItemProps> = ({ itemData }) => {
   const { materials } = itemData;
   return (
     <StackableFees
       amountOfMaterialsWithDueDate={materials.length}
       fee={materials}
       faust={materials[0].recordId as FaustId}
-      totalFeeAmountText={totalFeeAmountText}
       feeData={itemData}
-      FeeCreatedText={FeeCreatedText}
-      otherMaterialsText={otherMaterialsText}
     />
   );
 };

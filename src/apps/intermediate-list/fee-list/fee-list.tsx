@@ -1,23 +1,17 @@
+import { capitalize, transform } from "lodash";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { FeeV2 } from "../../../core/fbs/model";
+import { useText } from "../../../core/utils/text";
 import FeeListItem from "../fee-list-item/fee-list.item";
 import {
   getFeesPostPaymentChangeDate,
   getFeesPrePaymentChangeDate
 } from "../utils/intermediate-list-helper";
 
-interface FeeListProps {
-  totalFeeAmountText: string;
-  FeeCreatedText: string;
-  otherMaterialsText: string;
-}
-const FeeList: FC<FeeListProps> = ({
-  totalFeeAmountText,
-  FeeCreatedText,
-  otherMaterialsText
-}) => {
+const FeeList: FC = () => {
+  const t = useText();
   const { data: fbsFees } = useGetFeesV2<FeeV2>();
   const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
     FeeV2[] | boolean
@@ -28,8 +22,6 @@ const FeeList: FC<FeeListProps> = ({
 
   useEffect(() => {
     if (fbsFees) {
-      console.log(fbsFees);
-
       setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
       setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
     }
@@ -38,31 +30,21 @@ const FeeList: FC<FeeListProps> = ({
     <div>
       {itemsPrePaymentChange && (
         <div>
-          <p>
-            UBETALTE GEBYRER - <b>INDEN 27/10/2020</b>
+          <p style={{ textTransform: "uppercase" }}>
+            {t("unpaidFeesText")} - <b>{t("prePaymentTypeChangeDateText")}</b>
           </p>
           {Object.values(itemsPrePaymentChange).map((itemData) => (
-            <FeeListItem
-              itemData={itemData}
-              totalFeeAmountText={totalFeeAmountText}
-              FeeCreatedText={FeeCreatedText}
-              otherMaterialsText={otherMaterialsText}
-            />
+            <FeeListItem itemData={itemData} />
           ))}
         </div>
       )}
       {itemsPostPaymentChange && (
         <div>
-          <p>
-            UBETALTE GEBYRER - <b>EFTER 27/10/2020</b>
+          <p style={{ textTransform: "uppercase" }}>
+            {t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b>
           </p>
           {Object.values(itemsPostPaymentChange).map((itemData) => (
-            <FeeListItem
-              itemData={itemData}
-              totalFeeAmountText={totalFeeAmountText}
-              FeeCreatedText={FeeCreatedText}
-              otherMaterialsText={otherMaterialsText}
-            />
+            <FeeListItem itemData={itemData} />
           ))}
         </div>
       )}

@@ -1,10 +1,6 @@
 import dayjs from "dayjs";
 import React, { FC } from "react";
-import statusThreshold from "../../../core/configuration/status-thresholds.json";
-import {
-  daysBetweenTodayAndDate,
-  getColors
-} from "../../../core/utils/helpers/general";
+import { getColors } from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
@@ -18,12 +14,11 @@ const FeeStatusCircle: FC<FeeStatusCircleProps> = ({
   feeCreationDate
 }) => {
   const t = useText();
+  const colors = getColors();
   const daysBetweenDueAndDelivered = dayjs(dueDate).diff(
     feeCreationDate,
     "day"
   );
-
-  const colors = getColors();
 
   return (
     <StatusCircleIcon percent={100} color={colors.danger as string}>
