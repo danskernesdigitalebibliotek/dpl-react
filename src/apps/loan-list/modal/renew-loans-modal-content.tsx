@@ -91,7 +91,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     <>
       <div className="modal-loan__buttons" ref={intersectionRef}>
         <CheckBox
-          selected={materialsToRenew.length === renewableMaterials}
+          selected={
+            renewableMaterials !== 0 &&
+            materialsToRenew.length === renewableMaterials
+          }
+          disabled={renewableMaterials === 0}
           id="checkbox-select-all"
           onChecked={() => selectAll()}
           label={t("groupModalCheckboxText")}
@@ -136,8 +140,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
-              onChecked={() => selectAll()}
+              selected={
+                renewableMaterials !== 0 &&
+                materialsToRenew.length === renewableMaterials
+              }
+              disabled={renewableMaterials === 0}
               id="checkbox-select-all"
+              onChecked={() => selectAll()}
               label={t("groupModalCheckboxText")}
             />
             <Button
