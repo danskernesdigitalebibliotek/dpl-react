@@ -190,7 +190,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 key={`find-on-shelf-modal-${manifestation.pid}`}
                 selectedPeriodical={selectedPeriodical}
                 setSelectedPeriodical={setSelectedPeriodical}
-                isMainModal
               />
               <ReservationModal
                 mainManifestation={manifestation}
@@ -241,6 +240,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             authors={work.creators}
             selectedPeriodical={selectedPeriodical}
             setSelectedPeriodical={setSelectedPeriodical}
+            isMainModal
           />
           <ReservationModal
             mainManifestation={currentManifestation}
