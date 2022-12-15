@@ -92,7 +92,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
       <div className="modal-loan__buttons" ref={intersectionRef}>
         <CheckBox
           selected={
-            renewableMaterials &&
+            renewableMaterials !== 0 &&
             materialsToRenew.length === renewableMaterials
           }
           disabled={renewableMaterials === 0}
@@ -141,7 +141,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
               selected={
-                renewableMaterials &&
+                renewableMaterials !== 0 &&
                 materialsToRenew.length === renewableMaterials
               }
               disabled={renewableMaterials === 0}
