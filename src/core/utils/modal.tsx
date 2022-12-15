@@ -65,7 +65,7 @@ function Modal({
           classNames
         )}
         role="dialog"
-        aria-describedby={`modal-${modalId}`}
+        aria-labelledby={`modal-${modalId}`}
       >
         <div
           className="modal__screen-reader-description"
