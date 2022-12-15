@@ -141,7 +141,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
               selected={
-                renewableMaterials !== 0 &&
+                renewableMaterials &&
                 materialsToRenew.length === renewableMaterials
               }
               disabled={renewableMaterials === 0}
