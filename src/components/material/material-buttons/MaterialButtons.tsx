@@ -46,6 +46,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
               size={size}
               faustIds={[faustId]}
               dataCy={`${dataCy}-find-on-shelf`}
+              isMainButton={isMainButton}
             />
           </>
         )}

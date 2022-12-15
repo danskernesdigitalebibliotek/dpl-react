@@ -12,12 +12,14 @@ export interface MaterialButtonsFindOnShelfProps {
   size?: ButtonSize;
   faustIds: FaustId[];
   dataCy?: string;
+  isMainButton?: boolean;
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   size,
   faustIds,
-  dataCy = "material-buttons-find-on-shelf"
+  dataCy = "material-buttons-find-on-shelf",
+  isMainButton
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -26,7 +28,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   });
 
   const onClick = () => {
-    open(findOnShelfModalId(faustIds[0]));
+    open(`${findOnShelfModalId(faustIds[0])}${isMainButton ? "main" : ""}`);
   };
 
   // If element is currently focused on, we would like to let users open it using enter
