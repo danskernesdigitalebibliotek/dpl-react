@@ -32,7 +32,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   return (
     <>
       {manifestations.map((item) => {
-        const { pid, materialTypes } = item;
+        const { pid, materialTypes, identifiers } = item;
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
@@ -58,6 +58,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
                   }
                 : undefined
             }
+            isbn={identifiers?.[0]?.value ?? ""}
           />
         );
       })}

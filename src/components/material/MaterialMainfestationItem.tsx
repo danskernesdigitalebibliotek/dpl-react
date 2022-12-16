@@ -115,6 +115,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestText={materialTypes[0]?.specific}
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
+          isbn={identifiers?.[0]?.value ?? ""}
         />
       </div>
       <div className="material-manifestation-item__cover">
