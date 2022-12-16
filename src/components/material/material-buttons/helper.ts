@@ -29,4 +29,11 @@ export const isArticle = (manifestation: Manifestation) => {
   );
 };
 
+export const hasCorrectSource = (
+  desiredSource: string[],
+  manifestation: Manifestation
+): boolean =>
+  "source" in manifestation &&
+  desiredSource.some((item) => manifestation.source.includes(item));
+
 export default {};

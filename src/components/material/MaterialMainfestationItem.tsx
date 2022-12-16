@@ -15,6 +15,7 @@ import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
+import { hasCorrectSource } from "./material-buttons/helper";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
@@ -116,6 +117,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
           isbn={identifiers?.[0]?.value ?? ""}
+          isEReolen={hasCorrectSource(["eReolen"], manifestation)}
         />
       </div>
       <div className="material-manifestation-item__cover">

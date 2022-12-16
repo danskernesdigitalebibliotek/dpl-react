@@ -17,6 +17,7 @@ export interface AvailabilityLabelProps {
   cursorPointer?: boolean;
   dataCy?: string;
   isbn: string;
+  isEReolen: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -27,7 +28,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbn
+  isbn,
+  isEReolen
 }) => {
   const { track } = useStatistics();
   const t = useText();
@@ -38,7 +40,9 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     materialType: manifestText
   });
 
-  const availabilityText = isAvailable ? t("available") : t("unavailable");
+  const showAvailable = isEReolen ?? isAvailable;
+
+  const availabilityText = showAvailable ? t("available") : t("unavailable");
 
   useDeepCompareEffect(() => {
     // Track material availability (status) if the button is active - also meaning
@@ -56,7 +60,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [faustIds, selected]);
 
-  const availableTriangleCss = isAvailable ? "success" : "alert";
+  const availableTriangleCss = showAvailable ? "success" : "alert";
 
   const classes = {
     parent: clsx(
