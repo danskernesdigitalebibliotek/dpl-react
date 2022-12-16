@@ -15,7 +15,6 @@ export interface MaterialButtonsProps {
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
-  isMainButton?: boolean;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
@@ -23,8 +22,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestation: { pid },
   size,
   workId,
-  dataCy = "material-buttons",
-  isMainButton
+  dataCy = "material-buttons"
 }) => {
   const faustId = convertPostIdToFaustId(pid);
 
@@ -45,7 +43,6 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
               size={size}
               faustIds={[faustId]}
               dataCy={`${dataCy}-find-on-shelf`}
-              isMainButton={isMainButton}
             />
           </>
         )}

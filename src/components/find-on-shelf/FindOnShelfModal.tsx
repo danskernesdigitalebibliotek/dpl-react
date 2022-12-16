@@ -33,7 +33,6 @@ export interface FindOnShelfModalProps {
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
-  isMainModal?: boolean;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
@@ -41,8 +40,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   workTitles,
   authors,
   selectedPeriodical,
-  setSelectedPeriodical,
-  isMainModal
+  setSelectedPeriodical
 }) => {
   const config = useConfig();
   const blacklistBranches = config("blacklistedPickupBranchesConfig", {
@@ -61,9 +59,9 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
     t("creatorsAreMissingText");
   const title = workTitles.join(", ");
-  const modalId = `${findOnShelfModalId(
+  const modalId = findOnShelfModalId(
     convertPostIdToFaustId(manifestations[0].pid)
-  )}${isMainModal ? "main" : ""}`;
+  );
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
       return materialType.specific.includes("tidsskrift");

@@ -136,7 +136,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                 manifestation={manifestation}
                 workId={wid}
                 dataCy="material-header-buttons"
-                isMainButton
               />
             </div>
             <MaterialAvailabilityText manifestation={manifestation} />
