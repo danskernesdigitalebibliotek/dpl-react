@@ -76,8 +76,17 @@ export const fetcher = async <ResponseType>({
     }
   );
 
+  // This code is handling if there is an error.
+  // If the code property is not present, it uses the statusText property as the error message.
+  // It then throws an error with the HTTP status code and error message, and sets the cause property of the error object to the value of the code property.
   if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
+    const errorData = await response.json();
+    const errorMessage = errorData.code
+      ? errorData.message
+      : response.statusText;
+    throw new Error(`${response.status}: ${errorMessage}`, {
+      cause: errorData.code
+    });
   }
 
   try {
