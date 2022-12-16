@@ -16,14 +16,12 @@ import StackableFeesList from "./stackable-fees-list";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate?: number;
-  fee: FeeV2;
   faust: string;
   feeData: FeeV2;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
-  fee,
   faust,
   material,
   feeData
@@ -57,7 +55,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
           additionalFees > 0 ? "list-reservation--stacked" : ""
         }`}
       >
-        {fee && (
+        {feeData && (
           <FeeInfo material={material} isbnForCover="">
             <AdditionalFeesButton
               showOn="desktop"
@@ -141,9 +139,13 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
               <li className="modal-loan__list">
                 <ul className="modal-loan__list-materials">
                   {materials.map((materialItem) => {
+                    const materialFaust: number = parseInt(
+                      materialItem.recordId,
+                      10
+                    );
                     return (
                       <StackableFeesList
-                        faust={materialItem.recordId}
+                        faust={materialFaust}
                         creationDateFormatted={creationDateFormatted}
                       />
                     );

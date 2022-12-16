@@ -13,7 +13,10 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
   creationDateFormatted
 }) => {
   const t = useText();
-  const { materialType, authors, title, year } = material || "";
+  const materialType = material?.materialType;
+  const title = material?.title;
+  const authors = material?.authors;
+  const year = material?.year;
   return (
     <li>
       <div className="list-materials ">
