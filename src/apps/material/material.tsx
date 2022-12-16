@@ -232,24 +232,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           />
         </>
       ))}
-      {currentManifestation && (
+      {currentManifestation && infomediaId && (
         <>
-          <FindOnShelfModal
-            // TODO: when we have a selected manifestations group, pass it
-            // down here as manifestations prop
-            manifestations={[currentManifestation]}
-            workTitles={work.titles.full}
-            authors={work.creators}
-            selectedPeriodical={selectedPeriodical}
-            setSelectedPeriodical={setSelectedPeriodical}
-            isMainModal
+          <InfomediaModal
+            mainManifestation={currentManifestation}
+            infoMediaId={infomediaId}
           />
-          {infomediaId && (
-            <InfomediaModal
-              mainManifestation={currentManifestation}
-              infoMediaId={infomediaId}
-            />
-          )}
           {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
             <DigitalModal
               digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
