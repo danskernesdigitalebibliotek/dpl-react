@@ -177,28 +177,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation: Manifestation) => {
           return (
-            <>
-              <MaterialMainfestationItem
-                key={manifestation.pid}
-                manifestation={manifestation}
-                workId={wid}
-              />
-              <FindOnShelfModal
-                manifestations={[manifestation]}
-                workTitles={manifestation.titles.main}
-                authors={manifestation.creators}
-                key={`find-on-shelf-modal-${manifestation.pid}`}
-                selectedPeriodical={selectedPeriodical}
-                setSelectedPeriodical={setSelectedPeriodical}
-              />
-              <ReservationModal
-                mainManifestation={manifestation}
-                parallelManifestations={parallelManifestations}
-                selectedPeriodical={selectedPeriodical}
-                workId={wid}
-                work={work}
-              />
-            </>
+            <MaterialMainfestationItem
+              key={manifestation.pid}
+              manifestation={manifestation}
+              workId={wid}
+            />
           );
         })}
       </Disclosure>
@@ -230,6 +213,25 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           />
         </DisclosureControllable>
       )}
+      {manifestations.map((manifestation) => (
+        <>
+          <ReservationModal
+            mainManifestation={manifestation}
+            parallelManifestations={parallelManifestations}
+            selectedPeriodical={selectedPeriodical}
+            workId={wid}
+            work={work}
+          />
+          <FindOnShelfModal
+            manifestations={[manifestation]}
+            workTitles={manifestation.titles.main}
+            authors={manifestation.creators}
+            key={`find-on-shelf-modal-${manifestation.pid}`}
+            selectedPeriodical={selectedPeriodical}
+            setSelectedPeriodical={setSelectedPeriodical}
+          />
+        </>
+      ))}
       {currentManifestation && (
         <>
           <FindOnShelfModal
