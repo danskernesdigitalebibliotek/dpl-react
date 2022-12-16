@@ -12,15 +12,13 @@ export interface MaterialButtonPhysicalProps {
   size?: ButtonSize;
   faustId: FaustId;
   dataCy?: string;
-  isMainButton?: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustId,
   size,
-  dataCy = "material-button-physical",
-  isMainButton
+  dataCy = "material-button-physical"
 }) => {
   const t = useText();
   const dispatch = useDispatch();
@@ -28,7 +26,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const onClick = () => {
     dispatch(
       openModal({
-        modalId: `${reservationModalId(faustId)}${isMainButton ? "main" : ""}`
+        modalId: reservationModalId(faustId)
       })
     );
   };

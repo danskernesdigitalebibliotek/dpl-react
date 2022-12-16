@@ -40,7 +40,6 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
               manifestation={manifestation}
               size={size}
               dataCy={`${dataCy}-physical`}
-              isMainButton={isMainButton}
             />
             <MaterialButtonsFindOnShelf
               size={size}

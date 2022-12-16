@@ -12,14 +12,12 @@ export interface MaterialButtonsPhysicalProps {
   manifestation: Manifestation;
   size?: ButtonSize;
   dataCy?: string;
-  isMainButton?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   manifestation: { pid, materialTypes },
   size,
-  dataCy = "material-buttons-physical",
-  isMainButton
+  dataCy = "material-buttons-physical"
 }) => {
   const faustId = convertPostIdToFaustId(pid);
   const { data, isLoading } = useGetAvailabilityV3({
@@ -54,7 +52,6 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
       manifestationMaterialType={manifestationMaterialType}
       faustId={faustId}
       size={size}
-      isMainButton={isMainButton}
     />
   );
 };
