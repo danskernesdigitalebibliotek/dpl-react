@@ -3,19 +3,24 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
+import StockAndReservationInfo from "../material/StockAndReservationInfo";
 
 type ReservationSuccesProps = {
   title: string;
   preferredPickupBranch: string;
   modalId: string;
   numberInQueue?: number;
+  reservationCount: number;
+  stockCount: number;
 };
 
 const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   modalId,
   title,
   preferredPickupBranch,
-  numberInQueue
+  numberInQueue,
+  reservationCount,
+  stockCount
 }) => {
   const dispatch = useDispatch();
   const t = useText();
@@ -32,6 +37,12 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         className="text-body-medium-regular pb-24"
       >
         {title} {t("reservationSuccesIsReservedForYouText")}
+      </p>
+      <p className="text-body-medium-regular">
+        <StockAndReservationInfo
+          stockCount={stockCount}
+          reservationCount={reservationCount}
+        />
       </p>
       {numberInQueue && (
         <p
