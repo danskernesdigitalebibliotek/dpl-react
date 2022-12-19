@@ -244,6 +244,8 @@ const ReservationModalBody = ({
             reservationDetails.pickupBranch,
             branches
           )}
+          stockCount={totalMaterials(holdings)}
+          reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}
