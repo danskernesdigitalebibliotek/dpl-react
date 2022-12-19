@@ -76,7 +76,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       name: statistics.searchQuery.name,
       trackedData: q
     });
-    // We actaully just want to track if the query changes.
+    // We actually just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
 
