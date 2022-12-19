@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useGetV1ProductsIdentifier } from "../../core/publizon/publizon";
 import { useConfig } from "../../core/utils/config";
@@ -16,17 +16,24 @@ export const isMaterialTypeOnline = (materialType: string) =>
 export const useAvailabilityData = ({
   materialType,
   faustIds,
-  isbn
+  isbn,
+  isTrue
 }: {
   materialType: string;
   faustIds: string[];
   isbn: string;
+  isTrue: boolean;
 }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const config = useConfig();
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
+
+  // Forcing isAvailable to true if isTrue is true
+  useEffect(() => {
+    if (isTrue) setIsAvailable(true);
+  }, [isTrue]);
 
   const hasIsbn = Boolean(isbn);
   const isOnline = isMaterialTypeOnline(materialType);
@@ -39,7 +46,7 @@ export const useAvailabilityData = ({
     {
       query: {
         // This should only be enabled if the material is NOT an online material type
-        enabled: isOnline === false,
+        enabled: isOnline === false && isTrue === false,
         onSuccess: (data) => {
           if (data?.some((item) => item.available)) {
             setIsAvailable(true);
@@ -52,7 +59,7 @@ export const useAvailabilityData = ({
   useGetV1ProductsIdentifier(isbn, {
     query: {
       // This should only be enabled if the material is an online material type and the isbn is not empty
-      enabled: isOnline && hasIsbn,
+      enabled: isOnline && isTrue === false && hasIsbn,
       onSuccess: (res) => {
         // Set isAvailable to true if the material is costFree (blue title) ind Publizon
         if (res?.product?.costFree) {

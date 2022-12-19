@@ -37,7 +37,6 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
-        const isEReolen = hasCorrectSource(["eReolen"], item);
 
         return (
           <AvailabilityLabel
@@ -61,7 +60,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
                 : undefined
             }
             isbn={identifiers?.[0]?.value ?? ""}
-            isEReolen={isEReolen}
+            isTrue={hasCorrectSource(["eReolen"], item)}
           />
         );
       })}
