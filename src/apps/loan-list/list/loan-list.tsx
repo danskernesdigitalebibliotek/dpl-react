@@ -125,10 +125,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   );
 
   useEffect(() => {
-    const modalString = getUrlQueryParam("modal");
+    const modalUrlParam = getUrlQueryParam("modal");
     // if there is a loan details query param, loan details modal should be opened
-    if (modalString && modalString.includes(loanDetails as string)) {
-      const loanDetailsModalId = getLoanDetailsModalId(modalString);
+    if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
+      const loanDetailsModalId = getLoanDetailsModalId(modalUrlParam);
       if (loanDetailsModalId) {
         const id = idFromLoanDetailsModalString(loanDetailsModalId);
         if (id) {
@@ -138,19 +138,22 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     }
 
     // modal query param: modal loans all
-    if (modalString === allLoansId) {
+    if (modalUrlParam === allLoansId) {
       open(allLoansId);
     }
 
     // If there is a query param with the due date, a modal should be opened
-    if (modalString && containsDueDateModalString(modalString)) {
-      const dateFromQueryParam = dateFromDueDateModalString(modalString);
+    if (modalUrlParam && containsDueDateModalString(modalUrlParam)) {
+      const dateFromQueryParam = dateFromDueDateModalString(modalUrlParam);
       if (dateFromQueryParam) {
         openDueDateModal(dateFromQueryParam);
       }
     }
   }, [allLoansId, loanDetails, open, openDueDateModal]);
 
+  const listContainsLoans =
+    (Array.isArray(physicalLoans) && physicalLoans.length > 0) ||
+    (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
       <div
@@ -158,8 +161,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         className="loan-list-page"
       >
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-        {((Array.isArray(physicalLoans) && physicalLoans.length > 0) ||
-          (Array.isArray(digitalLoans) && digitalLoans.length > 0)) && (
+        {listContainsLoans && (
           <>
             {physicalLoans && (
               <List
