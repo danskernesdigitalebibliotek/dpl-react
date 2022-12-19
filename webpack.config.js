@@ -83,7 +83,7 @@ module.exports = (_env, argv) => {
     },
     stats: {
       entrypoints: false,
-      modules: false
+      modules: true
     },
     plugins
   };
