@@ -80,7 +80,6 @@ function Modal({
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           className="btn-ui modal-btn-close"
-          aria-describedby={`modal-${modalId}`}
           style={{
             // same as comment above
             zIndex: modalIds.indexOf(modalId) + 10
