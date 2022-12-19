@@ -4,6 +4,7 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
+  FacetField,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -97,6 +98,24 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       );
     }
   }, [campaignFacets, mutate]);
+
+  // Check for material type filters in url on pageload
+  // (this part will be reworked later based on a change request from the client)
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const materialTypeUrlFilter = searchParams.get("materialType");
+    if (materialTypeUrlFilter) {
+      filterHandler({
+        filterItem: {
+          facet: FacetField.MaterialTypes,
+          term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
+        },
+        action: "add"
+      });
+    }
+    // We only want to do this once, so we need the dependency array empty
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const createFilters = (
     facets: {
