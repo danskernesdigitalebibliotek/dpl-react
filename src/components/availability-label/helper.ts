@@ -60,14 +60,17 @@ export const useAvailabilityData = ({
     query: {
       // This should only be enabled if the material is an online material type and the isbn is not empty
       enabled: isOnline && isTrue === false && hasIsbn,
-      onSuccess: (res) => {
-        // Set isAvailable to true if the material is costFree (blue title) ind Publizon
-        if (res?.product?.costFree) {
+      onSuccess: () =>
+        // res
+        {
           setIsAvailable(true);
-        }
-        // TODO:
-        // Check if the material quota is available if the material is not costFree
-      },
+          // TODO:
+          // Set isAvailable to true if the material is costFree (blue title) ind Publizon
+          // if (res?.product?.costFree) {
+          //   setIsAvailable(true);
+          // }
+          // Check if the material quota is available if the material is not costFree
+        },
       onError: (error: unknown) => {
         if (error instanceof Error) {
           // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
