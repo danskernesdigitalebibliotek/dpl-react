@@ -10,7 +10,6 @@ import {
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import usePager from "../../../components/result-pager/use-pager";
-import { FaustId } from "../../../core/utils/types/ids";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -72,14 +71,14 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     }
   };
 
-  const onChecked = (faust: FaustId) => {
+  const onChecked = (loanId: number) => {
     const materialsToRenewCopy = [...materialsToRenew];
 
-    const indexOfItemToRemove = materialsToRenew.indexOf(faust);
+    const indexOfItemToRemove = materialsToRenew.indexOf(loanId);
     if (indexOfItemToRemove > -1) {
       materialsToRenewCopy.splice(indexOfItemToRemove, 1);
     } else {
-      materialsToRenewCopy.push(faust);
+      materialsToRenewCopy.push(loanId);
     }
     setMaterialsToRenew(materialsToRenewCopy);
   };

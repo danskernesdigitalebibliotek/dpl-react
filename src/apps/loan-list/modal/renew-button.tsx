@@ -46,7 +46,9 @@ const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
         type="button"
         disabled={!renewable}
         onClick={() => renew(loanId)}
-        className="btn-primary btn-filled btn-small arrow__hover--right-small"
+        className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
+          !renewable ? "btn-outline" : ""
+        }`}
       >
         {t("materialDetailsRenewLoanButtonText")}
       </button>

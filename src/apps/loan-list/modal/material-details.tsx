@@ -60,7 +60,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </ModalDetailsHeader>
-      {!isDigital(loan) && faust && (
+      {!isDigital(loan) && faust && loanId && (
         <RenewButton faust={faust} loanId={loanId} renewable={isRenewable} />
       )}
       {isDigital(loan) && (
