@@ -117,7 +117,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
           isbn={identifiers?.[0]?.value ?? ""}
-          isEReolen={hasCorrectSource(["eReolen"], manifestation)}
+          isTrue={hasCorrectSource(["eReolen"], manifestation)}
         />
       </div>
       <div className="material-manifestation-item__cover">
