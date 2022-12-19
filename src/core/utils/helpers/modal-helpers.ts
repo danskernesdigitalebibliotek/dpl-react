@@ -24,22 +24,18 @@ export const dateFromDueDateModalQueryParam = (queryParam: string) => {
   return dateFound[0];
 };
 export const idFromLoanDetailsModalQueryParam = (queryParam: string) => {
-  // regex for finding duedatemodal concatenated with date string from modal query param
-  const regexIdentifier = /\d{13}/g;
-  const regexFaust = /\d{8}/g;
-  let idFound = queryParam.match(regexIdentifier);
-
-  if (!idFound) {
-    idFound = queryParam.match(regexFaust);
-    if (!idFound) {
-      return null;
-    }
+  // regex for finding material details concatenated with id string from modal query param
+  const result = queryParam.match(/^[^0-9]+(\d{8}$)|^[^0-9]+(\d{13}$)/);
+  let returnValue = "";
+  if (result) {
+    const [, faust, identifier] = result;
+    returnValue = faust || identifier;
   }
-  return idFound[0];
+  return returnValue;
 };
 
 export const getLoanDetailsModalId = (queryParam: string) => {
-  const { loanDetails } = getModalIds();
+  const { loanDetails } = getModalIds() || { loanDetails: "" };
   // regex for finding loan details concatenated with id from modal query param
   const regexIdentifier = new RegExp(`${loanDetails}\\d{13}`, "g");
   const regexFaust = new RegExp(`${loanDetails}\\d{8}`, "g");
