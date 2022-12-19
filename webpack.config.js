@@ -82,7 +82,8 @@ module.exports = (_env, argv) => {
       ]
     },
     stats: {
-      entrypoints: false,
+      assets: true,
+      chunks: true,
       modules: true
     },
     plugins
