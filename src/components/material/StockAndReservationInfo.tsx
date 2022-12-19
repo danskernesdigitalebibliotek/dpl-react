@@ -5,11 +5,13 @@ import { useText } from "../../core/utils/text";
 export interface StockAndReservationInfoProps {
   stockCount: number;
   reservationCount: number;
+  numberInQueue?: number;
 }
 
 const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
   stockCount,
-  reservationCount
+  reservationCount,
+  numberInQueue
 }) => {
   const t = useText();
 
@@ -22,10 +24,17 @@ const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
     placeholders: { "@count": reservationCount }
   });
 
+  const numberInQueueText = numberInQueue
+    ? t("numberInQueueText", {
+        placeholders: { "@number": numberInQueue }
+      })
+    : false;
+
   return (
     <>
-      {materialsInStockInfoText && `${materialsInStockInfoText}.`}{" "}
-      {materialReservationInfoText && materialReservationInfoText}
+      {materialsInStockInfoText && `${materialsInStockInfoText}.`}
+      {materialReservationInfoText && ` ${materialReservationInfoText}.`}
+      {numberInQueueText && ` ${numberInQueueText}`}
     </>
   );
 };

@@ -38,22 +38,16 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
       >
         {title} {t("reservationSuccesIsReservedForYouText")}
       </p>
-      <p className="text-body-medium-regular">
+      <p
+        data-cy="number-in-queue-text"
+        className="text-body-medium-regular pb-24"
+      >
         <StockAndReservationInfo
           stockCount={stockCount}
           reservationCount={reservationCount}
+          numberInQueue={numberInQueue}
         />
       </p>
-      {numberInQueue && (
-        <p
-          data-cy="number-in-queue-text"
-          className="text-body-medium-regular pb-24"
-        >
-          {t("numberInQueueText", {
-            placeholders: { "@number": numberInQueue }
-          })}
-        </p>
-      )}
       <p
         data-cy="reservation-success-preferred-pickup-branch-text"
         className="text-body-medium-regular pb-48"
