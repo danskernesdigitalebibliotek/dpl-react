@@ -1,36 +1,36 @@
 import { getModalIds } from "./general";
 
-export const containsDueDateModalString = (modalString: string) => {
+export const containsDueDateModalQueryParam = (queryParam: string) => {
   const { dueDateModal } = getModalIds();
   // regex for finding duedatemodal concatenated with date string from modal query param
   const regex = new RegExp(`${dueDateModal}\\d{4}-\\d{2}-\\d{2}`, "g");
 
-  const dateFound = modalString.match(regex);
+  const dateFound = queryParam.match(regex);
   if (!dateFound) {
     return null;
   }
   return dateFound[0];
 };
 
-export const dateFromDueDateModalString = (modalString: string) => {
+export const dateFromDueDateModalQueryParam = (queryParam: string) => {
   // regex for finding duedatemodal concatenated with date string from modal query param
   const regex = /\d{4}-\d{2}-\d{2}/g;
 
-  const dateFound = modalString.match(regex);
+  const dateFound = queryParam.match(regex);
 
   if (!dateFound) {
     return null;
   }
   return dateFound[0];
 };
-export const idFromLoanDetailsModalString = (modalString: string) => {
+export const idFromLoanDetailsModalQueryParam = (queryParam: string) => {
   // regex for finding duedatemodal concatenated with date string from modal query param
   const regexIdentifier = /\d{13}/g;
   const regexFaust = /\d{8}/g;
+  let idFound = queryParam.match(regexIdentifier);
 
-  let idFound = modalString.match(regexIdentifier);
   if (!idFound) {
-    idFound = modalString.match(regexFaust);
+    idFound = queryParam.match(regexFaust);
     if (!idFound) {
       return null;
     }
@@ -38,14 +38,14 @@ export const idFromLoanDetailsModalString = (modalString: string) => {
   return idFound[0];
 };
 
-export const getLoanDetailsModalId = (modalString: string) => {
+export const getLoanDetailsModalId = (queryParam: string) => {
   const { loanDetails } = getModalIds();
   // regex for finding loan details concatenated with id from modal query param
   const regexIdentifier = new RegExp(`${loanDetails}\\d{13}`, "g");
   const regexFaust = new RegExp(`${loanDetails}\\d{8}`, "g");
-  let modalId = modalString.match(regexIdentifier);
+  let modalId = queryParam.match(regexIdentifier);
   if (!modalId) {
-    modalId = modalString.match(regexFaust);
+    modalId = queryParam.match(regexFaust);
     if (!modalId) {
       return null;
     }
