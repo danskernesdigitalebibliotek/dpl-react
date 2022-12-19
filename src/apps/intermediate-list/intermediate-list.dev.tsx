@@ -15,8 +15,12 @@ export default {
         'Fees and compensations that you have recieved as per 27/10 2020 transitions to a new system, where transactions are carried out through the solution "Mit Betalingsoverblik". Fees before this date, can still be payed via. this page.',
       control: { type: "text" }
     },
-    ViewFeesAndCompensationRatesText: {
+    viewFeesAndCompensationRatesText: {
       defaultValue: "View fees and compensation rates",
+      control: { type: "text" }
+    },
+    viewFeesAndCompensationRatesUrl: {
+      defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe
       control: { type: "text" }
     },
     totalFeeAmountText: {
@@ -65,6 +69,11 @@ export default {
     },
     postPaymentTypeChangeDateText: {
       defaultValue: "POST 27/10 2020",
+      control: { type: "text" }
+    },
+    alreadyPaidText: {
+      defaultValue:
+        "Already paid? Paid fees can take up to 24 hours to registrer.",
       control: { type: "text" }
     }
   }

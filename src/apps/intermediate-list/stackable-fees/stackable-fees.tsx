@@ -139,13 +139,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
               <li className="modal-loan__list">
                 <ul className="modal-loan__list-materials">
                   {materials.map((materialItem) => {
-                    const materialFaust: number = parseInt(
-                      materialItem.recordId,
-                      10
-                    );
                     return (
                       <StackableFeesList
-                        faust={materialFaust}
+                        faust={materialItem.recordId}
                         creationDateFormatted={creationDateFormatted}
                       />
                     );

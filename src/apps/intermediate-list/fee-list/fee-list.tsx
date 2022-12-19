@@ -1,10 +1,12 @@
 import { capitalize, transform } from "lodash";
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
+
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import FeeListItem from "../fee-list-item/fee-list.item";
+import TotalPaymentPay from "../stackable-fees/total-payment-pay";
 import {
   getFeesPostPaymentChangeDate,
   getFeesPrePaymentChangeDate
@@ -16,9 +18,13 @@ const FeeList: FC = () => {
   const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
     FeeV2[] | boolean
   >(false);
+  const [totalFeePrePaymentChange, setTotalFeePrePaymentChange] =
+    useState<number>(0);
   const [itemsPostPaymentChange, setItemsPostPaymentChange] = useState<
     FeeV2[] | boolean
   >(false);
+  const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
+    useState<number>(0);
 
   useEffect(() => {
     if (fbsFees) {
@@ -26,6 +32,23 @@ const FeeList: FC = () => {
       setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
     }
   }, [fbsFees]);
+
+  useEffect(() => {
+    let totalFee = 0;
+    Object.values(itemsPrePaymentChange).forEach((item) => {
+      totalFee += item.amount;
+    });
+    setTotalFeePrePaymentChange(totalFee);
+  }, [itemsPrePaymentChange]);
+
+  useEffect(() => {
+    let totalTally = 0;
+    Object.values(itemsPostPaymentChange).forEach((item) => {
+      totalTally += item.amount;
+    });
+    setTotalFeePostPaymentChange(totalTally);
+  }, [itemsPostPaymentChange]);
+
   return (
     <div>
       {itemsPrePaymentChange && (
@@ -36,6 +59,11 @@ const FeeList: FC = () => {
           {Object.values(itemsPrePaymentChange).map((itemData) => (
             <FeeListItem itemData={itemData} />
           ))}
+
+          <TotalPaymentPay
+            prePaymentTypeChange
+            total={totalFeePrePaymentChange}
+          />
         </div>
       )}
       {itemsPostPaymentChange && (
@@ -46,6 +74,10 @@ const FeeList: FC = () => {
           {Object.values(itemsPostPaymentChange).map((itemData) => (
             <FeeListItem itemData={itemData} />
           ))}
+          <TotalPaymentPay
+            prePaymentTypeChange={false}
+            total={totalFeePostPaymentChange}
+          />
         </div>
       )}
     </div>

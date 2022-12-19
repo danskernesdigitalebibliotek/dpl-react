@@ -14,10 +14,12 @@ export interface IntermedateListProps {
   termsOfTradeText: string;
   intermediateListHeadlineText: string;
   intermediateListBodyText: string;
-  ViewFeesAndCompensationRatesText: string;
+  viewFeesAndCompensationRatesText: string;
+  viewFeesAndCompensationRatesUrl: string;
   unpaidFeesText: string;
   prePaymentTypeChangeDateText: string;
   PostPaymentTypeChangeDateText: string;
+  alreadyPaidText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (
