@@ -141,7 +141,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
                   {materials.map((materialItem) => {
                     return (
                       <StackableFeesList
-                        faust={materialItem.recordId}
+                        faust={`${materialItem.recordId}`}
                         creationDateFormatted={creationDateFormatted}
                       />
                     );

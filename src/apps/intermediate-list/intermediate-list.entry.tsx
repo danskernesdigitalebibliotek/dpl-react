@@ -20,6 +20,11 @@ export interface IntermedateListProps {
   prePaymentTypeChangeDateText: string;
   PostPaymentTypeChangeDateText: string;
   alreadyPaidText: string;
+  intermediatePaymentModalHeaderText: string;
+  intermediatePaymentModalBodyText: string;
+  intermediatePaymentModalNoticeText: string;
+  intermediatePaymentModalGotoText: string;
+  intermediatePaymentModalCancelText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

@@ -17,19 +17,11 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   const [check, setCheck] = useState(false);
   const t = useText();
   const { open } = useModalButtonHandler();
-  function stopPropagationFunction(e: Event | MouseEvent) {
-    e.stopPropagation();
-  }
-  const selectListMaterial = React.useCallback(
-    (e: MouseEvent) => {
-      stopPropagationFunction(e);
-      open("123" || "");
-    },
-    [open]
-  );
+  const openIntermediatePaymentModal = () => {
+    open("intermediate-payment-modal" || "");
+  };
   const handleAcceptedTerms = () => {
     setCheck(!check);
-    console.log(check);
   };
 
   return (
@@ -110,14 +102,16 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
             <button
               type="button"
               className="btn-primary btn-filled btn-medium arrow__hover--right-small"
-              onClick={(e) => selectListMaterial(e)}
+              onClick={openIntermediatePaymentModal}
             >
               {t("payText")}
             </button>
           )}
         </div>
       </div>
-      <MyPaymentOverviewModal />
+      <MyPaymentOverviewModal>
+        <div />
+      </MyPaymentOverviewModal>
     </>
   );
 };

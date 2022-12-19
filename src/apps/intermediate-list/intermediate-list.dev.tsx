@@ -75,6 +75,26 @@ export default {
       defaultValue:
         "Already paid? Paid fees can take up to 24 hours to registrer.",
       control: { type: "text" }
+    },
+    intermediatePaymentModalHeaderText: {
+      defaultValue: "Unpaid fees post 27/10 2020",
+      control: { type: "text" }
+    },
+    intermediatePaymentModalBodyText: {
+      defaultValue: "You will be redirected to Mit Betalingsoverblik.",
+      control: { type: "text" }
+    },
+    intermediatePaymentModalNoticeText: {
+      defaultValue: "Paid fees can take up to 24 hours to registrer.",
+      control: { type: "text" }
+    },
+    intermediatePaymentModalGotoText: {
+      defaultValue: "Go to Mit Betalingsoverblik",
+      control: { type: "text" }
+    },
+    intermediatePaymentModalCancelText: {
+      defaultValue: "Cancel",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof IntermedateList>;
