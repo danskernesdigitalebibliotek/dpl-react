@@ -6,11 +6,12 @@ import { FaustId } from "../../../core/utils/types/ids";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface RenewButtonProps {
-  faust: FaustId;
+  loanId: number;
   renewable: boolean;
+  faust: FaustId;
 }
 
-const RenewButton: FC<RenewButtonProps> = ({ faust, renewable }) => {
+const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
   const t = useText();
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
@@ -44,7 +45,7 @@ const RenewButton: FC<RenewButtonProps> = ({ faust, renewable }) => {
       <button
         type="button"
         disabled={!renewable}
-        onClick={() => renew(parseInt(faust, 10))}
+        onClick={() => renew(loanId)}
         className="btn-primary btn-filled btn-small arrow__hover--right-small"
       >
         {t("materialDetailsRenewLoanButtonText")}

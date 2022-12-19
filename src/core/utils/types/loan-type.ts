@@ -8,4 +8,5 @@ export interface LoanType extends ListType {
   materialItemNumber?: string | null;
   renewalStatusList: string[];
   loanType: string | null;
+  loanId: number | null;
 }

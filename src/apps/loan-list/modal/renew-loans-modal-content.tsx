@@ -35,16 +35,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
     threshold: 0
   }) || { isIntersecting: false };
-  const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
+  const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
-    const numberMaterialIds = materialsToRenew.map((materialId) =>
-      parseInt(materialId, 10)
-    );
     mutate(
       {
-        data: numberMaterialIds
+        data: materialsToRenew
       },
       {
         onSuccess: (result) => {
