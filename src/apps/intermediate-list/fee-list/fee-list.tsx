@@ -27,8 +27,14 @@ const FeeList: FC = () => {
 
   useEffect(() => {
     if (fbsFees) {
-      setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
-      setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
+      const feesPrePaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
+      if (feesPrePaymentChange > 0) {
+        setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
+      }
+      const feesPostPaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
+      if (feesPostPaymentChange > 0) {
+        setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
+      }
     }
   }, [fbsFees]);
 
@@ -50,6 +56,14 @@ const FeeList: FC = () => {
 
   return (
     <div>
+      {!itemsPrePaymentChange && !itemsPostPaymentChange && (
+        <>
+          <p style={{ textTransform: "uppercase" }}>
+            {t("unpaidFeesText")} <sup>0</sup>
+          </p>
+          <div className="dpl-list-empty">{t("emptyIntermediateListText")}</div>
+        </>
+      )}
       {itemsPrePaymentChange && (
         <div>
           <p style={{ textTransform: "uppercase" }}>

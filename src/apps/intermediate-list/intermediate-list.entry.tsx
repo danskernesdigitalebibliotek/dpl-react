@@ -27,6 +27,7 @@ export interface IntermedateListProps {
   intermediatePaymentModalGotoText: string;
   intermediatePaymentModalCancelText: string;
   feeDetailsModalScreenReaderText: string;
+  emptyIntermediateListText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

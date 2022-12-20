@@ -103,6 +103,10 @@ export default {
     feeDetailsModalScreenReaderText: {
       defaultValue: "A modal containing details about a fee",
       control: { type: "text" }
+    },
+    emptyIntermediateListText: {
+      defaultValue: "Currently, you have 0 unpaid fees",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof IntermedateList>;
