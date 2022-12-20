@@ -31,6 +31,7 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 interface SearchResultProps {
   q: string;
@@ -103,8 +104,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const materialTypeUrlFilter = searchParams.get("materialType");
+    const materialTypeUrlFilter = getUrlQueryParam("materialType");
     if (materialTypeUrlFilter) {
       filterHandler({
         filterItem: {
