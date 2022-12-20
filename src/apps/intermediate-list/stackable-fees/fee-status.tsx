@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import { useText } from "../../../core/utils/text";
 import StatusBadge from "../../loan-list/materials/utils/status-badge";
 
