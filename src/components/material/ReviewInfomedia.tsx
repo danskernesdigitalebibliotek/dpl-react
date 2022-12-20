@@ -4,8 +4,7 @@ import {
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import {
-  appendQueryParametersToUrl,
-  getCurrentLocation,
+  currentLocationWithParametersUrl,
   isUrlValid,
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
@@ -29,12 +28,9 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
   const { authUrl } = useUrls();
 
   const onClick = (reviewId: string) => {
-    const returnUrl = appendQueryParametersToUrl(
-      new URL(getCurrentLocation()),
-      {
-        disclosure: "disclosure-reviews"
-      }
-    );
+    const returnUrl = currentLocationWithParametersUrl({
+      disclosure: "disclosure-reviews"
+    });
     returnUrl.hash = reviewId;
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
