@@ -104,18 +104,6 @@ function Modal({
   );
 }
 
-export const useModalButtonHandler = () => {
-  const dispatch = useDispatch();
-  return {
-    open: (modalId: ModalId) => {
-      return dispatch(openModal({ modalId }));
-    },
-    close: (modalId: ModalId) => {
-      return dispatch(closeModal({ modalId }));
-    }
-  };
-};
-
 export type GuardedOpenModalProps = {
   authUrl: URL;
   modalId: string;
@@ -128,30 +116,36 @@ export type GuardedOpenModalProps = {
   };
 };
 
-// Redirect anonymous users to the login platform, including a return link
-// to this page with an open modal.
-export function guardedOpenModal({
-  authUrl,
-  modalId,
-  trackOnlineView,
-  open
-}: GuardedOpenModalProps) {
-  if (userIsAnonymous()) {
-    const returnUrl = currentLocationWithParametersUrl({
-      modal: modalId
-    });
-    redirectToLoginAndBack({
-      authUrl,
-      returnUrl,
-      trackingFunction: trackOnlineView
-    });
-    return;
-  }
-  // If user is not anonymous we just open the given modal + potentially track it.
-  if (trackOnlineView) {
-    trackOnlineView();
-  }
-  open(modalId);
-}
+export const useModalButtonHandler = () => {
+  const dispatch = useDispatch();
+  return {
+    open: (modalId: ModalId) => {
+      return dispatch(openModal({ modalId }));
+    },
+    close: (modalId: ModalId) => {
+      return dispatch(closeModal({ modalId }));
+    },
+    guardedOpenModal: (props: GuardedOpenModalProps) => {
+      // Redirect anonymous users to the login platform, including a return link
+      // to this page with an open modal.
+      if (userIsAnonymous()) {
+        const returnUrl = currentLocationWithParametersUrl({
+          modal: props.modalId
+        });
+        redirectToLoginAndBack({
+          authUrl: props.authUrl,
+          returnUrl,
+          trackingFunction: props.trackOnlineView
+        });
+        return;
+      }
+      // If user is not anonymous we just open the given modal + potentially track it.
+      if (props.trackOnlineView) {
+        props.trackOnlineView();
+      }
+      props.open(props.modalId);
+    }
+  };
+};
 
 export default Modal;

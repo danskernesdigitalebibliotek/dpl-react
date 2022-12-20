@@ -1,9 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import {
-  guardedOpenModal,
-  useModalButtonHandler
-} from "../../../../core/utils/modal";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { IssnId } from "../../../../core/utils/types/ids";
@@ -24,7 +21,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
   size,
   dataCy = "material-button-online-digital-article"
 }) => {
-  const { open } = useModalButtonHandler();
+  const { open, guardedOpenModal } = useModalButtonHandler();
   const t = useText();
   const { authUrl } = useUrls();
 

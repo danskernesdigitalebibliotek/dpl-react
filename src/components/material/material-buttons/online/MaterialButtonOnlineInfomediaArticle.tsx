@@ -1,9 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import {
-  guardedOpenModal,
-  useModalButtonHandler
-} from "../../../../core/utils/modal";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -27,7 +24,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
+  const { open, guardedOpenModal } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
   const onClick = () => {
