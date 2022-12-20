@@ -252,9 +252,8 @@ const SearchHeader: React.FC = () => {
             searchUrl,
             selectedItemString,
             filter: {
-              materialType: encodeURI(
+              materialType:
                 autosuggestCategoryList[highlightedCategoryIndex].type
-              )
             }
           })
         );

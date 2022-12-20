@@ -9,7 +9,7 @@ export const appendQueryParametersToUrl = (
   // We need to clone url in order not to manipulate the incoming object.
   const processedUrl = new URL(url);
   Object.keys(parameters).forEach((key) => {
-    processedUrl.searchParams.set(key, parameters[key]);
+    processedUrl.searchParams.set(key, encodeURI(parameters[key]));
   });
 
   return processedUrl;
