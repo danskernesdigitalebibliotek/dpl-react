@@ -34,9 +34,9 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageChangePickupHeaderText")}
       </h2>
-      {t("patronPageChangePickupBreadText") && (
+      {t("patronPageChangePickupBodyText") && (
         <p className="text-body-small-regular">
-          {t("patronPageChangePickupBreadText")}
+          {t("patronPageChangePickupBodyText")}
         </p>
       )}
       <BranchesDropdown
@@ -51,7 +51,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
         {t("patronPagePauseReservationsHeaderText")}
       </h3>
       <p className="text-body-small-regular">
-        {t("patronPagePauseReservationsBreadText")}
+        {t("patronPagePauseReservationsBodyText")}
       </p>
       <CheckBox
         className="mt-32 mb-16"

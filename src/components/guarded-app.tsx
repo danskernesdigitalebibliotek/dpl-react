@@ -7,7 +7,7 @@ import {
   reRunRequest
 } from "../core/guardedRequests.slice";
 import { RootState } from "../core/store";
-import { getCurrentUnixTime } from "../core/utils/helpers/date";
+import getCurrentUnixTime from "../core/utils/helpers/date";
 import {
   getCurrentLocation,
   getUrlQueryParam,

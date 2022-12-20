@@ -19,7 +19,7 @@ import RenewButton from "./renew-button";
 import { Link } from "../../../components/atoms/link";
 
 interface MaterialDetailsProps {
-  loan: LoanType;
+  loan: LoanType | null;
 }
 
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
@@ -27,9 +27,15 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
+
+  if (!loan) {
+    return null;
+  }
+
   const {
     dueDate,
     faust,
+    loanId,
     identifier,
     isRenewable,
     materialItemNumber,
@@ -59,8 +65,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </ModalDetailsHeader>
-      {!isDigital(loan) && faust && (
-        <RenewButton faust={faust} renewable={isRenewable} />
+      {!isDigital(loan) && faust && loanId && (
+        <RenewButton faust={faust} loanId={loanId} renewable={isRenewable} />
       )}
       {isDigital(loan) && (
         <div className="modal-details__buttons">

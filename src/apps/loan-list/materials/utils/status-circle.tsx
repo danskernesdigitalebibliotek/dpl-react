@@ -3,7 +3,8 @@ import statusThreshold from "../../../../core/configuration/status-thresholds.js
 import StatusCircleIcon from "./status-circle-icon";
 import {
   getColors,
-  daysBetweenTodayAndDate
+  daysBetweenTodayAndDate,
+  daysBetweenDates
 } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 
@@ -15,7 +16,7 @@ interface StatusCircleProps {
 const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
   const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
-  const daysBetweenLoanAndDue = daysBetweenTodayAndDate(loanDate);
+  const daysBetweenLoanAndDue = daysBetweenDates(dueDate, loanDate);
 
   const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
   const colors = getColors();

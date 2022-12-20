@@ -159,7 +159,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
-    <main className="material-page">
+    <section className="material-page">
       <MaterialHeader
         wid={wid}
         work={work}
@@ -195,6 +195,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 mainManifestation={manifestation}
                 parallelManifestations={parallelManifestations}
                 workId={wid}
+                work={work}
               />
             </>
           );
@@ -244,6 +245,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
             workId={wid}
+            work={work}
           />
           {infomediaId && (
             <InfomediaModal
@@ -260,7 +262,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           )}
         </>
       )}
-    </main>
+    </section>
   );
 };
 

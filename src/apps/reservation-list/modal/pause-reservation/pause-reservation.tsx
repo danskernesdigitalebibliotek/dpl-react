@@ -83,7 +83,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         </h1>
         <div className="mt-48 color-secondary-gray">
           <p className="text-body-medium-regular mb-32">
-            {t("pauseReservationModalBreadText")}
+            {t("pauseReservationModalBodyText")}
           </p>
         </div>
         <DateInputs

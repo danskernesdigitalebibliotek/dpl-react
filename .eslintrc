@@ -113,6 +113,17 @@
               "__typename"
             ]
           }
+        ],
+        "react/forbid-elements": [
+          1,
+          {
+            "forbid": [
+              {
+                "element": "main",
+                "message": "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
+              }
+            ]
+          }
         ]
       }
     },
