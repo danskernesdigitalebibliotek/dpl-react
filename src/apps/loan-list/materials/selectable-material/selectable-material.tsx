@@ -3,6 +3,7 @@ import { formatDate, isDigital } from "../../utils/helpers";
 import { useText } from "../../../../core/utils/text";
 import StatusBadge from "../utils/status-badge";
 import { LoanType } from "../../../../core/utils/types/loan-type";
+import { LoanId } from "../../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
@@ -15,7 +16,7 @@ interface SelectableMaterialProps {
   loan: LoanType;
   disabled?: boolean;
   materialsToRenew: number[];
-  onChecked?: (loanId: number) => void;
+  onChecked?: (loanId: LoanId) => void;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({

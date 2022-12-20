@@ -2,11 +2,11 @@ import React, { useCallback, FC } from "react";
 import { useQueryClient } from "react-query";
 import { useText } from "../../../core/utils/text";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
-import { FaustId } from "../../../core/utils/types/ids";
+import { FaustId, LoanId } from "../../../core/utils/types/ids";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface RenewButtonProps {
-  loanId: number;
+  loanId: LoanId;
   renewable: boolean;
   faust: FaustId;
 }

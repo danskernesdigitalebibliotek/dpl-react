@@ -9,6 +9,7 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { LoanId } from "../../../core/utils/types/ids";
 import usePager from "../../../components/result-pager/use-pager";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
@@ -71,7 +72,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     }
   };
 
-  const onChecked = (loanId: number) => {
+  const onChecked = (loanId: LoanId) => {
     const materialsToRenewCopy = [...materialsToRenew];
 
     const indexOfItemToRemove = materialsToRenew.indexOf(loanId);
