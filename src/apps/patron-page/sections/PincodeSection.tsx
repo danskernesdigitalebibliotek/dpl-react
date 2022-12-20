@@ -22,9 +22,12 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
     setPincodeValidation("");
     if (pincode && confirmPincode) {
       if (pincode.length !== pincodeLength) {
-        // todo string interpolation
         setPincodeValidation(
-          `${t("patronPagePincodeTooShortValidationText")} ${pincodeLength}`
+          t("patronPagePincodeTooShortValidationText", {
+            placeholders: {
+              "@pincodeLength": pincodeLength
+            }
+          })
         );
         return;
       }
@@ -42,7 +45,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
         {t("patronPageChangePincodeHeaderText")}
       </h2>
       <p className="text-body-small-regular">
-        {t("patronPageChangePincodeBreadText")}
+        {t("patronPageChangePincodeBodyText")}
       </p>
       <div className="dpl-pincode-container">
         <TextInput

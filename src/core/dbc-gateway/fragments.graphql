@@ -124,6 +124,7 @@ fragment WorkSmall on Work {
       original
     }
   }
+  workYear
   genreAndForm
   manifestations {
     ...ManifestationsSimple
@@ -176,7 +177,6 @@ fragment WorkMedium on Work {
     display
     code
   }
-  workYear
   dk5MainEntry {
     display
   }

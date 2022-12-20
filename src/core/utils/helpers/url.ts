@@ -134,8 +134,8 @@ export function redirectToLoginAndBack({
   returnUrl,
   trackingFunction
 }: RedirectToLoginAndBackParams) {
-  const { pathname, search } = returnUrl;
-  const localPathToReturnTo = `${pathname}${search}`;
+  const { pathname, search, hash } = returnUrl;
+  const localPathToReturnTo = `${pathname}${search}${hash}`;
   const redirectUrl = appendQueryParametersToUrl(authUrl, {
     "current-path": localPathToReturnTo
   });
@@ -144,3 +144,13 @@ export function redirectToLoginAndBack({
   }
   redirectTo(redirectUrl);
 }
+
+// Checks whether a valid URL can be made out of a given string.
+export const isUrlValid = (text: string) => {
+  try {
+    const url = new URL(text);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (err) {
+    return false;
+  }
+};

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, FC, useCallback } from "react";
 import { useIntersection } from "react-use";
 import { useQueryClient } from "react-query";
-import SelectableMaterial from "../materials/selectable-material";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import {
   getAmountOfRenewableLoans,
@@ -9,21 +8,24 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { LoanId } from "../../../core/utils/types/ids";
 import usePager from "../../../components/result-pager/use-pager";
-import { FaustId } from "../../../core/utils/types/ids";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
+import SelectableMaterial from "../materials/selectable-material/selectable-material";
 
 interface RenewLoansModalContentProps {
   loansModal: LoanType[];
+  openLoanDetailsModal: (modalId: string) => void;
   pageSize: number;
 }
 
 const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   loansModal,
-  pageSize
+  pageSize,
+  openLoanDetailsModal
 }) => {
   const { mutate } = useRenewLoansV2();
   const t = useText();
@@ -35,16 +37,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
     threshold: 0
   }) || { isIntersecting: false };
-  const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
+  const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
-    const numberMaterialIds = materialsToRenew.map((materialId) =>
-      parseInt(materialId, 10)
-    );
     mutate(
       {
-        data: numberMaterialIds
+        data: materialsToRenew
       },
       {
         onSuccess: (result) => {
@@ -75,14 +74,14 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     }
   };
 
-  const onChecked = (faust: FaustId) => {
+  const onChecked = (loanId: LoanId) => {
     const materialsToRenewCopy = [...materialsToRenew];
 
-    const indexOfItemToRemove = materialsToRenew.indexOf(faust);
+    const indexOfItemToRemove = materialsToRenew.indexOf(loanId);
     if (indexOfItemToRemove > -1) {
       materialsToRenewCopy.splice(indexOfItemToRemove, 1);
     } else {
-      materialsToRenewCopy.push(faust);
+      materialsToRenewCopy.push(loanId);
     }
     setMaterialsToRenew(materialsToRenewCopy);
   };
@@ -91,7 +90,11 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     <>
       <div className="modal-loan__buttons" ref={intersectionRef}>
         <CheckBox
-          selected={materialsToRenew.length === renewableMaterials}
+          selected={
+            renewableMaterials !== 0 &&
+            materialsToRenew.length === renewableMaterials
+          }
+          disabled={renewableMaterials === 0}
           id="checkbox-select-all"
           onChecked={() => selectAll()}
           label={t("groupModalCheckboxText")}
@@ -121,6 +124,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
           {displayedLoans.map((loanType) => {
             return (
               <SelectableMaterial
+                openLoanDetailsModal={openLoanDetailsModal}
                 faust={loanType.faust}
                 identifier={loanType.identifier}
                 key={loanType.faust}
@@ -136,8 +140,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
-              onChecked={() => selectAll()}
+              selected={
+                renewableMaterials !== 0 &&
+                materialsToRenew.length === renewableMaterials
+              }
+              disabled={renewableMaterials === 0}
               id="checkbox-select-all"
+              onChecked={() => selectAll()}
               label={t("groupModalCheckboxText")}
             />
             <Button

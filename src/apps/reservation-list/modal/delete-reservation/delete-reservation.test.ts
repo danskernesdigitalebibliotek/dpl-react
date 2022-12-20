@@ -98,25 +98,25 @@ describe("Delete reservation modal test", () => {
     // ID 14 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
       .find("h1")
-      .should("have.text", "Slet reservering");
+      .should("have.text", "Cancel reservations");
 
     // ID 14 1.b. text "Do you want to cancel your reservation?"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(0)
-      .should("have.text", "Vil du slette din reservering?");
+      .should("have.text", "Do you want to cancel your reservations?");
 
     // ID 14 1.c. text "You cannot regret this action"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(1)
-      .should("have.text", "Handlingen kan ikke fortrydes");
+      .should("have.text", "You cannot regret this action");
 
     // ID 14 1.d. button "Cancel reservation"
     // ID 14 2 user clicks "Cancel reservation"
     cy.get(".modal.modal-cta")
-      .find("#test-delete-reservation-button")
-      .should("have.text", "Slet")
+      .find("[data-cy='delete-reservation-button']")
+      .should("have.text", "Cancel reservations")
       .click();
 
     // ID 14 3 system deletes material
@@ -158,7 +158,12 @@ describe("Delete reservation modal test", () => {
             pid: "870970-basis:27215815",
             titles: { main: ["Dummy Some Title"] },
             abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
+            edition: {
+              summary: "3. udgave, 1. oplag (2019)",
+              publicationYear: {
+                display: "2006"
+              }
+            },
             materialTypes: [{ specific: "Dummy bog" }],
             creators: [
               { display: "Dummy Jens Jensen" },
@@ -184,25 +189,25 @@ describe("Delete reservation modal test", () => {
     // ID 18 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
       .find("h1")
-      .should("have.text", "Slet reservering");
+      .should("have.text", "Cancel reservations");
 
     // ID 18 1.b. text "Do you want to cancel your reservation?"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(0)
-      .should("have.text", "Vil du slette din reservering?");
+      .should("have.text", "Do you want to cancel your reservations?");
 
     // ID 18 1.c. text "You cannot regret this action"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(1)
-      .should("have.text", "Handlingen kan ikke fortrydes");
+      .should("have.text", "You cannot regret this action");
 
     // ID 18 1.d. button "Cancel reservation"
     // ID 18 2 user clicks "Cancel reservation"
     cy.get(".modal.modal-cta")
-      .find("#test-delete-reservation-button")
-      .should("have.text", "Slet")
+      .find("[data-cy='delete-reservation-button']")
+      .should("have.text", "Cancel reservations")
       .click();
 
     // ID 18 3 system deletes material

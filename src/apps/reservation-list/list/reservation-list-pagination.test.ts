@@ -1,7 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
-// TODO: Test suite is failing in GH. Needs to be looked at.
-describe.skip("Reservation list pagination", () => {
+describe("Reservation list pagination", () => {
   before(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
@@ -282,18 +281,9 @@ describe.skip("Reservation list pagination", () => {
             expireDateUtc: "2022-12-27T19:37:15.63Z",
             expectedRedeemDateUtc: "2022-12-27T19:37:15.63Z"
           }
-        ],
-        code: 101,
-        message: "OK"
+        ]
       }
     }).as("digital_reservations");
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
 
     cy.intercept("POST", "**/opac/**", {
       statusCode: 200,
@@ -303,7 +293,12 @@ describe.skip("Reservation list pagination", () => {
             pid: "870970-basis:22629344",
             titles: { main: ["Dummy Some Title"] },
             abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
+            edition: {
+              summary: "3. udgave, 1. oplag (2019)",
+              publicationYear: {
+                display: "2006"
+              }
+            },
             materialTypes: [{ specific: "Dummy bog" }],
             creators: [
               { display: "Dummy Jens Jensen" },
@@ -315,72 +310,67 @@ describe.skip("Reservation list pagination", () => {
     }).as("work");
 
     cy.intercept("GET", "**v1/products/**", {
-      product: {
-        createdUtc: "2014-11-04T12:20:19.347Z",
-        updatedUtc: "2017-02-23T13:04:56.617Z",
-        title: "Mordet i det blå tog",
-        isActive: true,
-        languageCode: "dan",
-        coverUri: null,
-        thumbnailUri: null,
-        productType: 1,
-        externalProductId: {
-          idType: 15,
-          id: "9788711321683"
-        },
-        internalProductId: "fa07f75d-5c00-4429-90c9-76e2bb5eb526",
-        contributors: [
-          {
-            type: "A01",
-            firstName: "Agatha",
-            lastName: "Christie"
+      body: {
+        product: {
+          createdUtc: "2014-11-04T12:20:19.347Z",
+          updatedUtc: "2017-02-23T13:04:56.617Z",
+          title: "Mordet i det blå tog",
+          isActive: true,
+          languageCode: "dan",
+          coverUri: null,
+          thumbnailUri: null,
+          productType: 1,
+          externalProductId: {
+            idType: 15,
+            id: "9788711321683"
           },
-          {
-            type: "B06",
-            firstName: "Jutta",
-            lastName: "Larsen"
-          }
-        ],
-        format: "epub",
-        fileSizeInBytes: 899,
-        durationInSeconds: null,
-        publisher: "Lindhardt og Ringhof",
-        publicationDate: "2014-11-07T00:00:00Z",
-        description:
-          'I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: "Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden."',
-        productCategories: [
-          {
-            description: "Skønlitteratur og relaterede emner",
-            code: "F"
-          },
-          {
-            description: "Klassiske krimier",
-            code: "FFC"
-          }
-        ],
-        costFree: true
-      },
-      code: 101,
-      message: "OK"
+          internalProductId: "fa07f75d-5c00-4429-90c9-76e2bb5eb526",
+          contributors: [
+            {
+              type: "A01",
+              firstName: "Agatha",
+              lastName: "Christie"
+            },
+            {
+              type: "B06",
+              firstName: "Jutta",
+              lastName: "Larsen"
+            }
+          ],
+          format: "epub",
+          fileSizeInBytes: 899,
+          durationInSeconds: null,
+          publisher: "Lindhardt og Ringhof",
+          publicationDate: "2014-11-07T00:00:00Z",
+          description:
+            'I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: "Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden."',
+          productCategories: [
+            {
+              description: "Skønlitteratur og relaterede emner",
+              code: "F"
+            },
+            {
+              description: "Klassiske krimier",
+              code: "FFC"
+            }
+          ],
+          costFree: true
+        }
+      }
     }).as("product");
-
-    cy.visit(
-      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
-    );
-    cy.wait([
-      "@product",
-      "@physical_reservations",
-      "@digital_reservations",
-      "@work",
-      "@cover",
-      "@user"
-    ]);
   });
 
   it("Paginates reservation list", () => {
     cy.visit(
       "/iframe.html?id=apps-reservation-list--reservation-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
+    cy.wait([
+      "@physical_reservations",
+      "@digital_reservations",
+      "@product",
+      "@work",
+      "@user"
+    ]);
 
     // ID 11 2.b.iv more than "ready for pickup" 10 reservations the items paginate (here 2, because of config in cy.visit)
     cy.get(".list-reservation-container")

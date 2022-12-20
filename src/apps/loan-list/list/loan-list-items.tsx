@@ -1,35 +1,26 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
-import { getUrlQueryParam } from "../../../core/utils/helpers/url";
-import { isDate } from "../../../core/utils/helpers/date";
 import { useText } from "../../../core/utils/text";
 
 interface LoanListItemProps {
   loans: LoanType[];
   view: ListView;
-  dueDates: string[];
-  pageSize: number;
+  dueDates?: string[];
+  openLoanDetailsModal: (modalId: string) => void;
+  openDueDateModal: (dueDate: string) => void;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
   loans,
   view,
   dueDates,
-  pageSize
+  openDueDateModal,
+  openLoanDetailsModal
 }) => {
   const t = useText();
-  const [localDueDates, setLocalDueDates] = useState<Array<string | null>>([]);
-
-  useEffect(() => {
-    if (view === "stacked") {
-      // Publizon material sometimes have due dates that are "null"
-      // These should also be displayed stacked
-      setLocalDueDates([...dueDates, null]);
-    }
-  }, [dueDates, view]);
 
   return (
     // explanation for screen readers used in additional-materials-button
@@ -41,10 +32,11 @@ const LoanListItems: FC<LoanListItemProps> = ({
       >
         {t("loanListDueDateModalAriaLabelText")}
       </div>
-      {view === "stacked" &&
-        localDueDates.map((uniqueDueDate: string | null) => {
+      {view === "stack" &&
+        dueDates &&
+        dueDates.map((uniqueDueDate: string) => {
           // Stack items:
-          // if multiple items have the same due date, they are "stacked"
+          // if multiple items have the same due date, they are a "stack"
           // which means styling making it look like there are multiple materials,
           // but only _one_ with said due date is visible.
           const loansUniqueDueDate = removeLoansWithDuplicateDueDate(
@@ -52,27 +44,17 @@ const LoanListItems: FC<LoanListItemProps> = ({
             loans
           );
           const loan = loansUniqueDueDate[0] || {};
-
-          let openModal = false;
-          const queryParam = getUrlQueryParam("modal");
-
-          // If there is a query param with the due date, a modal should be opened
-          if (queryParam && uniqueDueDate && isDate(queryParam)) {
-            openModal = queryParam === uniqueDueDate;
-          }
-
           return (
             <div>
               {loan && (
                 <StackableMaterial
-                  pageSize={pageSize}
+                  openDueDateModal={openDueDateModal}
+                  openLoanDetailsModal={openLoanDetailsModal}
                   loan={loan}
                   identifier={loan.identifier}
                   faust={loan.faust}
-                  openModal={openModal}
                   key={loan.faust || loan.identifier}
                   amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
-                  stack={loansUniqueDueDate}
                 />
               )}
             </div>
@@ -82,8 +64,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
         loans.map((loan) => {
           return (
             <StackableMaterial
-              pageSize={pageSize}
-              openModal={false}
+              openLoanDetailsModal={openLoanDetailsModal}
               identifier={loan.identifier}
               faust={loan.faust}
               key={loan.faust || loan.identifier}

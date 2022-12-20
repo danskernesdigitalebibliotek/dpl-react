@@ -6,26 +6,32 @@ import { useText } from "../../../core/utils/text";
 import RenewLoansModalContent from "./renew-loans-modal-content";
 import WarningBar from "../materials/utils/warning-bar";
 import { formatDate } from "../utils/helpers";
-import { materialIsOverdue } from "../../../core/utils/helpers/general";
+import {
+  getModalIds,
+  materialIsOverdue
+} from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 interface DueDateLoansModalProps {
-  dueDate: string;
-  loansModal: LoanType[];
+  dueDate?: string | null;
+  loansModal?: LoanType[];
   pageSize: number;
+  openLoanDetailsModal: (modalId: string) => void;
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
   loansModal,
+  openLoanDetailsModal,
   pageSize
 }) => {
   const t = useText();
   const aMonthAgo = dayjs().subtract(1, "month").format("YYYY-MM-DD");
+  const { dueDateModal } = getModalIds();
 
   return (
     <Modal
-      modalId={dueDate}
+      modalId={`${dueDateModal}${dueDate}`}
       classNames="modal-loan"
       closeModalAriaLabelText={t(
         "groupModalDueDateRenewLoanCloseModalAriaLabelText"
@@ -35,7 +41,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
       )}
     >
       <div className="modal-loan__container">
-        {loansModal && (
+        {loansModal && dueDate && (
           <>
             <div className="modal-loan__header">
               <div className="mr-32">
@@ -49,6 +55,9 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
                     placeholders: { "@date": formatDate(dueDate) }
                   })}
                 </h1>
+                <div className="text-body-large">
+                  {t("groupModalReturnLibraryText")}
+                </div>
               </div>
             </div>
             {materialIsOverdue(dueDate) && (
@@ -60,6 +69,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               </div>
             )}
             <RenewLoansModalContent
+              openLoanDetailsModal={openLoanDetailsModal}
               pageSize={pageSize}
               loansModal={loansModal}
             />

@@ -5,16 +5,16 @@ query getManifestationViaMaterialByFaust($faust: String!) {
       main
     }
     abstract
-    hostPublication {
-      year {
-        year
-      }
-    }
     materialTypes {
       specific
     }
     creators {
       display
+    }
+    edition {
+      publicationYear {
+        display
+      }
     }
     series {
       title

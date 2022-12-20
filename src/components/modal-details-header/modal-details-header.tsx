@@ -10,6 +10,8 @@ export interface ModalDetailsHeaderProps {
   description: string | undefined | null;
   materialType: string | undefined | null;
   isbnForCover: string;
+  periodical?: string | null;
+  series?: string | null;
   children?: ReactNode;
 }
 
@@ -21,6 +23,8 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   description,
   materialType,
   isbnForCover,
+  periodical,
+  series,
   children
 }) => {
   const coverId = pid || isbnForCover;
@@ -50,10 +54,16 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
           {children}
         </div>
         <h2 className="modal-details__title text-header-h2">{title}</h2>
-        <p className="text-body-medium-regular" id="test-authors">
+        <p className="text-body-medium-regular" data-cy="modal-authors">
           {authors}
           {year && <> ({year})</>}
         </p>
+        {periodical && <p className="text-body-medium-regular">{periodical}</p>}
+        {series && (
+          <p data-cy="modal-series" className="text-body-medium-regular">
+            {series}
+          </p>
+        )}
       </div>
     </div>
   );

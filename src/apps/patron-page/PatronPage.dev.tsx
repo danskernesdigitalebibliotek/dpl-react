@@ -1,21 +1,14 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { configTypes } from "../../core/utils/helpers/fetcher";
 import PatronPage from "./PatronPage.entry";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -34,9 +27,14 @@ export default {
         "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
       control: { type: "text" }
     },
+    alwaysLoanableEreolenLink: {
+      defaultValue:
+        "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
+      control: { type: "text" }
+    },
     // Texts
     patronPageHeaderText: {
-      defaultValue: "User profile page",
+      defaultValue: "Patron profile page",
       control: { type: "text" }
     },
     patronPageBasicDetailsHeaderText: {
@@ -55,7 +53,7 @@ export default {
       defaultValue: "Contact information",
       control: { type: "text" }
     },
-    patronPageContactInfoBreadText: {
+    patronPageContactInfoBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -81,7 +79,7 @@ export default {
       defaultValue: "Digital loans (eReolen)",
       control: { type: "text" }
     },
-    patronPageStatusSectionBreadText: {
+    patronPageStatusSectionBodyText: {
       defaultValue:
         "There is a number of materials without limitation to amounts of loans per month.",
       control: { type: "text" }
@@ -102,15 +100,11 @@ export default {
       defaultValue: "Audiobooks",
       control: { type: "text" }
     },
-    patronPageStatusSectionReservationsAudioBooksText: {
-      defaultValue: "Audiobooks",
-      control: { type: "text" }
-    },
     patronPageChangePickupHeaderText: {
       defaultValue: "Reservations",
       control: { type: "text" }
     },
-    patronPageChangePickupBreadText: {
+    patronPageChangePickupBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -126,7 +120,7 @@ export default {
       defaultValue: "Pause physical reservations",
       control: { type: "text" }
     },
-    patronPagePauseReservationsBreadText: {
+    patronPagePauseReservationsBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -139,11 +133,11 @@ export default {
         "This checkbox opens a section where you can put your current reservations on a pause, when the time period picked has ended, the reservations will be resumed",
       control: { type: "text" }
     },
-    pauseReservationStartDateLabelText: {
+    dateInputsStartDateLabelText: {
       defaultValue: "From",
       control: { type: "text" }
     },
-    pauseReservationEndDateLabelText: {
+    dateInputsEndDateLabelText: {
       defaultValue: "To",
       control: { type: "text" }
     },
@@ -151,7 +145,7 @@ export default {
       defaultValue: "Pincode",
       control: { type: "text" }
     },
-    patronPageChangePincodeBreadText: {
+    patronPageChangePincodeBodyText: {
       defaultValue: "Change current pin by entering a new pin and saving",
       control: { type: "text" }
     },
@@ -164,7 +158,8 @@ export default {
       control: { type: "text" }
     },
     patronPagePincodeTooShortValidationText: {
-      defaultValue: "The pincode is too short, it should be {number} long",
+      defaultValue:
+        "The pincode is too short, it should be @pincodeLength characters long",
       control: { type: "text" }
     },
     patronPagePincodesNotTheSameText: {
@@ -184,7 +179,21 @@ export default {
       control: { type: "text" }
     },
     patronPageStatusSectionReservationsText: {
-      defaultValue: "You can reserve {number} ebooks and {number} audiobooks",
+      defaultValue:
+        "You can reserve @countEbooks ebooks and @countAudiobooks audiobooks",
+      control: { type: "text" }
+    },
+    patronPageStatusSectionOutOfText: {
+      defaultValue: "@this out of @that",
+      control: { type: "text" }
+    },
+    patronPageStatusSectionOutOfAriaLabelAudioBooksText: {
+      defaultValue:
+        "You used @this audiobooks out of you quota of @that audiobooks",
+      control: { type: "text" }
+    },
+    patronPageStatusSectionOutOfAriaLabelEbooksText: {
+      defaultValue: "You used @this ebooks out of you quota of @that ebooks",
       control: { type: "text" }
     }
   }

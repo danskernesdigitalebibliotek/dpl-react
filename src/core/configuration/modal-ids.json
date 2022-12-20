@@ -1,5 +1,7 @@
 {
   "allLoansId": "all-loans-id",
   "pauseReservation": "pause-reservation",
-  "deleteReservation": "delete-reservation"
+  "deleteReservation": "delete-reservation",
+  "loanDetails": "loan-details-",
+  "dueDateModal": "due-date-"
 }

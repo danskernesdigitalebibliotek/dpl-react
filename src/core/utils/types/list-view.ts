@@ -1,1 +1,1 @@
-export type ListView = "list" | "stacked";
+export type ListView = "list" | "stack";

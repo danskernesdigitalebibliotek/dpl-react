@@ -35,6 +35,7 @@ interface SearchResultEntryUrlProps {
   searchUrl: string;
   materialUrl: string;
   authUrl: string;
+  fbiBaseUrl: string;
 }
 
 interface SearchResultEntryConfigProps {
