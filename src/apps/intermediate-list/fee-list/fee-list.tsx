@@ -57,7 +57,7 @@ const FeeList: FC = () => {
             {t("unpaidFeesText")} - <b>{t("prePaymentTypeChangeDateText")}</b>
           </p>
           {Object.values(itemsPrePaymentChange).map((itemData) => (
-            <FeeListItem itemData={itemData} />
+            <FeeListItem prePaymentTypeChange itemData={itemData} />
           ))}
 
           <TotalPaymentPay
@@ -72,7 +72,7 @@ const FeeList: FC = () => {
             {t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b>
           </p>
           {Object.values(itemsPostPaymentChange).map((itemData) => (
-            <FeeListItem itemData={itemData} />
+            <FeeListItem prePaymentTypeChange={false} itemData={itemData} />
           ))}
           <TotalPaymentPay
             prePaymentTypeChange={false}
