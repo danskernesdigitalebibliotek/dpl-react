@@ -169,6 +169,10 @@ export type GuardedOpenModalProps = {
   };
 };
 
+export const currentLocationWithParametersUrl = (
+  params: Record<string, string>
+) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
+
 // Redirect anonymous users to the login platform, including a return link
 // to this page with an open modal.
 export function guardedOpenModal({
@@ -179,12 +183,9 @@ export function guardedOpenModal({
 }: GuardedOpenModalProps) {
   const userToken = getToken(TOKEN_USER_KEY);
   if (userIsAnonymous() || !userToken) {
-    const returnUrl = appendQueryParametersToUrl(
-      new URL(getCurrentLocation()),
-      {
-        modal: modalId
-      }
-    );
+    const returnUrl = currentLocationWithParametersUrl({
+      modal: modalId
+    });
     redirectToLoginAndBack({
       authUrl,
       returnUrl,
