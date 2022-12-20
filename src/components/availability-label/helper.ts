@@ -3,12 +3,7 @@ import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useGetV1ProductsIdentifier } from "../../core/publizon/publizon";
 import { useConfig } from "../../core/utils/config";
 
-export const onlineMaterialAllowList = [
-  "lydbog (cd-mp3)",
-  "lydbog",
-  "lydbog (net)",
-  "ebog"
-];
+export const onlineMaterialAllowList = ["lydbog (net)"];
 
 export const isMaterialTypeOnline = (materialType: string) =>
   onlineMaterialAllowList.includes(materialType);
