@@ -76,7 +76,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {prePaymentTypeChange && !check && (
             <button
               type="button"
-              className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+              className="btn-primary btn-outline btn-small arrow__hover--right-small mt-16"
               disabled
             >
               {t("payText")}
@@ -85,7 +85,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {prePaymentTypeChange && check && (
             <button
               type="button"
-              className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+              className="btn-primary btn-outline btn-small arrow__hover--right-small mt-16"
               disabled
             >
               {t("payText")}
@@ -94,7 +94,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {!prePaymentTypeChange && !check && (
             <button
               type="button"
-              className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+              className="btn-primary btn-outline btn-small arrow__hover--right-small mt-16"
               disabled
             >
               {t("payText")}
@@ -103,7 +103,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {!prePaymentTypeChange && check && (
             <button
               type="button"
-              className="btn-primary btn-filled btn-medium arrow__hover--right-small"
+              className="btn-primary btn-filled btn-small arrow__hover--right-small mt-16"
               onClick={openIntermediatePaymentModal}
             >
               {t("payText")}
