@@ -3,7 +3,7 @@ import { formatDate, isDigital } from "../../utils/helpers";
 import { useText } from "../../../../core/utils/text";
 import StatusBadge from "../utils/status-badge";
 import { LoanType } from "../../../../core/utils/types/loan-type";
-import { FaustId } from "../../../../core/utils/types/ids";
+import { LoanId } from "../../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
@@ -15,8 +15,8 @@ import StatusMessage from "./StatusMessage";
 interface SelectableMaterialProps {
   loan: LoanType;
   disabled?: boolean;
-  materialsToRenew: FaustId[];
-  onChecked?: (faust: FaustId) => void;
+  materialsToRenew: number[];
+  onChecked?: (loanId: LoanId) => void;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -28,7 +28,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { dueDate, faust, identifier } = loan;
+  const { dueDate, faust, identifier, loanId } = loan;
   const { authors, materialType, year, title } = material || {};
 
   const selectListMaterial = useCallback(
@@ -53,11 +53,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           }`}
         >
           <div className="mr-32">
-            {faust && onChecked && (
+            {loanId && faust && onChecked && (
               <CheckBox
-                onChecked={() => onChecked(faust)}
+                onChecked={() => onChecked(loanId)}
                 id={faust}
-                selected={Boolean(materialsToRenew?.indexOf(faust) > -1)}
+                selected={Boolean(materialsToRenew?.indexOf(loanId) > -1)}
                 disabled={disabled}
                 label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
                 hideLabel

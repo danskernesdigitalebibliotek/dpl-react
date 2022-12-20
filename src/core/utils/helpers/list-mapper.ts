@@ -1,4 +1,4 @@
-import { LoanV2, RenewedLoanV2, ReservationDetailsV2 } from "../../fbs/model";
+import { LoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
 import { GetManifestationViaMaterialByFaustQuery } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
@@ -68,7 +68,8 @@ export const mapPublizonLoanToLoanType = (list: Loan[]): LoanType[] => {
       renewalStatusList: [],
       loanType: null,
       identifier: libraryBook?.identifier || null,
-      faust: null
+      faust: null,
+      loanId: null
     };
   });
 };
@@ -88,28 +89,8 @@ export const mapFBSLoanToLoanType = (list: LoanV2[]): LoanType[] => {
       materialItemNumber: loanDetails.materialItemNumber,
       loanType: loanDetails.loanType,
       identifier: null,
-      faust: (loanDetails.recordId as FaustId) || null
-    };
-  });
-};
-
-// RenewedLoanV2 is a renewed loan from FBS, and for the moment has no
-// equivalent in publizon. It is mapped to loan type, because the only
-// thing relevant in the UI is that the loan has been renewed, and is
-// Not renewable any longer.
-export const mapFBSRenewedLoanToLoanType = (
-  list: RenewedLoanV2[]
-): LoanType[] => {
-  return list.map(({ loanDetails }) => {
-    return {
-      dueDate: loanDetails.dueDate,
-      loanDate: loanDetails.loanDate,
-      renewalStatusList: [],
-      isRenewable: false,
-      materialItemNumber: loanDetails.materialItemNumber,
-      loanType: loanDetails.loanType,
-      identifier: null,
-      faust: (loanDetails.recordId as FaustId) || null
+      faust: (loanDetails.recordId as FaustId) || null,
+      loanId: loanDetails.loanId
     };
   });
 };

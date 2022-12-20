@@ -208,7 +208,7 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
 export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ faust }) => faust) as FaustId[];
+    .map(({ loanId }) => loanId) as number[];
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {

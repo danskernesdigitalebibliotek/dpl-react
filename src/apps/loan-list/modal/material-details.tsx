@@ -30,6 +30,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   const {
     dueDate,
     faust,
+    loanId,
     identifier,
     isRenewable,
     materialItemNumber,
@@ -59,8 +60,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </ModalDetailsHeader>
-      {!isDigital(loan) && faust && (
-        <RenewButton faust={faust} renewable={isRenewable} />
+      {!isDigital(loan) && faust && loanId && (
+        <RenewButton faust={faust} loanId={loanId} renewable={isRenewable} />
       )}
       {isDigital(loan) && (
         <div className="modal-details__buttons">

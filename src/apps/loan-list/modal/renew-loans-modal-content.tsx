@@ -9,8 +9,8 @@ import {
 } from "../../../core/utils/helpers/general";
 import { Button } from "../../../components/Buttons/Button";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { LoanId } from "../../../core/utils/types/ids";
 import usePager from "../../../components/result-pager/use-pager";
-import { FaustId } from "../../../core/utils/types/ids";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -35,16 +35,13 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
     threshold: 0
   }) || { isIntersecting: false };
-  const [materialsToRenew, setMaterialsToRenew] = useState<FaustId[]>([]);
+  const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
 
   const renewSelected = useCallback(() => {
-    const numberMaterialIds = materialsToRenew.map((materialId) =>
-      parseInt(materialId, 10)
-    );
     mutate(
       {
-        data: numberMaterialIds
+        data: materialsToRenew
       },
       {
         onSuccess: (result) => {
@@ -75,14 +72,14 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
     }
   };
 
-  const onChecked = (faust: FaustId) => {
+  const onChecked = (loanId: LoanId) => {
     const materialsToRenewCopy = [...materialsToRenew];
 
-    const indexOfItemToRemove = materialsToRenew.indexOf(faust);
+    const indexOfItemToRemove = materialsToRenew.indexOf(loanId);
     if (indexOfItemToRemove > -1) {
       materialsToRenewCopy.splice(indexOfItemToRemove, 1);
     } else {
-      materialsToRenewCopy.push(faust);
+      materialsToRenewCopy.push(loanId);
     }
     setMaterialsToRenew(materialsToRenewCopy);
   };
