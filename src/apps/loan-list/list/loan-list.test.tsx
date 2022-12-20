@@ -1,7 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 describe("Loan list", () => {
-  before(() => {});
   beforeEach(() => {
     cy.window().then((win) => {
       const wednesday20220603 = new Date("2022-10-21T10:00:00.000").getTime();
