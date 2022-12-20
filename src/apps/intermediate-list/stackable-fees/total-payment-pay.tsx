@@ -32,7 +32,9 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
         </div>
         <div className="intermediate-list__actions">
-          <p>Total {total},-</p>
+          <p>
+            {t("totalText")} {total},-
+          </p>
           <div className="checkbox">
             <input
               id={`checkbox_terms__${
@@ -109,9 +111,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           )}
         </div>
       </div>
-      <MyPaymentOverviewModal>
-        <div />
-      </MyPaymentOverviewModal>
+      <MyPaymentOverviewModal />
     </>
   );
 };

@@ -3,25 +3,16 @@ import { useText } from "../../../core/utils/text";
 
 interface AdditionalFeesButtonProps {
   additionalFees: number;
-  // openDueDateModal: () => void;
   screenReaderLabel: string;
   showOn: "mobile" | "desktop";
 }
 
 const AdditionalFeesButton: FC<AdditionalFeesButtonProps> = ({
   additionalFees,
-  // openDueDateModal,
   screenReaderLabel,
   showOn
 }) => {
   const t = useText();
-  // const openDueDateModalCallBack = useCallback(
-  //   (e: MouseEvent) => {
-  //     e.stopPropagation();
-  //     openDueDateModal();
-  //   },
-  //   [openDueDateModal]
-  // );
   if (additionalFees < 1) return <div />;
 
   return (
@@ -34,7 +25,6 @@ const AdditionalFeesButton: FC<AdditionalFeesButtonProps> = ({
       </div>
       <button
         type="button"
-        // onClick={(e) => openDueDateModalCallBack(e)}
         aria-describedby={`materials-modal-${showOn}-text`}
         className={`list-reservation__note-${showOn}`}
       >

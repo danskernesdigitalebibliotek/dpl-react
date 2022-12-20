@@ -1,15 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 
-interface MyPaymentOverviewModalProps {
-  children: ReactNode;
-}
-
-const MyPaymentOverviewModal: FC<MyPaymentOverviewModalProps> = ({
-  children
-}) => {
+const MyPaymentOverviewModal: FC = () => {
   const t = useText();
   const { close } = useModalButtonHandler();
   const openInNewTab = (url: URL) => {
@@ -62,7 +56,6 @@ const MyPaymentOverviewModal: FC<MyPaymentOverviewModalProps> = ({
             </button>
           </div>
         </div>
-        {children}
       </div>
     </Modal>
   );

@@ -51,6 +51,10 @@ export default {
       defaultValue: "Pay",
       control: { type: "text" }
     },
+    totalText: {
+      defaultValue: "Total",
+      control: { type: "text" }
+    },
     iAcceptText: {
       defaultValue: "I accept the",
       control: { type: "text" }
@@ -94,6 +98,10 @@ export default {
     },
     intermediatePaymentModalCancelText: {
       defaultValue: "Cancel",
+      control: { type: "text" }
+    },
+    feeDetailsModalScreenReaderText: {
+      defaultValue: "A modal containing details about a fee",
       control: { type: "text" }
     }
   }

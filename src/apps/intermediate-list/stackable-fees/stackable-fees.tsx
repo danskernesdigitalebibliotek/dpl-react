@@ -11,10 +11,12 @@ import FeeStatus from "./fee-status";
 import FeeDetailsModal from "../modal/fee-details-modal";
 import { useText } from "../../../core/utils/text";
 import FeeDetailsContent from "./fee-details-content";
+import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 export interface StackableFeeProps {
   prePaymentTypeChange: boolean;
   amountOfMaterialsWithDueDate?: number;
+  material?: BasicDetailsType;
   faust: string;
   feeData: FeeV2;
 }
@@ -23,7 +25,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   prePaymentTypeChange,
   amountOfMaterialsWithDueDate,
   faust,
-  material,
+  material = {},
   feeData
 }) => {
   const { open } = useModalButtonHandler();
@@ -31,7 +33,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const {
     amount = 0,
     creationDate = "",
-    reasonMessage,
+    reasonMessage = "",
     dueDate = "",
     materials = {}
   } = feeData;
@@ -40,7 +42,6 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-  // const { materialItemNumber } = fee.materials;
   function stopPropagationFunction(e: Event | MouseEvent) {
     e.stopPropagation();
   }

@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from "react";
-import { FeeV2 } from "../../../core/fbs/model/feeV2";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";

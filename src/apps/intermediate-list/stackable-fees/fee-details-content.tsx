@@ -33,7 +33,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({
   return (
     <div className="modal modal-show modal-loan">
       <div className="modal__screen-reader-description" id="describemodal">
-        Denne modal dækker sidens indhold, og er en demo
+        {t("feeDetailsModalScreenReaderText")}
       </div>
       <div className="modal-loan__container">
         <div className="modal-loan__header">

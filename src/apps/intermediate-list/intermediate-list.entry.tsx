@@ -10,6 +10,7 @@ export interface IntermedateListProps {
   materialByAuthorText: string;
   loanListDaysText: string;
   payText: string;
+  totalText: string;
   iAcceptText: string;
   termsOfTradeText: string;
   intermediateListHeadlineText: string;
@@ -25,6 +26,7 @@ export interface IntermedateListProps {
   intermediatePaymentModalNoticeText: string;
   intermediatePaymentModalGotoText: string;
   intermediatePaymentModalCancelText: string;
+  feeDetailsModalScreenReaderText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

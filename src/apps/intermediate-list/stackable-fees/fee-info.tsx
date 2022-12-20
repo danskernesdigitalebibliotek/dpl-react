@@ -3,13 +3,20 @@ import { Cover } from "../../../components/cover/cover";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 interface FeeInfoProps {
-  material: any;
+  material: BasicDetailsType;
   isbnForCover: string;
   children: ReactNode;
 }
 const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
-  const { authors, materialType, year, title, description, pid, series } =
-    material || {};
+  const {
+    authors = "",
+    materialType = "",
+    year = "",
+    title = "",
+    description = "",
+    pid = "",
+    series = ""
+  } = material;
   const coverId = pid || isbnForCover;
   return (
     <div className="list-reservation__material">
