@@ -33,7 +33,6 @@ export const getLoanDetailsModalId = (queryParam: string) => {
   const modalId = queryParam.match(regexIdentifier);
   if (modalId) {
     const [returnId] = modalId;
-    console.log(returnId);
     return returnId;
   }
   return "";
