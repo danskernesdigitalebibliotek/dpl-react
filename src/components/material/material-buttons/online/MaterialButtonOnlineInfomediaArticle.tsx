@@ -1,7 +1,9 @@
 import * as React from "react";
 import { FC } from "react";
-import { guardedOpenModal } from "../../../../core/utils/helpers/url";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
+import {
+  guardedOpenModal,
+  useModalButtonHandler
+} from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";

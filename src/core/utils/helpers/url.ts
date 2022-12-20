@@ -1,5 +1,4 @@
 import { WorkId } from "../types/ids";
-import { userIsAnonymous } from "./user";
 
 export const getCurrentLocation = () => String(window.location);
 
@@ -156,44 +155,6 @@ export const isUrlValid = (text: string) => {
   }
 };
 
-export type GuardedOpenModalProps = {
-  authUrl: URL;
-  modalId: string;
-  trackOnlineView?: () => Promise<unknown>;
-  open: (modalId: string) => {
-    payload: {
-      modalId: string;
-    };
-    type: string;
-  };
-};
-
 export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
-
-// Redirect anonymous users to the login platform, including a return link
-// to this page with an open modal.
-export function guardedOpenModal({
-  authUrl,
-  modalId,
-  trackOnlineView,
-  open
-}: GuardedOpenModalProps) {
-  if (userIsAnonymous()) {
-    const returnUrl = currentLocationWithParametersUrl({
-      modal: modalId
-    });
-    redirectToLoginAndBack({
-      authUrl,
-      returnUrl,
-      trackingFunction: trackOnlineView
-    });
-    return;
-  }
-  // If user is not anonymous we just open the given modal + potentially track it.
-  if (trackOnlineView) {
-    trackOnlineView();
-  }
-  open(modalId);
-}

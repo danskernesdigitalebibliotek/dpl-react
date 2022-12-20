@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
 import { closeModal, openModal } from "../modal.slice";
+import { userIsAnonymous } from "./helpers/user";
+import {
+  currentLocationWithParametersUrl,
+  redirectToLoginAndBack
+} from "./helpers/url";
 
 type ModalId = string;
 
@@ -110,5 +115,43 @@ export const useModalButtonHandler = () => {
     }
   };
 };
+
+export type GuardedOpenModalProps = {
+  authUrl: URL;
+  modalId: string;
+  trackOnlineView?: () => Promise<unknown>;
+  open: (modalId: string) => {
+    payload: {
+      modalId: string;
+    };
+    type: string;
+  };
+};
+
+// Redirect anonymous users to the login platform, including a return link
+// to this page with an open modal.
+export function guardedOpenModal({
+  authUrl,
+  modalId,
+  trackOnlineView,
+  open
+}: GuardedOpenModalProps) {
+  if (userIsAnonymous()) {
+    const returnUrl = currentLocationWithParametersUrl({
+      modal: modalId
+    });
+    redirectToLoginAndBack({
+      authUrl,
+      returnUrl,
+      trackingFunction: trackOnlineView
+    });
+    return;
+  }
+  // If user is not anonymous we just open the given modal + potentially track it.
+  if (trackOnlineView) {
+    trackOnlineView();
+  }
+  open(modalId);
+}
 
 export default Modal;
