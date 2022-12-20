@@ -34,7 +34,6 @@ import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
   getLoanDetailsModalId,
-  idFromLoanDetailsModalQueryParam,
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
@@ -130,10 +129,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
       const loanDetailsModalId = getLoanDetailsModalId(modalUrlParam);
       if (loanDetailsModalId) {
-        const id = idFromLoanDetailsModalQueryParam(loanDetailsModalId);
-        if (id) {
-          setModalDetailsId(id);
-        }
+        setModalDetailsId(loanDetailsModalId);
       }
     }
 

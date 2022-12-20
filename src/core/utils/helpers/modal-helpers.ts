@@ -9,6 +9,7 @@ export const containsDueDateModalQueryParam = (queryParam: string) => {
   if (!dateFound) {
     return null;
   }
+
   return dateFound[0];
 };
 
@@ -23,16 +24,6 @@ export const dateFromDueDateModalQueryParam = (queryParam: string) => {
   }
   return dateFound[0];
 };
-export const idFromLoanDetailsModalQueryParam = (queryParam: string) => {
-  // regex for finding material details concatenated with id string from modal query param
-  const result = queryParam.match(/^[^0-9]+(\d{8}$)|^[^0-9]+(\d{13}$)/);
-  let returnValue = "";
-  if (result) {
-    const [, faust, identifier] = result;
-    returnValue = faust || identifier;
-  }
-  return returnValue;
-};
 
 export const getLoanDetailsModalId = (queryParam: string) => {
   const { loanDetails } = getModalIds() || { loanDetails: "" };
@@ -42,6 +33,7 @@ export const getLoanDetailsModalId = (queryParam: string) => {
   const modalId = queryParam.match(regexIdentifier);
   if (modalId) {
     const [returnId] = modalId;
+    console.log(returnId);
     return returnId;
   }
   return "";
