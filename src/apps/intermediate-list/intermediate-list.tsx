@@ -8,7 +8,7 @@ const IntermedateList: FC = () => {
   const t = useText();
   const { viewFeesAndCompensationRatesUrl } = useUrls();
   return (
-    <>
+    <div className="intermediate-list-page">
       <h1>{t("intermediateListHeadlineText")}</h1>
       <span>
         {t("intermediateListBodyText")}{" "}
@@ -20,7 +20,7 @@ const IntermedateList: FC = () => {
         </Link>
       </span>
       <FeeList />
-    </>
+    </div>
   );
 };
 

@@ -26,12 +26,12 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
 
   return (
     <>
-      <div className="intermediate-list">
-        <div className="intermediate-list__paymenttypes">
+      <div className="intermediate-list-bottom">
+        <div className="intermediate-list-bottom__paymenttypes">
           {prePaymentTypeChange && <img width="300" height="35" alt="" />}
           {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
         </div>
-        <div className="intermediate-list__actions">
+        <div className="intermediate-list-bottom__actions">
           <p>
             {t("totalText")} {total},-
           </p>

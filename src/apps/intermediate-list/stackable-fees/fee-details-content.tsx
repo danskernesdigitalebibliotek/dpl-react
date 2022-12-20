@@ -131,16 +131,14 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({
         <ul className="modal-loan__list-container">
           <li className="modal-loan__list">
             <ul className="modal-loan__list-materials">
-              {Object.values(materials).map(
-                (materialItem: { recordId: string }) => {
-                  return (
-                    <StackableFeesList
-                      faust={`${materialItem.recordId}`}
-                      creationDateFormatted={creationDateFormatted}
-                    />
-                  );
-                }
-              )}
+              {Object.values(materials).map((materialItem) => {
+                return (
+                  <StackableFeesList
+                    faust={materialItem.recordId}
+                    creationDateFormatted={creationDateFormatted}
+                  />
+                );
+              })}
             </ul>
           </li>
         </ul>
