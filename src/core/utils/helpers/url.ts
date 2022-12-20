@@ -1,4 +1,3 @@
-import { TOKEN_USER_KEY, getToken } from "../../token";
 import { WorkId } from "../types/ids";
 import { userIsAnonymous } from "./user";
 
@@ -181,8 +180,7 @@ export function guardedOpenModal({
   trackOnlineView,
   open
 }: GuardedOpenModalProps) {
-  const userToken = getToken(TOKEN_USER_KEY);
-  if (userIsAnonymous() || !userToken) {
+  if (userIsAnonymous()) {
     const returnUrl = currentLocationWithParametersUrl({
       modal: modalId
     });
