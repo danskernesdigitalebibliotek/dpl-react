@@ -164,22 +164,15 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 export const mapManifestationToBasicDetailsType = (
   material: GetManifestationViaMaterialByFaustQuery
 ) => {
-  const {
-    hostPublication,
-    abstract,
-    titles,
-    pid,
-    materialTypes,
-    creators,
-    series
-  } = material?.manifestation || {};
+  const { edition, abstract, titles, pid, materialTypes, creators, series } =
+    material?.manifestation || {};
 
   const description = abstract ? abstract[0] : "";
   const {
     main: [mainText]
   } = titles || { main: [] };
-  const { year: yearObject } = hostPublication || {};
-  const { year } = yearObject || {};
+  const { publicationYear } = edition || {};
+  const { display: year } = publicationYear || {};
 
   let contributors = null;
   const inputContributorsArray = creators?.map(({ display }) => display);

@@ -158,7 +158,12 @@ describe("Delete reservation modal test", () => {
             pid: "870970-basis:27215815",
             titles: { main: ["Dummy Some Title"] },
             abstract: ["Dummy Some abstract ..."],
-            hostPublication: { year: { year: 2006 } },
+            edition: {
+              summary: "3. udgave, 1. oplag (2019)",
+              publicationYear: {
+                display: "2006"
+              }
+            },
             materialTypes: [{ specific: "Dummy bog" }],
             creators: [
               { display: "Dummy Jens Jensen" },
