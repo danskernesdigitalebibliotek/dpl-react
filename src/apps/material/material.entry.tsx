@@ -15,7 +15,6 @@ interface MaterialEntryTextProps {
   chooseOneText: string;
   closeText: string;
   contributorsText: string;
-  creatorsAreMissingText: string;
   daysText: string;
   descriptionHeadlineText: string;
   detailsOfTheMaterialText: string;
