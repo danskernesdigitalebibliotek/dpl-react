@@ -100,7 +100,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [campaignFacets, mutate]);
 
   // Check for material type filters in url on pageload
-  // (this part will be reworked later based on a change request from the client)
+  // This is an initial, intentionally simple approach supporting what is required by the search header.
+  // It could be reworked to support all filters and terms at a later point.
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const materialTypeUrlFilter = searchParams.get("materialType");
