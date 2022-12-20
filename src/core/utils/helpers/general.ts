@@ -128,8 +128,8 @@ export const daysBetweenTodayAndDate = (date: string) => {
   // todo figure out if ceil is correct (talk to ddb)
   return Math.ceil(inputDate.diff(today, "day", true));
 };
-export const daysBetweenDates = (firstData: string, secondDate: string) => {
-  const inputFirstDate = dayjs(new Date(firstData));
+export const daysBetweenDates = (firstDate: string, secondDate: string) => {
+  const inputFirstDate = dayjs(new Date(firstDate));
   const inputSecondDate = dayjs(new Date(secondDate));
 
   // Math.ceil 0 diff last param true is because "diff()" rounds the number down
@@ -208,7 +208,7 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
 export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ faust }) => faust) as FaustId[];
+    .map(({ loanId }) => loanId) as number[];
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {

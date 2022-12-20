@@ -9,6 +9,7 @@ export interface ReservationFormProps {
   onSubmit: () => void;
   buttonLabel?: string;
   disabledButton?: boolean;
+  cyData?: string;
 }
 
 const ReservationForm = ({
@@ -17,7 +18,8 @@ const ReservationForm = ({
   children,
   onSubmit,
   buttonLabel,
-  disabledButton
+  disabledButton,
+  cyData = "reservation-form"
 }: ReservationFormProps) => {
   const t = useText();
 
@@ -25,9 +27,13 @@ const ReservationForm = ({
     <section className="reservation-modal reservation-form">
       <div className="reservation-form__content">
         <div className="reservation-form__header">
-          <h3 className="text-header-h3 mb-35">{title}</h3>
+          <h3 className="text-header-h3 mb-35" data-cy={`${cyData}-title`}>
+            {title}
+          </h3>
           {description.map((paragraph) => (
-            <p className="text-body-large">{paragraph}</p>
+            <p className="text-body-large" data-cy={`${cyData}-description`}>
+              {paragraph}
+            </p>
           ))}
         </div>
         <form>
@@ -43,6 +49,7 @@ const ReservationForm = ({
               size="xlarge"
               variant="filled"
               onClick={onSubmit}
+              dataCy={`${cyData}-button`}
             />
           </div>
         </form>

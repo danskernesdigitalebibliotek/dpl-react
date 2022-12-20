@@ -1253,15 +1253,18 @@ export type GetManifestationViaMaterialByFaustQuery = {
     pid: string;
     abstract: Array<string>;
     titles: { __typename?: "ManifestationTitles"; main: Array<string> };
-    hostPublication?: {
-      __typename?: "HostPublication";
-      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-    } | null;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
+    edition?: {
+      __typename?: "Edition";
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -2730,16 +2733,16 @@ export const GetManifestationViaMaterialByFaustDocument = `
       main
     }
     abstract
-    hostPublication {
-      year {
-        year
-      }
-    }
     materialTypes {
       specific
     }
     creators {
       display
+    }
+    edition {
+      publicationYear {
+        display
+      }
     }
     series {
       title

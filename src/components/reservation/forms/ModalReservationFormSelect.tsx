@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import Dropdown from "../../Dropdown/Dropdown";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
@@ -62,25 +62,17 @@ const ModalReservationFormSelect = ({
         description={header.description}
         onSubmit={onSubmit}
       >
-        <div className="dropdown">
-          <select
-            className="dropdown__select"
-            onChange={selectChange}
-            defaultValue={selectedItem}
-          >
-            <option className="dropdown__option" disabled>
-              {t("chooseOneText")}
-            </option>
-            {items.map(({ label, value }) => (
-              <option className="dropdown__option" value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-          <div className="dropdown__arrows">
-            <img className="dropdown__arrow" src={ExpandMore} alt="" />
-          </div>
-        </div>
+        <Dropdown
+          options={items.map(({ label, value }) => ({
+            label,
+            value
+          }))}
+          ariaLabel=""
+          arrowIcon="chevron"
+          handleOnChange={selectChange}
+          defaultValue={selectedItem}
+          placeholder={{ label: t("chooseOneText"), disabled: true, value: "" }}
+        />
       </ReservationForm>
     </Modal>
   );
