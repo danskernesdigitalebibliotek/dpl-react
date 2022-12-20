@@ -1,9 +1,11 @@
 import * as React from "react";
 import { FC } from "react";
+import { guardedOpenModal } from "../../../../core/utils/helpers/url";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { IssnId } from "../../../../core/utils/types/ids";
+import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
 
@@ -21,17 +23,15 @@ const MaterialButtonOnlineDigitalArticle: FC<
   dataCy = "material-button-online-digital-article"
 }) => {
   const { open } = useModalButtonHandler();
-
-  // TODO: A logged in user with municipality registration can access this.
-  const isRegistered = true;
   const t = useText();
-
-  if (!isRegistered) {
-    return null;
-  }
+  const { authUrl } = useUrls();
 
   const onClick = () => {
-    open(createDigitalModalId(digitalArticleIssn));
+    guardedOpenModal({
+      authUrl,
+      modalId: createDigitalModalId(digitalArticleIssn),
+      open
+    });
   };
 
   return (
