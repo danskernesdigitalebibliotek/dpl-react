@@ -1,11 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import IntermedateList from "./intermediate-list.entry";
 
 export default {
   title: "Apps / Intermediate-list",
   component: IntermedateList,
   argTypes: {
+    ...serviceUrlArgs,
     intermediateListHeadlineText: {
       defaultValue: "Fees and compensations",
       control: { type: "text" }
