@@ -5,6 +5,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  materialIsFiction,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
@@ -36,6 +37,25 @@ export const getManifestationFromType = (
   return allManifestationsThatMatchType.shift();
 };
 
+export const getWorkTitle = (
+  work: Work,
+  type: "original" | "full"
+): string | null => {
+  if (!materialIsFiction(work)) return null;
+
+  let title: string | null = null;
+
+  if (type === "original" && work.titles.original) {
+    title = work.titles.original.shift() ?? null;
+  }
+
+  if (type === "full" && work.titles.full) {
+    title = work.titles.full.shift() ?? null;
+  }
+
+  return title ? `${title} ${work.workYear}` : null;
+};
+
 export const getWorkDescriptionListData = ({
   manifestation,
   work,
@@ -45,7 +65,7 @@ export const getWorkDescriptionListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
-  const { titles, mainLanguages, creators, workYear } = work;
+  const { mainLanguages, creators } = work;
 
   const allLanguages = mainLanguages
     .map((language) => language.display)
@@ -79,7 +99,7 @@ export const getWorkDescriptionListData = ({
     { label: t("contributorsText"), value: creatorsText, type: "link" },
     {
       label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear}` : "",
+      value: getWorkTitle(work, "original") ?? "",
       type: "standard"
     },
     {
