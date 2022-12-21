@@ -51,7 +51,8 @@ describe("Material - Infomedia", () => {
       .and("contain", "Read article")
       .click();
 
-    cy.get("h2")
+    cy.getBySel("infomedia-modal")
+      .find("h2")
       .should("be.visible")
       .and("contain", "BUTLERENS UTROLIGE HISTORIE");
 
