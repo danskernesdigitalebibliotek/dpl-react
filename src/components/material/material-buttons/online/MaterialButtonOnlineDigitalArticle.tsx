@@ -21,15 +21,14 @@ const MaterialButtonOnlineDigitalArticle: FC<
   size,
   dataCy = "material-button-online-digital-article"
 }) => {
-  const { open, guardedOpenModal } = useModalButtonHandler();
+  const { openGuarded } = useModalButtonHandler();
   const t = useText();
   const { authUrl } = useUrls();
 
   const onClick = () => {
-    guardedOpenModal({
+    openGuarded({
       authUrl,
-      modalId: createDigitalModalId(digitalArticleIssn),
-      open
+      modalId: createDigitalModalId(digitalArticleIssn)
     });
   };
 

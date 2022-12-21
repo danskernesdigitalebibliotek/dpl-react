@@ -108,12 +108,6 @@ export type GuardedOpenModalProps = {
   authUrl: URL;
   modalId: string;
   trackOnlineView?: () => Promise<unknown>;
-  open: (modalId: string) => {
-    payload: {
-      modalId: string;
-    };
-    type: string;
-  };
 };
 
 export const useModalButtonHandler = () => {
@@ -125,25 +119,29 @@ export const useModalButtonHandler = () => {
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
     },
-    guardedOpenModal: (props: GuardedOpenModalProps) => {
+    openGuarded: ({
+      authUrl,
+      modalId,
+      trackOnlineView
+    }: GuardedOpenModalProps) => {
       // Redirect anonymous users to the login platform, including a return link
       // to this page with an open modal.
       if (userIsAnonymous()) {
         const returnUrl = currentLocationWithParametersUrl({
-          modal: props.modalId
+          modal: modalId
         });
         redirectToLoginAndBack({
-          authUrl: props.authUrl,
+          authUrl,
           returnUrl,
-          trackingFunction: props.trackOnlineView
+          trackingFunction: trackOnlineView
         });
         return;
       }
       // If user is not anonymous we just open the given modal + potentially track it.
-      if (props.trackOnlineView) {
-        props.trackOnlineView();
+      if (trackOnlineView) {
+        trackOnlineView();
       }
-      props.open(props.modalId);
+      dispatch(openModal({ modalId }));
     }
   };
 };

@@ -24,15 +24,14 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
-  const { open, guardedOpenModal } = useModalButtonHandler();
+  const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
   const onClick = () => {
-    guardedOpenModal({
+    openGuarded({
       authUrl,
       modalId: infomediaModalId(pid),
-      trackOnlineView,
-      open
+      trackOnlineView
     });
   };
 
