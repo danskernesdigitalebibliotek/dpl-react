@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
+import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 
 interface PatronPageConfigProps {
-  fbsBaseUrlConfig: string;
-  publizonBaseUrlConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   pincodeLengthConfig: string;
@@ -19,22 +18,22 @@ interface PatronPageTextProps {
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
   patronContactInfoHeaderText: string;
-  patronContactInfoBreadText: string;
+  patronContactInfoBodyText: string;
   patronContactPhoneLabelText: string;
   patronContactPhoneCheckboxText: string;
   patronContactEmailLabelText: string;
   patronContactEmailCheckboxText: string;
   patronPageStatusSectionHeaderText: string;
-  patronPageStatusSectionBreadText: string;
+  patronPageStatusSectionBodyText: string;
   patronPageStatusSectionLinkText: string;
   patronPageStatusSectionLoansEbooksText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
-  patronPageChangePickupBreadText: string;
+  patronPageChangePickupBodyText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
   patronPagePauseReservationsHeaderText: string;
-  patronPagePauseReservationsBreadText: string;
+  patronPagePauseReservationsBodyText: string;
   patronPageSaveButtonText: string;
   patronPageDeleteProfileText: string;
   patronPagePincodesNotTheSameText: string;
@@ -43,7 +42,7 @@ interface PatronPageTextProps {
   dateInputsEndDateLabelText: string;
   dateInputsStartDateLabelText: string;
   patronPageChangePincodeHeaderText: string;
-  patronPageChangePincodeBreadText: string;
+  patronPageChangePincodeBodyText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
   patronPageStatusSectionLoanHeaderText: string;
@@ -57,4 +56,4 @@ export interface PatronPageProps
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
-export default withConfig(withText(PatronPageEntry));
+export default withConfig(withUrls(withText(PatronPageEntry)));

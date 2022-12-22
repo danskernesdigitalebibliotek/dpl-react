@@ -24,7 +24,11 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(openModal({ modalId: reservationModalId(faustId) }));
+    dispatch(
+      openModal({
+        modalId: reservationModalId(faustId)
+      })
+    );
   };
 
   return (

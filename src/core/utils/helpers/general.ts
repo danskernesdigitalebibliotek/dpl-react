@@ -74,10 +74,13 @@ export const getCreatorTextFromManifestations = (
   return creatorsToString(creators, t);
 };
 
+// We deliberately left this function here although we don't use it anywhere in the
+// project. It can be used if ever needed to retrieve a chronologically oldest edition,
+// provided a manifestation object.
 export const getFirstPublishedManifestation = (
   manifestations: Manifestation[]
 ) => {
-  const ordered = orderManifestationsByYear(manifestations);
+  const ordered = orderManifestationsByYear(manifestations, "asc");
   return ordered[0];
 };
 
@@ -122,7 +125,17 @@ export const daysBetweenTodayAndDate = (date: string) => {
 
   // Math.ceil 0 diff last param true is because "diff()" rounds the number down
   // and we need it to be rounded up
+  // todo figure out if ceil is correct (talk to ddb)
   return Math.ceil(inputDate.diff(today, "day", true));
+};
+export const daysBetweenDates = (firstDate: string, secondDate: string) => {
+  const inputFirstDate = dayjs(new Date(firstDate));
+  const inputSecondDate = dayjs(new Date(secondDate));
+
+  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
+  // and we need it to be rounded up
+  // todo figure out if ceil is correct (talk to ddb)
+  return Math.ceil(inputFirstDate.diff(inputSecondDate, "day", true));
 };
 
 export const usePrevious = <Type>(value: Type) => {
@@ -195,7 +208,7 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
 export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ faust }) => faust) as FaustId[];
+    .map(({ loanId }) => loanId) as number[];
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {

@@ -59,9 +59,9 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       data-cy={dataCy || "button"}
       type="button"
-      className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small ${
-        classNames ?? ""
-      }`}
+      className={`btn-primary btn-${variant} btn-${size} ${
+        disabled ? "btn-outline" : ""
+      } arrow__hover--right-small ${classNames ?? ""}`}
       disabled={disabled}
       onClick={onClick}
       id={id}

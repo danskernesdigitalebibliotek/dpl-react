@@ -1,21 +1,14 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { configTypes } from "../../core/utils/helpers/fetcher";
 import PatronPage from "./PatronPage.entry";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -60,7 +53,7 @@ export default {
       defaultValue: "Contact information",
       control: { type: "text" }
     },
-    patronContactInfoBreadText: {
+    patronPageContactInfoBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -86,7 +79,7 @@ export default {
       defaultValue: "Digital loans (eReolen)",
       control: { type: "text" }
     },
-    patronPageStatusSectionBreadText: {
+    patronPageStatusSectionBodyText: {
       defaultValue:
         "There is a number of materials without limitation to amounts of loans per month.",
       control: { type: "text" }
@@ -111,7 +104,7 @@ export default {
       defaultValue: "Reservations",
       control: { type: "text" }
     },
-    patronPageChangePickupBreadText: {
+    patronPageChangePickupBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -127,7 +120,7 @@ export default {
       defaultValue: "Pause physical reservations",
       control: { type: "text" }
     },
-    patronPagePauseReservationsBreadText: {
+    patronPagePauseReservationsBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
@@ -152,7 +145,7 @@ export default {
       defaultValue: "Pincode",
       control: { type: "text" }
     },
-    patronPageChangePincodeBreadText: {
+    patronPageChangePincodeBodyText: {
       defaultValue: "Change current pin by entering a new pin and saving",
       control: { type: "text" }
     },
@@ -166,7 +159,7 @@ export default {
     },
     patronPagePincodeTooShortValidationText: {
       defaultValue:
-        "The pincode is too short, it should be @count characters long",
+        "The pincode is too short, it should be @pincodeLength characters long",
       control: { type: "text" }
     },
     patronPagePincodesNotTheSameText: {

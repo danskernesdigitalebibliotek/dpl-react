@@ -278,6 +278,7 @@ const SearchHeader: React.FC = () => {
     highlightedIndex,
     getItemProps,
     getInputProps,
+    getLabelProps,
     getComboboxProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
@@ -290,9 +291,6 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
-  const isDataPresent =
-    originalData && originalData.length > 0 && status === "success";
-
   return (
     <form
       className="header__menu-second"
@@ -301,21 +299,22 @@ const SearchHeader: React.FC = () => {
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search" {...getComboboxProps()}>
-        <SearchBar getInputProps={getInputProps} />
-        {isDataPresent && isAutosuggestOpen && (
-          <Autosuggest
-            textData={textData}
-            materialData={materialData}
-            categoryData={categoryData}
-            status={status}
-            getMenuProps={getMenuProps}
-            highlightedIndex={highlightedIndex}
-            getItemProps={getItemProps}
-            isOpen={isAutosuggestOpen}
-            autosuggestCategoryList={autosuggestCategoryList}
-            isLoading={isLoading}
-          />
-        )}
+        <SearchBar
+          getInputProps={getInputProps}
+          getLabelProps={getLabelProps}
+        />
+        <Autosuggest
+          textData={textData}
+          materialData={materialData}
+          categoryData={categoryData}
+          status={status}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+          isOpen={isAutosuggestOpen}
+          autosuggestCategoryList={autosuggestCategoryList}
+          isLoading={isLoading}
+        />
       </div>
     </form>
   );

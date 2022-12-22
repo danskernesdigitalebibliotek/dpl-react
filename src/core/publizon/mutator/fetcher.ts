@@ -1,7 +1,8 @@
 import { getToken, TOKEN_USER_KEY, TOKEN_LIBRARY_KEY } from "../../token";
-import { getFetcherUrl, configTypes } from "../../utils/helpers/fetcher";
-
-const defaultBaseUrl = "http://publizon-mock.docker";
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
 
 type FetchParams =
   | string
@@ -55,8 +56,7 @@ export const fetcher = async <ResponseType>({
 }) => {
   const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
 
-  const baseUrlFromConfig = getFetcherUrl(configTypes.publizon);
-  const baseURL = baseUrlFromConfig || defaultBaseUrl;
+  const baseURL = getServiceBaseUrl(serviceUrlKeys.publizon);
 
   const authHeaders = token
     ? ({ Authorization: `Bearer ${token}` } as object)

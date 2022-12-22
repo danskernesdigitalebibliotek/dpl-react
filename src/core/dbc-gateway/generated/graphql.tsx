@@ -125,6 +125,37 @@ export type ComplexSearchResponseWorksArgs = {
   offset: Scalars["Int"];
 };
 
+export type CopyRequestInput = {
+  authorOfComponent?: InputMaybe<Scalars["String"]>;
+  issueOfComponent?: InputMaybe<Scalars["String"]>;
+  openURL?: InputMaybe<Scalars["String"]>;
+  pagesOfComponent?: InputMaybe<Scalars["String"]>;
+  pickUpAgencySubdivision?: InputMaybe<Scalars["String"]>;
+  /** The pid of an article or periodica */
+  pid: Scalars["String"];
+  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
+  publicationTitle?: InputMaybe<Scalars["String"]>;
+  publicationYearOfComponent?: InputMaybe<Scalars["String"]>;
+  titleOfComponent?: InputMaybe<Scalars["String"]>;
+  userInterestDate?: InputMaybe<Scalars["String"]>;
+  userMail?: InputMaybe<Scalars["String"]>;
+  userName?: InputMaybe<Scalars["String"]>;
+  volumeOfComponent?: InputMaybe<Scalars["String"]>;
+};
+
+export type CopyRequestResponse = {
+  __typename?: "CopyRequestResponse";
+  status: CopyRequestStatus;
+};
+
+export enum CopyRequestStatus {
+  ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
+  ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
+  ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
+  ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
+  Ok = "OK"
+}
+
 export type Corporation = Creator &
   Subject & {
     __typename?: "Corporation";
@@ -156,6 +187,7 @@ export type Cover = {
   detail117?: Maybe<Scalars["String"]>;
   detail207?: Maybe<Scalars["String"]>;
   detail500?: Maybe<Scalars["String"]>;
+  origin?: Maybe<Scalars["String"]>;
   thumbnail?: Maybe<Scalars["String"]>;
 };
 
@@ -202,6 +234,16 @@ export type Edition = {
   summary: Scalars["String"];
 };
 
+export type ElbaServices = {
+  __typename?: "ElbaServices";
+  placeCopyRequest: CopyRequestResponse;
+};
+
+export type ElbaServicesPlaceCopyRequestArgs = {
+  dryRun?: InputMaybe<Scalars["Boolean"]>;
+  input: CopyRequestInput;
+};
+
 export enum EntryType {
   AdditionalEntry = "ADDITIONAL_ENTRY",
   MainEntry = "MAIN_ENTRY",
@@ -229,6 +271,7 @@ export type ExternalReview = Review & {
 /** The supported facet fields */
 export enum FacetField {
   AccessTypes = "accessTypes",
+  CanAlwaysBeLoaned = "canAlwaysBeLoaned",
   ChildrenOrAdults = "childrenOrAdults",
   Creators = "creators",
   FictionNonfiction = "fictionNonfiction",
@@ -507,6 +550,8 @@ export type Manifestation = {
   recordCreationDate: Scalars["String"];
   /** Notes about relations to this book/periodical/journal, - like previous names or related journals */
   relatedPublications: Array<RelatedPublication>;
+  /** Relations to other manifestations */
+  relations: Relations;
   /** Series for this work */
   series: Array<Series>;
   /** Information about on which shelf in the library this manifestation can be found */
@@ -598,10 +643,12 @@ export type MaterialType = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  elba: ElbaServices;
   submitPeriodicaArticleOrder: PeriodicaArticleOrderResponse;
 };
 
 export type MutationSubmitPeriodicaArticleOrderArgs = {
+  dryRun?: InputMaybe<Scalars["Boolean"]>;
   input: PeriodicaArticleOrder;
 };
 
@@ -761,7 +808,7 @@ export type QueryInfomediaArgs = {
 };
 
 export type QueryLocalSuggestArgs = {
-  branch?: InputMaybe<Scalars["String"]>;
+  branchId?: InputMaybe<Scalars["String"]>;
   limit?: InputMaybe<Scalars["Int"]>;
   q: Scalars["String"];
   suggestType?: InputMaybe<Array<SuggestionType>>;
@@ -862,6 +909,56 @@ export type RelatedPublication = {
   urlText?: Maybe<Scalars["String"]>;
 };
 
+export type Relations = {
+  __typename?: "Relations";
+  /** The story of this article is continued in this or these other article(s) */
+  continuedIn: Array<Manifestation>;
+  /** This story of this article actually started in this or these other article(s) */
+  continues: Array<Manifestation>;
+  /** The contents of this articles is also discussed in these articles */
+  discussedIn: Array<Manifestation>;
+  /** The article discusses the content of these articles */
+  discusses: Array<Manifestation>;
+  /** This story is adapted in this or these movie(s) */
+  hasAdaptation: Array<Manifestation>;
+  /** The contents of this manifestation is analysed in these manifestations */
+  hasAnalysis: Array<Manifestation>;
+  /** The creator of this manifestation is portrayed in these manifestations */
+  hasCreatorDescription: Array<Manifestation>;
+  /** The publisher of this manifestation has made a description of the content */
+  hasDescriptionFromPublisher: Array<Manifestation>;
+  /** This movie is based on this manuscript */
+  hasManuscript: Array<Manifestation>;
+  /** This manifestation has a 'materialevurdering' that was originally made for another manifestation, but it is still relevant (e.g. book/ebook) */
+  hasReusedReview: Array<Manifestation>;
+  /** This manifestation has these reviews */
+  hasReview: Array<Manifestation>;
+  /** This movie or game has this sound track */
+  hasSoundtrack: Array<Manifestation>;
+  /** This album has these tracks */
+  hasTrack: Array<Manifestation>;
+  /** This movie is based on this or these books */
+  isAdaptationOf: Array<Manifestation>;
+  /** This manifestation is an analysis of these manifestations */
+  isAnalysisOf: Array<Manifestation>;
+  /** This is a description from the original publisher of these manifestations */
+  isDescriptionFromPublisherOf: Array<Manifestation>;
+  /** This movie is based on this manuscript */
+  isManuscriptOf: Array<Manifestation>;
+  /** This music track is part of these albums */
+  isPartOfAlbum: Array<Manifestation>;
+  /** This article or book part can be found in these manifestations */
+  isPartOfManifestation: Array<Manifestation>;
+  /** This 'materialevurdering' can also be used to review these relevant manifestations, even though it was originally made for another publication */
+  isReusedReviewOf: Array<Manifestation>;
+  /** This manifestation is a review of these manifestations */
+  isReviewOf: Array<Manifestation>;
+  /** This sound track for a game is related to these games */
+  isSoundtrackOfGame: Array<Manifestation>;
+  /** This sound track for a movie is related to these movies */
+  isSoundtrackOfMovie: Array<Manifestation>;
+};
+
 export type Review = {
   author?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["String"]>;
@@ -890,6 +987,7 @@ export enum SchoolUseCode {
 export type SearchFilters = {
   accessTypes?: InputMaybe<Array<Scalars["String"]>>;
   branchId?: InputMaybe<Array<Scalars["String"]>>;
+  canAlwaysBeLoaned?: InputMaybe<Array<Scalars["String"]>>;
   childrenOrAdults?: InputMaybe<Array<Scalars["String"]>>;
   creators?: InputMaybe<Array<Scalars["String"]>>;
   department?: InputMaybe<Array<Scalars["String"]>>;
@@ -1084,6 +1182,8 @@ export type Work = {
   manifestations: Manifestations;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
+  /** Relations to other manifestations */
+  relations: Relations;
   reviews: Array<Review>;
   /** Series for this work */
   series: Array<Series>;
@@ -1153,15 +1253,18 @@ export type GetManifestationViaMaterialByFaustQuery = {
     pid: string;
     abstract: Array<string>;
     titles: { __typename?: "ManifestationTitles"; main: Array<string> };
-    hostPublication?: {
-      __typename?: "HostPublication";
-      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-    } | null;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
     >;
+    edition?: {
+      __typename?: "Edition";
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -1181,9 +1284,9 @@ export type GetMaterialQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
-    workYear?: string | null;
     workId: string;
     abstract?: Array<string> | null;
+    workYear?: string | null;
     genreAndForm: Array<string>;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     mainLanguages: Array<{
@@ -1466,6 +1569,7 @@ export type SearchWithPaginationQuery = {
       __typename?: "Work";
       workId: string;
       abstract?: Array<string> | null;
+      workYear?: string | null;
       genreAndForm: Array<string>;
       titles: {
         __typename?: "WorkTitles";
@@ -1998,6 +2102,7 @@ export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
   abstract?: Array<string> | null;
+  workYear?: string | null;
   genreAndForm: Array<string>;
   titles: {
     __typename?: "WorkTitles";
@@ -2189,9 +2294,9 @@ export type WorkSmallFragment = {
 
 export type WorkMediumFragment = {
   __typename?: "Work";
-  workYear?: string | null;
   workId: string;
   abstract?: Array<string> | null;
+  workYear?: string | null;
   genreAndForm: Array<string>;
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   mainLanguages: Array<{
@@ -2560,6 +2665,7 @@ export const WorkSmallFragmentDoc = `
       original
     }
   }
+  workYear
   genreAndForm
   manifestations {
     ...ManifestationsSimple
@@ -2614,7 +2720,6 @@ export const WorkMediumFragmentDoc = `
     display
     code
   }
-  workYear
   dk5MainEntry {
     display
   }
@@ -2628,16 +2733,16 @@ export const GetManifestationViaMaterialByFaustDocument = `
       main
     }
     abstract
-    hostPublication {
-      year {
-        year
-      }
-    }
     materialTypes {
       specific
     }
     creators {
       display
+    }
+    edition {
+      publicationYear {
+        display
+      }
     }
     series {
       title

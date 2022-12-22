@@ -49,7 +49,7 @@ describe("Search Result", () => {
   it("Does the search result have authors?", () => {
     cy.get(".search-result-page__list .search-result-item").should(
       "contain.text",
-      "By Dummy Jens Jensen (Dummy 1839)"
+      "By Dummy Jens Jensen (1839)"
     );
   });
 

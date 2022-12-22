@@ -1,7 +1,7 @@
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { configTypes } from "../../../core/utils/helpers/fetcher";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
 
@@ -9,6 +9,7 @@ export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    ...serviceUrlArgs,
     // Config
     feesPageUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
@@ -16,14 +17,6 @@ export default {
     },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
-    fbsBaseUrl: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
       control: { type: "text" }
     },
     pageSizeDesktop: {
@@ -375,22 +368,21 @@ const Template: ComponentStory<typeof LoanList> = (props) => (
 
 export const LoanListEntry = Template.bind({});
 LoanListEntry.args = {};
-
+const { dueDateModal, loanDetails, allLoansId } = getModalIds();
 export const LoanListDetailsModal = Template.bind({});
 LoanListDetailsModal.parameters = {
   query: {
-    modal: "28847238"
+    modal: `${loanDetails}28847238`
   }
 };
 
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-09-16"
+    modal: `${dueDateModal}2022-12-15`
   }
 };
 
-const { allLoansId } = getModalIds();
 export const LoanListRenewLoansModal = Template.bind({});
 LoanListRenewLoansModal.parameters = {
   query: {

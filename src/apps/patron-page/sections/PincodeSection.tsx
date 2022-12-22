@@ -25,7 +25,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
         setPincodeValidation(
           t("patronPagePincodeTooShortValidationText", {
             placeholders: {
-              "@count": pincodeLength
+              "@pincodeLength": pincodeLength
             }
           })
         );
@@ -45,7 +45,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
         {t("patronPageChangePincodeHeaderText")}
       </h2>
       <p className="text-body-small-regular">
-        {t("patronPageChangePincodeBreadText")}
+        {t("patronPageChangePincodeBodyText")}
       </p>
       <div className="dpl-pincode-container">
         <TextInput

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  materialIsFiction
+} from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId, WorkId } from "../../core/utils/types/ids";
@@ -27,7 +30,7 @@ import {
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
-import { Manifestation } from "../../core/utils/types/entities";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
   getFutureDateString,
   getPreferredBranch,
@@ -41,6 +44,8 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
+import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
+import PromoBar from "../promo-bar/PromoBar";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -50,6 +55,7 @@ type ReservationModalProps = {
   parallelManifestations?: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
   workId: WorkId;
+  work: Work;
 };
 
 const ReservationModalBody = ({
@@ -62,7 +68,8 @@ const ReservationModalBody = ({
   },
   parallelManifestations,
   selectedPeriodical,
-  workId
+  workId,
+  work
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
@@ -92,6 +99,10 @@ const ReservationModalBody = ({
     recordid: [faustId]
   });
   const { track } = useStatistics();
+  const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
+    work,
+    mainManifestation.pid
+  );
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -163,8 +174,8 @@ const ReservationModalBody = ({
                 {materialTypes[0].specific}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {mainTitle}{" "}
-                {selectedPeriodical && selectedPeriodical.displayText}
+                {mainTitle}
+                {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
                 <p className="text-body-medium-regular">{authorLine}</p>
@@ -196,7 +207,22 @@ const ReservationModalBody = ({
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || edition?.summary || ""}
               />
-
+              {!materialIsFiction(work) && otherManifestationPreferred && (
+                <PromoBar
+                  classNames="px-35"
+                  sticky
+                  type="info"
+                  text={t("materialIsAvailableInAnotherEditionText", {
+                    count: otherManifestationPreferred.reservations,
+                    placeholders: {
+                      "@title": otherManifestationPreferred.titles.main[0],
+                      "@authorAndYear":
+                        getAuthorLine(otherManifestationPreferred, t) ?? "",
+                      "@reservations": otherManifestationPreferred.reservations
+                    }
+                  })}
+                />
+              )}
               {patron && (
                 <UserListItems
                   patron={patron}

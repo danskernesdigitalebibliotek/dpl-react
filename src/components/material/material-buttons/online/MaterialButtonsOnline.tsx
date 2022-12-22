@@ -9,6 +9,7 @@ import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
+import { hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
@@ -45,6 +46,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       url: externalUrl,
       loginRequired
     } = accessElement as AccessUrl;
+    // TODO:  We have experienced that externalUrl is not always valid.
+    // We should use isUrlValid helper function to check is it is valid.
     return (
       <MaterialButtonOnlineExternal
         loginRequired={loginRequired}
@@ -58,7 +61,10 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     );
   }
 
-  if (accessType === "DigitalArticleService") {
+  if (
+    accessType === "DigitalArticleService" &&
+    hasCorrectMaterialType("tidsskriftsartikel", manifestation)
+  ) {
     const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
       <MaterialButtonOnlineDigitalArticle

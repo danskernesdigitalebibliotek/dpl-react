@@ -19,6 +19,7 @@ import configReducer from "./config.slice";
 // in the guardedRequest thunk.
 // eslint-disable-next-line import/no-cycle
 import guardedRequestsReducer from "./guardedRequests.slice";
+import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUrls";
 
 // TODO: We have planned to get rid of redux-persist.
 // When the step has been made to remove it all the persist setup should go as well.
@@ -29,6 +30,10 @@ const persistConfig = {
 };
 
 export const store = configureStore({
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    extractServiceBaseUrls
+  ],
   reducer: persistReducer(
     persistConfig,
     combineReducers({

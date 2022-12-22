@@ -21,6 +21,14 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
 
+export const getFromListByKey = (
+  list: LoanType[],
+  key: "faust" | "identifier",
+  value: string
+) => {
+  return list.filter((loan) => loan[key] === value);
+};
+
 export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":

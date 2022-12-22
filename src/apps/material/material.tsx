@@ -12,7 +12,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import Disclosure from "../../components/material/disclosures/disclosure";
+import Disclosure from "../../components/Disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
@@ -39,6 +39,10 @@ import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
+import DigitalModal from "../../components/material/digital-modal/DigitalModal";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import { getDigitalArticleIssn } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -151,8 +155,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
   const infomediaId = getInfomediaId(currentManifestation);
 
+  // Get disclosure URL parameter from the current URL to see if it should be open
+  const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
+
   return (
-    <main className="material-page">
+    <section className="material-page">
       <MaterialHeader
         wid={wid}
         work={work}
@@ -170,26 +177,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation: Manifestation) => {
           return (
-            <>
-              <MaterialMainfestationItem
-                key={manifestation.pid}
-                manifestation={manifestation}
-                workId={wid}
-              />
-              <FindOnShelfModal
-                manifestations={[manifestation]}
-                workTitles={manifestation.titles.main}
-                authors={manifestation.creators}
-                key={`find-on-shelf-modal-${manifestation.pid}`}
-                selectedPeriodical={selectedPeriodical}
-                setSelectedPeriodical={setSelectedPeriodical}
-              />
-              <ReservationModal
-                mainManifestation={manifestation}
-                parallelManifestations={parallelManifestations}
-                workId={wid}
-              />
-            </>
+            <MaterialMainfestationItem
+              key={manifestation.pid}
+              manifestation={manifestation}
+              workId={wid}
+            />
           );
         })}
       </Disclosure>
@@ -205,10 +197,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         />
       </Disclosure>
       {reviews && reviews.length >= 1 && (
-        <Disclosure
+        <DisclosureControllable
+          id="reviews"
           title={t("reviewsText")}
           mainIconPath={CreateIcon}
-          dataCy="material-reviews-disclosure"
+          showContent={shouldOpenReviewDisclosure}
+          cyData="material-reviews-disclosure"
         >
           <MaterialReviews
             listOfReviews={
@@ -217,34 +211,43 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               >
             }
           />
-        </Disclosure>
+        </DisclosureControllable>
       )}
-      {currentManifestation && (
+      {manifestations.map((manifestation) => (
         <>
-          <FindOnShelfModal
-            // TODO: when we have a selected manifestations group, pass it
-            // down here as manifestations prop
-            manifestations={[currentManifestation]}
-            workTitles={work.titles.full}
-            authors={work.creators}
-            selectedPeriodical={selectedPeriodical}
-            setSelectedPeriodical={setSelectedPeriodical}
-          />
           <ReservationModal
-            mainManifestation={currentManifestation}
+            mainManifestation={manifestation}
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
             workId={wid}
+            work={work}
           />
-          {infomediaId && (
-            <InfomediaModal
-              mainManifestation={currentManifestation}
-              infoMediaId={infomediaId}
+          <FindOnShelfModal
+            manifestations={[manifestation]}
+            workTitles={manifestation.titles.main}
+            authors={manifestation.creators}
+            key={`find-on-shelf-modal-${manifestation.pid}`}
+            selectedPeriodical={selectedPeriodical}
+            setSelectedPeriodical={setSelectedPeriodical}
+          />
+        </>
+      ))}
+      {currentManifestation && infomediaId && (
+        <>
+          <InfomediaModal
+            mainManifestation={currentManifestation}
+            infoMediaId={infomediaId}
+          />
+          {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
+            <DigitalModal
+              digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
+              pid={currentManifestation.pid}
+              workId={wid}
             />
           )}
         </>
       )}
-    </main>
+    </section>
   );
 };
 
