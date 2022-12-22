@@ -154,3 +154,7 @@ export const isUrlValid = (text: string) => {
     return false;
   }
 };
+
+export const currentLocationWithParametersUrl = (
+  params: Record<string, string>
+) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
