@@ -21,6 +21,9 @@ interface FavoritesListTextEntryProps {
   etAlText: string;
   showMoreText: string;
   resultPagerStatusText: string;
+  favoritesListEmptyText: string;
+  inSeriesText: string;
+  numberDescriptionText: string;
 }
 
 export interface FavoritesListEntryProps

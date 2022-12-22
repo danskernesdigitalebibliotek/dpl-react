@@ -67,6 +67,20 @@ export default {
     etAlText: {
       defaultValue: "...",
       control: { type: "text" }
+    },
+    favoritesListEmptyText: {
+      defaultValue: "Your favorites list is empty",
+      control: { type: "text" }
+    },
+    numberDescriptionText: {
+      name: "Number description",
+      defaultValue: "Nr.",
+      control: { type: "text" }
+    },
+    inSeriesText: {
+      name: "In series",
+      defaultValue: "in series",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]

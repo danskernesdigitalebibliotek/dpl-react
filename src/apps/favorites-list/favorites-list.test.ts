@@ -55,7 +55,6 @@ describe("Favorites list", () => {
       .eq(0)
       .should("have.text", "3 materials");
 
-    // 2.d. Metadata for de enkelte materialer som beskrevet i “Simpel værkvisning - Liste” i bilaget “Begrebsoversigt”
     // 2.e. accessibility on material type
     cy.get(".search-result-page")
       .find(".search-result-item")
