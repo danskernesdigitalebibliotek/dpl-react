@@ -38,7 +38,7 @@ describe("Search header app", () => {
 
   it("Doesn't show suggestions before 3 characters are typed", () => {
     cy.get(".header__menu-search-input").focus().type("ha");
-    cy.get(".autosuggest").should("not.exist");
+    cy.get(".autosuggest").should("not.be.visible");
     cy.get(".header__menu-search-input").focus().type("r");
     cy.get(".autosuggest").should("be.visible");
   });
