@@ -9,16 +9,16 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     intermediateListHeadlineText: {
-      defaultValue: "Fees and compensations",
+      defaultValue: "Fees & Replacement costs",
       control: { type: "text" }
     },
     intermediateListBodyText: {
       defaultValue:
-        'Fees and compensations that you have recieved as per 27/10 2020 transitions to a new system, where transactions are carried out through the solution "Mit Betalingsoverblik". Fees before this date, can still be payed via. this page.',
+        "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page.",
       control: { type: "text" }
     },
     viewFeesAndCompensationRatesText: {
-      defaultValue: "View fees and compensation rates",
+      defaultValue: "See our fees and replacement costs",
       control: { type: "text" }
     },
     viewFeesAndCompensationRatesUrl: {
@@ -30,7 +30,7 @@ export default {
       control: { type: "text" }
     },
     feeCreatedText: {
-      defaultValue: "Fee created",
+      defaultValue: "Fees charged",
       control: { type: "text" }
     },
     otherMaterialsText: {
@@ -66,20 +66,20 @@ export default {
       control: { type: "text" }
     },
     unpaidFeesText: {
-      defaultValue: "Unpaid fees",
+      defaultValue: "Unsettled debt",
       control: { type: "text" }
     },
     prePaymentTypeChangeDateText: {
-      defaultValue: "PRE 27/10 2020",
+      defaultValue: "BEFORE 27/10 2020",
       control: { type: "text" }
     },
     postPaymentTypeChangeDateText: {
-      defaultValue: "POST 27/10 2020",
+      defaultValue: "AFTER 27/10 2020",
       control: { type: "text" }
     },
     alreadyPaidText: {
       defaultValue:
-        "Already paid? Paid fees can take up to 24 hours to registrer.",
+        "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked.",
       control: { type: "text" }
     },
     intermediatePaymentModalHeaderText: {
@@ -107,7 +107,7 @@ export default {
       control: { type: "text" }
     },
     emptyIntermediateListText: {
-      defaultValue: "Currently, you have 0 unpaid fees",
+      defaultValue: "You have 0 unpaid fees or replacement costs",
       control: { type: "text" }
     }
   }
