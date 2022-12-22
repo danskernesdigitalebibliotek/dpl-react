@@ -1,9 +1,11 @@
 import * as React from "react";
 import { FC, useEffect, useState } from "react";
+import ListHeader from "../../../components/list-header/list-header";
 
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
+
 import FeeListItem from "../fee-list-item/fee-list.item";
 import TotalPaymentPay from "../stackable-fees/total-payment-pay";
 import {
@@ -15,13 +17,13 @@ const FeeList: FC = () => {
   const t = useText();
   const { data: fbsFees } = useGetFeesV2<FeeV2>();
   const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
-    FeeV2[] | boolean
-  >(false);
+    FeeV2[] | null
+  >(null);
   const [totalFeePrePaymentChange, setTotalFeePrePaymentChange] =
     useState<number>(0);
   const [itemsPostPaymentChange, setItemsPostPaymentChange] = useState<
-    FeeV2[] | boolean
-  >(false);
+    FeeV2[] | null
+  >(null);
   const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
     useState<number>(0);
 
@@ -40,7 +42,7 @@ const FeeList: FC = () => {
 
   useEffect(() => {
     let totalFee = 0;
-    Object.values(itemsPrePaymentChange).forEach((item) => {
+    itemsPrePaymentChange?.forEach((item) => {
       totalFee += item.amount;
     });
     setTotalFeePrePaymentChange(totalFee);
@@ -48,7 +50,7 @@ const FeeList: FC = () => {
 
   useEffect(() => {
     let totalTally = 0;
-    Object.values(itemsPostPaymentChange).forEach((item) => {
+    itemsPostPaymentChange?.forEach((item) => {
       totalTally += item.amount;
     });
     setTotalFeePostPaymentChange(totalTally);
@@ -81,10 +83,23 @@ const FeeList: FC = () => {
       )}
       {itemsPostPaymentChange && (
         <div>
-          <p style={{ textTransform: "uppercase" }}>
+          <ListHeader
+            // <>{t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b></>
+            header={
+              // used ‎ here, an invisible character, to get a space between the dash and second string.
+              <>
+                {t("unpaidFeesText")} - ‎{" "}
+                <b>{t("postPaymentTypeChangeDateText")}</b>
+              </>
+            }
+            // header={` ${t("unpaidFeesText")}  -  ${t(
+            //   "postPaymentTypeChangeDateText"
+            // )}`}
+          />
+          {/* <p style={{ textTransform: "uppercase" }}>
             {t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b>
-          </p>
-          {Object.values(itemsPostPaymentChange).map((itemData) => (
+          </p> */}
+          {itemsPostPaymentChange.map((itemData) => (
             <FeeListItem prePaymentTypeChange={false} itemData={itemData} />
           ))}
           <TotalPaymentPay
