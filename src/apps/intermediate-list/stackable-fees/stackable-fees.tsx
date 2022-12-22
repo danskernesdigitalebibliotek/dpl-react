@@ -14,84 +14,52 @@ import FeeDetailsContent from "./fee-details-content";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 export interface StackableFeeProps {
-  prePaymentTypeChange: boolean;
   amountOfMaterialsWithDueDate?: number;
   material?: BasicDetailsType;
   faust: string;
   feeData: FeeV2;
+  openDetailsModalClickEvent: (faustId: string) => void;
+  stackHeight: number;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
-  prePaymentTypeChange,
   amountOfMaterialsWithDueDate,
   faust,
   material = {},
-  feeData
+  feeData,
+  openDetailsModalClickEvent,
+  stackHeight
 }) => {
-  const { open } = useModalButtonHandler();
   const t = useText();
-  const {
-    amount = 0,
-    creationDate = "",
-    reasonMessage = "",
-    dueDate = "",
-    materials = {}
-  } = feeData;
-
-  const creationDateFormatted = dayjs(creationDate).format("D. MMMM YYYY");
+  const { amount = 0, creationDate = "", reasonMessage = "" } = feeData;
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
-  function stopPropagationFunction(e: Event | MouseEvent) {
-    e.stopPropagation();
-  }
 
-  const selectListMaterial = useCallback(
-    (e: MouseEvent) => {
-      stopPropagationFunction(e);
-      open(faust || "");
-    },
-    [faust, open]
-  );
   return (
-    <>
-      <button
-        type="button"
-        onClick={(e) => selectListMaterial(e)}
-        className={`list-reservation my-32 ${
-          additionalFees > 0 ? "list-reservation--stacked" : ""
-        }`}
-      >
-        {feeData && (
-          <FeeInfo material={material} isbnForCover="">
-            <AdditionalFeesButton
-              showOn="desktop"
-              additionalFees={additionalFees}
-              screenReaderLabel="screenreadertext"
-            />
-          </FeeInfo>
-        )}
-        <div className="list-reservation__status">
-          <FeeStatus dueDate={creationDate} reasonMessage={reasonMessage} />
-          <div className="list-reservation__fee">
-            <p className="text-body-medium-medium">
-              {t("totalFeeAmountText")} {amount},-
-            </p>
-          </div>
+    <button
+      type="button"
+      onClick={() => openDetailsModalClickEvent(faust)}
+      className={`list-reservation my-32 ${
+        additionalFees > 0 ? "list-reservation--stacked" : ""
+      }`}
+    >
+      {feeData && (
+        <FeeInfo material={material} isbnForCover="">
+          {stackHeight - 1 > 0 && (
+            <span>+ {stackHeight - 1} other materials</span>
+          )}
+        </FeeInfo>
+      )}
+      <div className="list-reservation__status">
+        <FeeStatus dueDate={creationDate} reasonMessage={reasonMessage} />
+        <div className="list-reservation__fee">
+          <p className="text-body-medium-medium">
+            {t("totalFeeAmountText")} {amount},-
+          </p>
         </div>
-      </button>
-
-      <FeeDetailsModal faust={faust} material={material}>
-        <FeeDetailsContent
-          prePaymentTypeChange={prePaymentTypeChange}
-          dueDate={dueDate}
-          creationDate={creationDate}
-          creationDateFormatted={creationDateFormatted}
-          amount={amount}
-          materials={materials}
-        />
-      </FeeDetailsModal>
-    </>
+      </div>
+    </button>
   );
 };
 

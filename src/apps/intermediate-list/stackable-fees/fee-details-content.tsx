@@ -1,32 +1,31 @@
+import dayjs from "dayjs";
 import * as React from "react";
 import { FC, useState } from "react";
 import { Link } from "../../../components/atoms/link";
+import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import FeeStatusCircle from "../utils/fee-status-circle";
+import { isDateBeforePaymentChangeDate } from "../utils/intermediate-list-helper";
 import StackableFeesList from "./stackable-fees-list";
 
 export interface FeeDetailsContentProps {
-  prePaymentTypeChange: boolean;
-  dueDate: string;
-  creationDate: string;
-  creationDateFormatted: string;
-  amount: number;
-  materials: object;
+  feeDetailsData: FeeV2;
 }
 
-const FeeDetailsContent: FC<FeeDetailsContentProps> = ({
-  prePaymentTypeChange,
-  dueDate,
-  creationDate,
-  creationDateFormatted,
-  amount,
-  materials
-}) => {
+const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
   const [check, setCheck] = useState(false);
   const handleAcceptedTerms = () => {
     setCheck(!check);
   };
+  const {
+    amount = 0,
+    creationDate = "",
+    dueDate = "",
+    materials = []
+  } = feeDetailsData;
+  const prePaymentTypeChange = isDateBeforePaymentChangeDate(new Date(dueDate));
+  const creationDateFormatted = dayjs(creationDate).format("D. MMMM YYYY");
   const openInNewTab = (url: URL) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -131,14 +130,12 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({
         <ul className="modal-loan__list-container">
           <li className="modal-loan__list">
             <ul className="modal-loan__list-materials">
-              {Object.values(materials).map((materialItem) => {
-                return (
-                  <StackableFeesList
-                    faust={materialItem.recordId}
-                    creationDateFormatted={creationDateFormatted}
-                  />
-                );
-              })}
+              {materials.map(({ recordId }) => (
+                <StackableFeesList
+                  faust={recordId}
+                  creationDateFormatted={creationDateFormatted}
+                />
+              ))}
             </ul>
           </li>
         </ul>

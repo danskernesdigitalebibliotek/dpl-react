@@ -1,78 +1,54 @@
 import * as React from "react";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import ListHeader from "../../../components/list-header/list-header";
-
-import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
-
 import FeeListItem from "../fee-list-item/fee-list.item";
 import TotalPaymentPay from "../stackable-fees/total-payment-pay";
-import {
-  getFeesPostPaymentChangeDate,
-  getFeesPrePaymentChangeDate
-} from "../utils/intermediate-list-helper";
 
-const FeeList: FC = () => {
+interface FeeListProps {
+  openDetailsModalClickEvent: (faustId: string) => void;
+  itemsPrePaymentChange: FeeV2[] | null;
+  itemsPostPaymentChange: FeeV2[] | null;
+  totalFeePrePaymentChange: number;
+  totalFeePostPaymentChange: number;
+}
+const FeeList: FC<FeeListProps> = ({
+  openDetailsModalClickEvent,
+  itemsPrePaymentChange,
+  itemsPostPaymentChange,
+  totalFeePrePaymentChange,
+  totalFeePostPaymentChange
+}) => {
   const t = useText();
-  const { data: fbsFees } = useGetFeesV2<FeeV2>();
-  const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
-    FeeV2[] | null
-  >(null);
-  const [totalFeePrePaymentChange, setTotalFeePrePaymentChange] =
-    useState<number>(0);
-  const [itemsPostPaymentChange, setItemsPostPaymentChange] = useState<
-    FeeV2[] | null
-  >(null);
-  const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
-    useState<number>(0);
-
-  useEffect(() => {
-    if (fbsFees) {
-      const feesPrePaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
-      if (feesPrePaymentChange > 0) {
-        setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
-      }
-      const feesPostPaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
-      if (feesPostPaymentChange > 0) {
-        setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
-      }
-    }
-  }, [fbsFees]);
-
-  useEffect(() => {
-    let totalFee = 0;
-    itemsPrePaymentChange?.forEach((item) => {
-      totalFee += item.amount;
-    });
-    setTotalFeePrePaymentChange(totalFee);
-  }, [itemsPrePaymentChange]);
-
-  useEffect(() => {
-    let totalTally = 0;
-    itemsPostPaymentChange?.forEach((item) => {
-      totalTally += item.amount;
-    });
-    setTotalFeePostPaymentChange(totalTally);
-  }, [itemsPostPaymentChange]);
 
   return (
     <div>
       {!itemsPrePaymentChange && !itemsPostPaymentChange && (
         <>
-          <p style={{ textTransform: "uppercase" }}>
-            {t("unpaidFeesText")} <sup>0</sup>
-          </p>
+          <ListHeader header={<>{t("unpaidFeesText")}</>} amount={0} />
           <div className="dpl-list-empty">{t("emptyIntermediateListText")}</div>
         </>
       )}
       {itemsPrePaymentChange && (
         <div>
-          <p style={{ textTransform: "uppercase" }}>
-            {t("unpaidFeesText")} - <b>{t("prePaymentTypeChangeDateText")}</b>
-          </p>
-          {Object.values(itemsPrePaymentChange).map((itemData) => (
-            <FeeListItem prePaymentTypeChange itemData={itemData} />
+          <ListHeader
+            header={
+              // used ‎ here, an invisible character, to get a pesky space between the dash and second string.
+              <>
+                {t("unpaidFeesText")} -{" "}
+                <b>{t("prePaymentTypeChangeDateText")}</b>
+              </>
+            }
+            amount={null}
+          />
+          {itemsPrePaymentChange.map((itemData) => (
+            <FeeListItem
+              prePaymentTypeChange
+              itemData={itemData}
+              openDetailsModalClickEvent={openDetailsModalClickEvent}
+              stackHeight={itemData.materials.length}
+            />
           ))}
 
           <TotalPaymentPay
@@ -84,24 +60,25 @@ const FeeList: FC = () => {
       {itemsPostPaymentChange && (
         <div>
           <ListHeader
-            // <>{t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b></>
             header={
-              // used ‎ here, an invisible character, to get a space between the dash and second string.
+              // used ‎ here, an invisible character, to get a pesky space between the dash and second string.
               <>
-                {t("unpaidFeesText")} - ‎{" "}
+                {t("unpaidFeesText")} -{" "}
                 <b>{t("postPaymentTypeChangeDateText")}</b>
               </>
             }
-            // header={` ${t("unpaidFeesText")}  -  ${t(
-            //   "postPaymentTypeChangeDateText"
-            // )}`}
+            amount={null}
           />
-          {/* <p style={{ textTransform: "uppercase" }}>
-            {t("unpaidFeesText")} - <b>{t("postPaymentTypeChangeDateText")}</b>
-          </p> */}
-          {itemsPostPaymentChange.map((itemData) => (
-            <FeeListItem prePaymentTypeChange={false} itemData={itemData} />
-          ))}
+          {itemsPostPaymentChange.map((itemData) => {
+            return (
+              <FeeListItem
+                prePaymentTypeChange={false}
+                itemData={itemData}
+                openDetailsModalClickEvent={openDetailsModalClickEvent}
+                stackHeight={itemData.materials.length}
+              />
+            );
+          })}
           <TotalPaymentPay
             prePaymentTypeChange={false}
             total={totalFeePostPaymentChange}

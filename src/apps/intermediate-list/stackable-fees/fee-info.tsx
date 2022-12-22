@@ -42,7 +42,6 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
               {authors && authors}
               {year && <>({year})</>}
             </div>
-            <div>{series && series}</div>
           </p>
         </div>
         {children}
