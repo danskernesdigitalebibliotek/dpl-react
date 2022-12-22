@@ -7,8 +7,6 @@ import FavoritesList from "./FavoritesList";
 
 interface FavoritesListConfigEntryProps {
   fbsBaseUrlConfig: string;
-  blacklistedAvailabilityBranchesConfig: string;
-  branchesConfig: string;
 }
 interface FavoritesListUrlEntryProps {
   materialUrl: string;
