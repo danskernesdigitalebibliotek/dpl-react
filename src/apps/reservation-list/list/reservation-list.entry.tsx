@@ -76,9 +76,6 @@ export interface ReservationListProps {
   reservationListAllEmptyText: string;
   pageSizeDesktop: number;
   pageSizeMobile: number;
-  reservationListStatusIconReadyForPickupAriaLabelText: string;
-  reservationListStatusIconQueuedAriaLabelText: string;
-  reservationListStatusIconReadyInAriaLabelText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = ({

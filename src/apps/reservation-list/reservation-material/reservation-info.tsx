@@ -55,7 +55,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   if (state === "readyForPickup") {
     return (
       <ReservationStatus
-        ariaLabel={t("reservationListStatusIconReadyForPickupAriaLabelText")}
         color={success as string}
         percent={100}
         infoLabel={readyForPickupLabel}
@@ -81,10 +80,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
 
     return (
       <ReservationStatus
-        ariaLabel={t("reservationListStatusIconQueuedAriaLabelText", {
-          count: numberInQueue,
-          placeholders: { "@count": numberInQueue }
-        })}
         // The decision regarding this is, that if the user is number 4
         // in the queue for a material, the "percent-wheel-thing" should be 1/4 full.
         percent={(1 / numberInQueue) * 100}
@@ -108,10 +103,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
     return (
       <ReservationStatus
-        ariaLabel={t("reservationListStatusIconReadyInAriaLabelText", {
-          count: daysBetweenTodayAndPickup,
-          placeholders: { "@count": daysBetweenTodayAndPickup }
-        })}
         percent={daysBetweenTodayAndDate(pickupDeadline) / 100}
         label={t("reservationListAvailableInText", {
           placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
