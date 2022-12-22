@@ -37,6 +37,7 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
         "infomediaModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("infomediaModalCloseModalAriaLabelText")}
+      dataCy="infomedia-modal"
     >
       {headline && text && (
         <InfomediaModalBody headline={headline} text={text} />

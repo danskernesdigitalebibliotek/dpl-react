@@ -1,15 +1,15 @@
 const enum MaterialType {
-  book = "book",
-  ebook = "ebook",
-  movie = "movie",
-  audioBook = "audioBook",
-  music = "music",
-  game = "game",
-  animatedSeries = "animatedSeries",
-  newspaperArticle = "newspaperArticle",
-  earticle = "earticle",
-  boardGame = "boardGame",
-  cdRom = "cdRom"
+  book = "bog",
+  ebook = "e-bog",
+  movie = "film",
+  audioBook = "lydbog (net)",
+  music = "node",
+  game = "playstation 5",
+  animatedSeries = "tegneserie",
+  newspaperArticle = "tidsskriftsartikel",
+  earticle = "artikel",
+  boardGame = "spil",
+  cdRom = "cd"
 }
 
 export default MaterialType;

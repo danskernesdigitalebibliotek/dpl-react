@@ -17,6 +17,7 @@ type ModalProps = {
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
   classNames?: string;
+  dataCy?: string;
 };
 
 export interface ModalIdsProps {
@@ -30,7 +31,8 @@ function Modal({
   closeModalAriaLabelText,
   children,
   screenReaderModalDescriptionText,
-  classNames
+  classNames,
+  dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -71,6 +73,7 @@ function Modal({
         )}
         role="dialog"
         aria-labelledby={`modal-${modalId}`}
+        data-cy={dataCy}
       >
         <div
           className="modal__screen-reader-description"
