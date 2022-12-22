@@ -70,6 +70,7 @@ function Modal({
           classNames
         )}
         role="dialog"
+        aria-labelledby={`modal-${modalId}`}
       >
         <div
           className="modal__screen-reader-description"
@@ -80,11 +81,10 @@ function Modal({
         <button
           type="button"
           /* A focusable element in a modal must have focus when opened,
-        or else the screen reader will remain on the main page */
+          or else the screen reader will remain on the main page */
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           className="btn-ui modal-btn-close"
-          aria-describedby={`modal-${modalId}`}
           style={{
             // same as comment above
             zIndex: modalIds.indexOf(modalId) + 10
