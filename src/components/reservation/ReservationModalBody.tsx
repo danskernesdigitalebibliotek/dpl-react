@@ -174,8 +174,8 @@ const ReservationModalBody = ({
                 {materialTypes[0].specific}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {mainTitle}{" "}
-                {selectedPeriodical && selectedPeriodical.displayText}
+                {mainTitle}
+                {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
                 <p className="text-body-medium-regular">{authorLine}</p>
