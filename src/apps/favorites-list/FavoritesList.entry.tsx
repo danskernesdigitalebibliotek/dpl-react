@@ -12,6 +12,7 @@ interface FavoritesListConfigEntryProps {
 }
 interface FavoritesListUrlEntryProps {
   materialUrl: string;
+  searchUrl: string;
 }
 interface FavoritesListTextEntryProps {
   favoritesListMaterialsText: string;

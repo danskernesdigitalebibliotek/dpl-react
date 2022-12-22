@@ -18,14 +18,12 @@ const SearchResultListItemAdapter: FC<SearchResultListItemAdapterProps> = ({
   return (
     <div>
       {data && data.work && (
-        <>
-          {pid}
-          <SearchResultListItem
-            key={data.work?.workId}
-            item={data.work as Work}
-            coverTint="100"
-          />
-        </>
+        <SearchResultListItem
+          key={data.work?.workId}
+          item={data.work as Work}
+          coverTint="100"
+          resultNumber={0}
+        />
       )}
     </div>
   );

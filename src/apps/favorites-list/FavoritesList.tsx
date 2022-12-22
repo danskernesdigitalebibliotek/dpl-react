@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
-import { List } from "../../core/material-list-api/model";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
@@ -20,11 +20,9 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   useEffect(() => {
     setDisplayedMaterials([...materials].splice(0, itemsShown));
   }, [itemsShown, materials]);
+
   useEffect(() => {
-    console.log(data);
-    // @ts-ignore
     if (data && data.materials) {
-      // @ts-ignore
       setMaterials(data.materials);
     }
   }, [data]);
@@ -41,14 +39,16 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
         </p>
       )}
       <ul className="search-result-page__list my-32">
-        {displayedMaterials.map((pid) => {
-          return (
-            <li key={pid}>
-              <SearchResultListItemAdapter key={pid} pid={pid} />
-            </li>
-          );
-        })}
+        {displayedMaterials.length > 0 &&
+          displayedMaterials.map((pid) => {
+            return (
+              <li key={pid}>
+                <SearchResultListItemAdapter key={pid} pid={pid} />
+              </li>
+            );
+          })}
       </ul>
+      {displayedMaterials.length === 0 && <EmptyList emptyListText="todo" />}
       {PagerComponent}
     </div>
   );

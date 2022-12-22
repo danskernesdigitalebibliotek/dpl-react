@@ -16,6 +16,11 @@ export default {
       defaultValue: 50,
       control: { type: "number" }
     },
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
     pageSizeMobile: {
       name: "Number of search result items on mobile",
       defaultValue: 20,
@@ -52,11 +57,11 @@ export default {
       control: { type: "text" }
     },
     favoritesListHeaderText: {
-      defaultValue: "Din huskeliste",
+      defaultValue: "Favorites",
       control: { type: "text" }
     },
     byAuthorText: {
-      defaultValue: "Af",
+      defaultValue: "By",
       control: { type: "text" }
     },
     etAlText: {
