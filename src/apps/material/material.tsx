@@ -232,20 +232,20 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           />
         </>
       ))}
-      {currentManifestation && infomediaId && (
-        <>
-          <InfomediaModal
-            mainManifestation={currentManifestation}
-            infoMediaId={infomediaId}
-          />
-          {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
-            <DigitalModal
-              digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
-              pid={currentManifestation.pid}
-              workId={wid}
-            />
-          )}
-        </>
+
+      {infomediaId && (
+        <InfomediaModal
+          mainManifestation={currentManifestation}
+          infoMediaId={infomediaId}
+        />
+      )}
+
+      {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
+        <DigitalModal
+          digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
+          pid={currentManifestation.pid}
+          workId={wid}
+        />
       )}
     </section>
   );
