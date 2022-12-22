@@ -53,7 +53,7 @@ export default {
       control: { type: "text" }
     },
     favoritesListMaterialsText: {
-      defaultValue: "materialer",
+      defaultValue: "@count materials",
       control: { type: "text" }
     },
     favoritesListHeaderText: {

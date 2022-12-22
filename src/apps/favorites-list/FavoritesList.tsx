@@ -34,8 +34,9 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
       </h1>
       {materials.length > 0 && (
         <p className="text-small-caption my-32">
-          {/* todo string interpolation */}
-          {materials.length} {t("favoritesListMaterialsText")}
+          {t("favoritesListMaterialsText", {
+            placeholders: { "@count": materials.length }
+          })}
         </p>
       )}
       <ul className="search-result-page__list my-32">
