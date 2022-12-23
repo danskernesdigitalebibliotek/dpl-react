@@ -24,7 +24,6 @@ import {
 import {
   getWorkDescriptionListData,
   getManifestationFromType,
-  getManifestationType,
   getWorkManifestation,
   getInfomediaId
 } from "./helper";
@@ -32,6 +31,7 @@ import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
   getManifestationPid,
+  getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";

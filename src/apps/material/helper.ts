@@ -5,13 +5,11 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-
-export const getManifestationType = (manifestation: Manifestation) =>
-  manifestation?.materialTypes?.[0]?.specific;
 
 export const getWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;

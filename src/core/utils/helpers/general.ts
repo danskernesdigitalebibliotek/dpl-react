@@ -317,4 +317,7 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
   });
 };
 
+export const getManifestationType = (manifestation: Manifestation) =>
+  manifestation?.materialTypes?.[0]?.specific;
+
 export default {};

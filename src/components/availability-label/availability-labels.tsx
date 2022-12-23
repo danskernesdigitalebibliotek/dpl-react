@@ -1,6 +1,8 @@
 import React from "react";
-import { getManifestationType } from "../../apps/material/helper";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  getManifestationType
+} from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   setQueryParametersInUrl
