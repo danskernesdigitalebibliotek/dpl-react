@@ -38,7 +38,7 @@ export default {
       control: { type: "text" }
     },
     materialByAuthorText: {
-      defaultValue: "Af",
+      defaultValue: "By",
       control: { type: "text" }
     },
     loanListDaysText: {
@@ -63,6 +63,10 @@ export default {
     },
     termsOfTradeText: {
       defaultValue: "Terms of trade",
+      control: { type: "text" }
+    },
+    termsOfTradeUrl: {
+      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
     unpaidFeesText: {
@@ -109,6 +113,21 @@ export default {
     emptyIntermediateListText: {
       defaultValue: "You have 0 unpaid fees or replacement costs",
       control: { type: "text" }
+    },
+    FeeDetailsModalCloseModalAriaLabelText: {
+      defaultValue: "Close fee details modal",
+      control: { type: "text" }
+    },
+    FeeDetailsModalDescriptionText: {
+      defaultValue:
+        "Modal containing information about this element or group of elements fees",
+      control: { type: "text" }
+    },
+    testmeText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Turned in @date"
     }
   }
 } as ComponentMeta<typeof IntermedateList>;

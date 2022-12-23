@@ -8,6 +8,7 @@ import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 import FeeList from "./fee-list/fee-list";
 import FeeDetailsModal from "./modal/fee-details-modal";
+import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import {
   getFeeObjectByFaustId,
@@ -101,6 +102,7 @@ const IntermedateList: FC = () => {
           />
         )}
       </FeeDetailsModal>
+      <MyPaymentOverviewModal />
     </>
   );
 };

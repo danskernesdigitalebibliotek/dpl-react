@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { Link } from "../../../components/atoms/link";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
+import { useUrls } from "../../../core/utils/url";
 import FeeStatusCircle from "../utils/fee-status-circle";
 import { isDateBeforePaymentChangeDate } from "../utils/intermediate-list-helper";
 import StackableFeesList from "./stackable-fees-list";
@@ -15,6 +16,7 @@ export interface FeeDetailsContentProps {
 const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
   const [check, setCheck] = useState(false);
+  const { termsOfTradeUrl } = useUrls();
   const handleAcceptedTerms = () => {
     setCheck(!check);
   };
@@ -26,9 +28,6 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   } = feeDetailsData;
   const prePaymentTypeChange = isDateBeforePaymentChangeDate(new Date(dueDate));
   const creationDateFormatted = dayjs(creationDate).format("D. MMMM YYYY");
-  const openInNewTab = (url: URL) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
   return (
     <div className="modal modal-show modal-loan">
       <div className="modal__screen-reader-description" id="describemodal">
@@ -73,7 +72,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
               <div>
                 <span className="checkbox__text text-small-caption color-secondary-gray ">
                   {t("iAcceptText")}{" "}
-                  <Link href={new URL("https://www.google.dk")}>
+                  <Link href={new URL(termsOfTradeUrl)}>
                     {t("termsOfTradeText")}
                     <sup>*</sup>
                   </Link>
@@ -112,19 +111,17 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
             </button>
           )}
           {!prePaymentTypeChange && check && (
-            <button
-              type="button"
+            <Link
               className="btn-primary btn-filled btn-small arrow__hover--right-small"
-              onClick={() =>
-                openInNewTab(
-                  new URL(
-                    "https://www.borger.dk/vaelg-kommune?actionPageId=065ca8f9-a1f5-4946-ada7-12e163f568df&selfserviceId=7200a519-38ad-48b9-b19a-6e5783e39999"
-                  )
+              href={
+                new URL(
+                  "https://www.borger.dk/vaelg-kommune?actionPageId=065ca8f9-a1f5-4946-ada7-12e163f568df&selfserviceId=7200a519-38ad-48b9-b19a-6e5783e39999"
                 )
               }
+              isNewTab
             >
               {t("payText")}
-            </button>
+            </Link>
           )}
         </div>
         <ul className="modal-loan__list-container">

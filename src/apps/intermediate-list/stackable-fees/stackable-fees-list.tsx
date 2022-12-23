@@ -13,10 +13,7 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
   creationDateFormatted
 }) => {
   const t = useText();
-  const materialType = material?.materialType;
-  const title = material?.title;
-  const authors = material?.authors;
-  const year = material?.year;
+  const { materialType, title, authors, year } = material || {};
   return (
     <li>
       <div className="list-materials ">
@@ -36,7 +33,9 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--danger ">
-            {t("turnedInText")} {creationDateFormatted}
+            {t("testmeText", {
+              placeholders: { "@date": creationDateFormatted }
+            })}
           </div>
         </div>
       </div>

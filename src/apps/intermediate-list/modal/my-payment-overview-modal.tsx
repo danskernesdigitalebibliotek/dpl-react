@@ -2,13 +2,11 @@ import React, { FC } from "react";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
+import { Link } from "../../../components/atoms/link";
 
 const MyPaymentOverviewModal: FC = () => {
   const t = useText();
   const { close } = useModalButtonHandler();
-  const openInNewTab = (url: URL) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
   const handleClickhehe = () => {
     close("intermediate-payment-modal");
   };
@@ -32,20 +30,18 @@ const MyPaymentOverviewModal: FC = () => {
           </p>
         </div>
         <div className="modal-cta__buttons mt-48">
-          <button
-            type="button"
+          <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            onClick={() =>
-              openInNewTab(
-                new URL(
-                  "https://www.borger.dk/vaelg-kommune?actionPageId=065ca8f9-a1f5-4946-ada7-12e163f568df&selfserviceId=7200a519-38ad-48b9-b19a-6e5783e39999"
-                )
+            href={
+              new URL(
+                "https://www.borger.dk/vaelg-kommune?actionPageId=065ca8f9-a1f5-4946-ada7-12e163f568df&selfserviceId=7200a519-38ad-48b9-b19a-6e5783e39999"
               )
             }
+            isNewTab
           >
             {t("intermediatePaymentModalGotoText")}{" "}
             <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
-          </button>
+          </Link>
           <div className="modal-cta__link">
             <button
               className="link-tag color-secondary-gray ml-8"
