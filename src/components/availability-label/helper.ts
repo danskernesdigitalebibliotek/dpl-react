@@ -56,10 +56,12 @@ export const useAvailabilityData = ({
         //    2. If the library has a queue on the material
         setIsAvailable(true);
       },
-      onError: (error: ErrorType<unknown>) => {
-        // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
-        if (error.status === 128) {
-          setIsAvailable(false);
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
+          if (error.cause && Number(error.cause) === 128) {
+            setIsAvailable(false);
+          }
         }
       }
     }
