@@ -50,11 +50,10 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const dispatch = useDispatch<TypedDispatch>();
-  const creatorsText = creatorsToString(
+  const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-  const author = creatorsText || t("creatorsAreMissingText");
   const manifestationPid = getManifestationPid(manifestations);
   const firstInSeries = series?.[0];
   const { title: seriesTitle, numberInSeries } = firstInSeries || {};
