@@ -7,7 +7,7 @@ import { Link } from "../../../components/atoms/link";
 const MyPaymentOverviewModal: FC = () => {
   const t = useText();
   const { close } = useModalButtonHandler();
-  const handleClickhehe = () => {
+  const handleClick = () => {
     close("intermediate-payment-modal");
   };
   return (
@@ -46,7 +46,7 @@ const MyPaymentOverviewModal: FC = () => {
             <button
               className="link-tag color-secondary-gray ml-8"
               type="button"
-              onClick={handleClickhehe}
+              onClick={handleClick}
             >
               {t("intermediatePaymentModalCancelText")}
             </button>
