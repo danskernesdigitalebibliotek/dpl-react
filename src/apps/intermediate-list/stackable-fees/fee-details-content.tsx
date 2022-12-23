@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import * as React from "react";
 import { FC, useState } from "react";
 import { Link } from "../../../components/atoms/link";
+import CheckBox from "../../../components/checkbox/Checkbox";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
@@ -48,38 +49,19 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
           </div>
         </div>
         <div className="modal-loan__buttons">
-          <div className="checkbox">
-            <input
-              id="checkbox_id__fee_details"
-              className="checkbox__input"
-              type="checkbox"
-              onChange={handleAcceptedTerms}
-            />
-            <label
-              className="checkbox__label"
-              htmlFor="checkbox_id__fee_details"
-            >
-              <span className="checkbox__icon">
-                <svg width="20px" height="20px">
-                  <polyline
-                    points="1.5 6 4.5 9 10.5 1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </span>
-              <div>
-                <span className="checkbox__text text-small-caption color-secondary-gray ">
-                  {t("iAcceptText")}{" "}
-                  <Link href={new URL(termsOfTradeUrl)}>
-                    {t("termsOfTradeText")}
-                    <sup>*</sup>
-                  </Link>
-                </span>
-              </div>
-            </label>
-          </div>
+          <CheckBox
+            id="checkbox_id__fee_details"
+            onChecked={() => handleAcceptedTerms()}
+            label={
+              <>
+                {t("iAcceptText")}{" "}
+                <Link href={new URL(termsOfTradeUrl)}>
+                  {t("termsOfTradeText")}
+                  <sup>*</sup>
+                </Link>
+              </>
+            }
+          />
           <div>
             <p>{amount},-</p>
           </div>
