@@ -9,7 +9,6 @@ import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
-import { hasCorrectSource } from "../material/material-buttons/helper";
 
 export interface AvailabilityLabelsProps {
   manifestations: Manifestation[];
@@ -35,7 +34,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
-
+        const accessTypesCodes = item.accessTypes.map((t) => t.code);
         return (
           <AvailabilityLabel
             key={pid}
@@ -43,6 +42,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
             cursorPointer={cursorPointer}
             faustIds={[faustId]}
             manifestText={materialType}
+            accessTypes={accessTypesCodes}
             selected={
               manifestation &&
               materialType === getManifestationType(manifestation)
@@ -57,8 +57,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
                   }
                 : undefined
             }
-            isbn={identifiers?.[0]?.value ?? ""}
-            isTrue={hasCorrectSource(["eReolen"], item)}
+            isbn={identifiers?.[0]?.value}
           />
         );
       })}

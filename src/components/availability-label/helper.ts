@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useGetV1ProductsIdentifier } from "../../core/publizon/publizon";
 import { useConfig } from "../../core/utils/config";
-
-export const onlineMaterialAllowList = ["lydbog (net)"];
-
-export const isMaterialTypeOnline = (materialType: string) =>
-  onlineMaterialAllowList.includes(materialType);
+import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
+import { ErrorType } from "../../core/publizon/mutator/fetcher";
 
 export const useAvailabilityData = ({
-  materialType,
+  accessTypes,
   faustIds,
-  isbn,
-  isTrue
+  isbn
 }: {
-  materialType: string;
-  faustIds: string[];
-  isbn: string;
-  isTrue: boolean;
+  accessTypes: AccessTypeCode[];
+  faustIds: string[] | null;
+  isbn: string | null;
 }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const config = useConfig();
@@ -25,23 +20,19 @@ export const useAvailabilityData = ({
     transformer: "stringToArray"
   });
 
-  // Forcing isAvailable to true if isTrue is true
-  useEffect(() => {
-    if (isTrue) setIsAvailable(true);
-  }, [isTrue]);
-
-  const hasIsbn = Boolean(isbn);
-  const isOnline = isMaterialTypeOnline(materialType);
+  const isOnline = accessTypes.includes(AccessTypeCode.Online);
 
   useGetAvailabilityV3(
     {
-      recordid: faustIds,
+      recordid: faustIds ?? [],
       ...(blacklistBranches ? { exclude: blacklistBranches } : {})
     },
     {
       query: {
-        // This should only be enabled if the material is NOT an online material type
-        enabled: isOnline === false && isTrue === false,
+        // FBS / useGetAvailabilityV3 is responsible for handling availability
+        // for physical items. This will be the majority of all materials so we
+        // use this for everything except materials that are explicitly online.
+        enabled: !isOnline && faustIds !== null,
         onSuccess: (data) => {
           if (data?.some((item) => item.available)) {
             setIsAvailable(true);
@@ -51,27 +42,24 @@ export const useAvailabilityData = ({
     }
   );
 
-  useGetV1ProductsIdentifier(isbn, {
+  useGetV1ProductsIdentifier(isbn ?? "", {
     query: {
-      // This should only be enabled if the material is an online material type and the isbn is not empty
-      enabled: isOnline && isTrue === false && hasIsbn,
-      onSuccess: () =>
-        // res
-        {
-          setIsAvailable(true);
-          // TODO:
-          // Set isAvailable to true if the material is costFree (blue title) ind Publizon
-          // if (res?.product?.costFree) {
-          //   setIsAvailable(true);
-          // }
-          // Check if the material quota is available if the material is not costFree
-        },
-      onError: (error: unknown) => {
-        if (error instanceof Error) {
-          // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
-          if (error.cause && Number(error.cause) === 128) {
-            setIsAvailable(false);
-          }
+      // Publizon / useGetV1ProductsIdentifier is responsible for online
+      // materials. It requires an ISBN to do lookups.
+      enabled: isOnline && isbn !== null,
+      onSuccess: () => {
+        // For now we always consider online materials available at publizon
+        // as available. In the future this can be improved by checking
+        // 1. Whether the material has a quota (res?.product?.costFree)
+        // 2. If the product has a quota:
+        //    1. If the user has any quota loans available for the material type
+        //    2. If the library has a queue on the material
+        setIsAvailable(true);
+      },
+      onError: (error: ErrorType<unknown>) => {
+        // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
+        if (error.status === 128) {
+          setIsAvailable(false);
         }
       }
     }

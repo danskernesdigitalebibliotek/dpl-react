@@ -7,9 +7,11 @@ import { LinkNoStyle } from "../atoms/link-no-style";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useAvailabilityData } from "./helper";
+import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
+  accessTypes: AccessTypeCode[];
   selected?: boolean;
   url?: URL;
   faustIds: string[];
@@ -17,28 +19,26 @@ export interface AvailabilityLabelProps {
   cursorPointer?: boolean;
   dataCy?: string;
   isbn: string;
-  isTrue: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
+  accessTypes,
   selected = false,
   url,
   faustIds,
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbn,
-  isTrue
+  isbn
 }) => {
   const { track } = useStatistics();
   const t = useText();
 
   const { isAvailable } = useAvailabilityData({
-    isbn,
+    accessTypes,
     faustIds,
-    materialType: manifestText,
-    isTrue
+    isbn
   });
 
   const availabilityText = isAvailable ? t("available") : t("unavailable");
