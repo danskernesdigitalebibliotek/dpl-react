@@ -14,8 +14,7 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
     year = "",
     title = "",
     description = "",
-    pid = "",
-    series = ""
+    pid = ""
   } = material;
   const coverId = pid || isbnForCover;
   return (

@@ -5,7 +5,6 @@ import IntermedateList from "./intermediate-list";
 
 export interface IntermedateListProps {
   totalFeeAmountText: string;
-  feeCreatedText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
   loanListDaysText: string;
@@ -29,7 +28,10 @@ export interface IntermedateListProps {
   intermediatePaymentModalCancelText: string;
   feeDetailsModalScreenReaderText: string;
   emptyIntermediateListText: string;
-  testmeText: string;
+  turnedInText: string;
+  plusXOtherMaterialsText: string;
+  itemFeeAmountText: string;
+  feeCreatedText: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

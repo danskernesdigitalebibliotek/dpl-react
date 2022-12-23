@@ -23,7 +23,9 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
             <div className="status-label status-label--danger list-materials__content-status-label">
-              {t("turnedInText")} {creationDateFormatted}
+              {t("turnedInText", {
+                placeholders: { "@date": creationDateFormatted }
+              })}
             </div>
           </div>
           <p className="text-header-h5 mt-8">{title}</p>
@@ -33,7 +35,7 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--danger ">
-            {t("testmeText", {
+            {t("turnedInText", {
               placeholders: { "@date": creationDateFormatted }
             })}
           </div>

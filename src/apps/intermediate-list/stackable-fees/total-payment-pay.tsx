@@ -37,7 +37,9 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
           {t("totalText")} {total},-
         </p>
         <CheckBox
-          id="checkbox_id__fee_details"
+          id={`checkbox_terms__${
+            (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
+          }`}
           onChecked={() => handleAcceptedTerms()}
           label={
             <>

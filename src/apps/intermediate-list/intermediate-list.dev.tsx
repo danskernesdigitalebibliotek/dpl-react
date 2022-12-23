@@ -29,10 +29,6 @@ export default {
       defaultValue: "Fee",
       control: { type: "text" }
     },
-    feeCreatedText: {
-      defaultValue: "Fees charged",
-      control: { type: "text" }
-    },
     otherMaterialsText: {
       defaultValue: "Other materials",
       control: { type: "text" }
@@ -43,10 +39,6 @@ export default {
     },
     loanListDaysText: {
       defaultValue: "Days",
-      control: { type: "text" }
-    },
-    turnedInText: {
-      defaultValue: "Turned in",
       control: { type: "text" }
     },
     payText: {
@@ -123,11 +115,29 @@ export default {
         "Modal containing information about this element or group of elements fees",
       control: { type: "text" }
     },
-    testmeText: {
+    turnedInText: {
       control: {
         type: "text"
       },
       defaultValue: "Turned in @date"
+    },
+    plusXOtherMaterialsText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "+ @amount other materials"
+    },
+    itemFeeAmountText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Fee @fee,-"
+    },
+    feeCreatedText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Fees charged @date"
     }
   }
 } as ComponentMeta<typeof IntermedateList>;
