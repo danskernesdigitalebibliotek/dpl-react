@@ -53,7 +53,7 @@ export default {
       defaultValue: "Contact information",
       control: { type: "text" }
     },
-    patronPageContactInfoBodyText: {
+    patronContactInfoBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },

@@ -4,10 +4,10 @@ import PincodeSection from "../patron-page/sections/PincodeSection";
 import BranchesDropdown from "../patron-page/util/BranchesDropdown";
 import { PatronV5 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
-import { createV4 } from "../../core/fbs/fbs";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
+import { Button } from "../../components/Buttons/Button";
 
-const CreatePatron: FC = () => {
+const CreatePatronUserInfo: FC = () => {
   const t = useText();
   const [pin, setPin] = useState<string | null>(null);
   const [patron, setPatron] = useState<PatronV5 | null>(null);
@@ -23,13 +23,18 @@ const CreatePatron: FC = () => {
 
   return (
     <form className="dpl-patron-page">
-      <ContactInfoSection changePatron={changePatron} patron={patron} />
-      <h2 className="text-body-small-regular mt-32 mb-16">
-        {t("createPatronChangePickupHeaderText")}
-      </h2>
-      {t("createPatronChangePickupBreadText") && (
+      <h1 className="text-header-h1 mb-48">
+        {t("createPatronUserInfoHeaderText")}
+      </h1>
+      <ContactInfoSection inLine changePatron={changePatron} patron={patron} />
+      {t("createPatronUserInfoChangePickupHeaderText") && (
+        <h2 className="text-body-small-regular mt-32 mb-16">
+          {t("createPatronUserInfoChangePickupHeaderText")}
+        </h2>
+      )}
+      {t("createPatronUserInfoChangePickupBodyText") && (
         <p className="text-body-small-regular">
-          {t("createPatronChangePickupBreadText")}
+          {t("createPatronUserInfoChangePickupBodyText")}
         </p>
       )}
       <BranchesDropdown
@@ -40,8 +45,21 @@ const CreatePatron: FC = () => {
         }
       />
       <PincodeSection changePincode={setPin} />
+      <div className="patron-buttons">
+        <Button
+          label={t("createPatronUserInfoConfirmButtonText")}
+          buttonType="none"
+          variant="filled"
+          disabled={false}
+          collapsible={false}
+          size="small"
+        />
+        <button type="button" className="link-tag mx-16">
+          {t("createPatronUserInfoCancelButtonText")}
+        </button>
+      </div>
     </form>
   );
 };
 
-export default CreatePatron;
+export default CreatePatronUserInfo;

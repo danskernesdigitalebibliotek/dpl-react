@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import CreatePatron from "./CreatePatron";
+import CreatePatronUserInfo from "./CreatePatronUserInfo";
 
-interface CreatePatronConfigProps {
+interface CreatePatronUserInfoConfigProps {
   pincodeLengthConfig: string;
 }
 
-interface CreatePatronTextProps {
+interface CreatePatronUserInfoTextProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   fbsBaseUrl: string;
@@ -16,25 +16,30 @@ interface CreatePatronTextProps {
   pickupBranchesDropdownLabelText: string;
   patronPageChangePincodeHeaderText: string;
   pickupBranchesDropdownNothingSelectedText: string;
-  patronPageChangePincodeBreadText: string;
+  patronPageChangePincodeBodyText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
   patronPagePincodeTooShortValidationText: string;
   patronPagePincodesNotTheSameText: string;
   patronContactPhoneLabelText: string;
-  patronContactInfoBreadText: string;
+  patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
   patronContactPhoneCheckboxText: string;
+  createPatronUserInfoConfirmButtonText: string;
+  createPatronUserInfoCancelButtonText: string;
   patronContactEmailLabelText: string;
   patronContactEmailCheckboxText: string;
-  createPatronChangePickupHeaderText: string;
-  createPatronChangePickupBreadText: string;
+  createPatronUserInfoChangePickupHeaderText: string;
+  createPatronUserInfoChangePickupBodyText: string;
+  createPatronUserInfoHeaderText: string;
 }
 
-export interface CreatePatronProps
-  extends CreatePatronConfigProps,
-    CreatePatronTextProps {}
+export interface CreatePatronUserInfoProps
+  extends CreatePatronUserInfoConfigProps,
+    CreatePatronUserInfoTextProps {}
 
-const CreatePatronEntry: FC<CreatePatronProps> = () => <CreatePatron />;
+const CreatePatronUserInfoEntry: FC<CreatePatronUserInfoProps> = () => (
+  <CreatePatronUserInfo />
+);
 
-export default withConfig(withText(withUrls(CreatePatronEntry)));
+export default withConfig(withText(withUrls(CreatePatronUserInfoEntry)));

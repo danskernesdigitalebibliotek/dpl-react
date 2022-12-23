@@ -1,21 +1,13 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { configTypes } from "../../core/utils/helpers/fetcher";
-import CreatePatron from "./CreatePatron.entry";
+import CreatePatronUserInfo from "./CreatePatronUserInfo.entry";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Create patron",
-  component: CreatePatron,
+  component: CreatePatronUserInfo,
   argTypes: {
-    // Config
-    [configTypes.fbs]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
-    [configTypes.publizon]: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
+    ...serviceUrlArgs,
     pincodeLengthConfig: {
       defaultValue: "4",
       control: { type: "number" }
@@ -42,7 +34,7 @@ export default {
       defaultValue: "Nothing selected",
       control: { type: "text" }
     },
-    patronPageChangePincodeBreadText: {
+    patronPageChangePincodeBodyText: {
       defaultValue: "Change current pin by entering a new pin and saving",
       control: { type: "text" }
     },
@@ -67,12 +59,12 @@ export default {
       defaultValue: "Phone number",
       control: { type: "text" }
     },
-    patronContactInfoBreadText: {
+    patronContactInfoBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
     patronContactInfoHeaderText: {
-      defaultValue: "Contact information",
+      defaultValue: "",
       control: { type: "text" }
     },
     patronContactPhoneCheckboxText: {
@@ -89,20 +81,32 @@ export default {
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    createPatronChangePickupHeaderText: {
-      defaultValue: "Reservations",
+    createPatronUserInfoChangePickupHeaderText: {
+      defaultValue: "",
       control: { type: "text" }
     },
-    createPatronChangePickupBreadText: {
+    createPatronUserInfoChangePickupBodyText: {
       defaultValue: "",
+      control: { type: "text" }
+    },
+    createPatronUserInfoHeaderText: {
+      defaultValue: "Register as patron",
+      control: { type: "text" }
+    },
+    createPatronUserInfoConfirmButtonText: {
+      defaultValue: "Confirm",
+      control: { type: "text" }
+    },
+    createPatronUserInfoCancelButtonText: {
+      defaultValue: "Cancel",
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof CreatePatron>;
+} as ComponentMeta<typeof CreatePatronUserInfo>;
 
-const Template: ComponentStory<typeof CreatePatron> = (props) => (
-  <CreatePatron {...props} />
+const Template: ComponentStory<typeof CreatePatronUserInfo> = (props) => (
+  <CreatePatronUserInfo {...props} />
 );
 
-export const CreatePatronEntry = Template.bind({});
-CreatePatronEntry.args = {};
+export const CreatePatronUserInfoEntry = Template.bind({});
+CreatePatronUserInfoEntry.args = {};

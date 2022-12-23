@@ -91,7 +91,11 @@ const PatronPage: FC = () => {
       <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
       {patron && <BasicDetailsSection patron={patron} />}
       {patron && (
-        <ContactInfoSection changePatron={changePatron} patron={patron} />
+        <ContactInfoSection
+          inLine={false}
+          changePatron={changePatron}
+          patron={patron}
+        />
       )}
       <StatusSection />
       {patron && (
