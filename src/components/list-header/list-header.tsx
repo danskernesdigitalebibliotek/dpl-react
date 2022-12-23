@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 
 export interface ListHeaderProps {
   header: string | ReactNode;
-  amount?: number;
+  amount: number | null;
   children?: ReactNode;
 }
 
@@ -11,7 +11,9 @@ const ListHeader: FC<ListHeaderProps> = ({ header, amount, children }) => {
     <div className="dpl-list-buttons">
       <h2 className="dpl-list-buttons__header">
         {header}
-        {amount && <div className="dpl-list-buttons__power">{amount}</div>}
+        {amount !== null && (
+          <div className="dpl-list-buttons__power">{amount}</div>
+        )}
       </h2>
       <div className="dpl-list-buttons__buttons">{children}</div>
     </div>
