@@ -48,7 +48,7 @@ export default {
     },
     patronPagePincodeTooShortValidationText: {
       defaultValue:
-        "The pincode is too short, it should be @count characters long",
+        "The pincode is too short, it should be @pincodeLength characters long",
       control: { type: "text" }
     },
     patronPagePincodesNotTheSameText: {
@@ -95,10 +95,6 @@ export default {
     },
     createPatronUserInfoConfirmButtonText: {
       defaultValue: "Confirm",
-      control: { type: "text" }
-    },
-    createPatronUserInfoCancelButtonText: {
-      defaultValue: "Cancel",
       control: { type: "text" }
     }
   }
