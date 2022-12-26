@@ -96,6 +96,10 @@ export default {
     createPatronUserInfoConfirmButtonText: {
       defaultValue: "Confirm",
       control: { type: "text" }
+    },
+    createPatronUserInfoCancelButtonText: {
+      defaultValue: "Cancel",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof CreatePatronUserInfo>;
