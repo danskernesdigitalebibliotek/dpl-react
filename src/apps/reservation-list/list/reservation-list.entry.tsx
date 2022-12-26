@@ -79,6 +79,7 @@ export interface ReservationListProps {
   reservationListStatusIconReadyForPickupAriaLabelText: string;
   reservationListStatusIconQueuedAriaLabelText: string;
   reservationListStatusIconReadyInAriaLabelText: string;
+  reservationDetailsCancelText: string;
 }
 
 const ReservationListEntry: FC<ReservationListProps> = ({

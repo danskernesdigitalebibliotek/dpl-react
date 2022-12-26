@@ -1,16 +1,25 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import { set } from "lodash";
 import PincodeSection from "../patron-page/sections/PincodeSection";
 import BranchesDropdown from "../patron-page/util/BranchesDropdown";
-import { PatronV5 } from "../../core/fbs/model";
+import { PatronSettingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
-import { Button } from "../../components/Buttons/Button";
+import { useCreateV4 } from "../../core/fbs/fbs";
 
 const CreatePatronUserInfo: FC = () => {
   const t = useText();
+  const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
-  const [patron, setPatron] = useState<PatronV5 | null>(null);
+  const { mutate } = useCreateV4();
+  const [patron, setPatron] = useState<PatronSettingsV3>({
+    preferredPickupBranch: "",
+    receiveEmail: false,
+    receivePostalMail: false,
+    receiveSms: false,
+    phoneNumber: "",
+    emailAddress: ""
+  });
 
   // Changes the patron object by key.
   // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
@@ -21,8 +30,31 @@ const CreatePatronUserInfo: FC = () => {
     setPatron(copyUser);
   };
 
+  const handleSubmit = (e: Event) => {
+    e.preventDefault();
+    const { preferredPickupBranch, phoneNumber, emailAddress } = patron;
+    if (pin && preferredPickupBranch && phoneNumber && emailAddress) {
+      mutate(
+        {
+          data: { cprNumber: "", patron, pincode: pin }
+        },
+        {
+          onSuccess: (result) => {
+            console.log(result);
+          },
+          // todo error handling, missing in figma
+          onError: () => {}
+        }
+      );
+    }
+  };
+
   return (
-    <form className="dpl-patron-page">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      ref={formRef}
+      className="dpl-patron-page"
+    >
       <h1 className="text-header-h1 mb-48">
         {t("createPatronUserInfoHeaderText")}
       </h1>
@@ -44,20 +76,23 @@ const CreatePatronUserInfo: FC = () => {
           changePatron(newPreferredPickupBranch, "preferredPickupBranch")
         }
       />
-      <PincodeSection changePincode={setPin} />
+      <PincodeSection required changePincode={setPin} />
       <div className="patron-buttons">
-        <Button
-          label={t("createPatronUserInfoConfirmButtonText")}
-          buttonType="none"
-          variant="filled"
-          disabled={false}
-          collapsible={false}
-          size="small"
+        <input
+          type="submit"
+          className="btn-primary btn-filled btn-small"
+          value={t("createPatronUserInfoConfirmButtonText")}
         />
-        <button type="button" className="link-tag mx-16">
-          {t("createPatronUserInfoCancelButtonText")}
-        </button>
       </div>
+      <button
+        type="button"
+        className="link-tag mx-16"
+        // todo, click cancel, what then?
+        // eslint-disable-next-line no-console
+        onClick={() => console.log("What now ddb?")}
+      >
+        {t("createPatronUserInfoCancelButtonText")}
+      </button>
     </form>
   );
 };
