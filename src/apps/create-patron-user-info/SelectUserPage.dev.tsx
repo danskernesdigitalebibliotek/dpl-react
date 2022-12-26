@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import CreatePatronUserInfo from "./CreatePatronUserInfo.entry";
+import CreatePatron from "./CreatePatron.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 export default {
   title: "Apps / Create patron",
-  component: CreatePatronUserInfo,
+  component: CreatePatron,
   argTypes: {
     ...serviceUrlArgs,
     pincodeLengthConfig: {
@@ -81,32 +81,32 @@ export default {
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    createPatronUserInfoChangePickupHeaderText: {
+    createPatronChangePickupHeaderText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    createPatronUserInfoChangePickupBodyText: {
+    createPatronChangePickupBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    createPatronUserInfoHeaderText: {
+    createPatronHeaderText: {
       defaultValue: "Register as patron",
       control: { type: "text" }
     },
-    createPatronUserInfoConfirmButtonText: {
+    createPatronConfirmButtonText: {
       defaultValue: "Confirm",
       control: { type: "text" }
     },
-    createPatronUserInfoCancelButtonText: {
+    createPatronCancelButtonText: {
       defaultValue: "Cancel",
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof CreatePatronUserInfo>;
+} as ComponentMeta<typeof CreatePatron>;
 
-const Template: ComponentStory<typeof CreatePatronUserInfo> = (props) => (
-  <CreatePatronUserInfo {...props} />
+const Template: ComponentStory<typeof CreatePatron> = (props) => (
+  <CreatePatron {...props} />
 );
 
-export const CreatePatronUserInfoEntry = Template.bind({});
-CreatePatronUserInfoEntry.args = {};
+export const CreatePatronEntry = Template.bind({});
+CreatePatronEntry.args = {};

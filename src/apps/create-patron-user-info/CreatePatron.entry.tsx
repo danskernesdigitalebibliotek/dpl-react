@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import CreatePatronUserInfo from "./CreatePatronUserInfo";
+import CreatePatron from "./CreatePatron";
 
-interface CreatePatronUserInfoConfigProps {
+interface CreatePatronConfigProps {
   pincodeLengthConfig: string;
 }
 
-interface CreatePatronUserInfoTextProps {
+interface CreatePatronTextProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   fbsBaseUrl: string;
@@ -25,21 +25,19 @@ interface CreatePatronUserInfoTextProps {
   patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
   patronContactPhoneCheckboxText: string;
-  createPatronUserInfoConfirmButtonText: string;
-  createPatronUserInfoCancelButtonText: string;
+  createPatronConfirmButtonText: string;
+  createPatronCancelButtonText: string;
   patronContactEmailLabelText: string;
   patronContactEmailCheckboxText: string;
-  createPatronUserInfoChangePickupHeaderText: string;
-  createPatronUserInfoChangePickupBodyText: string;
-  createPatronUserInfoHeaderText: string;
+  createPatronChangePickupHeaderText: string;
+  createPatronChangePickupBodyText: string;
+  createPatronHeaderText: string;
 }
 
-export interface CreatePatronUserInfoProps
-  extends CreatePatronUserInfoConfigProps,
-    CreatePatronUserInfoTextProps {}
+export interface CreatePatronProps
+  extends CreatePatronConfigProps,
+    CreatePatronTextProps {}
 
-const CreatePatronUserInfoEntry: FC<CreatePatronUserInfoProps> = () => (
-  <CreatePatronUserInfo />
-);
+const CreatePatronEntry: FC<CreatePatronProps> = () => <CreatePatron />;
 
-export default withConfig(withText(withUrls(CreatePatronUserInfoEntry)));
+export default withConfig(withText(withUrls(CreatePatronEntry)));

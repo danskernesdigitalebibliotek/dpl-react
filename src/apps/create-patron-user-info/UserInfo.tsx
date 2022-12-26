@@ -7,7 +7,7 @@ import { useText } from "../../core/utils/text";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
 import { useCreateV4 } from "../../core/fbs/fbs";
 
-const CreatePatronUserInfo: FC = () => {
+const UserInfo: FC = () => {
   const t = useText();
   const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
@@ -55,18 +55,16 @@ const CreatePatronUserInfo: FC = () => {
       ref={formRef}
       className="dpl-patron-page"
     >
-      <h1 className="text-header-h1 mb-48">
-        {t("createPatronUserInfoHeaderText")}
-      </h1>
+      <h1 className="text-header-h1 mb-48">{t("createPatronHeaderText")}</h1>
       <ContactInfoSection inLine changePatron={changePatron} patron={patron} />
-      {t("createPatronUserInfoChangePickupHeaderText") && (
+      {t("createPatronChangePickupHeaderText") && (
         <h2 className="text-body-small-regular mt-32 mb-16">
-          {t("createPatronUserInfoChangePickupHeaderText")}
+          {t("createPatronChangePickupHeaderText")}
         </h2>
       )}
-      {t("createPatronUserInfoChangePickupBodyText") && (
+      {t("createPatronChangePickupBodyText") && (
         <p className="text-body-small-regular">
-          {t("createPatronUserInfoChangePickupBodyText")}
+          {t("createPatronChangePickupBodyText")}
         </p>
       )}
       <BranchesDropdown
@@ -81,7 +79,7 @@ const CreatePatronUserInfo: FC = () => {
         <input
           type="submit"
           className="btn-primary btn-filled btn-small"
-          value={t("createPatronUserInfoConfirmButtonText")}
+          value={t("createPatronConfirmButtonText")}
         />
       </div>
       <button
@@ -91,10 +89,10 @@ const CreatePatronUserInfo: FC = () => {
         // eslint-disable-next-line no-console
         onClick={() => console.log("What now ddb?")}
       >
-        {t("createPatronUserInfoCancelButtonText")}
+        {t("createPatronCancelButtonText")}
       </button>
     </form>
   );
 };
 
-export default CreatePatronUserInfo;
+export default UserInfo;
