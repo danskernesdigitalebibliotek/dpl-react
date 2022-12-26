@@ -5,9 +5,13 @@ import { useText } from "../../../core/utils/text";
 
 interface PincodeSectionProps {
   changePincode: (newPin: string | null) => void;
+  required: boolean;
 }
 
-const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
+const PincodeSection: FC<PincodeSectionProps> = ({
+  changePincode,
+  required
+}) => {
   const t = useText();
   const config = useConfig();
 
@@ -49,6 +53,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
       </p>
       <div className="dpl-pincode-container">
         <TextInput
+          required={required}
           className="dpl-input input__desktop"
           id="pincode-input"
           type="password"
@@ -60,6 +65,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
           validation={pincodeValidation}
         />
         <TextInput
+          required={required}
           className="dpl-input input__desktop"
           id="pincode-confirm-input"
           pattern="[0-9]*"

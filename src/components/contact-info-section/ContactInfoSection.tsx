@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { PatronV5 } from "../../core/fbs/model";
+import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
 import TextInput from "../atoms/input/TextInput";
 import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
@@ -9,7 +9,7 @@ export interface ChangePatronProps {
 }
 
 interface ContactInfoSectionProps {
-  patron: PatronV5 | null;
+  patron: PatronV5 | PatronSettingsV3 | null;
   inLine: boolean;
   changePatron: ChangePatronProps;
 }
@@ -25,6 +25,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       <TextInput
         className={`${inLine ? "dpl-input" : "dpl-input input__desktop"}`}
         id="phone-input"
+        required
         type="number"
         onChange={(newPhoneNumber) =>
           changePatron(newPhoneNumber, "phoneNumber")
@@ -50,6 +51,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         className={`${inLine ? "dpl-input" : "dpl-input input__desktop"}`}
         id="email-address-input"
         type="email"
+        required
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}
         value={patron?.emailAddress}
         label={t("patronContactEmailLabelText")}

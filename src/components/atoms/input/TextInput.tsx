@@ -4,6 +4,7 @@ export interface TextInputProps {
   label: string;
   type: "text" | "password" | "number" | "email";
   id: string;
+  required?: boolean;
   description?: string;
   validation?: string;
   onChange: (value: string) => void;
@@ -23,7 +24,8 @@ const TextInput: FC<TextInputProps> = ({
   value,
   className,
   pattern,
-  inputmode
+  inputmode,
+  required
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -32,6 +34,7 @@ const TextInput: FC<TextInputProps> = ({
     <div className={`dpl-input ${className || ""}`}>
       <label htmlFor={id}>{label}</label>
       <input
+        required={required}
         aria-describedby={description ? `description-${id}` : ""}
         id={id}
         data-cy={id}

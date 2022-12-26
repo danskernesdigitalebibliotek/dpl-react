@@ -43,11 +43,13 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
         {pickupModalBranches && (
           <>
             <select
+              required
               onChange={({ target }) => onChange(target.value)}
               className="dropdown__select"
             >
               {selected === "" && (
                 <option
+                  value=""
                   className="dropdown__option"
                   selected={selected === ""}
                   disabled
@@ -57,9 +59,9 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
               )}
               {pickupModalBranches.map(({ branchId, title }) => (
                 <option
+                  value={branchId}
                   selected={selected === branchId}
                   className="dropdown__option"
-                  value={branchId}
                 >
                   {title}
                 </option>
