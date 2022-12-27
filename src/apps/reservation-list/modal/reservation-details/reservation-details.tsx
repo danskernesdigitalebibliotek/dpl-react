@@ -15,12 +15,17 @@ import PhysicalListDetails from "./physical-list-details";
 export interface ReservationDetailsProps {
   reservation: ReservationType;
   branches: AgencyBranch[];
+  openReservationDeleteModal: (
+    digitalReservationId: string | null,
+    physicalReservationId: number | null
+  ) => void;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
-  branches
+  branches,
+  openReservationDeleteModal
 }) => {
   const t = useText();
   const { state, identifier, numberInQueue } = reservation;
@@ -51,12 +56,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           </ModalDetailsHeader>
           {reservation.reservationId && (
             <ReservationDetailsButton
+              openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.reservationId}
               numberInQueue={numberInQueue}
             />
           )}
           {isDigital && reservation.identifier && (
             <ReservationDetailsRedirect
+              openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.identifier}
             />
           )}

@@ -10,12 +10,17 @@ interface ListProps {
   header: string;
   emptyListLabel: string;
   pageSize: number;
+  openReservationDeleteModal: (
+    digitalReservationId: string | null,
+    physicalReservationId: number | null
+  ) => void;
 }
 const List: FC<ListProps> = ({
   reservations,
   header,
   pageSize,
-  emptyListLabel
+  emptyListLabel,
+  openReservationDeleteModal
 }) => {
   const [dataReady, setDataReady] = useState<boolean>(false);
   const [displayedReservations, setDisplayedReservations] = useState<
@@ -57,6 +62,7 @@ const List: FC<ListProps> = ({
           <ul className="list-reservation-container m-32">
             {displayedReservations.map((reservation) => (
               <ReservationMaterial
+                openReservationDeleteModal={openReservationDeleteModal}
                 key={reservation.identifier || reservation.faust}
                 identifier={reservation.identifier}
                 faust={reservation.faust}

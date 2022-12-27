@@ -11,6 +11,10 @@ export interface DisplayedReservationsProps {
   reservedReservationsFBS: ReservationType[] | null;
   reservedReservationsPublizon: ReservationType[] | null;
   pageSize: number;
+  openReservationDeleteModal: (
+    digitalReservationId: string | null,
+    physicalReservationId: number | null
+  ) => void;
 }
 
 const DisplayedReservations: FC<DisplayedReservationsProps> = ({
@@ -18,7 +22,8 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
   readyForPickupReservationsPublizon,
   reservedReservationsFBS,
   reservedReservationsPublizon,
-  pageSize
+  pageSize,
+  openReservationDeleteModal
 }) => {
   const t = useText();
 
@@ -27,6 +32,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
       {readyForPickupReservationsFBS !== null &&
         readyForPickupReservationsPublizon !== null && (
           <List
+            openReservationDeleteModal={openReservationDeleteModal}
             pageSize={pageSize}
             header={t("reservationListReadyForPickupTitleText")}
             reservations={sortByOldestPickupDeadline([
@@ -38,6 +44,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         )}
       {reservedReservationsFBS !== null && (
         <List
+          openReservationDeleteModal={openReservationDeleteModal}
           pageSize={pageSize}
           header={t("reservationListPhysicalReservationsHeaderText")}
           reservations={reservedReservationsFBS}
@@ -46,6 +53,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
       )}
       {reservedReservationsPublizon !== null && (
         <List
+          openReservationDeleteModal={openReservationDeleteModal}
           pageSize={pageSize}
           header={t("reservationListDigitalReservationsHeaderText")}
           reservations={reservedReservationsPublizon}

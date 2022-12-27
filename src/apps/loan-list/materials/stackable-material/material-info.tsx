@@ -52,7 +52,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             <p className="text-small-caption color-secondary-gray">{series}</p>
           )}
         </div>
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   );

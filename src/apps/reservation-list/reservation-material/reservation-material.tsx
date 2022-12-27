@@ -15,11 +15,16 @@ import ReservationDetails from "../modal/reservation-details/reservation-details
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
+  openReservationDeleteModal: (
+    digitalReservationId: string | null,
+    physicalReservationId: number | null
+  ) => void;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   material,
-  reservation
+  reservation,
+  openReservationDeleteModal
 }) => {
   const { open } = useModalButtonHandler();
   const config = useConfig();
@@ -69,6 +74,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         modalId={reservation.faust || reservation.identifier || ""}
       >
         <ReservationDetails
+          openReservationDeleteModal={openReservationDeleteModal}
           faust={reservation.faust}
           identifier={reservation.identifier}
           branches={branches}
