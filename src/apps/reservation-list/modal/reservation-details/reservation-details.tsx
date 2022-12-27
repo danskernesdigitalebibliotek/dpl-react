@@ -6,15 +6,16 @@ import fetchMaterial, {
 import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
 import DigitalListDetails from "./digital-list-details";
 import ReservationDetailsButton from "./reservation-details-buttons";
-import { AgencyBranch } from "../../../../core/fbs/model";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
+import { useConfig } from "../../../../core/utils/config";
+import { AgencyBranch } from "../../../../core/fbs/model";
+import { excludeBlacklistedBranches } from "../../../../components/reservation/helper";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
-  branches: AgencyBranch[];
   openReservationDeleteModal: (
     digitalReservationId: string | null,
     physicalReservationId: number | null
@@ -24,14 +25,28 @@ export interface ReservationDetailsProps {
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
-  branches,
   openReservationDeleteModal
 }) => {
   const t = useText();
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
+  const config = useConfig();
+  // Get library branches from config
+  const inputBranches = config<AgencyBranch[]>("branchesConfig", {
+    transformer: "jsonParse"
+  });
 
+  // Get the library branches where the user cannot pick up books at
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
+  // Remove the branches where the user cannot pick up books from the library branches
+  let branches = inputBranches;
+  if (Array.isArray(blacklistBranches)) {
+    branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
+  }
   const isDigital = !!reservation.identifier;
 
   return (

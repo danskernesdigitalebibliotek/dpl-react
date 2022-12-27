@@ -26,6 +26,8 @@ import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import DeleteReservationModal from "../modal/delete-reservation/delete-reservation-modal";
 import DisplayedReservations from "./DisplayedReservations";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
+import ReservationDetails from "../modal/reservation-details/reservation-details";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -34,12 +36,14 @@ export interface ReservationListProps {
 const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { pauseReservation, deleteReservation } = getModalIds();
+  const { pauseReservation, deleteReservation, reservationDetails } =
+    getModalIds();
   const [physicalReservationToDelete, setPhysicalReservationToDelete] =
     useState<number | null>(null);
   const [digitalReservationToDelete, setDigitalReservationToDelete] = useState<
     string | null
   >(null);
+  const [reservation, setReservation] = useState<ReservationType | null>(null);
   const { data: userData } = useGetPatronInformationByPatronIdV2();
 
   // Data fetch
@@ -138,6 +142,14 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       open(`${deleteReservation}${digitalReservationId}`);
     }
   };
+  const openReservationDetailsModal = (reservationInput: ReservationType) => {
+    setReservation(reservationInput);
+    open(
+      `${reservationDetails}${
+        reservationInput.faust || reservationInput.identifier
+      }`
+    );
+  };
 
   return (
     <>
@@ -149,7 +161,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         {allListsEmpty && <EmptyReservations />}
         {!allListsEmpty && (
           <DisplayedReservations
-            openReservationDeleteModal={openReservationDeleteModal}
+            openReservationDetailsModal={openReservationDetailsModal}
             readyForPickupReservationsFBS={readyForPickupReservationsFBS}
             readyForPickupReservationsPublizon={
               readyForPickupReservationsPublizon
@@ -168,6 +180,20 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         physicalReservationId={physicalReservationToDelete}
         digitalReservationId={digitalReservationToDelete}
       />
+      {reservation && (
+        <MaterialDetailsModal
+          modalId={`${reservationDetails}${
+            reservation.faust || reservation.identifier
+          }`}
+        >
+          <ReservationDetails
+            openReservationDeleteModal={openReservationDeleteModal}
+            faust={reservation.faust}
+            identifier={reservation.identifier}
+            reservation={reservation}
+          />
+        </MaterialDetailsModal>
+      )}
     </>
   );
 };

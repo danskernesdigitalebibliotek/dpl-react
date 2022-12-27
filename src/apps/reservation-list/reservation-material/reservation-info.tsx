@@ -8,18 +8,18 @@ import {
   daysBetweenTodayAndDate
 } from "../../../core/utils/helpers/general";
 import { formatDate } from "../../loan-list/utils/helpers";
-import { getPreferredBranch } from "../../../components/reservation/helper";
+import {
+  getPreferredBranch,
+  excludeBlacklistedBranches
+} from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
+import { useConfig } from "../../../core/utils/config";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
-  branches: AgencyBranch[];
 }
 
-const ReservationInfo: FC<ReservationInfoProps> = ({
-  reservationInfo,
-  branches
-}) => {
+const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
   const t = useText();
 
   const {
@@ -44,6 +44,23 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       : t("reservationListLoanBeforeText", {
           placeholders: { "@date": formatDate(pickupDeadline) }
         });
+  }
+
+  const config = useConfig();
+  // Get library branches from config
+  const inputBranches = config<AgencyBranch[]>("branchesConfig", {
+    transformer: "jsonParse"
+  });
+
+  // Get the library branches where the user cannot pick up books at
+  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
+  // Remove the branches where the user cannot pick up books from the library branches
+  let branches = inputBranches;
+  if (Array.isArray(blacklistBranches)) {
+    branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
   }
 
   useEffect(() => {
