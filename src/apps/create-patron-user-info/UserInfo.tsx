@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, FormEvent } from "react";
 import { set } from "lodash";
 import PincodeSection from "../patron-page/sections/PincodeSection";
 import BranchesDropdown from "../patron-page/util/BranchesDropdown";
@@ -30,7 +30,7 @@ const UserInfo: FC = () => {
     setPatron(copyUser);
   };
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { preferredPickupBranch, phoneNumber, emailAddress } = patron;
     if (pin && preferredPickupBranch && phoneNumber && emailAddress) {
@@ -63,7 +63,7 @@ const UserInfo: FC = () => {
         </h2>
       )}
       {t("createPatronChangePickupBodyText") && (
-        <p className="text-body-small-regular">
+        <p className="text-subtitle my-32">
           {t("createPatronChangePickupBodyText")}
         </p>
       )}
@@ -76,21 +76,19 @@ const UserInfo: FC = () => {
       />
       <PincodeSection required changePincode={setPin} />
       <div className="patron-buttons">
-        <input
-          type="submit"
-          className="btn-primary btn-filled btn-small"
-          value={t("createPatronConfirmButtonText")}
-        />
+        <button type="submit" className="btn-primary btn-filled btn-small">
+          {t("createPatronConfirmButtonText")}
+        </button>
+        <button
+          type="button"
+          className="link-tag mx-16"
+          // todo, click cancel, what then?
+          // eslint-disable-next-line no-console
+          onClick={() => console.log("What now ddb?")}
+        >
+          {t("createPatronCancelButtonText")}
+        </button>
       </div>
-      <button
-        type="button"
-        className="link-tag mx-16"
-        // todo, click cancel, what then?
-        // eslint-disable-next-line no-console
-        onClick={() => console.log("What now ddb?")}
-      >
-        {t("createPatronCancelButtonText")}
-      </button>
     </form>
   );
 };

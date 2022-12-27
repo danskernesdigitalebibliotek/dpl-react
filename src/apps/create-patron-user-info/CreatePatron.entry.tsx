@@ -6,6 +6,7 @@ import CreatePatron from "./CreatePatron";
 
 interface CreatePatronConfigProps {
   pincodeLengthConfig: string;
+  thresholdUserAgeConfig: string;
 }
 interface CreatePatronUrlProps {
   privacyPolicyUrl: string;
@@ -37,6 +38,18 @@ interface CreatePatronTextProps {
   createPatronChangePickupHeaderText: string;
   createPatronChangePickupBodyText: string;
   createPatronHeaderText: string;
+  createPatronSelectUserTypeHeaderText: string;
+  createPatronSelectUserTypeSecondHeaderText: string;
+  createPatronSelectUserTypeSubHeaderText: string;
+  createPatronSelectUserTypeSecondSubHeaderText: string;
+  createPatronSelectUserTypeConfirmButtonText: string;
+  createPatronSelectUserTypeAdultOptionText: string;
+  createPatronSelectUserTypeChildOptionText: string;
+  createPatronSelectUserTypeInstitutionOptionText: string;
+  createPatronSelectUserTypeAcceptedTermsText: string;
+  createPatronSelectUserTypePrivacyPolicyLinkText: string;
+  createPatronSelectUserTypeRegulationsLinkText: string;
+  createPatronSelectUserTypeFeesLinkText: string;
 }
 
 export interface CreatePatronProps

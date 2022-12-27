@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Link } from "../../components/atoms/link";
 import { Button } from "../../components/Buttons/Button";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 
@@ -13,24 +14,43 @@ interface SelectUserTypeProps {
 const SelectUserType: FC<SelectUserTypeProps> = ({ confirmHandler }) => {
   const t = useText();
   const { privacyPolicyUrl, regulationsUrl, feesUrl } = useUrls();
+  const config = useConfig();
+  const thresholdUserAge = parseInt(config("thresholdUserAgeConfig"), 10);
 
   return (
     <div className="loan-list-page">
-      <h1>Register as patron todo</h1>
+      <h1>{t("createPatronSelectUserTypeHeaderText")}</h1>
       <p className="text-subtitle my-32">
-        You must register as a library patron in order to borrow, reserve and
-        use our digital ressources
+        {t("createPatronSelectUserTypeSubHeaderText")}
       </p>
-      <h2>Register user (above todo years)</h2>
+      <h2>
+        {t("createPatronSelectUserTypeSecondHeaderText", {
+          placeholders: { "@years": thresholdUserAge }
+        })}
+      </h2>
       <p className="text-subtitle my-32">
-        Are you registering on behalf of a child (below todo years), company or
-        institution?
+        {t("createPatronSelectUserTypeSecondSubHeaderText", {
+          placeholders: { "@years": thresholdUserAge }
+        })}
       </p>
       <Dropdown
         options={[
-          { label: "User above {alder} todo", value: "adult" },
-          { label: "Child/youth below {alder} todo", value: "child" },
-          { label: "Institution todo", value: "institution" }
+          {
+            label: t("createPatronSelectUserTypeAdultOptionText", {
+              placeholders: { "@years": thresholdUserAge }
+            }),
+            value: "adult"
+          },
+          {
+            label: t("createPatronSelectUserTypeChildOptionText", {
+              placeholders: { "@years": thresholdUserAge }
+            }),
+            value: "child"
+          },
+          {
+            label: t("createPatronSelectUserTypeInstitutionOptionText"),
+            value: "institution"
+          }
         ]}
         classNames="dropdown dropdown__desktop"
         id="change-user-type"
@@ -38,22 +58,25 @@ const SelectUserType: FC<SelectUserTypeProps> = ({ confirmHandler }) => {
         arrowIcon="chevron"
       />
       <p className="text-subtitle my-32">
-        In order to register as a library patron, you must be at least 18 years
-        of age. You must also confirm, that you have read and accepted our
-        general terms, rules and rates and that you have been informed as to how
-        we handle your personal information.
+        {t("createPatronSelectUserTypeAcceptedTermsText")}
       </p>
       <div>
-        <Link href={privacyPolicyUrl}>Privacy policy</Link>
+        <Link href={privacyPolicyUrl}>
+          {t("createPatronSelectUserTypePrivacyPolicyLinkText")}
+        </Link>
       </div>
       <div>
-        <Link href={regulationsUrl}>Regulations</Link>
+        <Link href={regulationsUrl}>
+          {t("createPatronSelectUserTypeRegulationsLinkText")}
+        </Link>
       </div>
       <div>
-        <Link href={feesUrl}>Fees</Link>
+        <Link href={feesUrl}>
+          {t("createPatronSelectUserTypeFeesLinkText")}
+        </Link>
       </div>
       <Button
-        label={t("createPatronConfirmButtonText")}
+        label={t("createPatronSelectUserTypeConfirmButtonText")}
         buttonType="none"
         disabled={false}
         collapsible={false}
