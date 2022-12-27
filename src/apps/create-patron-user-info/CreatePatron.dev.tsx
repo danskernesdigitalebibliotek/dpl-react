@@ -81,24 +81,39 @@ export default {
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    CreatePatronChangePickupHeaderText: {
+    createPatronChangePickupHeaderText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    CreatePatronChangePickupBodyText: {
+    createPatronChangePickupBodyText: {
       defaultValue: "",
       control: { type: "text" }
     },
-    CreatePatronHeaderText: {
+    createPatronHeaderText: {
       defaultValue: "Register as patron",
       control: { type: "text" }
     },
-    CreatePatronConfirmButtonText: {
+    createPatronConfirmButtonText: {
       defaultValue: "Confirm",
       control: { type: "text" }
     },
-    CreatePatronCancelButtonText: {
+    createPatronCancelButtonText: {
       defaultValue: "Cancel",
+      control: { type: "text" }
+    },
+    privacyPolicyUrl: {
+      defaultValue:
+        "https://pixabay.com/photos/bird-penguin-humboldt-penguin-6781956/", // open source image of an itchy penguin
+      control: { type: "text" }
+    },
+    regulationsUrl: {
+      defaultValue:
+        "https://pixabay.com/photos/bird-penguin-humboldt-penguin-6781956/", // open source image of an itchy penguin
+      control: { type: "text" }
+    },
+    feesUrl: {
+      defaultValue:
+        "https://pixabay.com/photos/bird-penguin-humboldt-penguin-6781956/", // open source image of an itchy penguin
       control: { type: "text" }
     }
   }

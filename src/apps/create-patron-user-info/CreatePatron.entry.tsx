@@ -7,6 +7,11 @@ import CreatePatron from "./CreatePatron";
 interface CreatePatronConfigProps {
   pincodeLengthConfig: string;
 }
+interface CreatePatronUrlProps {
+  privacyPolicyUrl: string;
+  regulationsUrl: string;
+  feesUrl: string;
+}
 
 interface CreatePatronTextProps {
   blacklistedPickupBranchesConfig?: string;
@@ -36,6 +41,7 @@ interface CreatePatronTextProps {
 
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
+    CreatePatronUrlProps,
     CreatePatronTextProps {}
 
 const CreatePatronEntry: FC<CreatePatronProps> = () => <CreatePatron />;
