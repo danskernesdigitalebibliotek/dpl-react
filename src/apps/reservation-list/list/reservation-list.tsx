@@ -1,4 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
+import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
@@ -25,7 +26,10 @@ import EmptyReservations from "./EmptyReservations";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import DeleteReservationModal from "../modal/delete-reservation/delete-reservation-modal";
 import DisplayedReservations from "./DisplayedReservations";
-import { useModalButtonHandler } from "../../../core/utils/modal";
+import {
+  useModalButtonHandler,
+  ModalIdsProps
+} from "../../../core/utils/modal";
 import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
 import ReservationDetails from "../modal/reservation-details/reservation-details";
 
@@ -35,6 +39,7 @@ export interface ReservationListProps {
 
 const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const t = useText();
+  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
   const { open } = useModalButtonHandler();
   const { pauseReservation, deleteReservation, reservationDetails } =
     getModalIds();
@@ -153,7 +158,10 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   return (
     <>
-      <div className="reservation-list-page">
+      <div
+        className="reservation-list-page"
+        style={modalIds.length > 0 ? { display: "none" } : {}}
+      >
         <h1 className="text-header-h1 m-32">
           {t("reservationListHeaderText")}
         </h1>
