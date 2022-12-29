@@ -69,15 +69,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       return materialType.specific === "tidsskrift";
     }
   );
-
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
   );
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
   const { track } = useStatistics();
