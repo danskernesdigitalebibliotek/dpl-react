@@ -6,31 +6,7 @@ import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
 import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
-
-// Creates a "by author, author and author"-string
-// String interpolation todo?
-export const getContributors = (creators: string[]) => {
-  let returnContentString = "";
-
-  // Todo this is sortof a hack, but using t: UseTextFunction as argument
-  // makes the components re-render.
-  const {
-    text: { data: texts }
-  } = store.getState();
-
-  if (creators && creators.length > 0) {
-    if (creators.length === 1) {
-      returnContentString = `${texts.materialByAuthorText} ${creators.join(
-        ", "
-      )}`;
-    } else {
-      returnContentString = `${texts.materialByAuthorText} ${creators
-        .slice(0, -1)
-        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
-    }
-  }
-  return returnContentString;
-};
+import { getContributors } from "../../fetchers/helpers";
 
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
