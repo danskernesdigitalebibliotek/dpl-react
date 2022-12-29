@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
-import { AvailabiltityLabels } from "../../availability-label/availability-labels";
+import { AvailabilityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../button-favourite/button-favourite";
@@ -154,7 +154,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         data-cy="search-result-item-availability"
       >
         {showItem && (
-          <AvailabiltityLabels
+          <AvailabilityLabels
             cursorPointer
             workId={workId}
             manifestations={manifestations}
