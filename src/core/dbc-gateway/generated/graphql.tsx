@@ -1567,11 +1567,213 @@ export type RecommendFromPidQuery = {
       work: {
         __typename?: "Work";
         workId: string;
-        titles: { __typename?: "WorkTitles"; main: Array<string> };
+        abstract?: Array<string> | null;
+        workYear?: string | null;
+        genreAndForm: Array<string>;
+        titles: {
+          __typename?: "WorkTitles";
+          full: Array<string>;
+          original?: Array<string> | null;
+        };
         creators: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
+        series: Array<{
+          __typename?: "Series";
+          title: string;
+          isPopular?: boolean | null;
+          readThisFirst?: boolean | null;
+          readThisWhenever?: boolean | null;
+          numberInSeries?: {
+            __typename?: "NumberInSeries";
+            display: string;
+            number?: Array<number> | null;
+          } | null;
+        }>;
+        seriesMembers: Array<{
+          __typename?: "Work";
+          workId: string;
+          titles: {
+            __typename?: "WorkTitles";
+            main: Array<string>;
+            full: Array<string>;
+            original?: Array<string> | null;
+          };
+        }>;
+        manifestations: {
+          __typename?: "Manifestations";
+          all: Array<{
+            __typename?: "Manifestation";
+            pid: string;
+            genreAndForm: Array<string>;
+            source: Array<string>;
+            titles: {
+              __typename?: "ManifestationTitles";
+              main: Array<string>;
+              original?: Array<string> | null;
+            };
+            fictionNonfiction?: {
+              __typename?: "FictionNonfiction";
+              display: string;
+              code: FictionNonfictionCode;
+            } | null;
+            materialTypes: Array<{
+              __typename?: "MaterialType";
+              specific: string;
+            }>;
+            creators: Array<
+              | { __typename: "Corporation"; display: string }
+              | { __typename: "Person"; display: string }
+            >;
+            hostPublication?: {
+              __typename?: "HostPublication";
+              title: string;
+              creator?: string | null;
+              publisher?: string | null;
+              year?: {
+                __typename?: "PublicationYear";
+                year?: number | null;
+              } | null;
+            } | null;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{ __typename?: "Language"; display: string }> | null;
+            } | null;
+            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            contributors: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Person"; display: string }
+            >;
+            edition?: {
+              __typename?: "Edition";
+              summary: string;
+              publicationYear?: {
+                __typename?: "PublicationYear";
+                display: string;
+              } | null;
+            } | null;
+            audience?: {
+              __typename?: "Audience";
+              generalAudience: Array<string>;
+            } | null;
+            physicalDescriptions: Array<{
+              __typename?: "PhysicalDescription";
+              numberOfPages?: number | null;
+            }>;
+            accessTypes: Array<{
+              __typename?: "AccessType";
+              code: AccessTypeCode;
+            }>;
+            access: Array<
+              | {
+                  __typename: "AccessUrl";
+                  origin: string;
+                  url: string;
+                  loginRequired: boolean;
+                }
+              | { __typename: "DigitalArticleService"; issn: string }
+              | {
+                  __typename: "Ereol";
+                  origin: string;
+                  url: string;
+                  canAlwaysBeLoaned: boolean;
+                }
+              | { __typename: "InfomediaService"; id: string }
+              | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            >;
+            shelfmark?: {
+              __typename?: "Shelfmark";
+              postfix?: string | null;
+              shelfmark: string;
+            } | null;
+          }>;
+          latest: {
+            __typename?: "Manifestation";
+            pid: string;
+            genreAndForm: Array<string>;
+            source: Array<string>;
+            titles: {
+              __typename?: "ManifestationTitles";
+              main: Array<string>;
+              original?: Array<string> | null;
+            };
+            fictionNonfiction?: {
+              __typename?: "FictionNonfiction";
+              display: string;
+              code: FictionNonfictionCode;
+            } | null;
+            materialTypes: Array<{
+              __typename?: "MaterialType";
+              specific: string;
+            }>;
+            creators: Array<
+              | { __typename: "Corporation"; display: string }
+              | { __typename: "Person"; display: string }
+            >;
+            hostPublication?: {
+              __typename?: "HostPublication";
+              title: string;
+              creator?: string | null;
+              publisher?: string | null;
+              year?: {
+                __typename?: "PublicationYear";
+                year?: number | null;
+              } | null;
+            } | null;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{ __typename?: "Language"; display: string }> | null;
+            } | null;
+            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            contributors: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Person"; display: string }
+            >;
+            edition?: {
+              __typename?: "Edition";
+              summary: string;
+              publicationYear?: {
+                __typename?: "PublicationYear";
+                display: string;
+              } | null;
+            } | null;
+            audience?: {
+              __typename?: "Audience";
+              generalAudience: Array<string>;
+            } | null;
+            physicalDescriptions: Array<{
+              __typename?: "PhysicalDescription";
+              numberOfPages?: number | null;
+            }>;
+            accessTypes: Array<{
+              __typename?: "AccessType";
+              code: AccessTypeCode;
+            }>;
+            access: Array<
+              | {
+                  __typename: "AccessUrl";
+                  origin: string;
+                  url: string;
+                  loginRequired: boolean;
+                }
+              | { __typename: "DigitalArticleService"; issn: string }
+              | {
+                  __typename: "Ereol";
+                  origin: string;
+                  url: string;
+                  canAlwaysBeLoaned: boolean;
+                }
+              | { __typename: "InfomediaService"; id: string }
+              | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            >;
+            shelfmark?: {
+              __typename?: "Shelfmark";
+              postfix?: string | null;
+              shelfmark: string;
+            } | null;
+          };
+        };
       };
     }>;
   };
@@ -2846,18 +3048,12 @@ export const RecommendFromPidDocument = `
   recommend(pid: $pid, limit: $limit) {
     result {
       work {
-        workId
-        titles {
-          main
-        }
-        creators {
-          display
-        }
+        ...WorkSmall
       }
     }
   }
 }
-    `;
+    ${WorkSmallFragmentDoc}`;
 export const useRecommendFromPidQuery = <
   TData = RecommendFromPidQuery,
   TError = unknown

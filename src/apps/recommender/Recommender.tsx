@@ -1,22 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
-import { useRecommendFromPidQuery } from "../../core/dbc-gateway/generated/graphql";
 import { useGetLoansV2 } from "../../core/fbs/fbs";
 import { useGetV1UserLoans } from "../../core/publizon/publizon";
 import { sortByLoanDate } from "../../core/utils/helpers/general";
-import {
-  mapFBSLoanToLoanType,
-  mapPublizonLoanToLoanType
-} from "../../core/utils/helpers/list-mapper";
-import { FaustId } from "../../core/utils/types/ids";
+import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../core/utils/types/loan-type";
+import RecommendList from "./RecommendList";
 
 const Recommender: FC = () => {
-  const [pidForFetch, setPidForFetch] = useState<FaustId | string | null>();
-  const { data } = useRecommendFromPidQuery({
-    pid: `870970-basis:${pidForFetch}`,
-    limit: 4
-  });
-
+  const [loanForRecommender, setLoanForRecommender] = useState<LoanType | null>(
+    null
+  );
   const [currentDigitalLoans, setCurrentDigitalLoans] = useState<
     LoanType[] | null
   >(null);
@@ -37,11 +30,6 @@ const Recommender: FC = () => {
   } = useGetV1UserLoans();
 
   useEffect(() => {
-    if (data) {
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (fbsData) {
       setCurrentPhysicalLoans(mapFBSLoanToLoanType(fbsData));
     }
@@ -55,25 +43,34 @@ const Recommender: FC = () => {
       const newestLoan = sortByLoanDate([
         ...currentPhysicalLoans,
         ...currentDigitalLoans
-      ]).reverse()[0];
-      setPidForFetch(newestLoan.faust ?? newestLoan.identifier);
+      ]).reverse();
+      if (newestLoan.length > 0) {
+        setLoanForRecommender(newestLoan[0]);
+      }
     }
-  }, [currentDigitalLoans, currentPhysicalLoans]);
+  }, [currentDigitalLoans, currentPhysicalLoans, setLoanForRecommender]);
 
   useEffect(() => {
     if (publizonData && publizonData.loans) {
-      setCurrentDigitalLoans(mapPublizonLoanToLoanType(publizonData.loans));
+      // setCurrentDigitalLoans(mapPublizonLoanToLoanType(publizonData.loans));
+      setCurrentDigitalLoans([]);
     }
     if (publizonError && !isSuccessPublizon) {
       setCurrentDigitalLoans([]);
     }
   }, [isSuccessPublizon, publizonData, publizonError]);
 
-  useEffect(() => {
-    console.log(pidForFetch);
-  }, [pidForFetch]);
+  if (loanForRecommender === null) return null;
 
-  return <>Hello</>;
+  return (
+    <div className="recommender">
+      <RecommendList
+        faust={loanForRecommender.faust}
+        identifier={loanForRecommender.identifier}
+        loan={loanForRecommender}
+      />
+    </div>
+  );
 };
 
 export default Recommender;
