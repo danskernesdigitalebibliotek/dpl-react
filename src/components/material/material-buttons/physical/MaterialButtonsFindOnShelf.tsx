@@ -42,19 +42,6 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   }
 
   if (size !== "small") {
-    if (!data[0].available) {
-      return (
-        <Button
-          label={t("materialIsLoanedOutText")}
-          buttonType="none"
-          variant="outline"
-          disabled
-          collapsible={false}
-          size="large"
-          dataCy={dataCy}
-        />
-      );
-    }
     return (
       <Button
         label={t("findOnBookshelfText")}
@@ -66,14 +53,6 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         onClick={onClick}
         dataCy={dataCy}
       />
-    );
-  }
-
-  if (!data[0].available) {
-    return (
-      <span className="text-small-caption material-manifestation-item__find capitalize-all">
-        {t("materialIsLoanedOutText")}
-      </span>
     );
   }
 
