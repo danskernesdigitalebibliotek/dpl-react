@@ -1553,6 +1553,30 @@ export type GetInfomediaQuery = {
   };
 };
 
+export type RecommendFromPidQueryVariables = Exact<{
+  pid: Scalars["String"];
+  limit: Scalars["Int"];
+}>;
+
+export type RecommendFromPidQuery = {
+  __typename?: "Query";
+  recommend: {
+    __typename?: "RecommendationResponse";
+    result: Array<{
+      __typename?: "Recommendation";
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+        creators: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+      };
+    }>;
+  };
+};
+
 export type SearchWithPaginationQueryVariables = Exact<{
   q: SearchQuery;
   offset: Scalars["Int"];
@@ -2813,6 +2837,38 @@ export const useGetInfomediaQuery = <
     ["getInfomedia", variables],
     fetcher<GetInfomediaQuery, GetInfomediaQueryVariables>(
       GetInfomediaDocument,
+      variables
+    ),
+    options
+  );
+export const RecommendFromPidDocument = `
+    query recommendFromPid($pid: String!, $limit: Int!) {
+  recommend(pid: $pid, limit: $limit) {
+    result {
+      work {
+        workId
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+      }
+    }
+  }
+}
+    `;
+export const useRecommendFromPidQuery = <
+  TData = RecommendFromPidQuery,
+  TError = unknown
+>(
+  variables: RecommendFromPidQueryVariables,
+  options?: UseQueryOptions<RecommendFromPidQuery, TError, TData>
+) =>
+  useQuery<RecommendFromPidQuery, TError, TData>(
+    ["recommendFromPid", variables],
+    fetcher<RecommendFromPidQuery, RecommendFromPidQueryVariables>(
+      RecommendFromPidDocument,
       variables
     ),
     options
