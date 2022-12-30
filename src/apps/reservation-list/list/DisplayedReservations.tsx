@@ -23,7 +23,6 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
   openReservationDetailsModal
 }) => {
   const t = useText();
-
   return (
     <>
       {readyForPickupReservationsFBS !== null &&

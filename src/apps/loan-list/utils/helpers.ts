@@ -3,6 +3,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { UseTextFunction } from "../../../core/utils/text";
+import { ListType } from "../../../core/utils/types/list-type";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string,
@@ -22,7 +23,7 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
 };
 
 export const getFromListByKey = (
-  list: LoanType[],
+  list: ListType[],
   key: "faust" | "identifier",
   value: string
 ) => {

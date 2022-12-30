@@ -32,6 +32,9 @@ import {
 } from "../../../core/utils/modal";
 import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
 import ReservationDetails from "../modal/reservation-details/reservation-details";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
+import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
+import { getFromListByKey } from "../../loan-list/utils/helpers";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -50,7 +53,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   >(null);
   const [reservation, setReservation] = useState<ReservationType | null>(null);
   const { data: userData } = useGetPatronInformationByPatronIdV2();
-
+  const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   // Data fetch
   const {
     isSuccess: isSuccessFBS,
@@ -97,6 +100,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           mapPublizonReservationToReservationType(publizonData.reservations)
         )
       );
+    } else if (!isSuccessPublizon) {
+      setReservedReservationsPublizon([]);
+      setReadyForPickupReservationsPublizon([]);
     }
   }, [publizonData, isSuccessPublizon]);
 
@@ -124,6 +130,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       setReservedReservationsFBS(
         getReservedPhysical(mapFBSReservationToReservationType(data))
       );
+    } else if (!isSuccessFBS) {
+      setReservedReservationsFBS([]);
+      setReadyForPickupReservationsFBS([]);
     }
   }, [isSuccessFBS, data]);
 
@@ -155,6 +164,68 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       }`
     );
   };
+
+  useEffect(() => {
+    let reservationForModal = null;
+    if (modalDetailsId) {
+      if (readyForPickupReservationsFBS) {
+        reservationForModal = getFromListByKey(
+          [...readyForPickupReservationsFBS],
+          "faust",
+          modalDetailsId
+        );
+      }
+      if (reservationForModal?.length === 0 && reservedReservationsFBS) {
+        reservationForModal = getFromListByKey(
+          [...reservedReservationsFBS],
+          "faust",
+          modalDetailsId
+        );
+      }
+      if (reservationForModal?.length === 0 && reservedReservationsPublizon) {
+        reservationForModal = getFromListByKey(
+          [...reservedReservationsPublizon],
+          "identifier",
+          modalDetailsId
+        );
+      }
+      if (
+        reservationForModal?.length === 0 &&
+        readyForPickupReservationsPublizon
+      ) {
+        reservationForModal = getFromListByKey(
+          [...readyForPickupReservationsPublizon],
+          "identifier",
+          modalDetailsId
+        );
+      }
+
+      if (reservationForModal && reservationForModal.length > 0) {
+        setReservation(reservationForModal[0]);
+      }
+    }
+  }, [
+    readyForPickupReservationsFBS,
+    readyForPickupReservationsPublizon,
+    reservedReservationsFBS,
+    reservedReservationsPublizon,
+    modalDetailsId
+  ]);
+
+  useEffect(() => {
+    const modalUrlParam = getUrlQueryParam("modal");
+    // if there is a loan details query param, loan details modal should be opened
+    const resDetails = reservationDetails as string;
+    if (modalUrlParam && modalUrlParam.includes(resDetails as string)) {
+      const reservationDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        resDetails
+      );
+      if (reservationDetailsModalId) {
+        setModalDetailsId(reservationDetailsModalId);
+      }
+    }
+  }, [reservationDetails]);
 
   return (
     <>
