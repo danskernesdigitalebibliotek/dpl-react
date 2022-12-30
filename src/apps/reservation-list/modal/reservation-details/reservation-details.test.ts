@@ -381,7 +381,7 @@ describe("Reservation details modal test", () => {
 
     // Serial title
     // Serial number
-    cy.get(".list-reservation-container")
+    cy.get(".modal")
       .find("[data-cy='modal-series']")
       .should("have.text", "Detektivbureau Nr. 2 1");
 
