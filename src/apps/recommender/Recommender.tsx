@@ -38,25 +38,29 @@ const Recommender: FC = () => {
   const {
     isSuccess: isSuccessFbsLoans,
     error: fbsErrorLoans,
-    data: fbsLoans
+    data: fbsLoans,
+    isLoading: fbsLoansLoading
   } = useGetLoansV2();
 
   const {
     isSuccess: isSuccessPublizonLoans,
     error: publizonErrorLoans,
-    data: publizonLoans
+    data: publizonLoans,
+    isLoading: publizonLoansLoading
   } = useGetV1UserLoans();
 
   const {
     isSuccess: isSuccessFbsReservations,
     error: fbsErrorReservations,
-    data: fbsReservations
+    data: fbsReservations,
+    isLoading: fbsReservationsLoading
   } = useGetReservationsV2();
 
   const {
     isSuccess: isSuccessPublizonReservations,
     error: publizonErrorReservations,
-    data: publizonReservations
+    data: publizonReservations,
+    isLoading: publizonReservationsLoading
   } = useGetV1UserReservations();
 
   useEffect(() => {
@@ -133,6 +137,12 @@ const Recommender: FC = () => {
     }
   }, [isSuccessPublizonLoans, publizonLoans, publizonErrorLoans]);
 
+  const stillLoading =
+    fbsReservationsLoading ||
+    publizonReservationsLoading ||
+    publizonLoansLoading ||
+    fbsLoansLoading;
+
   return (
     <div className="recommender">
       {loanForRecommender && (
@@ -149,7 +159,7 @@ const Recommender: FC = () => {
           reservation={reservationForRecommender}
         />
       )}
-      {!loanForRecommender && !reservationForRecommender && (
+      {!loanForRecommender && !reservationForRecommender && !stillLoading && (
         <InspirationRecommender />
       )}
     </div>
