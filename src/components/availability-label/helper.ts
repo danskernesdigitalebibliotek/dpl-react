@@ -3,7 +3,6 @@ import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useGetV1ProductsIdentifier } from "../../core/publizon/publizon";
 import { useConfig } from "../../core/utils/config";
 import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
-import { ErrorType } from "../../core/publizon/mutator/fetcher";
 
 export const useAvailabilityData = ({
   accessTypes,
