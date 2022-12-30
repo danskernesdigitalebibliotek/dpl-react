@@ -149,14 +149,17 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     open(`${deleteReservation}${deleteId}`);
   };
 
-  const openReservationDetailsModal = (reservationInput: ReservationType) => {
-    setReservation(reservationInput);
-    open(
-      `${reservationDetails}${
-        reservationInput.faust || reservationInput.identifier
-      }`
-    );
-  };
+  const openReservationDetailsModal = useCallback(
+    (reservationInput: ReservationType) => {
+      setReservation(reservationInput);
+      open(
+        `${reservationDetails}${
+          reservationInput.faust || reservationInput.identifier
+        }`
+      );
+    },
+    [open, reservationDetails]
+  );
 
   const findReservationInLists = useCallback(
     (id: string) => {
