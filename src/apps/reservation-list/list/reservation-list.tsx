@@ -220,7 +220,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       const reservationForModal = findReservationInLists(
         modalDeleteId.toString()
       );
-      debugger;
+
       if (reservationForModal) {
         openReservationDetailsModal(reservationForModal);
         setReservationToDelete(reservationForModal);
