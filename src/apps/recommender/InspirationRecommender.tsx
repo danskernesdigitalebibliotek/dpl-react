@@ -15,6 +15,7 @@ const InspirationRecommender: FC = () => {
   const { data } = useSearchWithPaginationQuery({
     limit: 4,
     q: {
+      // todo obviously figure out what this must say
       all: "harry"
     },
     offset: 0
