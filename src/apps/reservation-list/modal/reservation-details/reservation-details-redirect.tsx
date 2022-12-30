@@ -7,10 +7,7 @@ import { useUrls } from "../../../../core/utils/url";
 
 export interface ReservationDetailsRedirectProps {
   reservationId: string;
-  openReservationDeleteModal: (
-    digitalReservationId: string | null,
-    physicalReservationId: number | null
-  ) => void;
+  openReservationDeleteModal: (deleteId: number | string | null) => void;
 }
 
 const ReservationDetailsRedirect: FC<
@@ -23,7 +20,7 @@ const ReservationDetailsRedirect: FC<
     <div className="modal-details__buttons">
       <button
         type="button"
-        onClick={() => openReservationDeleteModal(reservationId, null)}
+        onClick={() => openReservationDeleteModal(reservationId)}
         className="link-tag mx-16"
       >
         {t("reservationDetailsRemoveDigitalReservationText")}

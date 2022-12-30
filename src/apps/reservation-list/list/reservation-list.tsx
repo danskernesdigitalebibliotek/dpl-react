@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
@@ -46,14 +46,14 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const { open } = useModalButtonHandler();
   const { pauseReservation, deleteReservation, reservationDetails } =
     getModalIds();
-  const [physicalReservationToDelete, setPhysicalReservationToDelete] =
-    useState<number | null>(null);
-  const [digitalReservationToDelete, setDigitalReservationToDelete] = useState<
-    string | null
-  >(null);
   const [reservation, setReservation] = useState<ReservationType | null>(null);
+  const [reservationToDelete, setReservationToDelete] =
+    useState<ReservationType | null>(null);
   const { data: userData } = useGetPatronInformationByPatronIdV2();
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
+  const [modalDeleteId, setModalDeleteId] = useState<string | number | null>(
+    null
+  );
   // Data fetch
   const {
     isSuccess: isSuccessFBS,
@@ -144,18 +144,11 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     !isLoadingFBS &&
     !isLoadingPublizon;
 
-  const openReservationDeleteModal = (
-    digitalReservationId: string | null,
-    physicalReservationId: number | null
-  ) => {
-    if (physicalReservationId) {
-      setPhysicalReservationToDelete(physicalReservationId);
-      open(`${deleteReservation}${physicalReservationId}`);
-    } else {
-      setDigitalReservationToDelete(digitalReservationId);
-      open(`${deleteReservation}${digitalReservationId}`);
-    }
+  const openReservationDeleteModal = (deleteId: string | number | null) => {
+    setModalDeleteId(deleteId);
+    open(`${deleteReservation}${deleteId}`);
   };
+
   const openReservationDetailsModal = (reservationInput: ReservationType) => {
     setReservation(reservationInput);
     open(
@@ -165,52 +158,75 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     );
   };
 
-  useEffect(() => {
-    let reservationForModal = null;
-    if (modalDetailsId) {
+  const findReservationInLists = useCallback(
+    (id: string) => {
+      let reservationFound = null;
       if (readyForPickupReservationsFBS) {
-        reservationForModal = getFromListByKey(
+        reservationFound = getFromListByKey(
           [...readyForPickupReservationsFBS],
           "faust",
-          modalDetailsId
+          id
         );
       }
-      if (reservationForModal?.length === 0 && reservedReservationsFBS) {
-        reservationForModal = getFromListByKey(
+      if (reservationFound?.length === 0 && reservedReservationsFBS) {
+        reservationFound = getFromListByKey(
           [...reservedReservationsFBS],
           "faust",
-          modalDetailsId
+          id
         );
       }
-      if (reservationForModal?.length === 0 && reservedReservationsPublizon) {
-        reservationForModal = getFromListByKey(
+      if (reservationFound?.length === 0 && reservedReservationsPublizon) {
+        reservationFound = getFromListByKey(
           [...reservedReservationsPublizon],
           "identifier",
-          modalDetailsId
+          id
         );
       }
       if (
-        reservationForModal?.length === 0 &&
+        reservationFound?.length === 0 &&
         readyForPickupReservationsPublizon
       ) {
-        reservationForModal = getFromListByKey(
+        reservationFound = getFromListByKey(
           [...readyForPickupReservationsPublizon],
           "identifier",
-          modalDetailsId
+          id
         );
       }
+      if (reservationFound && reservationFound.length > 0) {
+        return reservationFound[0];
+      }
+      return null;
+    },
+    [
+      readyForPickupReservationsFBS,
+      readyForPickupReservationsPublizon,
+      reservedReservationsFBS,
+      reservedReservationsPublizon
+    ]
+  );
 
-      if (reservationForModal && reservationForModal.length > 0) {
-        setReservation(reservationForModal[0]);
+  useEffect(() => {
+    if (modalDetailsId) {
+      const reservationForModal = findReservationInLists(modalDetailsId);
+
+      if (reservationForModal) {
+        setReservation(reservationForModal);
       }
     }
-  }, [
-    readyForPickupReservationsFBS,
-    readyForPickupReservationsPublizon,
-    reservedReservationsFBS,
-    reservedReservationsPublizon,
-    modalDetailsId
-  ]);
+  }, [findReservationInLists, modalDetailsId]);
+
+  useEffect(() => {
+    if (modalDeleteId) {
+      const reservationForModal = findReservationInLists(
+        modalDeleteId.toString()
+      );
+      debugger;
+      if (reservationForModal) {
+        openReservationDetailsModal(reservationForModal);
+        setReservationToDelete(reservationForModal);
+      }
+    }
+  }, [findReservationInLists, modalDeleteId, openReservationDetailsModal]);
 
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
@@ -225,7 +241,17 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         setModalDetailsId(reservationDetailsModalId);
       }
     }
-  }, [reservationDetails]);
+    const deleteRes = deleteReservation as string;
+    if (modalUrlParam && modalUrlParam.includes(deleteRes as string)) {
+      const deleteReservationModalId = getDetailsModalId(
+        modalUrlParam,
+        deleteRes
+      );
+      if (deleteReservationModalId) {
+        setModalDeleteId(deleteReservationModalId);
+      }
+    }
+  }, [deleteReservation, reservationDetails]);
 
   return (
     <>
@@ -252,13 +278,14 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         )}
       </div>
       {user && <PauseReservation user={user} id={pauseReservation as string} />}
-      <DeleteReservationModal
-        modalId={`${deleteReservation}${
-          physicalReservationToDelete || digitalReservationToDelete
-        }`}
-        physicalReservationId={physicalReservationToDelete}
-        digitalReservationId={digitalReservationToDelete}
-      />
+      {reservationToDelete && (
+        <DeleteReservationModal
+          modalId={`${deleteReservation}${
+            reservationToDelete.faust || reservationToDelete.identifier
+          }`}
+          reservation={reservationToDelete}
+        />
+      )}
       {reservation && (
         <MaterialDetailsModal
           modalId={`${reservationDetails}${

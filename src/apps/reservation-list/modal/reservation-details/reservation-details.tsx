@@ -16,10 +16,7 @@ import { excludeBlacklistedBranches } from "../../../../components/reservation/h
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
-  openReservationDeleteModal: (
-    digitalReservationId: string | null,
-    physicalReservationId: number | null
-  ) => void;
+  openReservationDeleteModal: (deleteId: number | string | null) => void;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({

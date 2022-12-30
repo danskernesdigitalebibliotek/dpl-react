@@ -351,7 +351,7 @@ const { deleteReservation } = getModalIds();
 export const ReservationListDeletePhysicalModal = Template.bind({});
 ReservationListDeletePhysicalModal.parameters = {
   query: {
-    modal: `46985591&${deleteReservation}67804976`
+    modal: `46985591&${deleteReservation}46985591`
   }
 };
 

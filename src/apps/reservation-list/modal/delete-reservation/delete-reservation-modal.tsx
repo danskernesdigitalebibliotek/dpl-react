@@ -8,17 +8,17 @@ import {
   getGetReservationsV2QueryKey
 } from "../../../../core/fbs/fbs";
 import { useDeleteV1UserReservationsIdentifier } from "../../../../core/publizon/publizon";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import { isDigital } from "../../../loan-list/utils/helpers";
 
 interface DeleteReservationModalProps {
   modalId: string;
-  digitalReservationId: string | null;
-  physicalReservationId: number | null;
+  reservation: ReservationType;
 }
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   modalId,
-  digitalReservationId,
-  physicalReservationId
+  reservation
 }) => {
   const t = useText();
   const queryClient = useQueryClient();
@@ -28,10 +28,10 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { close } = useModalButtonHandler();
 
   const physicalDeletion = useCallback(() => {
-    if (physicalReservationId) {
+    if (!isDigital(reservation) && reservation.faust) {
       deletePhysicalReservation(
         {
-          params: { reservationid: [physicalReservationId] }
+          params: { reservationid: [Number(reservation.faust)] }
         },
         {
           onSuccess: () => {
@@ -45,19 +45,13 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         }
       );
     }
-  }, [
-    close,
-    deletePhysicalReservation,
-    modalId,
-    physicalReservationId,
-    queryClient
-  ]);
+  }, [close, deletePhysicalReservation, modalId, queryClient, reservation]);
 
   const digitalDeletion = useCallback(() => {
-    if (digitalReservationId) {
+    if (isDigital(reservation) && reservation.identifier) {
       deleteDigitalReservation(
         {
-          identifier: digitalReservationId
+          identifier: reservation.identifier
         },
         {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -71,9 +65,9 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         }
       );
     }
-  }, [close, deleteDigitalReservation, digitalReservationId, modalId]);
+  }, [close, deleteDigitalReservation, modalId, reservation]);
 
-  if (!physicalReservationId && !digitalReservationId) return null;
+  if (!reservation) return null;
 
   return (
     <Modal
@@ -86,7 +80,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
     >
       <DeleteReservationContent
         deleteReservation={
-          physicalReservationId ? physicalDeletion : digitalDeletion
+          isDigital(reservation) ? digitalDeletion : physicalDeletion
         }
       />
     </Modal>

@@ -5,10 +5,7 @@ import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch
 export interface ReservationDetailsButtonProps {
   reservationId: number;
   numberInQueue?: number | null;
-  openReservationDeleteModal: (
-    digitalReservationId: string | null,
-    physicalReservationId: number | null
-  ) => void;
+  openReservationDeleteModal: (deleteId: number | string | null) => void;
 }
 
 const ReservationDetailsButton: FC<
@@ -25,7 +22,7 @@ const ReservationDetailsButton: FC<
       )}
       <button
         type="button"
-        onClick={() => openReservationDeleteModal(null, reservationId)}
+        onClick={() => openReservationDeleteModal(reservationId)}
         className="btn-primary btn-filled btn-small arrow__hover--right-small"
       >
         {t("reservationDetailsButtonRemoveText")}

@@ -127,8 +127,12 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
     // if there is a loan details query param, loan details modal should be opened
+    const loanDetailsString = loanDetails as string;
     if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
-      const loanDetailsModalId = getDetailsModalId(modalUrlParam, loanDetails);
+      const loanDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        loanDetailsString
+      );
       if (loanDetailsModalId) {
         setModalDetailsId(loanDetailsModalId);
       }
