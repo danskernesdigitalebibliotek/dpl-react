@@ -8,8 +8,9 @@ import ButtonFavourite, {
 } from "./button-favourite";
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import { withText } from "../../core/utils/text";
 
-const WrappedButtonFavourite = withUrls(ButtonFavourite);
+const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
 export default {
   title: "Components  / Button Favourite",
