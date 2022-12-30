@@ -7,7 +7,49 @@ export default {
   title: "Apps / Recommender",
   component: Recommender,
   argTypes: {
-    ...serviceUrlArgs
+    ...serviceUrlArgs,
+    recommenderTitleLoansText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Because you have borrowed @title you may also like"
+    },
+    recommenderTitleReservationsText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Because you have reserved @title you may also like"
+    },
+    materialByAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "By"
+    },
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
+    recommenderTitleInspirationText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "For your inspiration"
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
+    }
   }
 } as ComponentMeta<typeof Recommender>;
 

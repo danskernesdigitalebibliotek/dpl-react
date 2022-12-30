@@ -63,7 +63,9 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
     <button
       type="button"
       aria-label={
-        fillState ? t("remove-from-favorites") : t("add-to-favorites")
+        fillState
+          ? t("removeFromFavoritesAriaLabelText")
+          : t("addToFavoritesAriaLabelText")
       }
       onClick={handleClick}
       className="button-favourite"

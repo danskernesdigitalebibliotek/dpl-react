@@ -1553,12 +1553,12 @@ export type GetInfomediaQuery = {
   };
 };
 
-export type RecommendFromPidQueryVariables = Exact<{
-  pid: Scalars["String"];
+export type RecommendFromFaustQueryVariables = Exact<{
+  faust: Scalars["String"];
   limit: Scalars["Int"];
 }>;
 
-export type RecommendFromPidQuery = {
+export type RecommendFromFaustQuery = {
   __typename?: "Query";
   recommend: {
     __typename?: "RecommendationResponse";
@@ -3043,9 +3043,9 @@ export const useGetInfomediaQuery = <
     ),
     options
   );
-export const RecommendFromPidDocument = `
-    query recommendFromPid($pid: String!, $limit: Int!) {
-  recommend(pid: $pid, limit: $limit) {
+export const RecommendFromFaustDocument = `
+    query recommendFromFaust($faust: String!, $limit: Int!) {
+  recommend(faust: $faust, limit: $limit) {
     result {
       work {
         ...WorkSmall
@@ -3054,17 +3054,17 @@ export const RecommendFromPidDocument = `
   }
 }
     ${WorkSmallFragmentDoc}`;
-export const useRecommendFromPidQuery = <
-  TData = RecommendFromPidQuery,
+export const useRecommendFromFaustQuery = <
+  TData = RecommendFromFaustQuery,
   TError = unknown
 >(
-  variables: RecommendFromPidQueryVariables,
-  options?: UseQueryOptions<RecommendFromPidQuery, TError, TData>
+  variables: RecommendFromFaustQueryVariables,
+  options?: UseQueryOptions<RecommendFromFaustQuery, TError, TData>
 ) =>
-  useQuery<RecommendFromPidQuery, TError, TData>(
-    ["recommendFromPid", variables],
-    fetcher<RecommendFromPidQuery, RecommendFromPidQueryVariables>(
-      RecommendFromPidDocument,
+  useQuery<RecommendFromFaustQuery, TError, TData>(
+    ["recommendFromFaust", variables],
+    fetcher<RecommendFromFaustQuery, RecommendFromFaustQueryVariables>(
+      RecommendFromFaustDocument,
       variables
     ),
     options

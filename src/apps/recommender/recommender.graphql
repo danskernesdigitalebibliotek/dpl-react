@@ -1,5 +1,5 @@
-query recommendFromPid($pid: String!, $limit: Int!) {
-  recommend(pid: $pid, limit: $limit) {
+query recommendFromFaust($faust: String!, $limit: Int!) {
+  recommend(faust: $faust, limit: $limit) {
     result {
       work {
       ...WorkSmall

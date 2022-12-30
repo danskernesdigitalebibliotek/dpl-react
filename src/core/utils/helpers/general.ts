@@ -180,6 +180,14 @@ export const sortByLoanDate = (list: LoanType[]) => {
   );
 };
 
+export const sortByReservationDate = (list: ReservationType[]) => {
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.dateOfReservation || new Date()).getTime() -
+      new Date(objB.dateOfReservation || new Date()).getTime()
+  );
+};
+
 export const getDueDatesLoan = (list: LoanType[]) => {
   return Array.from(
     new Set(

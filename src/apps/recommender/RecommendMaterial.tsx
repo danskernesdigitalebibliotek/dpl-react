@@ -5,30 +5,35 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../components/button-favourite/button-favourite";
 import { Cover } from "../../components/cover/cover";
-import { Work } from "../../core/dbc-gateway/generated/graphql";
+import { Work } from "../../core/utils/types/entities";
 import { getContributors } from "../../core/fetchers/helpers";
 import { getManifestationPid } from "../../core/utils/helpers/general";
-import { WorkId } from "../../core/utils/types/ids";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 
 export interface RecommendMaterialProps {
   work: Work;
-  id: string;
 }
 
-const RecommendMaterial: FC<RecommendMaterialProps> = ({ work, id }) => {
-  const { titles, creators, workId } = work || {};
-  const { full } = titles;
-  let contributors = null;
+const RecommendMaterial: FC<RecommendMaterialProps> = ({
+  work: {
+    titles: { full: title },
+    creators,
+    workId,
+    manifestations: { all: manifestations }
+  }
+}) => {
+  const dispatch = useDispatch<TypedDispatch>();
 
+  // Create authors string
+  let authors = null;
   const inputContributorsArray = creators?.map(({ display }) => display);
   if (inputContributorsArray) {
-    contributors = getContributors(inputContributorsArray);
+    authors = getContributors(inputContributorsArray);
   }
-  const dispatch = useDispatch<TypedDispatch>();
-  const { manifestations } = work;
-  const manifestationPid = getManifestationPid(manifestations.all);
+
+  // For retrieving cover
+  const manifestationPid = getManifestationPid(manifestations);
 
   const addToListRequest = (materialId: ButtonFavouriteId) => {
     dispatch(
@@ -42,16 +47,13 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({ work, id }) => {
   return (
     <div className="recommender__grid__material">
       <Cover animate size="medium" id={manifestationPid} />
-      <ButtonFavourite
-        id={workId as WorkId}
-        addToListRequest={addToListRequest}
-      />
+      <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
       <div className="recommender__grid__material__text">
         <div className="recommender__grid__material__text__title">
-          {String(full)}
+          {String(title)}
         </div>
         <div className="recommender__grid__material__text__author">
-          {contributors}
+          {authors}
         </div>
       </div>
     </div>

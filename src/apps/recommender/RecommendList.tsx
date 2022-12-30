@@ -1,7 +1,7 @@
 import React, { useEffect, FC, useState } from "react";
 import {
-  useRecommendFromPidQuery,
-  RecommendFromPidQuery
+  useRecommendFromFaustQuery,
+  RecommendFromFaustQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { LoanType } from "../../core/utils/types/loan-type";
 import fetchMaterial, {
@@ -9,22 +9,36 @@ import fetchMaterial, {
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import { useText } from "../../core/utils/text";
 import RecommendMaterial from "./RecommendMaterial";
+import { ReservationType } from "../../core/utils/types/reservation-type";
+import { Work } from "../../core/utils/types/entities";
+import fetchDigitalMaterial from "../loan-list/materials/utils/digital-material-fetch-hoc";
 
 export interface RecommendListProps {
-  loan: LoanType;
+  loan?: LoanType;
+  reservation?: ReservationType;
 }
 
 const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   material,
+  reservation,
   loan
 }) => {
   const t = useText();
-  const { data } = useRecommendFromPidQuery({
-    pid: `870970-basis:${loan.faust}`,
+  // todo figure out digital loans/reservations
+  const id =
+    loan?.faust ||
+    reservation?.faust ||
+    loan?.identifier ||
+    reservation?.identifier ||
+    "";
+
+  const { data } = useRecommendFromFaustQuery({
+    faust: id,
     limit: 4
   });
+
   const [recommendedMaterials, setRecommendedMaterials] =
-    useState<RecommendFromPidQuery | null>(null);
+    useState<RecommendFromFaustQuery | null>(null);
 
   useEffect(() => {
     if (data) {
@@ -34,15 +48,25 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
 
   return (
     <>
-      {material && <h1 className="text-header-h1">{material?.title}</h1>}
+      {material && material.title && (
+        <h1 className="text-header-h1">
+          {loan
+            ? t("recommenderTitleLoansText", {
+                placeholders: { "@title": material.title }
+              })
+            : t("recommenderTitleReservationsText", {
+                placeholders: { "@title": material.title }
+              })}
+        </h1>
+      )}
       <div className="recommender-grid">
         {recommendedMaterials &&
           recommendedMaterials.recommend.result.map(({ work }) => (
-            <RecommendMaterial work={work} id={work.workId} />
+            <RecommendMaterial work={work as Work} />
           ))}
       </div>
     </>
   );
 };
 
-export default fetchMaterial(RecommendList);
+export default fetchDigitalMaterial(fetchMaterial(RecommendList));
