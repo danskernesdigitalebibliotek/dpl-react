@@ -20,6 +20,18 @@ export default {
     id: {
       control: "text",
       defaultValue: "work-of:870970-basis:45234401"
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
     }
   }
 } as ComponentMeta<typeof WrappedButtonFavourite>;
