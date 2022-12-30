@@ -13,6 +13,8 @@ export interface ListProps {
   view: ListView;
   emptyListLabel: string;
   pageSize: number;
+  openLoanDetailsModal: (modalId: string) => void;
+  openDueDateModal: (dueDate: string) => void;
   children?: ReactNode;
 }
 
@@ -22,6 +24,8 @@ const List: FC<ListProps> = ({
   view,
   emptyListLabel,
   pageSize,
+  openLoanDetailsModal,
+  openDueDateModal,
   children
 }) => {
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
@@ -55,7 +59,8 @@ const List: FC<ListProps> = ({
       {loans.length > 0 && (
         <>
           <LoanListItems
-            pageSize={pageSize}
+            openLoanDetailsModal={openLoanDetailsModal}
+            openDueDateModal={openDueDateModal}
             dueDates={dueDates}
             loans={displayedLoans}
             view={view}

@@ -27,6 +27,7 @@ const ReservationModal = ({
   work
 }: ReservationModalProps) => {
   const t = useText();
+
   return (
     <Modal
       modalId={reservationModalId(convertPostIdToFaustId(pid))}

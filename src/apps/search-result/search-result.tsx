@@ -4,6 +4,7 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
+  FacetField,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -30,6 +31,7 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 interface SearchResultProps {
   q: string;
@@ -76,7 +78,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       name: statistics.searchQuery.name,
       trackedData: q
     });
-    // We actaully just want to track if the query changes.
+    // We actually just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
 
@@ -97,6 +99,24 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       );
     }
   }, [campaignFacets, mutate]);
+
+  // Check for material type filters in url on pageload
+  // This is an initial, intentionally simple approach supporting what is required by the search header.
+  // It could be reworked to support all filters and terms at a later point.
+  useEffect(() => {
+    const materialTypeUrlFilter = getUrlQueryParam("materialType");
+    if (materialTypeUrlFilter) {
+      filterHandler({
+        filterItem: {
+          facet: FacetField.MaterialTypes,
+          term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
+        },
+        action: "add"
+      });
+    }
+    // We only want to do this once, so we need the dependency array empty
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const createFilters = (
     facets: {

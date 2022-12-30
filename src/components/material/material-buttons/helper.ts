@@ -1,4 +1,3 @@
-import { intersection } from "lodash";
 import {
   Access,
   AccessTypeCode
@@ -19,13 +18,19 @@ export const hasCorrectAccessType = (
   return manifest.accessTypes.some((type) => type.code === desiredAccessType);
 };
 
-export const isArticle = (manifestation: Manifestation) => {
-  const allMaterialTypes = manifestation.materialTypes.map((materialType) =>
-    materialType.specific.toLowerCase()
+export const hasCorrectMaterialType = (
+  desiredMaterialType: string,
+  manifestation: Manifestation
+) => {
+  return manifestation.materialTypes.some(
+    (type) => type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
   );
+};
+
+export const isArticle = (manifestation: Manifestation) => {
   return (
-    intersection(allMaterialTypes, ["tidsskriftsartikel", "avisartikel"])
-      .length > 0
+    hasCorrectMaterialType("tidsskriftsartikel", manifestation) ||
+    hasCorrectMaterialType("avisartikel", manifestation)
   );
 };
 

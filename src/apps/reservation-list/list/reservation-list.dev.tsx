@@ -320,20 +320,6 @@ export default {
       name: "Result pager status text",
       defaultValue: "Showing @itemsShown out of @hitcount results",
       control: { type: "text" }
-    },
-    reservationListStatusIconReadyForPickupAriaLabelText: {
-      defaultValue: "This material is ready for pickup",
-      control: { type: "text" }
-    },
-    reservationListStatusIconQueuedAriaLabelText: {
-      defaultValue:
-        '{"type":"plural","text":["You are the only person queued for this material","This material has @count people in queue before you"]}',
-      control: { type: "text" }
-    },
-    reservationListStatusIconReadyInAriaLabelText: {
-      defaultValue:
-        '{"type":"plural","text":["This material is ready in 1 day","This material is ready in @count days"]}',
-      control: { type: "text" }
     }
   },
   decorators: [withQuery]

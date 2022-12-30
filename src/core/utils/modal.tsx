@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
 import { closeModal, openModal } from "../modal.slice";
+import { userIsAnonymous } from "./helpers/user";
+import {
+  currentLocationWithParametersUrl,
+  redirectToLoginAndBack
+} from "./helpers/url";
 
 type ModalId = string;
 
@@ -12,6 +17,7 @@ type ModalProps = {
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
   classNames?: string;
+  dataCy?: string;
 };
 
 export interface ModalIdsProps {
@@ -25,7 +31,8 @@ function Modal({
   closeModalAriaLabelText,
   children,
   screenReaderModalDescriptionText,
-  classNames
+  classNames,
+  dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -65,6 +72,8 @@ function Modal({
           classNames
         )}
         role="dialog"
+        aria-labelledby={`modal-${modalId}`}
+        data-cy={dataCy}
       >
         <div
           className="modal__screen-reader-description"
@@ -75,11 +84,10 @@ function Modal({
         <button
           type="button"
           /* A focusable element in a modal must have focus when opened,
-        or else the screen reader will remain on the main page */
+          or else the screen reader will remain on the main page */
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           className="btn-ui modal-btn-close"
-          aria-describedby={`modal-${modalId}`}
           style={{
             // same as comment above
             zIndex: modalIds.indexOf(modalId) + 10
@@ -99,6 +107,12 @@ function Modal({
   );
 }
 
+export type GuardedOpenModalProps = {
+  authUrl: URL;
+  modalId: string;
+  trackOnlineView?: () => Promise<unknown>;
+};
+
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
   return {
@@ -107,6 +121,30 @@ export const useModalButtonHandler = () => {
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
+    },
+    openGuarded: ({
+      authUrl,
+      modalId,
+      trackOnlineView
+    }: GuardedOpenModalProps) => {
+      // Redirect anonymous users to the login platform, including a return link
+      // to this page with an open modal.
+      if (userIsAnonymous()) {
+        const returnUrl = currentLocationWithParametersUrl({
+          modal: modalId
+        });
+        redirectToLoginAndBack({
+          authUrl,
+          returnUrl,
+          trackingFunction: trackOnlineView
+        });
+        return;
+      }
+      // If user is not anonymous we just open the given modal + potentially track it.
+      if (trackOnlineView) {
+        trackOnlineView();
+      }
+      dispatch(openModal({ modalId }));
     }
   };
 };

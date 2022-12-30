@@ -291,9 +291,6 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
-  const isDataPresent =
-    originalData && originalData.length > 0 && status === "success";
-
   return (
     <form
       className="header__menu-second"
@@ -306,20 +303,18 @@ const SearchHeader: React.FC = () => {
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
         />
-        {isDataPresent && isAutosuggestOpen && (
-          <Autosuggest
-            textData={textData}
-            materialData={materialData}
-            categoryData={categoryData}
-            status={status}
-            getMenuProps={getMenuProps}
-            highlightedIndex={highlightedIndex}
-            getItemProps={getItemProps}
-            isOpen={isAutosuggestOpen}
-            autosuggestCategoryList={autosuggestCategoryList}
-            isLoading={isLoading}
-          />
-        )}
+        <Autosuggest
+          textData={textData}
+          materialData={materialData}
+          categoryData={categoryData}
+          status={status}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+          isOpen={isAutosuggestOpen}
+          autosuggestCategoryList={autosuggestCategoryList}
+          isLoading={isLoading}
+        />
       </div>
     </form>
   );

@@ -55,9 +55,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     recordid: faustIdArray,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
-  const author =
-    creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
-    t("creatorsAreMissingText");
+  const author = creatorsToString(
+    flattenCreators(filterCreators(authors, ["Person"])),
+    t
+  );
   const title = workTitles.join(", ");
   const modalId = findOnShelfModalId(
     convertPostIdToFaustId(manifestations[0].pid)
@@ -175,7 +176,8 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     >
       <>
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
-          {`${title} / ${author}`}
+          {title}
+          {author && ` / ${author}`}
         </h2>
         {isPeriodical && selectedPeriodical && (
           <FindOnShelfPeriodicalDropdowns

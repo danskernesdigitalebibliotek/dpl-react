@@ -45,7 +45,7 @@ describe("Material - Infomedia", () => {
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story");
   });
 
-  it("Render infomedia + Read article + Close modal", () => {
+  it.skip("Render infomedia + Read article + Close modal", () => {
     cy.getBySel("material-header-buttons-online-infomedia-article")
       .should("be.visible")
       .and("contain", "Read article")

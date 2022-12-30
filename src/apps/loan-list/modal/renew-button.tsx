@@ -2,15 +2,16 @@ import React, { useCallback, FC } from "react";
 import { useQueryClient } from "react-query";
 import { useText } from "../../../core/utils/text";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
-import { FaustId } from "../../../core/utils/types/ids";
+import { FaustId, LoanId } from "../../../core/utils/types/ids";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface RenewButtonProps {
-  faust: FaustId;
+  loanId: LoanId;
   renewable: boolean;
+  faust: FaustId;
 }
 
-const RenewButton: FC<RenewButtonProps> = ({ faust, renewable }) => {
+const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
   const t = useText();
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
@@ -44,8 +45,10 @@ const RenewButton: FC<RenewButtonProps> = ({ faust, renewable }) => {
       <button
         type="button"
         disabled={!renewable}
-        onClick={() => renew(parseInt(faust, 10))}
-        className="btn-primary btn-filled btn-small arrow__hover--right-small"
+        onClick={() => renew(loanId)}
+        className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
+          !renewable ? "btn-outline" : ""
+        }`}
       >
         {t("materialDetailsRenewLoanButtonText")}
       </button>

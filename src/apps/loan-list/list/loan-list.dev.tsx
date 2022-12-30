@@ -368,22 +368,21 @@ const Template: ComponentStory<typeof LoanList> = (props) => (
 
 export const LoanListEntry = Template.bind({});
 LoanListEntry.args = {};
-
+const { dueDateModal, loanDetails, allLoansId } = getModalIds();
 export const LoanListDetailsModal = Template.bind({});
 LoanListDetailsModal.parameters = {
   query: {
-    modal: "28847238"
+    modal: `${loanDetails}28847238`
   }
 };
 
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-09-16"
+    modal: `${dueDateModal}2022-12-15`
   }
 };
 
-const { allLoansId } = getModalIds();
 export const LoanListRenewLoansModal = Template.bind({});
 LoanListRenewLoansModal.parameters = {
   query: {

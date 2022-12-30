@@ -37,7 +37,6 @@ export interface LoanListEntryTextProps {
   loanListRenewMultipleButtonText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
-  loanListStatusCircleAriaLabelText: string;
   loanListTitleText: string;
   loanListToBeDeliveredDigitalMaterialText: string;
   groupModalDueDateMaterialText: string;

@@ -200,11 +200,6 @@ export default {
       defaultValue: "Genre",
       control: { type: "text" }
     },
-    creatorsAreMissingText: {
-      name: "Creators are missing",
-      defaultValue: "Creators are missing",
-      control: { type: "text" }
-    },
     readArticleText: {
       name: "Read article",
       defaultValue: "Read article",

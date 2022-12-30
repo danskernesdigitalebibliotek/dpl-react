@@ -60,7 +60,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const creatorsText = creatorsToString(
+  const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
@@ -69,8 +69,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       return materialType.specific === "tidsskrift";
     }
   );
-
-  const author = creatorsText || t("creatorsAreMissingText");
 
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
