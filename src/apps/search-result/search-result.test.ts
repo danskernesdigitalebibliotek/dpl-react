@@ -24,7 +24,7 @@ describe("Search Result", () => {
   it("Does the search result have favourite buttons?", () => {
     cy.get(
       ".search-result-page__list .search-result-item .button-favourite"
-    ).should("have.attr", "aria-label", "Add to favorites");
+    ).should("have.attr", "aria-label", "Add element to favorites list");
   });
 
   it("Does the search result have a series line?", () => {

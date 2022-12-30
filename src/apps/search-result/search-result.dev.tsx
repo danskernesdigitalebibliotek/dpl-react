@@ -170,6 +170,18 @@ export default {
       name: "Add more filters text",
       defaultValue: "+ more filters",
       control: { type: "text" }
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;

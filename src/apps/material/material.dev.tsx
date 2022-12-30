@@ -607,6 +607,18 @@ export default {
       defaultValue:
         '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
       control: { type: "text" }
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

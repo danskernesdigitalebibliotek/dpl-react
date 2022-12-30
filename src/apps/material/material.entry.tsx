@@ -117,6 +117,8 @@ interface MaterialEntryTextProps {
   orderDigitalCopyErrorDescriptionText: string;
   orderDigitalCopyErrorButtonText: string;
   orderDigitalCopyEmailLabelText: string;
+  addToFavoritesAriaLabelText: string;
+  removeFromFavoritesAriaLabelText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

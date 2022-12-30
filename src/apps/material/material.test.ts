@@ -29,7 +29,7 @@ describe("Material", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Add to favorites"
+      "Add element to favorites list"
     );
   });
 
