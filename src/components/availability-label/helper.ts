@@ -54,14 +54,6 @@ export const useAvailabilityData = ({
         //    1. If the user has any quota loans available for the material type
         //    2. If the library has a queue on the material
         setIsAvailable(true);
-      },
-      onError: (error: unknown) => {
-        if (error instanceof Error) {
-          // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
-          if (error.cause && Number(error.cause) === 128) {
-            setIsAvailable(false);
-          }
-        }
       }
     }
   });
