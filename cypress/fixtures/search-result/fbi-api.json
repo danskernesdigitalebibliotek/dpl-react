@@ -1,23 +1,24 @@
 {
   "data": {
     "search": {
-      "hitcount": 720,
+      "hitcount": 9486,
       "works": [
         {
-          "workId": "work-of:870970-basis:54129807",
+          "workId": "work-of:870970-basis:22629344",
+          "workYear": "1839",
           "titles": {
-            "full": [
-              "Harry : samtaler med prinsen"
-            ],
-            "original": []
+            "full": ["Dummy Some Title: Full"],
+            "original": ["Dummy Some Title Origintal"]
           },
-          "abstract": [
-            "Gennem samtaler gives et portræt af den engelske prins Harry. Der åbnes med forlovelsen mellem Harry (f. 1984) og Meghan Markle (f. 1981). Samtalerne kredser om de store emner i Harrys liv, bl.a. prinsesse Dianas alt for tidlige død"
-          ],
+          "abstract": ["Dummy The abstract"],
           "creators": [
             {
-              "display": "Angela Levin",
+              "display": "Dummy Jens Jensen",
               "__typename": "Person"
+            },
+            {
+              "display": "Dummy Some Corporation",
+              "__typename": "Corporation"
             }
           ],
           "series": [
@@ -42,1626 +43,2201 @@
               "readThisWhenever": null
             }
           ],
-          "seriesMembers": [],
-          "workYear": null,
-          "genreAndForm": [
-            "biografier"
+          "seriesMembers": [
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            }
           ],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:54129793",
-                "genreAndForm": [
-                  "biografier"
-                ],
-                "source": [
-                  "eReolen"
-                ],
+                "pid": "870970-basis:22629344",
                 "titles": {
-                  "main": [
-                    "Harry"
-                  ],
-                  "original": [
-                    "Harry (engelsk)"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "ebog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Angela Levin",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788793681095"
-                  },
-                  {
-                    "value": "9788793681095"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Birgitte Brix"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "1. udgave, 2018",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2018"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [],
-                "accessTypes": [
-                  {
-                    "code": "ONLINE"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "AccessUrl",
-                    "origin": "ereolen.dk",
-                    "url": "https://ereolen.dk/ting/object/870970-basis:54129793",
-                    "loginRequired": false
-                  },
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": false
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:54129807",
-                "genreAndForm": [
-                  "biografier"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry"
-                  ],
-                  "original": [
-                    "Harry (engelsk)"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Angela Levin",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788793681088"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Birgitte Brix"
-                  }
-                ],
-                "edition": {
-                  "summary": "1. udgave, 2018",
-                  "publicationYear": {
-                    "display": "2018"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:54168446",
-                "genreAndForm": [],
-                "source": [
-                  "Netlydbog"
-                ],
+                "pid": "870970-basis:22252852",
                 "titles": {
-                  "main": [
-                    "Harry"
-                  ],
-                  "original": [
-                    "Harry (engelsk)"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "lydbog (net)"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Angela Levin",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788793681132"
-                  },
-                  {
-                    "value": "9788793681132"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Randi Winther"
-                  },
-                  {
-                    "display": "Birgitte Brix"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "2018",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2018"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "ONLINE"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "AccessUrl",
-                    "origin": "ereolen.dk",
-                    "url": "https://ereolen.dk/ting/object/870970-basis:54168446",
-                    "loginRequired": false
-                  },
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": false
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:54175183",
-                "genreAndForm": [],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:22441671",
                 "titles": {
-                  "main": [
-                    "Harry (mp3)"
-                  ],
-                  "original": [
-                    "Harry (engelsk)"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "lydbog (cd-mp3)"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Angela Levin",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788793681231"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Randi Winther"
-                  },
-                  {
-                    "display": "Birgitte Brix"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "2018",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2018"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
+                ]
+              },
+              {
+                "pid": "870970-basis:23148048",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
                   {
-                    "code": "PHYSICAL"
+                    "specific": "Dummy bog"
                   }
                 ],
-                "access": [
+                "creators": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "shelfmark": null
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:27638708",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:38289977",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51989252",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:54871910",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:22513354",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:24168638",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23108283",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23195151",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:24343081",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23862476",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:26178533",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:23819104",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25194853",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:46018869",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:29317038",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51980247",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
               }
-            ],
-            "latest": {
-              "pid": "870970-basis:54129793",
-              "genreAndForm": [
-                "biografier"
-              ],
-              "source": [
-                "eReolen"
-              ],
-              "titles": {
-                "main": [
-                  "Harry"
-                ],
-                "original": [
-                  "Harry (engelsk)"
-                ]
-              },
-              "fictionNonfiction": {
-                "display": "faglitteratur",
-                "code": "NONFICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "ebog"
-                }
-              ],
-              "creators": [
-                {
-                  "display": "Angela Levin",
-                  "__typename": "Person"
-                }
-              ],
-              "hostPublication": null,
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788793681095"
-                },
-                {
-                  "value": "9788793681095"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Birgitte Brix"
-                }
-              ],
-              "edition": {
-                "summary": "1. udgave, 2018",
-                "publicationYear": {
-                  "display": "2018"
-                }
-              },
-              "audience": {
-                "generalAudience": []
-              },
-              "physicalDescriptions": [],
-              "accessTypes": [
-                {
-                  "code": "ONLINE"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "AccessUrl",
-                  "origin": "ereolen.dk",
-                  "url": "https://ereolen.dk/ting/object/870970-basis:54129793",
-                  "loginRequired": false
-                },
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": false
-                }
-              ],
-              "shelfmark": null
-            }
+            ]
           }
         },
         {
-          "workId": "work-of:870970-basis:25245784",
+          "workId": "work-of:870970-basis:25807995",
+          "workYear": "1839",
           "titles": {
-            "full": [
-              "Harry Potter og Fønixordenen"
-            ],
-            "original": [
-              "Harry Potter and the Order of the Phoenix"
-            ]
+            "full": ["Dummy Some Title: Full"],
+            "original": ["Dummy Some Title Origintal"]
           },
-          "abstract": [
-            "Stor, flot og gennemillustreret udgave af bind 5 i \"Harry Potter\"-serien. Harry går stadig på kostskolen Hogwarts, men det bliver ikke et let år.  Bogen er meget velegnet til oplæsning for børn fra 8 år - og kan selvlæses fra 12 år"
-          ],
+          "abstract": ["Dummy The abstract"],
           "creators": [
             {
-              "display": "Joanne K. Rowling",
+              "display": "Dummy Jens Jensen",
               "__typename": "Person"
+            },
+            {
+              "display": "Dummy Some Corporation",
+              "__typename": "Corporation"
             }
           ],
-          "series": [],
+          "series": [
+            {
+              "title": "Dummy Some Series",
+              "isPopular": true,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [1]
+              },
+              "readThisFirst": true,
+              "readThisWhenever": false
+            },
+            {
+              "title": "Dummy Some Series",
+              "isPopular": false,
+              "numberInSeries": {
+                "display": "Dummy number one",
+                "number": [1]
+              },
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
           "seriesMembers": [
             {
-              "workId": "work-of:870970-basis:22629344",
               "titles": {
-                "main": [
-                  "Harry Potter og de vises sten"
-                ],
-                "full": [
-                  "Harry Potter og de vises sten"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:22677780",
               "titles": {
-                "main": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "full": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:22995154",
               "titles": {
-                "main": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "full": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:23540703",
               "titles": {
-                "main": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "full": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:25245784",
               "titles": {
-                "main": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "full": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "original": [
-                  "Harry Potter and the Order of the Phoenix"
-                ]
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:25807995",
               "titles": {
-                "main": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "full": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:27267912",
               "titles": {
-                "main": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "full": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "original": []
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             },
             {
-              "workId": "work-of:870970-basis:52646251",
               "titles": {
-                "main": [
-                  "Harry Potter og det forbandede barn"
-                ],
-                "full": [
-                  "Harry Potter og det forbandede barn : del et & to"
-                ],
-                "original": [
-                  "Harry Potter and the cursed child"
-                ]
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
+              }
+            },
+            {
+              "titles": {
+                "main": ["Dummy Some Title"],
+                "full": ["Dummy Some Title: Full"],
+                "original": ["Dummy Some Title Origintal"]
               }
             }
-          ],
-          "workYear": "2003",
-          "genreAndForm": [
-            "roman",
-            "fantasy",
-            "eventyrlige fortællinger",
-            "romaner"
           ],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:134693959",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy",
-                  "romaner"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:25807995",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen (Ill. Jim Kay)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "bog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702307566"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jim Kay"
                   },
                   {
-                    "display": "Neil Packer"
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25998960",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
                   },
                   {
-                    "display": "Hanna Lützen"
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2022",
-                  "publicationYear": {
-                    "display": "2022"
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
                   }
                 },
-                "audience": {
-                  "generalAudience": [
-                    "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
-                    "for højtlæsning"
-                  ]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:24880605",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "87-02-02222-2"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": {
-                    "display": "2003"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:24973670",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (bånd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 14948"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Mikkel Schou"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "2003",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2003"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:25040007",
-                "genreAndForm": [
-                  "roman",
-                  "eventyrlige fortællinger"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:26056829",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "diskette"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. ascii 503142"
                   },
                   {
-                    "value": "Best.nr. html 603142"
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": {
-                    "display": "2003"
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
                   }
                 },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:25082427",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "87-03-00004-4"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
-                "contributors": [],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
                 "edition": {
-                  "summary": "1. bogklubudgave, 2004",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2004"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:25096517",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:26137276",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "punktskrift"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 103081"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": {
-                    "display": "2003"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:25245784",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702029444"
                   },
                   {
-                    "value": "87-02-02944-8"
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. udgave, 2004",
-                  "publicationYear": {
-                    "display": "2004"
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
                   }
                 },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:26167663",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "87-02-04746-2"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Jesper Christensen (f. 1948)"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "2006",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2006"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:26470498",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:27639674",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "bog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788703014807"
                   },
                   {
-                    "value": "87-03-01480-0"
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. bogklubudgave, 2006",
-                  "publicationYear": {
-                    "display": "2006"
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
                   }
                 },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
-              },
-              {
-                "pid": "870970-basis:27639534",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen (mp3)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd-mp3)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "hostPublication": null,
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788702075427"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Jesper Christensen (f. 1948)"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "2009",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2009"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:29368872",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:54872003",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "bog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788702114393"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Hanna Lützen"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "4. udgave, 2012",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2012"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:51980204",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:25771893",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "bog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788702173260"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Hanna Lützen"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "5. udgave, 2015",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2015"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": null
+                ]
               },
               {
-                "pid": "870970-basis:54871996",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
+                "pid": "870970-basis:26068053",
                 "titles": {
-                  "main": [
-                    "Harry Potter og Fønixordenen"
-                  ],
-                  "original": [
-                    "Harry Potter and the Order of the Phoenix"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
                 },
                 "materialTypes": [
                   {
-                    "specific": "bog"
+                    "specific": "Dummy bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Joanne K. Rowling",
+                    "display": "Dummy Jens Jensen",
                     "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": null,
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
                 "languages": {
                   "main": [
                     {
-                      "display": "dansk"
+                      "display": "Dummy dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "9788702272482"
+                    "value": "Dummy 1234567891234"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Hanna Lützen"
+                    "display": "Dummy Jens Jensen"
                   }
                 ],
                 "edition": {
-                  "summary": "6. udgave, 2018",
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
                   "publicationYear": {
-                    "display": "2018"
+                    "display": "Dummy 1839"
                   }
                 },
                 "audience": {
-                  "generalAudience": []
+                  "generalAudience": ["Dummy general audience"]
                 },
                 "physicalDescriptions": [
                   {
                     "numberOfPages": null
                   }
-                ],
-                "accessTypes": [
+                ]
+              },
+              {
+                "pid": "870970-basis:26285240",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
                   {
-                    "code": "PHYSICAL"
+                    "specific": "Dummy bog"
                   }
                 ],
-                "access": [
+                "creators": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
                   }
                 ],
-                "shelfmark": null
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:29317100",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:51980212",
+                "titles": {
+                  "main": ["Dummy Some Title"],
+                  "original": ["Dummy Some Title: Original"]
+                },
+                "materialTypes": [
+                  {
+                    "specific": "Dummy bog"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Dummy Jens Jensen",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Dummy Some Corporation",
+                    "__typename": "Corporation"
+                  }
+                ],
+                "hostPublication": {
+                  "title": "Dummy Årsskrift / Carlsbergfondet",
+                  "creator": "Dummy Some Creator",
+                  "publisher": "Dummy Some Publisher",
+                  "year": {
+                    "year": 2006
+                  }
+                },
+                "languages": {
+                  "main": [
+                    {
+                      "display": "Dummy dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Dummy 1234567891234"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Dummy Jens Jensen"
+                  }
+                ],
+                "edition": {
+                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "publicationYear": {
+                    "display": "Dummy 1839"
+                  }
+                },
+                "audience": {
+                  "generalAudience": ["Dummy general audience"]
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null
+                  }
+                ]
               }
-            ],
-            "latest": {
-              "pid": "870970-basis:134693959",
-              "genreAndForm": [
-                "roman",
-                "fantasy",
-                "romaner"
-              ],
-              "source": [
-                "Bibliotekskatalog"
-              ],
-              "titles": {
-                "main": [
-                  "Harry Potter og Fønixordenen (Ill. Jim Kay)"
-                ],
-                "original": [
-                  "Harry Potter and the Order of the Phoenix"
-                ]
-              },
-              "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "bog"
-                }
-              ],
-              "creators": [
-                {
-                  "display": "Joanne K. Rowling",
-                  "__typename": "Person"
-                }
-              ],
-              "hostPublication": null,
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788702307566"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Jim Kay"
-                },
-                {
-                  "display": "Neil Packer"
-                },
-                {
-                  "display": "Hanna Lützen"
-                }
-              ],
-              "edition": {
-                "summary": "Illustreret udgave, 7. udgave, 2022",
-                "publicationYear": {
-                  "display": "2022"
-                }
-              },
-              "audience": {
-                "generalAudience": [
-                  "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
-                  "for højtlæsning"
-                ]
-              },
-              "physicalDescriptions": [
-                {
-                  "numberOfPages": null
-                }
-              ],
-              "accessTypes": [
-                {
-                  "code": "PHYSICAL"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": true
-                }
-              ],
-              "shelfmark": null
-            }
+            ]
           }
         }
       ]
