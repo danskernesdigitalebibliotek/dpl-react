@@ -34,7 +34,6 @@ const FeeList: FC<FeeListProps> = ({
         <div>
           <ListHeader
             header={
-              // used ‎ here, an invisible character, to get a pesky space between the dash and second string.
               <>
                 {t("unpaidFeesText")} -{" "}
                 <b>{t("prePaymentTypeChangeDateText")}</b>
@@ -61,7 +60,6 @@ const FeeList: FC<FeeListProps> = ({
         <div>
           <ListHeader
             header={
-              // used ‎ here, an invisible character, to get a pesky space between the dash and second string.
               <>
                 {t("unpaidFeesText")} -{" "}
                 <b>{t("postPaymentTypeChangeDateText")}</b>

@@ -42,10 +42,13 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
     >
       {feeData && (
         <FeeInfo material={material} isbnForCover="">
-          {stackSize > 0 &&
-            t("plusXOtherMaterialsText", {
-              placeholders: { "@amount": stackSize }
-            })}
+          {stackSize > 0 && (
+            <p className="text-small-caption stack-size-text color-secondary-gray">
+              {t("plusXOtherMaterialsText", {
+                placeholders: { "@amount": stackSize }
+              })}
+            </p>
+          )}
         </FeeInfo>
       )}
       <div className="list-reservation__status">

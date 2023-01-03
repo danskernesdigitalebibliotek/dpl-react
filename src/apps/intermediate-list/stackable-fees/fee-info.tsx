@@ -14,7 +14,8 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
     year = "",
     title = "",
     description = "",
-    pid = ""
+    pid = "",
+    series = ""
   } = material;
   const coverId = pid || isbnForCover;
   return (
@@ -37,11 +38,10 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
-            <div>
-              {authors && authors}
-              {year && <>({year})</>}
-            </div>
+            {authors && authors}
+            {year && <>({year})</>}
           </p>
+          <p className="text-small-caption color-secondary-gray">{series}</p>
         </div>
         {children}
       </div>

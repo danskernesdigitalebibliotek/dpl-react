@@ -5,6 +5,7 @@ import { Link } from "../../../components/atoms/link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
+import { FaustId } from "../../../core/utils/types/ids";
 import { useUrls } from "../../../core/utils/url";
 import FeeStatusCircle from "../utils/fee-status-circle";
 import { isDateBeforePaymentChangeDate } from "../utils/intermediate-list-helper";
@@ -29,6 +30,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   } = feeDetailsData;
   const prePaymentTypeChange = isDateBeforePaymentChangeDate(new Date(dueDate));
   const creationDateFormatted = dayjs(creationDate).format("D. MMMM YYYY");
+
   return (
     <div className="modal modal-show modal-loan">
       <div className="modal__screen-reader-description" id="describemodal">
@@ -113,7 +115,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
             <ul className="modal-loan__list-materials">
               {materials.map(({ recordId }) => (
                 <StackableFeesList
-                  faust={recordId}
+                  faust={recordId as FaustId}
                   creationDateFormatted={creationDateFormatted}
                 />
               ))}
