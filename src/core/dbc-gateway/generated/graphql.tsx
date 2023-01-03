@@ -1836,6 +1836,7 @@ export type IntelligentFacetsQueryVariables = Exact<{
   q: SearchQuery;
   facetsLimit: Scalars["Int"];
   valuesLimit: Scalars["Int"];
+  filters: SearchFilters;
 }>;
 
 export type IntelligentFacetsQuery = {
@@ -2908,8 +2909,8 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     options
   );
 export const IntelligentFacetsDocument = `
-    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
-  search(q: $q) {
+    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
+  search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
       values(limit: $valuesLimit) {
