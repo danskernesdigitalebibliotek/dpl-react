@@ -10,6 +10,9 @@ import { getContributors } from "../../core/fetchers/helpers";
 import { getManifestationPid } from "../../core/utils/helpers/general";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
+import { constructMaterialUrl } from "../../core/utils/helpers/url";
+import { Link } from "../../components/atoms/link";
+import { useUrls } from "../../core/utils/url";
 
 export interface RecommendMaterialProps {
   work: Work;
@@ -24,6 +27,8 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
   }
 }) => {
   const dispatch = useDispatch<TypedDispatch>();
+  const { materialUrl } = useUrls();
+  const materialFullUrl = constructMaterialUrl(materialUrl, workId);
 
   // Create authors string
   let authors = null;
@@ -44,19 +49,22 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
       })
     );
   };
+
   return (
-    <div className="recommender__grid__material">
-      <Cover animate size="medium" id={manifestationPid} />
-      <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
-      <div className="recommender__grid__material__text">
-        <div className="recommender__grid__material__text__title">
-          {String(title)}
-        </div>
-        <div className="recommender__grid__material__text__author">
-          {authors}
+    <Link href={materialFullUrl}>
+      <div className="recommender__grid__material">
+        <Cover animate size="medium" id={manifestationPid} />
+        <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
+        <div className="recommender__grid__material__text">
+          <div className="recommender__grid__material__text__title">
+            {String(title)}
+          </div>
+          <div className="recommender__grid__material__text__author">
+            {authors}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

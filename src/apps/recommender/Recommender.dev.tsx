@@ -49,6 +49,10 @@ export default {
         type: "text"
       },
       defaultValue: "Remove element from favorites list"
+    },
+    materialUrl: {
+      defaultValue: "/work/:workid",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof Recommender>;

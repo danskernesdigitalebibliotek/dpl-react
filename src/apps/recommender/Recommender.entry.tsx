@@ -11,6 +11,7 @@ export interface RecommenderProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
+  materialUrl: string;
 }
 
 const RecommenderEntry: FC<RecommenderProps> = () => <Recommender />;

@@ -131,6 +131,7 @@ const Recommender: FC = () => {
   useEffect(() => {
     if (publizonLoans && publizonLoans.loans) {
       setDigitalLoans(mapPublizonLoanToLoanType(publizonLoans.loans));
+      setDigitalLoans([]);
     }
     if (publizonErrorLoans && !isSuccessPublizonLoans) {
       setDigitalLoans([]);
