@@ -22,7 +22,7 @@ import {
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
-import { excludeBlacklistedBranches } from "../../core/utils/useGetCleanBranches";
+import { excludeBlacklistedBranches } from "../../core/utils/branches";
 
 export interface UserListItemsProps {
   patron: PatronV5;
