@@ -28,7 +28,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
             dangerText={t("loanListStatusBadgeDangerText")}
             warningText={t("loanListStatusBadgeWarningText")}
           />
-          <p className="text-small-caption" id="due-date">
+          <p className="text-small-caption color-secondary-gray" id="due-date">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {
                   placeholders: { "@date": formatDate(dueDate) }
