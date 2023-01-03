@@ -26,7 +26,7 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
-import useGetCleanBranches from "../../core/utils/useGetCleanBranches";
+import useGetCleanBranches from "../../core/utils/branches";
 
 interface SearchResultProps {
   q: string;

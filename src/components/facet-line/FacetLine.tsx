@@ -10,7 +10,7 @@ import {
 import FacetLineSelected from "./FacetLineSelected";
 import FacetLineFilters from "./FacetLineFilters";
 import { createFilters } from "../facet-browser/helper";
-import useGetCleanBranches from "../../core/utils/useGetCleanBranches";
+import useGetCleanBranches from "../../core/utils/branches";
 
 type FacetLineProps = {
   q: string;
