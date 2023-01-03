@@ -51,20 +51,27 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
   };
 
   return (
-    <Link href={materialFullUrl}>
-      <div className="recommender__grid__material">
+    <li className="recommender-material">
+      <div className="recommender-material__cover-container">
         <Cover animate size="medium" id={manifestationPid} />
-        <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
-        <div className="recommender__grid__material__text">
-          <div className="recommender__grid__material__text__title">
-            {String(title)}
-          </div>
-          <div className="recommender__grid__material__text__author">
-            {authors}
-          </div>
-        </div>
       </div>
-    </Link>
+      <div className="recommender-material__favourite">
+        <ButtonFavourite
+          bright
+          id={workId}
+          addToListRequest={addToListRequest}
+        />
+      </div>
+      <div className="recommender-material__meta">
+        <Link
+          href={materialFullUrl}
+          className="recommender-material__meta__title"
+        >
+          {String(title)}
+        </Link>
+        <div className="recommender-material__meta__author">{authors}</div>
+      </div>
+    </li>
   );
 };
 

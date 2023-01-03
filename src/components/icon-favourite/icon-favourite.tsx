@@ -2,19 +2,26 @@ import React from "react";
 
 export type IconFavouriteProps = {
   fill?: boolean;
+  bright?: boolean;
 };
 
-export const IconFavourite = ({ fill }: IconFavouriteProps) => {
+export const IconFavourite = ({ fill, bright }: IconFavouriteProps) => {
   // This svg is a copy from public/icons/basic/icon-heart.svg.
   // If you find out it no longer matches the original file, please update it
   // It is made as inline svg to be able to change fill value from props
+  let classes = fill
+    ? "icon-favourite icon-favourite--filled"
+    : "icon-favourite";
+
+  if (bright) {
+    classes = fill ? "icon-favourite--bright-filled" : "icon-favourite--bright";
+  }
+
   return (
     <svg
       height="24"
       width="24"
-      className={`${
-        fill ? "icon-favourite icon-favourite--filled" : "icon-favourite"
-      }`}
+      className={classes}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

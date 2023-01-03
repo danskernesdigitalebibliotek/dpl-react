@@ -49,7 +49,7 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   return (
     <>
       {material && material.title && (
-        <h1 className="text-header-h1">
+        <h2 className="recommender__title text-header-h1">
           {loan
             ? t("recommenderTitleLoansText", {
                 placeholders: { "@title": material.title }
@@ -57,14 +57,14 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
             : t("recommenderTitleReservationsText", {
                 placeholders: { "@title": material.title }
               })}
-        </h1>
+        </h2>
       )}
-      <div className="recommender-grid">
+      <ul className="recommender__grid">
         {recommendedMaterials &&
           recommendedMaterials.recommend.result.map(({ work }) => (
             <RecommendMaterial work={work as Work} />
           ))}
-      </div>
+      </ul>
     </>
   );
 };

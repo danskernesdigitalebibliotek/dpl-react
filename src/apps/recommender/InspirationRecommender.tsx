@@ -31,13 +31,15 @@ const InspirationRecommender: FC = () => {
 
   return (
     <>
-      <h1 className="text-header-h1">{t("recommenderTitleInspirationText")}</h1>
-      <div className="recommender-grid">
+      <h2 className="recommender__title text-header-h1">
+        {t("recommenderTitleInspirationText")}
+      </h2>
+      <ul className="recommender__grid">
         {recommendedMaterials &&
           recommendedMaterials.search.works.map((work) => (
             <RecommendMaterial work={work as Work} />
           ))}
-      </div>
+      </ul>
     </>
   );
 };
