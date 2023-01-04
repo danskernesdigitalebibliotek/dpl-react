@@ -132,7 +132,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         {author && (
           <p className="text-small-caption">
             {`${t("byAuthorText")} ${author}`}
-            {workYear && ` (${workYear})`}
+            {workYear && ` (${workYear.year})`}
           </p>
         )}
       </div>
