@@ -124,7 +124,9 @@ fragment WorkSmall on Work {
       original
     }
   }
-  workYear
+  workYear {
+    year
+  }
   genreAndForm
   manifestations {
     ...ManifestationsSimple

@@ -5,7 +5,9 @@
       "works": [
         {
           "workId": "work-of:870970-basis:22629344",
-          "workYear": "1839",
+          "workYear": {
+            "year": "1839"
+          },
           "titles": {
             "full": ["Dummy Some Title: Full"],
             "original": ["Dummy Some Title Origintal"]
@@ -1398,7 +1400,9 @@
         },
         {
           "workId": "work-of:870970-basis:25807995",
-          "workYear": "1839",
+          "workYear": {
+            "year": "1839"
+          },
           "titles": {
             "full": ["Dummy Some Title: Full"],
             "original": ["Dummy Some Title Origintal"]
