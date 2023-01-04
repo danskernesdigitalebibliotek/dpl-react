@@ -1,19 +1,22 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../core/utils/text";
+import { totalMaterials } from "../../apps/material/helper";
+import { HoldingsV3 } from "../../core/fbs/model";
 
 export interface StockAndReservationInfoProps {
-  stockCount: number;
+  holdings: HoldingsV3[];
   reservationCount: number;
   numberInQueue?: number;
 }
 
 const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
-  stockCount,
+  holdings,
   reservationCount,
   numberInQueue
 }) => {
   const t = useText();
+  const stockCount = totalMaterials(holdings);
 
   const materialsInStockInfoText = t("materialsInStockInfoText", {
     count: stockCount,
