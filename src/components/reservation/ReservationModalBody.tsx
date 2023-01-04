@@ -20,7 +20,6 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { totalMaterials } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -177,7 +176,7 @@ const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 <StockAndReservationInfo
-                  stockCount={totalMaterials(holdings)}
+                  holdings={holdings}
                   reservationCount={reservations}
                 />
               </MaterialAvailabilityTextParagraph>
@@ -237,7 +236,7 @@ const ReservationModalBody = ({
             reservationDetails.pickupBranch,
             branches
           )}
-          stockCount={totalMaterials(holdings)}
+          holdings={holdings}
           reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
         />

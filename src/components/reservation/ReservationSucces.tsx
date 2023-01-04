@@ -4,6 +4,7 @@ import { closeModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
+import { HoldingsV3 } from "../../core/fbs/model";
 
 type ReservationSuccesProps = {
   title: string;
@@ -11,7 +12,7 @@ type ReservationSuccesProps = {
   modalId: string;
   numberInQueue?: number;
   reservationCount: number;
-  stockCount: number;
+  holdings: HoldingsV3[];
 };
 
 const ReservationSucces: React.FC<ReservationSuccesProps> = ({
@@ -20,7 +21,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   preferredPickupBranch,
   numberInQueue,
   reservationCount,
-  stockCount
+  holdings
 }) => {
   const dispatch = useDispatch();
   const t = useText();
@@ -43,7 +44,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         className="text-body-medium-regular pb-24"
       >
         <StockAndReservationInfo
-          stockCount={stockCount}
+          holdings={holdings}
           reservationCount={reservationCount}
           numberInQueue={numberInQueue}
         />
