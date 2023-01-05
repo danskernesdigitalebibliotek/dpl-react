@@ -12,6 +12,11 @@ export interface SomethingSimilarProps {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   materialUrl: string;
+  somethingSimilarTitleText: string;
+  materialByAuthorText: string;
+  materialAndAuthorText: string;
+  somethingSimilarByTheSameAuthorText: string;
+  somethingSimilarSomethingSimilarAuthorText: string;
 }
 
 const SomethingSimilarEntry: FC<SomethingSimilarProps> = () => (
