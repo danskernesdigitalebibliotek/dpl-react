@@ -4,6 +4,7 @@ import { LoanType } from "../../../../core/utils/types/loan-type";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
+import Arrow from "../../../../components/atoms/icons/arrow/arrow";
 
 interface MaterialStatusProps {
   loan: LoanType;
@@ -40,6 +41,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
           {children}
         </div>
       </div>
+      <Arrow />
     </div>
   );
 };
