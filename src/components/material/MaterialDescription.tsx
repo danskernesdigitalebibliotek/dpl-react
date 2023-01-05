@@ -41,24 +41,27 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
         </p>
       )}
       <div className="material-description__links mt-32">
-        {inSeries &&
-          inSeries.map((seriesItem, i) => {
-            return (
-              <HorizontalTermLine
-                title={`${t("numberDescriptionText")} ${
-                  seriesItem.numberInSeries?.number
-                }`}
-                subTitle={t("inSeriesText")}
-                linkList={[
-                  {
-                    url: constructSearchUrl(searchUrl, seriesItem.title),
-                    term: seriesItem.title
-                  }
-                ]}
-                dataCy={`material-description-series-${i}`}
-              />
-            );
-          })}
+        {inSeries?.map((seriesItem, i) => {
+          return (
+            <HorizontalTermLine
+              title={
+                seriesItem.numberInSeries?.number
+                  ? `${t("numberDescriptionText")} ${
+                      seriesItem.numberInSeries.number
+                    }`
+                  : undefined
+              }
+              subTitle={t("inSeriesText")}
+              linkList={[
+                {
+                  url: constructSearchUrl(searchUrl, seriesItem.title),
+                  term: seriesItem.title
+                }
+              ]}
+              dataCy={`material-description-series-${i}`}
+            />
+          );
+        })}
         {seriesMembersList && (
           <HorizontalTermLine
             title={t("inSameSeriesText")}

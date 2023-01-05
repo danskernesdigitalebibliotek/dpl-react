@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "../atoms/link";
 
 export interface HorizontalTermLineProps {
-  title: string;
+  title?: string;
   subTitle?: string;
   linkList: {
     url: URL;
@@ -20,7 +20,7 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   return (
     <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
       <p className="text-label-bold">
-        {title || ""}{" "}
+        {title}
         {subTitle && (
           <span className="text-small-caption">{` ${subTitle}`}</span>
         )}
