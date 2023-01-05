@@ -43,7 +43,7 @@ describe("Material", () => {
 
     cy.getBySel("material-description-series-1")
       .should("be.visible")
-      .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
+      .and("contain.text", "Nr. 1 in seriesDe syv søstre-serien");
   });
 
   it("Does the material have authors?", () => {
