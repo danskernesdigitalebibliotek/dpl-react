@@ -1,18 +1,14 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
-  it("Should render the site", () => {
-    cy.visit(
-      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
-    );
-  });
-
   it("Check search title", () => {
-    cy.contains("Showing results for “harry” (9486)");
+    cy.getBySel("search-result-title")
+      .should("be.visible")
+      .and("contain", "Showing results for “harry” (722)");
   });
 
   it("Check length of search result list", () => {
-    cy.get(".search-result-page__list").find("li").should("have.length", 2);
+    cy.get(".search-result-page__list").find("li").should("have.length", 50);
   });
 
   it("Do the search results have images?", () => {
@@ -35,37 +31,37 @@ describe("Search Result", () => {
       // TODO: The series string being rendered makes no sense with the dummy data given
       // and the (lack) of knowledge of which properties to use and how to combine them.
       // Therefor when data is in place we can revisit this part of the test.
-      "Nr. 1  in seriesDummy Some SeriesNr. 1  in seriesDummy Some Series"
+      "Nr. 1 in seriesHarry Hammerhaj"
     );
   });
 
   it("Does the search result have titles?", () => {
-    cy.get(".search-result-page__list .search-result-item h2").should(
-      "contain.text",
-      "Dummy Some Title: Full"
-    );
+    cy.getBySel("search-result-item-title")
+      .first()
+      .should("be.visible")
+      .and("contain", "Harry : samtaler med prinsen");
   });
 
   it("Does the search result have authors?", () => {
-    cy.get(".search-result-page__list .search-result-item").should(
-      "contain.text",
-      "By Dummy Jens Jensen (1839)"
-    );
+    cy.getBySel("search-result-item-author")
+      .first()
+      .should("be.visible")
+      .and("contain.text", "By Angela Levin");
   });
 
   it("Does a search result have the expected number of availibility labels?", () => {
-    cy.get("article")
-      .eq(0)
-      .find(".search-result-item__availability")
+    cy.getBySel("search-result-item-availability")
+      .first()
       .find("a")
-      .should("have.length", 20);
+      .should("be.visible")
+      .and("have.length", 4);
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
   it("Do we have a pager?", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 2 out of 9486 results"
+      "Showing 50 out of 722 results"
     );
   });
 
@@ -78,13 +74,13 @@ describe("Search Result", () => {
   });
 
   it("Check length of search result list since it should be twice as long.", () => {
-    cy.get(".search-result-page__list").find("li").should("have.length", 4);
+    cy.get(".search-result-page__list").find("li").should("have.length", 100);
   });
 
   it("The pager info should also have been updated.", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 4 out of 9486 results"
+      "Showing 100 out of 722 results"
     );
   });
 
@@ -128,6 +124,10 @@ describe("Search Result", () => {
       statusCode: 404,
       body: {}
     }).as("Material list service");
+
+    cy.visit(
+      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:50;pageSizeMobile:50"
+    );
   });
 });
 

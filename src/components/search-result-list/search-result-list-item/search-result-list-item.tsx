@@ -125,18 +125,24 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           )}
         </div>
 
-        <h2 className="search-result-item__title text-header-h4">
+        <h2
+          className="search-result-item__title text-header-h4"
+          data-cy="search-result-item-title"
+        >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
         {author && (
-          <p className="text-small-caption">
+          <p className="text-small-caption" data-cy="search-result-item-author">
             {`${t("byAuthorText")} ${author}`}
             {workYear && ` (${workYear.year})`}
           </p>
         )}
       </div>
-      <div className="search-result-item__availability">
+      <div
+        className="search-result-item__availability"
+        data-cy="search-result-item-availability"
+      >
         <AvailabiltityLabels
           cursorPointer
           workId={workId}
