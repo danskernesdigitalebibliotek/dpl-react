@@ -42,12 +42,12 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
   // For retrieving cover
   const manifestationPid = getManifestationPid(manifestations);
 
-  const addToListRequest = (materialId: ButtonFavouriteId) => {
+  const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { materialId },
-        app: "search-result"
+        args: { id },
+        app: "recommender"
       })
     );
   };
