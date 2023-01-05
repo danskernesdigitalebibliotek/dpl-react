@@ -193,7 +193,7 @@ describe("Intermediate list", () => {
     cy.wait(["@fees", "@cover"]);
   });
 
-  it("Loan list basics (physical loans)", () => {
+  it("Intermediate list basics (physical loans)", () => {
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
     cy.get(".intermediate-list-page")
