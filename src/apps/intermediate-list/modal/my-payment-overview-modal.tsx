@@ -3,13 +3,16 @@ import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/bui
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { Link } from "../../../components/atoms/link";
+import { useUrls } from "../../../core/utils/url";
 
 const MyPaymentOverviewModal: FC = () => {
   const t = useText();
   const { close } = useModalButtonHandler();
+  const { paymentOverviewUrl } = useUrls();
   const handleClick = () => {
     close("intermediate-payment-modal");
   };
+
   return (
     <Modal
       modalId="intermediate-payment-modal"
@@ -32,11 +35,7 @@ const MyPaymentOverviewModal: FC = () => {
         <div className="modal-cta__buttons mt-48">
           <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            href={
-              new URL(
-                "https://www.borger.dk/vaelg-kommune?actionPageId=065ca8f9-a1f5-4946-ada7-12e163f568df&selfserviceId=7200a519-38ad-48b9-b19a-6e5783e39999"
-              )
-            }
+            href={new URL(paymentOverviewUrl)}
             isNewTab
           >
             {t("intermediatePaymentModalGotoText")}{" "}
@@ -56,5 +55,7 @@ const MyPaymentOverviewModal: FC = () => {
     </Modal>
   );
 };
+
+export const getIntermediatePaymentModalId = "intermediate-payment-modal";
 
 export default MyPaymentOverviewModal;

@@ -1,4 +1,3 @@
-import { eq } from "lodash";
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
 describe("Intermediate list", () => {
@@ -192,7 +191,6 @@ describe("Intermediate list", () => {
       "/iframe.html?path=/story/apps-intermediate-list--intermediate-list-entry"
     );
     cy.wait(["@fees", "@cover"]);
-    cy.wait(2000);
   });
 
   it("Loan list basics (physical loans)", () => {
@@ -422,12 +420,9 @@ describe("Intermediate list", () => {
       .eq(0)
       .click();
 
-    cy.wait(1000);
-
     // 5. modal
     // counter number
     cy.get("div.modal-loan__header")
-      .find("div")
       .find("div")
       .find(".counter")
       .find(".counter__value")
@@ -435,7 +430,6 @@ describe("Intermediate list", () => {
 
     // counter text
     cy.get("div.modal-loan__header")
-      .find("div")
       .find("div")
       .find(".counter")
       .find(".counter__label")
@@ -456,22 +450,18 @@ describe("Intermediate list", () => {
       .find(".checkbox__text")
       .should("exist")
       .should("have.text", "I accept the Terms of trade*");
-    // .should("have.text", "+ 1 other materials");
-    // cy.get(".loan-list-page")
-    //   .find("h2")
-    //   .eq(0)
-    //   .should("have.text", "Physical loans4");
-    // cy.get(".loan-list-page")
-    //   .find(".dpl-list-buttons__buttons")
-    //   .find("#test-list")
-    //   .should("exist")
-    //   .should("have.class", "dpl-icon-button--selected");
-    // // // The mobile specifics
-    // cy.viewport(320, 1480);
-    // // 2.b.ii.1. renew button not showed on mobile
-    // cy.get(".loan-list-page")
-    //   .find("#test-renew-button")
-    //   .should("not.be.visible");
+
+    // pay button
+    cy.get(".modal-loan__buttons")
+      .find("button")
+      .should("exist")
+      .should("have.text", "Pay");
+
+    // book list
+    cy.get(".modal-loan__list-materials")
+      .find("li")
+      .find(".list-materials")
+      .should("exist");
   });
 });
 

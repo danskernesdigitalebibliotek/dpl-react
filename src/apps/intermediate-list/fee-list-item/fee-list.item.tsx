@@ -7,7 +7,7 @@ import StackableFees from "../stackable-fees/stackable-fees";
 export interface FeeListItemProps {
   prePaymentTypeChange: boolean;
   itemData: FeeV2;
-  openDetailsModalClickEvent: (faustId: string) => void;
+  openDetailsModalClickEvent: (FaustId: string) => void;
   stackHeight: number;
 }
 const FeeListItem: FC<FeeListItemProps> = ({

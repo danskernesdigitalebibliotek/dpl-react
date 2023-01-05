@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "../../components/atoms/link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
+import { faustIdModalQueryParam } from "../../core/utils/helpers/modal-helpers";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import { ModalIdsProps, useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
@@ -10,14 +12,15 @@ import FeeList from "./fee-list/fee-list";
 import FeeDetailsModal from "./modal/fee-details-modal";
 import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
+import modalIdsConf from "../../core/configuration/modal-ids.json";
 import {
   getFeeObjectByFaustId,
-  getFeesPostPaymentChangeDate,
-  getFeesPrePaymentChangeDate
-} from "./utils/intermediate-list-helper";
+  getFeesInRelationToPaymentChangeDate
+} from "./utils/helper";
 
 const IntermedateList: FC = () => {
   const t = useText();
+  const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
   const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>();
@@ -32,45 +35,85 @@ const IntermedateList: FC = () => {
   const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
     useState<number>(0);
   const { viewFeesAndCompensationRatesUrl } = useUrls();
-  const [faustIdentifier, setFaustIdentifier] = useState("0");
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
+
   const openDetailsModalClickEvent = useCallback(
     (faustId: string) => {
-      setFaustIdentifier(faustId);
-      setFeeDetailsData(getFeeObjectByFaustId(fbsFees, faustId));
-      open(faustId || "");
+      if (faustId) {
+        if (fbsFees.length > 0) {
+          setFeeDetailsData(getFeeObjectByFaustId(fbsFees, faustId));
+        }
+        setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
+        open(modalIdsConf.feeDetails + faustId || "");
+      }
     },
     [fbsFees, open]
   );
 
   useEffect(() => {
-    if (fbsFees) {
-      const feesPrePaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
-      if (feesPrePaymentChange > 0) {
-        setItemsPrePaymentChange(getFeesPrePaymentChangeDate(fbsFees));
+    const modalUrlParam = getUrlQueryParam("modal");
+    // If there is a query param with the due date, a modal should be opened
+    if (modalUrlParam) {
+      const faustId = faustIdModalQueryParam(modalUrlParam);
+      if (faustId) {
+        setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
+        openDetailsModalClickEvent(faustId);
       }
-      const feesPostPaymentChange = getFeesPrePaymentChangeDate(fbsFees).length;
+    }
+  }, [openDetailsModalClickEvent]);
+
+  useEffect(() => {
+    if (fbsFees) {
+      const feesPrePaymentChange = getFeesInRelationToPaymentChangeDate(
+        fbsFees,
+        true
+      ).length;
+      if (feesPrePaymentChange > 0) {
+        setItemsPrePaymentChange(
+          getFeesInRelationToPaymentChangeDate(fbsFees, true)
+        );
+      }
+      const feesPostPaymentChange = getFeesInRelationToPaymentChangeDate(
+        fbsFees,
+        true
+      ).length;
       if (feesPostPaymentChange > 0) {
-        setItemsPostPaymentChange(getFeesPostPaymentChangeDate(fbsFees));
+        setItemsPostPaymentChange(
+          getFeesInRelationToPaymentChangeDate(fbsFees, false)
+        );
       }
     }
   }, [fbsFees]);
 
   useEffect(() => {
-    let totalFee = 0;
-    itemsPrePaymentChange?.forEach((item) => {
-      totalFee += item.amount;
-    });
-    setTotalFeePrePaymentChange(totalFee);
-  }, [itemsPrePaymentChange]);
+    if (totalFeePrePaymentChange > 0) {
+      return;
+    }
+    const initialValue = 0;
+    const totalFee = itemsPrePaymentChange?.reduce(
+      (accumulator, { amount }) => accumulator + amount,
+      initialValue
+    );
+    if (totalFee) {
+      setTotalFeePrePaymentChange(totalFee);
+    }
+  }, [itemsPrePaymentChange, totalFeePrePaymentChange]);
 
   useEffect(() => {
-    let totalTally = 0;
-    itemsPostPaymentChange?.forEach((item) => {
-      totalTally += item.amount;
-    });
-    setTotalFeePostPaymentChange(totalTally);
-  }, [itemsPostPaymentChange]);
+    if (totalFeePostPaymentChange > 0) {
+      return;
+    }
+    const initialValue = 0;
+    const totalFee = itemsPostPaymentChange?.reduce(
+      (accumulator, { amount }) => accumulator + amount,
+      initialValue
+    );
+
+    if (totalFee) {
+      setTotalFeePostPaymentChange(totalFee);
+    }
+  }, [itemsPostPaymentChange, totalFeePostPaymentChange]);
+
   return (
     <>
       <div
@@ -82,10 +125,7 @@ const IntermedateList: FC = () => {
         </h1>
         <span className="intermediate-list-body">
           {t("intermediateListBodyText")}{" "}
-          <Link
-            className="link-tag"
-            href={new URL(viewFeesAndCompensationRatesUrl)}
-          >
+          <Link className="link-tag" href={viewFeesAndCompensationRatesUrl}>
             {t("viewFeesAndCompensationRatesText")}
           </Link>
         </span>
@@ -97,7 +137,7 @@ const IntermedateList: FC = () => {
           totalFeePostPaymentChange={totalFeePostPaymentChange}
         />
       </div>
-      <FeeDetailsModal faust={faustIdentifier} material={{}}>
+      <FeeDetailsModal modalId={feeDetailsModalId} material={{}}>
         {feeDetailsData && (
           <FeeDetailsContent
             feeDetailsData={feeDetailsData[0] as unknown as FeeV2}

@@ -4,17 +4,16 @@ import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 
 interface FeeDetailsModalProps {
-  faust: string;
+  modalId: string;
   material: BasicDetailsType | undefined | null;
   children: ReactNode;
 }
 
-const FeeDetailsModal: FC<FeeDetailsModalProps> = ({ faust, children }) => {
+const FeeDetailsModal: FC<FeeDetailsModalProps> = ({ modalId, children }) => {
   const t = useText();
-
   return (
     <Modal
-      modalId={faust || ""}
+      modalId={modalId || ""}
       classNames="modal-details"
       closeModalAriaLabelText={t("FeeDetailsModalCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t("FeeDetailsModalDescriptionText")}

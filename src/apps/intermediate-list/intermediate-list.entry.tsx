@@ -19,7 +19,7 @@ export interface IntermedateListProps {
   viewFeesAndCompensationRatesUrl: string;
   unpaidFeesText: string;
   prePaymentTypeChangeDateText: string;
-  PostPaymentTypeChangeDateText: string;
+  postPaymentTypeChangeDateText: string;
   alreadyPaidText: string;
   intermediatePaymentModalHeaderText: string;
   intermediatePaymentModalBodyText: string;
@@ -32,6 +32,8 @@ export interface IntermedateListProps {
   plusXOtherMaterialsText: string;
   itemFeeAmountText: string;
   feeCreatedText: string;
+  availablePaymentTypesUrl: string;
+  paymentOverviewUrl: string;
 }
 
 const IntermedateListEntry: FC<IntermedateListProps> = () => (

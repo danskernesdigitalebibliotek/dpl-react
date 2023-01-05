@@ -4,5 +4,6 @@
   "deleteReservation": "delete-reservation",
   "loanDetails": "loan-details-",
   "reservationDetails": "reservation-details-",
-  "dueDateModal": "due-date-"
+  "dueDateModal": "due-date-",
+  "feeDetails": "fee-details-"
 }

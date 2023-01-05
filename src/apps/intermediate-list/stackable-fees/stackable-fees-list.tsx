@@ -30,6 +30,7 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{title}</p>
           <p className="text-small-caption">
+            {/* TODO: Globalize "authors and year if available" */}
             {authors} {year && <>({year})</>}
           </p>
         </div>

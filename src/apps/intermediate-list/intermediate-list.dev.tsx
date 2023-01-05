@@ -1,6 +1,8 @@
+import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import { getModalIds } from "../../core/utils/helpers/general";
 import IntermedateList from "./intermediate-list.entry";
 
 export default {
@@ -138,8 +140,17 @@ export default {
         type: "text"
       },
       defaultValue: "Fees charged @date"
+    },
+    availablePaymentTypesUrl: {
+      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
+      control: { type: "text" }
+    },
+    paymentOverviewUrl: {
+      defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
+      control: { type: "text" }
     }
-  }
+  },
+  decorators: [withQuery]
 } as ComponentMeta<typeof IntermedateList>;
 
 const Template: ComponentStory<typeof IntermedateList> = (props) => (
@@ -149,3 +160,11 @@ const Template: ComponentStory<typeof IntermedateList> = (props) => (
 export const IntermediateListEntry = Template.bind({});
 
 IntermediateListEntry.args = {};
+const { feeDetails } = getModalIds();
+
+export const IntermediateListfeeDetailsModal = Template.bind({});
+IntermediateListfeeDetailsModal.parameters = {
+  query: {
+    modal: `${feeDetails}48724566`
+  }
+};

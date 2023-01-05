@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import clsx from "clsx";
 import { FeeV2 } from "../../../core/fbs/model";
 import FeeInfo from "./fee-info";
 import fetchMaterial, {
@@ -7,13 +8,14 @@ import fetchMaterial, {
 import FeeStatus from "./fee-status";
 import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
+import { FaustId } from "../../../core/utils/types/ids";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate?: number;
   material?: BasicDetailsType;
-  faust: string;
+  faust: FaustId;
   feeData: FeeV2;
-  openDetailsModalClickEvent: (faustId: string) => void;
+  openDetailsModalClickEvent: (faustId: FaustId) => void;
   stackHeight: number;
 }
 
@@ -31,14 +33,15 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const [additionalFees] = useState(
     amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
   );
+  const listReservationClass = clsx(["list-reservation", "my-32"], {
+    "list-reservation--stacked": additionalFees > 0
+  });
 
   return (
     <button
       type="button"
       onClick={() => openDetailsModalClickEvent(faust)}
-      className={`list-reservation my-32 ${
-        additionalFees > 0 ? "list-reservation--stacked" : ""
-      }`}
+      className={listReservationClass}
     >
       {feeData && (
         <FeeInfo material={material} isbnForCover="">

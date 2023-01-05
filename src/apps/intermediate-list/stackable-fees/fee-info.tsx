@@ -38,6 +38,7 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
+            {/* TODO: Globalize "authors and year if available" */}
             {authors && authors}
             {year && <>({year})</>}
           </p>
