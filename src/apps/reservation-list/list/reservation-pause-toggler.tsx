@@ -50,11 +50,9 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
             aria-label={t("reservationListPauseReservationAriaModalText")}
             type="button"
             onClick={openPauseReservationModal}
-            className={`dpl-toggle-button ${
-              onHoldDates
-                ? "dpl-toggle-button--active"
-                : "dpl-toggle-button--inactive"
-            }`}
+            className={`dpl-toggle-button dpl-toggle-button--${
+              !onHoldDates ? "in" : ""
+            }active`}
           />
         </div>
       </div>

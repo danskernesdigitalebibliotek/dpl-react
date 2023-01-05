@@ -16,7 +16,7 @@ import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
-  openReservationDeleteModal: (deleteId: number | string | null) => void;
+  openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
@@ -28,6 +28,8 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
+
+  // Todo use useGetCleanBranches for branches
   const config = useConfig();
   // Get library branches from config
   const inputBranches = config<AgencyBranch[]>("branchesConfig", {

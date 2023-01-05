@@ -29,7 +29,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
     pickupNumber
   } = reservationInfo;
 
-  // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
 
@@ -44,6 +43,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         });
   }
 
+  // Todo use useGetCleanBranches for branches
   const config = useConfig();
   // Get library branches from config
   const inputBranches = config<AgencyBranch[]>("branchesConfig", {

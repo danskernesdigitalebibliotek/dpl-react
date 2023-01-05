@@ -7,7 +7,7 @@ import { useUrls } from "../../../../core/utils/url";
 
 export interface ReservationDetailsRedirectProps {
   reservationId: string;
-  openReservationDeleteModal: (deleteId: number | string | null) => void;
+  openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetailsRedirect: FC<
