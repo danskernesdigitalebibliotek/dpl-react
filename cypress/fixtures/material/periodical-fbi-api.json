@@ -2,81 +2,182 @@
   "data": {
     "work": {
       "workId": "work-of:870970-basis:06373674",
-      "titles": { "full": ["Alt for damerne"], "original": [] },
+      "titles": {
+        "full": [
+          "Alt for damerne"
+        ],
+        "original": []
+      },
       "abstract": [],
       "creators": [],
       "series": [],
       "seriesMembers": [],
-      "genreAndForm": [],
+      "workYear": null,
+      "genreAndForm": [
+        "tidsskrift",
+        "tíðarrit"
+      ],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:06373674",
-            "genreAndForm": [],
-            "source": ["Bibliotekskatalog"],
-            "titles": { "main": ["Alt for damerne"], "original": [] },
+            "genreAndForm": [
+              "tidsskrift"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Alt for damerne"
+              ],
+              "original": []
+            },
             "fictionNonfiction": {
-              "display": "FAGLITTERATUR",
+              "display": "nonfiktion",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "tidsskrift" }],
+            "materialTypes": [
+              {
+                "specific": "tidsskrift"
+              }
+            ],
             "creators": [],
             "hostPublication": null,
-            "languages": { "main": [{ "display": "dansk" }] },
-            "identifiers": [{ "value": "0002-6506" }],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "0002-6506"
+              }
+            ],
             "contributors": [],
             "edition": {
-              "publicationYear": { "display": "1946" }
+              "summary": "1946- ",
+              "publicationYear": {
+                "display": "1946- "
+              }
             },
-            "audience": { "generalAudience": [] },
+            "audience": {
+              "generalAudience": []
+            },
             "physicalDescriptions": [],
-            "accessTypes": [{ "code": "PHYSICAL" }],
-            "access": [
-              { "__typename": "DigitalArticleService", "issn": "00026506" },
-              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
             ],
-            "shelfmark": null
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Alt",
+              "shelfmark": "05.6"
+            }
           }
         ],
         "latest": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": [],
-          "source": ["Bibliotekskatalog"],
-          "titles": { "main": ["Alt for damerne"], "original": [] },
+          "genreAndForm": [
+            "tidsskrift"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
+          "titles": {
+            "main": [
+              "Alt for damerne"
+            ],
+            "original": []
+          },
           "fictionNonfiction": {
-            "display": "FAGLITTERATUR",
+            "display": "nonfiktion",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "tidsskrift" }],
+          "materialTypes": [
+            {
+              "specific": "tidsskrift"
+            }
+          ],
           "creators": [],
           "hostPublication": null,
-          "languages": { "main": [{ "display": "dansk" }] },
-          "identifiers": [{ "value": "0002-6506" }],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "0002-6506"
+            }
+          ],
           "contributors": [],
           "edition": {
-          "publicationYear": { "display": "1946" }
+            "summary": "1946- ",
+            "publicationYear": {
+              "display": "1946- "
+            }
           },
-          "audience": { "generalAudience": [] },
+          "audience": {
+            "generalAudience": []
+          },
           "physicalDescriptions": [],
-          "accessTypes": [{ "code": "PHYSICAL" }],
-          "access": [
-            { "__typename": "DigitalArticleService", "issn": "00026506" },
-            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
           ],
-          "shelfmark": null
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Alt",
+            "shelfmark": "05.6"
+          }
         }
       },
-      "materialTypes": [{ "specific": "Tidsskrift" }],
-      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
+      "materialTypes": [
+        {
+          "specific": "tidsskrift"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
       "subjects": {
         "all": [
-          { "display": "dame- og mandeblade" },
-          { "display": "Viborg amtskommune" }
+          {
+            "display": "Viborg amtskommune"
+          },
+          {
+            "display": "dame- og mandeblade"
+          }
         ]
       },
       "reviews": [],
-      "fictionNonfiction": { "display": "NONFIKTION", "code": "NONFICTION" },
-      "workYear": null
+      "fictionNonfiction": {
+        "display": "nonfiktion",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
+      }
     }
   }
 }
