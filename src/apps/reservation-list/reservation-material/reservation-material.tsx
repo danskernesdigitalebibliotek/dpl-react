@@ -3,9 +3,9 @@ import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import ReservationInfo from "./reservation-info";
 import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
 import MaterialInfo from "../../loan-list/materials/stackable-material/material-info";
+import ReservationInfo from "./reservation-info";
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
