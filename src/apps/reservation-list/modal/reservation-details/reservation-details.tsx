@@ -12,7 +12,7 @@ import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-mat
 import PhysicalListDetails from "./physical-list-details";
 import { useConfig } from "../../../../core/utils/config";
 import { AgencyBranch } from "../../../../core/fbs/model";
-import { excludeBlacklistedBranches } from "../../../../components/reservation/helper";
+import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;

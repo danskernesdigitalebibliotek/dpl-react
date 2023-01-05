@@ -8,12 +8,10 @@ import {
   daysBetweenTodayAndDate
 } from "../../../core/utils/helpers/general";
 import { formatDate } from "../../loan-list/utils/helpers";
-import {
-  getPreferredBranch,
-  excludeBlacklistedBranches
-} from "../../../components/reservation/helper";
+import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useConfig } from "../../../core/utils/config";
+import { excludeBlacklistedBranches } from "../../../core/utils/branches";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
