@@ -7,7 +7,7 @@ export interface IntermedateListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
-  loanListDaysText: string;
+  intermediateListDaysText: string;
   payText: string;
   totalText: string;
   iAcceptText: string;

@@ -39,7 +39,7 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    loanListDaysText: {
+    intermediateListDaysText: {
       defaultValue: "Days",
       control: { type: "text" }
     },
