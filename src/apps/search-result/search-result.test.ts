@@ -8,7 +8,7 @@ describe("Search Result", () => {
   });
 
   it("Check search title", () => {
-    cy.contains("Showing results for “harry” (9486)");
+    cy.contains("Showing results for “harry” (722)");
   });
 
   it("Check length of search result list", () => {
@@ -27,29 +27,17 @@ describe("Search Result", () => {
     ).should("have.attr", "aria-label", "Add to favorites");
   });
 
-  it("Does the search result have a series line?", () => {
-    cy.get(
-      ".search-result-page__list .search-result-item .horizontal-term-line"
-    ).should(
-      "contain.text",
-      // TODO: The series string being rendered makes no sense with the dummy data given
-      // and the (lack) of knowledge of which properties to use and how to combine them.
-      // Therefor when data is in place we can revisit this part of the test.
-      "Nr. 1  in seriesDummy Some SeriesNr. 1  in seriesDummy Some Series"
-    );
-  });
-
   it("Does the search result have titles?", () => {
     cy.get(".search-result-page__list .search-result-item h2").should(
       "contain.text",
-      "Dummy Some Title: Full"
+      "Harry : samtaler med prinsen"
     );
   });
 
   it("Does the search result have authors?", () => {
     cy.get(".search-result-page__list .search-result-item").should(
       "contain.text",
-      "By Dummy Jens Jensen (1839)"
+      "By Angela Levin"
     );
   });
 
@@ -58,14 +46,14 @@ describe("Search Result", () => {
       .eq(0)
       .find(".search-result-item__availability")
       .find("a")
-      .should("have.length", 20);
+      .should("have.length", 4);
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
   it("Do we have a pager?", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 2 out of 9486 results"
+      "Showing 2 out of 722 results"
     );
   });
 
@@ -84,7 +72,7 @@ describe("Search Result", () => {
   it("The pager info should also have been updated.", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 4 out of 9486 results"
+      "Showing 4 out of 722 results"
     );
   });
 
