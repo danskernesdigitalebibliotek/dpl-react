@@ -136,9 +136,13 @@ export const mapManifestationToBasicDetailsType = (
   if (inputContributorsArray) {
     contributors = getContributors(inputContributorsArray);
   }
-
+  let firstAuthor = "";
+  if (creators && creators.length > 0) {
+    firstAuthor = creators[0].display;
+  }
   return {
     authors: contributors || "",
+    firstAuthor,
     pid,
     title: mainText,
     year,
