@@ -180,17 +180,10 @@ describe("Intermediate list", () => {
       ]
     }).as("fees");
 
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
-
     cy.visit(
       "/iframe.html?path=/story/apps-intermediate-list--intermediate-list-entry"
     );
-    cy.wait(["@fees", "@cover"]);
+    cy.wait(["@fees"]);
   });
 
   it("Intermediate list basics (physical loans)", () => {
@@ -434,7 +427,7 @@ describe("Intermediate list", () => {
       .find(".counter")
       .find(".counter__label")
       .should("exist")
-      .should("have.text", "intermediateListDaysText");
+      .should("have.text", "Days");
 
     // header
     cy.get("div.modal-loan__header")
