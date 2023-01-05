@@ -184,6 +184,8 @@ describe("Intermediate list", () => {
       "/iframe.html?path=/story/apps-intermediate-list--intermediate-list-entry"
     );
     cy.wait(["@fees"]);
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(2000);
   });
 
   it("Intermediate list basics (physical loans)", () => {
