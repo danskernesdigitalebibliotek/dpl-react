@@ -248,6 +248,7 @@ describe("Intermediate list", () => {
       .find("div")
       .find("div")
       .find(".list-reservation")
+      .eq(0)
       .should("exist");
 
     // 3.c metadata
