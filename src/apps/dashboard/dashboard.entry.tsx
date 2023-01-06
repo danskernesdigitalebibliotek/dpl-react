@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import GuardedApp from "../../components/guarded-app";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import DashBoard from "./dashboard";
@@ -26,10 +25,6 @@ export interface DashBoardProps {
   reservationsUrl: string;
 }
 
-const MenuEntry: FC<DashBoardProps> = () => (
-  <GuardedApp app="dashboard">
-    <DashBoard />
-  </GuardedApp>
-);
+const MenuEntry: FC<DashBoardProps> = () => <DashBoard />;
 
 export default withUrls(withText(MenuEntry));
