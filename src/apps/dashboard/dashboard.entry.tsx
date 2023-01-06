@@ -27,10 +27,6 @@ export interface DashBoardProps {
   reservationsUrl: string;
 }
 
-const MenuEntry: FC<DashBoardProps> = () => (
-  <GuardedApp app="dashboard">
-    <DashBoard />
-  </GuardedApp>
-);
+const MenuEntry: FC<DashBoardProps> = () => <DashBoard />;
 
 export default withUrls(withText(MenuEntry));
