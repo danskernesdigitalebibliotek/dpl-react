@@ -5,42 +5,24 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   filterLoansNotOverdue,
-  getReadyForPickup
+  getReadyForPickup,
+  getReservations
 } from "../../../core/utils/helpers/general";
 import { mapFBSLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
+import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
 
-interface DashboardNotificationListProps {
-  physicalLoansText: string;
-  reservationsText: string;
-  loansOverdueText: string;
-  loansSoonOverdueText: string;
-  loansNotOverdueText: string;
-  reservationsReadyText: string;
-  noPhysicalLoansText: string;
-  noReservationsText: string;
-  physicalLoansUrl: URL;
-  loansOverdueUrl: URL;
-  loansSoonOverdueUrl: URL;
-  loansNotOverdueUrl: URL;
-  reservationsUrl: URL;
-}
-const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
-  physicalLoansText,
-  reservationsText,
-  loansOverdueText,
-  loansSoonOverdueText,
-  loansNotOverdueText,
-  reservationsReadyText,
-  noPhysicalLoansText,
-  noReservationsText,
-  physicalLoansUrl,
-  loansOverdueUrl,
-  loansSoonOverdueUrl,
-  loansNotOverdueUrl,
-  reservationsUrl
-}) => {
+const DashboardNotificationList: FC = () => {
+  const t = useText();
+  const {
+    physicalLoansUrl,
+    loansOverdueUrl,
+    loansSoonOverdueUrl,
+    loansNotOverdueUrl,
+    reservationsUrl
+  } = useUrls();
   const { data: fbsData } = useGetLoansV2();
   const { data: patronReservations } = useGetReservationsV2();
   const [patronReservationCount, setPatronReservationCount] = useState(0);
@@ -52,6 +34,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [physicalLoansNotOverdue, setPhysicalLoansNotOverdue] =
     useState<number>(0);
   const [reservationsReadyForPickup, setReservationsReadyForPickup] =
+    useState<number>(0);
+  const [reservationsStillInQueueFor, setReservationsStillInQueueFor] =
     useState<number>(0);
 
   useEffect(() => {
@@ -78,9 +62,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   useEffect(() => {
     if (patronReservations) {
-      setReservationsReadyForPickup(
-        getReadyForPickup(patronReservations).length
-      );
+      const materialsReadyForPickup = getReadyForPickup(patronReservations);
+      const materialsStillInQueue = getReservations(patronReservations);
+      setReservationsReadyForPickup(materialsReadyForPickup.length);
+      setReservationsStillInQueueFor(materialsStillInQueue.length);
       setPatronReservationCount(patronReservations.length);
     }
   }, [patronReservations]);
@@ -95,20 +80,20 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               href={new URL(physicalLoansUrl)}
               className="link-tag link-tag link-filters__tag"
             >
-              {physicalLoansText}
+              {t("physicalLoansText")}
             </Link>
             <span className="link-filters__counter">{physicalLoansCount}</span>
           </div>
         </div>
         {fbsData && physicalLoansCount === 0 && (
-          <div className="dpl-list-empty">{noPhysicalLoansText}</div>
+          <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
         {fbsData && physicalLoansCount !== 0 && (
           <>
             {physicalLoansOverdue && physicalLoansOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansOverdue}
-                notificationText={loansOverdueText}
+                notificationText={t("loansOverdueText")}
                 notificationColor="danger"
                 notificationLink={new URL(loansOverdueUrl)}
               />
@@ -116,7 +101,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             {physicalLoansSoonOverdue && physicalLoansSoonOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansSoonOverdue}
-                notificationText={loansSoonOverdueText}
+                notificationText={t("loansSoonOverdueText")}
                 notificationColor="warning"
                 notificationLink={new URL(loansSoonOverdueUrl)}
               />
@@ -124,7 +109,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             {physicalLoansNotOverdue && physicalLoansNotOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansNotOverdue}
-                notificationText={loansNotOverdueText}
+                notificationText={t("loansNotOverdueText")}
                 notificationColor="neutral"
                 notificationLink={new URL(loansNotOverdueUrl)}
               />
@@ -136,25 +121,35 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link
-              href={new URL(reservationsUrl)}
+              href={reservationsUrl}
               className="link-tag link-tag link-filters__tag"
             >
-              {reservationsText}
+              {t("reservationsText")}
             </Link>
             <span className="link-filters__counter">
               {patronReservationCount}
             </span>
           </div>
         </div>
-        {patronReservations && patronReservationCount === 0 && (
-          <div className="dpl-list-empty">{noReservationsText}</div>
-        )}
+        {patronReservations &&
+          patronReservationCount === 0 &&
+          reservationsStillInQueueFor === 0 && (
+            <div className="dpl-list-empty">{t("noReservationsText")}</div>
+          )}
         {patronReservations && reservationsReadyForPickup !== 0 && (
           <DashboardNotification
             notificationNumber={reservationsReadyForPickup}
-            notificationText={reservationsReadyText}
+            notificationText={t("reservationsReadyText")}
             notificationColor="info"
-            notificationLink={new URL(reservationsUrl)}
+            notificationLink={reservationsUrl}
+          />
+        )}
+        {patronReservations && reservationsStillInQueueFor !== 0 && (
+          <DashboardNotification
+            notificationNumber={reservationsStillInQueueFor}
+            notificationText={t("reservationsStillInQueueForText")}
+            notificationColor="neutral"
+            notificationLink={reservationsUrl}
           />
         )}
       </div>

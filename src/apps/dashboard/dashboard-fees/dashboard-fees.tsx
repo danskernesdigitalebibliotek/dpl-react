@@ -3,22 +3,12 @@ import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import { Link } from "../../../components/atoms/link";
+import { useText } from "../../../core/utils/text";
+import { useUrls } from "../../../core/utils/url";
 
-interface DashBoardFeesProps {
-  intermediateText: string;
-  totalOwedText: string;
-  payOwedText: string;
-  intermediateUrl: URL;
-  payOwedUrl: URL;
-}
-
-const DashboardFees: FC<DashBoardFeesProps> = ({
-  intermediateText,
-  totalOwedText,
-  payOwedText,
-  intermediateUrl,
-  payOwedUrl
-}) => {
+const DashboardFees: FC = () => {
+  const t = useText();
+  const { intermediateUrl, payOwedUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState(0);
   const [totalFeeAmount, setTotalFeeAmount] = useState(0);
@@ -39,7 +29,7 @@ const DashboardFees: FC<DashBoardFeesProps> = ({
                   href={intermediateUrl}
                   className="link-tag link-tag link-filters__tag"
                 >
-                  {intermediateText}
+                  {t("intermediateText")}
                 </Link>
 
                 <span className="link-filters__counter">{feeCount}</span>
@@ -55,7 +45,7 @@ const DashboardFees: FC<DashBoardFeesProps> = ({
                     href={payOwedUrl}
                     className="text-body-medium-regular color-primary-black"
                   >
-                    {totalOwedText}
+                    {t("totalOwedText")}
                   </Link>
                 </div>
               </div>
@@ -67,7 +57,7 @@ const DashboardFees: FC<DashBoardFeesProps> = ({
                   type="button"
                   className="btn-primary btn-filled btn-small arrow__hover--right-small undefined"
                 >
-                  {payOwedText}
+                  {t("payOwedText")}
                   <div className="ml-16">
                     <svg
                       width="61"

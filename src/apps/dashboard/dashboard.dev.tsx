@@ -1,12 +1,14 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import React from "react";
+import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 
 import DashBoard from "./dashboard.entry";
 
 export default {
   title: "Apps / DashBoard",
   argTypes: {
+    ...serviceUrlArgs,
     yourProfileText: {
       defaultValue: "Din profil",
       control: { type: "text" }
@@ -73,6 +75,10 @@ export default {
     },
     reservationsReadyText: {
       defaultValue: "Klar til dig",
+      control: { type: "text" }
+    },
+    reservationsStillInQueueForText: {
+      defaultValue: "Stadig i kø",
       control: { type: "text" }
     },
     noPhysicalLoansText: {
