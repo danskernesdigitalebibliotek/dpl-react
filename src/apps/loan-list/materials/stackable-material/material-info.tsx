@@ -7,12 +7,14 @@ interface MaterialInfoProps {
   isbnForCover: string;
   periodical?: string | null;
   children?: ReactNode;
+  openDetailsModal: () => void;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
   material,
   isbnForCover,
   periodical,
+  openDetailsModal,
   children
 }) => {
   const { authors, materialType, year, title, description, pid, series } =
@@ -37,7 +39,11 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           </div>
         </div>
         <div className="list-reservation__about">
-          <button type="button" className="text-header-h4 color-secondary-gray">
+          <button
+            onClick={() => openDetailsModal()}
+            type="button"
+            className="text-header-h4 color-secondary-gray"
+          >
             {title}
           </button>
           <p className="text-small-caption color-secondary-gray">
