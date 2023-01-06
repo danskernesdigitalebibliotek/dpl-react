@@ -6,7 +6,7 @@ import {
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 
-import useGetCleanBranches from "../../core/utils/branches";
+import useGetCleanBranches from "../../core/utils/useGetCleanBranches";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
