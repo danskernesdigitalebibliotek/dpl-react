@@ -26,7 +26,7 @@ export default {
       control: { type: "text" }
     },
     payOwedText: {
-      defaultValue: "Betal",
+      defaultValue: "Se mere",
       control: { type: "text" }
     },
     payOwedUrl: {
