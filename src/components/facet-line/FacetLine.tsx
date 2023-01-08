@@ -34,6 +34,11 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
 
   return (
     <>
+      {!data && (
+        <div className="ssc mt-48">
+          <div className="ssc-head-line" />
+        </div>
+      )}
       {data && (
         <FacetLineFilters
           filters={filters}
