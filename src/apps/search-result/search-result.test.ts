@@ -8,7 +8,7 @@ describe("Search Result", () => {
   });
 
   it("Check search title", () => {
-    cy.contains("Showing results for “harry” (722)");
+    cy.contains("Showing results for “harry” (720)");
   });
 
   it("Check length of search result list", () => {
@@ -27,6 +27,18 @@ describe("Search Result", () => {
     ).should("have.attr", "aria-label", "Add to favorites");
   });
 
+  it("Does the search result have a series line?", () => {
+    cy.get(
+      ".search-result-page__list .search-result-item .horizontal-term-line"
+    ).should(
+      "contain.text",
+      // TODO: The series string being rendered makes no sense with the dummy data given
+      // and the (lack) of knowledge of which properties to use and how to combine them.
+      // Therefor when data is in place we can revisit this part of the test.
+      "Dummy Some Series"
+    );
+  });
+
   it("Does the search result have titles?", () => {
     cy.get(".search-result-page__list .search-result-item h2").should(
       "contain.text",
@@ -37,7 +49,7 @@ describe("Search Result", () => {
   it("Does the search result have authors?", () => {
     cy.get(".search-result-page__list .search-result-item").should(
       "contain.text",
-      "By Angela Levin"
+      "By Joanne K. Rowling (2003)"
     );
   });
 
@@ -53,7 +65,7 @@ describe("Search Result", () => {
   it("Do we have a pager?", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 2 out of 722 results"
+      "Showing 2 out of 720 results"
     );
   });
 
@@ -72,7 +84,7 @@ describe("Search Result", () => {
   it("The pager info should also have been updated.", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 4 out of 722 results"
+      "Showing 4 out of 720 results"
     );
   });
 

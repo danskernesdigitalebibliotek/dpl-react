@@ -642,3 +642,8 @@ export const Digital = Template.bind({});
 Digital.args = {
   wid: "work-of:870971-tsart:34310815"
 };
+
+export const EBogPrinsenHarry = Template.bind({});
+EBogPrinsenHarry.args = {
+  wid: "work-of:870970-basis:54129807"
+};
