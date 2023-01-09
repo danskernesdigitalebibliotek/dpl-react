@@ -1,5 +1,5 @@
 import { AgencyBranch } from "../fbs/model";
-import { useConfig, UseConfigFunction } from "./config";
+import { useConfig } from "./config";
 
 export const excludeBlacklistedBranches = (
   branches: AgencyBranch[],
