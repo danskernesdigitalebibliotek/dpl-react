@@ -12,6 +12,7 @@ export interface ReservationListProps {
   physicalLoansTitleText: string;
   reservationListReadyText: string;
   materialByAuthorText: string;
+  blacklistedSearchBranchesConfig: string;
   reservationDetailsExpiresText: string;
   pauseReservationInfoUrl: string;
   materialAndAuthorText: string;

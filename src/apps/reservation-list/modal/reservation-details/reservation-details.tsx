@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
@@ -10,9 +10,7 @@ import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
-import { useConfig } from "../../../../core/utils/config";
-import { AgencyBranch } from "../../../../core/fbs/model";
-import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
+import { useGetBranches } from "../../../../core/utils/branches";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -28,24 +26,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-
-  // Todo use useGetCleanBranches for branches
-  const config = useConfig();
-  // Get library branches from config
-  const inputBranches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-
-  // Get the library branches where the user cannot pick up books at
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
-  // Remove the branches where the user cannot pick up books from the library branches
-  let branches = inputBranches;
-  if (Array.isArray(blacklistBranches)) {
-    branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
-  }
+  const branches = useGetBranches();
   const isDigital = !!reservation.identifier;
 
   return (

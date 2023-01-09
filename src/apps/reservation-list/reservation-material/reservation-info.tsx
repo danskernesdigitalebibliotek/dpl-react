@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useText } from "../../../core/utils/text";
-import { AgencyBranch } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getColors,
@@ -10,8 +9,7 @@ import {
 import { formatDate } from "../../loan-list/utils/helpers";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
-import { useConfig } from "../../../core/utils/config";
-import { excludeBlacklistedBranches } from "../../../core/utils/branches";
+import { useGetBranches } from "../../../core/utils/branches";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
@@ -31,6 +29,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
+  const branches = useGetBranches();
 
   let readyForPickupLabel = "";
   if (pickupDeadline) {
@@ -41,24 +40,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
       : t("reservationListLoanBeforeText", {
           placeholders: { "@date": formatDate(pickupDeadline) }
         });
-  }
-
-  // Todo use useGetCleanBranches for branches
-  const config = useConfig();
-  // Get library branches from config
-  const inputBranches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-
-  // Get the library branches where the user cannot pick up books at
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
-  // Remove the branches where the user cannot pick up books from the library branches
-  let branches = inputBranches;
-  if (Array.isArray(blacklistBranches)) {
-    branches = excludeBlacklistedBranches(inputBranches, blacklistBranches);
   }
 
   useEffect(() => {

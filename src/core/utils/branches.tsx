@@ -1,5 +1,5 @@
 import { AgencyBranch } from "../fbs/model";
-import { useConfig } from "./config";
+import { useConfig, UseConfigFunction } from "./config";
 
 export const excludeBlacklistedBranches = (
   branches: AgencyBranch[],
@@ -23,8 +23,7 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-const useGetCleanBranches = () => {
-  const config = useConfig();
+const getBranches = (config: UseConfigFunction): AgencyBranch[] => {
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
@@ -35,9 +34,20 @@ const useGetCleanBranches = () => {
     branches,
     blacklistBranches
   );
-  const cleanBranches = cleanBranchesId(whitelistBranches);
+  return whitelistBranches;
+};
 
+const useGetCleanBranches = () => {
+  const config = useConfig();
+  const branches = getBranches(config);
+  const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
+};
+
+export const useGetBranches = () => {
+  const config = useConfig();
+  const branches = getBranches(config);
+  return branches;
 };
 
 export default useGetCleanBranches;
