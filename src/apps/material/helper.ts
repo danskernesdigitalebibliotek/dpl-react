@@ -44,7 +44,6 @@ export const getWorkDescriptionListData = ({
   t: UseTextFunction;
 }): ListData => {
   const { titles, mainLanguages, creators, workYear } = work;
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
