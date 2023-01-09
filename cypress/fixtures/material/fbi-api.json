@@ -3,8 +3,12 @@
     "work": {
       "workId": "work-of:870970-basis:52557240",
       "titles": {
-        "full": ["De syv søstre : Maias historie"],
-        "original": []
+        "full": [
+          "De syv søstre : Maias historie"
+        ],
+        "original": [
+          "The seven sisters"
+        ]
       },
       "abstract": [
         "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav"
@@ -17,19 +21,21 @@
       ],
       "series": [
         {
-          "title": "De syv søstre-serien",
+          "title": "Cicero favorit",
           "isPopular": null,
-          "numberInSeries": {
-            "display": "1",
-            "number": [1]
-          },
+          "numberInSeries": null,
           "readThisFirst": null,
           "readThisWhenever": null
         },
         {
-          "title": "Cicero favorit",
+          "title": "De syv søstre-serien",
           "isPopular": null,
-          "numberInSeries": null,
+          "numberInSeries": {
+            "display": "1",
+            "number": [
+              1
+            ]
+          },
           "readThisFirst": null,
           "readThisWhenever": null
         }
@@ -38,76 +44,132 @@
         {
           "workId": "work-of:870970-basis:52557240",
           "titles": {
-            "main": ["De syv søstre"],
-            "full": ["De syv søstre : Maias historie"],
-            "original": []
+            "main": [
+              "De syv søstre"
+            ],
+            "full": [
+              "De syv søstre : Maias historie"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:52970628",
           "titles": {
-            "main": ["Stormsøsteren"],
-            "full": ["Stormsøsteren : Allys historie"],
-            "original": []
+            "main": [
+              "Stormsøsteren"
+            ],
+            "full": [
+              "Stormsøsteren : Allys historie"
+            ],
+            "original": [
+              "The storm sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:53280749",
           "titles": {
-            "main": ["Skyggesøsteren"],
-            "full": ["Skyggesøsteren : Stars historie"],
-            "original": []
+            "main": [
+              "Skyggesøsteren"
+            ],
+            "full": [
+              "Skyggesøsteren : Stars historie"
+            ],
+            "original": [
+              "The shadow sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:53802001",
           "titles": {
-            "main": ["Perlesøsteren"],
-            "full": ["Perlesøsteren : CeCes historie"],
-            "original": []
+            "main": [
+              "Perlesøsteren"
+            ],
+            "full": [
+              "Perlesøsteren : CeCes historie"
+            ],
+            "original": [
+              "The pearl sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:54189141",
           "titles": {
-            "main": ["Månesøsteren"],
-            "full": ["Månesøsteren : Tiggys historie"],
-            "original": []
+            "main": [
+              "Månesøsteren"
+            ],
+            "full": [
+              "Månesøsteren : Tiggys historie"
+            ],
+            "original": [
+              "The moon sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:46656172",
           "titles": {
-            "main": ["Solsøsteren"],
-            "full": ["Solsøsteren : Electras historie"],
-            "original": ["The sun sister"]
+            "main": [
+              "Solsøsteren"
+            ],
+            "full": [
+              "Solsøsteren : Electras historie"
+            ],
+            "original": [
+              "The sun sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:38500775",
           "titles": {
-            "main": ["Den forsvundne søster"],
-            "full": ["Den forsvundne søster"],
-            "original": ["The missing sister"]
+            "main": [
+              "Den forsvundne søster"
+            ],
+            "full": [
+              "Den forsvundne søster"
+            ],
+            "original": [
+              "The missing sister"
+            ]
           }
         }
       ],
-      "genreAndForm": ["slægtsromaner"],
+      "workYear": null,
+      "genreAndForm": [
+        "roman",
+        "slægtsromaner",
+        "romaner"
+      ],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:46615743",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner",
+              "romaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
+              "display": "skønlitteratur",
               "code": "FICTION"
             },
-
             "materialTypes": [
               {
                 "specific": "bog"
@@ -138,7 +200,7 @@
               }
             ],
             "edition": {
-              "summary": "3. udgave, 1. oplag (2019)",
+              "summary": "3. udgave, 2019",
               "publicationYear": {
                 "display": "2019"
               }
@@ -148,7 +210,7 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": 523
               }
             ],
             "accessTypes": [
@@ -162,21 +224,192 @@
                 "loanIsPossible": true
               }
             ],
-            "shelfmark": null
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
+          {
+            "pid": "870970-basis:53292968",
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner",
+              "romaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763849630"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "2. udgave, 2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 523
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
+          {
+            "pid": "870970-basis:53200346",
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "hostPublication": null,
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788703079875"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. bogklubudgave, 2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 523
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
           },
           {
             "pid": "870970-basis:52557240",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
+              "display": "skønlitteratur",
               "code": "FICTION"
             },
-
             "materialTypes": [
               {
                 "specific": "bog"
@@ -207,7 +440,7 @@
               }
             ],
             "edition": {
-              "summary": "1. udgave, 3. oplag (2018)",
+              "summary": "1. udgave, 2016",
               "publicationYear": {
                 "display": "2016"
               }
@@ -217,7 +450,7 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": 523
               }
             ],
             "accessTypes": [
@@ -231,166 +464,31 @@
                 "loanIsPossible": true
               }
             ],
-            "shelfmark": null
-          },
-          {
-            "pid": "870970-basis:52590302",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["eReolen"],
-            "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
-            },
-            "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
-              "code": "FICTION"
-            },
-
-            "materialTypes": [
-              {
-                "specific": "ebog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763844123"
-              },
-              {
-                "value": "https://ereolen.dk/ting/object/870970-basis:52590302"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. eBogsudgave",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "AccessUrl",
-                "origin": "ereolen.dk",
-                "url": "https://ereolen.dk/ting/object/870970-basis:52590302"
-              },
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": false
-              }
-            ],
-            "shelfmark": null
-          },
-          {
-            "pid": "870970-basis:52643414",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
-            "titles": {
-              "main": ["De syv søstre (mp3)"],
-              "original": ["The seven sisters"]
-            },
-            "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
-              "code": "FICTION"
-            },
-
-            "materialTypes": [
-              {
-                "specific": "lydbog (cd-mp3)"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763850636"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Maria Stokholm"
-              },
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. lydbogsudgave",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": null
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
           },
           {
             "pid": "870970-basis:52643503",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
+              "display": "skønlitteratur",
               "code": "FICTION"
             },
-
             "materialTypes": [
               {
                 "specific": "lydbog (net)"
@@ -424,6 +522,7 @@
               }
             ],
             "edition": {
+              "summary": "2016",
               "publicationYear": {
                 "display": "2016"
               }
@@ -441,30 +540,35 @@
                 "code": "ONLINE"
               }
             ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": false
-              }
-            ],
-            "shelfmark": null
+            "access": [],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
           },
           {
-            "pid": "870970-basis:53200346",
-            "genreAndForm": [],
-            "source": ["Bibliotekskatalog"],
+            "pid": "870970-basis:52643414",
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre (mp3)"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
+              "display": "skønlitteratur",
               "code": "FICTION"
             },
-
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "lydbog (cd-mp3)"
               }
             ],
             "creators": [
@@ -483,18 +587,21 @@
             },
             "identifiers": [
               {
-                "value": "9788703079875"
+                "value": "9788763850636"
               }
             ],
             "contributors": [
+              {
+                "display": "Maria Stokholm"
+              },
               {
                 "display": "Ulla Lauridsen"
               }
             ],
             "edition": {
-              "summary": "1. bogklubudgave, 1. oplag (2017)",
+              "summary": "1. lydbogsudgave, 2016",
               "publicationYear": {
-                "display": "2017"
+                "display": "2016"
               }
             },
             "audience": {
@@ -516,24 +623,35 @@
                 "loanIsPossible": true
               }
             ],
-            "shelfmark": null
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
           },
           {
-            "pid": "870970-basis:53292968",
-            "genreAndForm": ["slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
+            "pid": "870970-basis:52590302",
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner"
+            ],
+            "source": [
+              "eReolen"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
-              "display": "SKOENLITTERATUR",
+              "display": "skønlitteratur",
               "code": "FICTION"
             },
-
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "ebog"
               }
             ],
             "creators": [
@@ -552,7 +670,10 @@
             },
             "identifiers": [
               {
-                "value": "9788763849630"
+                "value": "9788763844123"
+              },
+              {
+                "value": "9788763844123"
               }
             ],
             "contributors": [
@@ -561,46 +682,56 @@
               }
             ],
             "edition": {
-              "summary": "2. udgave, 11. oplag (2021)",
+              "summary": "1. eBogsudgave, 2016",
               "publicationYear": {
-                "display": "2017"
+                "display": "2016"
               }
             },
             "audience": {
               "generalAudience": []
             },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
-            ],
+            "physicalDescriptions": [],
             "accessTypes": [
               {
-                "code": "PHYSICAL"
+                "code": "ONLINE"
               }
             ],
             "access": [
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
+                "__typename": "Ereol",
+                "origin": "eReolen",
+                "url": "https://ereolen.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
               }
             ],
-            "shelfmark": null
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
           }
         ],
         "latest": {
           "pid": "870970-basis:46615743",
-          "genreAndForm": ["slægtsromaner"],
-          "source": ["Bibliotekskatalog"],
+          "genreAndForm": [
+            "roman",
+            "slægtsromaner",
+            "romaner"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
           "titles": {
-            "main": ["De syv søstre"],
-            "original": ["The seven sisters"]
+            "main": [
+              "De syv søstre"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           },
           "fictionNonfiction": {
-            "display": "SKOENLITTERATUR",
+            "display": "skønlitteratur",
             "code": "FICTION"
           },
-
           "materialTypes": [
             {
               "specific": "bog"
@@ -631,7 +762,7 @@
             }
           ],
           "edition": {
-            "summary": "3. udgave, 1. oplag (2019)",
+            "summary": "3. udgave, 2019",
             "publicationYear": {
               "display": "2019"
             }
@@ -641,7 +772,7 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": null
+              "numberOfPages": 523
             }
           ],
           "accessTypes": [
@@ -655,21 +786,21 @@
               "loanIsPossible": true
             }
           ],
-          "shelfmark": null
+          "shelfmark": {
+            "postfix": "Riley",
+            "shelfmark": "83"
+          }
         }
       },
       "materialTypes": [
         {
-          "specific": "lydbog (net)"
-        },
-        {
           "specific": "bog"
         },
         {
-          "specific": "ebog"
+          "specific": "lydbog (net)"
         },
         {
-          "specific": "punktskrift"
+          "specific": "ebog"
         },
         {
           "specific": "lydbog (cd-mp3)"
@@ -696,9 +827,6 @@
             "display": "slægtsromaner"
           },
           {
-            "display": "romaner"
-          },
-          {
             "display": "kærleiki"
           },
           {
@@ -709,37 +837,10 @@
           },
           {
             "display": "ættarsøgur"
-          },
-          {
-            "display": "kærlighed."
-          },
-          {
-            "display": "adoption."
-          },
-          {
-            "display": "familien."
-          },
-          {
-            "display": "slægtsromaner."
-          },
-          {
-            "display": "fao"
           }
         ]
       },
       "reviews": [
-        {
-          "__typename": "ExternalReview",
-          "author": "Lene Jensen",
-          "date": "2016-09-12",
-          "rating": null,
-          "urls": [
-            {
-              "origin": "litteratursiden.dk",
-              "url": "http://www.litteratursiden.dk/anmeldelser/syv-soestre-af-lucinda-riley"
-            }
-          ]
-        },
         {
           "__typename": "LibrariansReview",
           "author": "Dorthe Marlene Jørgensen",
@@ -763,16 +864,23 @@
             {
               "code": "OTHER",
               "heading": "Andre bøger om samme emne",
-              "text": ""
+              "text": "Lucinda Riley har senest udgivet"
+            },
+            {
+              "code": "OTHER",
+              "heading": "Andre bøger om samme emne",
+              "text": ". Skrivestilen ligner Rileys tidligere udgivelser"
             }
           ]
         }
       ],
       "fictionNonfiction": {
-        "display": "SKOENLITTERATUR",
+        "display": "skønlitteratur",
         "code": "FICTION"
       },
-      "workYear": null
+      "dk5MainEntry": {
+        "display": "Skønlitteratur"
+      }
     }
   }
 }

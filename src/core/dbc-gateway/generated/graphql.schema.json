@@ -172,6 +172,18 @@
             "deprecationReason": null
           },
           {
+            "name": "type",
+            "description": "The type of content that can be found at this URL",
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "AccessUrlType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "url",
             "description": "The url where manifestation is located",
             "args": [],
@@ -191,6 +203,53 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "AccessUrlType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "IMAGE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "OTHER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "RESOURCE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SAMPLE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TABLE_OF_CONTENTS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "THUMBNAIL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -469,6 +528,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dk5Heading",
+            "description": "The dk5Heading for the classification (DK5 only)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1340,6 +1411,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "dk5Heading",
+            "description": "The dk5Heading for the classification",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1449,6 +1536,18 @@
           {
             "name": "edition",
             "description": "The edition number and name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "note",
+            "description": "A note about this specific edition",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1569,6 +1668,12 @@
             "deprecationReason": null
           },
           {
+            "name": "NATIONAL_BIBLIOGRAPHY_ADDITIONAL_ENTRY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "NATIONAL_BIBLIOGRAPHY_ENTRY",
             "description": null,
             "isDeprecated": false,
@@ -1594,6 +1699,18 @@
                 "name": "Boolean",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "note",
+            "description": "Notes for the resource",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2813,6 +2930,26 @@
             "deprecationReason": null
           },
           {
+            "name": "notes",
+            "description": "Notes of the languages that describe subtitles, spoken/written (original, dubbed/synchonized), visual interpretation, parallel (notes are written in Danish)",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "original",
             "description": "Original language of this manifestation",
             "args": [],
@@ -3343,6 +3480,18 @@
             "deprecationReason": null
           },
           {
+            "name": "dateFirstEdition",
+            "description": "The year for the publication of the first edition for this work ",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PublicationYear",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "edition",
             "description": "Edition details for this manifestation",
             "args": [],
@@ -3511,6 +3660,22 @@
             "deprecationReason": null
           },
           {
+            "name": "ownerWork",
+            "description": "The work that this manifestation is part of",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Work",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "physicalDescriptions",
             "description": "Physical description of this manifestation like extent (pages/minutes), illustrations etc.",
             "args": [],
@@ -3631,6 +3796,18 @@
             "deprecationReason": null
           },
           {
+            "name": "review",
+            "description": "Some review data, if this manifestation is a review",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ManifestationReview",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "series",
             "description": "Series for this work",
             "args": [],
@@ -3735,6 +3912,18 @@
             "deprecationReason": null
           },
           {
+            "name": "universe",
+            "description": "Universe for this work",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Universe",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "volume",
             "description": "Information about on which volume this manifestation is in multi volume work",
             "args": [],
@@ -3775,8 +3964,8 @@
             "description": "The year this work was originally published or produced",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "PublicationYear",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3861,6 +4050,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "playingTime",
+            "description": "The playing time for this specific part (i.e. the duration of a music track) ",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3993,6 +4194,45 @@
               "ofType": {
                 "kind": "ENUM",
                 "name": "ManifestationPartType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ManifestationReview",
+        "description": null,
+        "fields": [
+          {
+            "name": "rating",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reviewByLibrarians",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ReviewElement",
                 "ofType": null
               }
             },
@@ -4268,6 +4508,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "mostRelevant",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Manifestation",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -4475,12 +4739,6 @@
           },
           {
             "name": "DISSERTATION",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "LANGUAGE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -6837,6 +7095,122 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ReviewElement",
+        "description": null,
+        "fields": [
+          {
+            "name": "content",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "heading",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manifestations",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Manifestation",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "ReviewElementType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ReviewElementType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "ABSTRACT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ACQUISITION_RECOMMENDATIONS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "AUDIENCE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CONCLUSION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DESCRIPTION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EVALUATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SIMILAR_MATERIALS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "Role",
         "description": null,
         "fields": [
@@ -7845,6 +8219,18 @@
             "deprecationReason": null
           },
           {
+            "name": "language",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Language",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": null,
             "args": [],
@@ -8256,7 +8642,7 @@
         "fields": [
           {
             "name": "title",
-            "description": "Literary/movie universe this work is part of e.g. Wizarding World, Marvel Universe",
+            "description": "Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8614,8 +9000,8 @@
             "description": "The year this work was originally published or produced",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "PublicationYear",
               "ofType": null
             },
             "isDeprecated": false,

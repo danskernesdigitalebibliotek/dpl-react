@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { excludeBlacklistedBranches } from "../../../components/reservation/helper";
+import { excludeBlacklistedBranches } from "../../../core/utils/branches";
 import { AgencyBranch } from "../../../core/fbs/model";
 import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";

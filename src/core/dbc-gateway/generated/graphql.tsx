@@ -52,9 +52,20 @@ export type AccessUrl = {
   note?: Maybe<Scalars["String"]>;
   /** The origin, e.g. "DBC Webarkiv" */
   origin: Scalars["String"];
+  /** The type of content that can be found at this URL */
+  type?: Maybe<AccessUrlType>;
   /** The url where manifestation is located */
   url: Scalars["String"];
 };
+
+export enum AccessUrlType {
+  Image = "IMAGE",
+  Other = "OTHER",
+  Resource = "RESOURCE",
+  Sample = "SAMPLE",
+  TableOfContents = "TABLE_OF_CONTENTS",
+  Thumbnail = "THUMBNAIL"
+}
 
 export type Audience = {
   __typename?: "Audience";
@@ -93,6 +104,8 @@ export type Classification = {
   code: Scalars["String"];
   /** Descriptive text for the classification code (DK5 only) */
   display: Scalars["String"];
+  /** The dk5Heading for the classification (DK5 only) */
+  dk5Heading?: Maybe<Scalars["String"]>;
   /** For DK5 only. The DK5 entry type: main entry, national entry, or additional entry */
   entryType?: Maybe<EntryType>;
   /** Name of the classification system */
@@ -206,6 +219,8 @@ export type Dk5MainEntry = {
   code: Scalars["String"];
   /** Displayable main DK5 classification */
   display: Scalars["String"];
+  /** The dk5Heading for the classification */
+  dk5Heading: Scalars["String"];
 };
 
 export type DidYouMean = {
@@ -228,6 +243,8 @@ export type Edition = {
   contributors: Array<Scalars["String"]>;
   /** The edition number and name */
   edition?: Maybe<Scalars["String"]>;
+  /** A note about this specific edition */
+  note?: Maybe<Scalars["String"]>;
   /** A year as displayable text and as number */
   publicationYear?: Maybe<PublicationYear>;
   /** Properties 'edition', 'contributorsToEdition' and 'publicationYear' as one string, e.g.: '3. udgave, revideret af Hugin Eide, 2005' */
@@ -247,6 +264,7 @@ export type ElbaServicesPlaceCopyRequestArgs = {
 export enum EntryType {
   AdditionalEntry = "ADDITIONAL_ENTRY",
   MainEntry = "MAIN_ENTRY",
+  NationalBibliographyAdditionalEntry = "NATIONAL_BIBLIOGRAPHY_ADDITIONAL_ENTRY",
   NationalBibliographyEntry = "NATIONAL_BIBLIOGRAPHY_ENTRY"
 }
 
@@ -254,6 +272,8 @@ export type Ereol = {
   __typename?: "Ereol";
   /** Is this a manifestation that always can be loaned on ereolen.dk even if you've run out of loans this month */
   canAlwaysBeLoaned: Scalars["Boolean"];
+  /** Notes for the resource */
+  note?: Maybe<Scalars["String"]>;
   /** The origin, e.g. "Ereolen" or "Ereolen Go" */
   origin: Scalars["String"];
   /** The url where manifestation is located */
@@ -454,6 +474,8 @@ export type Languages = {
   abstract?: Maybe<Array<Language>>;
   /** Main language of this manifestation */
   main?: Maybe<Array<Language>>;
+  /** Notes of the languages that describe subtitles, spoken/written (original, dubbed/synchonized), visual interpretation, parallel (notes are written in Danish) */
+  notes?: Maybe<Array<Scalars["String"]>>;
   /** Original language of this manifestation */
   original?: Maybe<Array<Language>>;
   /** Parallel languages of this manifestation, if more languages are printed in the same book */
@@ -520,6 +542,8 @@ export type Manifestation = {
   creators: Array<Creator>;
   /** Additional creators of this manifestation as described on the publication. E.g. 'tekst af William Warren' */
   creatorsFromDescription: Array<Scalars["String"]>;
+  /** The year for the publication of the first edition for this work  */
+  dateFirstEdition?: Maybe<PublicationYear>;
   /** Edition details for this manifestation */
   edition?: Maybe<Edition>;
   /** Overall literary category/genre of this manifestation. e.g. fiction or nonfiction. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
@@ -540,6 +564,8 @@ export type Manifestation = {
   materialTypes: Array<MaterialType>;
   /** Notes about the manifestation */
   notes: Array<Note>;
+  /** The work that this manifestation is part of */
+  ownerWork: Work;
   /** Physical description of this manifestation like extent (pages/minutes), illustrations etc. */
   physicalDescriptions: Array<PhysicalDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
@@ -552,6 +578,8 @@ export type Manifestation = {
   relatedPublications: Array<RelatedPublication>;
   /** Relations to other manifestations */
   relations: Relations;
+  /** Some review data, if this manifestation is a review */
+  review?: Maybe<ManifestationReview>;
   /** Series for this work */
   series: Array<Series>;
   /** Information about on which shelf in the library this manifestation can be found */
@@ -564,12 +592,14 @@ export type Manifestation = {
   tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
+  /** Universe for this work */
+  universe?: Maybe<Universe>;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
   /** Worktypes for this manifestations work */
   workTypes: Array<WorkType>;
   /** The year this work was originally published or produced */
-  workYear?: Maybe<Scalars["String"]>;
+  workYear?: Maybe<PublicationYear>;
 };
 
 export type ManifestationPart = {
@@ -580,6 +610,8 @@ export type ManifestationPart = {
   creators: Array<Creator>;
   /** Additional creator or contributor to this entry (music track or literary analysis) as described on the publication. E.g. 'arr.: H. Cornell' */
   creatorsFromDescription: Array<Scalars["String"]>;
+  /** The playing time for this specific part (i.e. the duration of a music track)  */
+  playingTime?: Maybe<Scalars["String"]>;
   /** Subjects of this entry (music track or literary analysis) */
   subjects?: Maybe<Array<Subject>>;
   /** The title of the entry (music track or title of a literary analysis) */
@@ -601,6 +633,12 @@ export type ManifestationParts = {
   parts: Array<ManifestationPart>;
   /** The type of manifestation parts, is this music tracks, book parts etc. */
   type: ManifestationPartType;
+};
+
+export type ManifestationReview = {
+  __typename?: "ManifestationReview";
+  rating?: Maybe<Scalars["String"]>;
+  reviewByLibrarians?: Maybe<Array<Maybe<ReviewElement>>>;
 };
 
 export type ManifestationTitles = {
@@ -631,6 +669,7 @@ export type Manifestations = {
   bestRepresentation: Manifestation;
   first: Manifestation;
   latest: Manifestation;
+  mostRelevant: Array<Manifestation>;
 };
 
 export type MaterialType = {
@@ -666,7 +705,6 @@ export enum NoteType {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
-  Language = "LANGUAGE",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
   OccasionForPublication = "OCCASION_FOR_PUBLICATION",
@@ -964,6 +1002,24 @@ export type Review = {
   date?: Maybe<Scalars["String"]>;
 };
 
+export type ReviewElement = {
+  __typename?: "ReviewElement";
+  content?: Maybe<Scalars["String"]>;
+  heading?: Maybe<Scalars["String"]>;
+  manifestations?: Maybe<Array<Maybe<Manifestation>>>;
+  type?: Maybe<ReviewElementType>;
+};
+
+export enum ReviewElementType {
+  Abstract = "ABSTRACT",
+  AcquisitionRecommendations = "ACQUISITION_RECOMMENDATIONS",
+  Audience = "AUDIENCE",
+  Conclusion = "CONCLUSION",
+  Description = "DESCRIPTION",
+  Evaluation = "EVALUATION",
+  SimilarMaterials = "SIMILAR_MATERIALS"
+}
+
 export type Role = {
   __typename?: "Role";
   /** The type of creator/contributor as text in singular and plural in Danish, e.g. forfatter/forfattere, komponist/komponister etc */
@@ -1095,6 +1151,7 @@ export type SubjectContainer = {
 export type SubjectText = Subject & {
   __typename?: "SubjectText";
   display: Scalars["String"];
+  language?: Maybe<Language>;
   type: SubjectType;
 };
 
@@ -1160,7 +1217,7 @@ export type Translation = {
 
 export type Universe = {
   __typename?: "Universe";
-  /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Universe */
+  /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"];
 };
 
@@ -1199,7 +1256,7 @@ export type Work = {
   /** Worktypes for this work - 'none' replaced by 'other' */
   workTypes: Array<WorkType>;
   /** The year this work was originally published or produced */
-  workYear?: Maybe<Scalars["String"]>;
+  workYear?: Maybe<PublicationYear>;
 };
 
 export type WorkTitles = {
@@ -1286,7 +1343,6 @@ export type GetMaterialQuery = {
     __typename?: "Work";
     workId: string;
     abstract?: Array<string> | null;
-    workYear?: string | null;
     genreAndForm: Array<string>;
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     mainLanguages: Array<{
@@ -1372,6 +1428,7 @@ export type GetMaterialQuery = {
         original?: Array<string> | null;
       };
     }>;
+    workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
       __typename?: "Manifestations";
       all: Array<{
@@ -1569,7 +1626,6 @@ export type SearchWithPaginationQuery = {
       __typename?: "Work";
       workId: string;
       abstract?: Array<string> | null;
-      workYear?: string | null;
       genreAndForm: Array<string>;
       titles: {
         __typename?: "WorkTitles";
@@ -1602,6 +1658,10 @@ export type SearchWithPaginationQuery = {
           original?: Array<string> | null;
         };
       }>;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
       manifestations: {
         __typename?: "Manifestations";
         all: Array<{
@@ -1836,6 +1896,7 @@ export type IntelligentFacetsQueryVariables = Exact<{
   q: SearchQuery;
   facetsLimit: Scalars["Int"];
   valuesLimit: Scalars["Int"];
+  filters: SearchFilters;
 }>;
 
 export type IntelligentFacetsQuery = {
@@ -2102,7 +2163,6 @@ export type WorkSmallFragment = {
   __typename?: "Work";
   workId: string;
   abstract?: Array<string> | null;
-  workYear?: string | null;
   genreAndForm: Array<string>;
   titles: {
     __typename?: "WorkTitles";
@@ -2135,6 +2195,7 @@ export type WorkSmallFragment = {
       original?: Array<string> | null;
     };
   }>;
+  workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
     __typename?: "Manifestations";
     all: Array<{
@@ -2296,7 +2357,6 @@ export type WorkMediumFragment = {
   __typename?: "Work";
   workId: string;
   abstract?: Array<string> | null;
-  workYear?: string | null;
   genreAndForm: Array<string>;
   materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
   mainLanguages: Array<{
@@ -2378,6 +2438,7 @@ export type WorkMediumFragment = {
       original?: Array<string> | null;
     };
   }>;
+  workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
     __typename?: "Manifestations";
     all: Array<{
@@ -2665,7 +2726,9 @@ export const WorkSmallFragmentDoc = `
       original
     }
   }
-  workYear
+  workYear {
+    year
+  }
   genreAndForm
   manifestations {
     ...ManifestationsSimple
@@ -2908,8 +2971,8 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     options
   );
 export const IntelligentFacetsDocument = `
-    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
-  search(q: $q) {
+    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
+  search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
       values(limit: $valuesLimit) {

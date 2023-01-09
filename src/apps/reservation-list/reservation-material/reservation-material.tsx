@@ -10,7 +10,7 @@ import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useConfig } from "../../../core/utils/config";
 import { AgencyBranch } from "../../../core/fbs/model";
-import { excludeBlacklistedBranches } from "../../../components/reservation/helper";
+import { excludeBlacklistedBranches } from "../../../core/utils/branches";
 import ReservationDetails from "../modal/reservation-details/reservation-details";
 
 export interface ReservationMaterialProps {
