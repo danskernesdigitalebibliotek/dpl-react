@@ -19,7 +19,9 @@ export const useAvailabilityData = ({
     transformer: "stringToArray"
   });
 
-  const isOnline = accessTypes.includes(AccessTypeCode.Online);
+  // Conditional chaining is necessary here because we use the component multiple
+  // places and accessTypes prop isn't always provided.
+  const isOnline = accessTypes?.includes(AccessTypeCode.Online);
 
   useGetAvailabilityV3(
     {
