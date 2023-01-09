@@ -10,7 +10,7 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
-  manifestation: Manifestation;
+  selectedManifestations: Manifestation[];
   trackOnlineView: () => Promise<unknown>;
   dataCy?: string;
 }
@@ -19,7 +19,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
 > = ({
   size,
-  manifestation: { pid },
+  selectedManifestations,
   trackOnlineView,
   dataCy = "material-button-online-infomedia-article"
 }) => {
@@ -30,7 +30,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const onClick = () => {
     openGuarded({
       authUrl,
-      modalId: infomediaModalId(pid),
+      modalId: infomediaModalId(selectedManifestations[0].pid),
       trackOnlineView
     });
   };

@@ -9,7 +9,7 @@ import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
-  digitalArticleIssn: IssnId;
+  digitalArticleIssnIds: IssnId[];
   size?: ButtonSize;
   dataCy?: string;
 }
@@ -17,7 +17,7 @@ export interface MaterialButtonOnlineDigitalArticleProps {
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
 > = ({
-  digitalArticleIssn,
+  digitalArticleIssnIds,
   size,
   dataCy = "material-button-online-digital-article"
 }) => {
@@ -28,7 +28,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
   const onClick = () => {
     openGuarded({
       authUrl,
-      modalId: createDigitalModalId(digitalArticleIssn)
+      modalId: createDigitalModalId(digitalArticleIssnIds)
     });
   };
 

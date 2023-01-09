@@ -9,18 +9,18 @@ import { Manifestation } from "../../../core/utils/types/entities";
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
 interface InfomediaModalProps {
-  mainManifestation: Manifestation;
-  infoMediaId: string;
+  selectedManifestations: Manifestation[];
+  infoMediaIds: string[];
 }
 
 const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
-  mainManifestation: { pid },
-  infoMediaId
+  selectedManifestations,
+  infoMediaIds
 }) => {
   const t = useText();
 
   const { data, error } = useGetInfomediaQuery({
-    id: infoMediaId
+    id: infoMediaIds[0]
   });
 
   if (!data || error) {
@@ -32,7 +32,7 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 
   return (
     <Modal
-      modalId={infomediaModalId(pid)}
+      modalId={infomediaModalId(selectedManifestations[0].pid)}
       screenReaderModalDescriptionText={t(
         "infomediaModalScreenReaderModalDescriptionText"
       )}

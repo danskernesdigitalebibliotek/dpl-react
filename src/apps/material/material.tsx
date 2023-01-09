@@ -25,7 +25,7 @@ import {
   getWorkDescriptionListData,
   getManifestationFromType,
   getLatestWorkManifestation,
-  getInfomediaId
+  getInfomediaIds
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -42,7 +42,7 @@ import { statistics } from "../../core/statistics/statistics";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
 import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
-import { getDigitalArticleIssn } from "../../components/material/digital-modal/helper";
+import { getDigitalArticleIssnIds } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -50,8 +50,9 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
-  const [currentManifestation, setCurrentManifestation] =
-    useState<Manifestation | null>(null);
+  const [selectedManifestations, setSelectedManifestations] = useState<
+    Manifestation[] | null
+  >(null);
   const [selectedPeriodical, setSelectedPeriodical] =
     useState<PeriodicalEdition | null>(null);
   const { data, isLoading } = useGetMaterialQuery({
@@ -111,7 +112,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // if there is no type in the url, getLatestWorkManifestation is used to set the state and url type parameters
     if (!type) {
       const workManifestation = getLatestWorkManifestation(work);
-      setCurrentManifestation(workManifestation);
+      setSelectedManifestations([workManifestation]);
       setQueryParametersInUrl({
         type: getManifestationType(workManifestation)
       });
@@ -121,7 +122,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
     const manifestationFromType = getManifestationFromType(type, work);
     if (manifestationFromType) {
-      setCurrentManifestation(manifestationFromType);
+      setSelectedManifestations([manifestationFromType]);
     }
   }, [data]);
 
@@ -130,7 +131,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   }
 
   // TODO: handle error if data is empty array
-  if (!data?.work || !currentManifestation) {
+  if (!data?.work || !selectedManifestations) {
     return <div>No work data</div>;
   }
 
@@ -148,12 +149,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const pid = getManifestationPid(manifestations);
 
   const listDescriptionData = getWorkDescriptionListData({
-    manifestation: currentManifestation,
+    manifestation: selectedManifestations[0],
     work,
     t
   });
   const parallelManifestations = materialIsFiction(work) ? manifestations : [];
-  const infomediaId = getInfomediaId(currentManifestation);
+  const infomediaIds = getInfomediaIds(selectedManifestations);
 
   // Get disclosure URL parameter from the current URL to see if it should be open
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
@@ -163,8 +164,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       <MaterialHeader
         wid={wid}
         work={work}
-        manifestation={currentManifestation}
-        selectManifestationHandler={setCurrentManifestation}
+        selectedManifestations={selectedManifestations}
+        setSelectedManifestations={setSelectedManifestations}
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
       />
@@ -233,17 +234,19 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         </>
       ))}
 
-      {infomediaId && (
+      {infomediaIds && infomediaIds.length > 0 && (
         <InfomediaModal
-          mainManifestation={currentManifestation}
-          infoMediaId={infomediaId}
+          selectedManifestations={selectedManifestations}
+          infoMediaIds={infomediaIds}
         />
       )}
 
-      {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
+      {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
         <DigitalModal
-          digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
-          pid={currentManifestation.pid}
+          digitalArticleIssnIds={getDigitalArticleIssnIds(
+            selectedManifestations
+          )}
+          pid={selectedManifestations[0].pid}
           workId={wid}
         />
       )}

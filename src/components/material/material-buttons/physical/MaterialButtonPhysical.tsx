@@ -10,13 +10,13 @@ import { reservationModalId } from "../../../reservation/ReservationModalBody";
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
-  faustId: FaustId;
+  faustIds: FaustId[];
   dataCy?: string;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
-  faustId,
+  faustIds,
   size,
   dataCy = "material-button-physical"
 }) => {
@@ -26,7 +26,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const onClick = () => {
     dispatch(
       openModal({
-        modalId: reservationModalId(faustId)
+        modalId: reservationModalId(faustIds[0])
       })
     );
   };

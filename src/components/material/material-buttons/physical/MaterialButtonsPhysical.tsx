@@ -1,4 +1,5 @@
 import React from "react";
+import { getAllPids } from "../../../../apps/material/helper";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -9,19 +10,20 @@ import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
-  manifestation: Manifestation;
+  selectedManifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  manifestation: { pid, materialTypes },
+  selectedManifestations,
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const faustId = convertPostIdToFaustId(pid);
+  const pids = getAllPids(selectedManifestations);
+  const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
   const { data, isLoading } = useGetAvailabilityV3({
-    recordid: [faustId]
+    recordid: faustIds
   });
 
   // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
@@ -44,13 +46,14 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   if (!manifestationAvailability.reservable) {
     return <MaterialButtonCantReserve size={size} />;
   }
+  const manifestationMaterialType =
+    selectedManifestations[0].materialTypes[0].specific;
 
-  const manifestationMaterialType = materialTypes[0].specific;
   return (
     <MaterialButtonReservePhysical
       dataCy={dataCy}
       manifestationMaterialType={manifestationMaterialType}
-      faustId={faustId}
+      faustIds={faustIds}
       size={size}
     />
   );

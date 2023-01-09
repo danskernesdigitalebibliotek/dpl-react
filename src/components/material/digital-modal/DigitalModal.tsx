@@ -11,17 +11,17 @@ import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId } from "./helper";
 
 type DigitalModalProps = {
-  digitalArticleIssn: IssnId;
+  digitalArticleIssnIds: IssnId[];
   pid: Pid;
   workId: WorkId;
 };
 
 const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
-  digitalArticleIssn,
+  digitalArticleIssnIds,
   pid,
   workId
 }) => {
-  const modalId = createDigitalModalId(digitalArticleIssn);
+  const modalId = createDigitalModalId(digitalArticleIssnIds);
   const t = useText();
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const { track } = useStatistics();

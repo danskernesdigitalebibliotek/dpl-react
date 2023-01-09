@@ -158,7 +158,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
-          manifestation={manifestation}
+          selectedManifestations={[manifestation]}
           size="small"
           workId={workId}
         />

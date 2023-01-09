@@ -7,15 +7,15 @@ import StockAndReservationInfo from "../../StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 
 interface MaterialAvailabilityTextPhysicalProps {
-  pid: Pid;
+  pids: Pid[];
 }
 
 const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
-> = ({ pid }) => {
-  const faustId = convertPostIdToFaustId(pid);
+> = ({ pids }) => {
+  const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
   const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [faustId]
+    recordid: faustIds
   });
 
   if (isLoading || isError || !data) return null;

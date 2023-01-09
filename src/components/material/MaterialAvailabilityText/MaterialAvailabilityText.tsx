@@ -1,23 +1,35 @@
 import * as React from "react";
+import { getAllIdentifiers, getAllPids } from "../../../apps/material/helper";
 import { Manifestation } from "../../../core/utils/types/entities";
 import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnline";
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";
 
 interface Props {
-  manifestation: Manifestation;
+  selectedManifestations: Manifestation[];
 }
 
 const MaterialAvailabilityText: React.FC<Props> = ({
-  manifestation,
-  manifestation: { pid, identifiers }
+  selectedManifestations
 }) => {
   return (
     <>
-      {manifestation.accessTypes.map((item) => {
-        if (item.code === "PHYSICAL")
-          return <MaterialAvailabilityTextPhysical pid={pid} />;
-        if (item.code === "ONLINE" && identifiers.length > 0)
-          return <MaterialAvailabilityTextOnline isbn={identifiers[0].value} />;
+      {/* We use the first manifestation because accessType shouldn't change between manifestations of the same material type. */}
+      {selectedManifestations[0].accessTypes.map((accessType) => {
+        if (accessType.code === "PHYSICAL")
+          return (
+            <MaterialAvailabilityTextPhysical
+              pids={getAllPids(selectedManifestations)}
+            />
+          );
+        if (
+          accessType.code === "ONLINE" &&
+          getAllIdentifiers(selectedManifestations).length > 0
+        )
+          return (
+            <MaterialAvailabilityTextOnline
+              isbn={getAllIdentifiers(selectedManifestations)[0]}
+            />
+          );
         return null;
       })}
     </>

@@ -1,4 +1,5 @@
 import React, { useState, FC, useEffect } from "react";
+import { getAllUniqueMaterialTypes } from "../../../../apps/material/helper";
 import {
   AccessUrl,
   MaterialType
@@ -16,7 +17,7 @@ export interface MaterialButtonOnlineExternalProps {
   origin: string;
   size?: ButtonSize;
   trackOnlineView: () => void;
-  manifestation: Manifestation;
+  selectedManifestations: Manifestation[];
   dataCy?: string;
 }
 
@@ -42,7 +43,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   origin,
   size,
   trackOnlineView,
-  manifestation,
+  selectedManifestations,
   dataCy = "material-button-online-external"
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
@@ -90,12 +91,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   return (
     <LinkNoStyle url={translatedUrl} dataCy={dataCy}>
       <Button
-        label={label(
-          origin,
-          manifestation.materialTypes.map(
-            (materialType) => materialType.specific
-          )
-        )}
+        label={label(origin, getAllUniqueMaterialTypes(selectedManifestations))}
         buttonType="external-link"
         variant="filled"
         disabled={false}

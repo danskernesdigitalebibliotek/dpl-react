@@ -1,3 +1,4 @@
+import { uniq } from "lodash";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import { HoldingsV3 } from "../../core/fbs/model";
@@ -145,13 +146,45 @@ export const totalBranchesHaveMaterial = (
   }).length;
 };
 
-export const getInfomediaId = (manifestation: Manifestation) => {
-  const access = manifestation?.access || [];
-  return access.reduce<string | null>((acc, curr) => {
-    const { __typename: type } = curr;
-    if (type === "InfomediaService") {
-      return curr.id;
+export const getInfomediaIds = (manifestations: Manifestation[]) => {
+  const manifestationsWithInfomediaAccess = manifestations.filter(
+    (manifestation) => {
+      return manifestation.access.find((currentAccess) => {
+        // eslint-disable-next-line no-underscore-dangle
+        return currentAccess.__typename === "InfomediaService";
+      });
     }
-    return acc;
-  }, null);
+  );
+  const infomediaIds = manifestationsWithInfomediaAccess
+    .map((manifestation) =>
+      manifestation.access.map((currentAccess) => {
+        // eslint-disable-next-line no-underscore-dangle
+        return currentAccess.__typename === "InfomediaService"
+          ? currentAccess.id
+          : null;
+      })
+    )
+    .flat()
+    .filter((id) => id);
+
+  return infomediaIds as string[];
+};
+
+export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
+  const allMaterialTypes = manifestations
+    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+    .flat();
+  return uniq(allMaterialTypes);
+};
+
+export const getAllIdentifiers = (manifestations: Manifestation[]) => {
+  return manifestations
+    .map((manifestation) =>
+      manifestation.identifiers.map((identifier) => identifier.value)
+    )
+    .flat();
+};
+
+export const getAllPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
 };

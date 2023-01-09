@@ -1,5 +1,4 @@
 import React from "react";
-import { uniq } from "lodash";
 import {
   convertPostIdToFaustId,
   getManifestationType
@@ -12,30 +11,28 @@ import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
+import {
+  getAllIdentifiers,
+  getAllUniqueMaterialTypes
+} from "../../apps/material/helper";
 
 export interface AvailabilityLabelsProps {
   manifestations: Manifestation[];
   workId: WorkId;
-  selectedManifestation?: Manifestation;
-  selectManifestationHandler?: (manifestation: Manifestation) => void;
+  selectedManifestations?: Manifestation[];
+  setSelectedManifestations?: (manifestations: Manifestation[]) => void;
   cursorPointer?: boolean;
 }
 
 export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
-  selectedManifestation: manifestation,
-  selectManifestationHandler,
+  selectedManifestations,
+  setSelectedManifestations,
   cursorPointer = false
 }) => {
   const { materialUrl } = useUrls();
-
-  // Find out what unique material types there are for the manifestation.
-  const allMaterialTypes = manifestations
-    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
-    .flat();
-  const uniqueMaterialTypes = uniq(allMaterialTypes);
-
+  const uniqueMaterialTypes = getAllUniqueMaterialTypes(manifestations);
   // Divide manifestations into array of arrays based on material type.
   const manifestationsByMaterialType = uniqueMaterialTypes.map(
     (uniqueMaterialType) => {
@@ -55,17 +52,14 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
         const pidArray = arrayOfManifestations.map((manifest) => manifest.pid);
         const faustIdArray = pidArray.map((pid) => convertPostIdToFaustId(pid));
         const materialType = arrayOfManifestations[0].materialTypes[0].specific;
-        const identifiers = arrayOfManifestations
-          .map((manifest) =>
-            manifest.identifiers.map((identifier) => identifier.value)
-          )
-          .flat();
+        const identifiers = getAllIdentifiers(arrayOfManifestations);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = arrayOfManifestations
           .map((manifest) => {
             return manifest.accessTypes.map((accessType) => accessType.code);
           })
           .flat();
+
         return (
           <AvailabilityLabel
             key={materialType}
@@ -75,13 +69,13 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
             manifestText={materialType}
             accessTypes={accessTypesCodes}
             selected={
-              manifestation &&
-              materialType === getManifestationType(manifestation)
+              selectedManifestations &&
+              materialType === getManifestationType(selectedManifestations[0])
             }
             handleSelectManifestation={
-              selectManifestationHandler
+              setSelectedManifestations
                 ? () => {
-                    selectManifestationHandler(manifestations[0]);
+                    setSelectedManifestations(arrayOfManifestations);
                     setQueryParametersInUrl({
                       type: materialType
                     });

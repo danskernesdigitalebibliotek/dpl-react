@@ -1,35 +1,30 @@
 import * as React from "react";
 import { FC } from "react";
-import {
-  AccessUrl,
-  DigitalArticleService
-} from "../../../../core/dbc-gateway/generated/graphql";
+import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
 import { statistics } from "../../../../core/statistics/statistics";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
+import { getDigitalArticleIssnIds } from "../../digital-modal/helper";
 import { hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
-  manifestation: Manifestation;
+  selectedManifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
-  manifestation,
+  selectedManifestations,
   size,
   workId,
   dataCy = "material-buttons-online"
 }) => {
-  const accessElement = manifestation.access.shift();
-  const accessType = accessElement?.__typename || "";
-
   const { track } = useStatistics();
   const trackOnlineView = () => {
     return track("click", {
@@ -38,8 +33,12 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
+
+  const accessElement = selectedManifestations[0].access[0];
+  const access = accessElement?.__typename;
+
   // If the access type is an external type we'll show corresponding button.
-  if (["Ereol", "AccessUrl"].includes(accessType)) {
+  if (["Ereol", "AccessUrl"].includes(access)) {
     const {
       origin,
       url: externalUrl,
@@ -54,31 +53,30 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         origin={origin}
         size={size}
         trackOnlineView={trackOnlineView}
-        manifestation={manifestation}
+        selectedManifestations={selectedManifestations}
         dataCy={`${dataCy}-external`}
       />
     );
   }
 
   if (
-    accessType === "DigitalArticleService" &&
-    hasCorrectMaterialType("tidsskriftsartikel", manifestation)
+    access === "DigitalArticleService" &&
+    hasCorrectMaterialType("tidsskriftsartikel", selectedManifestations)
   ) {
-    const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
       <MaterialButtonOnlineDigitalArticle
-        digitalArticleIssn={digitalArticleIssn}
+        digitalArticleIssnIds={getDigitalArticleIssnIds(selectedManifestations)}
         size={size}
         dataCy={`${dataCy}-digital-article`}
       />
     );
   }
 
-  if (accessType === "InfomediaService") {
+  if (access === "InfomediaService") {
     return (
       <MaterialButtonOnlineInfomediaArticle
         size={size}
-        manifestation={manifestation}
+        selectedManifestations={selectedManifestations}
         trackOnlineView={trackOnlineView}
         dataCy={`${dataCy}-infomedia-article`}
       />
