@@ -1,17 +1,15 @@
 # Skeleton screens
 
-In order to improve both UX and the performance score
-you can choose to use skeleton screens
-in situation where you need to fill the interface
+In order to improve both UX and the performance score you can choose to use
+skeleton screens in situation where you need to fill the interface
 with data from a requests to an external service.
 
 ## Main Purpose
 
-The skeleton screens are being showed instantly
-in order to deliver some content to the end user
-fast while loading data.
-When the data is arriving the skeleton screens
-are being replaced with the real data.
+The skeleton screens are being showed instantly in order to deliver
+some content to the end user fast while loading data.
+When the data is arriving the skeleton screens are being replaced
+with the real data.
 
 ## How to use it
 
@@ -21,9 +19,12 @@ The skeleton screens are rendered with help from the
  you can easily compose screens
  that simulate the look of a "real" rendering with real data.
 
-### Simple example
+### Example
 
-In this example we have a HelloWorld app with three text props attached:
+In this example we are showing a search result item as a skeleton screen.
+The skeleton screen consists of a cover, a headline and two lines of text.
+In this case we wanted to maintain the styling of the .search-result-item
+wrapper. And show the skeleton screen elements by using ssc classes.
 
 ```tsx
 import React from "react";
