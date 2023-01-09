@@ -5,7 +5,6 @@ import { tallyUpFees } from "../../../core/utils/helpers/general";
 import { Link } from "../../../components/atoms/link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
-import Arrow from "../../../components/atoms/icons/arrow/arrow-white";
 
 const DashboardFees: FC = () => {
   const t = useText();
@@ -20,7 +19,7 @@ const DashboardFees: FC = () => {
     }
   }, [fbsFees]);
   return (
-    <div>
+    <div className="fee-container">
       {fbsFees && feeCount !== 0 && (
         <div>
           <div className="status-userprofile__column mb-16">
