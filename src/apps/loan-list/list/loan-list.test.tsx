@@ -301,7 +301,7 @@ describe("Loan list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find("h3")
+      .find(".list-reservation__header")
       .should("have.text", "Dummy Some Title");
 
     // ID 42 2.d. authors & ID 42 2.f. year published
@@ -486,7 +486,7 @@ describe("Loan list", () => {
       .eq(1)
       .find(".list-reservation")
       .eq(0)
-      .find("h3")
+      .find(".list-reservation__header")
       .should("have.text", "Mordet i det blå tog");
 
     // ID 42 2.d. authors & ID 42 2.f. year published
@@ -601,6 +601,7 @@ describe("Loan list", () => {
       .eq(1)
       .find(".list-reservation")
       .eq(0)
+      .find(".list-reservation__header")
       .click();
     cy.get(".modal-details").should("be.visible");
   });
@@ -629,6 +630,7 @@ describe("Loan list", () => {
       .eq(0)
       .find(".list-reservation")
       .eq(0)
+      .find(".list-reservation__header")
       .click();
     cy.get(".modal-details").should("be.visible");
   });
