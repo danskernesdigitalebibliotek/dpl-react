@@ -681,9 +681,8 @@ describe("Reservation list", () => {
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".reservation-list-page")
-      .find(".list-reservation-container")
-      .eq(0)
       .find(".dpl-list-empty")
+      .eq(0)
       .should(
         "have.text",
         "At the moment you have 0 reservations ready for pickup"
