@@ -15,7 +15,6 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
 }) => {
   const { materialOverdueUrl } = useUrls();
   const t = useText();
-
   if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return null;
 
   return (
