@@ -11,7 +11,7 @@ import {
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 
-export const getWorkManifestation = (work: Work) => {
+export const getLatestWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
 };
 
@@ -48,7 +48,7 @@ export const getWorkDescriptionListData = ({
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-  const fallBackManifestation = getWorkManifestation(work);
+  const fallBackManifestation = getLatestWorkManifestation(work);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
