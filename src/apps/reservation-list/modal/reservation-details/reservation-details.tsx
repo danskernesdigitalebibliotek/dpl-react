@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
