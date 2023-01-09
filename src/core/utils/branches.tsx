@@ -23,7 +23,8 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-const getBranches = (config: UseConfigFunction): AgencyBranch[] => {
+export const useGetBranches = (): AgencyBranch[] => {
+  const config = useConfig();
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
@@ -38,16 +39,9 @@ const getBranches = (config: UseConfigFunction): AgencyBranch[] => {
 };
 
 const useGetCleanBranches = () => {
-  const config = useConfig();
-  const branches = getBranches(config);
+  const branches = useGetBranches();
   const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
-};
-
-export const useGetBranches = () => {
-  const config = useConfig();
-  const branches = getBranches(config);
-  return branches;
 };
 
 export default useGetCleanBranches;
