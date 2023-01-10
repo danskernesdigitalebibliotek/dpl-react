@@ -143,7 +143,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         className="search-result-item__availability"
         data-cy="search-result-item-availability"
       >
-        <AvailabiltityLabels
+        <AvailabilityLabels
           cursorPointer
           workId={workId}
           manifestations={manifestations}
