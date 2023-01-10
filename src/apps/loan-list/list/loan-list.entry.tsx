@@ -7,6 +7,7 @@ import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 export interface LoanListEntryConfigProps {
   fbsBaseUrlConfig: string;
   materialOverdueUrl: string;
+  feesPageUrl: string;
   publizonBaseUrlConfig: string;
 }
 
