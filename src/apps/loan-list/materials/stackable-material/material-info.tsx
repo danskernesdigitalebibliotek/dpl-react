@@ -37,7 +37,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           </div>
         </div>
         <div className="list-reservation__about">
-          <h3 className="text-header-h4">{title}</h3>
+          <h3 className="text-header-h4 color-secondary-gray">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
             {/* todo consolidate author/year in a component 
              other files: reservartion/helper.ts, search-result-list-item.tsx */}
@@ -52,7 +52,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             <p className="text-small-caption color-secondary-gray">{series}</p>
           )}
         </div>
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   );

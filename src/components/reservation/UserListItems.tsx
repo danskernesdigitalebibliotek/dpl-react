@@ -18,11 +18,11 @@ import { useConfig } from "../../core/utils/config";
 import {
   smsNotificationsIsEnabled,
   getPreferredBranch,
-  getNoInterestAfter,
-  excludeBlacklistedBranches
+  getNoInterestAfter
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
+import { excludeBlacklistedBranches } from "../../core/utils/branches";
 
 export interface UserListItemsProps {
   patron: PatronV5;

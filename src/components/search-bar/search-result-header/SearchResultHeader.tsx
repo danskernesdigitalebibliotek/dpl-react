@@ -13,7 +13,10 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   const t = useText();
 
   return (
-    <h1 className="text-header-h2 mb-16 search-result-title">
+    <h1
+      className="text-header-h2 mb-16 search-result-title"
+      data-cy="search-result-title"
+    >
       {`${t("showingResultsForText")} “${q}” (${hitcount})`}
     </h1>
   );

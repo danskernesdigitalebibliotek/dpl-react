@@ -76,6 +76,7 @@
           }
         }
       ],
+      "workYear": null,
       "genreAndForm": [],
       "manifestations": {
         "all": [
@@ -134,7 +135,7 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": 21
               }
             ],
             "accessTypes": [
@@ -152,7 +153,10 @@
                 "loanIsPossible": true
               }
             ],
-            "shelfmark": null
+            "shelfmark": {
+              "postfix": "Faglig",
+              "shelfmark": "19.1"
+            }
           }
         ],
         "latest": {
@@ -210,7 +214,7 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": null
+              "numberOfPages": 21
             }
           ],
           "accessTypes": [
@@ -228,7 +232,10 @@
               "loanIsPossible": true
             }
           ],
-          "shelfmark": null
+          "shelfmark": {
+            "postfix": "Faglig",
+            "shelfmark": "19.1"
+          }
         }
       },
       "materialTypes": [
@@ -266,7 +273,6 @@
         "display": "faglitteratur",
         "code": "NONFICTION"
       },
-      "workYear": null,
       "dk5MainEntry": {
         "display": "19.1 Forskningsteknik i alm."
       }
