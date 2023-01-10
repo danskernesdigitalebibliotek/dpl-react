@@ -89,10 +89,9 @@ const IntermedateList: FC = () => {
     if (totalFeePrePaymentChange > 0) {
       return;
     }
-    const initialValue = 0;
     const totalFee = itemsPrePaymentChange?.reduce(
       (accumulator, { amount }) => accumulator + amount,
-      initialValue
+      0
     );
     if (totalFee) {
       setTotalFeePrePaymentChange(totalFee);
@@ -103,10 +102,9 @@ const IntermedateList: FC = () => {
     if (totalFeePostPaymentChange > 0) {
       return;
     }
-    const initialValue = 0;
     const totalFee = itemsPostPaymentChange?.reduce(
       (accumulator, { amount }) => accumulator + amount,
-      initialValue
+      0
     );
 
     if (totalFee) {

@@ -35,7 +35,7 @@ const MyPaymentOverviewModal: FC = () => {
         <div className="modal-cta__buttons mt-48">
           <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            href={new URL(paymentOverviewUrl)}
+            href={paymentOverviewUrl}
             isNewTab
           >
             {t("intermediatePaymentModalGotoText")}{" "}

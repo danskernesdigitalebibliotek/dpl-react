@@ -28,7 +28,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { dueDate, faust, identifier, loanId } = loan;
-  const { authors, materialType, year, title } = material || {};
+  const { authors = "", materialType, year = "", title } = material || {};
 
   const openLoanDetailsModalHandler = useCallback(() => {
     if (faust) {
@@ -75,7 +75,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{title}</p>
           <p className="text-small-caption">
-            <AuthorYear author={authors || ""} year={year || ""} />
+            <AuthorYear author={authors} year={year} />
           </p>
         </div>
         <div className="list-materials__status">

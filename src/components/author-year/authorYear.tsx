@@ -2,8 +2,8 @@ import * as React from "react";
 import { FC } from "react";
 
 export interface ButtonSmallFilledProps {
-  author: string;
-  year: string;
+  author: string | null;
+  year: string | null;
 }
 
 const AuthorYear: FC<ButtonSmallFilledProps> = ({ author, year }) => {

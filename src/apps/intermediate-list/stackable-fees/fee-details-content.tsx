@@ -62,7 +62,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
             label={
               <>
                 {t("iAcceptText")}{" "}
-                <Link href={new URL(termsOfTradeUrl)}>
+                <Link href={termsOfTradeUrl}>
                   {t("termsOfTradeText")}
                   <sup>*</sup>
                 </Link>
