@@ -43,12 +43,12 @@ describe("Search Result", () => {
       .and("contain.text", "By Angela Levin");
   });
 
-  it("Does a search result have the expected number of availibility labels?", () => {
+  it("Renders one availability labels per material type", () => {
     cy.getBySel("search-result-item-availability")
-      .first()
+      .eq(1)
       .find("a")
       .should("be.visible")
-      .and("have.length", 4);
+      .and("have.length", 6);
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
