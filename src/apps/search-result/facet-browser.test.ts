@@ -173,8 +173,29 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 
-    cy.contains("h1", "“harry” (843)");
+    // Intercept covers.
+    cy.fixture("cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("Cover service");
+
+    // Intercept material list service.
+    cy.intercept("HEAD", "**/list/default/**", {
+      statusCode: 404,
+      body: {}
+    }).as("Material list service");
+
+    // Intercept campaign query.
+    cy.fixture("search-result/campaign.json")
+      .then((result) => {
+        cy.intercept("**/dpl_campaign/match", result);
+      })
+      .as("Campaign service - full campaign");
+
+    cy.visit("/iframe.html?id=apps-search-result--search-result");
+    cy.contains("button", "+ more filters").click();
   });
 });
 
-export {};
+export default {};

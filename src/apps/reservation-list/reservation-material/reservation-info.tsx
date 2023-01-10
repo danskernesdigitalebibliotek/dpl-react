@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useText } from "../../../core/utils/text";
-import { AgencyBranch } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   getColors,
@@ -10,16 +9,13 @@ import {
 import { formatDate } from "../../loan-list/utils/helpers";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
+import { useGetBranches } from "../../../core/utils/branches";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
-  branches: AgencyBranch[];
 }
 
-const ReservationInfo: FC<ReservationInfoProps> = ({
-  reservationInfo,
-  branches
-}) => {
+const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
   const t = useText();
 
   const {
@@ -31,9 +27,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupNumber
   } = reservationInfo;
 
-  // const [readyForPickupLabel, setReadyForPickupLabel] = useState<string>("");
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
+  const branches = useGetBranches();
 
   let readyForPickupLabel = "";
   if (pickupDeadline) {
