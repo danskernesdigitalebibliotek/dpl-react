@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { element } from "prop-types";
+import { handleModalFocus } from "./utils/helpers/general";
 
 export type ModalId = string;
 
@@ -31,6 +33,10 @@ const modalSlice = createSlice({
           );
         }
       }
+      const { activeElement } = document;
+      if (activeElement) {
+        handleModalFocus(activeElement);
+      }
     },
     closeModal(state: StateProps, action: PayloadProps) {
       state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
@@ -39,6 +45,8 @@ const modalSlice = createSlice({
         .get("modal")
         ?.replace(action.payload.modalId, "");
       searchParams.set("modal", newSearchParams || "");
+      const elementToFocus = handleModalFocus();
+      console.log(elementToFocus);
     }
   }
 });
