@@ -33,11 +33,12 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
-  getLoanDetailsModalId,
+  getDetailsModalId,
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
+import { ListType } from "../../../core/utils/types/list-type";
 
 interface LoanListProps {
   pageSize: number;
@@ -49,7 +50,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { loanDetails, allLoansId, dueDateModal } = getModalIds();
   const t = useText();
   const [view, setView] = useState<ListView>("list");
-  const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
+  const [modalLoan, setModalLoan] = useState<ListType | null>(null);
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
@@ -126,8 +127,12 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
     // if there is a loan details query param, loan details modal should be opened
+    const loanDetailsString = loanDetails as string;
     if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
-      const loanDetailsModalId = getLoanDetailsModalId(modalUrlParam);
+      const loanDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        loanDetailsString
+      );
       if (loanDetailsModalId) {
         setModalDetailsId(loanDetailsModalId);
       }
@@ -222,7 +227,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         <MaterialDetails
           faust={modalLoan?.faust}
           identifier={modalLoan?.identifier}
-          loan={modalLoan}
+          loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
       {dueDate && physicalLoans && (

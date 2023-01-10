@@ -10,12 +10,14 @@ interface ListProps {
   header: string;
   emptyListLabel: string;
   pageSize: number;
+  openReservationDetailsModal: (reservation: ReservationType) => void;
 }
 const List: FC<ListProps> = ({
   reservations,
   header,
   pageSize,
-  emptyListLabel
+  emptyListLabel,
+  openReservationDetailsModal
 }) => {
   const [dataReady, setDataReady] = useState<boolean>(false);
   const [displayedReservations, setDisplayedReservations] = useState<
@@ -57,6 +59,7 @@ const List: FC<ListProps> = ({
           <ul className="list-reservation-container m-32">
             {displayedReservations.map((reservation) => (
               <ReservationMaterial
+                openReservationDetailsModal={openReservationDetailsModal}
                 key={reservation.identifier || reservation.faust}
                 identifier={reservation.identifier}
                 faust={reservation.faust}

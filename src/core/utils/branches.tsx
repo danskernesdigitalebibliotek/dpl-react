@@ -23,7 +23,7 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-const useGetCleanBranches = () => {
+export const useGetBranches = (): AgencyBranch[] => {
   const config = useConfig();
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
@@ -35,8 +35,12 @@ const useGetCleanBranches = () => {
     branches,
     blacklistBranches
   );
-  const cleanBranches = cleanBranchesId(whitelistBranches);
+  return whitelistBranches;
+};
 
+const useGetCleanBranches = () => {
+  const branches = useGetBranches();
+  const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
 };
 
