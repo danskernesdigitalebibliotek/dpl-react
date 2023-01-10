@@ -58,7 +58,7 @@ describe("Material", () => {
       .and("contain", "Lucinda Riley");
   });
 
-  it("Does a material have an availability label", () => {
+  it("Has exactly 1 availability label for the book material type that unavailable", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -69,7 +69,7 @@ describe("Material", () => {
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
-      .eq(0)
+      .should("have.length", 1)
       .parent()
       .find('[data-cy="availability-label-status"]')
       .should("have.text", "unavailable");
