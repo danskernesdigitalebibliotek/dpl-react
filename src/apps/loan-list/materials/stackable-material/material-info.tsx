@@ -40,7 +40,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         </div>
         <div className="list-reservation__about">
           <button
-            onClick={() => openDetailsModal()}
+            onClick={openDetailsModal}
             type="button"
             className="list-reservation__header color-secondary-gray"
           >

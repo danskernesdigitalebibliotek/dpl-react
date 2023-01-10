@@ -42,7 +42,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   }
 
   const openDetailsModal = useCallback(() => {
-    open(faust || identifier || "");
+    if (faust || identifier){
+      open(faust || identifier);
+    }
   }, [faust, identifier, open]);
 
   return (
