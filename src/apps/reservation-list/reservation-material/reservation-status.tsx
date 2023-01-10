@@ -18,7 +18,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
 }) => {
   return (
     <div className="list-reservation__status">
-      <div className="list-reservation__counter">
+      <div className="list-reservation__counter color-secondary-gray">
         <StatusCircleIcon color={color} percent={percent}>
           {children}
         </StatusCircleIcon>

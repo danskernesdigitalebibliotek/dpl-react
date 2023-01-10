@@ -11,6 +11,11 @@ export default {
   argTypes: {
     // Config
     ...serviceUrlArgs,
+    blacklistedSearchBranchesConfig: {
+      name: "Blacklisted branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       defaultValue: 20,
@@ -332,17 +337,18 @@ const Template: ComponentStory<typeof ReservationList> = (props) => (
 export const ReservationListEntry = Template.bind({});
 ReservationListEntry.args = {};
 
+const { reservationDetails } = getModalIds();
 export const ReservationListDigitalDetailsModal = Template.bind({});
 ReservationListDigitalDetailsModal.parameters = {
   query: {
-    modal: 9788740047905
+    modal: `${reservationDetails}9788740047905`
   }
 };
 
 export const ReservationListPhysicalDetailsModal = Template.bind({});
 ReservationListPhysicalDetailsModal.parameters = {
   query: {
-    modal: "46985591"
+    modal: `${reservationDetails}46985591`
   }
 };
 
@@ -350,7 +356,7 @@ const { deleteReservation } = getModalIds();
 export const ReservationListDeletePhysicalModal = Template.bind({});
 ReservationListDeletePhysicalModal.parameters = {
   query: {
-    modal: `46985591&${deleteReservation}67804976`
+    modal: `46985591&${deleteReservation}46985591`
   }
 };
 

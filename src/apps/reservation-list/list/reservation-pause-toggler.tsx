@@ -3,7 +3,6 @@ import ReservationsIcon from "@danskernesdigitalebibliotek/dpl-design-system/bui
 import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import { PatronV5 } from "../../../core/fbs/model";
 
 interface ReservationPauseTogglerProps {
@@ -29,40 +28,35 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
   }, [user]);
 
   return (
-    <>
-      <div className="dpl-pause-reservation-component m-32">
-        <div className="dpl-pause-reservation-component__pagefold" />
-        <div className="dpl-pause-reservation-component__flex">
-          <div className="dpl-pause-reservation-component__flex__reservation-icon">
-            <img src={ReservationsIcon} alt="" />
-          </div>
-          <div className="dpl-pause-reservation-component__flex__text">
-            {t("reservationListPauseReservationText")}
-          </div>
-          {onHoldDates && (
-            <span
-              aria-label={t("reservationListOnHoldAriaText")}
-              className="dpl-pause-reservation-component__flex__badge"
-            >
-              {onHoldDates}
-            </span>
-          )}
-          <div className="dpl-pause-reservation-component__flex__button">
-            <button
-              aria-label={t("reservationListPauseReservationAriaModalText")}
-              type="button"
-              onClick={openPauseReservationModal}
-              className={`dpl-toggle-button ${
-                onHoldDates
-                  ? "dpl-toggle-button--active"
-                  : "dpl-toggle-button--inactive"
-              }`}
-            />
-          </div>
+    <div className="dpl-pause-reservation-component m-32">
+      <div className="dpl-pause-reservation-component__pagefold" />
+      <div className="dpl-pause-reservation-component__flex">
+        <div className="dpl-pause-reservation-component__flex__reservation-icon">
+          <img src={ReservationsIcon} alt="" />
+        </div>
+        <div className="dpl-pause-reservation-component__flex__text">
+          {t("reservationListPauseReservationText")}
+        </div>
+        {onHoldDates && (
+          <span
+            aria-label={t("reservationListOnHoldAriaText")}
+            className="dpl-pause-reservation-component__flex__badge"
+          >
+            {onHoldDates}
+          </span>
+        )}
+        <div className="dpl-pause-reservation-component__flex__button">
+          <button
+            aria-label={t("reservationListPauseReservationAriaModalText")}
+            type="button"
+            onClick={openPauseReservationModal}
+            className={`dpl-toggle-button dpl-toggle-button--${
+              !onHoldDates ? "in" : ""
+            }active`}
+          />
         </div>
       </div>
-      <PauseReservation user={user} id={pauseReservation as string} />
-    </>
+    </div>
   );
 };
 

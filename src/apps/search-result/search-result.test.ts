@@ -8,7 +8,9 @@ describe("Search Result", () => {
   });
 
   it("Check search title", () => {
-    cy.contains("Showing results for “harry” (722)");
+    cy.getBySel("search-result-title")
+      .should("be.visible")
+      .and("contain", "Showing results for “harry” (722)");
   });
 
   it("Check length of search result list", () => {
@@ -28,25 +30,25 @@ describe("Search Result", () => {
   });
 
   it("Does the search result have titles?", () => {
-    cy.get(".search-result-page__list .search-result-item h2").should(
-      "contain.text",
-      "Harry : samtaler med prinsen"
-    );
+    cy.getBySel("search-result-item-title")
+      .first()
+      .should("be.visible")
+      .and("contain", "Harry : samtaler med prinsen");
   });
 
   it("Does the search result have authors?", () => {
-    cy.get(".search-result-page__list .search-result-item").should(
-      "contain.text",
-      "By Angela Levin"
-    );
+    cy.getBySel("search-result-item-author")
+      .first()
+      .should("be.visible")
+      .and("contain.text", "By Angela Levin");
   });
 
   it("Does a search result have the expected number of availibility labels?", () => {
-    cy.get("article")
-      .eq(0)
-      .find(".search-result-item__availability")
+    cy.getBySel("search-result-item-availability")
+      .first()
       .find("a")
-      .should("have.length", 4);
+      .should("be.visible")
+      .and("have.length", 4);
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
@@ -116,6 +118,13 @@ describe("Search Result", () => {
       statusCode: 404,
       body: {}
     }).as("Material list service");
+
+    // Intercept campaign query.
+    cy.fixture("search-result/campaign.json")
+      .then((result) => {
+        cy.intercept("**/dpl_campaign/match", result);
+      })
+      .as("Campaign service - full campaign");
   });
 });
 
