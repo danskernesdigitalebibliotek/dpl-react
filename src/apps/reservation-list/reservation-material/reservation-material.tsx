@@ -17,19 +17,16 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation,
   openReservationDetailsModal
 }) => {
-  const openDetailsModal = useCallback(
-    () => {
-      openReservationDetailsModal(reservation);
-    },
-    [openReservationDetailsModal, reservation]
-  );
+  const openDetailsModal = useCallback(() => {
+    openReservationDetailsModal(reservation);
+  }, [openReservationDetailsModal, reservation]);
 
   return (
     <li>
-       <div className="list-reservation my-32">
+      <div className="list-reservation my-32">
         {material && (
-          <MaterialInfo 
-          openDetailsModal={openDetailsModal}
+          <MaterialInfo
+            openDetailsModal={openDetailsModal}
             periodical={reservation.periodical}
             material={material}
             isbnForCover={reservation.identifier || ""}
