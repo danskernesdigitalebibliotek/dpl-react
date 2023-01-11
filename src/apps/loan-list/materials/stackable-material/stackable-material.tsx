@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
+import React, { useCallback, FC, useState } from "react";
 import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
@@ -26,44 +26,24 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
   const { dueDate, faust, identifier, periodical } = loan;
 
-  function stopPropagationFunction(e: Event | MouseEvent) {
-    e.stopPropagation();
-  }
-  useEffect(() => {
-    document
-      .querySelector(".list-reservation a")
-      ?.addEventListener("click", stopPropagationFunction, true);
-
-    return () => {
-      document
-        .querySelector(".list-reservation a")
-        ?.removeEventListener("click", stopPropagationFunction, true);
-    };
-  }, []);
-
-  const openLoanDetailsModalHandler = useCallback(
-    (e: MouseEvent) => {
-      stopPropagationFunction(e);
-      if (faust) {
-        openLoanDetailsModal(faust);
-      }
-      if (identifier) {
-        openLoanDetailsModal(identifier);
-      }
-    },
-    [faust, identifier, openLoanDetailsModal]
-  );
+  const openLoanDetailsModalHandler = useCallback(() => {
+    if (faust) {
+      openLoanDetailsModal(faust);
+    }
+    if (identifier) {
+      openLoanDetailsModal(identifier);
+    }
+  }, [faust, identifier, openLoanDetailsModal]);
 
   return (
-    <button
-      type="button"
-      onClick={(e) => openLoanDetailsModalHandler(e)}
+    <div
       className={`list-reservation my-32 ${
         additionalMaterials > 0 ? "list-reservation--stacked" : ""
       }`}
     >
       {material && (
         <MaterialInfo
+          openDetailsModal={openLoanDetailsModalHandler}
           periodical={periodical}
           material={material}
           isbnForCover={identifier || ""}
@@ -88,7 +68,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         />
         <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
       </MaterialStatus>
-    </button>
+    </div>
   );
 };
 
