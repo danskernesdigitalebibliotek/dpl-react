@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { handleModalFocus } from "./utils/helpers/general";
 
 export type ModalId = string;
 
@@ -11,6 +10,19 @@ interface PayloadProps {
 interface StateProps {
   modalIds: string[];
 }
+const focusContainerArray: Element[] = [];
+const handleModalFocus = (elementToStore?: Element) => {
+  if (elementToStore) {
+    return focusContainerArray.push(elementToStore);
+  }
+  const element = focusContainerArray.pop() as HTMLElement;
+  if (element) {
+    setTimeout(() => {
+      element.focus();
+    }, 50);
+  }
+  return element;
+};
 const modalSlice = createSlice({
   name: "modal",
   initialState: { modalIds: [] },

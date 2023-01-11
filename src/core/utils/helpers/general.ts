@@ -320,18 +320,4 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
 
-export const focusContainerArray: Element[] = [];
-export const handleModalFocus = (elementToStore?: Element) => {
-  if (elementToStore) {
-    return focusContainerArray.push(elementToStore);
-  }
-  const element = focusContainerArray.pop() as HTMLElement;
-  if (element) {
-    setTimeout(() => {
-      element.focus();
-    }, 50);
-  }
-  return element;
-};
-
 export default {};
