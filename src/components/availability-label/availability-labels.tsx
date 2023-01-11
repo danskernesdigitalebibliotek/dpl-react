@@ -9,7 +9,7 @@ import {
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
-import { AvailabilityLabel } from "./availability-label";
+import AvailabilityLabel from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
 
 export interface AvailabilityLabelsProps {

@@ -21,7 +21,7 @@ export interface AvailabilityLabelProps {
   isbn: string;
 }
 
-export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
+const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
   accessTypes,
   selected = false,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { AvailabilityLabel } from "../availability-label/availability-label";
+import AvailabilityLabel from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
   convertPostIdToFaustId,
