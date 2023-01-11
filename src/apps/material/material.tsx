@@ -217,6 +217,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       {manifestations.map((manifestation) => (
         <>
           <ReservationModal
+            key={`reservation-modal-${manifestation.pid}`}
             mainManifestation={manifestation}
             parallelManifestations={parallelManifestations}
             selectedPeriodical={selectedPeriodical}
@@ -224,10 +225,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             work={work}
           />
           <FindOnShelfModal
+            key={`find-on-shelf-modal-${manifestation.pid}`}
             manifestations={[manifestation]}
             workTitles={manifestation.titles.main}
             authors={manifestation.creators}
-            key={`find-on-shelf-modal-${manifestation.pid}`}
             selectedPeriodical={selectedPeriodical}
             setSelectedPeriodical={setSelectedPeriodical}
           />
