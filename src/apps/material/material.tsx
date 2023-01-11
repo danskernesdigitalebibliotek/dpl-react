@@ -24,8 +24,8 @@ import {
 import {
   getWorkDescriptionListData,
   getManifestationFromType,
-  getLatestWorkManifestation,
-  getInfomediaIds
+  getInfomediaIds,
+  divideManifestationsByMaterialType
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -109,12 +109,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
-    // if there is no type in the url, getLatestWorkManifestation is used to set the state and url type parameters
+    // If there is no type in the url, we select one
     if (!type) {
-      const workManifestation = getLatestWorkManifestation(work);
-      setSelectedManifestations([workManifestation]);
+      const manifestationsByMaterialType = divideManifestationsByMaterialType(
+        data.work.manifestations.all as Manifestation[]
+      );
+      setSelectedManifestations(manifestationsByMaterialType[0]);
       setQueryParametersInUrl({
-        type: getManifestationType(workManifestation)
+        type: getManifestationType(manifestationsByMaterialType[0][0])
       });
       return;
     }
