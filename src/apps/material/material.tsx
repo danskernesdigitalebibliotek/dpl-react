@@ -5,6 +5,7 @@ import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/
 import { useDeepCompareEffect } from "react-use";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import {
+  AccessTypeCode,
   ExternalReview,
   InfomediaReview,
   LibrariansReview,
@@ -31,8 +32,7 @@ import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
   getManifestationPid,
-  getManifestationType,
-  materialIsFiction
+  getManifestationType
 } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
@@ -41,7 +41,11 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
-import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import {
+  hasCorrectAccess,
+  hasCorrectAccessType,
+  isArticle
+} from "../../components/material/material-buttons/helper";
 import { getDigitalArticleIssnIds } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
@@ -155,7 +159,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     work,
     t
   });
-  const parallelManifestations = materialIsFiction(work) ? manifestations : [];
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
   // Get disclosure URL parameter from the current URL to see if it should be open
@@ -220,8 +223,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         <>
           <ReservationModal
             key={`reservation-modal-${manifestation.pid}`}
-            mainManifestation={manifestation}
-            parallelManifestations={parallelManifestations}
+            selectedManifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
             workId={wid}
             work={work}
@@ -254,16 +256,28 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         />
       )}
 
-      {selectedManifestations && (
-        <FindOnShelfModal
-          manifestations={selectedManifestations}
-          authors={work.creators}
-          workTitles={work.titles.full}
-          selectedPeriodical={selectedPeriodical}
-          setSelectedPeriodical={setSelectedPeriodical}
-          isPerMaterialType
-        />
-      )}
+      {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials. */}
+      {selectedManifestations &&
+        hasCorrectAccessType(AccessTypeCode.Physical, selectedManifestations) &&
+        !isArticle(selectedManifestations) && (
+          <>
+            <ReservationModal
+              selectedManifestations={selectedManifestations}
+              selectedPeriodical={selectedPeriodical}
+              workId={wid}
+              work={work}
+              isPerMaterialType
+            />
+            <FindOnShelfModal
+              manifestations={selectedManifestations}
+              authors={work.creators}
+              workTitles={work.titles.full}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+              isPerMaterialType
+            />
+          </>
+        )}
     </section>
   );
 };

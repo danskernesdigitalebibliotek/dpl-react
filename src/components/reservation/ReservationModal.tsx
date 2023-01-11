@@ -11,34 +11,36 @@ export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
-  mainManifestation: Manifestation;
-  parallelManifestations?: Manifestation[];
+  selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
   workId: WorkId;
   work: Work;
+  isPerMaterialType?: boolean;
 };
 
 const ReservationModal = ({
-  mainManifestation,
-  mainManifestation: { pid },
-  parallelManifestations,
+  selectedManifestations,
   selectedPeriodical = null,
   workId,
-  work
+  work,
+  isPerMaterialType
 }: ReservationModalProps) => {
   const t = useText();
+  const { pid } = selectedManifestations[0];
 
+  // If this modal shows all manifestations per material type, differentiate the ID
   return (
     <Modal
-      modalId={reservationModalId(convertPostIdToFaustId(pid))}
+      modalId={`${reservationModalId(convertPostIdToFaustId(pid))}${
+        isPerMaterialType ? "-main" : ""
+      }`}
       screenReaderModalDescriptionText={t(
         "reservationModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
     >
       <ReservationModalBody
-        mainManifestation={mainManifestation}
-        parallelManifestations={parallelManifestations}
+        selectedManifestations={selectedManifestations}
         selectedPeriodical={selectedPeriodical}
         workId={workId}
         work={work}

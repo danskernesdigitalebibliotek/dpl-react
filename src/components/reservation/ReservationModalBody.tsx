@@ -20,7 +20,7 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { totalMaterials } from "../../apps/material/helper";
+import { getAllPids, totalMaterials } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -48,22 +48,14 @@ export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
 
 type ReservationModalProps = {
-  mainManifestation: Manifestation;
-  parallelManifestations?: Manifestation[];
+  selectedManifestations: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
   workId: WorkId;
   work: Work;
 };
 
 const ReservationModalBody = ({
-  mainManifestation,
-  mainManifestation: {
-    pid,
-    materialTypes,
-    titles: { main: mainTitle },
-    edition
-  },
-  parallelManifestations,
+  selectedManifestations,
   selectedPeriodical,
   workId,
   work
@@ -73,15 +65,9 @@ const ReservationModalBody = ({
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-
-  const mainManifestationType = getManifestationType(mainManifestation);
+  const mainManifestationType = getManifestationType(selectedManifestations[0]);
   const { reservableManifestations } = UseReservableManifestations({
-    manifestations:
-      // TODO: We should investigate why we need to check for parallelManifestation length
-      // because it doesn't seem to reflect the possible types.
-      parallelManifestations && parallelManifestations.length > 0
-        ? parallelManifestations
-        : [mainManifestation],
+    manifestations: selectedManifestations,
     type: mainManifestationType
   });
   const queryClient = useQueryClient();
@@ -89,16 +75,17 @@ const ReservationModalBody = ({
     useState<ReservationResponseV2 | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
-  const faustId = convertPostIdToFaustId(pid);
+  const allPids = getAllPids(selectedManifestations);
+  const faustIds = allPids.map((pid) => convertPostIdToFaustId(pid));
   const { mutate } = useAddReservationsV2();
   const userResponse = useGetPatronInformationByPatronIdV2();
   const holdingsResponse = useGetHoldingsV3({
-    recordid: [faustId]
+    recordid: faustIds
   });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
-    mainManifestation.pid
+    selectedManifestations[0].pid
   );
 
   // If we don't have all data for displaying the view render nothing.
@@ -112,7 +99,7 @@ const ReservationModalBody = ({
   };
   const { reservations, holdings } = holdingsData[0];
   const { patron } = userData;
-  const authorLine = getAuthorLine(mainManifestation, t);
+  const authorLine = getAuthorLine(selectedManifestations[0], t);
   const expiryDate = selectedInterest
     ? getFutureDateString(selectedInterest)
     : null;
@@ -159,13 +146,13 @@ const ReservationModalBody = ({
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover id={pid} size="medium" animate />
+            <Cover id={allPids[0]} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
-                {materialTypes[0].specific}
+                {selectedManifestations[0].materialTypes[0].specific}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {mainTitle}
+                {selectedManifestations[0].titles.main}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
@@ -196,7 +183,11 @@ const ReservationModalBody = ({
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={selectedPeriodical?.displayText || edition?.summary || ""}
+                text={
+                  selectedPeriodical?.displayText ||
+                  selectedManifestations[0].edition?.summary ||
+                  ""
+                }
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
@@ -228,11 +219,10 @@ const ReservationModalBody = ({
           </div>
         </section>
       )}
-
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustId)}
-          title={mainTitle[0]}
+          modalId={reservationModalId(faustIds[0])}
+          title={selectedManifestations[0].titles.main[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branches
@@ -240,7 +230,6 @@ const ReservationModalBody = ({
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}
-
       {!reservationSuccess && reservationResult && (
         <ReservationError
           reservationResult={reservationResult}

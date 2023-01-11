@@ -39,6 +39,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
               selectedManifestations={selectedManifestations}
               size={size}
               dataCy={`${dataCy}-physical`}
+              isMain={isMain}
             />
             <MaterialButtonsFindOnShelf
               size={size}
