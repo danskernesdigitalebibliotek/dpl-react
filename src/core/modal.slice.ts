@@ -33,7 +33,7 @@ const modalSlice = createSlice({
         }
       }
       const { activeElement } = document;
-      // prevent bubbling to body when pressing enter on buttons
+      // Prevent body from double triggering focus store when url contains modalId
       if (activeElement && activeElement.tagName !== "BODY") {
         handleModalFocus(activeElement);
       }
