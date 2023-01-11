@@ -177,6 +177,20 @@ export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
   return uniq(allMaterialTypes);
 };
 
+export const divideManifestationsByMaterialType = (
+  manifestations: Manifestation[]
+) => {
+  const uniqueMaterialTypes = getAllUniqueMaterialTypes(manifestations);
+  return uniqueMaterialTypes.map((uniqueMaterialType) => {
+    return manifestations.filter((manifest) => {
+      const manifestationMaterialTypes = manifest.materialTypes.map(
+        (materialType) => materialType.specific
+      );
+      return manifestationMaterialTypes.includes(uniqueMaterialType);
+    });
+  });
+};
+
 export const getAllIdentifiers = (manifestations: Manifestation[]) => {
   return manifestations
     .map((manifestation) =>
