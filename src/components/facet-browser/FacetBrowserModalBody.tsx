@@ -1,4 +1,5 @@
 import React from "react";
+import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { isEmpty, upperFirst } from "lodash";
 import { useDeepCompareEffect } from "react-use";
 import {
@@ -67,10 +68,21 @@ const FacetBrowserModalBody: React.FunctionComponent<
             key={name}
             cyData={`facet-browser-${name}`}
             id={name}
-            fullWidth
-            removeHeadlinePadding
-            title={t(`facet${upperFirst(name)}Text`)}
             showContent={hasSelectedTerms}
+            detailsClassName="disclosure text-body-large disclosure--full-width"
+            summaryClassName="disclosure__headline text-body-large disclosure__headline--no-padding"
+            summary={
+              <>
+                <span className="disclosure__text">
+                  {t(`facet${upperFirst(name)}Text`)}
+                </span>
+                <img
+                  className="disclosure__expand noselect"
+                  src={ExpandMoreIcon}
+                  alt=""
+                />
+              </>
+            }
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
