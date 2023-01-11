@@ -7,6 +7,7 @@ import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
+import { areAnyReservable } from "../helper";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
@@ -42,8 +43,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} />;
   }
 
-  const manifestationAvailability = data[0];
-  if (!manifestationAvailability.reservable) {
+  const isReservable = areAnyReservable(data);
+
+  if (!isReservable) {
     return <MaterialButtonCantReserve size={size} />;
   }
   const manifestationMaterialType =
