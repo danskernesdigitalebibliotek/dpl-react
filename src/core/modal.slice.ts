@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { element } from "prop-types";
 import { handleModalFocus } from "./utils/helpers/general";
 
 export type ModalId = string;
@@ -34,7 +33,8 @@ const modalSlice = createSlice({
         }
       }
       const { activeElement } = document;
-      if (activeElement) {
+      // prevent bubbling to body when pressing enter on buttons
+      if (activeElement && activeElement.tagName !== "BODY") {
         handleModalFocus(activeElement);
       }
     },

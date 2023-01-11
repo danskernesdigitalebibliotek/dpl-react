@@ -327,7 +327,9 @@ export const handleModalFocus = (elementToStore?: Element) => {
   }
   const element = focusContainerArray.pop() as HTMLElement;
   if (element) {
-    element.focus();
+    setTimeout(() => {
+      element.focus();
+    }, 50);
   }
   return element;
 };
