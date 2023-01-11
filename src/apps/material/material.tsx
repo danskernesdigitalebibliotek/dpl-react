@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
@@ -199,10 +200,24 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       {reviews && reviews.length >= 1 && (
         <DisclosureControllable
           id="reviews"
-          title={t("reviewsText")}
-          mainIconPath={CreateIcon}
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
+          detailsClassName="disclosure text-body-large"
+          summaryClassName="disclosure__headline text-body-large"
+          summary={
+            <>
+              <div className="disclosure__icon bg-identity-tint-120">
+                <img className="invert" src={CreateIcon} alt="" />
+              </div>
+
+              <span className="disclosure__text">{t("reviewsText")}</span>
+              <img
+                className="disclosure__expand noselect"
+                src={ExpandMoreIcon}
+                alt=""
+              />
+            </>
+          }
         >
           <MaterialReviews
             listOfReviews={

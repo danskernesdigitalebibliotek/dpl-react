@@ -1,30 +1,25 @@
-import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
 
 export interface DisclosureControllableProps {
   id: string;
-  title: string;
-  children?: ReactNode;
-  fullWidth?: boolean;
-  showContent?: boolean;
-  removeHeadlinePadding?: boolean;
-  onClick?: () => void;
   cyData?: string;
-  mainIconPath?: string;
+  detailsClassName: string;
+  children?: ReactNode;
+  summaryClassName: string;
+  summary: ReactNode;
+  showContent?: boolean;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
 // because we don't have control over the open attribute
 const DisclosureControllable: FC<DisclosureControllableProps> = ({
   id,
-  title,
-  children,
-  fullWidth,
-  showContent = false,
-  removeHeadlinePadding,
   cyData,
-  mainIconPath
+  detailsClassName,
+  children,
+  summaryClassName,
+  summary,
+  showContent = false
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
@@ -35,16 +30,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   const disclosureId = `disclosure-${id}`;
 
   return (
-    <div
-      className={`disclosure text-body-large ${
-        fullWidth ? "disclosure--full-width" : ""
-      }`}
-    >
+    <div className={detailsClassName}>
       <div
-        className={clsx(
-          "disclosure__headline text-body-large",
-          removeHeadlinePadding && "disclosure__headline--no-padding"
-        )}
+        className={summaryClassName}
         data-cy={cyData}
         onClick={toggleOpen}
         onKeyDown={toggleOpen}
@@ -53,18 +41,7 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
         aria-controls={disclosureId}
         aria-expanded={isOpen}
       >
-        {mainIconPath && (
-          <div className="disclosure__icon bg-identity-tint-120">
-            <img className="invert" src={mainIconPath} alt="" />
-          </div>
-        )}
-        <span className="disclosure__text">{title}</span>
-
-        <img
-          className="disclosure__expand noselect"
-          src={ExpandMoreIcon}
-          alt=""
-        />
+        {summary}
       </div>
       {isOpen && <div id={disclosureId}>{children}</div>}
     </div>
