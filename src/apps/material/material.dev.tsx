@@ -607,6 +607,21 @@ export default {
       defaultValue:
         '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
       control: { type: "text" }
+    },
+    instantLoanTitleText: {
+      name: "Instant loan title",
+      control: { type: "text" },
+      defaultValue: "Hent bogen nu"
+    },
+    instantLoanSubTitleText: {
+      name: "Instant loan subtitle",
+      control: { type: "text" },
+      defaultValue: "Spring køen over og hent bogen nu på"
+    },
+    instantLoanUnderlineDescriptionText: {
+      name: "Instant loan underline description",
+      control: { type: "text" },
+      defaultValue: "Bogen er tilgængelig på disse biblioteker nær dig"
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

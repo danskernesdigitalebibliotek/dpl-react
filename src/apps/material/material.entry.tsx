@@ -117,6 +117,9 @@ interface MaterialEntryTextProps {
   orderDigitalCopyErrorDescriptionText: string;
   orderDigitalCopyErrorButtonText: string;
   orderDigitalCopyEmailLabelText: string;
+  instantLoanTitleText: string;
+  instantLoanSubTitleText: string;
+  instantLoanUnderlineDescriptionText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;
