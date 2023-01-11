@@ -13,7 +13,6 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
-import { ReservationType } from "../types/reservation-type";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
 
@@ -298,7 +297,7 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationType[]) => {
+export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
   return [...list].filter(({ state }) => state === "readyForPickup");
 };
 

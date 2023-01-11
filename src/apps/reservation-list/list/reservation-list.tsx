@@ -22,7 +22,7 @@ import {
   useGetPatronInformationByPatronIdV2,
   useGetReservationsV2
 } from "../../../core/fbs/fbs";
-import { PatronV5 } from "../../../core/fbs/model";
+import { PatronV5, ReservationDetailsV2 } from "../../../core/fbs/model";
 import EmptyReservations from "./EmptyReservations";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
 import DeleteReservationModal from "../modal/delete-reservation/delete-reservation-modal";
@@ -68,12 +68,12 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
-    useState<ReservationType[] | null>(null);
+    useState<ReservationType[] | ReservationDetailsV2[] | null>(null);
 
   const [
     readyForPickupReservationsPublizon,
     setReadyForPickupReservationsPublizon
-  ] = useState<ReservationType[] | null>(null);
+  ] = useState<ReservationType[] | ReservationDetailsV2[] | null>(null);
 
   const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
     ReservationType[] | null
@@ -89,11 +89,13 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccessPublizon && publizonData && publizonData.reservations) {
-      setReadyForPickupReservationsPublizon(
-        getReadyForPickup(
-          mapPublizonReservationToReservationType(publizonData.reservations)
-        )
+      const reservationType = mapPublizonReservationToReservationType(
+        publizonData.reservations
       );
+      const readyForPickup = getReadyForPickup(
+        reservationType as ReservationDetailsV2[]
+      );
+      setReadyForPickupReservationsPublizon(readyForPickup);
       setReservedReservationsPublizon(
         getReservedDigital(
           mapPublizonReservationToReservationType(publizonData.reservations)
@@ -122,7 +124,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   useEffect(() => {
     if (isSuccessFBS && data) {
       const fbsToReservationType = mapFBSReservationToReservationType(data);
-      const readyForPickup = getReadyForPickup(fbsToReservationType);
+      const readyForPickup = getReadyForPickup(
+        fbsToReservationType as ReservationDetailsV2[]
+      );
       const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
       setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(
@@ -164,21 +168,21 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       let reservationFound = null;
       if (readyForPickupReservationsFBS) {
         reservationFound = getFromListByKey(
-          [...readyForPickupReservationsFBS],
+          [...(readyForPickupReservationsFBS as [])],
           "faust",
           id
         );
       }
       if (reservationFound?.length === 0 && reservedReservationsFBS) {
         reservationFound = getFromListByKey(
-          [...reservedReservationsFBS],
+          [...(reservedReservationsFBS as [])],
           "faust",
           id
         );
       }
       if (reservationFound?.length === 0 && reservedReservationsPublizon) {
         reservationFound = getFromListByKey(
-          [...reservedReservationsPublizon],
+          [...(reservedReservationsPublizon as [])],
           "identifier",
           id
         );
@@ -188,7 +192,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         readyForPickupReservationsPublizon
       ) {
         reservationFound = getFromListByKey(
-          [...readyForPickupReservationsPublizon],
+          [...(readyForPickupReservationsPublizon as [])],
           "identifier",
           id
         );
@@ -256,25 +260,29 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   return (
     <>
-      <div className={`reservation-list-page ${getScrollClass(modalIds)}`}>
-        <h1 className="text-header-h1 m-32">
-          {t("reservationListHeaderText")}
-        </h1>
-        {user && <ReservationPauseToggler user={user} />}
-        {allListsEmpty && <EmptyReservations />}
-        {!allListsEmpty && (
-          <DisplayedReservations
-            openReservationDetailsModal={openReservationDetailsModal}
-            readyForPickupReservationsFBS={readyForPickupReservationsFBS}
-            readyForPickupReservationsPublizon={
-              readyForPickupReservationsPublizon
-            }
-            reservedReservationsFBS={reservedReservationsFBS}
-            reservedReservationsPublizon={reservedReservationsPublizon}
-            pageSize={pageSize}
-          />
-        )}
-      </div>
+      {modalIds.length === 0 && (
+        <div className="reservation-list-page">
+          <h1 className="text-header-h1 m-32">
+            {t("reservationListHeaderText")}
+          </h1>
+          {user && <ReservationPauseToggler user={user} />}
+          {allListsEmpty && <EmptyReservations />}
+          {!allListsEmpty && (
+            <DisplayedReservations
+              openReservationDetailsModal={openReservationDetailsModal}
+              readyForPickupReservationsFBS={
+                readyForPickupReservationsFBS as []
+              }
+              readyForPickupReservationsPublizon={
+                readyForPickupReservationsPublizon as []
+              }
+              reservedReservationsFBS={reservedReservationsFBS}
+              reservedReservationsPublizon={reservedReservationsPublizon}
+              pageSize={pageSize}
+            />
+          )}
+        </div>
+      )}
       {user && <PauseReservation user={user} id={pauseReservation as string} />}
       {reservationToDelete && (
         <DeleteReservationModal
