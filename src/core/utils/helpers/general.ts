@@ -325,7 +325,7 @@ export const handleModalFocus = (elementToStore?: Element) => {
   if (elementToStore) {
     return focusContainerArray.push(elementToStore);
   }
-  const element = focusContainerArray.pop() as HTMLElement | null;
+  const element = focusContainerArray.pop() as HTMLElement;
   if (element) {
     element.focus();
   }
