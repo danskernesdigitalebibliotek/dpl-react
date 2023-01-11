@@ -5,9 +5,8 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
-import {
-  AvailabilityLabelProps,
-  AvailabilityLabel
+import AvailabilityLabel, {
+  AvailabilityLabelProps
 } from "./availability-label";
 
 // The configuration below addresses the different variables,
