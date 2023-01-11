@@ -84,7 +84,7 @@ const Template: ComponentStory<typeof FindOnShelfModal> = (
     <>
       <MaterialButtonsFindOnShelf
         size="small"
-        faustIds={[convertPostIdToFaustId(pid)]}
+        faustId={convertPostIdToFaustId(pid)}
       />
       <FindOnShelfModalWithConfigAndText {...args} />
     </>

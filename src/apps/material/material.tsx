@@ -251,6 +251,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           workId={wid}
         />
       )}
+
+      {selectedManifestations && (
+        <FindOnShelfModal
+          manifestations={selectedManifestations}
+          authors={work.creators}
+          workTitles={work.titles.full}
+          selectedPeriodical={selectedPeriodical}
+          setSelectedPeriodical={setSelectedPeriodical}
+          isPerMaterialType
+        />
+      )}
     </section>
   );
 };
