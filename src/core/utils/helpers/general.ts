@@ -298,7 +298,7 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
+export const getReadyForPickup = (list: ReservationType[]) => {
   return [...list].filter(({ state }) => state === "readyForPickup");
 };
 

@@ -121,11 +121,10 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccessFBS && data) {
-      setReadyForPickupReservationsFBS(
-        sortByOldestPickupDeadline(
-          getReadyForPickup(mapFBSReservationToReservationType(data))
-        )
-      );
+      const fbsToReservationType = mapFBSReservationToReservationType(data);
+      const readyForPickup = getReadyForPickup(fbsToReservationType);
+      const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
+      setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(
         getReservedPhysical(mapFBSReservationToReservationType(data))
       );
