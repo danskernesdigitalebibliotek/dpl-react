@@ -321,12 +321,15 @@ export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
 
 export const focusContainerArray: Element[] = [];
-export const handleModalFocus = (activeElement?: Element) => {
-  if (activeElement) {
-    return focusContainerArray.push(activeElement);
+export const handleModalFocus = (elementToStore?: Element) => {
+  if (elementToStore) {
+    return focusContainerArray.push(elementToStore);
   }
-  const elementToRecieveFocus = focusContainerArray.pop();
-  return elementToRecieveFocus;
+  const element = focusContainerArray.pop() as HTMLElement | null;
+  if (element) {
+    element.focus();
+  }
+  return element;
 };
 
 export default {};

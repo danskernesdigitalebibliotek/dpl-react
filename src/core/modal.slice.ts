@@ -45,8 +45,7 @@ const modalSlice = createSlice({
         .get("modal")
         ?.replace(action.payload.modalId, "");
       searchParams.set("modal", newSearchParams || "");
-      const elementToFocus = handleModalFocus();
-      console.log(elementToFocus);
+      handleModalFocus();
     }
   }
 });
