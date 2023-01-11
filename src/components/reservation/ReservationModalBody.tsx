@@ -42,6 +42,7 @@ import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityT
 import { statistics } from "../../core/statistics/statistics";
 import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
 import PromoBar from "../promo-bar/PromoBar";
+import InstantLoan from "../instant-loan/InstantLoan";
 
 export const reservationModalId = (faustId: FaustId) =>
   `reservation-modal-${faustId}`;
@@ -223,6 +224,7 @@ const ReservationModalBody = ({
                   setSelectedInterest={setSelectedInterest}
                 />
               )}
+              <InstantLoan manifestation={mainManifestation} />
             </div>
           </div>
         </section>
