@@ -1,3 +1,4 @@
+import { AvailabilityV3 } from "../../../core/fbs/model/availabilityV3";
 import {
   Access,
   AccessTypeCode
@@ -43,6 +44,14 @@ export const isArticle = (manifestations: Manifestation[]) => {
     hasCorrectMaterialType("tidsskriftsartikel", manifestations) ||
     hasCorrectMaterialType("avisartikel", manifestations)
   );
+};
+
+export const areAnyReservable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.reservable);
+};
+
+export const areAnyAvailable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.available);
 };
 
 export default {};
