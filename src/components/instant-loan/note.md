@@ -40,6 +40,7 @@ Otherwise it is unavailable.
 
 
 #### useGetAvailabilityV3:
+```json
 [
     {
         "recordId": "29317038",
@@ -48,8 +49,9 @@ Otherwise it is unavailable.
         "reservations": 0
     }
 ]
-
+```
 #### useGetHoldingsV3:
+```json
 [
     {
         "recordId": "29317038",
@@ -432,3 +434,4 @@ Otherwise it is unavailable.
         ]
     }
 ]
+```
