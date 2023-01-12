@@ -17,7 +17,7 @@ export const faustIdModalQueryParam = (queryParam: string) => {
   // regex for finding duedatemodal concatenated with date string from modal query param
 
   const doNotReturn = "fee-details-";
-  const regexIdentifier = new RegExp(`(\?<=${doNotReturn})(\\d{8})`, "g");
+  const regexIdentifier = new RegExp(`(?<=${doNotReturn})(\\d{8})`, "g");
   const faustId = queryParam.match(regexIdentifier);
 
   if (!faustId) {
