@@ -324,6 +324,7 @@ describe("Loan list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(2)
+      .scrollIntoView()
       .find(".list-reservation__information a")
       .should("be.visible")
       .should(
