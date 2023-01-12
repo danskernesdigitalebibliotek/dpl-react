@@ -14,6 +14,7 @@ import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
   AuthenticatedPatronV6,
+  AvailabilityV3,
   HoldingsForBibliographicalRecordV3,
   ReservationResponseV2
 } from "../../core/fbs/model";
@@ -23,6 +24,7 @@ import ReservationError from "./ReservationError";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
+  useGetAvailabilityV3,
   useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
@@ -31,7 +33,8 @@ import {
   getFutureDateString,
   getPreferredBranch,
   constructReservationData,
-  getAuthorLine
+  getAuthorLine,
+  showInstantLoan
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -95,6 +98,9 @@ const ReservationModalBody = ({
   const holdingsResponse = useGetHoldingsV3({
     recordid: [faustId]
   });
+  const availabilityResponse = useGetAvailabilityV3({
+    recordid: [faustId]
+  });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
@@ -102,7 +108,11 @@ const ReservationModalBody = ({
   );
 
   // If we don't have all data for displaying the view render nothing.
-  if (!userResponse.data || !holdingsResponse.data) {
+  if (
+    !userResponse.data ||
+    !holdingsResponse.data ||
+    !availabilityResponse.data
+  ) {
     return null;
   }
 
@@ -110,6 +120,10 @@ const ReservationModalBody = ({
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
   };
+  const { data: availabilityData } = availabilityResponse as {
+    data: AvailabilityV3[];
+  };
+
   const { reservations, holdings } = holdingsData[0];
   const { patron } = userData;
   const authorLine = getAuthorLine(mainManifestation, t);
@@ -224,7 +238,9 @@ const ReservationModalBody = ({
                   setSelectedInterest={setSelectedInterest}
                 />
               )}
-              <InstantLoan manifestation={mainManifestation} />
+              {showInstantLoan(availabilityData) && (
+                <InstantLoan manifestation={mainManifestation} />
+              )}
             </div>
           </div>
         </section>
