@@ -258,7 +258,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     <>
       <div
         className="reservation-list-page"
-        style={modalIds.length > 0 ? { overflow: "hidden" } : {}}
+        style={
+          modalIds.length > 0 ? { overflow: "hidden", height: "100vh" } : {}
+        }
       >
         <h1 className="text-header-h1 m-32">
           {t("reservationListHeaderText")}
