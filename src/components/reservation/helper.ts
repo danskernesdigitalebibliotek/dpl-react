@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
+  AvailabilityV3,
   CreateReservation,
   CreateReservationBatchV2
 } from "../../core/fbs/model";
@@ -147,6 +148,15 @@ export const getAuthorLine = (
   return !author
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
+};
+
+export const showInstantLoan = (availabilityResponseObj: AvailabilityV3[]) => {
+  const { available, reservable } = availabilityResponseObj[0];
+
+  if (available && reservable === false) {
+    return true;
+  }
+  return false;
 };
 
 export default {};
