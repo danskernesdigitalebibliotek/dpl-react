@@ -1,5 +1,5 @@
 import React from "react";
-import { getCoverTint } from "../../core/utils/helpers/general";
+import { dataIsNotEmpty, getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 import SearchResultListItemSkeleton from "./search-result-list-item/search-result-list-item-skeleton";
@@ -9,7 +9,7 @@ export interface SearchResultListProps {
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
-  const worksAreLoaded = Boolean(resultItems.length);
+  const worksAreLoaded = dataIsNotEmpty(resultItems);
 
   return (
     <ul className="search-result-page__list my-32" data-cy="search-result-list">
