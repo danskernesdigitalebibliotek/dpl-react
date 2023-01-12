@@ -1,33 +1,24 @@
 import React from "react";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
-import { useText } from "../../core/utils/text";
-import { Manifestation } from "../../core/utils/types/entities";
+import { HoldingsV3 } from "../../core/fbs/model";
 import AvailabilityLabel from "../availability-label/availability-label";
 
 type InstantLoanBranchProps = {
-  branch: string;
-  manifestation: Manifestation;
+  branch: HoldingsV3;
 };
 
 const InstantLoanBranch: React.FunctionComponent<InstantLoanBranchProps> = ({
-  branch,
-  manifestation
+  branch: {
+    branch: { title }
+  }
 }) => {
-  const t = useText();
-  const { pid, materialTypes, accessTypes, identifiers } = manifestation;
-  const materialType = materialTypes[0].specific;
-  const faustId = convertPostIdToFaustId(pid);
-  const accessTypesCodes = accessTypes.map((item) => item.code);
-  const isbn = identifiers?.[0].value;
-
   return (
     <div className="instant-loan-branch cursor-pointer px-24">
-      <p className="text-header-h5">{branch}</p>
+      <p className="text-header-h5">{title}</p>
       <AvailabilityLabel
-        faustIds={[faustId]}
-        manifestText={materialType}
-        accessTypes={accessTypesCodes}
-        isbn={isbn}
+        manifestText=""
+        accessTypes={[]}
+        faustIds={[]}
+        isbn=""
       />
     </div>
   );
