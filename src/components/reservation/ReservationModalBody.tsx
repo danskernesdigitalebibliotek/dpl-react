@@ -6,7 +6,6 @@ import {
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
-import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId, WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
@@ -156,13 +155,7 @@ const ReservationModalBody = ({
     reservationResponse?.reservationResults[0]?.reservationDetails;
 
   return (
-    <Modal
-      modalId={reservationModalId(faustId)}
-      screenReaderModalDescriptionText={t(
-        "reservationModalScreenReaderModalDescriptionText"
-      )}
-      closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
-    >
+    <>
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
@@ -254,7 +247,7 @@ const ReservationModalBody = ({
           setReservationResponse={setReservationResponse}
         />
       )}
-    </Modal>
+    </>
   );
 };
 
