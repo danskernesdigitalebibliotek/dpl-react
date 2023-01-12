@@ -158,7 +158,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   return (
     <>
       <div
-        style={modalIds.length > 0 ? { display: "none" } : {}}
+        style={modalIds.length > 0 ? { overflow: "hidden" } : {}}
         className="loan-list-page"
       >
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
