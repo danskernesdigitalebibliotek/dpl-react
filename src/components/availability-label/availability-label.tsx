@@ -19,6 +19,7 @@ export interface AvailabilityLabelProps {
   cursorPointer?: boolean;
   dataCy?: string;
   isbn: string;
+  quantity?: number;
 }
 
 const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -30,7 +31,8 @@ const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbn
+  isbn,
+  quantity
 }) => {
   const { track } = useStatistics();
   const t = useText();
@@ -111,6 +113,12 @@ const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       >
         {availabilityText}
       </p>
+      {quantity && (
+        <>
+          <div className="availability-label--divider ml-4" />
+          <p className="text-label-normal mx-8">{quantity} stk</p>
+        </>
+      )}
     </div>
   );
 
