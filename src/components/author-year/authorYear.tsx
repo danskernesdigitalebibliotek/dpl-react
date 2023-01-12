@@ -10,7 +10,7 @@ const AuthorYear: FC<ButtonSmallFilledProps> = ({ author, year }) => {
   return (
     <>
       {author && author}
-      {year && <>({year})</>}
+      {year && <> ({year})</>}
     </>
   );
 };
