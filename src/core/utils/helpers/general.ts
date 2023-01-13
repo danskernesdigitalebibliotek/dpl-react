@@ -15,6 +15,7 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
+import { ReservationListResult } from "../../publizon/model";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -301,7 +302,7 @@ export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
   return [...list].filter(({ state }) => state === "readyForPickup");
 };
 
-export const getReservations = (list: ReservationDetailsV2[]) => {
+export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
   return [...list].filter(({ state }) => state === "reserved");
 };
 

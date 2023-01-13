@@ -13,6 +13,7 @@ const StillInQueueModal: FC<StillInQueueModalProps> = ({
   children
 }) => {
   const t = useText();
+
   if (!modalId) {
     return null;
   }

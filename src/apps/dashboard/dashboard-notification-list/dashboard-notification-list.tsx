@@ -6,7 +6,7 @@ import {
   filterLoansSoonOverdue,
   filterLoansNotOverdue,
   getReadyForPickup,
-  getReservations
+  getPhysicalReservations
 } from "../../../core/utils/helpers/general";
 import { mapFBSLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
 import { useText } from "../../../core/utils/text";
@@ -14,7 +14,12 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
 
-const DashboardNotificationList: FC = () => {
+export interface DashboardNotificationListProps {
+  openQueueModal: (modalId: string) => void;
+}
+const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
+  openQueueModal
+}) => {
   const t = useText();
   const {
     physicalLoansUrl,
@@ -63,7 +68,7 @@ const DashboardNotificationList: FC = () => {
   useEffect(() => {
     if (patronReservations) {
       const materialsReadyForPickup = getReadyForPickup(patronReservations);
-      const materialsStillInQueue = getReservations(patronReservations);
+      const materialsStillInQueue = getPhysicalReservations(patronReservations);
       setReservationsReadyForPickup(materialsReadyForPickup.length);
       setReservationsStillInQueueFor(materialsStillInQueue.length);
       setPatronReservationCount(patronReservations.length);
@@ -150,6 +155,8 @@ const DashboardNotificationList: FC = () => {
             notificationText={t("reservationsStillInQueueForText")}
             notificationColor="neutral"
             notificationLink={reservationsUrl}
+            notificationClickEvent={openQueueModal}
+            notificationClickEventModalId="still-in-queue-modal"
           />
         )}
       </div>

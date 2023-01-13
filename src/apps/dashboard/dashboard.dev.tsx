@@ -41,6 +41,18 @@ export default {
       defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
       control: { type: "text" }
     },
+    physicalText: {
+      defaultValue: "Physical",
+      control: { type: "text" }
+    },
+    digitalText: {
+      defaultValue: "Digital",
+      control: { type: "text" }
+    },
+    digitalLoansUrl: {
+      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
     loansOverdueText: {
       defaultValue: "Afleveret for sent",
       control: { type: "text" }
@@ -71,6 +83,14 @@ export default {
     },
     reservationsUrl: {
       defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
+    chooseAllText: {
+      defaultValue: "Select all",
+      control: { type: "text" }
+    },
+    removeAllReservationsText: {
+      defaultValue: "Remove reservations",
       control: { type: "text" }
     },
     reservationsReadyText: {
