@@ -292,7 +292,7 @@ describe("Intermediate list", () => {
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Knud Romer(2006)");
+      .should("have.text", "By Knud Romer (2006)");
 
     // 3.c.c author
     cy.get(".intermediate-list-page")
@@ -306,7 +306,7 @@ describe("Intermediate list", () => {
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Knud Romer(2006)");
+      .should("have.text", "By Knud Romer (2006)");
 
     // 3. d fees charged dd.mm.yyyy
     cy.get(".intermediate-list-page")
@@ -393,7 +393,7 @@ describe("Intermediate list", () => {
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Karl Aage Rasmussen (f. 1947)(2002)");
+      .should("have.text", "By Karl Aage Rasmussen (f. 1947) (2002)");
 
     // 4.b +x other materials
     cy.get(".intermediate-list-page")
