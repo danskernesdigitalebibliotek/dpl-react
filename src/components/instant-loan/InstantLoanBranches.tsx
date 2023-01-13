@@ -1,5 +1,4 @@
 import React from "react";
-import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import { FaustId } from "../../core/utils/types/ids";
 import InstantLoanBranch from "./InstantLoanBranch";
@@ -7,20 +6,12 @@ import InstantLoanBranch from "./InstantLoanBranch";
 type InstantLoanBranchesProps = {
   faustId: FaustId;
   materialType: string;
-  accessTypesCodes: AccessTypeCode[];
   instantBooksThreshold?: number;
-  isbn: string;
 };
 
 const InstantLoanBranches: React.FunctionComponent<
   InstantLoanBranchesProps
-> = ({
-  instantBooksThreshold = 3,
-  faustId,
-  accessTypesCodes,
-  materialType,
-  isbn
-}) => {
+> = ({ instantBooksThreshold = 3, faustId, materialType }) => {
   const { data: holdings } = useGetHoldingsV3({
     recordid: [faustId]
   });
@@ -34,13 +25,7 @@ const InstantLoanBranches: React.FunctionComponent<
         if (branch.materials.length >= instantBooksThreshold) {
           return (
             <li>
-              <InstantLoanBranch
-                branch={branch}
-                faustId={faustId}
-                isbn={isbn}
-                materialType={materialType}
-                accessTypesCodes={accessTypesCodes}
-              />
+              <InstantLoanBranch branch={branch} materialType={materialType} />
             </li>
           );
         }

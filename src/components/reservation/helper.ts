@@ -153,7 +153,8 @@ export const getAuthorLine = (
 export const showInstantLoan = (availabilityResponseObj: AvailabilityV3[]) => {
   const { available, reservable } = availabilityResponseObj[0];
 
-  if (available && reservable === false) {
+  // if (available && reservable === false) {
+  if (available) {
     return true;
   }
   return false;
