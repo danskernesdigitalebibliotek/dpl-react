@@ -1,5 +1,4 @@
 import * as React from "react";
-import { totalMaterials } from "../../../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
 import { Pid } from "../../../../core/utils/types/ids";
@@ -25,7 +24,7 @@ const MaterialAvailabilityTextPhysical: React.FC<
   return (
     <MaterialAvailabilityTextParagraph>
       <StockAndReservationInfo
-        stockCount={totalMaterials(holdings)}
+        holdings={holdings}
         reservationCount={reservations}
       />
     </MaterialAvailabilityTextParagraph>

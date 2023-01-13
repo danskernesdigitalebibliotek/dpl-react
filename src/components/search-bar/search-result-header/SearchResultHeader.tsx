@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import * as React from "react";
 import { useText } from "../../../core/utils/text";
 
 export interface SearchResultHeaderProps {
-  hitcount: string;
+  hitcount: number;
   q: string;
 }
 
@@ -11,10 +12,15 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   q
 }) => {
   const t = useText();
+  const hasResults = Boolean(hitcount);
+  const classes = clsx(["text-header-h2", "mb-16", "search-result-title"], {
+    "text-loading": !hasResults
+  });
 
   return (
-    <h1 className="text-header-h2 mb-16 search-result-title">
-      {`${t("showingResultsForText")} “${q}” (${hitcount})`}
+    <h1 className={classes} data-cy="search-result-title">
+      {hasResults && `${t("showingResultsForText")} “${q}” (${hitcount})`}
+      {!hasResults && `${t("showingResultsForText")} “${q}”`}
     </h1>
   );
 };

@@ -4,6 +4,7 @@ import { LoanType } from "../../../../core/utils/types/loan-type";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
+import Arrow from "../../../../components/atoms/icons/arrow/arrow";
 
 interface MaterialStatusProps {
   loan: LoanType;
@@ -28,7 +29,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
             dangerText={t("loanListStatusBadgeDangerText")}
             warningText={t("loanListStatusBadgeWarningText")}
           />
-          <p className="text-small-caption" id="due-date">
+          <p className="text-small-caption color-secondary-gray">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {
                   placeholders: { "@date": formatDate(dueDate) }
@@ -40,6 +41,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
           {children}
         </div>
       </div>
+      <Arrow />
     </div>
   );
 };

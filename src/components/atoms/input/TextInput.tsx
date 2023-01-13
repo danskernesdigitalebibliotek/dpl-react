@@ -29,7 +29,7 @@ const TextInput: FC<TextInputProps> = ({
     onChange(e.target.value);
   };
   return (
-    <div className={`dpl-input ${className || ""}`}>
+    <div className={`${className || "dpl-input"}`}>
       <label htmlFor={id}>{label}</label>
       <input
         aria-describedby={description ?? (`description-${id}` || "")}

@@ -6,7 +6,6 @@ import {
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
-import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { FaustId, WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
@@ -21,7 +20,6 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { totalMaterials } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -156,13 +154,7 @@ const ReservationModalBody = ({
     reservationResponse?.reservationResults[0]?.reservationDetails;
 
   return (
-    <Modal
-      modalId={reservationModalId(faustId)}
-      screenReaderModalDescriptionText={t(
-        "reservationModalScreenReaderModalDescriptionText"
-      )}
-      closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
-    >
+    <>
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
@@ -184,7 +176,7 @@ const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 <StockAndReservationInfo
-                  stockCount={totalMaterials(holdings)}
+                  holdings={holdings}
                   reservationCount={reservations}
                 />
               </MaterialAvailabilityTextParagraph>
@@ -244,6 +236,8 @@ const ReservationModalBody = ({
             reservationDetails.pickupBranch,
             branches
           )}
+          holdings={holdings}
+          reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}
@@ -254,7 +248,7 @@ const ReservationModalBody = ({
           setReservationResponse={setReservationResponse}
         />
       )}
-    </Modal>
+    </>
   );
 };
 

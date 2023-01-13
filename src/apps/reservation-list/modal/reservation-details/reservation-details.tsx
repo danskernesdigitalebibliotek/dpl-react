@@ -6,27 +6,27 @@ import fetchMaterial, {
 import ModalDetailsHeader from "../../../../components/modal-details-header/modal-details-header";
 import DigitalListDetails from "./digital-list-details";
 import ReservationDetailsButton from "./reservation-details-buttons";
-import { AgencyBranch } from "../../../../core/fbs/model";
 import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
+import { useGetBranches } from "../../../../core/utils/branches";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
-  branches: AgencyBranch[];
+  openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
-  branches
+  openReservationDeleteModal
 }) => {
   const t = useText();
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-
+  const branches = useGetBranches();
   const isDigital = !!reservation.identifier;
 
   return (
@@ -51,12 +51,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           </ModalDetailsHeader>
           {reservation.reservationId && (
             <ReservationDetailsButton
+              openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.reservationId}
               numberInQueue={numberInQueue}
             />
           )}
           {isDigital && reservation.identifier && (
             <ReservationDetailsRedirect
+              openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.identifier}
             />
           )}

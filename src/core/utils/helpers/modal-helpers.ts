@@ -25,11 +25,9 @@ export const dateFromDueDateModalQueryParam = (queryParam: string) => {
   return dateFound[0];
 };
 
-export const getLoanDetailsModalId = (queryParam: string) => {
-  const { loanDetails } = getModalIds() || { loanDetails: "" };
-
+export const getDetailsModalId = (queryParam: string, prefix: string) => {
   // regex for finding loan details concatenated with id from modal query param
-  const regexIdentifier = new RegExp(`${loanDetails}(\\d{13})|(\\d{8})`, "g");
+  const regexIdentifier = new RegExp(`(?<=${prefix})((\\d{13})|(\\d{8}))`, "g");
   const modalId = queryParam.match(regexIdentifier);
   if (modalId) {
     const [returnId] = modalId;
