@@ -108,6 +108,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     }
   ];
 
+  const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
@@ -115,6 +117,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestText={materialTypes[0]?.specific}
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
+          isbn={identifiers?.[0]?.value ?? ""}
+          accessTypes={accessTypesCodes}
         />
       </div>
       <div className="material-manifestation-item__cover">
