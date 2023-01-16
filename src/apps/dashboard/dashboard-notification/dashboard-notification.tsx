@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, MouseEvent } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
 import { Link } from "../../../components/atoms/link";
 
@@ -19,7 +19,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationClickEvent,
   notificationClickEventModalId
 }) => {
-  function stopPropagationFunction(e: Event | MouseEvent) {
+  function stopPropagationFunction(e: MouseEvent) {
     e.stopPropagation();
   }
   const notificationClickEventHandler = useCallback(
