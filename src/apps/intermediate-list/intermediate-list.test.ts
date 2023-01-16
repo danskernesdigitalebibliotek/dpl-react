@@ -141,8 +141,6 @@ describe("Intermediate list", () => {
       );
     // 3.b list of intermediates
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
       .eq(0)
       .should("exist");
@@ -150,11 +148,9 @@ describe("Intermediate list", () => {
     // 3.c metadata
     // 3.c.a material type
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find("div")
@@ -164,10 +160,8 @@ describe("Intermediate list", () => {
 
     // 3.c.b title
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
+      .eq(0)
       .find(".list-reservation")
-      .first()
       .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
@@ -178,11 +172,9 @@ describe("Intermediate list", () => {
 
     // 3.c.c author
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find(".list-reservation__about")
@@ -192,11 +184,9 @@ describe("Intermediate list", () => {
 
     // 3.c.c author
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find(".list-reservation__about")
@@ -206,11 +196,9 @@ describe("Intermediate list", () => {
 
     // 3. d fees charged dd.mm.yyyy
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__status")
       .find("div")
       .find(".list-reservation__deadline")
@@ -220,11 +208,9 @@ describe("Intermediate list", () => {
 
     // 3. e Label: reason
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__status")
       .find("div")
       .find(".list-reservation__deadline")
@@ -234,11 +220,9 @@ describe("Intermediate list", () => {
 
     // 3. e Label: fee amount
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
-      .should("exist")
       .eq(0)
+      .should("exist")
       .find(".list-reservation__status")
       .find(".list-reservation__fee")
       .find(".text-body-medium-medium")
@@ -247,8 +231,6 @@ describe("Intermediate list", () => {
 
     // 3. f List of accepted payment cards
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".intermediate-list-bottom")
       .eq(0)
       .find(".intermediate-list-bottom__paymenttypes")
