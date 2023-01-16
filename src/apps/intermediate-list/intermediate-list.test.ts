@@ -185,7 +185,7 @@ describe("Intermediate list", () => {
     );
     cy.wait(["@fees"]);
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(2000);
+    cy.wait(5000);
   });
 
   it("Intermediate list basics (physical loans)", () => {
