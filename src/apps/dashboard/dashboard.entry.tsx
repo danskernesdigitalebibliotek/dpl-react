@@ -24,6 +24,7 @@ export interface DashBoardProps {
   loansNotOverdueUrl: string;
   reservationsUrl: string;
   reservationsStillInQueueForText: string;
+  readyForLoanText: string;
 }
 
 const MenuEntry: FC<DashBoardProps> = () => <DashBoard />;

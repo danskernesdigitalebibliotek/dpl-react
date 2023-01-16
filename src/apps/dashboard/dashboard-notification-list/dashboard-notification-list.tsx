@@ -15,10 +15,10 @@ import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
 
 export interface DashboardNotificationListProps {
-  openQueueModal: (modalId: string) => void;
+  OpenModalHandler: (modalId: string) => void;
 }
 const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
-  openQueueModal
+  OpenModalHandler
 }) => {
   const t = useText();
   const {
@@ -147,6 +147,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsReadyText")}
             notificationColor="info"
             notificationLink={reservationsUrl}
+            notificationClickEvent={OpenModalHandler}
+            notificationClickEventModalId="ready-to-loan-modal"
           />
         )}
         {patronReservations && reservationsStillInQueueFor !== 0 && (
@@ -155,7 +157,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsStillInQueueForText")}
             notificationColor="neutral"
             notificationLink={reservationsUrl}
-            notificationClickEvent={openQueueModal}
+            notificationClickEvent={OpenModalHandler}
             notificationClickEventModalId="still-in-queue-modal"
           />
         )}

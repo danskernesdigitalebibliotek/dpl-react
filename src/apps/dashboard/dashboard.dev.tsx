@@ -108,6 +108,10 @@ export default {
     noReservationsText: {
       defaultValue: "Du har i øjeblikket 0 reserveringer",
       control: { type: "text" }
+    },
+    readyForLoanText: {
+      defaultValue: "Reservationer klar til lån",
+      control: { type: "text" }
     }
   },
   component: DashBoard
