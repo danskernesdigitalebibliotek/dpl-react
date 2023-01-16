@@ -1,11 +1,8 @@
 import * as React from "react";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../core/fbs/model";
-import {
-  getDigitalReservations,
-  getPhysicalReservations
-} from "../../../core/utils/helpers/general";
+import { getPhysicalReservations } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import { useText } from "../../../core/utils/text";
 import {
@@ -13,14 +10,9 @@ import {
   ReservationListResult
 } from "../../../core/publizon/model";
 import QueuedReservationsList from "./queued-reservations-list";
+import CheckBox from "../../../components/checkbox/Checkbox";
 
-export interface StillInQueueModalContentProps {
-  HelloW: string;
-}
-
-const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
-  HelloW
-}) => {
+const StillInQueueModalContent: FC = () => {
   const t = useText();
   const [
     physicalReservationsStillInQueue,
@@ -29,7 +21,13 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
   const [digitalReservationsStillInQueue, setDigitalReservationsStillInQueue] =
     useState<Reservation[]>();
   const { data: physicalReservations } = useGetReservationsV2();
-  const { data: digitalReservations } = useGetV1UserReservations();
+  const { data: digitalReservations } =
+    useGetV1UserReservations<ReservationListResult>();
+  const [allSelectableReservations, setAllSelectableReservations] =
+    useState<string[]>();
+  const [selectedReservations, setSelectedReservations] = useState<string[]>(
+    []
+  );
   useEffect(() => {
     if (physicalReservations) {
       const reservations = getPhysicalReservations(physicalReservations);
@@ -40,6 +38,29 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
   }, [physicalReservations]);
 
   useEffect(() => {
+    if (
+      physicalReservations &&
+      digitalReservationsStillInQueue &&
+      !allSelectableReservations
+    ) {
+      const fausts = physicalReservations.map((pr) => {
+        return pr.recordId;
+      });
+      const idents = digitalReservationsStillInQueue.map((dr) => {
+        return dr.identifier;
+      });
+      const selectableReservations = [...fausts, ...idents] as string[];
+      if (selectableReservations.length > 0) {
+        setAllSelectableReservations(selectableReservations);
+      }
+    }
+  }, [
+    physicalReservations,
+    digitalReservationsStillInQueue,
+    allSelectableReservations
+  ]);
+
+  useEffect(() => {
     if (digitalReservations) {
       const { reservations } = digitalReservations;
       if (reservations) {
@@ -47,9 +68,38 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       }
     }
   }, [digitalReservations]);
-  console.log(physicalReservationsStillInQueue);
-  console.log(digitalReservationsStillInQueue);
+  const selectAllQueuedResevationsHandler = () => {
+    if (selectedReservations.length > 0) {
+      setSelectedReservations([]);
+    } else if (allSelectableReservations) {
+      setSelectedReservations(allSelectableReservations);
+    }
+  };
+  const setCustomSelection = useCallback(
+    (elementId: string | number) => {
+      if (selectedReservations.includes(elementId as string)) {
+        const filteredReservations = selectedReservations.filter((item) => {
+          return item !== elementId;
+        });
+        setSelectedReservations(filteredReservations);
+      } else {
+        const updatedSelectedReservations = [...selectedReservations];
+        updatedSelectedReservations.push(elementId as string);
+        setSelectedReservations(updatedSelectedReservations);
+      }
+    },
+    [selectedReservations]
+  );
+  const removeSelectedReservations = () => {
+    if (selectedReservations.length > 0) {
+      console.log("Delete reservations using following:");
+      // Publizon
+      // deleteV1UserReservationsIdentifier
 
+      // FBS
+      // deleteReservations
+    }
+  };
   return (
     <div className="modal-loan__container">
       <div className="modal-loan__header">
@@ -62,34 +112,19 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       </div>
       <div className="modal-loan__buttons">
         <div className="checkbox">
-          <input
-            id="checkbox_id__0.4701588889139079"
-            className="checkbox__input"
-            type="checkbox"
+          <CheckBox
+            id="queued-reservations-select-all"
+            label={t("chooseAllText")}
+            onChecked={selectAllQueuedResevationsHandler}
           />
-          <label className="checkbox__label">
-            <span className="checkbox__icon">
-              <svg width="20px" height="20px">
-                <polyline
-                  points="1.5 6 4.5 9 10.5 1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </span>
-            <div>
-              <span className="checkbox__text text-small-caption color-secondary-gray ">
-                {t("chooseAllText")}
-              </span>
-            </div>
-          </label>
         </div>
         <button
           type="button"
-          className="btn-primary btn-filled btn-small arrow__hover--right-small undefined"
+          className="btn-primary btn-filled btn-small arrow__hover--right-small"
+          onClick={removeSelectedReservations}
         >
-          {t("removeAllReservationsText")} (2){" "}
+          {t("removeAllReservationsText")} (
+          {selectedReservations && selectedReservations.length}){" "}
           <div className="ml-16">
             <svg
               width="61"
@@ -120,13 +155,18 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
                 <a href="/" className="link-tag link-tag link-filters__tag">
                   {t("physicalText")}
                 </a>
-                <span className="link-filters__counter">1</span>
+                <span className="link-filters__counter">
+                  {physicalReservationsStillInQueue &&
+                    physicalReservationsStillInQueue.length}
+                </span>
               </div>
             </div>
           </div>
           {physicalReservationsStillInQueue && (
             <QueuedReservationsList
-              reservations={physicalReservationsStillInQueue}
+              physicalReservations={physicalReservationsStillInQueue}
+              selectedReservations={selectedReservations}
+              setCustomSelection={setCustomSelection}
             />
           )}
         </li>
@@ -137,61 +177,20 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
                 <a href="/" className="link-tag link-tag link-filters__tag">
                   {t("digitalText")}
                 </a>
-                <span className="link-filters__counter">1</span>
+                <span className="link-filters__counter">
+                  {digitalReservationsStillInQueue &&
+                    digitalReservationsStillInQueue.length}
+                </span>
               </div>
             </div>
           </div>
-          <ul className="modal-loan__list-materials">
-            <li>
-              <div className="list-materials list-materials__selected">
-                <div className="list-materials__checkbox mr-32">
-                  <div className="checkbox">
-                    <input
-                      id="checkbox_id__0.43197340400572903"
-                      className="checkbox__input"
-                      type="checkbox"
-                      aria-label="Vælg materiale"
-                    />
-                    <label
-                      className="checkbox__label"
-                      htmlFor="checkbox_id__0.43197340400572903"
-                    >
-                      <span className="checkbox__icon">
-                        <svg width="20px" height="20px">
-                          <polyline
-                            points="1.5 6 4.5 9 10.5 1"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                      </span>
-                      <div />
-                    </label>
-                  </div>
-                </div>
-                <div className="list-materials__content">
-                  <div className="list-materials__content-status">
-                    <div className="status-label status-label--outline ">
-                      bog
-                    </div>
-                    <div className="status-label status-label--warning list-materials__content-status-label">
-                      UDLØBER 20.11.21
-                    </div>
-                  </div>
-                  <p className="text-header-h5 mt-8">Audrey Hepburn</p>
-                  <p className="text-small-caption">
-                    Af Isabel Sánchez Vegara, Amaia Arrazola (2018)
-                  </p>
-                </div>
-                <div className="list-materials__status">
-                  <div className="status-label status-label--warning ">
-                    UDLØBER 20.11.21
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          {digitalReservationsStillInQueue && (
+            <QueuedReservationsList
+              digitalReservations={digitalReservationsStillInQueue}
+              selectedReservations={selectedReservations}
+              setCustomSelection={setCustomSelection}
+            />
+          )}
         </li>
       </ul>
     </div>

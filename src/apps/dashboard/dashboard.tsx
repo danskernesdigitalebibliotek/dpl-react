@@ -19,7 +19,7 @@ const DashBoard: FC = () => {
       <DashboardFees />
       <DashboardNotificationList openQueueModal={openQueueModal} />
       <StillInQueueModal modalId="still-in-queue-modal">
-        <StillInQueueModalContent HelloW="Hello WOrld!" />
+        <StillInQueueModalContent />
       </StillInQueueModal>
     </>
   );
