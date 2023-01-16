@@ -11,10 +11,14 @@ interface StateProps {
   modalIds: string[];
 }
 const focusContainerArray: Element[] = [];
-const handleModalFocus = (elementToStore?: Element) => {
+const storeFocusElement = (elementToStore?: Element) => {
   if (elementToStore) {
     return focusContainerArray.push(elementToStore);
   }
+  return false;
+};
+
+const returnFocusElement = () => {
   const element = focusContainerArray.pop() as HTMLElement;
   if (element) {
     element.focus();
@@ -45,7 +49,7 @@ const modalSlice = createSlice({
       const { activeElement } = document;
       // Prevent body from double triggering focus store when url contains modalId
       if (activeElement && activeElement.tagName !== "BODY") {
-        handleModalFocus(activeElement);
+        storeFocusElement(activeElement);
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {
@@ -55,7 +59,7 @@ const modalSlice = createSlice({
         .get("modal")
         ?.replace(action.payload.modalId, "");
       searchParams.set("modal", newSearchParams || "");
-      handleModalFocus();
+      returnFocusElement();
     }
   }
 });

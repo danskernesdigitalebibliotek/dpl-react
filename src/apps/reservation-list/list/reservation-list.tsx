@@ -9,7 +9,8 @@ import {
 } from "../utils/helpers";
 import {
   getModalIds,
-  getReadyForPickup
+  getReadyForPickup,
+  useScrollLock
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
@@ -256,12 +257,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   return (
     <>
-      <div
-        className="reservation-list-page"
-        style={
-          modalIds.length > 0 ? { overflow: "hidden", height: "100vh" } : {}
-        }
-      >
+      <div className={`reservation-list-page ${useScrollLock(modalIds)}`}>
         <h1 className="text-header-h1 m-32">
           {t("reservationListHeaderText")}
         </h1>

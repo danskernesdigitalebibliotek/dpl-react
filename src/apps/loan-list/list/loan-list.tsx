@@ -5,7 +5,8 @@ import {
   getAmountOfRenewableLoans,
   getDueDatesLoan,
   getModalIds,
-  sortByLoanDate
+  sortByLoanDate,
+  useScrollLock
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -60,7 +61,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   );
   const { isSuccess, data } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
-
   useEffect(() => {
     let loanForModal = null;
     if (physicalLoans && modalDetailsId) {
@@ -157,12 +157,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
-      <div
-        style={
-          modalIds.length > 0 ? { overflow: "hidden", height: "100vh" } : {}
-        }
-        className="loan-list-page"
-      >
+      <div className={`loan-list-page ${useScrollLock(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>
