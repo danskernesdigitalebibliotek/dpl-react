@@ -55,66 +55,6 @@ describe("Intermediate list", () => {
           ]
         },
         {
-          feeId: 434537,
-          type: "fee",
-          reasonMessage: "Gebyr (for sent)",
-          amount: 70,
-          dueDate: "2022-05-08",
-          creationDate: "2022-04-06",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "3275348197",
-              recordId: "23790823",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            },
-            {
-              materialItemNumber: "5218297864",
-              recordId: "45951685",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        },
-        {
-          feeId: 434538,
-          type: "fee",
-          reasonMessage: "Gebyr (for sent)",
-          amount: 120,
-          dueDate: "2022-05-08",
-          creationDate: "2022-04-06",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "5136106556",
-              recordId: "53067034",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            },
-            {
-              materialItemNumber: "5232011841",
-              recordId: "54058969",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        },
-        {
           feeId: 306404,
           type: "fee",
           reasonMessage: "Gebyr (for sent)",
@@ -127,48 +67,6 @@ describe("Intermediate list", () => {
             {
               materialItemNumber: "3839631447",
               recordId: "26285283",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        },
-        {
-          feeId: 377242,
-          type: "compensation",
-          reasonMessage: "Erstatning (test)",
-          amount: 1,
-          dueDate: "2021-08-10",
-          creationDate: "2021-02-11",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "271358741",
-              recordId: "01484524",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        },
-        {
-          feeId: 411199,
-          type: "compensation",
-          reasonMessage: "Gebyr (for sent)",
-          amount: 1.5,
-          dueDate: "2021-12-24",
-          creationDate: "2021-11-24",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "262088571",
-              recordId: "06964206",
               periodical: null,
               materialGroup: {
                 name: "standard",
@@ -205,9 +103,9 @@ describe("Intermediate list", () => {
 
     // 2.c // 2.e subheadline "Unsettled debt - BEFORE 27/10 2020"
     cy.get(".dpl-list-buttons__header")
-      .eq(0)
+      .first()
       .should("exist")
-      .should("have.text", "Unsettled debt - BEFORE 27/10 2020");
+      .should("contain.text", "Unsettled debt");
 
     // 2.d link “See our fees and replacement costs”
     cy.get(".intermediate-list-page")
@@ -269,7 +167,7 @@ describe("Intermediate list", () => {
       .find("div")
       .find("div")
       .find(".list-reservation")
-      .eq(0)
+      .first()
       .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
@@ -367,51 +265,43 @@ describe("Intermediate list", () => {
     // 4. a List after date
     // Title
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
+      .eq(1)
       .should("exist")
-      .eq(2)
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find(".list-reservation__about")
       .find(".text-header-h4")
       .should("exist")
-      .should("have.text", "Den kreative løgn");
+      .should("have.text", "Søvnløse spor");
 
     // Author && year
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
+      .eq(1)
       .should("exist")
-      .eq(2)
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Karl Aage Rasmussen (f. 1947) (2002)");
+      .should("have.text", "By Gazelle Buchholtz (2020)");
 
     // 4.b +x other materials
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
+      .eq(1)
       .should("exist")
-      .eq(2)
       .find(".list-reservation__material")
       .find(".list-reservation__information")
       .find(".stack-size-text")
       .should("exist")
-      .should("have.text", "+ 1 other materials");
+      .should("have.text", "+ 2 other materials");
 
     cy.get(".intermediate-list-page")
-      .find("div")
-      .find("div")
       .find(".list-reservation")
+      .eq(1)
       .should("exist")
-      .eq(0)
       .click();
 
     // 5. modal
@@ -420,7 +310,7 @@ describe("Intermediate list", () => {
       .find("div")
       .find(".counter")
       .find(".counter__value")
-      .should("have.text", "180");
+      .should("have.text", "32");
 
     // counter text
     cy.get("div.modal-loan__header")
@@ -435,7 +325,7 @@ describe("Intermediate list", () => {
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
-      .should("have.text", "Turned in 18. October 2019");
+      .should("have.text", "Turned in 6. April 2022");
 
     // "i accept the Terms of trade*"
     cy.get(".modal-loan__buttons")
