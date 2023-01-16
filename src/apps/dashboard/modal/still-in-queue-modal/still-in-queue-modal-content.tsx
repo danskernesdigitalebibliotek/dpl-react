@@ -90,6 +90,7 @@ const StillInQueueModalContent: FC = () => {
     },
     [selectedReservations]
   );
+
   const removeSelectedReservations = () => {
     if (selectedReservations.length > 0) {
       console.log("Delete reservations using following:");

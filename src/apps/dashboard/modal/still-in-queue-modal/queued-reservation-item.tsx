@@ -24,7 +24,6 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
   setCustomSelection
 }) => {
   const { title, authors, year, materialType } = material || {};
-  // .setCustomSelection(faust || identifier)
   return (
     <li>
       <div className="list-materials">

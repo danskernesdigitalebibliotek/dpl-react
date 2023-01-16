@@ -36,12 +36,14 @@ const QueuedReservationsList: FC<QueuedReservationsListProps> = ({
         digitalReservations.map((digitalReservation) => {
           const { identifier, status = "" } = digitalReservation;
           return (
-            <QueuedReservationItem
-              identifier={identifier}
-              numberInQueue={status}
-              selectedReservations={selectedReservations}
-              setCustomSelection={setCustomSelection}
-            />
+            identifier && (
+              <QueuedReservationItem
+                identifier={identifier}
+                numberInQueue={status}
+                selectedReservations={selectedReservations}
+                setCustomSelection={setCustomSelection}
+              />
+            )
           );
         })}
     </ul>
