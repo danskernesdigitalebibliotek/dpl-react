@@ -662,3 +662,8 @@ export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
 };
+
+export const InstantLoan = Template.bind({});
+InstantLoan.args = {
+  wid: "work-of:870970-basis:134015012"
+};
