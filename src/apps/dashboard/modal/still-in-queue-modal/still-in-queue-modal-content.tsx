@@ -1,16 +1,16 @@
 import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
-import { useGetReservationsV2 } from "../../../core/fbs/fbs";
-import { ReservationDetailsV2 } from "../../../core/fbs/model";
-import { getPhysicalReservations } from "../../../core/utils/helpers/general";
-import { useGetV1UserReservations } from "../../../core/publizon/publizon";
-import { useText } from "../../../core/utils/text";
+import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
+import { ReservationDetailsV2 } from "../../../../core/fbs/model";
+import { getPhysicalReservations } from "../../../../core/utils/helpers/general";
+import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
+import { useText } from "../../../../core/utils/text";
 import {
   Reservation,
   ReservationListResult
-} from "../../../core/publizon/model";
+} from "../../../../core/publizon/model";
 import QueuedReservationsList from "./queued-reservations-list";
-import CheckBox from "../../../components/checkbox/Checkbox";
+import CheckBox from "../../../../components/checkbox/Checkbox";
 
 const StillInQueueModalContent: FC = () => {
   const t = useText();

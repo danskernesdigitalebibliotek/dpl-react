@@ -1,8 +1,8 @@
 import * as React from "react";
 import { FC } from "react";
-import { ReservationDetailsV2 } from "../../../core/fbs/model";
-import { Reservation } from "../../../core/publizon/model";
-import { FaustId } from "../../../core/utils/types/ids";
+import { ReservationDetailsV2 } from "../../../../core/fbs/model";
+import { Reservation } from "../../../../core/publizon/model";
+import { FaustId } from "../../../../core/utils/types/ids";
 import QueuedReservationItem from "./queued-reservation-item";
 
 export interface QueuedReservationsListProps {

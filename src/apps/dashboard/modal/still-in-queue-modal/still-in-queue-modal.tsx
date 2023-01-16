@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC, ReactNode } from "react";
-import Modal from "../../../core/utils/modal";
-import { useText } from "../../../core/utils/text";
+import Modal from "../../../../core/utils/modal";
+import { useText } from "../../../../core/utils/text";
 
 export interface StillInQueueModalProps {
   modalId?: string;

@@ -6,7 +6,6 @@ import { getListItems } from "../../../core/utils/helpers/general";
 import { getStackedItems } from "../utils/helpers";
 import LoanListItems from "./loan-list-items";
 import usePager from "../../../components/result-pager/use-pager";
-import StillInQueueModal from "../../dashboard/modal/still-in-queue-modal";
 
 export interface ListProps {
   loans: LoanType[];
@@ -70,9 +69,6 @@ const List: FC<ListProps> = ({
         </>
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
-      <StillInQueueModal modalId={123}>
-        <h3>Hello WOrld!</h3>
-      </StillInQueueModal>
     </>
   );
 };

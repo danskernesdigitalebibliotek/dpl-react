@@ -1,11 +1,11 @@
 import * as React from "react";
 import { FC } from "react";
-import CheckBox from "../../../components/checkbox/Checkbox";
-import { FaustId } from "../../../core/utils/types/ids";
-import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
+import CheckBox from "../../../../components/checkbox/Checkbox";
+import { FaustId } from "../../../../core/utils/types/ids";
+import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import fetchMaterial, {
   MaterialProps
-} from "../../loan-list/materials/utils/material-fetch-hoc";
+} from "../../../loan-list/materials/utils/material-fetch-hoc";
 
 export interface QueuedReservationItemProps {
   numberInQueue: number | "";
