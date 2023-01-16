@@ -93,10 +93,8 @@ const StillInQueueModalContent: FC = () => {
 
   const removeSelectedReservations = () => {
     if (selectedReservations.length > 0) {
-      console.log("Delete reservations using following:");
       // Publizon
       // deleteV1UserReservationsIdentifier
-
       // FBS
       // deleteReservations
     }

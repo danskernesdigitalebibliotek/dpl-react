@@ -15,7 +15,6 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
-import { ReservationListResult } from "../../publizon/model";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
