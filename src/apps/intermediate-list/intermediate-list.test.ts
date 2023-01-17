@@ -159,13 +159,10 @@ describe("Intermediate list", () => {
       .should("have.text", "bog");
 
     // 3.c.b title
-    cy.get(".intermediate-list-page")
+    cy.get("[data-cy='intermediate-list-before']")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
-      .find(".list-reservation__material")
-      .find(".list-reservation__information")
-      .find(".list-reservation__about")
       .find(".text-header-h4")
       .should("exist")
       .should("have.text", "Den som blinker er bange for døden");
@@ -234,13 +231,10 @@ describe("Intermediate list", () => {
 
     // 4. a List after date
     // Title
-    cy.get(".intermediate-list-page")
+    cy.get("[data-cy='intermediate-list-after']")
       .find(".list-reservation")
-      .eq(1)
+      .eq(0)
       .should("exist")
-      .find(".list-reservation__material")
-      .find(".list-reservation__information")
-      .find(".list-reservation__about")
       .find(".text-header-h4")
       .should("exist")
       .should("have.text", "Søvnløse spor");

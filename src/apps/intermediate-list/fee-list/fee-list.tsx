@@ -31,7 +31,7 @@ const FeeList: FC<FeeListProps> = ({
         </>
       )}
       {itemsPrePaymentChange && (
-        <div>
+        <div data-cy="intermediate-list-before">
           <ListHeader
             header={
               <>
@@ -57,7 +57,7 @@ const FeeList: FC<FeeListProps> = ({
         </div>
       )}
       {itemsPostPaymentChange && (
-        <div>
+        <div data-cy="intermediate-list-after">
           <ListHeader
             header={
               <>
