@@ -160,8 +160,8 @@ describe("Intermediate list", () => {
 
     // 3.c.b title
     cy.get(".intermediate-list-page")
-      .eq(0)
       .find(".list-reservation")
+      .eq(0)
       .should("exist")
       .find(".list-reservation__material")
       .find(".list-reservation__information")
@@ -169,18 +169,6 @@ describe("Intermediate list", () => {
       .find(".text-header-h4")
       .should("exist")
       .should("have.text", "Den som blinker er bange for døden");
-
-    // 3.c.c author
-    cy.get(".intermediate-list-page")
-      .find(".list-reservation")
-      .eq(0)
-      .should("exist")
-      .find(".list-reservation__material")
-      .find(".list-reservation__information")
-      .find(".list-reservation__about")
-      .find(".text-small-caption")
-      .should("exist")
-      .should("have.text", "By Knud Romer (2006)");
 
     // 3.c.c author
     cy.get(".intermediate-list-page")
