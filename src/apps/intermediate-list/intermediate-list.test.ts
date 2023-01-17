@@ -78,6 +78,30 @@ describe("Intermediate list", () => {
       ]
     }).as("fees");
 
+    cy.intercept("POST", "**/opac/**", {
+      statusCode: 200,
+      body: {
+        data: {
+          manifestation: {
+            pid: "870970-basis:22629344",
+            titles: { main: ["Dummy Some Title"] },
+            abstract: ["Dummy Some abstract ..."],
+            edition: {
+              summary: "3. udgave, 1. oplag (2019)",
+              publicationYear: {
+                display: "2006"
+              }
+            },
+            materialTypes: [{ specific: "Dummy bog" }],
+            creators: [
+              { display: "Dummy Jens Jensen" },
+              { display: "Dummy Some Corporation" }
+            ]
+          }
+        }
+      }
+    }).as("work");
+
     cy.visit(
       "/iframe.html?path=/story/apps-intermediate-list--intermediate-list-entry"
     );
@@ -156,7 +180,7 @@ describe("Intermediate list", () => {
       .find("div")
       .find(".status-label")
       .should("exist")
-      .should("have.text", "bog");
+      .should("have.text", "Dummy bog");
 
     // 3.c.b title
     cy.get("[data-cy='intermediate-list-before']")
@@ -165,7 +189,7 @@ describe("Intermediate list", () => {
       .should("exist")
       .find(".text-header-h4")
       .should("exist")
-      .should("have.text", "Den som blinker er bange for døden");
+      .should("have.text", "Dummy Some Title");
 
     // 3.c.c author
     cy.get(".intermediate-list-page")
@@ -177,7 +201,10 @@ describe("Intermediate list", () => {
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Knud Romer (2006)");
+      .should(
+        "have.text",
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+      );
 
     // 3. d fees charged dd.mm.yyyy
     cy.get(".intermediate-list-page")
@@ -237,7 +264,7 @@ describe("Intermediate list", () => {
       .should("exist")
       .find(".text-header-h4")
       .should("exist")
-      .should("have.text", "Søvnløse spor");
+      .should("have.text", "Dummy Some Title");
 
     // Author && year
     cy.get(".intermediate-list-page")
@@ -249,7 +276,10 @@ describe("Intermediate list", () => {
       .find(".list-reservation__about")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "By Gazelle Buchholtz (2020)");
+      .should(
+        "have.text",
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+      );
 
     // 4.b +x other materials
     cy.get(".intermediate-list-page")

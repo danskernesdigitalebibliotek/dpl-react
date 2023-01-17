@@ -16,6 +16,7 @@ export interface IntermedateListProps {
   intermediateListHeadlineText: string;
   intermediateListBodyText: string;
   viewFeesAndCompensationRatesText: string;
+  materialAndAuthorText: string;
   viewFeesAndCompensationRatesUrl: string;
   unpaidFeesText: string;
   prePaymentTypeChangeDateText: string;
