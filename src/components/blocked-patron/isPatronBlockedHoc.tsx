@@ -7,6 +7,9 @@ import { useModalButtonHandler } from "../../core/utils/modal";
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
 }
+
+// Hoc that determines if a patron is blocked and provides a modal with
+// and explanation for the user.
 const isPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P & PatronProps>): FC<P> =>
   ({ ...props }) => {
