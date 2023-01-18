@@ -22,11 +22,11 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
     <ul className="modal-loan__list-materials">
       {physicalReservations &&
         physicalReservations.map((physicalReservation) => {
-          const { recordId, numberInQueue = "" } = physicalReservation;
+          const { recordId, expiryDate } = physicalReservation;
           return (
             <QueuedReservationItem
               faust={recordId as FaustId}
-              numberInQueue={numberInQueue}
+              pickUpByDate={expiryDate}
               selectedReservations={selectedReservations}
               setCustomSelection={setCustomSelection}
             />
@@ -34,12 +34,12 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
         })}
       {digitalReservations &&
         digitalReservations.map((digitalReservation) => {
-          const { identifier, status = "" } = digitalReservation;
+          const { identifier, expireDateUtc = "" } = digitalReservation;
           return (
             identifier && (
               <QueuedReservationItem
                 identifier={identifier}
-                numberInQueue={status}
+                pickUpByDate={expireDateUtc}
                 selectedReservations={selectedReservations}
                 setCustomSelection={setCustomSelection}
               />

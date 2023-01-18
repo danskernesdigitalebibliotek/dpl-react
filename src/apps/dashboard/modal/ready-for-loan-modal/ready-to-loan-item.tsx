@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import * as React from "react";
 import { FC } from "react";
 import CheckBox from "../../../../components/checkbox/Checkbox";
@@ -8,7 +9,7 @@ import fetchMaterial, {
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
 
 export interface ReadyToLoanItemProps {
-  numberInQueue: number | "";
+  pickUpByDate: string | null;
   faust?: FaustId;
   identifier?: string;
   selectedReservations: string[];
@@ -17,13 +18,14 @@ export interface ReadyToLoanItemProps {
 
 const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
   material,
-  numberInQueue,
+  pickUpByDate,
   faust = "",
   identifier = "",
   selectedReservations,
   setCustomSelection
 }) => {
   const { title, authors, year, materialType } = material || {};
+  const formattedPickupDate = dayjs(pickUpByDate).format("");
   return (
     <li>
       <div className="list-materials">
@@ -50,7 +52,7 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--neutral ">
-            NR. {numberInQueue} i køen
+            NR. {pickUpByDate} i køen
           </div>
         </div>
       </div>

@@ -152,19 +152,6 @@ const ReadyToLoanModalContent: FC = () => {
       </div>
       <ul className="modal-loan__list-container">
         <li className="modal-loan__list">
-          <div className="modal-loan__count">
-            <div className="link-filters">
-              <div className="link-filters__tag-wrapper">
-                <a href="/" className="link-tag link-tag link-filters__tag">
-                  {t("physicalText")}
-                </a>
-                <span className="link-filters__counter">
-                  {physicalReservationsStillInQueue &&
-                    physicalReservationsStillInQueue.length}
-                </span>
-              </div>
-            </div>
-          </div>
           {physicalReservationsStillInQueue && (
             <QueuedReservationsList
               physicalReservations={physicalReservationsStillInQueue}
