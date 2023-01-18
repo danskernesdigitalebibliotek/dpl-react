@@ -3,7 +3,6 @@ import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
 import BlockedModal from "./blocked-modal/BlockedModal";
 import { AuthenticatedPatronV6 } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { useText } from "../../core/utils/text";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
