@@ -27,8 +27,7 @@ const isUserBlockedHoc =
         }
       }
     }, [open, patronData]);
-    // If this is a digital book, another HOC fetches the data and this
-    // HOC just returns the component
+
     return (
       <>
         <BlockedModal blockedStatus={blockedStatus || ""} />
