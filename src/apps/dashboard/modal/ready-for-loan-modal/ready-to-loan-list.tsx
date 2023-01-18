@@ -19,7 +19,7 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
   setCustomSelection
 }) => {
   return (
-    <ul className="modal-loan__list-materials">
+    <>
       {physicalReservations &&
         physicalReservations.map((physicalReservation) => {
           const { recordId, expiryDate } = physicalReservation;
@@ -46,7 +46,7 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
             )
           );
         })}
-    </ul>
+    </>
   );
 };
 

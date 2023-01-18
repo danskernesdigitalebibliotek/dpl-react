@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
+import dayjs from "dayjs";
 import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import { getPhysicalReservations } from "../../../../core/utils/helpers/general";
@@ -15,11 +16,9 @@ import StatusCircle from "../../../loan-list/materials/utils/status-circle";
 
 const ReadyToLoanModalContent: FC = () => {
   const t = useText();
-  const [
-    physicalReservationsStillInQueue,
-    setPhysicalReservationsStillInQueue
-  ] = useState<ReservationDetailsV2[]>();
-  const [digitalReservationsStillInQueue, setDigitalReservationsStillInQueue] =
+  const [physicalReservationsReadyToLoan, setPhysicalReservationsReadyToLoan] =
+    useState<ReservationDetailsV2[]>();
+  const [digitalReservationsReadyToLoan, setDigitalReservationsReadyToLoan] =
     useState<Reservation[]>();
   const { data: physicalReservations } = useGetReservationsV2();
   const { data: digitalReservations } =
@@ -29,25 +28,47 @@ const ReadyToLoanModalContent: FC = () => {
   const [selectedReservations, setSelectedReservations] = useState<string[]>(
     []
   );
+  const today = dayjs();
   useEffect(() => {
-    if (physicalReservations) {
+    if (physicalReservations && !physicalReservationsReadyToLoan) {
       const reservations = getPhysicalReservations(physicalReservations);
       if (reservations) {
-        setPhysicalReservationsStillInQueue(reservations);
+        const readyToLoan = reservations.filter((reservation) => {
+          const expiryDate = dayjs(reservation.expiryDate);
+          return expiryDate > today;
+        });
+        if (readyToLoan) {
+          setPhysicalReservationsReadyToLoan(readyToLoan);
+        }
       }
     }
-  }, [physicalReservations]);
+  }, [physicalReservations, physicalReservationsReadyToLoan, today]);
+
+  useEffect(() => {
+    if (digitalReservations && !digitalReservationsReadyToLoan) {
+      const { reservations } = digitalReservations;
+      if (reservations) {
+        const readyToLoan = reservations.filter((reservation) => {
+          const expiryDate = dayjs(reservation.expireDateUtc);
+          return expiryDate > today;
+        });
+        if (readyToLoan) {
+          setDigitalReservationsReadyToLoan(readyToLoan);
+        }
+      }
+    }
+  }, [digitalReservations, digitalReservationsReadyToLoan, today]);
 
   useEffect(() => {
     if (
-      physicalReservations &&
-      digitalReservationsStillInQueue &&
+      physicalReservationsReadyToLoan &&
+      digitalReservationsReadyToLoan &&
       !allSelectableReservations
     ) {
-      const fausts = physicalReservations.map((pr) => {
+      const fausts = physicalReservationsReadyToLoan.map((pr) => {
         return pr.recordId;
       });
-      const idents = digitalReservationsStillInQueue.map((dr) => {
+      const idents = digitalReservationsReadyToLoan.map((dr) => {
         return dr.identifier;
       });
       const selectableReservations = [...fausts, ...idents] as string[];
@@ -56,19 +77,11 @@ const ReadyToLoanModalContent: FC = () => {
       }
     }
   }, [
-    physicalReservations,
-    digitalReservationsStillInQueue,
+    physicalReservationsReadyToLoan,
+    digitalReservationsReadyToLoan,
     allSelectableReservations
   ]);
 
-  useEffect(() => {
-    if (digitalReservations) {
-      const { reservations } = digitalReservations;
-      if (reservations) {
-        setDigitalReservationsStillInQueue(reservations);
-      }
-    }
-  }, [digitalReservations]);
   const selectAllQueuedResevationsHandler = () => {
     if (selectedReservations.length > 0) {
       setSelectedReservations([]);
@@ -91,7 +104,6 @@ const ReadyToLoanModalContent: FC = () => {
     },
     [selectedReservations]
   );
-
   const removeSelectedReservations = () => {
     if (selectedReservations.length > 0) {
       // Publizon
@@ -152,35 +164,22 @@ const ReadyToLoanModalContent: FC = () => {
       </div>
       <ul className="modal-loan__list-container">
         <li className="modal-loan__list">
-          {physicalReservationsStillInQueue && (
-            <QueuedReservationsList
-              physicalReservations={physicalReservationsStillInQueue}
-              selectedReservations={selectedReservations}
-              setCustomSelection={setCustomSelection}
-            />
-          )}
-        </li>
-        <li className="modal-loan__list">
-          <div className="modal-loan__count">
-            <div className="link-filters">
-              <div className="link-filters__tag-wrapper">
-                <a href="/" className="link-tag link-tag link-filters__tag">
-                  {t("digitalText")}
-                </a>
-                <span className="link-filters__counter">
-                  {digitalReservationsStillInQueue &&
-                    digitalReservationsStillInQueue.length}
-                </span>
-              </div>
-            </div>
-          </div>
-          {digitalReservationsStillInQueue && (
-            <QueuedReservationsList
-              digitalReservations={digitalReservationsStillInQueue}
-              selectedReservations={selectedReservations}
-              setCustomSelection={setCustomSelection}
-            />
-          )}
+          <ul className="modal-loan__list-materials">
+            {physicalReservationsReadyToLoan && (
+              <QueuedReservationsList
+                physicalReservations={physicalReservationsReadyToLoan}
+                selectedReservations={selectedReservations}
+                setCustomSelection={setCustomSelection}
+              />
+            )}
+            {digitalReservationsReadyToLoan && (
+              <QueuedReservationsList
+                digitalReservations={digitalReservationsReadyToLoan}
+                selectedReservations={selectedReservations}
+                setCustomSelection={setCustomSelection}
+              />
+            )}
+          </ul>
         </li>
       </ul>
     </div>

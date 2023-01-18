@@ -112,6 +112,24 @@ export default {
     readyForLoanText: {
       defaultValue: "Reservationer klar til lån",
       control: { type: "text" }
+    },
+    publizonAudioBookText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Audiobook"
+    },
+    publizonEbookText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "E-book"
+    },
+    publizonPodcastText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Podcast"
     }
   },
   component: DashBoard

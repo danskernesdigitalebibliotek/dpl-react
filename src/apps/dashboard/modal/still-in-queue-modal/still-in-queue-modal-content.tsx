@@ -39,11 +39,11 @@ const StillInQueueModalContent: FC = () => {
 
   useEffect(() => {
     if (
-      physicalReservations &&
+      physicalReservationsStillInQueue &&
       digitalReservationsStillInQueue &&
       !allSelectableReservations
     ) {
-      const fausts = physicalReservations.map((pr) => {
+      const fausts = physicalReservationsStillInQueue.map((pr) => {
         return pr.recordId;
       });
       const idents = digitalReservationsStillInQueue.map((dr) => {
@@ -55,7 +55,7 @@ const StillInQueueModalContent: FC = () => {
       }
     }
   }, [
-    physicalReservations,
+    physicalReservationsStillInQueue,
     digitalReservationsStillInQueue,
     allSelectableReservations
   ]);
