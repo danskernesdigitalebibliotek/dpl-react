@@ -4,6 +4,8 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
+import isPatronBlockedHoc from "../../../components/blocked-patron/isPatronBlockedHoc";
+import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 
 export interface ReservationListProps {
   ereolenMyPageUrl: string;
@@ -79,10 +81,9 @@ export interface ReservationListProps {
   pageSizeMobile: number;
 }
 
-const ReservationListEntry: FC<ReservationListProps> = ({
-  pageSizeDesktop,
-  pageSizeMobile
-}) => {
+const ReservationListEntry: FC<
+  ReservationListProps & BlockedPatronEntryTextProps
+> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
@@ -93,4 +94,6 @@ const ReservationListEntry: FC<ReservationListProps> = ({
   return <ReservationList pageSize={pageSize} />;
 };
 
-export default withConfig(withUrls(withText(ReservationListEntry)));
+export default isPatronBlockedHoc(
+  withConfig(withUrls(withText(ReservationListEntry)))
+);
