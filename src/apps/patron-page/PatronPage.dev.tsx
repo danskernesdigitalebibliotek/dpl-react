@@ -2,12 +2,14 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../core/storybook/blockedArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
     ...serviceUrlArgs,
+    ...blockedArgs,
     // Config
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
