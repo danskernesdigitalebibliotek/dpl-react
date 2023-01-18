@@ -4,10 +4,12 @@ import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../../core/storybook/blockedArgs";
 
 export default {
   title: "Apps / Reservation list",
   component: ReservationList,
+  ...blockedArgs,
   argTypes: {
     // Page size
     pageSizeDesktop: {
