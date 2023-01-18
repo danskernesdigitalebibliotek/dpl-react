@@ -3,14 +3,11 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
-import { withConfig } from "../../../core/utils/config";
+import isUserBlockedHoc from "../../../components/blocked-patron/isUserBlockedHoc";
+import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 
-export interface LoanListEntryConfigProps {
-  thresholdConfig: string;
-}
-export interface LoanListEntryUrlProps {
-  fbsBaseUrl: string;
-  loanListEreolenUrl: string;
+interface LoanListEntryConfigProps {
+  fbsBaseUrlConfig: string;
   materialOverdueUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;
@@ -21,7 +18,7 @@ export interface LoanListEntryUrlProps {
   thresholdConfig: string;
 }
 
-export interface LoanListEntryTextProps {
+interface LoanListEntryTextProps {
   groupModalDueDateLinkToPageWithFeesText: string;
   groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
   groupModalDueDateAriaDescriptionText: string;
@@ -84,9 +81,9 @@ export interface LoanListEntryTextProps {
 }
 
 export interface LoanListEntryWithPageSizeProps
-  extends LoanListEntryTextProps,
-    LoanListEntryConfigProps,
-    LoanListEntryUrlProps {
+  extends BlockedPatronEntryTextProps,
+    LoanListEntryTextProps,
+    LoanListEntryConfigProps {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
@@ -105,4 +102,4 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default withConfig(withUrls(withText(LoanListEntry)));
+export default isUserBlockedHoc(withUrls(withText(LoanListEntry)));
