@@ -14,6 +14,7 @@ import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 import configReducer from "./config.slice";
+import blockModalReducer from "./blockedModal.slice";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
 // in the guardedRequest thunk.
@@ -42,7 +43,8 @@ export const store = configureStore({
       modal: modalReducer,
       url: urlReducer,
       config: configReducer,
-      guardedRequests: guardedRequestsReducer
+      guardedRequests: guardedRequestsReducer,
+      blockedModal: blockModalReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"
