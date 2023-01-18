@@ -7,21 +7,36 @@ import { useModalButtonHandler } from "../../core/utils/modal";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { setHasBeenVisible } from "../../core/blockedModal.slice";
 import { RootState, useSelector } from "../../core/store";
+import { redirectTo } from "../../core/utils/helpers/url";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
 }
 
+type InputProps = {
+  dplCmsBaseUrl: string;
+};
+
 // Hoc that determines if a patron is blocked and provides a modal with
 // and explanation for the user.
 const isPatronBlockedHoc =
-  <P extends object>(Component: ComponentType<P & PatronProps>): FC<P> =>
-  ({ ...props }) => {
+  <P extends object>(
+    Component: ComponentType<P & PatronProps>
+  ): FC<P & InputProps> =>
+  ({ dplCmsBaseUrl, ...props }) => {
     const dispatch = useDispatch();
     const { open } = useModalButtonHandler();
     const { blockedModal } = getModalIds();
     const [patron, setPatron] = useState<AuthenticatedPatronV6>();
+    const [blockedFromViewingContentArray] = useState<string[]>([
+      "D",
+      "S",
+      "F",
+      "O"
+    ]);
     const [blockedStatus, setBlockedStatus] = useState<string>();
+    const [blockedFromViewingContent, setBlockedFromViewingContent] =
+      useState<boolean>(false);
     const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
     // Used to check whether the modal has been opened by another component,
@@ -29,31 +44,46 @@ const isPatronBlockedHoc =
     const {
       data: { hasBeenVisible }
     } = useSelector((state: RootState) => state.blockedModal);
-
     useEffect(() => {
       if (patronData) {
         setPatron(patronData);
         // As above comment, only opens modal if it has not been visible.
         if (
           patronData?.patron?.blockStatus &&
-          patronData?.patron?.blockStatus?.length > 0 &&
-          !hasBeenVisible
+          patronData?.patron?.blockStatus?.length > 0
         ) {
-          setBlockedStatus(patronData.patron.blockStatus[0].blockedReason);
-          open(blockedModal as string);
-          dispatch(setHasBeenVisible({ hasBeenVisible: true }));
+          const reason = patronData.patron.blockStatus[0].blockedReason;
+          setBlockedStatus(reason);
+          if (!hasBeenVisible) {
+            open(blockedModal as string);
+            dispatch(setHasBeenVisible({ hasBeenVisible: true }));
+          }
         }
       }
     }, [blockedModal, dispatch, hasBeenVisible, open, patronData]);
 
+    useEffect(() => {
+      if (blockedStatus) {
+        if (blockedFromViewingContentArray.includes(blockedStatus)) {
+          setBlockedFromViewingContent(
+            blockedFromViewingContentArray.includes(blockedStatus)
+          );
+          redirectTo(new URL(dplCmsBaseUrl));
+        }
+      }
+    }, [blockedFromViewingContentArray, blockedStatus, dplCmsBaseUrl]);
+
     return (
       <>
         <BlockedModal blockedStatus={blockedStatus || ""} />
-        <Component
-          patron={patron}
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...(props as P)}
-        />
+        {!blockedFromViewingContent && (
+          <Component
+            dplCmsBaseUrl={dplCmsBaseUrl}
+            patron={patron}
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...(props as P)}
+          />
+        )}
       </>
     );
   };
