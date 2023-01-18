@@ -8,7 +8,7 @@ interface DashboardNotificationProps {
   notificationColor: string;
   notificationLink: URL;
   notificationClickEvent?: (modalId: string) => void | null;
-  notificationClickEventModalId?: string;
+  notificationClickEventParam?: string;
 }
 
 const DashboardNotification: FC<DashboardNotificationProps> = ({
@@ -17,7 +17,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationColor,
   notificationLink,
   notificationClickEvent,
-  notificationClickEventModalId
+  notificationClickEventParam
 }) => {
   function stopPropagationFunction(e: MouseEvent) {
     e.stopPropagation();
@@ -25,11 +25,11 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   const notificationClickEventHandler = useCallback(
     (e: MouseEvent) => {
       stopPropagationFunction(e);
-      if (notificationClickEvent && notificationClickEventModalId) {
-        notificationClickEvent(notificationClickEventModalId);
+      if (notificationClickEvent && notificationClickEventParam) {
+        notificationClickEvent(notificationClickEventParam);
       }
     },
-    [notificationClickEvent, notificationClickEventModalId]
+    [notificationClickEvent, notificationClickEventParam]
   );
   return (
     <button

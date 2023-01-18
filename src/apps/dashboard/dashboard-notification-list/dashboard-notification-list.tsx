@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "../../../components/atoms/link";
 import { useGetLoansV2, useGetReservationsV2 } from "../../../core/fbs/fbs";
@@ -16,9 +17,11 @@ import DashboardNotification from "../dashboard-notification/dashboard-notificat
 
 export interface DashboardNotificationListProps {
   OpenModalHandler: (modalId: string) => void;
+  openDueDateModal: (dueDate: string) => void;
 }
 const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
-  OpenModalHandler
+  OpenModalHandler,
+  openDueDateModal
 }) => {
   const t = useText();
   const {
@@ -42,12 +45,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     useState<number>(0);
   const [reservationsStillInQueueFor, setReservationsStillInQueueFor] =
     useState<number>(0);
-
   useEffect(() => {
     if (fbsData) {
       setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
     }
   }, [fbsData]);
+  const yesterday = dayjs().subtract(1, "years").format("YYYY-MM-DD");
 
   useEffect(() => {
     if (physicalLoans) {
@@ -101,6 +104,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansOverdueText")}
                 notificationColor="danger"
                 notificationLink={new URL(loansOverdueUrl)}
+                notificationClickEvent={openDueDateModal}
+                notificationClickEventParam={yesterday}
               />
             )}
             {physicalLoansSoonOverdue && physicalLoansSoonOverdue !== 0 && (
@@ -148,7 +153,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationColor="info"
             notificationLink={reservationsUrl}
             notificationClickEvent={OpenModalHandler}
-            notificationClickEventModalId="ready-to-loan-modal"
+            notificationClickEventParam="ready-to-loan-modal"
           />
         )}
         {patronReservations && reservationsStillInQueueFor !== 0 && (
@@ -158,7 +163,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationColor="neutral"
             notificationLink={reservationsUrl}
             notificationClickEvent={OpenModalHandler}
-            notificationClickEventModalId="still-in-queue-modal"
+            notificationClickEventParam="still-in-queue-modal"
           />
         )}
       </div>

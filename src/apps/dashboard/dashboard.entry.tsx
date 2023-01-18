@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import DashBoard from "./dashboard";
@@ -25,8 +26,23 @@ export interface DashBoardProps {
   reservationsUrl: string;
   reservationsStillInQueueForText: string;
   readyForLoanText: string;
+  pageSizeDesktop: number;
+  pageSizeMobile: number;
 }
 
-const MenuEntry: FC<DashBoardProps> = () => <DashBoard />;
+const DashboardEntry: FC<DashBoardProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
+  const pageSize = pageSizeGlobal(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeLoanList"
+  );
 
-export default withUrls(withText(MenuEntry));
+  return <DashBoard pageSize={pageSize} />;
+};
+
+export default withUrls(withText(DashboardEntry));
