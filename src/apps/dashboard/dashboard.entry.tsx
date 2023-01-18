@@ -28,6 +28,22 @@ export interface DashBoardProps {
   readyForLoanText: string;
   pageSizeDesktop: number;
   pageSizeMobile: number;
+  publizonAudioBookText: string;
+  publizonEbookText: string;
+  publizonPodcastText: string;
+  groupModalDueDateHeaderText: string;
+  groupModalReturnLibraryText: string;
+  groupModalCheckboxText: string;
+  groupModalButtonText: string;
+  groupModalRenewLoanDeniedMaxRenewalsReachedText: string;
+  groupModalDueDateMaterialText: string;
+  groupModalGoToMaterialText: string;
+  resultPagerStatusText: string;
+  loanListMaterialDaysText: string;
+  groupModalDueDateWarningLoanOverdueText: string;
+  groupModalDueDateLinkToPageWithFeesText: string;
+  feesPageUrl: string;
+  groupModalRenewLoanDeniedReservedText: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({

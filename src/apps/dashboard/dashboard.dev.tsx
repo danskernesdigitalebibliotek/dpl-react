@@ -130,6 +130,77 @@ export default {
         type: "text"
       },
       defaultValue: "Podcast"
+    },
+    groupModalDueDateHeaderText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Due date @date"
+    },
+    groupModalReturnLibraryText: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
+    groupModalCheckboxText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Choose all renewable"
+    },
+    groupModalButtonText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Renewable (@count)"
+    },
+    groupModalRenewLoanDeniedMaxRenewalsReachedText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "The item cannot be renewed further "
+    },
+    groupModalDueDateMaterialText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Afleveres @date"
+    },
+    groupModalGoToMaterialText: {
+      defaultValue: "Go to material details",
+      control: { type: "text" }
+    },
+    resultPagerStatusText: {
+      defaultValue: "Showing @itemsShown out of @hitcount loans",
+      control: { type: "text" }
+    },
+    loanListMaterialDaysText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "days"
+    },
+    groupModalDueDateWarningLoanOverdueText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
+    },
+    groupModalDueDateLinkToPageWithFeesText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Read more about fees"
+    },
+    feesPageUrl: {
+      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+      control: { type: "text" }
+    },
+    groupModalRenewLoanDeniedReservedText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "The item is reserved by another patron"
     }
   },
   component: DashBoard

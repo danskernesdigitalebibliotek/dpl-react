@@ -10,7 +10,6 @@ import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
 import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
 import {
   filterLoansOverdue,
-  getDueDatesLoan,
   getModalIds,
   sortByLoanDate
 } from "../../core/utils/helpers/general";
