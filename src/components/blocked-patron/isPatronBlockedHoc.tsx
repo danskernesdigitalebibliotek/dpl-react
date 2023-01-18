@@ -7,7 +7,7 @@ import { useModalButtonHandler } from "../../core/utils/modal";
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
 }
-const isUserBlockedHoc =
+const isPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P & PatronProps>): FC<P> =>
   ({ ...props }) => {
     const { open } = useModalButtonHandler();
@@ -40,4 +40,4 @@ const isUserBlockedHoc =
     );
   };
 
-export default isUserBlockedHoc;
+export default isPatronBlockedHoc;
