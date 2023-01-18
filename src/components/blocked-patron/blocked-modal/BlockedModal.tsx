@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { getModalIds } from "../../../core/utils/helpers/general";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
@@ -11,10 +12,11 @@ interface BlockedModalProps {
 const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   const t = useText();
   const { blockedPatronELinkUrl } = useUrls();
+  const { blockedModal } = getModalIds();
 
   return (
     <Modal
-      modalId="blocked-modal"
+      modalId={blockedModal as string}
       classNames="modal-loan"
       closeModalAriaLabelText={t(`blockedPatronCloseModalAriaLabelText`)}
       screenReaderModalDescriptionText={t(

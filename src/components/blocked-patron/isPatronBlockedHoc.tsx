@@ -3,6 +3,7 @@ import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
 import BlockedModal from "./blocked-modal/BlockedModal";
 import { AuthenticatedPatronV6 } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
+import { getModalIds } from "../../core/utils/helpers/general";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
@@ -14,6 +15,7 @@ const isPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P & PatronProps>): FC<P> =>
   ({ ...props }) => {
     const { open } = useModalButtonHandler();
+    const { blockedModal } = getModalIds();
     const [patron, setPatron] = useState<AuthenticatedPatronV6>();
     const [blockedStatus, setBlockedStatus] = useState<string>();
     const { data: patronData } = useGetPatronInformationByPatronIdV2();
@@ -26,10 +28,10 @@ const isPatronBlockedHoc =
           patronData?.patron?.blockStatus?.length > 0
         ) {
           setBlockedStatus(patronData.patron.blockStatus[0].blockedReason);
-          open("blocked-modal");
+          open(blockedModal as string);
         }
       }
-    }, [open, patronData]);
+    }, [blockedModal, open, patronData]);
 
     return (
       <>
