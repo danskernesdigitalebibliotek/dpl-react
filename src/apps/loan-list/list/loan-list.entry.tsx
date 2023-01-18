@@ -3,7 +3,7 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
-import isUserBlockedHoc from "../../../components/blocked-patron/isUserBlockedHoc";
+import isPatronBlockedHoc from "../../../components/blocked-patron/isPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 
 interface LoanListEntryConfigProps {
@@ -102,4 +102,4 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default isUserBlockedHoc(withUrls(withText(LoanListEntry)));
+export default isPatronBlockedHoc(withUrls(withText(LoanListEntry)));
