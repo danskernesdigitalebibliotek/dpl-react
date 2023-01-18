@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { useDispatch } from "react-redux";
-import { openModal } from "../../../../core/modal.slice";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
+import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { reservationModalId } from "../../../reservation/ReservationModalBody";
 
@@ -21,14 +21,14 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   dataCy = "material-button-physical"
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+  const { openGuarded } = useModalButtonHandler();
+  const { authUrl } = useUrls();
 
   const onClick = () => {
-    dispatch(
-      openModal({
-        modalId: reservationModalId(faustId)
-      })
-    );
+    openGuarded({
+      authUrl,
+      modalId: reservationModalId(faustId)
+    });
   };
 
   return (
