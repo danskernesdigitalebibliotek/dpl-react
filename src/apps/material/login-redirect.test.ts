@@ -2,6 +2,43 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
   it("Redirects to login & opens reservation modal on subsequent land-in", () => {
+    cy.visit("/iframe.html?id=apps-material--default&type=bog")
+      .getBySel("material-header-buttons-physical")
+      .click();
+
+    cy.interceptRest({
+      aliasName: "user",
+      url: "**/agencyid/patrons/patronid/v2",
+      fixtureFilePath: "material/user.json"
+    });
+
+    cy.interceptRest({
+      aliasName: "holdings",
+      url: "**/agencyid/catalog/holdings/**",
+      fixtureFilePath: "material/holdings.json"
+    });
+
+    cy.url().should("include", "modal=reservation-modal-46615743");
+    cy.getBySel("modal").should("be.visible");
+  });
+
+  it("Shouldn't redirect logged in users", () => {
+    cy.interceptRest({
+      aliasName: "holdings",
+      url: "**/agencyid/catalog/holdings/**",
+      fixtureFilePath: "material/holdings.json"
+    });
+    window.sessionStorage.setItem("user", "fake-token");
+
+    cy.visit("/iframe.html?id=apps-material--default&type=bog")
+      .getBySel("material-header-buttons-physical")
+      .click()
+      .url()
+      .should("not.include", "modal=reservation-modal");
+    cy.getBySel("modal").should("be.visible");
+  });
+
+  beforeEach(() => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -24,25 +61,6 @@ describe("Material", () => {
         fixture: "images/cover.jpg"
       }
     );
-
-    cy.visit("/iframe.html?id=apps-material--default&type=bog")
-      .getBySel("material-header-buttons-physical")
-      .click();
-
-    cy.interceptRest({
-      aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
-      fixtureFilePath: "material/user.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
-      fixtureFilePath: "material/holdings.json"
-    });
-
-    cy.url().should("include", "modal=reservation-modal-46615743");
-    cy.getBySel("modal").should("be.visible");
   });
 });
 
