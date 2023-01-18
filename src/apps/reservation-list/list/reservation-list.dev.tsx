@@ -9,7 +9,6 @@ import blockedArgs from "../../../core/storybook/blockedArgs";
 export default {
   title: "Apps / Reservation list",
   component: ReservationList,
-  ...blockedArgs,
   argTypes: {
     // Page size
     pageSizeDesktop: {
@@ -22,6 +21,7 @@ export default {
     },
     // Config
     ...serviceUrlArgs,
+    ...blockedArgs,
     blacklistedSearchBranchesConfig: {
       name: "Blacklisted branches",
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
