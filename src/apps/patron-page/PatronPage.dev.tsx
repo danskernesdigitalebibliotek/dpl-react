@@ -2,12 +2,14 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../core/storybook/blockedArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
     ...serviceUrlArgs,
+    ...blockedArgs,
     // Config
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",
