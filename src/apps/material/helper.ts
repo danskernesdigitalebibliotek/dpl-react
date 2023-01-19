@@ -1,4 +1,4 @@
-import { uniq } from "lodash";
+import { compact, uniq } from "lodash";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import { HoldingsV3 } from "../../core/fbs/model";
@@ -147,15 +147,7 @@ export const totalBranchesHaveMaterial = (
 };
 
 export const getInfomediaIds = (manifestations: Manifestation[]) => {
-  const manifestationsWithInfomediaAccess = manifestations.filter(
-    (manifestation) => {
-      return manifestation.access.find((currentAccess) => {
-        // eslint-disable-next-line no-underscore-dangle
-        return currentAccess.__typename === "InfomediaService";
-      });
-    }
-  );
-  const infomediaIds = manifestationsWithInfomediaAccess
+  const infomediaIds = manifestations
     .map((manifestation) =>
       manifestation.access.map((currentAccess) => {
         // eslint-disable-next-line no-underscore-dangle
@@ -164,10 +156,8 @@ export const getInfomediaIds = (manifestations: Manifestation[]) => {
           : null;
       })
     )
-    .flat()
-    .filter((id) => id);
-
-  return infomediaIds as string[];
+    .flat();
+  return compact(infomediaIds);
 };
 
 export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
