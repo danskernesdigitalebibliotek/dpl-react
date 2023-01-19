@@ -68,6 +68,8 @@ const isPatronBlockedHoc =
         if (blockedFromViewingContentArray.includes(blockedStatus)) {
           setBlockedFromViewingContent(true);
           redirectTo(new URL(redirectOnBlocked));
+        } else {
+          setBlockedFromViewingContent(false);
         }
       }
     }, [blockedFromViewingContentArray, blockedStatus, redirectOnBlocked]);
