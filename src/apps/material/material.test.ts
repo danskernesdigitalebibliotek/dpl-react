@@ -58,7 +58,7 @@ describe("Material", () => {
       .and("contain", "Lucinda Riley");
   });
 
-  it("Renders exactly 1 availability label for the book material type that unavailable", () => {
+  it("Renders exactly 1 availability label per material type", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -69,7 +69,20 @@ describe("Material", () => {
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
-      .should("have.length", 1)
+      .should("have.length", 1);
+  });
+
+  it("Shows the book availability as unavailable", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("availability-label")
+      .find('[data-cy="availability-label-type"]')
+      .contains("bog")
       .parent()
       .find('[data-cy="availability-label-status"]')
       .should("have.text", "unavailable");
