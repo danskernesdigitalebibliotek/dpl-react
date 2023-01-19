@@ -113,6 +113,6 @@ const ReservationListEntry: FC<
   return <ReservationList pageSize={pageSize} />;
 };
 
-export default isPatronBlockedHoc(
-  withConfig(withUrls(withText(isPatronBlockedHoc(ReservationListEntry))))
+export default withConfig(
+  withUrls(withText(isPatronBlockedHoc(ReservationListEntry)))
 );
