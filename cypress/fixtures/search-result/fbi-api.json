@@ -61,7 +61,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -90,7 +92,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 301
+                    "numberOfPages": 301,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -138,7 +141,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -170,7 +175,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "8 t., 37 min."
                   }
                 ],
                 "accessTypes": [
@@ -218,7 +224,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -253,7 +261,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "8 t., 37 min."
                   }
                 ],
                 "accessTypes": [
@@ -305,7 +314,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -335,7 +346,12 @@
                 "audience": {
                   "generalAudience": []
                 },
-                "physicalDescriptions": [],
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": 301,
+                    "playingTime": null
+                  }
+                ],
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -384,7 +400,9 @@
                   "__typename": "Person"
                 }
               ],
-              "hostPublication": null,
+              "publisher": [
+                "Memoris"
+              ],
               "languages": {
                 "main": [
                   {
@@ -416,7 +434,8 @@
               },
               "physicalDescriptions": [
                 {
-                  "numberOfPages": null
+                  "numberOfPages": null,
+                  "playingTime": "8 t., 37 min."
                 }
               ],
               "accessTypes": [
@@ -616,7 +635,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -651,7 +672,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 356
+                    "numberOfPages": 356,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -703,7 +725,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -732,7 +756,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 355
+                    "numberOfPages": 355,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -783,7 +808,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -815,7 +842,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 246
+                    "numberOfPages": 246,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -866,7 +894,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -895,7 +925,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 355
+                    "numberOfPages": 355,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -946,7 +977,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -975,7 +1008,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1026,7 +1060,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1055,7 +1091,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1105,7 +1142,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendals Bogklubber"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1133,7 +1172,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1184,7 +1224,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1209,7 +1251,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1260,7 +1303,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1288,7 +1333,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1338,7 +1384,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendals Bogklubber"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1363,7 +1411,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1414,7 +1463,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1439,7 +1490,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 303
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1489,7 +1541,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal Lyd"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1518,7 +1572,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
                   }
                 ],
                 "accessTypes": [
@@ -1568,7 +1623,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1597,7 +1654,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
                   }
                 ],
                 "accessTypes": [
@@ -1647,7 +1705,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1676,7 +1736,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
                   }
                 ],
                 "accessTypes": [
@@ -1727,7 +1788,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1758,7 +1821,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1809,7 +1873,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1837,7 +1903,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -1885,7 +1952,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal Lydbøger"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1910,7 +1979,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 25 min."
                   }
                 ],
                 "accessTypes": [
@@ -1960,7 +2030,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -1992,7 +2064,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 27 min."
                   }
                 ],
                 "accessTypes": [
@@ -2042,7 +2115,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -2067,7 +2142,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": 7
+                    "numberOfPages": 7,
+                    "playingTime": null
                   }
                 ],
                 "accessTypes": [
@@ -2115,7 +2191,9 @@
                     "__typename": "Person"
                   }
                 ],
-                "hostPublication": null,
+                "publisher": [
+                  "Gyldendal Lydbøger"
+                ],
                 "languages": {
                   "main": [
                     {
@@ -2140,7 +2218,8 @@
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 27 min."
                   }
                 ],
                 "accessTypes": [
@@ -2193,7 +2272,9 @@
                   "__typename": "Person"
                 }
               ],
-              "hostPublication": null,
+              "publisher": [
+                "Gyldendal"
+              ],
               "languages": {
                 "main": [
                   {
@@ -2228,7 +2309,8 @@
               },
               "physicalDescriptions": [
                 {
-                  "numberOfPages": 356
+                  "numberOfPages": 356,
+                  "playingTime": null
                 }
               ],
               "accessTypes": [

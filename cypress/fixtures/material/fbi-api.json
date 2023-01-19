@@ -181,7 +181,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -210,7 +212,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -262,7 +265,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -291,7 +296,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -341,7 +347,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Gyldendals Bogklubber"
+            ],
             "languages": {
               "main": [
                 {
@@ -370,7 +378,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -421,7 +430,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -450,7 +461,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -500,7 +512,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -532,7 +546,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": null,
+                "playingTime": "16 t., 30 min."
               }
             ],
             "accessTypes": [
@@ -577,7 +592,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -609,7 +626,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": null,
+                "playingTime": "16 t., 30 min."
               }
             ],
             "accessTypes": [
@@ -660,7 +678,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -743,7 +763,9 @@
               "__typename": "Person"
             }
           ],
-          "hostPublication": null,
+          "publisher": [
+            "Cicero"
+          ],
           "languages": {
             "main": [
               {
@@ -772,7 +794,8 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 523
+              "numberOfPages": 523,
+              "playingTime": null
             }
           ],
           "accessTypes": [
