@@ -116,7 +116,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // If there is no type in the url, we select one
     if (!type) {
       const manifestationsByMaterialType = divideManifestationsByMaterialType(
-        data.work.manifestations.all as Manifestation[]
+        work.manifestations.all
       );
       setSelectedManifestations(manifestationsByMaterialType[0]);
       setQueryParametersInUrl({
