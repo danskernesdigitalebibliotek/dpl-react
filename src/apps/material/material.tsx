@@ -239,7 +239,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         </>
       ))}
 
-      {infomediaIds && infomediaIds.length > 0 && (
+      {infomediaIds.length > 0 && (
         <InfomediaModal
           selectedManifestations={selectedManifestations}
           infoMediaIds={infomediaIds}
