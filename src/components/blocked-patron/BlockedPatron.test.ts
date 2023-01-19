@@ -20,7 +20,6 @@ describe("Patron page", () => {
 
   it("Patron blocked E", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      authenticateStatus: "VALID",
       patron: {
         blockStatus: [
           {
@@ -37,13 +36,13 @@ describe("Patron page", () => {
     cy.get('[data-cy="modal"]').get("p").should("exist");
     cy.get('[data-cy="modal"]').get("a").should("exist");
   });
-  it("Patron blocked W", () => {
+
+  it("Patron blocked U", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      authenticateStatus: "VALID",
       patron: {
         blockStatus: [
           {
-            blockedReason: "W",
+            blockedReason: "U",
             blockedSince: "",
             message: ""
           }
@@ -56,12 +55,14 @@ describe("Patron page", () => {
     cy.get('[data-cy="modal"]').get("p").should("exist");
     cy.get('[data-cy="modal"]').get("a").should("not.exist");
   });
-  it("Patron blocked U", () => {
+
+  it("Patron blocked W", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      authenticateStatus: "VALID",
       patron: {
         blockStatus: [
           {
-            blockedReason: "U",
+            blockedReason: "W",
             blockedSince: "",
             message: ""
           }
