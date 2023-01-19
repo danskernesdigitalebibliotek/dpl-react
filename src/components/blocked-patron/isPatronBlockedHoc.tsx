@@ -57,6 +57,8 @@ const isPatronBlockedHoc =
             open(blockedModal as string);
             dispatch(setHasBeenVisible({ hasBeenVisible: true }));
           }
+        } else {
+          setBlockedFromViewingContent(false);
         }
       }
     }, [blockedModal, dispatch, hasBeenVisible, open, patronData]);
@@ -66,8 +68,6 @@ const isPatronBlockedHoc =
         if (blockedFromViewingContentArray.includes(blockedStatus)) {
           setBlockedFromViewingContent(true);
           redirectTo(new URL(redirectOnBlocked));
-        } else {
-          setBlockedFromViewingContent(false);
         }
       }
     }, [blockedFromViewingContentArray, blockedStatus, redirectOnBlocked]);

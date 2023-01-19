@@ -13,6 +13,12 @@ describe("Reservation list pagination", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
 
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
+
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
