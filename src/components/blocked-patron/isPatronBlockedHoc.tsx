@@ -44,13 +44,13 @@ const isPatronBlockedHoc =
 
     useEffect(() => {
       if (patronData) {
-        // As above comment, only opens modal if it has not been visible.
         if (
           patronData?.patron?.blockStatus &&
           patronData?.patron?.blockStatus?.length > 0
         ) {
           const reason = patronData.patron.blockStatus[0].blockedReason;
           setBlockedStatus(reason);
+          // As above comment, only opens modal if it has not already been visible.
           if (!hasBeenVisible) {
             open(blockedModal as string);
             dispatch(setHasBeenVisible({ hasBeenVisible: true }));
