@@ -26,7 +26,7 @@ import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUr
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text", "url", "modal", "config"]
+  blacklist: ["text", "url", "modal", "config", "blockedModal"]
 };
 
 export const store = configureStore({
