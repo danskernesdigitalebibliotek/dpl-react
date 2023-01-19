@@ -11,6 +11,12 @@ describe("Reservation details modal test", () => {
       cy.intercept("GET", "**/covers**", result);
     });
 
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
+
     const clockDate = new Date(
       "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
     ).getTime();
