@@ -9,7 +9,6 @@ describe("Patron page", () => {
 
   it("Patron not blocked", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      authenticateStatus: "VALID",
       patron: {
         blockStatus: null
       }
@@ -58,7 +57,6 @@ describe("Patron page", () => {
 
   it("Patron blocked W", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      authenticateStatus: "VALID",
       patron: {
         blockStatus: [
           {
