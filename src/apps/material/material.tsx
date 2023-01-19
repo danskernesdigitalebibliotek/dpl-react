@@ -110,7 +110,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     const type = getUrlQueryParam("type");
     // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
     if (!type) {
-      const workManifestation = getWorkManifestation(work);
+      const workManifestation = getWorkManifestation(work, "latest");
       setCurrentManifestation(workManifestation);
       setQueryParametersInUrl({
         type: getManifestationType(workManifestation)

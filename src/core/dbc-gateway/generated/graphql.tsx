@@ -1585,6 +1585,77 @@ export type GetMaterialQuery = {
           shelfmark: string;
         } | null;
       };
+      bestRepresentation: {
+        __typename?: "Manifestation";
+        pid: string;
+        genreAndForm: Array<string>;
+        source: Array<string>;
+        publisher: Array<string>;
+        titles: {
+          __typename?: "ManifestationTitles";
+          main: Array<string>;
+          original?: Array<string> | null;
+        };
+        fictionNonfiction?: {
+          __typename?: "FictionNonfiction";
+          display: string;
+          code: FictionNonfictionCode;
+        } | null;
+        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        creators: Array<
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
+        >;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{ __typename?: "Language"; display: string }> | null;
+        } | null;
+        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        contributors: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+        edition?: {
+          __typename?: "Edition";
+          summary: string;
+          publicationYear?: {
+            __typename?: "PublicationYear";
+            display: string;
+          } | null;
+        } | null;
+        audience?: {
+          __typename?: "Audience";
+          generalAudience: Array<string>;
+        } | null;
+        physicalDescriptions: Array<{
+          __typename?: "PhysicalDescription";
+          numberOfPages?: number | null;
+          playingTime?: string | null;
+        }>;
+        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        access: Array<
+          | {
+              __typename: "AccessUrl";
+              origin: string;
+              url: string;
+              loginRequired: boolean;
+            }
+          | { __typename: "DigitalArticleService"; issn: string }
+          | {
+              __typename: "Ereol";
+              origin: string;
+              url: string;
+              canAlwaysBeLoaned: boolean;
+            }
+          | { __typename: "InfomediaService"; id: string }
+          | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        >;
+        shelfmark?: {
+          __typename?: "Shelfmark";
+          postfix?: string | null;
+          shelfmark: string;
+        } | null;
+      };
     };
   } | null;
 };
@@ -1738,6 +1809,83 @@ export type SearchWithPaginationQuery = {
           } | null;
         }>;
         latest: {
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{ __typename?: "Language"; display: string }> | null;
+          } | null;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+        };
+        bestRepresentation: {
           __typename?: "Manifestation";
           pid: string;
           genreAndForm: Array<string>;
@@ -1970,6 +2118,77 @@ export type ManifestationsSimpleFragment = {
     } | null;
   }>;
   latest: {
+    __typename?: "Manifestation";
+    pid: string;
+    genreAndForm: Array<string>;
+    source: Array<string>;
+    publisher: Array<string>;
+    titles: {
+      __typename?: "ManifestationTitles";
+      main: Array<string>;
+      original?: Array<string> | null;
+    };
+    fictionNonfiction?: {
+      __typename?: "FictionNonfiction";
+      display: string;
+      code: FictionNonfictionCode;
+    } | null;
+    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    creators: Array<
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
+    >;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{ __typename?: "Language"; display: string }> | null;
+    } | null;
+    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    contributors: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+    >;
+    edition?: {
+      __typename?: "Edition";
+      summary: string;
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
+    audience?: {
+      __typename?: "Audience";
+      generalAudience: Array<string>;
+    } | null;
+    physicalDescriptions: Array<{
+      __typename?: "PhysicalDescription";
+      numberOfPages?: number | null;
+      playingTime?: string | null;
+    }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    access: Array<
+      | {
+          __typename: "AccessUrl";
+          origin: string;
+          url: string;
+          loginRequired: boolean;
+        }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
+    shelfmark?: {
+      __typename?: "Shelfmark";
+      postfix?: string | null;
+      shelfmark: string;
+    } | null;
+  };
+  bestRepresentation: {
     __typename?: "Manifestation";
     pid: string;
     genreAndForm: Array<string>;
@@ -2305,6 +2524,77 @@ export type WorkSmallFragment = {
         shelfmark: string;
       } | null;
     };
+    bestRepresentation: {
+      __typename?: "Manifestation";
+      pid: string;
+      genreAndForm: Array<string>;
+      source: Array<string>;
+      publisher: Array<string>;
+      titles: {
+        __typename?: "ManifestationTitles";
+        main: Array<string>;
+        original?: Array<string> | null;
+      };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
+      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      creators: Array<
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
+      >;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{ __typename?: "Language"; display: string }> | null;
+      } | null;
+      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      contributors: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+      >;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
+      audience?: {
+        __typename?: "Audience";
+        generalAudience: Array<string>;
+      } | null;
+      physicalDescriptions: Array<{
+        __typename?: "PhysicalDescription";
+        numberOfPages?: number | null;
+        playingTime?: string | null;
+      }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix?: string | null;
+        shelfmark: string;
+      } | null;
+    };
   };
 };
 
@@ -2538,6 +2828,77 @@ export type WorkMediumFragment = {
         shelfmark: string;
       } | null;
     };
+    bestRepresentation: {
+      __typename?: "Manifestation";
+      pid: string;
+      genreAndForm: Array<string>;
+      source: Array<string>;
+      publisher: Array<string>;
+      titles: {
+        __typename?: "ManifestationTitles";
+        main: Array<string>;
+        original?: Array<string> | null;
+      };
+      fictionNonfiction?: {
+        __typename?: "FictionNonfiction";
+        display: string;
+        code: FictionNonfictionCode;
+      } | null;
+      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      creators: Array<
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
+      >;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{ __typename?: "Language"; display: string }> | null;
+      } | null;
+      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      contributors: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+      >;
+      edition?: {
+        __typename?: "Edition";
+        summary: string;
+        publicationYear?: {
+          __typename?: "PublicationYear";
+          display: string;
+        } | null;
+      } | null;
+      audience?: {
+        __typename?: "Audience";
+        generalAudience: Array<string>;
+      } | null;
+      physicalDescriptions: Array<{
+        __typename?: "PhysicalDescription";
+        numberOfPages?: number | null;
+        playingTime?: string | null;
+      }>;
+      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      access: Array<
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
+      shelfmark?: {
+        __typename?: "Shelfmark";
+        postfix?: string | null;
+        shelfmark: string;
+      } | null;
+    };
   };
 };
 
@@ -2638,6 +2999,9 @@ export const ManifestationsSimpleFragmentDoc = `
     ...ManifestationsSimpleFields
   }
   latest {
+    ...ManifestationsSimpleFields
+  }
+  bestRepresentation {
     ...ManifestationsSimpleFields
   }
 }

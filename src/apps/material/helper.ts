@@ -11,7 +11,13 @@ import {
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 
-export const getWorkManifestation = (work: Work) => {
+export const getWorkManifestation = (
+  work: Work,
+  type: "bestRepresentation" | "latest"
+) => {
+  if (type === "bestRepresentation") {
+    return work.manifestations.bestRepresentation as Manifestation;
+  }
   return work.manifestations.latest as Manifestation;
 };
 
@@ -48,7 +54,10 @@ export const getWorkDescriptionListData = ({
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-  const fallBackManifestation = getWorkManifestation(work);
+  const fallBackManifestation = getWorkManifestation(
+    work,
+    "bestRepresentation"
+  );
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -73,7 +82,7 @@ export const getWorkDescriptionListData = ({
       label: t("editionText"),
       value:
         (manifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation.edition?.summary ?? ""),
+        (fallBackManifestation?.edition?.summary ?? ""),
       type: "standard"
     },
 
@@ -81,7 +90,7 @@ export const getWorkDescriptionListData = ({
       label: t("genreAndFormText"),
       value:
         (manifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation.genreAndForm?.[0] ?? ""),
+        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
       type: "standard"
     },
     {
@@ -93,7 +102,7 @@ export const getWorkDescriptionListData = ({
       label: t("publisherText"),
       value:
         (manifestation?.publisher.join(" / ") ?? "") ||
-        (fallBackManifestation.publisher.join(" / ") ?? ""),
+        (fallBackManifestation?.publisher.join(" / ") ?? ""),
       type: "standard"
     },
     {
@@ -105,16 +114,16 @@ export const getWorkDescriptionListData = ({
       label: t("typeText"),
       value:
         (manifestation?.materialTypes?.[0]?.specific ?? "") ||
-        (fallBackManifestation.materialTypes?.[0].specific ?? ""),
+        (fallBackManifestation?.materialTypes?.[0].specific ?? ""),
       type: "standard"
     },
     { label: t("contributorsText"), value: creatorsText, type: "link" },
     {
       label: t("scopeText"),
       value:
-        String(manifestation?.physicalDescriptions?.[0].numberOfPages ?? "") ||
+        String(manifestation?.physicalDescriptions?.[0]?.numberOfPages ?? "") ||
         String(
-          fallBackManifestation.physicalDescriptions?.[0]?.numberOfPages ?? ""
+          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
         ),
       type: "standard"
     },
