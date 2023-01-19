@@ -27,7 +27,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     pid,
     titles,
     creators,
-    hostPublication,
+    publisher,
     languages,
     identifiers,
     contributors,
@@ -98,7 +98,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     },
     {
       label: t("publisherText"),
-      value: hostPublication?.publisher ?? "",
+      value: publisher.join(" / ") ?? "",
       type: "standard"
     },
     {

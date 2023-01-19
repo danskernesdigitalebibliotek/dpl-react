@@ -607,6 +607,16 @@ export default {
       defaultValue:
         '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
       control: { type: "text" }
+    },
+    firstEditionYearText: {
+      name: "First edition year",
+      defaultValue: "first edition year",
+      control: { type: "text" }
+    },
+    playTimeText: {
+      name: "Play time",
+      defaultValue: "Play time",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

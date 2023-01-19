@@ -56,65 +56,80 @@ export const getWorkDescriptionListData = ({
 
   return [
     {
-      label: t("typeText"),
-      value:
-        (manifestation?.materialTypes?.[0]?.specific && "") ||
-        (fallBackManifestation?.materialTypes?.[0]?.specific && ""),
-      type: "standard"
-    },
-    {
       label: t("languageText"),
       value: allLanguages,
       type: "standard"
     },
     {
-      label: t("genreAndFormText"),
+      label: t("playTimeText"),
       value:
-        (manifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
-      type: "standard"
-    },
-    { label: t("contributorsText"), value: creatorsText, type: "link" },
-    {
-      label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear.year}` : "",
-      type: "standard"
-    },
-    {
-      label: t("isbnText"),
-      value:
-        (manifestation?.identifiers?.[0]?.value ?? "") ||
-        (fallBackManifestation?.identifiers?.[0]?.value ?? ""),
+        String(manifestation?.physicalDescriptions?.[0].playingTime ?? "") ||
+        String(
+          fallBackManifestation.physicalDescriptions?.[0].playingTime ?? ""
+        ),
       type: "standard"
     },
     {
       label: t("editionText"),
       value:
         (manifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation?.edition?.summary ?? ""),
+        (fallBackManifestation.edition?.summary ?? ""),
+      type: "standard"
+    },
+
+    {
+      label: t("genreAndFormText"),
+      value:
+        (manifestation?.genreAndForm?.[0] ?? "") ||
+        (fallBackManifestation.genreAndForm?.[0] ?? ""),
       type: "standard"
     },
     {
-      label: t("scopeText"),
+      label: t("isbnText"),
       value:
-        String(manifestation?.physicalDescriptions?.[0]?.numberOfPages ?? "") ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ),
+        (manifestation?.identifiers?.[0].value ?? "") ||
+        (fallBackManifestation.identifiers?.[0].value ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("originalTitleText"),
+      value: titles?.original?.[0] ?? "",
       type: "standard"
     },
     {
       label: t("publisherText"),
       value:
-        (manifestation?.hostPublication?.publisher ?? "") ||
-        (fallBackManifestation?.hostPublication?.publisher ?? ""),
+        (manifestation?.publisher.join(" / ") ?? "") ||
+        (fallBackManifestation.publisher.join(" / ") ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("firstEditionYearText"),
+      value: String(workYear?.year ?? ""),
+      type: "standard"
+    },
+    {
+      label: t("typeText"),
+      value:
+        (manifestation?.materialTypes?.[0]?.specific ?? "") ||
+        (fallBackManifestation.materialTypes?.[0].specific ?? ""),
+      type: "standard"
+    },
+    { label: t("contributorsText"), value: creatorsText, type: "link" },
+    {
+      label: t("scopeText"),
+      value:
+        String(manifestation?.physicalDescriptions?.[0].numberOfPages ?? "") ||
+        String(
+          fallBackManifestation.physicalDescriptions?.[0].numberOfPages ?? ""
+        ),
       type: "standard"
     },
     {
       label: t("audienceText"),
       value:
         (manifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
+        (fallBackManifestation.audience?.generalAudience[0] ?? ""),
       type: "standard"
     }
   ];

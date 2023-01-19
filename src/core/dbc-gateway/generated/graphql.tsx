@@ -128,6 +128,14 @@ export type ComplexSearchResponse = {
   errorMessage?: Maybe<Scalars["String"]>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
+  /** Time for execution on solr */
+  solrExecutionDurationInMs?: Maybe<Scalars["Int"]>;
+  /** filter applied to the query */
+  solrFilter?: Maybe<Scalars["String"]>;
+  /** the query being executed */
+  solrQuery?: Maybe<Scalars["String"]>;
+  /** Time to tokenize query */
+  tokenizerDurationInMs?: Maybe<Scalars["Int"]>;
   /** The works matching the given search query. Use offset and limit for pagination. */
   works: Array<Work>;
 };
@@ -743,6 +751,7 @@ export type PeriodicaArticleOrderResponse = {
 export enum PeriodicaArticleOrderStatus {
   ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
   ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
+  ErrorNoNameOrEmail = "ERROR_NO_NAME_OR_EMAIL",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthorizedUser = "ERROR_UNAUTHORIZED_USER",
   Ok = "OK"
@@ -783,7 +792,7 @@ export type PhysicalDescription = {
   /** Number of pages of the manifestation as number */
   numberOfPages?: Maybe<Scalars["Int"]>;
   /** Number of units, like 3 cassettes, or 1 score etc. */
-  numberOfUnits?: Maybe<Scalars["Int"]>;
+  numberOfUnits?: Maybe<Scalars["String"]>;
   /** The playing time of the manifestation (e.g 2 hours 5 minutes) */
   playingTime?: Maybe<Scalars["String"]>;
   /** The necessary equipment to use the material */
@@ -1156,6 +1165,7 @@ export type SubjectText = Subject & {
 };
 
 export enum SubjectType {
+  Corporation = "CORPORATION",
   FictionalCharacter = "FICTIONAL_CHARACTER",
   FilmNationality = "FILM_NATIONALITY",
   Laesekompasset = "LAESEKOMPASSET",
@@ -1166,6 +1176,8 @@ export enum SubjectType {
   MusicCountryOfOrigin = "MUSIC_COUNTRY_OF_ORIGIN",
   MusicTimePeriod = "MUSIC_TIME_PERIOD",
   NationalAgriculturalLibrary = "NATIONAL_AGRICULTURAL_LIBRARY",
+  /** added for manifestation.parts.creators/person - they get a type from small-rye */
+  Person = "PERSON",
   TimePeriod = "TIME_PERIOD",
   Title = "TITLE",
   Topic = "TOPIC"
@@ -1436,6 +1448,7 @@ export type GetMaterialQuery = {
         pid: string;
         genreAndForm: Array<string>;
         source: Array<string>;
+        publisher: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1451,16 +1464,6 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        hostPublication?: {
-          __typename?: "HostPublication";
-          title: string;
-          creator?: string | null;
-          publisher?: string | null;
-          year?: {
-            __typename?: "PublicationYear";
-            year?: number | null;
-          } | null;
-        } | null;
         languages?: {
           __typename?: "Languages";
           main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -1485,6 +1488,7 @@ export type GetMaterialQuery = {
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
           numberOfPages?: number | null;
+          playingTime?: string | null;
         }>;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
@@ -1515,6 +1519,7 @@ export type GetMaterialQuery = {
         pid: string;
         genreAndForm: Array<string>;
         source: Array<string>;
+        publisher: Array<string>;
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -1530,16 +1535,6 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        hostPublication?: {
-          __typename?: "HostPublication";
-          title: string;
-          creator?: string | null;
-          publisher?: string | null;
-          year?: {
-            __typename?: "PublicationYear";
-            year?: number | null;
-          } | null;
-        } | null;
         languages?: {
           __typename?: "Languages";
           main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -1564,6 +1559,7 @@ export type GetMaterialQuery = {
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
           numberOfPages?: number | null;
+          playingTime?: string | null;
         }>;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
@@ -1669,6 +1665,7 @@ export type SearchWithPaginationQuery = {
           pid: string;
           genreAndForm: Array<string>;
           source: Array<string>;
+          publisher: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1687,16 +1684,6 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
-          hostPublication?: {
-            __typename?: "HostPublication";
-            title: string;
-            creator?: string | null;
-            publisher?: string | null;
-            year?: {
-              __typename?: "PublicationYear";
-              year?: number | null;
-            } | null;
-          } | null;
           languages?: {
             __typename?: "Languages";
             main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -1721,6 +1708,7 @@ export type SearchWithPaginationQuery = {
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
             numberOfPages?: number | null;
+            playingTime?: string | null;
           }>;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -1754,6 +1742,7 @@ export type SearchWithPaginationQuery = {
           pid: string;
           genreAndForm: Array<string>;
           source: Array<string>;
+          publisher: Array<string>;
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -1772,16 +1761,6 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
-          hostPublication?: {
-            __typename?: "HostPublication";
-            title: string;
-            creator?: string | null;
-            publisher?: string | null;
-            year?: {
-              __typename?: "PublicationYear";
-              year?: number | null;
-            } | null;
-          } | null;
           languages?: {
             __typename?: "Languages";
             main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -1806,6 +1785,7 @@ export type SearchWithPaginationQuery = {
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
             numberOfPages?: number | null;
+            playingTime?: string | null;
           }>;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -1923,6 +1903,7 @@ export type ManifestationsSimpleFragment = {
     pid: string;
     genreAndForm: Array<string>;
     source: Array<string>;
+    publisher: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -1938,13 +1919,6 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
-    hostPublication?: {
-      __typename?: "HostPublication";
-      title: string;
-      creator?: string | null;
-      publisher?: string | null;
-      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-    } | null;
     languages?: {
       __typename?: "Languages";
       main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -1969,6 +1943,7 @@ export type ManifestationsSimpleFragment = {
     physicalDescriptions: Array<{
       __typename?: "PhysicalDescription";
       numberOfPages?: number | null;
+      playingTime?: string | null;
     }>;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
@@ -1999,6 +1974,7 @@ export type ManifestationsSimpleFragment = {
     pid: string;
     genreAndForm: Array<string>;
     source: Array<string>;
+    publisher: Array<string>;
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -2014,13 +1990,6 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
-    hostPublication?: {
-      __typename?: "HostPublication";
-      title: string;
-      creator?: string | null;
-      publisher?: string | null;
-      year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-    } | null;
     languages?: {
       __typename?: "Languages";
       main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2045,6 +2014,7 @@ export type ManifestationsSimpleFragment = {
     physicalDescriptions: Array<{
       __typename?: "PhysicalDescription";
       numberOfPages?: number | null;
+      playingTime?: string | null;
     }>;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
@@ -2077,6 +2047,7 @@ export type ManifestationsSimpleFieldsFragment = {
   pid: string;
   genreAndForm: Array<string>;
   source: Array<string>;
+  publisher: Array<string>;
   titles: {
     __typename?: "ManifestationTitles";
     main: Array<string>;
@@ -2092,13 +2063,6 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
   >;
-  hostPublication?: {
-    __typename?: "HostPublication";
-    title: string;
-    creator?: string | null;
-    publisher?: string | null;
-    year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-  } | null;
   languages?: {
     __typename?: "Languages";
     main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2120,6 +2084,7 @@ export type ManifestationsSimpleFieldsFragment = {
   physicalDescriptions: Array<{
     __typename?: "PhysicalDescription";
     numberOfPages?: number | null;
+    playingTime?: string | null;
   }>;
   accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
   access: Array<
@@ -2203,6 +2168,7 @@ export type WorkSmallFragment = {
       pid: string;
       genreAndForm: Array<string>;
       source: Array<string>;
+      publisher: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2218,13 +2184,6 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      hostPublication?: {
-        __typename?: "HostPublication";
-        title: string;
-        creator?: string | null;
-        publisher?: string | null;
-        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-      } | null;
       languages?: {
         __typename?: "Languages";
         main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2249,6 +2208,7 @@ export type WorkSmallFragment = {
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
+        playingTime?: string | null;
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
@@ -2279,6 +2239,7 @@ export type WorkSmallFragment = {
       pid: string;
       genreAndForm: Array<string>;
       source: Array<string>;
+      publisher: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2294,13 +2255,6 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      hostPublication?: {
-        __typename?: "HostPublication";
-        title: string;
-        creator?: string | null;
-        publisher?: string | null;
-        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-      } | null;
       languages?: {
         __typename?: "Languages";
         main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2325,6 +2279,7 @@ export type WorkSmallFragment = {
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
+        playingTime?: string | null;
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
@@ -2446,6 +2401,7 @@ export type WorkMediumFragment = {
       pid: string;
       genreAndForm: Array<string>;
       source: Array<string>;
+      publisher: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2461,13 +2417,6 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      hostPublication?: {
-        __typename?: "HostPublication";
-        title: string;
-        creator?: string | null;
-        publisher?: string | null;
-        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-      } | null;
       languages?: {
         __typename?: "Languages";
         main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2492,6 +2441,7 @@ export type WorkMediumFragment = {
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
+        playingTime?: string | null;
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
@@ -2522,6 +2472,7 @@ export type WorkMediumFragment = {
       pid: string;
       genreAndForm: Array<string>;
       source: Array<string>;
+      publisher: Array<string>;
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -2537,13 +2488,6 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      hostPublication?: {
-        __typename?: "HostPublication";
-        title: string;
-        creator?: string | null;
-        publisher?: string | null;
-        year?: { __typename?: "PublicationYear"; year?: number | null } | null;
-      } | null;
       languages?: {
         __typename?: "Languages";
         main?: Array<{ __typename?: "Language"; display: string }> | null;
@@ -2568,6 +2512,7 @@ export type WorkMediumFragment = {
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
         numberOfPages?: number | null;
+        playingTime?: string | null;
       }>;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
@@ -2628,14 +2573,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     display
     __typename
   }
-  hostPublication {
-    title
-    creator
-    publisher
-    year {
-      year
-    }
-  }
+  publisher
   languages {
     main {
       display
@@ -2658,6 +2596,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   physicalDescriptions {
     numberOfPages
+    playingTime
   }
   materialTypes {
     specific
