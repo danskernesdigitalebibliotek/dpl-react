@@ -102,4 +102,4 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default isPatronBlockedHoc(withUrls(withText(LoanListEntry)));
+export default withUrls(withText(isPatronBlockedHoc(LoanListEntry)));

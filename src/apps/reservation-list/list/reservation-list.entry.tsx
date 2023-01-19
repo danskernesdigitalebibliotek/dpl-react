@@ -114,5 +114,5 @@ const ReservationListEntry: FC<
 };
 
 export default isPatronBlockedHoc(
-  withConfig(withUrls(withText(ReservationListEntry)))
+  withConfig(withUrls(withText(isPatronBlockedHoc(ReservationListEntry))))
 );

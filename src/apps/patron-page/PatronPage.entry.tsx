@@ -84,6 +84,6 @@ export interface PatronPageProps
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
-export default isPatronBlockedHoc(
-  withConfig(withUrls(withText(PatronPageEntry)))
+export default withConfig(
+  withUrls(withText(isPatronBlockedHoc(PatronPageEntry)))
 );
