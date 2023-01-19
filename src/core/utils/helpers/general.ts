@@ -39,7 +39,6 @@ export const filterCreators = (
   filterBy: ["Person" | "Corporation"]
 ) =>
   creators.filter((creator: Work["creators"][0]) => {
-    // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 

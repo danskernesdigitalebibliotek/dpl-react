@@ -150,7 +150,6 @@ export const getInfomediaIds = (manifestations: Manifestation[]) => {
   const infomediaIds = manifestations
     .map((manifestation) =>
       manifestation.access.map((currentAccess) => {
-        // eslint-disable-next-line no-underscore-dangle
         return currentAccess.__typename === "InfomediaService"
           ? currentAccess.id
           : null;
