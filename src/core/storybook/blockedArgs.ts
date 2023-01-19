@@ -79,6 +79,14 @@ export default {
       type: "text"
     },
     defaultValue: "This modal alerts you, that your patron has been blocked"
+  },
+  redirectOnBlocked: {
+    // Open source image of a thoughtful ape
+    control: {
+      type: "text"
+    },
+    defaultValue:
+      "https://images.unsplash.com/photo-1463852247062-1bbca38f7805?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2676&q=80"
   }
 };
 
@@ -102,4 +110,5 @@ export interface BlockedPatronEntryTextProps {
   blockedPatronCloseModalAriaLabelText: string;
   blockedPatronModalAriaDescriptionText: string;
   BlockedPatronEntryTextProps: string;
+  redirectOnBlocked: string;
 }

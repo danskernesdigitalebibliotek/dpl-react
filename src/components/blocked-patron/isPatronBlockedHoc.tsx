@@ -14,20 +14,17 @@ export interface PatronProps {
 }
 
 type InputProps = {
-  dplCmsBaseUrl: string;
+  redirectOnBlocked: string;
 };
 
 // Hoc that determines if a patron is blocked and provides a modal with
 // and explanation for the user.
 const isPatronBlockedHoc =
-  <P extends object>(
-    Component: ComponentType<P & PatronProps>
-  ): FC<P & InputProps> =>
-  ({ dplCmsBaseUrl, ...props }) => {
+  <P extends object>(Component: ComponentType<P>): FC<P & InputProps> =>
+  ({ redirectOnBlocked, ...props }) => {
     const dispatch = useDispatch();
     const { open } = useModalButtonHandler();
     const { blockedModal } = getModalIds();
-    const [patron, setPatron] = useState<AuthenticatedPatronV6>();
     const [blockedFromViewingContentArray] = useState<string[]>([
       "D",
       "S",
@@ -36,7 +33,7 @@ const isPatronBlockedHoc =
     ]);
     const [blockedStatus, setBlockedStatus] = useState<string>();
     const [blockedFromViewingContent, setBlockedFromViewingContent] =
-      useState<boolean>(false);
+      useState<boolean>(true);
     const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
     // Used to check whether the modal has been opened by another component,
@@ -44,9 +41,9 @@ const isPatronBlockedHoc =
     const {
       data: { hasBeenVisible }
     } = useSelector((state: RootState) => state.blockedModal);
+
     useEffect(() => {
       if (patronData) {
-        setPatron(patronData);
         // As above comment, only opens modal if it has not been visible.
         if (
           patronData?.patron?.blockStatus &&
@@ -65,21 +62,19 @@ const isPatronBlockedHoc =
     useEffect(() => {
       if (blockedStatus) {
         if (blockedFromViewingContentArray.includes(blockedStatus)) {
-          setBlockedFromViewingContent(
-            blockedFromViewingContentArray.includes(blockedStatus)
-          );
-          redirectTo(new URL(dplCmsBaseUrl));
+          setBlockedFromViewingContent(true);
+          redirectTo(new URL(redirectOnBlocked));
+        } else {
+          setBlockedFromViewingContent(false);
         }
       }
-    }, [blockedFromViewingContentArray, blockedStatus, dplCmsBaseUrl]);
+    }, [blockedFromViewingContentArray, blockedStatus, redirectOnBlocked]);
 
     return (
       <>
         <BlockedModal blockedStatus={blockedStatus || ""} />
         {!blockedFromViewingContent && (
           <Component
-            dplCmsBaseUrl={dplCmsBaseUrl}
-            patron={patron}
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...(props as P)}
           />
