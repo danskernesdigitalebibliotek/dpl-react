@@ -63,9 +63,9 @@ export const getWorkDescriptionListData = ({
     {
       label: t("playTimeText"),
       value:
-        String(manifestation?.physicalDescriptions?.[0].playingTime ?? "") ||
+        String(manifestation?.physicalDescriptions?.[0]?.playingTime ?? "") ||
         String(
-          fallBackManifestation.physicalDescriptions?.[0].playingTime ?? ""
+          fallBackManifestation.physicalDescriptions?.[0]?.playingTime ?? ""
         ),
       type: "standard"
     },
@@ -82,13 +82,6 @@ export const getWorkDescriptionListData = ({
       value:
         (manifestation?.genreAndForm?.[0] ?? "") ||
         (fallBackManifestation.genreAndForm?.[0] ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("isbnText"),
-      value:
-        (manifestation?.identifiers?.[0].value ?? "") ||
-        (fallBackManifestation.identifiers?.[0].value ?? ""),
       type: "standard"
     },
     {
@@ -121,7 +114,7 @@ export const getWorkDescriptionListData = ({
       value:
         String(manifestation?.physicalDescriptions?.[0].numberOfPages ?? "") ||
         String(
-          fallBackManifestation.physicalDescriptions?.[0].numberOfPages ?? ""
+          fallBackManifestation.physicalDescriptions?.[0]?.numberOfPages ?? ""
         ),
       type: "standard"
     },
