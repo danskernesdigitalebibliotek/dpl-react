@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import isPatronBlockedHoc from "../../components/blocked-patron/isPatronBlockedHoc";
+import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import IntermedateList from "./intermediate-list";
@@ -37,8 +39,8 @@ export interface IntermedateListProps {
   paymentOverviewUrl: string;
 }
 
-const IntermedateListEntry: FC<IntermedateListProps> = () => (
-  <IntermedateList />
-);
+const IntermedateListEntry: FC<
+  IntermedateListProps & BlockedPatronEntryTextProps
+> = () => <IntermedateList />;
 
-export default withUrls(withText(IntermedateListEntry));
+export default withUrls(withText(isPatronBlockedHoc(IntermedateListEntry)));
