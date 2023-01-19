@@ -119,6 +119,7 @@ interface MaterialEntryTextProps {
   orderDigitalCopyEmailLabelText: string;
   firstEditionYearText: string;
   playTimeText: string;
+  unknownText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

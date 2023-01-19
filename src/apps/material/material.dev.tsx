@@ -617,6 +617,11 @@ export default {
       name: "Play time",
       defaultValue: "Play time",
       control: { type: "text" }
+    },
+    unknownText: {
+      name: "Unknown",
+      defaultValue: "Unknown",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

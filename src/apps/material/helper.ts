@@ -65,7 +65,7 @@ export const getWorkDescriptionListData = ({
       value:
         String(manifestation?.physicalDescriptions?.[0]?.playingTime ?? "") ||
         String(
-          fallBackManifestation.physicalDescriptions?.[0]?.playingTime ?? ""
+          fallBackManifestation?.physicalDescriptions?.[0]?.playingTime ?? ""
         ),
       type: "standard"
     },
@@ -98,7 +98,7 @@ export const getWorkDescriptionListData = ({
     },
     {
       label: t("firstEditionYearText"),
-      value: String(workYear?.year ?? ""),
+      value: String(workYear?.year ?? t("unknownText")),
       type: "standard"
     },
     {
@@ -122,7 +122,7 @@ export const getWorkDescriptionListData = ({
       label: t("audienceText"),
       value:
         (manifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation.audience?.generalAudience[0] ?? ""),
+        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
       type: "standard"
     }
   ];
