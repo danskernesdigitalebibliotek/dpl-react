@@ -14,6 +14,7 @@ export interface PatronProps {
 }
 
 type InputProps = {
+  // This should be a redirect to the front page.
   redirectOnBlocked: string;
 };
 
@@ -25,6 +26,8 @@ const isPatronBlockedHoc =
     const dispatch = useDispatch();
     const { open } = useModalButtonHandler();
     const { blockedModal } = getModalIds();
+
+    // FBS returns these, if the user is blocked from viewing content.
     const [blockedFromViewingContentArray] = useState<string[]>([
       "D",
       "S",
@@ -48,8 +51,7 @@ const isPatronBlockedHoc =
           patronData?.patron?.blockStatus &&
           patronData?.patron?.blockStatus?.length > 0
         ) {
-          const reason = patronData.patron.blockStatus[0].blockedReason;
-          setBlockedStatus(reason);
+          setBlockedStatus(patronData.patron.blockStatus[0].blockedReason);
           // As above comment, only opens modal if it has not already been visible.
           if (!hasBeenVisible) {
             open(blockedModal as string);
