@@ -13,7 +13,8 @@ import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
-  getAllIdentifiers
+  getAllIdentifiers,
+  getAllUniqueMaterialTypes
 } from "../../apps/material/helper";
 
 export interface AvailabilityLabelsProps {
@@ -32,17 +33,18 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   cursorPointer = false
 }) => {
   const { materialUrl } = useUrls();
-  // Divide manifestations into array of arrays based on material type.
+  const allMaterialTypes = getAllUniqueMaterialTypes(manifestations);
   const manifestationsByMaterialType =
     divideManifestationsByMaterialType(manifestations);
 
-  // Map over the outer array and send array of faust IDs to availability label component.
+  // Map over the distinct material types and assign manifestations of that type to each label
   return (
     <>
-      {manifestationsByMaterialType.map((arrayOfManifestations) => {
+      {allMaterialTypes.map((materialType) => {
+        const arrayOfManifestations =
+          manifestationsByMaterialType[materialType];
         const pidArray = arrayOfManifestations.map((manifest) => manifest.pid);
         const faustIdArray = pidArray.map((pid) => convertPostIdToFaustId(pid));
-        const materialType = arrayOfManifestations[0].materialTypes[0].specific;
         const identifiers = getAllIdentifiers(arrayOfManifestations);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = arrayOfManifestations

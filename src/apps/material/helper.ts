@@ -11,6 +11,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import MaterialType from "../../core/utils/types/material-type";
 
 export const getLatestWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
@@ -21,7 +22,7 @@ export const filterManifestationsByType = (
   manifestations: Manifestation[]
 ) => manifestations.filter((item) => getManifestationType(item) === type);
 
-export const getManifestationFromType = (
+export const getManifestationsFromType = (
   type: string,
   { manifestations: { all: manifestations } }: Work
 ) => {
@@ -32,7 +33,7 @@ export const getManifestationFromType = (
     allManifestations
   );
 
-  return allManifestationsThatMatchType.shift();
+  return allManifestationsThatMatchType;
 };
 
 export const getWorkDescriptionListData = ({
@@ -170,14 +171,22 @@ export const divideManifestationsByMaterialType = (
   manifestations: Manifestation[]
 ) => {
   const uniqueMaterialTypes = getAllUniqueMaterialTypes(manifestations);
-  return uniqueMaterialTypes.map((uniqueMaterialType) => {
-    return manifestations.filter((manifest) => {
-      const manifestationMaterialTypes = manifest.materialTypes.map(
-        (materialType) => materialType.specific
-      );
-      return manifestationMaterialTypes.includes(uniqueMaterialType);
-    });
-  });
+  const dividedManifestationsArrays = uniqueMaterialTypes.map(
+    (uniqueMaterialType) => {
+      return manifestations.filter((manifest) => {
+        const manifestationMaterialTypes = manifest.materialTypes.map(
+          (materialType) => materialType.specific
+        );
+        return manifestationMaterialTypes.includes(uniqueMaterialType);
+      });
+    }
+  );
+  const dividedManifestationsObject: { [key: string]: Manifestation[] } =
+    dividedManifestationsArrays.reduce((result, current, index) => {
+      const materialType = uniqueMaterialTypes[index];
+      return { ...result, [materialType]: current };
+    }, {});
+  return dividedManifestationsObject;
 };
 
 export const getAllIdentifiers = (manifestations: Manifestation[]) => {
@@ -190,4 +199,49 @@ export const getAllIdentifiers = (manifestations: Manifestation[]) => {
 
 export const getAllPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
+};
+
+export const getManifestationsWithMaterialType = (
+  manifestations: Manifestation[]
+) => {
+  return manifestations.filter((manifestation) => {
+    return manifestation.materialTypes.length > 0;
+  });
+};
+
+export const isABook = (manifestations: Manifestation[]) => {
+  return manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some(
+      (materialType) =>
+        materialType.specific.toLowerCase() === MaterialType.book
+    );
+  });
+};
+
+export const getBestMaterialTypeForManifestation = (
+  manifestation: Manifestation
+) => {
+  if (isABook([manifestation])) {
+    return MaterialType.book;
+  }
+  return manifestation.materialTypes[0].specific;
+};
+
+export const getBestMaterialTypeForWork = (work: Work) => {
+  if (work.manifestations.bestRepresentation) {
+    return getBestMaterialTypeForManifestation(
+      work.manifestations.bestRepresentation
+    );
+  }
+  if (work.manifestations.latest) {
+    return getBestMaterialTypeForManifestation(work.manifestations.latest);
+  }
+  if (work.manifestations.first) {
+    return getBestMaterialTypeForManifestation(work.manifestations.first);
+  }
+  if (isABook(work.manifestations.all)) {
+    return MaterialType.book;
+  }
+  return getManifestationsWithMaterialType(work.manifestations.all)[0]
+    .materialTypes[0].specific;
 };

@@ -24,16 +24,13 @@ import {
 } from "../../core/utils/helpers/url";
 import {
   getWorkDescriptionListData,
-  getManifestationFromType,
   getInfomediaIds,
-  divideManifestationsByMaterialType
+  divideManifestationsByMaterialType,
+  getBestMaterialTypeForWork
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import {
-  getManifestationPid,
-  getManifestationType
-} from "../../core/utils/helpers/general";
+import { getManifestationPid } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
@@ -113,23 +110,20 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
+    const manifestationsByMaterialType = divideManifestationsByMaterialType(
+      work.manifestations.all
+    );
     // If there is no type in the url, we select one
     if (!type) {
-      const manifestationsByMaterialType = divideManifestationsByMaterialType(
-        work.manifestations.all
-      );
-      setSelectedManifestations(manifestationsByMaterialType[0]);
+      const bestMaterialType = getBestMaterialTypeForWork(work);
+      setSelectedManifestations(manifestationsByMaterialType[bestMaterialType]);
       setQueryParametersInUrl({
-        type: getManifestationType(manifestationsByMaterialType[0][0])
+        type: bestMaterialType
       });
       return;
     }
-
-    // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
-    const manifestationFromType = getManifestationFromType(type, work);
-    if (manifestationFromType) {
-      setSelectedManifestations([manifestationFromType]);
-    }
+    // if there is a type, use it to select a group of manifestations
+    setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
   if (isLoading) {
