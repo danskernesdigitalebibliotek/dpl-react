@@ -6,7 +6,7 @@ import {
   getDueDatesLoan,
   getModalIds,
   sortByLoanDate,
-  useScrollLock
+  getScrollClass
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -157,7 +157,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
-      <div className={`loan-list-page ${useScrollLock(modalIds)}`}>
+      <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>
