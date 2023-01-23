@@ -59,15 +59,12 @@ describe("Search Result", () => {
     );
   });
 
-  it("Renders pager info", () => {
+  it("Renders show more button", () => {
     cy.get(".result-pager button").should("contain.text", "SHOW MORE");
   });
 
-  it("Renders show more button", () => {
-    cy.get(".result-pager button").click();
-  });
-
   it("Loads more search result items after clicking show more results", () => {
+    cy.get(".result-pager button").click();
     cy.get(".search-result-page__list").find("li").should("have.length", 4);
   });
 
