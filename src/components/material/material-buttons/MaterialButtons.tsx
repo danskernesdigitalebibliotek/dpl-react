@@ -1,7 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
-import { convertPostIdToFaustId } from "../../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  getAllPids
+} from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
 import { hasCorrectAccess, hasCorrectAccessType, isArticle } from "./helper";
@@ -9,7 +12,6 @@ import { WorkId } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
-import { getAllPids } from "../../../apps/material/helper";
 
 export interface MaterialButtonsProps {
   selectedManifestations: Manifestation[];

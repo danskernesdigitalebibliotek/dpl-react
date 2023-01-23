@@ -198,10 +198,6 @@ export const getAllIdentifiers = (manifestations: Manifestation[]) => {
     .flat();
 };
 
-export const getAllPids = (manifestations: Manifestation[]) => {
-  return manifestations.map((manifestation) => manifestation.pid);
-};
-
 export const getManifestationsWithMaterialType = (
   manifestations: Manifestation[]
 ) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   convertPostIdToFaustId,
+  getAllPids,
   getManifestationType
 } from "../../core/utils/helpers/general";
 import {
@@ -14,7 +15,6 @@ import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
   getAllIdentifiers,
-  getAllPids,
   getAllUniqueMaterialTypes
 } from "../../apps/material/helper";
 

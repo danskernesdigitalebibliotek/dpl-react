@@ -2,7 +2,6 @@ import * as React from "react";
 import { FC } from "react";
 import { partition } from "lodash";
 import {
-  getAllPids,
   isAnyManifestationAvailableOnBranch,
   totalBranchesHaveMaterial
 } from "../../apps/material/helper";
@@ -12,6 +11,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getAllPids,
   getManifestationsPids
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";

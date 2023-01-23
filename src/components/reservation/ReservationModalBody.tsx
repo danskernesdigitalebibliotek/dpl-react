@@ -3,6 +3,7 @@ import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/
 import { useQueryClient } from "react-query";
 import {
   convertPostIdToFaustId,
+  getAllPids,
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -19,11 +20,7 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import {
-  getAllPids,
-  reservationModalId,
-  totalMaterials
-} from "../../apps/material/helper";
+import { reservationModalId, totalMaterials } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,

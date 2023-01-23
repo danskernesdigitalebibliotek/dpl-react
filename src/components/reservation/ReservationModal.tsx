@@ -1,6 +1,9 @@
 import React from "react";
-import { getAllPids, reservationModalId } from "../../apps/material/helper";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import { reservationModalId } from "../../apps/material/helper";
+import {
+  convertPostIdToFaustId,
+  getAllPids
+} from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";

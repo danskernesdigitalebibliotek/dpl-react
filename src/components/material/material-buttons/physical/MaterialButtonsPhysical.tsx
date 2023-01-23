@@ -1,7 +1,9 @@
 import React from "react";
-import { getAllPids } from "../../../../apps/material/helper";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
-import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
+import {
+  convertPostIdToFaustId,
+  getAllPids
+} from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";

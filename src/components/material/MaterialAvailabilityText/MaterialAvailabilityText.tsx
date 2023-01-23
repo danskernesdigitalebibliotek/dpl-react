@@ -1,5 +1,6 @@
 import * as React from "react";
-import { getAllIdentifiers, getAllPids } from "../../../apps/material/helper";
+import { getAllIdentifiers } from "../../../apps/material/helper";
+import { getAllPids } from "../../../core/utils/helpers/general";
 import { Manifestation } from "../../../core/utils/types/entities";
 import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnline";
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";

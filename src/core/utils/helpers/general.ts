@@ -319,4 +319,8 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation.materialTypes[0].specific;
 
+export const getAllPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
+
 export default {};
