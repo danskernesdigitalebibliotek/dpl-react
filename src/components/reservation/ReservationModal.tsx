@@ -4,21 +4,18 @@ import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { WorkId } from "../../core/utils/types/ids";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ReservationModalBody } from "./ReservationModalBody";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
-  workId: WorkId;
   work: Work;
 };
 
 const ReservationModal = ({
   selectedManifestations,
   selectedPeriodical = null,
-  workId,
   work
 }: ReservationModalProps) => {
   const t = useText();
@@ -39,7 +36,6 @@ const ReservationModal = ({
       <ReservationModalBody
         selectedManifestations={selectedManifestations}
         selectedPeriodical={selectedPeriodical}
-        workId={workId}
         work={work}
       />
     </Modal>

@@ -7,7 +7,6 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
 import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
@@ -51,14 +50,12 @@ import PromoBar from "../promo-bar/PromoBar";
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
-  workId: WorkId;
   work: Work;
 };
 
 export const ReservationModalBody = ({
   selectedManifestations,
   selectedPeriodical,
-  workId,
   work
 }: ReservationModalProps) => {
   const t = useText();
@@ -126,7 +123,7 @@ export const ReservationModalBody = ({
           track("click", {
             id: statistics.reservation.id,
             name: statistics.reservation.name,
-            trackedData: workId
+            trackedData: work.workId
           });
           // This state is used to show the success or error modal.
           setReservationResponse(res);

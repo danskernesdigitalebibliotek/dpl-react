@@ -218,7 +218,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             key={`reservation-modal-${manifestation.pid}`}
             selectedManifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
-            workId={wid}
             work={work}
           />
           <FindOnShelfModal
@@ -252,7 +251,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             <ReservationModal
               selectedManifestations={selectedManifestations}
               selectedPeriodical={selectedPeriodical}
-              workId={wid}
               work={work}
             />
             <FindOnShelfModal
