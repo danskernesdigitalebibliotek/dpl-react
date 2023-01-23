@@ -1,7 +1,9 @@
 import * as React from "react";
 import { getAllIdentifiers } from "../../../apps/material/helper";
+import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import { getAllPids } from "../../../core/utils/helpers/general";
 import { Manifestation } from "../../../core/utils/types/entities";
+import { hasCorrectAccessType } from "../material-buttons/helper";
 import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnline";
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";
 
@@ -12,25 +14,15 @@ interface Props {
 const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   return (
     <>
-      {/* We use the first manifestation because accessType shouldn't change between manifestations of the same material type. */}
-      {manifestations[0].accessTypes.map((accessType) => {
-        if (accessType.code === "PHYSICAL")
-          return (
-            <MaterialAvailabilityTextPhysical
-              pids={getAllPids(manifestations)}
-            />
-          );
-        if (
-          accessType.code === "ONLINE" &&
-          getAllIdentifiers(manifestations).length > 0
-        )
-          return (
-            <MaterialAvailabilityTextOnline
-              isbn={getAllIdentifiers(manifestations)[0]}
-            />
-          );
-        return null;
-      })}
+      {hasCorrectAccessType(AccessTypeCode.Physical, manifestations) && (
+        <MaterialAvailabilityTextPhysical pids={getAllPids(manifestations)} />
+      )}
+      {hasCorrectAccessType(AccessTypeCode.Online, manifestations) &&
+        !hasCorrectAccessType(AccessTypeCode.Online, manifestations) && (
+          <MaterialAvailabilityTextOnline
+            isbns={getAllIdentifiers(manifestations)}
+          />
+        )}
     </>
   );
 };
