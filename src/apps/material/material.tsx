@@ -236,7 +236,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       {infomediaIds.length > 0 && (
         <InfomediaModal
           selectedManifestations={selectedManifestations}
-          infoMediaIds={infomediaIds}
+          infoMediaId={infomediaIds[0]}
         />
       )}
 

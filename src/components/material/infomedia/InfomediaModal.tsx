@@ -10,17 +10,17 @@ export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
 interface InfomediaModalProps {
   selectedManifestations: Manifestation[];
-  infoMediaIds: string[];
+  infoMediaId: string;
 }
 
 const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
   selectedManifestations,
-  infoMediaIds
+  infoMediaId
 }) => {
   const t = useText();
 
   const { data, error } = useGetInfomediaQuery({
-    id: infoMediaIds[0]
+    id: infoMediaId
   });
 
   if (!data || error) {
