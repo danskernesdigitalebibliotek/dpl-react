@@ -27,6 +27,13 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
+  if (manifestations.length < 1) {
+    return null;
+  }
+
+  // Although we may be passed multiple manifestations, there is only one button
+  // and one infomedia article modal to open, as we only associate a singular article
+  // with a given work as of now.
   const onClick = () => {
     openGuarded({
       authUrl,
