@@ -12,14 +12,14 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
-  selectedManifestations: Manifestation[];
+  manifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
-  selectedManifestations,
+  manifestations,
   size,
   workId,
   dataCy = "material-buttons-online"
@@ -33,7 +33,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     });
   };
 
-  const accessElement = selectedManifestations[0].access[0];
+  const accessElement = manifestations[0].access[0];
   const access = accessElement?.__typename;
 
   // If the access type is an external type we'll show corresponding button.
@@ -52,7 +52,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         origin={origin}
         size={size}
         trackOnlineView={trackOnlineView}
-        selectedManifestations={selectedManifestations}
+        manifestations={manifestations}
         dataCy={`${dataCy}-external`}
       />
     );
@@ -60,11 +60,11 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   if (
     access === "DigitalArticleService" &&
-    hasCorrectMaterialType("tidsskriftsartikel", selectedManifestations)
+    hasCorrectMaterialType("tidsskriftsartikel", manifestations)
   ) {
     return (
       <MaterialButtonOnlineDigitalArticle
-        pid={selectedManifestations[0].pid}
+        pid={manifestations[0].pid}
         size={size}
         dataCy={`${dataCy}-digital-article`}
       />
@@ -75,7 +75,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     return (
       <MaterialButtonOnlineInfomediaArticle
         size={size}
-        selectedManifestations={selectedManifestations}
+        manifestations={manifestations}
         trackOnlineView={trackOnlineView}
         dataCy={`${dataCy}-infomedia-article`}
       />

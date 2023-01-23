@@ -135,14 +135,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           <>
             <div className="material-header__button">
               <MaterialButtons
-                selectedManifestations={selectedManifestations}
+                manifestations={selectedManifestations}
                 workId={wid}
                 dataCy="material-header-buttons"
               />
             </div>
-            <MaterialAvailabilityText
-              selectedManifestations={selectedManifestations}
-            />
+            <MaterialAvailabilityText manifestations={selectedManifestations} />
           </>
         )}
       </div>

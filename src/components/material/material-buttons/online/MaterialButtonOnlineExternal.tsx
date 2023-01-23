@@ -17,7 +17,7 @@ export interface MaterialButtonOnlineExternalProps {
   origin: string;
   size?: ButtonSize;
   trackOnlineView: () => void;
-  selectedManifestations: Manifestation[];
+  manifestations: Manifestation[];
   dataCy?: string;
 }
 
@@ -43,7 +43,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   origin,
   size,
   trackOnlineView,
-  selectedManifestations,
+  manifestations,
   dataCy = "material-button-online-external"
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
@@ -91,7 +91,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   return (
     <LinkNoStyle url={translatedUrl} dataCy={dataCy}>
       <Button
-        label={label(origin, getAllUniqueMaterialTypes(selectedManifestations))}
+        label={label(origin, getAllUniqueMaterialTypes(manifestations))}
         buttonType="external-link"
         variant="filled"
         disabled={false}

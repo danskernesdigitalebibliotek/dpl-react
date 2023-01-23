@@ -13,17 +13,17 @@ import { areAnyReservable } from "../helper";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
-  selectedManifestations: Manifestation[];
+  manifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  selectedManifestations,
+  manifestations,
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const pids = getAllPids(selectedManifestations);
+  const pids = getAllPids(manifestations);
   const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: faustIds
@@ -50,8 +50,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   if (!isReservable) {
     return <MaterialButtonCantReserve size={size} />;
   }
-  const manifestationMaterialType =
-    selectedManifestations[0].materialTypes[0].specific;
+  const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
 
   return (
     <MaterialButtonReservePhysical

@@ -6,29 +6,27 @@ import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnl
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";
 
 interface Props {
-  selectedManifestations: Manifestation[];
+  manifestations: Manifestation[];
 }
 
-const MaterialAvailabilityText: React.FC<Props> = ({
-  selectedManifestations
-}) => {
+const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   return (
     <>
       {/* We use the first manifestation because accessType shouldn't change between manifestations of the same material type. */}
-      {selectedManifestations[0].accessTypes.map((accessType) => {
+      {manifestations[0].accessTypes.map((accessType) => {
         if (accessType.code === "PHYSICAL")
           return (
             <MaterialAvailabilityTextPhysical
-              pids={getAllPids(selectedManifestations)}
+              pids={getAllPids(manifestations)}
             />
           );
         if (
           accessType.code === "ONLINE" &&
-          getAllIdentifiers(selectedManifestations).length > 0
+          getAllIdentifiers(manifestations).length > 0
         )
           return (
             <MaterialAvailabilityTextOnline
-              isbn={getAllIdentifiers(selectedManifestations)[0]}
+              isbn={getAllIdentifiers(manifestations)[0]}
             />
           );
         return null;

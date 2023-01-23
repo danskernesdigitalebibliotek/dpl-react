@@ -14,19 +14,19 @@ import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 
 export interface MaterialButtonsProps {
-  selectedManifestations: Manifestation[];
+  manifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
-  selectedManifestations,
+  manifestations,
   size,
   workId,
   dataCy = "material-buttons"
 }) => {
-  const faustIds = getAllPids(selectedManifestations).map((pid) =>
+  const faustIds = getAllPids(manifestations).map((pid) =>
     convertPostIdToFaustId(pid)
   );
   // We don't want to show physical buttons/find on shelf for articles because
@@ -34,11 +34,11 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   // physically loaned for themseleves.
   return (
     <>
-      {hasCorrectAccessType(AccessTypeCode.Physical, selectedManifestations) &&
-        !isArticle(selectedManifestations) && (
+      {hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+        !isArticle(manifestations) && (
           <>
             <MaterialButtonsPhysical
-              selectedManifestations={selectedManifestations}
+              manifestations={manifestations}
               size={size}
               dataCy={`${dataCy}-physical`}
             />
@@ -49,10 +49,10 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             />
           </>
         )}
-      {(hasCorrectAccessType(AccessTypeCode.Online, selectedManifestations) ||
-        hasCorrectAccess("DigitalArticleService", selectedManifestations)) && (
+      {(hasCorrectAccessType(AccessTypeCode.Online, manifestations) ||
+        hasCorrectAccess("DigitalArticleService", manifestations)) && (
         <MaterialButtonsOnline
-          selectedManifestations={selectedManifestations}
+          manifestations={manifestations}
           size={size}
           workId={workId}
           dataCy={`${dataCy}-online`}
