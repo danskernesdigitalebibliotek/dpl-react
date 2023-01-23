@@ -50,7 +50,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
     }
   }, [fbsData]);
-  const yesterday = dayjs().subtract(1, "years").format("YYYY-MM-DD");
+  const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
+  const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
+  const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
 
   useEffect(() => {
     if (physicalLoans) {
@@ -114,6 +116,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansSoonOverdueText")}
                 notificationColor="warning"
                 notificationLink={new URL(loansSoonOverdueUrl)}
+                notificationClickEvent={openDueDateModal}
+                notificationClickEventParam={soon}
               />
             )}
             {physicalLoansNotOverdue && physicalLoansNotOverdue !== 0 && (
@@ -122,6 +126,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansNotOverdueText")}
                 notificationColor="neutral"
                 notificationLink={new URL(loansNotOverdueUrl)}
+                notificationClickEvent={openDueDateModal}
+                notificationClickEventParam={longer}
               />
             )}
           </>

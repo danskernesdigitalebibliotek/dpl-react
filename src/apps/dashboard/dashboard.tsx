@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
+import dayjs from "dayjs";
 import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
@@ -9,7 +10,9 @@ import ReadyToLoanModalContent from "./modal/ready-for-loan-modal/ready-to-loan-
 import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
 import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
 import {
+  filterLoansNotOverdue,
   filterLoansOverdue,
+  filterLoansSoonOverdue,
   getModalIds,
   sortByLoanDate
 } from "../../core/utils/helpers/general";
@@ -25,6 +28,9 @@ interface DashboardProps {
 }
 const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const t = useText();
+  const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
+  const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
+  const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
   const { open } = useModalButtonHandler();
   const { isSuccess, data } = useGetLoansV2();
   const { loanDetails, dueDateModal } = getModalIds();
@@ -32,9 +38,17 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const [modalLoan, setModalLoan] = useState<ListType | null>(null);
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
+  const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
+    useState<LoanType[] | undefined>(undefined);
+  const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
+    LoanType[] | undefined
+  >(undefined);
   const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<
     LoanType[] | undefined
   >(undefined);
+  const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | undefined>(
+    undefined
+  );
 
   const OpenModalHandler = useCallback(
     (modalId: string) => {
@@ -47,9 +61,27 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
+      if (dueDateInput === yesterday) {
+        setLoansToDisplay(physicalLoansOverdue);
+      }
+      if (dueDateInput === soon) {
+        setLoansToDisplay(physicalLoansSoonOverdue);
+      }
+      if (dueDateInput === longer) {
+        setLoansToDisplay(physicalLoansFarFromOverdue);
+      }
       open(`${dueDateModal}${dueDateInput}`);
     },
-    [dueDateModal, open]
+    [
+      dueDateModal,
+      longer,
+      open,
+      physicalLoansFarFromOverdue,
+      physicalLoansOverdue,
+      physicalLoansSoonOverdue,
+      soon,
+      yesterday
+    ]
   );
   const openLoanDetailsModal = useCallback(
     (modalId: string) => {
@@ -58,6 +90,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     },
     [loanDetails, open]
   );
+
   useEffect(() => {
     if (isSuccess && data) {
       const mapToLoanType = mapFBSLoanToLoanType(data);
@@ -65,11 +98,14 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
       setPhysicalLoansOverdue(filterLoansOverdue(mapToLoanType));
+      setPhysicalLoansSoonOverdue(filterLoansSoonOverdue(mapToLoanType));
+      setPhysicalLoansFarFromOverdue(filterLoansNotOverdue(mapToLoanType));
       setPhysicalLoans(sortedByLoanDate);
     } else {
       setPhysicalLoans([]);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data, setPhysicalLoansSoonOverdue]);
+
   return (
     <>
       <h1>{t("yourProfileText")}</h1>
@@ -91,12 +127,12 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
           loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
-      {dueDate && physicalLoans && (
+      {dueDate && physicalLoans && loansToDisplay && (
         <DueDateLoansModal
           pageSize={pageSize}
           openLoanDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
-          loansModal={physicalLoansOverdue}
+          loansModal={loansToDisplay}
         />
       )}
     </>
