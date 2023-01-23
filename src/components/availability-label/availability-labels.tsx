@@ -41,13 +41,15 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   return (
     <>
       {allMaterialTypes.map((materialType) => {
-        const arrayOfManifestations =
+        const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
-        const pidArray = arrayOfManifestations.map((manifest) => manifest.pid);
+        const pidArray = manifestationsOfMaterialType.map(
+          (manifest) => manifest.pid
+        );
         const faustIdArray = pidArray.map((pid) => convertPostIdToFaustId(pid));
-        const identifiers = getAllIdentifiers(arrayOfManifestations);
+        const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
-        const accessTypesCodes = arrayOfManifestations
+        const accessTypesCodes = manifestationsOfMaterialType
           .map((manifest) => {
             return manifest.accessTypes.map((accessType) => accessType.code);
           })
@@ -68,7 +70,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             handleSelectManifestation={
               setSelectedManifestations
                 ? () => {
-                    setSelectedManifestations(arrayOfManifestations);
+                    setSelectedManifestations(manifestationsOfMaterialType);
                     setQueryParametersInUrl({
                       type: materialType
                     });
