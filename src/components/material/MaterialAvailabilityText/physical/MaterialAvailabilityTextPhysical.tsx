@@ -1,5 +1,8 @@
 import * as React from "react";
-import { totalMaterials } from "../../../../apps/material/helper";
+import {
+  getTotalHoldings,
+  getTotalReservations
+} from "../../../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general";
 import { Pid } from "../../../../core/utils/types/ids";
@@ -20,12 +23,13 @@ const MaterialAvailabilityTextPhysical: React.FC<
 
   if (isLoading || isError || !data) return null;
 
-  const { reservations, holdings } = data[0];
+  const holdings = getTotalHoldings(data);
+  const reservations = getTotalReservations(data);
 
   return (
     <MaterialAvailabilityTextParagraph>
       <StockAndReservationInfo
-        stockCount={totalMaterials(holdings)}
+        stockCount={holdings}
         reservationCount={reservations}
       />
     </MaterialAvailabilityTextParagraph>

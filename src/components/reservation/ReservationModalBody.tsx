@@ -20,7 +20,11 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { reservationModalId, totalMaterials } from "../../apps/material/helper";
+import {
+  getTotalHoldings,
+  getTotalReservations,
+  reservationModalId
+} from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -92,7 +96,8 @@ export const ReservationModalBody = ({
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
   };
-  const { reservations, holdings } = holdingsData[0];
+  const holdings = getTotalHoldings(holdingsData);
+  const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
   const authorLine = getAuthorLine(selectedManifestations[0], t);
   const expiryDate = selectedInterest
@@ -159,7 +164,7 @@ export const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 <StockAndReservationInfo
-                  stockCount={totalMaterials(holdings)}
+                  stockCount={holdings}
                   reservationCount={reservations}
                 />
               </MaterialAvailabilityTextParagraph>

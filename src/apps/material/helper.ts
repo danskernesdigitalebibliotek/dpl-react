@@ -1,7 +1,10 @@
 import { compact, uniq } from "lodash";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
-import { HoldingsV3 } from "../../core/fbs/model";
+import {
+  HoldingsForBibliographicalRecordV3,
+  HoldingsV3
+} from "../../core/fbs/model";
 import {
   creatorsToString,
   filterCreators,
@@ -122,8 +125,25 @@ export const getWorkDescriptionListData = ({
   ];
 };
 
-export const totalMaterials = (holdings: HoldingsV3[]) => {
-  return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
+export const getTotalHoldings = (
+  holdings: HoldingsForBibliographicalRecordV3[]
+) => {
+  return holdings.reduce((acc, curr) => {
+    return (
+      acc +
+      curr.holdings.reduce((accumulator, current) => {
+        return accumulator + current.materials.length;
+      }, 0)
+    );
+  }, 0);
+};
+
+export const getTotalReservations = (
+  holdings: HoldingsForBibliographicalRecordV3[]
+) => {
+  return holdings.reduce((acc, curr) => {
+    return acc + curr.reservations;
+  }, 0);
 };
 
 export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
