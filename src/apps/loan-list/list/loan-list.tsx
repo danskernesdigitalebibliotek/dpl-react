@@ -157,7 +157,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
-      <div className={`loan-list-page ${useScrollLock(modalIds)}`}>
+      <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>
