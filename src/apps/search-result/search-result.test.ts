@@ -13,7 +13,7 @@ describe("Search Result", () => {
       .and("contain", "Showing results for “harry” (722)");
   });
 
-  it("Renders two search results", () => {
+  it("Renders all the search results", () => {
     cy.get(".search-result-page__list").find("li").should("have.length", 2);
   });
 
