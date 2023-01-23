@@ -43,7 +43,6 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
-import { getDigitalArticleIssnIds } from "../../components/material/digital-modal/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -241,13 +240,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       )}
 
       {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
-        <DigitalModal
-          digitalArticleIssnIds={getDigitalArticleIssnIds(
-            selectedManifestations
-          )}
-          pid={selectedManifestations[0].pid}
-          workId={wid}
-        />
+        <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
       )}
 
       {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials. */}

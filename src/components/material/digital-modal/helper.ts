@@ -1,9 +1,8 @@
 import { DigitalArticleService } from "../../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../../core/utils/types/entities";
-import { IssnId } from "../../../core/utils/types/ids";
+import { IssnId, Pid } from "../../../core/utils/types/ids";
 
-export const createDigitalModalId = (digitalArticleIssnIds: IssnId[]) =>
-  `digital-modal-${digitalArticleIssnIds[0]}`;
+export const createDigitalModalId = (id: Pid) => `digital-modal-${id}`;
 
 export const getDigitalArticleIssnIds = (manifestations: Manifestation[]) => {
   const digitalArticles = manifestations.map(

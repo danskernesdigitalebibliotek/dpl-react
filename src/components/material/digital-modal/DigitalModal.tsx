@@ -5,23 +5,21 @@ import { statistics } from "../../../core/statistics/statistics";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { IssnId, Pid, WorkId } from "../../../core/utils/types/ids";
+import { Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId } from "./helper";
 
 type DigitalModalProps = {
-  digitalArticleIssnIds: IssnId[];
   pid: Pid;
   workId: WorkId;
 };
 
 const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
-  digitalArticleIssnIds,
   pid,
   workId
 }) => {
-  const modalId = createDigitalModalId(digitalArticleIssnIds);
+  const modalId = createDigitalModalId(pid);
   const t = useText();
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const { track } = useStatistics();

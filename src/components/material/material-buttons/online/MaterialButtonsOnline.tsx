@@ -6,7 +6,6 @@ import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
-import { getDigitalArticleIssnIds } from "../../digital-modal/helper";
 import { hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
@@ -65,7 +64,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   ) {
     return (
       <MaterialButtonOnlineDigitalArticle
-        digitalArticleIssnIds={getDigitalArticleIssnIds(selectedManifestations)}
+        pid={selectedManifestations[0].pid}
         size={size}
         dataCy={`${dataCy}-digital-article`}
       />
