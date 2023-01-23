@@ -9,20 +9,18 @@ import { findOnShelfModalId } from "../../../find-on-shelf/FindOnShelfModal";
 
 export interface MaterialButtonsFindOnShelfProps {
   size?: ButtonSize;
-  faustId: FaustId;
+  faustIds: FaustId[];
   dataCy?: string;
-  isMain?: boolean;
 }
 
 const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   size,
-  faustId,
-  dataCy = "material-buttons-find-on-shelf",
-  isMain
+  faustIds,
+  dataCy = "material-buttons-find-on-shelf"
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const modalId = `${findOnShelfModalId(faustId)}${isMain ? "-main" : ""}`;
+  const modalId = findOnShelfModalId(faustIds);
   const onClick = () => {
     open(modalId);
   };

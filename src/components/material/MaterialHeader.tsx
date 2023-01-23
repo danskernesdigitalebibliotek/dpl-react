@@ -138,7 +138,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                 selectedManifestations={selectedManifestations}
                 workId={wid}
                 dataCy="material-header-buttons"
-                isMain
               />
             </div>
             <MaterialAvailabilityText

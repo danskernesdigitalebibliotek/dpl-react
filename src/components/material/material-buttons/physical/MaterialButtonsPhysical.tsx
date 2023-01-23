@@ -14,14 +14,12 @@ export interface MaterialButtonsPhysicalProps {
   selectedManifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
-  isMain?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   selectedManifestations,
   size,
-  dataCy = "material-buttons-physical",
-  isMain
+  dataCy = "material-buttons-physical"
 }) => {
   const pids = getAllPids(selectedManifestations);
   const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
@@ -59,7 +57,6 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
       manifestationMaterialType={manifestationMaterialType}
       faustIds={faustIds}
       size={size}
-      isMain={isMain}
     />
   );
 };

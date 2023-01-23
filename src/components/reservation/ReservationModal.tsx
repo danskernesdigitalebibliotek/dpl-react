@@ -1,39 +1,36 @@
 import React from "react";
+import { getAllPids, reservationModalId } from "../../apps/material/helper";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { FaustId, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import { PeriodicalEdition } from "../material/periodical/helper";
-import ReservationModalBody from "./ReservationModalBody";
-
-export const reservationModalId = (faustId: FaustId) =>
-  `reservation-modal-${faustId}`;
+import { ReservationModalBody } from "./ReservationModalBody";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
   workId: WorkId;
   work: Work;
-  isPerMaterialType?: boolean;
 };
 
 const ReservationModal = ({
   selectedManifestations,
   selectedPeriodical = null,
   workId,
-  work,
-  isPerMaterialType
+  work
 }: ReservationModalProps) => {
   const t = useText();
-  const { pid } = selectedManifestations[0];
+  const pids = getAllPids(selectedManifestations);
+  const faustIds = pids.map((manifestationPid) =>
+    convertPostIdToFaustId(manifestationPid)
+  );
 
   // If this modal shows all manifestations per material type, differentiate the ID
   return (
     <Modal
-      modalId={`${reservationModalId(convertPostIdToFaustId(pid))}${
-        isPerMaterialType ? "-main" : ""
-      }`}
+      modalId={reservationModalId(faustIds)}
       screenReaderModalDescriptionText={t(
         "reservationModalScreenReaderModalDescriptionText"
       )}

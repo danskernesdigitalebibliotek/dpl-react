@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { partition } from "lodash";
 import {
+  getAllPids,
   isAnyManifestationAvailableOnBranch,
   totalBranchesHaveMaterial
 } from "../../apps/material/helper";
@@ -24,8 +25,10 @@ import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
 
-export const findOnShelfModalId = (faustId: FaustId) =>
-  `find-on-shelf-modal-${faustId}`;
+export const findOnShelfModalId = (faustIds: FaustId[]) => {
+  const sortedFaustIds = faustIds.sort();
+  return `find-on-shelf-modal-${sortedFaustIds.join("-")}`;
+};
 
 export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
@@ -33,7 +36,6 @@ export interface FindOnShelfModalProps {
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
-  isPerMaterialType?: boolean;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
@@ -41,8 +43,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   workTitles,
   authors,
   selectedPeriodical,
-  setSelectedPeriodical,
-  isPerMaterialType
+  setSelectedPeriodical
 }) => {
   const config = useConfig();
   const blacklistBranches = config("blacklistedPickupBranchesConfig", {
@@ -62,10 +63,12 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     t
   );
   const title = workTitles.join(", ");
-  // If this modal shows manifestations per material type, differentiate the ID
-  const modalId = `${findOnShelfModalId(
-    convertPostIdToFaustId(manifestations[0].pid)
-  )}${isPerMaterialType ? "-main" : ""}`;
+  // If this modal is for all manifestations per material type, use all manifestations'
+  // faust ids to create the modal id.
+  const faustIds = getAllPids(manifestations).map((pid) =>
+    convertPostIdToFaustId(pid)
+  );
+  const modalId = `${findOnShelfModalId(faustIds)}`;
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
       return materialType.specific.includes("tidsskrift");

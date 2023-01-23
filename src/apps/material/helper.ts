@@ -11,6 +11,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { FaustId } from "../../core/utils/types/ids";
 import MaterialType from "../../core/utils/types/material-type";
 
 export const getLatestWorkManifestation = (work: Work) => {
@@ -244,4 +245,9 @@ export const getBestMaterialTypeForWork = (work: Work) => {
   }
   return getManifestationsWithMaterialType(work.manifestations.all)[0]
     .materialTypes[0].specific;
+};
+
+export const reservationModalId = (faustIds: FaustId[]) => {
+  const sortedFaustIds = faustIds.sort();
+  return `reservation-modal-${sortedFaustIds.join("-")}`;
 };

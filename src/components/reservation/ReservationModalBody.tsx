@@ -7,7 +7,7 @@ import {
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { FaustId, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
 import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
@@ -20,7 +20,11 @@ import {
 import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
-import { getAllPids, totalMaterials } from "../../apps/material/helper";
+import {
+  getAllPids,
+  reservationModalId,
+  totalMaterials
+} from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
@@ -44,9 +48,6 @@ import { statistics } from "../../core/statistics/statistics";
 import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
 import PromoBar from "../promo-bar/PromoBar";
 
-export const reservationModalId = (faustId: FaustId) =>
-  `reservation-modal-${faustId}`;
-
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical: PeriodicalEdition | null;
@@ -54,7 +55,7 @@ type ReservationModalProps = {
   work: Work;
 };
 
-const ReservationModalBody = ({
+export const ReservationModalBody = ({
   selectedManifestations,
   selectedPeriodical,
   workId,
@@ -221,7 +222,7 @@ const ReservationModalBody = ({
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustIds[0])}
+          modalId={reservationModalId(faustIds)}
           title={selectedManifestations[0].titles.main[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,

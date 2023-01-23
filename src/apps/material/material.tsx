@@ -254,7 +254,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               selectedPeriodical={selectedPeriodical}
               workId={wid}
               work={work}
-              isPerMaterialType
             />
             <FindOnShelfModal
               manifestations={selectedManifestations}
@@ -262,7 +261,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               workTitles={work.titles.full}
               selectedPeriodical={selectedPeriodical}
               setSelectedPeriodical={setSelectedPeriodical}
-              isPerMaterialType
             />
           </>
         )}

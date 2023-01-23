@@ -1,30 +1,28 @@
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
+import { reservationModalId } from "../../../../apps/material/helper";
 import { openModal } from "../../../../core/modal.slice";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { Button } from "../../../Buttons/Button";
-import { reservationModalId } from "../../../reservation/ReservationModalBody";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
   faustIds: FaustId[];
   dataCy?: string;
-  isMain?: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustIds,
   size,
-  dataCy = "material-button-physical",
-  isMain
+  dataCy = "material-button-physical"
 }) => {
   const t = useText();
   const dispatch = useDispatch();
-  const modalId = `${reservationModalId(faustIds[0])}${isMain ? "-main" : ""}`;
+  const modalId = reservationModalId(faustIds);
 
   const onClick = () => {
     dispatch(

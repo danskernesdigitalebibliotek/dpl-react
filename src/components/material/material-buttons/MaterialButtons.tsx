@@ -9,24 +9,24 @@ import { WorkId } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
+import { getAllPids } from "../../../apps/material/helper";
 
 export interface MaterialButtonsProps {
   selectedManifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
-  isMain?: boolean;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
   selectedManifestations,
   size,
   workId,
-  dataCy = "material-buttons",
-  isMain
+  dataCy = "material-buttons"
 }) => {
-  const faustId = convertPostIdToFaustId(selectedManifestations[0].pid);
-
+  const faustIds = getAllPids(selectedManifestations).map((pid) =>
+    convertPostIdToFaustId(pid)
+  );
   // We don't want to show physical buttons/find on shelf for articles because
   // articles appear as a part of journal/periodical publications and can't be
   // physically loaned for themseleves.
@@ -39,13 +39,11 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
               selectedManifestations={selectedManifestations}
               size={size}
               dataCy={`${dataCy}-physical`}
-              isMain={isMain}
             />
             <MaterialButtonsFindOnShelf
               size={size}
-              faustId={faustId}
+              faustIds={faustIds}
               dataCy={`${dataCy}-find-on-shelf`}
-              isMain={isMain}
             />
           </>
         )}
