@@ -1,8 +1,7 @@
 import React from "react";
 import {
   convertPostIdToFaustId,
-  getAllPids,
-  getManifestationType
+  getAllPids
 } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
@@ -64,7 +63,8 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             accessTypes={accessTypesCodes}
             selected={
               selectedManifestations &&
-              materialType === getManifestationType(selectedManifestations[0])
+              materialType ===
+                getAllUniqueMaterialTypes(selectedManifestations)[0]
             }
             handleSelectManifestation={
               setSelectedManifestations
