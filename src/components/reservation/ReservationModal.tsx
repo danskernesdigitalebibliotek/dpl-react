@@ -1,7 +1,7 @@
 import React from "react";
 import { reservationModalId } from "../../apps/material/helper";
 import {
-  convertPostIdToFaustId,
+  convertPostIdsToFaustIds,
   getAllPids
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
@@ -23,9 +23,7 @@ const ReservationModal = ({
 }: ReservationModalProps) => {
   const t = useText();
   const pids = getAllPids(selectedManifestations);
-  const faustIds = pids.map((manifestationPid) =>
-    convertPostIdToFaustId(manifestationPid)
-  );
+  const faustIds = convertPostIdsToFaustIds(pids);
 
   // If this modal shows all manifestations per material type, differentiate the ID
   return (

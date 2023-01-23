@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import {
-  convertPostIdToFaustId,
+  convertPostIdsToFaustIds,
   getAllPids
 } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
@@ -26,9 +26,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   workId,
   dataCy = "material-buttons"
 }) => {
-  const faustIds = getAllPids(manifestations).map((pid) =>
-    convertPostIdToFaustId(pid)
-  );
+  const faustIds = convertPostIdsToFaustIds(getAllPids(manifestations));
   // We don't want to show physical buttons/find on shelf for articles because
   // articles appear as a part of journal/periodical publications and can't be
   // physically loaned for themseleves.

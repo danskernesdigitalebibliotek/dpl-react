@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { AvailabilityV3 } from "../../core/fbs/model";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import {
+  convertPostIdsToFaustIds,
+  convertPostIdToFaustId,
+  getAllPids
+} from "../../core/utils/helpers/general";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 
 type ManifestationWithAvailability = Manifestation & AvailabilityV3;
 
@@ -16,9 +20,9 @@ const useAlternativeAvailableManifestation = (
   const [otherManifestationPreferred, setOtherManifestationPreferred] =
     useState<ManifestationWithAvailability | null>(null);
 
-  const faustIds = work.manifestations.all.map((manifestation) =>
-    convertPostIdToFaustId(manifestation.pid as Pid)
-  ) as FaustId[];
+  const faustIds = convertPostIdsToFaustIds(
+    getAllPids(work.manifestations.all)
+  );
 
   const { data: availabilityData } = useGetAvailabilityV3({
     recordid: faustIds

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { totalMaterials } from "../../../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
-import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
+import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general";
 import { Pid } from "../../../../core/utils/types/ids";
 import StockAndReservationInfo from "../../StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
@@ -13,7 +13,7 @@ interface MaterialAvailabilityTextPhysicalProps {
 const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
 > = ({ pids }) => {
-  const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
+  const faustIds = convertPostIdsToFaustIds(pids);
   const { data, isLoading, isError } = useGetHoldingsV3({
     recordid: faustIds
   });

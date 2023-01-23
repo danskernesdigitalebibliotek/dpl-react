@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
-  convertPostIdToFaustId,
+  convertPostIdsToFaustIds,
   getAllPids,
   getManifestationType,
   materialIsFiction
@@ -71,7 +71,7 @@ export const ReservationModalBody = ({
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
   const allPids = getAllPids(selectedManifestations);
-  const faustIds = allPids.map((pid) => convertPostIdToFaustId(pid));
+  const faustIds = convertPostIdsToFaustIds(allPids);
   const { mutate } = useAddReservationsV2();
   const userResponse = useGetPatronInformationByPatronIdV2();
   const holdingsResponse = useGetHoldingsV3({

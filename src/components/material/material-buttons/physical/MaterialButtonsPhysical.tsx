@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import {
-  convertPostIdToFaustId,
+  convertPostIdsToFaustIds,
   getAllPids
 } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -24,7 +24,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const pids = getAllPids(manifestations);
-  const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
+  const faustIds = convertPostIdsToFaustIds(pids);
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: faustIds
   });

@@ -157,6 +157,10 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   throw new Error(`Unable to extract faust id from post id "${postId}"`);
 };
 
+export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
+  return postIds.map((pid) => convertPostIdToFaustId(pid));
+};
+
 // Get params if they are defined as props use those
 // otherwise try to fetch them from the url.
 export const getParams = <T, K extends keyof T>(props: T) => {
