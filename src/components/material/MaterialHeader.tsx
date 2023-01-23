@@ -26,6 +26,8 @@ import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { getAllUniqueMaterialTypes } from "../../apps/material/helper";
+import { hasCorrectMaterialType } from "./material-buttons/helper";
+import MaterialType from "../../core/utils/types/material-type";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -64,13 +66,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-  const isPeriodical = selectedManifestations.some((manifestation) => {
-    return manifestation.materialTypes.some(
-      (materialType: Manifestation["materialTypes"][0]) => {
-        return materialType.specific === "tidsskrift";
-      }
-    );
-  });
+  const isPeriodical = hasCorrectMaterialType(
+    MaterialType.magazine,
+    selectedManifestations
+  );
 
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
