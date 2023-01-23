@@ -243,7 +243,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
       )}
 
-      {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials. */}
+      {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
       {selectedManifestations &&
         hasCorrectAccessType(AccessTypeCode.Physical, selectedManifestations) &&
         !isArticle(selectedManifestations) && (
