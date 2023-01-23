@@ -14,6 +14,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
   getAllIdentifiers,
+  getAllPids,
   getAllUniqueMaterialTypes
 } from "../../apps/material/helper";
 
@@ -43,10 +44,8 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
       {allMaterialTypes.map((materialType) => {
         const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
-        const pidArray = manifestationsOfMaterialType.map(
-          (manifest) => manifest.pid
-        );
-        const faustIdArray = pidArray.map((pid) => convertPostIdToFaustId(pid));
+        const pids = getAllPids(manifestationsOfMaterialType);
+        const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
         const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = manifestationsOfMaterialType
@@ -60,7 +59,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             key={materialType}
             url={url}
             cursorPointer={cursorPointer}
-            faustIds={faustIdArray}
+            faustIds={faustIds}
             manifestText={materialType}
             accessTypes={accessTypesCodes}
             selected={
