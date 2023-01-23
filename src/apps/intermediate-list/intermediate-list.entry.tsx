@@ -3,6 +3,12 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import IntermedateList from "./intermediate-list";
 
+export interface IntermedateListEntryConfigProps {
+  fbsBaseUrl: string;
+  fbiBaseUrl: string;
+  publizonBaseUrl: string;
+}
+
 export interface IntermedateListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
@@ -37,8 +43,8 @@ export interface IntermedateListProps {
   paymentOverviewUrl: string;
 }
 
-const IntermedateListEntry: FC<IntermedateListProps> = () => (
-  <IntermedateList />
-);
+const IntermedateListEntry: FC<
+  IntermedateListProps & IntermedateListEntryConfigProps
+> = () => <IntermedateList />;
 
 export default withUrls(withText(IntermedateListEntry));

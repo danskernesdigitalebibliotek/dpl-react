@@ -5,10 +5,11 @@ import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
 export interface LoanListEntryConfigProps {
-  fbsBaseUrlConfig: string;
+  fbsBaseUrl: string;
   materialOverdueUrl: string;
   feesPageUrl: string;
-  publizonBaseUrlConfig: string;
+  publizonBaseUrl: string;
+  fbiBaseUrl: string;
 }
 
 export interface LoanListEntryTextProps {

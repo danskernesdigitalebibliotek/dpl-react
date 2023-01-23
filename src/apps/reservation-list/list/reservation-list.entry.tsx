@@ -5,6 +5,12 @@ import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
+export interface ReservationListEntryConfigProps {
+  fbsBaseUrl: string;
+  fbiBaseUrl: string;
+  publizonBaseUrl: string;
+}
+
 export interface ReservationListProps {
   ereolenMyPageUrl: string;
   reservationDetailsBorrowBeforeText: string;
@@ -79,10 +85,9 @@ export interface ReservationListProps {
   pageSizeMobile: number;
 }
 
-const ReservationListEntry: FC<ReservationListProps> = ({
-  pageSizeDesktop,
-  pageSizeMobile
-}) => {
+const ReservationListEntry: FC<
+  ReservationListProps & ReservationListEntryConfigProps
+> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
