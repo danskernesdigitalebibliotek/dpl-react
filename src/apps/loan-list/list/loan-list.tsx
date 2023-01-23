@@ -6,7 +6,7 @@ import {
   getDueDatesLoan,
   getModalIds,
   sortByLoanDate,
-  useScrollLock
+  getScrollClass
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";

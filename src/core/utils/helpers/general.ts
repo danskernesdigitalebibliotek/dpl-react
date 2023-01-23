@@ -320,7 +320,7 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
 
-export const useScrollLock = (modalIds: string[]) => {
+export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
 

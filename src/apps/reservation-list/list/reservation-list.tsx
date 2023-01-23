@@ -10,7 +10,7 @@ import {
 import {
   getModalIds,
   getReadyForPickup,
-  useScrollLock
+  getScrollClass
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
