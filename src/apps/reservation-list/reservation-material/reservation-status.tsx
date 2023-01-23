@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import Arrow from "../../../components/atoms/icons/arrow/arrow";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
@@ -37,6 +38,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
+      <Arrow />
     </div>
   );
 };

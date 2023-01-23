@@ -27,6 +27,7 @@ import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
+import { dataIsNotEmpty } from "../../core/utils/helpers/general";
 
 interface SearchResultProps {
   q: string;
@@ -165,18 +166,20 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   return (
     <div className="search-result-page">
-      <SearchResultHeader hitcount={String(hitcount)} q={q} />
+      <SearchResultHeader hitcount={hitcount} q={q} />
       <FacetLine q={q} filters={filters} filterHandler={filteringHandler} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
       {PagerComponent}
-      <FacetBrowserModal
-        q={q}
-        filters={filters}
-        filterHandler={filteringHandler}
-      />
+      {dataIsNotEmpty(resultItems) && (
+        <FacetBrowserModal
+          q={q}
+          filters={filters}
+          filterHandler={filteringHandler}
+        />
+      )}
     </div>
   );
 };

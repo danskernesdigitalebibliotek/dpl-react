@@ -1,4 +1,4 @@
-import React, { useCallback, FC, MouseEvent } from "react";
+import React, { useCallback, FC } from "react";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
@@ -17,30 +17,23 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation,
   openReservationDetailsModal
 }) => {
-  const openDetailsModal = useCallback(
-    (e: MouseEvent) => {
-      e.stopPropagation();
-      openReservationDetailsModal(reservation);
-    },
-    [openReservationDetailsModal, reservation]
-  );
+  const openDetailsModal = useCallback(() => {
+    openReservationDetailsModal(reservation);
+  }, [openReservationDetailsModal, reservation]);
 
   return (
     <li>
-      <button
-        type="button"
-        onClick={(e) => openDetailsModal(e)}
-        className="list-reservation my-32"
-      >
+      <div className="list-reservation my-32">
         {material && (
           <MaterialInfo
+            openDetailsModal={openDetailsModal}
             periodical={reservation.periodical}
             material={material}
             isbnForCover={reservation.identifier || ""}
           />
         )}
         <ReservationInfo reservationInfo={reservation} />
-      </button>
+      </div>
     </li>
   );
 };

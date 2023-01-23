@@ -362,7 +362,7 @@ describe("Reservation list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find("h3")
+      .find("button")
       .should("have.text", "Dummy Some Title");
 
     // ID 42 2.d. serial title and number
