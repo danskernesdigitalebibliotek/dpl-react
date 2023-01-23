@@ -76,7 +76,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
                   }
                 : undefined
             }
-            isbn={identifiers?.[0]}
+            isbns={identifiers}
           />
         );
       })}
