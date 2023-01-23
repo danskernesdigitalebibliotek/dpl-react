@@ -45,7 +45,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
         const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
         const pids = getAllPids(manifestationsOfMaterialType);
-        const faustIds = pids.map((pid) => convertPostIdToFaustId(pid));
+        const faustIds = pids.map((pid) => convertPostIdToFaustId(pid)).sort();
         const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = manifestationsOfMaterialType
@@ -56,7 +56,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
 
         return (
           <AvailabilityLabel
-            key={materialType}
+            key={faustIds.join("-")}
             url={url}
             cursorPointer={cursorPointer}
             faustIds={faustIds}
