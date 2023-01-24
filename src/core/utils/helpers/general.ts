@@ -301,6 +301,7 @@ export const filterLoansOverdue = (loans: LoanType[]) => {
     return materialIsOverdue(dueDate);
   });
 };
+
 export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";

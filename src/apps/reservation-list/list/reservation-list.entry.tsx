@@ -11,15 +11,14 @@ export interface ReservationListUrlProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
   publizonBaseUrl: string;
   ereolenMyPageUrl: string;
   pauseReservationInfoUrl: string;
 }
 
 export interface ReservationListConfigProps {
-  dangerThresholdConfig: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
   blacklistedSearchBranchesConfig: string;
   pauseReservationStartDateConfig: string;
   blacklistedPickupBranchesConfig: string;

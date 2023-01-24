@@ -19,7 +19,7 @@ export interface PatronPageUrlProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
 }
 
 interface PatronPageTextProps {

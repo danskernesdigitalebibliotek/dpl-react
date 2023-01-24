@@ -6,8 +6,7 @@ import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 import { withConfig } from "../../../core/utils/config";
 
 export interface LoanListEntryConfigProps {
-  dangerThresholdConfig: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
 }
 export interface LoanListEntryUrlProps {
   fbsBaseUrl: string;
@@ -18,7 +17,7 @@ export interface LoanListEntryUrlProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
 }
 
 export interface LoanListEntryTextProps {

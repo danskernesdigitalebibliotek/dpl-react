@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { ThresholdType } from "../../../../core/utils/types/threshold-type";
 import { useConfig } from "../../../../core/utils/config";
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
 
@@ -17,16 +18,21 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 }) => {
   const config = useConfig();
   if (!dueDate) return null;
-  const dangerThreshold = Number(config("dangerThresholdConfig"));
-  const warningThreshold = Number(config("warningThresholdConfig"));
+
+  const {
+    colorThresholds: { danger, warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
+
   const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
-  if (daysBetweenTodayAndDue < dangerThreshold && dangerText) {
+  if (daysBetweenTodayAndDue < danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
   }
 
-  if (daysBetweenTodayAndDue <= warningThreshold && warningText) {
+  if (daysBetweenTodayAndDue <= warning && warningText) {
     return (
       <div className="status-label status-label--warning">{warningText}</div>
     );

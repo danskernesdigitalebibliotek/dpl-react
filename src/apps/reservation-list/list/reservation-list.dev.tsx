@@ -25,13 +25,9 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
-    dangerThresholdConfig: {
-      defaultValue: "0",
+    thresholdConfig: {
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
       control: { type: "text" }
-    },
-    warningThresholdConfig: {
-      control: { type: "text" },
-      defaultValue: "6"
     },
     ereolenMyPageUrl: {
       defaultValue: "https://ereolen.dk/user/me/",

@@ -28,13 +28,10 @@ export default {
       control: { type: "number" }
     },
     // Config
-    dangerThresholdConfig: {
-      defaultValue: "0",
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
       control: { type: "text" }
-    },
-    warningThresholdConfig: {
-      control: { type: "text" },
-      defaultValue: "6"
     },
     // Texts
     groupModalDueDateLinkToPageWithFeesText: {

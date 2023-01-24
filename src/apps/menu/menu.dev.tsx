@@ -53,9 +53,9 @@ export default {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
-    warningThresholdConfig: {
-      control: { type: "text" },
-      defaultValue: "6"
+    thresholdConfig: {
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof Menu>;

@@ -10,7 +10,7 @@ export interface IntermedateListEntryConfigProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  warningThresholdConfig: string;
+  thresholdConfig: string;
 }
 
 export interface IntermedateListProps {
