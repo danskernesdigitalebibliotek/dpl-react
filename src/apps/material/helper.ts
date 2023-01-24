@@ -259,6 +259,5 @@ export const getBestMaterialTypeForWork = (work: Work) => {
 };
 
 export const reservationModalId = (faustIds: FaustId[]) => {
-  const sortedFaustIds = faustIds.sort();
-  return `reservation-modal-${sortedFaustIds.join("-")}`;
+  return `reservation-modal-${faustIds.sort().join("-")}`;
 };
