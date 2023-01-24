@@ -13,7 +13,7 @@ type ManifestationWithAvailability = Manifestation & AvailabilityV3;
 
 const useAlternativeAvailableManifestation = (
   work: Work,
-  currentManifestationPid: Pid
+  currentManifestationPids: Pid[]
 ) => {
   const [isOtherManifestationPreferred, setIsOtherManifestationPreferred] =
     useState(false);
@@ -55,7 +55,7 @@ const useAlternativeAvailableManifestation = (
         return;
       }
 
-      if (leastReservedManifestation.pid !== currentManifestationPid) {
+      if (!currentManifestationPids.includes(leastReservedManifestation.pid)) {
         setIsOtherManifestationPreferred(true);
         setOtherManifestationPreferred({
           ...leastReservedManifestation,
@@ -63,7 +63,7 @@ const useAlternativeAvailableManifestation = (
         });
       }
     }
-  }, [availabilityData, currentManifestationPid, work]);
+  }, [availabilityData, currentManifestationPids, work]);
 
   return { isOtherManifestationPreferred, otherManifestationPreferred };
 };

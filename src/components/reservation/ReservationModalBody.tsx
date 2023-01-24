@@ -84,7 +84,7 @@ export const ReservationModalBody = ({
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
-    selectedManifestations[0].pid
+    allPids
   );
 
   // If we don't have all data for displaying the view render nothing.
