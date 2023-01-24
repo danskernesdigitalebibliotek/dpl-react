@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import IconCheckbox from "../icon-checkbox/icon-checkbox";
 
 interface CheckBoxProps {
   id: string;
-  label: string;
+  label: string | ReactNode;
   hideLabel?: boolean;
   selected?: boolean;
   disabled?: boolean;

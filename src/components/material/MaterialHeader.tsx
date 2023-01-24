@@ -70,15 +70,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     MaterialType.magazine,
     selectedManifestations
   );
-
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
   );
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const pid = getManifestationPid(manifestations);
   const { track } = useStatistics();

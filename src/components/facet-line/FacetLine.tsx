@@ -11,6 +11,7 @@ import FacetLineSelected from "./FacetLineSelected";
 import FacetLineFilters from "./FacetLineFilters";
 import { createFilters } from "../facet-browser/helper";
 import useGetCleanBranches from "../../core/utils/branches";
+import FacetLineFiltersSkeleton from "./FacetLineFiltersSkeleton";
 
 type FacetLineProps = {
   q: string;
@@ -34,6 +35,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
 
   return (
     <>
+      {!data && <FacetLineFiltersSkeleton />}
       {data && (
         <FacetLineFilters
           filters={filters}

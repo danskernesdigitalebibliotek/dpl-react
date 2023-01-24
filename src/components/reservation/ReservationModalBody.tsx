@@ -229,6 +229,8 @@ export const ReservationModalBody = ({
             reservationDetails.pickupBranch,
             branches
           )}
+          holdings={holdings}
+          reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}

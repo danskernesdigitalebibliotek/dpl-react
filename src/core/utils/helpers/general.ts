@@ -337,4 +337,6 @@ export const getAllPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
 
+export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+
 export default {};

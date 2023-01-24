@@ -18,10 +18,7 @@ export const useAvailabilityData = ({
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
-
-  // Conditional chaining is necessary here because we use the component multiple
-  // places and accessTypes prop isn't always provided.
-  const isOnline = accessTypes?.includes(AccessTypeCode.Online);
+  const isOnline = accessTypes?.includes(AccessTypeCode.Online) ?? false;
 
   useGetAvailabilityV3(
     {
@@ -56,14 +53,6 @@ export const useAvailabilityData = ({
         //    1. If the user has any quota loans available for the material type
         //    2. If the library has a queue on the material
         setIsAvailable(true);
-      },
-      onError: (error: unknown) => {
-        if (error instanceof Error) {
-          // 128 is the error code for "Bogen er ikke tilgængelig for udlån"
-          if (error.cause && Number(error.cause) === 128) {
-            setIsAvailable(false);
-          }
-        }
       }
     }
   });
