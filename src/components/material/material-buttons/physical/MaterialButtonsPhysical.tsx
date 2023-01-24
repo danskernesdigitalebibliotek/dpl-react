@@ -45,9 +45,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} />;
   }
 
-  const isReservable = areAnyReservable(data);
-
-  if (!isReservable) {
+  if (!areAnyReservable(data)) {
     return <MaterialButtonCantReserve size={size} />;
   }
   const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
