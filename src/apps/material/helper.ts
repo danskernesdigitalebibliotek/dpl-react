@@ -196,12 +196,13 @@ export const divideManifestationsByMaterialType = (
       });
     }
   );
-  const dividedManifestationsObject: { [key: string]: Manifestation[] } =
-    dividedManifestationsArrays.reduce((result, current, index) => {
+  return dividedManifestationsArrays.reduce<{ [key: string]: Manifestation[] }>(
+    (result, current, index) => {
       const materialType = uniqueMaterialTypes[index];
       return { ...result, [materialType]: current };
-    }, {});
-  return dividedManifestationsObject;
+    },
+    {}
+  );
 };
 
 export const getAllIdentifiers = (manifestations: Manifestation[]) => {
