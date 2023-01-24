@@ -84,7 +84,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       });
     }
     // We can afford to only check the latest manifestation because audience doesn't
-    // vary between a specific work's manifestations (information provided by DDF)
+    // vary between a specific work's manifestations (information provided by DDF).
     if (data?.work?.manifestations.latest.audience?.generalAudience) {
       track("click", {
         id: statistics.materialTopicNumber.id,
@@ -104,7 +104,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // This useEffect selects the current manifestation
+  // This useEffect selects the current manifestation.
   useEffect(() => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
@@ -112,7 +112,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     const manifestationsByMaterialType = divideManifestationsByMaterialType(
       work.manifestations.all
     );
-    // If there is no type in the url, we select one
+    // If there is no type in the url, we select one.
     if (!type) {
       const bestMaterialType = getBestMaterialTypeForWork(work);
       setSelectedManifestations(manifestationsByMaterialType[bestMaterialType]);
@@ -121,7 +121,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       });
       return;
     }
-    // if there is a type, use it to select a group of manifestations
+    // If there is a type, use it to select a group of manifestations.
     setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
@@ -129,7 +129,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>Loading...</div>;
   }
 
-  // TODO: handle error if data is empty array
+  // TODO: handle error if data is empty array.
   if (!data?.work || !selectedManifestations) {
     return <div>No work data</div>;
   }
@@ -154,7 +154,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
-  // Get disclosure URL parameter from the current URL to see if it should be open
+  // Get disclosure URL parameter from the current URL to see if it should be open.
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
