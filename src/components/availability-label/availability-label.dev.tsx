@@ -47,7 +47,7 @@ export default {
       name: "Cypress data attribute",
       control: { type: "text" }
     },
-    isbn: {
+    isbns: {
       name: "ISBN",
       control: { type: "text" }
     },
