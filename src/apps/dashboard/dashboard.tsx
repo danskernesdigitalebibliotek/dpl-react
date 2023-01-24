@@ -49,6 +49,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | undefined>(
     undefined
   );
+  const [modalHeader, setModalHealer] = useState("");
 
   const OpenModalHandler = useCallback(
     (modalId: string) => {
@@ -63,12 +64,15 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       setDueDate(dueDateInput);
       if (dueDateInput === yesterday) {
         setLoansToDisplay(physicalLoansOverdue);
+        setModalHealer(t("loansOverdueText"));
       }
       if (dueDateInput === soon) {
         setLoansToDisplay(physicalLoansSoonOverdue);
+        setModalHealer(t("loansSoonOverdueText"));
       }
       if (dueDateInput === longer) {
         setLoansToDisplay(physicalLoansFarFromOverdue);
+        setModalHealer(t("loansNotOverdueText"));
       }
       open(`${dueDateModal}${dueDateInput}`);
     },
@@ -127,12 +131,14 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
           loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
-      {dueDate && physicalLoans && loansToDisplay && (
+      {dueDate && physicalLoans && loansToDisplay && modalHeader && (
         <DueDateLoansModal
           pageSize={pageSize}
           openLoanDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={loansToDisplay}
+          hideStatusCircle
+          customHeader={modalHeader}
         />
       )}
     </>
