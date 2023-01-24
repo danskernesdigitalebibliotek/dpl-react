@@ -7,7 +7,11 @@ import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
 export interface ReservationListUrlProps {
   fbsBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
   fbiBaseUrl: string;
+  warningThresholdConfig: string;
   publizonBaseUrl: string;
   ereolenMyPageUrl: string;
   pauseReservationInfoUrl: string;

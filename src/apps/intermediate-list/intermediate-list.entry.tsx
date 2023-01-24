@@ -5,8 +5,12 @@ import IntermedateList from "./intermediate-list";
 
 export interface IntermedateListEntryConfigProps {
   fbsBaseUrl: string;
-  fbiBaseUrl: string;
   publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
+  warningThresholdConfig: string;
 }
 
 export interface IntermedateListProps {

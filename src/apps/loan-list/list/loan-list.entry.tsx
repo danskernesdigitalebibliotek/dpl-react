@@ -14,7 +14,11 @@ export interface LoanListEntryUrlProps {
   materialOverdueUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
   fbiBaseUrl: string;
+  warningThresholdConfig: string;
 }
 
 export interface LoanListEntryTextProps {
