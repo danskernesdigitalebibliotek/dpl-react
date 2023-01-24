@@ -35,7 +35,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
   if (isLoading && !textData) {
     return (
-      <ul className="autosuggest pb-16">
+      <ul className="autosuggest pb-16" data-cy="autosuggest">
         <li className="ml-24">{t("LoadingText")}</li>
       </ul>
     );
@@ -49,6 +49,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         className="autosuggest pb-16"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
+        data-cy="autosuggest"
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 

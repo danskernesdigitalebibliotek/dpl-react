@@ -52,6 +52,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
               }`}
               key={item.work?.workId}
               {...getItemProps({ item, index })}
+              data-cy="autosuggest-material-item"
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
               <div className="autosuggest__material__content">

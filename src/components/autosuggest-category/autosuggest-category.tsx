@@ -41,6 +41,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
               )}`}
               key={item}
               {...getItemProps({ item, index })}
+              data-cy="autosuggest-category-item"
             >
               {`${item.term} ${t("inText")}`}
               <div className="boxed-text text-tags noselect ml-8">

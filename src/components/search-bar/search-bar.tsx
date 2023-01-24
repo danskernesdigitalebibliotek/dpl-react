@@ -24,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       <input
         name="q"
         className="header__menu-search-input text-body-medium-regular"
+        data-cy="search-header-input"
         type="text"
         autoComplete="off"
         placeholder={t("inputPlaceholderText")}

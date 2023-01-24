@@ -30,6 +30,7 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         className={classes.textSuggestion}
         key={generateItemId(item)}
         {...getItemProps({ item, index })}
+        data-cy="autosuggest-text-item"
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
         {item.type === SuggestionType.Creator
