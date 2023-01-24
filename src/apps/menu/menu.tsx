@@ -37,6 +37,7 @@ interface MenuNavigationDataType {
 const Menu: FC = () => {
   const t = useText();
   const config = useConfig();
+  const warningThreshold = Number(config("warningThresholdConfig"));
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
@@ -90,8 +91,8 @@ const Menu: FC = () => {
 
   // Set count of loans soon to be overdue.
   useEffect(() => {
-    setLoansSoonOverdue(filterLoansSoonOverdue(loans).length);
-  }, [loans]);
+    setLoansSoonOverdue(filterLoansSoonOverdue(loans, warningThreshold).length);
+  }, [loans, warningThreshold]);
 
   // Set count of reservations- and ready-for-pickup.
   useEffect(() => {

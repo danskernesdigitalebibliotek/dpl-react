@@ -4,7 +4,6 @@ import pageSizeLoanList from "./page-size-loan-list.json";
 import pageSizeReservationList from "./page-size-reservation-list.json";
 import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
-import thresholds from "./status-thresholds.json";
 import modalIds from "./modal-ids.json";
 
 export type ConfScope =
@@ -13,8 +12,7 @@ export type ConfScope =
   | "pageSizeLoanList"
   | "pageSizeReservationList"
   | "colors"
-  | "modalIds"
-  | "thresholds";
+  | "modalIds";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -50,6 +48,5 @@ export default {
   pageSizeLoanList,
   pageSizeReservationList,
   colors,
-  modalIds,
-  thresholds
+  modalIds
 } as Configuration;

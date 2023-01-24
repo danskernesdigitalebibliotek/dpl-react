@@ -27,6 +27,15 @@ export default {
       defaultValue: 5,
       control: { type: "number" }
     },
+    // Config
+    dangerThresholdConfig: {
+      defaultValue: "0",
+      control: { type: "text" }
+    },
+    warningThresholdConfig: {
+      control: { type: "text" },
+      defaultValue: "6"
+    },
     // Texts
     groupModalDueDateLinkToPageWithFeesText: {
       control: {

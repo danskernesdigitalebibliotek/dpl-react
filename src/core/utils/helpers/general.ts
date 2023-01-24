@@ -115,10 +115,6 @@ export const getModalIds = () => {
   return getConf("modalIds", configuration);
 };
 
-export const getThresholds = () => {
-  return getConf("thresholds", configuration);
-};
-
 export const daysBetweenTodayAndDate = (date: string) => {
   const inputDate = dayjs(new Date(date));
   const today = dayjs(new Date());
@@ -305,8 +301,7 @@ export const filterLoansOverdue = (loans: LoanType[]) => {
     return materialIsOverdue(dueDate);
   });
 };
-export const filterLoansSoonOverdue = (loans: LoanType[]) => {
-  const { warning } = <{ warning: number }>getThresholds();
+export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";
     const daysUntilExpiration = daysBetweenTodayAndDate(due);

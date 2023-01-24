@@ -5,29 +5,35 @@ import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
-export interface ReservationListEntryConfigProps {
+export interface ReservationListUrlProps {
   fbsBaseUrl: string;
   fbiBaseUrl: string;
   publizonBaseUrl: string;
+  ereolenMyPageUrl: string;
+  pauseReservationInfoUrl: string;
 }
 
-export interface ReservationListProps {
-  ereolenMyPageUrl: string;
+export interface ReservationListConfigProps {
+  dangerThresholdConfig: string;
+  warningThresholdConfig: string;
+  blacklistedSearchBranchesConfig: string;
+  pauseReservationStartDateConfig: string;
+  blacklistedPickupBranchesConfig: string;
+  branchesConfig: string;
+}
+
+export interface ReservationListTextProps {
   reservationDetailsBorrowBeforeText: string;
   reservationListHeaderText: string;
   physicalLoansTitleText: string;
   reservationListReadyText: string;
   materialByAuthorText: string;
-  blacklistedSearchBranchesConfig: string;
   reservationDetailsExpiresText: string;
-  pauseReservationInfoUrl: string;
   materialAndAuthorText: string;
-  pauseReservationStartDateConfig: string;
   reservationListNumberInQueueText: string;
   reservationListFirstInQueueText: string;
   expiresSoonText: string;
   reservationListInQueueText: string;
-  blacklistedPickupBranchesConfig: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
   publizonAudioBookText: string;
@@ -52,7 +58,6 @@ export interface ReservationListProps {
   sixMonthsText: string;
   oneYearText: string;
   listDetailsNothingSelectedLabelText: string;
-  branchesConfig: string;
   reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveDigitalReservationText: string;
@@ -81,13 +86,20 @@ export interface ReservationListProps {
   reservationListDigitalReservationsEmptyText: string;
   reservationListDigitalReservationsHeaderText: string;
   reservationListAllEmptyText: string;
-  pageSizeDesktop: number;
-  pageSizeMobile: number;
 }
 
-const ReservationListEntry: FC<
-  ReservationListProps & ReservationListEntryConfigProps
-> = ({ pageSizeDesktop, pageSizeMobile }) => {
+export interface ReservationListEntryWithPageSizeProps
+  extends ReservationListTextProps,
+    ReservationListConfigProps,
+    ReservationListUrlProps {
+  pageSizeDesktop?: number;
+  pageSizeMobile?: number;
+}
+
+const ReservationListEntry: FC<ReservationListEntryWithPageSizeProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
