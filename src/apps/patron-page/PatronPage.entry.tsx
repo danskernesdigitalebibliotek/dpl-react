@@ -11,6 +11,17 @@ interface PatronPageConfigProps {
   deletePatronLinkConfig: string;
   alwaysLoanableEreolenLink: string;
 }
+
+export interface PatronPageUrlProps {
+  fbsBaseUrl: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
+  thresholdConfig: string;
+}
+
 interface PatronPageTextProps {
   patronPageHeaderText: string;
   patronPagePincodeTooShortValidationText: string;
@@ -52,7 +63,8 @@ interface PatronPageTextProps {
 
 export interface PatronPageProps
   extends PatronPageConfigProps,
-    PatronPageTextProps {}
+    PatronPageTextProps,
+    PatronPageUrlProps {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 

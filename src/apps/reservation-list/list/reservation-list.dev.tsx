@@ -9,6 +9,15 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
+    // Page size
+    pageSizeDesktop: {
+      defaultValue: 20,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      defaultValue: 10,
+      control: { type: "number" }
+    },
     // Config
     ...serviceUrlArgs,
     blacklistedSearchBranchesConfig: {
@@ -16,15 +25,10 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
-    pageSizeDesktop: {
-      name: "Number of search result items on desktop",
-      defaultValue: 20,
-      control: { type: "number" }
-    },
-    pageSizeMobile: {
-      name: "Number of search result items on mobile",
-      defaultValue: 10,
-      control: { type: "number" }
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+      control: { type: "text" }
     },
     ereolenMyPageUrl: {
       defaultValue: "https://ereolen.dk/user/me/",
