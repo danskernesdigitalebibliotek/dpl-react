@@ -1,11 +1,6 @@
 import { compact } from "lodash";
-import { ManifestationHoldings } from "../../components/find-on-shelf/types";
-import { ListData } from "../../components/material/MaterialDetailsList";
 import {
-  HoldingsForBibliographicalRecordV3,
-  HoldingsV3
-} from "../../core/fbs/model";
-import {
+  constructModalId,
   creatorsToString,
   filterCreators,
   flattenCreators,
@@ -13,6 +8,12 @@ import {
   getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
+import { ManifestationHoldings } from "../../components/find-on-shelf/types";
+import { ListData } from "../../components/material/MaterialDetailsList";
+import {
+  HoldingsForBibliographicalRecordV3,
+  HoldingsV3
+} from "../../core/fbs/model";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
@@ -259,5 +260,5 @@ export const getBestMaterialTypeForWork = (work: Work) => {
 };
 
 export const reservationModalId = (faustIds: FaustId[]) => {
-  return `reservation-modal-${faustIds.sort().join("-")}`;
+  return constructModalId("reservation-modal", faustIds.sort());
 };

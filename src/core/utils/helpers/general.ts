@@ -339,4 +339,7 @@ export const getAllPids = (manifestations: Manifestation[]) => {
 
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 
+export const constructModalId = (prefix: string, fragments: string[]) =>
+  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+
 export default {};

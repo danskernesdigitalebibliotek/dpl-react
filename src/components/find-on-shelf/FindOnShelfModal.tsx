@@ -7,6 +7,7 @@ import {
 } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
+  constructModalId,
   convertPostIdsToFaustIds,
   convertPostIdToFaustId,
   creatorsToString,
@@ -27,8 +28,7 @@ import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
-  const sortedFaustIds = faustIds.sort();
-  return `find-on-shelf-modal-${sortedFaustIds.join("-")}`;
+  return constructModalId("find-on-shelf-modal", faustIds.sort());
 };
 
 export interface FindOnShelfModalProps {
