@@ -4,6 +4,7 @@ import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
+  getAllUniqueMaterialTypes,
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -140,19 +141,20 @@ export const ReservationModalBody = ({
   const reservationResult = reservationResponse?.reservationResults[0]?.result;
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
+  const manifestation = selectedManifestations[0];
 
   return (
     <>
       {!reservationResult && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover id={allPids[0]} size="medium" animate />
+            <Cover id={manifestation.pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
-                {selectedManifestations[0].materialTypes[0].specific}
+                {getAllUniqueMaterialTypes([manifestation])[0]}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {selectedManifestations[0].titles.main}
+                {manifestation.titles.main}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
@@ -185,7 +187,7 @@ export const ReservationModalBody = ({
                 title={t("editionText")}
                 text={
                   selectedPeriodical?.displayText ||
-                  selectedManifestations[0].edition?.summary ||
+                  manifestation.edition?.summary ||
                   ""
                 }
               />
@@ -222,7 +224,7 @@ export const ReservationModalBody = ({
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
           modalId={reservationModalId(faustIds)}
-          title={selectedManifestations[0].titles.main[0]}
+          title={manifestation.titles.main[0]}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branches
