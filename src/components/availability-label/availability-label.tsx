@@ -38,7 +38,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const { isAvailable } = useAvailabilityData({
     accessTypes,
     faustIds,
-    isbn: isbns[0]
+    isbn: isbns ? isbns[0] : null
   });
 
   const availabilityText = isAvailable ? t("available") : t("unavailable");
