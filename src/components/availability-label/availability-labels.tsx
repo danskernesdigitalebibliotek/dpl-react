@@ -1,7 +1,6 @@
 import React from "react";
 import {
-  convertPostIdsToFaustIds,
-  getAllPids,
+  getAllFaustIds,
   getMaterialTypes
 } from "../../core/utils/helpers/general";
 import {
@@ -43,9 +42,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
       {allMaterialTypes.map((materialType) => {
         const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
-        const faustIds = convertPostIdsToFaustIds(
-          getAllPids(manifestationsOfMaterialType)
-        ).sort();
+        const faustIds = getAllFaustIds(manifestationsOfMaterialType).sort();
         const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = manifestationsOfMaterialType

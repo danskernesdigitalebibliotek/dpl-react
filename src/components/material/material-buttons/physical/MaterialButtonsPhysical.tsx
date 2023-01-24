@@ -1,9 +1,6 @@
 import React from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
-import {
-  convertPostIdsToFaustIds,
-  getAllPids
-} from "../../../../core/utils/helpers/general";
+import { getAllFaustIds } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
@@ -23,8 +20,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const pids = getAllPids(manifestations);
-  const faustIds = convertPostIdsToFaustIds(pids);
+  const faustIds = getAllFaustIds(manifestations);
   const { data, isLoading } = useGetAvailabilityV3({
     recordid: faustIds
   });

@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { filterManifestationsByType } from "../../apps/material/helper";
 import { getAvailabilityV3 } from "../fbs/fbs";
-import {
-  convertPostIdsToFaustIds,
-  convertPostIdToFaustId,
-  getAllPids
-} from "./helpers/general";
+import { convertPostIdToFaustId, getAllFaustIds } from "./helpers/general";
 import { Manifestation } from "./types/entities";
 
 const UseReservableManifestations = ({
@@ -15,7 +11,7 @@ const UseReservableManifestations = ({
   manifestations: Manifestation[];
   type?: string;
 }) => {
-  const faustIds = convertPostIdsToFaustIds(getAllPids(manifestations));
+  const faustIds = getAllFaustIds(manifestations);
 
   const [reservableManifestations, setReservableManifestations] = useState<
     Manifestation[] | null

@@ -8,12 +8,11 @@ import {
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   constructModalId,
-  convertPostIdsToFaustIds,
   convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getAllPids,
+  getAllFaustIds,
   getManifestationsPids
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
@@ -66,7 +65,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const title = workTitles.join(", ");
   // If this modal is for all manifestations per material type, use all manifestations'
   // faust ids to create the modal id.
-  const faustIds = convertPostIdsToFaustIds(getAllPids(manifestations));
+  const faustIds = getAllFaustIds(manifestations);
   const modalId = `${findOnShelfModalId(faustIds)}`;
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
