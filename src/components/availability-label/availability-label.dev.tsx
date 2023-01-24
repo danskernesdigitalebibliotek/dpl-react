@@ -97,7 +97,7 @@ Unavailable.args = {
 
 export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
-  isbn: "9788763844123",
+  isbns: ["9788763844123"],
   manifestText: "ebog",
   accessTypes: [AccessTypeCode.Online]
 };
