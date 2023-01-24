@@ -18,7 +18,7 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
         <MaterialAvailabilityTextPhysical pids={getAllPids(manifestations)} />
       )}
       {hasCorrectAccessType(AccessTypeCode.Online, manifestations) &&
-        !hasCorrectAccessType(AccessTypeCode.Online, manifestations) && (
+        getAllIdentifiers(manifestations).length > 0 && (
           <MaterialAvailabilityTextOnline
             isbns={getAllIdentifiers(manifestations)}
           />
