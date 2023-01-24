@@ -9,7 +9,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getAllUniqueMaterialTypes,
+  getMaterialTypes,
   getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
@@ -185,7 +185,7 @@ export const getInfomediaIds = (manifestations: Manifestation[]) => {
 export const divideManifestationsByMaterialType = (
   manifestations: Manifestation[]
 ) => {
-  const uniqueMaterialTypes = getAllUniqueMaterialTypes(manifestations);
+  const uniqueMaterialTypes = getMaterialTypes(manifestations);
   const dividedManifestationsArrays = uniqueMaterialTypes.map(
     (uniqueMaterialType) => {
       return manifestations.filter((manifest) => {

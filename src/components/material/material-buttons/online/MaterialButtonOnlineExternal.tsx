@@ -4,7 +4,7 @@ import {
   MaterialType
 } from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
-import { getAllUniqueMaterialTypes } from "../../../../core/utils/helpers/general";
+import { getMaterialTypes } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -91,7 +91,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   return (
     <LinkNoStyle url={translatedUrl} dataCy={dataCy}>
       <Button
-        label={label(origin, getAllUniqueMaterialTypes(manifestations))}
+        label={label(origin, getMaterialTypes(manifestations))}
         buttonType="external-link"
         variant="filled"
         disabled={false}

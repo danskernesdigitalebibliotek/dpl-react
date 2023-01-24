@@ -8,7 +8,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getAllUniqueMaterialTypes,
+  getMaterialTypes,
   getManifestationPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -83,9 +83,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const pid = getManifestationPid(manifestations);
   const { track } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
-  const manifestationMaterialTypes = getAllUniqueMaterialTypes(
-    selectedManifestations
-  );
+  const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
 
   useDeepCompareEffect(() => {
     track("click", {

@@ -2,7 +2,7 @@ import React from "react";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getAllUniqueMaterialTypes
+  getMaterialTypes
 } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
@@ -33,7 +33,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   cursorPointer = false
 }) => {
   const { materialUrl } = useUrls();
-  const allMaterialTypes = getAllUniqueMaterialTypes(manifestations);
+  const allMaterialTypes = getMaterialTypes(manifestations);
   const manifestationsByMaterialType =
     divideManifestationsByMaterialType(manifestations);
 
@@ -63,8 +63,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             accessTypes={accessTypesCodes}
             selected={
               selectedManifestations &&
-              materialType ===
-                getAllUniqueMaterialTypes(selectedManifestations)[0]
+              materialType === getMaterialTypes(selectedManifestations)[0]
             }
             handleSelectManifestation={
               setSelectedManifestations

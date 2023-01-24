@@ -321,7 +321,7 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
   });
 };
 
-export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
+export const getMaterialTypes = (manifestations: Manifestation[]) => {
   const allMaterialTypes = manifestations
     .map((manifest) => manifest.materialTypes.map((type) => type.specific))
     .flat();
@@ -329,7 +329,7 @@ export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
 };
 
 export const getManifestationType = (manifestations: Manifestation[]) => {
-  const uniqueTypes = getAllUniqueMaterialTypes(manifestations);
+  const uniqueTypes = getMaterialTypes(manifestations);
   return uniqueTypes[0];
 };
 

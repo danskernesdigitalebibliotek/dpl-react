@@ -4,7 +4,7 @@ import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getAllUniqueMaterialTypes,
+  getMaterialTypes,
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -151,7 +151,7 @@ export const ReservationModalBody = ({
             <Cover id={manifestation.pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
-                {getAllUniqueMaterialTypes([manifestation])[0]}
+                {getMaterialTypes([manifestation])[0]}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
                 {manifestation.titles.main}
