@@ -337,6 +337,10 @@ export const getAllPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
 
+export const getAllFaustIds = (manifestations: Manifestation[]) => {
+  return convertPostIdsToFaustIds(getAllPids(manifestations));
+};
+
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
