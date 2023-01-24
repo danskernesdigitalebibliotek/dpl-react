@@ -8,6 +8,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getAllUniqueMaterialTypes,
   getManifestationPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -25,7 +26,6 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { getAllUniqueMaterialTypes } from "../../apps/material/helper";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import MaterialType from "../../core/utils/types/material-type";
 

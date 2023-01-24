@@ -64,7 +64,7 @@ export const ReservationModalBody = ({
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-  const mainManifestationType = getManifestationType(selectedManifestations[0]);
+  const mainManifestationType = getManifestationType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
     type: mainManifestationType

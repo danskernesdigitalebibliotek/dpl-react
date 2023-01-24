@@ -1,4 +1,4 @@
-import { compact, uniq } from "lodash";
+import { compact } from "lodash";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import {
@@ -9,6 +9,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getAllUniqueMaterialTypes,
   getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
@@ -24,7 +25,7 @@ export const getLatestWorkManifestation = (work: Work) => {
 export const filterManifestationsByType = (
   type: string,
   manifestations: Manifestation[]
-) => manifestations.filter((item) => getManifestationType(item) === type);
+) => manifestations.filter((item) => getManifestationType([item]) === type);
 
 export const getManifestationsFromType = (
   type: string,
@@ -179,13 +180,6 @@ export const getInfomediaIds = (manifestations: Manifestation[]) => {
     )
     .flat();
   return compact(infomediaIds);
-};
-
-export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
-  const allMaterialTypes = manifestations
-    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
-    .flat();
-  return uniq(allMaterialTypes);
 };
 
 export const divideManifestationsByMaterialType = (

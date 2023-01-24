@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
+import { uniq } from "lodash";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -320,8 +321,17 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
   });
 };
 
-export const getManifestationType = (manifestation: Manifestation) =>
-  manifestation.materialTypes[0].specific;
+export const getAllUniqueMaterialTypes = (manifestations: Manifestation[]) => {
+  const allMaterialTypes = manifestations
+    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+    .flat();
+  return uniq(allMaterialTypes);
+};
+
+export const getManifestationType = (manifestations: Manifestation[]) => {
+  const uniqueTypes = getAllUniqueMaterialTypes(manifestations);
+  return uniqueTypes[0];
+};
 
 export const getAllPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);

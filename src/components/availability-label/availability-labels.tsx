@@ -1,7 +1,8 @@
 import React from "react";
 import {
   convertPostIdsToFaustIds,
-  getAllPids
+  getAllPids,
+  getAllUniqueMaterialTypes
 } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
@@ -13,8 +14,7 @@ import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
-  getAllIdentifiers,
-  getAllUniqueMaterialTypes
+  getAllIdentifiers
 } from "../../apps/material/helper";
 
 export interface AvailabilityLabelsProps {

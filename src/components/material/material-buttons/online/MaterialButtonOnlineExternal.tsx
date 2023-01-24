@@ -1,10 +1,10 @@
 import React, { useState, FC, useEffect } from "react";
-import { getAllUniqueMaterialTypes } from "../../../../apps/material/helper";
 import {
   AccessUrl,
   MaterialType
 } from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
+import { getAllUniqueMaterialTypes } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
