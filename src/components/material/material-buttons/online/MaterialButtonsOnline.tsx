@@ -6,7 +6,7 @@ import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
-import { hasCorrectMaterialType } from "../helper";
+import { hasCorrectAccess, hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
@@ -34,10 +34,12 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   };
 
   const accessElement = manifestations[0].access[0];
-  const access = accessElement?.__typename;
 
   // If the access type is an external type we'll show corresponding button.
-  if (["Ereol", "AccessUrl"].includes(access)) {
+  if (
+    hasCorrectAccess("Ereol", manifestations) ||
+    hasCorrectAccess("AccessUrl", manifestations)
+  ) {
     const {
       origin,
       url: externalUrl,
@@ -59,7 +61,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   }
 
   if (
-    access === "DigitalArticleService" &&
+    hasCorrectAccess("DigitalArticleService", manifestations) &&
     hasCorrectMaterialType("tidsskriftsartikel", manifestations)
   ) {
     return (
@@ -71,7 +73,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     );
   }
 
-  if (access === "InfomediaService") {
+  if (hasCorrectAccess("InfomediaService", manifestations)) {
     return (
       <MaterialButtonOnlineInfomediaArticle
         size={size}
