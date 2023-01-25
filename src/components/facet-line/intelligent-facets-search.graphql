@@ -1,5 +1,5 @@
-query intelligentFacets ($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!) {
-  search(q: $q) {
+query intelligentFacets ($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
+  search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
       values(limit: $valuesLimit) {

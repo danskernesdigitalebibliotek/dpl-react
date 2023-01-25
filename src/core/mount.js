@@ -46,7 +46,7 @@ function mount(context) {
     }
   }
 
-  appContainers.forEach(mountApp);
+  appContainers.forEach((app) => setTimeout(() => mountApp(app), 0));
 }
 
 /**

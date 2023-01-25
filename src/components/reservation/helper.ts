@@ -149,26 +149,4 @@ export const getAuthorLine = (
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
 };
 
-export const excludeBlacklistedBranches = (
-  branches: AgencyBranch[],
-  blacklist: string[]
-): AgencyBranch[] => {
-  return branches.filter((item) => !blacklist.includes(item.branchId));
-};
-
-export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
-  return (
-    branches
-      .map((branch) => {
-        // Filtering on branchId, only uses agency number for example "775100" and not ISIL "DK-775100"
-        // So we need to filter on the digits after the -
-        const pattern = /-(\d*)/g;
-        const matches = pattern.exec(branch.branchId);
-        return matches ? matches[1] : "";
-      })
-      // Remove empty strings
-      .filter((item) => item)
-  );
-};
-
 export default {};

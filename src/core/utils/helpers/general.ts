@@ -328,4 +328,6 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
 export const getManifestationType = (manifestation: Manifestation) =>
   manifestation?.materialTypes?.[0]?.specific;
 
+export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+
 export default {};

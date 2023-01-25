@@ -253,13 +253,13 @@ export default {
     materialsInStockInfoText: {
       name: "Materials in stock info text",
       defaultValue:
-        '{"type":"plural","text":["We have 1 copy of the material in stock","We have @count copies of the material in stock"]}',
+        '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock. "]}',
       control: { type: "text" }
     },
     materialReservationInfoText: {
       name: "Material Reservation info text",
       defaultValue:
-        '{"type":"plural","text":["1 copy has been reserved","@count copies have been reserved"]}',
+        '{"type":"plural","text":["1 copy has been reserved.","@count copies have been reserved."]}',
       control: { type: "text" }
     },
     onlineLimitMonthInfoText: {
@@ -427,7 +427,7 @@ export default {
     },
     numberInQueueText: {
       name: "Number in queue text",
-      defaultValue: "You are number @number in the queue",
+      defaultValue: "You are number @number in the queue. ",
       control: { type: "text" }
     },
     alreadyReservedText: {
@@ -653,4 +653,9 @@ TurenGårTilRom.args = {
 export const Digital = Template.bind({});
 Digital.args = {
   wid: "work-of:870971-tsart:34310815"
+};
+
+export const EBogPrinsenHarry = Template.bind({});
+EBogPrinsenHarry.args = {
+  wid: "work-of:870970-basis:54129807"
 };

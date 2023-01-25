@@ -175,15 +175,19 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         disclosureIconExpandAltText=""
         dataCy="material-editions-disclosure"
       >
-        {manifestations.map((manifestation: Manifestation) => {
-          return (
-            <MaterialMainfestationItem
-              key={manifestation.pid}
-              manifestation={manifestation}
-              workId={wid}
-            />
-          );
-        })}
+        {manifestations
+          .sort((a, b) =>
+            a.materialTypes[0].specific > b.materialTypes[0].specific ? 1 : -1
+          )
+          .map((manifestation: Manifestation) => {
+            return (
+              <MaterialMainfestationItem
+                key={manifestation.pid}
+                manifestation={manifestation}
+                workId={wid}
+              />
+            );
+          })}
       </Disclosure>
       <Disclosure
         mainIconPath={Receipt}
@@ -232,14 +236,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           />
         </>
       ))}
-
       {infomediaId && (
         <InfomediaModal
           mainManifestation={currentManifestation}
           infoMediaId={infomediaId}
         />
       )}
-
       {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
         <DigitalModal
           digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}

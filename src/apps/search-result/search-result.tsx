@@ -10,17 +10,11 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import {
-  formatFacetTerms,
+  createFilters,
   useGetFacets
 } from "../../components/facet-browser/helper";
 import useFilterHandler from "./useFilterHandler";
-import { FilterItemTerm, TermOnClickHandler } from "./types";
-import { useConfig } from "../../core/utils/config";
-import { AgencyBranch } from "../../core/fbs/model";
-import {
-  excludeBlacklistedBranches,
-  cleanBranchesId
-} from "../../components/reservation/helper";
+import { TermOnClickHandler } from "./types";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
@@ -32,6 +26,8 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import useGetCleanBranches from "../../core/utils/branches";
+import { dataIsNotEmpty } from "../../core/utils/helpers/general";
 
 interface SearchResultProps {
   q: string;
@@ -39,18 +35,7 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-  const blacklistBranches = config("blacklistedSearchBranchesConfig", {
-    transformer: "stringToArray"
-  });
-  const whitelistBranches = excludeBlacklistedBranches(
-    branches,
-    blacklistBranches
-  );
-  const cleanBranches = cleanBranchesId(whitelistBranches);
+  const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
@@ -118,18 +103,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const createFilters = (
-    facets: {
-      [key: string]: { [key: string]: FilterItemTerm };
-    },
-    branchIdList: string[]
-  ) => {
-    return {
-      ...formatFacetTerms(facets),
-      ...(cleanBranches ? { branchId: branchIdList } : {})
-    };
-  };
-
   const { data } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
@@ -193,18 +166,20 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   return (
     <div className="search-result-page">
-      <SearchResultHeader hitcount={String(hitcount)} q={q} />
+      <SearchResultHeader hitcount={hitcount} q={q} />
       <FacetLine q={q} filters={filters} filterHandler={filteringHandler} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
       {PagerComponent}
-      <FacetBrowserModal
-        q={q}
-        filters={filters}
-        filterHandler={filteringHandler}
-      />
+      {dataIsNotEmpty(resultItems) && (
+        <FacetBrowserModal
+          q={q}
+          filters={filters}
+          filterHandler={filteringHandler}
+        />
+      )}
     </div>
   );
 };
