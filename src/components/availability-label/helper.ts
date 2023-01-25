@@ -18,7 +18,6 @@ export const useAvailabilityData = ({
   const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
     transformer: "stringToArray"
   });
-
   const isOnline = accessTypes?.includes(AccessTypeCode.Online) ?? false;
 
   useGetAvailabilityV3(

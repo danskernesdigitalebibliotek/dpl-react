@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
+import { uniq } from "lodash";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -39,7 +40,6 @@ export const filterCreators = (
   filterBy: ["Person" | "Corporation"]
 ) =>
   creators.filter((creator: Work["creators"][0]) => {
-    // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
@@ -152,6 +152,10 @@ export const convertPostIdToFaustId = (postId: Pid) => {
     return matches?.[1] as FaustId;
   }
   throw new Error(`Unable to extract faust id from post id "${postId}"`);
+};
+
+export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
+  return postIds.map((pid) => convertPostIdToFaustId(pid));
 };
 
 // Get params if they are defined as props use those
@@ -313,12 +317,32 @@ export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   });
 };
 
-export const getManifestationType = (manifestation: Manifestation) =>
-  manifestation?.materialTypes?.[0]?.specific;
+export const getMaterialTypes = (manifestations: Manifestation[]) => {
+  const allMaterialTypes = manifestations
+    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+    .flat();
+  return uniq(allMaterialTypes);
+};
+
+export const getManifestationType = (manifestations: Manifestation[]) => {
+  const uniqueTypes = getMaterialTypes(manifestations);
+  return uniqueTypes[0];
+};
+
+export const getAllPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
+
+export const getAllFaustIds = (manifestations: Manifestation[]) => {
+  return convertPostIdsToFaustIds(getAllPids(manifestations));
+};
 
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+
+export const constructModalId = (prefix: string, fragments: string[]) =>
+  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
 export default {};

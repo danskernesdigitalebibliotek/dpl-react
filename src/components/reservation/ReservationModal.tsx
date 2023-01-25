@@ -1,46 +1,38 @@
 import React from "react";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+import { reservationModalId } from "../../apps/material/helper";
+import { getAllFaustIds } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { FaustId, WorkId } from "../../core/utils/types/ids";
 import { PeriodicalEdition } from "../material/periodical/helper";
-import ReservationModalBody from "./ReservationModalBody";
-
-export const reservationModalId = (faustId: FaustId) =>
-  `reservation-modal-${faustId}`;
+import { ReservationModalBody } from "./ReservationModalBody";
 
 type ReservationModalProps = {
-  mainManifestation: Manifestation;
-  parallelManifestations?: Manifestation[];
+  selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
-  workId: WorkId;
   work: Work;
 };
 
 const ReservationModal = ({
-  mainManifestation,
-  mainManifestation: { pid },
-  parallelManifestations,
+  selectedManifestations,
   selectedPeriodical = null,
-  workId,
   work
 }: ReservationModalProps) => {
   const t = useText();
+  const faustIds = getAllFaustIds(selectedManifestations);
 
+  // If this modal shows all manifestations per material type, differentiate the ID
   return (
     <Modal
-      modalId={reservationModalId(convertPostIdToFaustId(pid))}
+      modalId={reservationModalId(faustIds)}
       screenReaderModalDescriptionText={t(
         "reservationModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
     >
       <ReservationModalBody
-        mainManifestation={mainManifestation}
-        parallelManifestations={parallelManifestations}
+        selectedManifestations={selectedManifestations}
         selectedPeriodical={selectedPeriodical}
-        workId={workId}
         work={work}
       />
     </Modal>
