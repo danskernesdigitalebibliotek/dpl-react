@@ -22,7 +22,7 @@ import {
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
 import {
-  getWorkDescriptionListData,
+  getDetailsListData,
   getManifestationFromType,
   getWorkManifestation,
   getInfomediaId
@@ -150,7 +150,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   // that follows the current type of the material.
   const pid = getManifestationPid(manifestations);
 
-  const listDescriptionData = getWorkDescriptionListData({
+  const detailsListData = getDetailsListData({
     manifestation: currentManifestation,
     work,
     t
@@ -198,10 +198,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         disclosureIconExpandAltText=""
         dataCy="material-details-disclosure"
       >
-        <MaterialDetailsList
-          className="pl-80 pb-48"
-          data={listDescriptionData}
-        />
+        <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
       </Disclosure>
       {reviews && reviews.length >= 1 && (
         <DisclosureControllable

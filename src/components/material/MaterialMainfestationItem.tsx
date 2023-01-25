@@ -55,54 +55,54 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     languages?.main?.map((language) => language.display).join(", ")
   );
 
-  const listDescriptionData: ListData = [
+  const detailsListData: ListData = [
     {
-      label: t("typeText"),
+      label: t("detailsListTypeText"),
       value: materialTypes?.[0]?.specific ?? "",
       type: "standard"
     },
     {
-      label: t("languageText"),
+      label: t("detailsListLanguageText"),
       value: allLanguages ?? "",
       type: "standard"
     },
     {
-      label: t("genreAndFormText"),
+      label: t("detailsListGenreAndFormText"),
       value: genreAndForm?.[0] ?? "",
       type: "standard"
     },
     {
-      label: t("contributorsText"),
+      label: t("detailsListContributorsText"),
       value: allContributors ?? "",
       type: "link"
     },
     {
-      label: t("originalTitleText"),
+      label: t("detailsListOriginalTitleText"),
       value: titles?.original?.[0] ?? "",
       type: "standard"
     },
     {
-      label: t("isbnText"),
+      label: t("detailsListIsbnText"),
       value: identifiers?.[0]?.value ?? "",
       type: "standard"
     },
     {
-      label: t("editionText"),
+      label: t("detailsListEditionText"),
       value: edition?.summary ?? "",
       type: "standard"
     },
     {
-      label: t("scopeText"),
+      label: t("detailsListScopeText"),
       value: String(physicalDescriptions?.[0]?.numberOfPages ?? ""),
       type: "standard"
     },
     {
-      label: t("publisherText"),
+      label: t("detailsListPublisherText"),
       value: publisher.join(" / ") ?? "",
       type: "standard"
     },
     {
-      label: t("audienceText"),
+      label: t("detailsListAudienceText"),
       value: audience?.generalAudience[0] ?? "",
       type: "standard"
     }
@@ -153,7 +153,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={listDescriptionData} />
+          <MaterialDetailsList className="mt-24" data={detailsListData} />
         )}
       </div>
       <div className="material-manifestation-item__buttons">

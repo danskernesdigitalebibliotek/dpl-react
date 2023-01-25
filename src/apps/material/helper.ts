@@ -35,7 +35,7 @@ export const getManifestationFromType = (
   return allManifestationsThatMatchType.shift();
 };
 
-export const getWorkDescriptionListData = ({
+export const getDetailsListData = ({
   manifestation,
   work,
   t
@@ -60,12 +60,12 @@ export const getWorkDescriptionListData = ({
 
   return [
     {
-      label: t("languageText"),
+      label: t("detailsListLanguageText"),
       value: allLanguages,
       type: "standard"
     },
     {
-      label: t("playTimeText"),
+      label: t("detailsListPlayTimeText"),
       value:
         String(manifestation?.physicalDescriptions?.[0]?.playingTime ?? "") ||
         String(
@@ -74,7 +74,7 @@ export const getWorkDescriptionListData = ({
       type: "standard"
     },
     {
-      label: t("editionText"),
+      label: t("detailsListEditionText"),
       value:
         (manifestation?.edition?.summary ?? "") ||
         (fallBackManifestation?.edition?.summary ?? ""),
@@ -82,39 +82,43 @@ export const getWorkDescriptionListData = ({
     },
 
     {
-      label: t("genreAndFormText"),
+      label: t("detailsListGenreAndFormText"),
       value:
         (manifestation?.genreAndForm?.[0] ?? "") ||
         (fallBackManifestation?.genreAndForm?.[0] ?? ""),
       type: "standard"
     },
     {
-      label: t("originalTitleText"),
+      label: t("detailsListOriginalTitleText"),
       value: titles?.original?.[0] ?? "",
       type: "standard"
     },
     {
-      label: t("publisherText"),
+      label: t("detailsListPublisherText"),
       value:
         (manifestation?.publisher.join(" / ") ?? "") ||
         (fallBackManifestation?.publisher.join(" / ") ?? ""),
       type: "standard"
     },
     {
-      label: t("firstEditionYearText"),
+      label: t("detailsListFirstEditionYearText"),
       value: String(workYear?.year ?? t("unknownText")),
       type: "standard"
     },
     {
-      label: t("typeText"),
+      label: t("detailsListTypeText"),
       value:
         (manifestation?.materialTypes?.[0]?.specific ?? "") ||
         (fallBackManifestation?.materialTypes?.[0].specific ?? ""),
       type: "standard"
     },
-    { label: t("contributorsText"), value: creatorsText, type: "link" },
     {
-      label: t("scopeText"),
+      label: t("detailsListContributorsText"),
+      value: creatorsText,
+      type: "link"
+    },
+    {
+      label: t("detailsListScopeText"),
       value:
         String(manifestation?.physicalDescriptions?.[0]?.numberOfPages ?? "") ||
         String(
@@ -123,7 +127,7 @@ export const getWorkDescriptionListData = ({
       type: "standard"
     },
     {
-      label: t("audienceText"),
+      label: t("detailsListAudienceText"),
       value:
         (manifestation?.audience?.generalAudience[0] ?? "") ||
         (fallBackManifestation?.audience?.generalAudience[0] ?? ""),

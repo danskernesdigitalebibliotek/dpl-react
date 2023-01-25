@@ -150,54 +150,70 @@ export default {
       defaultValue: "Reviews",
       control: { type: "text" }
     },
-    typeText: {
+    detailsListTypeText: {
       name: "Type",
       defaultValue: "Type",
       control: { type: "text" }
     },
-    languageText: {
+    detailsListLanguageText: {
       name: "Language",
       defaultValue: "Language",
       control: { type: "text" }
     },
-    contributorsText: {
+    detailsListContributorsText: {
       name: "Contributors",
       defaultValue: "Contributors",
       control: { type: "text" }
     },
-    originalTitleText: {
+    detailsListOriginalTitleText: {
       name: "Original title",
       defaultValue: "Original title",
       control: { type: "text" }
     },
-    isbnText: {
+    detailsListIsbnText: {
       name: "ISBN",
       defaultValue: "ISBN",
+      control: { type: "text" }
+    },
+
+    detailsListScopeText: {
+      name: "Scope",
+      defaultValue: "Scope",
+      control: { type: "text" }
+    },
+    detailsListPublisherText: {
+      name: "Publisher",
+      defaultValue: "Publisher",
+      control: { type: "text" }
+    },
+    detailsListAudienceText: {
+      name: "Audience",
+      defaultValue: "Audience",
+      control: { type: "text" }
+    },
+    detailsListGenreAndFormText: {
+      name: "Genre and form",
+      defaultValue: "Genre",
+      control: { type: "text" }
+    },
+    detailsListFirstEditionYearText: {
+      name: "First edition year",
+      defaultValue: "first edition year",
+      control: { type: "text" }
+    },
+    detailsListPlayTimeText: {
+      name: "Play time",
+      defaultValue: "Play time",
+      control: { type: "text" }
+    },
+    detailsListEditionText: {
+      name: "Edition",
+      defaultValue: "Edition",
       control: { type: "text" }
     },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",
-      control: { type: "text" }
-    },
-    scopeText: {
-      name: "Scope",
-      defaultValue: "Scope",
-      control: { type: "text" }
-    },
-    publisherText: {
-      name: "Publisher",
-      defaultValue: "Publisher",
-      control: { type: "text" }
-    },
-    audienceText: {
-      name: "Audience",
-      defaultValue: "Audience",
-      control: { type: "text" }
-    },
-    genreAndFormText: {
-      name: "Genre and form",
-      defaultValue: "Genre",
       control: { type: "text" }
     },
     readArticleText: {
@@ -606,16 +622,6 @@ export default {
       name: "Skip queue material is available in another edition",
       defaultValue:
         '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
-      control: { type: "text" }
-    },
-    firstEditionYearText: {
-      name: "First edition year",
-      defaultValue: "first edition year",
-      control: { type: "text" }
-    },
-    playTimeText: {
-      name: "Play time",
-      defaultValue: "Play time",
       control: { type: "text" }
     },
     unknownText: {
