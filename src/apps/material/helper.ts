@@ -1,26 +1,34 @@
-import { ManifestationHoldings } from "../../components/find-on-shelf/types";
-import { ListData } from "../../components/material/MaterialDetailsList";
-import { HoldingsV3 } from "../../core/fbs/model";
+import { compact } from "lodash";
 import {
+  constructModalId,
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getMaterialTypes,
   getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
+import { ManifestationHoldings } from "../../components/find-on-shelf/types";
+import { ListData } from "../../components/material/MaterialDetailsList";
+import {
+  HoldingsForBibliographicalRecordV3,
+  HoldingsV3
+} from "../../core/fbs/model";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
+import { FaustId } from "../../core/utils/types/ids";
+import MaterialType from "../../core/utils/types/material-type";
 
-export const getWorkManifestation = (work: Work) => {
+export const getLatestWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
 };
 
 export const filterManifestationsByType = (
   type: string,
   manifestations: Manifestation[]
-) => manifestations.filter((item) => getManifestationType(item) === type);
+) => manifestations.filter((item) => getManifestationType([item]) === type);
 
-export const getManifestationFromType = (
+export const getManifestationsFromType = (
   type: string,
   { manifestations: { all: manifestations } }: Work
 ) => {
@@ -31,7 +39,7 @@ export const getManifestationFromType = (
     allManifestations
   );
 
-  return allManifestationsThatMatchType.shift();
+  return allManifestationsThatMatchType;
 };
 
 export const getWorkDescriptionListData = ({
@@ -44,11 +52,10 @@ export const getWorkDescriptionListData = ({
   t: UseTextFunction;
 }): ListData => {
   const { titles, mainLanguages, creators, workYear } = work;
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-  const fallBackManifestation = getWorkManifestation(work);
+  const fallBackManifestation = getLatestWorkManifestation(work);
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
@@ -120,8 +127,25 @@ export const getWorkDescriptionListData = ({
   ];
 };
 
-export const totalMaterials = (holdings: HoldingsV3[]) => {
-  return holdings.reduce((acc, curr) => acc + curr.materials.length, 0);
+export const getTotalHoldings = (
+  holdings: HoldingsForBibliographicalRecordV3[]
+) => {
+  return holdings.reduce((acc, curr) => {
+    return (
+      acc +
+      curr.holdings.reduce((accumulator, current) => {
+        return accumulator + current.materials.length;
+      }, 0)
+    );
+  }, 0);
+};
+
+export const getTotalReservations = (
+  holdings: HoldingsForBibliographicalRecordV3[]
+) => {
+  return holdings.reduce((acc, curr) => {
+    return acc + curr.reservations;
+  }, 0);
 };
 
 export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
@@ -146,13 +170,95 @@ export const totalBranchesHaveMaterial = (
   }).length;
 };
 
-export const getInfomediaId = (manifestation: Manifestation) => {
-  const access = manifestation?.access || [];
-  return access.reduce<string | null>((acc, curr) => {
-    const { __typename: type } = curr;
-    if (type === "InfomediaService") {
-      return curr.id;
+export const getInfomediaIds = (manifestations: Manifestation[]) => {
+  const infomediaIds = manifestations
+    .map((manifestation) =>
+      manifestation.access.map((currentAccess) => {
+        return currentAccess.__typename === "InfomediaService"
+          ? currentAccess.id
+          : null;
+      })
+    )
+    .flat();
+  return compact(infomediaIds);
+};
+
+export const divideManifestationsByMaterialType = (
+  manifestations: Manifestation[]
+) => {
+  const uniqueMaterialTypes = getMaterialTypes(manifestations);
+  const dividedManifestationsArrays = uniqueMaterialTypes.map(
+    (uniqueMaterialType) => {
+      return manifestations.filter((manifest) => {
+        const manifestationMaterialTypes = manifest.materialTypes.map(
+          (materialType) => materialType.specific
+        );
+        return manifestationMaterialTypes.includes(uniqueMaterialType);
+      });
     }
-    return acc;
-  }, null);
+  );
+  return dividedManifestationsArrays.reduce<{ [key: string]: Manifestation[] }>(
+    (result, current, index) => {
+      const materialType = uniqueMaterialTypes[index];
+      return { ...result, [materialType]: current };
+    },
+    {}
+  );
+};
+
+export const getAllIdentifiers = (manifestations: Manifestation[]) => {
+  return manifestations
+    .map((manifestation) =>
+      manifestation.identifiers.map((identifier) => identifier.value)
+    )
+    .flat();
+};
+
+export const getManifestationsWithMaterialType = (
+  manifestations: Manifestation[]
+) => {
+  return manifestations.filter((manifestation) => {
+    return manifestation.materialTypes.length > 0;
+  });
+};
+
+export const isABook = (manifestations: Manifestation[]) => {
+  return manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some(
+      (materialType) =>
+        materialType.specific.toLowerCase() === MaterialType.book
+    );
+  });
+};
+
+export const getBestMaterialTypeForManifestation = (
+  manifestation: Manifestation
+) => {
+  if (isABook([manifestation])) {
+    return MaterialType.book;
+  }
+  return manifestation.materialTypes[0].specific;
+};
+
+export const getBestMaterialTypeForWork = (work: Work) => {
+  if (work.manifestations.bestRepresentation) {
+    return getBestMaterialTypeForManifestation(
+      work.manifestations.bestRepresentation
+    );
+  }
+  if (work.manifestations.latest) {
+    return getBestMaterialTypeForManifestation(work.manifestations.latest);
+  }
+  if (work.manifestations.first) {
+    return getBestMaterialTypeForManifestation(work.manifestations.first);
+  }
+  if (isABook(work.manifestations.all)) {
+    return MaterialType.book;
+  }
+  return getManifestationsWithMaterialType(work.manifestations.all)[0]
+    .materialTypes[0].specific;
+};
+
+export const reservationModalId = (faustIds: FaustId[]) => {
+  return constructModalId("reservation-modal", faustIds.sort());
 };

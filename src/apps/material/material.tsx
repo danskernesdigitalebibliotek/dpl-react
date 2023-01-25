@@ -5,6 +5,7 @@ import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/
 import { useDeepCompareEffect } from "react-use";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import {
+  AccessTypeCode,
   ExternalReview,
   InfomediaReview,
   LibrariansReview,
@@ -23,17 +24,13 @@ import {
 } from "../../core/utils/helpers/url";
 import {
   getWorkDescriptionListData,
-  getManifestationFromType,
-  getWorkManifestation,
-  getInfomediaId
+  getInfomediaIds,
+  divideManifestationsByMaterialType,
+  getBestMaterialTypeForWork
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import {
-  getManifestationPid,
-  getManifestationType,
-  materialIsFiction
-} from "../../core/utils/helpers/general";
+import { getManifestationPid } from "../../core/utils/helpers/general";
 import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
@@ -41,8 +38,11 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
-import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
-import { getDigitalArticleIssn } from "../../components/material/digital-modal/helper";
+import {
+  hasCorrectAccess,
+  hasCorrectAccessType,
+  isArticle
+} from "../../components/material/material-buttons/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -50,8 +50,9 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
-  const [currentManifestation, setCurrentManifestation] =
-    useState<Manifestation | null>(null);
+  const [selectedManifestations, setSelectedManifestations] = useState<
+    Manifestation[] | null
+  >(null);
   const [selectedPeriodical, setSelectedPeriodical] =
     useState<PeriodicalEdition | null>(null);
   const { data, isLoading } = useGetMaterialQuery({
@@ -83,7 +84,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       });
     }
     // We can afford to only check the latest manifestation because audience doesn't
-    // vary between a specific work's manifestations (information provided by DDF)
+    // vary between a specific work's manifestations (information provided by DDF).
     if (data?.work?.manifestations.latest.audience?.generalAudience) {
       track("click", {
         id: statistics.materialTopicNumber.id,
@@ -103,34 +104,33 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // This useEffect selects the current manifestation
+  // This useEffect selects the current manifestation.
   useEffect(() => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
-    // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
+    const manifestationsByMaterialType = divideManifestationsByMaterialType(
+      work.manifestations.all
+    );
+    // If there is no type in the url, we select one.
     if (!type) {
-      const workManifestation = getWorkManifestation(work);
-      setCurrentManifestation(workManifestation);
+      const bestMaterialType = getBestMaterialTypeForWork(work);
+      setSelectedManifestations(manifestationsByMaterialType[bestMaterialType]);
       setQueryParametersInUrl({
-        type: getManifestationType(workManifestation)
+        type: bestMaterialType
       });
       return;
     }
-
-    // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
-    const manifestationFromType = getManifestationFromType(type, work);
-    if (manifestationFromType) {
-      setCurrentManifestation(manifestationFromType);
-    }
+    // If there is a type, use it to select a group of manifestations.
+    setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  // TODO: handle error if data is empty array
-  if (!data?.work || !currentManifestation) {
+  // TODO: handle error if data is empty array.
+  if (!data?.work || !selectedManifestations) {
     return <div>No work data</div>;
   }
 
@@ -148,14 +148,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const pid = getManifestationPid(manifestations);
 
   const listDescriptionData = getWorkDescriptionListData({
-    manifestation: currentManifestation,
+    manifestation: selectedManifestations[0],
     work,
     t
   });
-  const parallelManifestations = materialIsFiction(work) ? manifestations : [];
-  const infomediaId = getInfomediaId(currentManifestation);
+  const infomediaIds = getInfomediaIds(selectedManifestations);
 
-  // Get disclosure URL parameter from the current URL to see if it should be open
+  // Get disclosure URL parameter from the current URL to see if it should be open.
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
@@ -163,8 +162,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       <MaterialHeader
         wid={wid}
         work={work}
-        manifestation={currentManifestation}
-        selectManifestationHandler={setCurrentManifestation}
+        selectedManifestations={selectedManifestations}
+        setSelectedManifestations={setSelectedManifestations}
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
       />
@@ -220,35 +219,53 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       {manifestations.map((manifestation) => (
         <>
           <ReservationModal
-            mainManifestation={manifestation}
-            parallelManifestations={parallelManifestations}
+            key={`reservation-modal-${manifestation.pid}`}
+            selectedManifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
-            workId={wid}
             work={work}
           />
           <FindOnShelfModal
+            key={`find-on-shelf-modal-${manifestation.pid}`}
             manifestations={[manifestation]}
             workTitles={manifestation.titles.main}
             authors={manifestation.creators}
-            key={`find-on-shelf-modal-${manifestation.pid}`}
             selectedPeriodical={selectedPeriodical}
             setSelectedPeriodical={setSelectedPeriodical}
           />
         </>
       ))}
-      {infomediaId && (
+
+      {infomediaIds.length > 0 && (
         <InfomediaModal
-          mainManifestation={currentManifestation}
-          infoMediaId={infomediaId}
+          selectedManifestations={selectedManifestations}
+          infoMediaId={infomediaIds[0]}
         />
       )}
-      {hasCorrectAccess("DigitalArticleService", currentManifestation) && (
-        <DigitalModal
-          digitalArticleIssn={getDigitalArticleIssn(currentManifestation)}
-          pid={currentManifestation.pid}
-          workId={wid}
-        />
+
+      {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
+        <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
       )}
+
+      {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
+      {selectedManifestations &&
+        hasCorrectAccessType(AccessTypeCode.Physical, selectedManifestations) &&
+        !isArticle(selectedManifestations) && (
+          <>
+            <ReservationModal
+              selectedManifestations={selectedManifestations}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+            />
+            <FindOnShelfModal
+              manifestations={selectedManifestations}
+              authors={work.creators}
+              workTitles={work.titles.full}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          </>
+        )}
     </section>
   );
 };

@@ -9,7 +9,8 @@ const enum MaterialType {
   newspaperArticle = "tidsskriftsartikel",
   earticle = "artikel",
   boardGame = "spil",
-  cdRom = "cd"
+  cdRom = "cd",
+  magazine = "tidsskrift"
 }
 
 export default MaterialType;

@@ -5,6 +5,9 @@ fragment ManifestationsSimple on Manifestations {
   latest {
     ...ManifestationsSimpleFields
   }
+  bestRepresentation {
+    ...ManifestationsSimpleFields
+  }
 }
 
 fragment ManifestationsSimpleFields on Manifestation {
