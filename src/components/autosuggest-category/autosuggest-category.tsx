@@ -12,6 +12,7 @@ export interface AutosuggestCategoryProps {
   highlightedIndex: number;
   textAndMaterialDataLength: number;
   autosuggestCategoryList: { render: string; type: string }[];
+  dataCy?: string;
 }
 
 const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
@@ -19,7 +20,8 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
   getItemProps,
   highlightedIndex,
   textAndMaterialDataLength,
-  autosuggestCategoryList
+  autosuggestCategoryList,
+  dataCy = "autosuggest-category-item"
 }) => {
   const t = useText();
   return (
@@ -41,7 +43,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
               )}`}
               key={item}
               {...getItemProps({ item, index })}
-              data-cy="autosuggest-category-item"
+              data-cy={dataCy}
             >
               {`${item.term} ${t("inText")}`}
               <div className="boxed-text text-tags noselect ml-8">

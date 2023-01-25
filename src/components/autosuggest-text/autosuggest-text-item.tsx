@@ -12,6 +12,7 @@ export interface AutosuggestTextItemProps {
   index: number;
   generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
+  dataCy?: string;
 }
 
 const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
@@ -19,7 +20,8 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   item,
   index,
   generateItemId,
-  getItemProps
+  getItemProps,
+  dataCy = "autosuggest-text-item"
 }) => {
   const t = useText();
   return (
@@ -30,7 +32,7 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         className={classes.textSuggestion}
         key={generateItemId(item)}
         {...getItemProps({ item, index })}
-        data-cy="autosuggest-text-item"
+        data-cy={dataCy}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
         {item.type === SuggestionType.Creator

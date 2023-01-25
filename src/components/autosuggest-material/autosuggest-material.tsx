@@ -15,13 +15,15 @@ export interface AutosuggestMaterialProps {
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textDataLength: number;
+  dataCy?: string;
 }
 
 const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   materialData,
   getItemProps,
   highlightedIndex,
-  textDataLength
+  textDataLength,
+  dataCy = "autosuggest-material-item"
 }) => {
   const t = useText();
   return (
@@ -52,7 +54,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
               }`}
               key={item.work?.workId}
               {...getItemProps({ item, index })}
-              data-cy="autosuggest-material-item"
+              data-cy={dataCy}
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
               <div className="autosuggest__material__content">
