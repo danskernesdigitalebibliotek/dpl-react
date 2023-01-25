@@ -15,6 +15,18 @@ import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
+import {
+  getManifestationAudience,
+  getManifestationContributors,
+  getManifestationEdition,
+  getManifestationGenreAndForm,
+  getManifestationIsbn,
+  getManifestationLanguages,
+  getManifestationMaterialTypes,
+  getManifestationNumberOfPages,
+  getManifestationOriginalTitle,
+  getManifestationPublisher
+} from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
@@ -22,20 +34,7 @@ export interface MaterialMainfestationItemProps {
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  manifestation: {
-    materialTypes,
-    pid,
-    titles,
-    creators,
-    publisher,
-    languages,
-    identifiers,
-    contributors,
-    edition,
-    audience,
-    physicalDescriptions,
-    genreAndForm
-  },
+  manifestation: { materialTypes, pid, titles, creators, identifiers, edition },
   manifestation,
   workId
 }) => {
@@ -47,63 +46,55 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     t
   );
 
-  const allContributors = String(
-    contributors.map((contributor) => contributor.display)
-  );
-
-  const allLanguages = String(
-    languages?.main?.map((language) => language.display).join(", ")
-  );
-
   const detailsListData: ListData = [
     {
       label: t("detailsListTypeText"),
-      value: materialTypes?.[0]?.specific ?? "",
+      value: getManifestationMaterialTypes(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListLanguageText"),
-      value: allLanguages ?? "",
+      value: getManifestationLanguages(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListGenreAndFormText"),
-      value: genreAndForm?.[0] ?? "",
+      value: getManifestationGenreAndForm(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListContributorsText"),
-      value: allContributors ?? "",
+      value: getManifestationContributors(manifestation),
       type: "link"
     },
     {
       label: t("detailsListOriginalTitleText"),
-      value: titles?.original?.[0] ?? "",
+      value: getManifestationOriginalTitle(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListIsbnText"),
-      value: identifiers?.[0]?.value ?? "",
+      value: getManifestationIsbn(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListEditionText"),
-      value: edition?.summary ?? "",
+      value: getManifestationEdition(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListScopeText"),
-      value: String(physicalDescriptions?.[0]?.numberOfPages ?? ""),
+      value: getManifestationNumberOfPages(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListPublisherText"),
-      value: publisher.join(" / ") ?? "",
+      value: getManifestationPublisher(manifestation),
       type: "standard"
     },
     {
       label: t("detailsListAudienceText"),
-      value: audience?.generalAudience[0] ?? "",
+      value: getManifestationAudience(manifestation),
       type: "standard"
     }
   ];

@@ -2,9 +2,6 @@ import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import { HoldingsV3 } from "../../core/fbs/model";
 import {
-  creatorsToString,
-  filterCreators,
-  flattenCreators,
   getManifestationType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
@@ -35,6 +32,68 @@ export const getManifestationFromType = (
   return allManifestationsThatMatchType.shift();
 };
 
+export const getManifestationPlayingTime = (manifestation: Manifestation) => {
+  return manifestation.physicalDescriptions?.[0]?.playingTime ?? "";
+};
+
+export const getManifestationEdition = (manifestation: Manifestation) => {
+  return manifestation.edition?.summary ?? "";
+};
+
+export const getManifestationGenreAndForm = (manifestation: Manifestation) => {
+  return manifestation.genreAndForm.join(" / ") ?? "";
+};
+
+export const getManifestationPublisher = (manifestation: Manifestation) => {
+  return manifestation.publisher.join(" / ") ?? "";
+};
+
+export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
+  return manifestation.materialTypes?.[0].specific ?? "";
+};
+
+export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
+  return manifestation.physicalDescriptions?.[0]?.numberOfPages
+    ? String(manifestation.physicalDescriptions?.[0].numberOfPages)
+    : "";
+};
+
+export const getManifestationAudience = (manifestation: Manifestation) => {
+  return manifestation.audience?.generalAudience[0] ?? "";
+};
+
+export const getManifestationIsbn = (manifestation: Manifestation) => {
+  return manifestation.identifiers?.[0]?.value ?? "";
+};
+
+export const getManifestationLanguages = (manifestation: Manifestation) => {
+  return (
+    manifestation.languages?.main
+      ?.map((language) => language.display)
+      .join(", ") ?? ""
+  );
+};
+
+export const getManifestationFirstEditionYear = (
+  manifestation: Manifestation
+) => {
+  return manifestation.workYear?.year
+    ? String(manifestation.workYear.year)
+    : "";
+};
+
+export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
+  return manifestation.titles?.original?.[0] ?? "";
+};
+
+export const getManifestationContributors = (manifestation: Manifestation) => {
+  return (
+    manifestation.contributors
+      .map((contributor) => contributor.display)
+      .join(" / ") ?? ""
+  );
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
@@ -44,93 +103,81 @@ export const getDetailsListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
-  const { titles, mainLanguages, creators, workYear } = work;
-
-  const allLanguages = mainLanguages
-    .map((language) => language.display)
-    .join(", ");
   const fallBackManifestation = getWorkManifestation(
     work,
     "bestRepresentation"
   ) as Manifestation;
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
 
   return [
     {
       label: t("detailsListLanguageText"),
-      value: allLanguages,
+      value: getManifestationLanguages(manifestation ?? fallBackManifestation),
       type: "standard"
     },
     {
       label: t("detailsListPlayTimeText"),
-      value:
-        String(manifestation?.physicalDescriptions?.[0]?.playingTime ?? "") ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.playingTime ?? ""
-        ),
+      value: getManifestationPlayingTime(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
       label: t("detailsListEditionText"),
-      value:
-        (manifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation?.edition?.summary ?? ""),
+      value: getManifestationEdition(manifestation ?? fallBackManifestation),
       type: "standard"
     },
 
     {
       label: t("detailsListGenreAndFormText"),
-      value:
-        (manifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
+      value: getManifestationGenreAndForm(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
       label: t("detailsListOriginalTitleText"),
-      value: titles?.original?.[0] ?? "",
+      value: getManifestationOriginalTitle(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
       label: t("detailsListPublisherText"),
-      value:
-        (manifestation?.publisher.join(" / ") ?? "") ||
-        (fallBackManifestation?.publisher.join(" / ") ?? ""),
+      value: getManifestationPublisher(manifestation ?? fallBackManifestation),
       type: "standard"
     },
     {
       label: t("detailsListFirstEditionYearText"),
-      value: String(workYear?.year ?? t("unknownText")),
+      value:
+        getManifestationFirstEditionYear(
+          manifestation ?? fallBackManifestation
+        ) ?? t("unknownText"),
       type: "standard"
     },
     {
       label: t("detailsListTypeText"),
-      value:
-        (manifestation?.materialTypes?.[0]?.specific ?? "") ||
-        (fallBackManifestation?.materialTypes?.[0].specific ?? ""),
+      value: getManifestationMaterialTypes(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
       label: t("detailsListContributorsText"),
-      value: creatorsText,
+      value: getManifestationContributors(
+        manifestation ?? fallBackManifestation
+      ),
       type: "link"
     },
     {
       label: t("detailsListScopeText"),
-      value:
-        String(manifestation?.physicalDescriptions?.[0]?.numberOfPages ?? "") ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ),
+      value: getManifestationNumberOfPages(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
       label: t("detailsListAudienceText"),
-      value:
-        (manifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
+      value: getManifestationAudience(manifestation ?? fallBackManifestation),
       type: "standard"
     }
   ];

@@ -1513,6 +1513,10 @@ export type GetMaterialQuery = {
           postfix?: string | null;
           shelfmark: string;
         } | null;
+        workYear?: {
+          __typename?: "PublicationYear";
+          year?: number | null;
+        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -1584,6 +1588,10 @@ export type GetMaterialQuery = {
           postfix?: string | null;
           shelfmark: string;
         } | null;
+        workYear?: {
+          __typename?: "PublicationYear";
+          year?: number | null;
+        } | null;
       };
       bestRepresentation: {
         __typename?: "Manifestation";
@@ -1654,6 +1662,10 @@ export type GetMaterialQuery = {
           __typename?: "Shelfmark";
           postfix?: string | null;
           shelfmark: string;
+        } | null;
+        workYear?: {
+          __typename?: "PublicationYear";
+          year?: number | null;
         } | null;
       };
     };
@@ -1807,6 +1819,10 @@ export type SearchWithPaginationQuery = {
             postfix?: string | null;
             shelfmark: string;
           } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -1884,6 +1900,10 @@ export type SearchWithPaginationQuery = {
             postfix?: string | null;
             shelfmark: string;
           } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
         };
         bestRepresentation: {
           __typename?: "Manifestation";
@@ -1960,6 +1980,10 @@ export type SearchWithPaginationQuery = {
             __typename?: "Shelfmark";
             postfix?: string | null;
             shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
           } | null;
         };
       };
@@ -2116,6 +2140,7 @@ export type ManifestationsSimpleFragment = {
       postfix?: string | null;
       shelfmark: string;
     } | null;
+    workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -2187,6 +2212,7 @@ export type ManifestationsSimpleFragment = {
       postfix?: string | null;
       shelfmark: string;
     } | null;
+    workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   };
   bestRepresentation: {
     __typename?: "Manifestation";
@@ -2258,6 +2284,7 @@ export type ManifestationsSimpleFragment = {
       postfix?: string | null;
       shelfmark: string;
     } | null;
+    workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   };
 };
 
@@ -2328,6 +2355,7 @@ export type ManifestationsSimpleFieldsFragment = {
     postfix?: string | null;
     shelfmark: string;
   } | null;
+  workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
 };
 
 export type SeriesSimpleFragment = {
@@ -2452,6 +2480,10 @@ export type WorkSmallFragment = {
         postfix?: string | null;
         shelfmark: string;
       } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -2523,6 +2555,10 @@ export type WorkSmallFragment = {
         postfix?: string | null;
         shelfmark: string;
       } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
     };
     bestRepresentation: {
       __typename?: "Manifestation";
@@ -2593,6 +2629,10 @@ export type WorkSmallFragment = {
         __typename?: "Shelfmark";
         postfix?: string | null;
         shelfmark: string;
+      } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
       } | null;
     };
   };
@@ -2756,6 +2796,10 @@ export type WorkMediumFragment = {
         postfix?: string | null;
         shelfmark: string;
       } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -2827,6 +2871,10 @@ export type WorkMediumFragment = {
         postfix?: string | null;
         shelfmark: string;
       } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
     };
     bestRepresentation: {
       __typename?: "Manifestation";
@@ -2897,6 +2945,10 @@ export type WorkMediumFragment = {
         __typename?: "Shelfmark";
         postfix?: string | null;
         shelfmark: string;
+      } | null;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
       } | null;
     };
   };
@@ -2990,6 +3042,9 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   shelfmark {
     postfix
     shelfmark
+  }
+  workYear {
+    year
   }
 }
     `;
