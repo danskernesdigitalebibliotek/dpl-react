@@ -11,6 +11,14 @@ interface FavoritesListConfigEntryProps {
 interface FavoritesListUrlEntryProps {
   materialUrl: string;
   searchUrl: string;
+  fbsBaseUrl: string;
+  materialOverdueUrl: string;
+  feesPageUrl: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
 }
 interface FavoritesListTextEntryProps {
   favoritesListMaterialsText: string;
