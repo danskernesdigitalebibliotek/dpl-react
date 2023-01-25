@@ -2,7 +2,9 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
   it("Redirects to login & opens reservation modal on subsequent land-in", () => {
-    cy.visit("/iframe.html?id=apps-material--default&type=bog")
+    window.sessionStorage.removeItem("user");
+
+    cy.visit("/iframe.html?id=apps-material--default&type=bog&")
       .getBySel("material-header-buttons-physical")
       .click();
 
