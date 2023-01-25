@@ -624,7 +624,7 @@ export default {
         '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
       control: { type: "text" }
     },
-    unknownText: {
+    detailsListFirstEditionYearUnknownText: {
       name: "Unknown",
       defaultValue: "Unknown",
       control: { type: "text" }

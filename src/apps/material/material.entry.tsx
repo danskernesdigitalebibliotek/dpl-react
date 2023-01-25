@@ -19,6 +19,7 @@ interface MaterialEntryTextProps {
   detailsListContributorsText: string;
   detailsListEditionText: string;
   detailsListFirstEditionYearText: string;
+  detailsListFirstEditionYearUnknownText: string;
   detailsListGenreAndFormText: string;
   detailsListIsbnText: string;
   detailsListLanguageText: string;
@@ -120,7 +121,6 @@ interface MaterialEntryTextProps {
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
-  unknownText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

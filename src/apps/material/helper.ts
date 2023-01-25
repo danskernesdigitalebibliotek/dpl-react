@@ -151,7 +151,7 @@ export const getDetailsListData = ({
       value:
         getManifestationFirstEditionYear(
           manifestation ?? fallBackManifestation
-        ) ?? t("unknownText"),
+        ) ?? t("detailsListFirstEditionYearUnknownText"),
       type: "standard"
     },
     {
