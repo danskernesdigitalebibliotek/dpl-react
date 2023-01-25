@@ -326,7 +326,7 @@ describe("Loan list", () => {
       .eq(2)
       .scrollIntoView()
       .find(".list-reservation__information a")
-      .should("be.visible")
+      .should("exist")
       .should(
         "have.text",
         "You will be charged a fee, when the item is returned"

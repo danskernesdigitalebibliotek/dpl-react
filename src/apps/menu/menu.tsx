@@ -21,6 +21,7 @@ import {
   mapFBSReservationToReservationType
 } from "../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../core/utils/types/loan-type";
+import { ThresholdType } from "../../core/utils/types/threshold-type";
 import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
@@ -37,6 +38,12 @@ interface MenuNavigationDataType {
 const Menu: FC = () => {
   const t = useText();
   const config = useConfig();
+  const {
+    colorThresholds: { warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
+
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
@@ -51,6 +58,9 @@ const Menu: FC = () => {
   const [feeCount, setFeeCount] = useState<number>(0);
   const [loansOverdue, setLoansOverdue] = useState<number>(0);
   const [loansSoonOverdue, setLoansSoonOverdue] = useState<number>(0);
+  const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
+    number | null
+  >(null);
   const [reservationsReadyForPickup, setReservationsReadyForPickup] =
     useState<number>(0);
   const {
@@ -68,6 +78,12 @@ const Menu: FC = () => {
       transformer: "jsonParse"
     }
   );
+
+  useEffect(() => {
+    if (warning) {
+      setWarningThresholdFromConfig(warning);
+    }
+  }, [warning]);
 
   // Set user data
   useEffect(() => {
@@ -90,8 +106,12 @@ const Menu: FC = () => {
 
   // Set count of loans soon to be overdue.
   useEffect(() => {
-    setLoansSoonOverdue(filterLoansSoonOverdue(loans).length);
-  }, [loans]);
+    if (warningThresholdFromConfig) {
+      setLoansSoonOverdue(
+        filterLoansSoonOverdue(loans, warningThresholdFromConfig).length
+      );
+    }
+  }, [loans, warningThresholdFromConfig]);
 
   // Set count of reservations- and ready-for-pickup.
   useEffect(() => {

@@ -12,7 +12,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
-import { AvailabiltityLabels } from "../availability-label/availability-labels";
+import { AvailabilityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
@@ -69,15 +69,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       return materialType.specific === "tidsskrift";
     }
   );
-
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
   );
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const coverPid = pid || getManifestationPid(manifestations);
   const { track } = useStatistics();
@@ -111,7 +108,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div className="material-header__availability-label">
-          <AvailabiltityLabels
+          <AvailabilityLabels
             cursorPointer
             workId={wid}
             manifestations={manifestations}
