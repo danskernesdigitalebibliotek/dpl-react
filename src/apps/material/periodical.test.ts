@@ -46,6 +46,8 @@ describe("Material - Periodical", () => {
     cy.visit(
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
     );
+
+    window.sessionStorage.setItem("user", "fake-token");
   });
 
   it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
