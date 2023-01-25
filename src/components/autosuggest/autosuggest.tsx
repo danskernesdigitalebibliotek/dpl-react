@@ -18,6 +18,7 @@ export interface AutosuggestProps {
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
   autosuggestCategoryList: { render: string; type: string }[];
   isLoading: boolean;
+  dataCy?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
@@ -29,13 +30,14 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   isOpen,
   categoryData,
   autosuggestCategoryList,
-  isLoading
+  isLoading,
+  dataCy = "autosuggest"
 }) => {
   const t = useText();
 
   if (isLoading && !textData) {
     return (
-      <ul className="autosuggest pb-16">
+      <ul className="autosuggest pb-16" data-cy={dataCy}>
         <li className="ml-24">{t("LoadingText")}</li>
       </ul>
     );
@@ -49,6 +51,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         className="autosuggest pb-16"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
+        data-cy={dataCy}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 
