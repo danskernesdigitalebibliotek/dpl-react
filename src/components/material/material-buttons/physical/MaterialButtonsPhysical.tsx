@@ -45,6 +45,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} />;
   }
 
+  // TODO: Investigate if we could use UseReservableManifestations() instead.
   if (!areAnyReservable(data)) {
     return <MaterialButtonCantReserve size={size} />;
   }
