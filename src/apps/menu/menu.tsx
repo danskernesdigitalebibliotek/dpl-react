@@ -53,6 +53,7 @@ const Menu: FC = () => {
   const [userData, setUserData] = useState<
     AuthenticatedPatronV6 | null | undefined
   >();
+  const [showMenu, setShowMenu] = useState<boolean>(true);
   const [loans, setLoans] = useState<LoanType[]>([]);
   const [loansCount, setLoansCount] = useState<number>(0);
   const [reservationCount, setReservationCount] = useState<number>(0);
@@ -79,7 +80,11 @@ const Menu: FC = () => {
       transformer: "jsonParse"
     }
   );
-
+  const closeLoanerMenu = () => {
+    setTimeout(() => {
+      setShowMenu(false);
+    }, 1000);
+  };
   useEffect(() => {
     if (warning) {
       setWarningThresholdFromConfig(warning);
@@ -159,89 +164,95 @@ const Menu: FC = () => {
   */
 
   return (
-    <div className="modal-backdrop">
-      <div className="modal modal-show modal-profile modal-right">
-        <div className="modal__screen-reader-description" id="describemodal" />
-        <button
-          type="button"
-          aria-describedby="describemodal"
-          className="btn-ui modal-btn-close"
-          aria-label="close modal"
-        >
-          <img src={CloseIcon} alt="close modal button" />
-        </button>
-        <div className="modal-header">
-          <div className="modal-header__avatar">
-            <div className="avatar bg-global-secondary">
-              <img src={profileIcon} alt="" />
-            </div>
-          </div>
+    showMenu && (
+      <div className="modal-backdrop">
+        <div className="modal modal-show modal-profile modal-right">
           <div
-            className="modal-header__name text-header-h4"
-            data-cy="menu-patron-name"
+            className="modal__screen-reader-description"
+            id="describemodal"
+          />
+          <button
+            type="button"
+            aria-describedby="describemodal"
+            className="btn-ui modal-btn-close"
+            aria-label="close modal"
+            onClick={closeLoanerMenu}
           >
-            {userData?.patron?.name}
-          </div>
-          <Link
-            href={menuViewYourProfileTextUrl}
-            className="link-tag modal-header__link color-secondary-gray"
-          >
-            {t("menuViewYourProfileText")}
-          </Link>
-        </div>
-        <div className="modal-profile__notifications">
-          {loansOverdue !== 0 && (
-            <MenuNotification
-              notificationNumber={loansOverdue}
-              notificationText={t("menuNotificationLoansExpiredText")}
-              notificationColor="danger"
-              notificationLink={menuNotificationLoansExpiredUrl}
-            />
-          )}
-          {loansSoonOverdue !== 0 && (
-            <MenuNotification
-              notificationNumber={loansSoonOverdue}
-              notificationText={t("menuNotificationLoansExpiringSoonText")}
-              notificationColor="warning"
-              notificationLink={menuNotificationLoansExpiringSoonUrl}
-            />
-          )}
-          {reservationsReadyForPickup !== 0 && (
-            <MenuNotification
-              notificationNumber={reservationsReadyForPickup}
-              notificationText={t("menuNotificationReadyForPickupText")}
-              notificationColor="info"
-              notificationLink={menuNotificationReadyForPickupUrl}
-            />
-          )}
-        </div>
-        <div className="modal-profile__container">
-          <div className="modal-profile__links">
-            <div className="link-filters">
-              <MenuNavigationList
-                menuNavigationData={menuNavigationData}
-                loansCount={loansCount}
-                reservationCount={reservationCount}
-                feeCount={feeCount}
-              />
+            <img src={CloseIcon} alt="close modal button" />
+          </button>
+          <div className="modal-header">
+            <div className="modal-header__avatar">
+              <div className="avatar bg-global-secondary">
+                <img src={profileIcon} alt="" />
+              </div>
             </div>
-          </div>
-          <div className="modal-profile__btn-logout">
-            <Link href={menuLogOutUrl}>
-              <button
-                type="button"
-                className="btn-primary btn-filled btn-medium arrow__hover--right-small undefined"
-              >
-                {t("menuLogOutText")}
-                <div className="ml-16">
-                  <ArrowIcon />
-                </div>
-              </button>
+            <div
+              className="modal-header__name text-header-h4"
+              data-cy="menu-patron-name"
+            >
+              {userData?.patron?.name}
+            </div>
+            <Link
+              href={menuViewYourProfileTextUrl}
+              className="link-tag modal-header__link color-secondary-gray"
+            >
+              {t("menuViewYourProfileText")}
             </Link>
+          </div>
+          <div className="modal-profile__notifications">
+            {loansOverdue !== 0 && (
+              <MenuNotification
+                notificationNumber={loansOverdue}
+                notificationText={t("menuNotificationLoansExpiredText")}
+                notificationColor="danger"
+                notificationLink={menuNotificationLoansExpiredUrl}
+              />
+            )}
+            {loansSoonOverdue !== 0 && (
+              <MenuNotification
+                notificationNumber={loansSoonOverdue}
+                notificationText={t("menuNotificationLoansExpiringSoonText")}
+                notificationColor="warning"
+                notificationLink={menuNotificationLoansExpiringSoonUrl}
+              />
+            )}
+            {reservationsReadyForPickup !== 0 && (
+              <MenuNotification
+                notificationNumber={reservationsReadyForPickup}
+                notificationText={t("menuNotificationReadyForPickupText")}
+                notificationColor="info"
+                notificationLink={menuNotificationReadyForPickupUrl}
+              />
+            )}
+          </div>
+          <div className="modal-profile__container">
+            <div className="modal-profile__links">
+              <div className="link-filters">
+                <MenuNavigationList
+                  menuNavigationData={menuNavigationData}
+                  loansCount={loansCount}
+                  reservationCount={reservationCount}
+                  feeCount={feeCount}
+                />
+              </div>
+            </div>
+            <div className="modal-profile__btn-logout">
+              <Link href={menuLogOutUrl}>
+                <button
+                  type="button"
+                  className="btn-primary btn-filled btn-medium arrow__hover--right-small undefined"
+                >
+                  {t("menuLogOutText")}
+                  <div className="ml-16">
+                    <ArrowIcon />
+                  </div>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
