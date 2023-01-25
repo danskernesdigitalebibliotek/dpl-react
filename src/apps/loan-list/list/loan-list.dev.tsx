@@ -133,7 +133,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Select material for renewal"
+      defaultValue: "Select @label for renewal"
     },
     loanListMaterialLateFeeText: {
       control: {
