@@ -13,13 +13,8 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 
 export const getWorkManifestation = (
   work: Work,
-  type: "bestRepresentation" | "latest"
-) => {
-  if (type === "bestRepresentation") {
-    return work.manifestations.bestRepresentation as Manifestation;
-  }
-  return work.manifestations.latest as Manifestation;
-};
+  type: keyof Work["manifestations"]
+) => work.manifestations[type];
 
 export const filterManifestationsByType = (
   type: string,
@@ -57,7 +52,7 @@ export const getWorkDescriptionListData = ({
   const fallBackManifestation = getWorkManifestation(
     work,
     "bestRepresentation"
-  );
+  ) as Manifestation;
   const creatorsText = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
