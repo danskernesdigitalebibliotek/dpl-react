@@ -1,7 +1,7 @@
 {
   "data": {
     "search": {
-      "hitcount": 3190,
+      "hitcount": 3194,
       "works": [
         {
           "workId": "work-of:870970-basis:54129807",
@@ -110,7 +110,8 @@
                 "shelfmark": {
                   "postfix": "Levin",
                   "shelfmark": "99.4 Henry"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:54175183",
@@ -193,7 +194,8 @@
                 "shelfmark": {
                   "postfix": "Levin",
                   "shelfmark": "99.4 Henry"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:54168446",
@@ -281,7 +283,8 @@
                 "shelfmark": {
                   "postfix": "Levin",
                   "shelfmark": "99.4 Henry"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:54129793",
@@ -368,7 +371,8 @@
                 "shelfmark": {
                   "postfix": "Levin",
                   "shelfmark": "99.4 Henry"
-                }
+                },
+                "workYear": null
               }
             ],
             "latest": {
@@ -452,7 +456,91 @@
               "shelfmark": {
                 "postfix": "Levin",
                 "shelfmark": "99.4 Henry"
-              }
+              },
+              "workYear": null
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:54129807",
+              "genreAndForm": [
+                "biografier"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry"
+                ],
+                "original": [
+                  "Harry (engelsk)"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Angela Levin",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Memoris"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788793681088"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Birgitte Brix"
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2018",
+                "publicationYear": {
+                  "display": "2018"
+                }
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 301,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Levin",
+                "shelfmark": "99.4 Henry"
+              },
+              "workYear": null
             }
           }
         },
@@ -690,6 +778,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -774,6 +865,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -860,6 +954,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -943,6 +1040,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1026,6 +1126,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1109,6 +1212,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1190,7 +1296,8 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:25194853",
@@ -1269,6 +1376,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1351,6 +1461,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1429,7 +1542,8 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:22252852",
@@ -1508,6 +1622,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1590,6 +1707,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1672,6 +1792,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1754,6 +1877,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1839,6 +1965,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1921,6 +2050,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -1997,6 +2129,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -2082,6 +2217,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -2160,6 +2298,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               },
               {
@@ -2236,6 +2377,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 1997
                 }
               }
             ],
@@ -2327,6 +2471,102 @@
               "shelfmark": {
                 "postfix": "Rowling",
                 "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 1997
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:38289977",
+              "genreAndForm": [
+                "roman",
+                "fantasy",
+                "romaner"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry Potter og de vises sten (ill. MinaLima)"
+                ],
+                "original": [
+                  "Harry Potter and the philosopher's stone"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Joanne K. Rowling",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Gyldendal"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788702301588"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Hanna Lützen"
+                },
+                {
+                  "display": "MinaLima (firma)"
+                }
+              ],
+              "edition": {
+                "summary": "9. udgave, 2020",
+                "publicationYear": {
+                  "display": "2020"
+                }
+              },
+              "audience": {
+                "generalAudience": [
+                  "Højtlæsning fra 8 år. Selvlæsning fra 11 år",
+                  "for højtlæsning"
+                ]
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 356,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Rowling",
+                "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 1997
               }
             }
           }
@@ -2567,6 +2807,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -2650,6 +2893,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -2733,6 +2979,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -2816,6 +3065,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -2897,7 +3149,8 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:25245784",
@@ -2979,6 +3232,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3057,7 +3313,8 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:24880605",
@@ -3136,6 +3393,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3218,6 +3478,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3300,6 +3563,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3378,6 +3644,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3460,6 +3729,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               },
               {
@@ -3545,6 +3817,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2003
                 }
               }
             ],
@@ -3639,6 +3914,105 @@
               "shelfmark": {
                 "postfix": "Rowling",
                 "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 2003
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:134693959",
+              "genreAndForm": [
+                "roman",
+                "fantasy",
+                "romaner"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry Potter og Fønixordenen (Ill. Jim Kay)"
+                ],
+                "original": [
+                  "Harry Potter and the Order of the Phoenix"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Joanne K. Rowling",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Gyldendal"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788702307566"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Jim Kay"
+                },
+                {
+                  "display": "Neil Packer"
+                },
+                {
+                  "display": "Hanna Lützen"
+                }
+              ],
+              "edition": {
+                "summary": "Illustreret udgave, 7. udgave, 2022",
+                "publicationYear": {
+                  "display": "2022"
+                }
+              },
+              "audience": {
+                "generalAudience": [
+                  "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
+                  "for højtlæsning"
+                ]
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 565,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Rowling",
+                "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 2003
               }
             }
           }
@@ -3868,6 +4242,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -3951,6 +4328,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4034,6 +4414,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4116,6 +4499,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4194,7 +4580,8 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
-                }
+                },
+                "workYear": null
               },
               {
                 "pid": "870970-basis:25807995",
@@ -4273,6 +4660,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4355,6 +4745,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4440,6 +4833,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4518,6 +4914,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4594,6 +4993,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               },
               {
@@ -4676,6 +5078,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2005
                 }
               }
             ],
@@ -4760,6 +5165,95 @@
               "shelfmark": {
                 "postfix": "Rowling",
                 "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 2005
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:54872003",
+              "genreAndForm": [
+                "roman",
+                "fantasy"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry Potter og halvblodsprinsen"
+                ],
+                "original": [
+                  "Harry Potter and the half-blood prince"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Joanne K. Rowling",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Gyldendal"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788702272499"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Hanna Lützen"
+                }
+              ],
+              "edition": {
+                "summary": "6. udgave, 2018",
+                "publicationYear": {
+                  "display": "2018"
+                }
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 557,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Rowling",
+                "shelfmark": "83"
+              },
+              "workYear": {
+                "year": 2005
               }
             }
           }
@@ -4989,6 +5483,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5072,6 +5569,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5155,6 +5655,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5234,6 +5737,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5313,6 +5819,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5395,6 +5904,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               },
               {
@@ -5477,6 +5989,9 @@
                 "shelfmark": {
                   "postfix": "Rowling",
                   "shelfmark": "83"
+                },
+                "workYear": {
+                  "year": 2007
                 }
               }
             ],
@@ -5561,3132 +6076,13 @@
               "shelfmark": {
                 "postfix": "Rowling",
                 "shelfmark": "83"
-              }
-            }
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:22677780",
-          "titles": {
-            "full": [
-              "Harry Potter og Hemmelighedernes Kammer"
-            ],
-            "original": [
-              "Harry Potter and the Chamber of Secrets"
-            ]
-          },
-          "abstract": [
-            "Den 12-årige Harry Potter har trolddomsevner. Derfor er han blevet optaget på troldmandsskolen Hogwarts, som ligger i en parallelverden. Men nu indtræffer der uhyggelige og mystiske hændelser på troldmandsskolen"
-          ],
-          "creators": [
-            {
-              "display": "Joanne K. Rowling",
-              "__typename": "Person"
-            }
-          ],
-          "series": [],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:22629344",
-              "titles": {
-                "main": [
-                  "Harry Potter og de vises sten"
-                ],
-                "full": [
-                  "Harry Potter og de vises sten"
-                ],
-                "original": [
-                  "Harry Potter and the philosopher's stone"
-                ]
+              },
+              "workYear": {
+                "year": 2007
               }
             },
-            {
-              "workId": "work-of:870970-basis:22677780",
-              "titles": {
-                "main": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "full": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "original": [
-                  "Harry Potter and the Chamber of Secrets"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22995154",
-              "titles": {
-                "main": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "full": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "original": [
-                  "Harry Potter and the prisoner of Azkaban"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:23540703",
-              "titles": {
-                "main": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "full": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "original": [
-                  "Harry Potter and the goblet of fire"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25245784",
-              "titles": {
-                "main": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "full": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "original": [
-                  "Harry Potter and the Order of the Phoenix"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25807995",
-              "titles": {
-                "main": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "full": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "original": [
-                  "Harry Potter and the half-blood prince"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27267912",
-              "titles": {
-                "main": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "full": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "original": [
-                  "Harry Potter and the deathly hallows"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52646251",
-              "titles": {
-                "main": [
-                  "Harry Potter og det forbandede barn"
-                ],
-                "full": [
-                  "Harry Potter og det forbandede barn : del et & to"
-                ],
-                "original": [
-                  "Harry Potter and the cursed child"
-                ]
-              }
-            }
-          ],
-          "workYear": {
-            "year": 1998
-          },
-          "genreAndForm": [
-            "roman",
-            "fantasy",
-            "eventyrlige fortællinger",
-            "romaner",
-            "fra 11 år"
-          ],
-          "manifestations": {
-            "all": [
-              {
-                "pid": "870970-basis:61636935",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy",
-                  "romaner"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer (Ill. MinaLima)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702319361"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  },
-                  {
-                    "display": "MinaLima (firma)"
-                  }
-                ],
-                "edition": {
-                  "summary": "9. udgave, 2021",
-                  "publicationYear": {
-                    "display": "2021"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 384,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:54871929",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702272444"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "8. udgave, 2018",
-                  "publicationYear": {
-                    "display": "2018"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 396,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:52652219",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer (ill. Jim Kay)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702204681"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jim Kay"
-                  },
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2016",
-                  "publicationYear": {
-                    "display": "2016"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 259,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:51980239",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702173239"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "6. udgave, 2015",
-                  "publicationYear": {
-                    "display": "2015"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 396,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:29316945",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702114331"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "5. udgave, 2012",
-                  "publicationYear": {
-                    "display": "2012"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:26178479",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788703011721"
-                  },
-                  {
-                    "value": "87-03-01172-0"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. bogklubudgave, 2006",
-                  "publicationYear": {
-                    "display": "2006"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:25197887",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-02770-4"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "3. udgave, 2004",
-                  "publicationYear": {
-                    "display": "2004"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23257874",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-00-63796-3"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "1. bogklubudgave, 2003",
-                  "publicationYear": {
-                    "display": "2003"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:22677780",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788700459946"
-                  },
-                  {
-                    "value": "87-00-45994-1"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. udgave, 1999",
-                  "publicationYear": {
-                    "display": "1999"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:22375733",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-00-37264-1"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "1999",
-                  "publicationYear": {
-                    "display": "1999"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 338,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:27639097",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer (Ved Jesper Christensen, mp3)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd-mp3)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lyd"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702075397"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2009",
-                  "publicationYear": {
-                    "display": "2009"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "11 t., 3 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:25254031",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer (Ved Jesper Christensen)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-02780-1"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2004",
-                  "publicationYear": {
-                    "display": "2004"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "11 t., 3 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23403277",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (bånd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 13321"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Ole Boesen"
-                  },
-                  {
-                    "display": "Ole Boesen"
-                  }
-                ],
-                "edition": {
-                  "summary": "2001",
-                  "publicationYear": {
-                    "display": "2001"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "11 t., 57 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23368889",
-                "genreAndForm": [
-                  "roman",
-                  "eventyrlige fortællinger"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "diskette"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. wp 400038"
-                  },
-                  {
-                    "value": "Best.nr. ascii 500038"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2001",
-                  "publicationYear": {
-                    "display": "2001"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23264919",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "punktskrift"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 100030"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 9,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23227886",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Hemmelighedernes Kammer (I 1 mappe)"
-                  ],
-                  "original": [
-                    "Harry Potter and the Chamber of Secrets"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lydbøger"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-605-8673-7"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Torben Sekov"
-                  }
-                ],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "11 t., 14 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              }
-            ],
-            "latest": {
-              "pid": "870970-basis:61636935",
-              "genreAndForm": [
-                "roman",
-                "fantasy",
-                "romaner"
-              ],
-              "source": [
-                "Bibliotekskatalog"
-              ],
-              "titles": {
-                "main": [
-                  "Harry Potter og Hemmelighedernes Kammer (Ill. MinaLima)"
-                ],
-                "original": [
-                  "Harry Potter and the Chamber of Secrets"
-                ]
-              },
-              "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "bog"
-                }
-              ],
-              "creators": [
-                {
-                  "display": "Joanne K. Rowling",
-                  "__typename": "Person"
-                }
-              ],
-              "publisher": [
-                "Gyldendal"
-              ],
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788702319361"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Hanna Lützen"
-                },
-                {
-                  "display": "MinaLima (firma)"
-                }
-              ],
-              "edition": {
-                "summary": "9. udgave, 2021",
-                "publicationYear": {
-                  "display": "2021"
-                }
-              },
-              "audience": {
-                "generalAudience": []
-              },
-              "physicalDescriptions": [
-                {
-                  "numberOfPages": 384,
-                  "playingTime": null
-                }
-              ],
-              "accessTypes": [
-                {
-                  "code": "PHYSICAL"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": true
-                }
-              ],
-              "shelfmark": {
-                "postfix": "Rowling",
-                "shelfmark": "83"
-              }
-            }
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:54181744",
-          "titles": {
-            "full": [
-              "Harry Potter : en rejse gennem magiens historie"
-            ],
-            "original": [
-              "Harry Potter (engelsk)"
-            ]
-          },
-          "abstract": [
-            "Faktabog baseret på udstilling på British Library. Her gengives flere af udstillingens magiske genstande og J.K. Rowlings håndskrevne udkast og skitser sammen med en lang række baggrundsinformationer om de syv Harry Potter-bøger og deres tilblivelse. Desuden magiske tricks, som du kan udføre derhjemme"
-          ],
-          "creators": [],
-          "series": [],
-          "seriesMembers": [],
-          "workYear": null,
-          "genreAndForm": [],
-          "manifestations": {
-            "all": [
-              {
-                "pid": "870970-basis:54181744",
-                "genreAndForm": [],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter"
-                  ],
-                  "original": [
-                    "Harry Potter (engelsk)"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702257199"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Joanne K. Rowling"
-                  },
-                  {
-                    "display": "Hanna Lützen"
-                  },
-                  {
-                    "display": "Jim Kay"
-                  },
-                  {
-                    "display": "Olivia Lomenech"
-                  },
-                  {
-                    "display": "British Library"
-                  }
-                ],
-                "edition": {
-                  "summary": "1. udgave, 2018",
-                  "publicationYear": {
-                    "display": "2018"
-                  }
-                },
-                "audience": {
-                  "generalAudience": [
-                    "Højtlæsning fra 8 år. Selvlæsning fra 10 år",
-                    "for højtlæsning"
-                  ]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 143,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Harry",
-                  "shelfmark": "99.4 Rowling, Joanne K."
-                }
-              }
-            ],
-            "latest": {
-              "pid": "870970-basis:54181744",
-              "genreAndForm": [],
-              "source": [
-                "Bibliotekskatalog"
-              ],
-              "titles": {
-                "main": [
-                  "Harry Potter"
-                ],
-                "original": [
-                  "Harry Potter (engelsk)"
-                ]
-              },
-              "fictionNonfiction": {
-                "display": "faglitteratur",
-                "code": "NONFICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "bog"
-                }
-              ],
-              "creators": [],
-              "publisher": [
-                "Gyldendal"
-              ],
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788702257199"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Joanne K. Rowling"
-                },
-                {
-                  "display": "Hanna Lützen"
-                },
-                {
-                  "display": "Jim Kay"
-                },
-                {
-                  "display": "Olivia Lomenech"
-                },
-                {
-                  "display": "British Library"
-                }
-              ],
-              "edition": {
-                "summary": "1. udgave, 2018",
-                "publicationYear": {
-                  "display": "2018"
-                }
-              },
-              "audience": {
-                "generalAudience": [
-                  "Højtlæsning fra 8 år. Selvlæsning fra 10 år",
-                  "for højtlæsning"
-                ]
-              },
-              "physicalDescriptions": [
-                {
-                  "numberOfPages": 143,
-                  "playingTime": null
-                }
-              ],
-              "accessTypes": [
-                {
-                  "code": "PHYSICAL"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": true
-                }
-              ],
-              "shelfmark": {
-                "postfix": "Harry",
-                "shelfmark": "99.4 Rowling, Joanne K."
-              }
-            }
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:22995154",
-          "titles": {
-            "full": [
-              "Harry Potter og fangen fra Azkaban"
-            ],
-            "original": [
-              "Harry Potter and the prisoner of Azkaban"
-            ]
-          },
-          "abstract": [
-            "Fantasy. Harry Potter er elev på trolddomsskolen på tredje år. Han får at vide, at hans forældres morder er flygtet fra Azkabanfængslet og nu også vil dræbe ham"
-          ],
-          "creators": [
-            {
-              "display": "Joanne K. Rowling",
-              "__typename": "Person"
-            }
-          ],
-          "series": [],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:22629344",
-              "titles": {
-                "main": [
-                  "Harry Potter og de vises sten"
-                ],
-                "full": [
-                  "Harry Potter og de vises sten"
-                ],
-                "original": [
-                  "Harry Potter and the philosopher's stone"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22677780",
-              "titles": {
-                "main": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "full": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "original": [
-                  "Harry Potter and the Chamber of Secrets"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22995154",
-              "titles": {
-                "main": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "full": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "original": [
-                  "Harry Potter and the prisoner of Azkaban"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:23540703",
-              "titles": {
-                "main": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "full": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "original": [
-                  "Harry Potter and the goblet of fire"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25245784",
-              "titles": {
-                "main": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "full": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "original": [
-                  "Harry Potter and the Order of the Phoenix"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25807995",
-              "titles": {
-                "main": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "full": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "original": [
-                  "Harry Potter and the half-blood prince"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27267912",
-              "titles": {
-                "main": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "full": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "original": [
-                  "Harry Potter and the deathly hallows"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52646251",
-              "titles": {
-                "main": [
-                  "Harry Potter og det forbandede barn"
-                ],
-                "full": [
-                  "Harry Potter og det forbandede barn : del et & to"
-                ],
-                "original": [
-                  "Harry Potter and the cursed child"
-                ]
-              }
-            }
-          ],
-          "workYear": {
-            "year": 1999
-          },
-          "genreAndForm": [
-            "roman",
-            "eventyrlige fortællinger",
-            "fantasy",
-            "romaner"
-          ],
-          "manifestations": {
-            "all": [
-              {
-                "pid": "870970-basis:54871945",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702272468"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "8. udgave, 2018",
-                  "publicationYear": {
-                    "display": "2018"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 482,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:53516033",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban (ill. Jim Kay)"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702227888"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jim Kay"
-                  },
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2017",
-                  "publicationYear": {
-                    "display": "2017"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 326,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:51980220",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702173246"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "6. udgave, 2015",
-                  "publicationYear": {
-                    "display": "2015"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 482,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:29317003",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702114348"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "5. udgave, 2012",
-                  "publicationYear": {
-                    "display": "2012"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:26178509",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788703011738"
-                  },
-                  {
-                    "value": "87-03-01173-9"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. bogklubudgave, 2006",
-                  "publicationYear": {
-                    "display": "2006"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:25197879",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-02771-2"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "3. udgave, 2004",
-                  "publicationYear": {
-                    "display": "2004"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:22995154",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788700470460"
-                  },
-                  {
-                    "value": "87-00-47046-5"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. udgave, 2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:22843737",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-00-65233-4"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "1. bogklubudgave, 2003",
-                  "publicationYear": {
-                    "display": "2003"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:22639862",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-00-39628-1"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "3. oplag, 2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 407,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:27639151",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban (Ved Jesper Christensen, mp3)"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd-mp3)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lyd"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702075403"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2009",
-                  "publicationYear": {
-                    "display": "2009"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "12 t., 53 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:26239699",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban (Ved Jesper Christensen)"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lyd"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-04791-8"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2006",
-                  "publicationYear": {
-                    "display": "2006"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "12 t., 52 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23240769",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban (Ved Thomas Gulstad)"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (bånd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 13322"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "\\Thomas Gulstad\\"
-                  },
-                  {
-                    "display": "Thomas Gulstad"
-                  }
-                ],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "13 t., 6 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23227932",
-                "genreAndForm": [],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban (I 1 mappe)"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lydbøger"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-605-7334-1"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Torben Sekov"
-                  }
-                ],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "13 t., 15 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23208903",
-                "genreAndForm": [
-                  "roman",
-                  "eventyrlige fortællinger"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "diskette"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. wp 400039"
-                  },
-                  {
-                    "value": "Best.nr. ascii 500039"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23189151",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og fangen fra Azkaban"
-                  ],
-                  "original": [
-                    "Harry Potter and the prisoner of Azkaban"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "punktskrift"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 100031"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 9,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              }
-            ],
-            "latest": {
-              "pid": "870970-basis:54871945",
+            "bestRepresentation": {
+              "pid": "870970-basis:54872186",
               "genreAndForm": [
                 "roman",
                 "fantasy"
@@ -8696,10 +6092,10 @@
               ],
               "titles": {
                 "main": [
-                  "Harry Potter og fangen fra Azkaban"
+                  "Harry Potter og dødsregalierne"
                 ],
                 "original": [
-                  "Harry Potter and the prisoner of Azkaban"
+                  "Harry Potter and the deathly hallows"
                 ]
               },
               "fictionNonfiction": {
@@ -8729,7 +6125,7 @@
               },
               "identifiers": [
                 {
-                  "value": "9788702272468"
+                  "value": "9788702272420"
                 }
               ],
               "contributors": [
@@ -8738,7 +6134,7 @@
                 }
               ],
               "edition": {
-                "summary": "8. udgave, 2018",
+                "summary": "6. udgave, 2018",
                 "publicationYear": {
                   "display": "2018"
                 }
@@ -8748,7 +6144,7 @@
               },
               "physicalDescriptions": [
                 {
-                  "numberOfPages": 482,
+                  "numberOfPages": 648,
                   "playingTime": null
                 }
               ],
@@ -8766,1619 +6162,9 @@
               "shelfmark": {
                 "postfix": "Rowling",
                 "shelfmark": "83"
-              }
-            }
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:23540703",
-          "titles": {
-            "full": [
-              "Harry Potter og Flammernes Pokal"
-            ],
-            "original": [
-              "Harry Potter and the goblet of fire"
-            ]
-          },
-          "abstract": [
-            "Fantasy. På mystisk vis er Harry Potter blevet udvalgt til at deltage i en magisk trekamp mellem de forskellige troldmandsskoler. Samtidig er hans dødsfjende troldmanden Voldemort ved at genvinde sin magt"
-          ],
-          "creators": [
-            {
-              "display": "Joanne K. Rowling",
-              "__typename": "Person"
-            }
-          ],
-          "series": [],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:22629344",
-              "titles": {
-                "main": [
-                  "Harry Potter og de vises sten"
-                ],
-                "full": [
-                  "Harry Potter og de vises sten"
-                ],
-                "original": [
-                  "Harry Potter and the philosopher's stone"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22677780",
-              "titles": {
-                "main": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "full": [
-                  "Harry Potter og Hemmelighedernes Kammer"
-                ],
-                "original": [
-                  "Harry Potter and the Chamber of Secrets"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22995154",
-              "titles": {
-                "main": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "full": [
-                  "Harry Potter og fangen fra Azkaban"
-                ],
-                "original": [
-                  "Harry Potter and the prisoner of Azkaban"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:23540703",
-              "titles": {
-                "main": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "full": [
-                  "Harry Potter og Flammernes Pokal"
-                ],
-                "original": [
-                  "Harry Potter and the goblet of fire"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25245784",
-              "titles": {
-                "main": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "full": [
-                  "Harry Potter og Fønixordenen"
-                ],
-                "original": [
-                  "Harry Potter and the Order of the Phoenix"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25807995",
-              "titles": {
-                "main": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "full": [
-                  "Harry Potter og halvblodsprinsen"
-                ],
-                "original": [
-                  "Harry Potter and the half-blood prince"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27267912",
-              "titles": {
-                "main": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "full": [
-                  "Harry Potter og dødsregalierne"
-                ],
-                "original": [
-                  "Harry Potter and the deathly hallows"
-                ]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52646251",
-              "titles": {
-                "main": [
-                  "Harry Potter og det forbandede barn"
-                ],
-                "full": [
-                  "Harry Potter og det forbandede barn : del et & to"
-                ],
-                "original": [
-                  "Harry Potter and the cursed child"
-                ]
-              }
-            }
-          ],
-          "workYear": {
-            "year": 2000
-          },
-          "genreAndForm": [
-            "roman",
-            "fantasy",
-            "eventyrlige fortællinger",
-            "romaner"
-          ],
-          "manifestations": {
-            "all": [
-              {
-                "pid": "870970-basis:47092183",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal (Ill. Jim Kay)"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702284799"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  },
-                  {
-                    "display": "Jim Kay"
-                  }
-                ],
-                "edition": {
-                  "summary": "Illustreret udgave, 8. udgave, 2019",
-                  "publicationYear": {
-                    "display": "2019"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 450,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
               },
-              {
-                "pid": "870970-basis:54871953",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702272475"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "7. udgave, 2018",
-                  "publicationYear": {
-                    "display": "2018"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 615,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:51980190",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702173253"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "6. udgave, 2015",
-                  "publicationYear": {
-                    "display": "2015"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 615,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:29317070",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702114362"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Hanna Lützen"
-                  }
-                ],
-                "edition": {
-                  "summary": "5. udgave, 2012",
-                  "publicationYear": {
-                    "display": "2012"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:26178487",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788703011745"
-                  },
-                  {
-                    "value": "87-03-01174-7"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. bogklubudgave, 2006",
-                  "publicationYear": {
-                    "display": "2006"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:25197909",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-02772-0"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "3. udgave, 2004",
-                  "publicationYear": {
-                    "display": "2004"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23540703",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702002805"
-                  },
-                  {
-                    "value": "87-02-00280-9"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. udgave, 2001",
-                  "publicationYear": {
-                    "display": "2001"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23358875",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendals Bogklubber"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-00-67297-1"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "1. bogklubudgave, 2003",
-                  "publicationYear": {
-                    "display": "2003"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23154382",
-                "genreAndForm": [
-                  "roman",
-                  "fantasy"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-00127-6"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 684,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:27639240",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal (mp3)"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd-mp3)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lyd"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788702075410"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2009",
-                  "publicationYear": {
-                    "display": "2009"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "22 t., 34 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:26239710",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (cd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Gyldendal Lyd"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "87-02-04789-6"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Jesper Christensen (f. 1948)"
-                  }
-                ],
-                "edition": {
-                  "summary": "2006",
-                  "publicationYear": {
-                    "display": "2006"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": "22 t., 19 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23340682",
-                "genreAndForm": [
-                  "eventyrlige fortællinger"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "diskette"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. wp 400183"
-                  },
-                  {
-                    "value": "Best.nr. ascii 501174"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23299976",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "punktskrift"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 100117"
-                  }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 15,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              },
-              {
-                "pid": "870970-basis:23299453",
-                "genreAndForm": [
-                  "roman"
-                ],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter og Flammernes Pokal"
-                  ],
-                  "original": [
-                    "Harry Potter and the goblet of fire"
-                  ]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "lydbog (bånd)"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Joanne K. Rowling",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Danmarks Blindebibliotek"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Best.nr. 13355"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Peter Krag"
-                  },
-                  {
-                    "display": "Peter Krag"
-                  }
-                ],
-                "edition": {
-                  "summary": "2000",
-                  "publicationYear": {
-                    "display": "2000"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 19,
-                    "playingTime": "23 t., 3 min."
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Rowling",
-                  "shelfmark": "83"
-                }
-              }
-            ],
-            "latest": {
-              "pid": "870970-basis:47092183",
-              "genreAndForm": [
-                "roman",
-                "fantasy"
-              ],
-              "source": [
-                "Bibliotekskatalog"
-              ],
-              "titles": {
-                "main": [
-                  "Harry Potter og Flammernes Pokal (Ill. Jim Kay)"
-                ],
-                "original": [
-                  "Harry Potter and the goblet of fire"
-                ]
-              },
-              "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "bog"
-                }
-              ],
-              "creators": [
-                {
-                  "display": "Joanne K. Rowling",
-                  "__typename": "Person"
-                }
-              ],
-              "publisher": [
-                "Gyldendal"
-              ],
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788702284799"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Hanna Lützen"
-                },
-                {
-                  "display": "Jim Kay"
-                }
-              ],
-              "edition": {
-                "summary": "Illustreret udgave, 8. udgave, 2019",
-                "publicationYear": {
-                  "display": "2019"
-                }
-              },
-              "audience": {
-                "generalAudience": []
-              },
-              "physicalDescriptions": [
-                {
-                  "numberOfPages": 450,
-                  "playingTime": null
-                }
-              ],
-              "accessTypes": [
-                {
-                  "code": "PHYSICAL"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": true
-                }
-              ],
-              "shelfmark": {
-                "postfix": "Rowling",
-                "shelfmark": "83"
-              }
-            }
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:52796202",
-          "titles": {
-            "full": [
-              "Harry Potter : filmguide"
-            ],
-            "original": []
-          },
-          "abstract": [],
-          "creators": [
-            {
-              "display": "Felicity Baker (f. 1962)",
-              "__typename": "Person"
-            }
-          ],
-          "series": [
-            {
-              "title": "Harry Potter",
-              "isPopular": null,
-              "numberInSeries": null,
-              "readThisFirst": null,
-              "readThisWhenever": null
-            }
-          ],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:52796199",
-              "titles": {
-                "main": [
-                  "Hermione Granger"
-                ],
-                "full": [
-                  "Hermione Granger : filmguide"
-                ],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52796202",
-              "titles": {
-                "main": [
-                  "Harry Potter"
-                ],
-                "full": [
-                  "Harry Potter : filmguide"
-                ],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52796180",
-              "titles": {
-                "main": [
-                  "Ron Weasley"
-                ],
-                "full": [
-                  "Ron Weasley : filmguide"
-                ],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:53232590",
-              "titles": {
-                "main": [
-                  "Hogwarts"
-                ],
-                "full": [
-                  "Hogwarts : sjove aktiviteter om dit første år på skolen"
-                ],
-                "original": []
-              }
-            }
-          ],
-          "workYear": null,
-          "genreAndForm": [],
-          "manifestations": {
-            "all": [
-              {
-                "pid": "870970-basis:52796202",
-                "genreAndForm": [],
-                "source": [
-                  "Bibliotekskatalog"
-                ],
-                "titles": {
-                  "main": [
-                    "Harry Potter"
-                  ],
-                  "original": []
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  {
-                    "specific": "bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Felicity Baker (f. 1962)",
-                    "__typename": "Person"
-                  }
-                ],
-                "publisher": [
-                  "Carlsen"
-                ],
-                "languages": {
-                  "main": [
-                    {
-                      "display": "dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "9788711565339"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Sara Ejersbo Frederiksen"
-                  }
-                ],
-                "edition": {
-                  "summary": "1. udgave, 2016",
-                  "publicationYear": {
-                    "display": "2016"
-                  }
-                },
-                "audience": {
-                  "generalAudience": []
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": 62,
-                    "playingTime": null
-                  }
-                ],
-                "accessTypes": [
-                  {
-                    "code": "PHYSICAL"
-                  }
-                ],
-                "access": [
-                  {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
-                  }
-                ],
-                "shelfmark": {
-                  "postfix": "Baker",
-                  "shelfmark": "77.693"
-                }
-              }
-            ],
-            "latest": {
-              "pid": "870970-basis:52796202",
-              "genreAndForm": [],
-              "source": [
-                "Bibliotekskatalog"
-              ],
-              "titles": {
-                "main": [
-                  "Harry Potter"
-                ],
-                "original": []
-              },
-              "fictionNonfiction": {
-                "display": "faglitteratur",
-                "code": "NONFICTION"
-              },
-              "materialTypes": [
-                {
-                  "specific": "bog"
-                }
-              ],
-              "creators": [
-                {
-                  "display": "Felicity Baker (f. 1962)",
-                  "__typename": "Person"
-                }
-              ],
-              "publisher": [
-                "Carlsen"
-              ],
-              "languages": {
-                "main": [
-                  {
-                    "display": "dansk"
-                  }
-                ]
-              },
-              "identifiers": [
-                {
-                  "value": "9788711565339"
-                }
-              ],
-              "contributors": [
-                {
-                  "display": "Sara Ejersbo Frederiksen"
-                }
-              ],
-              "edition": {
-                "summary": "1. udgave, 2016",
-                "publicationYear": {
-                  "display": "2016"
-                }
-              },
-              "audience": {
-                "generalAudience": []
-              },
-              "physicalDescriptions": [
-                {
-                  "numberOfPages": 62,
-                  "playingTime": null
-                }
-              ],
-              "accessTypes": [
-                {
-                  "code": "PHYSICAL"
-                }
-              ],
-              "access": [
-                {
-                  "__typename": "InterLibraryLoan",
-                  "loanIsPossible": true
-                }
-              ],
-              "shelfmark": {
-                "postfix": "Baker",
-                "shelfmark": "77.693"
+              "workYear": {
+                "year": 2007
               }
             }
           }
