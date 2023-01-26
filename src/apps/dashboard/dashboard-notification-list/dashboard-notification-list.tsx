@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "../../../components/atoms/link";
 import { useGetLoansV2, useGetReservationsV2 } from "../../../core/fbs/fbs";
+import { useConfig } from "../../../core/utils/config";
 import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
@@ -12,6 +13,7 @@ import {
 import { mapFBSLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
 
@@ -24,6 +26,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   openDueDateModal
 }) => {
   const t = useText();
+  const config = useConfig();
+  const {
+    colorThresholds: { warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
   const {
     physicalLoansUrl,
     loansOverdueUrl,
@@ -50,12 +58,22 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
     }
   }, [fbsData]);
+
+  const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
+    number | null
+  >(null);
   const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
   const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
   const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
 
   useEffect(() => {
-    if (physicalLoans) {
+    if (warning) {
+      setWarningThresholdFromConfig(warning);
+    }
+  }, [warning]);
+
+  useEffect(() => {
+    if (physicalLoans && warningThresholdFromConfig && warning) {
       // Set count of physical loans
       setPhysicalLoansCount(physicalLoans.length);
 
@@ -63,12 +81,16 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       setPhysicalLoansOverdue(filterLoansOverdue(physicalLoans).length);
 
       // Set count of physical loans soon to be overdue
-      setPhysicalLoansSoonOverdue(filterLoansSoonOverdue(physicalLoans).length);
+      setPhysicalLoansSoonOverdue(
+        filterLoansSoonOverdue(physicalLoans, warningThresholdFromConfig).length
+      );
 
       // Set count of physical loans not overdue
-      setPhysicalLoansNotOverdue(filterLoansNotOverdue(physicalLoans).length);
+      setPhysicalLoansNotOverdue(
+        filterLoansNotOverdue(physicalLoans, warning).length
+      );
     }
-  }, [physicalLoans]);
+  }, [physicalLoans, warning, warningThresholdFromConfig]);
 
   useEffect(() => {
     if (patronReservations) {

@@ -356,8 +356,7 @@ export const getScrollClass = (modalIds: string[]) => {
 };
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 // Loans with more than warning-threshold days until due
-export const filterLoansNotOverdue = (loans: LoanType[]) => {
-  const { warning } = <{ warning: number }>getThresholds();
+export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";
     const daysUntilExpiration = daysBetweenTodayAndDate(due);

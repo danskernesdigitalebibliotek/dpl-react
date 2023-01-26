@@ -22,6 +22,8 @@ import { ListType } from "../../core/utils/types/list-type";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { useGetLoansV2 } from "../../core/fbs/fbs";
 import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
+import { ThresholdType } from "../../core/utils/types/threshold-type";
+import { useConfig } from "../../core/utils/config";
 
 interface DashboardProps {
   pageSize: number;
@@ -50,6 +52,21 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     undefined
   );
   const [modalHeader, setModalHealer] = useState("");
+  const config = useConfig();
+  const {
+    colorThresholds: { warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
+
+  const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
+    number | null
+  >(null);
+  useEffect(() => {
+    if (warning) {
+      setWarningThresholdFromConfig(warning);
+    }
+  }, [warning]);
 
   const OpenModalHandler = useCallback(
     (modalId: string) => {
@@ -84,6 +101,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       physicalLoansOverdue,
       physicalLoansSoonOverdue,
       soon,
+      t,
       yesterday
     ]
   );
@@ -96,19 +114,29 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   );
 
   useEffect(() => {
-    if (isSuccess && data) {
+    if (isSuccess && data && warning) {
       const mapToLoanType = mapFBSLoanToLoanType(data);
 
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
       setPhysicalLoansOverdue(filterLoansOverdue(mapToLoanType));
-      setPhysicalLoansSoonOverdue(filterLoansSoonOverdue(mapToLoanType));
-      setPhysicalLoansFarFromOverdue(filterLoansNotOverdue(mapToLoanType));
+      setPhysicalLoansSoonOverdue(
+        filterLoansSoonOverdue(mapToLoanType, warning)
+      );
+      setPhysicalLoansFarFromOverdue(
+        filterLoansNotOverdue(mapToLoanType, warning)
+      );
       setPhysicalLoans(sortedByLoanDate);
     } else {
       setPhysicalLoans([]);
     }
-  }, [isSuccess, data, setPhysicalLoansSoonOverdue]);
+  }, [
+    isSuccess,
+    data,
+    setPhysicalLoansSoonOverdue,
+    warningThresholdFromConfig,
+    warning
+  ]);
 
   return (
     <>

@@ -206,6 +206,12 @@ export default {
       defaultValue:
         "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library",
       control: { type: "text" }
+    },
+    // Config
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+      control: { type: "text" }
     }
   },
   component: DashBoard

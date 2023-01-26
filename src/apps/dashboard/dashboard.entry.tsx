@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { withConfig } from "../../core/utils/config";
 import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
@@ -45,6 +46,7 @@ export interface DashBoardProps {
   feesPageUrl: string;
   groupModalRenewLoanDeniedReservedText: string;
   groupModalRenewLoanDeniedInterLibraryLoanText: string;
+  thresholdConfig: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({
@@ -62,4 +64,4 @@ const DashboardEntry: FC<DashBoardProps> = ({
   return <DashBoard pageSize={pageSize} />;
 };
 
-export default withUrls(withText(DashboardEntry));
+export default withConfig(withUrls(withText(DashboardEntry)));
