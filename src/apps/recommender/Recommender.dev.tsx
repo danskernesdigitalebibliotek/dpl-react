@@ -8,6 +8,10 @@ export default {
   component: Recommender,
   argTypes: {
     ...serviceUrlArgs,
+    emptyRecommenderSearchConfig: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
     recommenderTitleLoansText: {
       control: {
         type: "text"
