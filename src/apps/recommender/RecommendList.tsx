@@ -24,7 +24,6 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   loan
 }) => {
   const t = useText();
-  // todo figure out digital loans/reservations
   const id =
     loan?.faust ||
     reservation?.faust ||
