@@ -188,12 +188,14 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       )}
       {pickupBranchFetched && (
         <ListDetails
+          idForLabelledBy="pickupAt"
           icon={LocationIcon}
           title={t("reservationDetailsPickUpAtTitleText")}
           labels={[pickupBranchFetched, pickupNumber || ""]}
         >
           {branchesOptions && (
             <ListDetailsDropdown
+              labelledBy="pickupAt"
               showSelect={showBranchesSelect}
               setShowSelect={setShowBranchesSelect}
               onDropdownChange={changeNewBranch}
@@ -206,10 +208,12 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       {expiryDate && (
         <ListDetails
           icon={LoanHistoryIcon}
+          idForLabelledBy="pickupAt"
           title={t("reservationDetailsNoInterestAfterTitleText")}
           labels={[formatDate(expiryDate)]}
         >
           <ListDetailsDropdown
+            labelledBy="pickupAt"
             showSelect={showExpirySelect}
             setShowSelect={setShowExpirySelect}
             onDropdownChange={changeExpiryDate}

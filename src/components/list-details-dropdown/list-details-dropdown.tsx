@@ -12,6 +12,7 @@ export interface ListDetailsDropdownProps {
   setShowSelect: (show: boolean) => void;
   showSelect: boolean;
   options: OptionsProps[];
+  labelledBy: string;
   selected: OptionsProps | null;
 }
 
@@ -20,7 +21,8 @@ const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
   setShowSelect,
   showSelect,
   options,
-  selected
+  selected,
+  labelledBy
 }) => {
   const t = useText();
 
@@ -37,6 +39,7 @@ const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
       )}
       {showSelect && (
         <Dropdown
+          labelledBy={labelledBy}
           defaultValue={selected?.value}
           placeholder={{
             label: t("listDetailsNothingSelectedLabelText"),

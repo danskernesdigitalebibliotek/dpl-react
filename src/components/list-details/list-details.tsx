@@ -5,12 +5,14 @@ export interface ListDetailsProps {
   title: string;
   labels: string[] | string;
   children?: ReactNode;
+  idForLabelledBy?: string;
 }
 
 const ListDetails: FC<ListDetailsProps> = ({
   icon,
   title,
   labels,
+  idForLabelledBy,
   children
 }) => {
   return (
@@ -20,7 +22,9 @@ const ListDetails: FC<ListDetailsProps> = ({
       </div>
       <div className="list-details__container">
         <div className="list-details__content">
-          <p className="text-header-h5">{title}</p>
+          <h3 className="text-header-h5" id={idForLabelledBy}>
+            {title}
+          </h3>
           {typeof labels === "string" && (
             <p className="text-small-caption">{labels}</p>
           )}

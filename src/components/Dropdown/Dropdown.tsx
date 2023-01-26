@@ -18,6 +18,7 @@ type DropdownProps = {
   placeholder?: Option;
   cyData?: string;
   defaultValue?: string;
+  labelledBy?: string;
 };
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -29,7 +30,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   handleOnChange,
   placeholder,
   cyData,
-  defaultValue
+  defaultValue,
+  labelledBy
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -51,6 +53,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
         data-cy={cyData}
         className={classes.select}
         aria-label={ariaLabel}
+        aria-labelledby={labelledBy}
         onChange={checkHandleOnChange}
       >
         {optionsList.map(({ label, value, disabled }) => (
