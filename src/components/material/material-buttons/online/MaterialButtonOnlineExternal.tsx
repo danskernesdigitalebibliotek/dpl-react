@@ -25,13 +25,15 @@ export const getOnlineMaterialType = (
   sourceName: AccessUrl["origin"],
   materialTypes: MaterialType["specific"][]
 ) => {
-  if (sourceName.includes("ereol")) {
+  if (sourceName.toLowerCase().includes("ereol")) {
     return "ebook";
   }
-  if (sourceName.includes("filmstriben")) {
+  if (sourceName.toLowerCase().includes("filmstriben")) {
     return "emovie";
   }
-  if (materialTypes.find((element) => element.includes("lydbog"))) {
+  if (
+    materialTypes.find((element) => element.toLowerCase().includes("lydbog"))
+  ) {
     return "audiobook";
   }
   return "unknown";
