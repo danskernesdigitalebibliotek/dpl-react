@@ -5,6 +5,7 @@ import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
 
 export interface RecommenderProps {
+  emptyRecommenderSearchConfig: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
@@ -12,6 +13,13 @@ export interface RecommenderProps {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   materialUrl: string;
+  recommenderTitleLoansText: string;
+  recommenderTitleReservationsText: string;
+  materialByAuthorText: string;
+  materialAndAuthorText: string;
+  recommenderTitleInspirationText: string;
+  addToFavoritesAriaLabelText: string;
+  removeFromFavoritesAriaLabelText: string;
 }
 
 const RecommenderEntry: FC<RecommenderProps> = () => <Recommender />;
