@@ -23,14 +23,13 @@ export interface MaterialButtonsOnlineProps {
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   manifestation,
-  manifestation: {
-    access: [accessElement],
-    access: [{ __typename: accessType }]
-  },
   size,
   workId,
   dataCy = "material-buttons-online"
 }) => {
+  const accessElement = manifestation.access.shift();
+  const accessType = accessElement?.__typename || "";
+
   const { track } = useStatistics();
   const trackOnlineView = () => {
     return track("click", {

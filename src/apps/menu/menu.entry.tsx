@@ -22,6 +22,7 @@ export interface MenuProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
+  thresholdConfig: string;
 }
 
 const MenuEntry: FC<MenuProps> = () => <Menu />;

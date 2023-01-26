@@ -41,7 +41,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description-series-0")
+    cy.getBySel("material-description-series-1")
       .should("be.visible")
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
   });

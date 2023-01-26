@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import Arrow from "../../../components/atoms/icons/arrow/arrow";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
@@ -18,7 +19,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
 }) => {
   return (
     <div className="list-reservation__status">
-      <div className="list-reservation__counter">
+      <div className="list-reservation__counter color-secondary-gray">
         <StatusCircleIcon color={color} percent={percent}>
           {children}
         </StatusCircleIcon>
@@ -37,6 +38,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
+      <Arrow />
     </div>
   );
 };

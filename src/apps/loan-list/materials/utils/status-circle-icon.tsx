@@ -18,7 +18,6 @@ const StatusCircleIcon: FC<StatusCircleIconProps> = ({
   return (
     <div
       className="counter"
-      aria-hidden
       style={{
         background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${usedColor} ${percent}%, #DBDBDB 0)`
       }}

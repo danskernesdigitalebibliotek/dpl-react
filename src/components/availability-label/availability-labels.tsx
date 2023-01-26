@@ -20,7 +20,7 @@ export interface AvailabilityLabelsProps {
   cursorPointer?: boolean;
 }
 
-export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
+export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
   selectedManifestation: manifestation,
@@ -32,11 +32,11 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
   return (
     <>
       {manifestations.map((item) => {
-        const { pid, materialTypes } = item;
+        const { pid, materialTypes, identifiers } = item;
         const materialType = materialTypes[0].specific;
         const faustId = convertPostIdToFaustId(pid);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
-
+        const accessTypesCodes = item.accessTypes.map((t) => t.code);
         return (
           <AvailabilityLabel
             key={pid}
@@ -44,6 +44,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
             cursorPointer={cursorPointer}
             faustIds={[faustId]}
             manifestText={materialType}
+            accessTypes={accessTypesCodes}
             selected={
               manifestation &&
               materialType === getManifestationType(manifestation)
@@ -58,6 +59,7 @@ export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
                   }
                 : undefined
             }
+            isbn={identifiers?.[0]?.value}
           />
         );
       })}

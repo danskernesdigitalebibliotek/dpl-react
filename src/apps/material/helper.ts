@@ -77,7 +77,7 @@ export const getWorkDescriptionListData = ({
     { label: t("contributorsText"), value: creatorsText, type: "link" },
     {
       label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear}` : "",
+      value: titles && workYear ? `${titles?.original} ${workYear.year}` : "",
       type: "standard"
     },
     {

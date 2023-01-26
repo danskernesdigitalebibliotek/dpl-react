@@ -8,6 +8,8 @@ import {
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 
+import useGetCleanBranches from "../../core/utils/branches";
+
 export const allFacetFields = [
   FacetField.MainLanguages,
   FacetField.AccessTypes,
@@ -44,17 +46,30 @@ export const formatFacetTerms = (filters: {
   );
 };
 
+export const createFilters = (
+  facets: {
+    [key: string]: { [key: string]: FilterItemTerm };
+  },
+  branchIdList: string[]
+) => {
+  return {
+    ...formatFacetTerms(facets),
+    ...(branchIdList ? { branchId: branchIdList } : {})
+  };
+};
+
 export function useGetFacets(query: string, filters: Filter) {
   const [facets, setFacets] = useState<
-    SearchFacetQuery["search"]["facets"] | undefined
-  >(undefined);
+    SearchFacetQuery["search"]["facets"] | null
+  >(null);
+  const cleanBranches = useGetCleanBranches();
 
   const { data, isLoading } = useSearchFacetQuery(
     {
       q: { all: query },
       facets: allFacetFields,
       facetLimit: 10,
-      filters: formatFacetTerms(filters)
+      filters: createFilters(filters, cleanBranches)
     },
     {
       keepPreviousData: true,

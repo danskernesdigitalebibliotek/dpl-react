@@ -1,6 +1,5 @@
 import * as React from "react";
 import { FC } from "react";
-import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -21,14 +20,9 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { data, isLoading, isError } = useGetAvailabilityV3({
-    recordid: faustIds
-  });
-
   const onClick = () => {
     open(findOnShelfModalId(faustIds[0]));
   };
-
   // If element is currently focused on, we would like to let users open it using enter
   const onKeyUp = (key: string) => {
     if (key === "Enter") {
@@ -36,25 +30,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
     }
   };
 
-  if (!data || isError || isLoading) {
-    // TODO: handle error here once we handle errors
-    return null;
-  }
-
   if (size !== "small") {
-    if (!data[0].available) {
-      return (
-        <Button
-          label={t("materialIsLoanedOutText")}
-          buttonType="none"
-          variant="outline"
-          disabled
-          collapsible={false}
-          size="large"
-          dataCy={dataCy}
-        />
-      );
-    }
     return (
       <Button
         label={t("findOnBookshelfText")}
@@ -66,14 +42,6 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
         onClick={onClick}
         dataCy={dataCy}
       />
-    );
-  }
-
-  if (!data[0].available) {
-    return (
-      <span className="text-small-caption material-manifestation-item__find capitalize-all">
-        {t("materialIsLoanedOutText")}
-      </span>
     );
   }
 
