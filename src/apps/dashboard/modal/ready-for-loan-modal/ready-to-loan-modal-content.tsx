@@ -1,9 +1,13 @@
 import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
+import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
-import { getPhysicalReservations } from "../../../../core/utils/helpers/general";
+import {
+  getColors,
+  getPhysicalReservations
+} from "../../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
 import { useText } from "../../../../core/utils/text";
 import {
@@ -12,10 +16,11 @@ import {
 } from "../../../../core/publizon/model";
 import QueuedReservationsList from "./ready-to-loan-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
-import StatusCircle from "../../../loan-list/materials/utils/status-circle";
+import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-icon";
 
 const ReadyToLoanModalContent: FC = () => {
   const t = useText();
+  const colors = getColors();
   const [physicalReservationsReadyToLoan, setPhysicalReservationsReadyToLoan] =
     useState<ReservationDetailsV2[]>();
   const [digitalReservationsReadyToLoan, setDigitalReservationsReadyToLoan] =
@@ -116,7 +121,10 @@ const ReadyToLoanModalContent: FC = () => {
     <div className="modal-loan__container">
       <div className="modal-loan__header">
         <div className="mr-32">
-          <StatusCircle dueDate="" loanDate="" />
+          <StatusCircleIcon percent={100} color={colors.success as string}>
+            <img className="counter__icon" src={check} alt="check icon" />
+            <span className="counter__label">Ready</span>
+          </StatusCircleIcon>
         </div>
         <div>
           <h2 className="modal-loan__title text-header-h2">

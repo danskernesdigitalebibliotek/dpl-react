@@ -10,11 +10,11 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     yourProfileText: {
-      defaultValue: "Din profil",
+      defaultValue: "Your profile",
       control: { type: "text" }
     },
     intermediateText: {
-      defaultValue: "Mellemværender",
+      defaultValue: "Intermediates",
       control: { type: "text" }
     },
     intermediateUrl: {
@@ -22,11 +22,11 @@ export default {
       control: { type: "text" }
     },
     totalOwedText: {
-      defaultValue: "Du skylder i alt",
+      defaultValue: "You owe in total",
       control: { type: "text" }
     },
     payOwedText: {
-      defaultValue: "Se mere",
+      defaultValue: "Read more",
       control: { type: "text" }
     },
     payOwedUrl: {
@@ -34,7 +34,7 @@ export default {
       control: { type: "text" }
     },
     physicalLoansText: {
-      defaultValue: "Fysiske lån",
+      defaultValue: "Physical loans",
       control: { type: "text" }
     },
     physicalLoansUrl: {
@@ -54,7 +54,7 @@ export default {
       control: { type: "text" }
     },
     loansOverdueText: {
-      defaultValue: "Afleveret for sent",
+      defaultValue: "Returned too late",
       control: { type: "text" }
     },
     loansOverdueUrl: {
@@ -62,7 +62,7 @@ export default {
       control: { type: "text" }
     },
     loansSoonOverdueText: {
-      defaultValue: "Afleveres snart",
+      defaultValue: "To be returned soon",
       control: { type: "text" }
     },
     loansSoonOverdueUrl: {
@@ -70,7 +70,7 @@ export default {
       control: { type: "text" }
     },
     loansNotOverdueText: {
-      defaultValue: "Længere afleveringstid",
+      defaultValue: "Longer return time",
       control: { type: "text" }
     },
     loansNotOverdueUrl: {
@@ -78,7 +78,7 @@ export default {
       control: { type: "text" }
     },
     reservationsText: {
-      defaultValue: "Reserveringer",
+      defaultValue: "Reservations",
       control: { type: "text" }
     },
     reservationsUrl: {
@@ -94,23 +94,23 @@ export default {
       control: { type: "text" }
     },
     reservationsReadyText: {
-      defaultValue: "Klar til dig",
+      defaultValue: "Ready for you",
       control: { type: "text" }
     },
     reservationsStillInQueueForText: {
-      defaultValue: "Stadig i kø",
+      defaultValue: "Still in queue",
       control: { type: "text" }
     },
     noPhysicalLoansText: {
-      defaultValue: "Du har i øjeblikket 0 fysiske lån",
+      defaultValue: "At the moment, you have 0 physical loans",
       control: { type: "text" }
     },
     noReservationsText: {
-      defaultValue: "Du har i øjeblikket 0 reserveringer",
+      defaultValue: "At the moment, you have 0 reservations",
       control: { type: "text" }
     },
     readyForLoanText: {
-      defaultValue: "Reservationer klar til lån",
+      defaultValue: "Ready for loan",
       control: { type: "text" }
     },
     publizonAudioBookText: {
@@ -163,7 +163,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Afleveres @date"
+      defaultValue: "To be returned @date"
     },
     groupModalGoToMaterialText: {
       defaultValue: "Go to material details",
@@ -201,6 +201,11 @@ export default {
         type: "text"
       },
       defaultValue: "The item is reserved by another patron"
+    },
+    groupModalRenewLoanDeniedInterLibraryLoanText: {
+      defaultValue:
+        "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library",
+      control: { type: "text" }
     }
   },
   component: DashBoard

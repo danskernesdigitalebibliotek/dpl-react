@@ -44,6 +44,7 @@ export interface DashBoardProps {
   groupModalDueDateLinkToPageWithFeesText: string;
   feesPageUrl: string;
   groupModalRenewLoanDeniedReservedText: string;
+  groupModalRenewLoanDeniedInterLibraryLoanText: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({
