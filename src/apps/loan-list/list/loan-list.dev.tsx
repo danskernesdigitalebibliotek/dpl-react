@@ -356,6 +356,10 @@ export default {
       defaultValue: "Go to material details",
       control: { type: "text" }
     },
+    groupModalGoToMaterialAriaLabelText: {
+      defaultValue: "Go to @label material details",
+      control: { type: "text" }
+    },
     groupModalReturnLibraryText: {
       defaultValue: "Can be returned to all branches of Samsøs libraries",
       control: { type: "text" }
