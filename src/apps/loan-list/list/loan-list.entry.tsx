@@ -5,12 +5,20 @@ import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 import isPatronBlockedHoc from "../../../components/blocked-patron/isPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
+import { withConfig } from "../../../core/utils/config";
 
-interface LoanListEntryConfigProps {
-  fbsBaseUrlConfig: string;
+export interface LoanListEntryConfigProps {
+  thresholdConfig: string;
+}
+export interface LoanListEntryUrlProps {
+  fbsBaseUrl: string;
   materialOverdueUrl: string;
   feesPageUrl: string;
-  publizonBaseUrlConfig: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
 }
 
 interface LoanListEntryTextProps {
@@ -72,7 +80,8 @@ interface LoanListEntryTextProps {
 export interface LoanListEntryWithPageSizeProps
   extends BlockedPatronEntryTextProps,
     LoanListEntryTextProps,
-    LoanListEntryConfigProps {
+    LoanListEntryConfigProps,
+    LoanListEntryUrlProps {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
@@ -91,4 +100,6 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default withUrls(withText(isPatronBlockedHoc(LoanListEntry)));
+export default withConfig(
+  withUrls(withText(isPatronBlockedHoc(LoanListEntry)))
+);

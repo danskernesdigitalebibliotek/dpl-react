@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import statusThreshold from "../../../../core/configuration/status-thresholds.json";
 import StatusCircleIcon from "./status-circle-icon";
 import {
   getColors,
@@ -7,6 +6,8 @@ import {
   daysBetweenDates
 } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
+import { useConfig } from "../../../../core/utils/config";
+import { ThresholdType } from "../../../../core/utils/types/threshold-type";
 
 interface StatusCircleProps {
   dueDate: string;
@@ -15,6 +16,15 @@ interface StatusCircleProps {
 
 const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
+  const config = useConfig();
+  if (!dueDate) return null;
+
+  const {
+    colorThresholds: { danger, warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
+
   const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
   const daysBetweenLoanAndDue = daysBetweenDates(dueDate, loanDate);
 
@@ -22,9 +32,9 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const colors = getColors();
 
   let color = colors.default;
-  if (daysBetweenTodayAndDue < statusThreshold.danger) {
+  if (daysBetweenTodayAndDue < danger) {
     color = colors.danger;
-  } else if (daysBetweenTodayAndDue <= statusThreshold.warning) {
+  } else if (daysBetweenTodayAndDue <= warning) {
     color = colors.warning;
   }
 

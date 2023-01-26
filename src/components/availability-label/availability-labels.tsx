@@ -20,7 +20,7 @@ export interface AvailabilityLabelsProps {
   cursorPointer?: boolean;
 }
 
-export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
+export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
   selectedManifestation: manifestation,
