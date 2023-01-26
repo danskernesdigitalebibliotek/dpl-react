@@ -8,19 +8,12 @@ describe("Material", () => {
       .getBySel("material-header-buttons-physical")
       .click();
 
-    cy.interceptRest({
-      aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
-      fixtureFilePath: "material/user.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
-      fixtureFilePath: "material/holdings.json"
-    });
-
-    cy.url().should("include", "modal=reservation-modal-46615743");
+    cy.url()
+      .should("include", "modal=reservation-modal-46615743")
+      .then(() => {
+        // We simulate that the user has sucessfully logged in
+        window.sessionStorage.setItem("user", "fake-token");
+      });
     cy.getBySel("modal").should("be.visible");
   });
 
@@ -63,6 +56,17 @@ describe("Material", () => {
         fixture: "images/cover.jpg"
       }
     );
+    cy.interceptRest({
+      aliasName: "user",
+      url: "**/agencyid/patrons/patronid/v2",
+      fixtureFilePath: "material/user.json"
+    });
+
+    cy.interceptRest({
+      aliasName: "holdings",
+      url: "**/agencyid/catalog/holdings/**",
+      fixtureFilePath: "material/holdings.json"
+    });
   });
 });
 
