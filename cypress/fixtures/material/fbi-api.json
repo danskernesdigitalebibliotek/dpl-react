@@ -252,7 +252,7 @@
             },
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "musik (net)"
               }
             ],
             "creators": [
@@ -295,13 +295,15 @@
             ],
             "accessTypes": [
               {
-                "code": "PHYSICAL"
+                "code": "ONLINE"
               }
             ],
             "access": [
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
+                "__typename": "AccessUrl",
+                "origin": "musik",
+                "url": "https://musik.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
               }
             ],
             "shelfmark": {
@@ -323,7 +325,7 @@
             },
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "film (net)"
               }
             ],
             "creators": [
@@ -366,13 +368,15 @@
             ],
             "accessTypes": [
               {
-                "code": "PHYSICAL"
+                "code": "ONLINE"
               }
             ],
             "access": [
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
+                "__typename": "AccessUrl",
+                "origin": "Filmstriben",
+                "url": "https://filmstriben.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
               }
             ],
             "shelfmark": {
@@ -443,7 +447,14 @@
                 "code": "ONLINE"
               }
             ],
-            "access": [],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "website",
+                "url": "https://website.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
+              }
+            ],
             "shelfmark": {
               "postfix": "Riley",
               "shelfmark": "83"
