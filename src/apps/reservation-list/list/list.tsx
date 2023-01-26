@@ -56,7 +56,7 @@ const List: FC<ListProps> = ({
               </>
             </h2>
           </div>
-          <>
+          <div data-cy="list-reservation-container">
             <ul className="list-reservation-container m-32">
               {displayedReservations.map((reservation) => (
                 <ReservationMaterial
@@ -69,7 +69,7 @@ const List: FC<ListProps> = ({
               ))}
             </ul>
             {PagerComponent}
-          </>
+          </div>
         </>
       ) : (
         <div>
