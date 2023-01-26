@@ -10,8 +10,8 @@ const DashboardFees: FC = () => {
   const t = useText();
   const { intermediateUrl, payOwedUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
-  const [feeCount, setFeeCount] = useState(0);
-  const [totalFeeAmount, setTotalFeeAmount] = useState(0);
+  const [feeCount, setFeeCount] = useState<number>();
+  const [totalFeeAmount, setTotalFeeAmount] = useState<number>();
   useEffect(() => {
     if (fbsFees) {
       setFeeCount(fbsFees.length);

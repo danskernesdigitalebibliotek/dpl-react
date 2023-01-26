@@ -24,12 +24,19 @@ import { useGetLoansV2 } from "../../core/fbs/fbs";
 import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
+import { getFromListByKey } from "../loan-list/utils/helpers";
 
 interface DashboardProps {
   pageSize: number;
 }
 const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const t = useText();
+  const config = useConfig();
+  const {
+    colorThresholds: { warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
   const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
   const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
   const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
@@ -52,12 +59,6 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     undefined
   );
   const [modalHeader, setModalHealer] = useState("");
-  const config = useConfig();
-  const {
-    colorThresholds: { warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
 
   const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
     number | null
@@ -112,6 +113,16 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     },
     [loanDetails, open]
   );
+
+  useEffect(() => {
+    let loanForModal = null;
+    if (physicalLoans && modalDetailsId) {
+      loanForModal = getFromListByKey(physicalLoans, "faust", modalDetailsId);
+    }
+    if (loanForModal && loanForModal.length > 0) {
+      setModalLoan(loanForModal[0]);
+    }
+  }, [modalDetailsId, physicalLoans]);
 
   useEffect(() => {
     if (isSuccess && data && warning) {
