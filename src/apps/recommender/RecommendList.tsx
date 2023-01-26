@@ -3,37 +3,29 @@ import {
   useRecommendFromFaustQuery,
   RecommendFromFaustQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { LoanType } from "../../core/utils/types/loan-type";
 import fetchMaterial, {
   MaterialProps
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import { useText } from "../../core/utils/text";
 import RecommendMaterial from "./RecommendMaterial";
-import { ReservationType } from "../../core/utils/types/reservation-type";
 import { Work } from "../../core/utils/types/entities";
 import fetchDigitalMaterial from "../loan-list/materials/utils/digital-material-fetch-hoc";
+import { FaustId } from "../../core/utils/types/ids";
 
 export interface RecommendListProps {
-  loan?: LoanType;
-  reservation?: ReservationType;
+  loanOrReservationFaust: FaustId;
+  titleKey: "recommenderTitleReservationsText" | "recommenderTitleLoansText";
 }
 
 const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   material,
-  reservation,
-  loan
+  loanOrReservationFaust,
+  titleKey
 }) => {
   const t = useText();
-  // todo figure out digital loans/reservations
-  const id =
-    loan?.faust ||
-    reservation?.faust ||
-    loan?.identifier ||
-    reservation?.identifier ||
-    "";
 
   const { data } = useRecommendFromFaustQuery({
-    faust: id,
+    faust: loanOrReservationFaust,
     limit: 4
   });
 
@@ -50,13 +42,9 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
     <>
       {material && material.title && (
         <h2 className="recommender__title text-header-h1">
-          {loan
-            ? t("recommenderTitleLoansText", {
-                placeholders: { "@title": material.title }
-              })
-            : t("recommenderTitleReservationsText", {
-                placeholders: { "@title": material.title }
-              })}
+          {t(titleKey, {
+            placeholders: { "@title": material.title }
+          })}
         </h2>
       )}
       <ul className="recommender__grid">

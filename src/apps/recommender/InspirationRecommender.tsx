@@ -3,20 +3,22 @@ import {
   useSearchWithPaginationQuery,
   SearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 import RecommendMaterial from "./RecommendMaterial";
 
 const InspirationRecommender: FC = () => {
   const t = useText();
+  const config = useConfig();
 
+  const defaultSearchFromConfig = config("emptyRecommenderSearchConfig");
   const [recommendedMaterials, setRecommendedMaterials] =
     useState<SearchWithPaginationQuery | null>(null);
   const { data } = useSearchWithPaginationQuery({
     limit: 4,
     q: {
-      // todo obviously figure out what this must say
-      all: "harry"
+      all: defaultSearchFromConfig
     },
     offset: 0
   });
