@@ -8,12 +8,14 @@ import {
   mapFBSLoanToLoanType,
   mapFBSReservationToReservationType
 } from "../../core/utils/helpers/list-mapper";
+import { useText } from "../../core/utils/text";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import InspirationRecommender from "./InspirationRecommender";
 import RecommendList from "./RecommendList";
 
 const Recommender: FC = () => {
+  const t = useText();
   const [loanForRecommender, setLoanForRecommender] = useState<LoanType | null>(
     null
   );
@@ -79,20 +81,24 @@ const Recommender: FC = () => {
 
   return (
     <div className="recommender">
-      {loanForRecommender && (
+      {loanForRecommender && loanForRecommender.faust && (
         <RecommendList
+          titleKey="recommenderTitleLoansText"
           faust={loanForRecommender.faust}
           identifier={loanForRecommender.identifier}
-          loan={loanForRecommender}
+          loanOrReservationFaust={loanForRecommender.faust}
         />
       )}
-      {!loanForRecommender && reservationForRecommender && (
-        <RecommendList
-          faust={reservationForRecommender.faust}
-          identifier={reservationForRecommender.identifier}
-          reservation={reservationForRecommender}
-        />
-      )}
+      {!loanForRecommender &&
+        reservationForRecommender &&
+        reservationForRecommender.faust && (
+          <RecommendList
+            titleKey="recommenderTitleReservationsText"
+            faust={reservationForRecommender.faust}
+            identifier={reservationForRecommender.identifier}
+            loanOrReservationFaust={reservationForRecommender.faust}
+          />
+        )}
       {!loanForRecommender && !reservationForRecommender && !stillLoading && (
         <InspirationRecommender />
       )}
