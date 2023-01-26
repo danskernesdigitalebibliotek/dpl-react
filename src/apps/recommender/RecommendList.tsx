@@ -12,27 +12,20 @@ import RecommendMaterial from "./RecommendMaterial";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import { Work } from "../../core/utils/types/entities";
 import fetchDigitalMaterial from "../loan-list/materials/utils/digital-material-fetch-hoc";
+import { ListType } from "../../core/utils/types/list-type";
 
 export interface RecommendListProps {
-  loan?: LoanType;
-  reservation?: ReservationType;
+  loanOrReservation: ListType;
 }
 
 const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   material,
-  reservation,
-  loan
+  loanOrReservation
 }) => {
   const t = useText();
-  const id =
-    loan?.faust ||
-    reservation?.faust ||
-    loan?.identifier ||
-    reservation?.identifier ||
-    "";
 
   const { data } = useRecommendFromFaustQuery({
-    faust: id,
+    faust: loanOrReservation.faust || "",
     limit: 4
   });
 
