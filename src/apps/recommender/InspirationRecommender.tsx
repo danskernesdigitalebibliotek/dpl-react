@@ -25,7 +25,6 @@ const InspirationRecommender: FC = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setRecommendedMaterials(data);
     }
   }, [data]);
