@@ -1,18 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
 import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
 import {
-  useGetV1UserLoans,
-  useGetV1UserReservations
-} from "../../core/publizon/publizon";
-import {
   sortByLoanDate,
   sortByReservationDate
 } from "../../core/utils/helpers/general";
 import {
   mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType,
-  mapPublizonLoanToLoanType,
-  mapPublizonReservationToReservationType
+  mapFBSReservationToReservationType
 } from "../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
@@ -25,12 +19,7 @@ const Recommender: FC = () => {
   );
   const [reservationForRecommender, setReservationForRecommender] =
     useState<ReservationType | null>(null);
-  const [digitalLoans, setDigitalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
-
-  const [digitalReservations, setDigitalReservations] = useState<
-    ReservationType[] | null
-  >(null);
   const [physicalReservations, setPhysicalReservations] = useState<
     ReservationType[] | null
   >(null);
@@ -43,25 +32,11 @@ const Recommender: FC = () => {
   } = useGetLoansV2();
 
   const {
-    isSuccess: isSuccessPublizonLoans,
-    error: publizonErrorLoans,
-    data: publizonLoans,
-    isLoading: publizonLoansLoading
-  } = useGetV1UserLoans();
-
-  const {
     isSuccess: isSuccessFbsReservations,
     error: fbsErrorReservations,
     data: fbsReservations,
     isLoading: fbsReservationsLoading
   } = useGetReservationsV2();
-
-  const {
-    isSuccess: isSuccessPublizonReservations,
-    error: publizonErrorReservations,
-    data: publizonReservations,
-    isLoading: publizonReservationsLoading
-  } = useGetV1UserReservations();
 
   useEffect(() => {
     if (fbsLoans) {
@@ -84,65 +59,23 @@ const Recommender: FC = () => {
   }, [fbsErrorReservations, fbsReservations, isSuccessFbsReservations]);
 
   useEffect(() => {
-    if (publizonReservations && publizonReservations.reservations) {
-      setDigitalReservations(
-        mapPublizonReservationToReservationType(
-          publizonReservations.reservations
-        )
-      );
-      setDigitalReservations([]);
-    }
-    if (publizonErrorReservations && !isSuccessPublizonReservations) {
-      setDigitalReservations([]);
-    }
-  }, [
-    isSuccessPublizonReservations,
-    publizonErrorReservations,
-    publizonReservations
-  ]);
-
-  useEffect(() => {
-    if (physicalLoans !== null && digitalLoans !== null) {
-      const newestLoan = sortByLoanDate([
-        ...physicalLoans,
-        ...digitalLoans
-      ]).reverse();
+    if (physicalLoans !== null) {
+      const newestLoan = sortByLoanDate([...physicalLoans]).reverse();
       if (newestLoan.length > 0) {
         setLoanForRecommender(newestLoan[0]);
       }
     }
-    if (physicalReservations !== null && digitalReservations !== null) {
+    if (physicalReservations !== null) {
       const newestReservation = sortByReservationDate([
-        ...physicalReservations,
-        ...digitalReservations
+        ...physicalReservations
       ]).reverse();
       if (newestReservation.length > 0) {
         setReservationForRecommender(newestReservation[0]);
       }
     }
-  }, [
-    digitalLoans,
-    digitalReservations,
-    physicalLoans,
-    physicalReservations,
-    setLoanForRecommender
-  ]);
+  }, [physicalLoans, physicalReservations, setLoanForRecommender]);
 
-  useEffect(() => {
-    if (publizonLoans && publizonLoans.loans) {
-      setDigitalLoans(mapPublizonLoanToLoanType(publizonLoans.loans));
-      setDigitalLoans([]);
-    }
-    if (publizonErrorLoans && !isSuccessPublizonLoans) {
-      setDigitalLoans([]);
-    }
-  }, [isSuccessPublizonLoans, publizonLoans, publizonErrorLoans]);
-
-  const stillLoading =
-    fbsReservationsLoading ||
-    publizonReservationsLoading ||
-    publizonLoansLoading ||
-    fbsLoansLoading;
+  const stillLoading = fbsReservationsLoading || fbsLoansLoading;
 
   return (
     <div className="recommender">
