@@ -10,6 +10,21 @@ interface PayloadProps {
 interface StateProps {
   modalIds: string[];
 }
+const focusContainerArray: Element[] = [];
+const storeFocusElement = (elementToStore?: Element) => {
+  if (elementToStore) {
+    return focusContainerArray.push(elementToStore);
+  }
+  return false;
+};
+
+const returnFocusElement = () => {
+  const element = focusContainerArray.pop() as HTMLElement;
+  if (element) {
+    element.focus();
+  }
+  return element;
+};
 const modalSlice = createSlice({
   name: "modal",
   initialState: { modalIds: [] },
@@ -31,6 +46,11 @@ const modalSlice = createSlice({
           );
         }
       }
+      const { activeElement } = document;
+      // Prevent body from double triggering focus store when url contains modalId
+      if (activeElement && activeElement.tagName !== "BODY") {
+        storeFocusElement(activeElement);
+      }
     },
     closeModal(state: StateProps, action: PayloadProps) {
       state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
@@ -39,6 +59,7 @@ const modalSlice = createSlice({
         .get("modal")
         ?.replace(action.payload.modalId, "");
       searchParams.set("modal", newSearchParams || "");
+      returnFocusElement();
     }
   }
 });

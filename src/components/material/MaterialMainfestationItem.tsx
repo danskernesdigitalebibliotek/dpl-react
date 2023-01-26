@@ -108,7 +108,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestText={materialTypes[0]?.specific}
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
-          isbn={identifiers?.[0]?.value ?? ""}
+          isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
         />
       </div>
@@ -149,7 +149,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
-          manifestation={manifestation}
+          manifestations={[manifestation]}
           size="small"
           workId={workId}
         />

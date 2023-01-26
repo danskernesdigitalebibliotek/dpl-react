@@ -1,25 +1,28 @@
 import * as React from "react";
+import { getAllIdentifiers } from "../../../apps/material/helper";
+import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
+import { getAllPids } from "../../../core/utils/helpers/general";
 import { Manifestation } from "../../../core/utils/types/entities";
+import { hasCorrectAccessType } from "../material-buttons/helper";
 import MaterialAvailabilityTextOnline from "./online/MaterialAvailabilityTextOnline";
 import MaterialAvailabilityTextPhysical from "./physical/MaterialAvailabilityTextPhysical";
 
 interface Props {
-  manifestation: Manifestation;
+  manifestations: Manifestation[];
 }
 
-const MaterialAvailabilityText: React.FC<Props> = ({
-  manifestation,
-  manifestation: { pid, identifiers }
-}) => {
+const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   return (
     <>
-      {manifestation.accessTypes.map((item) => {
-        if (item.code === "PHYSICAL")
-          return <MaterialAvailabilityTextPhysical pid={pid} />;
-        if (item.code === "ONLINE" && identifiers.length > 0)
-          return <MaterialAvailabilityTextOnline isbn={identifiers[0].value} />;
-        return null;
-      })}
+      {hasCorrectAccessType(AccessTypeCode.Physical, manifestations) && (
+        <MaterialAvailabilityTextPhysical pids={getAllPids(manifestations)} />
+      )}
+      {hasCorrectAccessType(AccessTypeCode.Online, manifestations) &&
+        getAllIdentifiers(manifestations).length > 0 && (
+          <MaterialAvailabilityTextOnline
+            isbns={getAllIdentifiers(manifestations)}
+          />
+        )}
     </>
   );
 };

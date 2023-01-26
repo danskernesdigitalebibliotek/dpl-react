@@ -47,6 +47,7 @@ describe("Material - Order digital copy", () => {
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
     );
+    cy.createFakeAuthenticatedSession();
   });
 
   it("render a material that can be ordered as a digital copy", () => {

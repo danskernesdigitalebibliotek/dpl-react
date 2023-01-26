@@ -18,7 +18,7 @@ export interface AvailabilityLabelProps {
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
   dataCy?: string;
-  isbn: string;
+  isbns: string[];
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -30,7 +30,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbn
+  isbns
 }) => {
   const { track } = useStatistics();
   const t = useText();
@@ -38,7 +38,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const { isAvailable } = useAvailabilityData({
     accessTypes,
     faustIds,
-    isbn
+    isbn: isbns ? isbns[0] : null
   });
 
   const availabilityText = isAvailable ? t("available") : t("unavailable");

@@ -3,12 +3,21 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
+import { withConfig } from "../../../core/utils/config";
 
 export interface LoanListEntryConfigProps {
-  fbsBaseUrlConfig: string;
+  thresholdConfig: string;
+}
+export interface LoanListEntryUrlProps {
+  fbsBaseUrl: string;
   materialOverdueUrl: string;
   feesPageUrl: string;
-  publizonBaseUrlConfig: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
+  thresholdConfig: string;
 }
 
 export interface LoanListEntryTextProps {
@@ -69,7 +78,8 @@ export interface LoanListEntryTextProps {
 
 export interface LoanListEntryWithPageSizeProps
   extends LoanListEntryTextProps,
-    LoanListEntryConfigProps {
+    LoanListEntryConfigProps,
+    LoanListEntryUrlProps {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
@@ -88,4 +98,4 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default withUrls(withText(LoanListEntry));
+export default withConfig(withUrls(withText(LoanListEntry)));
