@@ -30,7 +30,6 @@ const LikeThisList: FC<LikeThisListProps & MaterialProps> = ({
   const { data: byAuthorData } = useSearchWithPaginationQuery({
     limit: 4,
     q: {
-      // todo obviously figure out what this should be
       all: material?.firstAuthor
     },
     offset: 0
