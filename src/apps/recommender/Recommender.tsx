@@ -8,14 +8,12 @@ import {
   mapFBSLoanToLoanType,
   mapFBSReservationToReservationType
 } from "../../core/utils/helpers/list-mapper";
-import { useText } from "../../core/utils/text";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import InspirationRecommender from "./InspirationRecommender";
 import RecommendList from "./RecommendList";
 
 const Recommender: FC = () => {
-  const t = useText();
   const [loanForRecommender, setLoanForRecommender] = useState<LoanType | null>(
     null
   );
