@@ -89,6 +89,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               type="button"
               className="list-reservation__note"
               onClick={openLoanDetailsModalHandler}
+              aria-label={
+                title
+                  ? t("groupModalGoToMaterialAriaLabelText", {
+                      placeholders: { "@label": title }
+                    })
+                  : ""
+              }
             >
               {t("groupModalGoToMaterialText")}
             </button>
