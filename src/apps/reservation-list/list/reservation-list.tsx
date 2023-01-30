@@ -9,8 +9,7 @@ import {
 } from "../utils/helpers";
 import {
   getModalIds,
-  getReadyForPickup,
-  getScrollClass
+  getReadyForPickup
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
