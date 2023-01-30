@@ -31,8 +31,8 @@ const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
 
   return (
     <>
-      {numberInQueueText && numberInQueueText}
-      {materialsInStockInfoText && materialsInStockInfoText}
+      {numberInQueueText && `${numberInQueueText} `}
+      {materialsInStockInfoText && `${materialsInStockInfoText} `}
       {materialReservationInfoText && materialReservationInfoText}
     </>
   );
