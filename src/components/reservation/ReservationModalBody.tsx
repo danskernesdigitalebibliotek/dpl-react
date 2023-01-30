@@ -197,7 +197,6 @@ export const ReservationModalBody = ({
                   sticky
                   type="info"
                   text={t("materialIsAvailableInAnotherEditionText", {
-                    count: otherManifestationPreferred.reservations,
                     placeholders: {
                       "@title": otherManifestationPreferred.titles.main[0],
                       "@authorAndYear":
