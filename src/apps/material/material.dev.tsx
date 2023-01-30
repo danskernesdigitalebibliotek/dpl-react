@@ -253,7 +253,7 @@ export default {
     materialsInStockInfoText: {
       name: "Materials in stock info text",
       defaultValue:
-        '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock. "]}',
+        '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock."]}',
       control: { type: "text" }
     },
     materialReservationInfoText: {
@@ -427,7 +427,7 @@ export default {
     },
     numberInQueueText: {
       name: "Number in queue text",
-      defaultValue: "You are number @number in the queue. ",
+      defaultValue: "You are number @number in the queue.",
       control: { type: "text" }
     },
     alreadyReservedText: {
