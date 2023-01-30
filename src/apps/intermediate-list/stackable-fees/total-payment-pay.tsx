@@ -67,14 +67,18 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
             </>
           }
         />
-        <button
-          type="button"
-          className={paymentButtonClass}
-          onClick={showPaymentButton ? openIntermediatePaymentModal : undefined}
-          disabled={!showPaymentButton}
-        >
-          {t("payText")}
-        </button>
+        {!prePaymentTypeChange && !check && (
+          <button
+            type="button"
+            className={paymentButtonClass}
+            onClick={
+              showPaymentButton ? openIntermediatePaymentModal : undefined
+            }
+            disabled={!showPaymentButton}
+          >
+            {t("payText")}
+          </button>
+        )}
         {!prePaymentTypeChange && check && (
           <button
             type="button"
