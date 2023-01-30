@@ -26,7 +26,8 @@ import {
   getWorkDescriptionListData,
   getInfomediaIds,
   divideManifestationsByMaterialType,
-  getBestMaterialTypeForWork
+  getBestMaterialTypeForWork,
+  getManifestationsOrderByTypeAndYear
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -58,6 +59,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+
   const { track } = useStatistics();
   useDeepCompareEffect(() => {
     if (data?.work?.genreAndForm) {
@@ -174,19 +176,19 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         disclosureIconExpandAltText=""
         dataCy="material-editions-disclosure"
       >
-        {manifestations
-          .sort((a, b) =>
-            a.materialTypes[0].specific > b.materialTypes[0].specific ? 1 : -1
-          )
-          .map((manifestation: Manifestation) => {
-            return (
-              <MaterialMainfestationItem
-                key={manifestation.pid}
-                manifestation={manifestation}
-                workId={wid}
-              />
-            );
-          })}
+        <>
+          {getManifestationsOrderByTypeAndYear(manifestations).map(
+            (manifestation: Manifestation) => {
+              return (
+                <MaterialMainfestationItem
+                  key={manifestation.pid}
+                  manifestation={manifestation}
+                  workId={wid}
+                />
+              );
+            }
+          )}
+        </>
       </Disclosure>
       <Disclosure
         mainIconPath={Receipt}

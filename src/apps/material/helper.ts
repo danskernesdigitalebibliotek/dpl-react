@@ -1,4 +1,4 @@
-import { compact } from "lodash";
+import { compact, groupBy } from "lodash";
 import {
   constructModalId,
   creatorsToString,
@@ -21,6 +21,28 @@ import MaterialType from "../../core/utils/types/material-type";
 
 export const getLatestWorkManifestation = (work: Work) => {
   return work.manifestations.latest as Manifestation;
+};
+
+export const getManifestationsOrderByTypeAndYear = (
+  manifestations: Manifestation[]
+) => {
+  const orderedByYear = orderManifestationsByYear(manifestations);
+
+  const materialsMappedBytype = groupBy(
+    orderedByYear,
+    "materialTypes[0].specific"
+  );
+
+  return (
+    Object.keys(materialsMappedBytype)
+      // Sort the material types alphabetically.
+      .sort()
+      // Create a new array by iterating over the sorted keys and
+      // combining the materials from each type into a single array.
+      .reduce<Manifestation[]>((acc, key) => {
+        return [...acc, ...materialsMappedBytype[key]];
+      }, [])
+  );
 };
 
 export const filterManifestationsByType = (
