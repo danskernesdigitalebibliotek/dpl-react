@@ -3,6 +3,7 @@ import Recommender from "./Recommender";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
+import GuardedApp from "../../components/guarded-app";
 
 export interface RecommenderProps {
   emptyRecommenderSearchConfig: string;
@@ -22,6 +23,10 @@ export interface RecommenderProps {
   removeFromFavoritesAriaLabelText: string;
 }
 
-const RecommenderEntry: FC<RecommenderProps> = () => <Recommender />;
+const RecommenderEntry: FC<RecommenderProps> = () => (
+  <GuardedApp app="recommender">
+    <Recommender />
+  </GuardedApp>
+);
 
 export default withUrls(withConfig(withText(RecommenderEntry)));
