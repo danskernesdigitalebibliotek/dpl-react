@@ -30,10 +30,12 @@ export const getManifestationsOrderByTypeAndYear = (
 
   const materialsMappedBytype = groupBy(
     orderedByYear,
-    "materialTypes[0].specific"
+    // all manifestations that not have a material type will be grouped under "unknown"
+    (m) => m?.materialTypes[0]?.specific ?? "unknown"
   );
 
   return (
+    // Get the keys for each material type.
     Object.keys(materialsMappedBytype)
       // Sort the material types alphabetically.
       .sort()
