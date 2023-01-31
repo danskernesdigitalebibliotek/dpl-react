@@ -66,9 +66,8 @@ const Recommender: FC = () => {
       }
     }
     if (physicalReservations !== null) {
-      const newestReservation = sortByReservationDate([
-        ...physicalReservations
-      ]).reverse();
+      const newestReservation =
+        sortByReservationDate(physicalReservations).reverse();
       if (newestReservation.length > 0) {
         setReservationForRecommender(newestReservation[0]);
       }
