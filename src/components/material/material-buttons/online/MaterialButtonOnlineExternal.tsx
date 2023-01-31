@@ -49,7 +49,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   size,
   trackOnlineView,
   manifestations,
-  dataCy = "material-buttons-online-external"
+  dataCy = "material-button-online-external"
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
