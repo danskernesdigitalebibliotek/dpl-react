@@ -29,14 +29,7 @@ fragment ManifestationsSimpleFields on Manifestation {
     display
     __typename
   }
-  hostPublication {
-    title
-    creator
-    publisher
-    year {
-      year
-    }
-  }
+  publisher
   languages {
     main {
       display
@@ -59,6 +52,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   physicalDescriptions {
     numberOfPages
+    playingTime
   }
   materialTypes {
     specific
@@ -91,6 +85,9 @@ fragment ManifestationsSimpleFields on Manifestation {
   shelfmark {
     postfix
     shelfmark
+  }
+  workYear {
+    year
   }
 }
 

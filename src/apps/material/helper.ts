@@ -1,9 +1,6 @@
 import { compact } from "lodash";
 import {
   constructModalId,
-  creatorsToString,
-  filterCreators,
-  flattenCreators,
   getMaterialTypes,
   getManifestationType,
   orderManifestationsByYear
@@ -19,9 +16,10 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialType from "../../core/utils/types/material-type";
 
-export const getLatestWorkManifestation = (work: Work) => {
-  return work.manifestations.latest as Manifestation;
-};
+export const getWorkManifestation = (
+  work: Work,
+  type: keyof Work["manifestations"]
+) => work.manifestations[type];
 
 export const filterManifestationsByType = (
   type: string,
@@ -42,7 +40,69 @@ export const getManifestationsFromType = (
   return allManifestationsThatMatchType;
 };
 
-export const getWorkDescriptionListData = ({
+export const getManifestationPlayingTime = (manifestation: Manifestation) => {
+  return manifestation.physicalDescriptions?.[0]?.playingTime ?? "";
+};
+
+export const getManifestationEdition = (manifestation: Manifestation) => {
+  return manifestation.edition?.summary ?? "";
+};
+
+export const getManifestationGenreAndForm = (manifestation: Manifestation) => {
+  return manifestation.genreAndForm.join(" / ") ?? "";
+};
+
+export const getManifestationPublisher = (manifestation: Manifestation) => {
+  return manifestation.publisher.join(" / ") ?? "";
+};
+
+export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
+  return manifestation.materialTypes?.[0].specific ?? "";
+};
+
+export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
+  return manifestation.physicalDescriptions?.[0]?.numberOfPages
+    ? String(manifestation.physicalDescriptions?.[0].numberOfPages)
+    : "";
+};
+
+export const getManifestationAudience = (manifestation: Manifestation) => {
+  return manifestation.audience?.generalAudience[0] ?? "";
+};
+
+export const getManifestationIsbn = (manifestation: Manifestation) => {
+  return manifestation.identifiers?.[0]?.value ?? "";
+};
+
+export const getManifestationLanguages = (manifestation: Manifestation) => {
+  return (
+    manifestation.languages?.main
+      ?.map((language) => language.display)
+      .join(", ") ?? ""
+  );
+};
+
+export const getManifestationFirstEditionYear = (
+  manifestation: Manifestation
+) => {
+  return manifestation.workYear?.year
+    ? String(manifestation.workYear.year)
+    : "";
+};
+
+export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
+  return manifestation.titles?.original?.[0] ?? "";
+};
+
+export const getManifestationContributors = (manifestation: Manifestation) => {
+  return (
+    manifestation.contributors
+      .map((contributor) => contributor.display)
+      .join(" / ") ?? ""
+  );
+};
+
+export const getDetailsListData = ({
   manifestation,
   work,
   t
@@ -51,77 +111,81 @@ export const getWorkDescriptionListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
-  const { titles, mainLanguages, creators, workYear } = work;
-  const allLanguages = mainLanguages
-    .map((language) => language.display)
-    .join(", ");
-  const fallBackManifestation = getLatestWorkManifestation(work);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const fallBackManifestation = getWorkManifestation(
+    work,
+    "bestRepresentation"
+  ) as Manifestation;
 
   return [
     {
-      label: t("typeText"),
+      label: t("detailsListLanguageText"),
+      value: getManifestationLanguages(manifestation ?? fallBackManifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListPlayTimeText"),
+      value: getManifestationPlayingTime(
+        manifestation ?? fallBackManifestation
+      ),
+      type: "standard"
+    },
+    {
+      label: t("detailsListEditionText"),
+      value: getManifestationEdition(manifestation ?? fallBackManifestation),
+      type: "standard"
+    },
+
+    {
+      label: t("detailsListGenreAndFormText"),
+      value: getManifestationGenreAndForm(
+        manifestation ?? fallBackManifestation
+      ),
+      type: "standard"
+    },
+    {
+      label: t("detailsListOriginalTitleText"),
+      value: getManifestationOriginalTitle(
+        manifestation ?? fallBackManifestation
+      ),
+      type: "standard"
+    },
+    {
+      label: t("detailsListPublisherText"),
+      value: getManifestationPublisher(manifestation ?? fallBackManifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListFirstEditionYearText"),
       value:
-        (manifestation?.materialTypes?.[0]?.specific && "") ||
-        (fallBackManifestation?.materialTypes?.[0]?.specific && ""),
+        getManifestationFirstEditionYear(
+          manifestation ?? fallBackManifestation
+        ) ?? t("detailsListFirstEditionYearUnknownText"),
       type: "standard"
     },
     {
-      label: t("languageText"),
-      value: allLanguages,
+      label: t("detailsListTypeText"),
+      value: getManifestationMaterialTypes(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
-      label: t("genreAndFormText"),
-      value:
-        (manifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
-      type: "standard"
-    },
-    { label: t("contributorsText"), value: creatorsText, type: "link" },
-    {
-      label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear.year}` : "",
-      type: "standard"
+      label: t("detailsListContributorsText"),
+      value: getManifestationContributors(
+        manifestation ?? fallBackManifestation
+      ),
+      type: "link"
     },
     {
-      label: t("isbnText"),
-      value:
-        (manifestation?.identifiers?.[0]?.value ?? "") ||
-        (fallBackManifestation?.identifiers?.[0]?.value ?? ""),
+      label: t("detailsListScopeText"),
+      value: getManifestationNumberOfPages(
+        manifestation ?? fallBackManifestation
+      ),
       type: "standard"
     },
     {
-      label: t("editionText"),
-      value:
-        (manifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation?.edition?.summary ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("scopeText"),
-      value:
-        String(manifestation?.physicalDescriptions?.[0]?.numberOfPages ?? "") ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ),
-      type: "standard"
-    },
-    {
-      label: t("publisherText"),
-      value:
-        (manifestation?.hostPublication?.publisher ?? "") ||
-        (fallBackManifestation?.hostPublication?.publisher ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("audienceText"),
-      value:
-        (manifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
+      label: t("detailsListAudienceText"),
+      value: getManifestationAudience(manifestation ?? fallBackManifestation),
       type: "standard"
     }
   ];
