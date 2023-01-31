@@ -1,24 +1,25 @@
 import { useState, useEffect } from "react";
+import {
+  getAllFaustIds,
+  convertPostIdToFaustId
+} from "../../core/utils/helpers/general";
 import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { AvailabilityV3 } from "../../core/fbs/model";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { FaustId, Pid } from "../../core/utils/types/ids";
+import { Pid } from "../../core/utils/types/ids";
 
 type ManifestationWithAvailability = Manifestation & AvailabilityV3;
 
 const useAlternativeAvailableManifestation = (
   work: Work,
-  currentManifestationPid: Pid
+  currentManifestationPids: Pid[]
 ) => {
   const [isOtherManifestationPreferred, setIsOtherManifestationPreferred] =
     useState(false);
   const [otherManifestationPreferred, setOtherManifestationPreferred] =
     useState<ManifestationWithAvailability | null>(null);
 
-  const faustIds = work.manifestations.all.map((manifestation) =>
-    convertPostIdToFaustId(manifestation.pid as Pid)
-  ) as FaustId[];
+  const faustIds = getAllFaustIds(work.manifestations.all);
 
   const { data: availabilityData } = useGetAvailabilityV3({
     recordid: faustIds
@@ -51,7 +52,7 @@ const useAlternativeAvailableManifestation = (
         return;
       }
 
-      if (leastReservedManifestation.pid !== currentManifestationPid) {
+      if (!currentManifestationPids.includes(leastReservedManifestation.pid)) {
         setIsOtherManifestationPreferred(true);
         setOtherManifestationPreferred({
           ...leastReservedManifestation,
@@ -59,7 +60,7 @@ const useAlternativeAvailableManifestation = (
         });
       }
     }
-  }, [availabilityData, currentManifestationPid, work]);
+  }, [availabilityData, currentManifestationPids, work]);
 
   return { isOtherManifestationPreferred, otherManifestationPreferred };
 };

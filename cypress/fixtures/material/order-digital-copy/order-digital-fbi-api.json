@@ -107,14 +107,7 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": {
-              "title": "Dansk noter",
-              "creator": null,
-              "publisher": null,
-              "year": {
-                "year": 2010
-              }
-            },
+            "publisher": [],
             "languages": {
               "main": [
                 {
@@ -135,7 +128,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 21
+                "numberOfPages": 21,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -186,14 +180,7 @@
               "__typename": "Person"
             }
           ],
-          "hostPublication": {
-            "title": "Dansk noter",
-            "creator": null,
-            "publisher": null,
-            "year": {
-              "year": 2010
-            }
-          },
+          "publisher": [],
           "languages": {
             "main": [
               {
@@ -214,7 +201,8 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 21
+              "numberOfPages": 21,
+              "playingTime": null
             }
           ],
           "accessTypes": [

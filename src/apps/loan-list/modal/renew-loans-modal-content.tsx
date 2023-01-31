@@ -101,8 +101,8 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
         />
         <Button
           label={t("groupModalButtonText", {
-            count: renewableMaterials,
-            placeholders: { "@count": renewableMaterials }
+            count: materialsToRenew.length,
+            placeholders: { "@count": materialsToRenew.length }
           })}
           buttonType="none"
           id="renew-several"

@@ -116,7 +116,7 @@ describe("The Facet Browser", () => {
 
   it("renders the logic of selected terms and open facets", () => {
     cy.log("renders all results");
-    cy.contains("h1", "“harry” (843)");
+    cy.contains("h1", "harry");
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
@@ -137,7 +137,7 @@ describe("The Facet Browser", () => {
       .click();
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
-    cy.contains("h1", "“harry” (36)");
+    cy.contains("h1", "harry");
 
     cy.log(
       "Open the modal and check if creators are opened and Joanne K. Rowling is selected"

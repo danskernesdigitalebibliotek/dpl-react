@@ -1,3 +1,4 @@
+import { AvailabilityV3 } from "../../../core/fbs/model/availabilityV3";
 import {
   Access,
   AccessTypeCode
@@ -6,32 +7,51 @@ import { Manifestation } from "../../../core/utils/types/entities";
 
 export const hasCorrectAccess = (
   desiredAccess: Access["__typename"],
-  manifest: Manifestation
+  manifestations: Manifestation[]
 ) => {
-  return manifest.access.some(({ __typename }) => __typename === desiredAccess);
+  return manifestations.some((manifestation) => {
+    return manifestation.access.some(
+      ({ __typename }) => __typename === desiredAccess
+    );
+  });
 };
 
 export const hasCorrectAccessType = (
   desiredAccessType: AccessTypeCode,
-  manifest: Manifestation
+  manifestations: Manifestation[]
 ) => {
-  return manifest.accessTypes.some((type) => type.code === desiredAccessType);
+  return manifestations.some((manifestation) => {
+    return manifestation.accessTypes.some(
+      (type) => type.code === desiredAccessType
+    );
+  });
 };
 
 export const hasCorrectMaterialType = (
   desiredMaterialType: string,
-  manifestation: Manifestation
+  manifestations: Manifestation[]
 ) => {
-  return manifestation.materialTypes.some(
-    (type) => type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
+  return manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some(
+      (type) =>
+        type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
+    );
+  });
+};
+
+export const isArticle = (manifestations: Manifestation[]) => {
+  return (
+    hasCorrectMaterialType("tidsskriftsartikel", manifestations) ||
+    hasCorrectMaterialType("avisartikel", manifestations)
   );
 };
 
-export const isArticle = (manifestation: Manifestation) => {
-  return (
-    hasCorrectMaterialType("tidsskriftsartikel", manifestation) ||
-    hasCorrectMaterialType("avisartikel", manifestation)
-  );
+export const areAnyReservable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.reservable);
+};
+
+export const areAnyAvailable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.available);
 };
 
 export default {};

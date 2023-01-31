@@ -43,7 +43,9 @@
               }
             ],
             "creators": [],
-            "hostPublication": null,
+            "publisher": [
+              "Egmont Magasiner"
+            ],
             "languages": {
               "main": [
                 {
@@ -108,7 +110,9 @@
             }
           ],
           "creators": [],
-          "hostPublication": null,
+          "publisher": [
+            "Egmont Magasiner"
+          ],
           "languages": {
             "main": [
               {

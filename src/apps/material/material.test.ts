@@ -1,7 +1,7 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
-  it("Does the Material have title?", () => {
+  it("Renders a title", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -10,7 +10,7 @@ describe("Material", () => {
     cy.get(".text-header-h1").should("be.visible");
   });
 
-  it("Check that cover has a src", () => {
+  it("Renders a cover with a source", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -20,7 +20,7 @@ describe("Material", () => {
     cy.get("img").should("have.attr", "src").and("match", coverUrlPattern);
   });
 
-  it("Does the material have favourite buttons?", () => {
+  it("Renders favorite buttons", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -33,7 +33,7 @@ describe("Material", () => {
     );
   });
 
-  it("Does the material have horizontal lines?", () => {
+  it("Renders horizontal lines", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -46,7 +46,7 @@ describe("Material", () => {
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
   });
 
-  it("Does the material have authors?", () => {
+  it("Renders authors", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -58,7 +58,7 @@ describe("Material", () => {
       .and("contain", "Lucinda Riley");
   });
 
-  it("Does a material have an availability label", () => {
+  it("Renders exactly 1 availability label per material type", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -69,13 +69,26 @@ describe("Material", () => {
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
-      .eq(0)
+      .should("have.length", 1);
+  });
+
+  it("Shows the book availability as unavailable", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("availability-label")
+      .find('[data-cy="availability-label-type"]')
+      .contains("bog")
       .parent()
       .find('[data-cy="availability-label-status"]')
       .should("have.text", "unavailable");
   });
 
-  it("Open material details", () => {
+  it("Can open material details", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -86,7 +99,7 @@ describe("Material", () => {
     cy.getBySel("material-details-disclosure").click();
   });
 
-  it("Does the material have a editions with a buttton to reserved", () => {
+  it("Renders editions with a reservation button", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -104,7 +117,7 @@ describe("Material", () => {
       });
   });
 
-  it("Opens modal by clicking on reserver button (reserve book) and close it with the x bottom", () => {
+  it("Opens modal by clicking on reservation button and closes it with the x button", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -131,7 +144,7 @@ describe("Material", () => {
     ).click();
   });
 
-  it("Clicking on Aprove resevation (Godkend reservation and close modal with Ok button)", () => {
+  it("Can open reservation modal, approve a reservation, and close the modal using buttons)", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
