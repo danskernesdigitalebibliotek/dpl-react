@@ -9,7 +9,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     emptyRecommenderSearchConfig: {
-      defaultValue: "",
+      defaultValue: "Mimbo jimbo",
       control: { type: "text" }
     },
     recommenderTitleLoansText: {
