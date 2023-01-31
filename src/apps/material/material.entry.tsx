@@ -77,6 +77,8 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsInputFieldDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
   numberDescriptionText: string;
+  addToFavoritesAriaLabelText: string;
+  removeFromFavoritesAriaLabelText: string;
   numberInQueueText: string;
   okButtonText: string;
   oneMonthText: string;
