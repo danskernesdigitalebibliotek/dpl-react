@@ -6,12 +6,13 @@ import {
 import { Manifestation } from "../../../core/utils/types/entities";
 
 export const hasCorrectAccess = (
-  desiredAccess: Access["__typename"],
+  desiredAccess: NonNullable<Access["__typename"]>,
   manifestations: Manifestation[]
 ) => {
   return manifestations.some((manifestation) => {
     return manifestation.access.some(
-      ({ __typename }) => __typename === desiredAccess
+      ({ __typename }) =>
+        __typename.toLowerCase() === desiredAccess.toLowerCase()
     );
   });
 };

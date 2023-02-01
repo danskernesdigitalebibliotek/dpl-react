@@ -8,6 +8,7 @@ import { getMaterialTypes } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
+import MaterialTypes from "../../../../core/utils/types/material-type";
 import { LinkNoStyle } from "../../../atoms/link-no-style";
 import { Button } from "../../../Buttons/Button";
 
@@ -25,13 +26,17 @@ export const getOnlineMaterialType = (
   sourceName: AccessUrl["origin"],
   materialTypes: MaterialType["specific"][]
 ) => {
-  if (sourceName.includes("ereol")) {
+  if (sourceName.toLowerCase().includes("ereol")) {
     return "ebook";
   }
-  if (sourceName.includes("filmstriben")) {
+  if (sourceName.toLowerCase().includes("filmstriben")) {
     return "emovie";
   }
-  if (materialTypes.find((element) => element.includes("lydbog"))) {
+  if (
+    materialTypes.find((element) =>
+      element.toLowerCase().includes(MaterialTypes.audioBookGeneric)
+    )
+  ) {
     return "audiobook";
   }
   return "unknown";
@@ -99,6 +104,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         size={size || "large"}
         iconClassNames="invert"
         onClick={trackOnlineView}
+        dataCy={dataCy}
       />
     </LinkNoStyle>
   );

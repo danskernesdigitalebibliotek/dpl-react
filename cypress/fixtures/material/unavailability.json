@@ -1,8 +1,8 @@
 [
   {
-    "available": true,
+    "available": false,
     "recordId": "52557240",
-    "reservable": true,
+    "reservable": false,
     "reservations": 2
   }
 ]

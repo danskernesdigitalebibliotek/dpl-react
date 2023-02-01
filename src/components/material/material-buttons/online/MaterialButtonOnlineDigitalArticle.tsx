@@ -30,7 +30,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
 
   return (
     <Button
-      label={t("orderDigitalCopy")}
+      label={t("orderDigitalCopyButtonText")}
       buttonType="none"
       variant="filled"
       disabled={false}
