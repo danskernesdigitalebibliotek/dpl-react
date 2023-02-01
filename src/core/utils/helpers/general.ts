@@ -170,7 +170,7 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanType[]) => {
+export const soryByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort((a, b) => {

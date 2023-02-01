@@ -5,7 +5,7 @@ import {
   getAmountOfRenewableLoans,
   getDueDatesLoan,
   getModalIds,
-  sortByLoanDate,
+  soryByDueDate,
   getScrollClass
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
@@ -88,7 +88,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       setPhysicalLoansDueDates(getDueDatesLoan(mapToLoanType));
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = soryByDueDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
     } else {
@@ -101,7 +101,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const mapToLoanType = mapPublizonLoanToLoanType(publizonData.loans);
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = soryByDueDate(mapToLoanType);
       setDigitalLoans(sortedByLoanDate);
     } else {
       setDigitalLoans([]);
