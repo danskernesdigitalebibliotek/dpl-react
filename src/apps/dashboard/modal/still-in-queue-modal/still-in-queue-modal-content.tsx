@@ -1,9 +1,16 @@
 import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
-import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
+import { element, object } from "prop-types";
+import {
+  useDeleteReservations,
+  useGetReservationsV2
+} from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import { getPhysicalReservations } from "../../../../core/utils/helpers/general";
-import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
+import {
+  useDeleteV1UserReservationsIdentifier,
+  useGetV1UserReservations
+} from "../../../../core/publizon/publizon";
 import { useText } from "../../../../core/utils/text";
 import {
   Reservation,
@@ -12,9 +19,16 @@ import {
 import QueuedReservationsList from "./queued-reservations-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 
-const StillInQueueModalContent: FC = () => {
+interface StillInQueueModalContentProps {
+  modalId: string;
+}
+const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
+  modalId
+}) => {
   const t = useText();
+  const { close } = useModalButtonHandler();
   const [
     physicalReservationsStillInQueue,
     setPhysicalReservationsStillInQueue
@@ -24,14 +38,23 @@ const StillInQueueModalContent: FC = () => {
   const { data: physicalReservations } = useGetReservationsV2();
   const { data: digitalReservations } =
     useGetV1UserReservations<ReservationListResult>();
-  const [allSelectableReservations, setAllSelectableReservations] =
-    useState<string[]>();
-  const [selectedReservations, setSelectedReservations] = useState<string[]>(
-    []
-  );
+  const [allSelectableReservations, setAllSelectableReservations] = useState<
+    {
+      [key: string]: string;
+    }[]
+  >();
+  const [selectedReservations, setSelectedReservations] = useState<
+    {
+      [key: string]: string;
+    }[]
+  >([]);
+  const { mutate: deletePhysicalReservation } = useDeleteReservations();
+  const { mutate: deleteDigitalReservation } =
+    useDeleteV1UserReservationsIdentifier();
   useEffect(() => {
     if (physicalReservations) {
       const reservations = getPhysicalReservations(physicalReservations);
+      console.log(reservations);
       if (reservations) {
         setPhysicalReservationsStillInQueue(reservations);
       }
@@ -45,12 +68,17 @@ const StillInQueueModalContent: FC = () => {
       !allSelectableReservations
     ) {
       const fausts = physicalReservationsStillInQueue.map((pr) => {
-        return pr.recordId;
+        return { [pr.recordId]: pr.reservationId } as unknown as {
+          [key: string]: string;
+        };
       });
       const idents = digitalReservationsStillInQueue.map((dr) => {
-        return dr.identifier;
+        return { [dr.identifier as string]: dr.identifier } as {
+          [key: string]: string;
+        };
       });
-      const selectableReservations = [...fausts, ...idents] as string[];
+      const selectableReservations = [...fausts, ...idents];
+
       if (selectableReservations.length > 0) {
         setAllSelectableReservations(selectableReservations);
       }
@@ -77,15 +105,18 @@ const StillInQueueModalContent: FC = () => {
     }
   };
   const setCustomSelection = useCallback(
-    (elementId: string | number) => {
-      if (selectedReservations.includes(elementId as string)) {
-        const filteredReservations = selectedReservations.filter((item) => {
-          return item !== elementId;
-        });
-        setSelectedReservations(filteredReservations);
+    (elementId: string, reservationId: string) => {
+      if (Object.keys(selectedReservations).includes(elementId as string)) {
+        // Slet element fra objekt
+        // sæt ny værdi
+        // setSelectedReservations();
       } else {
-        const updatedSelectedReservations = [...selectedReservations];
-        updatedSelectedReservations.push(elementId as string);
+        const updatedSelectedReservations = {
+          ...selectedReservations,
+          ...{
+            [elementId]: reservationId
+          }
+        };
         setSelectedReservations(updatedSelectedReservations);
       }
     },
@@ -96,6 +127,62 @@ const StillInQueueModalContent: FC = () => {
     if (selectedReservations.length > 0) {
       // Publizon
       // deleteV1UserReservationsIdentifier
+      selectedReservations.map((reservation) => {
+        switch (reservation.length) {
+          case "8": // Physical Loans
+            deletePhysicalReservation(
+              {
+                params: { reservationid: [Number(reservation)] }
+              },
+              {
+                onSuccess: () => {
+                  close(modalId);
+                },
+                // todo error handling, missing in figma
+                onError: () => {
+                  close(modalId);
+                }
+              }
+            );
+            break;
+          case "13": // Digital Loans
+            console.log("digitalLoan");
+            break;
+          default:
+            return false;
+        }
+        return false;
+      });
+      // deletePhysicalReservation(
+      //   {
+      //     params: { reservationid: [Number(reservation.faust)] }
+      //   },
+      //   {
+      //     onSuccess: () => {
+      //       queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+      //       close(modalId);
+      //     },
+      //     // todo error handling, missing in figma
+      //     onError: () => {
+      //       close(modalId);
+      //     }
+      //   }
+      // );
+      // deleteDigitalReservation(
+      //   {
+      //     identifier: reservation.identifier
+      //   },
+      //   {
+      //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      //     onSuccess: (result) => {
+      //       close(modalId);
+      //     },
+      //     // todo error handling, missing in figma
+      //     onError: () => {
+      //       close(modalId);
+      //     }
+      //   }
+      // );
       // FBS
       // deleteReservations
     }

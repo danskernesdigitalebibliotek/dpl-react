@@ -12,8 +12,11 @@ export interface QueuedReservationItemProps {
   numberInQueue: number;
   faust?: FaustId;
   identifier?: string;
-  selectedReservations: string[];
-  setCustomSelection: (elementId: string) => void;
+  selectedReservations: {
+    [key: string]: string;
+  }[];
+  setCustomSelection: (elementId: string, reservationId: string) => void;
+  reservationId: string;
 }
 
 const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
@@ -22,7 +25,8 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
   faust = "",
   identifier = "",
   selectedReservations,
-  setCustomSelection
+  setCustomSelection,
+  reservationId
 }) => {
   const t = useText();
   const { title, authors, year, materialType } = material || {};
@@ -33,9 +37,11 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
           <CheckBox
             id={faust || identifier}
             label=""
-            selected={selectedReservations.includes(faust || identifier)}
+            selected={Object.keys(selectedReservations).includes(
+              faust || identifier
+            )}
             onChecked={() => {
-              setCustomSelection(faust || identifier);
+              setCustomSelection(faust || identifier, reservationId);
             }}
           />
         </div>

@@ -18,8 +18,6 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
   selectedReservations,
   setCustomSelection
 }) => {
-  console.log(physicalReservations);
-  console.log(digitalReservations);
   return (
     <>
       {physicalReservations &&

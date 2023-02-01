@@ -158,7 +158,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         openDueDateModal={openDueDateModal}
       />
       <StillInQueueModal modalId="still-in-queue-modal">
-        <StillInQueueModalContent />
+        <StillInQueueModalContent modalId="still-in-queue-modal" />
       </StillInQueueModal>
       <ReadyToLoanModal modalId="ready-to-loan-modal">
         <ReadyToLoanModalContent />
