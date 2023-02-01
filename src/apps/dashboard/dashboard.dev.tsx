@@ -153,6 +153,12 @@ export default {
       },
       defaultValue: "Renewable (@count)"
     },
+    numberInLineText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Number @count in line"
+    },
     groupModalRenewLoanDeniedMaxRenewalsReachedText: {
       control: {
         type: "text"
@@ -205,6 +211,10 @@ export default {
     groupModalRenewLoanDeniedInterLibraryLoanText: {
       defaultValue:
         "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library",
+      control: { type: "text" }
+    },
+    pickUpLatestText: {
+      defaultValue: "Pick up before",
       control: { type: "text" }
     },
     // Config

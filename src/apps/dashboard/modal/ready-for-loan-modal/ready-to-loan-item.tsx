@@ -8,6 +8,7 @@ import fetchMaterial, {
   MaterialProps
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { dateFormatDefault } from "../../../../core/configuration/date-format.json";
+import { useText } from "../../../../core/utils/text";
 
 export interface ReadyToLoanItemProps {
   pickUpByDate: string | null;
@@ -25,6 +26,7 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
   selectedReservations,
   setCustomSelection
 }) => {
+  const t = useText();
   const { title, authors, year, materialType } = material || {};
   const formattedPickupDate = dayjs(pickUpByDate).format(dateFormatDefault);
 
@@ -54,7 +56,7 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--info ">
-            Hent senest {formattedPickupDate && formattedPickupDate}
+            {t("pickUpLatestText")} {formattedPickupDate && formattedPickupDate}
           </div>
         </div>
       </div>

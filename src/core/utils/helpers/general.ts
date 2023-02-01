@@ -298,7 +298,14 @@ export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
 export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
-  return [...list].filter(({ state }) => state === "readyForPickup");
+  const yesterday = dayjs().subtract(1, "day");
+  return [...list].filter(({ state, pickupDeadline }) => {
+    const deadline = dayjs(pickupDeadline);
+    if (deadline) {
+      return state === "readyForPickup" && deadline < yesterday;
+    }
+    return false;
+  });
 };
 
 export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {

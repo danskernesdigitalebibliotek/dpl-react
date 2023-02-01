@@ -3,7 +3,7 @@ import { FC } from "react";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import { Reservation } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
-import QueuedReservationItem from "./ready-to-loan-item";
+import ReadyToLoanItem from "./ready-to-loan-item";
 
 export interface ReadyToLoanListProps {
   physicalReservations?: ReservationDetailsV2[];
@@ -18,13 +18,15 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
   selectedReservations,
   setCustomSelection
 }) => {
+  console.log(physicalReservations);
+  console.log(digitalReservations);
   return (
     <>
       {physicalReservations &&
         physicalReservations.map((physicalReservation) => {
           const { recordId, expiryDate } = physicalReservation;
           return (
-            <QueuedReservationItem
+            <ReadyToLoanItem
               faust={recordId as FaustId}
               pickUpByDate={expiryDate}
               selectedReservations={selectedReservations}
@@ -37,7 +39,7 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
           const { identifier, expireDateUtc = "" } = digitalReservation;
           return (
             identifier && (
-              <QueuedReservationItem
+              <ReadyToLoanItem
                 identifier={identifier}
                 pickUpByDate={expireDateUtc}
                 selectedReservations={selectedReservations}

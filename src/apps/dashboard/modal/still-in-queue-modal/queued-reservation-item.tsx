@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import CheckBox from "../../../../components/checkbox/Checkbox";
+import { useText } from "../../../../core/utils/text";
 import { FaustId } from "../../../../core/utils/types/ids";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import fetchMaterial, {
@@ -8,7 +9,7 @@ import fetchMaterial, {
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
 
 export interface QueuedReservationItemProps {
-  numberInQueue: number | "";
+  numberInQueue: number;
   faust?: FaustId;
   identifier?: string;
   selectedReservations: string[];
@@ -23,6 +24,7 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
   selectedReservations,
   setCustomSelection
 }) => {
+  const t = useText();
   const { title, authors, year, materialType } = material || {};
   return (
     <li>
@@ -50,7 +52,10 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--neutral ">
-            NR. {numberInQueue} i køen
+            {t("numberInLineText", {
+              count: numberInQueue,
+              placeholders: { "@count": numberInQueue }
+            })}
           </div>
         </div>
       </div>

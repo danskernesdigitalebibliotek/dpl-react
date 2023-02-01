@@ -47,6 +47,8 @@ export interface DashBoardProps {
   groupModalRenewLoanDeniedReservedText: string;
   groupModalRenewLoanDeniedInterLibraryLoanText: string;
   thresholdConfig: string;
+  pickUpLatestText: string;
+  numberInLineText: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({
