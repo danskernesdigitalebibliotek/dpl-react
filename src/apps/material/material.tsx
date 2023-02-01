@@ -129,13 +129,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
-  if (isLoading) {
+  if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
-  }
-
-  // TODO: handle error if data is empty array.
-  if (!data?.work || !selectedManifestations) {
-    return <div>No work data</div>;
   }
 
   const {
