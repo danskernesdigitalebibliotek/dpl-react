@@ -4,7 +4,9 @@ import { FC } from "react";
 const FacetLineFiltersSkeleton: FC = () => {
   return (
     <div className="ssc mt-48">
-      <div className="ssc-head-line" />
+      <div className="ssc-head-line mb" />
+      <div className="ssc-head-line mb" />
+      <div className="ssc-head-line mb" />
     </div>
   );
 };
