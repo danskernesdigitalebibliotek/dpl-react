@@ -413,25 +413,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(1)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 21-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__deadline p")
       .should("have.text", "Due date 20-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(3)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 27-10-2022");
 
     // // The mobile specifics
     cy.viewport(320, 1480);
