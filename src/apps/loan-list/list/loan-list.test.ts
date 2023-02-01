@@ -320,19 +320,12 @@ describe("Loan list", () => {
     // todo Årgang
 
     // 2.b.iv.3. Link
-    // 2.b.iv.3.a. text: You will be charged a fee, when the item is returned
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .scrollIntoView()
       .find(".list-reservation__information div a")
       .should("exist");
-    // .should(
-    //   "have.text",
-    //   "You will be charged a fee, when the item is returned"
-    // )
-    // .should("have.attr", "href")
-    // .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
 
     // 2.b.iv.3.c. Only shown if loan is overdue
     cy.get(".list-reservation-container")
