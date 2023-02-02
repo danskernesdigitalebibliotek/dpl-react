@@ -47,6 +47,10 @@ fragment ManifestationsSimpleFields on Manifestation {
       display
     }
   }
+  dateFirstEdition {
+    display
+    year
+  }
   audience {
     generalAudience
   }

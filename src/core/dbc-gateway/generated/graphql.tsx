@@ -303,7 +303,7 @@ export enum FacetField {
   ChildrenOrAdults = "childrenOrAdults",
   Creators = "creators",
   FictionNonfiction = "fictionNonfiction",
-  FictionalCharacter = "fictionalCharacter",
+  FictionalCharacters = "fictionalCharacters",
   GenreAndForm = "genreAndForm",
   MainLanguages = "mainLanguages",
   MaterialTypes = "materialTypes",
@@ -1014,7 +1014,14 @@ export type Review = {
 export type ReviewElement = {
   __typename?: "ReviewElement";
   content?: Maybe<Scalars["String"]>;
+  /**
+   * This is a paragraph containing markup where links to manifestations
+   * can be inserted. For instance '"Axel Steens nye job minder om [870970-basis:20307021] fra ...'.
+   * Relevant manifestations are located in the manifestations field.
+   */
+  contentSubstitute?: Maybe<Scalars["String"]>;
   heading?: Maybe<Scalars["String"]>;
+  /** Manifestations that can be used to generate and insert links into 'contentSubsitute'. */
   manifestations?: Maybe<Array<Maybe<Manifestation>>>;
   type?: Maybe<ReviewElementType>;
 };
@@ -1057,7 +1064,7 @@ export type SearchFilters = {
   creators?: InputMaybe<Array<Scalars["String"]>>;
   department?: InputMaybe<Array<Scalars["String"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
-  fictionalCharacter?: InputMaybe<Array<Scalars["String"]>>;
+  fictionalCharacters?: InputMaybe<Array<Scalars["String"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
   location?: InputMaybe<Array<Scalars["String"]>>;
   mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
@@ -1481,6 +1488,11 @@ export type GetMaterialQuery = {
             display: string;
           } | null;
         } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1556,6 +1568,11 @@ export type GetMaterialQuery = {
             display: string;
           } | null;
         } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1630,6 +1647,11 @@ export type GetMaterialQuery = {
             __typename?: "PublicationYear";
             display: string;
           } | null;
+        } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
         } | null;
         audience?: {
           __typename?: "Audience";
@@ -1784,6 +1806,11 @@ export type SearchWithPaginationQuery = {
               display: string;
             } | null;
           } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1865,6 +1892,11 @@ export type SearchWithPaginationQuery = {
               display: string;
             } | null;
           } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1945,6 +1977,11 @@ export type SearchWithPaginationQuery = {
               __typename?: "PublicationYear";
               display: string;
             } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
           } | null;
           audience?: {
             __typename?: "Audience";
@@ -2108,6 +2145,11 @@ export type ManifestationsSimpleFragment = {
         display: string;
       } | null;
     } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -2180,6 +2222,11 @@ export type ManifestationsSimpleFragment = {
         display: string;
       } | null;
     } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -2251,6 +2298,11 @@ export type ManifestationsSimpleFragment = {
         __typename?: "PublicationYear";
         display: string;
       } | null;
+    } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
     } | null;
     audience?: {
       __typename?: "Audience";
@@ -2325,6 +2377,11 @@ export type ManifestationsSimpleFieldsFragment = {
       __typename?: "PublicationYear";
       display: string;
     } | null;
+  } | null;
+  dateFirstEdition?: {
+    __typename?: "PublicationYear";
+    display: string;
+    year?: number | null;
   } | null;
   audience?: { __typename?: "Audience"; generalAudience: Array<string> } | null;
   physicalDescriptions: Array<{
@@ -2448,6 +2505,11 @@ export type WorkSmallFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2523,6 +2585,11 @@ export type WorkSmallFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2597,6 +2664,11 @@ export type WorkSmallFragment = {
           __typename?: "PublicationYear";
           display: string;
         } | null;
+      } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
       } | null;
       audience?: {
         __typename?: "Audience";
@@ -2764,6 +2836,11 @@ export type WorkMediumFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2839,6 +2916,11 @@ export type WorkMediumFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2913,6 +2995,11 @@ export type WorkMediumFragment = {
           __typename?: "PublicationYear";
           display: string;
         } | null;
+      } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
       } | null;
       audience?: {
         __typename?: "Audience";
@@ -3003,6 +3090,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     publicationYear {
       display
     }
+  }
+  dateFirstEdition {
+    display
+    year
   }
   audience {
     generalAudience
