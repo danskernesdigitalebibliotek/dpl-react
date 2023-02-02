@@ -345,4 +345,26 @@ export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
+export const getReleaseYear = (work: Work) => {
+  const existsOnWork = work.fictionNonfiction;
+  const { latest, bestRepresentation } = work.manifestations;
+  switch (materialIsFiction(existsOnWork ? work : bestRepresentation)) {
+    case true:
+      return (
+        work.workYear?.year ||
+        bestRepresentation.dateFirstEdition?.display ||
+        bestRepresentation.dateFirstEdition?.year ||
+        null
+      );
+    case false:
+      return (
+        latest.edition?.publicationYear?.display ||
+        latest.workYear?.year ||
+        null
+      );
+    default:
+      return null;
+  }
+};
+
 export default {};
