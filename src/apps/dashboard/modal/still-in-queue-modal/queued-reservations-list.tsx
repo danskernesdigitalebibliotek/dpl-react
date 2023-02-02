@@ -11,10 +11,7 @@ export interface QueuedReservationsListProps {
   selectedReservations: {
     [key: string]: string;
   }[];
-  setCustomSelection: (
-    elementId: string | number,
-    reservationId: string | number
-  ) => void;
+  setCustomSelection: (elementId: string, reservationId: string) => void;
 }
 
 const QueuedReservationsList: FC<QueuedReservationsListProps> = ({
