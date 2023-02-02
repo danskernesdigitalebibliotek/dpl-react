@@ -68,7 +68,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return null;
   }
 
-  return <MaterialButtonUserBlocked size={size} />;
+  return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
 };
 
 export default MaterialButtonsPhysical;
