@@ -170,15 +170,14 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const soryByDueDate = (list: LoanType[]) => {
+export const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
-  return list.sort((a, b) => {
-    return (
+  return list.sort(
+    (a, b) =>
       new Date(a.dueDate || new Date()).getTime() -
       new Date(b.dueDate || new Date()).getTime()
-    );
-  });
+  );
 };
 
 export const getDueDatesLoan = (list: LoanType[]) => {
