@@ -348,7 +348,9 @@ export const constructModalId = (prefix: string, fragments: string[]) =>
 export const getReleaseYear = (work: Work) => {
   const existsOnWork = work.fictionNonfiction;
   const { latest, bestRepresentation } = work.manifestations;
-  switch (materialIsFiction(existsOnWork ? work : bestRepresentation)) {
+  switch (
+    materialIsFiction(existsOnWork ? work : bestRepresentation || latest)
+  ) {
     case true:
       return (
         work.workYear?.year ||
