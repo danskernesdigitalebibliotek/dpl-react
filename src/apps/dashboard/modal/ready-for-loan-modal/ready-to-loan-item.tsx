@@ -14,8 +14,11 @@ export interface ReadyToLoanItemProps {
   pickUpByDate: string | null;
   faust?: FaustId;
   identifier?: string;
-  selectedReservations: string[];
-  setCustomSelection: (elementId: string) => void;
+  selectedReservations: {
+    [key: string]: string;
+  }[];
+  setCustomSelection: (elementId: string, reservationId: string) => void;
+  reservationId: string;
 }
 
 const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
@@ -24,7 +27,8 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
   faust = "",
   identifier = "",
   selectedReservations,
-  setCustomSelection
+  setCustomSelection,
+  reservationId
 }) => {
   const t = useText();
   const { title, authors, year, materialType } = material || {};
@@ -37,9 +41,11 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
           <CheckBox
             id={faust || identifier}
             label=""
-            selected={selectedReservations.includes(faust || identifier)}
+            selected={Object.keys(selectedReservations).includes(
+              faust || identifier
+            )}
             onChecked={() => {
-              setCustomSelection(faust || identifier);
+              setCustomSelection(faust || identifier, reservationId);
             }}
           />
         </div>

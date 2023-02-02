@@ -2,13 +2,19 @@ import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
-import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
+import {
+  useDeleteReservations,
+  useGetReservationsV2
+} from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import {
   getColors,
   getReadyForPickup
 } from "../../../../core/utils/helpers/general";
-import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
+import {
+  useDeleteV1UserReservationsIdentifier,
+  useGetV1UserReservations
+} from "../../../../core/publizon/publizon";
 import { useText } from "../../../../core/utils/text";
 import {
   Reservation,
@@ -18,10 +24,18 @@ import QueuedReservationsList from "./ready-to-loan-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-icon";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 
-const ReadyToLoanModalContent: FC = () => {
+interface ReadyToLoanModalContentProps {
+  modalId: string;
+}
+const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
+  modalId
+}) => {
   const t = useText();
+  const { close } = useModalButtonHandler();
   const colors = getColors();
+  const today = dayjs();
   const [physicalReservationsReadyToLoan, setPhysicalReservationsReadyToLoan] =
     useState<ReservationDetailsV2[]>();
   const [digitalReservationsReadyToLoan, setDigitalReservationsReadyToLoan] =
@@ -29,12 +43,19 @@ const ReadyToLoanModalContent: FC = () => {
   const { data: physicalReservations } = useGetReservationsV2();
   const { data: digitalReservations } =
     useGetV1UserReservations<ReservationListResult>();
-  const [allSelectableReservations, setAllSelectableReservations] =
-    useState<string[]>();
-  const [selectedReservations, setSelectedReservations] = useState<string[]>(
-    []
-  );
-  const today = dayjs();
+  const [allSelectableReservations, setAllSelectableReservations] = useState<
+    {
+      [key: string]: string;
+    }[]
+  >();
+  const [selectedReservations, setSelectedReservations] = useState<
+    {
+      [key: string]: string;
+    }[]
+  >([]);
+  const { mutate: deletePhysicalReservation } = useDeleteReservations();
+  const { mutate: deleteDigitalReservation } =
+    useDeleteV1UserReservationsIdentifier();
   useEffect(() => {
     if (physicalReservations && !physicalReservationsReadyToLoan) {
       const readyToLoan = getReadyForPickup(physicalReservations);
@@ -66,20 +87,25 @@ const ReadyToLoanModalContent: FC = () => {
       !allSelectableReservations
     ) {
       const fausts = physicalReservationsReadyToLoan.map((pr) => {
-        return pr.recordId;
+        return { [pr.recordId]: pr.reservationId } as unknown as {
+          [key: string]: string;
+        };
       });
       const idents = digitalReservationsReadyToLoan.map((dr) => {
-        return dr.identifier;
+        return { [dr.identifier as string]: dr.identifier } as {
+          [key: string]: string;
+        };
       });
-      const selectableReservations = [...fausts, ...idents] as string[];
+      const selectableReservations = [...fausts, ...idents];
+
       if (selectableReservations.length > 0) {
         setAllSelectableReservations(selectableReservations);
       }
     }
   }, [
+    allSelectableReservations,
     physicalReservationsReadyToLoan,
-    digitalReservationsReadyToLoan,
-    allSelectableReservations
+    digitalReservationsReadyToLoan
   ]);
 
   const selectAllQueuedResevationsHandler = () => {
@@ -90,26 +116,63 @@ const ReadyToLoanModalContent: FC = () => {
     }
   };
   const setCustomSelection = useCallback(
-    (elementId: string | number) => {
-      if (selectedReservations.includes(elementId as string)) {
-        const filteredReservations = selectedReservations.filter((item) => {
-          return item !== elementId;
-        });
-        setSelectedReservations(filteredReservations);
+    (elementId: string, reservationId: string) => {
+      if (Object.keys(selectedReservations).includes(elementId as string)) {
+        const newSelection = { ...selectedReservations };
+        delete newSelection[elementId as never];
+        setSelectedReservations(newSelection);
       } else {
-        const updatedSelectedReservations = [...selectedReservations];
-        updatedSelectedReservations.push(elementId as string);
+        const updatedSelectedReservations = {
+          ...selectedReservations,
+          ...{
+            [elementId]: reservationId
+          }
+        };
         setSelectedReservations(updatedSelectedReservations);
       }
     },
     [selectedReservations]
   );
   const removeSelectedReservations = () => {
-    if (selectedReservations.length > 0) {
-      // Publizon
-      // deleteV1UserReservationsIdentifier
-      // FBS
-      // deleteReservations
+    const selectedReservationsKeys = Object.keys(selectedReservations);
+    const selectedReservationsValues = Object.values(selectedReservations);
+    if (selectedReservationsKeys.length > 0) {
+      selectedReservationsKeys.map((reservation) => {
+        const index = selectedReservationsKeys.indexOf(reservation);
+        const reservationToDelete = selectedReservationsValues[index];
+        switch (reservation.length) {
+          case 8: // Physical Loan on faust
+            deletePhysicalReservation(
+              {
+                params: { reservationid: [Number(reservationToDelete)] }
+              },
+              {
+                // todo error handling, missing in figma
+                onError: () => {
+                  close(modalId);
+                }
+              }
+            );
+            break;
+          case 13: // Digital Loan on identifier id
+            deleteDigitalReservation(
+              {
+                identifier: String(selectedReservationsValues)
+              },
+              {
+                // todo error handling, missing in figma
+                onError: () => {
+                  close(modalId);
+                }
+              }
+            );
+            break;
+          default:
+            return false;
+        }
+        close(modalId);
+        return false;
+      });
     }
   };
   return (
@@ -142,7 +205,7 @@ const ReadyToLoanModalContent: FC = () => {
           onClick={removeSelectedReservations}
         >
           {t("removeAllReservationsText")} (
-          {selectedReservations && selectedReservations.length})
+          {selectedReservations && Object.keys(selectedReservations).length})
           <div className="ml-16">
             <ArrowWhite />
           </div>

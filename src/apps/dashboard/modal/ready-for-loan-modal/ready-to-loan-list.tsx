@@ -8,8 +8,10 @@ import ReadyToLoanItem from "./ready-to-loan-item";
 export interface ReadyToLoanListProps {
   physicalReservations?: ReservationDetailsV2[];
   digitalReservations?: Reservation[];
-  selectedReservations: string[];
-  setCustomSelection: (elementId: string | number) => void;
+  selectedReservations: {
+    [key: string]: string;
+  }[];
+  setCustomSelection: (elementId: string, reservationId: string) => void;
 }
 
 const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
@@ -22,13 +24,18 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
     <>
       {physicalReservations &&
         physicalReservations.map((physicalReservation) => {
-          const { recordId, expiryDate } = physicalReservation;
+          const {
+            recordId,
+            expiryDate,
+            reservationId = ""
+          } = physicalReservation;
           return (
             <ReadyToLoanItem
               faust={recordId as FaustId}
               pickUpByDate={expiryDate}
               selectedReservations={selectedReservations}
               setCustomSelection={setCustomSelection}
+              reservationId={reservationId as string}
             />
           );
         })}
@@ -42,6 +49,7 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
                 pickUpByDate={expireDateUtc}
                 selectedReservations={selectedReservations}
                 setCustomSelection={setCustomSelection}
+                reservationId={identifier}
               />
             )
           );

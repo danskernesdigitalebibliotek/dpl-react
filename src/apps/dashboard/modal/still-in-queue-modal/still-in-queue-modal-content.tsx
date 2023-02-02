@@ -53,7 +53,6 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
   useEffect(() => {
     if (physicalReservations) {
       const reservations = getPhysicalReservations(physicalReservations);
-      console.log(reservations);
       if (reservations) {
         setPhysicalReservationsStillInQueue(reservations);
       }
@@ -87,9 +86,6 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
     digitalReservationsStillInQueue,
     allSelectableReservations
   ]);
-  useEffect(() => {
-    console.log(selectedReservations);
-  }, [selectedReservations]);
   useEffect(() => {
     if (digitalReservations) {
       const { reservations } = digitalReservations;

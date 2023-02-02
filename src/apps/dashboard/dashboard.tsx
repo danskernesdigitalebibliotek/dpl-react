@@ -161,7 +161,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         <StillInQueueModalContent modalId="still-in-queue-modal" />
       </StillInQueueModal>
       <ReadyToLoanModal modalId="ready-to-loan-modal">
-        <ReadyToLoanModalContent />
+        <ReadyToLoanModalContent modalId="ready-to-loan-modal" />
       </ReadyToLoanModal>
       <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
         <MaterialDetails
