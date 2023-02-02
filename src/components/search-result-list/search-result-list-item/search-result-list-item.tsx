@@ -143,7 +143,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
-        {author && (
+        {author && item && (
           <p className="text-small-caption" data-cy="search-result-item-author">
             {`${t("byAuthorText")} ${author}`}
             {getReleaseYear(item) ? ` (${getReleaseYear(item)})` : ""}
