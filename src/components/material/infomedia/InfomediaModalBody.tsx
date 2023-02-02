@@ -11,7 +11,7 @@ const InfomediaModalBody: React.FunctionComponent<InfomediaModalBodyProps> = ({
   text
 }) => {
   return (
-    <article>
+    <article className="infomedia-article">
       <img className="infomedia-logo" src={InfomediaLogo} alt="" />
       <h2>{headline}</h2>
       <div
