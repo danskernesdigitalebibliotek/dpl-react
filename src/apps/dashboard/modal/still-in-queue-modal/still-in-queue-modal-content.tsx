@@ -65,19 +65,23 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       digitalReservationsStillInQueue &&
       !allSelectableReservations
     ) {
-      const fausts = physicalReservationsStillInQueue.map((pr) => {
-        return { [pr.recordId]: pr.reservationId } as unknown as {
-          [key: string]: string;
-        };
-      });
+      console.log(physicalReservationsStillInQueue);
+      // const fausts = Object.values(physicalReservationsStillInQueue).forEach(
+      //     (fausts[values.recordId] = values.reservationId);
+      //     // fausts[key]
+      // );
+      // const fausts = physicalReservationsStillInQueue.map((pr) => {
+      //   console.log(pr);
+      //   console.log({ [pr.recordId]: pr.reservationId });
+      //   return { [pr.recordId]: pr.reservationId };
+      // });
       const idents = digitalReservationsStillInQueue.map((dr) => {
         return { [dr.identifier as string]: dr.identifier } as {
           [key: string]: string;
         };
       });
-      const selectableReservations = [...fausts, ...idents];
-
-      if (selectableReservations.length > 0) {
+      const selectableReservations = [{}];
+      if (Object.keys(selectableReservations).length > 0) {
         setAllSelectableReservations(selectableReservations);
       }
     }
@@ -86,6 +90,7 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
     digitalReservationsStillInQueue,
     allSelectableReservations
   ]);
+
   useEffect(() => {
     if (digitalReservations) {
       const { reservations } = digitalReservations;
@@ -95,7 +100,7 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
     }
   }, [digitalReservations]);
   const selectAllQueuedResevationsHandler = () => {
-    if (selectedReservations.length > 0) {
+    if (Object.keys(selectedReservations).length > 0) {
       setSelectedReservations([]);
     } else if (allSelectableReservations) {
       setSelectedReservations(allSelectableReservations);
