@@ -668,3 +668,8 @@ export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
 };
+
+export const LangePeter = Template.bind({});
+LangePeter.args = {
+  wid: "work-of:870970-basis:01196669"
+};
