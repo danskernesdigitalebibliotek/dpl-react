@@ -58,15 +58,15 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
               <div className="autosuggest__material__content">
-                <div className="autosuggest__cover">
-                  {item.work && (
-                    <Cover
-                      animate
-                      size="xsmall"
-                      id={item.work.manifestations.first.pid as Pid}
-                    />
-                  )}
-                </div>
+                {item.work && (
+                  <Cover
+                    animate
+                    size="xsmall"
+                    id={item.work.manifestations.first.pid as Pid}
+                    shadow
+                  />
+                )}
+
                 <div className="autosuggest__info">
                   <div className="text-body-medium-medium autosuggest__title">
                     {item.work?.titles.main[0]}
