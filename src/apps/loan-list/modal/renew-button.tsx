@@ -9,9 +9,15 @@ interface RenewButtonProps {
   loanId: LoanId;
   renewable: boolean;
   faust: FaustId;
+  classNames?: string;
 }
 
-const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
+const RenewButton: FC<RenewButtonProps> = ({
+  loanId,
+  faust,
+  renewable,
+  classNames
+}) => {
   const t = useText();
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
@@ -46,9 +52,7 @@ const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
         type="button"
         disabled={!renewable}
         onClick={() => renew(loanId)}
-        className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
-          !renewable ? "btn-outline" : ""
-        }`}
+        className={`btn-primary btn-filled btn-small arrow__hover--right-small ${classNames}`}
       >
         {t("materialDetailsRenewLoanButtonText")}
       </button>

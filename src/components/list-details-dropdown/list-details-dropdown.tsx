@@ -9,50 +9,36 @@ export interface OptionsProps {
 
 export interface ListDetailsDropdownProps {
   onDropdownChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  setShowSelect: (show: boolean) => void;
-  showSelect: boolean;
   options: OptionsProps[];
-  selected: OptionsProps | null;
+  selected?: string | null;
+  labelledBy: string;
 }
 
 const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
   onDropdownChange,
-  setShowSelect,
-  showSelect,
   options,
-  selected
+  selected,
+  labelledBy
 }) => {
   const t = useText();
 
   return (
-    <>
-      {!showSelect && (
-        <button
-          type="button"
-          className="link-tag"
-          onClick={() => setShowSelect(true)}
-        >
-          {t("reservationDetailsChangeText")}
-        </button>
-      )}
-      {showSelect && (
-        <Dropdown
-          defaultValue={selected?.value}
-          placeholder={{
-            label: t("listDetailsNothingSelectedLabelText"),
-            disabled: true,
-            value: ""
-          }}
-          options={options.map(({ value, label }) => ({
-            value,
-            label
-          }))}
-          ariaLabel=""
-          arrowIcon="chevron"
-          handleOnChange={(e) => onDropdownChange(e)}
-        />
-      )}
-    </>
+    <Dropdown
+      labelledBy={labelledBy}
+      defaultValue={selected || ""}
+      placeholder={{
+        label: t("listDetailsNothingSelectedLabelText"),
+        disabled: true,
+        value: ""
+      }}
+      options={options.map(({ value, label }) => ({
+        value,
+        label
+      }))}
+      ariaLabel=""
+      arrowIcon="chevron"
+      handleOnChange={(e) => onDropdownChange(e)}
+    />
   );
 };
 
