@@ -21,7 +21,6 @@ export const fetcher = async <ResponseType>({
 }) => {
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
-
   const userToken = getToken(TOKEN_USER_KEY);
   const authHeaders = userToken
     ? ({ Authorization: `Bearer ${userToken}` } as object)
@@ -29,7 +28,8 @@ export const fetcher = async <ResponseType>({
 
   const headers = {
     ...authHeaders,
-    ...additionalHeaders
+    ...additionalHeaders,
+    "Accept-Version": "2"
   };
   const body = data ? JSON.stringify(data) : null;
   const serviceUrl = getServiceUrlWithParams({

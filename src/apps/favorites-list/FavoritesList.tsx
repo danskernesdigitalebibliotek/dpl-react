@@ -22,14 +22,8 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   }, [itemsShown, materials]);
 
   useEffect(() => {
-    // todo fix below
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (data && data.materials) {
-      // todo fix below
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setMaterials(data.materials);
+    if (data && data.collections) {
+      setMaterials(data.collections);
     }
   }, [data]);
 

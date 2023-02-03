@@ -16,6 +16,11 @@ export default {
       defaultValue: 50,
       control: { type: "number" }
     },
+    blacklistedAvailabilityBranchesConfig: {
+      name: "Blacklisted Availability branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",
