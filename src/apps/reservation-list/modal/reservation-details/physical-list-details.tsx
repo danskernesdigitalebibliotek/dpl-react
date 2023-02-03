@@ -60,6 +60,9 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [newBranch, setNewBranch] = useState<string | undefined | null>(
     pickupBranch
   );
+  const [newPickupBranch, setNewPickupBranch] = useState<
+    string | undefined | null
+  >(pickupBranch);
   const [newExpiryDate, setNewExpiryDate] = useState<OptionsProps | null>(null);
   const [expiryDate, setExpiryDate] = useState<string | undefined | null>(
     reservationExpiryDate
@@ -75,13 +78,13 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   );
 
   useEffect(() => {
-    if (branches && pickupBranch) {
+    if (branches && newPickupBranch) {
       // Map branches to match select options.
       const mappedBranches = branches.map(({ title, branchId }) => {
         return { label: title, value: branchId };
       });
       setBranchesOptions(mappedBranches);
-      setPickupBranchFetched(getPreferredBranch(pickupBranch, branches));
+      setPickupBranchFetched(getPreferredBranch(newPickupBranch, branches));
 
       // selected branch
       const selected = mappedBranches.filter(
@@ -148,12 +151,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
               queryClient.invalidateQueries(getGetReservationsV2QueryKey());
               if (reservationReturned && reservationReturned.length > 0) {
                 setExpiryDate(reservationReturned[0].expiryDate);
-                setPickupBranchFetched(
-                  getPreferredBranch(
-                    reservationReturned[0].pickupBranch,
-                    branches
-                  )
-                );
+                setNewPickupBranch(reservationReturned[0].pickupBranch);
               }
             },
             // todo error handling, missing in figma
@@ -169,8 +167,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     reservationExpiryDate,
     newBranch,
     mutate,
-    queryClient,
-    branches
+    queryClient
   ]);
 
   const cancel = useCallback(() => {
