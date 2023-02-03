@@ -94,7 +94,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         setNewBranch(selected[0].value);
       }
     }
-  }, [branches, pickupBranch]);
+  }, [branches, newPickupBranch, pickupBranch]);
 
   const changeExpiryDate = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
