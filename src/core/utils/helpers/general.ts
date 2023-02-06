@@ -348,27 +348,24 @@ export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
 export const getReleaseYear = (work: Work) => {
-  const existsOnWork = work.fictionNonfiction;
   const { latest, bestRepresentation } = work.manifestations;
-  switch (
-    materialIsFiction(existsOnWork ? work : bestRepresentation || latest)
-  ) {
-    case true:
-      return (
-        work.workYear?.year ||
-        bestRepresentation.dateFirstEdition?.display ||
-        bestRepresentation.dateFirstEdition?.year ||
-        null
-      );
-    case false:
-      return (
-        latest.edition?.publicationYear?.display ||
-        latest.workYear?.year ||
-        null
-      );
-    default:
-      return null;
+  const manifestation = bestRepresentation || latest;
+
+  // If the work tells us that it is fiction.
+  if (materialIsFiction(work)) {
+    return work.workYear?.year;
   }
+  // If the manifestation tells us that it is fiction.
+  if (materialIsFiction(manifestation)) {
+    return (
+      manifestation.dateFirstEdition?.display ||
+      manifestation.dateFirstEdition?.year
+    );
+  }
+  // If it isn't fiction we get release year from latest manifestation.
+  return (
+    latest.edition?.publicationYear?.display || latest.workYear?.year || null
+  );
 };
 
 export default {};
