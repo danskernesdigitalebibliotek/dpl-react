@@ -29,12 +29,8 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     useGetAvailabilityV3({
       recordid: faustIds
     });
-  const {
-    data: userData,
-    isLoading: userLoading,
-    error
-  } = useGetPatronInformationByPatronIdV2();
-  const userError = error as unknown as ErrorFbs;
+  const { data: userData, isLoading: userLoading } =
+    useGetPatronInformationByPatronIdV2();
   if (availabilityLoading || userLoading) {
     return <MaterialButtonLoading size={size} />;
   }
@@ -48,13 +44,14 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonCantReserve size={size} />;
   }
 
-  const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
+  if (userData?.patron?.blockStatus) {
+    return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
+  }
 
-  // We show the reservation button if the user isn't logged in OR isn't blocked
-  if (
-    (userError && userError.message.toLowerCase().includes("403: forbidden")) ||
-    (userData && !userData.patron?.blockStatus)
-  ) {
+  // We show the reservation button if either
+  if (!userData || !userData?.patron?.blockStatus) {
+    const manifestationMaterialType =
+      manifestations[0].materialTypes[0].specific;
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
@@ -65,11 +62,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     );
   }
 
-  if (!userData) {
-    return null;
-  }
-
-  return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
+  return null;
 };
 
 export default MaterialButtonsPhysical;
