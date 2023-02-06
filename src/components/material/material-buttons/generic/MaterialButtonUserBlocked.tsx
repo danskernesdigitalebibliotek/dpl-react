@@ -11,7 +11,7 @@ export interface MaterialButtonUserBlockedProps {
 
 const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
   size,
-  dataCy = "material-button-user-blocked"
+  dataCy = "material-button"
 }) => {
   const t = useText();
 
