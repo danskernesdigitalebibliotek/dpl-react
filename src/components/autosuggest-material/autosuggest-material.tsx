@@ -7,7 +7,6 @@ import {
   creatorsToString,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { Pid } from "../../core/utils/types/ids";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 
 export interface AutosuggestMaterialProps {
@@ -62,7 +61,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                   <Cover
                     animate
                     size="xsmall"
-                    id={item.work.manifestations.first.pid as Pid}
+                    id={item.work.manifestations.bestRepresentation.pid}
                     shadow
                   />
                 )}
