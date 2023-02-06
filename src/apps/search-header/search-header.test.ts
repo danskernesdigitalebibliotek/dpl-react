@@ -63,7 +63,7 @@ describe("Search header app", () => {
     cy.get(".header__menu-search-input").focus().type("har");
     cy.get(".autosuggest").should("contain.text", "Harry");
     cy.contains("Harry Potter (topic)");
-    cy.contains("Harry Potter og De Vises Sten");
+    cy.contains("Harry Potter og de vises sten");
   });
 
   it("Shows cover pictures for the material suggestions", () => {
