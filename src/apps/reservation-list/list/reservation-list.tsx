@@ -9,7 +9,8 @@ import {
 } from "../utils/helpers";
 import {
   getModalIds,
-  getReadyForPickup
+  getReadyForPickup,
+  getScrollClass
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
@@ -259,29 +260,25 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
   return (
     <>
-      {modalIds.length === 0 && (
-        <div className="reservation-list-page">
-          <h1 className="text-header-h1 m-32">
-            {t("reservationListHeaderText")}
-          </h1>
-          {user && <ReservationPauseToggler user={user} />}
-          {allListsEmpty && <EmptyReservations />}
-          {!allListsEmpty && (
-            <DisplayedReservations
-              openReservationDetailsModal={openReservationDetailsModal}
-              readyForPickupReservationsFBS={
-                readyForPickupReservationsFBS as []
-              }
-              readyForPickupReservationsPublizon={
-                readyForPickupReservationsPublizon as []
-              }
-              reservedReservationsFBS={reservedReservationsFBS}
-              reservedReservationsPublizon={reservedReservationsPublizon}
-              pageSize={pageSize}
-            />
-          )}
-        </div>
-      )}
+      <div className={`reservation-list-page ${getScrollClass(modalIds)}`}>
+        <h1 className="text-header-h1 m-32">
+          {t("reservationListHeaderText")}
+        </h1>
+        {user && <ReservationPauseToggler user={user} />}
+        {allListsEmpty && <EmptyReservations />}
+        {!allListsEmpty && (
+          <DisplayedReservations
+            openReservationDetailsModal={openReservationDetailsModal}
+            readyForPickupReservationsFBS={readyForPickupReservationsFBS as []}
+            readyForPickupReservationsPublizon={
+              readyForPickupReservationsPublizon as []
+            }
+            reservedReservationsFBS={reservedReservationsFBS}
+            reservedReservationsPublizon={reservedReservationsPublizon}
+            pageSize={pageSize}
+          />
+        )}
+      </div>
       {user && <PauseReservation user={user} id={pauseReservation as string} />}
       {reservationToDelete && (
         <DeleteReservationModal
