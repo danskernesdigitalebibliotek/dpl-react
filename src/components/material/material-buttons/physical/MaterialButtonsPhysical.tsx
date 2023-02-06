@@ -6,7 +6,6 @@ import {
 import { getAllFaustIds } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
-import { ErrorFbs } from "../../../../core/utils/types/error";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
