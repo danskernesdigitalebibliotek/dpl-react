@@ -30,7 +30,6 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { title, authors, year, materialType } = material || {};
-  console.log(selectedReservations);
   return (
     <li>
       <div className="list-materials">

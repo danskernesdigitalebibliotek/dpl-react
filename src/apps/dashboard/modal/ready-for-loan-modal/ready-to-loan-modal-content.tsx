@@ -86,20 +86,19 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
       digitalReservationsReadyToLoan &&
       !allSelectableReservations
     ) {
-      const fausts = physicalReservationsReadyToLoan.map((pr) => {
-        return { [pr.recordId]: pr.reservationId } as unknown as {
-          [key: string]: string;
-        };
-      });
-      const idents = digitalReservationsReadyToLoan.map((dr) => {
-        return { [dr.identifier as string]: dr.identifier } as {
-          [key: string]: string;
-        };
-      });
-      const selectableReservations = [...fausts, ...idents];
-
-      if (selectableReservations.length > 0) {
-        setAllSelectableReservations(selectableReservations);
+      const fausts = physicalReservationsReadyToLoan.reduce((acc, pr) => {
+        return { ...acc, [pr.recordId]: pr.reservationId };
+      }, {});
+      const identsObj = digitalReservationsReadyToLoan.reduce((acc, dr) => {
+        return { ...acc, [dr.identifier as string]: dr.identifier };
+      }, {});
+      const selectableReservations = { ...fausts, ...identsObj };
+      if (Object.keys(selectableReservations).length > 0) {
+        setAllSelectableReservations(
+          selectableReservations as {
+            [key: string]: string;
+          }[]
+        );
       }
     }
   }, [
@@ -109,7 +108,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
   ]);
 
   const selectAllQueuedResevationsHandler = () => {
-    if (selectedReservations.length > 0) {
+    if (Object.keys(selectedReservations).length > 0) {
       setSelectedReservations([]);
     } else if (allSelectableReservations) {
       setSelectedReservations(allSelectableReservations);

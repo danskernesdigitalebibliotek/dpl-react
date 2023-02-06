@@ -65,24 +65,19 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       digitalReservationsStillInQueue &&
       !allSelectableReservations
     ) {
-      console.log(physicalReservationsStillInQueue);
-      // const fausts = Object.values(physicalReservationsStillInQueue).forEach(
-      //     (fausts[values.recordId] = values.reservationId);
-      //     // fausts[key]
-      // );
-      // const fausts = physicalReservationsStillInQueue.map((pr) => {
-      //   console.log(pr);
-      //   console.log({ [pr.recordId]: pr.reservationId });
-      //   return { [pr.recordId]: pr.reservationId };
-      // });
-      const idents = digitalReservationsStillInQueue.map((dr) => {
-        return { [dr.identifier as string]: dr.identifier } as {
-          [key: string]: string;
-        };
-      });
-      const selectableReservations = [{}];
+      const fausts = physicalReservationsStillInQueue.reduce((acc, pr) => {
+        return { ...acc, [pr.recordId]: pr.reservationId };
+      }, {});
+      const identsObj = digitalReservationsStillInQueue.reduce((acc, dr) => {
+        return { ...acc, [dr.identifier as string]: dr.identifier };
+      }, {});
+      const selectableReservations = { ...fausts, ...identsObj };
       if (Object.keys(selectableReservations).length > 0) {
-        setAllSelectableReservations(selectableReservations);
+        setAllSelectableReservations(
+          selectableReservations as {
+            [key: string]: string;
+          }[]
+        );
       }
     }
   }, [
