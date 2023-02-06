@@ -14,7 +14,7 @@ export const allFacetFields = [
   FacetField.ChildrenOrAdults,
   FacetField.Creators,
   FacetField.FictionNonfiction,
-  FacetField.FictionalCharacter,
+  FacetField.FictionalCharacters,
   FacetField.GenreAndForm,
   FacetField.MaterialTypes,
   FacetField.Subjects,
