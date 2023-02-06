@@ -25,25 +25,26 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const faustIds = getAllFaustIds(manifestations);
-  const { data, isLoading } = useGetAvailabilityV3({
-    recordid: faustIds
-  });
+  const { data: availabilityData, isLoading: availabilityLoading } =
+    useGetAvailabilityV3({
+      recordid: faustIds
+    });
   const {
     data: userData,
     isLoading: userLoading,
     error
   } = useGetPatronInformationByPatronIdV2();
   const userError = error as unknown as ErrorFbs;
-  if (isLoading || userLoading) {
+  if (availabilityLoading || userLoading) {
     return <MaterialButtonLoading size={size} />;
   }
 
-  if (!data) {
+  if (!availabilityData) {
     return null;
   }
 
   // TODO: Investigate if we could use UseReservableManifestations() instead.
-  if (!areAnyReservable(data)) {
+  if (!areAnyReservable(availabilityData)) {
     return <MaterialButtonCantReserve size={size} />;
   }
 
