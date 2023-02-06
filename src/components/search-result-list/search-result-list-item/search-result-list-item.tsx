@@ -14,7 +14,7 @@ import {
   filterCreators,
   flattenCreators,
   getManifestationPid,
-  getReleaseYear
+  getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -146,7 +146,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         {author && item && (
           <p className="text-small-caption" data-cy="search-result-item-author">
             {`${t("byAuthorText")} ${author}`}
-            {getReleaseYear(item) ? ` (${getReleaseYear(item)})` : ""}
+            {getReleaseYearSearchResult(item)
+              ? ` (${getReleaseYearSearchResult(item)})`
+              : ""}
           </p>
         )}
       </div>

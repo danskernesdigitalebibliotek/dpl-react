@@ -347,10 +347,11 @@ export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
-export const getReleaseYear = (work: Work) => {
+// The rendered release year for search results is picked based on
+// whether the work is fiction or not.
+export const getReleaseYearSearchResult = (work: Work) => {
   const { latest, bestRepresentation } = work.manifestations;
   const manifestation = bestRepresentation || latest;
-
   // If the work tells us that it is fiction.
   if (materialIsFiction(work)) {
     return work.workYear?.year;
@@ -363,9 +364,7 @@ export const getReleaseYear = (work: Work) => {
     );
   }
   // If it isn't fiction we get release year from latest manifestation.
-  return (
-    latest.edition?.publicationYear?.display || latest.workYear?.year || null
-  );
+  return getManifestationPublicationYear(latest) || latest.workYear?.year;
 };
 
 export default {};
