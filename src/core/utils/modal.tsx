@@ -53,19 +53,33 @@ function Modal({
     return null;
   }
 
+  const close = () => {
+    dispatch(closeModal({ modalId }));
+  };
+
   return (
     <FocusTrap>
-      <div
-        className="modal-backdrop"
-        // TODO: Close the modal when clicking backdrop.
-        style={{
-          // some elements are designed with z-index which means they pop up over the modal
-          // so I add 10 to the z-index of the modal
-          // the index of the modalid is used, so the newest modal is always on top of
-          // the remaining modals
-          zIndex: modalIds.indexOf(modalId) + 10
-        }}
-      >
+      <div>
+        {/* The backdrop doesn't have a tab index or keyboard listener because it barely duplicates
+          the close button's functionality which possesses both. */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */}
+        <div
+          className="modal-backdrop"
+          style={{
+            // some elements are designed with z-index which means they pop up over the modal
+            // so I add 10 to the z-index of the modal
+            // the index of the modalid is used, so the newest modal is always on top of
+            // the remaining modals
+            zIndex: modalIds.indexOf(modalId) + 10
+          }}
+          role="button"
+          onClick={() => {
+            close();
+          }}
+        >
+          {" "}
+        </div>
+        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */}
         <div
           className={clsx(
             "modal",
@@ -77,6 +91,10 @@ function Modal({
           role="dialog"
           aria-labelledby={`modal-${modalId}-description`}
           data-cy={dataCy}
+          style={{
+            // same as comment above
+            zIndex: modalIds.indexOf(modalId) + 11
+          }}
         >
           <div
             className="modal__screen-reader-description"
@@ -95,7 +113,7 @@ function Modal({
             }}
             aria-label={closeModalAriaLabelText}
             onClick={() => {
-              dispatch(closeModal({ modalId }));
+              close();
             }}
             data-cy={`modal-${modalId}-close-button`}
           >
