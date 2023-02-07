@@ -136,7 +136,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2
-          className="search-result-item__title text-header-h4"
+          className="search-result-item__title text-header-h4 mb-4"
           data-cy="search-result-item-title"
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
