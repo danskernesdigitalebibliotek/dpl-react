@@ -1064,6 +1064,12 @@
             "deprecationReason": null
           },
           {
+            "name": "ERROR_MISSING_CLIENT_CONFIGURATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ERROR_PID_NOT_RESERVABLE",
             "description": null,
             "isDeprecated": false,
