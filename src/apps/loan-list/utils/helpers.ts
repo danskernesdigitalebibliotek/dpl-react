@@ -58,17 +58,17 @@ export const getAuthorNames = (
   creators: {
     display: string;
   }[],
-  by: string,
-  and: string
+  by?: string,
+  and?: string
 ) => {
   const names = creators.map(({ display }) => display);
   let returnContentString = "";
   if (names.length === 1) {
-    returnContentString = `${by} ${names.join(", ")}`;
+    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
   } else {
-    returnContentString = `${by} ${names
+    returnContentString = `${by ? `${by} ` : ""} ${names
       .slice(0, -1)
-      .join(", ")} ${and} ${names.slice(-1)}`;
+      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
   }
   return returnContentString;
 };
