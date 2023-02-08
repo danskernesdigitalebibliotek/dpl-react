@@ -91,6 +91,61 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
 }
 
+fragment ManifestationReviewFields on Manifestation {
+  pid
+  creators {
+    display
+  }
+  access {
+    __typename
+    ... on InfomediaService {
+      id
+    }
+    ... on DigitalArticleService {
+      issn
+    }
+    ...on AccessUrl {
+      url
+      origin
+    }
+  }
+  edition {
+    publicationYear {
+      display
+    }
+  }
+  hostPublication {
+    title
+    issue
+  }
+  creators {
+    display
+  }
+  physicalDescriptions {
+    summary
+  }
+  dateFirstEdition {
+    display
+  }
+  workYear {
+    display
+  }
+  review {
+    rating
+    reviewByLibrarians {
+      content
+      heading
+      type
+      manifestations {
+        pid
+        titles {
+          main
+        }
+      }
+    }
+  }
+}
+
 fragment SeriesSimple on Series {
   title
   isPopular
@@ -147,34 +202,40 @@ fragment WorkMedium on Work {
       display
     }
   }
-  reviews {
-    __typename
-    ... on LibrariansReview {
-      author
-      date
-      sections {
-        code
-        heading
-        text
-      }
-    }
-    ... on ExternalReview {
-      author
-      date
-      rating
-      urls {
-        origin
-        url
-      }
-    }
-    ... on InfomediaReview {
-      author
-      date
-      origin
-      rating
-      id
+  relations {
+    hasReview {
+      pid
+      # ...ManifestationReviewFields
     }
   }
+  # reviews {
+  #   __typename
+  #   ... on LibrariansReview {
+  #     author
+  #     date
+  #     sections {
+  #       code
+  #       heading
+  #       text
+  #     }
+  #   }
+  #   ... on ExternalReview {
+  #     author
+  #     date
+  #     rating
+  #     urls {
+  #       origin
+  #       url
+  #     }
+  #   }
+  #   ... on InfomediaReview {
+  #     author
+  #     date
+  #     origin
+  #     rating
+  #     id
+  #   }
+  # }
   fictionNonfiction {
     display
     code

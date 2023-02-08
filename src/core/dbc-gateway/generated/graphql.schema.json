@@ -1064,6 +1064,12 @@
             "deprecationReason": null
           },
           {
+            "name": "ERROR_MISSING_CLIENT_CONFIGURATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ERROR_PID_NOT_RESERVABLE",
             "description": null,
             "isDeprecated": false,
@@ -1917,7 +1923,7 @@
             "deprecationReason": null
           },
           {
-            "name": "fictionalCharacter",
+            "name": "fictionalCharacters",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7165,6 +7171,18 @@
             "deprecationReason": null
           },
           {
+            "name": "contentSubstitute",
+            "description": "This is a paragraph containing markup where links to manifestations\ncan be inserted. For instance '\"Axel Steens nye job minder om [870970-basis:20307021] fra ...'.\nRelevant manifestations are located in the manifestations field. ",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "heading",
             "description": null,
             "args": [],
@@ -7178,7 +7196,7 @@
           },
           {
             "name": "manifestations",
-            "description": null,
+            "description": "Manifestations that can be used to generate and insert links into 'contentSubsitute'.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -7519,7 +7537,7 @@
             "deprecationReason": null
           },
           {
-            "name": "fictionalCharacter",
+            "name": "fictionalCharacters",
             "description": null,
             "type": {
               "kind": "LIST",
