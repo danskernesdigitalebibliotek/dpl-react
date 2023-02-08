@@ -14,6 +14,7 @@ import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ReservationType } from "../types/reservation-type";
+import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -363,6 +364,19 @@ export const getAuthorNames = (
       .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
   }
   return returnContentString;
+};
+
+export const getReviewRelease = (
+  dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
+  workYear: ManifestationReviewFieldsFragment["workYear"],
+  edition: ManifestationReviewFieldsFragment["edition"]
+) => {
+  return (
+    dateFirstEdition?.display ||
+    workYear?.display ||
+    edition?.publicationYear?.display ||
+    null
+  );
 };
 
 export default {};
