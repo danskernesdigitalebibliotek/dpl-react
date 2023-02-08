@@ -1,30 +1,52 @@
 import React from "react";
-import {
-  ExternalReview,
-  InfomediaReview,
-  LibrariansReview
-} from "../../core/dbc-gateway/generated/graphql";
+import { useGetReviewManifestationsQuery } from "../../core/dbc-gateway/generated/graphql";
+import { Pid } from "../../core/utils/types/ids";
 import ReviewExternal from "./ReviewExternal";
 import ReviewInfomedia from "./ReviewInfomedia";
 import ReviewLibrarian from "./ReviewLibrarian";
 
 export interface MaterialReviewsProps {
-  listOfReviews: Array<LibrariansReview | ExternalReview | InfomediaReview>;
+  pids: Pid[];
 }
 
-export const MaterialReviews: React.FC<MaterialReviewsProps> = ({
-  listOfReviews
-}) => {
+export const MaterialReviews: React.FC<MaterialReviewsProps> = ({ pids }) => {
+  const { data, isLoading } = useGetReviewManifestationsQuery({
+    pid: pids
+  });
+
+  if (isLoading) {
+    return <div>temporary content</div>;
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  const { manifestations: reviews } = data;
+
   return (
     <ul className="reviews">
-      {listOfReviews.map((review) => {
-        if (review.__typename === "ExternalReview") {
-          return <ReviewExternal review={review} />;
-        }
-        if (review.__typename === "InfomediaReview") {
+      {reviews.map((review) => {
+        if (
+          review?.access.some(
+            (access) => access.__typename === "InfomediaService"
+          )
+        ) {
           return <ReviewInfomedia review={review} />;
         }
-        return <ReviewLibrarian review={review as LibrariansReview} />;
+        if (
+          review?.access.some((access) => access.__typename === "AccessUrl")
+        ) {
+          return <ReviewExternal review={review} />;
+        }
+        if (
+          review?.access.some(
+            (access) => access.__typename === "InterLibraryLoan"
+          )
+        ) {
+          return <ReviewLibrarian review={review} />;
+        }
+        return null;
       })}
     </ul>
   );

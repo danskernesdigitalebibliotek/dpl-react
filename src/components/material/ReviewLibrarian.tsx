@@ -1,30 +1,37 @@
 import React from "react";
+import { ManifestationReviewFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import {
-  LibrariansReview,
-  LibrariansReviewSection
-} from "../../core/dbc-gateway/generated/graphql";
-import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
+  getAuthorNames,
+  getReviewRelease
+} from "../../core/utils/helpers/general";
+import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewLibrarianProps {
-  review: LibrariansReview;
+  review: ManifestationReviewFieldsFragment;
 }
 
-const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({ review }) => {
-  const date = review.date ? usDateStringToDateObj(review.date) : null;
+const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
+  review: { workYear, dateFirstEdition, creators, review, edition }
+}) => {
+  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const authors = getAuthorNames(creators);
+
   return (
     <li className="review text-small-caption">
-      {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={date} />
-      )}
-      {review.sections &&
-        review.sections.map((section: LibrariansReviewSection) => {
+      {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+      {review?.reviewByLibrarians &&
+        review.reviewByLibrarians.map((librarianReview) => {
           return (
             <>
-              {section.heading && (
-                <div className="review__headline mb-8">{section.heading}</div>
+              {librarianReview?.heading && (
+                <div className="review__headline mb-8">
+                  {librarianReview.heading}
+                </div>
               )}
-              {section.text && (
-                <div className="review__body mb-8">{section.text}</div>
+              {librarianReview?.content && (
+                <div className="review__body mb-8">
+                  {librarianReview.content}
+                </div>
               )}
             </>
           );
