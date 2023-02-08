@@ -53,26 +53,6 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
   });
 };
 
-// Create a string of authors with commas and a conjunction
-export const getAuthorNames = (
-  creators: {
-    display: string;
-  }[],
-  by?: string,
-  and?: string
-) => {
-  const names = creators.map(({ display }) => display);
-  let returnContentString = "";
-  if (names.length === 1) {
-    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
-  } else {
-    returnContentString = `${by ? `${by} ` : ""} ${names
-      .slice(0, -1)
-      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
-  }
-  return returnContentString;
-};
-
 // Simple faust match for modals
 export const queryMatchesFaust = (query: string | null) => {
   // regex for finding date string from modal query param

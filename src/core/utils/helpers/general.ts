@@ -345,4 +345,24 @@ export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
+// Create a string of authors with commas and a conjunction
+export const getAuthorNames = (
+  creators: {
+    display: string;
+  }[],
+  by?: string,
+  and?: string
+) => {
+  const names = creators.map(({ display }) => display);
+  let returnContentString = "";
+  if (names.length === 1) {
+    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
+  } else {
+    returnContentString = `${by ? `${by} ` : ""} ${names
+      .slice(0, -1)
+      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
+  }
+  return returnContentString;
+};
+
 export default {};
