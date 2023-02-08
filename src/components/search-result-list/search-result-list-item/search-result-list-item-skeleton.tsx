@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const SearchResultListItemSkeleton: React.FC = () => {
   return (
@@ -13,4 +13,4 @@ const SearchResultListItemSkeleton: React.FC = () => {
   );
 };
 
-export default SearchResultListItemSkeleton;
+export default memo(SearchResultListItemSkeleton);
