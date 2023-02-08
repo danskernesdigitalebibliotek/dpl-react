@@ -41,6 +41,8 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-header-content").scrollIntoView();
+
     cy.getBySel("material-description-series-0")
       .should("be.visible")
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
@@ -66,6 +68,8 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-header-content").scrollIntoView();
+
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
@@ -79,6 +83,8 @@ describe("Material", () => {
     });
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -125,10 +131,14 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-description").scrollIntoView();
+
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("reservation-modal-list-item-text")
       .should("be.visible")
@@ -151,10 +161,14 @@ describe("Material", () => {
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-description").scrollIntoView();
+
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("reservation-modal-submit-button", true)
       .and("contain", "Approve reservation")

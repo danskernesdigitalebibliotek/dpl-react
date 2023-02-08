@@ -109,7 +109,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       <div className="material-header__cover">
         <Cover id={pid} size="xlarge" animate shadow />
       </div>
-      <div className="material-header__content">
+      <div
+        data-cy="material-header-content"
+        className="material-header__content"
+      >
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
         <MaterialHeaderText title={String(title)} author={author} />
         <div ref={itemRef} className="material-header__availability-label">
