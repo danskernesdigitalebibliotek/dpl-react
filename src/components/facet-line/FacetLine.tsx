@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   FilterItemTerm,
   TermOnClickHandler
@@ -48,4 +48,4 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
   );
 };
 
-export default FacetLine;
+export default memo(FacetLine);
