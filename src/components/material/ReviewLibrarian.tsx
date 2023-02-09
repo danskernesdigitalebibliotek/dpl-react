@@ -8,16 +8,18 @@ import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewLibrarianProps {
   review: ManifestationReviewFieldsFragment;
+  dataCy?: string;
 }
 
 const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
-  review: { workYear, dateFirstEdition, creators, review, edition }
+  review: { workYear, dateFirstEdition, creators, review, edition },
+  dataCy = "review-librarian"
 }) => {
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
 
   return (
-    <li className="review text-small-caption">
+    <li className="review text-small-caption" data-cy={dataCy}>
       {(authors || date) && <ReviewMetadata author={authors} date={date} />}
       {review?.reviewByLibrarians &&
         review.reviewByLibrarians.map((librarianReview) => {

@@ -8,9 +8,13 @@ import ReviewSkeleton from "./ReviewSkeleton";
 
 export interface MaterialReviewsProps {
   pids: Pid[];
+  dataCy?: string;
 }
 
-export const MaterialReviews: React.FC<MaterialReviewsProps> = ({ pids }) => {
+export const MaterialReviews: React.FC<MaterialReviewsProps> = ({
+  pids,
+  dataCy = "material-reviews"
+}) => {
   const { data, isLoading } = useGetReviewManifestationsQuery({
     pid: pids
   });
@@ -26,26 +30,32 @@ export const MaterialReviews: React.FC<MaterialReviewsProps> = ({ pids }) => {
   const { manifestations: reviews } = data;
 
   return (
-    <ul className="reviews">
+    <ul className="reviews" data-cy={dataCy}>
       {reviews.map((review) => {
         if (
           review?.access.some(
             (access) => access.__typename === "InfomediaService"
           )
         ) {
-          return <ReviewInfomedia review={review} />;
+          return (
+            <ReviewInfomedia review={review} dataCy={`${dataCy}-infomedia`} />
+          );
         }
         if (
           review?.access.some((access) => access.__typename === "AccessUrl")
         ) {
-          return <ReviewExternal review={review} />;
+          return (
+            <ReviewExternal review={review} dataCy={`${dataCy}-external`} />
+          );
         }
         if (
           review?.access.some(
             (access) => access.__typename === "InterLibraryLoan"
           )
         ) {
-          return <ReviewLibrarian review={review} />;
+          return (
+            <ReviewLibrarian review={review} dataCy={`${dataCy}-librarian`} />
+          );
         }
         return null;
       })}

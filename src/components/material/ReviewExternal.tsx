@@ -12,10 +12,12 @@ import {
 
 export interface ReviewExternalProps {
   review: ManifestationReviewFieldsFragment;
+  dataCy?: string;
 }
 
 const ReviewExternal: React.FC<ReviewExternalProps> = ({
-  review: { workYear, dateFirstEdition, creators, review, access, edition }
+  review: { workYear, dateFirstEdition, creators, review, access, edition },
+  dataCy = "review-external"
 }) => {
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
@@ -25,7 +27,7 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
   ) as Pick<AccessUrl, "origin" | "url">[];
 
   return (
-    <li className="review text-small-caption">
+    <li className="review text-small-caption" data-cy={dataCy}>
       {(authors || date) && <ReviewMetadata author={authors} date={date} />}
       {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {accessUrls &&

@@ -23,10 +23,12 @@ import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewInfomediaProps {
   review: ManifestationReviewFieldsFragment;
+  dataCy?: string;
 }
 
 const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
-  review: { workYear, dateFirstEdition, access, creators, review, edition }
+  review: { workYear, dateFirstEdition, access, creators, review, edition },
+  dataCy = "review-infomedia"
 }) => {
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
@@ -59,7 +61,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   const { infomedia } = data;
   if (infomedia.error) {
     return (
-      <li className="review text-small-caption">
+      <li className="review text-small-caption" data-cy={dataCy}>
         {(authors || date) && <ReviewMetadata author={authors} date={date} />}
         {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
