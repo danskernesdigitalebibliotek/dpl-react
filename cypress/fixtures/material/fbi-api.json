@@ -119,9 +119,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Cicero"
-            ],
+            "publisher": ["Cicero"],
             "languages": {
               "main": [
                 {
@@ -193,9 +191,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Cicero"
-            ],
+            "publisher": ["Cicero"],
             "languages": {
               "main": [
                 {
@@ -267,9 +263,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Gyldendals Bogklubber"
-            ],
+            "publisher": ["Gyldendals Bogklubber"],
             "languages": {
               "main": [
                 {
@@ -343,9 +337,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Cicero"
-            ],
+            "publisher": ["Cicero"],
             "languages": {
               "main": [
                 {
@@ -419,9 +411,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Rosinante"
-            ],
+            "publisher": ["Rosinante"],
             "languages": {
               "main": [
                 {
@@ -498,9 +488,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Rosinante"
-            ],
+            "publisher": ["Rosinante"],
             "languages": {
               "main": [
                 {
@@ -575,9 +563,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Cicero"
-            ],
+            "publisher": ["Cicero"],
             "languages": {
               "main": [
                 {
@@ -650,9 +636,7 @@
               "__typename": "Person"
             }
           ],
-          "publisher": [
-            "Cicero"
-          ],
+          "publisher": ["Cicero"],
           "languages": {
             "main": [
               {
