@@ -61,7 +61,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
         <span className="disclosure__text">{title}</span>
 
         <img
-          className="disclosure__expand noselect"
+          className={clsx("disclosure__expand noselect", {
+            "disclosure__expand--expanded": isOpen
+          })}
           src={ExpandMoreIcon}
           alt=""
         />
