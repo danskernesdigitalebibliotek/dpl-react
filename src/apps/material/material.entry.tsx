@@ -125,6 +125,7 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   twoMonthsText: string;
   firstAvailableEditionText: string;
+  expandMoreText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;
