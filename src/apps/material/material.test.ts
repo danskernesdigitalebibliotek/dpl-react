@@ -144,7 +144,7 @@ describe("Material", () => {
     ).click();
   });
 
-  it("Can open reservation modal, approve a reservation, and close the modal using buttons)", () => {
+  it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
