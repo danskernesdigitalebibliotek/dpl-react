@@ -205,6 +205,9 @@ fragment WorkMedium on Work {
     all {
       display
     }
+    dbcVerified {
+      display
+    }
   }
   fictionNonfiction {
     display
