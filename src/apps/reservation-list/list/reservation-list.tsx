@@ -296,6 +296,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
             faust={reservation.faust}
             identifier={reservation.identifier}
             reservation={reservation}
+            modalId={`${reservationDetails}${
+              reservation.faust || reservation.identifier
+            }`}
           />
         </MaterialDetailsModal>
       )}

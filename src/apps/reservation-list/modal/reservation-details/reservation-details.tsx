@@ -15,12 +15,14 @@ import { useGetBranches } from "../../../../core/utils/branches";
 export interface ReservationDetailsProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteId: string) => void;
+  modalId: string;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
-  openReservationDeleteModal
+  openReservationDeleteModal,
+  modalId
 }) => {
   const t = useText();
   const { state, identifier, numberInQueue } = reservation;
@@ -68,6 +70,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               <PhysicalListDetails
                 branches={branches}
                 reservation={reservation}
+                modalId={modalId}
               />
             )}
           </div>

@@ -30,17 +30,21 @@ import { Button } from "../../../../components/Buttons/Button";
 import ListDetailsDropdown, {
   OptionsProps
 } from "../../../../components/list-details-dropdown/list-details-dropdown";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
   branches: AgencyBranch[];
+  modalId: string;
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   reservation,
-  branches
+  branches,
+  modalId
 }) => {
   const t = useText();
+  const { close, open } = useModalButtonHandler();
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
@@ -139,6 +143,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
             queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+            close(modalId);
+            open(modalId);
           },
           // todo error handling, missing in figma
           onError: () => {}
@@ -146,12 +152,15 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       );
     }
   }, [
+    newBranch,
     reservationId,
     expiryDate,
     newExpiryDate,
     mutate,
-    newBranch?.value,
-    queryClient
+    queryClient,
+    close,
+    modalId,
+    open
   ]);
 
   const cancel = useCallback(() => {
