@@ -1383,6 +1383,12 @@ export type GetMaterialQuery = {
         | { __typename?: "SubjectText"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
+      dbcVerified: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
     };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
@@ -2824,6 +2830,12 @@ export type WorkMediumFragment = {
       | { __typename?: "SubjectText"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
+    dbcVerified: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
   };
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
@@ -3333,6 +3345,9 @@ export const WorkMediumFragmentDoc = `
   }
   subjects {
     all {
+      display
+    }
+    dbcVerified {
       display
     }
   }
