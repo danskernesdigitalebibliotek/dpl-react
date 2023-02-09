@@ -174,6 +174,24 @@ describe("Material", () => {
       .click();
   });
 
+  it("Renders reviews", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+    cy.interceptGraphql({
+      operationName: "getReviewManifestations",
+      fixtureFilePath: "material/reviews.json"
+    });
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-reviews-disclosure").should("be.visible").click();
+    cy.getBySel("material-reviews").should(
+      "contain",
+      "Dorthe Marlene Jørgensen, 2016"
+    );
+  });
+
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",
