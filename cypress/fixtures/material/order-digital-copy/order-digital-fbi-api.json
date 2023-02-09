@@ -256,7 +256,13 @@
           }
         ]
       },
-      "reviews": [],
+      "relations": {
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
+      },
       "fictionNonfiction": {
         "display": "faglitteratur",
         "code": "NONFICTION"

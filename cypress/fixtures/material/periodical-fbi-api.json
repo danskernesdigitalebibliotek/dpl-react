@@ -174,7 +174,13 @@
           }
         ]
       },
-      "reviews": [],
+      "relations": {
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
+      },
       "fictionNonfiction": {
         "display": "nonfiktion",
         "code": "NONFICTION"
