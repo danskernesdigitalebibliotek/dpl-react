@@ -143,6 +143,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             setShowBranchesSelect(false);
             setShowExpirySelect(false);
             queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+            // todo inform the user that the values have been saved.
             close(modalId);
             open(modalId);
           },
