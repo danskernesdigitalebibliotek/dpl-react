@@ -48,6 +48,22 @@ describe("Material", () => {
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
   });
 
+  it("Renders only first 3 horizontal lines items", () => {
+    cy.getBySel("material-description-series-members")
+      .should("be.visible")
+      .find("span")
+      .should("have.length", 3);
+  });
+
+  it("Renders additional horizontal lines items after button click", () => {
+    cy.getBySel("material-description-series-members").find("button").click();
+
+    cy.getBySel("material-description-series-members")
+      .should("be.visible")
+      .find("span")
+      .should("have.length", 7);
+  });
+
   it("Renders authors", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
