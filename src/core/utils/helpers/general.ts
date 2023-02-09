@@ -170,13 +170,13 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanType[]) => {
+export const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort(
-    (objA, objB) =>
-      new Date(objA.loanDate || new Date()).getTime() -
-      new Date(objB.loanDate || new Date()).getTime()
+    (a, b) =>
+      new Date(a.dueDate || new Date()).getTime() -
+      new Date(b.dueDate || new Date()).getTime()
   );
 };
 
