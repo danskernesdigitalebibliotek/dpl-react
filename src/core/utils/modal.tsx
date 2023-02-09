@@ -19,6 +19,7 @@ type ModalProps = {
   screenReaderModalDescriptionText: string;
   classNames?: string;
   dataCy?: string;
+  orientation?: "right";
 };
 
 export interface ModalIdsProps {
@@ -33,11 +34,11 @@ function Modal({
   children,
   screenReaderModalDescriptionText,
   classNames,
+  orientation,
   dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
-  const isOffset = !(classNames && classNames.includes("modal-right"));
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -105,7 +106,7 @@ function Modal({
           <button
             type="button"
             className={`btn-ui modal-btn-close ${
-              isOffset ? "modal-btn-close--offset" : ""
+              !orientation ? "modal-btn-close--offset" : ""
             }`}
             style={{
               // same as comment above
