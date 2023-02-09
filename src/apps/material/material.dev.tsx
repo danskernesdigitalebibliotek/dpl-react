@@ -648,6 +648,11 @@ export default {
       name: "Alert error message text",
       defaultValue: "An error occurred",
       control: { type: "text" }
+    },
+    expandMoreText: {
+      name: "Expand more text",
+      defaultValue: "Expand more",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
