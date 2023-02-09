@@ -750,40 +750,20 @@
           }
         ]
       },
-      "reviews": [
-        {
-          "__typename": "LibrariansReview",
-          "author": "Dorthe Marlene Jørgensen",
-          "date": "2016-08-23",
-          "sections": [
-            {
-              "code": "ABOUT",
-              "heading": "Kort om bogen",
-              "text": "Første bind i en stor serie, om kærlighed og tab, inspireret af stjernebilledet De Syv Søstre. For dem, der holder af kærlighedshistorier, primært kvinder"
-            },
-            {
-              "code": "DESCRIPTION",
-              "heading": "Beskrivelse",
-              "text": "Året er 2007 og Maia og hendes fem søstre er blevet kaldt hjem til deres barndomshjem, da deres elskede far, Pa Salt, er død. De er alle blevet adopteret, og deres far har efterladt en ledetråd til dem hver, der kan lede dem tilbage til deres ophav. Denne første bog i serien, handler om den ældste søster Maia, hvis ledetråd fører hende til Brasilien"
-            },
-            {
-              "code": "EVALUATION",
-              "heading": "Vurdering",
-              "text": "En rigtig flot roman, der er helt på niveau med forfatterens tidligere udgivelser. Der er tale om en stor serie på syv planlagte bøger. Sproget er let og historien fanger fra start"
-            },
-            {
-              "code": "OTHER",
-              "heading": "Andre bøger om samme emne",
-              "text": "Lucinda Riley har senest udgivet"
-            },
-            {
-              "code": "OTHER",
-              "heading": "Andre bøger om samme emne",
-              "text": ". Skrivestilen ligner Rileys tidligere udgivelser"
-            }
-          ]
-        }
-      ],
+      "relations": {
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          },
+          {
+            "pid": "870976-anmeld:129471824"
+          },
+          {
+            "pid": "870971-anmeld:37104132"
+          }
+        ]
+      },
+
       "fictionNonfiction": {
         "display": "skønlitteratur",
         "code": "FICTION"
