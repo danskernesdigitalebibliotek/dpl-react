@@ -4,6 +4,7 @@ import { Pid } from "../../core/utils/types/ids";
 import ReviewExternal from "./ReviewExternal";
 import ReviewInfomedia from "./ReviewInfomedia";
 import ReviewLibrarian from "./ReviewLibrarian";
+import ReviewSkeleton from "./ReviewSkeleton";
 
 export interface MaterialReviewsProps {
   pids: Pid[];
@@ -15,7 +16,7 @@ export const MaterialReviews: React.FC<MaterialReviewsProps> = ({ pids }) => {
   });
 
   if (isLoading) {
-    return <div>temporary content</div>;
+    return <ReviewSkeleton />;
   }
 
   if (!data) {
