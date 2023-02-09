@@ -63,7 +63,7 @@ function Modal({
       <div>
         {/* The backdrop doesn't have a tab index or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className="modal-backdrop"
           style={{
@@ -73,14 +73,13 @@ function Modal({
             // the remaining modals
             zIndex: modalIds.indexOf(modalId) + 10
           }}
-          role="button"
           onClick={() => {
             close();
           }}
         >
           {" "}
         </div>
-        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */}
+        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(
             "modal",
