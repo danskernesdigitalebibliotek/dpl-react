@@ -3,9 +3,7 @@
     "work": {
       "workId": "work-of:870971-avis:35731733",
       "titles": {
-        "full": [
-          "Butlerens utrolige historie"
-        ],
+        "full": ["Butlerens utrolige historie"],
         "original": []
       },
       "abstract": [
@@ -30,13 +28,9 @@
           {
             "pid": "870971-avis:35731733",
             "genreAndForm": [],
-            "source": [
-              "Avisartikler"
-            ],
+            "source": ["Avisartikler"],
             "titles": {
-              "main": [
-                "Butlerens utrolige historie"
-              ],
+              "main": ["Butlerens utrolige historie"],
               "original": []
             },
             "fictionNonfiction": {
@@ -110,13 +104,9 @@
         "latest": {
           "pid": "870971-avis:35731733",
           "genreAndForm": [],
-          "source": [
-            "Avisartikler"
-          ],
+          "source": ["Avisartikler"],
           "titles": {
-            "main": [
-              "Butlerens utrolige historie"
-            ],
+            "main": ["Butlerens utrolige historie"],
             "original": []
           },
           "fictionNonfiction": {
