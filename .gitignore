@@ -11,3 +11,4 @@ index.html
 yarn-error.log
 .env
 .cache
+.npmrc
