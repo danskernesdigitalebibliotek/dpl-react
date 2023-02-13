@@ -2,19 +2,13 @@ import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
-import {
-  useDeleteReservations,
-  useGetReservationsV2
-} from "../../../../core/fbs/fbs";
+import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import {
   getColors,
   getReadyForPickup
 } from "../../../../core/utils/helpers/general";
-import {
-  useDeleteV1UserReservationsIdentifier,
-  useGetV1UserReservations
-} from "../../../../core/publizon/publizon";
+import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
 import { useText } from "../../../../core/utils/text";
 import {
   Reservation,
@@ -24,17 +18,15 @@ import QueuedReservationsList from "./ready-to-loan-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-icon";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
-import { getReservationType } from "../../util/helpers";
 
 interface ReadyToLoanModalContentProps {
-  modalId: string;
+  removeSelectedReservations: (selectedReservations: any) => void;
 }
 const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
-  modalId
+  removeSelectedReservations
 }) => {
   const t = useText();
-  const { close } = useModalButtonHandler();
+
   const colors = getColors();
   const today = dayjs();
   const [physicalReservationsReadyToLoan, setPhysicalReservationsReadyToLoan] =
@@ -54,9 +46,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
       [key: string]: string;
     }[]
   >([]);
-  const { mutate: deletePhysicalReservation } = useDeleteReservations();
-  const { mutate: deleteDigitalReservation } =
-    useDeleteV1UserReservationsIdentifier();
+
   useEffect(() => {
     if (physicalReservations && !physicalReservationsReadyToLoan) {
       const readyToLoan = getReadyForPickup(physicalReservations);
@@ -134,49 +124,6 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
     [selectedReservations]
   );
 
-  const removeSelectedReservations = () => {
-    const selectedReservationsKeys = Object.keys(selectedReservations);
-    const selectedReservationsValues = Object.values(selectedReservations);
-    if (selectedReservationsKeys.length > 0) {
-      selectedReservationsKeys.map((reservation) => {
-        const index = selectedReservationsKeys.indexOf(reservation);
-        const reservationToDelete = selectedReservationsValues[index];
-        const reservationType = getReservationType(reservation);
-        switch (reservationType) {
-          case "physical":
-            deletePhysicalReservation(
-              {
-                params: { reservationid: [Number(reservationToDelete)] }
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
-            break;
-          case "digital":
-            deleteDigitalReservation(
-              {
-                identifier: String(selectedReservationsValues)
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
-            break;
-          default:
-            return false;
-        }
-        close(modalId);
-        return false;
-      });
-    }
-  };
   return (
     <div className="modal-loan__container">
       <div className="modal-loan__header">
@@ -204,7 +151,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
         <button
           type="button"
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
-          onClick={removeSelectedReservations}
+          onClick={() => removeSelectedReservations(selectedReservations)}
         >
           {t("removeAllReservationsText")} (
           {selectedReservations && Object.keys(selectedReservations).length})

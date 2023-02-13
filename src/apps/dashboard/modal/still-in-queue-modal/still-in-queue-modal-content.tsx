@@ -1,15 +1,9 @@
 import * as React from "react";
 import { FC, useCallback, useEffect, useState } from "react";
-import {
-  useDeleteReservations,
-  useGetReservationsV2
-} from "../../../../core/fbs/fbs";
+import { useGetReservationsV2 } from "../../../../core/fbs/fbs";
 import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import { getPhysicalReservations } from "../../../../core/utils/helpers/general";
-import {
-  useDeleteV1UserReservationsIdentifier,
-  useGetV1UserReservations
-} from "../../../../core/publizon/publizon";
+import { useGetV1UserReservations } from "../../../../core/publizon/publizon";
 import { useText } from "../../../../core/utils/text";
 import {
   Reservation,
@@ -18,17 +12,17 @@ import {
 import QueuedReservationsList from "./queued-reservations-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
-import { getReservationType } from "../../util/helpers";
 
-interface StillInQueueModalContentProps {
-  modalId: string;
+interface StillInQueueModalProps {
+  removeReservationsClickEvent: (
+    selectedReservations: { [key: string]: string }[]
+  ) => void;
 }
-const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
-  modalId
+const StillInQueueModalContent: FC<StillInQueueModalProps> = ({
+  removeReservationsClickEvent
 }) => {
   const t = useText();
-  const { close } = useModalButtonHandler();
+
   const [
     physicalReservationsStillInQueue,
     setPhysicalReservationsStillInQueue
@@ -48,9 +42,7 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       [key: string]: string;
     }[]
   >([]);
-  const { mutate: deletePhysicalReservation } = useDeleteReservations();
-  const { mutate: deleteDigitalReservation } =
-    useDeleteV1UserReservationsIdentifier();
+
   useEffect(() => {
     if (physicalReservations) {
       const reservations = getPhysicalReservations(physicalReservations);
@@ -121,49 +113,6 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
     [selectedReservations]
   );
 
-  const removeSelectedReservations = () => {
-    const selectedReservationsKeys = Object.keys(selectedReservations);
-    const selectedReservationsValues = Object.values(selectedReservations);
-    if (selectedReservationsKeys.length > 0) {
-      selectedReservationsKeys.map((reservation) => {
-        const index = selectedReservationsKeys.indexOf(reservation);
-        const reservationToDelete = selectedReservationsValues[index];
-        const reservationType = getReservationType(reservation);
-        switch (reservationType) {
-          case "physical":
-            deletePhysicalReservation(
-              {
-                params: { reservationid: [Number(reservationToDelete)] }
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
-            break;
-          case "digital":
-            deleteDigitalReservation(
-              {
-                identifier: String(selectedReservationsValues)
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
-            break;
-          default:
-            return false;
-        }
-        close(modalId);
-        return false;
-      });
-    }
-  };
   return (
     <div className="modal-loan__container">
       <div className="modal-loan__header">
@@ -185,7 +134,7 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
         <button
           type="button"
           className="btn-primary btn-filled btn-small arrow__hover--right-small"
-          onClick={removeSelectedReservations}
+          onClick={() => removeReservationsClickEvent(selectedReservations)}
         >
           {t("removeAllReservationsText")} (
           {selectedReservations && Object.keys(selectedReservations).length}){" "}

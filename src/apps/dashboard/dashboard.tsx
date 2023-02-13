@@ -145,12 +145,8 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         OpenModalHandler={OpenModalHandler}
         openDueDateModal={openDueDateModal}
       />
-      <StillInQueueModal modalId="still-in-queue-modal">
-        <StillInQueueModalContent modalId="still-in-queue-modal" />
-      </StillInQueueModal>
-      <ReadyToLoanModal modalId="ready-to-loan-modal">
-        <ReadyToLoanModalContent modalId="ready-to-loan-modal" />
-      </ReadyToLoanModal>
+      <StillInQueueModal modalId="still-in-queue-modal" />
+      <ReadyToLoanModal modalId="ready-to-loan-modal" />
       <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
         <MaterialDetails
           faust={modalLoan?.faust}
