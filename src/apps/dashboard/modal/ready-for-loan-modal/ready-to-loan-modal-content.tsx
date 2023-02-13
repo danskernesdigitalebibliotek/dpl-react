@@ -25,6 +25,7 @@ import CheckBox from "../../../../components/checkbox/Checkbox";
 import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-icon";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { getReservationType } from "../../util/helpers";
 
 interface ReadyToLoanModalContentProps {
   modalId: string;
@@ -132,6 +133,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
     },
     [selectedReservations]
   );
+
   const removeSelectedReservations = () => {
     const selectedReservationsKeys = Object.keys(selectedReservations);
     const selectedReservationsValues = Object.values(selectedReservations);
@@ -139,8 +141,9 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
       selectedReservationsKeys.map((reservation) => {
         const index = selectedReservationsKeys.indexOf(reservation);
         const reservationToDelete = selectedReservationsValues[index];
-        switch (reservation.length) {
-          case 8: // Physical Loan on faust
+        const reservationType = getReservationType(reservation);
+        switch (reservationType) {
+          case "physical":
             deletePhysicalReservation(
               {
                 params: { reservationid: [Number(reservationToDelete)] }
@@ -153,7 +156,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
               }
             );
             break;
-          case 13: // Digital Loan on identifier id
+          case "digital":
             deleteDigitalReservation(
               {
                 identifier: String(selectedReservationsValues)

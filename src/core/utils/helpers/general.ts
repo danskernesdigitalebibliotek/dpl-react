@@ -15,6 +15,10 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
+import {
+  dashboardReadyForPickupApiValueText,
+  dashboardReservedApiValueText
+} from "../../configuration/api-strings.json";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -302,22 +306,21 @@ export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
   return [...list].filter(({ state, pickupDeadline }) => {
     const deadline = dayjs(pickupDeadline);
     if (deadline) {
-      return state === "readyForPickup" && deadline < yesterday;
+      return (
+        state === dashboardReadyForPickupApiValueText && deadline < yesterday
+      );
     }
     return false;
   });
 };
-
 export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
-  return [...list].filter(({ state }) => state === "reserved");
+  return [...list].filter(
+    ({ state }) => state === dashboardReservedApiValueText
+  );
 };
 
 export const tallyUpFees = (fees: FeeV2[]) => {
-  let total = 0;
-  Object.values(fees).forEach(({ amount }) => {
-    total += amount;
-  });
-  return total;
+  return fees.reduce((total, { amount }) => total + amount, 0);
 };
 
 // Loans overdue
@@ -373,5 +376,8 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
-
+export const constructSimpleModalId = (
+  something: string,
+  somethingElse: string
+) => `${something}${somethingElse}`;
 export default {};

@@ -7,6 +7,7 @@ import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-mat
 import fetchMaterial, {
   MaterialProps
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import AuthorYear from "../../../../components/author-year/authorYear";
 
 export interface QueuedReservationItemProps {
   numberInQueue: number;
@@ -29,7 +30,7 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
   reservationId
 }) => {
   const t = useText();
-  const { title, authors, year, materialType } = material || {};
+  const { title, authors = "", year = "", materialType } = material || {};
   return (
     <li>
       <div className="list-materials">
@@ -53,12 +54,12 @@ const QueuedReservationItem: FC<QueuedReservationItemProps & MaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{title}</p>
           <p className="text-small-caption">
-            {authors && authors} {year && year}
+            <AuthorYear author={authors} year={year} />
           </p>
         </div>
         <div className="list-materials__status">
           <div className="status-label status-label--neutral ">
-            {t("numberInLineText", {
+            {t("dashboardNumberInLineText", {
               count: numberInQueue,
               placeholders: { "@count": numberInQueue }
             })}

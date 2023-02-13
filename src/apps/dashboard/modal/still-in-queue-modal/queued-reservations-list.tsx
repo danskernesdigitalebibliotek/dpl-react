@@ -19,43 +19,35 @@ const QueuedReservationsList: FC<QueuedReservationsListProps> = ({
   digitalReservations,
   selectedReservations,
   setCustomSelection
-}) => {
-  return (
-    <ul className="modal-loan__list-materials">
-      {physicalReservations &&
-        physicalReservations.map((physicalReservation) => {
-          const {
-            recordId,
-            numberInQueue = 0,
-            reservationId = ""
-          } = physicalReservation;
-          return (
+}) => (
+  <ul className="modal-loan__list-materials">
+    {physicalReservations &&
+      physicalReservations.map(
+        ({ recordId, numberInQueue = 0, reservationId = "" }) => (
+          <QueuedReservationItem
+            faust={recordId as FaustId}
+            numberInQueue={numberInQueue}
+            selectedReservations={selectedReservations}
+            setCustomSelection={setCustomSelection}
+            reservationId={reservationId as string}
+          />
+        )
+      )}
+    {digitalReservations &&
+      digitalReservations.map(
+        ({ identifier, status = 0 }) =>
+          identifier && (
             <QueuedReservationItem
-              faust={recordId as FaustId}
-              numberInQueue={numberInQueue}
+              identifier={identifier}
+              numberInQueue={status}
               selectedReservations={selectedReservations}
               setCustomSelection={setCustomSelection}
-              reservationId={reservationId as string}
+              reservationId={identifier}
             />
-          );
-        })}
-      {digitalReservations &&
-        digitalReservations.map((digitalReservation) => {
-          const { identifier, status = 0 } = digitalReservation;
-          return (
-            identifier && (
-              <QueuedReservationItem
-                identifier={identifier}
-                numberInQueue={status}
-                selectedReservations={selectedReservations}
-                setCustomSelection={setCustomSelection}
-                reservationId={identifier}
-              />
-            )
-          );
-        })}
-    </ul>
-  );
-};
+          )
+      )}
+    )
+  </ul>
+);
 
 export default QueuedReservationsList;

@@ -19,6 +19,7 @@ import QueuedReservationsList from "./queued-reservations-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { getReservationType } from "../../util/helpers";
 
 interface StillInQueueModalContentProps {
   modalId: string;
@@ -127,8 +128,9 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
       selectedReservationsKeys.map((reservation) => {
         const index = selectedReservationsKeys.indexOf(reservation);
         const reservationToDelete = selectedReservationsValues[index];
-        switch (reservation.length) {
-          case 8: // Physical Loan on faust
+        const reservationType = getReservationType(reservation);
+        switch (reservationType) {
+          case "physical":
             deletePhysicalReservation(
               {
                 params: { reservationid: [Number(reservationToDelete)] }
@@ -141,7 +143,7 @@ const StillInQueueModalContent: FC<StillInQueueModalContentProps> = ({
               }
             );
             break;
-          case 13: // Digital Loan on identifier id
+          case "digital":
             deleteDigitalReservation(
               {
                 identifier: String(selectedReservationsValues)

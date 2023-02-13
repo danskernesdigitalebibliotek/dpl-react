@@ -19,12 +19,9 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationClickEvent,
   notificationClickEventParam
 }) => {
-  function stopPropagationFunction(e: MouseEvent) {
-    e.stopPropagation();
-  }
   const notificationClickEventHandler = useCallback(
     (e: MouseEvent) => {
-      stopPropagationFunction(e);
+      e.stopPropagation();
       if (notificationClickEvent && notificationClickEventParam) {
         notificationClickEvent(notificationClickEventParam);
       }

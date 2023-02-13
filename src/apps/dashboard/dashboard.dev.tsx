@@ -153,7 +153,7 @@ export default {
       },
       defaultValue: "Renewable (@count)"
     },
-    numberInLineText: {
+    dashboardNumberInLineText: {
       control: {
         type: "text"
       },
@@ -215,6 +215,10 @@ export default {
     },
     pickUpLatestText: {
       defaultValue: "Pick up before",
+      control: { type: "text" }
+    },
+    warningIconAltText: {
+      defaultValue: " warningIconAltText",
       control: { type: "text" }
     },
     // Config

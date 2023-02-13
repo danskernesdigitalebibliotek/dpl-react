@@ -1,10 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
+import { useDeepCompareEffect } from "react-use";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import { Link } from "../../../components/atoms/link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
+import { Button } from "../../../components/Buttons/Button";
 
 const DashboardFees: FC = () => {
   const t = useText();
@@ -12,15 +14,15 @@ const DashboardFees: FC = () => {
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
   const [totalFeeAmount, setTotalFeeAmount] = useState<number>();
-  useEffect(() => {
-    if (fbsFees) {
+  useDeepCompareEffect(() => {
+    if (fbsFees && !feeCount && !totalFeeAmount) {
       setFeeCount(fbsFees.length);
       setTotalFeeAmount(tallyUpFees(fbsFees));
     }
-  }, [fbsFees]);
+  }, [fbsFees, feeCount, totalFeeAmount]);
   return (
     <div className="fee-container">
-      {fbsFees && feeCount !== 0 && (
+      {fbsFees && feeCount && (
         <div>
           <div className="status-userprofile__column mb-16">
             <div className="link-filters">
@@ -38,7 +40,7 @@ const DashboardFees: FC = () => {
             <div className="warning-bar bg-global-secondary">
               <div className="warning-bar__left">
                 <div className="warning-bar__icon">
-                  <img src={WarningIcon} alt="close modal button" />
+                  <img src={WarningIcon} alt={t("warningIconAltText")} />
                 </div>
                 <div>
                   <Link
@@ -53,12 +55,15 @@ const DashboardFees: FC = () => {
                 <p className="text-body-medium-medium warning-bar__owes">
                   {totalFeeAmount},-
                 </p>
-                <button
-                  type="button"
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small undefined"
-                >
-                  {t("payOwedText")}
-                </button>
+                <Button
+                  label={t("payOwedText")}
+                  buttonType="default"
+                  disabled={false}
+                  collapsible={false}
+                  size="small"
+                  variant="outline"
+                  classNames="btn-primary btn-filled btn-small arrow__hover--right-small"
+                />
               </div>
             </div>
           </div>

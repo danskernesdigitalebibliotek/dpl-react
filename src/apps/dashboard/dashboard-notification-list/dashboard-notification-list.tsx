@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "../../../components/atoms/link";
 import { useGetLoansV2, useGetReservationsV2 } from "../../../core/fbs/fbs";
@@ -16,6 +15,7 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
+import { yesterday, soon, longer } from "../util/helpers";
 
 export interface DashboardNotificationListProps {
   OpenModalHandler: (modalId: string) => void;
@@ -41,39 +41,27 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   } = useUrls();
   const { data: fbsData } = useGetLoansV2();
   const { data: patronReservations } = useGetReservationsV2();
-  const [patronReservationCount, setPatronReservationCount] = useState(0);
+  const [patronReservationCount, setPatronReservationCount] =
+    useState<number>();
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
-  const [physicalLoansCount, setPhysicalLoansCount] = useState(0);
-  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<number>(0);
+  const [physicalLoansCount, setPhysicalLoansCount] = useState<number>();
+  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<number>();
   const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] =
-    useState<number>(0);
+    useState<number>();
   const [physicalLoansNotOverdue, setPhysicalLoansNotOverdue] =
-    useState<number>(0);
+    useState<number>();
   const [reservationsReadyForPickup, setReservationsReadyForPickup] =
-    useState<number>(0);
+    useState<number>();
   const [reservationsStillInQueueFor, setReservationsStillInQueueFor] =
-    useState<number>(0);
+    useState<number>();
   useEffect(() => {
     if (fbsData) {
       setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
     }
   }, [fbsData]);
 
-  const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
-    number | null
-  >(null);
-  const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
-  const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
-  const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
-
   useEffect(() => {
-    if (warning) {
-      setWarningThresholdFromConfig(warning);
-    }
-  }, [warning]);
-
-  useEffect(() => {
-    if (physicalLoans && warningThresholdFromConfig && warning) {
+    if (physicalLoans && warning) {
       // Set count of physical loans
       setPhysicalLoansCount(physicalLoans.length);
 
@@ -82,7 +70,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
       // Set count of physical loans soon to be overdue
       setPhysicalLoansSoonOverdue(
-        filterLoansSoonOverdue(physicalLoans, warningThresholdFromConfig).length
+        filterLoansSoonOverdue(physicalLoans, warning).length
       );
 
       // Set count of physical loans not overdue
@@ -90,7 +78,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         filterLoansNotOverdue(physicalLoans, warning).length
       );
     }
-  }, [physicalLoans, warning, warningThresholdFromConfig]);
+  }, [physicalLoans, warning]);
 
   useEffect(() => {
     if (patronReservations) {
@@ -109,7 +97,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link
-              href={new URL(physicalLoansUrl)}
+              href={physicalLoansUrl}
               className="link-tag link-tag link-filters__tag"
             >
               {t("physicalLoansText")}
@@ -117,37 +105,37 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             <span className="link-filters__counter">{physicalLoansCount}</span>
           </div>
         </div>
-        {fbsData && physicalLoansCount === 0 && (
+        {fbsData && !physicalLoansCount && (
           <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
-        {fbsData && physicalLoansCount !== 0 && (
+        {fbsData && physicalLoansCount && (
           <>
-            {physicalLoansOverdue && physicalLoansOverdue !== 0 && (
+            {physicalLoansOverdue && physicalLoansOverdue && (
               <DashboardNotification
                 notificationNumber={physicalLoansOverdue}
                 notificationText={t("loansOverdueText")}
                 notificationColor="danger"
-                notificationLink={new URL(loansOverdueUrl)}
+                notificationLink={loansOverdueUrl}
                 notificationClickEvent={openDueDateModal}
                 notificationClickEventParam={yesterday}
               />
             )}
-            {physicalLoansSoonOverdue && physicalLoansSoonOverdue !== 0 && (
+            {physicalLoansSoonOverdue && physicalLoansSoonOverdue && (
               <DashboardNotification
                 notificationNumber={physicalLoansSoonOverdue}
                 notificationText={t("loansSoonOverdueText")}
                 notificationColor="warning"
-                notificationLink={new URL(loansSoonOverdueUrl)}
+                notificationLink={loansSoonOverdueUrl}
                 notificationClickEvent={openDueDateModal}
                 notificationClickEventParam={soon}
               />
             )}
-            {physicalLoansNotOverdue && physicalLoansNotOverdue !== 0 && (
+            {physicalLoansNotOverdue && physicalLoansNotOverdue && (
               <DashboardNotification
                 notificationNumber={physicalLoansNotOverdue}
                 notificationText={t("loansNotOverdueText")}
                 notificationColor="neutral"
-                notificationLink={new URL(loansNotOverdueUrl)}
+                notificationLink={loansNotOverdueUrl}
                 notificationClickEvent={openDueDateModal}
                 notificationClickEventParam={longer}
               />
@@ -170,11 +158,11 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           </div>
         </div>
         {patronReservations &&
-          patronReservationCount === 0 &&
-          reservationsStillInQueueFor === 0 && (
+          !patronReservationCount &&
+          !reservationsStillInQueueFor && (
             <div className="dpl-list-empty">{t("noReservationsText")}</div>
           )}
-        {patronReservations && reservationsReadyForPickup !== 0 && (
+        {patronReservations && reservationsReadyForPickup && (
           <DashboardNotification
             notificationNumber={reservationsReadyForPickup}
             notificationText={t("reservationsReadyText")}
@@ -184,7 +172,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationClickEventParam="ready-to-loan-modal"
           />
         )}
-        {patronReservations && reservationsStillInQueueFor !== 0 && (
+        {patronReservations && reservationsStillInQueueFor && (
           <DashboardNotification
             notificationNumber={reservationsStillInQueueFor}
             notificationText={t("reservationsStillInQueueForText")}

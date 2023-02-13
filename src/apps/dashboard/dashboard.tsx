@@ -14,7 +14,8 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   getModalIds,
-  sortByLoanDate
+  sortByLoanDate,
+  constructSimpleModalId
 } from "../../core/utils/helpers/general";
 import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
 import MaterialDetails from "../loan-list/modal/material-details";
@@ -24,7 +25,7 @@ import { useGetLoansV2 } from "../../core/fbs/fbs";
 import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
-import { getFromListByKey } from "../loan-list/utils/helpers";
+import { yesterday, soon, longer } from "./util/helpers";
 
 interface DashboardProps {
   pageSize: number;
@@ -37,9 +38,6 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
-  const yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
-  const soon = dayjs().add(7, "days").format("YYYY-MM-DD");
-  const longer = dayjs().add(1, "year").format("YYYY-MM-DD");
   const { open } = useModalButtonHandler();
   const { isSuccess, data } = useGetLoansV2();
   const { loanDetails, dueDateModal } = getModalIds();
@@ -48,26 +46,15 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
-    useState<LoanType[] | undefined>(undefined);
+    useState<LoanType[] | null>(null);
   const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
-    LoanType[] | undefined
-  >(undefined);
-  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<
-    LoanType[] | undefined
-  >(undefined);
-  const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | undefined>(
-    undefined
-  );
-  const [modalHeader, setModalHealer] = useState("");
-
-  const [warningThresholdFromConfig, setWarningThresholdFromConfig] = useState<
-    number | null
+    LoanType[] | null
   >(null);
-  useEffect(() => {
-    if (warning) {
-      setWarningThresholdFromConfig(warning);
-    }
-  }, [warning]);
+  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<
+    LoanType[] | null
+  >(null);
+  const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
+  const [modalHeader, setModalHealer] = useState("");
 
   const OpenModalHandler = useCallback(
     (modalId: string) => {
@@ -77,35 +64,42 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     },
     [open]
   );
+
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
-      if (dueDateInput === yesterday) {
-        setLoansToDisplay(physicalLoansOverdue);
-        setModalHealer(t("loansOverdueText"));
+
+      switch (dueDateInput) {
+        case yesterday:
+          setLoansToDisplay(physicalLoansOverdue);
+          setModalHealer(t("loansOverdueText"));
+          break;
+
+        case soon:
+          setLoansToDisplay(physicalLoansSoonOverdue);
+          setModalHealer(t("loansSoonOverdueText"));
+          break;
+
+        case longer:
+          setLoansToDisplay(physicalLoansFarFromOverdue);
+          setModalHealer(t("loansNotOverdueText"));
+          break;
+
+        default:
+          throw new Error("Invalid due date input");
       }
-      if (dueDateInput === soon) {
-        setLoansToDisplay(physicalLoansSoonOverdue);
-        setModalHealer(t("loansSoonOverdueText"));
-      }
-      if (dueDateInput === longer) {
-        setLoansToDisplay(physicalLoansFarFromOverdue);
-        setModalHealer(t("loansNotOverdueText"));
-      }
-      open(`${dueDateModal}${dueDateInput}`);
+      open(constructSimpleModalId(dueDateModal as string, dueDateInput));
     },
     [
       dueDateModal,
-      longer,
       open,
       physicalLoansFarFromOverdue,
       physicalLoansOverdue,
       physicalLoansSoonOverdue,
-      soon,
-      t,
-      yesterday
+      t
     ]
   );
+
   const openLoanDetailsModal = useCallback(
     (modalId: string) => {
       setModalDetailsId(modalId);
@@ -115,12 +109,11 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   );
 
   useEffect(() => {
-    let loanForModal = null;
-    if (physicalLoans && modalDetailsId) {
-      loanForModal = getFromListByKey(physicalLoans, "faust", modalDetailsId);
-    }
-    if (loanForModal && loanForModal.length > 0) {
-      setModalLoan(loanForModal[0]);
+    const loanForModal = physicalLoans?.find(
+      (loan) => loan.faust === modalDetailsId
+    );
+    if (loanForModal) {
+      setModalLoan(loanForModal);
     }
   }, [modalDetailsId, physicalLoans]);
 
@@ -130,6 +123,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
 
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+
       setPhysicalLoansOverdue(filterLoansOverdue(mapToLoanType));
       setPhysicalLoansSoonOverdue(
         filterLoansSoonOverdue(mapToLoanType, warning)
@@ -141,13 +135,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     } else {
       setPhysicalLoans([]);
     }
-  }, [
-    isSuccess,
-    data,
-    setPhysicalLoansSoonOverdue,
-    warningThresholdFromConfig,
-    warning
-  ]);
+  }, [isSuccess, data, warning]);
 
   return (
     <>
