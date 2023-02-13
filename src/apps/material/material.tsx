@@ -8,7 +8,7 @@ import {
   AccessTypeCode,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/Disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -203,9 +203,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
         >
-          <MaterialReviews
-            pids={hasReview.map((review) => review.pid as Pid)}
-          />
+          <MaterialReviews pids={hasReview.map((review) => review.pid)} />
         </DisclosureControllable>
       )}
       {manifestations.map((manifestation) => (
