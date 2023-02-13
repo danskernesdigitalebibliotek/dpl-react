@@ -20,7 +20,11 @@ import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-i
 import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
 
 interface ReadyToLoanModalContentProps {
-  removeSelectedReservations: (selectedReservations: any) => void;
+  removeSelectedReservations: (
+    selectedReservations: {
+      [key: string]: string;
+    }[]
+  ) => void;
 }
 const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
   removeSelectedReservations

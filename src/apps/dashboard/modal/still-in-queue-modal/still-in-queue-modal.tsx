@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { useDeleteReservations } from "../../../../core/fbs/fbs";
 import { useDeleteV1UserReservationsIdentifier } from "../../../../core/publizon/publizon";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";

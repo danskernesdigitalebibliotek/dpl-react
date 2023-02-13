@@ -1,12 +1,9 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
-import dayjs from "dayjs";
 import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
 import StillInQueueModal from "./modal/still-in-queue-modal/still-in-queue-modal";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import StillInQueueModalContent from "./modal/still-in-queue-modal/still-in-queue-modal-content";
-import ReadyToLoanModalContent from "./modal/ready-for-loan-modal/ready-to-loan-modal-content";
 import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
 import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
 import {
