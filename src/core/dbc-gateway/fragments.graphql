@@ -205,37 +205,8 @@ fragment WorkMedium on Work {
   relations {
     hasReview {
       pid
-      # ...ManifestationReviewFields
     }
   }
-  # reviews {
-  #   __typename
-  #   ... on LibrariansReview {
-  #     author
-  #     date
-  #     sections {
-  #       code
-  #       heading
-  #       text
-  #     }
-  #   }
-  #   ... on ExternalReview {
-  #     author
-  #     date
-  #     rating
-  #     urls {
-  #       origin
-  #       url
-  #     }
-  #   }
-  #   ... on InfomediaReview {
-  #     author
-  #     date
-  #     origin
-  #     rating
-  #     id
-  #   }
-  # }
   fictionNonfiction {
     display
     code
