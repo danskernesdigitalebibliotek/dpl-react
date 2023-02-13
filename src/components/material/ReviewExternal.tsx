@@ -7,6 +7,7 @@ import {
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import { ReviewManifestation } from "../../core/utils/types/entities";
+import { Link } from "../atoms/link";
 
 export interface ReviewExternalProps {
   review: ReviewManifestation;
@@ -33,9 +34,12 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
           return (
             <>
               <span>{index > 0 ? ", " : ""}</span>
-              <a href={url} className="link-tag text-small-caption mb-8">
+              <Link
+                href={new URL(url)}
+                className="link-tag text-small-caption mb-8"
+              >
                 {origin}
-              </a>
+              </Link>
             </>
           );
         })}
