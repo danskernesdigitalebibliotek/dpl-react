@@ -19,7 +19,7 @@ type ModalProps = {
   screenReaderModalDescriptionText: string;
   classNames?: string;
   dataCy?: string;
-  orientation?: "right";
+  isSlider?: boolean;
 };
 
 export interface ModalIdsProps {
@@ -34,7 +34,7 @@ function Modal({
   children,
   screenReaderModalDescriptionText,
   classNames,
-  orientation,
+  isSlider,
   dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
@@ -105,7 +105,7 @@ function Modal({
           <button
             type="button"
             className={`btn-ui modal-btn-close ${
-              !orientation ? "modal-btn-close--offset" : ""
+              !isSlider ? "modal-btn-close--offset" : ""
             }`}
             style={{
               // same as comment above
