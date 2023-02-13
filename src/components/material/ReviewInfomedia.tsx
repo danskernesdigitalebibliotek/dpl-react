@@ -2,7 +2,6 @@ import React from "react";
 import {
   AccessUrl,
   InfomediaService,
-  ManifestationReviewFieldsFragment,
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import {
@@ -15,6 +14,7 @@ import {
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { ReviewManifestation } from "../../core/utils/types/entities";
 import { useUrls } from "../../core/utils/url";
 import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 import { Button } from "../Buttons/Button";
@@ -22,7 +22,7 @@ import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewInfomediaProps {
-  review: ManifestationReviewFieldsFragment;
+  review: ReviewManifestation;
   dataCy?: string;
 }
 

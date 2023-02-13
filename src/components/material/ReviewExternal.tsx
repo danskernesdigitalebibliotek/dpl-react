@@ -1,17 +1,15 @@
 import React from "react";
-import {
-  AccessUrl,
-  ManifestationReviewFieldsFragment
-} from "../../core/dbc-gateway/generated/graphql";
+import { AccessUrl } from "../../core/dbc-gateway/generated/graphql";
 import ReviewMetadata from "./ReviewMetadata";
 import ReviewHearts from "./ReviewHearts";
 import {
   getAuthorNames,
   getReviewRelease
 } from "../../core/utils/helpers/general";
+import { ReviewManifestation } from "../../core/utils/types/entities";
 
 export interface ReviewExternalProps {
-  review: ManifestationReviewFieldsFragment;
+  review: ReviewManifestation;
   dataCy?: string;
 }
 

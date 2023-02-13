@@ -1,13 +1,13 @@
 import React from "react";
-import { ManifestationReviewFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAuthorNames,
   getReviewRelease
 } from "../../core/utils/helpers/general";
+import { ReviewManifestation } from "../../core/utils/types/entities";
 import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewLibrarianProps {
-  review: ManifestationReviewFieldsFragment;
+  review: ReviewManifestation;
   dataCy?: string;
 }
 
