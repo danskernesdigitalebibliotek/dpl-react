@@ -61,7 +61,7 @@ function Modal({
   return (
     <FocusTrap>
       <div>
-        {/* The backdrop doesn't have a tab index or keyboard listener because it barely duplicates
+        {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
