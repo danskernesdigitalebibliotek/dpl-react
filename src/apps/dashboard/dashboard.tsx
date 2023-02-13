@@ -11,8 +11,8 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   getModalIds,
-  sortByLoanDate,
-  constructSimpleModalId
+  constructSimpleModalId,
+  sortByLoanDate
 } from "../../core/utils/helpers/general";
 import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
 import MaterialDetails from "../loan-list/modal/material-details";
