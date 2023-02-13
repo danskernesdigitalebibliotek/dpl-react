@@ -1,10 +1,18 @@
 import {
+  ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
   WorkMediumFragment
 } from "../../dbc-gateway/generated/graphql";
 import { Pid, WorkId } from "./ids";
 
 export type Manifestation = Omit<ManifestationsSimpleFieldsFragment, "pid"> & {
+  pid: Pid;
+};
+
+export type ReviewManifestation = Omit<
+  ManifestationReviewFieldsFragment,
+  "pid"
+> & {
   pid: Pid;
 };
 
