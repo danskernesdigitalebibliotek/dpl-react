@@ -1284,7 +1284,7 @@ describe("Dashboard", () => {
       .find("h1")
       .eq(0)
       .should("exist")
-      .should("have.text", "Din profil");
+      .should("have.text", "Your profile");
 
     // Fees
     cy.get("#root")
@@ -1294,7 +1294,7 @@ describe("Dashboard", () => {
       .find(".link-filters__tag-wrapper")
       .find("a")
       .should("exist")
-      .should("have.text", "Mellemværender");
+      .should("have.text", "Intermediates");
 
     cy.get("#root")
       .find(".fee-container")
@@ -1325,7 +1325,7 @@ describe("Dashboard", () => {
       .eq(1)
       .find("a")
       .should("exist")
-      .should("have.text", "Du skylder i alt");
+      .should("have.text", "You owe in total");
 
     cy.get("#root")
       .find(".fee-container")
@@ -1345,7 +1345,7 @@ describe("Dashboard", () => {
       .find(".warning-bar__right")
       .find("button")
       .should("exist")
-      .should("have.text", "Se mere");
+      .should("have.text", "Read more");
 
     // Physical loans
     // header
@@ -1364,7 +1364,7 @@ describe("Dashboard", () => {
       .find(".link-filters__tag-wrapper")
       .find("a")
       .should("exist")
-      .should("have.text", "Fysiske lån");
+      .should("have.text", "Physical loans");
 
     cy.get("#root")
       .find(".status-userprofile")
@@ -1398,7 +1398,7 @@ describe("Dashboard", () => {
       .find(".list-dashboard")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "Afleveret for sent");
+      .should("have.text", "Returned too late");
 
     // To be returned soon
     cy.get("#root")
@@ -1421,7 +1421,7 @@ describe("Dashboard", () => {
       .find(".list-dashboard")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "Afleveres snart");
+      .should("have.text", "To be returned soon");
 
     // Some time until has to be returned
     cy.get("#root")
@@ -1444,7 +1444,7 @@ describe("Dashboard", () => {
       .find(".list-dashboard")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "Længere afleveringstid");
+      .should("have.text", "Longer return time");
 
     // Reservations loans
     cy.get("#root")
@@ -1462,7 +1462,7 @@ describe("Dashboard", () => {
       .find(".link-filters__tag-wrapper")
       .find("a")
       .should("exist")
-      .should("have.text", "Reserveringer");
+      .should("have.text", "Reservations");
 
     cy.get("#root")
       .find(".status-userprofile")
@@ -1498,7 +1498,7 @@ describe("Dashboard", () => {
       .find(".list-dashboard")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "Klar til dig");
+      .should("have.text", "Ready for you");
 
     // To be returned soon
     cy.get("#root")
@@ -1523,7 +1523,7 @@ describe("Dashboard", () => {
       .find(".list-dashboard")
       .find(".list-dashboard__title")
       .should("exist")
-      .should("have.text", "Stadig i kø");
+      .should("have.text", "Still in queue");
   });
 });
 
