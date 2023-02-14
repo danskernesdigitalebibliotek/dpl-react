@@ -12,7 +12,7 @@ import {
   filterLoansSoonOverdue,
   getModalIds,
   constructSimpleModalId,
-  sortByLoanDate
+  sortByDueDate
 } from "../../core/utils/helpers/general";
 import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
 import MaterialDetails from "../loan-list/modal/material-details";
@@ -119,7 +119,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       const mapToLoanType = mapFBSLoanToLoanType(data);
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = sortByDueDate(mapToLoanType);
 
       setPhysicalLoansOverdue(filterLoansOverdue(mapToLoanType));
       setPhysicalLoansSoonOverdue(
