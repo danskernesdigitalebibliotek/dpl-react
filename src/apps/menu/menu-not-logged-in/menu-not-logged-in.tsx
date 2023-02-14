@@ -4,6 +4,7 @@ import { FC } from "react";
 import { useUrls } from "../../../core/utils/url";
 import ArrowIcon from "../../../components/atoms/icons/arrow/arrow-white";
 import { useText } from "../../../core/utils/text";
+import { Link } from "../../../components/atoms/link";
 
 export interface MenuNotLoggedInContentProps {
   closeLoanerMenu: () => void;

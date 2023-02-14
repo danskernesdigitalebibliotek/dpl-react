@@ -45,7 +45,7 @@ const Menu: FC = () => {
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
@@ -173,6 +173,7 @@ const Menu: FC = () => {
       </button>
       {showMenu && (
         <div className="modal-backdrop">
+          {/* TODO: HANDLE AUTHENTICATION */}
           {isLoggedIn && (
             <div className="modal modal-show modal-profile modal-right">
               <div
