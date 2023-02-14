@@ -30,30 +30,34 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           {t("patronPageContactInfoBodyText")}
         </p>
       )}
-      <TextInput
-        className="patron__input patron__input--desktop"
-        id="phone-input"
-        type="number"
-        onChange={(newPhoneNumber) =>
-          changePatron(newPhoneNumber, "phoneNumber")
-        }
-        value={patron?.phoneNumber}
-        label={t("patronPageContactPhoneLabelText")}
-      />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveSms: boolean) =>
-          changePatron(newReceiveSms, "receiveSms")
-        }
-        id="phone-messages"
-        selected={patron?.receiveSms}
-        disabled={false}
-        label={t("patronPageContactPhoneCheckboxText")}
-      />
       {textNotificationsEnabled && (
-        <div className="text-body-small-regular mt-16 mb-32">
-          {t("patronPageTextFeeText")}
-        </div>
+        <>
+          <TextInput
+            className="patron__input patron__input--desktop"
+            id="phone-input"
+            type="number"
+            onChange={(newPhoneNumber) =>
+              changePatron(newPhoneNumber, "phoneNumber")
+            }
+            value={patron?.phoneNumber}
+            label={t("patronPageContactPhoneLabelText")}
+          />
+          <CheckBox
+            className="mt-32 mb-16"
+            onChecked={(newReceiveSms: boolean) =>
+              changePatron(newReceiveSms, "receiveSms")
+            }
+            id="phone-messages"
+            selected={patron?.receiveSms}
+            disabled={false}
+            label={t("patronPageContactPhoneCheckboxText")}
+          />
+          {t("patronPageTextFeeText") && (
+            <div className="text-body-small-regular mt-16 mb-32">
+              {t("patronPageTextFeeText")}
+            </div>
+          )}
+        </>
       )}
       <TextInput
         className="patron__input patron__input--desktop"
