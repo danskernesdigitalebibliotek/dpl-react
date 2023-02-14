@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { FC } from "react";
 import { PatronV5 } from "../../../core/fbs/model";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import BranchesDropdown from "../util/BranchesDropdown";
