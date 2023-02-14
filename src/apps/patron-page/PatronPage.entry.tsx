@@ -16,6 +16,7 @@ interface PatronPageConfigProps {
 
 export interface PatronPageUrlProps {
   deletePatronUrl: string;
+  pauseReservationInfoUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
