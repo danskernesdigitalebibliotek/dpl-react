@@ -247,6 +247,7 @@ describe("Menu", () => {
   });
 
   it("Menu", () => {
+    cy.get(".header__menu-profile").click();
     // 2. Systemet viser Lånerstatusmenuen med
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")
