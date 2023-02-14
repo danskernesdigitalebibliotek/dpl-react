@@ -10,6 +10,7 @@ interface PatronPageConfigProps {
   pincodeLengthConfig: string;
   deletePatronLinkConfig: string;
   alwaysLoanableEreolenLink: string;
+  pauseReservationStartDateConfig: string;
 }
 
 export interface PatronPageUrlProps {
@@ -20,9 +21,16 @@ export interface PatronPageUrlProps {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   thresholdConfig: string;
+  textNotificationsEnabledConfig: string;
 }
 
 interface PatronPageTextProps {
+  pauseReservationModalCloseModalText: string;
+  dateInputsStartDateLabelText: string;
+  dateInputsEndDateLabelText: string;
+  pauseReservationModalBelowInputsTextText: string;
+  pauseReservationModalLinkText: string;
+  pauseReservationModalSaveButtonLabelText: string;
   patronPageHeaderText: string;
   patronPagePincodeTooShortValidationText: string;
   patronPageBasicDetailsHeaderText: string;
@@ -50,8 +58,6 @@ interface PatronPageTextProps {
   patronPagePincodesNotTheSameText: string;
   patronPageOpenPauseReservationsSectionText: string;
   patronPageOpenPauseReservationsSectionAriaText: string;
-  dateInputsEndDateLabelText: string;
-  dateInputsStartDateLabelText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageChangePincodeBodyText: string;
   patronPagePincodeLabelText: string;
@@ -59,6 +65,7 @@ interface PatronPageTextProps {
   patronPageStatusSectionLoanHeaderText: string;
   patronPageDeleteProfileLinkText: string;
   patronPageStatusSectionReservationsText: string;
+  patronPageTextFeeText: string;
 }
 
 export interface PatronPageProps

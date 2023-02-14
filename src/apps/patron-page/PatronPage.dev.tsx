@@ -9,6 +9,10 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     // Config
+    pauseReservationStartDateConfig: {
+      defaultValue: "2022-06-30",
+      control: { type: "text" }
+    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -27,6 +31,10 @@ export default {
         "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
       control: { type: "text" }
     },
+    textNotificationsEnabledConfig: {
+      defaultValue: "true",
+      control: { type: "text" }
+    },
     alwaysLoanableEreolenLink: {
       defaultValue:
         "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
@@ -35,6 +43,44 @@ export default {
     // Texts
     patronPageHeaderText: {
       defaultValue: "Patron profile page",
+      control: { type: "text" }
+    },
+    pauseReservationModalHeaderText: {
+      defaultValue: "Pause reservations on physical items",
+      control: { type: "text" }
+    },
+    pauseReservationModalBodyText: {
+      defaultValue:
+        "Pause your reservations early, since reservations that are already being processed, will not be paused.",
+      control: { type: "text" }
+    },
+    pauseReservationModalCloseModalText: {
+      defaultValue: "Close pause reservations modal",
+      control: { type: "text" }
+    },
+    dateInputsStartDateLabelText: {
+      defaultValue: "Start date",
+      control: { type: "text" }
+    },
+    dateInputsEndDateLabelText: {
+      defaultValue: "End date",
+      control: { type: "text" }
+    },
+    pauseReservationModalBelowInputsTextText: {
+      defaultValue: "",
+      control: { type: "text" }
+    },
+    pauseReservationModalLinkText: {
+      defaultValue:
+        "Read more about pausing reservertions and what that means here",
+      control: { type: "text" }
+    },
+    pauseReservationModalSaveButtonLabelText: {
+      defaultValue: "Save",
+      control: { type: "text" }
+    },
+    patronPageTextFeeText: {
+      defaultValue: "This might cost you money",
       control: { type: "text" }
     },
     patronPageBasicDetailsHeaderText: {
@@ -125,12 +171,12 @@ export default {
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionText: {
-      defaultValue: "Open pause reservation section",
+      defaultValue: "Open pause reservation modal",
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionAriaText: {
       defaultValue:
-        "This checkbox opens a section where you can put your current reservations on a pause, when the time period picked has ended, the reservations will be resumed",
+        "This checkbox opens a modal where you can put your current reservations on a pause, when the time period picked has ended, the reservations will be resumed",
       control: { type: "text" }
     },
     dateInputsStartDateLabelText: {

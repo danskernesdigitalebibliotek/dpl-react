@@ -15,12 +15,15 @@ import ContactInfoSection from "./sections/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
+import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
+import { getModalIds } from "../../core/utils/helpers/general";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
   const t = useText();
   const config = useConfig();
   const { mutate } = useUpdateV5();
+  const { pauseReservation } = getModalIds();
 
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
@@ -87,41 +90,46 @@ const PatronPage: FC = () => {
   };
 
   return (
-    <form className="dpl-patron-page">
-      <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
-      {patron && <BasicDetailsSection patron={patron} />}
-      <div className="patron-page-info">
-        {patron && (
-          <ContactInfoSection changePatron={changePatron} patron={patron} />
-        )}
-        <StatusSection />
-        {patron && (
-          <ReservationDetailsSection
-            changePatron={changePatron}
-            patron={patron}
-          />
-        )}
-        {patron && <PincodeSection changePincode={setPin} />}
-        <button
-          data-cy="save-user-patron"
-          className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-          type="button"
-          onClick={save}
-        >
-          {t("patronPageSaveButtonText")}
-        </button>
-        <div className="text-body-small-regular mt-32">
-          {t("patronPageDeleteProfileText")}{" "}
-          <Link
-            id="delete-patron-link"
-            href={new URL(deletePatronLink)}
-            className="link-tag"
+    <>
+      <form className="dpl-patron-page">
+        <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
+        {patron && <BasicDetailsSection patron={patron} />}
+        <div className="patron-page-info">
+          {patron && (
+            <ContactInfoSection changePatron={changePatron} patron={patron} />
+          )}
+          <StatusSection />
+          {patron && (
+            <ReservationDetailsSection
+              changePatron={changePatron}
+              patron={patron}
+            />
+          )}
+          {patron && <PincodeSection changePincode={setPin} />}
+          <button
+            data-cy="save-user-patron"
+            className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
+            type="button"
+            onClick={save}
           >
-            {t("patronPageDeleteProfileLinkText")}
-          </Link>
+            {t("patronPageSaveButtonText")}
+          </button>
+          <div className="text-body-small-regular mt-32">
+            {t("patronPageDeleteProfileText")}{" "}
+            <Link
+              id="delete-patron-link"
+              href={new URL(deletePatronLink)}
+              className="link-tag"
+            >
+              {t("patronPageDeleteProfileLinkText")}
+            </Link>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+      {patron && (
+        <PauseReservation user={patron} id={pauseReservation as string} />
+      )}
+    </>
   );
 };
 

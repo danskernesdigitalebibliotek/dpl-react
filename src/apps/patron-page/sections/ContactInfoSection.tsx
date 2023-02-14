@@ -4,6 +4,7 @@ import TextInput from "../../../components/atoms/input/TextInput";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useText } from "../../../core/utils/text";
 import { ChangePatronProps } from "./ReservationDetailsSection";
+import { useConfig } from "../../../core/utils/config";
 
 interface ContactInfoSectionProps {
   patron: PatronV5;
@@ -15,6 +16,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   changePatron
 }) => {
   const t = useText();
+  const config = useConfig();
+  const textNotificationsEnabled =
+    config("textNotificationsEnabledConfig") === "true";
 
   return (
     <section data-cy="patron-page-contact-info">
@@ -46,6 +50,11 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         disabled={false}
         label={t("patronPageContactPhoneCheckboxText")}
       />
+      {textNotificationsEnabled && (
+        <div className="text-body-small-regular mt-16 mb-32">
+          {t("patronPageTextFeeText")}
+        </div>
+      )}
       <TextInput
         className="patron__input patron__input--desktop"
         id="email-address-input"

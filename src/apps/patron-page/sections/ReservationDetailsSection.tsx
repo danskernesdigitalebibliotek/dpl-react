@@ -3,7 +3,8 @@ import { PatronV5 } from "../../../core/fbs/model";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import BranchesDropdown from "../util/BranchesDropdown";
 import { useText } from "../../../core/utils/text";
-import DateInputs from "../../../components/date-inputs/date-inputs";
+import { getModalIds } from "../../../core/utils/helpers/general";
+import { useModalButtonHandler } from "../../../core/utils/modal";
 
 export interface ChangePatronProps {
   (newValue: string | boolean, key: string): void;
@@ -19,15 +20,12 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
   changePatron
 }) => {
   const t = useText();
-  const [reservationPauseSectionVisible, setReservationPauseSectionVisible] =
-    useState<boolean>(false);
+  const { open } = useModalButtonHandler();
+  const { pauseReservation } = getModalIds();
 
-  useEffect(() => {
-    // If onhold has values, the section should be visible
-    if (patron.onHold) {
-      setReservationPauseSectionVisible(true);
-    }
-  }, [patron.onHold]);
+  const openPauseReservationModal = () => {
+    open(pauseReservation as string);
+  };
 
   return (
     <section data-cy="pickup-reservations-section">
@@ -56,23 +54,11 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
       <CheckBox
         className="mt-32 mb-16"
         id="show-reservation-pause-section"
-        onChecked={() =>
-          setReservationPauseSectionVisible(!reservationPauseSectionVisible)
-        }
+        onChecked={openPauseReservationModal}
         ariaLabel={t("patronPageOpenPauseReservationsSectionAriaText")}
-        selected={reservationPauseSectionVisible}
+        selected={false}
         label={t("patronPageOpenPauseReservationsSectionText")}
       />
-      {reservationPauseSectionVisible && (
-        <DateInputs
-          setStartDate={(newStartDate) =>
-            changePatron(newStartDate, "onHold.from")
-          }
-          setEndDate={(newEndDate) => changePatron(newEndDate, "onHold.to")}
-          startDate={patron?.onHold?.from || ""}
-          endDate={patron?.onHold?.to || ""}
-        />
-      )}
     </section>
   );
 };
