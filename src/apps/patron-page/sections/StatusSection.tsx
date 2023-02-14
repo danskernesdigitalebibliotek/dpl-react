@@ -89,22 +89,11 @@ const StatusSection: FC = () => {
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">
+                  <div className="text-label text-body-medium-medium">
                     {t("patronPageStatusSectionLoansEbooksText")}
                   </div>
                   {maxConcurrentEbookLoansPerBorrower && (
-                    <div
-                      className="text-label"
-                      aria-label={t(
-                        "patronPageStatusSectionOutOfAriaLabelEbooksText",
-                        {
-                          placeholders: {
-                            "@this": patronEbookLoans,
-                            "@that": maxConcurrentEbookLoansPerBorrower
-                          }
-                        }
-                      )}
-                    >
+                    <div className="text-label">
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronEbookLoans,
@@ -114,14 +103,23 @@ const StatusSection: FC = () => {
                     </div>
                   )}
                 </div>
-                <div
-                  aria-hidden
-                  className="dpl-progress-bar__progress-bar bg-global-secondary"
-                >
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${eBookLoanPerent}%` }}
-                  />
+                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                  {maxConcurrentEbookLoansPerBorrower && (
+                    <div
+                      className="bg-identity-primary"
+                      role="img"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelEbooksText",
+                        {
+                          placeholders: {
+                            "@this": patronEbookLoans,
+                            "@that": maxConcurrentEbookLoansPerBorrower
+                          }
+                        }
+                      )}
+                      style={{ width: `${eBookLoanPerent}%` }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">

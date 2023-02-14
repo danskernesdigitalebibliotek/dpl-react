@@ -36,13 +36,17 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
 
   return (
     <>
-      <p className="text-body-medium mt-32 mb-8">
+      <label
+        htmlFor="branches-dropdown"
+        className="text-body-medium-medium mt-32 mb-8"
+      >
         {t("pickupBranchesDropdownLabelText")}
-      </p>
+      </label>
       <div className={`dropdown mb-32 ${classNames || ""}`}>
         {pickupModalBranches && (
           <>
             <select
+              id="branches-dropdown"
               onChange={({ target }) => onChange(target.value)}
               className="dropdown__select"
             >

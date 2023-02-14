@@ -90,34 +90,36 @@ const PatronPage: FC = () => {
     <form className="dpl-patron-page">
       <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
       {patron && <BasicDetailsSection patron={patron} />}
-      {patron && (
-        <ContactInfoSection changePatron={changePatron} patron={patron} />
-      )}
-      <StatusSection />
-      {patron && (
-        <ReservationDetailsSection
-          changePatron={changePatron}
-          patron={patron}
-        />
-      )}
-      {patron && <PincodeSection changePincode={setPin} />}
-      <button
-        data-cy="save-user-patron"
-        className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-        type="button"
-        onClick={save}
-      >
-        {t("patronPageSaveButtonText")}
-      </button>
-      <div className="text-body-small-regular mt-32">
-        {t("patronPageDeleteProfileText")}{" "}
-        <Link
-          id="delete-patron-link"
-          href={new URL(deletePatronLink)}
-          className="link-tag"
+      <div className="patron-page-info">
+        {patron && (
+          <ContactInfoSection changePatron={changePatron} patron={patron} />
+        )}
+        <StatusSection />
+        {patron && (
+          <ReservationDetailsSection
+            changePatron={changePatron}
+            patron={patron}
+          />
+        )}
+        {patron && <PincodeSection changePincode={setPin} />}
+        <button
+          data-cy="save-user-patron"
+          className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
+          type="button"
+          onClick={save}
         >
-          {t("patronPageDeleteProfileLinkText")}
-        </Link>
+          {t("patronPageSaveButtonText")}
+        </button>
+        <div className="text-body-small-regular mt-32">
+          {t("patronPageDeleteProfileText")}{" "}
+          <Link
+            id="delete-patron-link"
+            href={new URL(deletePatronLink)}
+            className="link-tag"
+          >
+            {t("patronPageDeleteProfileLinkText")}
+          </Link>
+        </div>
       </div>
     </form>
   );
