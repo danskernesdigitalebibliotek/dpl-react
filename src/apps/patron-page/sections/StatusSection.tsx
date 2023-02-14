@@ -64,7 +64,7 @@ const StatusSection: FC = () => {
           <h2 className="text-body-small-regular mt-32 mb-16">
             {t("patronPageStatusSectionHeaderText")}
           </h2>
-          <div className="text-body-small-regular">
+          <div className="text-body-small-regular mb-8">
             {t("patronPageStatusSectionBodyText")}{" "}
             <Link href={alwaysAvailableEreolenUrl}>
               {t("patronPageStatusSectionLinkText")}
@@ -72,7 +72,7 @@ const StatusSection: FC = () => {
           </div>
           {maxConcurrentEbookReservationsPerBorrower &&
             maxConcurrentAudioReservationsPerBorrower && (
-              <div className="text-body-small-regular">
+              <div className="text-body-small-regular mt-8 mb-8">
                 {t("patronPageStatusSectionReservationsText", {
                   placeholders: {
                     "@countEbooks": maxConcurrentEbookReservationsPerBorrower,
@@ -107,7 +107,7 @@ const StatusSection: FC = () => {
                   {maxConcurrentEbookLoansPerBorrower && (
                     <div
                       className="bg-identity-primary"
-                      role="img"
+                      role="figure"
                       aria-label={t(
                         "patronPageStatusSectionOutOfAriaLabelEbooksText",
                         {
@@ -128,18 +128,7 @@ const StatusSection: FC = () => {
                     {t("patronPageStatusSectionLoansAudioBooksText")}
                   </div>
                   {maxConcurrentAudioLoansPerBorrower && (
-                    <div
-                      className="text-label"
-                      aria-label={t(
-                        "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
-                        {
-                          placeholders: {
-                            "@this": patronAudioBookLoans,
-                            "@that": maxConcurrentAudioLoansPerBorrower
-                          }
-                        }
-                      )}
-                    >
+                    <div className="text-label">
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronAudioBookLoans,
@@ -149,14 +138,23 @@ const StatusSection: FC = () => {
                     </div>
                   )}
                 </div>
-                <div
-                  aria-hidden
-                  className="dpl-progress-bar__progress-bar bg-global-secondary"
-                >
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${audioBookLoanPercent}%` }}
-                  />
+                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                  {maxConcurrentEbookLoansPerBorrower && (
+                    <div
+                      role="figure"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
+                        {
+                          placeholders: {
+                            "@this": patronEbookLoans,
+                            "@that": maxConcurrentEbookLoansPerBorrower
+                          }
+                        }
+                      )}
+                      className="bg-identity-primary"
+                      style={{ width: `${audioBookLoanPercent}%` }}
+                    />
+                  )}
                 </div>
               </div>
             </div>

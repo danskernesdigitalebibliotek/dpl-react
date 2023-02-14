@@ -56,7 +56,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageChangePincodeHeaderText")}
       </h2>
-      <p className="text-body-small-regular">
+      <p className="text-body-small-regular mb-8">
         {t("patronPageChangePincodeBodyText")}
       </p>
       <div className="dpl-pincode-container">

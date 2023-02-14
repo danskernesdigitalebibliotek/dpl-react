@@ -112,7 +112,9 @@ const PatronPage: FC = () => {
           )}
           {patron && <PincodeSection changePincode={setPin} />}
           {successPinMessage && (
-            <p className="text-body-small-regular">{successPinMessage}</p>
+            <p className="text-body-small-regular mb-8 mt-8">
+              {successPinMessage}
+            </p>
           )}
 
           <button
