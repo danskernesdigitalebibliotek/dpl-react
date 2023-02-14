@@ -7,7 +7,6 @@ import {
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../core/fbs/fbs";
-import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Link } from "../../components/atoms/link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
@@ -17,17 +16,17 @@ import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { getModalIds } from "../../core/utils/helpers/general";
+import { useUrls } from "../../core/utils/url";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
   const t = useText();
-  const config = useConfig();
   const { mutate } = useUpdateV5();
   const { pauseReservation } = getModalIds();
 
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
-  const deletePatronLink = config("deletePatronLinkConfig");
+  const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
 
@@ -118,7 +117,7 @@ const PatronPage: FC = () => {
             {t("patronPageDeleteProfileText")}{" "}
             <Link
               id="delete-patron-link"
-              href={new URL(deletePatronLink)}
+              href={deletePatronUrl}
               className="link-tag"
             >
               {t("patronPageDeleteProfileLinkText")}

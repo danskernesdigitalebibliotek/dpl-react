@@ -5,34 +5,37 @@ import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 
 interface PatronPageConfigProps {
-  blacklistedPickupBranchesConfig?: string;
+  blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
-  pincodeLengthConfig: string;
-  deletePatronLinkConfig: string;
-  alwaysLoanableEreolenLink: string;
+  pincodeLengthMinConfig: string;
+  pincodeLengthMaxConfig: string;
   pauseReservationStartDateConfig: string;
+  blacklistedAvailabilityBranchesConfig: string;
+  textNotificationsEnabledConfig: string;
 }
 
 export interface PatronPageUrlProps {
+  deletePatronUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  thresholdConfig: string;
-  textNotificationsEnabledConfig: string;
+  alwaysLoanableEreolenUrl: string;
 }
 
 interface PatronPageTextProps {
+  patronPageHeaderText: string;
+  pauseReservationModalHeaderText: string;
+  pauseReservationModalBodyText: string;
   pauseReservationModalCloseModalText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
-  patronPageHeaderText: string;
-  patronPagePincodeTooShortValidationText: string;
+  patronPageTextFeeText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
@@ -45,6 +48,7 @@ interface PatronPageTextProps {
   patronPageStatusSectionHeaderText: string;
   patronPageStatusSectionBodyText: string;
   patronPageStatusSectionLinkText: string;
+  patronPageStatusSectionLoanHeaderText: string;
   patronPageStatusSectionLoansEbooksText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
@@ -53,19 +57,21 @@ interface PatronPageTextProps {
   pickupBranchesDropdownNothingSelectedText: string;
   patronPagePauseReservationsHeaderText: string;
   patronPagePauseReservationsBodyText: string;
-  patronPageSaveButtonText: string;
-  patronPageDeleteProfileText: string;
-  patronPagePincodesNotTheSameText: string;
   patronPageOpenPauseReservationsSectionText: string;
   patronPageOpenPauseReservationsSectionAriaText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageChangePincodeBodyText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
-  patronPageStatusSectionLoanHeaderText: string;
+  patronPagePincodeTooShortValidationText: string;
+  patronPagePincodesNotTheSameText: string;
+  patronPageSaveButtonText: string;
+  patronPageDeleteProfileText: string;
   patronPageDeleteProfileLinkText: string;
   patronPageStatusSectionReservationsText: string;
-  patronPageTextFeeText: string;
+  patronPageStatusSectionOutOfText: string;
+  patronPageStatusSectionOutOfAriaLabelAudioBooksText: string;
+  patronPageStatusSectionOutOfAriaLabelEbooksText: string;
 }
 
 export interface PatronPageProps

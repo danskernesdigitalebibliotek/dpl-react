@@ -11,7 +11,8 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
   const t = useText();
   const config = useConfig();
 
-  const pincodeLength = parseInt(config("pincodeLengthConfig"), 10) || 4;
+  const pincodeLengthMin = parseInt(config("pincodeLengthMinConfig"), 10) || 4;
+  const pincodeLengthMax = parseInt(config("pincodeLengthMaxConfig"), 10) || 4;
   const [pincodeValidation, setPincodeValidation] = useState<string>();
   const [pincode, setPincode] = useState<string>("");
   const [confirmPincode, setConfirmPincode] = useState<string>("");
@@ -21,11 +22,15 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
     changePincode(null);
     setPincodeValidation("");
     if (pincode && confirmPincode) {
-      if (pincode.length !== pincodeLength) {
+      if (
+        pincode.length > pincodeLengthMax ||
+        pincode.length < pincodeLengthMin
+      ) {
         setPincodeValidation(
           t("patronPagePincodeTooShortValidationText", {
             placeholders: {
-              "@pincodeLength": pincodeLength
+              "@pincodeLengthMin": pincodeLengthMin,
+              "@pincodeLengthMax": pincodeLengthMax
             }
           })
         );
@@ -37,7 +42,14 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
       }
       changePincode(confirmPincode);
     }
-  }, [changePincode, confirmPincode, pincode, pincodeLength, t]);
+  }, [
+    changePincode,
+    confirmPincode,
+    pincode,
+    pincodeLengthMax,
+    pincodeLengthMin,
+    t
+  ]);
 
   return (
     <section data-cy="pincode-section">

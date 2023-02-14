@@ -10,7 +10,7 @@ import { Link } from "../../../components/atoms/link";
 
 const StatusSection: FC = () => {
   const t = useText();
-  const { alwaysLoanableEreolenLink } = useUrls();
+  const { alwaysAvailableEreolenUrl } = useUrls();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
@@ -66,7 +66,7 @@ const StatusSection: FC = () => {
           </h2>
           <div className="text-body-small-regular">
             {t("patronPageStatusSectionBodyText")}{" "}
-            <Link href={alwaysLoanableEreolenLink}>
+            <Link href={alwaysAvailableEreolenUrl}>
               {t("patronPageStatusSectionLinkText")}
             </Link>
           </div>
