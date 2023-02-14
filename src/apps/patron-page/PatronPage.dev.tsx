@@ -41,7 +41,7 @@ export default {
       control: { type: "text" }
     },
     textNotificationsEnabledConfig: {
-      defaultValue: "true",
+      defaultValue: "false",
       control: { type: "text" }
     },
     alwaysAvailableEreolenUrl: {
@@ -180,7 +180,7 @@ export default {
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionText: {
-      defaultValue: "Open pause reservation modal",
+      defaultValue: "Pause your reservations",
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionAriaText: {
@@ -194,6 +194,10 @@ export default {
     },
     patronPageChangePincodeBodyText: {
       defaultValue: "Change current pin by entering a new pin and saving",
+      control: { type: "text" }
+    },
+    patronPinSavedSuccessText: {
+      defaultValue: "Pincode was saved",
       control: { type: "text" }
     },
     patronPagePincodeLabelText: {

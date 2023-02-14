@@ -29,6 +29,9 @@ const PatronPage: FC = () => {
   const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     if (patronData && patronData.patron) {
@@ -80,6 +83,9 @@ const PatronPage: FC = () => {
             queryClient.invalidateQueries(
               getGetPatronInformationByPatronIdV2QueryKey()
             );
+            if (pin) {
+              setSuccessPinMessage(t("patronPinSavedSuccessText"));
+            }
           },
           // todo error handling, missing in figma
           onError: () => {}
@@ -105,6 +111,10 @@ const PatronPage: FC = () => {
             />
           )}
           {patron && <PincodeSection changePincode={setPin} />}
+          {successPinMessage && (
+            <p className="text-body-small-regular">{successPinMessage}</p>
+          )}
+
           <button
             data-cy="save-user-patron"
             className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
@@ -113,6 +123,7 @@ const PatronPage: FC = () => {
           >
             {t("patronPageSaveButtonText")}
           </button>
+
           <div className="text-body-small-regular mt-32">
             {t("patronPageDeleteProfileText")}{" "}
             <Link

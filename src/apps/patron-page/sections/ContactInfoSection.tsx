@@ -25,11 +25,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
-      {t("patronPageContactInfoBodyText") && (
-        <p className="text-body-small-regular mb-32">
-          {t("patronPageContactInfoBodyText")}
-        </p>
-      )}
+      <p className="text-body-small-regular mb-32">
+        {t("patronPageContactInfoBodyText")}
+      </p>
       {textNotificationsEnabled && (
         <>
           <TextInput

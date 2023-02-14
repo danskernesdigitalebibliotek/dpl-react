@@ -31,6 +31,7 @@ interface PatronPageTextProps {
   pauseReservationModalHeaderText: string;
   pauseReservationModalBodyText: string;
   pauseReservationModalCloseModalText: string;
+  patronPinSavedSuccessText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;
   pauseReservationModalBelowInputsTextText: string;

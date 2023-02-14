@@ -32,11 +32,9 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageChangePickupHeaderText")}
       </h2>
-      {t("patronPageChangePickupBodyText") && (
-        <p className="text-body-small-regular">
-          {t("patronPageChangePickupBodyText")}
-        </p>
-      )}
+      <p className="text-body-small-regular">
+        {t("patronPageChangePickupBodyText")}
+      </p>
       <BranchesDropdown
         classNames="dropdow dropdown__desktop"
         selected={patron?.preferredPickupBranch || ""}
