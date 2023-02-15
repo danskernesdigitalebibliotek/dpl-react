@@ -13,7 +13,7 @@ import { store } from "../src/core/store";
 import React from "react";
 import { updateStatus } from "../src/core/user.slice";
 import { withErrorBoundary } from "react-error-boundary";
-import ErrorBoundary from "../src/components/alert/alert";
+import ErrorBoundaryAlert from "../src/components/error-boundary-alert/ErrorBoundaryAlert";
 
 if (process.env.NODE_ENV === "test") {
   store.dispatch(
@@ -48,7 +48,7 @@ if (!libraryToken && userToken) {
 
 const WrappedStory = (app) =>
   withErrorBoundary(app, {
-    FallbackComponent: ErrorBoundary,
+    FallbackComponent: ErrorBoundaryAlert,
     onError(error, info) {
       // Logging should be acceptable in an error handler.
       // eslint-disable-next-line no-console
@@ -56,7 +56,7 @@ const WrappedStory = (app) =>
     }
   });
 
-const App = ({story}) => <Store>{WrappedStory(story)}</Store>;
+const App = ({ story }) => <Store>{WrappedStory(story)}</Store>;
 // TODO: Using addon-redux would be much nicer, but it doesn't seem to
 // be compatible with Storybook 6.
 export const decorators = [
