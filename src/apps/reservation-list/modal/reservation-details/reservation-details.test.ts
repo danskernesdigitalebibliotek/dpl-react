@@ -12,7 +12,7 @@ describe("Reservation details modal test", () => {
     });
 
     const clockDate = new Date(
-      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
+      "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
     ).getTime();
 
     // Sets time to a specific date
