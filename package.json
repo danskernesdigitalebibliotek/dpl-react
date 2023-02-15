@@ -40,6 +40,7 @@
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=opac graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
     "codegen:client:fbs": "orval --project fbsAdapter",
+    "codegen:client:cover": "orval --project coverService",
     "codegen:client:publizon": "orval --project publizonAdapter",
     "codegen:client:dpl-cms": "orval --project dplCms",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
@@ -151,6 +152,7 @@
     "focus-trap-react": "^10.0.2",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
+    "http-error-classes": "^1.0.1",
     "lodash": "^4.17.21",
     "orval": "^6.8.1",
     "prop-types": "^15.8.1",
