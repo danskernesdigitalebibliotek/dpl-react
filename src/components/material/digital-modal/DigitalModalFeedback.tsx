@@ -6,11 +6,12 @@ import ReservationForm from "../../reservation/forms/ReservationForm";
 type DigitalModalFeedbackProps = {
   modalId: string;
   isError: boolean;
+  feedbackMessage: string | null;
 };
 
 const DigitalModalFeedback: React.FunctionComponent<
   DigitalModalFeedbackProps
-> = ({ modalId, isError }) => {
+> = ({ modalId, isError, feedbackMessage }) => {
   const t = useText();
   const { close } = useModalButtonHandler();
 
@@ -20,18 +21,18 @@ const DigitalModalFeedback: React.FunctionComponent<
       title={
         isError
           ? t("orderDigitalCopyErrorTitleText")
-          : t("orderDigitalCopySuccessTitleText")
+          : t("orderDigitalCopyFeedbackTitleText")
       }
       description={
         isError
           ? [t("orderDigitalCopyErrorDescriptionText")]
-          : [t("orderDigitalCopySuccessDescriptionText")]
+          : [feedbackMessage ?? ""]
       }
       onSubmit={() => close(modalId)}
       buttonLabel={
         isError
           ? t("orderDigitalCopyErrorButtonText")
-          : t("orderDigitalCopySuccessButtonText")
+          : t("orderDigitalCopyFeedbackButtonText")
       }
     />
   );

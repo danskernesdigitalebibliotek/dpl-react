@@ -94,9 +94,14 @@ interface MaterialEntryTextProps {
   orderDigitalCopyErrorTitleText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
-  orderDigitalCopySuccessButtonText: string;
-  orderDigitalCopySuccessDescriptionText: string;
-  orderDigitalCopySuccessTitleText: string;
+  orderDigitalCopyFeedbackButtonText: string;
+  orderDigitalCopyFeedbackOkText: string;
+  orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: string;
+  orderDigitalCopyFeedbackErrorInvalidPickupBranchText: string;
+  orderDigitalCopyFeedbackErrorMissingClientConfigurationText: string;
+  orderDigitalCopyFeedbackErrorPidNotReservableText: string;
+  orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
+  orderDigitalCopyFeedbackTitleText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
