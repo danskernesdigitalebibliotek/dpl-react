@@ -633,6 +633,16 @@ export default {
       name: "Film adaptations text",
       defaultValue: "Film adaptations",
       control: { type: "text" }
+    },
+    alertErrorCloseText: {
+      name: "Alert error close text",
+      defaultValue: "close",
+      control: { type: "text" }
+    },
+    alertErrorMessageText: {
+      name: "Alert error message text",
+      defaultValue: "An error occurred",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
