@@ -1,4 +1,9 @@
-import { useQuery, UseQueryOptions } from "react-query";
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions
+} from "react-query";
 import { fetcher } from "../graphql-fetcher";
 
 export type Maybe<T> = T | null;
@@ -2157,6 +2162,21 @@ export type IntelligentFacetsQuery = {
   };
 };
 
+export type PlaceCopyMutationVariables = Exact<{
+  input: CopyRequestInput;
+}>;
+
+export type PlaceCopyMutation = {
+  __typename?: "Mutation";
+  elba: {
+    __typename?: "ElbaServices";
+    placeCopyRequest: {
+      __typename?: "CopyRequestResponse";
+      status: CopyRequestStatus;
+    };
+  };
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -3605,5 +3625,31 @@ export const useIntelligentFacetsQuery = <
       IntelligentFacetsDocument,
       variables
     ),
+    options
+  );
+export const PlaceCopyDocument = `
+    mutation placeCopy($input: CopyRequestInput!) {
+  elba {
+    placeCopyRequest(input: $input) {
+      status
+    }
+  }
+}
+    `;
+export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
+  options?: UseMutationOptions<
+    PlaceCopyMutation,
+    TError,
+    PlaceCopyMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<PlaceCopyMutation, TError, PlaceCopyMutationVariables, TContext>(
+    ["placeCopy"],
+    (variables?: PlaceCopyMutationVariables) =>
+      fetcher<PlaceCopyMutation, PlaceCopyMutationVariables>(
+        PlaceCopyDocument,
+        variables
+      )(),
     options
   );
