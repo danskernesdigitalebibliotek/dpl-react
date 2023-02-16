@@ -24,17 +24,17 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
 
 export const getFromListByKey = (
   list: ListType[],
-  key: "faust" | "identifier",
+  key: "identifier" | "reservationId",
   value: string
 ) => {
-  return list.filter((loan) => loan[key] === value);
+  return list.filter((loan) => String(loan[key]) === value);
 };
 
 export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":
       return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
-    case "deniedOtherReason":
+    case "deniedReserved":
       return t("groupModalRenewLoanDeniedReservedText");
     default:
       return "";
