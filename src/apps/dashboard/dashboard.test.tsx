@@ -283,6 +283,30 @@ describe("Dashboard", () => {
       }
     ).as("reservations");
 
+    cy.intercept("POST", "**/opac/**", {
+      statusCode: 200,
+      body: {
+        data: {
+          manifestation: {
+            pid: "870970-basis:22629344",
+            titles: { main: ["Dummy Some Title"] },
+            abstract: ["Dummy Some abstract ..."],
+            edition: {
+              summary: "3. udgave, 1. oplag (2019)",
+              publicationYear: {
+                display: "2006"
+              }
+            },
+            materialTypes: [{ specific: "Dummy bog" }],
+            creators: [
+              { display: "Dummy Jens Jensen" },
+              { display: "Dummy Some Corporation" }
+            ]
+          }
+        }
+      }
+    }).as("work");
+
     cy.visit("/iframe.html?id=apps-dashboard--dash-board-entry&viewMode=story");
     cy.wait(["@fees", "@loans", "@reservations"]);
   });
@@ -599,7 +623,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".status-label")
       .should("exist")
-      .should("have.text", "bog");
+      .should("have.text", "Dummy bog");
 
     cy.get("#root")
       .find(".modal")
@@ -611,7 +635,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".text-header-h5")
       .should("exist")
-      .should("have.text", "Undervejs");
+      .should("have.text", "Dummy Some Title");
 
     cy.get("#root")
       .find(".modal")
@@ -625,7 +649,7 @@ describe("Dashboard", () => {
       .should("exist")
       .should(
         "have.text",
-        "undefined Margrethe II (dronning af Danmark) (2021)"
+        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
       );
   });
 
@@ -673,7 +697,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".status-label")
       .should("exist")
-      .should("have.text", "bog");
+      .should("have.text", "Dummy bog");
 
     cy.get("#root")
       .find(".modal")
@@ -685,7 +709,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".text-header-h5")
       .should("exist")
-      .should("have.text", "Man kan ikke føre solen bag lyset");
+      .should("have.text", "Dummy Some Title");
 
     cy.get("#root")
       .find(".modal")
@@ -697,7 +721,10 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "undefined Johannes Møllehave (2007)");
+      .should(
+        "have.text",
+        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
+      );
   });
 
   it("longer-return-time-modal", () => {
@@ -743,7 +770,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".status-label")
       .should("exist")
-      .should("have.text", "node");
+      .should("have.text", "Dummy bog");
 
     cy.get("#root")
       .find(".modal")
@@ -755,10 +782,7 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".text-header-h5")
       .should("exist")
-      .should(
-        "have.text",
-        "First 50 early rock songs you should play on the piano (Easy piano)"
-      );
+      .should("have.text", "Dummy Some Title");
 
     cy.get("#root")
       .find(".modal")
@@ -770,7 +794,10 @@ describe("Dashboard", () => {
       .find(".list-materials__content")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", " (2016)");
+      .should(
+        "have.text",
+        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
+      );
   });
 
   it("ready-for-you-modal", () => {
