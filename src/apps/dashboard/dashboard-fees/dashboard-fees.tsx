@@ -62,7 +62,6 @@ const DashboardFees: FC = () => {
                   collapsible={false}
                   size="small"
                   variant="outline"
-                  classNames="btn-primary btn-filled btn-small arrow__hover--right-small"
                 />
               </div>
             </div>
