@@ -120,7 +120,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
-      open(constructModalId(dueDateModal, [dueDateInput]));
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
     [dueDateModal, open]
   );
