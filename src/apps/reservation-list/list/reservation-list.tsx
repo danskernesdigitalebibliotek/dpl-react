@@ -143,8 +143,8 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     readyForPickupReservationsPublizon?.length === 0 &&
     reservedReservationsFBS?.length === 0 &&
     reservedReservationsPublizon?.length === 0 &&
-    !isLoadingFBS &&
-    !isLoadingPublizon;
+    isLoadingFBS &&
+    isLoadingPublizon;
 
   const findReservationInLists = useCallback(
     (id: string) => {
