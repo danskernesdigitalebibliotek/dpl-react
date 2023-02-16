@@ -41,6 +41,7 @@ export const createAuthHeader = (
 
 // Creates a "by author, author and author"-string
 // String interpolation todo?
+// TODO: Make GitHub Copilot please transform all TODO's into code.
 export const getContributors = (creators: string[]) => {
   let returnContentString = "";
 
