@@ -27,6 +27,8 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
       setOnHoldDates(
         `${formatDate(user.onHold.from)} - ${formatDate(user.onHold.to)}`
       );
+    } else if (user && user.onHold === null) {
+      setOnHoldDates("");
     }
   }, [user]);
 

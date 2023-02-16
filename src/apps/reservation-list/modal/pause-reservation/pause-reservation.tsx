@@ -16,14 +16,9 @@ import { useUrls } from "../../../../core/utils/url";
 interface PauseReservationProps {
   id: string;
   user: PatronV5;
-  updateUser: (user: PatronV5) => void;
 }
 
-const PauseReservation: FC<PauseReservationProps> = ({
-  id,
-  user,
-  updateUser
-}) => {
+const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
   const { pauseReservationInfoUrl } = useUrls();
   const queryClient = useQueryClient();
@@ -57,13 +52,10 @@ const PauseReservation: FC<PauseReservationProps> = ({
           data: { patron: saveData }
         },
         {
-          onSuccess: (result) => {
+          onSuccess: () => {
             queryClient.invalidateQueries(
               getGetPatronInformationByPatronIdV2QueryKey()
             );
-            if (result && result.patron) {
-              updateUser(result.patron);
-            }
             close(pauseReservation as string);
           },
           // todo error handling, missing in figma
@@ -71,16 +63,7 @@ const PauseReservation: FC<PauseReservationProps> = ({
         }
       );
     }
-  }, [
-    close,
-    endDate,
-    mutate,
-    pauseReservation,
-    queryClient,
-    startDate,
-    updateUser,
-    user
-  ]);
+  }, [close, endDate, mutate, pauseReservation, queryClient, startDate, user]);
 
   useEffect(() => {
     if (user?.onHold?.from) {
