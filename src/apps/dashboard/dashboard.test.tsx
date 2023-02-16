@@ -651,6 +651,7 @@ describe("Dashboard", () => {
       .find(".modal-loan__container")
       .find(".modal-loan__buttons")
       .find(".checkbox__text")
+      .eq(0)
       .should("exist")
       .should("have.text", "Choose all renewable");
 
@@ -776,9 +777,10 @@ describe("Dashboard", () => {
     cy.get("#root")
       .find(".status-userprofile")
       .find(".status-userprofile__column")
+      .eq(1)
       .should("exist")
       .find(".m-24")
-      .eq(3)
+      .eq(0)
       .click();
 
     cy.get("#root")
@@ -843,9 +845,10 @@ describe("Dashboard", () => {
     cy.get("#root")
       .find(".status-userprofile")
       .find(".status-userprofile__column")
+      .eq(1)
       .should("exist")
       .find(".m-24")
-      .eq(4)
+      .eq(1)
       .click();
 
     cy.get("#root")
