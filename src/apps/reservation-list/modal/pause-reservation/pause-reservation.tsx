@@ -7,7 +7,12 @@ import {
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
-import { PatronV5 } from "../../../../core/fbs/model";
+import {
+  Patron,
+  PatronV5,
+  Period,
+  UpdatePatronRequestV4
+} from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
@@ -17,11 +22,6 @@ interface PauseReservationProps {
   id: string;
   user: PatronV5;
 }
-
-type OnHoldType = {
-  from: string;
-  to: string;
-} | null;
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
@@ -38,26 +38,23 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
 
   const save = useCallback(() => {
     if (user) {
-      let onHoldSave = {
-        from: startDate === "" ? null : startDate,
-        to: endDate === "" ? null : endDate
-      } as OnHoldType;
+      const saveData = {
+        preferredPickupBranch: user.preferredPickupBranch,
+        receiveEmail: user.receiveEmail,
+        receivePostalMail: user.receivePostalMail,
+        receiveSms: user.receiveSms
+      } as Patron;
 
-      if (!startDate && !endDate) {
-        onHoldSave = null;
+      if (startDate || endDate) {
+        saveData.onHold = {
+          from: startDate === "" ? null : startDate,
+          to: endDate === "" ? null : endDate
+        };
       }
 
       mutate(
         {
-          data: {
-            patron: {
-              preferredPickupBranch: user.preferredPickupBranch,
-              receiveEmail: user.receiveEmail,
-              receivePostalMail: user.receivePostalMail,
-              receiveSms: user.receiveSms,
-              onHold: onHoldSave
-            }
-          }
+          data: { patron: saveData }
         },
         {
           onSuccess: () => {

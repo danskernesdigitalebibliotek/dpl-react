@@ -24,7 +24,7 @@ export const getRenewedIds = (list: RenewedLoanV2[]) => {
 
 export const getFromListByKey = (
   list: ListType[],
-  key: "identifier" | "reservationId",
+  key: "identifier" | "reservationId" | "faust",
   value: string
 ) => {
   return list.filter((loan) => String(loan[key]) === value);
