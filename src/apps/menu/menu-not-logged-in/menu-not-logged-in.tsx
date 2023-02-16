@@ -5,6 +5,7 @@ import { useUrls } from "../../../core/utils/url";
 import ArrowIcon from "../../../components/atoms/icons/arrow/arrow-white";
 import { useText } from "../../../core/utils/text";
 import { Link } from "../../../components/atoms/link";
+import { Button } from "../../../components/Buttons/Button";
 
 export interface MenuNotLoggedInContentProps {
   closePatronMenu: () => void;
@@ -29,13 +30,15 @@ const MenuNotLoggedInContent: FC<MenuNotLoggedInContentProps> = ({
       </button>
       <div className="modal-login__container">
         <Link href={menuLoginUrl}>
-          <button
-            type="button"
-            className="btn-primary btn-filled btn-large arrow__hover--right-small"
-          >
-            {t("menuLoginText")}
-            <ArrowIcon />
-          </button>
+          <Button
+            label={`${t("menuLoginText")}`}
+            buttonType="default"
+            disabled={false}
+            collapsible={false}
+            size="small"
+            variant="outline"
+            classNames="btn-primary btn-filled btn-large arrow__hover--right-small"
+          />
         </Link>
         <Link
           href={menuSignUpUrl}
