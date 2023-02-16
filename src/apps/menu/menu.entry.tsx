@@ -23,6 +23,7 @@ export interface MenuProps {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   thresholdConfig: string;
+  intermediateListDaysText: string;
 }
 
 const MenuEntry: FC<MenuProps> = () => <Menu />;

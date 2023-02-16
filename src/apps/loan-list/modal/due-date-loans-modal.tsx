@@ -17,21 +17,24 @@ interface DueDateLoansModalProps {
   loansModal?: LoanType[];
   pageSize: number;
   openLoanDetailsModal: (modalId: string) => void;
+  hideStatusCircle?: boolean;
+  customHeader?: string;
 }
 
 const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   dueDate,
   loansModal,
   openLoanDetailsModal,
-  pageSize
+  pageSize,
+  hideStatusCircle,
+  customHeader
 }) => {
   const t = useText();
   const aMonthAgo = dayjs().subtract(1, "month").format("YYYY-MM-DD");
   const { dueDateModal } = getModalIds();
-
   return (
     <Modal
-      modalId={`${dueDateModal}${dueDate}`}
+      modalId={`${dueDateModal}-${dueDate}`}
       classNames="modal-loan"
       closeModalAriaLabelText={t(
         "groupModalDueDateRenewLoanCloseModalAriaLabelText"
@@ -44,17 +47,26 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
         {loansModal && dueDate && (
           <>
             <div className="modal-loan__header">
-              <div className="mr-32">
-                {/* So, in the scenario where there are mixed loans, the design is challenged  */}
-                {/* Therefore it was decided that the loandate for all the materials are "a month ago"  */}
-                <StatusCircle loanDate={aMonthAgo} dueDate={dueDate} />
-              </div>
+              {!hideStatusCircle && (
+                <div className="mr-32">
+                  {/* So, in the scenario where there are mixed loans, the design is challenged  */}
+                  {/* Therefore it was decided that the loandate for all the materials are "a month ago"  */}
+                  <StatusCircle loanDate={aMonthAgo} dueDate={dueDate} />
+                </div>
+              )}
               <div>
-                <h1 className="modal-loan__title text-header-h2">
-                  {t("groupModalDueDateHeaderText", {
-                    placeholders: { "@date": formatDate(dueDate) }
-                  })}
-                </h1>
+                {customHeader && (
+                  <h1 className="modal-loan__title text-header-h2">
+                    {customHeader}
+                  </h1>
+                )}
+                {!customHeader && (
+                  <h1 className="modal-loan__title text-header-h2">
+                    {t("groupModalDueDateHeaderText", {
+                      placeholders: { "@date": formatDate(dueDate) }
+                    })}
+                  </h1>
+                )}
                 <div className="text-body-large">
                   {t("groupModalReturnLibraryText")}
                 </div>

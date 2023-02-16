@@ -1,4 +1,5 @@
 {
   "dateFormatDefault": "DD. MM. YYYY",
-  "dateFormatCustom": "D. MMMM YYYY"
+  "dateFormatCustom": "D. MMMM YYYY",
+  "dateFormatDayjs": "YYYY-MM-DD"
 }
