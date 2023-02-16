@@ -4,6 +4,7 @@ import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { PatronV5 } from "../../../core/fbs/model";
+import { formatDate } from "../../loan-list/utils/helpers";
 
 interface ReservationPauseTogglerProps {
   user: PatronV5;
@@ -23,7 +24,9 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
 
   useEffect(() => {
     if (user && user.onHold) {
-      setOnHoldDates(`${user.onHold.from} - ${user.onHold.to}`);
+      setOnHoldDates(
+        `${formatDate(user.onHold.from)} - ${formatDate(user.onHold.to)}`
+      );
     }
   }, [user]);
 
