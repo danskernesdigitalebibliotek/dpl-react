@@ -82,7 +82,7 @@ const List: FC<ListProps> = ({
             </h2>
           </div>
           <div className="list-reservation-container m-32">
-            <EmptyList emptyListText={emptyListLabel} />
+            <EmptyList data-cy="empty-list" emptyListText={emptyListLabel} />
           </div>
         </div>
       )}

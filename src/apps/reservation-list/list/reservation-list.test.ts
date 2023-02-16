@@ -679,6 +679,15 @@ describe("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
+    // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
+    cy.get(".reservation-list-page")
+      .find("[data-cy='empty-list']")
+      .eq(0)
+      .should(
+        "have.text",
+        "At the moment you have 0 reservations ready for pickup"
+      );
+
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
