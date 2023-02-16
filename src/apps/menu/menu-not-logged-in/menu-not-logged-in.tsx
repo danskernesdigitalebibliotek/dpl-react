@@ -2,7 +2,6 @@ import * as React from "react";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import { FC } from "react";
 import { useUrls } from "../../../core/utils/url";
-import ArrowIcon from "../../../components/atoms/icons/arrow/arrow-white";
 import { useText } from "../../../core/utils/text";
 import { Link } from "../../../components/atoms/link";
 import { Button } from "../../../components/Buttons/Button";
