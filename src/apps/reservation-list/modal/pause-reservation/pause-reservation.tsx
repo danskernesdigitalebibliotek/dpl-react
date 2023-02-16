@@ -7,12 +7,7 @@ import {
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
-import {
-  Patron,
-  PatronV5,
-  Period,
-  UpdatePatronRequestV4
-} from "../../../../core/fbs/model";
+import { Patron, PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
@@ -21,9 +16,14 @@ import { useUrls } from "../../../../core/utils/url";
 interface PauseReservationProps {
   id: string;
   user: PatronV5;
+  updateUser: (user: PatronV5) => void;
 }
 
-const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
+const PauseReservation: FC<PauseReservationProps> = ({
+  id,
+  user,
+  updateUser
+}) => {
   const t = useText();
   const { pauseReservationInfoUrl } = useUrls();
   const queryClient = useQueryClient();
@@ -47,8 +47,8 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
 
       if (startDate || endDate) {
         saveData.onHold = {
-          from: startDate === "" ? null : startDate,
-          to: endDate === "" ? null : endDate
+          from: startDate === "" ? undefined : startDate,
+          to: endDate === "" ? undefined : endDate
         };
       }
 
@@ -57,18 +57,30 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           data: { patron: saveData }
         },
         {
-          onSuccess: () => {
-            close(pauseReservation as string);
+          onSuccess: (result) => {
             queryClient.invalidateQueries(
               getGetPatronInformationByPatronIdV2QueryKey()
             );
+            if (result && result.patron) {
+              updateUser(result.patron);
+            }
+            close(pauseReservation as string);
           },
           // todo error handling, missing in figma
           onError: () => {}
         }
       );
     }
-  }, [close, endDate, mutate, pauseReservation, queryClient, startDate, user]);
+  }, [
+    close,
+    endDate,
+    mutate,
+    pauseReservation,
+    queryClient,
+    startDate,
+    updateUser,
+    user
+  ]);
 
   useEffect(() => {
     if (user?.onHold?.from) {

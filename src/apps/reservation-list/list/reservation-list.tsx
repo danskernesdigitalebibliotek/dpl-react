@@ -214,6 +214,10 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     [deleteReservation, findReservationInLists, open]
   );
 
+  const updateUser = (userInput: PatronV5) => {
+    setUser(userInput);
+  };
+
   const openReservationDetailsModal = useCallback(
     (reservationInput: ReservationType) => {
       setReservation(reservationInput);
@@ -295,7 +299,13 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           />
         )}
       </div>
-      {user && <PauseReservation user={user} id={pauseReservation as string} />}
+      {user && (
+        <PauseReservation
+          user={user}
+          updateUser={updateUser}
+          id={pauseReservation as string}
+        />
+      )}
       {reservationToDelete && (
         <DeleteReservationModal
           modalId={`${deleteReservation}${
