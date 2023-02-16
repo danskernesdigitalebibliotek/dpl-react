@@ -376,8 +376,5 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
-export const constructSimpleModalId = (
-  something: string,
-  somethingElse: string
-) => `${something}${somethingElse}`;
+
 export default {};

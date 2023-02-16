@@ -18,11 +18,11 @@ import DashboardNotification from "../dashboard-notification/dashboard-notificat
 import { yesterday, soon, longer } from "../util/helpers";
 
 export interface DashboardNotificationListProps {
-  OpenModalHandler: (modalId: string) => void;
+  openModalHandler: (modalId: string) => void;
   openDueDateModal: (dueDate: string) => void;
 }
 const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
-  OpenModalHandler,
+  openModalHandler,
   openDueDateModal
 }) => {
   const t = useText();
@@ -168,7 +168,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsReadyText")}
             notificationColor="info"
             notificationLink={reservationsUrl}
-            notificationClickEvent={OpenModalHandler}
+            notificationClickEvent={openModalHandler}
             notificationClickEventParam="ready-to-loan-modal"
           />
         )}
@@ -178,7 +178,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsStillInQueueForText")}
             notificationColor="neutral"
             notificationLink={reservationsUrl}
-            notificationClickEvent={OpenModalHandler}
+            notificationClickEvent={openModalHandler}
             notificationClickEventParam="still-in-queue-modal"
           />
         )}

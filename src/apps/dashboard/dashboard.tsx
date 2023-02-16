@@ -11,8 +11,8 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   getModalIds,
-  constructSimpleModalId,
-  sortByDueDate
+  sortByDueDate,
+  constructModalId
 } from "../../core/utils/helpers/general";
 import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
 import MaterialDetails from "../loan-list/modal/material-details";
@@ -53,7 +53,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
   const [modalHeader, setModalHealer] = useState("");
 
-  const OpenModalHandler = useCallback(
+  const openModalHandler = useCallback(
     (modalId: string) => {
       if (modalId) {
         open(modalId);
@@ -85,7 +85,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         default:
           throw new Error("Invalid due date input");
       }
-      open(constructSimpleModalId(dueDateModal as string, dueDateInput));
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
     [
       dueDateModal,
@@ -139,7 +139,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       <h1>{t("yourProfileText")}</h1>
       <DashboardFees />
       <DashboardNotificationList
-        OpenModalHandler={OpenModalHandler}
+        openModalHandler={openModalHandler}
         openDueDateModal={openDueDateModal}
       />
       <StillInQueueModal modalId="still-in-queue-modal" />
