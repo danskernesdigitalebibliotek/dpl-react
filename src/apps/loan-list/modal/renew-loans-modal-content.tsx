@@ -39,7 +39,6 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   }) || { isIntersecting: false };
   const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
   const [displayedLoans, setDisplayedLoans] = useState<LoanType[]>([]);
-
   const renewSelected = useCallback(() => {
     mutate(
       {

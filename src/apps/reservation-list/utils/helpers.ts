@@ -1,6 +1,9 @@
+import { ReservationDetailsV2 } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 
-export const sortByOldestPickupDeadline = (list: ReservationType[]) => {
+export const sortByOldestPickupDeadline = (
+  list: ReservationType[] | ReservationDetailsV2[]
+) => {
   return list.sort(
     (objA, objB) =>
       new Date(objA.pickupDeadline || new Date()).getTime() -

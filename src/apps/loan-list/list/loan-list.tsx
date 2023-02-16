@@ -6,7 +6,8 @@ import {
   getDueDatesLoan,
   getModalIds,
   sortByDueDate,
-  getScrollClass
+  getScrollClass,
+  constructModalId
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -119,7 +120,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
-      open(`${dueDateModal}${dueDateInput}`);
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
     [dueDateModal, open]
   );
