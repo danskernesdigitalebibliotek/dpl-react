@@ -7,11 +7,11 @@ import { useText } from "../../../core/utils/text";
 import { Link } from "../../../components/atoms/link";
 
 export interface MenuNotLoggedInContentProps {
-  closeLoanerMenu: () => void;
+  closePatronMenu: () => void;
 }
 
 const MenuNotLoggedInContent: FC<MenuNotLoggedInContentProps> = ({
-  closeLoanerMenu
+  closePatronMenu
 }) => {
   const t = useText();
   const { menuLoginUrl, menuSignUpUrl } = useUrls();
@@ -23,7 +23,7 @@ const MenuNotLoggedInContent: FC<MenuNotLoggedInContentProps> = ({
         aria-describedby="describemodal"
         className="btn-ui modal-btn-close"
         aria-label="close modal"
-        onClick={closeLoanerMenu}
+        onClick={closePatronMenu}
       >
         <img src={CloseIcon} alt="close modal button" />
       </button>
