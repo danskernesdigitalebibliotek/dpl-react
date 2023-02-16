@@ -32,7 +32,16 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const [endDate, setEndDate] = useState<string>("");
 
   const save = useCallback(() => {
-    if (user && startDate && endDate) {
+    if (user) {
+      let onHoldSave = {
+        from: startDate === "" ? null : startDate,
+        to: endDate === "" ? null : endDate
+      };
+
+      if (!startDate && !endDate) {
+        onHoldSave = null;
+      }
+
       mutate(
         {
           data: {
@@ -41,7 +50,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
               receiveEmail: user.receiveEmail,
               receivePostalMail: user.receivePostalMail,
               receiveSms: user.receiveSms,
-              onHold: { from: startDate, to: endDate }
+              onHold: onHoldSave
             }
           }
         },
