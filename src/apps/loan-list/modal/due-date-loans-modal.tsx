@@ -34,7 +34,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   const { dueDateModal } = getModalIds();
   return (
     <Modal
-      modalId={`${dueDateModal}${dueDate}`}
+      modalId={`${dueDateModal}-${dueDate}`}
       classNames="modal-loan"
       closeModalAriaLabelText={t(
         "groupModalDueDateRenewLoanCloseModalAriaLabelText"
