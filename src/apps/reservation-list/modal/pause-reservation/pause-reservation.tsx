@@ -18,6 +18,11 @@ interface PauseReservationProps {
   user: PatronV5;
 }
 
+type OnHoldType = {
+  from: string;
+  to: string;
+} | null;
+
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
   const { pauseReservationInfoUrl } = useUrls();
@@ -36,7 +41,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
       let onHoldSave = {
         from: startDate === "" ? null : startDate,
         to: endDate === "" ? null : endDate
-      };
+      } as OnHoldType;
 
       if (!startDate && !endDate) {
         onHoldSave = null;
