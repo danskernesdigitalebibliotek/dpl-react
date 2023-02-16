@@ -5,7 +5,7 @@ export interface ListDetailsProps {
   icon: string;
   title: string;
   labels: string[] | string;
-  showSelect?: boolean | null;
+  showSelect?: boolean;
   setShowSelect?: (show: boolean) => void;
   children?: ReactNode;
   idForLabelledBy?: string;
@@ -42,6 +42,7 @@ const ListDetails: FC<ListDetailsProps> = ({
         <div className="list-details__dropdown">{children}</div>
       </div>
       {showSelect !== null && !showSelect && setShowSelect && (
+        // todo add link-button in "src/components/Buttons"
         <button
           type="button"
           className="link-tag"

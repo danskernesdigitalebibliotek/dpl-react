@@ -37,12 +37,7 @@ interface PhysicalListDetailsProps {
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
-  reservation,
-  branches
-}) => {
-  const t = useText();
-
-  const {
+  reservation: {
     numberInQueue,
     pickupBranch,
     expiryDate: reservationExpiryDate,
@@ -50,7 +45,10 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     dateOfReservation,
     pickupNumber,
     reservationId
-  } = reservation;
+  },
+  branches
+}) => {
+  const t = useText();
 
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();

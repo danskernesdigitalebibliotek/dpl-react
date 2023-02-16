@@ -32,7 +32,7 @@ const ReservationDetailsButton: FC<
       <Button
         label={t("reservationDetailsButtonRemoveText")}
         onClick={() => openReservationDeleteModal(reservationId.toString())}
-        classNames={`btn-primary btn-filled btn-small arrow__hover--right-small ${buttonClassNames}`}
+        classNames={buttonClassNames}
         buttonType="none"
         disabled={false}
         collapsible={false}

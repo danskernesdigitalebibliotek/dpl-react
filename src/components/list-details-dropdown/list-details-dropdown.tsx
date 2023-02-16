@@ -31,10 +31,7 @@ const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
         disabled: true,
         value: ""
       }}
-      options={options.map(({ value, label }) => ({
-        value,
-        label
-      }))}
+      options={options}
       ariaLabel=""
       arrowIcon="chevron"
       handleOnChange={(e) => onDropdownChange(e)}
