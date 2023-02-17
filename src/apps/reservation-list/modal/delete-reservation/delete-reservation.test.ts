@@ -89,11 +89,14 @@ describe("Delete reservation modal test", () => {
     });
 
     cy.visit(
-      "/iframe.html?path=/story/apps-reservation-list--reservation-list-delete-digital-modal"
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
+    cy.get(".list-reservation__about").find("button").click();
+    cy.get(".modal-details__buttons").eq(0).find("button").click();
+
     // ID 14 1 The system opens a modal
-    cy.get(".modal.modal-cta").should("exist");
+    cy.get("#root").find(".modal.modal-cta").should("exist");
 
     // ID 14 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
@@ -174,14 +177,21 @@ describe("Delete reservation modal test", () => {
       }
     });
 
-    cy.intercept("DELETE", "**/external/v1/agencyid/**", {
-      code: 101,
-      message: "OK"
-    }).as("delete-physical-reservation");
+    cy.intercept(
+      "DELETE",
+      "**/external/v1/agencyid/patrons/patronid/reservations?reservationid=46985591",
+      {
+        code: 101,
+        message: "OK"
+      }
+    ).as("delete-physical-reservation");
 
     cy.visit(
-      "/iframe.html?path=/story/apps-reservation-list--reservation-list-delete-physical-modal"
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+
+    cy.get(".list-reservation__about").find("button").click();
+    cy.get(".modal-details__buttons").eq(0).find("button").click();
 
     // ID 18 1 The system opens a modal
     cy.get(".modal.modal-cta").should("exist");
@@ -205,7 +215,7 @@ describe("Delete reservation modal test", () => {
 
     // ID 18 1.d. button "Cancel reservation"
     // ID 18 2 user clicks "Cancel reservation"
-    cy.get(".modal.modal-cta")
+    cy.get("#root")
       .find("[data-cy='delete-reservation-button']")
       .should("have.text", "Cancel reservations")
       .click();
