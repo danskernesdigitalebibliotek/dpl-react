@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
+import { useGetV1UserChecklist } from "../../core/publizon/publizon";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
@@ -13,6 +14,7 @@ export interface FavoritesListProps {
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
   const { data } = useGetList("default");
+  const { data: publizonData } = useGetV1UserChecklist();
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
   const [materials, setMaterials] = useState([]);
   const { itemsShown, PagerComponent } = usePager(materials.length, pageSize);
@@ -26,6 +28,10 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
       setMaterials(data.collections);
     }
   }, [data]);
+
+  useEffect(() => {
+    console.log(publizonData);
+  }, [publizonData]);
 
   return (
     <div className="search-result-page">
