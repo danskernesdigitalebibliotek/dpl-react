@@ -17,8 +17,7 @@ import {
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import {
   mapPublizonLoanToLoanType,
-  mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
+  mapFBSLoanToLoanType
 } from "../../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import {
