@@ -1,55 +1,6 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material - Order digital copy", () => {
-  beforeEach(() => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/order-digital-copy/order-digital-fbi-api"
-    });
-
-    cy.interceptRest({
-      aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
-      fixtureFilePath: "material/user.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
-
-    cy.interceptRest({
-      aliasName: "Availability",
-      url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
-      fixtureFilePath: "material/holdings.json"
-    });
-
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404
-    }).as("Favorite list service");
-
-    cy.visit(
-      "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
-    );
-    cy.createFakeAuthenticatedSession();
-  });
-
   it("render a material that can be ordered as a digital copy", () => {
     cy.getBySel("material-description")
       .scrollIntoView()
