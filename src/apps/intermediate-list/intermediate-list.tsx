@@ -19,6 +19,7 @@ import {
 } from "./utils/helper";
 
 const IntermedateList: FC = () => {
+  console.log("Why!");
   const t = useText();
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
