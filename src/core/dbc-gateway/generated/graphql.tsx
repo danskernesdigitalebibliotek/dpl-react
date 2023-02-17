@@ -1339,14 +1339,13 @@ export type LocalSuggestResponse = {
 };
 
 export type GetFavoriteMaterialManifestationQueryVariables = Exact<{
-  pid: Scalars["String"];
+  id: Scalars["String"];
 }>;
 
 export type GetFavoriteMaterialManifestationQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
-    workYear?: string | null;
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
@@ -1434,6 +1433,7 @@ export type GetFavoriteMaterialManifestationQuery = {
         original?: Array<string> | null;
       };
     }>;
+    workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
       __typename?: "Manifestations";
       all: Array<{
@@ -3981,8 +3981,8 @@ export const WorkMediumFragmentDoc = `
 }
     ${WorkSmallFragmentDoc}`;
 export const GetFavoriteMaterialManifestationDocument = `
-    query getFavoriteMaterialManifestation($pid: String!) {
-  work(pid: $pid) {
+    query getFavoriteMaterialManifestation($id: String!) {
+  work(id: $id) {
     ...WorkMedium
   }
 }

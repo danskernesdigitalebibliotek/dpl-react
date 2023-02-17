@@ -12,7 +12,7 @@ const SearchResultListItemAdapter: FC<SearchResultListItemAdapterProps> = ({
   pid
 }) => {
   const { data } = useGetFavoriteMaterialManifestationQuery({
-    pid
+    id: pid
   });
 
   return (

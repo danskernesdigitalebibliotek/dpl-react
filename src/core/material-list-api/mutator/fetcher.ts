@@ -31,6 +31,7 @@ export const fetcher = async <ResponseType>({
     ...additionalHeaders,
     "Accept-Version": "2"
   };
+
   const body = data ? JSON.stringify(data) : null;
   const serviceUrl = getServiceUrlWithParams({
     baseUrl: getServiceBaseUrl(serviceUrlKeys.materialList),

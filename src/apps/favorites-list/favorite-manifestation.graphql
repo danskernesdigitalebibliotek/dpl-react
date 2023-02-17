@@ -1,5 +1,5 @@
-query getFavoriteMaterialManifestation($pid: String!) {
-  work(pid: $pid) {
+query getFavoriteMaterialManifestation($id: String!) {
+  work(id: $id) {
     ...WorkMedium
   }
 }
