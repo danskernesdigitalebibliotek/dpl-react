@@ -45,7 +45,6 @@ import {
 } from "../../components/material/material-buttons/helper";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
-import { CoverPreloadLink } from "../../components/cover/coverPreloadLink";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -157,122 +156,116 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
-    <>
-      <CoverPreloadLink id={pid} size="xlarge" />
-      <section className="material-page">
-        <MaterialHeader
-          wid={wid}
-          work={work}
-          selectedManifestations={selectedManifestations}
-          setSelectedManifestations={setSelectedManifestations}
-          selectedPeriodical={selectedPeriodical}
-          selectPeriodicalHandler={setSelectedPeriodical}
-        >
-          {manifestations.map((manifestation) => (
+    <section className="material-page">
+      <MaterialHeader
+        wid={wid}
+        work={work}
+        selectedManifestations={selectedManifestations}
+        setSelectedManifestations={setSelectedManifestations}
+        selectedPeriodical={selectedPeriodical}
+        selectPeriodicalHandler={setSelectedPeriodical}
+      >
+        {manifestations.map((manifestation) => (
+          <>
+            <ReservationModal
+              key={`reservation-modal-${manifestation.pid}`}
+              selectedManifestations={[manifestation]}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+            />
+            <FindOnShelfModal
+              key={`find-on-shelf-modal-${manifestation.pid}`}
+              manifestations={[manifestation]}
+              workTitles={manifestation.titles.main}
+              authors={manifestation.creators}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          </>
+        ))}
+
+        {infomediaIds.length > 0 && (
+          <InfomediaModal
+            selectedManifestations={selectedManifestations}
+            infoMediaId={infomediaIds[0]}
+          />
+        )}
+
+        {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
+          <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+        )}
+
+        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
+        {selectedManifestations &&
+          hasCorrectAccessType(
+            AccessTypeCode.Physical,
+            selectedManifestations
+          ) &&
+          !isArticle(selectedManifestations) && (
             <>
               <ReservationModal
-                key={`reservation-modal-${manifestation.pid}`}
-                selectedManifestations={[manifestation]}
+                selectedManifestations={selectedManifestations}
                 selectedPeriodical={selectedPeriodical}
                 work={work}
               />
               <FindOnShelfModal
-                key={`find-on-shelf-modal-${manifestation.pid}`}
-                manifestations={[manifestation]}
-                workTitles={manifestation.titles.main}
-                authors={manifestation.creators}
+                manifestations={selectedManifestations}
+                authors={work.creators}
+                workTitles={work.titles.full}
                 selectedPeriodical={selectedPeriodical}
                 setSelectedPeriodical={setSelectedPeriodical}
               />
             </>
-          ))}
-
-          {infomediaIds.length > 0 && (
-            <InfomediaModal
-              selectedManifestations={selectedManifestations}
-              infoMediaId={infomediaIds[0]}
-            />
           )}
-
-          {hasCorrectAccess(
-            "DigitalArticleService",
-            selectedManifestations
-          ) && (
-            <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+      </MaterialHeader>
+      <MaterialDescription pid={pid} work={work} />
+      <Disclosure
+        mainIconPath={VariousIcon}
+        title={`${t("editionsText")} (${manifestations.length})`}
+        disclosureIconExpandAltText=""
+        dataCy="material-editions-disclosure"
+      >
+        <>
+          {getManifestationsOrderByTypeAndYear(manifestations).map(
+            (manifestation: Manifestation) => {
+              return (
+                <MaterialMainfestationItem
+                  key={manifestation.pid}
+                  manifestation={manifestation}
+                  workId={wid}
+                />
+              );
+            }
           )}
-
-          {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
-        Online materials lead to external links, or to same modals as are created for singular editions. */}
-          {selectedManifestations &&
-            hasCorrectAccessType(
-              AccessTypeCode.Physical,
-              selectedManifestations
-            ) &&
-            !isArticle(selectedManifestations) && (
-              <>
-                <ReservationModal
-                  selectedManifestations={selectedManifestations}
-                  selectedPeriodical={selectedPeriodical}
-                  work={work}
-                />
-                <FindOnShelfModal
-                  manifestations={selectedManifestations}
-                  authors={work.creators}
-                  workTitles={work.titles.full}
-                  selectedPeriodical={selectedPeriodical}
-                  setSelectedPeriodical={setSelectedPeriodical}
-                />
-              </>
-            )}
-        </MaterialHeader>
-        <MaterialDescription pid={pid} work={work} />
-        <Disclosure
-          mainIconPath={VariousIcon}
-          title={`${t("editionsText")} (${manifestations.length})`}
-          disclosureIconExpandAltText=""
-          dataCy="material-editions-disclosure"
+        </>
+      </Disclosure>
+      <Disclosure
+        mainIconPath={Receipt}
+        title={t("detailsText")}
+        disclosureIconExpandAltText=""
+        dataCy="material-details-disclosure"
+      >
+        <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
+      </Disclosure>
+      {reviews && reviews.length >= 1 && (
+        <DisclosureControllable
+          id="reviews"
+          title={t("reviewsText")}
+          mainIconPath={CreateIcon}
+          showContent={shouldOpenReviewDisclosure}
+          cyData="material-reviews-disclosure"
         >
-          <>
-            {getManifestationsOrderByTypeAndYear(manifestations).map(
-              (manifestation: Manifestation) => {
-                return (
-                  <MaterialMainfestationItem
-                    key={manifestation.pid}
-                    manifestation={manifestation}
-                    workId={wid}
-                  />
-                );
-              }
-            )}
-          </>
-        </Disclosure>
-        <Disclosure
-          mainIconPath={Receipt}
-          title={t("detailsText")}
-          disclosureIconExpandAltText=""
-          dataCy="material-details-disclosure"
-        >
-          <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
-        </Disclosure>
-        {reviews && reviews.length >= 1 && (
-          <DisclosureControllable
-            id="reviews"
-            title={t("reviewsText")}
-            mainIconPath={CreateIcon}
-            showContent={shouldOpenReviewDisclosure}
-            cyData="material-reviews-disclosure"
-          >
-            <MaterialReviews
-              listOfReviews={
-                reviews as Array<
-                  LibrariansReview | ExternalReview | InfomediaReview
-                >
-              }
-            />
-          </DisclosureControllable>
-        )}
-      </section>
-    </>
+          <MaterialReviews
+            listOfReviews={
+              reviews as Array<
+                LibrariansReview | ExternalReview | InfomediaReview
+              >
+            }
+          />
+        </DisclosureControllable>
+      )}
+    </section>
   );
 };
 
