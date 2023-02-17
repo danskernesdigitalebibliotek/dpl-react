@@ -118,7 +118,7 @@ describe("Delete reservation modal test", () => {
     // ID 14 1.d. button "Cancel reservation"
     // ID 14 2 user clicks "Cancel reservation"
     cy.get(".modal.modal-cta")
-      .find("[data-cy='delete-reservation-button']")
+      .getBySel("delete-reservation-button")
       .should("have.text", "Cancel reservations")
       .click();
 
@@ -216,7 +216,7 @@ describe("Delete reservation modal test", () => {
     // ID 18 1.d. button "Cancel reservation"
     // ID 18 2 user clicks "Cancel reservation"
     cy.get("#root")
-      .find("[data-cy='delete-reservation-button']")
+      .getBySel("delete-reservation-button")
       .should("have.text", "Cancel reservations")
       .click();
 
