@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { filterManifestationsByType } from "../../apps/material/helper";
+import { handleFictionOrNonFictionReservation } from "../../components/reservation/helper";
 import { getAvailabilityV3 } from "../fbs/fbs";
 import { convertPostIdToFaustId, getAllFaustIds } from "./helpers/general";
 import { Manifestation } from "./types/entities";
 
+// TODO: add unit test see example in text.test.tsx
 const UseReservableManifestations = ({
   manifestations,
   type
@@ -31,11 +33,11 @@ const UseReservableManifestations = ({
 
     const fetchAvailability = async (m: Manifestation[]) => {
       // Fetch availability data.
-      const data = await getAvailabilityV3({
+      const availabilityData = await getAvailabilityV3({
         recordid: faustIds
       });
       // If we for some reason do not get any data, we return empty arrays.
-      if (!data) {
+      if (!availabilityData) {
         return { reservable: [], unReservable: [] };
       }
 
@@ -46,7 +48,7 @@ const UseReservableManifestations = ({
         : m;
       // Get manifestations that are reservable.
       const reservable = filterableManifestations.filter((manifestation) =>
-        data.some(
+        availabilityData.some(
           (item) =>
             item.reservable &&
             item.recordId === convertPostIdToFaustId(manifestation.pid)
@@ -54,7 +56,7 @@ const UseReservableManifestations = ({
       );
       // Get manifestations that are unReservable.
       const unReservable = filterableManifestations.filter((manifestation) =>
-        data.some(
+        availabilityData.some(
           (item) =>
             !item.reservable &&
             item.recordId === convertPostIdToFaustId(manifestation.pid)
@@ -64,7 +66,9 @@ const UseReservableManifestations = ({
     };
 
     fetchAvailability(manifestations).then(({ reservable, unReservable }) => {
-      setReservableManifestations(reservable);
+      setReservableManifestations(
+        handleFictionOrNonFictionReservation(reservable)
+      );
       setUnReservableManifestations(unReservable);
     });
   }, [

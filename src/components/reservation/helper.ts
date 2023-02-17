@@ -11,7 +11,8 @@ import {
   filterCreators,
   flattenCreators,
   getManifestationPublicationYear,
-  materialIsFiction
+  isMaterial,
+  orderManifestationsByYear
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -141,12 +142,25 @@ export const getAuthorLine = (
   if (publicationYear) {
     year = publicationYear;
   }
-  if (materialIsFiction(manifestation)) {
+  if (isMaterial("FICTION", manifestation)) {
     year = `(${t("materialHeaderAllEditionsText")})`;
   }
   return !author
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
+};
+
+export const handleFictionOrNonFictionReservation = (
+  reservableManifestations: Manifestation[]
+) => {
+  const newestManifestation = orderManifestationsByYear(
+    reservableManifestations
+  )[0];
+
+  // If the material is nonfiction, only reserve the newest manifestation
+  return isMaterial("NONFICTION", newestManifestation)
+    ? [newestManifestation]
+    : reservableManifestations;
 };
 
 export default {};

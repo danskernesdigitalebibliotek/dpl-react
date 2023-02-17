@@ -6,7 +6,7 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction
+  isMaterial
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -77,6 +77,7 @@ export const ReservationModalBody = ({
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
   const allPids = getAllPids(selectedManifestations);
   const faustIds = convertPostIdsToFaustIds(allPids);
+  const materialIsNonFiction = isMaterial("NONFICTION", work);
   const { mutate } = useAddReservationsV2();
   const userResponse = useGetPatronInformationByPatronIdV2();
   const holdingsResponse = useGetHoldingsV3({
@@ -186,12 +187,14 @@ export const ReservationModalBody = ({
                 icon={Various}
                 title={t("editionText")}
                 text={
-                  selectedPeriodical?.displayText ||
-                  manifestation.edition?.summary ||
-                  ""
+                  materialIsNonFiction
+                    ? selectedPeriodical?.displayText ||
+                      reservableManifestations?.[0]?.edition?.summary ||
+                      ""
+                    : t("firstAvailableEditionText")
                 }
               />
-              {!materialIsFiction(work) && otherManifestationPreferred && (
+              {materialIsNonFiction && otherManifestationPreferred && (
                 <PromoBar
                   classNames="px-35"
                   sticky

@@ -8,7 +8,7 @@ import configuration, {
   getDeviceConf,
   ConfScope
 } from "../../configuration";
-import { Manifestation, Work } from "../types/entities";
+import { FictionNonfictionType, Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
@@ -249,9 +249,11 @@ export const getManifestationsPids = (manifestations: Manifestation[]) => {
 };
 export const stringifyValue = (value: string | null | undefined) =>
   value ? String(value) : "";
-export const materialIsFiction = ({
-  fictionNonfiction
-}: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
+
+export const isMaterial = (
+  type: FictionNonfictionType,
+  material: Work | Manifestation
+) => material?.fictionNonfiction?.code === type;
 
 export const getListItems = (list: ListType[], itemsShown: number) => {
   return [...list].splice(0, itemsShown);
