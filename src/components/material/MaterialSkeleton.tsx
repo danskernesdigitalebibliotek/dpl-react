@@ -5,9 +5,7 @@ const MaterialSkeleton: React.FC = () => {
     <section className="material-page ssc">
       <header className="material-header">
         <div className="material-header__cover">
-          <div className="cover-container">
-            <div className="ssc-square" />
-          </div>
+          <div className="ssc-square cover--size-xlarge" />
         </div>
         <div className="material-header__content">
           <div>
@@ -37,11 +35,6 @@ const MaterialSkeleton: React.FC = () => {
           <div className="ssc-line w-70 mbs" />
           <div className="ssc-line w-70 mbs" />
           <div className="ssc-line w-70 mbs" />
-        </div>
-        <div className="scc-wrapper pt-64">
-          <div className="skeleton-disclosure ssc-head-line mbs" />
-          <div className="skeleton-disclosure ssc-head-line mbs" />
-          <div className="skeleton-disclosure ssc-head-line mbs" />
         </div>
       </section>
     </section>
