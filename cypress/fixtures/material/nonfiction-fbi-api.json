@@ -1,0 +1,1747 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:20636866",
+      "titles": {
+        "full": [
+          "Turen går til Rom"
+        ],
+        "original": []
+      },
+      "abstract": [],
+      "creators": [
+        {
+          "display": "Alfredo Tesio",
+          "__typename": "Person"
+        }
+      ],
+      "series": [
+        {
+          "title": "Politikens rejsebøger",
+          "isPopular": null,
+          "numberInSeries": null,
+          "readThisFirst": null,
+          "readThisWhenever": null
+        },
+        {
+          "title": "Turen går til",
+          "isPopular": null,
+          "numberInSeries": null,
+          "readThisFirst": null,
+          "readThisWhenever": null
+        }
+      ],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": [
+        "rejseførere"
+      ],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:20636866",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "87-567-5352-7"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "18. udgave / af Alfredo Tesio ; redaktion: Lone Burmeister ; kort: UBQ-Kortdesign og Folia/Legindkort, 1995",
+              "publicationYear": {
+                "display": "1995"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 128,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:21417890",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "87-567-5673-9"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "19. udgave / af Alfredo Tesio ; kort: Ulla Britze, 1998",
+              "publicationYear": {
+                "display": "1998"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 156,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:22223623",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "87-567-5973-8"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "20. udgave / af Alfredo Tesio ; redaktør: Anette Stoffersen ; kort: Ulla Britze ; fotos: Søren Lauridsen, Carsten Bach-Nielsen, 1999",
+              "publicationYear": {
+                "display": "1999"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 156,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:23445158",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "87-567-6313-1"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "21. udgave / forfatter: Alfredo Tesio ; redaktør: Jytte Flamsholt Christensen ; kort: Ulla Britze ; fotos: Søren Lauridsen, 2002",
+              "publicationYear": {
+                "display": "2002"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 156,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:24922197",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "87-567-6874-5"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "22. udgave / forfatter: Alfredo Tesio ; redaktør: Jytte Flamsholt Christensen ; kort: Ulla Britze ; fotos: Søren Lauridsen, 2005",
+              "publicationYear": {
+                "display": "2005"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:26019109",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788756773126"
+              },
+              {
+                "value": "87-567-7312-9"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "23. udgave / af Alfredo Tesio ; redaktør: Karen Lise Søndergaard og Inge-Lise Paulsen ; kort: Ulla Britze, 2007",
+              "publicationYear": {
+                "display": "2007"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:27173640",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788756781107"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "24. udgave / af Alfredo Tesio ; redaktør: Inge-Lise Paulsen ; kort: Britze, 2008",
+              "publicationYear": {
+                "display": "2008"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:28477074",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788756795036"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Marita Hoydal"
+              },
+              {
+                "display": "Pipaluk Balslev Fabricius"
+              },
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Søren Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "25. udgave, 2010",
+              "publicationYear": {
+                "display": "2010"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:29798079",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740003437"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Birgitta Lund"
+              },
+              {
+                "display": "Kasper Monty"
+              }
+            ],
+            "edition": {
+              "summary": "26. udgave, 2013",
+              "publicationYear": {
+                "display": "2013"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:47077435",
+            "genreAndForm": [],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "lydbog (net)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740059311"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Karen Abrahamsen"
+              }
+            ],
+            "edition": {
+              "summary": "2019",
+              "publicationYear": {
+                "display": "2019"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null,
+                "playingTime": "80 min."
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:50690601",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "ebog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740010671"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Birgitta Lund"
+              },
+              {
+                "display": "Kasper Monty"
+              }
+            ],
+            "edition": {
+              "summary": "26. udgave, 2013",
+              "publicationYear": {
+                "display": "2013"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:51634764",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740013115"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              }
+            ],
+            "edition": {
+              "summary": "27. udgave, 2015",
+              "publicationYear": {
+                "display": "2015"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:51658256",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "ebog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740018493"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              }
+            ],
+            "edition": {
+              "summary": "1. e-bogsudgave, 2015",
+              "publicationYear": {
+                "display": "2015"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:53787495",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "ebog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740025316"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Kasper Monty"
+              },
+              {
+                "display": "Birgitta Lund"
+              }
+            ],
+            "edition": {
+              "summary": "Ny e-bogsudgave, 2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:53976018",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740025323"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              }
+            ],
+            "edition": {
+              "summary": "28. udgave, 2018",
+              "publicationYear": {
+                "display": "2018"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:61809988",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "ebog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740067156"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Susan Bergqvist"
+              },
+              {
+                "display": "Trine Blak Kosteljanetz"
+              },
+              {
+                "display": "Birgitta Lund"
+              }
+            ],
+            "edition": {
+              "summary": "4. e-bogsudgave, 2021",
+              "publicationYear": {
+                "display": "2021"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:61991484",
+            "genreAndForm": [
+              "rejseførere"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740063585"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Marine Gastineau"
+              },
+              {
+                "display": "Martin Thomas"
+              },
+              {
+                "display": "Thomas Linder Thomsen"
+              },
+              {
+                "display": "Ulla Britze"
+              },
+              {
+                "display": "Susan Bergqvist"
+              },
+              {
+                "display": "Trine Blak Kosteljanetz"
+              },
+              {
+                "display": "Birgitta Lund"
+              }
+            ],
+            "edition": {
+              "summary": "29. udgave, 2021",
+              "publicationYear": {
+                "display": "2021"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:62820586",
+            "genreAndForm": [],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Turen går til Rom"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "lydbog (net)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740067163"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Paul Becker"
+              },
+              {
+                "display": "Trine Blak Kosteljanetz"
+              }
+            ],
+            "edition": {
+              "summary": "2022",
+              "publicationYear": {
+                "display": "2022"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null,
+                "playingTime": "80 min."
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:62820586",
+          "genreAndForm": [],
+          "source": [
+            "Bibliotekskatalog"
+          ],
+          "titles": {
+            "main": [
+              "Turen går til Rom"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "lydbog (net)"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alfredo Tesio",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [
+            "Politiken"
+          ],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "9788740067163"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Paul Becker"
+            },
+            {
+              "display": "Trine Blak Kosteljanetz"
+            }
+          ],
+          "edition": {
+            "summary": "2022",
+            "publicationYear": {
+              "display": "2022"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": null,
+              "playingTime": "80 min."
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "ONLINE"
+            }
+          ],
+          "access": [],
+          "shelfmark": {
+            "postfix": "Tesio",
+            "shelfmark": "47.57 Rom"
+          },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:61991484",
+          "genreAndForm": [
+            "rejseførere"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
+          "titles": {
+            "main": [
+              "Turen går til Rom"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "bog"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alfredo Tesio",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [
+            "Politiken"
+          ],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "9788740063585"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Marine Gastineau"
+            },
+            {
+              "display": "Martin Thomas"
+            },
+            {
+              "display": "Thomas Linder Thomsen"
+            },
+            {
+              "display": "Ulla Britze"
+            },
+            {
+              "display": "Susan Bergqvist"
+            },
+            {
+              "display": "Trine Blak Kosteljanetz"
+            },
+            {
+              "display": "Birgitta Lund"
+            }
+          ],
+          "edition": {
+            "summary": "29. udgave, 2021",
+            "publicationYear": {
+              "display": "2021"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 168,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Tesio",
+            "shelfmark": "47.57 Rom"
+          },
+          "workYear": null
+        }
+      },
+      "materialTypes": [
+        {
+          "specific": "bog"
+        },
+        {
+          "specific": "lydbog (net)"
+        },
+        {
+          "specific": "ebog"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "Rom"
+          },
+          {
+            "display": "Italien"
+          },
+          {
+            "display": "Rejsebeskrivelse"
+          },
+          {
+            "display": "Seværdigheder"
+          },
+          {
+            "display": "Turisme"
+          },
+          {
+            "display": "Dansk GYM"
+          },
+          {
+            "display": "rom"
+          },
+          {
+            "display": "rejseførere"
+          },
+          {
+            "display": "Italia"
+          },
+          {
+            "display": "Rejseførere"
+          },
+          {
+            "display": "Lærerbibliotek"
+          },
+          {
+            "display": "Itali"
+          },
+          {
+            "display": "Rejsehåndbøger"
+          },
+          {
+            "display": "Guide"
+          }
+        ]
+      },
+      "reviews": [
+        {
+          "__typename": "InfomediaReview",
+          "author": "Alfredo Tesio",
+          "date": "2021-12-18",
+          "origin": "Politiken",
+          "rating": null,
+          "id": "e89a110e"
+        }
+      ],
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "47.57 Rom"
+      }
+    }
+  }
+}

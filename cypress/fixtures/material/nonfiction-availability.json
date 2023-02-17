@@ -1,0 +1,74 @@
+[
+  {
+    "recordId": "20636866",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "21417890",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "22223623",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "23445158",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "24922197",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "26019109",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "27173640",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "28477074",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "29798079",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "51634764",
+    "reservable": false,
+    "available": false,
+    "reservations": 0
+  },
+  {
+    "recordId": "53976018",
+    "reservable": true,
+    "available": true,
+    "reservations": 3
+  },
+  {
+    "recordId": "61991484",
+    "reservable": true,
+    "available": false,
+    "reservations": 1
+  }
+]
