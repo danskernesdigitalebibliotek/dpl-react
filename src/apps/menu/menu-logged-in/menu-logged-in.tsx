@@ -109,9 +109,7 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
   useEffect(() => {
     if (patronReservations) {
       setReservationsReadyForPickup(
-        getReadyForPickup(
-          mapFBSReservationToReservationType(patronReservations)
-        ).length
+        getReadyForPickup(patronReservations).length
       );
       setReservationCount(patronReservations.length);
     }
