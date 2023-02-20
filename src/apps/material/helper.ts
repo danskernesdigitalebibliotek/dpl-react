@@ -351,17 +351,16 @@ export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
 };
 
-export const getNumberedSeries = (series: Work["series"]) => {
-  // Filter out series that don't have a 'numberInSeries' property
-  const seriesWithNumber = series.filter(
-    (serie) => serie.numberInSeries?.number
-  );
-
-  // Sort the series based on their 'numberInSeries' property
-  return seriesWithNumber.sort((a, b) => {
-    if (a?.numberInSeries?.number && b?.numberInSeries?.number) {
-      return Number(a.numberInSeries.number) - Number(b.numberInSeries.number);
-    }
-    return 0;
-  });
-};
+export const getNumberedSeries = (series: Work["series"]) =>
+  series
+    // Filter out series that don't have a 'numberInSeries' property
+    .filter((serie) => serie.numberInSeries?.number)
+    // Sort the list in chronological order to prioritize the most representative series items first.
+    .sort((a, b) => {
+      if (a?.numberInSeries?.number && b?.numberInSeries?.number) {
+        return (
+          Number(a.numberInSeries.number) - Number(b.numberInSeries.number)
+        );
+      }
+      return 0;
+    });
