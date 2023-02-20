@@ -1,31 +1,30 @@
 name: Integration test
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   test:
     name: Integration test
-    if: '!github.event.deleted'
+    if: "!github.event.deleted"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version-file: ".nvmrc"
+          cache: "yarn"
+          registry-url: "https://npm.pkg.github.com"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies
         run: yarn install
 
-
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:storybook:test
-          wait-on: 'http://localhost:57021'
+          wait-on: "http://localhost:57021"
           browser: chrome
       - name: Upload screenshots
         uses: actions/upload-artifact@v1
@@ -46,3 +45,6 @@ jobs:
         with:
           directory: ./coverage/
           fail_ci_if_error: false
+
+      - name: Run unit tests
+        run: yarn test:unit
