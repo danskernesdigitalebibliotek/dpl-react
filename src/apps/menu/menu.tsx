@@ -28,6 +28,7 @@ import {
   getReadyForPickup
 } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
+import { ReservationDetailsV2 } from "../../core/fbs/model";
 
 interface MenuNavigationDataType {
   name: string;
@@ -116,11 +117,12 @@ const Menu: FC = () => {
   // Set count of reservations- and ready-for-pickup.
   useEffect(() => {
     if (patronReservations) {
-      setReservationsReadyForPickup(
-        getReadyForPickup(
-          mapFBSReservationToReservationType(patronReservations)
-        ).length
+      const reservationType =
+        mapFBSReservationToReservationType(patronReservations);
+      const readyForPickup = getReadyForPickup(
+        reservationType as ReservationDetailsV2[]
       );
+      setReservationsReadyForPickup(readyForPickup.length);
       setReservationCount(patronReservations.length);
     }
   }, [patronReservations]);

@@ -13,7 +13,7 @@ query suggestionsFromQueryString($q: String!) {
           display
         }
         manifestations {
-          first {
+          bestRepresentation {
             pid
           }
         }

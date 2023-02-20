@@ -303,7 +303,7 @@ export enum FacetField {
   ChildrenOrAdults = "childrenOrAdults",
   Creators = "creators",
   FictionNonfiction = "fictionNonfiction",
-  FictionalCharacter = "fictionalCharacter",
+  FictionalCharacters = "fictionalCharacters",
   GenreAndForm = "genreAndForm",
   MainLanguages = "mainLanguages",
   MaterialTypes = "materialTypes",
@@ -1014,7 +1014,14 @@ export type Review = {
 export type ReviewElement = {
   __typename?: "ReviewElement";
   content?: Maybe<Scalars["String"]>;
+  /**
+   * This is a paragraph containing markup where links to manifestations
+   * can be inserted. For instance '"Axel Steens nye job minder om [870970-basis:20307021] fra ...'.
+   * Relevant manifestations are located in the manifestations field.
+   */
+  contentSubstitute?: Maybe<Scalars["String"]>;
   heading?: Maybe<Scalars["String"]>;
+  /** Manifestations that can be used to generate and insert links into 'contentSubsitute'. */
   manifestations?: Maybe<Array<Maybe<Manifestation>>>;
   type?: Maybe<ReviewElementType>;
 };
@@ -1057,7 +1064,7 @@ export type SearchFilters = {
   creators?: InputMaybe<Array<Scalars["String"]>>;
   department?: InputMaybe<Array<Scalars["String"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
-  fictionalCharacter?: InputMaybe<Array<Scalars["String"]>>;
+  fictionalCharacters?: InputMaybe<Array<Scalars["String"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
   location?: InputMaybe<Array<Scalars["String"]>>;
   mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
@@ -2013,7 +2020,7 @@ export type SuggestionsFromQueryStringQuery = {
         >;
         manifestations: {
           __typename?: "Manifestations";
-          first: { __typename?: "Manifestation"; pid: string };
+          bestRepresentation: { __typename?: "Manifestation"; pid: string };
         };
       } | null;
     }>;
@@ -3278,7 +3285,7 @@ export const SuggestionsFromQueryStringDocument = `
           display
         }
         manifestations {
-          first {
+          bestRepresentation {
             pid
           }
         }
