@@ -30,7 +30,7 @@ const MenuNotLoggedInContent: FC<MenuNotLoggedInContentProps> = ({
       <div className="modal-login__container">
         <Link href={menuLoginUrl}>
           <Button
-            label={`${t("menuLoginText")}`}
+            label={t("menuLoginText")}
             buttonType="default"
             disabled={false}
             collapsible={false}
