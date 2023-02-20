@@ -23,11 +23,10 @@ function ResultPager({
       {itemsShown !== hitcount && (
         <button
           type="button"
-          className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+          className="btn-primary btn-outline btn-medium arrow__hover--right-small uppercase"
           onClick={setPageHandler}
         >
-          {/* TODO: Solve casing in CSS */}
-          {t("showMoreText").toUpperCase()}
+          {t("showMoreText")}
         </button>
       )}
     </div>
