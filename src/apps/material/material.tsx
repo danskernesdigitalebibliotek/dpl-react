@@ -44,6 +44,7 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
+import NoData from "../../components/edge-cases/NoData";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -131,9 +132,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>Loading...</div>;
   }
 
-  // TODO: handle error if data is empty array.
   if (!data?.work || !selectedManifestations) {
-    return <div>No work data</div>;
+    return <NoData noDataText={t("noMaterialDataText")} />;
   }
 
   const {

@@ -628,6 +628,11 @@ export default {
       name: "Unknown",
       defaultValue: "Unknown",
       control: { type: "text" }
+    },
+    noMaterialDataText: {
+      name: "No material page data",
+      defaultValue: "Unfortunately, we have no information tied to this work.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
