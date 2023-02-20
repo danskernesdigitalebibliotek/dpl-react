@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import FacetBrowserModalBody from "./FacetBrowserModalBody";
@@ -10,17 +7,13 @@ import { FacetBrowserModalId, useGetFacets } from "./helper";
 
 interface FacetBrowserModalProps {
   q: string;
-  filterHandler: TermOnClickHandler;
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 
 const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
-  q,
-  filterHandler,
-  filters
+  q
 }) => {
   const t = useText();
-
+  const { filters } = useFilterHandler();
   const { facets, isLoading } = useGetFacets(q, filters);
 
   return (
@@ -33,13 +26,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
       closeModalAriaLabelText={t("facetBrowserModalCloseModalAriaLabelText")}
       isSlider
     >
-      {isLoading || !facets ? null : (
-        <FacetBrowserModalBody
-          facets={facets}
-          filterHandler={filterHandler}
-          filters={filters}
-        />
-      )}
+      {isLoading || !facets ? null : <FacetBrowserModalBody facets={facets} />}
     </Modal>
   );
 };
