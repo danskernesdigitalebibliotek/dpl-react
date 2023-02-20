@@ -13,7 +13,7 @@ export type FilterPayloadType = {
   term: FilterItemTerm;
 };
 
-const initialState = {} as Filter;
+const initialState: Filter = {};
 
 const filterState = createSlice({
   name: "filter",
