@@ -377,7 +377,7 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
-export const hasNumberInSeries = (series: Work["series"]) => {
+export const getNumberedSeries = (series: Work["series"]) => {
   // Filter out series that don't have a 'numberInSeries' property
   const seriesWithNumber = series.filter(
     (serie) => serie.numberInSeries?.number

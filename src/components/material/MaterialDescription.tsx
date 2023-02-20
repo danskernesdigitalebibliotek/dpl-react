@@ -1,6 +1,6 @@
 import React from "react";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
-import { hasNumberInSeries } from "../../core/utils/helpers/general";
+import { getNumberedSeries } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   constructSearchUrl
@@ -20,7 +20,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { searchUrl, materialUrl } = useUrls();
   const { fictionNonfiction, series, subjects, seriesMembers } = work;
 
-  const seriesList = hasNumberInSeries(series);
+  const seriesList = getNumberedSeries(series);
 
   const seriesMembersList = seriesMembers.map((item) => {
     return {
