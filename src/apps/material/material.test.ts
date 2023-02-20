@@ -33,7 +33,7 @@ describe("Material", () => {
     );
   });
 
-  it("Renders horizontal lines", () => {
+  it("Renders series horizontal lines", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -41,7 +41,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description-series-1")
+    cy.getBySel("material-description-series-0")
       .should("be.visible")
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
   });
