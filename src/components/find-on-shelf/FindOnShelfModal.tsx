@@ -74,7 +74,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     });
   });
 
-  if (!data) {
+  if (!data || data.length < 1) {
     return <NoData noDataText={t("noFindOnBookshelfDataText")} />;
   }
 
