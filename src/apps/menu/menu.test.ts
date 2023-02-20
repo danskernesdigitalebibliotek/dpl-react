@@ -243,7 +243,6 @@ describe("Menu", () => {
     }).as("fees");
 
     cy.visit("/iframe.html?path=/story/apps-menu--menu-entry");
-    // cy.wait(["@reservations", "@physical_loans", "@digital_loans", "@fees"]);
   });
 
   it("Menu", () => {
