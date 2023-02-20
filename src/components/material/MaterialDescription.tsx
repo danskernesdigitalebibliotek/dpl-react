@@ -1,6 +1,6 @@
 import React from "react";
+import { getNumberedSeries } from "../../apps/material/helper";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
-import { getNumberedSeries } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   constructSearchUrl
