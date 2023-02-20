@@ -3,8 +3,8 @@ import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { expect, test } from "vitest";
 import { renderHook, act } from "@testing-library/react-hooks";
-import textReducer from "../../src/core/text.slice";
-import { useText } from "../../src/core/utils/text";
+import textReducer from "../../core/text.slice";
+import { useText } from "../../core/utils/text";
 
 const store = configureStore({
   reducer: combineReducers({
