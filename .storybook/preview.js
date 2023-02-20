@@ -42,8 +42,6 @@ if (!libraryToken && userToken) {
   setToken(TOKEN_LIBRARY_KEY, userToken);
 }
 
-// TODO: Using addon-redux would be much nicer, but it doesn't seem to
-// be compatible with Storybook 6.
 export const decorators = [
   Story => (
     <Store>

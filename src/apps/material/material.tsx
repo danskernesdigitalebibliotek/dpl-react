@@ -144,11 +144,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   } = data as { work: Work };
 
-  // TODO: Temporary way to get a pid we can use for showing a cover for the material.
-  // It should be replaced with some dynamic feature
-  // that follows the current type of the material.
   const pid = getManifestationPid(manifestations);
-
   const detailsListData = getDetailsListData({
     manifestation: selectedManifestations[0],
     work,

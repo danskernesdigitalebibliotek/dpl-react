@@ -13,8 +13,6 @@ export interface ButtonFavouriteProps {
   addToListRequest: (id: ButtonFavouriteId) => void;
 }
 
-// TODO We have to check if user is login and redirect if not
-
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   id,
   addToListRequest

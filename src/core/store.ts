@@ -21,8 +21,6 @@ import configReducer from "./config.slice";
 import guardedRequestsReducer from "./guardedRequests.slice";
 import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUrls";
 
-// TODO: We have planned to get rid of redux-persist.
-// When the step has been made to remove it all the persist setup should go as well.
 const persistConfig = {
   key: "dpl-react",
   storage,

@@ -76,9 +76,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         {
           onSuccess: (campaign) => {
             setCampaignData(campaign);
-          },
-          onError: () => {
-            // TODO: when we handle errors - handle this error
           }
         }
       );

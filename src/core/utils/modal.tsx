@@ -56,7 +56,6 @@ function Modal({
     <FocusTrap>
       <div
         className="modal-backdrop"
-        // TODO: Close the modal when clicking backdrop.
         style={{
           // some elements are designed with z-index which means they pop up over the modal
           // so I add 10 to the z-index of the modal
