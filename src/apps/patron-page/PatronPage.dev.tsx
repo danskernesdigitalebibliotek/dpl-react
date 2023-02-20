@@ -208,11 +208,6 @@ export default {
       defaultValue: "Confirm new pin",
       control: { type: "text" }
     },
-    blacklistedAvailabilityBranchesConfig: {
-      name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
-      control: { type: "text" }
-    },
     patronPagePincodeTooShortValidationText: {
       defaultValue:
         "The pincode should be minimum @pincodeLengthMin and maximum @pincodeLengthMax characters long",

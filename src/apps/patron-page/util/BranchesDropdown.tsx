@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { excludeBlacklistedBranches } from "../../../core/utils/branches";
-import { AgencyBranch } from "../../../core/fbs/model";
-import { useConfig } from "../../../core/utils/config";
+import { useGetBranches } from "../../../core/utils/branches";
 import { useText } from "../../../core/utils/text";
 
 interface BranchesDropdownProps {
@@ -17,22 +15,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
   classNames
 }) => {
   const t = useText();
-  const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
-  let pickupModalBranches = branches;
-  if (Array.isArray(blacklistBranches)) {
-    pickupModalBranches = excludeBlacklistedBranches(
-      branches,
-      blacklistBranches
-    );
-  }
+  const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
   return (
     <>
@@ -43,7 +26,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
         {t("pickupBranchesDropdownLabelText")}
       </label>
       <div className={`dropdown mb-32 ${classNames || ""}`}>
-        {pickupModalBranches && (
+        {branches && (
           <>
             <select
               id="branches-dropdown"
@@ -59,7 +42,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
                   {t("pickupBranchesDropdownNothingSelectedText")}
                 </option>
               )}
-              {pickupModalBranches.map(({ branchId, title }) => (
+              {branches.map(({ branchId, title }) => (
                 <option
                   selected={selected === branchId}
                   className="dropdown__option"

@@ -10,7 +10,6 @@ interface PatronPageConfigProps {
   pincodeLengthMinConfig: string;
   pincodeLengthMaxConfig: string;
   pauseReservationStartDateConfig: string;
-  blacklistedAvailabilityBranchesConfig: string;
   textNotificationsEnabledConfig: string;
 }
 
