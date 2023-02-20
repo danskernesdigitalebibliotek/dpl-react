@@ -2052,7 +2052,7 @@ export type SuggestionsFromQueryStringQuery = {
         >;
         manifestations: {
           __typename?: "Manifestations";
-          first: { __typename?: "Manifestation"; pid: string };
+          bestRepresentation: { __typename?: "Manifestation"; pid: string };
         };
       } | null;
     }>;
@@ -3397,7 +3397,7 @@ export const SuggestionsFromQueryStringDocument = `
           display
         }
         manifestations {
-          first {
+          bestRepresentation {
             pid
           }
         }

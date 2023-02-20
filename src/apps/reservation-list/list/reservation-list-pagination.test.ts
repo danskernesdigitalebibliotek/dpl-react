@@ -6,7 +6,7 @@ describe("Reservation list pagination", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    const wednesday20220603 = new Date("2022-06-03T12:30:00.000Z").getTime();
+    const wednesday20220603 = new Date("2023-02-03T12:30:00.000Z").getTime();
 
     // Sets time to a specific date
     // https://github.com/cypress-io/cypress/issues/7577
