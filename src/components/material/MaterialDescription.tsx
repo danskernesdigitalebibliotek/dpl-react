@@ -1,5 +1,6 @@
 import React from "react";
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import { hasNumberInSeries } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   constructSearchUrl
@@ -17,20 +18,23 @@ export interface MaterialDescriptionProps {
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const t = useText();
   const { searchUrl, materialUrl } = useUrls();
-  const inSeries = work.series;
-  const seriesMembersList = work.seriesMembers.map((item) => {
+  const { fictionNonfiction, series, subjects, seriesMembers } = work;
+
+  const seriesList = hasNumberInSeries(series);
+
+  const seriesMembersList = seriesMembers.map((item) => {
     return {
       url: constructMaterialUrl(materialUrl, item.workId as WorkId),
       term: item.titles.main[0]
     };
   });
-  const subjectsList = work.subjects.all.map((item) => {
+
+  const subjectsList = subjects.all.map((item) => {
     return {
       url: constructSearchUrl(searchUrl, item.display),
       term: item.display
     };
   });
-  const { fictionNonfiction } = work;
 
   return (
     <section className="material-description">
@@ -41,25 +45,22 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
         </p>
       )}
       <div className="material-description__links mt-32">
-        {inSeries &&
-          inSeries.map((seriesItem, i) => {
-            return (
-              <HorizontalTermLine
-                title={`${t("numberDescriptionText")} ${
-                  seriesItem.numberInSeries?.number
-                }`}
-                subTitle={t("inSeriesText")}
-                linkList={[
-                  {
-                    url: constructSearchUrl(searchUrl, seriesItem.title),
-                    term: seriesItem.title
-                  }
-                ]}
-                dataCy={`material-description-series-${i}`}
-              />
-            );
-          })}
-        {seriesMembersList && (
+        {seriesList.map((item, i) => (
+          <HorizontalTermLine
+            title={`${t("numberDescriptionText")} ${
+              item.numberInSeries?.number
+            }`}
+            subTitle={t("inSeriesText")}
+            linkList={[
+              {
+                url: constructSearchUrl(searchUrl, item.title),
+                term: item.title
+              }
+            ]}
+            dataCy={`material-description-series-${i}`}
+          />
+        ))}
+        {seriesMembersList.length > 0 && (
           <HorizontalTermLine
             title={t("inSameSeriesText")}
             linkList={seriesMembersList}
