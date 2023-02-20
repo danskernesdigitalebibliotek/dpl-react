@@ -1,14 +1,11 @@
 import { upperFirst } from "lodash";
 import React, { memo } from "react";
-
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
+import { FilterItemTerm } from "../../core/filter.slice";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
@@ -17,17 +14,14 @@ import { FacetBrowserModalId } from "../facet-browser/helper";
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  filterHandler: TermOnClickHandler;
 };
 
 const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
-  facets = [],
-  filters,
-  filterHandler
+  facets = []
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const { filters, addToFilter } = useFilterHandler();
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
     return values.map((value) => {
@@ -46,12 +40,9 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
       .find((item) => item.name === facet)
       ?.values.find((item) => item.key === e.target.value) as FilterItemTerm;
 
-    filterHandler({
-      filterItem: {
-        facet,
-        term
-      },
-      action: "add"
+    addToFilter({
+      facet,
+      term
     });
   };
 
@@ -86,15 +77,11 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             {values.map((termObj) => {
               const { term, score } = termObj;
 
-              const onClickHandler = () => {
-                filterHandler({
-                  filterItem: {
-                    facet: name,
-                    term: termObj as FilterItemTerm
-                  },
-                  action: "add"
+              const onClickHandler = () =>
+                addToFilter({
+                  facet: name,
+                  term: termObj
                 });
-              };
 
               // Removes the selected term from the filter line because it is now displayed in the selected line
               if (filters?.[name]?.[term]) return null;

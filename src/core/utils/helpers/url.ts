@@ -34,6 +34,12 @@ export const setQueryParametersInUrl = (parameters: {
   window.history.replaceState(null, "", processedUrl);
 };
 
+export const removeUrlQueryParam = (param: string) => {
+  const processedUrl = new URL(getCurrentLocation());
+  processedUrl.searchParams.delete(param);
+  window.history.replaceState(null, "", processedUrl);
+};
+
 export const redirectTo = (url: URL): void => {
   window.location.assign(url);
 };

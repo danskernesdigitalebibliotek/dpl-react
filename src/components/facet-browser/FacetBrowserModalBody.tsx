@@ -1,10 +1,6 @@
 import React from "react";
 import { isEmpty, upperFirst } from "lodash";
 import { useDeepCompareEffect } from "react-use";
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -14,16 +10,17 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
-  filterHandler: TermOnClickHandler;
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
-> = ({ facets, filterHandler, filters }) => {
+> = ({ facets }) => {
+  const { filters, addToFilter, removeFromFilter } = useFilterHandler();
+
   const t = useText();
   const { close } = useModalButtonHandler();
   const { track } = useStatistics();
@@ -84,20 +81,17 @@ const FacetBrowserModalBody: React.FunctionComponent<
                   return null;
                 }
 
+                const handleAddOrRemoveFilter = (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  return selected
+                    ? removeFromFilter({ facet: name, term: termItem })
+                    : addToFilter({ facet: name, term: termItem });
+                };
+
                 return (
                   <ButtonTag
                     key={term}
-                    onClick={(e) => {
-                      // This to prevent the disclosure from closing when clicking on a tag because event bobbling
-                      e.stopPropagation();
-                      filterHandler({
-                        filterItem: {
-                          facet: name,
-                          term: termItem
-                        },
-                        action: selected ? "remove" : "add"
-                      });
-                    }}
+                    onClick={handleAddOrRemoveFilter}
                     selected={selected}
                     dataCy={`facet-browser-${name}-${term}`}
                   >
