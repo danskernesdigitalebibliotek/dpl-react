@@ -13,8 +13,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getManifestationPid,
-  getNumberedSeries
+  getManifestationPid
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -30,6 +29,7 @@ import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
+import { getNumberedSeries } from "../../../apps/material/helper";
 
 export interface SearchResultListItemProps {
   item: Work;
