@@ -57,7 +57,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     t
   );
   const manifestationPid = getManifestationPid(manifestations);
-  const firstItemInSeries = hasNumberInSeries(series)[0];
+  const firstItemInSeries = hasNumberInSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
