@@ -14,7 +14,7 @@ import {
   filterCreators,
   flattenCreators,
   getManifestationPid,
-  hasNumberInSeries
+  getNumberedSeries
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -57,7 +57,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     t
   );
   const manifestationPid = getManifestationPid(manifestations);
-  const firstItemInSeries = hasNumberInSeries(series).shift();
+  const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
