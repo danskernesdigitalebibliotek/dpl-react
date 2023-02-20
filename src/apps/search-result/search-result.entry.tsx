@@ -9,7 +9,6 @@ import SearchResult from "./search-result";
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
   byAuthorText: string;
-  clearAllText: string;
   etAlText: string;
   facetAccessTypesText: string;
   facetBrowserModalCloseModalAriaLabelText: string;

@@ -161,11 +161,6 @@ export default {
       defaultValue: "Filter list",
       control: { type: "text" }
     },
-    clearAllText: {
-      name: "Clear all text",
-      defaultValue: "Clear all",
-      control: { type: "text" }
-    },
     addMoreFiltersText: {
       name: "Add more filters text",
       defaultValue: "+ more filters",
