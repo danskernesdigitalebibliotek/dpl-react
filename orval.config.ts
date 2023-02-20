@@ -122,9 +122,8 @@ export default defineConfig({
       prettier: true
     },
     input: {
-      // TODO: Needs to be set to HEAD version when ready.
       target:
-        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/004ab228233274d87ac57f6ec0337f830bf5fdf8/openapi.json",
+        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/HEAD/openapi.json",
       converterOptions: {
         indent: 2
       }
