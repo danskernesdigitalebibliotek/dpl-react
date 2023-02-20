@@ -122,6 +122,7 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   twoMonthsText: string;
   noMaterialDataText: string;
+  noFindOnBookshelfDataText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

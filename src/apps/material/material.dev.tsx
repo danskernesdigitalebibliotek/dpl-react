@@ -633,6 +633,12 @@ export default {
       name: "No material page data",
       defaultValue: "Unfortunately, we have no information tied to this work.",
       control: { type: "text" }
+    },
+    noFindOnBookshelfDataText: {
+      name: "No find on bookshelf data",
+      defaultValue:
+        "Unfortunately, we have no information on this works whereabouts.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
