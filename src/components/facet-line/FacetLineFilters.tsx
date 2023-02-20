@@ -5,7 +5,6 @@ import {
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
-import { FilterItemTerm } from "../../core/filter.slice";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
@@ -38,7 +37,9 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   ) => {
     const term = facets
       .find((item) => item.name === facet)
-      ?.values.find((item) => item.key === e.target.value) as FilterItemTerm;
+      ?.values.find((item) => item.key === e.target.value);
+
+    if (!term) return;
 
     addToFilter({
       facet,

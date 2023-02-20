@@ -1,6 +1,5 @@
 import React from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
-import { Filter, FilterPayloadType } from "../../core/filter.slice";
 
 import ButtonTag from "../Buttons/ButtonTag";
 
@@ -9,7 +8,7 @@ const FacetLineSelected = () => {
 
   return (
     <ul className="facet-line-selected-terms">
-      {Object.entries(filters as Filter).map(([facet, value]) => {
+      {Object.entries(filters).map(([facet, value]) => {
         return (
           <>
             {Object.entries(value).map(([label, term]) => {
@@ -22,7 +21,7 @@ const FacetLineSelected = () => {
                       removeFromFilter({
                         facet,
                         term
-                      } as FilterPayloadType)
+                      })
                     }
                     dataCy={`facet-line-selected-term-${label}`}
                   >
