@@ -628,6 +628,11 @@ export default {
       name: "Unknown",
       defaultValue: "Unknown",
       control: { type: "text" }
+    },
+    firstAvailableEditionText: {
+      name: "First available edition",
+      defaultValue: "First available edition",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
