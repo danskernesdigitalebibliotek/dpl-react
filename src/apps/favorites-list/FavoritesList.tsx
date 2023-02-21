@@ -14,7 +14,6 @@ export interface FavoritesListProps {
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
   const { data } = useGetList("default");
-  const { data: publizonData } = useGetV1UserChecklist();
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
   const [materials, setMaterials] = useState([]);
   const { itemsShown, PagerComponent } = usePager(materials.length, pageSize);
@@ -28,10 +27,6 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
       setMaterials(data.collections);
     }
   }, [data]);
-
-  useEffect(() => {
-    console.log(publizonData);
-  }, [publizonData]);
 
   return (
     <div className="search-result-page">
