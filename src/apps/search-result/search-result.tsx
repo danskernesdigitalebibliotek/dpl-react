@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
@@ -45,9 +45,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  const filteringHandler: TermOnClickHandler = (filterInfo) => {
-    filterHandler(filterInfo);
-  };
+  const filteringHandler = useCallback<TermOnClickHandler>(
+    (filterInfo) => {
+      filterHandler(filterInfo);
+    },
+    [filterHandler]
+  );
+
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)

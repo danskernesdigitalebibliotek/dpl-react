@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { dataIsNotEmpty, getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
@@ -37,4 +37,4 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
   );
 };
 
-export default SearchResultList;
+export default memo(SearchResultList);

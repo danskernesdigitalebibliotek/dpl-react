@@ -3,7 +3,6 @@ import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import { useDeepCompareEffect } from "react-use";
-import MaterialHeader from "../../components/material/MaterialHeader";
 import {
   AccessTypeCode,
   useGetMaterialQuery
@@ -41,6 +40,8 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
+import MaterialHeader from "../../components/material/MaterialHeader";
+import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -124,13 +125,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  // TODO: handle error if data is empty array.
-  if (!data?.work || !selectedManifestations) {
-    return <div>No work data</div>;
+  if (isLoading || !data?.work || !selectedManifestations) {
+    return <MaterialSkeleton />;
   }
 
   const {
@@ -165,7 +161,61 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         setSelectedManifestations={setSelectedManifestations}
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
-      />
+      >
+        {manifestations.map((manifestation) => (
+          <>
+            <ReservationModal
+              key={`reservation-modal-${manifestation.pid}`}
+              selectedManifestations={[manifestation]}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+            />
+            <FindOnShelfModal
+              key={`find-on-shelf-modal-${manifestation.pid}`}
+              manifestations={[manifestation]}
+              workTitles={manifestation.titles.main}
+              authors={manifestation.creators}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          </>
+        ))}
+
+        {infomediaIds.length > 0 && (
+          <InfomediaModal
+            selectedManifestations={selectedManifestations}
+            infoMediaId={infomediaIds[0]}
+          />
+        )}
+
+        {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
+          <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+        )}
+
+        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
+        {selectedManifestations &&
+          hasCorrectAccessType(
+            AccessTypeCode.Physical,
+            selectedManifestations
+          ) &&
+          !isArticle(selectedManifestations) && (
+            <>
+              <ReservationModal
+                selectedManifestations={selectedManifestations}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+              />
+              <FindOnShelfModal
+                manifestations={selectedManifestations}
+                authors={work.creators}
+                workTitles={work.titles.full}
+                selectedPeriodical={selectedPeriodical}
+                setSelectedPeriodical={setSelectedPeriodical}
+              />
+            </>
+          )}
+      </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
         mainIconPath={VariousIcon}
@@ -206,56 +256,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <MaterialReviews pids={hasReview.map((review) => review.pid)} />
         </DisclosureControllable>
       )}
-      {manifestations.map((manifestation) => (
-        <>
-          <ReservationModal
-            key={`reservation-modal-${manifestation.pid}`}
-            selectedManifestations={[manifestation]}
-            selectedPeriodical={selectedPeriodical}
-            work={work}
-          />
-          <FindOnShelfModal
-            key={`find-on-shelf-modal-${manifestation.pid}`}
-            manifestations={[manifestation]}
-            workTitles={manifestation.titles.main}
-            authors={manifestation.creators}
-            selectedPeriodical={selectedPeriodical}
-            setSelectedPeriodical={setSelectedPeriodical}
-          />
-        </>
-      ))}
-
-      {infomediaIds.length > 0 && (
-        <InfomediaModal
-          selectedManifestations={selectedManifestations}
-          infoMediaId={infomediaIds[0]}
-        />
-      )}
-
-      {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
-        <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
-      )}
-
-      {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
-        Online materials lead to external links, or to same modals as are created for singular editions. */}
-      {selectedManifestations &&
-        hasCorrectAccessType(AccessTypeCode.Physical, selectedManifestations) &&
-        !isArticle(selectedManifestations) && (
-          <>
-            <ReservationModal
-              selectedManifestations={selectedManifestations}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-            />
-            <FindOnShelfModal
-              manifestations={selectedManifestations}
-              authors={work.creators}
-              workTitles={work.titles.full}
-              selectedPeriodical={selectedPeriodical}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
-          </>
-        )}
     </section>
   );
 };
