@@ -76,8 +76,7 @@ function Modal({
           onClick={() => {
             close();
           }}
-        >
-        </div>
+        />
         {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(
