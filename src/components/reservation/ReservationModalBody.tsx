@@ -149,15 +149,15 @@ export const ReservationModalBody = ({
   const reservationResult = reservationResponse?.reservationResults[0]?.result;
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
-  const manifestation = manifestationsToReserve
-    ? manifestationsToReserve[0]
-    : selectedManifestations[0];
+  const manifestation =
+    manifestationsToReserve?.[0] || selectedManifestations[0];
   const getEditionText = () => {
     if (!materialIsFiction(work) || manifestationsToReserve?.length === 1) {
       return manifestation.edition?.summary;
     }
     return t("firstAvailableEditionText");
   };
+
   return (
     <>
       {!reservationResult && (
