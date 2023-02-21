@@ -59,7 +59,7 @@ describe("Search Result", () => {
   });
 
   it("Renders show more button", () => {
-    cy.get(".result-pager button").should("contain.text", "SHOW MORE");
+    cy.get(".result-pager button").should("contain.text", "show more");
   });
 
   it("Loads more search result items after clicking show more results", () => {
