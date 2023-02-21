@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
-import { useGetV1UserChecklist } from "../../core/publizon/publizon";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
