@@ -25,7 +25,6 @@ import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
-import NoData from "../edge-cases/NoData";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());
@@ -75,7 +74,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   });
 
   if (!data || data.length < 1) {
-    return <NoData noDataText={t("noFindOnBookshelfDataText")} />;
+    return null;
   }
 
   // Transforming holdings data & manifestation data so we can render it. The data
