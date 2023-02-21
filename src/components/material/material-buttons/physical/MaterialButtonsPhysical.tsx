@@ -1,12 +1,13 @@
 import React from "react";
-import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
-import { getAllFaustIds } from "../../../../core/utils/helpers/general";
+import {
+  getAllFaustIds,
+  getManifestationType
+} from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
+import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
-import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
-import { areAnyReservable } from "../helper";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
@@ -21,35 +22,26 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const faustIds = getAllFaustIds(manifestations);
-  const { data, isLoading } = useGetAvailabilityV3({
-    recordid: faustIds
+  const { reservableManifestations } = UseReservableManifestations({
+    manifestations
   });
 
   // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
   // set up STORYBOOK_CLIENT_ID from Rolf. The "isUserBlocked" is temporary.
   const isUserBlocked = false;
 
-  if (isLoading) {
-    return <MaterialButtonLoading size={size} />;
-  }
-
-  if (!data) {
-    return null;
-  }
-
   if (isUserBlocked) {
     return <MaterialButtonUserBlocked size={size} />;
   }
 
-  if (!areAnyReservable(data)) {
+  if (!reservableManifestations || reservableManifestations.length < 1) {
     return <MaterialButtonCantReserve size={size} />;
   }
-  const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
 
   return (
     <MaterialButtonReservePhysical
       dataCy={dataCy}
-      manifestationMaterialType={manifestationMaterialType}
+      manifestationMaterialType={getManifestationType(manifestations)}
       faustIds={faustIds}
       size={size}
     />
