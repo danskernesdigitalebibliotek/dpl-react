@@ -294,3 +294,19 @@ cy.getBySel("reservation-success-title-text")
   // Another assertion.
   .and("contain", "Material is available and reserved for you!");
 ```
+
+## Writing Unit Tests
+
+We are using Vitest as framework for running unit tests.
+By using that we can test functions (and therefore also hooks) and classes.
+
+### Where do I place my tests?
+
+They have to be placed in src/tests/unit.
+
+### Testing hooks
+
+For testing hooks we are using the library: `@testing-library/react-hooks`
+you can read more about it [here](https://vitest.dev) and you can also take a
+look at the [text test](../src/tests/unit/text.test.tsx)
+to see how it can be done.
