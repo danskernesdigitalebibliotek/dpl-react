@@ -132,7 +132,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     return <div>Loading...</div>;
   }
 
-  if (!data?.work || !selectedManifestations) {
+  if (!selectedManifestations) {
+    return null;
+  }
+
+  if (!data?.work) {
     return <NoData noDataText={t("noMaterialDataText")} />;
   }
 
