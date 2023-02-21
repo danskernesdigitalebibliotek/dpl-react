@@ -34,6 +34,7 @@ interface MaterialEntryTextProps {
   editionText: string;
   etAlText: string;
   fictionNonfictionText: string;
+  filmAdaptationsText: string;
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
