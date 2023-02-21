@@ -7,21 +7,29 @@ import { useUrls } from "../../../../core/utils/url";
 
 export interface ReservationDetailsRedirectProps {
   reservationId: string;
+  className?: string;
+  linkClassNames?: string;
+
   openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetailsRedirect: FC<
   ReservationDetailsRedirectProps & MaterialProps
-> = ({ reservationId, openReservationDeleteModal }) => {
+> = ({
+  reservationId,
+  openReservationDeleteModal,
+  className,
+  linkClassNames
+}) => {
   const t = useText();
   const { ereolenMyPageUrl } = useUrls();
 
   return (
-    <div className="modal-details__buttons">
+    <div className={`modal-details__buttons ${className}`}>
       <button
         type="button"
         onClick={() => openReservationDeleteModal(reservationId)}
-        className="link-tag mx-16"
+        className={`link-tag ${linkClassNames}`}
       >
         {t("reservationDetailsRemoveDigitalReservationText")}
       </button>
