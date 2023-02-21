@@ -352,4 +352,4 @@ export const reservationModalId = (faustIds: FaustId[]) => {
 };
 
 export const getNumberedSeries = (series: Work["series"]) =>
-  series.filter((serie) => serie.numberInSeries?.number);
+  series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);
