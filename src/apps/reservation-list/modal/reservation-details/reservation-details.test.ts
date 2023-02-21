@@ -182,9 +182,13 @@ describe("Reservation details modal test", () => {
     cy.get(".modal")
       .find("button.link-tag")
       .should("have.text", "Remove your reservation")
+      .scrollIntoView()
       .click();
 
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+    cy.get(".modal")
+      .find("[data-cy='delete-reservation-button']")
+      .scrollIntoView()
+      .click();
 
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
@@ -412,9 +416,13 @@ describe("Reservation details modal test", () => {
       .eq(0)
       .find("button")
       .should("have.text", "Remove your reservation")
+      .scrollIntoView()
       .click();
 
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+    cy.get(".modal")
+      .find("[data-cy='delete-reservation-button']")
+      .scrollIntoView()
+      .click();
 
     // ID 13 2.d. header "status"
     cy.get(".modal-details__list")
@@ -450,6 +458,7 @@ describe("Reservation details modal test", () => {
       .eq(1)
       .find("button")
       .should("exist")
+      .scrollIntoView()
       .click();
 
     // ID 16 2. Dropdown with pickup libraries
@@ -496,6 +505,7 @@ describe("Reservation details modal test", () => {
       .eq(2)
       .find("button")
       .should("exist")
+      .scrollIntoView()
       .click();
 
     // ID 15 2.a&b&c&d&e Dropdown with interest periods
@@ -519,6 +529,7 @@ describe("Reservation details modal test", () => {
     // ID 16 4. user clicks save
     cy.get(".modal-details__list")
       .find("[data-cy='save-physical-details']")
+      .scrollIntoView()
       .click();
 
     // ID 15 2.i still on "detaljevisning"
@@ -540,6 +551,7 @@ describe("Reservation details modal test", () => {
       .eq(2)
       .find("button")
       .should("exist")
+      .scrollIntoView()
       .click();
 
     // ID 13 2.h. header "Date of reservation"
