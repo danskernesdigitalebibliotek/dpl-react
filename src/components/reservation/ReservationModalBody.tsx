@@ -101,6 +101,9 @@ export const ReservationModalBody = ({
       getLatestManifestation(reservableManifestations)
     ];
   }
+  if (selectedPeriodical) {
+    manifestationsToReserve = [selectedManifestations[0]];
+  }
 
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
