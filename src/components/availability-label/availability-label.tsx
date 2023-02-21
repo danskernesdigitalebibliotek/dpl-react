@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useDeepCompareEffect } from "react-use";
@@ -121,4 +121,4 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   );
 };
 
-export default AvailabilityLabel;
+export default memo(AvailabilityLabel);
