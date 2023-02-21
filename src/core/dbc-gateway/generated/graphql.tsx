@@ -172,6 +172,7 @@ export type CopyRequestResponse = {
 export enum CopyRequestStatus {
   ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
   ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
+  ErrorMissingClientConfiguration = "ERROR_MISSING_CLIENT_CONFIGURATION",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
   Ok = "OK"

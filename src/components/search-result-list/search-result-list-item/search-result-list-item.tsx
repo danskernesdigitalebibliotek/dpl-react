@@ -29,6 +29,7 @@ import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
+import { getNumberedSeries } from "../../../apps/material/helper";
 
 export interface SearchResultListItemProps {
   item: Work;
@@ -56,8 +57,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     t
   );
   const manifestationPid = getManifestationPid(manifestations);
-  const firstInSeries = series?.[0];
-  const { title: seriesTitle, numberInSeries } = firstInSeries || {};
+  const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
@@ -119,16 +119,16 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           {showItem && (
             <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
           )}
-          {numberInSeries && seriesTitle && (
+          {firstItemInSeries && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                numberInSeries.number?.[0]
+                firstItemInSeries.numberInSeries?.number
               }`}
               subTitle={t("inSeriesText")}
               linkList={[
                 {
-                  url: constructSearchUrl(searchUrl, seriesTitle),
-                  term: seriesTitle
+                  url: constructSearchUrl(searchUrl, firstItemInSeries.title),
+                  term: firstItemInSeries.title
                 }
               ]}
             />

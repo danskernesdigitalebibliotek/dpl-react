@@ -53,6 +53,22 @@ export default {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
+    menuLoginText: {
+      defaultValue: "Log in",
+      control: { type: "text" }
+    },
+    menuLoginUrl: {
+      defaultValue: "/Login",
+      control: { type: "text" }
+    },
+    menuSignUpText: {
+      defaultValue: "Sign up",
+      control: { type: "text" }
+    },
+    menuSignUpUrl: {
+      defaultValue: "/Signup",
+      control: { type: "text" }
+    },
     thresholdConfig: {
       defaultValue:
         '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
