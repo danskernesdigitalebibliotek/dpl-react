@@ -3,9 +3,7 @@
     "work": {
       "workId": "work-of:870971-avis:35731733",
       "titles": {
-        "full": [
-          "Butlerens utrolige historie"
-        ],
+        "full": ["Butlerens utrolige historie"],
         "original": []
       },
       "abstract": [
@@ -30,13 +28,9 @@
           {
             "pid": "870971-avis:35731733",
             "genreAndForm": [],
-            "source": [
-              "Avisartikler"
-            ],
+            "source": ["Avisartikler"],
             "titles": {
-              "main": [
-                "Butlerens utrolige historie"
-              ],
+              "main": ["Butlerens utrolige historie"],
               "original": []
             },
             "fictionNonfiction": {
@@ -104,20 +98,15 @@
             "shelfmark": {
               "postfix": "Butlerens",
               "shelfmark": "99.4 Allen, Eugene"
-            },
-            "workYear": null
+            }
           }
         ],
         "latest": {
           "pid": "870971-avis:35731733",
           "genreAndForm": [],
-          "source": [
-            "Avisartikler"
-          ],
+          "source": ["Avisartikler"],
           "titles": {
-            "main": [
-              "Butlerens utrolige historie"
-            ],
+            "main": ["Butlerens utrolige historie"],
             "original": []
           },
           "fictionNonfiction": {
@@ -185,88 +174,7 @@
           "shelfmark": {
             "postfix": "Butlerens",
             "shelfmark": "99.4 Allen, Eugene"
-          },
-          "workYear": null
-        },
-        "bestRepresentation": {
-          "pid": "870971-avis:35731733",
-          "genreAndForm": [],
-          "source": [
-            "Avisartikler"
-          ],
-          "titles": {
-            "main": [
-              "Butlerens utrolige historie"
-            ],
-            "original": []
-          },
-          "fictionNonfiction": {
-            "display": "faglitteratur",
-            "code": "NONFICTION"
-          },
-          "materialTypes": [
-            {
-              "specific": "avisartikel"
-            }
-          ],
-          "creators": [
-            {
-              "display": "Jakob Nielsen",
-              "__typename": "Person"
-            },
-            {
-              "display": "Will Haygood",
-              "__typename": "Person"
-            }
-          ],
-          "publisher": [],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [],
-          "contributors": [],
-          "edition": {
-            "summary": "2013",
-            "publicationYear": {
-              "display": "2013"
-            }
-          },
-          "audience": {
-            "generalAudience": []
-          },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 16,
-              "playingTime": null
-            }
-          ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            },
-            {
-              "code": "ONLINE"
-            }
-          ],
-          "access": [
-            {
-              "__typename": "InfomediaService",
-              "id": "e3fba430"
-            },
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
-          ],
-          "shelfmark": {
-            "postfix": "Butlerens",
-            "shelfmark": "99.4 Allen, Eugene"
-          },
-          "workYear": null
+          }
         }
       },
       "materialTypes": [
@@ -308,7 +216,7 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "99.4 Allen, Eugene"
+        "display": "99.4 , Eugene"
       },
       "relations": {
         "hasAdaptation": []
