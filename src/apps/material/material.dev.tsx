@@ -629,15 +629,14 @@ export default {
       defaultValue: "Unknown",
       control: { type: "text" }
     },
-    noMaterialDataText: {
-      name: "No material page data",
-      defaultValue: "Unfortunately, we have no information tied to this work.",
+    alertErrorCloseText: {
+      name: "Alert error close text",
+      defaultValue: "close",
       control: { type: "text" }
     },
-    noFindOnBookshelfDataText: {
-      name: "No find on bookshelf data",
-      defaultValue:
-        "Unfortunately, we have no information on this works whereabouts.",
+    alertErrorMessageText: {
+      name: "Alert error message text",
+      defaultValue: "An error occurred",
       control: { type: "text" }
     }
   }
