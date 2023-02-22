@@ -16,7 +16,7 @@ expected output giving different variations of input.
 We decided to go for [Vitest](https://vitest.dev/) which is an easy to use and very fast
 unit testing tool.
 
-It has more or less the same capabilities as Jest
+It has more or less the same capabilities as [Jest](https://jestjs.io/)
 which is another popular testing framework which is similar.
 
 Vitest is framework agnostic so in order to make it possible to test hooks
