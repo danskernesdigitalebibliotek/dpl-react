@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
+import InvalidUrlError from "../../../../core/errors/InvalidUrlError";
 import { statistics } from "../../../../core/statistics/statistics";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { isUrlValid } from "../../../../core/utils/helpers/url";
@@ -49,7 +50,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
     //  We have experienced that externalUrl is not always valid.
     if (!isUrlValid(externalUrl)) {
-      return null;
+      throw new InvalidUrlError("The external url is not valid.");
     }
 
     return (
