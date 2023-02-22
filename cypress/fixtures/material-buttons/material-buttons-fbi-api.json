@@ -3,12 +3,8 @@
     "work": {
       "workId": "work-of:870970-basis:52557240",
       "titles": {
-        "full": [
-          "De syv søstre : Maias historie"
-        ],
-        "original": [
-          "The seven sisters"
-        ]
+        "full": ["De syv søstre : Maias historie"],
+        "original": ["The seven sisters"]
       },
       "abstract": [
         "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav"
@@ -29,14 +25,12 @@
         },
         {
           "title": "De syv søstre-serien",
-          "isPopular": true,
+          "isPopular": null,
           "numberInSeries": {
             "display": "1",
-            "number": [
-              1
-            ]
+            "number": [1]
           },
-          "readThisFirst": true,
+          "readThisFirst": null,
           "readThisWhenever": null
         }
       ],
@@ -44,110 +38,282 @@
         {
           "workId": "work-of:870970-basis:52557240",
           "titles": {
-            "main": [
-              "De syv søstre"
-            ],
-            "full": [
-              "De syv søstre : Maias historie"
-            ],
-            "original": [
-              "The seven sisters"
-            ]
+            "main": ["De syv søstre"],
+            "full": ["De syv søstre : Maias historie"],
+            "original": ["The seven sisters"]
           }
         },
         {
           "workId": "work-of:870970-basis:52970628",
           "titles": {
-            "main": [
-              "Stormsøsteren"
-            ],
-            "full": [
-              "Stormsøsteren : Allys historie"
-            ],
-            "original": [
-              "The storm sister"
-            ]
+            "main": ["Stormsøsteren"],
+            "full": ["Stormsøsteren : Allys historie"],
+            "original": ["The storm sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:53280749",
           "titles": {
-            "main": [
-              "Skyggesøsteren"
-            ],
-            "full": [
-              "Skyggesøsteren : Stars historie"
-            ],
-            "original": [
-              "The shadow sister"
-            ]
+            "main": ["Skyggesøsteren"],
+            "full": ["Skyggesøsteren : Stars historie"],
+            "original": ["The shadow sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:53802001",
           "titles": {
-            "main": [
-              "Perlesøsteren"
-            ],
-            "full": [
-              "Perlesøsteren : CeCes historie"
-            ],
-            "original": [
-              "The pearl sister"
-            ]
+            "main": ["Perlesøsteren"],
+            "full": ["Perlesøsteren : CeCes historie"],
+            "original": ["The pearl sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:54189141",
           "titles": {
-            "main": [
-              "Månesøsteren"
-            ],
-            "full": [
-              "Månesøsteren : Tiggys historie"
-            ],
-            "original": [
-              "The moon sister"
-            ]
+            "main": ["Månesøsteren"],
+            "full": ["Månesøsteren : Tiggys historie"],
+            "original": ["The moon sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:46656172",
           "titles": {
-            "main": [
-              "Solsøsteren"
-            ],
-            "full": [
-              "Solsøsteren : Electras historie"
-            ],
-            "original": [
-              "The sun sister"
-            ]
+            "main": ["Solsøsteren"],
+            "full": ["Solsøsteren : Electras historie"],
+            "original": ["The sun sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:38500775",
           "titles": {
-            "main": [
-              "Den forsvundne søster"
-            ],
-            "full": [
-              "Den forsvundne søster"
-            ],
-            "original": [
-              "The missing sister"
-            ]
+            "main": ["Den forsvundne søster"],
+            "full": ["Den forsvundne søster"],
+            "original": ["The missing sister"]
           }
         }
       ],
       "workYear": null,
-      "genreAndForm": [
-        "roman",
-        "slægtsromaner",
-        "romaner"
-      ],
+      "genreAndForm": ["roman", "slægtsromaner", "romaner"],
       "manifestations": {
         "all": [
+          {
+            "pid": "870970-basis:46615743",
+            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+            "source": ["Bibliotekskatalog"],
+            "titles": {
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Cicero"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763863285"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "3. udgave, 2019",
+              "publicationYear": {
+                "display": "2019"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 523,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
+          {
+            "pid": "870970-basis:53292968",
+            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+            "source": ["Bibliotekskatalog"],
+            "titles": {
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Cicero"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763849630"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "2. udgave, 2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 523,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
+          {
+            "pid": "870970-basis:53200346",
+            "genreAndForm": ["roman"],
+            "source": ["Bibliotekskatalog"],
+            "titles": {
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "musik (net)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Gyldendals Bogklubber"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788703079875"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. bogklubudgave, 2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 523,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "musik",
+                "url": "https://musik.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
           {
             "pid": "870970-basis:52557240",
             "genreAndForm": ["roman", "slægtsromaner"],
@@ -171,9 +337,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Cicero"
-            ],
+            "publisher": ["Cicero"],
             "languages": {
               "main": [
                 {
@@ -225,788 +389,6 @@
             }
           },
           {
-            "pid": "870970-basis:46615743",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner",
-              "romaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "bog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Cicero"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763863285"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "3. udgave, 2019",
-              "publicationYear": {
-                "display": "2019"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:52557240",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "bog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Cicero"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763844116"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. udgave, 2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:52590302",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner"
-            ],
-            "source": [
-              "eReolen"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "ebog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Cicero"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763844123"
-              },
-              {
-                "value": "9788763844123"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. eBogsudgave, 2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "Ereol",
-                "origin": "eReolen",
-                "url": "https://ereolen.dk/ting/object/870970-basis:52590302",
-                "canAlwaysBeLoaned": false
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:52643414",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre (mp3)"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "lydbog (cd-mp3)"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Rosinante"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763850636"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Maria Stokholm"
-              },
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. lydbogsudgave, 2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": null,
-                "playingTime": "16 t., 30 min."
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:52643503",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "lydbog (net)"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Rosinante"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763847995"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Maria Stokholm"
-              },
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": null,
-                "playingTime": "16 t., 30 min."
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
-            "access": [],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:53200346",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "bog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Gyldendals Bogklubber"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788703079875"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. bogklubudgave, 2017",
-              "publicationYear": {
-                "display": "2017"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          },
-          {
-            "pid": "870970-basis:53292968",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner",
-              "romaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "bog"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": [
-              "Cicero"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763849630"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "2. udgave, 2017",
-              "publicationYear": {
-                "display": "2017"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            },
-            "workYear": null
-          }
-        ],
-        "latest": {
-          "pid": "870970-basis:46615743",
-          "genreAndForm": [
-            "roman",
-            "slægtsromaner",
-            "romaner"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
-          "titles": {
-            "main": [
-              "De syv søstre"
-            ],
-            "original": [
-              "The seven sisters"
-            ]
-          },
-          "fictionNonfiction": {
-            "display": "skønlitteratur",
-            "code": "FICTION"
-          },
-          "materialTypes": [
-            {
-              "specific": "bog"
-            }
-          ],
-          "creators": [
-            {
-              "display": "Lucinda Riley",
-              "__typename": "Person"
-            }
-          ],
-          "publisher": [
-            "Cicero"
-          ],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [
-            {
-              "value": "9788763863285"
-            }
-          ],
-          "contributors": [
-            {
-              "display": "Ulla Lauridsen"
-            }
-          ],
-          "edition": {
-            "summary": "3. udgave, 2019",
-            "publicationYear": {
-              "display": "2019"
-            }
-          },
-          "audience": {
-            "generalAudience": []
-          },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 523,
-              "playingTime": null
-            }
-          ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
-          "access": [
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
-          ],
-          "shelfmark": {
-            "postfix": "Riley",
-            "shelfmark": "83"
-          },
-          "workYear": null
-        },
-        "bestRepresentation": {
-          "pid": "870970-basis:46615743",
-          "genreAndForm": [
-            "roman",
-            "slægtsromaner",
-            "romaner"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
-          "titles": {
-            "main": [
-              "De syv søstre"
-            ],
-            "original": [
-              "The seven sisters"
-            ]
-          },
-          "fictionNonfiction": {
-            "display": "skønlitteratur",
-            "code": "FICTION"
-          },
-          "materialTypes": [
-            {
-              "specific": "bog"
-            }
-          ],
-          "creators": [
-            {
-              "display": "Lucinda Riley",
-              "__typename": "Person"
-            }
-          ],
-          "publisher": [
-            "Cicero"
-          ],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [
-            {
-              "value": "9788763863285"
-            }
-          ],
-          "contributors": [
-            {
-              "display": "Ulla Lauridsen"
-            }
-          ],
-          "edition": {
-            "summary": "3. udgave, 2019",
-            "publicationYear": {
-              "display": "2019"
-            }
-          },
-          "audience": {
-            "generalAudience": []
-          },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 523,
-              "playingTime": null
-            }
-          ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
-          "access": [
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
-          ],
-          "shelfmark": {
-            "postfix": "Riley",
-            "shelfmark": "83"
-          },
-          "workYear": null
-        }
-      },
-      "materialTypes": [
-        {
-          "specific": "bog"
-        },
-        {
-          "specific": "ebog"
-        },
-        {
-          "specific": "lydbog (net)"
-        },
-        {
-          "specific": "lydbog (cd-mp3)"
-        }
-      ],
-      "mainLanguages": [
-        {
-          "display": "dansk",
-          "isoCode": "dan"
-        }
-      ],
-      "subjects": {
-        "all": [
-          {
             "pid": "870970-basis:52643503",
             "genreAndForm": ["roman"],
             "source": ["Bibliotekskatalog"],
@@ -1029,9 +411,7 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": [
-              "Rosinante"
-            ],
+            "publisher": ["Rosinante"],
             "languages": {
               "main": [
                 {
@@ -1085,6 +465,249 @@
               "shelfmark": "83"
             }
           },
+          {
+            "pid": "870970-basis:52643414",
+            "genreAndForm": ["roman"],
+            "source": ["Bibliotekskatalog"],
+            "titles": {
+              "main": ["De syv søstre (mp3)"],
+              "original": ["The seven sisters"]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "lydbog (cd-mp3)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Rosinante"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763850636"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Maria Stokholm"
+              },
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. lydbogsudgave, 2016",
+              "publicationYear": {
+                "display": "2016"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null,
+                "playingTime": "16 t., 30 min."
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          },
+          {
+            "pid": "870970-basis:52590302",
+            "genreAndForm": ["roman", "slægtsromaner"],
+            "source": ["eReolen"],
+            "titles": {
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "ebog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Lucinda Riley",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Cicero"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788763844123"
+              },
+              {
+                "value": "9788763844123"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Lauridsen"
+              }
+            ],
+            "edition": {
+              "summary": "1. eBogsudgave, 2016",
+              "publicationYear": {
+                "display": "2016"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "Ereol",
+                "origin": "eReolen",
+                "url": "https://ereolen.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Riley",
+              "shelfmark": "83"
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:46615743",
+          "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+          "source": ["Bibliotekskatalog"],
+          "titles": {
+            "main": ["De syv søstre"],
+            "original": ["The seven sisters"]
+          },
+          "fictionNonfiction": {
+            "display": "skønlitteratur",
+            "code": "FICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "bog"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Cicero"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "9788763863285"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Ulla Lauridsen"
+            }
+          ],
+          "edition": {
+            "summary": "3. udgave, 2019",
+            "publicationYear": {
+              "display": "2019"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 523,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Riley",
+            "shelfmark": "83"
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "specific": "bog"
+        },
+        {
+          "specific": "lydbog (net)"
+        },
+        {
+          "specific": "ebog"
+        },
+        {
+          "specific": "lydbog (cd-mp3)"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
           {
             "display": "kærlighed"
           },
