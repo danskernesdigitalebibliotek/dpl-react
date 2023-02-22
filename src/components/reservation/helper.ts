@@ -151,8 +151,11 @@ export const getAuthorLine = (
 };
 
 export const getManifestationsToReserve = (
-  reservableManifestations: Manifestation[]
+  reservableManifestations: Manifestation[] | null
 ) => {
+  if (!reservableManifestations || reservableManifestations.length < 1) {
+    return null;
+  }
   // If the work isn't fictional we only want to reserve the latest manifestation.
   if (!materialIsFiction(reservableManifestations[0])) {
     return [getLatestManifestation(reservableManifestations)];

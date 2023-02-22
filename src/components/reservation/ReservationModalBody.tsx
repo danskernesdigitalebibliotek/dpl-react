@@ -95,7 +95,7 @@ export const ReservationModalBody = ({
   }
 
   const manifestationsToReserve = getManifestationsToReserve(
-    reservableManifestations || []
+    reservableManifestations
   );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
