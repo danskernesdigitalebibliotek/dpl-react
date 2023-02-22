@@ -252,8 +252,10 @@ export const groupObjectArrayByProperty = <
 export const getManifestationsPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
+
 export const stringifyValue = (value: string | null | undefined) =>
   value ? String(value) : "";
+
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
@@ -376,5 +378,25 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+
+// The rendered release year for search results is picked based on
+// whether the work is fiction or not.
+export const getReleaseYearSearchResult = (work: Work) => {
+  const { latest, bestRepresentation } = work.manifestations;
+  const manifestation = bestRepresentation || latest;
+  // If the work tells us that it is fiction.
+  if (materialIsFiction(work)) {
+    return work.workYear?.year;
+  }
+  // If the manifestation tells us that it is fiction.
+  if (materialIsFiction(manifestation)) {
+    return (
+      manifestation.dateFirstEdition?.display ||
+      manifestation.dateFirstEdition?.year
+    );
+  }
+  // If it isn't fiction we get release year from latest manifestation.
+  return getManifestationPublicationYear(latest) || latest.workYear?.year;
+};
 
 export default {};

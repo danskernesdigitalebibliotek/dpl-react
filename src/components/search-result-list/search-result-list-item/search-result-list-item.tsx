@@ -13,7 +13,8 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getManifestationPid
+  getManifestationPid,
+  getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -38,13 +39,13 @@ export interface SearchResultListItemProps {
 }
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
+  item,
   item: {
     titles: { full: fullTitle },
     series,
     creators,
     manifestations: { all: manifestations },
-    workId,
-    workYear
+    workId
   },
   coverTint,
   resultNumber
@@ -142,10 +143,12 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
-        {author && (
+        {author && item && (
           <p className="text-small-caption" data-cy="search-result-item-author">
             {`${t("byAuthorText")} ${author}`}
-            {workYear && ` (${workYear.year})`}
+            {getReleaseYearSearchResult(item)
+              ? ` (${getReleaseYearSearchResult(item)})`
+              : ""}
           </p>
         )}
       </div>
