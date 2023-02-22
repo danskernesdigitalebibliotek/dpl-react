@@ -31,6 +31,7 @@ const FacetBrowserModal: React.FunctionComponent<FacetBrowserModalProps> = ({
         "facetBrowserModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("facetBrowserModalCloseModalAriaLabelText")}
+      isSlider
     >
       {isLoading || !facets ? null : (
         <FacetBrowserModalBody

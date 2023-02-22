@@ -19,6 +19,7 @@ type ModalProps = {
   screenReaderModalDescriptionText: string;
   classNames?: string;
   dataCy?: string;
+  isSlider?: boolean;
 };
 
 export interface ModalIdsProps {
@@ -33,6 +34,7 @@ function Modal({
   children,
   screenReaderModalDescriptionText,
   classNames,
+  isSlider,
   dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
@@ -52,18 +54,30 @@ function Modal({
     return null;
   }
 
+  const close = () => {
+    dispatch(closeModal({ modalId }));
+  };
+
   return (
     <FocusTrap>
-      <div
-        className="modal-backdrop"
-        style={{
-          // some elements are designed with z-index which means they pop up over the modal
-          // so I add 10 to the z-index of the modal
-          // the index of the modalid is used, so the newest modal is always on top of
-          // the remaining modals
-          zIndex: modalIds.indexOf(modalId) + 10
-        }}
-      >
+      <div>
+        {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
+          the close button's functionality which possesses both. */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        <div
+          className="modal-backdrop"
+          style={{
+            // some elements are designed with z-index which means they pop up over the modal
+            // so I add 10 to the z-index of the modal
+            // the index of the modalid is used, so the newest modal is always on top of
+            // the remaining modals
+            zIndex: modalIds.indexOf(modalId) + 10
+          }}
+          onClick={() => {
+            close();
+          }}
+        />
+        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(
             "modal",
@@ -75,6 +89,10 @@ function Modal({
           role="dialog"
           aria-labelledby={`modal-${modalId}-description`}
           data-cy={dataCy}
+          style={{
+            // same as comment above
+            zIndex: modalIds.indexOf(modalId) + 11
+          }}
         >
           <div
             className="modal__screen-reader-description"
@@ -84,14 +102,16 @@ function Modal({
           </div>
           <button
             type="button"
-            className="btn-ui modal-btn-close"
+            className={`btn-ui modal-btn-close ${
+              !isSlider ? "modal-btn-close--offset" : ""
+            }`}
             style={{
               // same as comment above
               zIndex: modalIds.indexOf(modalId) + 10
             }}
             aria-label={closeModalAriaLabelText}
             onClick={() => {
-              dispatch(closeModal({ modalId }));
+              close();
             }}
             data-cy={`modal-${modalId}-close-button`}
           >
