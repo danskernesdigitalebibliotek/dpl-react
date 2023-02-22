@@ -20,7 +20,7 @@ It has more or less the same capabilities as Jest
 which is another popular testing framework which is similar.
 
 Vitest is framework agnostic so in order to make it possible to test hooks
-we found `@testing-library/react-hooks` that works in conjunction with Vitest.
+we found [`@testing-library/react-hooks`](https://react-hooks-testing-library.com/) that works in conjunction with Vitest.
 
 ## Alternatives considered
 
