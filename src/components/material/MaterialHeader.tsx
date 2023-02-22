@@ -8,11 +8,12 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getMaterialTypes,
   getManifestationPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
-import { AvailabiltityLabels } from "../availability-label/availability-labels";
+import { AvailabilityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
@@ -25,14 +26,18 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import { hasCorrectMaterialType } from "./material-buttons/helper";
+import MaterialType from "../../core/utils/types/material-type";
+import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 
 interface MaterialHeaderProps {
   wid: WorkId;
   work: Work;
-  manifestation: Manifestation;
-  selectManifestationHandler: (manifestation: Manifestation) => void;
+  selectedManifestations: Manifestation[];
+  setSelectedManifestations: (manifestations: Manifestation[]) => void;
   selectedPeriodical: PeriodicalEdition | null;
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
+  children: React.ReactNode;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -43,12 +48,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     mainLanguages,
     workId: wid
   },
-  manifestation: { pid },
-  manifestation,
-  selectManifestationHandler,
+  selectedManifestations,
+  setSelectedManifestations,
   selectedPeriodical,
-  selectPeriodicalHandler
+  selectPeriodicalHandler,
+  children
 }) => {
+  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
@@ -60,33 +66,25 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const creatorsText = creatorsToString(
+  const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-  const isPeriodical = manifestation.materialTypes.some(
-    (materialType: Manifestation["materialTypes"][0]) => {
-      return materialType.specific === "tidsskrift";
-    }
+  const isPeriodical = hasCorrectMaterialType(
+    MaterialType.magazine,
+    selectedManifestations
   );
-
-  const author = creatorsText || t("creatorsAreMissingText");
-
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
   );
-
   const allLanguages = mainLanguages
     .map((language) => language.display)
     .join(", ");
-
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
-  const coverPid = pid || getManifestationPid(manifestations);
+  const pid = getManifestationPid(manifestations);
   const { track } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
-  const manifestationMaterialTypes = manifestation.materialTypes.map(
-    (item) => item.specific
-  );
+  const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
 
   useDeepCompareEffect(() => {
     track("click", {
@@ -97,7 +95,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     track("click", {
       id: statistics.materialSource.id,
       name: statistics.materialSource.name,
-      trackedData: manifestation.source.join(", ")
+      trackedData: selectedManifestations
+        .map((manifestation) => manifestation.source.join(", "))
+        .join(", ")
     });
     // We just want to track if the currently selected manifestation changes (which should be once - on initial render)
     // and when the currently selected manifestation's material type changes - on availability button click.
@@ -107,38 +107,50 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover id={coverPid} size="xlarge" animate />
+        <Cover id={pid} size="xlarge" animate shadow />
       </div>
-      <div className="material-header__content">
+      <div
+        data-cy="material-header-content"
+        className="material-header__content"
+      >
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
         <MaterialHeaderText title={String(title)} author={author} />
-        <div className="material-header__availability-label">
-          <AvailabiltityLabels
-            cursorPointer
-            workId={wid}
-            manifestations={manifestations}
-            selectedManifestation={manifestation}
-            selectManifestationHandler={selectManifestationHandler}
-          />
+        <div ref={itemRef} className="material-header__availability-label">
+          {showItem && (
+            <AvailabilityLabels
+              cursorPointer
+              workId={wid}
+              manifestations={manifestations}
+              selectedManifestations={selectedManifestations}
+              setSelectedManifestations={setSelectedManifestations}
+            />
+          )}
         </div>
 
-        {isPeriodical && (
-          <MaterialPeriodical
-            faustId={convertPostIdToFaustId(pid)}
-            selectedPeriodical={selectedPeriodical}
-            selectPeriodicalHandler={selectPeriodicalHandler}
-          />
-        )}
-        {manifestation && (
+        {showItem && (
           <>
-            <div className="material-header__button">
-              <MaterialButtons
-                manifestation={manifestation}
-                workId={wid}
-                dataCy="material-header-buttons"
+            {isPeriodical && (
+              <MaterialPeriodical
+                faustId={convertPostIdToFaustId(pid)}
+                selectedPeriodical={selectedPeriodical}
+                selectPeriodicalHandler={selectPeriodicalHandler}
               />
-            </div>
-            <MaterialAvailabilityText manifestation={manifestation} />
+            )}
+            {selectedManifestations && (
+              <>
+                <div className="material-header__button">
+                  <MaterialButtons
+                    manifestations={selectedManifestations}
+                    workId={wid}
+                    dataCy="material-header-buttons"
+                  />
+                </div>
+                <MaterialAvailabilityText
+                  manifestations={selectedManifestations}
+                />
+              </>
+            )}
+            {children}
           </>
         )}
       </div>

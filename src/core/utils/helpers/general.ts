@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
+import { uniq } from "lodash";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -12,7 +13,12 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
-import { ReservationType } from "../types/reservation-type";
+import { FeeV2 } from "../../fbs/model/feeV2";
+import { ReservationDetailsV2 } from "../../fbs/model";
+import {
+  dashboardReadyForPickupApiValueText,
+  dashboardReservedApiValueText
+} from "../../configuration/api-strings.json";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -39,7 +45,6 @@ export const filterCreators = (
   filterBy: ["Person" | "Corporation"]
 ) =>
   creators.filter((creator: Work["creators"][0]) => {
-    // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
@@ -115,10 +120,6 @@ export const getModalIds = () => {
   return getConf("modalIds", configuration);
 };
 
-export const getThresholds = () => {
-  return getConf("thresholds", configuration);
-};
-
 export const daysBetweenTodayAndDate = (date: string) => {
   const inputDate = dayjs(new Date(date));
   const today = dayjs(new Date());
@@ -158,6 +159,10 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   throw new Error(`Unable to extract faust id from post id "${postId}"`);
 };
 
+export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
+  return postIds.map((pid) => convertPostIdToFaustId(pid));
+};
+
 // Get params if they are defined as props use those
 // otherwise try to fetch them from the url.
 export const getParams = <T, K extends keyof T>(props: T) => {
@@ -170,13 +175,13 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
-export const sortByLoanDate = (list: LoanType[]) => {
+export const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort(
-    (objA, objB) =>
-      new Date(objA.loanDate || new Date()).getTime() -
-      new Date(objB.loanDate || new Date()).getTime()
+    (a, b) =>
+      new Date(a.dueDate || new Date()).getTime() -
+      new Date(b.dueDate || new Date()).getTime()
   );
 };
 
@@ -296,17 +301,36 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationType[]) => {
-  return [...list].filter(({ state }) => state === "readyForPickup");
+export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
+  const yesterday = dayjs().subtract(1, "day");
+  return [...list].filter(({ state, pickupDeadline }) => {
+    const deadline = dayjs(pickupDeadline);
+    if (deadline) {
+      return (
+        state === dashboardReadyForPickupApiValueText && deadline < yesterday
+      );
+    }
+    return false;
+  });
+};
+export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
+  return [...list].filter(
+    ({ state }) => state === dashboardReservedApiValueText
+  );
 };
 
+export const tallyUpFees = (fees: FeeV2[]) => {
+  return fees.reduce((total, { amount }) => total + amount, 0);
+};
+
+// Loans overdue
 export const filterLoansOverdue = (loans: LoanType[]) => {
   return loans.filter(({ dueDate }) => {
     return materialIsOverdue(dueDate);
   });
 };
-export const filterLoansSoonOverdue = (loans: LoanType[]) => {
-  const { warning } = <{ warning: number }>getThresholds();
+
+export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";
     const daysUntilExpiration = daysBetweenTodayAndDate(due);
@@ -316,5 +340,41 @@ export const filterLoansSoonOverdue = (loans: LoanType[]) => {
     );
   });
 };
+
+export const getMaterialTypes = (manifestations: Manifestation[]) => {
+  const allMaterialTypes = manifestations
+    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+    .flat();
+  return uniq(allMaterialTypes);
+};
+
+export const getManifestationType = (manifestations: Manifestation[]) => {
+  const uniqueTypes = getMaterialTypes(manifestations);
+  return uniqueTypes[0];
+};
+
+export const getAllPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
+
+export const getAllFaustIds = (manifestations: Manifestation[]) => {
+  return convertPostIdsToFaustIds(getAllPids(manifestations));
+};
+
+export const getScrollClass = (modalIds: string[]) => {
+  return modalIds.length > 0 ? "scroll-lock-background" : "";
+};
+export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+// Loans with more than warning-threshold days until due
+export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return daysUntilExpiration - warning > 0;
+  });
+};
+
+export const constructModalId = (prefix: string, fragments: string[]) =>
+  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
 export default {};

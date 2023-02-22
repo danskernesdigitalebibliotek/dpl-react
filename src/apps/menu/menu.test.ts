@@ -243,10 +243,10 @@ describe("Menu", () => {
     }).as("fees");
 
     cy.visit("/iframe.html?path=/story/apps-menu--menu-entry");
-    cy.wait(["@reservations", "@physical_loans", "@digital_loans", "@fees"]);
   });
 
   it("Menu", () => {
+    cy.get(".header__menu-profile").click();
     // 2. Systemet viser Lånerstatusmenuen med
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")

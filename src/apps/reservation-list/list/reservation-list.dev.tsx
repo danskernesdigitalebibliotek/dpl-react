@@ -9,17 +9,26 @@ export default {
   title: "Apps / Reservation list",
   component: ReservationList,
   argTypes: {
-    // Config
-    ...serviceUrlArgs,
+    // Page size
     pageSizeDesktop: {
-      name: "Number of search result items on desktop",
       defaultValue: 20,
       control: { type: "number" }
     },
     pageSizeMobile: {
-      name: "Number of search result items on mobile",
       defaultValue: 10,
       control: { type: "number" }
+    },
+    // Config
+    ...serviceUrlArgs,
+    blacklistedSearchBranchesConfig: {
+      name: "Blacklisted branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+      control: { type: "text" }
     },
     ereolenMyPageUrl: {
       defaultValue: "https://ereolen.dk/user/me/",
@@ -320,20 +329,6 @@ export default {
       name: "Result pager status text",
       defaultValue: "Showing @itemsShown out of @hitcount results",
       control: { type: "text" }
-    },
-    reservationListStatusIconReadyForPickupAriaLabelText: {
-      defaultValue: "This material is ready for pickup",
-      control: { type: "text" }
-    },
-    reservationListStatusIconQueuedAriaLabelText: {
-      defaultValue:
-        '{"type":"plural","text":["You are the only person queued for this material","This material has @count people in queue before you"]}',
-      control: { type: "text" }
-    },
-    reservationListStatusIconReadyInAriaLabelText: {
-      defaultValue:
-        '{"type":"plural","text":["This material is ready in 1 day","This material is ready in @count days"]}',
-      control: { type: "text" }
     }
   },
   decorators: [withQuery]
@@ -346,17 +341,18 @@ const Template: ComponentStory<typeof ReservationList> = (props) => (
 export const ReservationListEntry = Template.bind({});
 ReservationListEntry.args = {};
 
+const { reservationDetails } = getModalIds();
 export const ReservationListDigitalDetailsModal = Template.bind({});
 ReservationListDigitalDetailsModal.parameters = {
   query: {
-    modal: 9788740047905
+    modal: `${reservationDetails}9788740047905`
   }
 };
 
 export const ReservationListPhysicalDetailsModal = Template.bind({});
 ReservationListPhysicalDetailsModal.parameters = {
   query: {
-    modal: "46985591"
+    modal: `${reservationDetails}46985591`
   }
 };
 
@@ -364,7 +360,7 @@ const { deleteReservation } = getModalIds();
 export const ReservationListDeletePhysicalModal = Template.bind({});
 ReservationListDeletePhysicalModal.parameters = {
   query: {
-    modal: `46985591&${deleteReservation}67804976`
+    modal: `46985591&${deleteReservation}46985591`
   }
 };
 

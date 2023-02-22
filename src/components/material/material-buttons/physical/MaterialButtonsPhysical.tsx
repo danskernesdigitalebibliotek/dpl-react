@@ -1,27 +1,28 @@
 import React from "react";
 import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
-import { convertPostIdToFaustId } from "../../../../core/utils/helpers/general";
+import { getAllFaustIds } from "../../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
+import { areAnyReservable } from "../helper";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 
 export interface MaterialButtonsPhysicalProps {
-  manifestation: Manifestation;
+  manifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
-  manifestation: { pid, materialTypes },
+  manifestations,
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const faustId = convertPostIdToFaustId(pid);
+  const faustIds = getAllFaustIds(manifestations);
   const { data, isLoading } = useGetAvailabilityV3({
-    recordid: [faustId]
+    recordid: faustIds
   });
 
   // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
@@ -40,17 +41,17 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} />;
   }
 
-  const manifestationAvailability = data[0];
-  if (!manifestationAvailability.reservable) {
+  // TODO: Investigate if we could use UseReservableManifestations() instead.
+  if (!areAnyReservable(data)) {
     return <MaterialButtonCantReserve size={size} />;
   }
+  const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
 
-  const manifestationMaterialType = materialTypes[0].specific;
   return (
     <MaterialButtonReservePhysical
       dataCy={dataCy}
       manifestationMaterialType={manifestationMaterialType}
-      faustId={faustId}
+      faustIds={faustIds}
       size={size}
     />
   );

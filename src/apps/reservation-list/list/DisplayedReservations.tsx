@@ -11,6 +11,7 @@ export interface DisplayedReservationsProps {
   reservedReservationsFBS: ReservationType[] | null;
   reservedReservationsPublizon: ReservationType[] | null;
   pageSize: number;
+  openReservationDetailsModal: (reservation: ReservationType) => void;
 }
 
 const DisplayedReservations: FC<DisplayedReservationsProps> = ({
@@ -18,26 +19,30 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
   readyForPickupReservationsPublizon,
   reservedReservationsFBS,
   reservedReservationsPublizon,
-  pageSize
+  pageSize,
+  openReservationDetailsModal
 }) => {
   const t = useText();
-
   return (
     <>
       {readyForPickupReservationsFBS !== null &&
         readyForPickupReservationsPublizon !== null && (
           <List
+            openReservationDetailsModal={openReservationDetailsModal}
             pageSize={pageSize}
             header={t("reservationListReadyForPickupTitleText")}
-            reservations={sortByOldestPickupDeadline([
-              ...readyForPickupReservationsFBS,
-              ...readyForPickupReservationsPublizon
-            ])}
+            reservations={
+              sortByOldestPickupDeadline([
+                ...readyForPickupReservationsFBS,
+                ...readyForPickupReservationsPublizon
+              ]) as []
+            }
             emptyListLabel={t("reservationListReadyForPickupEmptyText")}
           />
         )}
       {reservedReservationsFBS !== null && (
         <List
+          openReservationDetailsModal={openReservationDetailsModal}
           pageSize={pageSize}
           header={t("reservationListPhysicalReservationsHeaderText")}
           reservations={reservedReservationsFBS}
@@ -46,6 +51,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
       )}
       {reservedReservationsPublizon !== null && (
         <List
+          openReservationDetailsModal={openReservationDetailsModal}
           pageSize={pageSize}
           header={t("reservationListDigitalReservationsHeaderText")}
           reservations={reservedReservationsPublizon}

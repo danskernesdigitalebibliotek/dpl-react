@@ -12,7 +12,7 @@ describe("Reservation details modal test", () => {
     });
 
     const clockDate = new Date(
-      "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
+      "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
     ).getTime();
 
     // Sets time to a specific date
@@ -334,7 +334,7 @@ describe("Reservation details modal test", () => {
       statusCode: 200,
       body: [
         {
-          reservationId: 67804976,
+          reservationId: 46985591,
           recordId: "46985591",
           state: "reserved",
           pickupBranch: "DK-775160",
@@ -381,7 +381,7 @@ describe("Reservation details modal test", () => {
 
     // Serial title
     // Serial number
-    cy.get(".list-reservation-container")
+    cy.get(".modal")
       .find("[data-cy='modal-series']")
       .should("have.text", "Detektivbureau Nr. 2 1");
 
@@ -581,7 +581,7 @@ describe("Reservation details modal test", () => {
       statusCode: 200,
       body: [
         {
-          reservationId: 67804976,
+          reservationId: 46985591,
           recordId: "46985591",
           state: "readyForPickup",
           pickupBranch: "DK-775100",

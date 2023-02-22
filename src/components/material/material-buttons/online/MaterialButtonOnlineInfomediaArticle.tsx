@@ -10,7 +10,7 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
-  manifestation: Manifestation;
+  manifestations: Manifestation[];
   trackOnlineView: () => Promise<unknown>;
   dataCy?: string;
 }
@@ -19,7 +19,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
 > = ({
   size,
-  manifestation: { pid },
+  manifestations,
   trackOnlineView,
   dataCy = "material-button-online-infomedia-article"
 }) => {
@@ -27,10 +27,17 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
+  if (manifestations.length < 1) {
+    return null;
+  }
+
+  // Although we may be passed multiple manifestations, there is only one button
+  // and one infomedia article modal to open, as we only associate a singular article
+  // with a given work as of now.
   const onClick = () => {
     openGuarded({
       authUrl,
-      modalId: infomediaModalId(pid),
+      modalId: infomediaModalId(manifestations[0].pid),
       trackOnlineView
     });
   };

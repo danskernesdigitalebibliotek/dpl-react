@@ -7,10 +7,12 @@ import {
 } from "../../apps/material/helper";
 import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
+  constructModalId,
   convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getAllFaustIds,
   getManifestationsPids
 } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
@@ -24,8 +26,9 @@ import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
 
-export const findOnShelfModalId = (faustId: FaustId) =>
-  `find-on-shelf-modal-${faustId}`;
+export const findOnShelfModalId = (faustIds: FaustId[]) => {
+  return constructModalId("find-on-shelf-modal", faustIds.sort());
+};
 
 export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
@@ -55,13 +58,15 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     recordid: faustIdArray,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
-  const author =
-    creatorsToString(flattenCreators(filterCreators(authors, ["Person"])), t) ||
-    t("creatorsAreMissingText");
-  const title = workTitles.join(", ");
-  const modalId = findOnShelfModalId(
-    convertPostIdToFaustId(manifestations[0].pid)
+  const author = creatorsToString(
+    flattenCreators(filterCreators(authors, ["Person"])),
+    t
   );
+  const title = workTitles.join(", ");
+  // If this modal is for all manifestations per material type, use all manifestations'
+  // faust ids to create the modal id.
+  const faustIds = getAllFaustIds(manifestations);
+  const modalId = `${findOnShelfModalId(faustIds)}`;
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
       return materialType.specific.includes("tidsskrift");
@@ -175,7 +180,8 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     >
       <>
         <h2 className="text-header-h2 modal-find-on-shelf__headline">
-          {`${title} / ${author}`}
+          {title}
+          {author && ` / ${author}`}
         </h2>
         {isPeriodical && selectedPeriodical && (
           <FindOnShelfPeriodicalDropdowns

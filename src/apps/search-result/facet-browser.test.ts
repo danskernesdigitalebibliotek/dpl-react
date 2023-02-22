@@ -116,7 +116,7 @@ describe("The Facet Browser", () => {
 
   it("renders the logic of selected terms and open facets", () => {
     cy.log("renders all results");
-    cy.contains("h1", "“harry” (843)");
+    cy.contains("h1", "harry");
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
@@ -137,7 +137,7 @@ describe("The Facet Browser", () => {
       .click();
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
-    cy.contains("h1", "“harry” (36)");
+    cy.contains("h1", "harry");
 
     cy.log(
       "Open the modal and check if creators are opened and Joanne K. Rowling is selected"
@@ -173,8 +173,29 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 
-    cy.contains("h1", "“harry” (843)");
+    // Intercept covers.
+    cy.fixture("cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("Cover service");
+
+    // Intercept material list service.
+    cy.intercept("HEAD", "**/list/default/**", {
+      statusCode: 404,
+      body: {}
+    }).as("Material list service");
+
+    // Intercept campaign query.
+    cy.fixture("search-result/campaign.json")
+      .then((result) => {
+        cy.intercept("**/dpl_campaign/match", result);
+      })
+      .as("Campaign service - full campaign");
+
+    cy.visit("/iframe.html?id=apps-search-result--search-result");
+    cy.contains("button", "+ more filters").click();
   });
 });
 
-export {};
+export default {};

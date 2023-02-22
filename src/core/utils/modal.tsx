@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
+import FocusTrap from "focus-trap-react";
 import { closeModal, openModal } from "../modal.slice";
 import { userIsAnonymous } from "./helpers/user";
 import {
@@ -52,58 +53,56 @@ function Modal({
   }
 
   return (
-    <div
-      className="modal-backdrop"
-      // TODO: Close the modal when clicking backdrop.
-      style={{
-        // some elements are designed with z-index which means they pop up over the modal
-        // so I add 10 to the z-index of the modal
-        // the index of the modalid is used, so the newest modal is always on top of
-        // the remaining modals
-        zIndex: modalIds.indexOf(modalId) + 10
-      }}
-    >
+    <FocusTrap>
       <div
-        className={clsx(
-          "modal",
-          {
-            "modal-show": modalIds.includes(modalId)
-          },
-          classNames
-        )}
-        role="dialog"
-        aria-labelledby={`modal-${modalId}`}
-        data-cy={dataCy}
+        className="modal-backdrop"
+        // TODO: Close the modal when clicking backdrop.
+        style={{
+          // some elements are designed with z-index which means they pop up over the modal
+          // so I add 10 to the z-index of the modal
+          // the index of the modalid is used, so the newest modal is always on top of
+          // the remaining modals
+          zIndex: modalIds.indexOf(modalId) + 10
+        }}
       >
         <div
-          className="modal__screen-reader-description"
-          id={`modal-${modalId}`}
+          className={clsx(
+            "modal",
+            {
+              "modal-show": modalIds.includes(modalId)
+            },
+            classNames
+          )}
+          role="dialog"
+          aria-labelledby={`modal-${modalId}-description`}
+          data-cy={dataCy}
         >
-          {screenReaderModalDescriptionText}
+          <div
+            className="modal__screen-reader-description"
+            id={`modal-${modalId}-description`}
+          >
+            {screenReaderModalDescriptionText}
+          </div>
+          <button
+            type="button"
+            className="btn-ui modal-btn-close"
+            style={{
+              // same as comment above
+              zIndex: modalIds.indexOf(modalId) + 10
+            }}
+            aria-label={closeModalAriaLabelText}
+            onClick={() => {
+              dispatch(closeModal({ modalId }));
+            }}
+            data-cy={`modal-${modalId}-close-button`}
+          >
+            <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
+            {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
+          </button>
+          {children}
         </div>
-        <button
-          type="button"
-          /* A focusable element in a modal must have focus when opened,
-          or else the screen reader will remain on the main page */
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus
-          className="btn-ui modal-btn-close"
-          style={{
-            // same as comment above
-            zIndex: modalIds.indexOf(modalId) + 10
-          }}
-          aria-label={closeModalAriaLabelText}
-          onClick={() => {
-            dispatch(closeModal({ modalId }));
-          }}
-          data-cy={`modal-${modalId}-close-button`}
-        >
-          <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
-          {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
-        </button>
-        {children}
       </div>
-    </div>
+    </FocusTrap>
   );
 }
 

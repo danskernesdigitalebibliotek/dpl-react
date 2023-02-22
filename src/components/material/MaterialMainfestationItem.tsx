@@ -15,6 +15,18 @@ import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
+import {
+  getManifestationAudience,
+  getManifestationContributors,
+  getManifestationEdition,
+  getManifestationGenreAndForm,
+  getManifestationIsbn,
+  getManifestationLanguages,
+  getManifestationMaterialTypes,
+  getManifestationNumberOfPages,
+  getManifestationOriginalTitle,
+  getManifestationPublisher
+} from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
@@ -22,20 +34,7 @@ export interface MaterialMainfestationItemProps {
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  manifestation: {
-    materialTypes,
-    pid,
-    titles,
-    creators,
-    hostPublication,
-    languages,
-    identifiers,
-    contributors,
-    edition,
-    audience,
-    physicalDescriptions,
-    genreAndForm
-  },
+  manifestation: { materialTypes, pid, titles, creators, identifiers, edition },
   manifestation,
   workId
 }) => {
@@ -47,66 +46,60 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     t
   );
 
-  const allContributors = String(
-    contributors.map((contributor) => contributor.display)
-  );
-
-  const allLanguages = String(
-    languages?.main?.map((language) => language.display).join(", ")
-  );
-
-  const listDescriptionData: ListData = [
+  const detailsListData: ListData = [
     {
-      label: t("typeText"),
-      value: materialTypes?.[0]?.specific ?? "",
+      label: t("detailsListTypeText"),
+      value: getManifestationMaterialTypes(manifestation),
       type: "standard"
     },
     {
-      label: t("languageText"),
-      value: allLanguages ?? "",
+      label: t("detailsListLanguageText"),
+      value: getManifestationLanguages(manifestation),
       type: "standard"
     },
     {
-      label: t("genreAndFormText"),
-      value: genreAndForm?.[0] ?? "",
+      label: t("detailsListGenreAndFormText"),
+      value: getManifestationGenreAndForm(manifestation),
       type: "standard"
     },
     {
-      label: t("contributorsText"),
-      value: allContributors ?? "",
+      label: t("detailsListContributorsText"),
+      value: getManifestationContributors(manifestation),
       type: "link"
     },
     {
-      label: t("originalTitleText"),
-      value: titles?.original?.[0] ?? "",
+      label: t("detailsListOriginalTitleText"),
+      value: getManifestationOriginalTitle(manifestation),
       type: "standard"
     },
     {
-      label: t("isbnText"),
-      value: identifiers?.[0]?.value ?? "",
+      label: t("detailsListIsbnText"),
+      value: getManifestationIsbn(manifestation),
       type: "standard"
     },
     {
-      label: t("editionText"),
-      value: edition?.summary ?? "",
+      label: t("detailsListEditionText"),
+      value: getManifestationEdition(manifestation),
       type: "standard"
     },
     {
-      label: t("scopeText"),
-      value: String(physicalDescriptions?.[0]?.numberOfPages ?? ""),
+      label: t("detailsListScopeText"),
+      value: getManifestationNumberOfPages(manifestation),
       type: "standard"
     },
     {
-      label: t("publisherText"),
-      value: hostPublication?.publisher ?? "",
+      label: t("detailsListPublisherText"),
+      value: getManifestationPublisher(manifestation),
       type: "standard"
     },
     {
-      label: t("audienceText"),
-      value: audience?.generalAudience[0] ?? "",
+      label: t("detailsListAudienceText"),
+      value: getManifestationAudience(manifestation),
       type: "standard"
     }
   ];
+
+  const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
 
   return (
     <div className="material-manifestation-item">
@@ -115,6 +108,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestText={materialTypes[0]?.specific}
           url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
+          isbns={identifiers.map((identifier) => identifier.value)}
+          accessTypes={accessTypesCodes}
         />
       </div>
       <div className="material-manifestation-item__cover">
@@ -149,12 +144,12 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={listDescriptionData} />
+          <MaterialDetailsList className="mt-24" data={detailsListData} />
         )}
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
-          manifestation={manifestation}
+          manifestations={[manifestation]}
           size="small"
           workId={workId}
         />

@@ -99,7 +99,8 @@
     },
     {
       "files": [
-        "*.tsx"
+        "*.tsx",
+        "*.ts"
       ],
       "rules": {
         // We do not use prop-types in ts.

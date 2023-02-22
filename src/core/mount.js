@@ -20,8 +20,8 @@ function mount(context) {
   function mountApp(container) {
     const appName = container?.dataset?.dplApp;
     const app = window.dplReact?.apps?.[appName];
-    // Ensure that the application exists and that the container isn't already populated.
-    const isValidMount = app && !container.innerHTML;
+    // Ensure that the application exists.
+    const isValidMount = app;
     if (isValidMount) {
       render(
         createElement(
@@ -46,7 +46,7 @@ function mount(context) {
     }
   }
 
-  appContainers.forEach(mountApp);
+  appContainers.forEach((app) => setTimeout(() => mountApp(app), 0));
 }
 
 /**

@@ -1754,10 +1754,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@0.0.0-b7f5caa23580a00859acdfcf292439e365b26660":
-  version "0.0.0-b7f5caa23580a00859acdfcf292439e365b26660"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-b7f5caa23580a00859acdfcf292439e365b26660/477ea708a0679d53038ca3f8bb29d803e0af40fb#477ea708a0679d53038ca3f8bb29d803e0af40fb"
-  integrity sha512-9AcMD63fA2UvSXObYT8sRenFNNT9Cy+AyQxKaWUdjKIT83PsXzdWX6lKsSbbeKvC9DF5+BSyUSvBRYo0nu7ZpQ==
+"@danskernesdigitalebibliotek/dpl-design-system@0.0.0-31504fb5749d518291fd22ee70781c13ee46e2e3":
+  version "0.0.0-31504fb5749d518291fd22ee70781c13ee46e2e3"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-31504fb5749d518291fd22ee70781c13ee46e2e3/51de9beba10f4c9c90dfbda23491cd87b4624bed#51de9beba10f4c9c90dfbda23491cd87b4624bed"
+  integrity sha512-tY8iCc9b5bWR2kn9iqE0FfuSCJ89qV5oHQBJpzFyHIpgHQnHEOzpuYjO13JpWc9pFtj9+x4g4cmqkt1DFFXGfg==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
@@ -10038,6 +10038,21 @@ focus-lock@^0.11.0:
   integrity sha512-RQrQFDMtRhyIk2gxG2opjNu/mR3X2PxogjDuMS1ynBC3SwIxnrWzUQMkb3DA5TDaH5HUG7SjGVCjzJITllFDkA==
   dependencies:
     tslib "^2.0.3"
+
+focus-trap-react@^10.0.2:
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-10.0.2.tgz#eed4ce5b508bf3a0ce2ce63151c5c0f34a8f8529"
+  integrity sha512-MnN2cmdgpY7NY74ePOio4kbO5A3ILhrg1g5OGbgIQjcWEv1hhcbh6e98K0a+df88hNbE+4i9r8ji9aQnHou6GA==
+  dependencies:
+    focus-trap "^7.2.0"
+    tabbable "^6.0.1"
+
+focus-trap@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-7.2.0.tgz#25af61b5635d3c18cd2fd176087db7b60be72c6b"
+  integrity sha512-v4wY6HDDYvzkBy4735kW5BUEuw6Yz9ABqMYLuTNbzAFPcBOGiGHwwcNVMvUz4G0kgSYh13wa/7TG3XwTeT4O/A==
+  dependencies:
+    tabbable "^6.0.1"
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -18699,6 +18714,11 @@ syntax-error@^1.1.1:
   integrity sha512-YPPlu67mdnHGTup2A8ff7BC2Pjq0e0Yp/IyTFN03zWO0RcK07uLcbi7C2KpGR2FvWbaB0+bfE27a+sBKebSo7w==
   dependencies:
     acorn-node "^1.2.0"
+
+tabbable@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-6.0.1.tgz#427a09b13c83ae41eed3e88abb76a4af28bde1a6"
+  integrity sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==
 
 table@^6.8.0:
   version "6.8.0"

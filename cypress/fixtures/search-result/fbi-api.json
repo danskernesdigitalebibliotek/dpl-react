@@ -1,2243 +1,2334 @@
 {
   "data": {
     "search": {
-      "hitcount": 9486,
+      "hitcount": 722,
       "works": [
         {
-          "workId": "work-of:870970-basis:22629344",
-          "workYear": "1839",
+          "workId": "work-of:870970-basis:54129807",
           "titles": {
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "full": [
+              "Harry : samtaler med prinsen"
+            ],
+            "original": [
+              "Harry (engelsk)"
+            ]
           },
-          "abstract": ["Dummy The abstract"],
+          "abstract": [
+            "Gennem samtaler gives et portræt af den engelske prins Harry. Der åbnes med forlovelsen mellem Harry (f. 1984) og Meghan Markle (f. 1981). Samtalerne kredser om de store emner i Harrys liv, bl.a. prinsesse Dianas alt for tidlige død"
+          ],
           "creators": [
             {
-              "display": "Dummy Jens Jensen",
+              "display": "Angela Levin",
               "__typename": "Person"
-            },
-            {
-              "display": "Dummy Some Corporation",
-              "__typename": "Corporation"
             }
           ],
-          "series": [
-            {
-              "title": "Dummy Some Series",
-              "isPopular": true,
-              "numberInSeries": {
-                "display": "Dummy number one",
-                "number": [1]
-              },
-              "readThisFirst": true,
-              "readThisWhenever": false
-            },
-            {
-              "title": "Dummy Some Series",
-              "isPopular": false,
-              "numberInSeries": {
-                "display": "Dummy number one",
-                "number": [1]
-              },
-              "readThisFirst": null,
-              "readThisWhenever": null
-            }
-          ],
-          "seriesMembers": [
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            }
+          "series": [],
+          "seriesMembers": [],
+          "workYear": null,
+          "genreAndForm": [
+            "biografier"
           ],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:22629344",
+                "pid": "870970-basis:54129807",
+                "genreAndForm": [
+                  "biografier"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry"
+                  ],
+                  "original": [
+                    "Harry (engelsk)"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Angela Levin",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788793681088"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Birgitte Brix"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "1. udgave, 2018",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2018"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 301,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Levin",
+                  "shelfmark": "99.4 Henry"
+                }
               },
               {
-                "pid": "870970-basis:22252852",
+                "pid": "870970-basis:54175183",
+                "genreAndForm": [],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry (mp3)"
+                  ],
+                  "original": [
+                    "Harry (engelsk)"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "lydbog (cd-mp3)"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Angela Levin",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788793681231"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Randi Winther"
+                  },
+                  {
+                    "display": "Birgitte Brix"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "2018",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2018"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "8 t., 37 min."
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Levin",
+                  "shelfmark": "99.4 Henry"
+                }
               },
               {
-                "pid": "870970-basis:22441671",
+                "pid": "870970-basis:54168446",
+                "genreAndForm": [],
+                "source": [
+                  "Netlydbog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry"
+                  ],
+                  "original": [
+                    "Harry (engelsk)"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "lydbog (net)"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Angela Levin",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788793681132"
+                  },
+                  {
+                    "value": "9788793681132"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Randi Winther"
+                  },
+                  {
+                    "display": "Birgitte Brix"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "2018",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2018"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "8 t., 37 min."
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:54168446",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Levin",
+                  "shelfmark": "99.4 Henry"
+                }
               },
               {
-                "pid": "870970-basis:23148048",
+                "pid": "870970-basis:54129793",
+                "genreAndForm": [
+                  "biografier"
+                ],
+                "source": [
+                  "eReolen"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry"
+                  ],
+                  "original": [
+                    "Harry (engelsk)"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "ebog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Angela Levin",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Memoris"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:27638708",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
+                    "value": "9788793681095"
                   },
                   {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788793681095"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Birgitte Brix"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "1. udgave, 2018",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2018"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:38289977",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
+                    "numberOfPages": 301,
+                    "playingTime": null
                   }
                 ],
-                "creators": [
+                "accessTypes": [
                   {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
+                    "code": "ONLINE"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
+                "access": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:54129793",
+                    "canAlwaysBeLoaned": false
                   }
                 ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:51989252",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:54871910",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:22513354",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:24168638",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:23108283",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:23195151",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:24343081",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:23862476",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:26178533",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:23819104",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:25194853",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:46018869",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:29317038",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
-              },
-              {
-                "pid": "870970-basis:51980247",
-                "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
-                },
-                "materialTypes": [
-                  {
-                    "specific": "Dummy bog"
-                  }
-                ],
-                "creators": [
-                  {
-                    "display": "Dummy Jens Jensen",
-                    "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
-                  }
-                ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
-                "languages": {
-                  "main": [
-                    {
-                      "display": "Dummy dansk"
-                    }
-                  ]
-                },
-                "identifiers": [
-                  {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
-                "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
-                  "publicationYear": {
-                    "display": "Dummy 1839"
-                  }
-                },
-                "audience": {
-                  "generalAudience": ["Dummy general audience"]
-                },
-                "physicalDescriptions": [
-                  {
-                    "numberOfPages": null
-                  }
-                ]
+                "shelfmark": {
+                  "postfix": "Levin",
+                  "shelfmark": "99.4 Henry"
+                }
               }
-            ]
+            ],
+            "latest": {
+              "pid": "870970-basis:54175183",
+              "genreAndForm": [],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry (mp3)"
+                ],
+                "original": [
+                  "Harry (engelsk)"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "lydbog (cd-mp3)"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Angela Levin",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Memoris"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788793681231"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Randi Winther"
+                },
+                {
+                  "display": "Birgitte Brix"
+                }
+              ],
+              "edition": {
+                "summary": "2018",
+                "publicationYear": {
+                  "display": "2018"
+                }
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": null,
+                  "playingTime": "8 t., 37 min."
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Levin",
+                "shelfmark": "99.4 Henry"
+              }
+            }
           }
         },
         {
-          "workId": "work-of:870970-basis:25807995",
-          "workYear": "1839",
+          "workId": "work-of:870970-basis:22629344",
           "titles": {
-            "full": ["Dummy Some Title: Full"],
-            "original": ["Dummy Some Title Origintal"]
+            "full": [
+              "Harry Potter og de vises sten"
+            ],
+            "original": [
+              "Harry Potter and the philosopher's stone"
+            ]
           },
-          "abstract": ["Dummy The abstract"],
+          "abstract": [
+            "Flot og gennemillustreret udgave af historien om Harry Potter, der har trolddomsblod i årerne og bliver elev på Hogwarts skole for magi. For både nye og gamle Harry Potter-fans fra 11 til 99 år og egnet til højtlæsning for børn fra ca. 8-9 år"
+          ],
           "creators": [
             {
-              "display": "Dummy Jens Jensen",
+              "display": "Joanne K. Rowling",
               "__typename": "Person"
-            },
-            {
-              "display": "Dummy Some Corporation",
-              "__typename": "Corporation"
             }
           ],
-          "series": [
-            {
-              "title": "Dummy Some Series",
-              "isPopular": true,
-              "numberInSeries": {
-                "display": "Dummy number one",
-                "number": [1]
-              },
-              "readThisFirst": true,
-              "readThisWhenever": false
-            },
-            {
-              "title": "Dummy Some Series",
-              "isPopular": false,
-              "numberInSeries": {
-                "display": "Dummy number one",
-                "number": [1]
-              },
-              "readThisFirst": null,
-              "readThisWhenever": null
-            }
-          ],
+          "series": [],
           "seriesMembers": [
             {
+              "workId": "work-of:870970-basis:22629344",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og de vises sten"
+                ],
+                "full": [
+                  "Harry Potter og de vises sten"
+                ],
+                "original": [
+                  "Harry Potter and the philosopher's stone"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:22677780",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og Hemmelighedernes Kammer"
+                ],
+                "full": [
+                  "Harry Potter og Hemmelighedernes Kammer"
+                ],
+                "original": [
+                  "Harry Potter and the Chamber of Secrets"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:22995154",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og fangen fra Azkaban"
+                ],
+                "full": [
+                  "Harry Potter og fangen fra Azkaban"
+                ],
+                "original": [
+                  "Harry Potter and the prisoner of Azkaban"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:23540703",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og Flammernes Pokal"
+                ],
+                "full": [
+                  "Harry Potter og Flammernes Pokal"
+                ],
+                "original": [
+                  "Harry Potter and the goblet of fire"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:25245784",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og Fønixordenen"
+                ],
+                "full": [
+                  "Harry Potter og Fønixordenen"
+                ],
+                "original": [
+                  "Harry Potter and the Order of the Phoenix"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:25807995",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og halvblodsprinsen"
+                ],
+                "full": [
+                  "Harry Potter og halvblodsprinsen"
+                ],
+                "original": [
+                  "Harry Potter and the half-blood prince"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:27267912",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og dødsregalierne"
+                ],
+                "full": [
+                  "Harry Potter og dødsregalierne"
+                ],
+                "original": [
+                  "Harry Potter and the deathly hallows"
+                ]
               }
             },
             {
+              "workId": "work-of:870970-basis:52646251",
               "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
-              }
-            },
-            {
-              "titles": {
-                "main": ["Dummy Some Title"],
-                "full": ["Dummy Some Title: Full"],
-                "original": ["Dummy Some Title Origintal"]
+                "main": [
+                  "Harry Potter og det forbandede barn"
+                ],
+                "full": [
+                  "Harry Potter og det forbandede barn : del et & to"
+                ],
+                "original": [
+                  "Harry Potter and the cursed child"
+                ]
               }
             }
+          ],
+          "workYear": {
+            "year": 1997
+          },
+          "genreAndForm": [
+            "roman",
+            "fantasy",
+            "romaner",
+            "eventyrlige fortællinger",
+            "patent"
           ],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:25807995",
+                "pid": "870970-basis:38289977",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy",
+                  "romaner"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og de vises sten (ill. MinaLima)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788702301588"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Hanna Lützen"
+                  },
+                  {
+                    "display": "MinaLima (firma)"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "9. udgave, 2020",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2020"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": [
+                    "Højtlæsning fra 8 år. Selvlæsning fra 11 år",
+                    "for højtlæsning"
+                  ]
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 356,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:25998960",
+                "pid": "870970-basis:54871910",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy",
+                  "romaner"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og de vises sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788702272451"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Hanna Lützen"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "8. udgave, 2018",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2018"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 355,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:26056829",
+                "pid": "870970-basis:51989252",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og de vises sten (ill. Jim Kay)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788702179859"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Jim Kay"
+                  },
+                  {
+                    "display": "Hanna Lützen"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "1. illustrerede udgave, 7. udgave, 2015",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2015"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 246,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:26137276",
+                "pid": "870970-basis:51980247",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788702173222"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Hanna Lützen"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "6 udgave, 2015",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2015"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 355,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:27639674",
+                "pid": "870970-basis:29317038",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788702113990"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Hanna Lützen"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "5. udgave, 2012",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2012"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:54872003",
+                "pid": "870970-basis:46018869",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "9788700774636"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Hanna Lützen"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "Særudgave, 2008",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2008"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:25771893",
+                "pid": "870970-basis:26178533",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendals Bogklubber"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
+                    "value": "9788703011714"
+                  },
                   {
-                    "display": "Dummy Jens Jensen"
+                    "value": "87-03-01171-2"
                   }
                 ],
+                "contributors": [],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "2. bogklubudgave, 2006",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2006"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:26068053",
+                "pid": "870970-basis:25194853",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "87-02-02769-0"
                   }
                 ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
+                "contributors": [],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "3. udgave, 2004",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2004"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:26285240",
+                "pid": "870970-basis:22629344",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
-                  }
-                ],
-                "contributors": [
+                    "value": "9788700398368"
+                  },
                   {
-                    "display": "Dummy Jens Jensen"
+                    "value": "87-00-39836-5"
                   }
                 ],
+                "contributors": [],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "2. udgave, 1999",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "1999"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:29317100",
+                "pid": "870970-basis:22441671",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendals Bogklubber"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "87-00-63162-0"
                   }
                 ],
-                "contributors": [
-                  {
-                    "display": "Dummy Jens Jensen"
-                  }
-                ],
+                "contributors": [],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "1. bogklubudgave, 2002",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2002"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": 303,
+                    "playingTime": null
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               },
               {
-                "pid": "870970-basis:51980212",
+                "pid": "870970-basis:22252852",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
                 "titles": {
-                  "main": ["Dummy Some Title"],
-                  "original": ["Dummy Some Title: Original"]
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
                 },
                 "materialTypes": [
                   {
-                    "specific": "Dummy bog"
+                    "specific": "bog"
                   }
                 ],
                 "creators": [
                   {
-                    "display": "Dummy Jens Jensen",
+                    "display": "Joanne K. Rowling",
                     "__typename": "Person"
-                  },
-                  {
-                    "display": "Dummy Some Corporation",
-                    "__typename": "Corporation"
                   }
                 ],
-                "hostPublication": {
-                  "title": "Dummy Årsskrift / Carlsbergfondet",
-                  "creator": "Dummy Some Creator",
-                  "publisher": "Dummy Some Publisher",
-                  "year": {
-                    "year": 2006
-                  }
-                },
+                "publisher": [
+                  "Gyldendal"
+                ],
                 "languages": {
                   "main": [
                     {
-                      "display": "Dummy dansk"
+                      "display": "dansk"
                     }
                   ]
                 },
                 "identifiers": [
                   {
-                    "value": "Dummy 1234567891234"
+                    "value": "87-00-34654-3"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "1998",
+                  "publicationYear": {
+                    "display": "1998"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": 303,
+                    "playingTime": null
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:27638708",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten (Ved Jesper Christensen, mp3)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (cd-mp3)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Gyldendal Lyd"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "9788702075380"
                   }
                 ],
                 "contributors": [
                   {
-                    "display": "Dummy Jens Jensen"
+                    "display": "Jesper Christensen (f. 1948)"
                   }
                 ],
                 "edition": {
-                  "summary": "Dummy 3. i.e. 2 udgave, 2005",
+                  "summary": "2009",
                   "publicationYear": {
-                    "display": "Dummy 1839"
+                    "display": "2009"
                   }
                 },
                 "audience": {
-                  "generalAudience": ["Dummy general audience"]
+                  "generalAudience": []
                 },
                 "physicalDescriptions": [
                   {
-                    "numberOfPages": null
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
                   }
-                ]
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:24343081",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten (Ved Jesper Christensen)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (cd)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Gyldendal"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "87-00-69610-2"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Jesper Christensen (f. 1948)"
+                  }
+                ],
+                "edition": {
+                  "summary": "Bogklubudgave, 2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:24168638",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten (Ved Jesper Christensen)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (cd)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Gyldendal"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "87-02-01276-6"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Jesper Christensen (f. 1948)"
+                  }
+                ],
+                "edition": {
+                  "summary": "2002",
+                  "publicationYear": {
+                    "display": "2002"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": "9 t., 40 min."
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:23862476",
+                "genreAndForm": [
+                  "roman",
+                  "eventyrlige fortællinger"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten (2. udgave)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "diskette"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Best.nr. wp 400037"
+                  },
+                  {
+                    "value": "Best.nr. ascii 500037"
+                  },
+                  {
+                    "value": "Best.nr. html 600037"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": null
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:23819104",
+                "genreAndForm": [
+                  "roman",
+                  "eventyrlige fortællinger"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "diskette"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Best.nr. wp 400037"
+                  },
+                  {
+                    "value": "Best.nr. ascii 500037"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2001",
+                  "publicationYear": {
+                    "display": "2001"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": null
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:23195151",
+                "genreAndForm": [],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten (Ved Henrik Emmer)"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (cd)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Gyldendal Lydbøger"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "87-605-7377-5"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 25 min."
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:23148048",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (bånd)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Best.nr. 13256"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Henrik Emmer"
+                  },
+                  {
+                    "display": "Henrik Emmer"
+                  }
+                ],
+                "edition": {
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 27 min."
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:23108283",
+                "genreAndForm": [
+                  "roman"
+                ],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "punktskrift"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Danmarks Blindebibliotek"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "Best.nr. 100029"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2000",
+                  "publicationYear": {
+                    "display": "2000"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": 7,
+                    "playingTime": null
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
+              },
+              {
+                "pid": "870970-basis:22513354",
+                "genreAndForm": [],
+                "source": [
+                  "Bibliotekskatalog"
+                ],
+                "titles": {
+                  "main": [
+                    "Harry Potter og De Vises Sten"
+                  ],
+                  "original": [
+                    "Harry Potter and the philosopher's stone"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "specific": "lydbog (bånd)"
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Joanne K. Rowling",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": [
+                  "Gyldendal Lydbøger"
+                ],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk"
+                    }
+                  ]
+                },
+                "identifiers": [
+                  {
+                    "value": "87-605-8571-4"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "1999",
+                  "publicationYear": {
+                    "display": "1999"
+                  }
+                },
+                "audience": {
+                  "generalAudience": []
+                },
+                "physicalDescriptions": [
+                  {
+                    "numberOfPages": null,
+                    "playingTime": "10 t., 27 min."
+                  }
+                ],
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Rowling",
+                  "shelfmark": "83"
+                }
               }
-            ]
+            ],
+            "latest": {
+              "pid": "870970-basis:38289977",
+              "genreAndForm": [
+                "roman",
+                "fantasy",
+                "romaner"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Harry Potter og de vises sten (ill. MinaLima)"
+                ],
+                "original": [
+                  "Harry Potter and the philosopher's stone"
+                ]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Joanne K. Rowling",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Gyldendal"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788702301588"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Hanna Lützen"
+                },
+                {
+                  "display": "MinaLima (firma)"
+                }
+              ],
+              "edition": {
+                "summary": "9. udgave, 2020",
+                "publicationYear": {
+                  "display": "2020"
+                }
+              },
+              "audience": {
+                "generalAudience": [
+                  "Højtlæsning fra 8 år. Selvlæsning fra 11 år",
+                  "for højtlæsning"
+                ]
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 356,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Rowling",
+                "shelfmark": "83"
+              }
+            }
           }
         }
       ]

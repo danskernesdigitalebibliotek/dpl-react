@@ -5,7 +5,9 @@ import {
   getAmountOfRenewableLoans,
   getDueDatesLoan,
   getModalIds,
-  sortByLoanDate
+  sortByDueDate,
+  getScrollClass,
+  constructModalId
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -33,11 +35,12 @@ import RenewLoansModal from "../modal/renew-loans-modal";
 import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
-  getLoanDetailsModalId,
+  getDetailsModalId,
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
 import DueDateLoansModal from "../modal/due-date-loans-modal";
+import { ListType } from "../../../core/utils/types/list-type";
 
 interface LoanListProps {
   pageSize: number;
@@ -49,7 +52,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { loanDetails, allLoansId, dueDateModal } = getModalIds();
   const t = useText();
   const [view, setView] = useState<ListView>("list");
-  const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
+  const [modalLoan, setModalLoan] = useState<ListType | null>(null);
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
@@ -59,7 +62,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   );
   const { isSuccess, data } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
-
   useEffect(() => {
     let loanForModal = null;
     if (physicalLoans && modalDetailsId) {
@@ -87,7 +89,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       setPhysicalLoansDueDates(getDueDatesLoan(mapToLoanType));
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = sortByDueDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
     } else {
@@ -100,7 +102,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const mapToLoanType = mapPublizonLoanToLoanType(publizonData.loans);
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = sortByDueDate(mapToLoanType);
       setDigitalLoans(sortedByLoanDate);
     } else {
       setDigitalLoans([]);
@@ -118,7 +120,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
-      open(`${dueDateModal}${dueDateInput}`);
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
     [dueDateModal, open]
   );
@@ -126,8 +128,12 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
     // if there is a loan details query param, loan details modal should be opened
+    const loanDetailsString = loanDetails as string;
     if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
-      const loanDetailsModalId = getLoanDetailsModalId(modalUrlParam);
+      const loanDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        loanDetailsString
+      );
       if (loanDetailsModalId) {
         setModalDetailsId(loanDetailsModalId);
       }
@@ -152,10 +158,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
-      <div
-        style={modalIds.length > 0 ? { display: "none" } : {}}
-        className="loan-list-page"
-      >
+      <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>
@@ -222,7 +225,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         <MaterialDetails
           faust={modalLoan?.faust}
           identifier={modalLoan?.identifier}
-          loan={modalLoan}
+          loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
       {dueDate && physicalLoans && (

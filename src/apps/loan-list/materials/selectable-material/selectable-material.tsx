@@ -8,6 +8,7 @@ import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import StatusMessage from "./StatusMessage";
+import AuthorYear from "../../../../components/author-year/authorYear";
 
 interface SelectableMaterialProps {
   loan: LoanType;
@@ -27,7 +28,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { dueDate, faust, identifier, loanId } = loan;
-  const { authors, materialType, year, title } = material || {};
+  const { authors = "", materialType, year = "", title = "" } = material || {};
 
   const openLoanDetailsModalHandler = useCallback(() => {
     if (faust) {
@@ -46,24 +47,20 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="mr-32">
-          {faust && onChecked && loanId && (
+          {faust && onChecked && loanId && title && (
             <CheckBox
               onChecked={() => onChecked(loanId)}
               id={faust}
               selected={Boolean(materialsToRenew?.indexOf(loanId) > -1)}
               disabled={disabled}
-              label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
+              label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
+                placeholders: { "@label": title }
+              })}
               hideLabel
             />
           )}
           {isDigital(loan) && identifier && (
-            <CheckBox
-              selected={false}
-              id={identifier}
-              disabled
-              label={t("groupModalHiddenLabelCheckboxOnMaterialText")}
-              hideLabel
-            />
+            <CheckBox selected={false} id={identifier} disabled />
           )}
         </div>
         <div className="list-materials__content">
@@ -74,8 +71,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
           <p className="text-header-h5 mt-8">{title}</p>
           <p className="text-small-caption">
-            {authors}
-            {year && <> ({year})</>}
+            <AuthorYear author={authors} year={year} />
           </p>
         </div>
         <div className="list-materials__status">
@@ -93,6 +89,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               type="button"
               className="list-reservation__note"
               onClick={openLoanDetailsModalHandler}
+              aria-label={
+                title
+                  ? t("groupModalGoToMaterialAriaLabelText", {
+                      placeholders: { "@label": title }
+                    })
+                  : ""
+              }
             >
               {t("groupModalGoToMaterialText")}
             </button>

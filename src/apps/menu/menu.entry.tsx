@@ -22,6 +22,12 @@ export interface MenuProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
+  thresholdConfig: string;
+  intermediateListDaysText: string;
+  menuLoginText: string;
+  menuLoginUrl: string;
+  menuSignUpText: string;
+  menuSignUpUrl: string;
 }
 
 const MenuEntry: FC<MenuProps> = () => <Menu />;

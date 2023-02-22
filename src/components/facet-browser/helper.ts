@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
 import { mapValues } from "lodash";
 import { FilterItemTerm } from "../../apps/search-result/types";
 import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
-  SearchFacetQuery,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
+
+import useGetCleanBranches from "../../core/utils/branches";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -14,7 +14,7 @@ export const allFacetFields = [
   FacetField.ChildrenOrAdults,
   FacetField.Creators,
   FacetField.FictionNonfiction,
-  FacetField.FictionalCharacter,
+  FacetField.FictionalCharacters,
   FacetField.GenreAndForm,
   FacetField.MaterialTypes,
   FacetField.Subjects,
@@ -44,17 +44,27 @@ export const formatFacetTerms = (filters: {
   );
 };
 
+export const createFilters = (
+  facets: {
+    [key: string]: { [key: string]: FilterItemTerm };
+  },
+  branchIdList: string[]
+) => {
+  return {
+    ...formatFacetTerms(facets),
+    ...(branchIdList ? { branchId: branchIdList } : {})
+  };
+};
+
 export function useGetFacets(query: string, filters: Filter) {
-  const [facets, setFacets] = useState<
-    SearchFacetQuery["search"]["facets"] | undefined
-  >(undefined);
+  const cleanBranches = useGetCleanBranches();
 
   const { data, isLoading } = useSearchFacetQuery(
     {
       q: { all: query },
       facets: allFacetFields,
       facetLimit: 10,
-      filters: formatFacetTerms(filters)
+      filters: createFilters(filters, cleanBranches)
     },
     {
       keepPreviousData: true,
@@ -66,14 +76,7 @@ export function useGetFacets(query: string, filters: Filter) {
     }
   );
 
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    setFacets(data.search.facets);
-  }, [data, filters, query]);
-
-  return { facets, isLoading };
+  return { facets: data?.search.facets || null, isLoading };
 }
 
 export const FacetBrowserModalId = "facet-browser-modal";

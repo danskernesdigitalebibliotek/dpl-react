@@ -1,32 +1,25 @@
 import * as React from "react";
 import { FC } from "react";
-import {
-  AccessUrl,
-  DigitalArticleService
-} from "../../../../core/dbc-gateway/generated/graphql";
+import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
 import { statistics } from "../../../../core/statistics/statistics";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
-import { hasCorrectMaterialType } from "../helper";
+import { hasCorrectAccess, hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 
 export interface MaterialButtonsOnlineProps {
-  manifestation: Manifestation;
+  manifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
-  manifestation,
-  manifestation: {
-    access: [accessElement],
-    access: [{ __typename: accessType }]
-  },
+  manifestations,
   size,
   workId,
   dataCy = "material-buttons-online"
@@ -39,8 +32,14 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
+
+  const accessElement = manifestations[0].access[0];
+
   // If the access type is an external type we'll show corresponding button.
-  if (["Ereol", "AccessUrl"].includes(accessType)) {
+  if (
+    hasCorrectAccess("Ereol", manifestations) ||
+    hasCorrectAccess("AccessUrl", manifestations)
+  ) {
     const {
       origin,
       url: externalUrl,
@@ -55,31 +54,30 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         origin={origin}
         size={size}
         trackOnlineView={trackOnlineView}
-        manifestation={manifestation}
+        manifestations={manifestations}
         dataCy={`${dataCy}-external`}
       />
     );
   }
 
   if (
-    accessType === "DigitalArticleService" &&
-    hasCorrectMaterialType("tidsskriftsartikel", manifestation)
+    hasCorrectAccess("DigitalArticleService", manifestations) &&
+    hasCorrectMaterialType("tidsskriftsartikel", manifestations)
   ) {
-    const { issn: digitalArticleIssn } = accessElement as DigitalArticleService;
     return (
       <MaterialButtonOnlineDigitalArticle
-        digitalArticleIssn={digitalArticleIssn}
+        pid={manifestations[0].pid}
         size={size}
         dataCy={`${dataCy}-digital-article`}
       />
     );
   }
 
-  if (accessType === "InfomediaService") {
+  if (hasCorrectAccess("InfomediaService", manifestations)) {
     return (
       <MaterialButtonOnlineInfomediaArticle
         size={size}
-        manifestation={manifestation}
+        manifestations={manifestations}
         trackOnlineView={trackOnlineView}
         dataCy={`${dataCy}-infomedia-article`}
       />

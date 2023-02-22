@@ -6,7 +6,7 @@ describe("Reservation list", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    const wednesday20220603 = new Date("2022-06-03T12:30:00.000Z").getTime();
+    const wednesday20220603 = new Date("2023-02-03T12:30:00.000Z").getTime();
 
     // Sets time to a specific date
     // https://github.com/cypress-io/cypress/issues/7577
@@ -362,7 +362,7 @@ describe("Reservation list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find("h3")
+      .find("button")
       .should("have.text", "Dummy Some Title");
 
     // ID 42 2.d. serial title and number
@@ -460,7 +460,7 @@ describe("Reservation list", () => {
       .eq(0)
       .find(".list-reservation__deadline p")
       // ID 11 2.d.iii.c. text Available in {ExpectedRedeemDateTimeUtc} days
-      .should("have.text", "Available in 208 days");
+      .should("have.text", "Available in -37 days");
 
     // ID 11 2.d.iii.b. the icon {ExpectedRedeemDateTimeUtc}
     cy.get(".list-reservation-container")
@@ -681,9 +681,8 @@ describe("Reservation list", () => {
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".reservation-list-page")
-      .find(".list-reservation-container")
-      .eq(0)
       .find(".dpl-list-empty")
+      .eq(0)
       .should(
         "have.text",
         "At the moment you have 0 reservations ready for pickup"
