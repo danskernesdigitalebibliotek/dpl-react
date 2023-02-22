@@ -6,8 +6,7 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction,
-  getLatestManifestation
+  materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -38,7 +37,8 @@ import {
   getFutureDateString,
   getPreferredBranch,
   constructReservationData,
-  getAuthorLine
+  getAuthorLine,
+  getManifestationsToReserve
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -94,17 +94,9 @@ export const ReservationModalBody = ({
     return null;
   }
 
-  // If the work isn't fictional we only want to reserve the latest manifestation.
-  let manifestationsToReserve = reservableManifestations;
-  if (!materialIsFiction(work) && reservableManifestations) {
-    manifestationsToReserve = [
-      getLatestManifestation(reservableManifestations)
-    ];
-  }
-  if (selectedPeriodical) {
-    manifestationsToReserve = [selectedManifestations[0]];
-  }
-
+  const manifestationsToReserve = getManifestationsToReserve(
+    reservableManifestations || []
+  );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];

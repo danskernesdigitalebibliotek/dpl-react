@@ -10,6 +10,7 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getLatestManifestation,
   getManifestationPublicationYear,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -147,6 +148,16 @@ export const getAuthorLine = (
   return !author
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
+};
+
+export const getManifestationsToReserve = (
+  reservableManifestations: Manifestation[]
+) => {
+  // If the work isn't fictional we only want to reserve the latest manifestation.
+  if (!materialIsFiction(reservableManifestations[0])) {
+    return [getLatestManifestation(reservableManifestations)];
+  }
+  return reservableManifestations;
 };
 
 export default {};
