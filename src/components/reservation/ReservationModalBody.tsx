@@ -93,9 +93,9 @@ export const ReservationModalBody = ({
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-
   const manifestationsToReserve = getManifestationsToReserve(
-    reservableManifestations
+    reservableManifestations,
+    !!selectedPeriodical
   );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
