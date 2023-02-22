@@ -131,6 +131,19 @@ describe("Material buttons", () => {
       .and("contain", "Read article");
   });
 
+  it("Renders a disabled button for blocked users for physical works", () => {
+    cy.interceptRest({
+      aliasName: "user",
+      url: "**/agencyid/patrons/patronid/v2",
+      fixtureFilePath: "material/user-blocked.json"
+    });
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.getBySel("material-header-buttons-physical-user-blocked")
+      .should("be.visible")
+      .and("contain", "Reserve")
+      .and("be.disabled");
+  });
+
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",

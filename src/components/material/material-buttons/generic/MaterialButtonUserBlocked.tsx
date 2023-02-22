@@ -6,10 +6,12 @@ import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonUserBlockedProps {
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
-  size
+  size,
+  dataCy = "material-button"
 }) => {
   const t = useText();
 
@@ -21,6 +23,7 @@ const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
       disabled
       collapsible={false}
       size={size || "large"}
+      dataCy={`${dataCy}-user-blocked`}
     />
   );
 };
