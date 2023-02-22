@@ -302,7 +302,7 @@ By using that we can test functions (and therefore also hooks) and classes.
 
 ### Where do I place my tests?
 
-They have to be placed in src/tests/unit.
+They have to be placed in `src/tests/unit`.
 
 ### Testing hooks
 
