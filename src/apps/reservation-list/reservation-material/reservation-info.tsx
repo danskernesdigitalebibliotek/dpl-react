@@ -29,7 +29,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
 
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
-  const branches = useGetBranches();
+  const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
   let readyForPickupLabel = "";
   if (pickupDeadline) {

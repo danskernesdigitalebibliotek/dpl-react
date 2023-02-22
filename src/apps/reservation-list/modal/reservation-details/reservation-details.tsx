@@ -26,7 +26,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-  const branches = useGetBranches();
+  const branches = useGetBranches("blacklistedPickupBranchesConfig");
   const isDigital = !!reservation.identifier;
 
   return (

@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { excludeBlacklistedBranches } from "../../../core/utils/branches";
-import { AgencyBranch } from "../../../core/fbs/model";
-import { useConfig } from "../../../core/utils/config";
+import { useGetBranches } from "../../../core/utils/branches";
 import { useText } from "../../../core/utils/text";
 
 interface BranchesDropdownProps {
@@ -17,33 +15,22 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
   classNames
 }) => {
   const t = useText();
-  const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
-  let pickupModalBranches = branches;
-  if (Array.isArray(blacklistBranches)) {
-    pickupModalBranches = excludeBlacklistedBranches(
-      branches,
-      blacklistBranches
-    );
-  }
+  const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
   return (
     <>
-      <p className="text-body-medium mt-32 mb-8">
+      <label
+        htmlFor="branches-dropdown"
+        className="text-body-medium-medium mt-32 mb-8"
+      >
         {t("pickupBranchesDropdownLabelText")}
-      </p>
+      </label>
       <div className={`dropdown mb-32 ${classNames || ""}`}>
-        {pickupModalBranches && (
+        {branches && (
           <>
             <select
               required
+              id="branches-dropdown"
               onChange={({ target }) => onChange(target.value)}
               className="dropdown__select"
             >
@@ -57,7 +44,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
                   {t("pickupBranchesDropdownNothingSelectedText")}
                 </option>
               )}
-              {pickupModalBranches.map(({ branchId, title }) => (
+              {branches.map(({ branchId, title }) => (
                 <option
                   value={branchId}
                   selected={selected === branchId}
