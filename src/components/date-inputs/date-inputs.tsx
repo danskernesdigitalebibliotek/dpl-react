@@ -1,7 +1,7 @@
 import React, { FC } from "react";
+import { dateHasPassed } from "../../core/utils/helpers/date";
 import { useText } from "../../core/utils/text";
 import DateInput from "./date-input";
-
 // Todo create meaningful types for this when redoing dates in the mapping file
 interface DateInputsProps {
   setStartDate: (date: string) => void;
@@ -28,7 +28,7 @@ const DateInputs: FC<DateInputsProps> = ({
       />
       <DateInput
         onChange={setEndDate}
-        minDateInput={startDate || ""}
+        minDateInput={(dateHasPassed(startDate) ? null : startDate) || ""}
         value={endDate}
         id="end-date"
         label={t("dateInputsEndDateLabelText")}

@@ -58,14 +58,7 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": {
-              "title": "Politiken",
-              "creator": null,
-              "publisher": null,
-              "year": {
-                "year": 2013
-              }
-            },
+            "publisher": [],
             "languages": {
               "main": [
                 {
@@ -86,7 +79,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 16
+                "numberOfPages": 16,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -144,14 +138,7 @@
               "__typename": "Person"
             }
           ],
-          "hostPublication": {
-            "title": "Politiken",
-            "creator": null,
-            "publisher": null,
-            "year": {
-              "year": 2013
-            }
-          },
+          "publisher": [],
           "languages": {
             "main": [
               {
@@ -172,7 +159,8 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 16
+              "numberOfPages": 16,
+              "playingTime": null
             }
           ],
           "accessTypes": [

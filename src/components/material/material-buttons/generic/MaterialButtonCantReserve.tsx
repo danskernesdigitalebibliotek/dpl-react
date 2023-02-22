@@ -6,10 +6,12 @@ import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonCantReserveProps {
   size?: ButtonSize;
+  dataCy?: string;
 }
 
 const MaterialButtonCantReserve: FC<MaterialButtonCantReserveProps> = ({
-  size
+  size,
+  dataCy = "material-header-buttons-cant-reserve"
 }) => {
   const t = useText();
 
@@ -21,6 +23,7 @@ const MaterialButtonCantReserve: FC<MaterialButtonCantReserveProps> = ({
       disabled
       collapsible={false}
       size={size || "large"}
+      dataCy={dataCy}
     />
   );
 };

@@ -3,12 +3,8 @@
     "work": {
       "workId": "work-of:870970-basis:52557240",
       "titles": {
-        "full": [
-          "De syv søstre : Maias historie"
-        ],
-        "original": [
-          "The seven sisters"
-        ]
+        "full": ["De syv søstre : Maias historie"],
+        "original": ["The seven sisters"]
       },
       "abstract": [
         "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav"
@@ -32,9 +28,7 @@
           "isPopular": null,
           "numberInSeries": {
             "display": "1",
-            "number": [
-              1
-            ]
+            "number": [1]
           },
           "readThisFirst": null,
           "readThisWhenever": null
@@ -44,127 +38,71 @@
         {
           "workId": "work-of:870970-basis:52557240",
           "titles": {
-            "main": [
-              "De syv søstre"
-            ],
-            "full": [
-              "De syv søstre : Maias historie"
-            ],
-            "original": [
-              "The seven sisters"
-            ]
+            "main": ["De syv søstre"],
+            "full": ["De syv søstre : Maias historie"],
+            "original": ["The seven sisters"]
           }
         },
         {
           "workId": "work-of:870970-basis:52970628",
           "titles": {
-            "main": [
-              "Stormsøsteren"
-            ],
-            "full": [
-              "Stormsøsteren : Allys historie"
-            ],
-            "original": [
-              "The storm sister"
-            ]
+            "main": ["Stormsøsteren"],
+            "full": ["Stormsøsteren : Allys historie"],
+            "original": ["The storm sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:53280749",
           "titles": {
-            "main": [
-              "Skyggesøsteren"
-            ],
-            "full": [
-              "Skyggesøsteren : Stars historie"
-            ],
-            "original": [
-              "The shadow sister"
-            ]
+            "main": ["Skyggesøsteren"],
+            "full": ["Skyggesøsteren : Stars historie"],
+            "original": ["The shadow sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:53802001",
           "titles": {
-            "main": [
-              "Perlesøsteren"
-            ],
-            "full": [
-              "Perlesøsteren : CeCes historie"
-            ],
-            "original": [
-              "The pearl sister"
-            ]
+            "main": ["Perlesøsteren"],
+            "full": ["Perlesøsteren : CeCes historie"],
+            "original": ["The pearl sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:54189141",
           "titles": {
-            "main": [
-              "Månesøsteren"
-            ],
-            "full": [
-              "Månesøsteren : Tiggys historie"
-            ],
-            "original": [
-              "The moon sister"
-            ]
+            "main": ["Månesøsteren"],
+            "full": ["Månesøsteren : Tiggys historie"],
+            "original": ["The moon sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:46656172",
           "titles": {
-            "main": [
-              "Solsøsteren"
-            ],
-            "full": [
-              "Solsøsteren : Electras historie"
-            ],
-            "original": [
-              "The sun sister"
-            ]
+            "main": ["Solsøsteren"],
+            "full": ["Solsøsteren : Electras historie"],
+            "original": ["The sun sister"]
           }
         },
         {
           "workId": "work-of:870970-basis:38500775",
           "titles": {
-            "main": [
-              "Den forsvundne søster"
-            ],
-            "full": [
-              "Den forsvundne søster"
-            ],
-            "original": [
-              "The missing sister"
-            ]
+            "main": ["Den forsvundne søster"],
+            "full": ["Den forsvundne søster"],
+            "original": ["The missing sister"]
           }
         }
       ],
       "workYear": null,
-      "genreAndForm": [
-        "roman",
-        "slægtsromaner",
-        "romaner"
-      ],
+      "genreAndForm": ["roman", "slægtsromaner", "romaner"],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:46615743",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner",
-              "romaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -181,7 +119,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -210,7 +150,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -231,21 +172,11 @@
           },
           {
             "pid": "870970-basis:53292968",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner",
-              "romaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -262,7 +193,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -291,7 +224,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
@@ -312,19 +246,11 @@
           },
           {
             "pid": "870970-basis:53200346",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -332,7 +258,7 @@
             },
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "musik (net)"
               }
             ],
             "creators": [
@@ -341,7 +267,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Gyldendals Bogklubber"
+            ],
             "languages": {
               "main": [
                 {
@@ -370,18 +298,21 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
               {
-                "code": "PHYSICAL"
+                "code": "ONLINE"
               }
             ],
             "access": [
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
+                "__typename": "AccessUrl",
+                "origin": "musik",
+                "url": "https://musik.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
               }
             ],
             "shelfmark": {
@@ -391,20 +322,11 @@
           },
           {
             "pid": "870970-basis:52557240",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman", "slægtsromaner"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -412,7 +334,7 @@
             },
             "materialTypes": [
               {
-                "specific": "bog"
+                "specific": "film (net)"
               }
             ],
             "creators": [
@@ -421,7 +343,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -450,18 +374,21 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 523
+                "numberOfPages": 523,
+                "playingTime": null
               }
             ],
             "accessTypes": [
               {
-                "code": "PHYSICAL"
+                "code": "ONLINE"
               }
             ],
             "access": [
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
+                "__typename": "AccessUrl",
+                "origin": "Filmstriben",
+                "url": "https://filmstriben.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
               }
             ],
             "shelfmark": {
@@ -471,19 +398,11 @@
           },
           {
             "pid": "870970-basis:52643503",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -500,7 +419,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -532,7 +453,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": null,
+                "playingTime": "16 t., 30 min."
               }
             ],
             "accessTypes": [
@@ -540,7 +462,14 @@
                 "code": "ONLINE"
               }
             ],
-            "access": [],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "website",
+                "url": "https://website.dk/ting/object/870970-basis:52590302",
+                "canAlwaysBeLoaned": false
+              }
+            ],
             "shelfmark": {
               "postfix": "Riley",
               "shelfmark": "83"
@@ -548,19 +477,11 @@
           },
           {
             "pid": "870970-basis:52643414",
-            "genreAndForm": [
-              "roman"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["roman"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "De syv søstre (mp3)"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre (mp3)"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -577,7 +498,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -609,7 +532,8 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": null
+                "numberOfPages": null,
+                "playingTime": "16 t., 30 min."
               }
             ],
             "accessTypes": [
@@ -630,20 +554,11 @@
           },
           {
             "pid": "870970-basis:52590302",
-            "genreAndForm": [
-              "roman",
-              "slægtsromaner"
-            ],
-            "source": [
-              "eReolen"
-            ],
+            "genreAndForm": ["roman", "slægtsromaner"],
+            "source": ["eReolen"],
             "titles": {
-              "main": [
-                "De syv søstre"
-              ],
-              "original": [
-                "The seven sisters"
-              ]
+              "main": ["De syv søstre"],
+              "original": ["The seven sisters"]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -660,7 +575,9 @@
                 "__typename": "Person"
               }
             ],
-            "hostPublication": null,
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -712,21 +629,11 @@
         ],
         "latest": {
           "pid": "870970-basis:46615743",
-          "genreAndForm": [
-            "roman",
-            "slægtsromaner",
-            "romaner"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
+          "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+          "source": ["Bibliotekskatalog"],
           "titles": {
-            "main": [
-              "De syv søstre"
-            ],
-            "original": [
-              "The seven sisters"
-            ]
+            "main": ["De syv søstre"],
+            "original": ["The seven sisters"]
           },
           "fictionNonfiction": {
             "display": "skønlitteratur",
@@ -743,7 +650,9 @@
               "__typename": "Person"
             }
           ],
-          "hostPublication": null,
+          "publisher": [
+            "Cicero"
+          ],
           "languages": {
             "main": [
               {
@@ -772,7 +681,8 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 523
+              "numberOfPages": 523,
+              "playingTime": null
             }
           ],
           "accessTypes": [

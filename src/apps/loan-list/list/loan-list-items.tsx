@@ -54,7 +54,8 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   identifier={loan.identifier}
                   faust={loan.faust}
                   key={loan.faust || loan.identifier}
-                  amountOfMaterialsWithDueDate={loansUniqueDueDate.length}
+                  // -1 because it is _additional_ to the one displayed...
+                  additionalMaterials={loansUniqueDueDate.length - 1}
                 />
               )}
             </div>
@@ -69,6 +70,8 @@ const LoanListItems: FC<LoanListItemProps> = ({
               faust={loan.faust}
               key={loan.faust || loan.identifier}
               loan={loan}
+              // Zero, as it is not stacked
+              additionalMaterials={0}
             />
           );
         })}

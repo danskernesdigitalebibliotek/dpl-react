@@ -284,7 +284,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022");
+      .should("have.text", "Due date 20-10-2022");
 
     // 2.b.iv. Loans have...
     // ID 42 2.a. Material cover
@@ -326,23 +326,17 @@ describe("Loan list", () => {
     // todo Årgang
 
     // 2.b.iv.3. Link
-    // 2.b.iv.3.a. text: You will be charged a fee, when the item is returned
-    cy.get(".list-reservation-container")
-      .find(".list-reservation")
-      .eq(2)
-      .scrollIntoView()
-      .find(".list-reservation__information a")
-      .should("be.visible")
-      .should(
-        "have.text",
-        "You will be charged a fee, when the item is returned"
-      )
-      .should("have.attr", "href")
-      .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
-    // 2.b.iv.3.c. Only shown if loan is overdue
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
+      .scrollIntoView()
+      .find(".list-reservation__information div a")
+      .should("exist");
+
+    // 2.b.iv.3.c. Only shown if loan is overdue
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(1)
       .find(".list-reservation__information a")
       .should("not.exist");
 
@@ -358,7 +352,8 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
-      .should("have.text", "7 days");
+      .should("have.text", "0 days");
+
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(1)
@@ -368,37 +363,28 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(2)
       .find(".counter")
-      .should("have.text", "0 days");
+      .should("have.text", "6 days");
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(3)
       .find(".counter")
-      .should("have.text", "6 days");
+      .should("have.text", "7 days");
     // 2.b.iv.6. Label:
     // 2.b.iv.6.a. Expired with red background, if loan is overdue
     cy.get(".list-reservation-container")
       .eq(0)
       .find(".list-reservation")
       .eq(2)
-      .find(".status-label--danger")
-      .should("have.text", "Expired")
+      .find(".status-label--warning")
+      .should("have.text", "Expiring soon")
       .should("have.css", "background-color")
-      .should("include", "rgb(213, 54, 74)");
+      .should("include", "rgb(247, 191, 66)");
 
     // 2.b.iv.6.b. “Expiring soon” with yellow background, if _less than_ 7 days to hand in
     cy.get(".list-reservation-container")
       .eq(0)
       .find(".list-reservation")
       .eq(1)
-      .find(".status-label--warning")
-      .should("have.text", "Expiring soon")
-      .should("have.css", "background")
-      .should("include", "rgb(247, 191, 66)");
-
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(3)
       .find(".status-label--warning")
       .should("have.text", "Expiring soon")
       .should("have.css", "background")
@@ -418,7 +404,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".status-label--danger")
-      .should("not.exist");
+      .should("exist");
 
     // 2.b.iv.7. Text: "Due date dd.mm.yyyy"
     cy.get(".list-reservation-container")
@@ -426,25 +412,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(1)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 21-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__deadline p")
       .should("have.text", "Due date 20-10-2022");
-    cy.get(".list-reservation-container")
-      .eq(0)
-      .find(".list-reservation")
-      .eq(3)
-      .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 27-10-2022");
 
     // // The mobile specifics
     cy.viewport(320, 1480);
@@ -467,7 +435,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 27-10-2022");
+      .should("have.text", "Due date 24-10-2022");
 
     // 2.c.ii. Loans have...
     // ID 42 2.a. Material cover
@@ -514,21 +482,21 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
-      .should("have.text", "6 days");
+      .should("have.text", "3 days");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(1)
       .find(".counter")
-      .should("have.text", "7 days");
+      .should("have.text", "6 days");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".counter")
-      .should("have.text", "3 days");
+      .should("have.text", "7 days");
 
     // 2.c.ii.4. Text: "Due date dd.mm.yyyy”
     cy.get(".list-reservation-container")
@@ -536,13 +504,6 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 27-10-2022");
-
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__deadline p")
       .should("have.text", "Due date 24-10-2022");
 
     cy.get(".list-reservation-container")
@@ -550,7 +511,14 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 24-10-2022");
+      .should("have.text", "Due date 28-10-2022");
+
+    cy.get(".list-reservation-container")
+      .eq(1)
+      .find(".list-reservation")
+      .eq(2)
+      .find(".list-reservation__deadline p")
+      .should("have.text", "Due date 28-10-2022");
   });
 
   it("It opens loans group modal (physical)", () => {

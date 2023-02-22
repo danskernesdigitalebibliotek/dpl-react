@@ -1,6 +1,7 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
+import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { useText } from "../../core/utils/text";
 import Pagefold from "../pagefold/Pagefold";
 
@@ -27,6 +28,7 @@ const Disclosure: FC<DisclosureProps> = ({
   dataCy = "disclosure"
 }) => {
   const t = useText();
+  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
 
   return (
     <details
@@ -37,6 +39,7 @@ const Disclosure: FC<DisclosureProps> = ({
       data-cy={dataCy}
     >
       <summary
+        ref={itemRef}
         className={clsx(
           "disclosure__headline text-body-large",
           removeHeadlinePadding && "disclosure__headline--no-padding"
@@ -67,7 +70,7 @@ const Disclosure: FC<DisclosureProps> = ({
           alt=""
         />
       </summary>
-      {children}
+      {showItem && children}
     </details>
   );
 };

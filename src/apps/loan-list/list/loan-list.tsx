@@ -5,7 +5,9 @@ import {
   getAmountOfRenewableLoans,
   getDueDatesLoan,
   getModalIds,
-  sortByLoanDate
+  sortByDueDate,
+  getScrollClass,
+  constructModalId
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -60,7 +62,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   );
   const { isSuccess, data } = useGetLoansV2();
   const { data: publizonData } = useGetV1UserLoans();
-
   useEffect(() => {
     let loanForModal = null;
     if (physicalLoans && modalDetailsId) {
@@ -88,7 +89,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       setPhysicalLoansDueDates(getDueDatesLoan(mapToLoanType));
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = sortByDueDate(mapToLoanType);
 
       setPhysicalLoans(sortedByLoanDate);
     } else {
@@ -101,7 +102,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const mapToLoanType = mapPublizonLoanToLoanType(publizonData.loans);
 
       // Loans are sorted by loan date
-      const sortedByLoanDate = sortByLoanDate(mapToLoanType);
+      const sortedByLoanDate = sortByDueDate(mapToLoanType);
       setDigitalLoans(sortedByLoanDate);
     } else {
       setDigitalLoans([]);
@@ -119,7 +120,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
       setDueDate(dueDateInput);
-      open(`${dueDateModal}${dueDateInput}`);
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
     [dueDateModal, open]
   );
@@ -157,10 +158,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
   return (
     <>
-      <div
-        style={modalIds.length > 0 ? { display: "none" } : {}}
-        className="loan-list-page"
-      >
+      <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>

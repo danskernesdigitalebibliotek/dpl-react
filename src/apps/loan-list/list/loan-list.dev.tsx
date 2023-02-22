@@ -135,7 +135,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Select material for renewal"
+      defaultValue: "Select @label for renewal"
     },
     loanListMaterialLateFeeText: {
       control: {
@@ -356,6 +356,10 @@ export default {
     },
     groupModalGoToMaterialText: {
       defaultValue: "Go to material details",
+      control: { type: "text" }
+    },
+    groupModalGoToMaterialAriaLabelText: {
+      defaultValue: "Go to @label material details",
       control: { type: "text" }
     },
     groupModalReturnLibraryText: {

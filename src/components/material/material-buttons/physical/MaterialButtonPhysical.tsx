@@ -1,34 +1,34 @@
 import React, { FC } from "react";
-import { useDispatch } from "react-redux";
-import { openModal } from "../../../../core/modal.slice";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { reservationModalId } from "../../../../apps/material/helper";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
+import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
-import { reservationModalId } from "../../../reservation/ReservationModalBody";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
-  faustId: FaustId;
+  faustIds: FaustId[];
   dataCy?: string;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
-  faustId,
+  faustIds,
   size,
   dataCy = "material-button-physical"
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+  const { openGuarded } = useModalButtonHandler();
+  const { authUrl } = useUrls();
 
   const onClick = () => {
-    dispatch(
-      openModal({
-        modalId: reservationModalId(faustId)
-      })
-    );
+    openGuarded({
+      authUrl,
+      modalId: reservationModalId(faustIds)
+    });
   };
 
   return (

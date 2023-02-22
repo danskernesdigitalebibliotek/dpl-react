@@ -75,6 +75,12 @@ interface LoanListEntryTextProps {
   showMoreText: string;
   groupModalReturnLibraryText: string;
   materialDetailsGoToEreolenText: string;
+  loanListMaterialLateFeeText: string;
+  loanListMaterialDayText: string;
+  loanListStatusCircleAriaLabelText: string;
+  materialDetailsDigitalDueDateLabelText: string;
+  groupModalGoToMaterialText: string;
+  groupModalGoToMaterialAriaLabelText: string;
 }
 
 export interface LoanListEntryWithPageSizeProps
