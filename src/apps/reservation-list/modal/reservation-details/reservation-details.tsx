@@ -51,6 +51,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           </ModalDetailsHeader>
           {reservation.reservationId && (
             <ReservationDetailsButton
+              classNames="modal-details__buttons--hide-on-mobile"
               openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.reservationId}
               numberInQueue={numberInQueue}
@@ -60,6 +61,8 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             <ReservationDetailsRedirect
               openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.identifier}
+              className="modal-details__buttons--hide-on-mobile"
+              linkClassNames="mx-16"
             />
           )}
           <div className="modal-details__list">
@@ -71,6 +74,21 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               />
             )}
           </div>
+          {reservation.reservationId && (
+            <ReservationDetailsButton
+              buttonClassNames="modal-details__buttons__full-width"
+              openReservationDeleteModal={openReservationDeleteModal}
+              reservationId={reservation.reservationId}
+              numberInQueue={numberInQueue}
+            />
+          )}
+          {isDigital && reservation.identifier && (
+            <ReservationDetailsRedirect
+              openReservationDeleteModal={openReservationDeleteModal}
+              reservationId={reservation.identifier}
+              linkClassNames="my-16"
+            />
+          )}
         </>
       )}
     </div>
