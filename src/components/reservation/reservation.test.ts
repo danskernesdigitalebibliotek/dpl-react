@@ -57,7 +57,7 @@ describe("Reservation", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&type=bog");
 
-    cy.getBySel("material-header-buttons-physical").scrollIntoView();
+    cy.scrollTo("bottom");
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
@@ -83,7 +83,7 @@ describe("Reservation", () => {
 
     cy.visit("/iframe.html?id=apps-material--turen-gar-til-rom&type=bog");
 
-    cy.getBySel("material-header-buttons-physical").scrollIntoView();
+    cy.scrollTo("bottom");
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
