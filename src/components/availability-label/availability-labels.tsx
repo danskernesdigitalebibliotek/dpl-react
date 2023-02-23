@@ -23,7 +23,6 @@ export interface AvailabilityLabelsProps {
   setSelectedManifestations?: (manifestations: Manifestation[]) => void;
   cursorPointer?: boolean;
 }
-
 export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,

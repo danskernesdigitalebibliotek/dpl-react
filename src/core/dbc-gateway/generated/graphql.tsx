@@ -172,6 +172,7 @@ export type CopyRequestResponse = {
 export enum CopyRequestStatus {
   ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
   ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
+  ErrorMissingClientConfiguration = "ERROR_MISSING_CLIENT_CONFIGURATION",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
   Ok = "OK"
@@ -1488,6 +1489,11 @@ export type GetMaterialQuery = {
             display: string;
           } | null;
         } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1563,6 +1569,11 @@ export type GetMaterialQuery = {
             display: string;
           } | null;
         } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
+        } | null;
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
@@ -1637,6 +1648,11 @@ export type GetMaterialQuery = {
             __typename?: "PublicationYear";
             display: string;
           } | null;
+        } | null;
+        dateFirstEdition?: {
+          __typename?: "PublicationYear";
+          display: string;
+          year?: number | null;
         } | null;
         audience?: {
           __typename?: "Audience";
@@ -1791,6 +1807,11 @@ export type SearchWithPaginationQuery = {
               display: string;
             } | null;
           } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1872,6 +1893,11 @@ export type SearchWithPaginationQuery = {
               display: string;
             } | null;
           } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
@@ -1952,6 +1978,11 @@ export type SearchWithPaginationQuery = {
               __typename?: "PublicationYear";
               display: string;
             } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
           } | null;
           audience?: {
             __typename?: "Audience";
@@ -2115,6 +2146,11 @@ export type ManifestationsSimpleFragment = {
         display: string;
       } | null;
     } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -2187,6 +2223,11 @@ export type ManifestationsSimpleFragment = {
         display: string;
       } | null;
     } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
+    } | null;
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
@@ -2258,6 +2299,11 @@ export type ManifestationsSimpleFragment = {
         __typename?: "PublicationYear";
         display: string;
       } | null;
+    } | null;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+      year?: number | null;
     } | null;
     audience?: {
       __typename?: "Audience";
@@ -2332,6 +2378,11 @@ export type ManifestationsSimpleFieldsFragment = {
       __typename?: "PublicationYear";
       display: string;
     } | null;
+  } | null;
+  dateFirstEdition?: {
+    __typename?: "PublicationYear";
+    display: string;
+    year?: number | null;
   } | null;
   audience?: { __typename?: "Audience"; generalAudience: Array<string> } | null;
   physicalDescriptions: Array<{
@@ -2455,6 +2506,11 @@ export type WorkSmallFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2530,6 +2586,11 @@ export type WorkSmallFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2604,6 +2665,11 @@ export type WorkSmallFragment = {
           __typename?: "PublicationYear";
           display: string;
         } | null;
+      } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
       } | null;
       audience?: {
         __typename?: "Audience";
@@ -2771,6 +2837,11 @@ export type WorkMediumFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2846,6 +2917,11 @@ export type WorkMediumFragment = {
           display: string;
         } | null;
       } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
+      } | null;
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
@@ -2920,6 +2996,11 @@ export type WorkMediumFragment = {
           __typename?: "PublicationYear";
           display: string;
         } | null;
+      } | null;
+      dateFirstEdition?: {
+        __typename?: "PublicationYear";
+        display: string;
+        year?: number | null;
       } | null;
       audience?: {
         __typename?: "Audience";
@@ -3010,6 +3091,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     publicationYear {
       display
     }
+  }
+  dateFirstEdition {
+    display
+    year
   }
   audience {
     generalAudience

@@ -350,3 +350,6 @@ export const getBestMaterialTypeForWork = (work: Work) => {
 export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
 };
+
+export const getNumberedSeries = (series: Work["series"]) =>
+  series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);

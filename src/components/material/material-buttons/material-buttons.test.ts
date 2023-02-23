@@ -19,6 +19,7 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.scrollTo("bottom");
     cy.getBySel("availability-label").contains("ebog").first().click();
+    cy.getBySel("material-description").scrollIntoView();
     cy.getBySel("material-header-buttons-find-on-shelf").should("not.exist");
   });
 
@@ -106,6 +107,19 @@ describe("Material buttons", () => {
     cy.getBySel("material-header-buttons-online-infomedia-article")
       .should("exist")
       .and("contain", "Read article");
+  });
+
+  it("Renders a disabled button for blocked users for physical works", () => {
+    cy.interceptRest({
+      aliasName: "user",
+      url: "**/agencyid/patrons/patronid/v2",
+      fixtureFilePath: "material/user-blocked.json"
+    });
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.getBySel("material-header-buttons-physical-user-blocked")
+      .should("be.visible")
+      .and("contain", "Reserve")
+      .and("be.disabled");
   });
 
   beforeEach(() => {
