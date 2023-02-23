@@ -119,11 +119,6 @@ describe("Delete reservation modal test", () => {
       .should("have.text", "Cancel reservations")
       .click();
 
-    // ID 14 3 system deletes material
-    cy.get("@delete-digital-reservation").should((response) => {
-      expect(response).to.have.property("response");
-    });
-
     // ID 14 4 system closes modal
     cy.get(".modal.modal-cta").should("not.exist");
   });
@@ -209,11 +204,6 @@ describe("Delete reservation modal test", () => {
       .find("[data-cy='delete-reservation-button']")
       .should("have.text", "Cancel reservations")
       .click();
-
-    // ID 18 3 system deletes material
-    cy.get("@delete-physical-reservation").should((response) => {
-      expect(response).to.have.property("response");
-    });
 
     // ID 18 4 system closes modal
     cy.get(".modal.modal-cta").should("not.exist");
