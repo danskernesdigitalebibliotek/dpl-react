@@ -218,19 +218,54 @@
       "subjects": {
         "all": [
           {
-            "display": "formidling"
+            "display": "kærlighed"
           },
           {
-            "display": "videnskab"
+            "display": "adoption"
           },
           {
-            "display": "retorik"
+            "display": "familien"
           },
           {
-            "display": "forskning"
+            "display": "slægtsromaner"
           },
           {
-            "display": "skriftlig fremstilling"
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "kærlighed"
+          },
+          {
+            "display": "adoption"
+          },
+          {
+            "display": "familien"
+          },
+          {
+            "display": "slægtsromaner"
+          },
+          {
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
           }
         ]
       },
