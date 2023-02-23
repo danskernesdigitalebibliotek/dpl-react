@@ -155,15 +155,20 @@ export const getManifestationsToReserve = (
   isPeriodical?: boolean
 ) => {
   if (isPeriodical) {
+    // Specific issues of periodical works usually don't have multiple
+    // manifestations - eg. there only is one version of Vogue January 2023.
     return reservableManifestations;
   }
   if (!reservableManifestations || reservableManifestations.length < 1) {
-    return null;
+    return [];
   }
-  // If the work isn't fictional we only want to reserve the latest manifestation.
+  // Newer nonfiction-work's editions have updated more accurate content, so we
+  // want to always reserve the latest edition.
   if (!materialIsFiction(reservableManifestations[0])) {
     return [getLatestManifestation(reservableManifestations)];
   }
+  // Fictional work editions don't change content, only appearance, and so we can
+  // reserve whichever one of the reservable manifestations will be home soonest.
   return reservableManifestations;
 };
 
