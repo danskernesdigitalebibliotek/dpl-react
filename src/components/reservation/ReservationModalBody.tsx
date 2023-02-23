@@ -146,12 +146,10 @@ export const ReservationModalBody = ({
     reservationResponse?.reservationResults[0]?.reservationDetails;
   const manifestation =
     manifestationsToReserve?.[0] || selectedManifestations[0];
-  const getEditionText = () => {
-    if (!materialIsFiction(work) || manifestationsToReserve?.length === 1) {
-      return manifestation.edition?.summary;
-    }
-    return t("firstAvailableEditionText");
-  };
+  const editionText =
+    !materialIsFiction(work) || manifestationsToReserve?.length === 1
+      ? manifestation.edition?.summary
+      : t("firstAvailableEditionText");
 
   return (
     <>
@@ -195,7 +193,7 @@ export const ReservationModalBody = ({
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={selectedPeriodical?.displayText || getEditionText() || ""}
+                text={selectedPeriodical?.displayText || editionText || ""}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
