@@ -9,7 +9,8 @@ import {
 } from "../../core/filter.slice";
 import { RootState } from "../../core/store";
 import {
-  removeUrlQueryParam,
+  getUrlQueryParam,
+  removeQueryParametersFromUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
 
@@ -18,15 +19,18 @@ const useFilterHandler = () => {
   const filters = useSelector((state: RootState) => state.filter) as Filter;
 
   const clearFilter = useCallback(() => {
-    removeUrlQueryParam("filters");
+    removeQueryParametersFromUrl("filters");
     dispatch(clear());
   }, [dispatch]);
 
   const addToFilter = useCallback(
     (payload: FilterPayloadType) => {
-      setQueryParametersInUrl({
-        filters: "withFilters"
-      });
+      if (getUrlQueryParam("filters") !== "withFilters") {
+        setQueryParametersInUrl({
+          filters: "withFilters"
+        });
+      }
+
       dispatch(add(payload));
     },
     [dispatch]

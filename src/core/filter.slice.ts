@@ -52,7 +52,7 @@ const filterState = createSlice({
       };
     },
     clear() {
-      return {};
+      return initialState;
     }
   }
 });
