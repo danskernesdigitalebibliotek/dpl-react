@@ -251,12 +251,16 @@
         "display": "99.4 , Eugene"
       },
       "relations": {
+<<<<<<< HEAD
         "hasAdaptation": [],
         "hasReview": [
           {
             "pid": "150005-anmeld:81092"
           }
         ]
+=======
+        "hasAdaptation": []
+>>>>>>> 1aa4bc12 (Fix 'Material buttons' test / fixtures)
       }
     }
   }

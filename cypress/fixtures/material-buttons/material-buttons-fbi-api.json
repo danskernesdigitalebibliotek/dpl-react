@@ -732,6 +732,32 @@
           {
             "display": "ættarsøgur"
           }
+        ],
+        "dbcVerified": [
+          {
+            "display": "kærlighed"
+          },
+          {
+            "display": "adoption"
+          },
+          {
+            "display": "familien"
+          },
+          {
+            "display": "slægtsromaner"
+          },
+          {
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
+          }
         ]
       },
       "reviews": [
