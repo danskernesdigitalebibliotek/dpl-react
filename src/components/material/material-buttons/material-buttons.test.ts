@@ -116,6 +116,7 @@ describe("Material buttons", () => {
       fixtureFilePath: "material/user-blocked.json"
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.scrollTo("bottom");
     cy.getBySel("material-header-buttons-physical-user-blocked")
       .should("be.visible")
       .and("contain", "Reserve")
