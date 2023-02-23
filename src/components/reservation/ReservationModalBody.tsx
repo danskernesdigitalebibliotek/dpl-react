@@ -94,7 +94,7 @@ export const ReservationModalBody = ({
     return null;
   }
   const manifestationsToReserve = getManifestationsToReserve(
-    reservableManifestations,
+    reservableManifestations ?? [],
     !!selectedPeriodical
   );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
@@ -110,7 +110,7 @@ export const ReservationModalBody = ({
     : null;
 
   const saveReservation = () => {
-    if (!manifestationsToReserve) {
+    if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
     // Save reservation to FBS.

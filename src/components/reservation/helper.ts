@@ -151,7 +151,7 @@ export const getAuthorLine = (
 };
 
 export const getManifestationsToReserve = (
-  reservableManifestations: Manifestation[] | null,
+  reservableManifestations: Manifestation[],
   isPeriodical?: boolean
 ) => {
   if (isPeriodical) {
