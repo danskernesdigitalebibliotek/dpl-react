@@ -2,9 +2,6 @@
   "baseUrl": "http://localhost:57021",
   "integrationFolder": "./src",
   "testFiles": "**/*.test.*",
-  "ignoreTestFiles": [
-    "**/tests/unit/*.test.*"
-  ],
   "defaultCommandTimeout": 10000,
   "retries": {
     "runMode": 3,
