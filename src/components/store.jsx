@@ -29,7 +29,6 @@ const queryClient = new QueryClient({
       // This is for temporarily testing.
       // In this case cache needs be updated after 30 seconds:
       staleTime: 1000 * 30,
-      // useErrorBoundary: true
       useErrorBoundary: queryErrorHandler
     },
     mutations: {
