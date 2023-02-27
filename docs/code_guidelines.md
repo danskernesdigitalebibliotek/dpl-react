@@ -306,6 +306,7 @@ They have to be placed in `src/tests/unit`.
 
 ### Testing hooks
 
-For testing hooks we are using the library [`@testing-library/react-hooks`](https://react-hooks-testing-library.com/) and you can also take a
+For testing hooks we are using the library: `@testing-library/react-hooks`
+you can read more about it [here](https://vitest.dev) and you can also take a
 look at the [text test](../src/tests/unit/text.test.tsx)
 to see how it can be done.
