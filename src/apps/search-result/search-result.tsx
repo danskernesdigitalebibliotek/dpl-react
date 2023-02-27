@@ -162,7 +162,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // to the search page from links where there should be no filters.
   useEffect(() => {
     const filtersUrlParam = getUrlQueryParam("filters");
-    if (filtersUrlParam !== "withFilters") clearFilter();
+    if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
   return (

@@ -25,9 +25,9 @@ const useFilterHandler = () => {
 
   const addToFilter = useCallback(
     (payload: FilterPayloadType) => {
-      if (getUrlQueryParam("filters") !== "withFilters") {
+      if (getUrlQueryParam("filters") !== "usePersistedFilters") {
         setQueryParametersInUrl({
-          filters: "withFilters"
+          filters: "usePersistedFilters"
         });
       }
 
