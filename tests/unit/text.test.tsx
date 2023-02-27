@@ -53,10 +53,12 @@ test("Should handle plural text definitions", () => {
 
   act(() => {
     const pluralTextZeroOutput = result.current("pluralText", {
-      count: 0
+      count: 0,
+      placeholders: { "@count": 0 }
     });
     const pluralTextOneOutput = result.current("pluralText", {
-      count: 1
+      count: 1,
+      placeholders: { "@count": 1 }
     });
     const pluralTextMultipleOutput = result.current("pluralText", {
       count: 10,
