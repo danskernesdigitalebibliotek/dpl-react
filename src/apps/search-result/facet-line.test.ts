@@ -91,7 +91,7 @@ describe("The facet line", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.url().should("include", "filters=withFilters");
+    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
@@ -113,7 +113,7 @@ describe("The facet line", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.url().should("include", "filters=withFilters");
+    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)")
       .should("have.attr", "aria-pressed", "true")
@@ -160,11 +160,11 @@ describe("The facet line", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.url().should("include", "filters=withFilters");
+    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.reload(true);
 
-    cy.url().should("include", "filters=withFilters");
+    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
@@ -179,7 +179,7 @@ describe("The facet line", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.url().should("include", "filters=withFilters");
+    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
@@ -191,7 +191,7 @@ describe("The facet line", () => {
       "/iframe.html?args=q%3Alange+peter&id=apps-search-result--search-result"
     );
 
-    cy.url().should("not.include", "filters=withFilters");
+    cy.url().should("not.include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-term-lydbog (net)")
       .should("be.visible")
