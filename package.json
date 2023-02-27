@@ -35,7 +35,7 @@
     "start:storybook:dev": "NODE_ENV=development  start-storybook --port 80",
     "dev": "concurrently --raw \"yarn start:storybook:dev\" \"yarn watch\"",
     "test:unit": "vitest",
-    "test:integration": "cypress run",
+    "test": "cypress run",
     "cypress:open": "cypress open",
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=opac graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
