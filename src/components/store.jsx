@@ -5,7 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { store, persistor } from "../core/store";
 import FetcherHttpError from "../core/fetchers/FetcherHttpError";
-import { FetcherError } from "../core/fetchers/FetcherError";
+import FetcherError from "../core/fetchers/FetcherError";
 import FetcherCriticalHttpError from "../core/fetchers/FetcherCriticalHttpError";
 
 const queryErrorHandler = (error) => {
