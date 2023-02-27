@@ -13,7 +13,7 @@ expected output giving different variations of input.
 
 ## Decision
 
-We decided to go for [Vitest](https://vitest.dev/) which is an easy to use and very fast
+We decided to go for Vitest which is an easy to use and very fast
 unit testing tool.
 
 It has more or less the same capabilities as Jest
