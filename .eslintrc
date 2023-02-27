@@ -54,7 +54,6 @@
           "/**/*.test.jsx",
           "/**/*.test.ts",
           "/**/*.test.tsx",
-          "vitest.config.ts",
           "webpack.config.js",
           "postcss.config.js",
           "orval.config.ts",
