@@ -1110,6 +1110,11 @@ export type SearchResponse = {
 };
 
 /** The simple search response */
+export type SearchResponseDidYouMeanArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The simple search response */
 export type SearchResponseFacetsArgs = {
   facets: Array<FacetField>;
 };
@@ -1417,6 +1422,18 @@ export type GetMaterialQuery = {
       code: FictionNonfictionCode;
     } | null;
     dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
+    relations: {
+      __typename?: "Relations";
+      hasAdaptation: Array<{
+        __typename?: "Manifestation";
+        ownerWork: {
+          __typename?: "Work";
+          workId: string;
+          workTypes: Array<WorkType>;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
+    };
     titles: {
       __typename?: "WorkTitles";
       full: Array<string>;
@@ -2765,6 +2782,18 @@ export type WorkMediumFragment = {
     code: FictionNonfictionCode;
   } | null;
   dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
+  relations: {
+    __typename?: "Relations";
+    hasAdaptation: Array<{
+      __typename?: "Manifestation";
+      ownerWork: {
+        __typename?: "Work";
+        workId: string;
+        workTypes: Array<WorkType>;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
+  };
   titles: {
     __typename?: "WorkTitles";
     full: Array<string>;
@@ -3235,6 +3264,17 @@ export const WorkMediumFragmentDoc = `
   }
   dk5MainEntry {
     display
+  }
+  relations {
+    hasAdaptation {
+      ownerWork {
+        workId
+        workTypes
+        titles {
+          main
+        }
+      }
+    }
   }
 }
     ${WorkSmallFragmentDoc}`;

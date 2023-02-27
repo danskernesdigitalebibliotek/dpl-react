@@ -186,4 +186,15 @@ fragment WorkMedium on Work {
   dk5MainEntry {
     display
   }
+  relations {
+    hasAdaptation {
+      ownerWork {
+        workId
+        workTypes
+        titles {
+          main
+        }
+      }
+    }
+  }
 }

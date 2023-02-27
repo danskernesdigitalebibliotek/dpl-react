@@ -633,6 +633,11 @@ export default {
       name: "First available edition",
       defaultValue: "First available edition",
       control: { type: "text" }
+    },
+    filmAdaptationsText: {
+      name: "Film adaptations text",
+      defaultValue: "Film adaptations",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
