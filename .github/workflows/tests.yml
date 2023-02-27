@@ -65,4 +65,11 @@ jobs:
         run: yarn install
 
       - name: Run unit tests
-        run: yarn test:unit
+        run: yarn test:unit --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./coverage/
+          flags: unit
+          fail_ci_if_error: false
