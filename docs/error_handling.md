@@ -8,7 +8,7 @@ the same idiom of error handling in order to make the applications more robust.
 
 ## Error Boundary
 
-Error boundary was introduced in React 16 and makes it possible to implement a
+[Error boundary](https://reactjs.org/docs/error-boundaries.html) was introduced in React 16 and makes it possible to implement a
 "catch all" feature catching "uncatched" errors and replacing the application
 with a component to the users that something went wrong.
 It is meant ato be a way of having a safety net and always be able to tell
