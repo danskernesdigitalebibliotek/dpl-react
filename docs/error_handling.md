@@ -38,7 +38,7 @@ Eg. JSON parsing gone wrong.
 Both types of errors comes in two variants: "normal" and "critical". The idea is
 that only critical errors will trigger an Error Boundary.
 
-For instance if you look at the DBC Gateway fetcher it throws a
-`DbcGateWayHttpError` in case of a http error occurs. `DbcGateWayHttpError`
-extends the `FetcherCriticalHttpError` which makes sure to trigger the
+For instance if you look at the [DBC Gateway fetcher](../src/core/dbc-gateway/graphql-fetcher.ts) it throws a
+`DbcGateWayHttpError` in case of a http error occurs. [`DbcGateWayHttpError`](../src/core/dbc-dateway/DbcGatewayHttpError.ts)
+extends the [`FetcherCriticalHttpError`](../src/core/fetchers/FetcherCriticalHttpError) which makes sure to trigger the
 Error Boundary system.
