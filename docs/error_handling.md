@@ -18,11 +18,11 @@ possible to catch thrown errors at runtime.
 
 ### Fetch and Error Boundary
 
-Async operations and therby also fetch are not being handled out of the box
-by the React Error Boundary. But fortunately react-query, which is being used
+Async operations and therby also `fetch` are not being handled out of the box
+by the React Error Boundary. But fortunately `react-query`, which is being used
 both by the REST services (Orval) and graphql (Graphql Code Generator), has a
-way of addressing the problem. The `QueryClient` can be configured to trigger
-the Error Boundary system if an error is thrown. So that is what we are doing.
+way of addressing the problem. [The `QueryClient` can be configured to trigger
+the Error Boundary system if an error is thrown](https://react-query-v3.tanstack.com/reference/useQuery). So that is what we are doing.
 
 #### Fetch error classes
 
