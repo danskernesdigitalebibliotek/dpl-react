@@ -13,15 +13,14 @@ expected output giving different variations of input.
 
 ## Decision
 
-We decided to go for [Vitest](https://vitest.dev/) which is an easy to use and
-very fast unit testing tool.
+We decided to go for [Vitest](https://vitest.dev/) which is an easy to use and very fast
+unit testing tool.
 
 It has more or less the same capabilities as [Jest](https://jestjs.io/)
 which is another popular testing framework which is similar.
 
 Vitest is framework agnostic so in order to make it possible to test hooks
-we found [`@testing-library/react-hooks`](https://react-hooks-testing-library.com/)
-that works in conjunction with Vitest.
+we found [`@testing-library/react-hooks`](https://react-hooks-testing-library.com/) that works in conjunction with Vitest.
 
 ## Alternatives considered
 
