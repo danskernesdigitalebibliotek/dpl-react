@@ -104,7 +104,8 @@ describe("Material buttons", () => {
   it("Renders the correct action button for online digital articles", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/order-digital-copy/order-digital-fbi-api"
+      fixtureFilePath:
+        "material-buttons/material-buttons-order-digital-fbi-api.json"
     });
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
@@ -120,7 +121,8 @@ describe("Material buttons", () => {
   it("Renders the correct action button for infomedia articles", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
+      fixtureFilePath:
+        "material-buttons/material-buttons-infomedia-fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story")
       .getBySel("material-description")
@@ -208,7 +210,7 @@ describe("Material buttons", () => {
 
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
+      fixtureFilePath: "material-buttons/material-buttons-fbi-api.json"
     });
   });
 });

@@ -63,6 +63,10 @@
             ],
             "access": [
               {
+                "__typename": "DigitalArticleService",
+                "issn": "00026506"
+              },
+              {
                 "__typename": "InterLibraryLoan",
                 "loanIsPossible": true
               }
@@ -70,7 +74,8 @@
             "shelfmark": {
               "postfix": "Alt",
               "shelfmark": "05.6"
-            }
+            },
+            "workYear": null
           }
         ],
         "latest": {
@@ -122,6 +127,10 @@
           ],
           "access": [
             {
+              "__typename": "DigitalArticleService",
+              "issn": "00026506"
+            },
+            {
               "__typename": "InterLibraryLoan",
               "loanIsPossible": true
             }
@@ -129,7 +138,79 @@
           "shelfmark": {
             "postfix": "Alt",
             "shelfmark": "05.6"
-          }
+          },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:06373674",
+          "genreAndForm": [
+            "tidsskrift"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
+          "titles": {
+            "main": [
+              "Alt for damerne"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "nonfiktion",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "tidsskrift"
+            }
+          ],
+          "creators": [],
+          "publisher": [
+            "Egmont Magasiner"
+          ],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [
+            {
+              "value": "0002-6506"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1946- ",
+            "publicationYear": {
+              "display": "1946- "
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "00026506"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Alt",
+            "shelfmark": "05.6"
+          },
+          "workYear": null
         }
       },
       "materialTypes": [
@@ -166,6 +247,9 @@
       },
       "dk5MainEntry": {
         "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
+      },
+      "relations": {
+        "hasAdaptation": []
       }
     }
   }

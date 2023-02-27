@@ -628,6 +628,11 @@ export default {
       name: "Unknown",
       defaultValue: "Unknown",
       control: { type: "text" }
+    },
+    filmAdaptationsText: {
+      name: "Film adaptations text",
+      defaultValue: "Film adaptations",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

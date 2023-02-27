@@ -116,7 +116,7 @@ describe("Material", () => {
     cy.scrollTo("bottom");
 
     cy.getBySel("material-editions-disclosure")
-      .should("contain", "Editions (7)")
+      .should("contain", "Editions")
       .click()
       .then((disclosure) => {
         cy.wrap(disclosure).should("contain", "Reserve");

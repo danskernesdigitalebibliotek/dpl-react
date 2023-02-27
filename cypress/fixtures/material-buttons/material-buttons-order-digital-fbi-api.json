@@ -132,8 +132,7 @@
             "shelfmark": {
               "postfix": "Faglig",
               "shelfmark": "19.1"
-            },
-            "workYear": null
+            }
           }
         ],
         "latest": {
@@ -202,81 +201,7 @@
           "shelfmark": {
             "postfix": "Faglig",
             "shelfmark": "19.1"
-          },
-          "workYear": null
-        },
-        "bestRepresentation": {
-          "pid": "870971-tsart:34310815",
-          "genreAndForm": [],
-          "source": [
-            "Tidsskriftsartikler"
-          ],
-          "titles": {
-            "main": [
-              "Faglig formidling er ikke kun skriveteknik"
-            ],
-            "original": []
-          },
-          "fictionNonfiction": {
-            "display": "faglitteratur",
-            "code": "NONFICTION"
-          },
-          "materialTypes": [
-            {
-              "specific": "tidsskriftsartikel"
-            }
-          ],
-          "creators": [
-            {
-              "display": "Leif Becker Jensen",
-              "__typename": "Person"
-            }
-          ],
-          "publisher": [],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [],
-          "contributors": [],
-          "edition": {
-            "summary": "2010",
-            "publicationYear": {
-              "display": "2010"
-            }
-          },
-          "audience": {
-            "generalAudience": []
-          },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 21,
-              "playingTime": null
-            }
-          ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
-          "access": [
-            {
-              "__typename": "DigitalArticleService",
-              "issn": "01071424"
-            },
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
-          ],
-          "shelfmark": {
-            "postfix": "Faglig",
-            "shelfmark": "19.1"
-          },
-          "workYear": null
+          }
         }
       },
       "materialTypes": [
@@ -309,13 +234,7 @@
           }
         ]
       },
-      "relations": {
-        "hasReview": [
-          {
-            "pid": "150005-anmeld:81092"
-          }
-        ]
-      },
+      "reviews": [],
       "fictionNonfiction": {
         "display": "faglitteratur",
         "code": "NONFICTION"
