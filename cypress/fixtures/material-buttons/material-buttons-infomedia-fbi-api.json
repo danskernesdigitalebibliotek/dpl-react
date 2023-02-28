@@ -219,7 +219,12 @@
         "display": "99.4 , Eugene"
       },
       "relations": {
-        "hasAdaptation": []
+        "hasAdaptation": [],
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
       }
     }
   }

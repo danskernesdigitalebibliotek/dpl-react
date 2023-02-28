@@ -243,7 +243,12 @@
         "display": "19.1 Forskningsteknik i alm."
       },
       "relations": {
-        "hasAdaptation": []
+        "hasAdaptation": [],
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
       }
     }
   }

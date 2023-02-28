@@ -776,7 +776,12 @@
         "display": "Skønlitteratur"
       },
       "relations": {
-        "hasAdaptation": []
+        "hasAdaptation": [],
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
       }
     }
   }
