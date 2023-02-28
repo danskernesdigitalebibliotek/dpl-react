@@ -774,6 +774,9 @@
       },
       "dk5MainEntry": {
         "display": "Skønlitteratur"
+      },
+      "relations": {
+        "hasAdaptation": []
       }
     }
   }
