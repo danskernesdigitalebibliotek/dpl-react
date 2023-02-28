@@ -1,9 +1,7 @@
-import FetcherCriticalHttpError from "../../fetchers/FetcherCriticalHttpError";
+import FetcherHttpError from "../../fetchers/FetcherHttpError";
 
-// This HttpError is critical because we want to inform the user that something went wrong
-// while ordering a digitial article.
 export default class PublizonServiceHttpError<
   ContextType
-> extends FetcherCriticalHttpError<ContextType> {
+> extends FetcherHttpError<ContextType> {
   public readonly name = "PublizonServiceHttpError";
 }
