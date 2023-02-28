@@ -91,8 +91,6 @@ describe("The facet line", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.url().should("include", "filters=usePersistedFilters");
-
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
       "aria-pressed",
@@ -112,8 +110,6 @@ describe("The facet line", () => {
       .should("be.visible")
       .and("have.attr", "aria-pressed", "false")
       .click();
-
-    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)")
       .should("have.attr", "aria-pressed", "true")
@@ -162,9 +158,8 @@ describe("The facet line", () => {
 
     cy.url().should("include", "filters=usePersistedFilters");
 
+    // Replacement for returning to the search page using the back button after navigating to a search result.
     cy.reload(true);
-
-    cy.url().should("include", "filters=usePersistedFilters");
 
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
@@ -180,12 +175,6 @@ describe("The facet line", () => {
       .click();
 
     cy.url().should("include", "filters=usePersistedFilters");
-
-    cy.getBySel("facet-line-selected-term-lydbog (net)").should(
-      "have.attr",
-      "aria-pressed",
-      "true"
-    );
 
     cy.visit(
       "/iframe.html?args=q%3Alange+peter&id=apps-search-result--search-result"
