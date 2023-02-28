@@ -199,10 +199,8 @@ describe("Material", () => {
     });
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-reviews-disclosure")
-      .scrollIntoView()
-      .should("be.visible")
-      .click();
+    cy.scrollTo("bottom");
+    cy.getBySel("material-reviews-disclosure").should("be.visible").click();
     cy.getBySel("material-reviews").should(
       "contain",
       "Dorthe Marlene Jørgensen, 2016"
