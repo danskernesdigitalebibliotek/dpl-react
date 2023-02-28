@@ -206,11 +206,6 @@ fragment WorkMedium on Work {
       display
     }
   }
-  relations {
-    hasReview {
-      pid
-    }
-  }
   fictionNonfiction {
     display
     code
@@ -219,6 +214,9 @@ fragment WorkMedium on Work {
     display
   }
   relations {
+    hasReview {
+      pid
+    }
     hasAdaptation {
       ownerWork {
         workId

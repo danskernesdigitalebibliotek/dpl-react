@@ -1384,10 +1384,6 @@ export type GetMaterialQuery = {
         | { __typename?: "TimePeriod"; display: string }
       >;
     };
-    relations: {
-      __typename?: "Relations";
-      hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
-    };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
@@ -1396,6 +1392,7 @@ export type GetMaterialQuery = {
     dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     relations: {
       __typename?: "Relations";
+      hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
       hasAdaptation: Array<{
         __typename?: "Manifestation";
         ownerWork: {
@@ -2828,10 +2825,6 @@ export type WorkMediumFragment = {
       | { __typename?: "TimePeriod"; display: string }
     >;
   };
-  relations: {
-    __typename?: "Relations";
-    hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
-  };
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
@@ -2840,6 +2833,7 @@ export type WorkMediumFragment = {
   dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
   relations: {
     __typename?: "Relations";
+    hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
     hasAdaptation: Array<{
       __typename?: "Manifestation";
       ownerWork: {
@@ -3342,11 +3336,6 @@ export const WorkMediumFragmentDoc = `
       display
     }
   }
-  relations {
-    hasReview {
-      pid
-    }
-  }
   fictionNonfiction {
     display
     code
@@ -3355,6 +3344,9 @@ export const WorkMediumFragmentDoc = `
     display
   }
   relations {
+    hasReview {
+      pid
+    }
     hasAdaptation {
       ownerWork {
         workId

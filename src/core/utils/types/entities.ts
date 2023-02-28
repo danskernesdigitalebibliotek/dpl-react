@@ -1,6 +1,7 @@
 import {
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
+  Relations,
   WorkMediumFragment
 } from "../../dbc-gateway/generated/graphql";
 import { Pid, WorkId } from "./ids";
@@ -35,5 +36,6 @@ export type Work = Omit<
       __typename?: "Manifestation" | undefined;
       pid: Pid;
     }[];
+    hasAdaptation: Relations["hasAdaptation"];
   };
 };
