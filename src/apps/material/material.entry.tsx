@@ -7,6 +7,8 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
+  alertErrorCloseText: string;
+  alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
   cantReserveText: string;
