@@ -1,19 +1,19 @@
 import React from "react";
 import { getNumberedSeries, getUniqueMovies } from "../../apps/material/helper";
-import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   constructMaterialUrl,
   constructSearchUrl
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
-  work: WorkMediumFragment;
+  work: Work;
 }
 
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
