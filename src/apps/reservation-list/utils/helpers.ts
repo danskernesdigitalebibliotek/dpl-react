@@ -1,6 +1,9 @@
+import { ReservationDetailsV2 } from "../../../core/fbs/model";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 
-export const sortByOldestPickupDeadline = (list: ReservationType[]) => {
+export const sortByOldestPickupDeadline = (
+  list: ReservationType[] | ReservationDetailsV2[]
+) => {
   return list.sort(
     (objA, objB) =>
       new Date(objA.pickupDeadline || new Date()).getTime() -
@@ -10,7 +13,7 @@ export const sortByOldestPickupDeadline = (list: ReservationType[]) => {
 
 export const getReservedDigital = (list: ReservationType[]) => {
   // Sorts by pickupDeadline, then title
-  return [...list]
+  return list
     .filter(({ state }) => state === "reserved")
     .sort(
       (objA, objB) =>
@@ -21,7 +24,7 @@ export const getReservedDigital = (list: ReservationType[]) => {
 };
 
 export const getReservedPhysical = (list: ReservationType[]) => {
-  return [...list]
+  return list
     .filter(({ state }) => state === "reserved")
     .sort(
       (objA, objB) => (objA.numberInQueue || 0) - (objB.numberInQueue || 0)

@@ -21,7 +21,7 @@ function config<T>(): T | string | string[] {
   return [];
 }
 
-type UseConfigFunction = typeof config;
+export type UseConfigFunction = typeof config;
 
 export const useConfig = (): UseConfigFunction => {
   const { data } = useSelector((state: RootState) => state.config);

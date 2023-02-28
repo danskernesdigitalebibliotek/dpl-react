@@ -1,66 +1,45 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
+import { Button } from "../../../../components/Buttons/Button";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
-import { useDeleteReservations } from "../../../../core/fbs/fbs";
-import DeleteReservationModal from "../delete-reservation/delete-reservation-modal";
-import { getModalIds } from "../../../../core/utils/helpers/general";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
 
 export interface ReservationDetailsButtonProps {
   reservationId: number;
   numberInQueue?: number | null;
+  classNames?: string;
+  buttonClassNames?: string;
+  openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetailsButton: FC<
   ReservationDetailsButtonProps & MaterialProps
-> = ({ reservationId, numberInQueue }) => {
+> = ({
+  reservationId,
+  numberInQueue,
+  openReservationDeleteModal,
+  classNames,
+  buttonClassNames
+}) => {
   const t = useText();
-  const modalIds = getModalIds();
-  const { mutate } = useDeleteReservations();
-  const { open, close } = useModalButtonHandler();
-  const modalId = `${modalIds.deleteReservation}${reservationId}`;
-
-  const deleteReservation = useCallback(() => {
-    if (reservationId) {
-      mutate(
-        {
-          params: { reservationid: [reservationId] }
-        },
-        {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
-            close(modalId);
-          },
-          // todo error handling, missing in figma
-          onError: () => {
-            close(modalId);
-          }
-        }
-      );
-    }
-  }, [close, modalId, mutate, reservationId]);
 
   return (
-    <>
-      <div className="modal-details__buttons">
-        {numberInQueue && numberInQueue > 0 && (
-          <div className="my-8 mx-16 text-body-medium-regular">
-            {t("reservationDetailsOthersInQueueText")}
-          </div>
-        )}
-        <button
-          type="button"
-          onClick={() => open(modalId)}
-          className="btn-primary btn-filled btn-small arrow__hover--right-small"
-        >
-          {t("reservationDetailsButtonText")}
-        </button>
-      </div>
-      <DeleteReservationModal
-        deleteReservation={deleteReservation}
-        id={modalId}
+    <div className={`modal-details__buttons ${classNames}`}>
+      {numberInQueue && numberInQueue > 0 && (
+        <div className="my-8 mr-16 text-body-medium-regular">
+          {t("reservationDetailsOthersInQueueText")}
+        </div>
+      )}
+      <Button
+        label={t("reservationDetailsButtonRemoveText")}
+        onClick={() => openReservationDeleteModal(reservationId.toString())}
+        classNames={buttonClassNames}
+        buttonType="none"
+        disabled={false}
+        collapsible={false}
+        size="small"
+        variant="filled"
       />
-    </>
+    </div>
   );
 };
 

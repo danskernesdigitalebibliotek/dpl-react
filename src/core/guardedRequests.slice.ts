@@ -7,10 +7,9 @@ import { addItem } from "./material-list-api/material-list";
 // eslint-disable-next-line import/no-cycle
 import { persistor } from "./store";
 import type { RootState } from "./store";
-import { getCurrentUnixTime } from "./utils/helpers/date";
+import getCurrentUnixTime from "./utils/helpers/date";
 import {
-  appendQueryParametersToUrl,
-  getCurrentLocation,
+  currentLocationWithParametersUrl,
   redirectToLoginAndBack,
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
@@ -103,12 +102,9 @@ export const guardedRequest = createAsyncThunk(
         // And redirect to external login.
         const { authUrl } = getUrlsFromState(getState() as RootState);
         if (authUrl) {
-          const returnUrl = appendQueryParametersToUrl(
-            new URL(getCurrentLocation()),
-            {
-              [AUTH_PARAM]: "1"
-            }
-          );
+          const returnUrl = currentLocationWithParametersUrl({
+            [AUTH_PARAM]: "1"
+          });
           redirectToLoginAndBack({ authUrl, returnUrl });
         }
       });

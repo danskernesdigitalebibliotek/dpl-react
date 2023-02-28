@@ -9,36 +9,51 @@ interface PatronPageConfigProps {
   branchesConfig: string;
   pincodeLengthConfig: string;
   deletePatronLinkConfig: string;
+  alwaysLoanableEreolenLink: string;
 }
+
+export interface PatronPageUrlProps {
+  fbsBaseUrl: string;
+  publizonBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
+  thresholdConfig: string;
+}
+
 interface PatronPageTextProps {
   patronPageHeaderText: string;
+  patronPagePincodeTooShortValidationText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
   patronPageContactInfoHeaderText: string;
-  patronPageContactInfoBreadText: string;
+  patronPageContactInfoBodyText: string;
   patronPageContactPhoneLabelText: string;
   patronPageContactPhoneCheckboxText: string;
   patronPageContactEmailLabelText: string;
   patronPageContactEmailCheckboxText: string;
   patronPageStatusSectionHeaderText: string;
-  patronPageStatusSectionBreadText: string;
+  patronPageStatusSectionBodyText: string;
   patronPageStatusSectionLinkText: string;
   patronPageStatusSectionLoansEbooksText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
-  patronPageStatusSectionReservationsAudioBooksText: string;
   patronPageChangePickupHeaderText: string;
-  patronPageChangePickupBreadText: string;
+  patronPageChangePickupBodyText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
   patronPagePauseReservationsHeaderText: string;
-  patronPagePauseReservationsBreadText: string;
+  patronPagePauseReservationsBodyText: string;
+  patronPageSaveButtonText: string;
+  patronPageDeleteProfileText: string;
+  patronPagePincodesNotTheSameText: string;
   patronPageOpenPauseReservationsSectionText: string;
   patronPageOpenPauseReservationsSectionAriaText: string;
-  pauseReservationEndDateLabelText: string;
-  pauseReservationStartDateLabelText: string;
+  dateInputsEndDateLabelText: string;
+  dateInputsStartDateLabelText: string;
   patronPageChangePincodeHeaderText: string;
-  patronPageChangePincodeBreadText: string;
+  patronPageChangePincodeBodyText: string;
   patronPagePincodeLabelText: string;
   patronPageConfirmPincodeLabelText: string;
   patronPageStatusSectionLoanHeaderText: string;
@@ -48,7 +63,8 @@ interface PatronPageTextProps {
 
 export interface PatronPageProps
   extends PatronPageConfigProps,
-    PatronPageTextProps {}
+    PatronPageTextProps,
+    PatronPageUrlProps {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 

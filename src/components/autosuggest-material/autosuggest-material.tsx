@@ -7,7 +7,6 @@ import {
   creatorsToString,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { Pid } from "../../core/utils/types/ids";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 
 export interface AutosuggestMaterialProps {
@@ -15,13 +14,15 @@ export interface AutosuggestMaterialProps {
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textDataLength: number;
+  dataCy?: string;
 }
 
 const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   materialData,
   getItemProps,
   highlightedIndex,
-  textDataLength
+  textDataLength,
+  dataCy = "autosuggest-material-item"
 }) => {
   const t = useText();
   return (
@@ -52,18 +53,19 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
               }`}
               key={item.work?.workId}
               {...getItemProps({ item, index })}
+              data-cy={dataCy}
             >
               {/* eslint-enable react/jsx-props-no-spreading */}
               <div className="autosuggest__material__content">
-                <div className="autosuggest__cover">
-                  {item.work && (
-                    <Cover
-                      animate
-                      size="xsmall"
-                      id={item.work.manifestations.first.pid as Pid}
-                    />
-                  )}
-                </div>
+                {item.work && (
+                  <Cover
+                    animate
+                    size="xsmall"
+                    id={item.work.manifestations.bestRepresentation.pid}
+                    shadow
+                  />
+                )}
+
                 <div className="autosuggest__info">
                   <div className="text-body-medium-medium autosuggest__title">
                     {item.work?.titles.main[0]}

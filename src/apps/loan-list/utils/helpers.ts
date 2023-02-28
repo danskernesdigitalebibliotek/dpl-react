@@ -3,6 +3,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { UseTextFunction } from "../../../core/utils/text";
+import { ListType } from "../../../core/utils/types/list-type";
 
 export const removeLoansWithDuplicateDueDate = (
   date: string,
@@ -19,6 +20,14 @@ export const loansAreEmpty = (list: LoanType[] | null) =>
 
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
+};
+
+export const getFromListByKey = (
+  list: ListType[],
+  key: "faust" | "identifier",
+  value: string
+) => {
+  return list.filter((loan) => loan[key] === value);
 };
 
 export const getStatusText = (status: string, t: UseTextFunction) => {
@@ -74,7 +83,7 @@ export const queryMatchesFaust = (query: string | null) => {
   return returnValue;
 };
 
-export const isDigital = (loan: LoanType) => Boolean(loan.identifier);
+export const isDigital = (loan: ListType) => Boolean(loan.identifier);
 
 export const getStackedItems = (
   view: ListView,

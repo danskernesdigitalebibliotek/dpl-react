@@ -1,4 +1,4 @@
-import { intersection } from "lodash";
+import { AvailabilityV3 } from "../../../core/fbs/model/availabilityV3";
 import {
   Access,
   AccessTypeCode
@@ -6,27 +6,53 @@ import {
 import { Manifestation } from "../../../core/utils/types/entities";
 
 export const hasCorrectAccess = (
-  desiredAccess: Access["__typename"],
-  manifest: Manifestation
+  desiredAccess: NonNullable<Access["__typename"]>,
+  manifestations: Manifestation[]
 ) => {
-  return manifest.access.some(({ __typename }) => __typename === desiredAccess);
+  return manifestations.some((manifestation) => {
+    return manifestation.access.some(
+      ({ __typename }) =>
+        __typename.toLowerCase() === desiredAccess.toLowerCase()
+    );
+  });
 };
 
 export const hasCorrectAccessType = (
   desiredAccessType: AccessTypeCode,
-  manifest: Manifestation
+  manifestations: Manifestation[]
 ) => {
-  return manifest.accessTypes.some((type) => type.code === desiredAccessType);
+  return manifestations.some((manifestation) => {
+    return manifestation.accessTypes.some(
+      (type) => type.code === desiredAccessType
+    );
+  });
 };
 
-export const isArticle = (manifestation: Manifestation) => {
-  const allMaterialTypes = manifestation.materialTypes.map((materialType) =>
-    materialType.specific.toLowerCase()
-  );
+export const hasCorrectMaterialType = (
+  desiredMaterialType: string,
+  manifestations: Manifestation[]
+) => {
+  return manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some(
+      (type) =>
+        type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
+    );
+  });
+};
+
+export const isArticle = (manifestations: Manifestation[]) => {
   return (
-    intersection(allMaterialTypes, ["tidsskriftsartikel", "avisartikel"])
-      .length > 0
+    hasCorrectMaterialType("tidsskriftsartikel", manifestations) ||
+    hasCorrectMaterialType("avisartikel", manifestations)
   );
+};
+
+export const areAnyReservable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.reservable);
+};
+
+export const areAnyAvailable = (availability: AvailabilityV3[]) => {
+  return availability.some((item) => item.available);
 };
 
 export default {};

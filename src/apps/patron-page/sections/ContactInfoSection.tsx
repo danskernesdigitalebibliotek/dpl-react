@@ -21,13 +21,13 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
-      {t("patronPageContactInfoBreadText") && (
+      {t("patronPageContactInfoBodyText") && (
         <p className="text-body-small-regular mb-32">
-          {t("patronPageContactInfoBreadText")}
+          {t("patronPageContactInfoBodyText")}
         </p>
       )}
       <TextInput
-        className="dpl-input input__desktop"
+        className="patron__input patron__input--desktop"
         id="phone-input"
         type="number"
         onChange={(newPhoneNumber) =>
@@ -47,7 +47,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         label={t("patronPageContactPhoneCheckboxText")}
       />
       <TextInput
-        className="dpl-input input__desktop"
+        className="patron__input patron__input--desktop"
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}

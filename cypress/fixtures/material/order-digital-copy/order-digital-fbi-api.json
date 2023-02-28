@@ -1,0 +1,347 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870971-tsart:34310815",
+      "titles": {
+        "full": [
+          "Faglig formidling er ikke kun skriveteknik"
+        ],
+        "original": []
+      },
+      "abstract": [
+        "Om skriftlig formidling af faglig viden til ikke-fagfolk"
+      ],
+      "creators": [
+        {
+          "display": "Leif Becker Jensen",
+          "__typename": "Person"
+        }
+      ],
+      "series": [
+        {
+          "title": "Skriftlig faglig formidling",
+          "isPopular": null,
+          "numberInSeries": null,
+          "readThisFirst": null,
+          "readThisWhenever": null
+        }
+      ],
+      "seriesMembers": [
+        {
+          "workId": "work-of:870971-tsart:34310858",
+          "titles": {
+            "main": [
+              "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
+            ],
+            "full": [
+              "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
+            ],
+            "original": []
+          }
+        },
+        {
+          "workId": "work-of:870971-tsart:34310866",
+          "titles": {
+            "main": [
+              "Grammatikkens poesi"
+            ],
+            "full": [
+              "Grammatikkens poesi"
+            ],
+            "original": []
+          }
+        },
+        {
+          "workId": "work-of:870971-tsart:34310815",
+          "titles": {
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "full": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "original": []
+          }
+        },
+        {
+          "workId": "work-of:870971-tsart:34310831",
+          "titles": {
+            "main": [
+              "Skal det være så svært at lære at skrive godt?"
+            ],
+            "full": [
+              "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
+            ],
+            "original": []
+          }
+        }
+      ],
+      "workYear": null,
+      "genreAndForm": [],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870971-tsart:34310815",
+            "genreAndForm": [],
+            "source": [
+              "Tidsskriftsartikler"
+            ],
+            "titles": {
+              "main": [
+                "Faglig formidling er ikke kun skriveteknik"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "tidsskriftsartikel"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Leif Becker Jensen",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [],
+            "contributors": [],
+            "edition": {
+              "summary": "2010",
+              "publicationYear": {
+                "display": "2010"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 21,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "DigitalArticleService",
+                "issn": "01071424"
+              },
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Faglig",
+              "shelfmark": "19.1"
+            },
+            "workYear": null
+          }
+        ],
+        "latest": {
+          "pid": "870971-tsart:34310815",
+          "genreAndForm": [],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
+          "titles": {
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "tidsskriftsartikel"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Leif Becker Jensen",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 21,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "01071424"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Faglig",
+            "shelfmark": "19.1"
+          },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870971-tsart:34310815",
+          "genreAndForm": [],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
+          "titles": {
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "tidsskriftsartikel"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Leif Becker Jensen",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 21,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "01071424"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Faglig",
+            "shelfmark": "19.1"
+          },
+          "workYear": null
+        }
+      },
+      "materialTypes": [
+        {
+          "specific": "tidsskriftsartikel"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "formidling"
+          },
+          {
+            "display": "videnskab"
+          },
+          {
+            "display": "retorik"
+          },
+          {
+            "display": "forskning"
+          },
+          {
+            "display": "skriftlig fremstilling"
+          }
+        ]
+      },
+      "reviews": [],
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "19.1 Forskningsteknik i alm."
+      },
+      "relations": {
+        "hasAdaptation": []
+      }
+    }
+  }
+}

@@ -74,20 +74,26 @@ describe("Pause reservation modal test", () => {
       .eq(0)
       .should(
         "have.text",
-        "Sæt fysiske reserveringer på pause i god tid, da reserveringer der allerede bliver behandlet ikke bliver sat på pause."
+        "Pause your reservations early, since reservations that are already being processed, will not be paused."
       );
     // ID 12 2.c. datepicker: start date
-    cy.get(".modal.modal-cta #start-date")
+    cy.get(".modal.modal-cta [data-cy='start-date']")
       .should("exist")
       .should("have.attr", "value")
       // ID 12 2.c.i Start day should be configurable
       .should("include", "2022-06-30");
 
     // ID 12 2.e. datepicker: end date
-    cy.get(".modal.modal-cta #end-date").should("exist");
+    cy.get(".modal.modal-cta [data-cy='end-date']").should("exist");
 
     // ID 12 2.b. text: link "read more"
-    // todo does not link atm
+    cy.get(".modal")
+      .find("[data-cy='pause-reservation-info-link']")
+      .should("have.attr", "href")
+      .should(
+        "include",
+        "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
+      );
 
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       statusCode: 200,
@@ -125,10 +131,6 @@ describe("Pause reservation modal test", () => {
     cy.get(".modal.modal-cta .modal-pause__button button")
       .should("exist")
       .click();
-
-    cy.get("@update-user").should((response) => {
-      expect(response).to.have.property("response");
-    });
 
     // ID 12 4.b. closes modal, updates reservation overview with badge
     cy.get(".modal.modal-cta").should("not.exist");

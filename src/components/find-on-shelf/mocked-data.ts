@@ -28,7 +28,7 @@ export const mockedManifestationData: Manifestation[] = [
         __typename: "Person"
       }
     ],
-    hostPublication: null,
+    publisher: [""],
     languages: {
       main: [
         {
@@ -96,7 +96,7 @@ export const mockedManifestationData: Manifestation[] = [
         __typename: "Person"
       }
     ],
-    hostPublication: null,
+    publisher: [""],
     languages: {
       main: [
         {
@@ -165,7 +165,7 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
       }
     ],
     creators: [],
-    hostPublication: null,
+    publisher: [""],
     languages: {
       main: [
         {

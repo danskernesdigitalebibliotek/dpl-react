@@ -23,6 +23,7 @@ const DigitalModalBody: React.FunctionComponent<DigitalModalBodyProps> = ({
 
   return (
     <ReservationForm
+      cyData="order-digital"
       title={t("orderDigitalCopyTitleText")}
       description={[t("orderDigitalCopyDescriptionText")]}
       onSubmit={handleOnSubmit}

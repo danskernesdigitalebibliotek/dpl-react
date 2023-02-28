@@ -1,5 +1,5 @@
 import { upperFirst } from "lodash";
-import React from "react";
+import React, { memo } from "react";
 
 import {
   FilterItemTerm,
@@ -63,7 +63,10 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             <li className="facet-line__item">
               <Dropdown
                 cyData={`facet-line-${name}-dropdown`}
-                placeholder={t(`facet${upperFirst(name)}Text`)}
+                placeholder={{
+                  label: t(`facet${upperFirst(name)}Text`),
+                  value: ""
+                }}
                 options={formatValuesToDropdown(name, values)}
                 ariaLabel={name}
                 arrowIcon="chevron"
@@ -124,4 +127,4 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   );
 };
 
-export default FacetLineFilters;
+export default memo(FacetLineFilters);

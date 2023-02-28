@@ -38,7 +38,7 @@ describe("Search header app", () => {
 
   it("Doesn't show suggestions before 3 characters are typed", () => {
     cy.get(".header__menu-search-input").focus().type("ha");
-    cy.get(".autosuggest").should("not.exist");
+    cy.get(".autosuggest").should("not.be.visible");
     cy.get(".header__menu-search-input").focus().type("r");
     cy.get(".autosuggest").should("be.visible");
   });
@@ -63,12 +63,12 @@ describe("Search header app", () => {
     cy.get(".header__menu-search-input").focus().type("har");
     cy.get(".autosuggest").should("contain.text", "Harry");
     cy.contains("Harry Potter (topic)");
-    cy.contains("Harry Potter og De Vises Sten");
+    cy.contains("Harry Potter og de vises sten");
   });
 
   it("Shows cover pictures for the material suggestions", () => {
     cy.get(".header__menu-search-input").focus().type("har");
-    cy.get(".autosuggest__cover>div>span>img").should(
+    cy.get(".autosuggest__material__content > .cover > .cover__img").should(
       "have.attr",
       "src",
       "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886150/bogportalen.dk/9788702029444.jpg"

@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent } from "react";
-import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import Dropdown from "../Dropdown/Dropdown";
 import { useText } from "../../core/utils/text";
 
 export interface OptionsProps {
@@ -9,65 +9,33 @@ export interface OptionsProps {
 
 export interface ListDetailsDropdownProps {
   onDropdownChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  setShowSelect: (show: boolean) => void;
-  showSelect: boolean;
   options: OptionsProps[];
-  selected: OptionsProps | null;
+  selected?: string | null;
+  labelledBy: string;
 }
 
 const ListDetailsDropdown: FC<ListDetailsDropdownProps> = ({
   onDropdownChange,
-  setShowSelect,
-  showSelect,
   options,
-  selected
+  selected,
+  labelledBy
 }) => {
   const t = useText();
 
   return (
-    <>
-      {!showSelect && (
-        <button
-          type="button"
-          className="link-tag"
-          onClick={() => setShowSelect(true)}
-        >
-          {t("listDetailsChangeText")}
-        </button>
-      )}
-      {showSelect && (
-        <div className="dropdown">
-          <select
-            className="dropdown__select"
-            onChange={(e) => onDropdownChange(e)}
-          >
-            <option
-              key={null}
-              selected={selected === null}
-              className="dropdown__option"
-              disabled
-            >
-              {t("listDetailsNothingSelectedLabelText")}
-            </option>
-            {options.map(({ label, value }: OptionsProps) => {
-              return (
-                <option
-                  key={value}
-                  selected={selected?.value === value}
-                  className="dropdown__option"
-                  value={value}
-                >
-                  {label}
-                </option>
-              );
-            })}
-          </select>
-          <div className="dropdown__arrows">
-            <img className="dropdown__arrow" src={ExpandIcon} alt="" />
-          </div>
-        </div>
-      )}
-    </>
+    <Dropdown
+      labelledBy={labelledBy}
+      defaultValue={selected || ""}
+      placeholder={{
+        label: t("listDetailsNothingSelectedLabelText"),
+        disabled: true,
+        value: ""
+      }}
+      options={options}
+      ariaLabel=""
+      arrowIcon="chevron"
+      handleOnChange={(e) => onDropdownChange(e)}
+    />
   );
 };
 

@@ -54,6 +54,7 @@
           "/**/*.test.jsx",
           "/**/*.test.ts",
           "/**/*.test.tsx",
+          "vitest.config.ts",
           "webpack.config.js",
           "postcss.config.js",
           "orval.config.ts",
@@ -99,7 +100,8 @@
     },
     {
       "files": [
-        "*.tsx"
+        "*.tsx",
+        "*.ts"
       ],
       "rules": {
         // We do not use prop-types in ts.
@@ -111,6 +113,17 @@
           {
             "allow": [
               "__typename"
+            ]
+          }
+        ],
+        "react/forbid-elements": [
+          1,
+          {
+            "forbid": [
+              {
+                "element": "main",
+                "message": "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
+              }
             ]
           }
         ]

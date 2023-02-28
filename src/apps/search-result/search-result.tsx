@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/search-result-list/SearchResultList";
 import {
+  FacetField,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import {
-  formatFacetTerms,
+  createFilters,
   useGetFacets
 } from "../../components/facet-browser/helper";
 import useFilterHandler from "./useFilterHandler";
-import { FilterItemTerm, TermOnClickHandler } from "./types";
-import { useConfig } from "../../core/utils/config";
-import { AgencyBranch } from "../../core/fbs/model";
-import {
-  excludeBlacklistedBranches,
-  cleanBranchesId
-} from "../../components/reservation/helper";
+import { TermOnClickHandler } from "./types";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
@@ -30,6 +25,9 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import useGetCleanBranches from "../../core/utils/branches";
+import { dataIsNotEmpty } from "../../core/utils/helpers/general";
 
 interface SearchResultProps {
   q: string;
@@ -37,18 +35,7 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
-    transformer: "jsonParse"
-  });
-  const blacklistBranches = config("blacklistedSearchBranchesConfig", {
-    transformer: "stringToArray"
-  });
-  const whitelistBranches = excludeBlacklistedBranches(
-    branches,
-    blacklistBranches
-  );
-  const cleanBranches = cleanBranchesId(whitelistBranches);
+  const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
@@ -58,9 +45,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  const filteringHandler: TermOnClickHandler = (filterInfo) => {
-    filterHandler(filterInfo);
-  };
+  const filteringHandler = useCallback<TermOnClickHandler>(
+    (filterInfo) => {
+      filterHandler(filterInfo);
+    },
+    [filterHandler]
+  );
+
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
@@ -76,7 +67,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       name: statistics.searchQuery.name,
       trackedData: q
     });
-    // We actaully just want to track if the query changes.
+    // We actually just want to track if the query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
 
@@ -98,17 +89,23 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     }
   }, [campaignFacets, mutate]);
 
-  const createFilters = (
-    facets: {
-      [key: string]: { [key: string]: FilterItemTerm };
-    },
-    branchIdList: string[]
-  ) => {
-    return {
-      ...formatFacetTerms(facets),
-      ...(cleanBranches ? { branchId: branchIdList } : {})
-    };
-  };
+  // Check for material type filters in url on pageload
+  // This is an initial, intentionally simple approach supporting what is required by the search header.
+  // It could be reworked to support all filters and terms at a later point.
+  useEffect(() => {
+    const materialTypeUrlFilter = getUrlQueryParam("materialType");
+    if (materialTypeUrlFilter) {
+      filterHandler({
+        filterItem: {
+          facet: FacetField.MaterialTypes,
+          term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
+        },
+        action: "add"
+      });
+    }
+    // We only want to do this once, so we need the dependency array empty
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { data } = useSearchWithPaginationQuery({
     q: { all: q },
@@ -173,18 +170,20 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   return (
     <div className="search-result-page">
-      <SearchResultHeader hitcount={String(hitcount)} q={q} />
+      <SearchResultHeader hitcount={hitcount} q={q} />
       <FacetLine q={q} filters={filters} filterHandler={filteringHandler} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
       {PagerComponent}
-      <FacetBrowserModal
-        q={q}
-        filters={filters}
-        filterHandler={filteringHandler}
-      />
+      {dataIsNotEmpty(resultItems) && (
+        <FacetBrowserModal
+          q={q}
+          filters={filters}
+          filterHandler={filteringHandler}
+        />
+      )}
     </div>
   );
 };

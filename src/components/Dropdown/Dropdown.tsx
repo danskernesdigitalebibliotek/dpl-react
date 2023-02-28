@@ -4,21 +4,21 @@ import DropdownIcon from "./DropdownIcon";
 
 export type Option = {
   label: string;
-  href?: string;
   disabled?: boolean;
   value: string;
-  selected?: boolean;
 };
 
 type DropdownProps = {
   options: Option[];
   ariaLabel: string;
+  labelledBy?: string;
   arrowIcon: "triangles" | "chevron";
   classNames?: string;
   innerClassNames?: { select?: string; option?: string; arrowWrapper?: string };
   handleOnChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  placeholder?: string;
+  placeholder?: Option;
   cyData?: string;
+  defaultValue?: string;
 };
 
 const Dropdown: React.FunctionComponent<DropdownProps> = ({
@@ -29,7 +29,9 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   innerClassNames,
   handleOnChange,
   placeholder,
-  cyData
+  cyData,
+  labelledBy,
+  defaultValue
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -43,28 +45,28 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
     return undefined;
   };
 
+  const optionsList = placeholder ? [placeholder, ...options] : options;
+
   return (
     <div className={classes.root}>
       <select
+        aria-labelledby={labelledBy}
         data-cy={cyData}
         className={classes.select}
         aria-label={ariaLabel}
         onChange={checkHandleOnChange}
       >
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map(({ label, value, disabled, selected }) => {
-          return (
-            <option
-              key={label}
-              value={value}
-              className={classes.option}
-              disabled={disabled}
-              selected={selected}
-            >
-              {label}
-            </option>
-          );
-        })}
+        {optionsList.map(({ label, value, disabled }) => (
+          <option
+            key={label}
+            value={value}
+            className={classes.option}
+            disabled={disabled}
+            selected={value === defaultValue}
+          >
+            {label}
+          </option>
+        ))}
       </select>
       <div className={classes.arrowWrapper}>
         <DropdownIcon arrowIcon={arrowIcon} />

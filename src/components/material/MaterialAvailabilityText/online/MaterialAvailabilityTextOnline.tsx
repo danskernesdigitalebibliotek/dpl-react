@@ -7,12 +7,12 @@ import { useText } from "../../../../core/utils/text";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 
 interface MaterialAvailabilityTextOnlineProps {
-  isbn: string;
+  isbns: string[];
 }
 
 const MaterialAvailabilityTextOnline: React.FC<
   MaterialAvailabilityTextOnlineProps
-> = ({ isbn }) => {
+> = ({ isbns }) => {
   const t = useText();
   // TODO: Below there are 2 different isbn numbers that can be used in useGetV1ProductsIdentifier. with and without "blue title"
   // const costfreeID = "9788711321683";
@@ -29,7 +29,7 @@ const MaterialAvailabilityTextOnline: React.FC<
     data: productsData,
     isLoading: productsIsLoading,
     isError: productsIsError
-  } = useGetV1ProductsIdentifier(isbn);
+  } = useGetV1ProductsIdentifier(isbns[0]);
 
   if (productsIsLoading || productsIsError || !productsData) return null;
 

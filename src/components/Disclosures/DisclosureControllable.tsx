@@ -36,22 +36,22 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
 
   return (
     <div
-      data-cy={cyData}
       className={`disclosure text-body-large ${
         fullWidth ? "disclosure--full-width" : ""
       }`}
-      aria-controls={disclosureId}
-      aria-expanded={isOpen}
     >
       <div
         className={clsx(
           "disclosure__headline text-body-large",
           removeHeadlinePadding && "disclosure__headline--no-padding"
         )}
+        data-cy={cyData}
         onClick={toggleOpen}
         onKeyDown={toggleOpen}
         role="button"
         tabIndex={0}
+        aria-controls={disclosureId}
+        aria-expanded={isOpen}
       >
         {mainIconPath && (
           <div className="disclosure__icon bg-identity-tint-120">

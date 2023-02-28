@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
-import { AvailabiltityLabels } from "../../availability-label/availability-labels";
+import { AvailabilityLabels } from "../../availability-label/availability-labels";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../button-favourite/button-favourite";
@@ -13,8 +13,8 @@ import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getFirstPublishedYear,
-  getManifestationPid
+  getManifestationPid,
+  getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -29,6 +29,8 @@ import { guardedRequest } from "../../../core/guardedRequests.slice";
 import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
+import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
+import { getNumberedSeries } from "../../../apps/material/helper";
 
 export interface SearchResultListItemProps {
   item: Work;
@@ -37,6 +39,7 @@ export interface SearchResultListItemProps {
 }
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
+  item,
   item: {
     titles: { full: fullTitle },
     series,
@@ -50,17 +53,17 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const dispatch = useDispatch<TypedDispatch>();
-  const creatorsText = creatorsToString(
+  const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
-  const author = creatorsText || t("creatorsAreMissingText");
-  const datePublished = getFirstPublishedYear(manifestations);
   const manifestationPid = getManifestationPid(manifestations);
-  const firstInSeries = series?.[0];
-  const { title: seriesTitle, numberInSeries } = firstInSeries || {};
+  const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
   const { track } = useStatistics();
+  // We use hasBeenVisible to determine if the search result
+  // is, or has been, visible in the viewport.
+  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
 
   const handleClick = useCallback(() => {
     track("click", {
@@ -85,64 +88,81 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   };
 
   return (
-    // We know that is not following a11y recommendations to have an onclick handler
-    // on a noninteractive element.
+    // We know that is not following a11y recommendations to have an onclick
+    // handler on a non-interactive element.
+    //
     // The reason why this is implemented:
-    // We have interactive elements within each search result: the favourite button,
-    // which must react to clicks
-    // while we also want the entire search result to be clickable.
-    // You cannot have nested links so onClick handlers
-    // and stopping event propagation is necessary.
+    // We have interactive elements within each search result
+    // namely the the favorite button, which must react to clicks while we also want the
+    // entire search result to be clickable.
+    // You cannot have nested links so onClick handlers and stopping event propagation
+    // is necessary.
     //
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
+      ref={itemRef}
       className="search-result-item arrow arrow__hover--right-small"
       onClick={handleClick}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
       <div className="search-result-item__cover">
-        <SearchResultListItemCover
-          id={manifestationPid}
-          description={String(fullTitle)}
-          url={materialFullUrl}
-          tint={coverTint}
-        />
+        {showItem && (
+          <SearchResultListItemCover
+            id={manifestationPid}
+            description={String(fullTitle)}
+            url={materialFullUrl}
+            tint={coverTint}
+          />
+        )}
       </div>
       <div className="search-result-item__text">
         <div className="search-result-item__meta">
-          <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
-          {numberInSeries && seriesTitle && (
+          {showItem && (
+            <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
+          )}
+          {firstItemInSeries && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                numberInSeries.number?.[0]
+                firstItemInSeries.numberInSeries?.number
               }`}
               subTitle={t("inSeriesText")}
               linkList={[
                 {
-                  url: constructSearchUrl(searchUrl, seriesTitle),
-                  term: seriesTitle
+                  url: constructSearchUrl(searchUrl, firstItemInSeries.title),
+                  term: firstItemInSeries.title
                 }
               ]}
             />
           )}
         </div>
 
-        <h2 className="search-result-item__title text-header-h4">
+        <h2
+          className="search-result-item__title text-header-h4 mb-4"
+          data-cy="search-result-item-title"
+        >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
-        {author && (
-          <p className="text-small-caption">{`${t(
-            "byAuthorText"
-          )} ${author} (${datePublished})`}</p>
+        {author && item && (
+          <p className="text-small-caption" data-cy="search-result-item-author">
+            {`${t("byAuthorText")} ${author}`}
+            {getReleaseYearSearchResult(item)
+              ? ` (${getReleaseYearSearchResult(item)})`
+              : ""}
+          </p>
         )}
       </div>
-      <div className="search-result-item__availability">
-        <AvailabiltityLabels
-          cursorPointer
-          workId={workId}
-          manifestations={manifestations}
-        />
+      <div
+        className="search-result-item__availability"
+        data-cy="search-result-item-availability"
+      >
+        {showItem && (
+          <AvailabilityLabels
+            cursorPointer
+            workId={workId}
+            manifestations={manifestations}
+          />
+        )}
       </div>
       <Arrow />
     </article>

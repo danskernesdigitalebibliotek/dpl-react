@@ -15,6 +15,10 @@ export default {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
     },
+    loanListEreolenUrl: {
+      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+      control: { type: "text" }
+    },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
@@ -26,6 +30,12 @@ export default {
     pageSizeMobile: {
       defaultValue: 5,
       control: { type: "number" }
+    },
+    // Config
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+      control: { type: "text" }
     },
     // Texts
     groupModalDueDateLinkToPageWithFeesText: {
@@ -127,7 +137,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Select material for renewal"
+      defaultValue: "Select @label for renewal"
     },
     loanListMaterialLateFeeText: {
       control: {
@@ -350,6 +360,10 @@ export default {
       defaultValue: "Go to material details",
       control: { type: "text" }
     },
+    groupModalGoToMaterialAriaLabelText: {
+      defaultValue: "Go to @label material details",
+      control: { type: "text" }
+    },
     groupModalReturnLibraryText: {
       defaultValue: "Can be returned to all branches of Samsøs libraries",
       control: { type: "text" }
@@ -368,22 +382,21 @@ const Template: ComponentStory<typeof LoanList> = (props) => (
 
 export const LoanListEntry = Template.bind({});
 LoanListEntry.args = {};
-
+const { dueDateModal, loanDetails, allLoansId } = getModalIds();
 export const LoanListDetailsModal = Template.bind({});
 LoanListDetailsModal.parameters = {
   query: {
-    modal: "28847238"
+    modal: `${loanDetails}28847238`
   }
 };
 
 export const LoanListDueDateModal = Template.bind({});
 LoanListDueDateModal.parameters = {
   query: {
-    modal: "2022-09-16"
+    modal: `${dueDateModal}2022-12-15`
   }
 };
 
-const { allLoansId } = getModalIds();
 export const LoanListRenewLoansModal = Template.bind({});
 LoanListRenewLoansModal.parameters = {
   query: {

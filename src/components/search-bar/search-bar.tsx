@@ -6,11 +6,13 @@ import { useText } from "../../core/utils/text";
 export interface SearchBarProps {
   getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
   getLabelProps: UseComboboxPropGetters<unknown>["getLabelProps"];
+  dataCy?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   getInputProps,
-  getLabelProps
+  getLabelProps,
+  dataCy = "search-header-input"
 }) => {
   const t = useText();
   return (
@@ -24,6 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       <input
         name="q"
         className="header__menu-search-input text-body-medium-regular"
+        data-cy={dataCy}
         type="text"
         autoComplete="off"
         placeholder={t("inputPlaceholderText")}

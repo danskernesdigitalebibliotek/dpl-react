@@ -1,120 +1,71 @@
-import React, { useEffect, useCallback, FC, MouseEvent, useState } from "react";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
-import DueDateLoansModal from "../../modal/due-date-loans-modal";
+import React, { useCallback, FC } from "react";
 import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { LoanType } from "../../../../core/utils/types/loan-type";
-import MaterialDetailsModal from "../../modal/material-details-modal";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
-import MaterialDetails from "../../modal/material-details";
 
 export interface StackableMaterialProps {
-  stack?: LoanType[];
   loan: LoanType;
-  amountOfMaterialsWithDueDate?: number;
-  openModal?: boolean;
-  pageSize: number;
+  additionalMaterials: number;
+  openLoanDetailsModal: (modalId: string) => void;
+  openDueDateModal?: (dueDate: string) => void;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
-  amountOfMaterialsWithDueDate,
+  additionalMaterials,
   material,
-  openModal,
   loan,
-  stack,
-  pageSize
+  openDueDateModal,
+  openLoanDetailsModal
 }) => {
-  const { open } = useModalButtonHandler();
-  const [additionalMaterials] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
   const { dueDate, faust, identifier, periodical } = loan;
 
-  function stopPropagationFunction(e: Event | MouseEvent) {
-    e.stopPropagation();
-  }
-  useEffect(() => {
-    document
-      .querySelector(".list-reservation a")
-      ?.addEventListener("click", stopPropagationFunction, true);
-
-    return () => {
-      document
-        .querySelector(".list-reservation a")
-        ?.removeEventListener("click", stopPropagationFunction, true);
-    };
-  }, []);
-
-  const openDueDateModal = useCallback(() => {
-    if (stack && dueDate) {
-      open(dueDate);
+  const openLoanDetailsModalHandler = useCallback(() => {
+    if (faust) {
+      openLoanDetailsModal(faust);
     }
-  }, [stack, open, dueDate]);
-
-  useEffect(() => {
-    if (openModal) {
-      openDueDateModal();
+    if (identifier) {
+      openLoanDetailsModal(identifier);
     }
-  }, [openDueDateModal, openModal]);
-
-  const selectListMaterial = useCallback(
-    (e: MouseEvent) => {
-      stopPropagationFunction(e);
-      open(faust || identifier || "");
-    },
-    [faust, identifier, open]
-  );
+  }, [faust, identifier, openLoanDetailsModal]);
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={(e) => selectListMaterial(e)}
-        className={`list-reservation my-32 ${
-          additionalMaterials > 0 ? "list-reservation--stacked" : ""
-        }`}
-      >
-        {material && (
-          <MaterialInfo
-            periodical={periodical}
-            material={material}
-            isbnForCover={identifier || ""}
-          >
-            <AdditionalMaterialsButton
-              showOn="desktop"
-              openDueDateModal={openDueDateModal}
-              additionalMaterials={additionalMaterials}
-            />
-            <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
-          </MaterialInfo>
-        )}
-        <MaterialStatus loan={loan}>
+    <div
+      className={`list-reservation my-32 ${
+        additionalMaterials > 0 ? "list-reservation--stacked" : ""
+      }`}
+    >
+      {material && (
+        <MaterialInfo
+          openDetailsModal={openLoanDetailsModalHandler}
+          periodical={periodical}
+          material={material}
+          isbnForCover={identifier || ""}
+        >
           <AdditionalMaterialsButton
-            showOn="mobile"
-            openDueDateModal={openDueDateModal}
+            showOn="desktop"
+            openDueDateModal={() =>
+              openDueDateModal && dueDate && openDueDateModal(dueDate)
+            }
             additionalMaterials={additionalMaterials}
           />
-          <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
-        </MaterialStatus>
-      </button>
-      {dueDate && stack && (
-        <DueDateLoansModal
-          pageSize={pageSize}
-          dueDate={dueDate}
-          loansModal={stack}
-        />
+          <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
+        </MaterialInfo>
       )}
-      <MaterialDetailsModal modalEntity={loan} material={material}>
-        <MaterialDetails
-          faust={loan.faust}
-          identifier={loan.identifier}
-          loan={loan}
+      <MaterialStatus loan={loan}>
+        <AdditionalMaterialsButton
+          showOn="mobile"
+          openDueDateModal={() =>
+            openDueDateModal && dueDate && openDueDateModal(dueDate)
+          }
+          additionalMaterials={additionalMaterials}
         />
-      </MaterialDetailsModal>
-    </>
+        <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
+      </MaterialStatus>
+    </div>
   );
 };
 

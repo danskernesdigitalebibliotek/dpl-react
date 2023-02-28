@@ -1,12 +1,17 @@
 import React, { FC, useCallback, useState, useEffect } from "react";
+import { useQueryClient } from "react-query";
 import { Link } from "../../../../components/atoms/link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
-import { useUpdateV5 } from "../../../../core/fbs/fbs";
+import {
+  useUpdateV5,
+  getGetPatronInformationByPatronIdV2QueryKey
+} from "../../../../core/fbs/fbs";
 import { PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
+import { useUrls } from "../../../../core/utils/url";
 
 interface PauseReservationProps {
   id: string;
@@ -15,14 +20,14 @@ interface PauseReservationProps {
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
+  const { pauseReservationInfoUrl } = useUrls();
+  const queryClient = useQueryClient();
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
   const config = useConfig();
-  // todo this should not be "as string" but config<string>, so this is a todo
-  // to change the config method to support this
   const [startDate, setStartDate] = useState<string>(
-    (config("pauseReservationStartDateConfig") as string) || ""
+    config("pauseReservationStartDateConfig")
   );
   const [endDate, setEndDate] = useState<string>("");
 
@@ -43,13 +48,16 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         {
           onSuccess: () => {
             close(pauseReservation as string);
+            queryClient.invalidateQueries(
+              getGetPatronInformationByPatronIdV2QueryKey()
+            );
           },
           // todo error handling, missing in figma
           onError: () => {}
         }
       );
     }
-  }, [close, endDate, mutate, pauseReservation, startDate, user]);
+  }, [close, endDate, mutate, pauseReservation, queryClient, startDate, user]);
 
   useEffect(() => {
     if (user?.onHold?.from) {
@@ -74,11 +82,10 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           {t("pauseReservationModalHeaderText")}
         </h1>
         <div className="mt-48 color-secondary-gray">
-          <p className="text-body-medium-regular">
-            {t("pauseReservationModalBreadText")}
+          <p className="text-body-medium-regular mb-32">
+            {t("pauseReservationModalBodyText")}
           </p>
         </div>
-
         <DateInputs
           setStartDate={setStartDate}
           setEndDate={setEndDate}
@@ -89,8 +96,8 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsTextText")}
             <Link
-              id="test-ereolen-button"
-              href={new URL("https://ereolen.dk/user/me/")}
+              id="pause-reservation-info-link"
+              href={pauseReservationInfoUrl}
               className="link-tag"
             >
               {t("pauseReservationModalLinkText")}

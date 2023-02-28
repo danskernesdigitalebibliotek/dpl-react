@@ -1,44 +1,46 @@
-import React from "react";
+import React, { memo } from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useDeepCompareEffect } from "react-use";
-import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import { LinkNoStyle } from "../atoms/link-no-style";
-import { useConfig } from "../../core/utils/config";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import { useAvailabilityData } from "./helper";
+import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 
 export interface AvailabilityLabelProps {
-  manifestText?: string;
+  manifestText: string;
+  accessTypes: AccessTypeCode[];
   selected?: boolean;
   url?: URL;
   faustIds: string[];
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
   dataCy?: string;
+  isbns: string[];
 }
+
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
+  accessTypes,
   selected = false,
   url,
   faustIds,
   handleSelectManifestation,
   cursorPointer = false,
-  dataCy = "availability-label"
+  dataCy = "availability-label",
+  isbns
 }) => {
-  const config = useConfig();
-  const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
-    transformer: "stringToArray"
-  });
   const { track } = useStatistics();
   const t = useText();
-  const { data, isLoading, isError } = useGetAvailabilityV3({
-    recordid: faustIds,
-    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+
+  const { isAvailable } = useAvailabilityData({
+    accessTypes,
+    faustIds,
+    isbn: isbns ? isbns[0] : null
   });
 
-  const isAvailable = data?.some((item) => item.available);
   const availabilityText = isAvailable ? t("available") : t("unavailable");
 
   useDeepCompareEffect(() => {
@@ -56,10 +58,6 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     // status changes (on select of the availability button)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [faustIds, selected]);
-
-  if (isLoading || isError) {
-    return null;
-  }
 
   const availableTriangleCss = isAvailable ? "success" : "alert";
 
@@ -123,4 +121,4 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   );
 };
 
-export default AvailabilityLabel;
+export default memo(AvailabilityLabel);

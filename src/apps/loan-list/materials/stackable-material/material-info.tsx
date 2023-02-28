@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import AuthorYear from "../../../../components/author-year/authorYear";
 import { Cover } from "../../../../components/cover/cover";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 
@@ -7,12 +8,14 @@ interface MaterialInfoProps {
   isbnForCover: string;
   periodical?: string | null;
   children?: ReactNode;
+  openDetailsModal: () => void;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
   material,
   isbnForCover,
   periodical,
+  openDetailsModal,
   children
 }) => {
   const { authors, materialType, year, title, description, pid, series } =
@@ -37,16 +40,26 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           </div>
         </div>
         <div className="list-reservation__about">
-          <h3 className="text-header-h4">{title}</h3>
+          <button
+            onClick={openDetailsModal}
+            type="button"
+            className="list-reservation__header color-secondary-gray"
+          >
+            {title}
+          </button>
           <p className="text-small-caption color-secondary-gray">
-            <div>
-              {authors && authors} {year && <>({year})</>}
-            </div>
-            <div>{periodical && periodical}</div>
-            <div>{series && series}</div>
+            <AuthorYear author={authors || ""} year={year || ""} />
           </p>
+          {periodical && (
+            <p className="text-small-caption color-secondary-gray">
+              {periodical}
+            </p>
+          )}
+          {series && (
+            <p className="text-small-caption color-secondary-gray">{series}</p>
+          )}
         </div>
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   );

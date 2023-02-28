@@ -1,14 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
-import { openModal } from "../../../../core/modal.slice";
-import { getToken, TOKEN_USER_KEY } from "../../../../core/token";
-import {
-  appendQueryParametersToUrl,
-  getCurrentLocation,
-  redirectToLoginAndBack
-} from "../../../../core/utils/helpers/url";
-import { userIsAnonymous } from "../../../../core/utils/helpers/user";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -18,7 +10,7 @@ import { infomediaModalId } from "../../infomedia/InfomediaModal";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
-  manifestation: Manifestation;
+  manifestations: Manifestation[];
   trackOnlineView: () => Promise<unknown>;
   dataCy?: string;
 }
@@ -27,34 +19,27 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   MaterialButtonOnlineInfomediaArticleProps
 > = ({
   size,
-  manifestation: { pid },
+  manifestations,
   trackOnlineView,
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
-  const dispatch = useDispatch();
+  const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
+  if (manifestations.length < 1) {
+    return null;
+  }
+
+  // Although we may be passed multiple manifestations, there is only one button
+  // and one infomedia article modal to open, as we only associate a singular article
+  // with a given work as of now.
   const onClick = () => {
-    // Redirect anonymous users to the login platform, including a return link
-    // to this page with an open modal.
-    const userToken = getToken(TOKEN_USER_KEY);
-    if (userIsAnonymous() || !userToken) {
-      const returnUrl = appendQueryParametersToUrl(
-        new URL(getCurrentLocation()),
-        {
-          modal: infomediaModalId(pid)
-        }
-      );
-      redirectToLoginAndBack({
-        authUrl,
-        returnUrl,
-        trackingFunction: trackOnlineView
-      });
-      return;
-    }
-    trackOnlineView();
-    dispatch(openModal({ modalId: infomediaModalId(pid) }));
+    openGuarded({
+      authUrl,
+      modalId: infomediaModalId(manifestations[0].pid),
+      trackOnlineView
+    });
   };
 
   // TODO: A logged in user with municipality registration can access this.

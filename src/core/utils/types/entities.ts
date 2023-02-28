@@ -13,5 +13,6 @@ export type Work = Omit<WorkMediumFragment, "workId" | "manifestations"> & {
     all: Manifestation[];
     first: Manifestation;
     latest: Manifestation;
+    bestRepresentation: Manifestation;
   };
 };

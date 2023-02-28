@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
@@ -7,21 +7,35 @@ import {
   getReservedDigital,
   getReservedPhysical
 } from "../utils/helpers";
-import { getReadyForPickup } from "../../../core/utils/helpers/general";
-import { ModalIdsProps } from "../../../core/utils/modal";
+import {
+  getModalIds,
+  getReadyForPickup,
+  getScrollClass
+} from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
   mapFBSReservationToReservationType,
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
-import List from "./list";
 import ReservationPauseToggler from "./reservation-pause-toggler";
 import {
   useGetPatronInformationByPatronIdV2,
   useGetReservationsV2
 } from "../../../core/fbs/fbs";
-import { PatronV5 } from "../../../core/fbs/model";
-import EmptyList from "../../../components/empty-list/empty-list";
+import { PatronV5, ReservationDetailsV2 } from "../../../core/fbs/model";
+import EmptyReservations from "./EmptyReservations";
+import PauseReservation from "../modal/pause-reservation/pause-reservation";
+import DeleteReservationModal from "../modal/delete-reservation/delete-reservation-modal";
+import DisplayedReservations from "./DisplayedReservations";
+import {
+  useModalButtonHandler,
+  ModalIdsProps
+} from "../../../core/utils/modal";
+import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
+import ReservationDetails from "../modal/reservation-details/reservation-details";
+import { getUrlQueryParam } from "../../../core/utils/helpers/url";
+import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
+import { getFromListByKey } from "../../loan-list/utils/helpers";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -30,50 +44,68 @@ export interface ReservationListProps {
 const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const t = useText();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
-
-  const { data: userData, refetch: refetchUser } =
-    useGetPatronInformationByPatronIdV2();
-
+  const { open } = useModalButtonHandler();
+  const { pauseReservation, deleteReservation, reservationDetails } =
+    getModalIds();
+  const [reservation, setReservation] = useState<ReservationType | null>(null);
+  const [reservationToDelete, setReservationToDelete] =
+    useState<ReservationType | null>(null);
+  const { data: userData } = useGetPatronInformationByPatronIdV2();
+  const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
+  const [modalDeleteId, setModalDeleteId] = useState<string | null>(null);
   // Data fetch
-  const { isSuccess, data, refetch: refetchFBS } = useGetReservationsV2();
-  const { data: publizonData, refetch: refetchPublizon } =
-    useGetV1UserReservations();
+  const {
+    isSuccess: isSuccessFBS,
+    data,
+    isLoading: isLoadingFBS
+  } = useGetReservationsV2();
+
+  const {
+    isSuccess: isSuccessPublizon,
+    data: publizonData,
+    isLoading: isLoadingPublizon
+  } = useGetV1UserReservations();
 
   // State
   const [readyForPickupReservationsFBS, setReadyForPickupReservationsFBS] =
-    useState<ReservationType[]>([]);
+    useState<ReservationType[] | ReservationDetailsV2[] | null>(null);
 
   const [
     readyForPickupReservationsPublizon,
     setReadyForPickupReservationsPublizon
-  ] = useState<ReservationType[]>([]);
+  ] = useState<ReservationType[] | ReservationDetailsV2[] | null>(null);
 
   const [reservedReservationsFBS, setReservedReservationsFBS] = useState<
-    ReservationType[]
-  >([]);
+    ReservationType[] | null
+  >(null);
   const [user, setUser] = useState<PatronV5 | null>(null);
 
   const [reservedReservationsPublizon, setReservedReservationsPublizon] =
-    useState<ReservationType[]>([]);
+    useState<ReservationType[] | null>(null);
 
   // Set digital reservations
   // The digital "ready for pickup"-reservations are mixed with the
   // physical "ready for pickup"-reservations. The digital
   // "reserved"-reservations have their own list
   useEffect(() => {
-    if (publizonData && publizonData.reservations) {
-      setReadyForPickupReservationsPublizon(
-        getReadyForPickup(
-          mapPublizonReservationToReservationType(publizonData.reservations)
-        )
+    if (isSuccessPublizon && publizonData && publizonData.reservations) {
+      const reservationType = mapPublizonReservationToReservationType(
+        publizonData.reservations
       );
+      const readyForPickup = getReadyForPickup(
+        reservationType as ReservationDetailsV2[]
+      );
+      setReadyForPickupReservationsPublizon(readyForPickup);
       setReservedReservationsPublizon(
         getReservedDigital(
           mapPublizonReservationToReservationType(publizonData.reservations)
         )
       );
+    } else if (!isSuccessPublizon) {
+      setReservedReservationsPublizon([]);
+      setReadyForPickupReservationsPublizon([]);
     }
-  }, [publizonData]);
+  }, [publizonData, isSuccessPublizon]);
 
   // Set digital reservations
   // The physical "ready for pickup"-reservations are mixed with the
@@ -90,65 +122,187 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // digital "ready for pickup"-reservations. The physical
   // "reserved"-reservations have their own list
   useEffect(() => {
-    if (isSuccess && data) {
-      setReadyForPickupReservationsFBS(
-        sortByOldestPickupDeadline(
-          getReadyForPickup(mapFBSReservationToReservationType(data))
-        )
+    if (isSuccessFBS && data) {
+      const fbsToReservationType = mapFBSReservationToReservationType(data);
+      const readyForPickup = getReadyForPickup(
+        fbsToReservationType as ReservationDetailsV2[]
       );
+      const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
+      setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(
         getReservedPhysical(mapFBSReservationToReservationType(data))
       );
+    } else if (!isSuccessFBS) {
+      setReservedReservationsFBS([]);
+      setReadyForPickupReservationsFBS([]);
     }
-  }, [isSuccess, data]);
-
-  useEffect(() => {
-    refetchFBS();
-    refetchPublizon();
-    refetchUser();
-  }, [modalIds.length, refetchFBS, refetchPublizon, refetchUser]);
+  }, [isSuccessFBS, data]);
 
   const allListsEmpty =
-    readyForPickupReservationsFBS.length === 0 &&
-    readyForPickupReservationsPublizon.length === 0 &&
-    reservedReservationsFBS.length === 0 &&
-    reservedReservationsPublizon.length === 0;
+    readyForPickupReservationsFBS?.length === 0 &&
+    readyForPickupReservationsPublizon?.length === 0 &&
+    reservedReservationsFBS?.length === 0 &&
+    reservedReservationsPublizon?.length === 0 &&
+    !isLoadingFBS &&
+    !isLoadingPublizon;
+
+  const openReservationDeleteModal = (deleteId: string) => {
+    setModalDeleteId(deleteId);
+    open(`${deleteReservation}${deleteId}`);
+  };
+
+  const openReservationDetailsModal = useCallback(
+    (reservationInput: ReservationType) => {
+      setReservation(reservationInput);
+      open(
+        `${reservationDetails}${
+          reservationInput.faust || reservationInput.identifier
+        }`
+      );
+    },
+    [open, reservationDetails]
+  );
+
+  const findReservationInLists = useCallback(
+    (id: string) => {
+      let reservationFound = null;
+      if (readyForPickupReservationsFBS) {
+        reservationFound = getFromListByKey(
+          [...(readyForPickupReservationsFBS as [])],
+          "faust",
+          id
+        );
+      }
+      if (reservationFound?.length === 0 && reservedReservationsFBS) {
+        reservationFound = getFromListByKey(
+          [...(reservedReservationsFBS as [])],
+          "faust",
+          id
+        );
+      }
+      if (reservationFound?.length === 0 && reservedReservationsPublizon) {
+        reservationFound = getFromListByKey(
+          [...(reservedReservationsPublizon as [])],
+          "identifier",
+          id
+        );
+      }
+      if (
+        reservationFound?.length === 0 &&
+        readyForPickupReservationsPublizon
+      ) {
+        reservationFound = getFromListByKey(
+          [...(readyForPickupReservationsPublizon as [])],
+          "identifier",
+          id
+        );
+      }
+      if (reservationFound && reservationFound.length > 0) {
+        return reservationFound[0];
+      }
+      return null;
+    },
+    [
+      readyForPickupReservationsFBS,
+      readyForPickupReservationsPublizon,
+      reservedReservationsFBS,
+      reservedReservationsPublizon
+    ]
+  );
+
+  useEffect(() => {
+    if (modalDetailsId) {
+      const reservationForModal = findReservationInLists(modalDetailsId);
+
+      if (reservationForModal) {
+        setReservation(reservationForModal);
+      }
+    }
+  }, [findReservationInLists, modalDetailsId]);
+
+  useEffect(() => {
+    if (modalDeleteId) {
+      const reservationForModal = findReservationInLists(
+        modalDeleteId.toString()
+      );
+
+      if (reservationForModal) {
+        openReservationDetailsModal(reservationForModal);
+        setReservationToDelete(reservationForModal);
+      }
+    }
+  }, [findReservationInLists, modalDeleteId, openReservationDetailsModal]);
+
+  useEffect(() => {
+    const modalUrlParam = getUrlQueryParam("modal");
+    // if there is a loan details query param, loan details modal should be opened
+    const resDetails = reservationDetails as string;
+    if (modalUrlParam && modalUrlParam.includes(resDetails as string)) {
+      const reservationDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        resDetails
+      );
+      if (reservationDetailsModalId) {
+        setModalDetailsId(reservationDetailsModalId);
+      }
+    }
+    const deleteRes = deleteReservation as string;
+    if (modalUrlParam && modalUrlParam.includes(deleteRes as string)) {
+      const deleteReservationModalId = getDetailsModalId(
+        modalUrlParam,
+        deleteRes
+      );
+      if (deleteReservationModalId) {
+        setModalDeleteId(deleteReservationModalId);
+      }
+    }
+  }, [deleteReservation, reservationDetails]);
 
   return (
-    <div className="reservation-list-page">
-      <h1 className="text-header-h1 m-32">{t("headerText")}</h1>
-      {user && <ReservationPauseToggler user={user} />}
-      {!allListsEmpty && (
-        <>
-          <List
+    <>
+      <div className={`reservation-list-page ${getScrollClass(modalIds)}`}>
+        <h1 className="text-header-h1 m-32">
+          {t("reservationListHeaderText")}
+        </h1>
+        {user && <ReservationPauseToggler user={user} />}
+        {allListsEmpty && <EmptyReservations />}
+        {!allListsEmpty && (
+          <DisplayedReservations
+            openReservationDetailsModal={openReservationDetailsModal}
+            readyForPickupReservationsFBS={readyForPickupReservationsFBS as []}
+            readyForPickupReservationsPublizon={
+              readyForPickupReservationsPublizon as []
+            }
+            reservedReservationsFBS={reservedReservationsFBS}
+            reservedReservationsPublizon={reservedReservationsPublizon}
             pageSize={pageSize}
-            header={t("reservationListReadyForPickupTitleText")}
-            emptyListLabel={t("reservationListReadyForPickupEmptyText")}
-            list={sortByOldestPickupDeadline([
-              ...readyForPickupReservationsFBS,
-              ...readyForPickupReservationsPublizon
-            ])}
           />
-          <List
-            pageSize={pageSize}
-            emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
-            header={t("reservationListPhysicalReservationsHeaderText")}
-            list={reservedReservationsFBS}
-          />
-          <List
-            pageSize={pageSize}
-            header={t("reservationListDigitalReservationsHeaderText")}
-            emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
-            list={reservedReservationsPublizon}
-          />
-        </>
+        )}
+      </div>
+      {user && <PauseReservation user={user} id={pauseReservation as string} />}
+      {reservationToDelete && (
+        <DeleteReservationModal
+          modalId={`${deleteReservation}${
+            reservationToDelete.faust || reservationToDelete.identifier
+          }`}
+          reservation={reservationToDelete}
+        />
       )}
-      {allListsEmpty && (
-        <div className="m-32">
-          <EmptyList emptyListText={t("reservationListAllEmptyText")} />
-        </div>
+      {reservation && (
+        <MaterialDetailsModal
+          modalId={`${reservationDetails}${
+            reservation.faust || reservation.identifier
+          }`}
+        >
+          <ReservationDetails
+            openReservationDeleteModal={openReservationDeleteModal}
+            faust={reservation.faust}
+            identifier={reservation.identifier}
+            reservation={reservation}
+          />
+        </MaterialDetailsModal>
       )}
-    </div>
+    </>
   );
 };
 

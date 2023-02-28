@@ -2,7 +2,13 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
+import FocusTrap from "focus-trap-react";
 import { closeModal, openModal } from "../modal.slice";
+import { userIsAnonymous } from "./helpers/user";
+import {
+  currentLocationWithParametersUrl,
+  redirectToLoginAndBack
+} from "./helpers/url";
 
 type ModalId = string;
 
@@ -12,6 +18,8 @@ type ModalProps = {
   closeModalAriaLabelText: string;
   screenReaderModalDescriptionText: string;
   classNames?: string;
+  dataCy?: string;
+  isSlider?: boolean;
 };
 
 export interface ModalIdsProps {
@@ -25,7 +33,9 @@ function Modal({
   closeModalAriaLabelText,
   children,
   screenReaderModalDescriptionText,
-  classNames
+  classNames,
+  isSlider,
+  dataCy = "modal"
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -44,60 +54,82 @@ function Modal({
     return null;
   }
 
+  const close = () => {
+    dispatch(closeModal({ modalId }));
+  };
+
   return (
-    <div
-      className="modal-backdrop"
-      // TODO: Close the modal when clicking backdrop.
-      style={{
-        // some elements are designed with z-index which means they pop up over the modal
-        // so I add 10 to the z-index of the modal
-        // the index of the modalid is used, so the newest modal is always on top of
-        // the remaining modals
-        zIndex: modalIds.indexOf(modalId) + 10
-      }}
-    >
-      <div
-        className={clsx(
-          "modal",
-          {
-            "modal-show": modalIds.includes(modalId)
-          },
-          classNames
-        )}
-        role="dialog"
-      >
+    <FocusTrap>
+      <div>
+        {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
+          the close button's functionality which possesses both. */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
-          className="modal__screen-reader-description"
-          id={`modal-${modalId}`}
-        >
-          {screenReaderModalDescriptionText}
-        </div>
-        <button
-          type="button"
-          /* A focusable element in a modal must have focus when opened,
-        or else the screen reader will remain on the main page */
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus
-          className="btn-ui modal-btn-close"
-          aria-describedby={`modal-${modalId}`}
+          className="modal-backdrop"
           style={{
-            // same as comment above
+            // some elements are designed with z-index which means they pop up over the modal
+            // so I add 10 to the z-index of the modal
+            // the index of the modalid is used, so the newest modal is always on top of
+            // the remaining modals
             zIndex: modalIds.indexOf(modalId) + 10
           }}
-          aria-label={closeModalAriaLabelText}
           onClick={() => {
-            dispatch(closeModal({ modalId }));
+            close();
           }}
-          data-cy={`modal-${modalId}-close-button`}
+        />
+        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        <div
+          className={clsx(
+            "modal",
+            {
+              "modal-show": modalIds.includes(modalId)
+            },
+            classNames
+          )}
+          role="dialog"
+          aria-labelledby={`modal-${modalId}-description`}
+          data-cy={dataCy}
+          style={{
+            // same as comment above
+            zIndex: modalIds.indexOf(modalId) + 11
+          }}
         >
-          <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
-          {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
-        </button>
-        {children}
+          <div
+            className="modal__screen-reader-description"
+            id={`modal-${modalId}-description`}
+          >
+            {screenReaderModalDescriptionText}
+          </div>
+          <button
+            type="button"
+            className={`btn-ui modal-btn-close ${
+              !isSlider ? "modal-btn-close--offset" : ""
+            }`}
+            style={{
+              // same as comment above
+              zIndex: modalIds.indexOf(modalId) + 10
+            }}
+            aria-label={closeModalAriaLabelText}
+            onClick={() => {
+              close();
+            }}
+            data-cy={`modal-${modalId}-close-button`}
+          >
+            <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
+            {/* alt="": Hidden from screen readers, because the aria-label is sufficient */}
+          </button>
+          {children}
+        </div>
       </div>
-    </div>
+    </FocusTrap>
   );
 }
+
+export type GuardedOpenModalProps = {
+  authUrl: URL;
+  modalId: string;
+  trackOnlineView?: () => Promise<unknown>;
+};
 
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
@@ -107,6 +139,30 @@ export const useModalButtonHandler = () => {
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
+    },
+    openGuarded: ({
+      authUrl,
+      modalId,
+      trackOnlineView
+    }: GuardedOpenModalProps) => {
+      // Redirect anonymous users to the login platform, including a return link
+      // to this page with an open modal.
+      if (userIsAnonymous()) {
+        const returnUrl = currentLocationWithParametersUrl({
+          modal: modalId
+        });
+        redirectToLoginAndBack({
+          authUrl,
+          returnUrl,
+          trackingFunction: trackOnlineView
+        });
+        return;
+      }
+      // If user is not anonymous we just open the given modal + potentially track it.
+      if (trackOnlineView) {
+        trackOnlineView();
+      }
+      dispatch(openModal({ modalId }));
     }
   };
 };

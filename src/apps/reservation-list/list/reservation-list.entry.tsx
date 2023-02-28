@@ -5,50 +5,69 @@ import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 
-export interface ReservationListProps {
-  headerText: string;
-  physicalLoansTitleText: string;
-  readyText: string;
-  materialByAuthorText: string;
-  materialAndAuthorText: string;
+export interface ReservationListUrlProps {
+  fbsBaseUrl: string;
+  dplCmsBaseUrl: string;
+  coverBaseUrl: string;
+  materialBaseUrl: string;
+  fbiBaseUrl: string;
+  thresholdConfig: string;
+  publizonBaseUrl: string;
+  ereolenMyPageUrl: string;
+  pauseReservationInfoUrl: string;
+}
+
+export interface ReservationListConfigProps {
+  thresholdConfig: string;
+  blacklistedSearchBranchesConfig: string;
   pauseReservationStartDateConfig: string;
-  youAreNumberInQueueText: string;
-  youAreFirstInQueueText: string;
-  expiresSoonText: string;
-  inLineText: string;
-  youAreNumberInLineText: string;
   blacklistedPickupBranchesConfig: string;
+  branchesConfig: string;
+}
+
+export interface ReservationListTextProps {
+  reservationDetailsBorrowBeforeText: string;
+  reservationListHeaderText: string;
+  physicalLoansTitleText: string;
+  reservationListReadyText: string;
+  materialByAuthorText: string;
+  reservationDetailsExpiresText: string;
+  materialAndAuthorText: string;
+  reservationListNumberInQueueText: string;
+  reservationListFirstInQueueText: string;
+  expiresSoonText: string;
+  reservationListInQueueText: string;
   reservationPickUpLatestText: string;
   publizonEbookText: string;
   publizonAudioBookText: string;
   publizonPodcastText: string;
-  loanBeforeText: string;
-  daysText: string;
-  canBeLoanedInText: string;
-  reservationDetailsButtonText: string;
+  reservationListLoanBeforeText: string;
+  reservationListDaysText: string;
+  reservationListDayText: string;
+  reservationListAvailableInText: string;
+  reservationDetailsButtonRemoveText: string;
+  reservationDetailsChangeText: string;
+  reservationDetailsExpiresTitleText: string;
   reservationDetailsOthersInQueueText: string;
   reservationDetailsNumberInQueueLabelText: string;
-  reservationDetailsNumberInQueueTitelText: string;
-  reservationDetailsPickUpAtTitelText: string;
-  reservationDetailsNoInterestAfterTitelText: string;
+  reservationDetailsStatusTitleText: string;
+  reservationDetailsPickUpAtTitleText: string;
+  reservationDetailsNoInterestAfterTitleText: string;
   reservationDetailsPickupDeadlineTitleText: string;
-  reservationDetailsGoToEreolenText: string;
-  reservationDetailsExpiresLabelText: string;
+  reservationDetailsDigitalReservationGoToEreolenText: string;
   oneMonthText: string;
   twoMonthsText: string;
   threeMonthsText: string;
   sixMonthsText: string;
   oneYearText: string;
   listDetailsNothingSelectedLabelText: string;
-  branchesConfig: string;
-  reservationDetailsPickupDeadlineTitelText: string;
-  reservationDetailsDateOfReservationTitelText: string;
+  reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;
-  reservationDetailsRemoveReservationText: string;
+  reservationDetailsRemoveDigitalReservationText: string;
   deleteReservationModalHeaderText: string;
   deleteReservationModalDeleteQuestionText: string;
   deleteReservationModalNotRegrettableText: string;
-  deleteReservationModalDeleteText: string;
+  deleteReservationModalDeleteButtonText: string;
   deleteReservationModalCloseModalText: string;
   deleteReservationModalAriaDescriptionText: string;
   reservationListPauseReservationText: string;
@@ -56,10 +75,10 @@ export interface ReservationListProps {
   reservationListPauseReservationAriaModalText: string;
   pauseReservationModalAriaDescriptionText: string;
   pauseReservationModalHeaderText: string;
-  pauseReservationModalBreadText: string;
+  pauseReservationModalBodyText: string;
   pauseReservationModalCloseModalText: string;
-  pauseReservationStartDateLabelText: string;
-  pauseReservationEndDateLabelText: string;
+  dateInputsStartDateLabelText: string;
+  dateInputsEndDateLabelText: string;
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
@@ -70,11 +89,17 @@ export interface ReservationListProps {
   reservationListDigitalReservationsEmptyText: string;
   reservationListDigitalReservationsHeaderText: string;
   reservationListAllEmptyText: string;
-  pageSizeDesktop: number;
-  pageSizeMobile: number;
 }
 
-const ReservationListEntry: FC<ReservationListProps> = ({
+export interface ReservationListEntryWithPageSizeProps
+  extends ReservationListTextProps,
+    ReservationListConfigProps,
+    ReservationListUrlProps {
+  pageSizeDesktop?: number;
+  pageSizeMobile?: number;
+}
+
+const ReservationListEntry: FC<ReservationListEntryWithPageSizeProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {

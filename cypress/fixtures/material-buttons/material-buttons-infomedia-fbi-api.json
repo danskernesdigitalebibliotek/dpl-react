@@ -1,0 +1,226 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870971-avis:35731733",
+      "titles": {
+        "full": ["Butlerens utrolige historie"],
+        "original": []
+      },
+      "abstract": [
+        "Filmen ' The Butler' tager afsæt i en avisartikel, der blev til under usædvanlige omstændigheder. Politiken har talt med Wil Haygood, Washington Post-journalisten, der gik på jagt efter en person, der havde arbejdet i Det Hvide Hus i raceadskillelsens tid - og fandt Eugene Allen"
+      ],
+      "creators": [
+        {
+          "display": "Jakob Nielsen",
+          "__typename": "Person"
+        },
+        {
+          "display": "Will Haygood",
+          "__typename": "Person"
+        }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": [],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870971-avis:35731733",
+            "genreAndForm": [],
+            "source": ["Avisartikler"],
+            "titles": {
+              "main": ["Butlerens utrolige historie"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "avisartikel"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Jakob Nielsen",
+                "__typename": "Person"
+              },
+              {
+                "display": "Will Haygood",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [],
+            "contributors": [],
+            "edition": {
+              "summary": "2013",
+              "publicationYear": {
+                "display": "2013"
+              }
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 16,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              },
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InfomediaService",
+                "id": "e3fba430"
+              },
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Butlerens",
+              "shelfmark": "99.4 Allen, Eugene"
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870971-avis:35731733",
+          "genreAndForm": [],
+          "source": ["Avisartikler"],
+          "titles": {
+            "main": ["Butlerens utrolige historie"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "avisartikel"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Jakob Nielsen",
+              "__typename": "Person"
+            },
+            {
+              "display": "Will Haygood",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2013",
+            "publicationYear": {
+              "display": "2013"
+            }
+          },
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 16,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            },
+            {
+              "code": "ONLINE"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InfomediaService",
+              "id": "e3fba430"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Butlerens",
+            "shelfmark": "99.4 Allen, Eugene"
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "specific": "avisartikel"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "USA"
+          },
+          {
+            "display": "Det Hvide Hus"
+          },
+          {
+            "display": "sorte"
+          },
+          {
+            "display": "hvide"
+          },
+          {
+            "display": "raceadskillelse"
+          },
+          {
+            "display": "Eugene Allen"
+          }
+        ]
+      },
+      "reviews": [],
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "99.4 , Eugene"
+      },
+      "relations": {
+        "hasAdaptation": []
+      }
+    }
+  }
+}
