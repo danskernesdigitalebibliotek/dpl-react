@@ -90,6 +90,11 @@ export const getFirstPublishedManifestation = (
   return ordered[0];
 };
 
+export const getLatestManifestation = (manifestations: Manifestation[]) => {
+  const ordered = orderManifestationsByYear(manifestations, "desc");
+  return ordered[0];
+};
+
 export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
     getManifestationPublicationYear(
