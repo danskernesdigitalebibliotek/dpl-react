@@ -4,6 +4,7 @@ import {
   useGetPatronInformationByPatronIdV2
 } from "../../../../core/fbs/fbs";
 import { getAllFaustIds } from "../../../../core/utils/helpers/general";
+import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
@@ -29,7 +30,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
       recordid: faustIds
     });
   const { data: userData, isLoading: userLoading } =
-    useGetPatronInformationByPatronIdV2();
+    useGetPatronInformationByPatronIdV2({ enabled: !userIsAnonymous() });
   if (availabilityLoading || userLoading) {
     return <MaterialButtonLoading size={size} />;
   }
