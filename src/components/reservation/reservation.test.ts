@@ -57,7 +57,7 @@ describe("Reservation", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&type=bog");
     // We simulate that the user is logged in so that we can open the modal.
-    window.sessionStorage.setItem("user", "fake-token");
+    cy.createFakeAuthenticatedSession();
     cy.scrollTo("bottom");
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
@@ -84,7 +84,7 @@ describe("Reservation", () => {
 
     cy.visit("/iframe.html?id=apps-material--turen-gar-til-rom&type=bog");
     // We simulate that the user is logged in so that we can open the modal.
-    window.sessionStorage.setItem("user", "fake-token");
+    cy.createFakeAuthenticatedSession();
     cy.scrollTo("bottom");
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
