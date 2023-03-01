@@ -139,8 +139,10 @@ describe("Material buttons", () => {
       url: "**/agencyid/patrons/patronid/v2",
       fixtureFilePath: "material/user-blocked.json"
     });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.scrollTo("bottom");
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
+      .getBySel("material-description")
+      .scrollIntoView();
+
     cy.getBySel("material-header-buttons-physical-user-blocked")
       .should("be.visible")
       .and("contain", "Reserve")

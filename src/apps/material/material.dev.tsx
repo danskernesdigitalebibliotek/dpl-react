@@ -629,6 +629,11 @@ export default {
       defaultValue: "Unknown",
       control: { type: "text" }
     },
+    firstAvailableEditionText: {
+      name: "First available edition",
+      defaultValue: "First available edition",
+      control: { type: "text" }
+    },
     filmAdaptationsText: {
       name: "Film adaptations text",
       defaultValue: "Film adaptations",

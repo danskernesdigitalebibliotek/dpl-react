@@ -4,5 +4,11 @@
     "recordId": "46615743",
     "reservable": true,
     "reservations": 2
+  },
+  {
+    "available": true,
+    "recordId": "53292968",
+    "reservable": true,
+    "reservations": 2
   }
 ]

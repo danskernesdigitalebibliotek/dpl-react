@@ -19,7 +19,7 @@ describe("Material - Periodical", () => {
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability.json"
+      fixtureFilePath: "material/availability-periodical.json"
     });
 
     cy.interceptRest({
