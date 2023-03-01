@@ -175,7 +175,9 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.visit(
+      "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
+    ).scrollTo("bottom");
 
     cy.getBySel("material-description").scrollIntoView();
 

@@ -1,29 +1,19 @@
 import React, { memo } from "react";
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
-import {
-  FacetResult,
-  useIntelligentFacetsQuery
-} from "../../core/dbc-gateway/generated/graphql";
+import { useIntelligentFacetsQuery } from "../../core/dbc-gateway/generated/graphql";
 import FacetLineSelected from "./FacetLineSelected";
 import FacetLineFilters from "./FacetLineFilters";
 import { createFilters } from "../facet-browser/helper";
 import useGetCleanBranches from "../../core/utils/branches";
 import FacetLineFiltersSkeleton from "./FacetLineFiltersSkeleton";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
 
 type FacetLineProps = {
   q: string;
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  filterHandler: TermOnClickHandler;
 };
 
-const FacetLine: React.FunctionComponent<FacetLineProps> = ({
-  q,
-  filters,
-  filterHandler
-}) => {
+const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
+  const { filters } = useFilterHandler();
+
   const cleanBranches = useGetCleanBranches();
 
   const { data } = useIntelligentFacetsQuery({
@@ -36,14 +26,8 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({
   return (
     <>
       {!data && <FacetLineFiltersSkeleton />}
-      {data && (
-        <FacetLineFilters
-          filters={filters}
-          facets={data.search.intelligentFacets as FacetResult[]}
-          filterHandler={filterHandler}
-        />
-      )}
-      <FacetLineSelected filters={filters} filterHandler={filterHandler} />
+      {data && <FacetLineFilters facets={data.search.intelligentFacets} />}
+      <FacetLineSelected />
     </>
   );
 };

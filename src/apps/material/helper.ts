@@ -1,4 +1,4 @@
-import { compact, groupBy, uniqBy } from "lodash";
+import { compact, groupBy, uniqBy, uniq } from "lodash";
 import {
   constructModalId,
   getMaterialTypes,
@@ -362,3 +362,10 @@ export const getUniqueMovies = (relations: Work["relations"]) => {
 
   return uniqBy(movies, (item) => item.ownerWork.workId);
 };
+
+export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
+  uniq([
+    // dbcVerified needs to be first, because it is the most accurate
+    ...subjects.dbcVerified.map((item) => item.display),
+    ...subjects.all.map((item) => item.display)
+  ]);

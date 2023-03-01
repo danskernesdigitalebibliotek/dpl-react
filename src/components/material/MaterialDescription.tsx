@@ -1,5 +1,9 @@
 import React from "react";
-import { getNumberedSeries, getUniqueMovies } from "../../apps/material/helper";
+import {
+  getNumberedSeries,
+  getUniqueMovies,
+  getDbcVerifiedSubjectsFirst
+} from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   constructMaterialUrl,
@@ -32,12 +36,10 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     };
   });
 
-  const subjectsList = subjects.all.map((item) => {
-    return {
-      url: constructSearchUrl(searchUrl, item.display),
-      term: item.display
-    };
-  });
+  const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
+    url: constructSearchUrl(searchUrl, item),
+    term: item
+  }));
 
   const filmAdaptationsList = getUniqueMovies(relations).map((item) => {
     return {

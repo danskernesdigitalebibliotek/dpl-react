@@ -3,8 +3,12 @@
     "work": {
       "workId": "work-of:870970-basis:52557240",
       "titles": {
-        "full": ["De syv søstre : Maias historie"],
-        "original": ["The seven sisters"]
+        "full": [
+          "De syv søstre : Maias historie"
+        ],
+        "original": [
+          "The seven sisters"
+        ]
       },
       "abstract": [
         "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav"
@@ -28,7 +32,9 @@
           "isPopular": true,
           "numberInSeries": {
             "display": "1",
-            "number": [1]
+            "number": [
+              1
+            ]
           },
           "readThisFirst": true,
           "readThisWhenever": null
@@ -38,145 +44,127 @@
         {
           "workId": "work-of:870970-basis:52557240",
           "titles": {
-            "main": ["De syv søstre"],
-            "full": ["De syv søstre : Maias historie"],
-            "original": ["The seven sisters"]
+            "main": [
+              "De syv søstre"
+            ],
+            "full": [
+              "De syv søstre : Maias historie"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:52970628",
           "titles": {
-            "main": ["Stormsøsteren"],
-            "full": ["Stormsøsteren : Allys historie"],
-            "original": ["The storm sister"]
+            "main": [
+              "Stormsøsteren"
+            ],
+            "full": [
+              "Stormsøsteren : Allys historie"
+            ],
+            "original": [
+              "The storm sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:53280749",
           "titles": {
-            "main": ["Skyggesøsteren"],
-            "full": ["Skyggesøsteren : Stars historie"],
-            "original": ["The shadow sister"]
+            "main": [
+              "Skyggesøsteren"
+            ],
+            "full": [
+              "Skyggesøsteren : Stars historie"
+            ],
+            "original": [
+              "The shadow sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:53802001",
           "titles": {
-            "main": ["Perlesøsteren"],
-            "full": ["Perlesøsteren : CeCes historie"],
-            "original": ["The pearl sister"]
+            "main": [
+              "Perlesøsteren"
+            ],
+            "full": [
+              "Perlesøsteren : CeCes historie"
+            ],
+            "original": [
+              "The pearl sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:54189141",
           "titles": {
-            "main": ["Månesøsteren"],
-            "full": ["Månesøsteren : Tiggys historie"],
-            "original": ["The moon sister"]
+            "main": [
+              "Månesøsteren"
+            ],
+            "full": [
+              "Månesøsteren : Tiggys historie"
+            ],
+            "original": [
+              "The moon sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:46656172",
           "titles": {
-            "main": ["Solsøsteren"],
-            "full": ["Solsøsteren : Electras historie"],
-            "original": ["The sun sister"]
+            "main": [
+              "Solsøsteren"
+            ],
+            "full": [
+              "Solsøsteren : Electras historie"
+            ],
+            "original": [
+              "The sun sister"
+            ]
           }
         },
         {
           "workId": "work-of:870970-basis:38500775",
           "titles": {
-            "main": ["Den forsvundne søster"],
-            "full": ["Den forsvundne søster"],
-            "original": ["The missing sister"]
+            "main": [
+              "Den forsvundne søster"
+            ],
+            "full": [
+              "Den forsvundne søster"
+            ],
+            "original": [
+              "The missing sister"
+            ]
           }
         }
       ],
       "workYear": null,
-      "genreAndForm": ["roman", "slægtsromaner", "romaner"],
+      "genreAndForm": [
+        "roman",
+        "slægtsromaner",
+        "romaner"
+      ],
       "manifestations": {
         "all": [
           {
-            "pid": "870970-basis:52557240",
-            "genreAndForm": ["roman", "slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
-            "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "film (net)"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": ["Cicero"],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763844116"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "1. udgave, 2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "AccessUrl",
-                "origin": "Filmstriben",
-                "url": "https://filmstriben.dk/ting/object/870970-basis:52590302",
-                "canAlwaysBeLoaned": false
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            }
-          },
-          {
             "pid": "870970-basis:46615743",
-            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner",
+              "romaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -193,7 +181,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Cicero"],
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -217,6 +207,7 @@
                 "display": "2019"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -245,11 +236,20 @@
           },
           {
             "pid": "870970-basis:52557240",
-            "genreAndForm": ["roman", "slægtsromaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -266,7 +266,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Cicero"],
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -290,6 +292,7 @@
                 "display": "2016"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -318,11 +321,20 @@
           },
           {
             "pid": "870970-basis:52590302",
-            "genreAndForm": ["roman", "slægtsromaner"],
-            "source": ["eReolen"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner"
+            ],
+            "source": [
+              "eReolen"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -339,7 +351,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Cicero"],
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -366,6 +380,7 @@
                 "display": "2016"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -391,11 +406,19 @@
           },
           {
             "pid": "870970-basis:52643414",
-            "genreAndForm": ["roman"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre (mp3)"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre (mp3)"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -412,7 +435,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Rosinante"],
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -438,6 +463,10 @@
               "publicationYear": {
                 "display": "2016"
               }
+            },
+            "dateFirstEdition": {
+              "display": "2016",
+              "year": 2016
             },
             "audience": {
               "generalAudience": []
@@ -467,11 +496,19 @@
           },
           {
             "pid": "870970-basis:52643503",
-            "genreAndForm": ["roman"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -488,7 +525,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Rosinante"],
+            "publisher": [
+              "Rosinante"
+            ],
             "languages": {
               "main": [
                 {
@@ -515,6 +554,10 @@
                 "display": "2016"
               }
             },
+            "dateFirstEdition": {
+              "display": "2016",
+              "year": 2016
+            },
             "audience": {
               "generalAudience": []
             },
@@ -538,11 +581,19 @@
           },
           {
             "pid": "870970-basis:53200346",
-            "genreAndForm": ["roman"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -559,7 +610,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Gyldendals Bogklubber"],
+            "publisher": [
+              "Gyldendals Bogklubber"
+            ],
             "languages": {
               "main": [
                 {
@@ -583,6 +636,7 @@
                 "display": "2017"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -611,11 +665,21 @@
           },
           {
             "pid": "870970-basis:53292968",
-            "genreAndForm": ["roman", "slægtsromaner", "romaner"],
-            "source": ["Bibliotekskatalog"],
+            "genreAndForm": [
+              "roman",
+              "slægtsromaner",
+              "romaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
             "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
+              "main": [
+                "De syv søstre"
+              ],
+              "original": [
+                "The seven sisters"
+              ]
             },
             "fictionNonfiction": {
               "display": "skønlitteratur",
@@ -632,7 +696,9 @@
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Cicero"],
+            "publisher": [
+              "Cicero"
+            ],
             "languages": {
               "main": [
                 {
@@ -655,6 +721,10 @@
               "publicationYear": {
                 "display": "2017"
               }
+            },
+            "dateFirstEdition": {
+              "display": "2016",
+              "year": 2016
             },
             "audience": {
               "generalAudience": []
@@ -685,11 +755,21 @@
         ],
         "latest": {
           "pid": "870970-basis:46615743",
-          "genreAndForm": ["roman", "slægtsromaner", "romaner"],
-          "source": ["Bibliotekskatalog"],
+          "genreAndForm": [
+            "roman",
+            "slægtsromaner",
+            "romaner"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
           "titles": {
-            "main": ["De syv søstre"],
-            "original": ["The seven sisters"]
+            "main": [
+              "De syv søstre"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           },
           "fictionNonfiction": {
             "display": "skønlitteratur",
@@ -706,7 +786,9 @@
               "__typename": "Person"
             }
           ],
-          "publisher": ["Cicero"],
+          "publisher": [
+            "Cicero"
+          ],
           "languages": {
             "main": [
               {
@@ -730,6 +812,7 @@
               "display": "2019"
             }
           },
+          "dateFirstEdition": null,
           "audience": {
             "generalAudience": []
           },
@@ -758,11 +841,21 @@
         },
         "bestRepresentation": {
           "pid": "870970-basis:46615743",
-          "genreAndForm": ["roman", "slægtsromaner", "romaner"],
-          "source": ["Bibliotekskatalog"],
+          "genreAndForm": [
+            "roman",
+            "slægtsromaner",
+            "romaner"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
           "titles": {
-            "main": ["De syv søstre"],
-            "original": ["The seven sisters"]
+            "main": [
+              "De syv søstre"
+            ],
+            "original": [
+              "The seven sisters"
+            ]
           },
           "fictionNonfiction": {
             "display": "skønlitteratur",
@@ -779,7 +872,9 @@
               "__typename": "Person"
             }
           ],
-          "publisher": ["Cicero"],
+          "publisher": [
+            "Cicero"
+          ],
           "languages": {
             "main": [
               {
@@ -803,6 +898,7 @@
               "display": "2019"
             }
           },
+          "dateFirstEdition": null,
           "audience": {
             "generalAudience": []
           },
@@ -853,82 +949,31 @@
       "subjects": {
         "all": [
           {
-            "pid": "870970-basis:52643503",
-            "genreAndForm": ["roman"],
-            "source": ["Bibliotekskatalog"],
-            "titles": {
-              "main": ["De syv søstre"],
-              "original": ["The seven sisters"]
-            },
-            "fictionNonfiction": {
-              "display": "skønlitteratur",
-              "code": "FICTION"
-            },
-            "materialTypes": [
-              {
-                "specific": "lydbog (net)"
-              }
-            ],
-            "creators": [
-              {
-                "display": "Lucinda Riley",
-                "__typename": "Person"
-              }
-            ],
-            "publisher": ["Rosinante"],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788763847995"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Maria Stokholm"
-              },
-              {
-                "display": "Ulla Lauridsen"
-              }
-            ],
-            "edition": {
-              "summary": "2016",
-              "publicationYear": {
-                "display": "2016"
-              }
-            },
-            "audience": {
-              "generalAudience": []
-            },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": null,
-                "playingTime": "16 t., 30 min."
-              }
-            ],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
-            "access": [
-              {
-                "__typename": "AccessUrl",
-                "origin": "website",
-                "url": "https://website.dk/ting/object/870970-basis:52590302",
-                "canAlwaysBeLoaned": false
-              }
-            ],
-            "shelfmark": {
-              "postfix": "Riley",
-              "shelfmark": "83"
-            }
+            "display": "kærlighed"
           },
+          {
+            "display": "adoption"
+          },
+          {
+            "display": "familien"
+          },
+          {
+            "display": "slægtsromaner"
+          },
+          {
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
+          }
+        ],
+        "dbcVerified": [
           {
             "display": "kærlighed"
           },
@@ -963,7 +1008,6 @@
         "display": "Skønlitteratur"
       },
       "relations": {
-        "hasAdaptation": [],
         "hasReview": [
           {
             "pid": "150005-anmeld:81092"
@@ -974,7 +1018,8 @@
           {
             "pid": "870971-anmeld:37104132"
           }
-        ]
+        ],
+        "hasAdaptation": []
       }
     }
   }
