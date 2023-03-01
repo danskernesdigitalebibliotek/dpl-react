@@ -21,10 +21,8 @@ import Category from "../../core/utils/types/material-type";
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import useFilterHandler from "../search-result/useFilterHandler";
 
 const SearchHeader: React.FC = () => {
-  const { clearFilter } = useFilterHandler();
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
@@ -196,7 +194,6 @@ const SearchHeader: React.FC = () => {
   }
 
   function handleInputValueChange(changes: UseComboboxStateChange<Suggestion>) {
-    clearFilter();
     const { inputValue, selectedItem, type } = changes;
     if (inputValue === undefined) {
       return;
