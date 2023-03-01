@@ -191,22 +191,54 @@
       "subjects": {
         "all": [
           {
-            "display": "USA"
+            "display": "kærlighed"
           },
           {
-            "display": "Det Hvide Hus"
+            "display": "adoption"
           },
           {
-            "display": "sorte"
+            "display": "familien"
           },
           {
-            "display": "hvide"
+            "display": "slægtsromaner"
           },
           {
-            "display": "raceadskillelse"
+            "display": "kærleiki"
           },
           {
-            "display": "Eugene Allen"
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "kærlighed"
+          },
+          {
+            "display": "adoption"
+          },
+          {
+            "display": "familien"
+          },
+          {
+            "display": "slægtsromaner"
+          },
+          {
+            "display": "kærleiki"
+          },
+          {
+            "display": "ættleiðing"
+          },
+          {
+            "display": "familjan"
+          },
+          {
+            "display": "ættarsøgur"
           }
         ]
       },

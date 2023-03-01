@@ -208,9 +208,13 @@
         "bestRepresentation": {
           "pid": "870971-tsart:34310815",
           "genreAndForm": [],
-          "source": ["Tidsskriftsartikler"],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
           "titles": {
-            "main": ["Faglig formidling er ikke kun skriveteknik"],
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
             "original": []
           },
           "fictionNonfiction": {
@@ -288,6 +292,23 @@
       ],
       "subjects": {
         "all": [
+          {
+            "display": "formidling"
+          },
+          {
+            "display": "videnskab"
+          },
+          {
+            "display": "retorik"
+          },
+          {
+            "display": "forskning"
+          },
+          {
+            "display": "skriftlig fremstilling"
+          }
+        ],
+        "dbcVerified": [
           {
             "display": "formidling"
           },

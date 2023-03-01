@@ -143,10 +143,16 @@
         },
         "bestRepresentation": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": ["tidsskrift"],
-          "source": ["Bibliotekskatalog"],
+          "genreAndForm": [
+            "tidsskrift"
+          ],
+          "source": [
+            "Bibliotekskatalog"
+          ],
           "titles": {
-            "main": ["Alt for damerne"],
+            "main": [
+              "Alt for damerne"
+            ],
             "original": []
           },
           "fictionNonfiction": {
@@ -159,7 +165,9 @@
             }
           ],
           "creators": [],
-          "publisher": ["Egmont Magasiner"],
+          "publisher": [
+            "Egmont Magasiner"
+          ],
           "languages": {
             "main": [
               {
@@ -224,7 +232,8 @@
           {
             "display": "dame- og mandeblade"
           }
-        ]
+        ],
+        "dbcVerified": []
       },
       "fictionNonfiction": {
         "display": "nonfiktion",
