@@ -3,9 +3,7 @@
     "work": {
       "workId": "work-of:870970-basis:06373674",
       "titles": {
-        "full": [
-          "Alt for damerne"
-        ],
+        "full": ["Alt for damerne"],
         "original": []
       },
       "abstract": [],
@@ -13,24 +11,15 @@
       "series": [],
       "seriesMembers": [],
       "workYear": null,
-      "genreAndForm": [
-        "tidsskrift",
-        "tíðarrit"
-      ],
+      "genreAndForm": ["tidsskrift", "tíðarrit"],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:06373674",
-            "genreAndForm": [
-              "tidsskrift"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
+            "genreAndForm": ["tidsskrift"],
+            "source": ["Bibliotekskatalog"],
             "titles": {
-              "main": [
-                "Alt for damerne"
-              ],
+              "main": ["Alt for damerne"],
               "original": []
             },
             "fictionNonfiction": {
@@ -43,9 +32,7 @@
               }
             ],
             "creators": [],
-            "publisher": [
-              "Egmont Magasiner"
-            ],
+            "publisher": ["Egmont Magasiner"],
             "languages": {
               "main": [
                 {
@@ -93,16 +80,10 @@
         ],
         "latest": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": [
-            "tidsskrift"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
+          "genreAndForm": ["tidsskrift"],
+          "source": ["Bibliotekskatalog"],
           "titles": {
-            "main": [
-              "Alt for damerne"
-            ],
+            "main": ["Alt for damerne"],
             "original": []
           },
           "fictionNonfiction": {
@@ -115,9 +96,7 @@
             }
           ],
           "creators": [],
-          "publisher": [
-            "Egmont Magasiner"
-          ],
+          "publisher": ["Egmont Magasiner"],
           "languages": {
             "main": [
               {
@@ -164,16 +143,10 @@
         },
         "bestRepresentation": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": [
-            "tidsskrift"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
+          "genreAndForm": ["tidsskrift"],
+          "source": ["Bibliotekskatalog"],
           "titles": {
-            "main": [
-              "Alt for damerne"
-            ],
+            "main": ["Alt for damerne"],
             "original": []
           },
           "fictionNonfiction": {
@@ -186,9 +159,7 @@
             }
           ],
           "creators": [],
-          "publisher": [
-            "Egmont Magasiner"
-          ],
+          "publisher": ["Egmont Magasiner"],
           "languages": {
             "main": [
               {
@@ -255,7 +226,6 @@
           }
         ]
       },
-      "reviews": [],
       "fictionNonfiction": {
         "display": "nonfiktion",
         "code": "NONFICTION"
@@ -264,7 +234,12 @@
         "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
       },
       "relations": {
-        "hasAdaptation": []
+        "hasAdaptation": [],
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
       }
     }
   }

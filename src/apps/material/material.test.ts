@@ -154,7 +154,7 @@ describe("Material", () => {
     ).click();
   });
 
-  it("Can open reservation modal, approve a reservation, and close the modal using buttons)", () => {
+  it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -186,6 +186,25 @@ describe("Material", () => {
       .should("be.visible")
       .and("contain", "Ok")
       .click();
+  });
+
+  it("Renders reviews", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+    cy.interceptGraphql({
+      operationName: "getReviewManifestations",
+      fixtureFilePath: "material/reviews.json"
+    });
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.scrollTo("bottom");
+    cy.getBySel("material-reviews-disclosure").should("be.visible").click();
+    cy.getBySel("material-reviews").should(
+      "contain",
+      "Dorthe Marlene Jørgensen, 2016"
+    );
   });
 
   beforeEach(() => {

@@ -3,9 +3,7 @@
     "work": {
       "workId": "work-of:870971-avis:35731733",
       "titles": {
-        "full": [
-          "Butlerens utrolige historie"
-        ],
+        "full": ["Butlerens utrolige historie"],
         "original": []
       },
       "abstract": [
@@ -30,13 +28,9 @@
           {
             "pid": "870971-avis:35731733",
             "genreAndForm": [],
-            "source": [
-              "Avisartikler"
-            ],
+            "source": ["Avisartikler"],
             "titles": {
-              "main": [
-                "Butlerens utrolige historie"
-              ],
+              "main": ["Butlerens utrolige historie"],
               "original": []
             },
             "fictionNonfiction": {
@@ -111,13 +105,9 @@
         "latest": {
           "pid": "870971-avis:35731733",
           "genreAndForm": [],
-          "source": [
-            "Avisartikler"
-          ],
+          "source": ["Avisartikler"],
           "titles": {
-            "main": [
-              "Butlerens utrolige historie"
-            ],
+            "main": ["Butlerens utrolige historie"],
             "original": []
           },
           "fictionNonfiction": {
@@ -191,13 +181,9 @@
         "bestRepresentation": {
           "pid": "870971-avis:35731733",
           "genreAndForm": [],
-          "source": [
-            "Avisartikler"
-          ],
+          "source": ["Avisartikler"],
           "titles": {
-            "main": [
-              "Butlerens utrolige historie"
-            ],
+            "main": ["Butlerens utrolige historie"],
             "original": []
           },
           "fictionNonfiction": {
@@ -302,7 +288,6 @@
           }
         ]
       },
-      "reviews": [],
       "fictionNonfiction": {
         "display": "faglitteratur",
         "code": "NONFICTION"
@@ -311,7 +296,12 @@
         "display": "99.4 Allen, Eugene"
       },
       "relations": {
-        "hasAdaptation": []
+        "hasAdaptation": [],
+        "hasReview": [
+          {
+            "pid": "150005-anmeld:81092"
+          }
+        ]
       }
     }
   }
