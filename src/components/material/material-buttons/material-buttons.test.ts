@@ -139,7 +139,7 @@ describe("Material buttons", () => {
       url: "**/agencyid/patrons/patronid/v2",
       fixtureFilePath: "material/user-blocked.json"
     });
-    window.sessionStorage.setItem("user", "fake");
+    cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
