@@ -622,22 +622,6 @@ export default {
       defaultValue: "Close",
       control: { type: "text" }
     },
-    orderDigitalCopyErrorTitleText: {
-      name: "Order digital copy error title text",
-      defaultValue: "Error ordering digital copy",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorDescriptionText: {
-      name: "Order digital copy error description text",
-      defaultValue:
-        "An error occurred while ordering the digital copy. Please try again later.",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorButtonText: {
-      name: "Order digital copy error button text",
-      defaultValue: "Close",
-      control: { type: "text" }
-    },
     orderDigitalCopyEmailLabelText: {
       name: "Order digital copy error email text",
       defaultValue: "Email",

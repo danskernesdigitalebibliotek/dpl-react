@@ -27,8 +27,7 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   const {
     mutate: articleOrder,
     isLoading: articleOrderLoading,
-    data: articleResponse,
-    isError: articleOrderError
+    data: articleResponse
   } = usePlaceCopyMutation();
 
   const responseMessage = getResponseMessage(articleResponse, t);
@@ -75,10 +74,9 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         "orderDigitalCopyModalCloseModalAriaLabelText"
       )}
     >
-      {responseMessage || articleOrderError ? (
+      {responseMessage ? (
         <DigitalModalFeedback
           modalId={modalId}
-          isError={articleOrderError}
           feedbackMessage={responseMessage}
         />
       ) : (

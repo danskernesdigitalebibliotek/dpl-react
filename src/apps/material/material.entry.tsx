@@ -89,9 +89,6 @@ interface MaterialEntryTextProps {
   orderDigitalCopyButtonText: string;
   orderDigitalCopyDescriptionText: string;
   orderDigitalCopyEmailLabelText: string;
-  orderDigitalCopyErrorButtonText: string;
-  orderDigitalCopyErrorDescriptionText: string;
-  orderDigitalCopyErrorTitleText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyFeedbackButtonText: string;

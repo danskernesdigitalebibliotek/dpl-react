@@ -5,35 +5,22 @@ import ReservationForm from "../../reservation/forms/ReservationForm";
 
 type DigitalModalFeedbackProps = {
   modalId: string;
-  isError: boolean;
   feedbackMessage: string | null;
 };
 
 const DigitalModalFeedback: React.FunctionComponent<
   DigitalModalFeedbackProps
-> = ({ modalId, isError, feedbackMessage }) => {
+> = ({ modalId, feedbackMessage }) => {
   const t = useText();
   const { close } = useModalButtonHandler();
 
   return (
     <ReservationForm
       cyData="order-digital-feedback"
-      title={
-        isError
-          ? t("orderDigitalCopyErrorTitleText")
-          : t("orderDigitalCopyFeedbackTitleText")
-      }
-      description={
-        isError
-          ? [t("orderDigitalCopyErrorDescriptionText")]
-          : [feedbackMessage ?? ""]
-      }
+      title={t("orderDigitalCopyFeedbackTitleText")}
+      description={[feedbackMessage ?? ""]}
       onSubmit={() => close(modalId)}
-      buttonLabel={
-        isError
-          ? t("orderDigitalCopyErrorButtonText")
-          : t("orderDigitalCopyFeedbackButtonText")
-      }
+      buttonLabel={t("orderDigitalCopyFeedbackButtonText")}
     />
   );
 };

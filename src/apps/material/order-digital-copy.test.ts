@@ -73,29 +73,6 @@ describe("Material - Order digital copy", () => {
       .and("contain", "Order digital copy");
   });
 
-  it("Shows an error message if the request fails", () => {
-    cy.getBySel("material-header-buttons-online-digital-article")
-      .should("be.visible")
-      .click();
-
-    cy.interceptGraphql({
-      operationName: "placeCopy",
-      statusCode: 500
-    });
-
-    cy.getBySel("order-digital-button").should("be.visible").click();
-
-    cy.getBySel("order-digital-feedback-title").should(
-      "contain",
-      "Error ordering digital copy"
-    );
-
-    cy.getBySel("order-digital-feedback-button")
-      .should("be.visible")
-      .and("contain", "Close")
-      .click();
-  });
-
   it("Uses the patron email adress by default", () => {
     cy.getBySel("material-header-buttons-online-digital-article")
       .should("be.visible")
