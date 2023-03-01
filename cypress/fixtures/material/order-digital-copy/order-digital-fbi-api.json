@@ -3,10 +3,14 @@
     "work": {
       "workId": "work-of:870971-tsart:34310815",
       "titles": {
-        "full": ["Faglig formidling er ikke kun skriveteknik"],
+        "full": [
+          "Faglig formidling er ikke kun skriveteknik"
+        ],
         "original": []
       },
-      "abstract": ["Om skriftlig formidling af faglig viden til ikke-fagfolk"],
+      "abstract": [
+        "Om skriftlig formidling af faglig viden til ikke-fagfolk"
+      ],
       "creators": [
         {
           "display": "Leif Becker Jensen",
@@ -38,23 +42,33 @@
         {
           "workId": "work-of:870971-tsart:34310866",
           "titles": {
-            "main": ["Grammatikkens poesi"],
-            "full": ["Grammatikkens poesi"],
+            "main": [
+              "Grammatikkens poesi"
+            ],
+            "full": [
+              "Grammatikkens poesi"
+            ],
             "original": []
           }
         },
         {
           "workId": "work-of:870971-tsart:34310815",
           "titles": {
-            "main": ["Faglig formidling er ikke kun skriveteknik"],
-            "full": ["Faglig formidling er ikke kun skriveteknik"],
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "full": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
             "original": []
           }
         },
         {
           "workId": "work-of:870971-tsart:34310831",
           "titles": {
-            "main": ["Skal det være så svært at lære at skrive godt?"],
+            "main": [
+              "Skal det være så svært at lære at skrive godt?"
+            ],
             "full": [
               "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
             ],
@@ -69,9 +83,13 @@
           {
             "pid": "870971-tsart:34310815",
             "genreAndForm": [],
-            "source": ["Tidsskriftsartikler"],
+            "source": [
+              "Tidsskriftsartikler"
+            ],
             "titles": {
-              "main": ["Faglig formidling er ikke kun skriveteknik"],
+              "main": [
+                "Faglig formidling er ikke kun skriveteknik"
+              ],
               "original": []
             },
             "fictionNonfiction": {
@@ -105,6 +123,7 @@
                 "display": "2010"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -139,9 +158,13 @@
         "latest": {
           "pid": "870971-tsart:34310815",
           "genreAndForm": [],
-          "source": ["Tidsskriftsartikler"],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
           "titles": {
-            "main": ["Faglig formidling er ikke kun skriveteknik"],
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
             "original": []
           },
           "fictionNonfiction": {
@@ -175,6 +198,7 @@
               "display": "2010"
             }
           },
+          "dateFirstEdition": null,
           "audience": {
             "generalAudience": []
           },
@@ -208,9 +232,13 @@
         "bestRepresentation": {
           "pid": "870971-tsart:34310815",
           "genreAndForm": [],
-          "source": ["Tidsskriftsartikler"],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
           "titles": {
-            "main": ["Faglig formidling er ikke kun skriveteknik"],
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
             "original": []
           },
           "fictionNonfiction": {
@@ -244,6 +272,7 @@
               "display": "2010"
             }
           },
+          "dateFirstEdition": null,
           "audience": {
             "generalAudience": []
           },
@@ -303,6 +332,23 @@
           {
             "display": "skriftlig fremstilling"
           }
+        ],
+        "dbcVerified": [
+          {
+            "display": "formidling"
+          },
+          {
+            "display": "videnskab"
+          },
+          {
+            "display": "retorik"
+          },
+          {
+            "display": "forskning"
+          },
+          {
+            "display": "skriftlig fremstilling"
+          }
         ]
       },
       "fictionNonfiction": {
@@ -313,12 +359,8 @@
         "display": "19.1 Forskningsteknik i alm."
       },
       "relations": {
-        "hasAdaptation": [],
-        "hasReview": [
-          {
-            "pid": "150005-anmeld:81092"
-          }
-        ]
+        "hasReview": [],
+        "hasAdaptation": []
       }
     }
   }
