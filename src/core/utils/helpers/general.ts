@@ -430,8 +430,8 @@ export const getReleaseYearSearchResult = (work: Work) => {
   // If the manifestation tells us that it is fiction.
   if (materialIsFiction(manifestation)) {
     return (
-      manifestation.dateFirstEdition?.display ||
-      manifestation.dateFirstEdition?.year
+      manifestation.dateFirstEdition?.year ||
+      manifestation.edition?.publicationYear?.display
     );
   }
   // If it isn't fiction we get release year from latest manifestation.
