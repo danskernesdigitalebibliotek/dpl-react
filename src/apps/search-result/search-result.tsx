@@ -25,7 +25,7 @@ import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
-import { dataIsNotEmpty } from "../../core/utils/helpers/general";
+import { isDataEmpty } from "../../core/utils/helpers/general";
 import useFilterHandler from "./useFilterHandler";
 
 interface SearchResultProps {
@@ -97,7 +97,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = useSearchWithPaginationQuery({
+  const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
     limit: pageSize,
@@ -172,9 +172,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
-      <SearchResultList resultItems={resultItems} />
+      <SearchResultList
+        resultItems={resultItems}
+        hitcount={hitcount}
+        isLoading={isLoading}
+      />
       {PagerComponent}
-      {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
+      {!isDataEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );
 };
