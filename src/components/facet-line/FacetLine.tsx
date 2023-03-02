@@ -9,14 +9,20 @@ import useFilterHandler from "../../apps/search-result/useFilterHandler";
 
 type FacetLineProps = {
   q: string;
+  hitCount: number;
+  isLoading: boolean;
 };
 
-const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
+const FacetLine: React.FunctionComponent<FacetLineProps> = ({
+  q,
+  hitCount,
+  isLoading
+}) => {
   const { filters } = useFilterHandler();
 
   const cleanBranches = useGetCleanBranches();
 
-  const { data } = useIntelligentFacetsQuery({
+  const { data, isLoading: isLoadingFacets } = useIntelligentFacetsQuery({
     q: { all: q },
     facetsLimit: 6,
     valuesLimit: 5,
@@ -25,8 +31,10 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
 
   return (
     <>
-      {!data && <FacetLineFiltersSkeleton />}
-      {data && <FacetLineFilters facets={data.search.intelligentFacets} />}
+      {(isLoading || isLoadingFacets) && <FacetLineFiltersSkeleton />}
+      {data && hitCount > 0 && (
+        <FacetLineFilters facets={data.search.intelligentFacets} />
+      )}
       <FacetLineSelected />
     </>
   );
