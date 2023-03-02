@@ -1,10 +1,10 @@
-import { TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../core/token";
+import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
 describe("Menu (authenticated))", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
-      win.sessionStorage.setItem(TOKEN_USER_KEY, "random-user");
+      cy.createFakeAuthenticatedSession();
     });
     const testdate = new Date("2022-11-11T12:30:00.000Z");
 
@@ -339,5 +339,7 @@ describe("Menu (authenticated))", () => {
       .and("have.text", "Log Out");
   });
 });
+
+// TODO: Create test for unauthenticated access
 
 export {};
