@@ -167,7 +167,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   return (
     <div className="search-result-page">
-      <SearchResultHeader hitcount={hitcount} q={q} />
+      <SearchResultHeader hitcount={hitcount} q={q} isLoading={isLoading} />
       <FacetLine q={q} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
