@@ -110,7 +110,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         )}
         {fbsData && physicalLoansCount && (
           <>
-            {physicalLoansOverdue && physicalLoansOverdue && (
+            {physicalLoansOverdue && physicalLoansOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansOverdue}
                 notificationText={t("loansOverdueText")}
@@ -120,7 +120,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationClickEventParam={yesterday}
               />
             )}
-            {physicalLoansSoonOverdue && physicalLoansSoonOverdue && (
+            {physicalLoansSoonOverdue && physicalLoansSoonOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansSoonOverdue}
                 notificationText={t("loansSoonOverdueText")}
@@ -130,7 +130,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationClickEventParam={soon}
               />
             )}
-            {physicalLoansNotOverdue && physicalLoansNotOverdue && (
+            {physicalLoansNotOverdue && physicalLoansNotOverdue !== 0 && (
               <DashboardNotification
                 notificationNumber={physicalLoansNotOverdue}
                 notificationText={t("loansNotOverdueText")}
@@ -162,26 +162,30 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           !reservationsStillInQueueFor && (
             <div className="dpl-list-empty">{t("noReservationsText")}</div>
           )}
-        {patronReservations && reservationsReadyForPickup && (
-          <DashboardNotification
-            notificationNumber={reservationsReadyForPickup}
-            notificationText={t("reservationsReadyText")}
-            notificationColor="info"
-            notificationLink={reservationsUrl}
-            notificationClickEvent={openModalHandler}
-            notificationClickEventParam="ready-to-loan-modal"
-          />
-        )}
-        {patronReservations && reservationsStillInQueueFor && (
-          <DashboardNotification
-            notificationNumber={reservationsStillInQueueFor}
-            notificationText={t("reservationsStillInQueueForText")}
-            notificationColor="neutral"
-            notificationLink={reservationsUrl}
-            notificationClickEvent={openModalHandler}
-            notificationClickEventParam="still-in-queue-modal"
-          />
-        )}
+        {patronReservations &&
+          reservationsReadyForPickup &&
+          reservationsReadyForPickup !== 0 && (
+            <DashboardNotification
+              notificationNumber={reservationsReadyForPickup}
+              notificationText={t("reservationsReadyText")}
+              notificationColor="info"
+              notificationLink={reservationsUrl}
+              notificationClickEvent={openModalHandler}
+              notificationClickEventParam="ready-to-loan-modal"
+            />
+          )}
+        {patronReservations &&
+          reservationsStillInQueueFor &&
+          reservationsStillInQueueFor !== 0 && (
+            <DashboardNotification
+              notificationNumber={reservationsStillInQueueFor}
+              notificationText={t("reservationsStillInQueueForText")}
+              notificationColor="neutral"
+              notificationLink={reservationsUrl}
+              notificationClickEvent={openModalHandler}
+              notificationClickEventParam="still-in-queue-modal"
+            />
+          )}
       </div>
     </div>
   );
