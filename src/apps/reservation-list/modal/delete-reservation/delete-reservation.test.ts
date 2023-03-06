@@ -92,8 +92,8 @@ describe("Delete reservation modal test", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.getBySel("delete-reservation-button").click();
-    cy.getBySel("button").click();
+    cy.get(".list-reservation__about").find("button").click();
+    cy.get(".modal-details__buttons").eq(0).find("button").click();
 
     // ID 14 1 The system opens a modal
     cy.get("#root").find(".modal.modal-cta").should("exist");
