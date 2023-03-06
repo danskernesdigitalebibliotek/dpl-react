@@ -4,6 +4,7 @@ import {
   getManifestationType
 } from "../../../../core/utils/helpers/general";
 import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
+import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
@@ -27,7 +28,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
   });
-  const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2();
+  const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
+    enabled: !userIsAnonymous()
+  });
 
   if (isLoading) {
     return <MaterialButtonLoading />;

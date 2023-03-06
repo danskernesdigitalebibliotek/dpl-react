@@ -1,4 +1,4 @@
-import { FetcherError } from "./FetcherError";
+import FetcherError from "./FetcherError";
 
 export default class FetchFailedCriticalError<
   ContextType

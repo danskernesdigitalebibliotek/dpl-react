@@ -1,47 +1,47 @@
-import { useCallback, useState } from "react";
-import { FilterItemTerm, TermOnClickHandler } from "./types";
-
-export type Filter = {
-  [key: string]: { [key: FilterItemTerm["key"]]: FilterItemTerm };
-};
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  add,
+  remove,
+  clear,
+  FilterPayloadType,
+  Filter
+} from "../../core/filter.slice";
+import { RootState } from "../../core/store";
+import {
+  getUrlQueryParam,
+  removeQueryParametersFromUrl,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
 
 const useFilterHandler = () => {
-  const [filters, setFilters] = useState<Filter>({});
+  const dispatch = useDispatch();
+  const filters = useSelector((state: RootState) => state.filter) as Filter;
 
-  const filterHandler = useCallback<TermOnClickHandler>(
-    ({ filterItem: { facet, term }, action }) => {
-      if (action === "add") {
-        if (Object.keys(filters).includes(facet)) {
-          setFilters({
-            ...filters,
-            [facet]: { ...filters[facet], [term.term]: term }
-          });
-        } else {
-          setFilters({
-            ...filters,
-            [facet]: { [term.term]: term }
-          });
-        }
+  const clearFilter = useCallback(() => {
+    removeQueryParametersFromUrl("filters");
+    dispatch(clear());
+  }, [dispatch]);
+
+  const addToFilter = useCallback(
+    (payload: FilterPayloadType) => {
+      if (getUrlQueryParam("filters") !== "usePersistedFilters") {
+        setQueryParametersInUrl({
+          filters: "usePersistedFilters"
+        });
       }
 
-      if (action === "remove") {
-        const copy = { ...filters };
-        if (Object.keys(filters).includes(facet)) {
-          // this removes the facet if it's the last term
-          if (Object.keys(filters[facet]).length === 1) {
-            delete copy[facet];
-            setFilters(copy);
-          } else {
-            delete copy[facet][term.term];
-            setFilters(copy);
-          }
-        }
-      }
+      dispatch(add(payload));
     },
-    [filters]
+    [dispatch]
   );
 
-  return { filters, filterHandler };
+  const removeFromFilter = useCallback(
+    (payload: FilterPayloadType) => dispatch(remove(payload)),
+    [dispatch]
+  );
+
+  return { filters, addToFilter, removeFromFilter, clearFilter };
 };
 
 export default useFilterHandler;

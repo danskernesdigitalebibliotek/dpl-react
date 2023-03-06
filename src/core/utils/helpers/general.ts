@@ -13,6 +13,7 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
+import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
 import {
@@ -86,6 +87,11 @@ export const getFirstPublishedManifestation = (
   manifestations: Manifestation[]
 ) => {
   const ordered = orderManifestationsByYear(manifestations, "asc");
+  return ordered[0];
+};
+
+export const getLatestManifestation = (manifestations: Manifestation[]) => {
+  const ordered = orderManifestationsByYear(manifestations, "desc");
   return ordered[0];
 };
 
@@ -379,6 +385,39 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 
+// Create a string of authors with commas and a conjunction
+export const getAuthorNames = (
+  creators: {
+    display: string;
+  }[],
+  by?: string,
+  and?: string
+) => {
+  const names = creators.map(({ display }) => display);
+  let returnContentString = "";
+  if (names.length === 1) {
+    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
+  } else {
+    returnContentString = `${by ? `${by} ` : ""} ${names
+      .slice(0, -1)
+      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
+  }
+  return returnContentString;
+};
+
+export const getReviewRelease = (
+  dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
+  workYear: ManifestationReviewFieldsFragment["workYear"],
+  edition: ManifestationReviewFieldsFragment["edition"]
+) => {
+  return (
+    dateFirstEdition?.display ||
+    workYear?.display ||
+    edition?.publicationYear?.display ||
+    null
+  );
+};
+
 // The rendered release year for search results is picked based on
 // whether the work is fiction or not.
 export const getReleaseYearSearchResult = (work: Work) => {
@@ -391,8 +430,8 @@ export const getReleaseYearSearchResult = (work: Work) => {
   // If the manifestation tells us that it is fiction.
   if (materialIsFiction(manifestation)) {
     return (
-      manifestation.dateFirstEdition?.display ||
-      manifestation.dateFirstEdition?.year
+      manifestation.dateFirstEdition?.year ||
+      manifestation.edition?.publicationYear?.display
     );
   }
   // If it isn't fiction we get release year from latest manifestation.

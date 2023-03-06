@@ -1,4 +1,4 @@
-export class FetcherError<ContextType> extends Error {
+export default class FetcherError<ContextType> extends Error {
   public readonly name: string = "FetcherError";
 
   constructor(
@@ -8,5 +8,3 @@ export class FetcherError<ContextType> extends Error {
     super(message);
   }
 }
-
-export default {};

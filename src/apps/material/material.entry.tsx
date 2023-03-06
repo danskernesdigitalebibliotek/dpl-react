@@ -36,6 +36,7 @@ interface MaterialEntryTextProps {
   editionText: string;
   etAlText: string;
   fictionNonfictionText: string;
+  filmAdaptationsText: string;
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
@@ -123,6 +124,8 @@ interface MaterialEntryTextProps {
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
+  firstAvailableEditionText: string;
+  expandMoreText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

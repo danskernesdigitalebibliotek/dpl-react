@@ -64,6 +64,13 @@ export default defineConfig({
         },
         query: {
           useQuery: true
+        },
+        operations: {
+          // The reason why we add this here is to be able to use "enabled" option in the
+          // getPatronInformationByPatronIdV2 query. This lets us call it conditionally.
+          getPatronInformationByPatronIdV2: {
+            requestOptions: false
+          }
         }
       },
       prettier: true
@@ -114,6 +121,8 @@ export default defineConfig({
           useQuery: true
         },
         operations: {
+          // The reason why we add this here is to be able to use "enabled" option in the
+          // proxy-url:GET query. This lets us call it conditionally.
           "proxy-url:GET": {
             requestOptions: false
           }

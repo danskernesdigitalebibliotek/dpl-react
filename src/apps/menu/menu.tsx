@@ -41,10 +41,10 @@ const Menu: FC = () => {
       </button>
       {showMenu && (
         <div className="modal-backdrop">
-          {userIsAnonymous() && (
+          {!userIsAnonymous() && (
             <MenuLoggedIn closePatronMenu={closePatronMenu} />
           )}
-          {!userIsAnonymous() && (
+          {userIsAnonymous() && (
             <MenuNotLoggedInContent closePatronMenu={closePatronMenu} />
           )}
         </div>

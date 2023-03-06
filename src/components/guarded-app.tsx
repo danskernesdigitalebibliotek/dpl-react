@@ -9,10 +9,8 @@ import {
 import { RootState } from "../core/store";
 import getCurrentUnixTime from "../core/utils/helpers/date";
 import {
-  getCurrentLocation,
   getUrlQueryParam,
-  removeQueryParametersFromUrl,
-  replaceCurrentLocation
+  removeQueryParametersFromUrl
 } from "../core/utils/helpers/url";
 import { userIsAnonymous } from "../core/utils/helpers/user";
 import { GuardedAppId } from "../core/utils/types/ids";
@@ -73,13 +71,9 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
     // @ts-ignore
     dispatch(reRunRequest(persistedRequest));
 
-    const currentUrlWithoutAuthParam = removeQueryParametersFromUrl(
-      new URL(getCurrentLocation()),
-      AUTH_PARAM
-    );
     // Remove auth parameter from url so we don't accidentally
+    removeQueryParametersFromUrl(AUTH_PARAM);
     // repeat the functionality related to it.
-    replaceCurrentLocation(currentUrlWithoutAuthParam);
     dispatch(removeRequest());
   }, [app, didAuthenticate, dispatch, isApplicationBlocked, persistedRequest]);
 

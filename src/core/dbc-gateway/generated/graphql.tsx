@@ -1110,6 +1110,11 @@ export type SearchResponse = {
 };
 
 /** The simple search response */
+export type SearchResponseDidYouMeanArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The simple search response */
 export type SearchResponseFacetsArgs = {
   facets: Array<FacetField>;
 };
@@ -1378,45 +1383,32 @@ export type GetMaterialQuery = {
         | { __typename?: "SubjectText"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
+      dbcVerified: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
     };
-    reviews: Array<
-      | {
-          __typename: "ExternalReview";
-          author?: string | null;
-          date?: string | null;
-          rating?: string | null;
-          urls: Array<{
-            __typename?: "AccessUrl";
-            origin: string;
-            url: string;
-          }>;
-        }
-      | {
-          __typename: "InfomediaReview";
-          author?: string | null;
-          date?: string | null;
-          origin?: string | null;
-          rating?: string | null;
-          id: string;
-        }
-      | {
-          __typename: "LibrariansReview";
-          author?: string | null;
-          date?: string | null;
-          sections: Array<{
-            __typename?: "LibrariansReviewSection";
-            code: LibrariansReviewSectionCode;
-            heading?: string | null;
-            text: string;
-          }>;
-        }
-    >;
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
       code: FictionNonfictionCode;
     } | null;
     dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
+    relations: {
+      __typename?: "Relations";
+      hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
+      hasAdaptation: Array<{
+        __typename?: "Manifestation";
+        ownerWork: {
+          __typename?: "Work";
+          workId: string;
+          workTypes: Array<WorkType>;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
+    };
     titles: {
       __typename?: "WorkTitles";
       full: Array<string>;
@@ -1710,6 +1702,65 @@ export type GetInfomediaQuery = {
       text?: string | null;
     } | null;
   };
+};
+
+export type GetReviewManifestationsQueryVariables = Exact<{
+  pid: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type GetReviewManifestationsQuery = {
+  __typename?: "Query";
+  manifestations: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    creators: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+    >;
+    access: Array<
+      | { __typename: "AccessUrl"; url: string; origin: string }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | { __typename: "Ereol" }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan" }
+    >;
+    edition?: {
+      __typename?: "Edition";
+      publicationYear?: {
+        __typename?: "PublicationYear";
+        display: string;
+      } | null;
+    } | null;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      title: string;
+      issue?: string | null;
+    } | null;
+    physicalDescriptions: Array<{
+      __typename?: "PhysicalDescription";
+      summary: string;
+    }>;
+    dateFirstEdition?: {
+      __typename?: "PublicationYear";
+      display: string;
+    } | null;
+    workYear?: { __typename?: "PublicationYear"; display: string } | null;
+    review?: {
+      __typename?: "ManifestationReview";
+      rating?: string | null;
+      reviewByLibrarians?: Array<{
+        __typename?: "ReviewElement";
+        content?: string | null;
+        heading?: string | null;
+        type?: ReviewElementType | null;
+        manifestations?: Array<{
+          __typename?: "Manifestation";
+          pid: string;
+          titles: { __typename?: "ManifestationTitles"; main: Array<string> };
+        } | null> | null;
+      } | null> | null;
+    } | null;
+  } | null>;
 };
 
 export type SearchWithPaginationQueryVariables = Exact<{
@@ -2416,6 +2467,55 @@ export type ManifestationsSimpleFieldsFragment = {
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
 };
 
+export type ManifestationReviewFieldsFragment = {
+  __typename?: "Manifestation";
+  pid: string;
+  creators: Array<
+    | { __typename?: "Corporation"; display: string }
+    | { __typename?: "Person"; display: string }
+  >;
+  access: Array<
+    | { __typename: "AccessUrl"; url: string; origin: string }
+    | { __typename: "DigitalArticleService"; issn: string }
+    | { __typename: "Ereol" }
+    | { __typename: "InfomediaService"; id: string }
+    | { __typename: "InterLibraryLoan" }
+  >;
+  edition?: {
+    __typename?: "Edition";
+    publicationYear?: {
+      __typename?: "PublicationYear";
+      display: string;
+    } | null;
+  } | null;
+  hostPublication?: {
+    __typename?: "HostPublication";
+    title: string;
+    issue?: string | null;
+  } | null;
+  physicalDescriptions: Array<{
+    __typename?: "PhysicalDescription";
+    summary: string;
+  }>;
+  dateFirstEdition?: { __typename?: "PublicationYear"; display: string } | null;
+  workYear?: { __typename?: "PublicationYear"; display: string } | null;
+  review?: {
+    __typename?: "ManifestationReview";
+    rating?: string | null;
+    reviewByLibrarians?: Array<{
+      __typename?: "ReviewElement";
+      content?: string | null;
+      heading?: string | null;
+      type?: ReviewElementType | null;
+      manifestations?: Array<{
+        __typename?: "Manifestation";
+        pid: string;
+        titles: { __typename?: "ManifestationTitles"; main: Array<string> };
+      } | null> | null;
+    } | null> | null;
+  } | null;
+};
+
 export type SeriesSimpleFragment = {
   __typename?: "Series";
   title: string;
@@ -2730,41 +2830,32 @@ export type WorkMediumFragment = {
       | { __typename?: "SubjectText"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
+    dbcVerified: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
   };
-  reviews: Array<
-    | {
-        __typename: "ExternalReview";
-        author?: string | null;
-        date?: string | null;
-        rating?: string | null;
-        urls: Array<{ __typename?: "AccessUrl"; origin: string; url: string }>;
-      }
-    | {
-        __typename: "InfomediaReview";
-        author?: string | null;
-        date?: string | null;
-        origin?: string | null;
-        rating?: string | null;
-        id: string;
-      }
-    | {
-        __typename: "LibrariansReview";
-        author?: string | null;
-        date?: string | null;
-        sections: Array<{
-          __typename?: "LibrariansReviewSection";
-          code: LibrariansReviewSectionCode;
-          heading?: string | null;
-          text: string;
-        }>;
-      }
-  >;
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
     code: FictionNonfictionCode;
   } | null;
   dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
+  relations: {
+    __typename?: "Relations";
+    hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
+    hasAdaptation: Array<{
+      __typename?: "Manifestation";
+      ownerWork: {
+        __typename?: "Work";
+        workId: string;
+        workTypes: Array<WorkType>;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
+  };
   titles: {
     __typename?: "WorkTitles";
     full: Array<string>;
@@ -3042,6 +3133,62 @@ export type WorkMediumFragment = {
   };
 };
 
+export const ManifestationReviewFieldsFragmentDoc = `
+    fragment ManifestationReviewFields on Manifestation {
+  pid
+  creators {
+    display
+  }
+  access {
+    __typename
+    ... on InfomediaService {
+      id
+    }
+    ... on DigitalArticleService {
+      issn
+    }
+    ... on AccessUrl {
+      url
+      origin
+    }
+  }
+  edition {
+    publicationYear {
+      display
+    }
+  }
+  hostPublication {
+    title
+    issue
+  }
+  creators {
+    display
+  }
+  physicalDescriptions {
+    summary
+  }
+  dateFirstEdition {
+    display
+  }
+  workYear {
+    display
+  }
+  review {
+    rating
+    reviewByLibrarians {
+      content
+      heading
+      type
+      manifestations {
+        pid
+        titles {
+          main
+        }
+      }
+    }
+  }
+}
+    `;
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
@@ -3200,33 +3347,8 @@ export const WorkMediumFragmentDoc = `
     all {
       display
     }
-  }
-  reviews {
-    __typename
-    ... on LibrariansReview {
-      author
-      date
-      sections {
-        code
-        heading
-        text
-      }
-    }
-    ... on ExternalReview {
-      author
-      date
-      rating
-      urls {
-        origin
-        url
-      }
-    }
-    ... on InfomediaReview {
-      author
-      date
-      origin
-      rating
-      id
+    dbcVerified {
+      display
     }
   }
   fictionNonfiction {
@@ -3235,6 +3357,20 @@ export const WorkMediumFragmentDoc = `
   }
   dk5MainEntry {
     display
+  }
+  relations {
+    hasReview {
+      pid
+    }
+    hasAdaptation {
+      ownerWork {
+        workId
+        workTypes
+        titles {
+          main
+        }
+      }
+    }
   }
 }
     ${WorkSmallFragmentDoc}`;
@@ -3328,6 +3464,28 @@ export const useGetInfomediaQuery = <
       GetInfomediaDocument,
       variables
     ),
+    options
+  );
+export const GetReviewManifestationsDocument = `
+    query getReviewManifestations($pid: [String!]!) {
+  manifestations(pid: $pid) {
+    ...ManifestationReviewFields
+  }
+}
+    ${ManifestationReviewFieldsFragmentDoc}`;
+export const useGetReviewManifestationsQuery = <
+  TData = GetReviewManifestationsQuery,
+  TError = unknown
+>(
+  variables: GetReviewManifestationsQueryVariables,
+  options?: UseQueryOptions<GetReviewManifestationsQuery, TError, TData>
+) =>
+  useQuery<GetReviewManifestationsQuery, TError, TData>(
+    ["getReviewManifestations", variables],
+    fetcher<
+      GetReviewManifestationsQuery,
+      GetReviewManifestationsQueryVariables
+    >(GetReviewManifestationsDocument, variables),
     options
   );
 export const SearchWithPaginationDocument = `

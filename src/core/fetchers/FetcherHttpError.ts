@@ -1,4 +1,4 @@
-import { HttpError } from "http-error-classes";
+import HttpError from "../utils/errors/HttpError";
 
 export default class FetcherHttpError<
   ContextType
