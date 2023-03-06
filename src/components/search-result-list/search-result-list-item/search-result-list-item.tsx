@@ -31,6 +31,8 @@ import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import { getNumberedSeries } from "../../../apps/material/helper";
+import useFilterHandler from "../../../apps/search-result/useFilterHandler";
+import { getFirstMaterialTypeFromFilters } from "../../facet-browser/helper";
 
 export interface SearchResultListItemProps {
   item: Work;
@@ -52,6 +54,12 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
+  const { filters } = useFilterHandler();
+  const materialTypeFromFilters = getFirstMaterialTypeFromFilters(
+    filters,
+    manifestations
+  );
+
   const dispatch = useDispatch<TypedDispatch>();
   const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
@@ -59,7 +67,11 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   );
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
-  const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
+  const materialFullUrl = constructMaterialUrl(
+    materialUrl,
+    workId as WorkId,
+    materialTypeFromFilters
+  );
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
