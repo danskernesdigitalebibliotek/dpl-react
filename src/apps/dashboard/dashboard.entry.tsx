@@ -12,6 +12,7 @@ export interface DashBoardProps {
   payOwedText: string;
   physicalLoansText: string;
   reservationsText: string;
+  removeAllReservationsText: string;
   loansOverdueText: string;
   loansSoonOverdueText: string;
   loansNotOverdueText: string;

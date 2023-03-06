@@ -69,6 +69,10 @@ export default {
       defaultValue: "/Signup",
       control: { type: "text" }
     },
+    physicalText: {
+      defaultValue: "Physical",
+      control: { type: "text" }
+    },
     thresholdConfig: {
       defaultValue:
         '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',

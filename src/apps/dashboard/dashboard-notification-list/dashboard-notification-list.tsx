@@ -105,10 +105,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             <span className="link-filters__counter">{physicalLoansCount}</span>
           </div>
         </div>
-        {fbsData && !physicalLoansCount && (
+        {fbsData && !physicalLoansCount && physicalLoansCount !== 0 && (
           <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
-        {fbsData && physicalLoansCount && (
+        {fbsData && physicalLoansCount !== 0 && (
           <>
             {physicalLoansOverdue && physicalLoansOverdue !== 0 && (
               <DashboardNotification
