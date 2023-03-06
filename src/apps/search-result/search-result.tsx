@@ -39,7 +39,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { PagerComponent, page } = usePager({
+    hitcount,
+    pageSize,
+    isLoading
+  });
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
@@ -105,6 +110,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   });
 
   useEffect(() => {
+    setIsLoading(true);
     if (!data) {
       return;
     }
@@ -119,6 +125,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     };
 
     setHitCount(resultCount);
+
+    setIsLoading(false);
 
     // if page has change then append the new result to the existing result
     if (page > 0) {
