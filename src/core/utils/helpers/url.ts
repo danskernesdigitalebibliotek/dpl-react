@@ -82,7 +82,7 @@ export const constructMaterialUrl = (
   workId: WorkId,
   type?: string
 ) => {
-  const materialUrl = new URL(url.href);
+  const materialUrl = new URL(url);
 
   // Replace placeholders with values.
   materialUrl.pathname = processUrlPlaceholders(materialUrl.pathname, [
