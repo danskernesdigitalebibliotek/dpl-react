@@ -28,6 +28,7 @@ const isPatronBlockedHoc =
     const { blockedModal } = getModalIds();
 
     // FBS returns these, if the user is blocked from viewing content.
+    // TODO: Explain these
     const [blockedFromViewingContentArray] = useState<string[]>([
       "D",
       "S",
@@ -46,31 +47,33 @@ const isPatronBlockedHoc =
     } = useSelector((state: RootState) => state.blockedModal);
 
     useEffect(() => {
-      if (patronData) {
-        if (
-          patronData?.patron?.blockStatus &&
-          patronData?.patron?.blockStatus?.length > 0
-        ) {
-          setBlockedStatus(patronData.patron.blockStatus[0].blockedReason);
-          // As above comment, only opens modal if it has not already been visible.
-          if (!hasBeenVisible) {
-            open(blockedModal as string);
-            dispatch(setHasBeenVisible({ hasBeenVisible: true }));
-          }
-        } else {
-          setBlockedFromViewingContent(false);
+      if (!patronData) {
+        return;
+      }
+      if (
+        patronData?.patron?.blockStatus &&
+        patronData?.patron?.blockStatus?.length > 0
+      ) {
+        setBlockedStatus(patronData.patron.blockStatus[0].blockedReason);
+        // As above comment, only opens modal if it has not already been visible.
+        if (!hasBeenVisible && typeof blockedModal === "string") {
+          open(blockedModal);
+          dispatch(setHasBeenVisible({ hasBeenVisible: true }));
         }
+      } else {
+        setBlockedFromViewingContent(false);
       }
     }, [blockedModal, dispatch, hasBeenVisible, open, patronData]);
 
     useEffect(() => {
-      if (blockedStatus) {
-        if (blockedFromViewingContentArray.includes(blockedStatus)) {
-          setBlockedFromViewingContent(true);
-          redirectTo(new URL(redirectOnBlocked));
-        } else {
-          setBlockedFromViewingContent(false);
-        }
+      if (!blockedStatus) {
+        return;
+      }
+      if (blockedFromViewingContentArray.includes(blockedStatus)) {
+        setBlockedFromViewingContent(true);
+        redirectTo(new URL(redirectOnBlocked));
+      } else {
+        setBlockedFromViewingContent(false);
       }
     }, [blockedFromViewingContentArray, blockedStatus, redirectOnBlocked]);
 
