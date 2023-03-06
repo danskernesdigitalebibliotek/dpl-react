@@ -4,14 +4,21 @@ import { useText } from "../../../core/utils/text";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
 import { FaustId, LoanId } from "../../../core/utils/types/ids";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import { Button } from "../../../components/Buttons/Button";
 
 interface RenewButtonProps {
   loanId: LoanId;
   renewable: boolean;
   faust: FaustId;
+  classNames?: string;
 }
 
-const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
+const RenewButton: FC<RenewButtonProps> = ({
+  loanId,
+  faust,
+  renewable,
+  classNames
+}) => {
   const t = useText();
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
@@ -42,16 +49,16 @@ const RenewButton: FC<RenewButtonProps> = ({ loanId, faust, renewable }) => {
 
   return (
     <div className="modal-details__buttons">
-      <button
-        type="button"
+      <Button
+        size="small"
+        variant="filled"
         disabled={!renewable}
         onClick={() => renew(loanId)}
-        className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
-          !renewable ? "btn-outline" : ""
-        }`}
-      >
-        {t("materialDetailsRenewLoanButtonText")}
-      </button>
+        classNames={classNames}
+        label={t("materialDetailsRenewLoanButtonText")}
+        buttonType="none"
+        collapsible={false}
+      />
     </div>
   );
 };

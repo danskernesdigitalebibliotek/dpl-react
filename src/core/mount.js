@@ -1,11 +1,10 @@
 import { createElement } from "react";
 import { render } from "react-dom";
 import { withErrorBoundary } from "react-error-boundary";
-
-import ErrorBoundary from "../components/alert/alert";
 import { setToken } from "./token";
 import Store from "../components/store";
 import { persistor } from "./store";
+import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
 
 /**
  * We look for containers and corresponding applications.
@@ -29,7 +28,7 @@ function mount(context) {
           {},
           createElement(
             withErrorBoundary(app, {
-              FallbackComponent: ErrorBoundary,
+              FallbackComponent: ErrorBoundaryAlert,
               onError(error, info) {
                 // Logging should be acceptable in an error handler.
                 // eslint-disable-next-line no-console

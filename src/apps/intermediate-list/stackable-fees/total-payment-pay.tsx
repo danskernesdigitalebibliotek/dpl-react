@@ -36,7 +36,8 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   const checkboxTermsId = `checkbox_terms__${
     (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
   }`;
-
+  const postPaymentChangeNotChecked = !prePaymentTypeChange && !check;
+  const postPaymentChangeChecked = !prePaymentTypeChange && check;
   return (
     <div className="intermediate-list-bottom">
       <div className="intermediate-list-bottom__paymenttypes">
@@ -67,15 +68,19 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
             </>
           }
         />
-        <button
-          type="button"
-          className={paymentButtonClass}
-          onClick={showPaymentButton ? openIntermediatePaymentModal : undefined}
-          disabled={!showPaymentButton}
-        >
-          {t("payText")}
-        </button>
-        {!prePaymentTypeChange && check && (
+        {(postPaymentChangeNotChecked || prePaymentTypeChange) && (
+          <button
+            type="button"
+            className={paymentButtonClass}
+            onClick={
+              showPaymentButton ? openIntermediatePaymentModal : undefined
+            }
+            disabled={!showPaymentButton}
+          >
+            {t("payText")}
+          </button>
+        )}
+        {postPaymentChangeChecked && (
           <button
             type="button"
             className="btn-primary btn-filled btn-small arrow__hover--right-small mt-16"

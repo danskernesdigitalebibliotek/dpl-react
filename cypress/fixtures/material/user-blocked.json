@@ -1,0 +1,35 @@
+{
+  "authenticateStatus": "VALID",
+  "patron": {
+    "address": {
+      "coName": "",
+      "street": "Havnevejen 32",
+      "postalCode": "1712",
+      "city": "København V",
+      "country": "DK"
+    },
+    "allowBookings": false,
+    "birthday": "1991-02-23",
+    "blockStatus": [
+      {
+        "blockedReason": "WAS_BAD",
+        "blockedSince": "19. January 2019",
+        "message": "The user was bad."
+      }
+    ],
+    "defaultInterestPeriod": 180,
+    "emailAddress": "test@test.com",
+    "name": "test user name",
+    "notificationProtocols": ["DIGITAL_POST"],
+    "onHold": null,
+    "patronId": 87654321,
+    "phoneNumber": "12345678",
+    "preferredLanguage": null,
+    "preferredPickupBranch": "DK-775100",
+    "receiveEmail": true,
+    "receivePostalMail": false,
+    "receiveSms": false,
+    "resident": false,
+    "secondaryAddress": null
+  }
+}

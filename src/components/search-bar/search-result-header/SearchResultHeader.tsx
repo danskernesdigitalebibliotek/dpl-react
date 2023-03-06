@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import * as React from "react";
+import React, { memo } from "react";
 import { useText } from "../../../core/utils/text";
 
 export interface SearchResultHeaderProps {
@@ -25,4 +25,4 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   );
 };
 
-export default SearchResultHeader;
+export default memo(SearchResultHeader);

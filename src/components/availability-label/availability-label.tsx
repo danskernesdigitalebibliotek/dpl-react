@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useDeepCompareEffect } from "react-use";
@@ -80,7 +80,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
           !selected
       }
     ),
-    check: clsx("availability-label--check", selected && "selected")
+    check: clsx("availability-label__check", selected && "selected")
   };
 
   const availabilityLabel = (
@@ -97,16 +97,18 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       {manifestText && (
         <>
           <p
-            className="text-label-semibold ml-24"
+            className="availability-label__text text-label-semibold ml-24"
             data-cy="availability-label-type"
           >
             {manifestText}
           </p>
-          <div className="availability-label--divider ml-4" />
+          <div className="availability-label__divider ml-4" />
         </>
       )}
       <p
-        className={`text-label-normal ${manifestText ? "ml-4" : "ml-24"} mr-8`}
+        className={`availability-label__text text-label-normal ${
+          manifestText ? "ml-4" : "ml-24"
+        } mr-8`}
         data-cy="availability-label-status"
       >
         {availabilityText}
@@ -121,4 +123,4 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   );
 };
 
-export default AvailabilityLabel;
+export default memo(AvailabilityLabel);

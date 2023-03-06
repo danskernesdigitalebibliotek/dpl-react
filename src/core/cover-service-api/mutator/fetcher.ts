@@ -1,15 +1,11 @@
+import FetchFailedError from "../../fetchers/FetchFailedError";
+import { getServiceUrlWithParams } from "../../fetchers/helpers";
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
 import {
   getServiceBaseUrl,
   serviceUrlKeys
 } from "../../utils/reduxMiddleware/extractServiceBaseUrls";
-
-type FetchParams =
-  | string
-  | string[][]
-  | Record<string, string>
-  | URLSearchParams
-  | undefined;
+import CoverServiceHttpError from "./CoverServiceHttpError";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -23,8 +19,6 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const baseURL = getServiceBaseUrl(serviceUrlKeys.cover);
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
 
@@ -39,28 +33,41 @@ export const fetcher = async <ResponseType>({
   };
   const body = data ? JSON.stringify(data) : null;
 
-  const urlParams = params
-    ? `?${new URLSearchParams(params as FetchParams)}`
-    : "";
-
-  const response = await fetch(`${baseURL}${url}${urlParams}`, {
-    method,
-    headers,
-    body
+  const serviceUrl = getServiceUrlWithParams({
+    baseUrl: getServiceBaseUrl(serviceUrlKeys.cover),
+    url,
+    params
   });
 
-  if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-
   try {
-    return (await response.json()) as ResponseType;
-  } catch (e) {
-    if (!(e instanceof SyntaxError)) {
-      throw e;
-    }
-  }
+    const response = await fetch(serviceUrl, {
+      method,
+      headers,
+      body
+    });
 
+    if (!response.ok) {
+      throw new CoverServiceHttpError(
+        response.status,
+        response.statusText,
+        serviceUrl
+      );
+    }
+
+    try {
+      return (await response.json()) as ResponseType;
+    } catch (e) {
+      if (!(e instanceof SyntaxError)) {
+        throw e;
+      }
+    }
+  } catch (error: unknown) {
+    if (error instanceof CoverServiceHttpError) {
+      throw error;
+    }
+    const message = error instanceof Error ? error.message : "Unknown error";
+    throw new FetchFailedError(message, serviceUrl);
+  }
   // Do nothing. Some of our responses are intentionally empty and thus
   // cannot be converted to JSON. Fetch API and TypeScript has no clean
   // way for us to identify empty responses so instead we swallow
