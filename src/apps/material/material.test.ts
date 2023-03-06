@@ -33,7 +33,7 @@ describe("Material", () => {
     );
   });
 
-  it("Renders horizontal lines", () => {
+  it("Renders series horizontal lines", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -41,9 +41,27 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description-series-1")
+    cy.getBySel("material-header-content").scrollIntoView();
+
+    cy.getBySel("material-description-series-0")
       .should("be.visible")
       .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
+  });
+
+  it("Renders only first 3 horizontal lines items", () => {
+    cy.getBySel("material-description-series-members")
+      .should("be.visible")
+      .find("span")
+      .should("have.length", 3);
+  });
+
+  it("Renders additional horizontal lines items after button click", () => {
+    cy.getBySel("material-description-series-members").find("button").click();
+
+    cy.getBySel("material-description-series-members")
+      .should("be.visible")
+      .find("span")
+      .should("have.length", 7);
   });
 
   it("Renders authors", () => {
@@ -66,6 +84,8 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-header-content").scrollIntoView();
+
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
@@ -79,6 +99,8 @@ describe("Material", () => {
     });
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -110,7 +132,7 @@ describe("Material", () => {
     cy.scrollTo("bottom");
 
     cy.getBySel("material-editions-disclosure")
-      .should("contain", "Editions (7)")
+      .should("contain", "Editions")
       .click()
       .then((disclosure) => {
         cy.wrap(disclosure).should("contain", "Reserve");
@@ -125,10 +147,14 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
+    cy.getBySel("material-description").scrollIntoView();
+
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("reservation-modal-list-item-text")
       .should("be.visible")
@@ -144,17 +170,23 @@ describe("Material", () => {
     ).click();
   });
 
-  it("Can open reservation modal, approve a reservation, and close the modal using buttons)", () => {
+  it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.visit(
+      "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
+    ).scrollTo("bottom");
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
+
+    cy.getBySel("material-description").scrollIntoView();
 
     cy.getBySel("reservation-modal-submit-button", true)
       .and("contain", "Approve reservation")
@@ -172,6 +204,25 @@ describe("Material", () => {
       .should("be.visible")
       .and("contain", "Ok")
       .click();
+  });
+
+  it("Renders reviews", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+    cy.interceptGraphql({
+      operationName: "getReviewManifestations",
+      fixtureFilePath: "material/reviews.json"
+    });
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.scrollTo("bottom");
+    cy.getBySel("material-reviews-disclosure").should("be.visible").click();
+    cy.getBySel("material-reviews").should(
+      "contain",
+      "Dorthe Marlene Jørgensen, 2016"
+    );
   });
 
   beforeEach(() => {

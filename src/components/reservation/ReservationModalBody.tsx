@@ -37,7 +37,8 @@ import {
   getFutureDateString,
   getPreferredBranch,
   constructReservationData,
-  getAuthorLine
+  getAuthorLine,
+  getManifestationsToReserve
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -92,7 +93,10 @@ export const ReservationModalBody = ({
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-
+  const manifestationsToReserve = getManifestationsToReserve(
+    reservableManifestations ?? [],
+    !!selectedPeriodical
+  );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
@@ -106,15 +110,14 @@ export const ReservationModalBody = ({
     : null;
 
   const saveReservation = () => {
-    if (!reservableManifestations) {
+    if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
-
     // Save reservation to FBS.
     mutate(
       {
         data: constructReservationData({
-          manifestations: reservableManifestations,
+          manifestations: manifestationsToReserve,
           selectedBranch,
           expiryDate,
           periodical: selectedPeriodical
@@ -141,7 +144,12 @@ export const ReservationModalBody = ({
   const reservationResult = reservationResponse?.reservationResults[0]?.result;
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
-  const manifestation = selectedManifestations[0];
+  const manifestation =
+    manifestationsToReserve?.[0] || selectedManifestations[0];
+  const editionText =
+    !materialIsFiction(work) || manifestationsToReserve?.length === 1
+      ? manifestation.edition?.summary
+      : t("firstAvailableEditionText");
 
   return (
     <>
@@ -151,7 +159,7 @@ export const ReservationModalBody = ({
             <Cover id={manifestation.pid} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
-                {getMaterialTypes([manifestation])[0]}
+                {getMaterialTypes(selectedManifestations)[0]}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
                 {manifestation.titles.main}
@@ -185,11 +193,7 @@ export const ReservationModalBody = ({
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
-                text={
-                  selectedPeriodical?.displayText ||
-                  manifestation.edition?.summary ||
-                  ""
-                }
+                text={selectedPeriodical?.displayText || editionText || ""}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar

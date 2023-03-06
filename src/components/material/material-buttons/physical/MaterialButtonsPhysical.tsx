@@ -1,6 +1,10 @@
 import React from "react";
-import { useGetAvailabilityV3 } from "../../../../core/fbs/fbs";
+import {
+  useGetAvailabilityV3,
+  useGetPatronInformationByPatronIdV2
+} from "../../../../core/fbs/fbs";
 import { getAllFaustIds } from "../../../../core/utils/helpers/general";
+import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
@@ -21,40 +25,44 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const faustIds = getAllFaustIds(manifestations);
-  const { data, isLoading } = useGetAvailabilityV3({
-    recordid: faustIds
-  });
-
-  // TODO: use useGetPatronInformationByPatronIdV2() when we get the correctly
-  // set up STORYBOOK_CLIENT_ID from Rolf. The "isUserBlocked" is temporary.
-  const isUserBlocked = false;
-
-  if (isLoading) {
+  const { data: availabilityData, isLoading: availabilityLoading } =
+    useGetAvailabilityV3({
+      recordid: faustIds
+    });
+  const { data: userData, isLoading: userLoading } =
+    useGetPatronInformationByPatronIdV2({ enabled: !userIsAnonymous() });
+  if (availabilityLoading || userLoading) {
     return <MaterialButtonLoading size={size} />;
   }
 
-  if (!data) {
+  if (!availabilityData) {
     return null;
   }
 
-  if (isUserBlocked) {
-    return <MaterialButtonUserBlocked size={size} />;
-  }
-
   // TODO: Investigate if we could use UseReservableManifestations() instead.
-  if (!areAnyReservable(data)) {
+  if (!areAnyReservable(availabilityData)) {
     return <MaterialButtonCantReserve size={size} />;
   }
-  const manifestationMaterialType = manifestations[0].materialTypes[0].specific;
 
-  return (
-    <MaterialButtonReservePhysical
-      dataCy={dataCy}
-      manifestationMaterialType={manifestationMaterialType}
-      faustIds={faustIds}
-      size={size}
-    />
-  );
+  if (userData?.patron?.blockStatus) {
+    return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
+  }
+
+  // We show the reservation button if either
+  if (!userData || !userData?.patron?.blockStatus) {
+    const manifestationMaterialType =
+      manifestations[0].materialTypes[0].specific;
+    return (
+      <MaterialButtonReservePhysical
+        dataCy={dataCy}
+        manifestationMaterialType={manifestationMaterialType}
+        faustIds={faustIds}
+        size={size}
+      />
+    );
+  }
+
+  return null;
 };
 
 export default MaterialButtonsPhysical;

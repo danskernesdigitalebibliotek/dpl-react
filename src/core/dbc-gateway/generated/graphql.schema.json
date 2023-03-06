@@ -1064,6 +1064,12 @@
             "deprecationReason": null
           },
           {
+            "name": "ERROR_MISSING_CLIENT_CONFIGURATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ERROR_PID_NOT_RESERVABLE",
             "description": null,
             "isDeprecated": false,
@@ -7782,7 +7788,20 @@
           {
             "name": "didYouMean",
             "description": "A list of alternative search queries",
-            "args": [],
+            "args": [
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,

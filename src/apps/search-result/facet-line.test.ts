@@ -2,6 +2,10 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("The facet line", () => {
   beforeEach(() => {
+    // Clear the session storage to avoid previously saved facets
+    cy.window().then((win) => {
+      win.sessionStorage.removeItem("persist:dpl-react");
+    });
     cy.interceptGraphql({
       operationName: "searchFacet",
       fixtureFilePath: "search-result/facet-browser/searchFacet"
@@ -47,11 +51,11 @@ describe("The facet line", () => {
     cy.visit("/iframe.html?id=apps-search-result--search-result");
   });
 
-  it("renders facets with a single term as a button", () => {
+  it("Renders facets with a single term as a button", () => {
     cy.getBySel("facet-line-term-lydbog (net)").should("be.visible");
   });
 
-  it("renders facets with multiple terms as a drop down", () => {
+  it("Renders facets with multiple terms as a drop down", () => {
     cy.getBySel("facet-line-genreAndForm-dropdown")
       .should("be.visible")
       .find("option")
@@ -86,6 +90,7 @@ describe("The facet line", () => {
       .should("be.visible")
       .and("have.attr", "aria-pressed", "false")
       .click();
+
     cy.getBySel("facet-line-selected-term-lydbog (net)").should(
       "have.attr",
       "aria-pressed",
@@ -105,6 +110,7 @@ describe("The facet line", () => {
       .should("be.visible")
       .and("have.attr", "aria-pressed", "false")
       .click();
+
     cy.getBySel("facet-line-selected-term-lydbog (net)")
       .should("have.attr", "aria-pressed", "true")
       .click();
@@ -142,6 +148,43 @@ describe("The facet line", () => {
     );
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
+  });
+
+  it("Remembers previously selected facet after reload the page without using the cache", () => {
+    cy.getBySel("facet-line-term-lydbog (net)")
+      .should("be.visible")
+      .and("have.attr", "aria-pressed", "false")
+      .click();
+
+    cy.url().should("include", "filters=usePersistedFilters");
+
+    // Replacement for returning to the search page using the back button after navigating to a search result.
+    cy.reload(true);
+
+    cy.getBySel("facet-line-selected-term-lydbog (net)").should(
+      "have.attr",
+      "aria-pressed",
+      "true"
+    );
+  });
+
+  it("Clear all selected facets when filters not present in url", () => {
+    cy.getBySel("facet-line-term-lydbog (net)")
+      .should("be.visible")
+      .and("have.attr", "aria-pressed", "false")
+      .click();
+
+    cy.url().should("include", "filters=usePersistedFilters");
+
+    cy.visit(
+      "/iframe.html?args=q%3Alange+peter&id=apps-search-result--search-result"
+    );
+
+    cy.url().should("not.include", "filters=usePersistedFilters");
+
+    cy.getBySel("facet-line-term-lydbog (net)")
+      .should("be.visible")
+      .and("have.attr", "aria-pressed", "false");
   });
 });
 export {};

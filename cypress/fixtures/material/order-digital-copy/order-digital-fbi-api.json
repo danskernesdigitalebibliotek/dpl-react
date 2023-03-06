@@ -123,6 +123,7 @@
                 "display": "2010"
               }
             },
+            "dateFirstEdition": null,
             "audience": {
               "generalAudience": []
             },
@@ -150,7 +151,8 @@
             "shelfmark": {
               "postfix": "Faglig",
               "shelfmark": "19.1"
-            }
+            },
+            "workYear": null
           }
         ],
         "latest": {
@@ -196,6 +198,7 @@
               "display": "2010"
             }
           },
+          "dateFirstEdition": null,
           "audience": {
             "generalAudience": []
           },
@@ -223,7 +226,82 @@
           "shelfmark": {
             "postfix": "Faglig",
             "shelfmark": "19.1"
-          }
+          },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870971-tsart:34310815",
+          "genreAndForm": [],
+          "source": [
+            "Tidsskriftsartikler"
+          ],
+          "titles": {
+            "main": [
+              "Faglig formidling er ikke kun skriveteknik"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "tidsskriftsartikel"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Leif Becker Jensen",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk"
+              }
+            ]
+          },
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 21,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "01071424"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Faglig",
+            "shelfmark": "19.1"
+          },
+          "workYear": null
         }
       },
       "materialTypes": [
@@ -254,15 +332,35 @@
           {
             "display": "skriftlig fremstilling"
           }
+        ],
+        "dbcVerified": [
+          {
+            "display": "formidling"
+          },
+          {
+            "display": "videnskab"
+          },
+          {
+            "display": "retorik"
+          },
+          {
+            "display": "forskning"
+          },
+          {
+            "display": "skriftlig fremstilling"
+          }
         ]
       },
-      "reviews": [],
       "fictionNonfiction": {
         "display": "faglitteratur",
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
         "display": "19.1 Forskningsteknik i alm."
+      },
+      "relations": {
+        "hasReview": [],
+        "hasAdaptation": []
       }
     }
   }

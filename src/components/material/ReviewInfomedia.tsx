@@ -1,32 +1,46 @@
 import React from "react";
 import {
-  InfomediaReview,
+  AccessUrl,
+  InfomediaService,
   useGetInfomediaQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import {
+  getAuthorNames,
+  getReviewRelease
+} from "../../core/utils/helpers/general";
 import {
   currentLocationWithParametersUrl,
   isUrlValid,
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { ReviewManifestation } from "../../core/utils/types/entities";
 import { useUrls } from "../../core/utils/url";
 import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 import { Button } from "../Buttons/Button";
 import ReviewHearts from "./ReviewHearts";
-import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
+import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewInfomediaProps {
-  review: InfomediaReview;
+  review: ReviewManifestation;
+  dataCy?: string;
 }
 
-const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
-  const { id } = review;
+const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
+  review: { workYear, dateFirstEdition, access, creators, review, edition },
+  dataCy = "review-infomedia"
+}) => {
+  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const authors = getAuthorNames(creators);
+  const infomediaAccess = access.filter(
+    (accessItem) => accessItem.__typename === "InfomediaService"
+  ) as Pick<InfomediaService, "id">[];
+  const infomediaId = infomediaAccess[0].id;
   const { data, error } = useGetInfomediaQuery({
-    id
+    id: infomediaId
   });
   const t = useText();
   const { authUrl } = useUrls();
-
   const onClick = (reviewId: string) => {
     const returnUrl = currentLocationWithParametersUrl({
       disclosure: "disclosure-reviews"
@@ -45,14 +59,11 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
     return null;
   }
   const { infomedia } = data;
-  const date = review.date ? usDateStringToDateObj(review.date) : null;
   if (infomedia.error) {
     return (
-      <li className="review text-small-caption">
-        {(review.author || review.date) && (
-          <ReviewMetadata author={review.author} date={date} />
-        )}
-        {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
+      <li className="review text-small-caption" data-cy={dataCy}>
+        {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+        {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
           {infomedia.error === "BORROWER_NOT_LOGGED_IN" ? (
             <Button
@@ -63,7 +74,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
               size="xsmall"
               variant="outline"
               onClick={() => {
-                onClick(review.id);
+                onClick(infomediaId);
               }}
             />
           ) : (
@@ -74,12 +85,14 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
     );
   }
 
+  const accessUrls = access.filter(
+    (accessItem) => accessItem.__typename === "AccessUrl"
+  ) as Pick<AccessUrl, "origin" | "url">[];
+
   return (
-    <li className="review text-small-caption" id={review.id}>
-      {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={date} />
-      )}
-      {review.rating && <ReviewHearts amountOfHearts={review.rating} />}
+    <li className="review text-small-caption" id={infomediaId}>
+      {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+      {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {infomedia.article?.headLine && (
         <div className="review__headline mb-8">
           {infomedia.article.headLine}
@@ -94,15 +107,14 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({ review }) => {
           dangerouslySetInnerHTML={{ __html: infomedia.article?.text }}
         />
       )}
-      {/* eslint-enable react/no-danger */}
-      {/* We want to make sure a link can be made out of the review origin. */}
-      {review.origin && isUrlValid(review.origin) && (
-        <ReviewMetadata
-          author={review.author}
-          date={date}
-          url={new URL(review.origin)}
-        />
-      )}
+      {access.some((a) => a.__typename === "AccessUrl") &&
+        isUrlValid(accessUrls[0].url) && (
+          <ReviewMetadata
+            author={authors}
+            date={date}
+            url={new URL(accessUrls[0].url)}
+          />
+        )}
     </li>
   );
 };

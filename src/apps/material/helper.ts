@@ -1,4 +1,4 @@
-import { compact, groupBy } from "lodash";
+import { compact, groupBy, uniqBy, uniq } from "lodash";
 import {
   constructModalId,
   getMaterialTypes,
@@ -15,6 +15,7 @@ import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialType from "../../core/utils/types/material-type";
+import { WorkType } from "../../core/dbc-gateway/generated/graphql";
 
 export const getWorkManifestation = (
   work: Work,
@@ -350,3 +351,21 @@ export const getBestMaterialTypeForWork = (work: Work) => {
 export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
 };
+
+export const getNumberedSeries = (series: Work["series"]) =>
+  series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);
+
+export const getUniqueMovies = (relations: Work["relations"]) => {
+  const movies = relations.hasAdaptation.filter((item) =>
+    item.ownerWork.workTypes.includes(WorkType.Movie)
+  );
+
+  return uniqBy(movies, (item) => item.ownerWork.workId);
+};
+
+export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
+  uniq([
+    // dbcVerified needs to be first, because it is the most accurate
+    ...subjects.dbcVerified.map((item) => item.display),
+    ...subjects.all.map((item) => item.display)
+  ]);

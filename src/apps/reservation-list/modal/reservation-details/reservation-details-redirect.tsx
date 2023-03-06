@@ -9,20 +9,28 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 export interface ReservationDetailsRedirectProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
+  reservationId: string;
+  className?: string;
+  linkClassNames?: string;
 }
 
 const ReservationDetailsRedirect: FC<
   ReservationDetailsRedirectProps & MaterialProps
-> = ({ reservation, openReservationDeleteModal }) => {
+> = ({
+  reservation,
+  openReservationDeleteModal,
+  className,
+  linkClassNames
+}) => {
   const t = useText();
   const { ereolenMyPageUrl } = useUrls();
 
   return (
-    <div className="modal-details__buttons">
+    <div className={`modal-details__buttons ${className}`}>
       <button
         type="button"
         onClick={() => openReservationDeleteModal(reservation)}
-        className="link-tag mx-16"
+        className={`link-tag ${linkClassNames}`}
       >
         {t("reservationDetailsRemoveDigitalReservationText")}
       </button>

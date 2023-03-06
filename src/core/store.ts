@@ -13,6 +13,7 @@ import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
+import filterReducer from "./filter.slice";
 import configReducer from "./config.slice";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
@@ -42,7 +43,8 @@ export const store = configureStore({
       modal: modalReducer,
       url: urlReducer,
       config: configReducer,
-      guardedRequests: guardedRequestsReducer
+      guardedRequests: guardedRequestsReducer,
+      filter: filterReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"

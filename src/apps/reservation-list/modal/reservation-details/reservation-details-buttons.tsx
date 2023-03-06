@@ -7,25 +7,33 @@ import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch
 export interface ReservationDetailsButtonProps {
   reservation: ReservationType;
   numberInQueue?: number | null;
+  classNames?: string;
+  buttonClassNames?: string;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
 }
 
 const ReservationDetailsButton: FC<
   ReservationDetailsButtonProps & MaterialProps
-> = ({ reservation, numberInQueue, openReservationDeleteModal }) => {
+> = ({
+  numberInQueue,
+  openReservationDeleteModal,
+  classNames,
+  buttonClassNames,
+  reservation
+}) => {
   const t = useText();
 
   return (
-    <div className="modal-details__buttons">
+    <div className={`modal-details__buttons ${classNames}`}>
       {numberInQueue && numberInQueue > 0 && (
-        <div className="my-8 mx-16 text-body-medium-regular">
+        <div className="my-8 mr-16 text-body-medium-regular">
           {t("reservationDetailsOthersInQueueText")}
         </div>
       )}
       <Button
         label={t("reservationDetailsButtonRemoveText")}
         onClick={() => openReservationDeleteModal(reservation)}
-        classNames="btn-primary btn-filled btn-small arrow__hover--right-small"
+        classNames={buttonClassNames}
         buttonType="none"
         disabled={false}
         collapsible={false}
