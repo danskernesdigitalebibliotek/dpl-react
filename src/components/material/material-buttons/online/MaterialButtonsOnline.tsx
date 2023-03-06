@@ -50,7 +50,9 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
     //  We have experienced that externalUrl is not always valid.
     if (!isUrlValid(externalUrl)) {
-      throw new InvalidUrlError("The external url is not valid.");
+      throw new InvalidUrlError(
+        `The external url is not valid. ( ${externalUrl} )`
+      );
     }
 
     return (
