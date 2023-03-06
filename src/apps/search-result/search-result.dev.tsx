@@ -192,6 +192,11 @@ export default {
       name: "Alert error message text",
       defaultValue: "An error occurred",
       control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;

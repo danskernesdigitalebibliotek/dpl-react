@@ -25,10 +25,10 @@ const List: FC<ListProps> = ({
   const [displayedReservations, setDisplayedReservations] = useState<
     ReservationType[]
   >([]);
-  const { itemsShown, PagerComponent } = usePager(
-    reservations.length,
+  const { itemsShown, PagerComponent } = usePager({
+    hitcount: reservations.length,
     pageSize
-  );
+  });
 
   useEffect(() => {
     if (reservations) {
