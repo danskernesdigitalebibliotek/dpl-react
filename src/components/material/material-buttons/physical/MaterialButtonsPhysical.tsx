@@ -41,7 +41,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
-  // We show the reservation button if either
+  // We show the reservation button if the user isn't logged in or isn't blocked.
+  // In the former case there there's no way to see if they're blocked, so we
+  // redirect anonymous user to the login page.
   if (!userData || !userData?.patron?.blockStatus) {
     return (
       <MaterialButtonReservePhysical
