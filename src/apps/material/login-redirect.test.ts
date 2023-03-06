@@ -5,15 +5,20 @@ describe("Material", () => {
     window.sessionStorage.removeItem("user");
 
     cy.visit("/iframe.html?id=apps-material--default&type=bog&")
+      .getBySel("material-description")
+      .scrollIntoView()
       .getBySel("material-header-buttons-physical")
       .click();
 
-    cy.url()
+    cy.getBySel("material-description")
+      .scrollIntoView()
+      .url()
       .should("include", "modal=reservation-modal-46615743")
       .then(() => {
         // We simulate that the user has sucessfully logged in
-        window.sessionStorage.setItem("user", "fake-token");
+        cy.createFakeAuthenticatedSession();
       });
+
     cy.getBySel("modal").should("be.visible");
   });
 
@@ -23,9 +28,11 @@ describe("Material", () => {
       url: "**/agencyid/catalog/holdings/**",
       fixtureFilePath: "material/holdings.json"
     });
-    window.sessionStorage.setItem("user", "fake-token");
+    cy.createFakeAuthenticatedSession();
 
     cy.visit("/iframe.html?id=apps-material--default&type=bog")
+      .getBySel("material-description")
+      .scrollIntoView()
       .getBySel("material-header-buttons-physical")
       .click()
       .url()

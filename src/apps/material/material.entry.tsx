@@ -7,6 +7,8 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
+  alertErrorCloseText: string;
+  alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
   cantReserveText: string;
@@ -34,6 +36,7 @@ interface MaterialEntryTextProps {
   editionText: string;
   etAlText: string;
   fictionNonfictionText: string;
+  filmAdaptationsText: string;
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
@@ -121,6 +124,8 @@ interface MaterialEntryTextProps {
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
+  firstAvailableEditionText: string;
+  expandMoreText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

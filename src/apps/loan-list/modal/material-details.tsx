@@ -17,6 +17,7 @@ import ListDetails from "../../../components/list-details/list-details";
 import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
 import RenewButton from "./renew-button";
 import { Link } from "../../../components/atoms/link";
+import { useUrls } from "../../../core/utils/url";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -27,7 +28,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
-
+  const { loanListEreolenUrl } = useUrls();
   if (!loan) {
     return null;
   }
@@ -66,13 +67,17 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
         )}
       </ModalDetailsHeader>
       {!isDigital(loan) && faust && loanId && (
-        <RenewButton faust={faust} loanId={loanId} renewable={isRenewable} />
+        <RenewButton
+          classNames="modal-details__buttons--hide-on-mobile"
+          faust={faust}
+          loanId={loanId}
+          renewable={isRenewable}
+        />
       )}
       {isDigital(loan) && (
-        <div className="modal-details__buttons">
-          {/* todo create a component for ereolen-redirect (also replace url) */}
+        <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
           <Link
-            href={new URL("https://ereolen.dk/user/me/")}
+            href={loanListEreolenUrl}
             className="btn-primary btn-filled btn-small arrow__hover--right-small"
           >
             {t("materialDetailsGoToEreolenText")}
@@ -118,6 +123,25 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </div>
+      {!isDigital(loan) && faust && loanId && (
+        <RenewButton
+          classNames="modal-details__buttons__full-width"
+          faust={faust}
+          loanId={loanId}
+          renewable={isRenewable}
+        />
+      )}
+      {isDigital(loan) && (
+        <div className="modal-details__buttons">
+          <Link
+            href={loanListEreolenUrl}
+            className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
+          >
+            {t("materialDetailsGoToEreolenText")}
+            <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

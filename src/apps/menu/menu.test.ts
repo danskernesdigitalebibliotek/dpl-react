@@ -1,9 +1,10 @@
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
-describe("Menu", () => {
+describe("Menu (authenticated))", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
+      cy.createFakeAuthenticatedSession();
     });
     const testdate = new Date("2022-11-11T12:30:00.000Z");
 
@@ -50,7 +51,7 @@ describe("Menu", () => {
           secondaryAddress: null
         }
       }
-    }).as("user");
+    }).as("patron");
 
     cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/v2**", {
       statusCode: 200,
@@ -243,10 +244,11 @@ describe("Menu", () => {
     }).as("fees");
 
     cy.visit("/iframe.html?path=/story/apps-menu--menu-entry");
-    cy.wait(["@reservations", "@physical_loans", "@digital_loans", "@fees"]);
   });
 
   it("Menu", () => {
+    cy.get(".header__menu-profile").should("exist").click();
+    cy.wait(["@reservations", "@physical_loans", "@digital_loans", "@fees"]);
     // 2. Systemet viser Lånerstatusmenuen med
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")
@@ -262,7 +264,7 @@ describe("Menu", () => {
 
     // 2.c.i. “x lån overskredet -- x loans expired"”
     cy.get(".modal-profile__notification-item:first-of-type")
-      .find(".number--danger")
+      .find(".number")
       .should("exist")
       .and("have.text", "1");
     cy.get(".modal-profile__notification-item:first-of-type")
@@ -272,7 +274,7 @@ describe("Menu", () => {
 
     // 2.c.ii. “x lån udløber snart -- x loans expiring soon”
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
-      .find(".number--warning")
+      .find(".number")
       .should("exist")
       .and("have.text", "2");
     cy.get(".modal-profile__notification-item:nth-of-type(2)")
@@ -282,7 +284,7 @@ describe("Menu", () => {
 
     // 2.c.iii. “x reservering klar” eller “x reserveringer klar”. Engelsk: "x reservation ready for pickup" eller "x reservations ready for pickup"
     cy.get(".modal-profile__notification-item:nth-of-type(3)")
-      .find(".number--info")
+      .find(".number")
       .should("exist")
       .and("have.text", "1");
     cy.get(".modal-profile__notification-item:nth-of-type(3)")
@@ -337,5 +339,7 @@ describe("Menu", () => {
       .and("have.text", "Log Out");
   });
 });
+
+// TODO: Create test for unauthenticated access
 
 export {};
