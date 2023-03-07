@@ -21,7 +21,6 @@ import {
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
-import { store } from "../../store";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -459,24 +458,19 @@ export const getReleaseYearSearchResult = (work: Work) => {
 };
 
 // Creates a "by author, author and author"-string
-export const getContributors = (creators: string[]) => {
+export const getContributors = (
+  creators: string[],
+  by: string,
+  and: string
+) => {
   let returnContentString = "";
-
-  // Todo this is sortof a hack, but using t: UseTextFunction as argument
-  // makes the components re-render.
-  const {
-    text: { data: texts }
-  } = store.getState();
-
   if (creators && creators.length > 0) {
     if (creators.length === 1) {
-      returnContentString = `${texts.materialByAuthorText} ${creators.join(
-        ", "
-      )}`;
+      returnContentString = `${by} ${creators.join(", ")}`;
     } else {
-      returnContentString = `${texts.materialByAuthorText} ${creators
+      returnContentString = `${by} ${creators
         .slice(0, -1)
-        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
+        .join(", ")} ${and} ${creators.slice(-1)}`;
     }
   }
   return returnContentString;

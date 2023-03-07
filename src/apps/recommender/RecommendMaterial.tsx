@@ -15,6 +15,7 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { Link } from "../../components/atoms/link";
 import { useUrls } from "../../core/utils/url";
+import { useText } from "../../core/utils/text";
 
 export interface RecommendMaterialProps {
   work: Work;
@@ -32,11 +33,17 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
   const { materialUrl } = useUrls();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId);
 
+  const t = useText();
+
   // Create authors string
   let authors = null;
   const inputContributorsArray = creators?.map(({ display }) => display);
   if (inputContributorsArray) {
-    authors = getContributors(inputContributorsArray);
+    authors = getContributors(
+      inputContributorsArray,
+      t("materialByAuthorText"),
+      t("materialAndAuthorText")
+    );
   }
 
   // For retrieving cover

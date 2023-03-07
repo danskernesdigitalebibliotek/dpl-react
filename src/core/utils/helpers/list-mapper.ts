@@ -108,7 +108,9 @@ export const mapProductToBasicDetailsType = (material: Product) => {
       ? getContributors(
           contributors?.map(
             ({ firstName, lastName }) => `${firstName} ${lastName}`
-          )
+          ),
+          texts.materialByAuthorText,
+          texts.materialAndAuthorText
         )
       : ""
   } as BasicDetailsType;
@@ -124,6 +126,12 @@ export const mapManifestationToBasicDetailsType = (
   const { edition, abstract, titles, pid, materialTypes, creators, series } =
     material?.manifestation || {};
 
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
+  const {
+    text: { data: texts }
+  } = store.getState();
+
   const description = abstract ? abstract[0] : "";
   const {
     main: [mainText]
@@ -134,7 +142,11 @@ export const mapManifestationToBasicDetailsType = (
   let contributors = null;
   const inputContributorsArray = creators?.map(({ display }) => display);
   if (inputContributorsArray) {
-    contributors = getContributors(inputContributorsArray);
+    contributors = getContributors(
+      inputContributorsArray,
+      texts.materialByAuthorText,
+      texts.materialAndAuthorText
+    );
   }
 
   return {

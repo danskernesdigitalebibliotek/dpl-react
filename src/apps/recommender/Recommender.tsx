@@ -60,7 +60,7 @@ const Recommender: FC = () => {
 
   useEffect(() => {
     if (physicalLoans !== null) {
-      const newestLoan = sortByLoanDate([...physicalLoans]).reverse();
+      const newestLoan = sortByLoanDate(physicalLoans).reverse();
       if (newestLoan.length > 0) {
         setLoanForRecommender(newestLoan[0]);
       }
