@@ -42,6 +42,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
         `btn-${variant}`,
         `btn-${size}`,
         "arrow__hover--right-small",
+        "no-underline",
         classNames
       )}
       trackClick={trackClick}
