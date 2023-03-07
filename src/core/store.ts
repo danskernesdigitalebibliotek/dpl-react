@@ -13,6 +13,7 @@ import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
+import filterReducer from "./filter.slice";
 import configReducer from "./config.slice";
 import blockModalReducer from "./blockedModal.slice";
 // TODO: Fix dependency cycle problem
@@ -44,7 +45,8 @@ export const store = configureStore({
       url: urlReducer,
       config: configReducer,
       guardedRequests: guardedRequestsReducer,
-      blockedModal: blockModalReducer
+      blockedModal: blockModalReducer,
+      filter: filterReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"

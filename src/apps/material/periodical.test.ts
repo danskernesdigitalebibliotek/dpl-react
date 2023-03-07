@@ -19,7 +19,7 @@ describe("Material - Periodical", () => {
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability.json"
+      fixtureFilePath: "material/availability-periodical.json"
     });
 
     cy.interceptRest({
@@ -47,7 +47,7 @@ describe("Material - Periodical", () => {
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
     );
 
-    window.sessionStorage.setItem("user", "fake-token");
+    cy.createFakeAuthenticatedSession();
   });
 
   it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {

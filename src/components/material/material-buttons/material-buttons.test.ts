@@ -104,7 +104,8 @@ describe("Material buttons", () => {
   it("Renders the correct action button for online digital articles", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/order-digital-copy/order-digital-fbi-api"
+      fixtureFilePath:
+        "material-buttons/material-buttons-order-digital-fbi-api.json"
     });
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
@@ -120,7 +121,8 @@ describe("Material buttons", () => {
   it("Renders the correct action button for infomedia articles", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
+      fixtureFilePath:
+        "material-buttons/material-buttons-infomedia-fbi-api.json"
     });
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story")
       .getBySel("material-description")
@@ -129,6 +131,23 @@ describe("Material buttons", () => {
     cy.getBySel("material-header-buttons-online-infomedia-article")
       .should("exist")
       .and("contain", "Read article");
+  });
+
+  it("Renders a disabled button for blocked users for physical works", () => {
+    cy.interceptRest({
+      aliasName: "user",
+      url: "**/agencyid/patrons/patronid/v2",
+      fixtureFilePath: "material/user-blocked.json"
+    });
+    cy.createFakeAuthenticatedSession();
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
+      .getBySel("material-description")
+      .scrollIntoView();
+
+    cy.getBySel("material-header-buttons-physical-user-blocked")
+      .should("be.visible")
+      .and("contain", "Reserve")
+      .and("be.disabled");
   });
 
   beforeEach(() => {
@@ -192,7 +211,7 @@ describe("Material buttons", () => {
 
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
+      fixtureFilePath: "material-buttons/material-buttons-fbi-api.json"
     });
   });
 });

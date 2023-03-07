@@ -628,6 +628,31 @@ export default {
       name: "Unknown",
       defaultValue: "Unknown",
       control: { type: "text" }
+    },
+    firstAvailableEditionText: {
+      name: "First available edition",
+      defaultValue: "First available edition",
+      control: { type: "text" }
+    },
+    filmAdaptationsText: {
+      name: "Film adaptations text",
+      defaultValue: "Film adaptations",
+      control: { type: "text" }
+    },
+    alertErrorCloseText: {
+      name: "Alert error close text",
+      defaultValue: "close",
+      control: { type: "text" }
+    },
+    alertErrorMessageText: {
+      name: "Alert error message text",
+      defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
+    expandMoreText: {
+      name: "Expand more text",
+      defaultValue: "Expand more",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

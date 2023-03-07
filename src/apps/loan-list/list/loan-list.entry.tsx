@@ -12,6 +12,7 @@ export interface LoanListEntryConfigProps {
 }
 export interface LoanListEntryUrlProps {
   fbsBaseUrl: string;
+  loanListEreolenUrl: string;
   materialOverdueUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;

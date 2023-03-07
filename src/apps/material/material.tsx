@@ -5,9 +5,6 @@ import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/
 import { useDeepCompareEffect } from "react-use";
 import {
   AccessTypeCode,
-  ExternalReview,
-  InfomediaReview,
-  LibrariansReview,
   useGetMaterialQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
@@ -136,7 +133,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     work,
     work: {
       manifestations: { all: manifestations },
-      reviews
+      relations: { hasReview }
     }
   } = data as { work: Work };
 
@@ -248,7 +245,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
       </Disclosure>
-      {reviews && reviews.length >= 1 && (
+      {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
           id="reviews"
           title={t("reviewsText")}
@@ -256,13 +253,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
         >
-          <MaterialReviews
-            listOfReviews={
-              reviews as Array<
-                LibrariansReview | ExternalReview | InfomediaReview
-              >
-            }
-          />
+          <MaterialReviews pids={hasReview.map((review) => review.pid)} />
         </DisclosureControllable>
       )}
     </section>

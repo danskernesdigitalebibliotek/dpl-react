@@ -1,14 +1,16 @@
+import FetchFailedCriticalError from "../fetchers/FetchFailedCriticalError";
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../token";
 import {
   getServiceBaseUrl,
   serviceUrlKeys
 } from "../utils/reduxMiddleware/extractServiceBaseUrls";
+import DbcGateWayHttpError from "./DbcGateWayHttpError";
 
 export const fetcher = <TData, TVariables>(
   query: string,
   variables?: TVariables
 ) => {
-  return async (): Promise<TData> => {
+  return (): Promise<TData> => {
     // The whole concept of agency id, profile and and bearer token needs to be refined.
     // First version is with a library token.
     const token = getToken(TOKEN_USER_KEY) || getToken(TOKEN_LIBRARY_KEY);
@@ -20,7 +22,7 @@ export const fetcher = <TData, TVariables>(
       ? ({ Authorization: `Bearer ${token}` } as object)
       : {};
 
-    const res = await fetch(getServiceBaseUrl(serviceUrlKeys.fbi), {
+    return fetch(getServiceBaseUrl(serviceUrlKeys.fbi), {
       method: "POST",
       ...{
         headers: {
@@ -29,17 +31,32 @@ export const fetcher = <TData, TVariables>(
         }
       },
       body: JSON.stringify({ query, variables })
-    });
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new DbcGateWayHttpError(response.status, response.statusText);
+        }
 
-    const json = await res.json();
+        const json = await response.json();
 
-    if (json.errors) {
-      const { message } = json.errors[0];
+        // See if we have any errors in the response.
+        if (json.errors) {
+          const { message } = json.errors[0];
 
-      throw new Error(message);
-    }
+          throw new Error(message);
+        }
 
-    return json.data;
+        return json.data;
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DbcGateWayHttpError) {
+          throw error;
+        }
+
+        const message =
+          error instanceof Error ? error.message : "Unknown error";
+        throw new FetchFailedCriticalError(message, query);
+      });
   };
 };
 
