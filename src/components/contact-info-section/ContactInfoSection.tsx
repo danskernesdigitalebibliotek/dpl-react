@@ -93,7 +93,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       )}
       {inLine && (
         <>
-          <div className="patron__input--desktop mr-16">{phoneNode}</div>f{" "}
+          <div className="patron__input--desktop mr-16">{phoneNode}</div>
           <div className="patron__input--desktop">{emailNode}</div>
         </>
       )}

@@ -6,11 +6,20 @@ import { PatronSettingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
 import { useCreateV4 } from "../../core/fbs/fbs";
+import { isCprValid } from "../../core/utils/helpers/general";
+import { useConfig } from "../../core/utils/config";
 
-const UserInfo: FC = () => {
+export interface UserInfoProps {
+  cpr: string;
+}
+
+const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const t = useText();
+  const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const minAge = parseInt(config("minAgeConfig"), 10);
+  const [validCpr] = useState<boolean>(isCprValid(cpr, minAge));
   const { mutate } = useCreateV4();
   const [patron, setPatron] = useState<PatronSettingsV3>({
     preferredPickupBranch: "",
@@ -36,7 +45,7 @@ const UserInfo: FC = () => {
     if (pin && preferredPickupBranch && phoneNumber && emailAddress) {
       mutate(
         {
-          data: { cprNumber: "", patron, pincode: pin }
+          data: { cprNumber: cpr, patron, pincode: pin }
         },
         {
           onSuccess: (result) => {
@@ -50,51 +59,59 @@ const UserInfo: FC = () => {
   };
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e)}
-      ref={formRef}
-      className="dpl-patron-page"
-    >
-      <h1 className="text-header-h1 mb-48">{t("createPatronHeaderText")}</h1>
-      <ContactInfoSection
-        showCheckboxes={false}
-        inLine
-        changePatron={changePatron}
-        patron={patron}
-      />
-      {t("createPatronChangePickupHeaderText") && (
-        <h2 className="text-body-small-regular mt-32 mb-16">
-          {t("createPatronChangePickupHeaderText")}
-        </h2>
-      )}
-      {t("createPatronChangePickupBodyText") && (
-        <p className="text-subtitle my-32">
-          {t("createPatronChangePickupBodyText")}
-        </p>
-      )}
-      <BranchesDropdown
-        classNames="dropdow dropdown__desktop"
-        selected={patron?.preferredPickupBranch || ""}
-        onChange={(newPreferredPickupBranch) =>
-          changePatron(newPreferredPickupBranch, "preferredPickupBranch")
-        }
-      />
-      <PincodeSection required changePincode={setPin} />
-      <div className="patron-buttons">
-        <button type="submit" className="btn-primary btn-filled btn-small">
-          {t("createPatronConfirmButtonText")}
-        </button>
-        <button
-          type="button"
-          className="link-tag mx-16"
-          // todo, click cancel, what then?
-          // eslint-disable-next-line no-console
-          onClick={() => console.log("What now ddb?")}
+    <>
+      {validCpr && (
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          ref={formRef}
+          className="dpl-patron-page"
         >
-          {t("createPatronCancelButtonText")}
-        </button>
-      </div>
-    </form>
+          <h1 className="text-header-h1 mb-48">
+            {t("createPatronHeaderText")}
+          </h1>
+          <ContactInfoSection
+            showCheckboxes={false}
+            inLine
+            changePatron={changePatron}
+            patron={patron}
+          />
+          {t("createPatronChangePickupHeaderText") && (
+            <h2 className="text-body-small-regular mt-32 mb-16">
+              {t("createPatronChangePickupHeaderText")}
+            </h2>
+          )}
+          {t("createPatronChangePickupBodyText") && (
+            <p className="text-subtitle my-32">
+              {t("createPatronChangePickupBodyText")}
+            </p>
+          )}
+          <PincodeSection required changePincode={setPin} />
+          <div className="mt-32">
+            <BranchesDropdown
+              classNames="dropdow dropdown__desktop"
+              selected={patron?.preferredPickupBranch || ""}
+              onChange={(newPreferredPickupBranch) =>
+                changePatron(newPreferredPickupBranch, "preferredPickupBranch")
+              }
+            />
+          </div>
+          <div className="patron-buttons">
+            <button type="submit" className="btn-primary btn-filled btn-small">
+              {t("createPatronConfirmButtonText")}
+            </button>
+            <button
+              type="button"
+              className="link-tag mx-16"
+              // todo, click cancel, what then?
+              onClick={() => {}}
+            >
+              {t("createPatronCancelButtonText")}
+            </button>
+          </div>
+        </form>
+      )}
+      {!validCpr && <>invalid</>}
+    </>
   );
 };
 

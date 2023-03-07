@@ -374,6 +374,45 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   });
 };
 
+function getDateFromCpr(cprInput: string) {
+  const cpr = cprInput.replace(/[^\d]/g, "");
+  const dateSegments = cpr.substring(0, 6).match(/.{1,2}/g);
+
+  if (dateSegments) {
+    const [day, month, year] = dateSegments;
+    let prefix = "";
+    if (Number(year) < 21) {
+      prefix = "20";
+    } else {
+      prefix = "19";
+    }
+    const yearWithPrefix = Number(`${prefix}${year}`);
+
+    return new Date(
+      Date.UTC(
+        Number(yearWithPrefix),
+        Number(month) - 1,
+        Number(day),
+        0,
+        0,
+        0,
+        0
+      )
+    );
+  }
+
+  return null;
+}
+
+export const isCprValid = (cpr: string, minAge: number) => {
+  const cprDate = getDateFromCpr(cpr);
+  if (cprDate === null) return false;
+
+  const age = dayjs().diff(dayjs(cprDate), "year");
+  console.log(age);
+  return age > minAge;
+};
+
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
 

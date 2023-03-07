@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { useState, FC } from "react";
 import UserInfo from "./UserInfo";
 
 interface CreatePatronProps {
@@ -6,7 +6,7 @@ interface CreatePatronProps {
 }
 
 const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
-  const [cpr, setCpr] = useState<string>("");
+  const [cpr, setCpr] = useState<string | null>(null);
 
   fetch(`https://login.bib.dk/userinfo`, {
     method: "get",
@@ -14,16 +14,12 @@ const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data); // JSON data parsed by `data.json()` call
+      setCpr(data.attributes.cpr);
     });
 
-  const confirmHandler = () => {
-    // todo figure out how this flow works
-    // Call adgangsplatformen -> hwo much does this handle
-    setCpr("123");
-  };
+  if (cpr === null) return null;
 
-  return <UserInfo />;
+  return <UserInfo cpr={cpr} />;
 };
 
 export default CreatePatron;
