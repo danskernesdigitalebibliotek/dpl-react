@@ -62,7 +62,7 @@ const LikeThisList: FC<LikeThisListProps & MaterialProps> = ({
         <button
           type="button"
           onClick={() => setRecommendView(true)}
-          className={`button-link ${
+          className={`button-link button-link--bright ${
             recommendView ? "button-link--selected" : ""
           }`}
         >
@@ -71,7 +71,7 @@ const LikeThisList: FC<LikeThisListProps & MaterialProps> = ({
         <button
           onClick={() => setRecommendView(false)}
           type="button"
-          className={`button-link ${
+          className={`button-link button-link--bright ${
             !recommendView ? "button-link--selected" : ""
           }`}
         >
