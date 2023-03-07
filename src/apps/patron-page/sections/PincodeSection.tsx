@@ -11,8 +11,8 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
   const t = useText();
   const config = useConfig();
 
-  const pincodeLengthMin = parseInt(config("pincodeLengthMinConfig"), 10) || 4;
-  const pincodeLengthMax = parseInt(config("pincodeLengthMaxConfig"), 10) || 4;
+  const pincodeLengthMin = parseInt(config("pincodeLengthMinConfig"), 10);
+  const pincodeLengthMax = parseInt(config("pincodeLengthMaxConfig"), 10);
   const [pincodeValidation, setPincodeValidation] = useState<string>();
   const [pincode, setPincode] = useState<string>("");
   const [confirmPincode, setConfirmPincode] = useState<string>("");
