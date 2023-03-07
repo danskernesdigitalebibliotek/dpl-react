@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
+import BlockedTypes from "../../../core/utils/types/BlockedTypes";
 import { useUrls } from "../../../core/utils/url";
 import { Link } from "../../atoms/link";
 
@@ -30,7 +31,7 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
         <p className="mt-48 mb-48 text-body-large">
           {t(`blockedPatron${blockedStatus}BodyText`)}
         </p>
-        {blockedStatus === "E" && (
+        {blockedStatus === BlockedTypes.fee && (
           <Link href={blockedPatronELinkUrl}>
             {t(`blockedPatronELinkText`)}
           </Link>
