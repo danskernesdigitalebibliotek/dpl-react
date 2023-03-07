@@ -409,7 +409,6 @@ export const isCprValid = (cpr: string, minAge: number) => {
   if (cprDate === null) return false;
 
   const age = dayjs().diff(dayjs(cprDate), "year");
-  console.log(age);
   return age > minAge;
 };
 
