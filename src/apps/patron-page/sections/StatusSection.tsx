@@ -10,7 +10,7 @@ import { Link } from "../../../components/atoms/link";
 
 const StatusSection: FC = () => {
   const t = useText();
-  const { alwaysLoanableEreolenLink } = useUrls();
+  const { alwaysAvailableEreolenUrl } = useUrls();
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(
@@ -64,15 +64,15 @@ const StatusSection: FC = () => {
           <h2 className="text-body-small-regular mt-32 mb-16">
             {t("patronPageStatusSectionHeaderText")}
           </h2>
-          <div className="text-body-small-regular">
+          <div className="text-body-small-regular mb-8">
             {t("patronPageStatusSectionBodyText")}{" "}
-            <Link href={alwaysLoanableEreolenLink}>
+            <Link href={alwaysAvailableEreolenUrl}>
               {t("patronPageStatusSectionLinkText")}
             </Link>
           </div>
           {maxConcurrentEbookReservationsPerBorrower &&
             maxConcurrentAudioReservationsPerBorrower && (
-              <div className="text-body-small-regular">
+              <div className="text-body-small-regular mt-8 mb-8">
                 {t("patronPageStatusSectionReservationsText", {
                   placeholders: {
                     "@countEbooks": maxConcurrentEbookReservationsPerBorrower,
@@ -89,22 +89,11 @@ const StatusSection: FC = () => {
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">
+                  <div className="text-label text-body-medium-medium">
                     {t("patronPageStatusSectionLoansEbooksText")}
                   </div>
                   {maxConcurrentEbookLoansPerBorrower && (
-                    <div
-                      className="text-label"
-                      aria-label={t(
-                        "patronPageStatusSectionOutOfAriaLabelEbooksText",
-                        {
-                          placeholders: {
-                            "@this": patronEbookLoans,
-                            "@that": maxConcurrentEbookLoansPerBorrower
-                          }
-                        }
-                      )}
-                    >
+                    <div className="text-label">
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronEbookLoans,
@@ -114,14 +103,23 @@ const StatusSection: FC = () => {
                     </div>
                   )}
                 </div>
-                <div
-                  aria-hidden
-                  className="dpl-progress-bar__progress-bar bg-global-secondary"
-                >
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${eBookLoanPerent}%` }}
-                  />
+                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                  {maxConcurrentEbookLoansPerBorrower && (
+                    <div
+                      className="bg-identity-primary"
+                      role="figure"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelEbooksText",
+                        {
+                          placeholders: {
+                            "@this": patronEbookLoans,
+                            "@that": maxConcurrentEbookLoansPerBorrower
+                          }
+                        }
+                      )}
+                      style={{ width: `${eBookLoanPerent}%` }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
@@ -130,18 +128,7 @@ const StatusSection: FC = () => {
                     {t("patronPageStatusSectionLoansAudioBooksText")}
                   </div>
                   {maxConcurrentAudioLoansPerBorrower && (
-                    <div
-                      className="text-label"
-                      aria-label={t(
-                        "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
-                        {
-                          placeholders: {
-                            "@this": patronAudioBookLoans,
-                            "@that": maxConcurrentAudioLoansPerBorrower
-                          }
-                        }
-                      )}
-                    >
+                    <div className="text-label">
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronAudioBookLoans,
@@ -151,14 +138,23 @@ const StatusSection: FC = () => {
                     </div>
                   )}
                 </div>
-                <div
-                  aria-hidden
-                  className="dpl-progress-bar__progress-bar bg-global-secondary"
-                >
-                  <div
-                    className="bg-identity-primary"
-                    style={{ width: `${audioBookLoanPercent}%` }}
-                  />
+                <div className="dpl-progress-bar__progress-bar bg-global-secondary">
+                  {maxConcurrentEbookLoansPerBorrower && (
+                    <div
+                      role="figure"
+                      aria-label={t(
+                        "patronPageStatusSectionOutOfAriaLabelAudioBooksText",
+                        {
+                          placeholders: {
+                            "@this": patronEbookLoans,
+                            "@that": maxConcurrentEbookLoansPerBorrower
+                          }
+                        }
+                      )}
+                      className="bg-identity-primary"
+                      style={{ width: `${audioBookLoanPercent}%` }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
