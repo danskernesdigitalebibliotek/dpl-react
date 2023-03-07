@@ -13,7 +13,7 @@ import {
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
-import { Link } from "../../components/atoms/link";
+import Link from "../../components/atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
 

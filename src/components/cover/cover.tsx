@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
 
 export type CoverProps = {

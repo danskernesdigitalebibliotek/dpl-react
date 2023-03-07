@@ -9,7 +9,7 @@ import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialTypes from "../../../../core/utils/types/material-type";
-import { LinkNoStyle } from "../../../atoms/link-no-style";
+import LinkButton from "../../../atoms/links/LinkButton";
 import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineExternalProps {
