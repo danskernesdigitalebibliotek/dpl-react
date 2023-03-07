@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 interface EmptyListProps {
   emptyListText: string;
-  dataCy: string;
+  dataCy?: string;
 }
 
 const EmptyList: FC<EmptyListProps> = ({
