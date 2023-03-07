@@ -56,18 +56,20 @@ const List: FC<ListProps> = ({
               </>
             </h2>
           </div>
-          <ul className="list-reservation-container m-32">
-            {displayedReservations.map((reservation) => (
-              <ReservationMaterial
-                openReservationDetailsModal={openReservationDetailsModal}
-                key={reservation.identifier || reservation.faust}
-                identifier={reservation.identifier}
-                faust={reservation.faust}
-                reservation={reservation}
-              />
-            ))}
+          <div data-cy="list-reservation-container">
+            <ul className="list-reservation-container m-32">
+              {displayedReservations.map((reservation) => (
+                <ReservationMaterial
+                  openReservationDetailsModal={openReservationDetailsModal}
+                  key={reservation.identifier || reservation.faust}
+                  identifier={reservation.identifier}
+                  faust={reservation.faust}
+                  reservation={reservation}
+                />
+              ))}
+            </ul>
             {PagerComponent}
-          </ul>
+          </div>
         </>
       ) : (
         <div>

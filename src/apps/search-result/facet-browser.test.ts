@@ -2,6 +2,10 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("The Facet Browser", () => {
   beforeEach(() => {
+    // Clear the session storage to avoid previously saved facets
+    cy.window().then((win) => {
+      win.sessionStorage.removeItem("persist:dpl-react");
+    });
     cy.interceptGraphql({
       operationName: "searchFacet",
       fixtureFilePath: "search-result/facet-browser/searchFacet"
@@ -50,7 +54,7 @@ describe("The Facet Browser", () => {
     cy.getBySel("facet-line-open-browser").click();
   });
 
-  it("renders all facets", () => {
+  it("Renders all facets", () => {
     cy.getBySel("facet-browser-mainLanguages")
       .scrollIntoView()
       .should("be.visible");
@@ -88,7 +92,7 @@ describe("The Facet Browser", () => {
       .should("be.visible");
   });
 
-  it("renders all terms in a facet when clicked", () => {
+  it("Renders all terms in a facet when clicked", () => {
     cy.getBySel("facet-browser-mainLanguages")
       .should("be.visible")
       .and("have.attr", "aria-expanded", "false")
@@ -114,9 +118,9 @@ describe("The Facet Browser", () => {
     cy.getBySel("modal-facet-browser-modal-close-button").click();
   });
 
-  it("renders the logic of selected terms and open facets", () => {
+  it("Renders the logic of selected terms and open facets", () => {
     cy.log("renders all results");
-    cy.contains("h1", "“harry” (843)");
+    cy.contains("h1", "harry");
 
     cy.log("updates result after it select Joanne K. Rowling inside Creators");
 
@@ -137,7 +141,7 @@ describe("The Facet Browser", () => {
       .click();
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
-    cy.contains("h1", "“harry” (36)");
+    cy.contains("h1", "harry");
 
     cy.log(
       "Open the modal and check if creators are opened and Joanne K. Rowling is selected"

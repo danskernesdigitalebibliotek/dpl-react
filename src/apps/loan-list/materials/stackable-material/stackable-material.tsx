@@ -1,4 +1,4 @@
-import React, { useCallback, FC, useState } from "react";
+import React, { useCallback, FC } from "react";
 import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
@@ -9,21 +9,18 @@ import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 
 export interface StackableMaterialProps {
   loan: LoanType;
-  amountOfMaterialsWithDueDate?: number;
+  additionalMaterials: number;
   openLoanDetailsModal: (modalId: string) => void;
   openDueDateModal?: (dueDate: string) => void;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
-  amountOfMaterialsWithDueDate,
+  additionalMaterials,
   material,
   loan,
   openDueDateModal,
   openLoanDetailsModal
 }) => {
-  const [additionalMaterials] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
   const { dueDate, faust, identifier, periodical } = loan;
 
   const openLoanDetailsModalHandler = useCallback(() => {

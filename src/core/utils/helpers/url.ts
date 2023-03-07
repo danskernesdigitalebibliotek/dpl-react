@@ -47,6 +47,16 @@ export const setQueryParametersInUrl = (parameters: {
   window.history.replaceState(null, "", processedUrl);
 };
 
+export const replaceCurrentLocation = (replacementUrl: URL) => {
+  window.history.replaceState(null, "", replacementUrl);
+};
+
+export const removeQueryParametersFromUrl = (parameter: string) => {
+  const processedUrl = new URL(getCurrentLocation());
+  processedUrl.searchParams.delete(parameter);
+  replaceCurrentLocation(processedUrl);
+};
+
 export const redirectTo = (url: URL): void => {
   window.location.assign(url);
 };
@@ -85,9 +95,10 @@ export const constructMaterialUrl = (
   workId: WorkId,
   type?: string
 ) => {
-  const materialUrl = url;
+  const materialUrl = new URL(url);
+
   // Replace placeholders with values.
-  materialUrl.pathname = processUrlPlaceholders(url.pathname, [
+  materialUrl.pathname = processUrlPlaceholders(materialUrl.pathname, [
     [":workid", workId]
   ]);
 
@@ -126,15 +137,6 @@ export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
     },
     {}
   );
-};
-
-export const replaceCurrentLocation = (replacementUrl: URL) => {
-  window.history.replaceState(null, "", replacementUrl);
-};
-
-export const removeQueryParametersFromUrl = (url: URL, parameter: string) => {
-  url.searchParams.delete(parameter);
-  return url;
 };
 
 type RedirectToLoginAndBackParams = {

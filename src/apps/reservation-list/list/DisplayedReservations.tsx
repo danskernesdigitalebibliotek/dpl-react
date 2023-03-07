@@ -31,10 +31,12 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
             openReservationDetailsModal={openReservationDetailsModal}
             pageSize={pageSize}
             header={t("reservationListReadyForPickupTitleText")}
-            reservations={sortByOldestPickupDeadline([
-              ...readyForPickupReservationsFBS,
-              ...readyForPickupReservationsPublizon
-            ])}
+            reservations={
+              sortByOldestPickupDeadline([
+                ...readyForPickupReservationsFBS,
+                ...readyForPickupReservationsPublizon
+              ]) as []
+            }
             emptyListLabel={t("reservationListReadyForPickupEmptyText")}
           />
         )}

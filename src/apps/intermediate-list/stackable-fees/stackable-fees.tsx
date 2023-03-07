@@ -36,7 +36,6 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const listReservationClass = clsx(["list-reservation", "my-32"], {
     "list-reservation--stacked": additionalFees > 0
   });
-
   return (
     <button
       type="button"

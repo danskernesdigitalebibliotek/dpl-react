@@ -20,8 +20,9 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const modalId = findOnShelfModalId(faustIds);
   const onClick = () => {
-    open(findOnShelfModalId(faustIds[0]));
+    open(modalId);
   };
   // If element is currently focused on, we would like to let users open it using enter
   const onKeyUp = (key: string) => {

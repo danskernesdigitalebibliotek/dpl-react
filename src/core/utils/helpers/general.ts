@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
+import { uniq } from "lodash";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -12,6 +13,13 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
+import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
+import { FeeV2 } from "../../fbs/model/feeV2";
+import { ReservationDetailsV2 } from "../../fbs/model";
+import {
+  dashboardReadyForPickupApiValueText,
+  dashboardReservedApiValueText
+} from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 
 export const getManifestationPublicationYear = (
@@ -39,7 +47,6 @@ export const filterCreators = (
   filterBy: ["Person" | "Corporation"]
 ) =>
   creators.filter((creator: Work["creators"][0]) => {
-    // eslint-disable-next-line no-underscore-dangle
     return creator.__typename && filterBy.includes(creator.__typename);
   });
 
@@ -81,6 +88,11 @@ export const getFirstPublishedManifestation = (
   manifestations: Manifestation[]
 ) => {
   const ordered = orderManifestationsByYear(manifestations, "asc");
+  return ordered[0];
+};
+
+export const getLatestManifestation = (manifestations: Manifestation[]) => {
+  const ordered = orderManifestationsByYear(manifestations, "desc");
   return ordered[0];
 };
 
@@ -154,6 +166,10 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   throw new Error(`Unable to extract faust id from post id "${postId}"`);
 };
 
+export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
+  return postIds.map((pid) => convertPostIdToFaustId(pid));
+};
+
 // Get params if they are defined as props use those
 // otherwise try to fetch them from the url.
 export const getParams = <T, K extends keyof T>(props: T) => {
@@ -166,13 +182,23 @@ export const getParams = <T, K extends keyof T>(props: T) => {
   return params;
 };
 
+export const sortByDueDate = (list: LoanType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (a, b) =>
+      new Date(a.dueDate || new Date()).getTime() -
+      new Date(b.dueDate || new Date()).getTime()
+  );
+};
+
 export const sortByLoanDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
   return list.sort(
-    (objA, objB) =>
-      new Date(objA.loanDate || new Date()).getTime() -
-      new Date(objB.loanDate || new Date()).getTime()
+    (a, b) =>
+      new Date(a.loanDate || new Date()).getTime() -
+      new Date(b.loanDate || new Date()).getTime()
   );
 };
 
@@ -251,8 +277,10 @@ export const groupObjectArrayByProperty = <
 export const getManifestationsPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
+
 export const stringifyValue = (value: string | null | undefined) =>
   value ? String(value) : "";
+
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
@@ -300,10 +328,29 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationType[]) => {
-  return [...list].filter(({ state }) => state === "readyForPickup");
+export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
+  const yesterday = dayjs().subtract(1, "day");
+  return [...list].filter(({ state, pickupDeadline }) => {
+    const deadline = dayjs(pickupDeadline);
+    if (deadline) {
+      return (
+        state === dashboardReadyForPickupApiValueText && deadline < yesterday
+      );
+    }
+    return false;
+  });
+};
+export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
+  return [...list].filter(
+    ({ state }) => state === dashboardReservedApiValueText
+  );
 };
 
+export const tallyUpFees = (fees: FeeV2[]) => {
+  return fees.reduce((total, { amount }) => total + amount, 0);
+};
+
+// Loans overdue
 export const filterLoansOverdue = (loans: LoanType[]) => {
   return loans.filter(({ dueDate }) => {
     return materialIsOverdue(dueDate);
@@ -321,9 +368,112 @@ export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   });
 };
 
-export const getManifestationType = (manifestation: Manifestation) =>
-  manifestation?.materialTypes?.[0]?.specific;
+export const getMaterialTypes = (manifestations: Manifestation[]) => {
+  const allMaterialTypes = manifestations
+    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+    .flat();
+  return uniq(allMaterialTypes);
+};
 
+export const getManifestationType = (manifestations: Manifestation[]) => {
+  const uniqueTypes = getMaterialTypes(manifestations);
+  return uniqueTypes[0];
+};
+
+export const getAllPids = (manifestations: Manifestation[]) => {
+  return manifestations.map((manifestation) => manifestation.pid);
+};
+
+export const getAllFaustIds = (manifestations: Manifestation[]) => {
+  return convertPostIdsToFaustIds(getAllPids(manifestations));
+};
+
+export const getScrollClass = (modalIds: string[]) => {
+  return modalIds.length > 0 ? "scroll-lock-background" : "";
+};
 export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+// Loans with more than warning-threshold days until due
+export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return daysUntilExpiration - warning > 0;
+  });
+};
+
+export const constructModalId = (prefix: string, fragments: string[]) =>
+  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+
+// Create a string of authors with commas and a conjunction
+export const getAuthorNames = (
+  creators: {
+    display: string;
+  }[],
+  by?: string,
+  and?: string
+) => {
+  const names = creators.map(({ display }) => display);
+  let returnContentString = "";
+  if (names.length === 1) {
+    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
+  } else {
+    returnContentString = `${by ? `${by} ` : ""} ${names
+      .slice(0, -1)
+      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
+  }
+  return returnContentString;
+};
+
+export const getReviewRelease = (
+  dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
+  workYear: ManifestationReviewFieldsFragment["workYear"],
+  edition: ManifestationReviewFieldsFragment["edition"]
+) => {
+  return (
+    dateFirstEdition?.display ||
+    workYear?.display ||
+    edition?.publicationYear?.display ||
+    null
+  );
+};
+
+// The rendered release year for search results is picked based on
+// whether the work is fiction or not.
+export const getReleaseYearSearchResult = (work: Work) => {
+  const { latest, bestRepresentation } = work.manifestations;
+  const manifestation = bestRepresentation || latest;
+  // If the work tells us that it is fiction.
+  if (materialIsFiction(work)) {
+    return work.workYear?.year;
+  }
+  // If the manifestation tells us that it is fiction.
+  if (materialIsFiction(manifestation)) {
+    return (
+      manifestation.dateFirstEdition?.year ||
+      manifestation.edition?.publicationYear?.display
+    );
+  }
+  // If it isn't fiction we get release year from latest manifestation.
+  return getManifestationPublicationYear(latest) || latest.workYear?.year;
+};
+
+// Creates a "by author, author and author"-string
+export const getContributors = (
+  creators: string[],
+  by: string,
+  and: string
+) => {
+  let returnContentString = "";
+  if (creators && creators.length > 0) {
+    if (creators.length === 1) {
+      returnContentString = `${by} ${creators.join(", ")}`;
+    } else {
+      returnContentString = `${by} ${creators
+        .slice(0, -1)
+        .join(", ")} ${and} ${creators.slice(-1)}`;
+    }
+  }
+  return returnContentString;
+};
 
 export default {};

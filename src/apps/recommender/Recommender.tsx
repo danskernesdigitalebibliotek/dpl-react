@@ -60,15 +60,14 @@ const Recommender: FC = () => {
 
   useEffect(() => {
     if (physicalLoans !== null) {
-      const newestLoan = sortByLoanDate([...physicalLoans]).reverse();
+      const newestLoan = sortByLoanDate(physicalLoans).reverse();
       if (newestLoan.length > 0) {
         setLoanForRecommender(newestLoan[0]);
       }
     }
     if (physicalReservations !== null) {
-      const newestReservation = sortByReservationDate([
-        ...physicalReservations
-      ]).reverse();
+      const newestReservation =
+        sortByReservationDate(physicalReservations).reverse();
       if (newestReservation.length > 0) {
         setReservationForRecommender(newestReservation[0]);
       }

@@ -1,11 +1,10 @@
 import { createElement } from "react";
 import { render } from "react-dom";
 import { withErrorBoundary } from "react-error-boundary";
-
-import ErrorBoundary from "../components/alert/alert";
 import { setToken } from "./token";
 import Store from "../components/store";
 import { persistor } from "./store";
+import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
 
 /**
  * We look for containers and corresponding applications.
@@ -20,8 +19,8 @@ function mount(context) {
   function mountApp(container) {
     const appName = container?.dataset?.dplApp;
     const app = window.dplReact?.apps?.[appName];
-    // Ensure that the application exists and that the container isn't already populated.
-    const isValidMount = app && !container.innerHTML;
+    // Ensure that the application exists.
+    const isValidMount = app;
     if (isValidMount) {
       render(
         createElement(
@@ -29,7 +28,7 @@ function mount(context) {
           {},
           createElement(
             withErrorBoundary(app, {
-              FallbackComponent: ErrorBoundary,
+              FallbackComponent: ErrorBoundaryAlert,
               onError(error, info) {
                 // Logging should be acceptable in an error handler.
                 // eslint-disable-next-line no-console

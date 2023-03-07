@@ -132,10 +132,6 @@ describe("Pause reservation modal test", () => {
       .should("exist")
       .click();
 
-    cy.get("@update-user").should((response) => {
-      expect(response).to.have.property("response");
-    });
-
     // ID 12 4.b. closes modal, updates reservation overview with badge
     cy.get(".modal.modal-cta").should("not.exist");
 

@@ -15,6 +15,10 @@ export default {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
     },
+    loanListEreolenUrl: {
+      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+      control: { type: "text" }
+    },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
@@ -133,7 +137,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Select material for renewal"
+      defaultValue: "Select @label for renewal"
     },
     loanListMaterialLateFeeText: {
       control: {
@@ -354,6 +358,10 @@ export default {
     },
     groupModalGoToMaterialText: {
       defaultValue: "Go to material details",
+      control: { type: "text" }
+    },
+    groupModalGoToMaterialAriaLabelText: {
+      defaultValue: "Go to @label material details",
       control: { type: "text" }
     },
     groupModalReturnLibraryText: {

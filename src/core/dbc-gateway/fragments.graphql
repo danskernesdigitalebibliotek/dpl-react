@@ -5,6 +5,9 @@ fragment ManifestationsSimple on Manifestations {
   latest {
     ...ManifestationsSimpleFields
   }
+  bestRepresentation {
+    ...ManifestationsSimpleFields
+  }
 }
 
 fragment ManifestationsSimpleFields on Manifestation {
@@ -26,14 +29,7 @@ fragment ManifestationsSimpleFields on Manifestation {
     display
     __typename
   }
-  hostPublication {
-    title
-    creator
-    publisher
-    year {
-      year
-    }
-  }
+  publisher
   languages {
     main {
       display
@@ -51,11 +47,16 @@ fragment ManifestationsSimpleFields on Manifestation {
       display
     }
   }
+  dateFirstEdition {
+    display
+    year
+  }
   audience {
     generalAudience
   }
   physicalDescriptions {
     numberOfPages
+    playingTime
   }
   materialTypes {
     specific
@@ -88,6 +89,64 @@ fragment ManifestationsSimpleFields on Manifestation {
   shelfmark {
     postfix
     shelfmark
+  }
+  workYear {
+    year
+  }
+}
+
+fragment ManifestationReviewFields on Manifestation {
+  pid
+  creators {
+    display
+  }
+  access {
+    __typename
+    ... on InfomediaService {
+      id
+    }
+    ... on DigitalArticleService {
+      issn
+    }
+    ...on AccessUrl {
+      url
+      origin
+    }
+  }
+  edition {
+    publicationYear {
+      display
+    }
+  }
+  hostPublication {
+    title
+    issue
+  }
+  creators {
+    display
+  }
+  physicalDescriptions {
+    summary
+  }
+  dateFirstEdition {
+    display
+  }
+  workYear {
+    display
+  }
+  review {
+    rating
+    reviewByLibrarians {
+      content
+      heading
+      type
+      manifestations {
+        pid
+        titles {
+          main
+        }
+      }
+    }
   }
 }
 
@@ -146,33 +205,8 @@ fragment WorkMedium on Work {
     all {
       display
     }
-  }
-  reviews {
-    __typename
-    ... on LibrariansReview {
-      author
-      date
-      sections {
-        code
-        heading
-        text
-      }
-    }
-    ... on ExternalReview {
-      author
-      date
-      rating
-      urls {
-        origin
-        url
-      }
-    }
-    ... on InfomediaReview {
-      author
-      date
-      origin
-      rating
-      id
+    dbcVerified {
+      display
     }
   }
   fictionNonfiction {
@@ -181,5 +215,19 @@ fragment WorkMedium on Work {
   }
   dk5MainEntry {
     display
+  }
+  relations {
+    hasReview {
+      pid
+    }
+    hasAdaptation {
+      ownerWork {
+        workId
+        workTypes
+        titles {
+          main
+        }
+      }
+    }
   }
 }

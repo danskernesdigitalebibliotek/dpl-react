@@ -1,5 +1,4 @@
 import { FetchParams, RequestOptions } from "./types";
-import { store } from "../store";
 
 /**
  * Build URLSearchParams instance with support for arrays of values.
@@ -30,6 +29,19 @@ export const buildParams = (data: FetchParams) => {
   return params;
 };
 
+export const getServiceUrlWithParams = ({
+  baseUrl,
+  url,
+  params
+}: {
+  baseUrl: string;
+  url: string;
+  params: unknown;
+}) => {
+  const urlParams = params ? `?${buildParams(params as FetchParams)}` : "";
+  return `${baseUrl}${url}${urlParams}`;
+};
+
 export const createAuthHeader = (
   token: RequestOptions["bearerToken"]
 ): { Authorization: `Bearer ${string}` } | Record<string, never> =>
@@ -38,30 +50,5 @@ export const createAuthHeader = (
         Authorization: `Bearer ${token}`
       }
     : {};
-
-// Creates a "by author, author and author"-string
-// String interpolation todo?
-export const getContributors = (creators: string[]) => {
-  let returnContentString = "";
-
-  // Todo this is sortof a hack, but using t: UseTextFunction as argument
-  // makes the components re-render.
-  const {
-    text: { data: texts }
-  } = store.getState();
-
-  if (creators && creators.length > 0) {
-    if (creators.length === 1) {
-      returnContentString = `${texts.materialByAuthorText} ${creators.join(
-        ", "
-      )}`;
-    } else {
-      returnContentString = `${texts.materialByAuthorText} ${creators
-        .slice(0, -1)
-        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
-    }
-  }
-  return returnContentString;
-};
 
 export default {};

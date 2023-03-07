@@ -1,19 +1,11 @@
 import React from "react";
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
+
 import ButtonTag from "../Buttons/ButtonTag";
 
-type FacetLineSelectedProps = {
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  filterHandler: TermOnClickHandler;
-};
+const FacetLineSelected = () => {
+  const { filters, removeFromFilter } = useFilterHandler();
 
-const FacetLineSelected: React.FunctionComponent<FacetLineSelectedProps> = ({
-  filters,
-  filterHandler
-}) => {
   return (
     <ul className="facet-line-selected-terms">
       {Object.entries(filters).map(([facet, value]) => {
@@ -26,12 +18,9 @@ const FacetLineSelected: React.FunctionComponent<FacetLineSelectedProps> = ({
                     selected
                     removable
                     onClick={() =>
-                      filterHandler({
-                        filterItem: {
-                          facet,
-                          term
-                        },
-                        action: "remove"
+                      removeFromFilter({
+                        facet,
+                        term
                       })
                     }
                     dataCy={`facet-line-selected-term-${label}`}

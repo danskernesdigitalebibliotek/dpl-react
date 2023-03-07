@@ -7,71 +7,68 @@ describe("Search Result", () => {
     );
   });
 
-  it("Check search title", () => {
+  it("Renders search title", () => {
     cy.getBySel("search-result-title")
       .should("be.visible")
       .and("contain", "Showing results for “harry” (722)");
   });
 
-  it("Check length of search result list", () => {
+  it("Renders all the search results", () => {
     cy.get(".search-result-page__list").find("li").should("have.length", 2);
   });
 
-  it("Do the search results have images?", () => {
+  it("Renders the images", () => {
     cy.get(".search-result-page__list .search-result-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
   });
 
-  it("Does the search result have favourite buttons?", () => {
+  it("Renders the favorite buttons", () => {
     cy.get(
       ".search-result-page__list .search-result-item .button-favourite"
     ).should("have.attr", "aria-label", "Add element to favorites list");
   });
 
-  it("Does the search result have titles?", () => {
+  it("Renders the titles", () => {
     cy.getBySel("search-result-item-title")
       .first()
       .should("be.visible")
       .and("contain", "Harry : samtaler med prinsen");
   });
 
-  it("Does the search result have authors?", () => {
+  it("Renders the authors", () => {
     cy.getBySel("search-result-item-author")
       .first()
       .should("be.visible")
       .and("contain.text", "By Angela Levin");
   });
 
-  it("Does a search result have the expected number of availibility labels?", () => {
+  it("Renders one availability labels per material type", () => {
     cy.getBySel("search-result-item-availability")
-      .first()
+      .eq(1)
       .find("a")
       .should("be.visible")
-      .and("have.length", 4);
+      .and("have.length", 6);
   });
 
   // TODO: When the pager bug has been solved, this test can be re-enabled.
-  it("Do we have a pager?", () => {
+  it("Renders the pager", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
       "Showing 2 out of 722 results"
     );
   });
 
-  it("Do we have some pager info?", () => {
+  it("Renders show more button", () => {
     cy.get(".result-pager button").should("contain.text", "SHOW MORE");
   });
 
-  it("Show more", () => {
+  it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-  });
-
-  it("Check length of search result list since it should be twice as long.", () => {
     cy.get(".search-result-page__list").find("li").should("have.length", 4);
   });
 
-  it("The pager info should also have been updated.", () => {
+  it("Updates the pager info after clicking show more results", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
       "Showing 4 out of 722 results"

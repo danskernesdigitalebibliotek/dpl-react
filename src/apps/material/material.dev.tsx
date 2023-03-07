@@ -150,54 +150,70 @@ export default {
       defaultValue: "Reviews",
       control: { type: "text" }
     },
-    typeText: {
+    detailsListTypeText: {
       name: "Type",
       defaultValue: "Type",
       control: { type: "text" }
     },
-    languageText: {
+    detailsListLanguageText: {
       name: "Language",
       defaultValue: "Language",
       control: { type: "text" }
     },
-    contributorsText: {
+    detailsListContributorsText: {
       name: "Contributors",
       defaultValue: "Contributors",
       control: { type: "text" }
     },
-    originalTitleText: {
+    detailsListOriginalTitleText: {
       name: "Original title",
       defaultValue: "Original title",
       control: { type: "text" }
     },
-    isbnText: {
+    detailsListIsbnText: {
       name: "ISBN",
       defaultValue: "ISBN",
+      control: { type: "text" }
+    },
+
+    detailsListScopeText: {
+      name: "Scope",
+      defaultValue: "Scope",
+      control: { type: "text" }
+    },
+    detailsListPublisherText: {
+      name: "Publisher",
+      defaultValue: "Publisher",
+      control: { type: "text" }
+    },
+    detailsListAudienceText: {
+      name: "Audience",
+      defaultValue: "Audience",
+      control: { type: "text" }
+    },
+    detailsListGenreAndFormText: {
+      name: "Genre and form",
+      defaultValue: "Genre",
+      control: { type: "text" }
+    },
+    detailsListFirstEditionYearText: {
+      name: "First edition year",
+      defaultValue: "first edition year",
+      control: { type: "text" }
+    },
+    detailsListPlayTimeText: {
+      name: "Play time",
+      defaultValue: "Play time",
+      control: { type: "text" }
+    },
+    detailsListEditionText: {
+      name: "Edition",
+      defaultValue: "Edition",
       control: { type: "text" }
     },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",
-      control: { type: "text" }
-    },
-    scopeText: {
-      name: "Scope",
-      defaultValue: "Scope",
-      control: { type: "text" }
-    },
-    publisherText: {
-      name: "Publisher",
-      defaultValue: "Publisher",
-      control: { type: "text" }
-    },
-    audienceText: {
-      name: "Audience",
-      defaultValue: "Audience",
-      control: { type: "text" }
-    },
-    genreAndFormText: {
-      name: "Genre and form",
-      defaultValue: "Genre",
       control: { type: "text" }
     },
     readArticleText: {
@@ -253,7 +269,7 @@ export default {
     materialsInStockInfoText: {
       name: "Materials in stock info text",
       defaultValue:
-        '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock. "]}',
+        '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock."]}',
       control: { type: "text" }
     },
     materialReservationInfoText: {
@@ -427,7 +443,7 @@ export default {
     },
     numberInQueueText: {
       name: "Number in queue text",
-      defaultValue: "You are number @number in the queue. ",
+      defaultValue: "You are number @number in the queue.",
       control: { type: "text" }
     },
     alreadyReservedText: {
@@ -605,7 +621,12 @@ export default {
     materialIsAvailableInAnotherEditionText: {
       name: "Skip queue material is available in another edition",
       defaultValue:
-        '{"type":"plural","text":["Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservation","Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations"]}',
+        "Skip the queue - The material is available in another edition - @title @authorAndYear - reservations: @reservations",
+      control: { type: "text" }
+    },
+    detailsListFirstEditionYearUnknownText: {
+      name: "Unknown",
+      defaultValue: "Unknown",
       control: { type: "text" }
     },
     addToFavoritesAriaLabelText: {
@@ -619,6 +640,31 @@ export default {
         type: "text"
       },
       defaultValue: "Remove element from favorites list"
+    },
+    firstAvailableEditionText: {
+      name: "First available edition",
+      defaultValue: "First available edition",
+      control: { type: "text" }
+    },
+    filmAdaptationsText: {
+      name: "Film adaptations text",
+      defaultValue: "Film adaptations",
+      control: { type: "text" }
+    },
+    alertErrorCloseText: {
+      name: "Alert error close text",
+      defaultValue: "close",
+      control: { type: "text" }
+    },
+    alertErrorMessageText: {
+      name: "Alert error message text",
+      defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
+    expandMoreText: {
+      name: "Expand more text",
+      defaultValue: "Expand more",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -658,4 +704,9 @@ Digital.args = {
 export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
+};
+
+export const LangePeter = Template.bind({});
+LangePeter.args = {
+  wid: "work-of:870970-basis:01196669"
 };
