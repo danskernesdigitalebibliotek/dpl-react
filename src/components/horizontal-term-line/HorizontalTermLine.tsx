@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
-import { Link } from "../atoms/link";
+import Link from "../atoms/links/Link";
 import { useText } from "../../core/utils/text";
 
 export interface HorizontalTermLineProps {

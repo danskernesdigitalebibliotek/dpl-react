@@ -1,5 +1,5 @@
 import React from "react";
-import { redirectTo } from "../../core/utils/helpers/url";
+import { redirectTo } from "../../../core/utils/helpers/url";
 
 export interface LinkProps {
   href: URL;
@@ -11,10 +11,10 @@ export interface LinkProps {
   dataCy?: string;
 }
 
-export const Link: React.FC<LinkProps> = ({
+const Link: React.FC<LinkProps> = ({
   href,
   children,
-  isNewTab,
+  isNewTab = false,
   className,
   id,
   trackClick,
@@ -27,43 +27,37 @@ export const Link: React.FC<LinkProps> = ({
     redirectTo(href);
   };
 
-  if (!trackClick) {
-    return (
-      <a
-        id={id}
-        data-cy={id}
-        href={String(href)}
-        target={isNewTab ? "_blank" : ""}
-        rel="noreferrer"
-        className={className}
-      >
-        {children}
-      </a>
-    );
-  }
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (trackClick) {
+      e.preventDefault();
+      trackClick().then(() => {
+        redirect(isNewTab);
+      });
+    }
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (trackClick && e.key === "Enter") {
+      e.preventDefault();
+      trackClick().then(() => {
+        redirect(isNewTab);
+      });
+    }
+  };
 
   return (
-    <span
+    <a
       id={id}
       data-cy={dataCy || id}
-      role="button"
-      tabIndex={0}
-      onClick={() => {
-        trackClick().then(() => {
-          redirect(isNewTab || false);
-        });
-      }}
-      onKeyUp={(e) => {
-        if (e.key === "Enter") {
-          trackClick().then(() => {
-            redirect(isNewTab || false);
-          });
-        }
-      }}
+      href={href.toString()}
+      target={isNewTab ? "_blank" : undefined}
+      rel="noreferrer"
       className={className}
+      onClick={handleClick}
+      onKeyUp={handleKeyUp}
     >
       {children}
-    </span>
+    </a>
   );
 };
 

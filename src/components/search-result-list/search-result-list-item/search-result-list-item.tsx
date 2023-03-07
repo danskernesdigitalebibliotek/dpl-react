@@ -8,7 +8,7 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../atoms/link";
+import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
   filterCreators,

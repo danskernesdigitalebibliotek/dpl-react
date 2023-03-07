@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "./link";
+import Link from "./Link";
 
 export interface LinkNoStyleProps {
   url: URL;
@@ -10,7 +10,7 @@ export interface LinkNoStyleProps {
   dataCy?: string;
 }
 
-export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
+const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   url,
   children,
   isNewTab = false,

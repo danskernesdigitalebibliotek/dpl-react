@@ -6,7 +6,7 @@ import {
 import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 
 const StatusSection: FC = () => {
   const t = useText();

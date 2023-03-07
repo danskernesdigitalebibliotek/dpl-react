@@ -16,7 +16,7 @@ import fetchDigitalMaterial from "../materials/utils/digital-material-fetch-hoc"
 import ListDetails from "../../../components/list-details/list-details";
 import ModalDetailsHeader from "../../../components/modal-details-header/modal-details-header";
 import RenewButton from "./renew-button";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import { useUrls } from "../../../core/utils/url";
 
 interface MaterialDetailsProps {
