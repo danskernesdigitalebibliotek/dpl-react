@@ -47,7 +47,7 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
       guardedRequest({
         type: "addFavorite",
         args: { materialId },
-        app: "search-result"
+        app: "recommender"
       })
     );
   };
