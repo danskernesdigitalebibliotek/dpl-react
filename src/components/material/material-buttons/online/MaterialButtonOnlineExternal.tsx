@@ -10,14 +10,13 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialTypes from "../../../../core/utils/types/material-type";
 import LinkButton from "../../../atoms/links/LinkButton";
-import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonOnlineExternalProps {
   loginRequired: boolean;
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
-  trackOnlineView: () => void;
+  trackOnlineView: () => Promise<unknown>;
   manifestations: Manifestation[];
   dataCy?: string;
 }
@@ -94,19 +93,17 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   };
   return (
-    <LinkNoStyle url={translatedUrl} dataCy={dataCy}>
-      <Button
-        label={label(origin, getMaterialTypes(manifestations))}
-        buttonType="external-link"
-        variant="filled"
-        disabled={false}
-        collapsible={false}
-        size={size || "large"}
-        iconClassNames="invert"
-        onClick={trackOnlineView}
-        dataCy={dataCy}
-      />
-    </LinkNoStyle>
+    <LinkButton
+      url={translatedUrl}
+      buttonType="external-link"
+      variant="filled"
+      size={size || "large"}
+      iconClassNames="invert"
+      trackClick={trackOnlineView}
+      dataCy={dataCy}
+    >
+      {label(origin, getMaterialTypes(manifestations))}
+    </LinkButton>
   );
 };
 
