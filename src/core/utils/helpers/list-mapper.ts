@@ -6,7 +6,7 @@ import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
 import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
-import { getContributors } from "../../fetchers/helpers";
+import { getContributors } from "./general";
 
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();

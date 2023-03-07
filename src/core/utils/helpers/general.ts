@@ -20,6 +20,8 @@ import {
   dashboardReadyForPickupApiValueText,
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
+import { ReservationType } from "../types/reservation-type";
+import { store } from "../../store";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -188,6 +190,16 @@ export const sortByDueDate = (list: LoanType[]) => {
     (a, b) =>
       new Date(a.dueDate || new Date()).getTime() -
       new Date(b.dueDate || new Date()).getTime()
+  );
+};
+
+export const sortByLoanDate = (list: LoanType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (a, b) =>
+      new Date(a.loanDate || new Date()).getTime() -
+      new Date(b.loanDate || new Date()).getTime()
   );
 };
 
@@ -444,6 +456,30 @@ export const getReleaseYearSearchResult = (work: Work) => {
   }
   // If it isn't fiction we get release year from latest manifestation.
   return getManifestationPublicationYear(latest) || latest.workYear?.year;
+};
+
+// Creates a "by author, author and author"-string
+export const getContributors = (creators: string[]) => {
+  let returnContentString = "";
+
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
+  const {
+    text: { data: texts }
+  } = store.getState();
+
+  if (creators && creators.length > 0) {
+    if (creators.length === 1) {
+      returnContentString = `${texts.materialByAuthorText} ${creators.join(
+        ", "
+      )}`;
+    } else {
+      returnContentString = `${texts.materialByAuthorText} ${creators
+        .slice(0, -1)
+        .join(", ")} ${texts.materialAndAuthorText} ${creators.slice(-1)}`;
+    }
+  }
+  return returnContentString;
 };
 
 export default {};

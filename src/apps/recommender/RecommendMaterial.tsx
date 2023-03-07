@@ -6,8 +6,10 @@ import ButtonFavourite, {
 } from "../../components/button-favourite/button-favourite";
 import { Cover } from "../../components/cover/cover";
 import { Work } from "../../core/utils/types/entities";
-import { getContributors } from "../../core/fetchers/helpers";
-import { getManifestationPid } from "../../core/utils/helpers/general";
+import {
+  getContributors,
+  getManifestationPid
+} from "../../core/utils/helpers/general";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
