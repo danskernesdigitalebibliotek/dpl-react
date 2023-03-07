@@ -101,7 +101,12 @@ const PatronPage: FC = () => {
         {patron && <BasicDetailsSection patron={patron} />}
         <div className="patron-page-info">
           {patron && (
-            <ContactInfoSection changePatron={changePatron} patron={patron} />
+            <ContactInfoSection
+              changePatron={changePatron}
+              patron={patron}
+              inLine={false}
+              showCheckboxes
+            />
           )}
           <StatusSection />
           {patron && (
@@ -110,7 +115,7 @@ const PatronPage: FC = () => {
               patron={patron}
             />
           )}
-          {patron && <PincodeSection changePincode={setPin} />}
+          {patron && <PincodeSection changePincode={setPin} required />}
           {successPinMessage && (
             <p className="text-body-small-regular mb-8 mt-8">
               {successPinMessage}

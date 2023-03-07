@@ -12,14 +12,17 @@ interface ContactInfoSectionProps {
   patron: PatronV5 | PatronSettingsV3 | null;
   inLine: boolean;
   changePatron: ChangePatronProps;
+  showCheckboxes: boolean;
 }
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   patron,
   inLine,
-  changePatron
+  changePatron,
+  showCheckboxes
 }) => {
   const t = useText();
+
   const phoneNode = (
     <>
       <TextInput
@@ -33,16 +36,18 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.phoneNumber}
         label={t("patronContactPhoneLabelText")}
       />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveSms: boolean) =>
-          changePatron(newReceiveSms, "receiveSms")
-        }
-        id="phone-messages"
-        selected={patron?.receiveSms}
-        disabled={false}
-        label={t("patronContactPhoneCheckboxText")}
-      />
+      {showCheckboxes && (
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveSms: boolean) =>
+            changePatron(newReceiveSms, "receiveSms")
+          }
+          id="phone-messages"
+          selected={patron?.receiveSms}
+          disabled={false}
+          label={t("patronContactPhoneCheckboxText")}
+        />
+      )}
     </>
   );
   const emailNode = (
@@ -56,16 +61,18 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.emailAddress}
         label={t("patronContactEmailLabelText")}
       />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveEmail: boolean) =>
-          changePatron(newReceiveEmail, "receiveEmail")
-        }
-        id="email-messages"
-        selected={patron?.receiveEmail}
-        disabled={false}
-        label={t("patronContactEmailCheckboxText")}
-      />
+      {showCheckboxes && (
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveEmail: boolean) =>
+            changePatron(newReceiveEmail, "receiveEmail")
+          }
+          id="email-messages"
+          selected={patron?.receiveEmail}
+          disabled={false}
+          label={t("patronContactEmailCheckboxText")}
+        />
+      )}
     </>
   );
 
@@ -86,8 +93,8 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       )}
       {inLine && (
         <>
-          <div className="mr-16">{phoneNode}</div>
-          <div>{emailNode}</div>
+          <div className="patron__input--desktop mr-16">{phoneNode}</div>f{" "}
+          <div className="patron__input--desktop">{emailNode}</div>
         </>
       )}
       {!inLine && (

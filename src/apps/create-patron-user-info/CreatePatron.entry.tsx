@@ -5,18 +5,15 @@ import { withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
 
 interface CreatePatronConfigProps {
-  pincodeLengthConfig: string;
   thresholdUserAgeConfig: string;
-}
-interface CreatePatronUrlProps {
-  privacyPolicyUrl: string;
-  regulationsUrl: string;
-  feesUrl: string;
+  pincodeLengthMinConfig: string;
+  pincodeLengthMaxConfig: string;
 }
 
 interface CreatePatronTextProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  userToken: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   pickupBranchesDropdownLabelText: string;
@@ -28,6 +25,7 @@ interface CreatePatronTextProps {
   patronPagePincodeTooShortValidationText: string;
   patronPagePincodesNotTheSameText: string;
   patronContactPhoneLabelText: string;
+  patronContactNameLabelText: string;
   patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
   patronContactPhoneCheckboxText: string;
@@ -38,25 +36,16 @@ interface CreatePatronTextProps {
   createPatronChangePickupHeaderText: string;
   createPatronChangePickupBodyText: string;
   createPatronHeaderText: string;
-  createPatronSelectUserTypeHeaderText: string;
-  createPatronSelectUserTypeSecondHeaderText: string;
-  createPatronSelectUserTypeSubHeaderText: string;
-  createPatronSelectUserTypeSecondSubHeaderText: string;
-  createPatronSelectUserTypeConfirmButtonText: string;
-  createPatronSelectUserTypeAdultOptionText: string;
-  createPatronSelectUserTypeChildOptionText: string;
-  createPatronSelectUserTypeInstitutionOptionText: string;
-  createPatronSelectUserTypeAcceptedTermsText: string;
-  createPatronSelectUserTypePrivacyPolicyLinkText: string;
-  createPatronSelectUserTypeRegulationsLinkText: string;
-  createPatronSelectUserTypeFeesLinkText: string;
 }
 
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
-    CreatePatronUrlProps,
-    CreatePatronTextProps {}
+    CreatePatronTextProps {
+  userToken: string;
+}
 
-const CreatePatronEntry: FC<CreatePatronProps> = () => <CreatePatron />;
+const CreatePatronEntry: FC<CreatePatronProps> = ({ userToken }) => {
+  return <CreatePatron userToken={userToken} />;
+};
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));

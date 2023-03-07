@@ -56,7 +56,12 @@ const UserInfo: FC = () => {
       className="dpl-patron-page"
     >
       <h1 className="text-header-h1 mb-48">{t("createPatronHeaderText")}</h1>
-      <ContactInfoSection inLine changePatron={changePatron} patron={patron} />
+      <ContactInfoSection
+        showCheckboxes={false}
+        inLine
+        changePatron={changePatron}
+        patron={patron}
+      />
       {t("createPatronChangePickupHeaderText") && (
         <h2 className="text-body-small-regular mt-32 mb-16">
           {t("createPatronChangePickupHeaderText")}
