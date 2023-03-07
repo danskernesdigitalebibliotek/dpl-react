@@ -16,7 +16,7 @@ describe("Patron page", () => {
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.get(".modal").should("not.exist");
   });
-  // TODO: Explain E
+
   it("Patron blocked E", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
@@ -36,7 +36,6 @@ describe("Patron page", () => {
     cy.getBySel("modal").get("p").should("exist");
     cy.getBySel("modal").get("a").should("exist");
   });
-  // TODO: Explain U
   it("Patron blocked U", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
@@ -55,7 +54,6 @@ describe("Patron page", () => {
     cy.getBySel("modal").get("p").should("exist");
     cy.getBySel("modal").get("a").should("not.exist");
   });
-  // TODO: Explain W
   it("Patron blocked W", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {

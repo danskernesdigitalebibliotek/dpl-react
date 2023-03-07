@@ -7,6 +7,7 @@ import { useModalButtonHandler } from "../../core/utils/modal";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { setHasBeenVisible } from "../../core/blockedModal.slice";
 import { RootState, useSelector } from "../../core/store";
+import BlockedTypes from "../../core/utils/types/BlockedTypes";
 import { redirectTo } from "../../core/utils/helpers/url";
 
 export interface PatronProps {
@@ -27,14 +28,13 @@ const isPatronBlockedHoc =
     const { open } = useModalButtonHandler();
     const { blockedModal } = getModalIds();
 
-    // FBS returns these, if the user is blocked from viewing content.
-    // TODO: Explain these
     const [blockedFromViewingContentArray] = useState<string[]>([
-      "D",
-      "S",
-      "F",
-      "O"
+      BlockedTypes.deceased,
+      BlockedTypes.automatonBlocked,
+      BlockedTypes.extendedExclusion,
+      BlockedTypes.stolen
     ]);
+
     const [blockedStatus, setBlockedStatus] = useState<string>();
     const [blockedFromViewingContent, setBlockedFromViewingContent] =
       useState<boolean>(true);
