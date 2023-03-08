@@ -54,8 +54,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
           identifier: reservation.identifier
         },
         {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSuccess: (result) => {
+          onSuccess: () => {
             close(modalId);
           },
           // todo error handling, missing in figma

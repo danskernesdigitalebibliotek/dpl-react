@@ -359,21 +359,6 @@ ReservationListPhysicalDetailsModal.parameters = {
   }
 };
 
-const { deleteReservation } = getModalIds();
-export const ReservationListDeletePhysicalModal = Template.bind({});
-ReservationListDeletePhysicalModal.parameters = {
-  query: {
-    modal: `46985591&${deleteReservation}46985591`
-  }
-};
-
-export const ReservationListDeleteDigitalModal = Template.bind({});
-ReservationListDeleteDigitalModal.parameters = {
-  query: {
-    modal: `9788740047905&${deleteReservation}9788740047905`
-  }
-};
-
 const { pauseReservation } = getModalIds();
 export const ReservationListPauseModal = Template.bind({});
 ReservationListPauseModal.parameters = {

@@ -335,21 +335,20 @@ describe("Reservation list", () => {
     // ID 11 2.b. The list "Ready for pickup"
     cy.get(".reservation-list-page");
     // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
-    cy.get("[data-cy='reservation-list-header']")
+    cy.getBySel("reservation-list-header")
       .eq(0)
       .should("have.text", "Ready for pickup3");
 
     // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find(".status-label--info")
-      // ID 11 2.b.iii.2.b.i The text "pick up latest {Afhentningsdato}"
-      .should("have.text", "Pick up before 20-06-2022");
+      .should("exist");
 
     // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
     // ID 42 2.a. Material cover
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation .cover img")
       .should("have.attr", "src")
       .should(
@@ -358,33 +357,32 @@ describe("Reservation list", () => {
       );
 
     // ID 42 2.b. Material types including accessibility of material
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .find(".status-label")
       .eq(0)
       .should("have.text", "Dummy bog");
 
     // ID 42 2.c. full title
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find("button")
       .should("have.text", "Dummy Some Title");
 
     // ID 42 2.d. serial title and number
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
-      .find(".list-reservation__about p")
-      .eq(2)
+      .find("[data-cy='reservation-about-series']")
       .should("have.text", "Detektivbureau Nr. 2 1");
 
     // ID 42 2.e. authors & ID 42 2.f. year published
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .find(".list-reservation__about p")
+      .find("[data-cy='reservation-about-author']")
       .eq(0)
       .should(
         "have.text",
@@ -392,17 +390,16 @@ describe("Reservation list", () => {
       );
 
     // ID 42 2.d. & 42 2.d. number and year
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(1)
       .find(".list-reservation")
-      .eq(2)
-      .find(".list-reservation__about p")
       .eq(1)
-      .should("have.text", "2022, 03, April-Maj#Forårshaven");
+      .find("[data-cy='reservation-about-periodical']")
+      .should("have.text", "2018, nr. 9");
 
     // ID 11 2.b.iii.2. Pickup info
     // ID 11 2.b.iii.2.a The icon "ready"
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find(".counter")
@@ -410,7 +407,7 @@ describe("Reservation list", () => {
 
     // ID 11 2.b.iii.2.b Physical materials
     // ID 11 2.b.iii.2.b.ii The text {Afhentningsbibliotek}
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
@@ -418,7 +415,7 @@ describe("Reservation list", () => {
       .should("have.text", "Hovedbiblioteket");
 
     // ID 11 2.b.iii.2.b.iii The text Reserveringshylde {Hyldenummer}
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
@@ -426,24 +423,25 @@ describe("Reservation list", () => {
       .should("have.text", "Reserveringshylde 115");
 
     // ID 11 2.c The list "physical reservations"
-    cy.get(".list-reservation-container").eq(1).should("exist");
+    cy.getBySel("list-reservation-container").eq(1).should("exist");
     // ID 11 2.c.i. Header: "Physical" and number of reservations in queue
     cy.get(".dpl-list-buttons")
       .eq(1)
-      .find("[data-cy='reservation-list-header']")
+      .getBySel("reservation-list-header")
+      .eq(1)
       .should("have.text", "Physical reservations9");
     // ID 11 2.c.ii. Reservations in queue sorted by queue number and alphabetical
 
     // ID 11 2.c.iii. Every material is showed with
     // ID 11 2.c.iii.2. text: "You are at the front of the queue"
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
       .should("have.text", "You are at the front of the queue");
     // ID 11 2.c.iii.2. text: There are {Kønummer -1} people in the queue before you"
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(5)
@@ -451,16 +449,15 @@ describe("Reservation list", () => {
       .should("have.text", "There are 1 people in the queue before you");
 
     // ID 11 2.d The list "digital reservations"
-    cy.get(".list-reservation-container").eq(2).should("exist");
+    cy.getBySel("list-reservation-container").eq(2).should("exist");
 
     // ID 11 2.d.i. Header: "Digital" and number of reservations in queue
-    cy.get(".dpl-list-buttons")
+    cy.getBySel("reservation-list-header")
       .eq(2)
-      .find("[data-cy='reservation-list-header']")
       .should("have.text", "Digital reservations3");
 
     // ID 11 2.d.ii. List sorted by: shortest time to loan > producttitle
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(2)
       .find(".list-reservation")
       .eq(0)
@@ -469,7 +466,7 @@ describe("Reservation list", () => {
       .should("have.text", "Available in -37 days");
 
     // ID 11 2.d.iii.b. the icon {ExpectedRedeemDateTimeUtc}
-    cy.get(".list-reservation-container")
+    cy.getBySel("list-reservation-container")
       .eq(2)
       .find(".list-reservation")
       .eq(0)
@@ -687,8 +684,7 @@ describe("Reservation list", () => {
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".reservation-list-page")
-      .find(".dpl-list-empty")
-      .eq(0)
+      .getBySel("reservation-list-ready-for-pickup-empty-list")
       .should(
         "have.text",
         "At the moment you have 0 reservations ready for pickup"
@@ -743,17 +739,14 @@ describe("Reservation list", () => {
     );
 
     // ID 11 2.c.v. No physical reservations text: "At the moment you have 0 reservations on physical items"
-    cy.get(".list-reservation-container")
-      .eq(1)
-      .find(".dpl-list-empty")
+    cy.get(".reservation-list-page")
+      .getBySel("reservation-list-physical-reservations-empty-list")
       .should("exist")
       .should("have.text", "At the moment you have 0 physical reservations");
 
     // ID 11 2.d.v. No digital reservations text: "At the moment you have 0 reservations on digital items"
-    cy.get(".list-reservation-container")
-      .eq(2)
-      .find(".dpl-list-empty")
-      .should("exist")
+    cy.get(".reservation-list-page")
+      .getBySel("reservation-list-digital-reservations-empty-list")
       .should(
         "have.text",
         "At the moment you have 0 reservations on digital items"

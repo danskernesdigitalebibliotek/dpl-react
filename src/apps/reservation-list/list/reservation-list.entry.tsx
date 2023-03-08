@@ -21,7 +21,6 @@ export interface ReservationListUrlProps {
 
 export interface ReservationListConfigProps {
   thresholdConfig: string;
-  blacklistedSearchBranchesConfig: string;
   pauseReservationStartDateConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;

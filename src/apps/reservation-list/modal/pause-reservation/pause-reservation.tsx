@@ -7,7 +7,7 @@ import {
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
-import { PatronV5 } from "../../../../core/fbs/model";
+import { Patron, PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
 import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
@@ -32,25 +32,33 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const [endDate, setEndDate] = useState<string>("");
 
   const save = useCallback(() => {
-    if (user && startDate && endDate) {
+    if (user) {
+      // TODO: consolidate with the other save patron function
+      // be aware the defaults are not necessarily the same in the different save patron functions
+      const saveData = {
+        preferredPickupBranch: user.preferredPickupBranch,
+        receiveEmail: user.receiveEmail,
+        receivePostalMail: user.receivePostalMail,
+        receiveSms: user.receiveSms
+      } as Patron;
+
+      if (startDate || endDate) {
+        saveData.onHold = {
+          from: startDate === "" ? undefined : startDate,
+          to: endDate === "" ? undefined : endDate
+        };
+      }
+
       mutate(
         {
-          data: {
-            patron: {
-              preferredPickupBranch: user.preferredPickupBranch,
-              receiveEmail: user.receiveEmail,
-              receivePostalMail: user.receivePostalMail,
-              receiveSms: user.receiveSms,
-              onHold: { from: startDate, to: endDate }
-            }
-          }
+          data: { patron: saveData }
         },
         {
           onSuccess: () => {
-            close(pauseReservation as string);
             queryClient.invalidateQueries(
               getGetPatronInformationByPatronIdV2QueryKey()
             );
+            close(pauseReservation as string);
           },
           // todo error handling, missing in figma
           onError: () => {}
