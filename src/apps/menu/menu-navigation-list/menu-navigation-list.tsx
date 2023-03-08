@@ -38,7 +38,7 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
           <a href={link} className="link-tag link-tag link-filters__tag">
             {name}
           </a>
-          {dataMap[dataId] && (
+          {!!dataMap[dataId] && (
             <span className="link-filters__counter">{dataMap[dataId]}</span>
           )}
         </div>

@@ -157,7 +157,7 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
         </Link>
       </div>
       <div className="modal-profile__notifications">
-        {loansOverdue !== 0 && (
+        {!!loansOverdue && (
           <MenuNotification
             notificationNumber={loansOverdue}
             notificationText={t("menuNotificationLoansExpiredText")}
@@ -165,7 +165,7 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
             notificationLink={menuNotificationLoansExpiredUrl}
           />
         )}
-        {loansSoonOverdue !== 0 && (
+        {!!loansSoonOverdue && (
           <MenuNotification
             notificationNumber={loansSoonOverdue}
             notificationText={t("menuNotificationLoansExpiringSoonText")}
@@ -173,7 +173,7 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
             notificationLink={menuNotificationLoansExpiringSoonUrl}
           />
         )}
-        {reservationsReadyForPickup !== 0 && (
+        {!!reservationsReadyForPickup && (
           <MenuNotification
             notificationNumber={reservationsReadyForPickup}
             notificationText={t("menuNotificationReadyForPickupText")}
