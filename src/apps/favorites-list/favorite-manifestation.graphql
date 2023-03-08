@@ -1,5 +1,5 @@
 query getFavoriteMaterialManifestation($id: String!) {
   work(id: $id) {
-    ...WorkMedium
+    ...WorkSmall
   }
 }
