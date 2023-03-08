@@ -26,7 +26,7 @@ describe("Search Result", () => {
   it("Renders the favorite buttons", () => {
     cy.get(
       ".search-result-page__list .search-result-item .button-favourite"
-    ).should("have.attr", "aria-label", "Add to favorites");
+    ).should("have.attr", "aria-label", "Add element to favorites list");
   });
 
   it("Renders the titles", () => {
