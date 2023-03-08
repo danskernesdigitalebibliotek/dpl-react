@@ -23,7 +23,7 @@ export default {
   },
   [serviceUrlKeys.materialList]: {
     name: "Base url for the material list service",
-    defaultValue: "https://stg.materiallist.dandigbib.org",
+    defaultValue: "https://prod.materiallist.dandigbib.org",
     control: { type: "text" }
   },
   [serviceUrlKeys.fbi]: {
