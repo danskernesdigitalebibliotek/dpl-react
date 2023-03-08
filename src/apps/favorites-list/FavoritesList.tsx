@@ -14,16 +14,17 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
   const { data } = useGetList("default");
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
-  const [materials, setMaterials] = useState([]);
+  const [materials, setMaterials] = useState<Pid[]>([]);
   const { itemsShown, PagerComponent } = usePager(materials.length, pageSize);
 
-  useEffect(() => {
-    setDisplayedMaterials([...materials].splice(0, itemsShown));
-  }, [itemsShown, materials]);
+  useEffect(
+    () => setDisplayedMaterials([...materials].splice(0, itemsShown)),
+    [itemsShown, materials]
+  );
 
   useEffect(() => {
     if (data && data.collections) {
-      setMaterials(data.collections);
+      setMaterials(data.collections as Pid[]);
     }
   }, [data]);
 
