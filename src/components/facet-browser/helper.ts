@@ -1,4 +1,4 @@
-import { mapValues } from "lodash";
+import { head, mapValues } from "lodash";
 import {
   FacetField,
   useSearchFacetQuery
@@ -106,9 +106,11 @@ export const getFirstMaterialTypeFromFilters = (
   filters: Filter,
   manifestations: Manifestation[]
 ) => {
-  const materialTypeFilter = Object.keys(filters.materialTypes || {}).sort()[0];
+  const materialTypeFilter = head(
+    Object.keys(filters[FacetField.MaterialTypes] || {}).sort()
+  );
   const allMaterialTypes = getMaterialTypes(manifestations);
-  return allMaterialTypes.includes(materialTypeFilter)
+  return materialTypeFilter && allMaterialTypes.includes(materialTypeFilter)
     ? materialTypeFilter
     : undefined;
 };
