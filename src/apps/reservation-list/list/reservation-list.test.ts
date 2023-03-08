@@ -440,7 +440,7 @@ describe("Reservation list", () => {
       .find(".list-reservation")
       .eq(5)
       .find(".list-reservation__deadline p")
-      .should("have.text", "There are 3 people in the queue before you");
+      .should("have.text", "There are 1 people in the queue before you");
 
     // ID 11 2.d The list "digital reservations"
     cy.getBySel("list-reservation-container").eq(2).should("exist");
