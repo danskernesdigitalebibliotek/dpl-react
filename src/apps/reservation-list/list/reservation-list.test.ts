@@ -440,7 +440,7 @@ describe("Reservation list", () => {
       .find(".list-reservation")
       .eq(5)
       .find(".list-reservation__deadline p")
-      .should("have.text", "There are 1 people in the queue before you");
+      .should("have.text", "There are 3 people in the queue before you");
 
     // ID 11 2.d The list "digital reservations"
     cy.getBySel("list-reservation-container").eq(2).should("exist");
@@ -678,8 +678,7 @@ describe("Reservation list", () => {
 
     // ID 11 2.b.v. No ready for pickup reservations text: "At the moment you have 0 reservations ready for pickup"
     cy.get(".reservation-list-page")
-      .getBySel("empty-list")
-      .eq(0)
+      .getBySel("reservation-list-ready-for-pickup-empty-list")
       .should(
         "have.text",
         "At the moment you have 0 reservations ready for pickup"
@@ -735,15 +734,13 @@ describe("Reservation list", () => {
 
     // ID 11 2.c.v. No physical reservations text: "At the moment you have 0 reservations on physical items"
     cy.get(".reservation-list-page")
-      .getBySel("empty-list")
-      .eq(0)
+      .getBySel("reservation-list-physical-reservations-empty-list")
       .should("exist")
       .should("have.text", "At the moment you have 0 physical reservations");
 
     // ID 11 2.d.v. No digital reservations text: "At the moment you have 0 reservations on digital items"
     cy.get(".reservation-list-page")
-      .getBySel("empty-list")
-      .eq(1)
+      .getBySel("reservation-list-digital-reservations-empty-list")
       .should(
         "have.text",
         "At the moment you have 0 reservations on digital items"
