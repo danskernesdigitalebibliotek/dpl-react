@@ -32,7 +32,7 @@ import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import { getNumberedSeries } from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
-import { getFirstMaterialTypeFromFilters } from "../../facet-browser/helper";
+import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 
 export interface SearchResultListItemProps {
   item: Work;

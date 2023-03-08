@@ -1,12 +1,10 @@
-import { head, mapValues } from "lodash";
+import { mapValues } from "lodash";
 import {
   FacetField,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Filter, FilterItemTerm } from "../../core/filter.slice";
-import { getMaterialTypes } from "../../core/utils/helpers/general";
-import { Manifestation } from "../../core/utils/types/entities";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -101,18 +99,5 @@ export function getAllFilterPathsAsString(filterObject: {
   });
   return allFilterPathsAsString;
 }
-
-export const getFirstMaterialTypeFromFilters = (
-  filters: Filter,
-  manifestations: Manifestation[]
-) => {
-  const materialTypeFilter = head(
-    Object.keys(filters[FacetField.MaterialTypes] || {}).sort()
-  );
-  const allMaterialTypes = getMaterialTypes(manifestations);
-  return materialTypeFilter && allMaterialTypes.includes(materialTypeFilter)
-    ? materialTypeFilter
-    : undefined;
-};
 
 export default {};
