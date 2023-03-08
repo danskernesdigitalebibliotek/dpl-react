@@ -26,9 +26,9 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
           return (
             <>
               {librarianReview?.heading && (
-                <div className="review__headline mb-8">
+                <h4 className="review__headline mb-8">
                   {librarianReview.heading}
-                </div>
+                </h4>
               )}
               {librarianReview?.content && (
                 <div className="review__body mb-8">

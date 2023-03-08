@@ -64,7 +64,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       <li className="review text-small-caption" data-cy={dataCy}>
         {(authors || date) && <ReviewMetadata author={authors} date={date} />}
         {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
-        <div className="review__headline mb-8">
+        <h4 className="review__headline mb-8">
           {infomedia.error === "BORROWER_NOT_LOGGED_IN" ? (
             <Button
               label={t("loginToSeeReviewText")}
@@ -80,7 +80,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
           ) : (
             t("cantViewReviewText")
           )}
-        </div>
+        </h4>
       </li>
     );
   }
@@ -94,9 +94,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       {(authors || date) && <ReviewMetadata author={authors} date={date} />}
       {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {infomedia.article?.headLine && (
-        <div className="review__headline mb-8">
-          {infomedia.article.headLine}
-        </div>
+        <h4 className="review__headline mb-8">{infomedia.article.headLine}</h4>
       )}
       {/* We consider infomedia to be a trustworthy source & decided not to
       sanitize the text data that we render as HTML. */}
