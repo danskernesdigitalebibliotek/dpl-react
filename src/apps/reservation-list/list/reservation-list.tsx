@@ -143,40 +143,23 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     readyForPickupReservationsPublizon?.length === 0 &&
     reservedReservationsFBS?.length === 0 &&
     reservedReservationsPublizon?.length === 0 &&
-    !isLoadingFBS &&
-    !isLoadingPublizon;
-
-  const openReservationDeleteModal = (deleteId: string) => {
-    setModalDeleteId(deleteId);
-    open(`${deleteReservation}${deleteId}`);
-  };
-
-  const openReservationDetailsModal = useCallback(
-    (reservationInput: ReservationType) => {
-      setReservation(reservationInput);
-      open(
-        `${reservationDetails}${
-          reservationInput.faust || reservationInput.identifier
-        }`
-      );
-    },
-    [open, reservationDetails]
-  );
+    isLoadingFBS &&
+    isLoadingPublizon;
 
   const findReservationInLists = useCallback(
     (id: string) => {
       let reservationFound = null;
       if (readyForPickupReservationsFBS) {
         reservationFound = getFromListByKey(
-          [...(readyForPickupReservationsFBS as [])],
-          "faust",
+          [...readyForPickupReservationsFBS] as [],
+          "reservationId",
           id
         );
       }
       if (reservationFound?.length === 0 && reservedReservationsFBS) {
         reservationFound = getFromListByKey(
-          [...(reservedReservationsFBS as [])],
-          "faust",
+          [...reservedReservationsFBS],
+          "reservationId",
           id
         );
       }
@@ -210,6 +193,39 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     ]
   );
 
+  const openReservationDeleteModal = useCallback(
+    (deleteReservationInput: ReservationType) => {
+      const reservationForModal = findReservationInLists(
+        String(
+          deleteReservationInput.reservationId ||
+            deleteReservationInput.identifier
+        )
+      );
+      if (reservationForModal) {
+        setReservationToDelete(reservationForModal);
+      }
+      open(
+        `${deleteReservation}${
+          deleteReservationInput.reservationId ||
+          deleteReservationInput.identifier
+        }`
+      );
+    },
+    [deleteReservation, findReservationInLists, open]
+  );
+
+  const openReservationDetailsModal = useCallback(
+    (reservationInput: ReservationType) => {
+      setReservation(reservationInput);
+      open(
+        `${reservationDetails}${
+          reservationInput.faust || reservationInput.identifier
+        }`
+      );
+    },
+    [open, reservationDetails]
+  );
+
   useEffect(() => {
     if (modalDetailsId) {
       const reservationForModal = findReservationInLists(modalDetailsId);
@@ -227,11 +243,11 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       );
 
       if (reservationForModal) {
-        openReservationDetailsModal(reservationForModal);
         setReservationToDelete(reservationForModal);
+        openReservationDeleteModal(reservationForModal);
       }
     }
-  }, [findReservationInLists, modalDeleteId, openReservationDetailsModal]);
+  }, [findReservationInLists, modalDeleteId, openReservationDeleteModal]);
 
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
@@ -283,7 +299,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       {reservationToDelete && (
         <DeleteReservationModal
           modalId={`${deleteReservation}${
-            reservationToDelete.faust || reservationToDelete.identifier
+            reservationToDelete.reservationId || reservationToDelete.identifier
           }`}
           reservation={reservationToDelete}
         />
