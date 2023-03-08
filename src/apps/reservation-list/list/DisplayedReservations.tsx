@@ -37,6 +37,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
                 ...readyForPickupReservationsPublizon
               ]) as []
             }
+            emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
             emptyListLabel={t("reservationListReadyForPickupEmptyText")}
           />
         )}
@@ -46,6 +47,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
           pageSize={pageSize}
           header={t("reservationListPhysicalReservationsHeaderText")}
           reservations={reservedReservationsFBS}
+          emptyListDataCy="reservation-list-physical-reservations-empty-list"
           emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
         />
       )}
@@ -54,6 +56,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
           openReservationDetailsModal={openReservationDetailsModal}
           pageSize={pageSize}
           header={t("reservationListDigitalReservationsHeaderText")}
+          emptyListDataCy="reservation-list-digital-reservations-empty-list"
           reservations={reservedReservationsPublizon}
           emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
         />
