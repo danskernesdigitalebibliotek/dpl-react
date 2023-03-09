@@ -50,14 +50,14 @@ const Disclosure: FC<DisclosureProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span
+        <h2
           data-cy="disclosure-title"
-          className={`disclosure__text${
+          className={`text-body-large disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
           }`}
         >
           {title}
-        </span>
+        </h2>
         {isAvailable !== undefined && (
           <Pagefold
             text={isAvailable ? t("available") : t("unavailable")}

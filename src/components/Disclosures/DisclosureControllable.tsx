@@ -58,7 +58,7 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span className="disclosure__text">{title}</span>
+        <h2 className="text-body-large disclosure__text">{title}</h2>
 
         <img
           className={clsx("disclosure__expand noselect", {
