@@ -25,35 +25,33 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
 }) => {
   const t = useText();
   return (
-    <li>
-      <ul>
-        {/* eslint-disable react/jsx-props-no-spreading */}
-        {/* The downshift combobox works this way by design (line 43) */}
-        {categoryData.map((item, incorrectIndex) => {
-          // incorrectIndex because in the whole of autosuggest dropdown it is
-          // not the correct index for the item. We first need to add the length of
-          // items from autosuggest string suggestion to it for it to be accurate (=> index)
-          const index = incorrectIndex + textAndMaterialDataLength;
-          return (
-            <li
-              className={`autosuggest__text text-body-medium-regular px-24 ${clsx(
-                {
-                  "autosuggest__text--highlight": highlightedIndex === index
-                }
-              )}`}
-              key={item}
-              {...getItemProps({ item, index })}
-              data-cy={dataCy}
-            >
-              {`${item.term} ${t("inText")}`}
-              <div className="boxed-text text-tags noselect ml-8">
-                {autosuggestCategoryList[incorrectIndex].render}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </li>
+    <>
+      {/* eslint-disable react/jsx-props-no-spreading */}
+      {/* The downshift combobox works this way by design (line 43) */}
+      {categoryData.map((item, incorrectIndex) => {
+        // incorrectIndex because in the whole of autosuggest dropdown it is
+        // not the correct index for the item. We first need to add the length of
+        // items from autosuggest string suggestion to it for it to be accurate (=> index)
+        const index = incorrectIndex + textAndMaterialDataLength;
+        return (
+          <li
+            className={`autosuggest__text text-body-medium-regular px-24 ${clsx(
+              {
+                "autosuggest__text--highlight": highlightedIndex === index
+              }
+            )}`}
+            key={item}
+            {...getItemProps({ item, index })}
+            data-cy={dataCy}
+          >
+            {`${item.term} ${t("inText")}`}
+            <div className="boxed-text text-tags noselect ml-8">
+              {autosuggestCategoryList[incorrectIndex].render}
+            </div>
+          </li>
+        );
+      })}
+    </>
   );
 };
 
