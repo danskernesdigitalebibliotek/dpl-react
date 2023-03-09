@@ -629,6 +629,18 @@ export default {
       defaultValue: "Unknown",
       control: { type: "text" }
     },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
+    },
     firstAvailableEditionText: {
       name: "First available edition",
       defaultValue: "First available edition",

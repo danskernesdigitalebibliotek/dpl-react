@@ -30,6 +30,8 @@ interface SearchResultEntryTextProps {
   showingResultsForText: string;
   showMoreText: string;
   showResultsText: string;
+  addToFavoritesAriaLabelText: string;
+  removeFromFavoritesAriaLabelText: string;
 }
 
 interface SearchResultEntryUrlProps {

@@ -166,6 +166,18 @@ export default {
       defaultValue: "+ more filters",
       control: { type: "text" }
     },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
+    },
     alertErrorCloseText: {
       name: "Alert error close text",
       defaultValue: "close",

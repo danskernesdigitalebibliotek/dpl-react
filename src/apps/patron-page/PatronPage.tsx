@@ -7,7 +7,6 @@ import {
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../core/fbs/fbs";
-import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Link } from "../../components/atoms/link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
@@ -15,18 +14,24 @@ import ContactInfoSection from "./sections/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
+import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
+import { getModalIds } from "../../core/utils/helpers/general";
+import { useUrls } from "../../core/utils/url";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
   const t = useText();
-  const config = useConfig();
   const { mutate } = useUpdateV5();
+  const { pauseReservation } = getModalIds();
 
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
-  const deletePatronLink = config("deletePatronLinkConfig");
+  const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     if (patronData && patronData.patron) {
@@ -78,6 +83,9 @@ const PatronPage: FC = () => {
             queryClient.invalidateQueries(
               getGetPatronInformationByPatronIdV2QueryKey()
             );
+            if (pin) {
+              setSuccessPinMessage(t("patronPinSavedSuccessText"));
+            }
           },
           // todo error handling, missing in figma
           onError: () => {}
@@ -87,39 +95,53 @@ const PatronPage: FC = () => {
   };
 
   return (
-    <form className="dpl-patron-page">
-      <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
-      {patron && <BasicDetailsSection patron={patron} />}
+    <>
+      <form className="dpl-patron-page">
+        <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
+        {patron && <BasicDetailsSection patron={patron} />}
+        <div className="patron-page-info">
+          {patron && (
+            <ContactInfoSection changePatron={changePatron} patron={patron} />
+          )}
+          <StatusSection />
+          {patron && (
+            <ReservationDetailsSection
+              changePatron={changePatron}
+              patron={patron}
+            />
+          )}
+          {patron && <PincodeSection changePincode={setPin} />}
+          {successPinMessage && (
+            <p className="text-body-small-regular mb-8 mt-8">
+              {successPinMessage}
+            </p>
+          )}
+
+          <button
+            data-cy="save-user-patron"
+            className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
+            type="button"
+            onClick={save}
+          >
+            {t("patronPageSaveButtonText")}
+          </button>
+
+          <div className="text-body-small-regular mt-32">
+            {t("patronPageDeleteProfileText")}{" "}
+            <Link
+              id="delete-patron-link"
+              href={deletePatronUrl}
+              className="link-tag"
+            >
+              {t("patronPageDeleteProfileLinkText")}
+            </Link>
+          </div>
+        </div>
+      </form>
       {patron && (
-        <ContactInfoSection changePatron={changePatron} patron={patron} />
+        <PauseReservation user={patron} id={pauseReservation as string} />
       )}
-      <StatusSection />
-      {patron && (
-        <ReservationDetailsSection
-          changePatron={changePatron}
-          patron={patron}
-        />
-      )}
-      {patron && <PincodeSection changePincode={setPin} />}
-      <button
-        data-cy="save-user-patron"
-        className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-        type="button"
-        onClick={save}
-      >
-        {t("patronPageSaveButtonText")}
-      </button>
-      <div className="text-body-small-regular mt-32">
-        {t("patronPageDeleteProfileText")}{" "}
-        <Link
-          id="delete-patron-link"
-          href={new URL(deletePatronLink)}
-          className="link-tag"
-        >
-          {t("patronPageDeleteProfileLinkText")}
-        </Link>
-      </div>
-    </form>
+    </>
   );
 };
 

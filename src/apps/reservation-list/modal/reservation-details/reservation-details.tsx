@@ -14,7 +14,7 @@ import { useGetBranches } from "../../../../core/utils/branches";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
-  openReservationDeleteModal: (deleteId: string) => void;
+  openReservationDeleteModal: (deleteReservation: ReservationType) => void;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
@@ -26,7 +26,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-  const branches = useGetBranches();
+  const branches = useGetBranches("blacklistedPickupBranchesConfig");
   const isDigital = !!reservation.identifier;
 
   return (
@@ -53,13 +53,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             <ReservationDetailsButton
               classNames="modal-details__buttons--hide-on-mobile"
               openReservationDeleteModal={openReservationDeleteModal}
-              reservationId={reservation.reservationId}
+              reservation={reservation}
               numberInQueue={numberInQueue}
             />
           )}
           {isDigital && reservation.identifier && (
             <ReservationDetailsRedirect
               openReservationDeleteModal={openReservationDeleteModal}
+              reservation={reservation}
               reservationId={reservation.identifier}
               className="modal-details__buttons--hide-on-mobile"
               linkClassNames="mx-16"
@@ -78,8 +79,8 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             <ReservationDetailsButton
               buttonClassNames="modal-details__buttons__full-width"
               openReservationDeleteModal={openReservationDeleteModal}
-              reservationId={reservation.reservationId}
               numberInQueue={numberInQueue}
+              reservation={reservation}
             />
           )}
           {isDigital && reservation.identifier && (
@@ -87,6 +88,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               openReservationDeleteModal={openReservationDeleteModal}
               reservationId={reservation.identifier}
               linkClassNames="my-16"
+              reservation={reservation}
             />
           )}
         </>
