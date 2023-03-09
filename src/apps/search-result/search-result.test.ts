@@ -75,6 +75,14 @@ describe("Search Result", () => {
     );
   });
 
+  it("Renders the correct release year for fictional works", () => {
+    cy.getBySel("search-result-list-item").eq(1).should("contain", "1997");
+  });
+
+  it("Renders the correct release year for non-fictional works", () => {
+    cy.getBySel("search-result-list-item").first().should("contain", "2018");
+  });
+
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
