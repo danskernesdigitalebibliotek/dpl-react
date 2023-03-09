@@ -11576,11 +11576,6 @@ http-cache-semantics@^4.0.0, http-cache-semantics@^4.1.0:
   resolved "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz"
   integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
 
-http-error-classes@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/http-error-classes/-/http-error-classes-1.0.1.tgz#6e8115623bc3e39dfb03a04fa87705c3a6e36ced"
-  integrity sha512-/scLVyCQxGeph7O9/FjbBKGm0YbSzHQ15YxveHAzz3vOLkr8eZ4L+0BmRPKg7qLyjNkc10cGtvkQXWetQNiHhw==
-
 http-errors@1.8.1:
   version "1.8.1"
   resolved "https://registry.npmjs.org/http-errors/-/http-errors-1.8.1.tgz"
