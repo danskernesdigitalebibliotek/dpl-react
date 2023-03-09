@@ -94,9 +94,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       {(authors || date) && <ReviewMetadata author={authors} date={date} />}
       {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {infomedia.article?.headLine && (
-        <div className="review__headline mb-8">
-          {infomedia.article.headLine}
-        </div>
+        <h3 className="review__headline mb-8">{infomedia.article.headLine}</h3>
       )}
       {/* We consider infomedia to be a trustworthy source & decided not to
       sanitize the text data that we render as HTML. */}

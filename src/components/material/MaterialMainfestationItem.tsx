@@ -114,9 +114,9 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__title text-header-h4">
+        <h3 className="material-manifestation-item__title text-header-h4">
           {titles?.main[0]}
-        </h2>
+        </h3>
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {creatorsText}
           {edition?.publicationYear?.display &&
