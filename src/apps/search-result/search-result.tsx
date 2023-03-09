@@ -27,6 +27,8 @@ import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
 import { isDataEmpty } from "../../core/utils/helpers/general";
 import useFilterHandler from "./useFilterHandler";
+import SearchResultSkeleton from "./search-result-skeleton";
+import SearchResultZeroHits from "./search-result-zero-hits";
 
 interface SearchResultProps {
   q: string;
@@ -44,7 +46,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
@@ -164,6 +165,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     const filtersUrlParam = getUrlQueryParam("filters");
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
+
+  if (!isLoading && hitcount === 0) {
+    return <SearchResultZeroHits />;
+  }
+
+  if (isLoading) {
+    return <SearchResultSkeleton />;
+  }
 
   return (
     <div className="search-result-page">
