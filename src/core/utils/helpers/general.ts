@@ -438,15 +438,15 @@ export const getReviewRelease = (
 };
 
 // The rendered release year for search results is picked based on
-// whether the work is fiction or not.
+// whether the work is fiction or not. Non-fictional works contain
+// factual information that can be updated between editions - thus it
+// is important to show the latest edition the library has.
 export const getReleaseYearSearchResult = (work: Work) => {
   const { latest, bestRepresentation } = work.manifestations;
   const manifestation = bestRepresentation || latest;
-  // If the work tells us that it is fiction.
   if (materialIsFiction(work)) {
     return work.workYear?.year;
   }
-  // If the manifestation tells us that it is fiction.
   if (materialIsFiction(manifestation)) {
     return (
       work.workYear?.year ||
@@ -455,7 +455,6 @@ export const getReleaseYearSearchResult = (work: Work) => {
       manifestation.edition?.publicationYear?.display
     );
   }
-  // If it isn't fiction we get release year from latest manifestation.
   return getManifestationPublicationYear(latest) || "";
 };
 
