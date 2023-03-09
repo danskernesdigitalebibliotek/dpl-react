@@ -117,7 +117,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     <button
       className={classes.parent}
       type="button"
-      onClick={handleSelectManifestation ?? undefined}
+      onClick={handleSelectManifestation}
       data-cy={dataCy}
     >
       {availabilityLabel}
