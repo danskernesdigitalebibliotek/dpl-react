@@ -1943,6 +1943,18 @@
           {
             "name": "materialTypes",
             "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Use 'FacetField.materialTypesSpecific'"
+          },
+          {
+            "name": "materialTypesGeneral",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "materialTypesSpecific",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -4451,6 +4463,18 @@
           {
             "name": "standard",
             "description": "The standard title of the entity, used for music and movies",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "titlePlusLanguage",
+            "description": "The title of the entity with the language of the entity in parenthesis after. This field is only generated for non-danish titles.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -7617,7 +7641,27 @@
             "deprecationReason": null
           },
           {
-            "name": "materialTypes",
+            "name": "materialTypesGeneral",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "materialTypesSpecific",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -8957,8 +9001,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Work.relations.hasReview'"
           },
           {
             "name": "series",
@@ -9226,6 +9270,18 @@
           {
             "name": "standard",
             "description": "The standard title of the entity, used for music and movies",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "titlePlusLanguage",
+            "description": "The title of the entity with the language of the entity in parenthesis after. This field is only generated for non-danish titles.",
             "args": [],
             "type": {
               "kind": "SCALAR",

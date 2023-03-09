@@ -82,9 +82,10 @@ export const constructMaterialUrl = (
   workId: WorkId,
   type?: string
 ) => {
-  const materialUrl = url;
+  const materialUrl = new URL(url);
+
   // Replace placeholders with values.
-  materialUrl.pathname = processUrlPlaceholders(url.pathname, [
+  materialUrl.pathname = processUrlPlaceholders(materialUrl.pathname, [
     [":workid", workId]
   ]);
 

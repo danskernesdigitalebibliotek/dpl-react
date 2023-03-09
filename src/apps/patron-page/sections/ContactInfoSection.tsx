@@ -4,6 +4,7 @@ import TextInput from "../../../components/atoms/input/TextInput";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useText } from "../../../core/utils/text";
 import { ChangePatronProps } from "./ReservationDetailsSection";
+import { useConfig } from "../../../core/utils/config";
 
 interface ContactInfoSectionProps {
   patron: PatronV5;
@@ -15,17 +16,18 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   changePatron
 }) => {
   const t = useText();
+  const config = useConfig();
+  const textNotificationsEnabled =
+    config("textNotificationsEnabledConfig") === "true";
 
   return (
     <section data-cy="patron-page-contact-info">
       <h2 className="text-body-small-regular mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
-      {t("patronPageContactInfoBodyText") && (
-        <p className="text-body-small-regular mb-32">
-          {t("patronPageContactInfoBodyText")}
-        </p>
-      )}
+      <p className="text-body-small-regular mb-32">
+        {t("patronPageContactInfoBodyText")}
+      </p>
       <TextInput
         className="patron__input patron__input--desktop"
         id="phone-input"
@@ -36,16 +38,23 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.phoneNumber}
         label={t("patronPageContactPhoneLabelText")}
       />
-      <CheckBox
-        className="mt-32 mb-16"
-        onChecked={(newReceiveSms: boolean) =>
-          changePatron(newReceiveSms, "receiveSms")
-        }
-        id="phone-messages"
-        selected={patron?.receiveSms}
-        disabled={false}
-        label={t("patronPageContactPhoneCheckboxText")}
-      />
+      {textNotificationsEnabled && (
+        <>
+          <CheckBox
+            className="mt-32 mb-16"
+            onChecked={(newReceiveSms: boolean) =>
+              changePatron(newReceiveSms, "receiveSms")
+            }
+            id="phone-messages"
+            selected={patron?.receiveSms}
+            disabled={false}
+            label={t("patronPageContactPhoneCheckboxText")}
+          />
+          <div className="text-body-small-regular mt-16 mb-32">
+            {t("patronPageTextFeeText")}
+          </div>
+        </>
+      )}
       <TextInput
         className="patron__input patron__input--desktop"
         id="email-address-input"
