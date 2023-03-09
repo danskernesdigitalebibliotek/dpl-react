@@ -36,6 +36,7 @@ export interface SearchResultListItemProps {
   item: Work;
   coverTint: CoverProps["tint"];
   resultNumber: number;
+  dataCy?: string;
 }
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
@@ -48,7 +49,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     workId
   },
   coverTint,
-  resultNumber
+  resultNumber,
+  dataCy = "search-result-list-item"
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
@@ -101,6 +103,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       ref={itemRef}
+      data-cy={dataCy}
       className="search-result-item arrow arrow__hover--right-small"
       onClick={handleClick}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
