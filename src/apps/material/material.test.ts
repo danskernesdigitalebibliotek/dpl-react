@@ -225,6 +225,40 @@ describe("Material", () => {
     );
   });
 
+  it("Check if selected availability label have aria-pressed=true", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-description").scrollIntoView();
+
+    cy.getBySel("availability-label")
+      .find('[data-cy="availability-label-type"]')
+      .contains("bog")
+      .parent()
+      .should("have.attr", "aria-pressed", "true");
+  });
+
+  it("Check if unselected availability label have aria-pressed=false", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-description").scrollIntoView();
+
+    cy.getBySel("availability-label")
+      .find('[data-cy="availability-label-type"]')
+      .contains("lydbog")
+      .parent()
+      .should("have.attr", "aria-pressed", "false");
+  });
+
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",

@@ -91,6 +91,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       role="button"
       tabIndex={0}
       data-cy={dataCy}
+      aria-pressed={selected}
     >
       <div className={classes.triangle} />
       <img className={classes.check} src={CheckIcon} alt="check-icon" />
