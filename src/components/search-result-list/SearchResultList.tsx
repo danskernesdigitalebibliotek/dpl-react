@@ -6,30 +6,21 @@ import SearchResultListItemSkeleton from "./search-result-list-item/search-resul
 
 export interface SearchResultListProps {
   resultItems: Work[];
-  hitcount: number;
-  isLoading: boolean;
 }
 
-const SearchResultList: React.FC<SearchResultListProps> = ({
-  resultItems,
-  hitcount,
-  isLoading
-}) => {
+const SearchResultList: React.FC<SearchResultListProps> = ({ resultItems }) => {
   return (
     <ul className="search-result-page__list my-32" data-cy="search-result-list">
       {/*
           Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens.
         */}
-      {isLoading &&
+      {isDataEmpty(resultItems) &&
         [...Array(5)].map(() => (
           <li>
             <SearchResultListItemSkeleton />
           </li>
         ))}
-      {/* We fill out empty page without results a little bit to visually convey
-      to the user that the results are empty. */}
-      {(!hitcount || isDataEmpty(resultItems)) && <div className="my-112" />}
       {resultItems.map((item, i) => (
         <li key={item.workId}>
           <SearchResultListItem
