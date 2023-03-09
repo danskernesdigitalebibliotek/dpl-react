@@ -7,6 +7,7 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
+  addToFavoritesAriaLabelText: string;
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   alreadyReservedText: string;
@@ -107,6 +108,7 @@ interface MaterialEntryTextProps {
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
+  removeFromFavoritesAriaLabelText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;

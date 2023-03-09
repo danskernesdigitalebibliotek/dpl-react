@@ -20,6 +20,7 @@ import {
   dashboardReadyForPickupApiValueText,
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
+import { ReservationType } from "../types/reservation-type";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -188,6 +189,24 @@ export const sortByDueDate = (list: LoanType[]) => {
     (a, b) =>
       new Date(a.dueDate || new Date()).getTime() -
       new Date(b.dueDate || new Date()).getTime()
+  );
+};
+
+export const sortByLoanDate = (list: LoanType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (a, b) =>
+      new Date(a.loanDate || new Date()).getTime() -
+      new Date(b.loanDate || new Date()).getTime()
+  );
+};
+
+export const sortByReservationDate = (list: ReservationType[]) => {
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.dateOfReservation || new Date()).getTime() -
+      new Date(objB.dateOfReservation || new Date()).getTime()
   );
 };
 
@@ -438,6 +457,25 @@ export const getReleaseYearSearchResult = (work: Work) => {
   }
   // If it isn't fiction we get release year from latest manifestation.
   return getManifestationPublicationYear(latest) || latest.workYear?.year;
+};
+
+// Creates a "by author, author and author"-string
+export const getContributors = (
+  creators: string[],
+  by: string,
+  and: string
+) => {
+  let returnContentString = "";
+  if (creators && creators.length > 0) {
+    if (creators.length === 1) {
+      returnContentString = `${by} ${creators.join(", ")}`;
+    } else {
+      returnContentString = `${by} ${creators
+        .slice(0, -1)
+        .join(", ")} ${and} ${creators.slice(-1)}`;
+    }
+  }
+  return returnContentString;
 };
 
 export default {};

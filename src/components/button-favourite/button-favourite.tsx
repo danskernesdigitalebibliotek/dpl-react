@@ -10,6 +10,7 @@ import { Pid, WorkId } from "../../core/utils/types/ids";
 export type ButtonFavouriteId = WorkId | Pid;
 export interface ButtonFavouriteProps {
   id: ButtonFavouriteId;
+  bright?: boolean;
   addToListRequest: (id: ButtonFavouriteId) => void;
 }
 
@@ -17,7 +18,8 @@ export interface ButtonFavouriteProps {
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   id,
-  addToListRequest
+  addToListRequest,
+  bright
 }) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
@@ -63,12 +65,14 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
     <button
       type="button"
       aria-label={
-        fillState ? t("Remove from favorites") : t("Add to favorites")
+        fillState
+          ? t("removeFromFavoritesAriaLabelText")
+          : t("addToFavoritesAriaLabelText")
       }
       onClick={handleClick}
       className="button-favourite"
     >
-      <IconFavourite fill={fillState} />
+      <IconFavourite bright={bright} fill={fillState} />
     </button>
   );
 };
