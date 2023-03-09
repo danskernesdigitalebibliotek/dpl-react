@@ -52,6 +52,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
         data-cy={dataCy}
+        aria-busy="true"
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 
