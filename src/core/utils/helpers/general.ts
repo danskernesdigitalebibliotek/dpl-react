@@ -456,7 +456,7 @@ export const getReleaseYearSearchResult = (work: Work) => {
     );
   }
   // If it isn't fiction we get release year from latest manifestation.
-  return getManifestationPublicationYear(latest) || latest.workYear?.year;
+  return getManifestationPublicationYear(latest) || "";
 };
 
 // Creates a "by author, author and author"-string
