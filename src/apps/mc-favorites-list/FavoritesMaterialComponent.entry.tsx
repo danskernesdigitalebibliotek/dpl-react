@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import SomethingSimilar from "./FavoritesMaterialComponent";
+import FavoritesMC from "./FavoritesMaterialComponent";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
@@ -13,14 +13,12 @@ export interface FavoritesMaterialComponentProps {
   fbiBaseUrl: string;
   materialUrl: string;
   favoritesMaterialComponentTitleText: string;
-  materialByAuthorText: string;
-  materialAndAuthorText: string;
-  somethingSimilarByTheSameAuthorText: string;
-  somethingSimilarSomethingSimilarAuthorText: string;
+  goToYourFavoritesListText: string;
+  // goToYourFavoritesListUrl: string;
 }
 
-const SomethingSimilarEntry: FC<FavoritesMaterialComponentProps> = () => (
-  <SomethingSimilar />
+const FavoritesMaterialComponent: FC<FavoritesMaterialComponentProps> = () => (
+  <FavoritesMC />
 );
 
-export default withUrls(withConfig(withText(SomethingSimilarEntry)));
+export default withUrls(withConfig(withText(FavoritesMaterialComponent)));

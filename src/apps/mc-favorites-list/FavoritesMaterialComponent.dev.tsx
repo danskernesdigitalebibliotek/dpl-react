@@ -23,27 +23,12 @@ export default {
       defaultValue: "GOTO your favorites list"
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
+      defaultValue: "https://unsplash.com/photos/42OBN2nUku8",
       control: { type: "text" }
     },
-    materialByAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By"
-    },
-    materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
-    },
-
-    somethingSimilarSomethingSimilarAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Something similar"
+    goToYourFavoritesListUrl: {
+      defaultValue: "https://unsplash.com/photos/42OBN2nUku8", // Open soruce images of a gazing iguana
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof FavoritesMaterialComponent>;
