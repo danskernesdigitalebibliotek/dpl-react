@@ -65,7 +65,7 @@ const List: FC<ListProps> = ({
             loans={displayedLoans}
             view={view}
           />
-          {PagerComponent}
+          <PagerComponent />
         </>
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
