@@ -70,7 +70,7 @@ const List: FC<ListProps> = ({
                 />
               ))}
             </ul>
-            {PagerComponent}
+            <PagerComponent />
           </div>
         </>
       ) : (

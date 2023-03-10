@@ -39,11 +39,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { PagerComponent, page } = usePager({
     hitcount,
-    pageSize,
-    isLoading
+    pageSize
   });
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
@@ -102,7 +100,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = useSearchWithPaginationQuery({
+  const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
     limit: pageSize,
@@ -110,7 +108,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   });
 
   useEffect(() => {
-    setIsLoading(true);
     if (!data) {
       return;
     }
@@ -125,8 +122,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     };
 
     setHitCount(resultCount);
-
-    setIsLoading(false);
 
     // if page has change then append the new result to the existing result
     if (page > 0) {
@@ -181,7 +176,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
-      {PagerComponent}
+      <PagerComponent isLoading={isLoading} />
       {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );
