@@ -29,19 +29,6 @@ export const buildParams = (data: FetchParams) => {
   return params;
 };
 
-export const getServiceUrlWithParams = ({
-  baseUrl,
-  url,
-  params
-}: {
-  baseUrl: string;
-  url: string;
-  params: unknown;
-}) => {
-  const urlParams = params ? `?${buildParams(params as FetchParams)}` : "";
-  return `${baseUrl}${url}${urlParams}`;
-};
-
 export const createAuthHeader = (
   token: RequestOptions["bearerToken"]
 ): { Authorization: `Bearer ${string}` } | Record<string, never> =>
