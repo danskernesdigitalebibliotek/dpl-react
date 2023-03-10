@@ -51,4 +51,17 @@ export const createAuthHeader = (
       }
     : {};
 
+export const getServiceUrlWithParams = ({
+  baseUrl,
+  url,
+  params
+}: {
+  baseUrl: string;
+  url: string;
+  params: unknown;
+}) => {
+  const urlParams = params ? `?${buildParams(params as FetchParams)}` : "";
+  return `${baseUrl}${url}${urlParams}`;
+};
+
 export default {};
