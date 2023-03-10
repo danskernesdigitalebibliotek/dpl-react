@@ -4,7 +4,7 @@ import FavoritesMaterialComponentList from "./FavoritesMaterialComponentList";
 const FavoritesMC: FC = () => {
   return (
     <div className="recommender recommender--bright">
-      <FavoritesMaterialComponentList pageSize={25} />
+      <FavoritesMaterialComponentList />
     </div>
   );
 };
