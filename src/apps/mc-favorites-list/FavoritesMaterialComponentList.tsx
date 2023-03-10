@@ -1,61 +1,41 @@
 import React, { useEffect, FC, useState } from "react";
-import usePager from "../../components/result-pager/use-pager";
-import { useGetList } from "../../core/material-list-api/material-list";
+import { Link } from "../../components/atoms/link";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
+import { useUrls } from "../../core/utils/url";
 import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
 
-export interface FavoritesMaterialComponentListProps {
-  pageSize: number;
-}
-
-const FavoritesMaterialComponentList: FC<
-  FavoritesMaterialComponentListProps
-> = ({ pageSize }) => {
+const FavoritesMaterialComponentList: FC = () => {
   const t = useText();
-  const { data } = useGetList("default");
-  const [recommendView, setRecommendView] = useState<boolean>(true);
-  const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
+  const { goToYourFavoritesListUrl } = useUrls();
+  // const { data } = useGetList("default");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const test = [
+    `${870970 as number}-${"basis" as string}:${53063403 as number}`,
+    `${870970 as number}-${"basis" as string}:${51363035 as number}`,
+    `${870970 as number}-${"basis" as string}:${29630364 as number}`
+  ];
   const [materials, setMaterials] = useState<Pid[]>([]);
-  const { itemsShown } = usePager(materials.length, pageSize);
 
-  useEffect(
-    () => setDisplayedMaterials([...materials].splice(0, itemsShown)),
-    [itemsShown, materials]
-  );
-  useEffect(() => {
-    if (data && data.collections) {
-      setMaterials(data.collections as Pid[]);
-    }
-  }, [data]);
-  console.log(displayedMaterials);
+  useEffect(() => setMaterials(test as unknown as any), []);
   return (
     <>
-      <h2 className="recommender__title text-header-h1 recommender__title--left">
+      <h2 className="recommender__title text-header-h2 recommender__title--left">
         {t("favoritesMaterialComponentTitleText")}
       </h2>
       <div className="recommender__buttons">
-        <button
-          onClick={() => setRecommendView(false)}
-          type="button"
-          className={`button-link ${
-            !recommendView ? "button-link--selected" : ""
-          }`}
-        >
+        <Link href={goToYourFavoritesListUrl}>
           {t("goToYourFavoritesListText")}
-        </button>
+        </Link>
       </div>
-      <ul className="recommender__grid">
-        {displayedMaterials.length > 0 && (
-          <ul className="search-result-page__list my-32">
-            {displayedMaterials.map((pid) => (
-              <li key={pid}>
-                <SearchResultListItemAdapter key={pid} pid={pid} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </ul>
+
+      {materials.length > 0 && (
+        <ul className="recommender__grid">
+          {materials.map((pid) => (
+            <SearchResultListItemAdapter key={pid} pid={pid} />
+          ))}
+        </ul>
+      )}
     </>
   );
 };

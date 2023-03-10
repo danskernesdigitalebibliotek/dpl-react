@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import SearchResultListItem from "../../../components/search-result-list/search-result-list-item/search-result-list-item";
 import { Pid } from "../../../core/utils/types/ids";
-import { useGetFavoriteMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+// import { useGetFavoriteMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
+// eslint-disable-next-line import/extensions
+import { first } from "./testData";
 import { Work } from "../../../core/utils/types/entities";
+import RecommendMaterial from "../recommender/RecommendMaterial";
 
 export interface SearchResultListItemAdapterProps {
   pid: Pid;
@@ -11,22 +13,14 @@ export interface SearchResultListItemAdapterProps {
 const SearchResultListItemAdapter: FC<SearchResultListItemAdapterProps> = ({
   pid
 }) => {
-  const { data } = useGetFavoriteMaterialManifestationQuery({
-    id: pid
-  });
+  console.log(first);
+  // const { data } = useGetFavoriteMaterialManifestationQuery({
+  //   id: pid
+  // });
 
-  return (
-    <div>
-      {data && data.work && (
-        <SearchResultListItem
-          key={data.work?.workId}
-          item={data.work as Work}
-          coverTint="100"
-          resultNumber={0}
-        />
-      )}
-    </div>
-  );
+  return first?.data?.work ? (
+    <RecommendMaterial work={first.data.work as unknown as Work} />
+  ) : null;
 };
 
 export default SearchResultListItemAdapter;
