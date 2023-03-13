@@ -33,7 +33,6 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         key={generateItemId(item)}
         {...getItemProps({ item, index })}
         data-cy={dataCy}
-        id={`suggestion-${index + 1}`}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
         {item.type === SuggestionType.Creator

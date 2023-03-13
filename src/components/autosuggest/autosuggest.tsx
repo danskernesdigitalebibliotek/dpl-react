@@ -52,9 +52,9 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
       <ul
         className="autosuggest pb-16"
         id="autosuggest"
-        aria-owns="suggestion-1 suggestion-2 suggestion-3 suggestion-4 suggestion-5 suggestion-6
-        suggestion-7 suggestion-8 suggestion-9 suggestion-10 suggestion-11 suggestion-12 suggestion-13
-        suggestion-14 suggestion-15 suggestion-16 suggestion-17"
+        aria-owns="downshift-0-item-0 downshift-0-item-1 downshift-0-item-2 downshift-0-item-3 downshift-0-item-4 downshift-0-item-5
+        downshift-0-item-6 downshift-0-item-7 downshift-0-item-8 downshift-0-item-9 downshift-0-item-10 downshift-0-item-11
+        downshift-0-item-12 downshift-0-item-13 downshift-0-item-14 downshift-0-item-15 downshift-0-item-16"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
         data-cy={dataCy}
