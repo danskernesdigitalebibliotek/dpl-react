@@ -83,6 +83,19 @@ describe("Search Result", () => {
     cy.getBySel("search-result-list-item").first().should("contain", "2018");
   });
 
+  it("Renders the 0-result page correctly", () => {
+    // Overwrite graphql search query fixture.
+    cy.fixture("search-result/fbi-api-no-results.json")
+      .then((result) => {
+        cy.intercept("POST", "**/opac/graphql**", result);
+      })
+      .as("Graphql search query");
+    cy.visit(
+      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
+    );
+    cy.getBySel("search-result-zero-hits").should("be.visible");
+  });
+
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
