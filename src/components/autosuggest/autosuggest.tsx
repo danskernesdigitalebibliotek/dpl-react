@@ -45,45 +45,56 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
   return (
     <>
+      {/* The downshift combobox works by prop-spreading by design */}
       {/* eslint-disable react/jsx-props-no-spreading */}
-      {/* The downshift combobox works this way by design */}
+      {/* Unless specifically stated, downshift would overwrite ul's list role */}
+      {/* eslint-disable jsx-a11y/no-redundant-roles */}
       <ul
         className="autosuggest pb-16"
+        id="autosuggest"
+        aria-owns="suggestion-1 suggestion-2 suggestion-3 suggestion-4 suggestion-5 suggestion-6
+        suggestion-7 suggestion-8 suggestion-9 suggestion-10 suggestion-11 suggestion-12 suggestion-13
+        suggestion-14 suggestion-15 suggestion-16 suggestion-17"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
         data-cy={dataCy}
         aria-busy="true"
+        role="listbox"
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
-
-        <AutosuggestText
-          textData={textData}
-          highlightedIndex={highlightedIndex}
-          getItemProps={getItemProps}
-        />
-        {textData.length > 0 && materialData.length > 0 && (
-          <span className="autosuggest__divider" />
-        )}
-        {materialData.length > 0 && (
-          <AutosuggestMaterial
-            materialData={materialData}
-            getItemProps={getItemProps}
+        {/* eslint-enable jsx-a11y/no-redundant-roles */}
+        <ul>
+          <AutosuggestText
+            textData={textData}
             highlightedIndex={highlightedIndex}
-            textDataLength={textData.length}
+            getItemProps={getItemProps}
           />
-        )}
-        {categoryData && categoryData.length > 0 && (
-          <>
-            <span className="autosuggest__divider" />
-            <AutosuggestCategory
-              categoryData={categoryData}
+          {textData.length > 0 && materialData.length > 0 && (
+            <li className="autosuggest__divider" />
+          )}
+          {materialData.length > 0 && (
+            <AutosuggestMaterial
+              materialData={materialData}
               getItemProps={getItemProps}
               highlightedIndex={highlightedIndex}
-              textAndMaterialDataLength={textData.length + materialData.length}
-              autosuggestCategoryList={autosuggestCategoryList}
+              textDataLength={textData.length}
             />
-          </>
-        )}
+          )}
+          {categoryData && categoryData.length > 0 && (
+            <>
+              <li className="autosuggest__divider" />
+              <AutosuggestCategory
+                categoryData={categoryData}
+                getItemProps={getItemProps}
+                highlightedIndex={highlightedIndex}
+                textAndMaterialDataLength={
+                  textData.length + materialData.length
+                }
+                autosuggestCategoryList={autosuggestCategoryList}
+              />
+            </>
+          )}
+        </ul>
       </ul>
     </>
   );
