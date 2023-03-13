@@ -391,7 +391,7 @@ export const getAllFaustIds = (manifestations: Manifestation[]) => {
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
-export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
+export const isDataEmpty = (data: unknown[]) => Boolean(!data.length);
 // Loans with more than warning-threshold days until due
 export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
