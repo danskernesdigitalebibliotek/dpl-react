@@ -1,12 +1,9 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
-import {
-  createHeading,
-  HeadingLevelType
-} from "../../core/utils/create-heading";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { useText } from "../../core/utils/text";
+import Heading, { HeadingLevelType } from "../Heading/Heading";
 import Pagefold from "../pagefold/Pagefold";
 
 export interface DisclosureProps {
@@ -31,11 +28,10 @@ const Disclosure: FC<DisclosureProps> = ({
   open,
   removeHeadlinePadding,
   dataCy = "disclosure",
-  headingLevel = "h2"
+  headingLevel
 }) => {
   const t = useText();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
-  const Heading = createHeading(headingLevel);
 
   return (
     <details
@@ -58,6 +54,7 @@ const Disclosure: FC<DisclosureProps> = ({
           </div>
         )}
         <Heading
+          level={headingLevel}
           data-cy="disclosure-title"
           className={`text-body-large disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
