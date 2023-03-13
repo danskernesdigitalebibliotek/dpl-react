@@ -1,14 +1,14 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
 import { useDispatch } from "react-redux";
-import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
-import BlockedModal from "./blocked-modal/BlockedModal";
-import { AuthenticatedPatronV6 } from "../../core/fbs/model";
-import { useModalButtonHandler } from "../../core/utils/modal";
-import { getModalIds } from "../../core/utils/helpers/general";
-import { setHasBeenVisible } from "../../core/blockedModal.slice";
-import { RootState, useSelector } from "../../core/store";
-import BlockedTypes from "../../core/utils/types/BlockedTypes";
-import { redirectTo } from "../../core/utils/helpers/url";
+import { useGetPatronInformationByPatronIdV2 } from "../fbs/fbs";
+import BlockedModal from "../../components/blocked-patron/blocked-modal/BlockedModal";
+import { AuthenticatedPatronV6 } from "../fbs/model";
+import { useModalButtonHandler } from "./modal";
+import { getModalIds } from "./helpers/general";
+import { setHasBeenVisible } from "../blockedModal.slice";
+import { RootState, useSelector } from "../store";
+import BlockedTypes from "./types/BlockedTypes";
+import { redirectTo } from "./helpers/url";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
@@ -21,7 +21,7 @@ type InputProps = {
 
 // Hoc that determines if a patron is blocked and provides a modal with
 // and explanation for the user.
-const isPatronBlockedHoc =
+const withIsPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P>): FC<P & InputProps> =>
   ({ redirectOnBlocked, ...props }) => {
     const dispatch = useDispatch();
@@ -90,4 +90,4 @@ const isPatronBlockedHoc =
     );
   };
 
-export default isPatronBlockedHoc;
+export default withIsPatronBlockedHoc;

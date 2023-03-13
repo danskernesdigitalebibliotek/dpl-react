@@ -4,7 +4,7 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
-import isPatronBlockedHoc from "../../../components/blocked-patron/isPatronBlockedHoc";
+import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 
 export interface ReservationListUrlProps {
@@ -116,5 +116,5 @@ const ReservationListEntry: FC<ReservationListEntryWithPageSizeProps> = ({
 };
 
 export default withConfig(
-  withUrls(withText(isPatronBlockedHoc(ReservationListEntry)))
+  withUrls(withText(withIsPatronBlockedHoc(ReservationListEntry)))
 );
