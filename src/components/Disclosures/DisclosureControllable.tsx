@@ -1,10 +1,7 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
-import {
-  createHeading,
-  HeadingLevelType
-} from "../../core/utils/create-heading";
+import Heading, { HeadingLevelType } from "../Heading/Heading";
 
 export interface DisclosureControllableProps {
   id: string;
@@ -30,10 +27,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   removeHeadlinePadding,
   cyData,
   mainIconPath,
-  headingLevel = "h2"
+  headingLevel
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
-  const Heading = createHeading(headingLevel);
 
   const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
@@ -65,7 +61,12 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <Heading className="text-body-large disclosure__text">{title}</Heading>
+        <Heading
+          level={headingLevel}
+          className="text-body-large disclosure__text"
+        >
+          {title}
+        </Heading>
 
         <img
           className={clsx("disclosure__expand noselect", {
