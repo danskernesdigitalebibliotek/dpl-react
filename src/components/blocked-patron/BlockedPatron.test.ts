@@ -17,6 +17,8 @@ describe("Patron page", () => {
     cy.get(".modal").should("not.exist");
   });
 
+  // Blocked types:
+  // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
   it("Patron blocked E", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
@@ -36,6 +38,9 @@ describe("Patron page", () => {
     cy.getBySel("modal").get("p").should("exist");
     cy.getBySel("modal").get("a").should("exist");
   });
+
+  // Blocked types:
+  // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
   it("Patron blocked U", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
@@ -54,6 +59,9 @@ describe("Patron page", () => {
     cy.getBySel("modal").get("p").should("exist");
     cy.getBySel("modal").get("a").should("not.exist");
   });
+
+  // Blocked types:
+  // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
   it("Patron blocked W", () => {
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
