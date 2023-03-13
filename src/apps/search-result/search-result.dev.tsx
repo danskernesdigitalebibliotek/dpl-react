@@ -72,7 +72,7 @@ export default {
     },
     showingResultsForText: {
       name: "Showing results for",
-      defaultValue: "Showing results for",
+      defaultValue: "Showing results for “@query“",
       control: { type: "text" }
     },
     noSearchResultText: {

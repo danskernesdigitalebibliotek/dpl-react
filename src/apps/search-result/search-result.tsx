@@ -167,7 +167,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }, [clearFilter]);
 
   if (isLoading) {
-    return <SearchResultSkeleton />;
+    return <SearchResultSkeleton q={q} />;
   }
 
   if (hitcount === 0) {
@@ -177,7 +177,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   return (
     <div className="search-result-page">
       <SearchResultHeader hitcount={hitcount} q={q} />
-      <FacetLine q={q} hitCount={hitcount} />
+      <FacetLine q={q} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
