@@ -1,25 +1,15 @@
-import React, { FC, useEffect, useState } from "react";
-import { getWorkIdFromQueryParam } from "../../core/utils/helpers/url";
+import React, { FC } from "react";
 import { FaustId } from "../../core/utils/types/ids";
 import SomethingSimilarList from "./SomethingSimilarList";
 
-const SomethingSimilar: FC = () => {
-  const [loanForRecommender, setLoanForRecommender] = useState<string | null>(
-    null
-  );
+export interface SomethingSimilarProps {
+  faust: FaustId;
+}
 
-  useEffect(() => {
-    setLoanForRecommender(getWorkIdFromQueryParam());
-  }, []);
-
+const SomethingSimilar: FC<SomethingSimilarProps> = ({ faust }) => {
   return (
     <div className="recommender recommender--bright">
-      {loanForRecommender && (
-        <SomethingSimilarList
-          faust={loanForRecommender as FaustId}
-          id={loanForRecommender as FaustId}
-        />
-      )}
+      {faust && <SomethingSimilarList faust={faust} id={faust} />}
     </div>
   );
 };

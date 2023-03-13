@@ -23,19 +23,6 @@ export const getUrlQueryParam = (param: string): null | string => {
     : null;
 };
 
-export const getWorkIdFromQueryParam = (): string => {
-  const queryParams = new URLSearchParams(window.location.search).toString();
-  const decodedeQueryParams = decodeURIComponent(queryParams);
-  const regexIdentifier = /(?<=work-of:\d{6}-.*:)(\d{8})/g;
-  const workId = decodedeQueryParams.match(regexIdentifier);
-
-  if (workId) {
-    const [returnId] = workId;
-    return returnId;
-  }
-  return "";
-};
-
 export const setQueryParametersInUrl = (parameters: {
   [key: string]: string;
 }) => {

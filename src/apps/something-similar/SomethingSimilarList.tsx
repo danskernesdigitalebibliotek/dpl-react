@@ -12,11 +12,11 @@ import fetchMaterial, {
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import RecommendMaterial from "../recommender/RecommendMaterial";
 
-export interface LikeThisListProps {
+export interface SomethingSimilarListProps {
   id: string;
 }
 
-const LikeThisList: FC<LikeThisListProps & MaterialProps> = ({
+const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
   id,
   material
 }) => {
@@ -94,4 +94,4 @@ const LikeThisList: FC<LikeThisListProps & MaterialProps> = ({
   );
 };
 
-export default fetchMaterial(LikeThisList);
+export default fetchMaterial(SomethingSimilarList);

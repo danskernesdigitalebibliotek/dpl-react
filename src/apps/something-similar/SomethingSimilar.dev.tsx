@@ -38,6 +38,12 @@ export default {
       },
       defaultValue: "By the same author"
     },
+    faust: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "48953786"
+    },
     somethingSimilarSomethingSimilarAuthorText: {
       control: {
         type: "text"
@@ -51,9 +57,3 @@ const Template: ComponentStory<typeof SomethingSimilar> = (props) => (
   <SomethingSimilar {...props} />
 );
 export const SomethingSimilarEntry = Template.bind({});
-
-SomethingSimilarEntry.parameters = {
-  query: {
-    modal: "/work/work-of:870970-basis:54129807"
-  }
-};
