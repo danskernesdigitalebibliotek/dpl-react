@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 import { GetCoverCollectionType } from "../../core/cover-service-api/model";
@@ -28,7 +28,9 @@ export const Cover = ({
   shadow
 }: CoverProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
-  const handleSetImageLoaded = () => setImageLoaded(true);
+  const handleSetImageLoaded = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   let dataSize: CoverProps["size"] = size;
   if (dataSize === "xsmall") {
