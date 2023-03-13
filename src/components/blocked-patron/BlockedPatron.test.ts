@@ -1,9 +1,7 @@
-import { TOKEN_LIBRARY_KEY } from "../../core/token";
-
 describe("Patron page", () => {
   before(() => {
-    cy.window().then((win) => {
-      win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
+    cy.window().then(() => {
+      cy.createFakeLibrarySession();
     });
   });
 
