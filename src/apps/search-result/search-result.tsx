@@ -25,8 +25,10 @@ import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
-import { dataIsNotEmpty } from "../../core/utils/helpers/general";
+import { isDataEmpty } from "../../core/utils/helpers/general";
 import useFilterHandler from "./useFilterHandler";
+import SearchResultSkeleton from "./search-result-skeleton";
+import SearchResultZeroHits from "./search-result-zero-hits";
 
 interface SearchResultProps {
   q: string;
@@ -44,7 +46,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
@@ -97,7 +98,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = useSearchWithPaginationQuery({
+  const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
     limit: pageSize,
@@ -165,6 +166,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
+  if (isLoading) {
+    return <SearchResultSkeleton q={q} />;
+  }
+
+  if (hitcount === 0) {
+    return <SearchResultZeroHits />;
+  }
+
   return (
     <div className="search-result-page">
       <SearchResultHeader hitcount={hitcount} q={q} />
@@ -174,7 +183,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       )}
       <SearchResultList resultItems={resultItems} />
       {PagerComponent}
-      {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
+      {!isDataEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );
 };

@@ -72,7 +72,12 @@ export default {
     },
     showingResultsForText: {
       name: "Showing results for",
-      defaultValue: "Showing results for",
+      defaultValue: "Showing results for “@query“",
+      control: { type: "text" }
+    },
+    noSearchResultText: {
+      name: "0-hit search result",
+      defaultValue: "Your search has 0 results",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
