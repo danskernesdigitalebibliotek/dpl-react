@@ -2,6 +2,7 @@ import { isMobile } from "react-device-detect";
 import pageSize from "./page-size.json";
 import pageSizeLoanList from "./page-size-loan-list.json";
 import pageSizeReservationList from "./page-size-reservation-list.json";
+import recommenderMaterialLimits from "./recommender-material-limits.json";
 import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
 import modalIds from "./modal-ids.json";
@@ -11,6 +12,7 @@ export type ConfScope =
   | "coverTints"
   | "pageSizeLoanList"
   | "pageSizeReservationList"
+  | "recommenderMaterialLimits"
   | "colors"
   | "modalIds";
 type Device = "mobile" | "desktop";
@@ -48,5 +50,6 @@ export default {
   pageSizeLoanList,
   pageSizeReservationList,
   colors,
+  recommenderMaterialLimits,
   modalIds
 } as Configuration;

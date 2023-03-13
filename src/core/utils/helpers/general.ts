@@ -123,6 +123,10 @@ export const getColors = () => {
   return getConf("colors", configuration);
 };
 
+export const getRecommenderMaterialLimits = () => {
+  return getConf("recommenderMaterialLimits", configuration);
+};
+
 export const getModalIds = () => {
   return getConf("modalIds", configuration);
 };

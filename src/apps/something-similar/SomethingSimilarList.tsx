@@ -5,6 +5,7 @@ import {
   useSearchWithPaginationQuery,
   SearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import { getRecommenderMaterialLimits } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 import fetchMaterial, {
@@ -21,25 +22,29 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
-  const [recommendView, setRecommendView] = useState<boolean>(true);
-  const { data: somethingSimilarData } = useRecommendFromFaustQuery({
-    faust: id,
-    limit: 4
-  });
-
-  const { data: byAuthorData } = useSearchWithPaginationQuery({
-    limit: 4,
-    q: {
-      all: material?.firstAuthor
-    },
-    offset: 0
-  });
-
+  const {
+    somethingSimilarAuthor: somethingSimilarAuthorLimit,
+    somethingSimilar: somethingSimilarLimit
+  } = getRecommenderMaterialLimits();
   const [somethingSimilar, setSomethingSimilar] =
     useState<RecommendFromFaustQuery | null>(null);
 
   const [authorMaterials, setAuthorMaterials] =
     useState<SearchWithPaginationQuery | null>(null);
+
+  const [recommendView, setRecommendView] = useState<boolean>(true);
+  const { data: somethingSimilarData } = useRecommendFromFaustQuery({
+    faust: id,
+    limit: somethingSimilarLimit as number
+  });
+
+  const { data: byAuthorData } = useSearchWithPaginationQuery({
+    limit: somethingSimilarAuthorLimit as number,
+    q: {
+      all: material?.firstAuthor
+    },
+    offset: 0
+  });
 
   useEffect(() => {
     if (somethingSimilarData) {
