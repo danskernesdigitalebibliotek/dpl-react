@@ -166,12 +166,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (!isLoading && hitcount === 0) {
-    return <SearchResultZeroHits />;
-  }
-
   if (isLoading) {
     return <SearchResultSkeleton />;
+  }
+
+  if (hitcount === 0) {
+    return <SearchResultZeroHits />;
   }
 
   return (
