@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { isEqual } from "lodash";
+import React, { memo, useState } from "react";
 import { useQueryClient } from "react-query";
 import {
   getGetPatronInformationByPatronIdV2QueryKey,
@@ -113,4 +114,4 @@ const ModalReservationFormText = ({
   );
 };
 
-export default ModalReservationFormText;
+export default memo(ModalReservationFormText, isEqual);
