@@ -10,7 +10,7 @@ describe("Search Result", () => {
   it("Renders search title", () => {
     cy.getBySel("search-result-header")
       .should("be.visible")
-      .and("contain", "Showing results for “harry“ (722)");
+      .and("contain", "Showing results for “harry” (722)");
   });
 
   it("Renders all the search results", () => {
