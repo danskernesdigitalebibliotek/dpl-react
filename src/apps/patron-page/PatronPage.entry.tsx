@@ -4,7 +4,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
-import isPatronBlockedHoc from "../../components/blocked-patron/isPatronBlockedHoc";
+import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -85,5 +85,5 @@ export interface PatronPageProps
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
 export default withConfig(
-  withUrls(withText(isPatronBlockedHoc(PatronPageEntry)))
+  withUrls(withText(withIsPatronBlockedHoc(PatronPageEntry)))
 );

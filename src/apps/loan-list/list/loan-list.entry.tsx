@@ -3,8 +3,9 @@ import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
-import isPatronBlockedHoc from "../../../components/blocked-patron/isPatronBlockedHoc";
+import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
+import { withConfig } from "../../../core/utils/config";
 
 interface LoanListEntryConfigProps {
   fbsBaseUrlConfig: string;
@@ -102,4 +103,6 @@ const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
 
   return <LoanList pageSize={pageSize} />;
 };
-export default withUrls(withText(isPatronBlockedHoc(LoanListEntry)));
+export default withConfig(
+  withUrls(withText(withIsPatronBlockedHoc(LoanListEntry)))
+);
