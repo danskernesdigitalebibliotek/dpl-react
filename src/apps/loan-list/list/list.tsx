@@ -38,11 +38,11 @@ const List: FC<ListProps> = ({
     return displayedLoans.length;
   };
 
-  const { itemsShown, PagerComponent } = usePager(
-    loans.length,
+  const { itemsShown, PagerComponent } = usePager({
+    hitcount: loans.length,
     pageSize,
-    view === "list" ? undefined : overrideItemsShown
-  );
+    overrideItemsShown: view === "list" ? undefined : overrideItemsShown
+  });
 
   useEffect(() => {
     if (view === "list") {
@@ -65,7 +65,7 @@ const List: FC<ListProps> = ({
             loans={displayedLoans}
             view={view}
           />
-          {PagerComponent}
+          <PagerComponent />
         </>
       )}
       {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}

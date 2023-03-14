@@ -5,11 +5,13 @@ export interface ResultPagerProps {
   setPageHandler: () => void;
   itemsShown: number;
   hitcount: number;
+  isLoading?: boolean;
 }
 function ResultPager({
   setPageHandler,
   itemsShown,
-  hitcount
+  hitcount,
+  isLoading
 }: ResultPagerProps) {
   const t = useText();
   return (
@@ -22,11 +24,12 @@ function ResultPager({
       {/* If all items are not visible yet, we need to show the button. */}
       {itemsShown !== hitcount && (
         <button
+          disabled={isLoading}
           type="button"
           className="btn-primary btn-outline btn-medium arrow__hover--right-small uppercase"
           onClick={setPageHandler}
         >
-          {t("showMoreText")}
+          {isLoading ? t("loadingText") : t("showMoreText")}
         </button>
       )}
     </div>

@@ -665,6 +665,26 @@ export default {
       name: "Expand more text",
       defaultValue: "Expand more",
       control: { type: "text" }
+    },
+    changeInterestPeriodText: {
+      name: "Change interest period text",
+      defaultValue: "Change interest period",
+      control: { type: "text" }
+    },
+    changePickupLocationText: {
+      name: "Change pickup location text",
+      defaultValue: "Change pickup location",
+      control: { type: "text" }
+    },
+    changeSmsNumberText: {
+      name: "Change sms number text",
+      defaultValue: "Change sms number",
+      control: { type: "text" }
+    },
+    changeEmailText: {
+      name: "Change email text",
+      defaultValue: "Change email",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

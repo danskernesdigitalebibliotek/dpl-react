@@ -80,6 +80,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             title={t("haveNoInterestAfterText")}
             text={interestPeriod}
             changeHandler={openModal("interestPeriod")}
+            buttonAriaLabel={t("changeInterestPeriodText")}
           />
           <NoInterestAfterModal
             selectedInterest={selectedInterest ?? defaultInterestPeriod}
@@ -94,6 +95,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             title={t("pickupLocationText")}
             text={pickupBranch}
             changeHandler={openModal("pickup")}
+            buttonAriaLabel={t("changePickupLocationText")}
           />
           <PickupModal
             branches={whitelistBranches}
@@ -112,6 +114,7 @@ const UserListItems: FC<UserListItemsProps> = ({
               title={t("receiveSmsWhenMaterialReadyText")}
               text={stringifyValue(phoneNumber)}
               changeHandler={openModal("sms")}
+              buttonAriaLabel={t("changeSmsNumberText")}
             />
             <SmsModal patron={patron} />
           </>
@@ -121,6 +124,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           title={t("receiveEmailWhenMaterialReadyText")}
           text={stringifyValue(emailAddress)}
           changeHandler={openModal("email")}
+          buttonAriaLabel={t("changeEmailText")}
         />
         <EmailModal patron={patron} />
       </>
