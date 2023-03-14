@@ -726,6 +726,12 @@ EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
 };
 
+// Blue titles have don't have a reservation quota.
+export const EBogBlaTitle = Template.bind({});
+EBogBlaTitle.args = {
+  wid: "work-of:870970-basis:52880831"
+};
+
 export const LangePeter = Template.bind({});
 LangePeter.args = {
   wid: "work-of:870970-basis:01196669"

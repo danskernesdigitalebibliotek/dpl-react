@@ -51,7 +51,6 @@ describe("Search Result", () => {
       .and("have.length", 6);
   });
 
-  // TODO: When the pager bug has been solved, this test can be re-enabled.
   it("Renders the pager", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
@@ -60,7 +59,7 @@ describe("Search Result", () => {
   });
 
   it("Renders show more button", () => {
-    cy.get(".result-pager button").should("contain.text", "SHOW MORE");
+    cy.get(".result-pager button").should("contain.text", "show more");
   });
 
   it("Loads more search result items after clicking show more results", () => {

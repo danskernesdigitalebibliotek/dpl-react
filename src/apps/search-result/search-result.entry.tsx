@@ -11,7 +11,6 @@ interface SearchResultEntryTextProps {
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   byAuthorText: string;
-  clearAllText: string;
   etAlText: string;
   facetAccessTypesText: string;
   facetBrowserModalCloseModalAriaLabelText: string;

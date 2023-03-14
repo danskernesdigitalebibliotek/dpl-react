@@ -54,7 +54,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   const faustIdArray = pidArray.map((manifestationPid) =>
     convertPostIdToFaustId(manifestationPid)
   );
-  const { data, isError, isLoading } = useGetHoldingsV3({
+  const { data, isLoading } = useGetHoldingsV3({
     recordid: faustIdArray,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
@@ -73,8 +73,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     });
   });
 
-  if (isError || !data) {
-    // TODO: handle error once we have established a way to do it.
+  if (!data || data.length < 1) {
     return null;
   }
 

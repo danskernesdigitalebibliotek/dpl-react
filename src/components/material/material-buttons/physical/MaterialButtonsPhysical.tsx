@@ -1,17 +1,17 @@
 import React from "react";
 import {
-  useGetAvailabilityV3,
-  useGetPatronInformationByPatronIdV2
-} from "../../../../core/fbs/fbs";
-import { getAllFaustIds } from "../../../../core/utils/helpers/general";
+  getAllFaustIds,
+  getManifestationType
+} from "../../../../core/utils/helpers/general";
+import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
 import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
+import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
 import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
-import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
-import { areAnyReservable } from "../helper";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
+import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -25,22 +25,18 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const faustIds = getAllFaustIds(manifestations);
-  const { data: availabilityData, isLoading: availabilityLoading } =
-    useGetAvailabilityV3({
-      recordid: faustIds
-    });
-  const { data: userData, isLoading: userLoading } =
-    useGetPatronInformationByPatronIdV2({ enabled: !userIsAnonymous() });
-  if (availabilityLoading || userLoading) {
-    return <MaterialButtonLoading size={size} />;
+  const { reservableManifestations } = UseReservableManifestations({
+    manifestations
+  });
+  const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
+    enabled: !userIsAnonymous()
+  });
+
+  if (isLoading) {
+    return <MaterialButtonLoading />;
   }
 
-  if (!availabilityData) {
-    return null;
-  }
-
-  // TODO: Investigate if we could use UseReservableManifestations() instead.
-  if (!areAnyReservable(availabilityData)) {
+  if (!reservableManifestations || reservableManifestations.length < 1) {
     return <MaterialButtonCantReserve size={size} />;
   }
 
@@ -48,14 +44,14 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
-  // We show the reservation button if either
+  // We show the reservation button if the user isn't logged in or isn't blocked.
+  // In the former case there there's no way to see if they're blocked, so we
+  // redirect anonymous user to the login page.
   if (!userData || !userData?.patron?.blockStatus) {
-    const manifestationMaterialType =
-      manifestations[0].materialTypes[0].specific;
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
-        manifestationMaterialType={manifestationMaterialType}
+        manifestationMaterialType={getManifestationType(manifestations)}
         faustIds={faustIds}
         size={size}
       />

@@ -26,13 +26,10 @@ function ResultPager({
         <button
           disabled={isLoading}
           type="button"
-          className="btn-primary btn-outline btn-medium arrow__hover--right-small"
+          className="btn-primary btn-outline btn-medium arrow__hover--right-small uppercase"
           onClick={setPageHandler}
         >
-          {/* TODO: Solve casing in CSS */}
-          {isLoading
-            ? t("loadingText").toUpperCase()
-            : t("showMoreText").toUpperCase()}
+          {isLoading ? t("loadingText") : t("showMoreText")}
         </button>
       )}
     </div>

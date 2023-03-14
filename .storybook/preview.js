@@ -57,8 +57,9 @@ const WrappedStory = (app) =>
   });
 
 const App = ({ story }) => <Store>{WrappedStory(story)}</Store>;
-// TODO: Using addon-redux would be much nicer, but it doesn't seem to
-// be compatible with Storybook 6.
+
+// Consideration for the future - using addon-redux could bring value.
+// It wasn't implemented to begin with because it wasn't compatible with Storybook 6.
 export const decorators = [
   Story => <><App story={Story} /></>
 ];
