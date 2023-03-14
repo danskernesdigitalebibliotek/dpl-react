@@ -62,7 +62,7 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
           </div>
         )}
         <Heading
-          level={headingLevel}
+          level={headingLevel || "h2"}
           className="text-body-large disclosure__text"
         >
           {title}

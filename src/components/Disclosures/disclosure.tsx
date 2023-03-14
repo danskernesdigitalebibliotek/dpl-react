@@ -54,7 +54,7 @@ const Disclosure: FC<DisclosureProps> = ({
           </div>
         )}
         <Heading
-          level={headingLevel}
+          level={headingLevel || "h2"}
           data-cy="disclosure-title"
           className={`text-body-large disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
