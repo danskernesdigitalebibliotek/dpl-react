@@ -124,7 +124,8 @@ export default defineConfig({
     input: {
       // TODO: Needs to be set to HEAD version when ready.
       target:
-        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/004ab228233274d87ac57f6ec0337f830bf5fdf8/openapi.json",
+        // rember to run yarn codegen:client:dpl-cms
+        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/develop/openapi.json",
       converterOptions: {
         indent: 2
       }
