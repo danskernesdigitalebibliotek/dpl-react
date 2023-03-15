@@ -198,6 +198,10 @@ export default {
       defaultValue: "Remove your reservation",
       control: { type: "text" }
     },
+    reservationDetailAllowRemoveReadyReservationsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
     reservationDetailsDigitalReservationGoToEreolenText: {
       defaultValue: "Go to eReolen",
       control: { type: "text" }
