@@ -17,9 +17,8 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 
-export const smsNotificationsIsEnabled = (
-  configValue: string | undefined | string[]
-) => configValue === "1";
+export const strToBool = (configValue: string | undefined | string[]) =>
+  configValue === "1";
 
 export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);

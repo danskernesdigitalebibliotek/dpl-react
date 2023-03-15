@@ -15,11 +15,7 @@ import {
 import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import {
-  smsNotificationsIsEnabled,
-  getPreferredBranch,
-  getNoInterestAfter
-} from "./helper";
+import { strToBool, getPreferredBranch, getNoInterestAfter } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
@@ -105,9 +101,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         </>
       )}
       <>
-        {smsNotificationsIsEnabled(
-          config("smsNotificationsForReservationsEnabledConfig")
-        ) && (
+        {strToBool(config("smsNotificationsForReservationsEnabledConfig")) && (
           <>
             <ReservationFormListItem
               icon={Subtitles}
