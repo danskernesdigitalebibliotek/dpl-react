@@ -209,6 +209,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
                   )}
                   fullWidth
                   open={finalData.length === 1}
+                  headingLevel="h3"
                 >
                   <FindOnShelfManifestationList
                     libraryBranchHoldings={libraryBranch}

@@ -41,7 +41,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
   return (
     <section className="facet-browser">
       <header className="facet-browser__header">
-        <h3 className="text-header-h3">{t("filterListText")}</h3>
+        <h2 className="text-header-h3">{t("filterListText")}</h2>
       </header>
       {facets.map((facet) => {
         const { name, values } = facet;
@@ -59,6 +59,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}
             showContent={hasSelectedTerms}
+            headingLevel="h3"
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
