@@ -7,6 +7,7 @@ interface PayloadProps {
     modalId: ModalId;
   };
 }
+
 interface StateProps {
   modalIds: string[];
 }
@@ -25,6 +26,13 @@ const returnFocusElement = () => {
   }
   return element;
 };
+
+const removeModalIdFromUrl = (modalId: ModalId) => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const newSearchParams = searchParams.get("modal")?.replace(modalId, "");
+  searchParams.set("modal", newSearchParams || "");
+};
+
 const modalSlice = createSlice({
   name: "modal",
   initialState: { modalIds: [] },
@@ -54,16 +62,19 @@ const modalSlice = createSlice({
     },
     closeModal(state: StateProps, action: PayloadProps) {
       state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
-      const searchParams = new URLSearchParams(window.location.search);
-      const newSearchParams = searchParams
-        .get("modal")
-        ?.replace(action.payload.modalId, "");
-      searchParams.set("modal", newSearchParams || "");
+      removeModalIdFromUrl(action.payload.modalId);
       returnFocusElement();
+    },
+    closeLastModal(state: StateProps) {
+      const modalId = state.modalIds.pop();
+      if (modalId) {
+        removeModalIdFromUrl(modalId);
+        returnFocusElement();
+      }
     }
   }
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
+export const { openModal, closeModal, closeLastModal } = modalSlice.actions;
 
 export default modalSlice.reducer;
