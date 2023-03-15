@@ -47,7 +47,6 @@ export const Button: React.FC<ButtonProps> = ({
       {label}
       <ButtonIcon
         buttonType={buttonType}
-        variant={variant}
         iconClassNames={iconClassNames}
         collapsible={collapsible}
       />
