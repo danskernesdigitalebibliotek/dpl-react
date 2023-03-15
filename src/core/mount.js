@@ -3,8 +3,9 @@ import { render } from "react-dom";
 import { withErrorBoundary } from "react-error-boundary";
 import { setToken } from "./token";
 import Store from "../components/store";
-import { persistor } from "./store";
+import { persistor, store } from "./store";
 import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
+import { closeLastModal } from "./modal.slice";
 
 /**
  * We look for containers and corresponding applications.
@@ -74,6 +75,12 @@ function reset() {
 }
 
 function init() {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      store.dispatch(closeLastModal());
+    }
+  });
+
   const initial = {
     apps: {},
     setToken,
