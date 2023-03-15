@@ -49,11 +49,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       dataCy={dataCy}
     >
       {children}
-      <ButtonIcon
-        buttonType={buttonType}
-        variant={variant}
-        iconClassNames={iconClassNames}
-      />
+      <ButtonIcon buttonType={buttonType} iconClassNames={iconClassNames} />
     </Link>
   );
 };
