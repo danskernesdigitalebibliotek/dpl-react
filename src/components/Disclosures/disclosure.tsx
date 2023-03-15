@@ -1,6 +1,10 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
+import {
+  createHeading,
+  HeadingLevelType
+} from "../../core/utils/create-heading";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { useText } from "../../core/utils/text";
 import Pagefold from "../pagefold/Pagefold";
@@ -15,6 +19,7 @@ export interface DisclosureProps {
   open?: boolean;
   removeHeadlinePadding?: boolean;
   dataCy?: string;
+  headingLevel?: HeadingLevelType;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
@@ -25,10 +30,12 @@ const Disclosure: FC<DisclosureProps> = ({
   fullWidth,
   open,
   removeHeadlinePadding,
-  dataCy = "disclosure"
+  dataCy = "disclosure",
+  headingLevel = "h2"
 }) => {
   const t = useText();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
+  const Heading = createHeading(headingLevel);
 
   return (
     <details
@@ -50,14 +57,14 @@ const Disclosure: FC<DisclosureProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <h2
+        <Heading
           data-cy="disclosure-title"
           className={`text-body-large disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
           }`}
         >
           {title}
-        </h2>
+        </Heading>
         {isAvailable !== undefined && (
           <Pagefold
             text={isAvailable ? t("available") : t("unavailable")}
