@@ -75,6 +75,11 @@ function reset() {
 }
 
 function init() {
+  // We only want to close the single last modal when the user hits escape.
+  // Consequently we only want a single event listener. We cannot guarantee this
+  // on the app (or component) level as a page may contain multiple apps. 
+  // init provides a single entry point for loading all apps and is suitable for our
+  // purpose.
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       store.dispatch(closeLastModal());
