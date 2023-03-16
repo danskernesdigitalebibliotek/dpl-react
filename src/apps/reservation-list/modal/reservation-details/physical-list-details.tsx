@@ -21,7 +21,7 @@ import {
 } from "../../../../core/fbs/fbs";
 import {
   getPreferredBranch,
-  hardcodedInterestPeriods
+  getInterestPeriods
 } from "../../../../components/reservation/helper";
 import { AgencyBranch } from "../../../../core/fbs/model";
 import { formatDate } from "../../../loan-list/utils/helpers";
@@ -30,6 +30,7 @@ import { Button } from "../../../../components/Buttons/Button";
 import ListDetailsDropdown, {
   OptionsProps
 } from "../../../../components/list-details-dropdown/list-details-dropdown";
+import { useConfig } from "../../../../core/utils/config";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -49,7 +50,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   branches
 }) => {
   const t = useText();
-
+  const config = useConfig();
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
@@ -68,12 +69,12 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
     null
   );
-  const formatInterestPeriods = Object.entries(hardcodedInterestPeriods(t)).map(
-    ([key, value]) => ({
-      value: key,
-      label: value
-    })
-  );
+  const formatInterestPeriods = Object.entries(
+    getInterestPeriods(t, config)
+  ).map(([key, value]) => ({
+    value: key,
+    label: value
+  }));
 
   useEffect(() => {
     if (branches && newPickupBranch) {
@@ -230,16 +231,19 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           setShowSelect={setShowExpirySelect}
           idForLabelledBy="interestafter"
         >
-          {showExpirySelect && (
-            <div>
-              <ListDetailsDropdown
-                labelledBy="interestafter"
-                onDropdownChange={changeExpiryDate}
-                options={formatInterestPeriods}
-                selected={expiryDate}
-              />
-            </div>
-          )}
+          <>
+            {console.log(formatInterestPeriods)}
+            {showExpirySelect && (
+              <div>
+                <ListDetailsDropdown
+                  labelledBy="interestafter"
+                  onDropdownChange={changeExpiryDate}
+                  options={formatInterestPeriods}
+                  selected={expiryDate}
+                />
+              </div>
+            )}
+          </>
         </ListDetails>
       )}
       {pickupDeadline && (

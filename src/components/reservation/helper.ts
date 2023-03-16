@@ -16,6 +16,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
+import { UseConfigFunction } from "../../core/utils/config";
 
 export const strToBool = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -24,20 +25,35 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);
   return locationItem ? locationItem.title : id;
 };
+export const getInterestPeriods = (
+  t: UseTextFunction,
+  c: UseConfigFunction
+) => {
+  const visibleInterestPeriods: { [key: string]: string } = {};
+  const interestPeriods = [
+    ["interestPeriodOneMonthConfig", "30", "oneMonthText"],
+    ["interestPeriodTwoMonthsConfig", "60", "twoMonthsText"],
+    ["interestPeriodThreeMonthsConfig", "90", "threeMonthsText"],
+    ["interestPeriodSixMonthsConfig", "180", "sixMonthsText"],
+    ["interestPeriodOneYearConfig", "360", "oneYearText"]
+  ];
 
-export const hardcodedInterestPeriods = (t: UseTextFunction) => {
-  return {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText")
-  };
+  interestPeriods.forEach(([config, key, text]) => {
+    if (strToBool(c(config))) {
+      visibleInterestPeriods[key] = t(text);
+    }
+  });
+
+  return visibleInterestPeriods;
 };
 
-export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
+export const getNoInterestAfter = (
+  days: number,
+  t: UseTextFunction,
+  c: UseConfigFunction
+) => {
   const reservationInterestIntervals: { [key: string]: string } = {
-    ...hardcodedInterestPeriods(t),
+    ...getInterestPeriods(t, c),
     default: `${days} ${t("daysText")}`
   } as const;
 

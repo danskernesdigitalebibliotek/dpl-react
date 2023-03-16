@@ -323,6 +323,26 @@ export default {
       defaultValue: "1 year",
       control: { type: "text" }
     },
+    interestPeriodOneMonthConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
     listDetailsNothingSelectedLabelText: {
       defaultValue: "Pick",
       control: { type: "text" }

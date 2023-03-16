@@ -60,8 +60,8 @@ const UserListItems: FC<UserListItemsProps> = ({
   };
 
   const interestPeriod = selectedInterest
-    ? getNoInterestAfter(selectedInterest, t)
-    : getNoInterestAfter(defaultInterestPeriod, t);
+    ? getNoInterestAfter(selectedInterest, t, config)
+    : getNoInterestAfter(defaultInterestPeriod, t, config);
 
   const pickupBranch = selectedBranch
     ? getPreferredBranch(selectedBranch, branches)

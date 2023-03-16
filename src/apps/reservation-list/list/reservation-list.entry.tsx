@@ -61,6 +61,11 @@ export interface ReservationListTextProps {
   threeMonthsText: string;
   sixMonthsText: string;
   oneYearText: string;
+  interestPeriodOneMonthConfig: string;
+  interestPeriodTwoMonthsConfig: string;
+  interestPeriodThreeMonthsConfig: string;
+  interestPeriodSixMonthsConfig: string;
+  interestPeriodOneYearConfig: string;
   listDetailsNothingSelectedLabelText: string;
   reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;
