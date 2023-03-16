@@ -23,16 +23,23 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
  */
 type InterceptGraphqlParams = {
   operationName: string;
-  fixtureFilePath: string;
+  fixtureFilePath?: string;
+  statusCode?: number;
 };
 Cypress.Commands.add(
   "interceptGraphql",
-  ({ operationName, fixtureFilePath }: InterceptGraphqlParams) => {
+  ({
+    operationName,
+    fixtureFilePath,
+    statusCode = 200
+  }: InterceptGraphqlParams) => {
     cy.intercept("POST", "**/opac/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
-        req.reply({
-          fixture: fixtureFilePath
-        });
+        if (fixtureFilePath) {
+          req.reply({ fixture: fixtureFilePath, statusCode });
+        } else {
+          req.reply({ statusCode });
+        }
       }
     }).as(`${operationName} GraphQL operation`);
   }

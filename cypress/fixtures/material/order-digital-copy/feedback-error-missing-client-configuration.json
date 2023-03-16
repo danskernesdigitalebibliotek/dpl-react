@@ -1,0 +1,9 @@
+{
+  "data": {
+    "elba": {
+      "placeCopyRequest": {
+        "status": "ERROR_MISSING_CLIENT_CONFIGURATION"
+      }
+    }
+  }
+}

@@ -576,35 +576,49 @@ export default {
       defaultValue: "Ordering digital copy",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessTitleText: {
-      name: "Order digital copy success title text",
-      defaultValue: "Digital copy ordered",
+    orderDigitalCopyFeedbackTitleText: {
+      name: "Order digital copy feedback title",
+      defaultValue: "Digital copy receipt",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessDescriptionText: {
+    orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: {
+      name: "Order digital copy agency not subscribed",
+      defaultValue:
+        "The agency is not subscribed to the service. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorInvalidPickupBranchText: {
+      name: "Order digital copy invalid pickup branch",
+      defaultValue:
+        "The pickup branch is not valid. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorMissingClientConfigurationText: {
+      name: "Order digital copy missing client configuration",
+      defaultValue:
+        "The client configuration is missing. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorPidNotReservableText: {
+      name: "Order digital copy pid not reservable",
+      defaultValue:
+        "The material is not reservable. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorUnauthenticatedUserText: {
+      name: "Order digital copy unauthenticated user",
+      defaultValue:
+        "You are not logged in. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackOkText: {
       name: "Order digital copy success description text",
       defaultValue:
         "The digital copy has been ordered. You will receive an email when the digital copy is ready.",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessButtonText: {
+    orderDigitalCopyFeedbackButtonText: {
       name: "Order digital copy success button text",
-      defaultValue: "Close",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorTitleText: {
-      name: "Order digital copy error title text",
-      defaultValue: "Error ordering digital copy",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorDescriptionText: {
-      name: "Order digital copy error description text",
-      defaultValue:
-        "An error occurred while ordering the digital copy. Please try again later.",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorButtonText: {
-      name: "Order digital copy error button text",
       defaultValue: "Close",
       control: { type: "text" }
     },
