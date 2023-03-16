@@ -23,12 +23,12 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-export const useGetBranches = (): AgencyBranch[] => {
+export const useGetBranches = (key: string): AgencyBranch[] => {
   const config = useConfig();
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-  const blacklistBranches = config("blacklistedSearchBranchesConfig", {
+  const blacklistBranches = config(key, {
     transformer: "stringToArray"
   });
   const whitelistBranches = excludeBlacklistedBranches(
@@ -39,7 +39,7 @@ export const useGetBranches = (): AgencyBranch[] => {
 };
 
 const useGetCleanBranches = () => {
-  const branches = useGetBranches();
+  const branches = useGetBranches("blacklistedSearchBranchesConfig");
   const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
 };

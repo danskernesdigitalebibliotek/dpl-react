@@ -161,15 +161,22 @@ export default {
       defaultValue: "Filter list",
       control: { type: "text" }
     },
-    clearAllText: {
-      name: "Clear all text",
-      defaultValue: "Clear all",
-      control: { type: "text" }
-    },
     addMoreFiltersText: {
       name: "Add more filters text",
       defaultValue: "+ more filters",
       control: { type: "text" }
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
     },
     alertErrorCloseText: {
       name: "Alert error close text",
@@ -179,6 +186,11 @@ export default {
     alertErrorMessageText: {
       name: "Alert error message text",
       defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading",
       control: { type: "text" }
     }
   }

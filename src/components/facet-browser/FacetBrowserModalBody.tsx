@@ -41,16 +41,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
   return (
     <section className="facet-browser">
       <header className="facet-browser__header">
-        <h3 className="text-header-h3">{t("filterListText")}</h3>
-        {/* TODO: It will be used in the future to remove all selected facets */}
-        {false && (
-          <button
-            type="button"
-            className="link-tag cursor-pointer facet-browser__clear-btn"
-          >
-            {t("clearAllText")}
-          </button>
-        )}
+        <h2 className="text-header-h3">{t("filterListText")}</h2>
       </header>
       {facets.map((facet) => {
         const { name, values } = facet;
@@ -68,6 +59,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
             removeHeadlinePadding
             title={t(`facet${upperFirst(name)}Text`)}
             showContent={hasSelectedTerms}
+            headingLevel="h3"
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
@@ -100,16 +92,6 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 );
               })}
             </div>
-
-            {/* TODO: It will be used in the future to check if there is more tags to show */}
-            {false && (
-              <button
-                type="button"
-                className="link-tag cursor-pointer facet-browser__more-btn"
-              >
-                {t("showMoreText")}
-              </button>
-            )}
           </DisclosureControllable>
         );
       })}

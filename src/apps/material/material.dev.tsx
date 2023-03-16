@@ -643,6 +643,18 @@ export default {
       defaultValue: "Unknown",
       control: { type: "text" }
     },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
+    },
     firstAvailableEditionText: {
       name: "First available edition",
       defaultValue: "First available edition",
@@ -666,6 +678,26 @@ export default {
     expandMoreText: {
       name: "Expand more text",
       defaultValue: "Expand more",
+      control: { type: "text" }
+    },
+    changeInterestPeriodText: {
+      name: "Change interest period text",
+      defaultValue: "Change interest period",
+      control: { type: "text" }
+    },
+    changePickupLocationText: {
+      name: "Change pickup location text",
+      defaultValue: "Change pickup location",
+      control: { type: "text" }
+    },
+    changeSmsNumberText: {
+      name: "Change sms number text",
+      defaultValue: "Change sms number",
+      control: { type: "text" }
+    },
+    changeEmailText: {
+      name: "Change email text",
+      defaultValue: "Change email",
       control: { type: "text" }
     }
   }
@@ -706,6 +738,12 @@ Digital.args = {
 export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
+};
+
+// Blue titles have don't have a reservation quota.
+export const EBogBlaTitle = Template.bind({});
+EBogBlaTitle.args = {
+  wid: "work-of:870970-basis:52880831"
 };
 
 export const LangePeter = Template.bind({});

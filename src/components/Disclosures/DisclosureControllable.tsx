@@ -1,6 +1,7 @@
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
+import Heading, { HeadingLevelType } from "../Heading/Heading";
 
 export interface DisclosureControllableProps {
   id: string;
@@ -12,6 +13,7 @@ export interface DisclosureControllableProps {
   onClick?: () => void;
   cyData?: string;
   mainIconPath?: string;
+  headingLevel?: HeadingLevelType;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
@@ -24,7 +26,8 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   showContent = false,
   removeHeadlinePadding,
   cyData,
-  mainIconPath
+  mainIconPath,
+  headingLevel
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
@@ -58,7 +61,12 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span className="disclosure__text">{title}</span>
+        <Heading
+          level={headingLevel || "h2"}
+          className="text-body-large disclosure__text"
+        >
+          {title}
+        </Heading>
 
         <img
           className={clsx("disclosure__expand noselect", {

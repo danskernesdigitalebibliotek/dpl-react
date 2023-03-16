@@ -42,12 +42,6 @@ const MaterialButtonOnlineInfomediaArticle: FC<
     });
   };
 
-  // TODO: A logged in user with municipality registration can access this.
-  const isRegistered = true;
-  if (!isRegistered) {
-    return null;
-  }
-
   return (
     <Button
       label={t("readArticleText")}

@@ -4,19 +4,20 @@ import { Link } from "../../../../components/atoms/link";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { useUrls } from "../../../../core/utils/url";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 
 export interface ReservationDetailsRedirectProps {
+  reservation: ReservationType;
+  openReservationDeleteModal: (deleteReservation: ReservationType) => void;
   reservationId: string;
   className?: string;
   linkClassNames?: string;
-
-  openReservationDeleteModal: (deleteId: string) => void;
 }
 
 const ReservationDetailsRedirect: FC<
   ReservationDetailsRedirectProps & MaterialProps
 > = ({
-  reservationId,
+  reservation,
   openReservationDeleteModal,
   className,
   linkClassNames
@@ -28,7 +29,7 @@ const ReservationDetailsRedirect: FC<
     <div className={`modal-details__buttons ${className}`}>
       <button
         type="button"
-        onClick={() => openReservationDeleteModal(reservationId)}
+        onClick={() => openReservationDeleteModal(reservation)}
         className={`link-tag ${linkClassNames}`}
       >
         {t("reservationDetailsRemoveDigitalReservationText")}

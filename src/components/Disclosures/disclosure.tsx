@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { useText } from "../../core/utils/text";
+import Heading, { HeadingLevelType } from "../Heading/Heading";
 import Pagefold from "../pagefold/Pagefold";
 
 export interface DisclosureProps {
@@ -15,6 +16,7 @@ export interface DisclosureProps {
   open?: boolean;
   removeHeadlinePadding?: boolean;
   dataCy?: string;
+  headingLevel?: HeadingLevelType;
 }
 
 const Disclosure: FC<DisclosureProps> = ({
@@ -25,7 +27,8 @@ const Disclosure: FC<DisclosureProps> = ({
   fullWidth,
   open,
   removeHeadlinePadding,
-  dataCy = "disclosure"
+  dataCy = "disclosure",
+  headingLevel
 }) => {
   const t = useText();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
@@ -50,14 +53,15 @@ const Disclosure: FC<DisclosureProps> = ({
             <img className="invert" src={mainIconPath} alt="" />
           </div>
         )}
-        <span
+        <Heading
+          level={headingLevel || "h2"}
           data-cy="disclosure-title"
-          className={`disclosure__text${
+          className={`text-body-large disclosure__text${
             isAvailable !== undefined ? "--shorter" : ""
           }`}
         >
           {title}
-        </span>
+        </Heading>
         {isAvailable !== undefined && (
           <Pagefold
             text={isAvailable ? t("available") : t("unavailable")}

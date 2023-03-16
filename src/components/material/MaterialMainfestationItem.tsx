@@ -10,7 +10,6 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -106,7 +105,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           manifestText={materialTypes[0]?.specific}
-          url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
@@ -116,9 +114,9 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__title text-header-h4">
+        <h3 className="material-manifestation-item__title text-header-h4">
           {titles?.main[0]}
-        </h2>
+        </h3>
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {creatorsText}
           {edition?.publicationYear?.display &&
