@@ -33,6 +33,7 @@ const NoInterestAfterModal = ({
       items={formatInterestPeriods}
       defaultSelectedItem={String(selectedInterest)}
       selectHandler={(value: string) => setSelectedInterest(Number(value))}
+      ariaLabel={t("modalReservationFormNoInterestAfterHeaderTitleText")}
     />
   );
 };
