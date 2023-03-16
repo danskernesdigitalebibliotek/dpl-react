@@ -10,7 +10,6 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -106,7 +105,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           manifestText={materialTypes[0]?.specific}
-          url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}

@@ -6,7 +6,7 @@ import { ButtonSize } from "../../core/utils/types/button";
 
 export type ButtonProps = {
   label: string;
-  buttonType: "none" | "default" | "external-link" | "search";
+  buttonType: "none" | "default" | "external-link";
   disabled: boolean;
   collapsible: boolean;
   size: ButtonSize;
@@ -66,8 +66,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       id={id}
     >
-      {/* TODO find out what should be instead (6) */}
-      {`${label}${buttonType === "search" ? " (6)" : ""}`}
+      {label}
       <Icon />
     </button>
   );

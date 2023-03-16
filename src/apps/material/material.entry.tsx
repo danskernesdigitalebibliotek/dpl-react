@@ -14,6 +14,10 @@ interface MaterialEntryTextProps {
   approveReservationText: string;
   cantReserveText: string;
   cantViewReviewText: string;
+  changeEmailText: string;
+  changeInterestPeriodText: string;
+  changePickupLocationText: string;
+  changeSmsNumberText: string;
   chooseOneText: string;
   closeText: string;
   daysText: string;
@@ -36,6 +40,7 @@ interface MaterialEntryTextProps {
   editionsText: string;
   editionText: string;
   etAlText: string;
+  expandMoreText: string;
   fictionNonfictionText: string;
   filmAdaptationsText: string;
   findOnBookshelfText: string;
@@ -48,6 +53,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
   haveNoInterestAfterText: string;
@@ -126,8 +132,6 @@ interface MaterialEntryTextProps {
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
-  firstAvailableEditionText: string;
-  expandMoreText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

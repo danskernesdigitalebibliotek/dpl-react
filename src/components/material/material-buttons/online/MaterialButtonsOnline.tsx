@@ -1,8 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
+import InvalidUrlError from "../../../../core/errors/InvalidUrlError";
 import { statistics } from "../../../../core/statistics/statistics";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
+import { isUrlValid } from "../../../../core/utils/helpers/url";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { WorkId } from "../../../../core/utils/types/ids";
@@ -45,8 +47,14 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       url: externalUrl,
       loginRequired
     } = accessElement as AccessUrl;
-    // TODO:  We have experienced that externalUrl is not always valid.
-    // We should use isUrlValid helper function to check is it is valid.
+
+    //  We have experienced that externalUrl is not always valid.
+    if (!isUrlValid(externalUrl)) {
+      throw new InvalidUrlError(
+        `The external url is not valid. ( ${externalUrl} )`
+      );
+    }
+
     return (
       <MaterialButtonOnlineExternal
         loginRequired={loginRequired}

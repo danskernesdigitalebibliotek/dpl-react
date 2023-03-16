@@ -38,7 +38,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   if (isLoading && !textData) {
     return (
       <ul className="autosuggest pb-16" data-cy={dataCy}>
-        <li className="ml-24">{t("LoadingText")}</li>
+        <li className="ml-24">{t("loadingText")}</li>
       </ul>
     );
   }

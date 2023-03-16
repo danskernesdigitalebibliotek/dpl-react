@@ -41,7 +41,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const { PagerComponent, page } = usePager({
+    hitcount,
+    pageSize
+  });
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
@@ -74,9 +77,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         {
           onSuccess: (campaign) => {
             setCampaignData(campaign);
-          },
-          onError: () => {
-            // TODO: when we handle errors - handle this error
           }
         }
       );
@@ -182,7 +182,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
-      {PagerComponent}
+      <PagerComponent isLoading={isLoading} />
       {!isDataEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );

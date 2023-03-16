@@ -7,11 +7,10 @@ import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
 
 interface SearchResultEntryTextProps {
+  addMoreFiltersText: string;
   alertErrorCloseText: string;
   alertErrorMessageText: string;
-  addMoreFiltersText: string;
   byAuthorText: string;
-  clearAllText: string;
   etAlText: string;
   facetAccessTypesText: string;
   facetBrowserModalCloseModalAriaLabelText: string;
@@ -26,6 +25,7 @@ interface SearchResultEntryTextProps {
   facetWorkTypesText: string;
   filterListText: string;
   inSeriesText: string;
+  loadingText: string;
   numberDescriptionText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
