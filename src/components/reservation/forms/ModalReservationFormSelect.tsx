@@ -14,6 +14,7 @@ export interface ModalReservationFormSelectProps {
   items: { label: string; value: string }[];
   defaultSelectedItem: string;
   selectHandler: (value: string) => void;
+  ariaLabel?: string;
 }
 
 const modalProps = (
@@ -32,7 +33,8 @@ const ModalReservationFormSelect = ({
   header,
   items,
   defaultSelectedItem,
-  selectHandler
+  selectHandler,
+  ariaLabel = "modal-reservation-form-select"
 }: ModalReservationFormSelectProps) => {
   const { close } = useModalButtonHandler();
   const t = useText();
@@ -67,7 +69,7 @@ const ModalReservationFormSelect = ({
             label,
             value
           }))}
-          ariaLabel=""
+          ariaLabel={ariaLabel}
           arrowIcon="chevron"
           handleOnChange={selectChange}
           defaultValue={selectedItem}
