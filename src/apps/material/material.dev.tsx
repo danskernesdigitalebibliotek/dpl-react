@@ -411,6 +411,11 @@ export default {
       defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
+    findOnShelfTableDescriptionText: {
+      name: "Find on shelf table description",
+      defaultValue: "Find @work on shelf in the @branch branch",
+      control: { type: "text" }
+    },
     findOnShelfModalListMaterialText: {
       name: "Material",
       defaultValue: "Material",
