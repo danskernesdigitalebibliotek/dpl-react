@@ -22,7 +22,7 @@ export const ButtonIcon: React.FC<ButtonIconProps> = ({
   if (buttonType === "default") {
     return (
       <div className="ml-16">
-        <ArrowSmallRight />
+        <img className={iconClassName} src={ArrowSmallRight} alt="" />
       </div>
     );
   }
