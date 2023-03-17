@@ -5,11 +5,10 @@ import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
-import { ButtonSize } from "../../core/utils/types/button";
 
 export type CoverProps = {
   animate: boolean;
-  size: ButtonSize;
+  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
   id: Pid | string;
   description?: string;

@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import React from "react";
-import Link from "./Link";
-import { ButtonIcon } from "../ButtonIcon";
 import {
   ButtonSize,
   ButtonType,
   ButtonVariant
-} from "../../../core/utils/types/button";
+} from "../../core/utils/types/button";
+import Link from "../atoms/links/Link";
+import { ButtonIcon } from "./ButtonIcon";
 
 export interface LinkButtonProps {
   buttonType?: ButtonType;

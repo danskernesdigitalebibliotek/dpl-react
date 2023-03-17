@@ -4,7 +4,7 @@ import {
   ButtonType,
   ButtonVariant
 } from "../../core/utils/types/button";
-import { ButtonIcon } from "../atoms/ButtonIcon";
+import { ButtonIcon } from "./ButtonIcon";
 
 export type ButtonProps = {
   label: string;
