@@ -9,7 +9,7 @@ import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialTypes from "../../../../core/utils/types/material-type";
-import LinkButton from "../../../atoms/links/LinkButton";
+import LinkButton from "../../../Buttons/LinkButton";
 
 export interface MaterialButtonOnlineExternalProps {
   loginRequired: boolean;
