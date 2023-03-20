@@ -3,7 +3,8 @@ import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
   CreateReservation,
-  CreateReservationBatchV2
+  CreateReservationBatchV2,
+  HoldingsForBibliographicalRecordV3
 } from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
@@ -170,6 +171,29 @@ export const getManifestationsToReserve = (
   // Fictional work editions don't change content, only appearance, and so we can
   // reserve whichever one of the reservable manifestations will be home soonest.
   return reservableManifestations;
+};
+
+export const getInstantLoanBranches = (
+  holdings: HoldingsForBibliographicalRecordV3[],
+  whitelist: AgencyBranch[],
+  instantLoanString: string
+) => {
+  const { holdings: branches } = holdings[0];
+  const instantBooksThreshold = 1;
+  const whitelistIds = whitelist.map(({ branchId }) => branchId);
+
+  return branches.filter(({ branch, materials }) => {
+    if (whitelistIds.includes(branch.branchId)) {
+      const instantMaterials = materials.filter(
+        (material) =>
+          material.available &&
+          material.materialGroup.description === instantLoanString
+      );
+
+      return instantMaterials.length >= instantBooksThreshold;
+    }
+    return false;
+  });
 };
 
 export default {};

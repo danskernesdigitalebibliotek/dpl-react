@@ -38,7 +38,8 @@ import {
   getPreferredBranch,
   constructReservationData,
   getAuthorLine,
-  getManifestationsToReserve
+  getManifestationsToReserve,
+  getInstantLoanBranches
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -49,6 +50,8 @@ import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityT
 import { statistics } from "../../core/statistics/statistics";
 import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
 import PromoBar from "../promo-bar/PromoBar";
+import InstantLoan from "../instant-loan/InstantLoan";
+import { excludeBlacklistedBranches } from "../../core/utils/branches";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -63,9 +66,19 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const instantLoanStrings = config("instantLoanStringConfig");
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
+  const blacklistBranches = config("blacklistedInstantLoanBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
+  const whitelistBranches = excludeBlacklistedBranches(
+    branches,
+    blacklistBranches
+  );
+
   const mainManifestationType = getManifestationType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
@@ -151,6 +164,12 @@ export const ReservationModalBody = ({
       ? manifestation.edition?.summary
       : t("firstAvailableEditionText");
 
+  const instantLoanBranches = getInstantLoanBranches(
+    holdingsData,
+    whitelistBranches,
+    instantLoanStrings
+  );
+
   return (
     <>
       {!reservationResult && (
@@ -212,12 +231,20 @@ export const ReservationModalBody = ({
               )}
               {patron && (
                 <UserListItems
+                  whitelistBranches={whitelistBranches}
                   patron={patron}
                   branches={branches}
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
                   selectedInterest={selectedInterest}
                   setSelectedInterest={setSelectedInterest}
+                />
+              )}
+
+              {instantLoanBranches.length > 0 && (
+                <InstantLoan
+                  manifestation={manifestation}
+                  instantLoanBranches={instantLoanBranches}
                 />
               )}
             </div>
