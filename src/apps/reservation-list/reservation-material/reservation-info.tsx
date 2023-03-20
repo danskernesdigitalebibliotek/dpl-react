@@ -13,9 +13,13 @@ import { useGetBranches } from "../../../core/utils/branches";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
+  openReservationDetailsModal: (reservation: ReservationType) => void;
 }
 
-const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
+const ReservationInfo: FC<ReservationInfoProps> = ({
+  reservationInfo,
+  openReservationDetailsModal
+}) => {
   const t = useText();
 
   const {
@@ -55,6 +59,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         percent={100}
         infoLabel={readyForPickupLabel}
         label={[pickupLibrary, pickupNumber || ""]}
+        reservationInfo={reservationInfo}
+        openReservationDetailsModal={openReservationDetailsModal}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -80,6 +86,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         // in the queue for a material, the "percent-wheel-thing" should be 1/4 full.
         percent={(1 / numberInQueue) * 100}
         label={numberInLineLabel}
+        reservationInfo={reservationInfo}
+        openReservationDetailsModal={openReservationDetailsModal}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -103,6 +111,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({ reservationInfo }) => {
         label={t("reservationListAvailableInText", {
           placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
         })}
+        reservationInfo={reservationInfo}
+        openReservationDetailsModal={openReservationDetailsModal}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}

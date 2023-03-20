@@ -32,7 +32,10 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
             isbnForCover={reservation.identifier || ""}
           />
         )}
-        <ReservationInfo reservationInfo={reservation} />
+        <ReservationInfo
+          reservationInfo={reservation}
+          openReservationDetailsModal={openReservationDetailsModal}
+        />
       </div>
     </li>
   );

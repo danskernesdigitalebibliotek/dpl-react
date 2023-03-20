@@ -1,8 +1,11 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useCallback } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
+import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
+  reservationInfo: ReservationType;
+  openReservationDetailsModal: (reservation: ReservationType) => void;
   color?: string;
   percent: number;
   infoLabel?: string;
@@ -11,12 +14,19 @@ interface ReservationStatusProps {
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
+  reservationInfo,
+  openReservationDetailsModal,
   color,
   percent,
   infoLabel,
   label,
   children
 }) => {
+  const notificationClickEventHandler = useCallback(() => {
+    if (openReservationDetailsModal && reservationInfo) {
+      openReservationDetailsModal(reservationInfo);
+    }
+  }, [openReservationDetailsModal, reservationInfo]);
   return (
     <div className="list-reservation__status">
       <div className="list-reservation__counter color-secondary-gray">
@@ -38,7 +48,13 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
-      <Arrow />
+      <button
+        style={{ cursor: "pointer" }}
+        type="button"
+        onClick={(e) => notificationClickEventHandler()}
+      >
+        <Arrow />
+      </button>
     </div>
   );
 };
