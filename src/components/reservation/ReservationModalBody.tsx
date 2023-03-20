@@ -39,7 +39,8 @@ import {
   constructReservationData,
   getAuthorLine,
   getManifestationsToReserve,
-  getInstantLoanBranchHoldings
+  getInstantLoanBranchHoldings,
+  getInstantLoanBranchHoldingsAboveThreshold
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -74,7 +75,6 @@ export const ReservationModalBody = ({
   const blacklistBranches = config("blacklistedInstantLoanBranchesConfig", {
     transformer: "stringToArray"
   });
-
   const whitelistBranches = excludeBlacklistedBranches(
     branches,
     blacklistBranches
@@ -168,9 +168,14 @@ export const ReservationModalBody = ({
   const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
     holdingsData[0].holdings,
     whitelistBranches,
-    instantLoanStrings,
-    instantLoanThresholdConfig
+    instantLoanStrings
   );
+
+  const instantLoanBranchHoldingsAboveThreshold =
+    getInstantLoanBranchHoldingsAboveThreshold(
+      instantLoanBranchHoldings,
+      instantLoanThresholdConfig
+    );
 
   return (
     <>
@@ -243,10 +248,12 @@ export const ReservationModalBody = ({
                 />
               )}
 
-              {instantLoanBranchHoldings.length > 0 && (
+              {instantLoanBranchHoldingsAboveThreshold && (
                 <InstantLoan
                   manifestation={manifestation}
-                  instantLoanBranchHoldings={instantLoanBranchHoldings}
+                  instantLoanBranchHoldings={
+                    instantLoanBranchHoldingsAboveThreshold
+                  }
                 />
               )}
             </div>

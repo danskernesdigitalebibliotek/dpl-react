@@ -176,8 +176,7 @@ export const getManifestationsToReserve = (
 export const getInstantLoanBranchHoldings = (
   branchHoldings: HoldingsV3[],
   whitelist: AgencyBranch[],
-  instantLoanString: string,
-  instantLoanThresholdConfig: string
+  instantLoanString: string
 ) => {
   const whitelistIds = whitelist.map(({ branchId }) => branchId);
 
@@ -196,12 +195,18 @@ export const getInstantLoanBranchHoldings = (
 
       return { branch, materials: filtered };
     })
-    .filter(
-      ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
-    );
+    .filter(({ materials }) => materials.length > 0);
 
   // 4. Return filtered holdings
   return filteredMaterials;
 };
+
+export const getInstantLoanBranchHoldingsAboveThreshold = (
+  instantLoanBranchHoldings: HoldingsV3[],
+  instantLoanThresholdConfig: string
+) =>
+  instantLoanBranchHoldings.filter(
+    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+  );
 
 export default {};
