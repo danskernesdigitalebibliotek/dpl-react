@@ -151,6 +151,7 @@ interface MaterialEntryConfigProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   instantLoanStringConfig: string;
+  instantLoanThresholdConfig: number;
   smsNotificationsForReservationsEnabledConfig: boolean;
 }
 

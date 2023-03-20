@@ -39,7 +39,7 @@ import {
   constructReservationData,
   getAuthorLine,
   getManifestationsToReserve,
-  getInstantLoanBranches
+  getInstantLoanBranchHoldings
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -66,6 +66,7 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const instantLoanThresholdConfig = config("instantLoanThresholdConfig");
   const instantLoanStrings = config("instantLoanStringConfig");
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
@@ -164,10 +165,11 @@ export const ReservationModalBody = ({
       ? manifestation.edition?.summary
       : t("firstAvailableEditionText");
 
-  const instantLoanBranches = getInstantLoanBranches(
-    holdingsData,
+  const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
+    holdingsData[0].holdings,
     whitelistBranches,
-    instantLoanStrings
+    instantLoanStrings,
+    instantLoanThresholdConfig
   );
 
   return (
@@ -241,10 +243,10 @@ export const ReservationModalBody = ({
                 />
               )}
 
-              {instantLoanBranches.length > 0 && (
+              {instantLoanBranchHoldings.length > 0 && (
                 <InstantLoan
                   manifestation={manifestation}
-                  instantLoanBranches={instantLoanBranches}
+                  instantLoanBranchHoldings={instantLoanBranchHoldings}
                 />
               )}
             </div>

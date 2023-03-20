@@ -4,7 +4,7 @@ import {
   AgencyBranch,
   CreateReservation,
   CreateReservationBatchV2,
-  HoldingsForBibliographicalRecordV3
+  HoldingsV3
 } from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
@@ -173,27 +173,35 @@ export const getManifestationsToReserve = (
   return reservableManifestations;
 };
 
-export const getInstantLoanBranches = (
-  holdings: HoldingsForBibliographicalRecordV3[],
+export const getInstantLoanBranchHoldings = (
+  branchHoldings: HoldingsV3[],
   whitelist: AgencyBranch[],
-  instantLoanString: string
+  instantLoanString: string,
+  instantLoanThresholdConfig: string
 ) => {
-  const { holdings: branches } = holdings[0];
-  const instantBooksThreshold = 1;
   const whitelistIds = whitelist.map(({ branchId }) => branchId);
 
-  return branches.filter(({ branch, materials }) => {
-    if (whitelistIds.includes(branch.branchId)) {
-      const instantMaterials = materials.filter(
-        (material) =>
-          material.available &&
-          material.materialGroup.description === instantLoanString
+  // 1. Filter holdings by branch on whitelist
+  const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
+    whitelistIds.includes(branch.branchId)
+  );
+
+  // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
+  const filteredMaterials = filteredBranchHoldings
+    .map(({ branch, materials }) => {
+      const filtered = materials.filter(
+        ({ materialGroup, available }) =>
+          materialGroup.description?.includes(instantLoanString) && available
       );
 
-      return instantMaterials.length >= instantBooksThreshold;
-    }
-    return false;
-  });
+      return { branch, materials: filtered };
+    })
+    .filter(
+      ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+    );
+
+  // 4. Return filtered holdings
+  return filteredMaterials;
 };
 
 export default {};

@@ -7,12 +7,12 @@ import InstantLoanBranch from "./InstantLoanBranch";
 
 type InstantLoanProps = {
   manifestation: Manifestation;
-  instantLoanBranches: HoldingsV3[];
+  instantLoanBranchHoldings: HoldingsV3[];
 };
 
 const InstantLoan: React.FunctionComponent<InstantLoanProps> = ({
   manifestation,
-  instantLoanBranches
+  instantLoanBranchHoldings
 }) => {
   const { pid, materialTypes } = manifestation;
   const materialType = materialTypes[0].specific;
@@ -25,7 +25,7 @@ const InstantLoan: React.FunctionComponent<InstantLoanProps> = ({
       summary={<InstantLoanSummary pid={pid} />}
     >
       <ul className="instant-loan-branches">
-        {instantLoanBranches.map((branch) => {
+        {instantLoanBranchHoldings.map((branch) => {
           return (
             <li key={branch.branch.branchId}>
               <InstantLoanBranch branch={branch} materialType={materialType} />

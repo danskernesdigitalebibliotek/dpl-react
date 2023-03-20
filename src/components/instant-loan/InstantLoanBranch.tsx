@@ -20,7 +20,7 @@ const InstantLoanBranch: React.FunctionComponent<InstantLoanBranchProps> = ({
       <AvailabilityLabelVisual
         manifestText={materialType}
         isAvailable
-        quantity={materials.filter(({ available }) => available).length}
+        quantity={materials.length}
       />
     </div>
   );
