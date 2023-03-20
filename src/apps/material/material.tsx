@@ -42,6 +42,7 @@ import {
 } from "../../components/material/material-buttons/helper";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
+import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -214,10 +215,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
-        mainIconPath={VariousIcon}
-        title={`${t("editionsText")} (${manifestations.length})`}
         disclosureIconExpandAltText=""
         dataCy="material-editions-disclosure"
+        detailsClassName="disclosure text-body-large"
+        summaryClassName="disclosure__headline text-body-large"
+        summary={
+          <DisclosureSummary
+            title={`${t("editionsText")} (${manifestations.length})`}
+            headingLevel="h3"
+            mainIconPath={VariousIcon}
+          />
+        }
       >
         <>
           {getManifestationsOrderByTypeAndYear(manifestations).map(
@@ -234,20 +242,34 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         </>
       </Disclosure>
       <Disclosure
-        mainIconPath={Receipt}
-        title={t("detailsText")}
         disclosureIconExpandAltText=""
         dataCy="material-details-disclosure"
+        detailsClassName="disclosure text-body-large"
+        summaryClassName="disclosure__headline text-body-large"
+        summary={
+          <DisclosureSummary
+            title={t("detailsText")}
+            headingLevel="h3"
+            mainIconPath={Receipt}
+          />
+        }
       >
         <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
       </Disclosure>
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
           id="reviews"
-          title={t("reviewsText")}
-          mainIconPath={CreateIcon}
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
+          detailsClassName="disclosure text-body-large"
+          summaryClassName="disclosure__headline text-body-large"
+          summary={
+            <DisclosureSummary
+              title={t("reviewsText")}
+              headingLevel="h3"
+              mainIconPath={CreateIcon}
+            />
+          }
         >
           <MaterialReviews pids={hasReview.map((review) => review.pid)} />
         </DisclosureControllable>

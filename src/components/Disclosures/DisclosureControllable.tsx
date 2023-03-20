@@ -1,33 +1,26 @@
-import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
-import Heading, { HeadingLevelType } from "../Heading/Heading";
 
 export interface DisclosureControllableProps {
   id: string;
-  title: string;
   children?: ReactNode;
-  fullWidth?: boolean;
   showContent?: boolean;
-  removeHeadlinePadding?: boolean;
   onClick?: () => void;
   cyData?: string;
-  mainIconPath?: string;
-  headingLevel?: HeadingLevelType;
+  detailsClassName: string;
+  summaryClassName: string;
+  summary: ReactNode;
 }
 
 // It was not possible to use the Disclosure component thats already in the project
 // because we don't have control over the open attribute
 const DisclosureControllable: FC<DisclosureControllableProps> = ({
   id,
-  title,
   children,
-  fullWidth,
   showContent = false,
-  removeHeadlinePadding,
   cyData,
-  mainIconPath,
-  headingLevel
+  detailsClassName,
+  summaryClassName,
+  summary
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
@@ -38,16 +31,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   const disclosureId = `disclosure-${id}`;
 
   return (
-    <div
-      className={`disclosure text-body-large ${
-        fullWidth ? "disclosure--full-width" : ""
-      }`}
-    >
+    <div className={detailsClassName}>
       <div
-        className={clsx(
-          "disclosure__headline text-body-large",
-          removeHeadlinePadding && "disclosure__headline--no-padding"
-        )}
+        className={summaryClassName}
         data-cy={cyData}
         onClick={toggleOpen}
         onKeyDown={toggleOpen}
@@ -56,25 +42,7 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
         aria-controls={disclosureId}
         aria-expanded={isOpen}
       >
-        {mainIconPath && (
-          <div className="disclosure__icon bg-identity-tint-120">
-            <img className="invert" src={mainIconPath} alt="" />
-          </div>
-        )}
-        <Heading
-          level={headingLevel || "h2"}
-          className="text-body-large disclosure__text"
-        >
-          {title}
-        </Heading>
-
-        <img
-          className={clsx("disclosure__expand noselect", {
-            "disclosure__expand--expanded": isOpen
-          })}
-          src={ExpandMoreIcon}
-          alt=""
-        />
+        {summary}
       </div>
       {isOpen && <div id={disclosureId}>{children}</div>}
     </div>
