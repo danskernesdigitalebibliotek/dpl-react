@@ -40,6 +40,7 @@ export interface SearchResultListItemProps {
   resultNumber: number;
   dataCy?: string;
 }
+// TODO: Generalize/rename this component in order to adhere to both the search list and the favorites list, as they both display results in the same manner.
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   item,
