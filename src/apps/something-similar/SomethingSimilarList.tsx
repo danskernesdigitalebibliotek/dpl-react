@@ -1,9 +1,7 @@
 import React, { useEffect, FC, useState } from "react";
 import {
   useRecommendFromFaustQuery,
-  RecommendFromFaustQuery,
-  useSearchWithPaginationQuery,
-  SearchWithPaginationQuery
+  useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { getRecommenderMaterialLimits } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -26,11 +24,9 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
     somethingSimilarAuthor: somethingSimilarAuthorLimit,
     somethingSimilar: somethingSimilarLimit
   } = getRecommenderMaterialLimits();
-  const [somethingSimilar, setSomethingSimilar] =
-    useState<RecommendFromFaustQuery | null>(null);
+  const [somethingSimilar, setSomethingSimilar] = useState<Work[] | null>(null);
 
-  const [authorMaterials, setAuthorMaterials] =
-    useState<SearchWithPaginationQuery | null>(null);
+  const [authorMaterials, setAuthorMaterials] = useState<Work[] | null>(null);
 
   const [recommendView, setRecommendView] = useState<boolean>(true);
   const { data: somethingSimilarData } = useRecommendFromFaustQuery({
@@ -48,13 +44,15 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
 
   useEffect(() => {
     if (somethingSimilarData) {
-      setSomethingSimilar(somethingSimilarData);
+      setSomethingSimilar(
+        somethingSimilarData.recommend.result.map(({ work }) => work) as Work[]
+      );
     }
   }, [somethingSimilarData]);
 
   useEffect(() => {
     if (byAuthorData) {
-      setAuthorMaterials(byAuthorData);
+      setAuthorMaterials(byAuthorData.search.works as Work[]);
     }
   }, [byAuthorData]);
 
@@ -86,13 +84,13 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
       <ul className="recommender__grid">
         {recommendView &&
           somethingSimilar &&
-          somethingSimilar.recommend.result.map(({ work }) => (
-            <RecommendMaterial bright work={work as Work} />
+          somethingSimilar.map((work) => (
+            <RecommendMaterial bright work={work} />
           ))}
         {!recommendView &&
           authorMaterials &&
-          authorMaterials.search.works.map((work) => (
-            <RecommendMaterial bright work={work as Work} />
+          authorMaterials.map((work) => (
+            <RecommendMaterial bright work={work} />
           ))}
       </ul>
     </>
