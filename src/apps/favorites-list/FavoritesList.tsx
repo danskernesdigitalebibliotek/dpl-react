@@ -16,6 +16,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
   const [materials, setMaterials] = useState<Pid[]>([]);
   const { itemsShown, PagerComponent } = usePager(materials.length, pageSize);
+  const { collections } = (data as { collections: Pid[] }) || [];
 
   useEffect(
     () => setDisplayedMaterials([...materials].splice(0, itemsShown)),
@@ -24,9 +25,9 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   useEffect(() => {
     if (data && data.collections) {
-      setMaterials(data.collections as Pid[]);
+      setMaterials(collections);
     }
-  }, [data]);
+  }, [collections, data]);
 
   return (
     <div className="search-result-page">
