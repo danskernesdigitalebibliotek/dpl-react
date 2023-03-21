@@ -231,18 +231,16 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           setShowSelect={setShowExpirySelect}
           idForLabelledBy="interestafter"
         >
-          <>
-            {showExpirySelect && (
-              <div>
-                <ListDetailsDropdown
-                  labelledBy="interestafter"
-                  onDropdownChange={changeExpiryDate}
-                  options={formatInterestPeriods}
-                  selected={expiryDate}
-                />
-              </div>
-            )}
-          </>
+          {showExpirySelect && (
+            <div>
+              <ListDetailsDropdown
+                labelledBy="interestafter"
+                onDropdownChange={changeExpiryDate}
+                options={formatInterestPeriods}
+                selected={expiryDate}
+              />
+            </div>
+          )}
         </ListDetails>
       )}
       {pickupDeadline && (
