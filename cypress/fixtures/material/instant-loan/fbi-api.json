@@ -1,0 +1,713 @@
+{
+    "data": {
+      "work": {
+        "workId": "work-of:870970-basis:134015012",
+        "titles": {
+          "full": [
+            "Skyggeriget : krimi"
+          ],
+          "original": []
+        },
+        "abstract": [
+          "I Aalborg bliver et kraftværk udsat for terror. I København bliver klimaministerens søn dræbt. Kan der være en sammenhæng mellem sagerne, som politimanden Martin Juncker bliver indblandet i privat? For læsere af realistiske danske krimier"
+        ],
+        "creators": [
+          {
+            "display": "Kim Faber",
+            "__typename": "Person"
+          }
+        ],
+        "series": [
+          {
+            "title": "Krimiserien med Martin Juncker og Signe Kristiansen",
+            "isPopular": true,
+            "numberInSeries": {
+              "display": "4",
+              "number": [
+                4
+              ]
+            },
+            "readThisFirst": null,
+            "readThisWhenever": null
+          }
+        ],
+        "seriesMembers": [
+          {
+            "workId": "work-of:870970-basis:46282736",
+            "titles": {
+              "main": [
+                "Vinterland"
+              ],
+              "full": [
+                "Vinterland : krimi"
+              ],
+              "original": []
+            }
+          },
+          {
+            "workId": "work-of:870970-basis:47678633",
+            "titles": {
+              "main": [
+                "Satans sommer"
+              ],
+              "full": [
+                "Satans sommer : krimi"
+              ],
+              "original": []
+            }
+          },
+          {
+            "workId": "work-of:870970-basis:39185474",
+            "titles": {
+              "main": [
+                "Kvæler"
+              ],
+              "full": [
+                "Kvæler : krimi"
+              ],
+              "original": []
+            }
+          },
+          {
+            "workId": "work-of:870970-basis:134015012",
+            "titles": {
+              "main": [
+                "Skyggeriget"
+              ],
+              "full": [
+                "Skyggeriget : krimi"
+              ],
+              "original": []
+            }
+          }
+        ],
+        "workYear": {
+          "year": 2022
+        },
+        "genreAndForm": [
+          "roman",
+          "krimi",
+          "romaner",
+          "politiromaner"
+        ],
+        "manifestations": {
+          "all": [
+            {
+              "pid": "870970-basis:134015012",
+              "genreAndForm": [
+                "roman",
+                "krimi",
+                "romaner",
+                "politiromaner"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Skyggeriget"
+                ],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "bog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Kim Faber",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Politiken"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788740074918"
+                }
+              ],
+              "contributors": [],
+              "edition": {
+                "summary": "1. udgave, 2022",
+                "publicationYear": {
+                  "display": "2022"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2022",
+                "year": 2022
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 365,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Faber",
+                "shelfmark": "86"
+              },
+              "workYear": {
+                "year": 2022
+              }
+            },
+            {
+              "pid": "870970-basis:31790603",
+              "genreAndForm": [
+                "roman"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Skyggeriget"
+                ],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "lydbog (net)"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Kim Faber",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Politiken"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788740080865"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Dan Schlosser"
+                }
+              ],
+              "edition": {
+                "summary": "2022",
+                "publicationYear": {
+                  "display": "2022"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2022",
+                "year": 2022
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": null,
+                  "playingTime": "9 t., 3 min."
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "ONLINE"
+                }
+              ],
+              "access": [],
+              "shelfmark": {
+                "postfix": "Faber",
+                "shelfmark": "86"
+              },
+              "workYear": {
+                "year": 2022
+              }
+            },
+            {
+              "pid": "870970-basis:62993537",
+              "genreAndForm": [
+                "roman",
+                "krimi",
+                "romaner",
+                "politiromaner"
+              ],
+              "source": [
+                "Bibliotekskatalog"
+              ],
+              "titles": {
+                "main": [
+                  "Skyggeriget"
+                ],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "specific": "ebog"
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Kim Faber",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": [
+                "Politiken"
+              ],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk"
+                  }
+                ]
+              },
+              "identifiers": [
+                {
+                  "value": "9788740080872"
+                }
+              ],
+              "contributors": [],
+              "edition": {
+                "summary": "1. e-bogsudgave, 2022",
+                "publicationYear": {
+                  "display": "2022"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2022",
+                "year": 2022
+              },
+              "audience": {
+                "generalAudience": []
+              },
+              "physicalDescriptions": [
+                {
+                  "numberOfPages": 365,
+                  "playingTime": null
+                }
+              ],
+              "accessTypes": [
+                {
+                  "code": "ONLINE"
+                }
+              ],
+              "access": [],
+              "shelfmark": {
+                "postfix": "Faber",
+                "shelfmark": "86"
+              },
+              "workYear": {
+                "year": 2022
+              }
+            }
+          ],
+          "latest": {
+            "pid": "870970-basis:31790603",
+            "genreAndForm": [
+              "roman"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Skyggeriget"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "lydbog (net)"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Kim Faber",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740080865"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Dan Schlosser"
+              }
+            ],
+            "edition": {
+              "summary": "2022",
+              "publicationYear": {
+                "display": "2022"
+              }
+            },
+            "dateFirstEdition": {
+              "display": "2022",
+              "year": 2022
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": null,
+                "playingTime": "9 t., 3 min."
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [],
+            "shelfmark": {
+              "postfix": "Faber",
+              "shelfmark": "86"
+            },
+            "workYear": {
+              "year": 2022
+            }
+          },
+          "bestRepresentation": {
+            "pid": "870970-basis:134015012",
+            "genreAndForm": [
+              "roman",
+              "krimi",
+              "romaner",
+              "politiromaner"
+            ],
+            "source": [
+              "Bibliotekskatalog"
+            ],
+            "titles": {
+              "main": [
+                "Skyggeriget"
+              ],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "skønlitteratur",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Kim Faber",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": [
+              "Politiken"
+            ],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk"
+                }
+              ]
+            },
+            "identifiers": [
+              {
+                "value": "9788740074918"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "1. udgave, 2022",
+              "publicationYear": {
+                "display": "2022"
+              }
+            },
+            "dateFirstEdition": {
+              "display": "2022",
+              "year": 2022
+            },
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 365,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Faber",
+              "shelfmark": "86"
+            },
+            "workYear": {
+              "year": 2022
+            }
+          }
+        },
+        "materialTypes": [
+          {
+            "specific": "bog"
+          },
+          {
+            "specific": "lydbog (net)"
+          },
+          {
+            "specific": "ebog"
+          }
+        ],
+        "mainLanguages": [
+          {
+            "display": "dansk",
+            "isoCode": "dan"
+          }
+        ],
+        "subjects": {
+          "all": [
+            {
+              "display": "Martin Juncker"
+            },
+            {
+              "display": "Signe Kristiansen"
+            },
+            {
+              "display": "mord"
+            },
+            {
+              "display": "drab"
+            },
+            {
+              "display": "hemmeligheder"
+            },
+            {
+              "display": "hævn"
+            },
+            {
+              "display": "politikere"
+            },
+            {
+              "display": "krigsveteraner"
+            },
+            {
+              "display": "narkokriminalitet"
+            },
+            {
+              "display": "miljøaktioner"
+            },
+            {
+              "display": "politibetjente"
+            },
+            {
+              "display": "Danmark"
+            },
+            {
+              "display": "København"
+            },
+            {
+              "display": "Aalborg"
+            },
+            {
+              "display": "morð"
+            },
+            {
+              "display": "dráp"
+            },
+            {
+              "display": "loyndarmál"
+            },
+            {
+              "display": "hevnd"
+            },
+            {
+              "display": "politikarar"
+            },
+            {
+              "display": "krígsveteranar"
+            },
+            {
+              "display": "rúsevniskriminalitetur"
+            },
+            {
+              "display": "umhvørvisatsóknir"
+            },
+            {
+              "display": "løgreglufólk"
+            },
+            {
+              "display": "Keypmannahavn"
+            },
+            {
+              "display": "2020'erne"
+            }
+          ],
+          "dbcVerified": [
+            {
+              "display": "Martin Juncker"
+            },
+            {
+              "display": "Signe Kristiansen"
+            },
+            {
+              "display": "mord"
+            },
+            {
+              "display": "drab"
+            },
+            {
+              "display": "hemmeligheder"
+            },
+            {
+              "display": "hævn"
+            },
+            {
+              "display": "politikere"
+            },
+            {
+              "display": "krigsveteraner"
+            },
+            {
+              "display": "narkokriminalitet"
+            },
+            {
+              "display": "miljøaktioner"
+            },
+            {
+              "display": "politibetjente"
+            },
+            {
+              "display": "Danmark"
+            },
+            {
+              "display": "København"
+            },
+            {
+              "display": "Aalborg"
+            },
+            {
+              "display": "morð"
+            },
+            {
+              "display": "dráp"
+            },
+            {
+              "display": "loyndarmál"
+            },
+            {
+              "display": "hevnd"
+            },
+            {
+              "display": "politikarar"
+            },
+            {
+              "display": "krígsveteranar"
+            },
+            {
+              "display": "rúsevniskriminalitetur"
+            },
+            {
+              "display": "umhvørvisatsóknir"
+            },
+            {
+              "display": "løgreglufólk"
+            },
+            {
+              "display": "Keypmannahavn"
+            },
+            {
+              "display": "2020'erne"
+            }
+          ]
+        },
+        "fictionNonfiction": {
+          "display": "skønlitteratur",
+          "code": "FICTION"
+        },
+        "dk5MainEntry": {
+          "display": "Skønlitteratur"
+        },
+        "relations": {
+          "hasReview": [
+            {
+              "pid": "870976-anmeld:134907851"
+            },
+            {
+              "pid": "870971-anmeld:134966262"
+            },
+            {
+              "pid": "870971-anmeld:134876913"
+            },
+            {
+              "pid": "870971-anmeld:135044482"
+            }
+          ],
+          "hasAdaptation": []
+        }
+      }
+    }
+  }

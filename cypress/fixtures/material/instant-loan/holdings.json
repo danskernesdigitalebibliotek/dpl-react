@@ -1,0 +1,1932 @@
+[
+    {
+      "recordId": "134015012",
+      "reservable": true,
+      "reservations": 58,
+      "holdings": [
+        {
+          "branch": {
+            "branchId": "DK-775147",
+            "title": "Hasle"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387496558",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496736",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775126",
+            "title": "Solbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202964",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775100",
+            "title": "Hovedbiblioteket"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5387007328",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007344",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775127",
+            "title": "Tranbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025636",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203405",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025601",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025628",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025644",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025733",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496515",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775122",
+            "title": "Beder-Malling"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387496698",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025784",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025873",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496523",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025695",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007530",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203316",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203499",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007514",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775130",
+            "title": "Viby"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5385203359",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203456",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007484",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203189",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496612",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025725",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025571",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203529",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775100",
+            "title": "Hovedbiblioteket"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5385203197",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203219",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203278",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203308",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203472",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203480",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203510",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203545",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007433",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025709",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025741",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025768",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025806",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025814",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025822",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025849",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025903",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496566",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496590",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496655",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496752",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496779",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203421",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496728",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496604",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775130",
+            "title": "Viby"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203022",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203049",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775126",
+            "title": "Solbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5385203596",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203243",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775167",
+            "title": "Lystrup"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202972",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007379",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775160",
+            "title": "Risskov"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202999",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202921",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775160",
+            "title": "Risskov"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387007468",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203340",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025792",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025881",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496507",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025865",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496671",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496760",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496639",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203413",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203502",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203367",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203375",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203561",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203588",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203537",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007492",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203227",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203235",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203170",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203294",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775120",
+            "title": "Højbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5387007387",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202948",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775120",
+            "title": "Højbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387007441",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007476",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203286",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496620",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025776",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007522",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775133",
+            "title": "Bavnehøj"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202956",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775146",
+            "title": "Harlev"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202891",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775127",
+            "title": "Tranbjerg"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5387007336",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775146",
+            "title": "Harlev"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025687",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775170",
+            "title": "Trige"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202980",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202867",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775100",
+            "title": "Hovedbiblioteket"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "bestsell",
+            "title": "Bestsellers"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203057",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203065",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203073",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203081",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203103",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203111",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203138",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203146",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203162",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775162",
+            "title": "Hjortshøj"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203014",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775164",
+            "title": "Egå"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025598",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387007506",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775150",
+            "title": "Tilst"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "bestsell",
+            "title": "Bestsellers"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203154",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775144",
+            "title": "Gellerup"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5387007301",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007425",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775168",
+            "title": "Skødstrup"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203006",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775168",
+            "title": "Skødstrup"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025652",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025660",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496582",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203383",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203324",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775149",
+            "title": "Sabro"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203030",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775167",
+            "title": "Lystrup"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025717",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025679",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387025830",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496701",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496744",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203553",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203391",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203251",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775140",
+            "title": "Åby"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387496531",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203200",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496663",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496647",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5387496574",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775122",
+            "title": "Beder-Malling"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202875",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202883",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775140",
+            "title": "Åby"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202905",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202913",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007352",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007409",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775150",
+            "title": "Tilst"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5387007417",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007395",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5387007360",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775150",
+            "title": "Tilst"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025857",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203464",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203448",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            },
+            {
+              "itemNumber": "5385203332",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
