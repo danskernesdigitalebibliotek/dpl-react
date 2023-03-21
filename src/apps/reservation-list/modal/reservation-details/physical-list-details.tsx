@@ -232,7 +232,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           idForLabelledBy="interestafter"
         >
           <>
-            {console.log(formatInterestPeriods)}
             {showExpirySelect && (
               <div>
                 <ListDetailsDropdown
