@@ -225,7 +225,7 @@ describe("Material", () => {
     );
   });
 
-  it("Check if selected availability label have aria-pressed=true", () => {
+  it("Has a selected availability label based on url parameter", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -242,7 +242,7 @@ describe("Material", () => {
       .should("have.attr", "aria-pressed", "true");
   });
 
-  it("Check if unselected availability label have aria-pressed=false", () => {
+  it("Does not have selected availability labels which does not match url parameter", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
