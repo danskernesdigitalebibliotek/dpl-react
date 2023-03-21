@@ -8,6 +8,7 @@ import FavoritesList from "./FavoritesList";
 interface FavoritesListConfigEntryProps {
   fbsBaseUrlConfig: string;
 }
+// TODO: Make a global interface for the urls at src/core/utils/types, to avoid redefining the same props over and over again.
 interface FavoritesListUrlEntryProps {
   materialUrl: string;
   searchUrl: string;
