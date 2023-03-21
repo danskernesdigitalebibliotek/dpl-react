@@ -94,7 +94,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       aria-pressed={selected}
     >
       <div className={classes.triangle} />
-      <img className={classes.check} src={CheckIcon} alt="check-icon" />
+      <img className={classes.check} src={CheckIcon} alt="" />
       {manifestText && (
         <>
           <p
