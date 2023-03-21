@@ -189,9 +189,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
         )}
 
-        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {selectedManifestations &&
+        {selectedManifestations.length > 1 &&
           hasCorrectAccessType(
             AccessTypeCode.Physical,
             selectedManifestations
@@ -202,6 +202,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 selectedManifestations={selectedManifestations}
                 selectedPeriodical={selectedPeriodical}
                 work={work}
+                dataCy="reservation-modal-parallel"
               />
               <FindOnShelfModal
                 manifestations={selectedManifestations}
