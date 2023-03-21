@@ -8,6 +8,8 @@ import ContactInfoSection from "../../components/contact-info-section/ContactInf
 import { useCreateV4 } from "../../core/fbs/fbs";
 import { isCprValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
+import { redirectTo } from "../../core/utils/helpers/url";
+import { useUrls } from "../../core/utils/url";
 
 export interface UserInfoProps {
   cpr: string;
@@ -17,6 +19,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const t = useText();
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
+  const { redirectOnUserCreatedUrl } = useUrls();
   const [pin, setPin] = useState<string | null>(null);
   const minAge = parseInt(config("minAgeConfig"), 10);
   const [validCpr] = useState<boolean>(isCprValid(cpr, minAge));
@@ -48,8 +51,8 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
           data: { cprNumber: cpr, patron, pincode: pin }
         },
         {
-          onSuccess: (result) => {
-            console.log(result);
+          onSuccess: () => {
+            redirectTo(redirectOnUserCreatedUrl);
           },
           // todo error handling, missing in figma
           onError: () => {}
@@ -110,7 +113,14 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
           </div>
         </form>
       )}
-      {!validCpr && <>invalid</>}
+      {!validCpr && (
+        <div className="dpl-patron-page">
+          <h1 className="text-header-h1 mb-48">
+            {t("createPatronInvalidSSNHeaderText")}
+          </h1>
+          <p>{t("createPatronInvalidSSNBodyText")}</p>
+        </div>
+      )}
     </>
   );
 };

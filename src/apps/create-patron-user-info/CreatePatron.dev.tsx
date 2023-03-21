@@ -28,7 +28,7 @@ export default {
       control: { type: "text" }
     },
     userToken: {
-      defaultValue: "b754a617d973efd9717898ae7c4c1032bf24f0ee",
+      defaultValue: "",
       control: { type: "text" }
     },
     // Texts
@@ -105,6 +105,18 @@ export default {
     },
     createPatronHeaderText: {
       defaultValue: "Register as patron",
+      control: { type: "text" }
+    },
+    createPatronInvalidSSNHeaderText: {
+      defaultValue: "Invalid SSN",
+      control: { type: "text" }
+    },
+    createPatronInvalidSSNBodyText: {
+      defaultValue: "This SSN is invalid",
+      control: { type: "text" }
+    },
+    redirectOnUserCreatedUrl: {
+      defaultValue: "https://unsplash.com/photos/KRztl5I6xac", // open source image of a dank fox
       control: { type: "text" }
     },
     createPatronConfirmButtonText: {

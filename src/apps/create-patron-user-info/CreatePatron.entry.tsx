@@ -9,6 +9,9 @@ interface CreatePatronConfigProps {
   pincodeLengthMinConfig: string;
   pincodeLengthMaxConfig: string;
 }
+interface CreatePatronUrlProps {
+  redirectOnUserCreatedUrl: string;
+}
 
 interface CreatePatronTextProps {
   blacklistedPickupBranchesConfig?: string;
@@ -36,10 +39,13 @@ interface CreatePatronTextProps {
   createPatronChangePickupHeaderText: string;
   createPatronChangePickupBodyText: string;
   createPatronHeaderText: string;
+  createPatronInvalidSSNHeaderText: string;
+  createPatronInvalidSSNBodyText: string;
 }
 
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
+    CreatePatronUrlProps,
     CreatePatronTextProps {
   userToken: string;
 }
