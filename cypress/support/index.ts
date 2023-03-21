@@ -6,6 +6,7 @@ import { hasOperationName } from "../utils/graphql-test-utils";
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
+const TOKEN_LIBRARY_KEY = "library";
 
 Cypress.Commands.add("createFakeLibrarySession", () => {
   // Since the user token is shared in storybook by setting it in sessionStorage
@@ -21,6 +22,14 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   // by using the same principle.
   // See userToken handling in .storybook/preview.js.
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
+});
+
+Cypress.Commands.add("createFakeLibrarySession", () => {
+  // Since the user token is shared in storybook by setting it in sessionStorage
+  // we can use that and fake that we have a inlogged user session
+  // by using the same principle.
+  // See userToken handling in .storybbok/preview.js.
+  window.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
 });
 
 /**
@@ -113,6 +122,7 @@ declare global {
        * Pretend that a user is logged in.
        * @example cy.createFakeAuthenticatedSession()
        */
+      createFakeLibrarySession(): void;
       createFakeAuthenticatedSession(): void;
       createFakeLibrarySession(): void;
       interceptGraphql(prams: InterceptGraphqlParams): void;
