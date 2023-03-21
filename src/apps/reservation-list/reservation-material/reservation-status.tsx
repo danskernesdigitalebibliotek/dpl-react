@@ -51,7 +51,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       <button
         style={{ cursor: "pointer" }}
         type="button"
-        onClick={(e) => notificationClickEventHandler()}
+        onClick={() => notificationClickEventHandler()}
       >
         <Arrow />
       </button>
