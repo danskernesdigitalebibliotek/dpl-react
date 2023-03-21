@@ -34,8 +34,9 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     "reservationDetailAllowRemoveReadyReservationsConfig"
   );
   const isDigital = !!reservation.identifier;
-  const userCanRemoveReadyReservations =
-    state === "readyForPickup" && strToBool(allowRemoveReadyReservation);
+  const allowUserRemoveReadyReservations =
+    (state === "readyForPickup" && strToBool(allowRemoveReadyReservation)) ||
+    state !== "readyForPickup";
 
   return (
     <div className="modal-details__container">
@@ -57,7 +58,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               </div>
             )}
           </ModalDetailsHeader>
-          {reservation.reservationId && userCanRemoveReadyReservations && (
+          {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton
               classNames="modal-details__buttons--hide-on-mobile"
               openReservationDeleteModal={openReservationDeleteModal}
@@ -83,7 +84,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               />
             )}
           </div>
-          {reservation.reservationId && userCanRemoveReadyReservations && (
+          {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton
               buttonClassNames="modal-details__buttons__full-width"
               openReservationDeleteModal={openReservationDeleteModal}

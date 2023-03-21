@@ -199,7 +199,7 @@ export default {
       control: { type: "text" }
     },
     reservationDetailAllowRemoveReadyReservationsConfig: {
-      defaultValue: "1",
+      defaultValue: "0",
       control: { type: "text" }
     },
     reservationDetailsDigitalReservationGoToEreolenText: {
