@@ -11,11 +11,13 @@ export type ListData = {
 export interface MaterialDetailsListProps {
   className?: string;
   data: ListData;
+  id: string;
 }
 
 const MaterialDetailsList: FC<MaterialDetailsListProps> = ({
   data,
-  className
+  className,
+  id
 }) => {
   const listData = data
     .filter((item) => item.value)
@@ -30,7 +32,7 @@ const MaterialDetailsList: FC<MaterialDetailsListProps> = ({
       return { label, value: rowValue };
     });
 
-  return <DescriptionList data={listData} classNames={className} />;
+  return <DescriptionList id={id} data={listData} classNames={className} />;
 };
 
 export default MaterialDetailsList;

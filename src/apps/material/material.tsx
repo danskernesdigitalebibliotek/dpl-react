@@ -239,7 +239,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         disclosureIconExpandAltText=""
         dataCy="material-details-disclosure"
       >
-        <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
+        <MaterialDetailsList
+          id="main-details"
+          className="pl-80 pb-48"
+          data={detailsListData}
+        />
       </Disclosure>
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable

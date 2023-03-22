@@ -99,6 +99,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   ];
 
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+  const detailsId = `material-details-${pid}`;
 
   return (
     <div className="material-manifestation-item">
@@ -135,6 +136,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           }}
           role="button"
           tabIndex={0}
+          aria-controls={detailsId}
+          aria-expanded={isOpen}
         >
           <p className="link-tag text-small-caption">
             {t("detailsOfTheMaterialText")}
@@ -142,7 +145,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={detailsListData} />
+          <MaterialDetailsList
+            id={detailsId}
+            className="mt-24"
+            data={detailsListData}
+          />
         )}
       </div>
       <div className="material-manifestation-item__buttons">
