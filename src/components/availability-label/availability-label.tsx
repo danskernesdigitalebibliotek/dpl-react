@@ -119,6 +119,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       type="button"
       onClick={handleSelectManifestation}
       data-cy={dataCy}
+      aria-pressed={selected}
     >
       {availabilityLabel}
     </button>
