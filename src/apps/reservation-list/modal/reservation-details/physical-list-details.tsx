@@ -30,7 +30,6 @@ import { Button } from "../../../../components/Buttons/Button";
 import ListDetailsDropdown, {
   OptionsProps
 } from "../../../../components/list-details-dropdown/list-details-dropdown";
-import { useConfig } from "../../../../core/utils/config";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -50,7 +49,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   branches
 }) => {
   const t = useText();
-  const config = useConfig();
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
