@@ -69,12 +69,12 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
     null
   );
-  const formatInterestPeriods = Object.entries(
-    getInterestPeriods(t, config)
-  ).map(([key, value]) => ({
-    value: key,
-    label: value
-  }));
+  const formatInterestPeriods = Object.entries(getInterestPeriods(t)).map(
+    ([key, value]) => ({
+      value: key,
+      label: value
+    })
+  );
 
   useEffect(() => {
     if (branches && newPickupBranch) {

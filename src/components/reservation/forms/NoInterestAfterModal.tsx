@@ -1,5 +1,4 @@
 import React from "react";
-import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";
 import { getInterestPeriods } from "../helper";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
@@ -14,14 +13,13 @@ const NoInterestAfterModal = ({
   setSelectedInterest
 }: PickupModalProps) => {
   const t = useText();
-  const config = useConfig();
 
-  const formatInterestPeriods = Object.entries(
-    getInterestPeriods(t, config)
-  ).map(([key, value]) => ({
-    value: key,
-    label: value
-  }));
+  const formatInterestPeriods = Object.entries(getInterestPeriods(t)).map(
+    ([key, value]) => ({
+      value: key,
+      label: value
+    })
+  );
 
   return (
     <ModalReservationFormSelect
