@@ -20,6 +20,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const textNotificationsEnabled =
     config("textNotificationsEnabledConfig") === "true";
 
+  const patronPageContactPhoneAmalgamation = `${t(
+    "patronPageContactPhoneCheckboxText"
+  )}. ${t("patronPageTextFeeText")}`;
   return (
     <section data-cy="patron-page-contact-info">
       <h2 className="text-body-small-regular mt-32 mb-16">
@@ -39,21 +42,16 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         label={t("patronPageContactPhoneLabelText")}
       />
       {textNotificationsEnabled && (
-        <>
-          <CheckBox
-            className="mt-32 mb-16"
-            onChecked={(newReceiveSms: boolean) =>
-              changePatron(newReceiveSms, "receiveSms")
-            }
-            id="phone-messages"
-            selected={patron?.receiveSms}
-            disabled={false}
-            label={t("patronPageContactPhoneCheckboxText")}
-          />
-          <div className="text-body-small-regular mt-16 mb-32">
-            {t("patronPageTextFeeText")}
-          </div>
-        </>
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveSms: boolean) =>
+            changePatron(newReceiveSms, "receiveSms")
+          }
+          id="phone-messages"
+          selected={patron?.receiveSms}
+          disabled={false}
+          label={patronPageContactPhoneAmalgamation}
+        />
       )}
       <TextInput
         className="patron__input patron__input--desktop"
