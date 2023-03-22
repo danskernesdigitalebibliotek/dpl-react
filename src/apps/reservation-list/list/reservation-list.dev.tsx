@@ -323,23 +323,23 @@ export default {
       defaultValue: "1 year",
       control: { type: "text" }
     },
-    interestPeriodOneMonthConfig: {
+    interestPeriodOneMonthConfigText: {
       defaultValue: "1",
       control: { type: "text" }
     },
-    interestPeriodTwoMonthsConfig: {
+    interestPeriodTwoMonthsConfigText: {
       defaultValue: "1",
       control: { type: "text" }
     },
-    interestPeriodThreeMonthsConfig: {
+    interestPeriodThreeMonthsConfigText: {
       defaultValue: "1",
       control: { type: "text" }
     },
-    interestPeriodSixMonthsConfig: {
+    interestPeriodSixMonthsConfigText: {
       defaultValue: "1",
       control: { type: "text" }
     },
-    interestPeriodOneYearConfig: {
+    interestPeriodOneYearConfigText: {
       defaultValue: "1",
       control: { type: "text" }
     },

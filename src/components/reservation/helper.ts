@@ -16,7 +16,6 @@ import {
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
-import { UseConfigFunction } from "../../core/utils/config";
 
 export const strToBool = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -25,21 +24,18 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);
   return locationItem ? locationItem.title : id;
 };
-export const getInterestPeriods = (
-  t: UseTextFunction,
-  c: UseConfigFunction
-) => {
+export const getInterestPeriods = (t: UseTextFunction) => {
   const visibleInterestPeriods: { [key: string]: string } = {};
   const interestPeriods = [
-    ["interestPeriodOneMonthConfig", "30", "oneMonthText"],
-    ["interestPeriodTwoMonthsConfig", "60", "twoMonthsText"],
-    ["interestPeriodThreeMonthsConfig", "90", "threeMonthsText"],
-    ["interestPeriodSixMonthsConfig", "180", "sixMonthsText"],
-    ["interestPeriodOneYearConfig", "360", "oneYearText"]
+    ["interestPeriodOneMonthConfigText", "30", "oneMonthText"],
+    ["interestPeriodTwoMonthsConfigText", "60", "twoMonthsText"],
+    ["interestPeriodThreeMonthsConfigText", "90", "threeMonthsText"],
+    ["interestPeriodSixMonthsConfigText", "180", "sixMonthsText"],
+    ["interestPeriodOneYearConfigText", "360", "oneYearText"]
   ];
 
   interestPeriods.forEach(([config, key, text]) => {
-    if (strToBool(c(config))) {
+    if (strToBool(t(config))) {
       visibleInterestPeriods[key] = t(text);
     }
   });
@@ -47,13 +43,9 @@ export const getInterestPeriods = (
   return visibleInterestPeriods;
 };
 
-export const getNoInterestAfter = (
-  days: number,
-  t: UseTextFunction,
-  c: UseConfigFunction
-) => {
+export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
   const reservationInterestIntervals: { [key: string]: string } = {
-    ...getInterestPeriods(t, c),
+    ...getInterestPeriods(t),
     default: `${days} ${t("daysText")}`
   } as const;
 
