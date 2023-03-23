@@ -31,7 +31,7 @@ const PickupModal = ({
       items={formatBranches}
       defaultSelectedItem={defaultBranch}
       selectHandler={selectBranchHandler}
-      ariaLabel={t("modalReservationFormPickupHeaderTitleText")}
+      ariaLabel={t("modalReservationFormPickupLabelText")}
     />
   );
 };
