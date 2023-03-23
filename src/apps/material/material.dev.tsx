@@ -725,15 +725,11 @@ export default {
       control: { type: "text" },
       defaultValue: "Bogen er tilgængelig på disse biblioteker nær dig"
     },
-    instantLoanStringConfig: {
-      name: "Instant loan string config",
+    instantLoanConfig: {
+      name: "Instant loan config",
       control: { type: "text" },
-      defaultValue: "14 dages lån - bogligt (kan ikke reserveres)"
-    },
-    instantLoanThresholdConfig: {
-      name: "Instant loan threshold config",
-      control: { type: "text" },
-      defaultValue: "1"
+      defaultValue:
+        '{\n        "threshold": "1",\n        "string": "14 dages lån - bogligt (kan ikke reserveres)"\n      }'
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

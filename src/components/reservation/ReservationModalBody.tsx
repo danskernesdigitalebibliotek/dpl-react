@@ -53,6 +53,7 @@ import useAlternativeAvailableManifestation from "./useAlternativeAvailableManif
 import PromoBar from "../promo-bar/PromoBar";
 import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
+import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -67,8 +68,11 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
-  const instantLoanThresholdConfig = config("instantLoanThresholdConfig");
-  const instantLoanStrings = config("instantLoanStringConfig");
+  const { string: instantLoanString, threshold: instantLoanThreshold } =
+    config<InstantLoanConfigType>("instantLoanConfig", {
+      transformer: "jsonParse"
+    });
+
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
@@ -168,13 +172,13 @@ export const ReservationModalBody = ({
   const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
     holdingsData[0].holdings,
     whitelistBranches,
-    instantLoanStrings
+    instantLoanString
   );
 
   const instantLoanBranchHoldingsAboveThreshold =
     getInstantLoanBranchHoldingsAboveThreshold(
       instantLoanBranchHoldings,
-      instantLoanThresholdConfig
+      instantLoanThreshold
     );
 
   return (

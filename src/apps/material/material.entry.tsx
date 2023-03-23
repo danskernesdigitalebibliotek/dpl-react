@@ -3,6 +3,7 @@ import GuardedApp from "../../components/guarded-app";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
+import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
@@ -150,8 +151,7 @@ interface MaterialEntryConfigProps {
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
-  instantLoanStringConfig: string;
-  instantLoanThresholdConfig: number;
+  instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: boolean;
 }
 
