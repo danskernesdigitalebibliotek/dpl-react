@@ -4,7 +4,7 @@ import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import BlockedTypes from "../../../core/utils/types/BlockedTypes";
 import { useUrls } from "../../../core/utils/url";
-import { Link } from "../../atoms/link";
+import Link from "../../atoms/links/Link";
 
 interface BlockedModalProps {
   blockedStatus: string;
