@@ -46,6 +46,7 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
+  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
