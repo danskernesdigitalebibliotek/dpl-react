@@ -3,10 +3,7 @@ import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import { useDeepCompareEffect } from "react-use";
-import {
-  AccessTypeCode,
-  useGetMaterialQuery
-} from "../../core/dbc-gateway/generated/graphql";
+import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import Disclosure from "../../components/Disclosures/disclosure";
@@ -23,7 +20,8 @@ import {
   getInfomediaIds,
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
-  getManifestationsOrderByTypeAndYear
+  getManifestationsOrderByTypeAndYear,
+  isParallelReservation
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -35,11 +33,7 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
-import {
-  hasCorrectAccess,
-  hasCorrectAccessType,
-  isArticle
-} from "../../components/material/material-buttons/helper";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
@@ -191,28 +185,23 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
         {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {selectedManifestations.length > 1 &&
-          hasCorrectAccessType(
-            AccessTypeCode.Physical,
-            selectedManifestations
-          ) &&
-          !isArticle(selectedManifestations) && (
-            <>
-              <ReservationModal
-                selectedManifestations={selectedManifestations}
-                selectedPeriodical={selectedPeriodical}
-                work={work}
-                dataCy="reservation-modal-parallel"
-              />
-              <FindOnShelfModal
-                manifestations={selectedManifestations}
-                authors={work.creators}
-                workTitles={work.titles.full}
-                selectedPeriodical={selectedPeriodical}
-                setSelectedPeriodical={setSelectedPeriodical}
-              />
-            </>
-          )}
+        {isParallelReservation(selectedManifestations) && (
+          <>
+            <ReservationModal
+              selectedManifestations={selectedManifestations}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+              dataCy="reservation-modal-parallel"
+            />
+            <FindOnShelfModal
+              manifestations={selectedManifestations}
+              authors={work.creators}
+              workTitles={work.titles.full}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          </>
+        )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
