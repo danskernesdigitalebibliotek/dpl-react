@@ -514,6 +514,11 @@ export default {
         "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
+    modalReservationFormPickupLabelText: {
+      name: "Modal reservation form pickup branch input label",
+      defaultValue: "Change pickup location for your reservation.",
+      control: { type: "text" }
+    },
     chooseOneText: {
       name: "Choose one text",
       defaultValue: "Choose one",
@@ -528,6 +533,12 @@ export default {
       name: "Modal reservation form no interest after header description",
       defaultValue:
         "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterLabelText: {
+      name: "Modal reservation form no interest after input label",
+      defaultValue:
+        "Change the amount of time after which you're no longer interested in this material.",
       control: { type: "text" }
     },
     infomediaModalScreenReaderModalDescriptionText: {
