@@ -57,12 +57,11 @@ const FacetBrowserModalBody: React.FunctionComponent<
             cyData={`facet-browser-${name}`}
             id={name}
             showContent={hasSelectedTerms}
-            detailsClassName="disclosure text-body-large disclosure--full-width"
-            summaryClassName="disclosure__headline text-body-large disclosure__headline--no-padding"
+            className="disclosure--full-width"
             summary={
               <DisclosureSummary
                 title={t(`facet${upperFirst(name)}Text`)}
-                headingLevel="h3"
+                className="disclosure__headline--no-padding"
               />
             }
           >

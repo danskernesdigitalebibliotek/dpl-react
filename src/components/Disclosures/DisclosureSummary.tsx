@@ -4,22 +4,29 @@ import Heading, { HeadingLevelType } from "../Heading/Heading";
 import Pagefold from "../pagefold/Pagefold";
 import { useText } from "../../core/utils/text";
 
-type DisclosureSummaryProps = {
+export type DisclosureSummaryProps = {
   title: string;
-  headingLevel: HeadingLevelType;
+  headingLevel?: HeadingLevelType;
   mainIconPath?: string;
   isAvailable?: boolean;
+  itemRef?: React.MutableRefObject<null>;
+  className?: string;
 };
 
 const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
   title,
-  headingLevel,
+  headingLevel = "h3",
   mainIconPath,
-  isAvailable
+  isAvailable,
+  itemRef,
+  className
 }) => {
   const t = useText();
   return (
-    <>
+    <summary
+      ref={itemRef}
+      className={`disclosure__headline text-body-large ${className}`}
+    >
       {mainIconPath && (
         <div className="disclosure__icon bg-identity-tint-120">
           <img className="invert" src={mainIconPath} alt="" />
@@ -45,7 +52,7 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
         src={ExpandMoreIcon}
         alt=""
       />
-    </>
+    </summary>
   );
 };
 

@@ -6,14 +6,16 @@ import { Cover } from "../cover/cover";
 
 type InstantLoanSummaryProps = {
   pid: Pid;
+  className?: string;
 };
 
 const InstantLoanSummary: React.FunctionComponent<InstantLoanSummaryProps> = ({
-  pid
+  pid,
+  className
 }) => {
   const t = useText();
   return (
-    <>
+    <div className={className}>
       <div className="pagefold-triangle--small" />
       <Cover id={pid} size="small" animate />
       <div>
@@ -32,7 +34,7 @@ const InstantLoanSummary: React.FunctionComponent<InstantLoanSummaryProps> = ({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

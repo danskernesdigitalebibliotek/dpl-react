@@ -20,9 +20,13 @@ const InstantLoan: React.FunctionComponent<InstantLoanProps> = ({
   return (
     <DisclosureControllable
       id="instant-loan"
-      detailsClassName="instant-loan pagefold-parent--small"
-      summaryClassName="instant-loan-summary cursor-pointer p-24"
-      summary={<InstantLoanSummary pid={pid} />}
+      className="instant-loan pagefold-parent--small"
+      summary={
+        <InstantLoanSummary
+          pid={pid}
+          className="instant-loan-summary cursor-pointer p-24"
+        />
+      }
       cyData="instant-loan"
     >
       <ul className="instant-loan-branches" data-cy="instant-loan-branches">

@@ -216,14 +216,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       <Disclosure
-        disclosureIconExpandAltText=""
         dataCy="material-editions-disclosure"
-        detailsClassName="disclosure text-body-large"
-        summaryClassName="disclosure__headline text-body-large"
         summary={
           <DisclosureSummary
             title={`${t("editionsText")} (${manifestations.length})`}
-            headingLevel="h3"
             mainIconPath={VariousIcon}
           />
         }
@@ -243,16 +239,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         </>
       </Disclosure>
       <Disclosure
-        disclosureIconExpandAltText=""
         dataCy="material-details-disclosure"
-        detailsClassName="disclosure text-body-large"
-        summaryClassName="disclosure__headline text-body-large"
         summary={
-          <DisclosureSummary
-            title={t("detailsText")}
-            headingLevel="h3"
-            mainIconPath={Receipt}
-          />
+          <DisclosureSummary title={t("detailsText")} mainIconPath={Receipt} />
         }
       >
         <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
@@ -262,12 +251,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           id="reviews"
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
-          detailsClassName="disclosure text-body-large"
-          summaryClassName="disclosure__headline text-body-large"
           summary={
             <DisclosureSummary
               title={t("reviewsText")}
-              headingLevel="h3"
               mainIconPath={CreateIcon}
             />
           }

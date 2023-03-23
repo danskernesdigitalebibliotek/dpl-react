@@ -205,12 +205,10 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
                   open={finalData.length === 1}
-                  detailsClassName="disclosure text-body-large disclosure--full-width"
-                  summaryClassName="disclosure__headline text-body-large"
+                  className="disclosure--full-width"
                   summary={
                     <DisclosureSummary
                       title={libraryBranch[0].holding.branch.title}
-                      headingLevel="h3"
                       isAvailable={isAnyManifestationAvailableOnBranch(
                         libraryBranch
                       )}
