@@ -17,7 +17,6 @@ const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
       if (data?.attributes?.cpr) {
         setCpr(data.attributes.cpr);
       }
-      setCpr("1504904444");
     });
 
   if (cpr === null) return null;
