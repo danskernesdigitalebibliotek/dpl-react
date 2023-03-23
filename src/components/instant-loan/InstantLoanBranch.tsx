@@ -15,10 +15,7 @@ const InstantLoanBranch: React.FunctionComponent<InstantLoanBranchProps> = ({
   materialType
 }) => {
   return (
-    <div
-      className="instant-loan-branch cursor-pointer px-24"
-      data-cy="instant-loan-branch"
-    >
+    <div className="instant-loan-branch px-24" data-cy="instant-loan-branch">
       <p className="text-header-h5">{title}</p>
       <AvailabilityLabelVisual
         manifestText={materialType}
