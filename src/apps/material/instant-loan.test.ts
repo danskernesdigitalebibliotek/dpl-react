@@ -79,7 +79,7 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branches")
       .scrollIntoView()
       .children()
-      .should("have.length", 10);
+      .should("have.length", 2);
   });
 
   it("should render InstantLoan branch", () => {
@@ -88,7 +88,7 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branch")
       .first()
       .scrollIntoView()
-      .should("contain", "Solbjerg")
+      .should("contain", "Trige")
       .and("contain", "1 stk");
   });
 });
