@@ -5,20 +5,18 @@ import { withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
 
 interface CreatePatronConfigProps {
-  thresholdUserAgeConfig: string;
   pincodeLengthMinConfig: string;
   pincodeLengthMaxConfig: string;
+  blacklistedPickupBranchesConfig: string;
+  branchesConfig: string;
 }
 interface CreatePatronUrlProps {
   redirectOnUserCreatedUrl: string;
+  fbsBaseUrl: string;
+  publizonBaseUrl: string;
 }
 
 interface CreatePatronTextProps {
-  blacklistedPickupBranchesConfig?: string;
-  branchesConfig: string;
-  userToken: string;
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
   pickupBranchesDropdownLabelText: string;
   patronPageChangePincodeHeaderText: string;
   pickupBranchesDropdownNothingSelectedText: string;

@@ -11,6 +11,7 @@ interface PatronPageConfigProps {
   pincodeLengthMaxConfig: string;
   pauseReservationStartDateConfig: string;
   textNotificationsEnabledConfig: string;
+  minAgeConfig: string;
 }
 
 export interface PatronPageUrlProps {

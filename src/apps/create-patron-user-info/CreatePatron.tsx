@@ -14,7 +14,9 @@ const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      setCpr(data.attributes.cpr);
+      if (data?.attributes?.cpr) {
+        setCpr(data.attributes.cpr);
+      }
     });
 
   if (cpr === null) return null;
