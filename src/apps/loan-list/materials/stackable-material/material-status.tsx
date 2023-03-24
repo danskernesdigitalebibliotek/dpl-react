@@ -1,10 +1,14 @@
 import React, { FC, ReactNode, useCallback } from "react";
-import { formatDate, isDigital } from "../../utils/helpers";
+import {
+  formatDate,
+  isDigital,
+  materialsAreStacked
+} from "../../utils/helpers";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
-import Arrow from "../../../../components/atoms/icons/arrow/arrow";
+import ArrowButton from "../../../../components/Buttons/ArrowButton";
 
 interface MaterialStatusProps {
   loan: LoanType;
@@ -23,7 +27,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
 }) => {
   const t = useText();
   const { dueDate, loanDate, faust, identifier } = loan;
-  const isStacked = additionalMaterials > 0;
+  const isStacked = materialsAreStacked(additionalMaterials);
 
   const notificationClickEventHandler = useCallback(() => {
     if (isStacked && openDueDateModal && dueDate) {
@@ -69,13 +73,10 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
           {children}
         </div>
       </div>
-      <button
-        style={{ cursor: "pointer" }}
-        type="button"
-        onClick={notificationClickEventHandler}
-      >
-        <Arrow />
-      </button>
+      <ArrowButton
+        cursorPointer
+        clickEventHandler={notificationClickEventHandler}
+      />
     </div>
   );
 };

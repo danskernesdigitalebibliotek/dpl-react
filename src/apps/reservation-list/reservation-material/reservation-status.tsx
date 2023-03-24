@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useCallback } from "react";
-import Arrow from "../../../components/atoms/icons/arrow/arrow";
+import ArrowButton from "../../../components/Buttons/ArrowButton";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
@@ -48,13 +48,10 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
-      <button
-        style={{ cursor: "pointer" }}
-        type="button"
-        onClick={() => notificationClickEventHandler()}
-      >
-        <Arrow />
-      </button>
+      <ArrowButton
+        cursorPointer
+        clickEventHandler={notificationClickEventHandler}
+      />
     </div>
   );
 };

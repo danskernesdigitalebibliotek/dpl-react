@@ -21,7 +21,9 @@ export const loansAreEmpty = (list: LoanType[] | null) =>
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
-
+export const materialsAreStacked = (materialsInStack: number) => {
+  return materialsInStack > 0;
+};
 export const getFromListByKey = (
   list: ListType[],
   key: "identifier" | "reservationId" | "faust",
