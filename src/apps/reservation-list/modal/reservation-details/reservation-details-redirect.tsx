@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
-import { Link } from "../../../../components/atoms/link";
+import Link from "../../../../components/atoms/links/Link";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { useUrls } from "../../../../core/utils/url";

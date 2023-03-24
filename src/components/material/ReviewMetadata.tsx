@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 
 export interface ReviewMetadataProps {
   author?: string | null;

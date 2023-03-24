@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import { useGetLoansV2, useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
 import {

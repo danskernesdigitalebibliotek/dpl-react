@@ -161,11 +161,6 @@ export default {
       defaultValue: "Filter list",
       control: { type: "text" }
     },
-    clearAllText: {
-      name: "Clear all text",
-      defaultValue: "Clear all",
-      control: { type: "text" }
-    },
     addMoreFiltersText: {
       name: "Add more filters text",
       defaultValue: "+ more filters",
@@ -191,6 +186,11 @@ export default {
     alertErrorMessageText: {
       name: "Alert error message text",
       defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading",
       control: { type: "text" }
     }
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { constructSearchUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 
 interface MaterialHeaderTextProps {
   title: string;

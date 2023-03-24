@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState, useEffect } from "react";
 import { useQueryClient } from "react-query";
-import { Link } from "../../../../components/atoms/link";
+import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import {

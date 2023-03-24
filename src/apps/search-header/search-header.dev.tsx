@@ -101,7 +101,7 @@ export default {
       defaultValue: "in",
       control: { type: "text" }
     },
-    LoadingText: {
+    loadingText: {
       name: "Loading",
       defaultValue: "Loading",
       control: { type: "text" }

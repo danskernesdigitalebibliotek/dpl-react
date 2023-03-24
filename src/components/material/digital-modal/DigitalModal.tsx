@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDplDasDigitalArticleOrderPOST } from "../../../core/dpl-cms/dpl-cms";
+import { usePlaceCopyMutation } from "../../../core/dbc-gateway/generated/graphql";
 import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
 import { statistics } from "../../../core/statistics/statistics";
 import { useStatistics } from "../../../core/statistics/useStatistics";
@@ -8,7 +8,7 @@ import { useText } from "../../../core/utils/text";
 import { Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
-import { createDigitalModalId } from "./helper";
+import { createDigitalModalId, getResponseMessage } from "./helper";
 
 type DigitalModalProps = {
   pid: Pid;
@@ -27,16 +27,17 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   const {
     mutate: articleOrder,
     isLoading: articleOrderLoading,
-    isSuccess: articleOrderSuccess,
-    isError: articleOrderError
-  } = useDplDasDigitalArticleOrderPOST();
+    data: articleResponse
+  } = usePlaceCopyMutation();
+
+  const responseMessage = getResponseMessage(articleResponse, t);
 
   const orderDigitalCopy = (email: string) => {
     articleOrder(
       {
-        data: {
+        input: {
           pid,
-          email
+          userMail: email
         }
       },
       {
@@ -73,16 +74,19 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         "orderDigitalCopyModalCloseModalAriaLabelText"
       )}
     >
-      {(articleOrderSuccess || articleOrderError) && (
-        <DigitalModalFeedback modalId={modalId} isError={articleOrderError} />
-      )}
-
-      {!articleOrderSuccess && !articleOrderError && userEmail !== null && (
-        <DigitalModalBody
-          userEmail={userEmail}
-          handleSubmit={orderDigitalCopy}
-          isLoading={articleOrderLoading}
+      {responseMessage ? (
+        <DigitalModalFeedback
+          modalId={modalId}
+          feedbackMessage={responseMessage}
         />
+      ) : (
+        userEmail !== null && (
+          <DigitalModalBody
+            userEmail={userEmail}
+            handleSubmit={orderDigitalCopy}
+            isLoading={articleOrderLoading}
+          />
+        )
       )}
     </Modal>
   );

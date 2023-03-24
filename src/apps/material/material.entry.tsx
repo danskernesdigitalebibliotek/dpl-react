@@ -14,6 +14,10 @@ interface MaterialEntryTextProps {
   approveReservationText: string;
   cantReserveText: string;
   cantViewReviewText: string;
+  changeEmailText: string;
+  changeInterestPeriodText: string;
+  changePickupLocationText: string;
+  changeSmsNumberText: string;
   chooseOneText: string;
   closeText: string;
   daysText: string;
@@ -36,11 +40,13 @@ interface MaterialEntryTextProps {
   editionsText: string;
   editionText: string;
   etAlText: string;
+  expandMoreText: string;
   fictionNonfictionText: string;
   filmAdaptationsText: string;
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
+  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -48,6 +54,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
   haveNoInterestAfterText: string;
@@ -90,14 +97,16 @@ interface MaterialEntryTextProps {
   orderDigitalCopyButtonText: string;
   orderDigitalCopyDescriptionText: string;
   orderDigitalCopyEmailLabelText: string;
-  orderDigitalCopyErrorButtonText: string;
-  orderDigitalCopyErrorDescriptionText: string;
-  orderDigitalCopyErrorTitleText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
-  orderDigitalCopySuccessButtonText: string;
-  orderDigitalCopySuccessDescriptionText: string;
-  orderDigitalCopySuccessTitleText: string;
+  orderDigitalCopyFeedbackButtonText: string;
+  orderDigitalCopyFeedbackOkText: string;
+  orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: string;
+  orderDigitalCopyFeedbackErrorInvalidPickupBranchText: string;
+  orderDigitalCopyFeedbackErrorMissingClientConfigurationText: string;
+  orderDigitalCopyFeedbackErrorPidNotReservableText: string;
+  orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
+  orderDigitalCopyFeedbackTitleText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
@@ -126,8 +135,6 @@ interface MaterialEntryTextProps {
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
-  firstAvailableEditionText: string;
-  expandMoreText: string;
 }
 interface MaterialEntryUrlProps {
   dplCmsBaseUrl: string;

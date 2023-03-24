@@ -1,6 +1,6 @@
 import React, { FC, useCallback, MouseEvent } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 
 interface DashboardNotificationProps {
   notificationNumber: number;

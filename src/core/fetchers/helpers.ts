@@ -29,6 +29,15 @@ export const buildParams = (data: FetchParams) => {
   return params;
 };
 
+export const createAuthHeader = (
+  token: RequestOptions["bearerToken"]
+): { Authorization: `Bearer ${string}` } | Record<string, never> =>
+  token
+    ? {
+        Authorization: `Bearer ${token}`
+      }
+    : {};
+
 export const getServiceUrlWithParams = ({
   baseUrl,
   url,
@@ -41,14 +50,5 @@ export const getServiceUrlWithParams = ({
   const urlParams = params ? `?${buildParams(params as FetchParams)}` : "";
   return `${baseUrl}${url}${urlParams}`;
 };
-
-export const createAuthHeader = (
-  token: RequestOptions["bearerToken"]
-): { Authorization: `Bearer ${string}` } | Record<string, never> =>
-  token
-    ? {
-        Authorization: `Bearer ${token}`
-      }
-    : {};
 
 export default {};

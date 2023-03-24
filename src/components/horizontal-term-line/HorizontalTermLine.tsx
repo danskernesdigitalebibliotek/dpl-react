@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
-import { Link } from "../atoms/link";
+import Link from "../atoms/links/Link";
 import { useText } from "../../core/utils/text";
 
 export interface HorizontalTermLineProps {
@@ -30,12 +30,12 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
 
   return (
     <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
-      <p className="text-label-bold">
+      <h3 className="text-label-bold">
         {title || ""}{" "}
         {subTitle && (
           <span className="text-small-caption">{` ${subTitle}`}</span>
         )}
-      </p>
+      </h3>
 
       {itemsToShow.map((item) => {
         const { term, url } = item;

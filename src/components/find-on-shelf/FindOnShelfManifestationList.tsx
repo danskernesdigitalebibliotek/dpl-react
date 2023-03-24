@@ -16,13 +16,27 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
   const t = useText();
 
   return (
-    <ul className="find-on-shelf">
-      <li className="find-on-shelf__header-row text-small-caption">
-        <span className="find-on-shelf__material-header">
+    <ul
+      className="find-on-shelf"
+      role="table"
+      aria-label={t("findOnShelfTableDescriptionText", {
+        placeholders: {
+          "@work": libraryBranchHoldings[0].manifestation.titles.main[0],
+          "@branch": libraryBranchHoldings[0].holding.branch.title
+        }
+      })}
+    >
+      <li className="find-on-shelf__header-row text-small-caption" role="row">
+        <span className="find-on-shelf__material-header" role="columnheader">
           {t("findOnShelfModalListMaterialText")}
         </span>
-        <span>{t("findOnShelfModalListFindOnShelfText")}</span>
-        <span className="find-on-shelf__item-count-header capitalize-first">
+        <span role="columnheader">
+          {t("findOnShelfModalListFindOnShelfText")}
+        </span>
+        <span
+          className="find-on-shelf__item-count-header capitalize-first"
+          role="columnheader"
+        >
           {t("findOnShelfModalListItemCountText")}
         </span>
       </li>

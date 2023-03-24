@@ -3,7 +3,7 @@ import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import clsx from "clsx";
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useAvailabilityData } from "./helper";

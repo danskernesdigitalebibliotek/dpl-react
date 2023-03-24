@@ -7,7 +7,7 @@ import {
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import { ReviewManifestation } from "../../core/utils/types/entities";
-import { Link } from "../atoms/link";
+import Link from "../atoms/links/Link";
 
 export interface ReviewExternalProps {
   review: ReviewManifestation;

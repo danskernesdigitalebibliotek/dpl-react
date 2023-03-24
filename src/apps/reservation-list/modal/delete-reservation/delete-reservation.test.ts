@@ -1,7 +1,7 @@
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
 describe("Delete reservation modal test", () => {
-  before(() => {
+  beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
@@ -11,6 +11,12 @@ describe("Delete reservation modal test", () => {
 
     // Sets time to a specific date
     cy.clock(clockDate);
+
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
   });
 
   it("It shows delete digital material modal", () => {

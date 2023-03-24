@@ -3,7 +3,7 @@ import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { FC } from "react";
 import { useUrls } from "../../../core/utils/url";
 import { useText } from "../../../core/utils/text";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import { Button } from "../../../components/Buttons/Button";
 
 export interface MenuNotLoggedInContentProps {

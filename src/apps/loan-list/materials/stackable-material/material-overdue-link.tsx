@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "../../../../components/atoms/link";
+import Link from "../../../../components/atoms/links/Link";
 import { useText } from "../../../../core/utils/text";
 import { useUrls } from "../../../../core/utils/url";
 import { materialIsOverdue } from "../../../../core/utils/helpers/general";

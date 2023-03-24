@@ -3,8 +3,9 @@ import { render } from "react-dom";
 import { withErrorBoundary } from "react-error-boundary";
 import { setToken } from "./token";
 import Store from "../components/store";
-import { persistor } from "./store";
+import { persistor, store } from "./store";
 import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
+import { closeLastModal } from "./modal.slice";
 
 /**
  * We look for containers and corresponding applications.
@@ -74,6 +75,17 @@ function reset() {
 }
 
 function init() {
+  // We only want to close the single last modal when the user hits escape.
+  // Consequently we only want a single event listener. We cannot guarantee this
+  // on the app (or component) level as a page may contain multiple apps.
+  // init provides a single entry point for loading all apps and is suitable for our
+  // purpose.
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      store.dispatch(closeLastModal());
+    }
+  });
+
   const initial = {
     apps: {},
     setToken,
