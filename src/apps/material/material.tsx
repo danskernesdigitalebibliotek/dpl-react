@@ -37,6 +37,7 @@ import { hasCorrectAccess } from "../../components/material/material-buttons/hel
 import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
+import MaterialDisclosure from "./MaterialDisclosure";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -204,14 +205,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
-      <Disclosure
+      <MaterialDisclosure
+        title={`${t("editionsText")} (${manifestations.length})`}
+        icon={VariousIcon}
         dataCy="material-editions-disclosure"
-        summary={
-          <DisclosureSummary
-            title={`${t("editionsText")} (${manifestations.length})`}
-            mainIconPath={VariousIcon}
-          />
-        }
       >
         <>
           {getManifestationsOrderByTypeAndYear(manifestations).map(
@@ -226,15 +223,15 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             }
           )}
         </>
-      </Disclosure>
-      <Disclosure
+      </MaterialDisclosure>
+      <MaterialDisclosure
         dataCy="material-details-disclosure"
-        summary={
-          <DisclosureSummary title={t("detailsText")} mainIconPath={Receipt} />
-        }
+        title={t("detailsText")}
+        icon={Receipt}
       >
         <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
-      </Disclosure>
+      </MaterialDisclosure>
+
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
           id="reviews"
