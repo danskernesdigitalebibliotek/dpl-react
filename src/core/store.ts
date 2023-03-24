@@ -43,7 +43,8 @@ export const store = configureStore({
       url: urlReducer,
       config: configReducer,
       guardedRequests: guardedRequestsReducer,
-      blockedModal: blockModalReducer
+      blockedModal: blockModalReducer,
+      filter: filterReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"

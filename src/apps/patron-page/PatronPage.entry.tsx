@@ -80,7 +80,8 @@ interface PatronPageTextProps {
 export interface PatronPageProps
   extends PatronPageConfigProps,
     BlockedPatronEntryTextProps,
-    PatronPageTextProps {}
+    PatronPageTextProps,
+    PatronPageUrlProps {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 

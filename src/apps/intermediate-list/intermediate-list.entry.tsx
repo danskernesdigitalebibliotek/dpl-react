@@ -50,7 +50,9 @@ export interface IntermedateListProps {
 }
 
 const IntermedateListEntry: FC<
-  IntermedateListProps & BlockedPatronEntryTextProps
+  IntermedateListProps &
+    BlockedPatronEntryTextProps &
+    IntermedateListEntryConfigProps
 > = () => <IntermedateList />;
 
 export default withUrls(withText(withIsPatronBlockedHoc(IntermedateListEntry)));

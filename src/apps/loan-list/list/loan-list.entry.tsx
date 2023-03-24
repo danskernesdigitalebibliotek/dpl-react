@@ -16,7 +16,6 @@ interface LoanListEntryConfigProps {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  thresholdConfig: string;
 }
 
 interface LoanListEntryTextProps {
@@ -84,7 +83,8 @@ interface LoanListEntryTextProps {
 export interface LoanListEntryWithPageSizeProps
   extends BlockedPatronEntryTextProps,
     LoanListEntryTextProps,
-    LoanListEntryConfigProps {
+    LoanListEntryConfigProps,
+    LoanListEntryTextProps {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }

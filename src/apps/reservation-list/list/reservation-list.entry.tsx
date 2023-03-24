@@ -94,6 +94,7 @@ export interface ReservationListTextProps {
 
 export interface ReservationListEntryWithPageSizeProps
   extends ReservationListTextProps,
+    BlockedPatronEntryTextProps,
     ReservationListConfigProps,
     ReservationListUrlProps {
   pageSizeDesktop?: number;
