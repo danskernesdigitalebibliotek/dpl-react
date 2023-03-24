@@ -729,7 +729,7 @@ export default {
       name: "Instant loan config",
       control: { type: "text" },
       defaultValue:
-        '{\n        "threshold": "1",\n        "string": "14 dages lån - bogligt (kan ikke reserveres)"\n      }'
+        '{\n        "threshold": "1",\n        "string": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

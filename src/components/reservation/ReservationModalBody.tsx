@@ -68,10 +68,13 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
-  const { string: instantLoanString, threshold: instantLoanThreshold } =
-    config<InstantLoanConfigType>("instantLoanConfig", {
-      transformer: "jsonParse"
-    });
+  const {
+    string: instantLoanString,
+    threshold: instantLoanThreshold,
+    enabled: instantLoanEnabled
+  } = config<InstantLoanConfigType>("instantLoanConfig", {
+    transformer: "jsonParse"
+  });
 
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
@@ -252,14 +255,15 @@ export const ReservationModalBody = ({
                 />
               )}
 
-              {instantLoanBranchHoldingsAboveThreshold && (
-                <InstantLoan
-                  manifestation={manifestation}
-                  instantLoanBranchHoldings={
-                    instantLoanBranchHoldingsAboveThreshold
-                  }
-                />
-              )}
+              {instantLoanEnabled &&
+                instantLoanBranchHoldingsAboveThreshold && (
+                  <InstantLoan
+                    manifestation={manifestation}
+                    instantLoanBranchHoldings={
+                      instantLoanBranchHoldingsAboveThreshold
+                    }
+                  />
+                )}
             </div>
           </div>
         </section>
