@@ -17,7 +17,7 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 
-export const strToBool = (configValue: string | undefined | string[]) =>
+export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
 
 export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
@@ -35,7 +35,7 @@ export const getInterestPeriods = (t: UseTextFunction) => {
   ];
 
   interestPeriods.forEach(([config, key, text]) => {
-    if (strToBool(t(config))) {
+    if (isConfigValueOne(t(config))) {
       visibleInterestPeriods[key] = t(text);
     }
   });

@@ -12,7 +12,7 @@ import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-mat
 import PhysicalListDetails from "./physical-list-details";
 import { useGetBranches } from "../../../../core/utils/branches";
 import { useConfig } from "../../../../core/utils/config";
-import { strToBool } from "../../../../components/reservation/helper";
+import { isConfigValueOne } from "../../../../components/reservation/helper";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -34,9 +34,11 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     "reservationDetailAllowRemoveReadyReservationsConfig"
   );
   const isDigital = !!reservation.identifier;
+  const readyForPickupState = "readyForPickup";
   const allowUserRemoveReadyReservations =
-    (state === "readyForPickup" && strToBool(allowRemoveReadyReservation)) ||
-    state !== "readyForPickup";
+    (state === readyForPickupState &&
+      isConfigValueOne(allowRemoveReadyReservation)) ||
+    state !== readyForPickupState;
 
   return (
     <div className="modal-details__container">
@@ -52,7 +54,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             materialType={materialType}
             series={material.series}
           >
-            {state === "readyForPickup" && (
+            {state === readyForPickupState && (
               <div className="status-label status-label--info">
                 {t("reservationDetailsReadyForLoanText")}
               </div>
