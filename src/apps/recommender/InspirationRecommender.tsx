@@ -4,6 +4,7 @@ import {
   SearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import { useConfig } from "../../core/utils/config";
+import { getRecommenderMaterialLimits } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 import RecommendMaterial from "./RecommendMaterial";
@@ -13,10 +14,11 @@ const InspirationRecommender: FC = () => {
   const config = useConfig();
 
   const defaultSearchFromConfig = config("emptyRecommenderSearchConfig");
+  const { inspiration: inspirationLimit } = getRecommenderMaterialLimits();
   const [recommendedMaterials, setRecommendedMaterials] =
     useState<SearchWithPaginationQuery | null>(null);
   const { data } = useSearchWithPaginationQuery({
-    limit: 4,
+    limit: inspirationLimit as number,
     q: {
       all: defaultSearchFromConfig
     },

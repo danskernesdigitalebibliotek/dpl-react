@@ -148,10 +148,7 @@ export const mapManifestationToBasicDetailsType = (
       texts.materialAndAuthorText
     );
   }
-  let firstAuthor = "";
-  if (creators && creators.length > 0) {
-    firstAuthor = creators[0].display;
-  }
+  const firstAuthor = creators && creators.length ? creators[0].display : "";
   return {
     authors: contributors || "",
     firstAuthor,
