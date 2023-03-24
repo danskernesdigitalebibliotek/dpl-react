@@ -90,10 +90,6 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    patronPageTextFeeText: {
-      defaultValue: "This might cost you money",
-      control: { type: "text" }
-    },
     patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }

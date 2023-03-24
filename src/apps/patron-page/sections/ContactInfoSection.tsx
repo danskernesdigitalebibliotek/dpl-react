@@ -22,7 +22,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
 
   const patronPageContactPhoneAmalgamation = `${t(
     "patronPageContactPhoneCheckboxText"
-  )}. ${t("patronPageTextFeeText")}`;
+  )}`;
   return (
     <section data-cy="patron-page-contact-info">
       <h2 className="text-body-small-regular mt-32 mb-16">
