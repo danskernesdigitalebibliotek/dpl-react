@@ -30,7 +30,7 @@ const returnFocusElement = () => {
 const removeModalIdFromUrl = (modalId: ModalId) => {
   const searchParams = new URLSearchParams(window.location.search);
   const newSearchParams = searchParams.get("modal")?.replace(modalId, "");
-  searchParams.set("modal", newSearchParams || "");
+  searchParams.append("modal", newSearchParams || "");
 };
 
 const modalSlice = createSlice({
@@ -47,12 +47,12 @@ const modalSlice = createSlice({
         state.modalIds.push(action.payload.modalId);
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
-        if (alreadyOpenModals) {
-          searchParams.set(
-            "modal",
-            `${alreadyOpenModals}${action.payload.modalId}`
-          );
-        }
+        searchParams.append(
+          "modal",
+          `${alreadyOpenModals === null ? "" : alreadyOpenModals}${
+            action.payload.modalId
+          }`
+        );
       }
       const { activeElement } = document;
       // Prevent body from double triggering focus store when url contains modalId
