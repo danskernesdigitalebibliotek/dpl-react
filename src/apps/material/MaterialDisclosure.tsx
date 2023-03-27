@@ -12,11 +12,12 @@ export interface MaterialDisclosureProps {
 const MaterialDisclosure: FC<MaterialDisclosureProps> = ({
   title,
   icon,
-  children
+  children,
+  dataCy
 }) => {
   return (
     <Disclosure
-      dataCy="material-editions-disclosure"
+      dataCy={dataCy}
       summary={<DisclosureSummary title={title} mainIconPath={icon} />}
     >
       {children}
