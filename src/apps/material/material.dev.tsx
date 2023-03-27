@@ -704,6 +704,46 @@ export default {
       name: "Change email text",
       defaultValue: "Change email",
       control: { type: "text" }
+    },
+    screenReaderModalDescriptionInterestperiodText: {
+      name: "Screen reader modal description for interest period",
+      defaultValue: "Change interest period modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelInterestPeriodText: {
+      name: "Close modal aria-label interest period ",
+      defaultValue: "Close interest period modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionPickupText: {
+      name: "Screen reader modal description for pickup",
+      defaultValue: "Change pickup location modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelPickupText: {
+      name: "Close modal aria-label pickup",
+      defaultValue: "Close pickup location modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionSmsText: {
+      name: "Screen reader modal description for sms",
+      defaultValue: "Change mobile number modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelSmsText: {
+      name: "Close modal aria-label sms",
+      defaultValue: "Close change mobile number modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionEmailText: {
+      name: "Screen reader modal description for email",
+      defaultValue: "Change email modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelEmailText: {
+      name: "Close modal aria-label email",
+      defaultValue: "Close change email modal",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

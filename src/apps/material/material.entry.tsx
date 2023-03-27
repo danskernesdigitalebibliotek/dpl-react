@@ -19,6 +19,10 @@ interface MaterialEntryTextProps {
   changePickupLocationText: string;
   changeSmsNumberText: string;
   chooseOneText: string;
+  closeModalAriaLabelEmailText: string;
+  closeModalAriaLabelInterestPeriodText: string;
+  closeModalAriaLabelPickupText: string;
+  closeModalAriaLabelSmsText: string;
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
@@ -46,7 +50,6 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
-  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -54,6 +57,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfTableDescriptionText: string;
   firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
@@ -97,16 +101,16 @@ interface MaterialEntryTextProps {
   orderDigitalCopyButtonText: string;
   orderDigitalCopyDescriptionText: string;
   orderDigitalCopyEmailLabelText: string;
-  orderDigitalCopyModalCloseModalAriaLabelText: string;
-  orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyFeedbackButtonText: string;
-  orderDigitalCopyFeedbackOkText: string;
   orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: string;
   orderDigitalCopyFeedbackErrorInvalidPickupBranchText: string;
   orderDigitalCopyFeedbackErrorMissingClientConfigurationText: string;
   orderDigitalCopyFeedbackErrorPidNotReservableText: string;
   orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
+  orderDigitalCopyFeedbackOkText: string;
   orderDigitalCopyFeedbackTitleText: string;
+  orderDigitalCopyModalCloseModalAriaLabelText: string;
+  orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
@@ -129,6 +133,10 @@ interface MaterialEntryTextProps {
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;
+  screenReaderModalDescriptionEmailText: string;
+  screenReaderModalDescriptionInterestperiodText: string;
+  screenReaderModalDescriptionPickupText: string;
+  screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;

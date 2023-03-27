@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
+import { upperFirst } from "lodash";
 import Dropdown from "../../Dropdown/Dropdown";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
@@ -22,9 +23,9 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${type.toUpperCase()}Text`
+    `screenReaderModalDescription${upperFirst(type)}Text`
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${type.toUpperCase()}Text`)
+  closeModalAriaLabelText: t(`closeModalAriaLabel${upperFirst(type)}Text`)
 });
 
 const ModalReservationFormSelect = ({

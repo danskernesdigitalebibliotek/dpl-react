@@ -1,4 +1,4 @@
-import { isEqual } from "lodash";
+import { upperFirst, isEqual } from "lodash";
 import React, { memo, useState } from "react";
 import { useQueryClient } from "react-query";
 import {
@@ -37,9 +37,9 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${type.toUpperCase()}Text`
+    `screenReaderModalDescription${upperFirst(type)}Text`
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${type.toUpperCase()}Text`)
+  closeModalAriaLabelText: t(`closeModalAriaLabel${upperFirst(type)}Text`)
 });
 
 const ModalReservationFormText = ({
