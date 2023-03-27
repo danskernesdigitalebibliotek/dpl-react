@@ -60,7 +60,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
                   value: ""
                 }}
                 options={formatValuesToDropdown(name, values)}
-                ariaLabel={name}
+                ariaLabel={t(`facet${upperFirst(name)}Text`)}
                 arrowIcon="chevron"
                 classNames="dropdown--grey-borders"
                 innerClassNames={{
