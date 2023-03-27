@@ -240,7 +240,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         dataCy="material-details-disclosure"
       >
         <MaterialDetailsList
-          id="main-details"
+          id="material-details"
           className="pl-80 pb-48"
           data={detailsListData}
         />
