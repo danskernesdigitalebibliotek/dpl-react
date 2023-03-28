@@ -228,9 +228,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         title={t("detailsText")}
         icon={Receipt}
       >
-        <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
+        <MaterialDetailsList
+          id={`material-details-${wid}`}
+          className="pl-80 pb-48"
+          data={detailsListData}
+        />
       </MaterialDisclosure>
-
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
           id="reviews"
