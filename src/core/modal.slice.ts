@@ -54,7 +54,13 @@ const modalSlice = createSlice({
         };
         console.log(wer);
         console.log(window.location.pathname);
-        window.history.pushState(wer, "", window.location.pathname);
+        window.history.pushState(
+          "",
+          "",
+          `?modal=${alreadyOpenModals === null ? "" : alreadyOpenModals}${
+            action.payload.modalId
+          }`
+        );
         // searchParams.append(
         //   "modal",
         //   `${alreadyOpenModals === null ? "" : alreadyOpenModals}${
