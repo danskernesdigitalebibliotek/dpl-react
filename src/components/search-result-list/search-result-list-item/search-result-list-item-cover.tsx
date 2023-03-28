@@ -6,16 +6,18 @@ const SearchResultListItemCover: React.FC<SearchResultListItemCoverProps> = ({
   id,
   description,
   url,
-  tint
+  tint,
+  linkAriaLabelledBy
 }) => {
   return (
     <Cover
       animate
       id={id}
       size="small"
-      description={String(description)}
+      description={description}
       url={url}
       tint={tint}
+      linkAriaLabelledBy={linkAriaLabelledBy}
     />
   );
 };
