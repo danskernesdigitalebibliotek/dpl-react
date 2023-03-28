@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useDeepCompareEffect } from "react-use";
 import { guardedRequest } from "../../core/guardedRequests.slice";
@@ -55,6 +55,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectPeriodicalHandler,
   children
 }) => {
+  const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -123,6 +124,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           title={String(title)}
           author={author}
           languageIsoCode={languageIsoCode}
+          materialTitleId={materialTitleId}
         />
         <div ref={itemRef} className="material-header__availability-label">
           {showItem && (
@@ -152,6 +154,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     manifestations={selectedManifestations}
                     workId={wid}
                     dataCy="material-header-buttons"
+                    materialTitleId={materialTitleId}
                   />
                 </div>
                 <MaterialAvailabilityText

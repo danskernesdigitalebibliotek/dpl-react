@@ -19,6 +19,7 @@ export interface MaterialButtonOnlineExternalProps {
   trackOnlineView: () => Promise<unknown>;
   manifestations: Manifestation[];
   dataCy?: string;
+  ariaLabelledBy: string;
 }
 
 export const getOnlineMaterialType = (
@@ -48,7 +49,8 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   size,
   trackOnlineView,
   manifestations,
-  dataCy = "material-button-online-external"
+  dataCy = "material-button-online-external",
+  ariaLabelledBy
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
@@ -101,6 +103,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
       iconClassNames="invert"
       trackClick={trackOnlineView}
       dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
     >
       {label(origin, getMaterialTypes(manifestations))}
     </LinkButton>
