@@ -38,6 +38,8 @@ const modalSlice = createSlice({
   initialState: { modalIds: [] },
   reducers: {
     openModal(state: StateProps, action: PayloadProps) {
+      const sdf = new URLSearchParams(window.location.search);
+      console.log(sdf.toString());
       // If there is a modalid in the payload, and if this modalid is not saved
       // then save the modalid
       if (
@@ -53,6 +55,7 @@ const modalSlice = createSlice({
             action.payload.modalId
           }`
         );
+        console.log(searchParams.toString());
       }
       const { activeElement } = document;
       // Prevent body from double triggering focus store when url contains modalId
@@ -61,6 +64,8 @@ const modalSlice = createSlice({
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {
+      const sdf = new URLSearchParams(window.location.search);
+      console.log(sdf.toString());
       state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
       removeModalIdFromUrl(action.payload.modalId);
       returnFocusElement();
