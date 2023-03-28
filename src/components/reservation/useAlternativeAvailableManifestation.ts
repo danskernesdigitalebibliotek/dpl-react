@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useDeepCompareEffect } from "react-use";
 import {
   getAllFaustIds,
   convertPostIdToFaustId
@@ -25,7 +26,7 @@ const useAlternativeAvailableManifestation = (
     recordid: faustIds
   });
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (availabilityData) {
       const reservableData = availabilityData.filter(
         (manifestation) => manifestation.reservable

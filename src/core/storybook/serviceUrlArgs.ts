@@ -8,7 +8,7 @@ export default {
   },
   [serviceUrlKeys.publizon]: {
     name: "Base url for the Publizon API",
-    defaultValue: "https://pubhub-openplatform.test.dbc.dk",
+    defaultValue: "https://pubhub-openplatform.dbc.dk",
     control: { type: "text" }
   },
   [serviceUrlKeys.dplCms]: {

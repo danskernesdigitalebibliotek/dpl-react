@@ -84,16 +84,9 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   };
 
   const availabilityLabel = (
-    <div
-      className={classes.parent}
-      onClick={handleSelectManifestation ?? undefined}
-      onKeyPress={handleSelectManifestation ?? undefined}
-      role="button"
-      tabIndex={0}
-      data-cy={dataCy}
-    >
+    <>
       <div className={classes.triangle} />
-      <img className={classes.check} src={CheckIcon} alt="check-icon" />
+      <img className={classes.check} src={CheckIcon} alt="" />
       {manifestText && (
         <>
           <p
@@ -113,13 +106,23 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
       >
         {availabilityText}
       </p>
-    </div>
+    </>
   );
 
   return url && !handleSelectManifestation ? (
-    <LinkNoStyle url={url}>{availabilityLabel}</LinkNoStyle>
+    <LinkNoStyle className={classes.parent} url={url} data-cy={dataCy}>
+      {availabilityLabel}
+    </LinkNoStyle>
   ) : (
-    availabilityLabel
+    <button
+      className={classes.parent}
+      type="button"
+      onClick={handleSelectManifestation}
+      data-cy={dataCy}
+      aria-pressed={selected}
+    >
+      {availabilityLabel}
+    </button>
   );
 };
 
