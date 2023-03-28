@@ -18,7 +18,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const t = useText();
   const config = useConfig();
   const textNotificationsEnabled =
-    config("textNotificationsEnabledConfig") === "true";
+    config("textNotificationsEnabledConfig") === "false";
 
   return (
     <section data-cy="patron-page-contact-info">
@@ -51,7 +51,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         />
       )}
       <TextInput
-        className="patron__input patron__input--desktop"
+        className={`patron__input patron__input--desktop ${
+          !textNotificationsEnabled && "mt-32"
+        }`}
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}
