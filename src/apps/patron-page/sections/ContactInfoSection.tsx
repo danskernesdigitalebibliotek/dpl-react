@@ -18,7 +18,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const t = useText();
   const config = useConfig();
   const textNotificationsEnabled =
-    config("textNotificationsEnabledConfig") === "false";
+    config("textNotificationsEnabledConfig") === "true";
 
   return (
     <section data-cy="patron-page-contact-info">
