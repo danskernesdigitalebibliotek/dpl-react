@@ -20,9 +20,6 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const textNotificationsEnabled =
     config("textNotificationsEnabledConfig") === "true";
 
-  const patronPageContactPhoneAmalgamation = `${t(
-    "patronPageContactPhoneCheckboxText"
-  )}`;
   return (
     <section data-cy="patron-page-contact-info">
       <h2 className="text-body-small-regular mt-32 mb-16">
@@ -50,7 +47,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           id="phone-messages"
           selected={patron?.receiveSms}
           disabled={false}
-          label={patronPageContactPhoneAmalgamation}
+          label={t("patronPageContactPhoneCheckboxText")}
         />
       )}
       <TextInput

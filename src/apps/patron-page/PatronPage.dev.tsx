@@ -116,7 +116,7 @@ export default {
     },
     patronPageContactPhoneCheckboxText: {
       defaultValue:
-        "Receive text messages about your loans, reservations, and so forth",
+        "Receive text messages about your loans, reservations, and so forth. This may cost money.",
       control: { type: "text" }
     },
     patronPageContactEmailLabelText: {
