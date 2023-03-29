@@ -26,7 +26,7 @@ const CoverImage: FC<CoverImageType> = ({
       { "cover__img--shadow": shadow }
     )}
     src={src}
-    alt={altText}
+    alt={altText || ""}
   />
 );
 
