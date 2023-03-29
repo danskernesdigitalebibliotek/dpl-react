@@ -37,7 +37,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation,
   workId
 }) => {
-  const materialMainfestationItemTitleId = useId();
+  const mainfestationTitleId = useId();
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid);
@@ -119,7 +119,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__text">
         <h3
           lang={languageIsoCode}
-          id={materialMainfestationItemTitleId}
+          id={mainfestationTitleId}
           className="material-manifestation-item__title text-header-h4"
         >
           {titles?.main[0]}
@@ -163,7 +163,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestations={[manifestation]}
           size="small"
           workId={workId}
-          materialTitleId={materialMainfestationItemTitleId}
+          materialTitleId={mainfestationTitleId}
         />
       </div>
     </div>
