@@ -114,6 +114,23 @@ export const getManifestationLanguages = (manifestation: Manifestation) => {
   );
 };
 
+export const getManifestationLanguageIsoCode = (
+  manifestation: Manifestation[]
+) => {
+  const uniqueLanguages = uniqBy(
+    manifestation.map((m) => m.languages),
+    "main[0].isoCode"
+  );
+  if (
+    uniqueLanguages.length === 1 &&
+    uniqueLanguages[0]?.main?.[0]?.isoCode &&
+    uniqueLanguages[0].main[0].isoCode !== "dan"
+  ) {
+    return uniqueLanguages[0].main[0].isoCode;
+  }
+  return undefined;
+};
+
 export const getManifestationFirstEditionYear = (
   manifestation: Manifestation
 ) => {

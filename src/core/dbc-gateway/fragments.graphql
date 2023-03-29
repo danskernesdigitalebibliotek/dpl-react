@@ -33,6 +33,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   languages {
     main {
       display
+      isoCode
     }
   }
   identifiers {
@@ -108,7 +109,7 @@ fragment ManifestationReviewFields on Manifestation {
     ... on DigitalArticleService {
       issn
     }
-    ...on AccessUrl {
+    ... on AccessUrl {
       url
       origin
     }

@@ -1480,7 +1480,11 @@ export type GetMaterialQuery = {
         >;
         languages?: {
           __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -1560,7 +1564,11 @@ export type GetMaterialQuery = {
         >;
         languages?: {
           __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -1640,7 +1648,11 @@ export type GetMaterialQuery = {
         >;
         languages?: {
           __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -1856,7 +1868,11 @@ export type RecommendFromFaustQuery = {
             >;
             languages?: {
               __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -1942,7 +1958,11 @@ export type RecommendFromFaustQuery = {
             >;
             languages?: {
               __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -2028,7 +2048,11 @@ export type RecommendFromFaustQuery = {
             >;
             languages?: {
               __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -2174,7 +2198,11 @@ export type SearchWithPaginationQuery = {
           >;
           languages?: {
             __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -2260,7 +2288,11 @@ export type SearchWithPaginationQuery = {
           >;
           languages?: {
             __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -2346,7 +2378,11 @@ export type SearchWithPaginationQuery = {
           >;
           languages?: {
             __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -2528,7 +2564,11 @@ export type ManifestationsSimpleFragment = {
     >;
     languages?: {
       __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -2605,7 +2645,11 @@ export type ManifestationsSimpleFragment = {
     >;
     languages?: {
       __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -2682,7 +2726,11 @@ export type ManifestationsSimpleFragment = {
     >;
     languages?: {
       __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -2761,7 +2809,11 @@ export type ManifestationsSimpleFieldsFragment = {
   >;
   languages?: {
     __typename?: "Languages";
-    main?: Array<{ __typename?: "Language"; display: string }> | null;
+    main?: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }> | null;
   } | null;
   identifiers: Array<{ __typename?: "Identifier"; value: string }>;
   contributors: Array<
@@ -2937,7 +2989,11 @@ export type WorkSmallFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3017,7 +3073,11 @@ export type WorkSmallFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3097,7 +3157,11 @@ export type WorkSmallFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3259,7 +3323,11 @@ export type WorkMediumFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3339,7 +3407,11 @@ export type WorkMediumFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3419,7 +3491,11 @@ export type WorkMediumFragment = {
       >;
       languages?: {
         __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -3571,6 +3647,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   languages {
     main {
       display
+      isoCode
     }
   }
   identifiers {

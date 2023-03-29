@@ -30,7 +30,10 @@ import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
-import { getNumberedSeries } from "../../../apps/material/helper";
+import {
+  getManifestationLanguageIsoCode,
+  getNumberedSeries
+} from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 
@@ -74,6 +77,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     workId as WorkId,
     materialTypeFromFilters
   );
+  const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
+
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -154,6 +159,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         <h2
           className="search-result-item__title text-header-h4 mb-4"
           data-cy="search-result-item-title"
+          lang={languageIsoCode}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
