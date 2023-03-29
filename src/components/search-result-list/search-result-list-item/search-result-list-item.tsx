@@ -57,7 +57,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   resultNumber,
   dataCy = "search-result-list-item"
 }) => {
-  const searchResultListItemTitleId = useId();
+  const searchTitleId = useId();
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const { filters } = useFilterHandler();
@@ -132,7 +132,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
             id={manifestationPid}
             url={materialFullUrl}
             tint={coverTint}
-            linkAriaLabelledBy={searchResultListItemTitleId}
+            linkAriaLabelledBy={searchTitleId}
           />
         )}
       </div>
@@ -161,7 +161,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           className="search-result-item__title text-header-h4 mb-4"
           data-cy="search-result-item-title"
           lang={languageIsoCode}
-          id={searchResultListItemTitleId}
+          id={searchTitleId}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
