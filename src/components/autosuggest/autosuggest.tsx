@@ -61,7 +61,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
           getItemProps={getItemProps}
         />
         {textData.length > 0 && materialData.length > 0 && (
-          <li className="autosuggest__divider" />
+          <li className="autosuggest__divider" aria-hidden />
         )}
         {materialData.length > 0 && (
           <AutosuggestMaterial
@@ -73,7 +73,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         )}
         {categoryData && categoryData.length > 0 && (
           <>
-            <li className="autosuggest__divider" />
+            <li className="autosuggest__divider" aria-hidden />
             <AutosuggestCategory
               categoryData={categoryData}
               getItemProps={getItemProps}
