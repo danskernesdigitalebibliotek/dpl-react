@@ -1,7 +1,7 @@
-import { upperFirst } from "lodash";
 import React, { memo } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
+  FacetField,
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
@@ -9,7 +9,10 @@ import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
-import { FacetBrowserModalId } from "../facet-browser/helper";
+import {
+  FacetBrowserModalId,
+  getFacetFieldTranslation
+} from "../facet-browser/helper";
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
@@ -51,16 +54,17 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     <ul className="facet-line mt-48">
       {facets.map(({ name, values }) => {
         if (values.length > 1) {
+          const translatedName = getFacetFieldTranslation(name);
           return (
             <li className="facet-line__item">
               <Dropdown
                 cyData={`facet-line-${name}-dropdown`}
                 placeholder={{
-                  label: t(`facet${upperFirst(name)}Text`),
+                  label: t(translatedName),
                   value: ""
                 }}
                 options={formatValuesToDropdown(name, values)}
-                ariaLabel={t(`facet${upperFirst(name)}Text`)}
+                ariaLabel={t(translatedName)}
                 arrowIcon="chevron"
                 classNames="dropdown--grey-borders"
                 innerClassNames={{

@@ -8,6 +8,7 @@ import SearchResult from "./search-result";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
+  addToFavoritesAriaLabelText: string;
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   byAuthorText: string;
@@ -15,11 +16,15 @@ interface SearchResultEntryTextProps {
   facetAccessTypesText: string;
   facetBrowserModalCloseModalAriaLabelText: string;
   facetBrowserModalScreenReaderModalDescriptionText: string;
+  facetCanAlwaysBeLoanedText: string;
   facetChildrenOrAdultsText: string;
   facetCreatorsText: string;
+  facetFictionalCharactersText: string;
   facetFictionNonfictionText: string;
   facetGenreAndFormText: string;
   facetMainLanguagesText: string;
+  facetMaterialTypesGeneralText: string;
+  facetMaterialTypesSpecificText: string;
   facetMaterialTypesText: string;
   facetSubjectsText: string;
   facetWorkTypesText: string;
@@ -27,12 +32,11 @@ interface SearchResultEntryTextProps {
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
+  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
   showMoreText: string;
   showResultsText: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
 }
 
 interface SearchResultEntryUrlProps {
