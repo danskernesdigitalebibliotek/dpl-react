@@ -68,7 +68,7 @@ const modalSlice = createSlice({
         storeFocusElement(activeElement);
       }
     },
-    closeModal(state: StateProps) {
+    closeModal(state: StateProps, action: PayloadProps) {
       const modalId = state.modalIds.pop();
       if (modalId) {
         removeModalIdFromUrl(modalId, state);
