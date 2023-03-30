@@ -172,4 +172,37 @@ export const getManifestationsToReserve = (
   return reservableManifestations;
 };
 
+const handleReservationModalTypeTranslationError = (name: string): never => {
+  throw new Error(
+    `No translation for "${name}" in getReservationModalTypeTranslation`
+  );
+};
+
+export const getReservationModalTypeTranslation = (
+  name: string,
+  type: "closeModalAriaLabelText" | "screenReaderModalDescriptionText"
+) => {
+  const isCloseModal = type === "closeModalAriaLabelText";
+  switch (name) {
+    case "sms":
+      return isCloseModal
+        ? "closeModalAriaLabelSmsText"
+        : "screenReaderModalDescriptionSmsText";
+    case "email":
+      return isCloseModal
+        ? "closeModalAriaLabelEmailText"
+        : "screenReaderModalDescriptionEmailText";
+    case "interestPeriod":
+      return isCloseModal
+        ? "closeModalAriaLabelInterestPeriodText"
+        : "screenReaderModalDescriptionInterestPeriodText";
+    case "pickup":
+      return isCloseModal
+        ? "closeModalAriaLabelPickupText"
+        : "screenReaderModalDescriptionPickupText";
+    default:
+      return handleReservationModalTypeTranslationError(name);
+  }
+};
+
 export default {};

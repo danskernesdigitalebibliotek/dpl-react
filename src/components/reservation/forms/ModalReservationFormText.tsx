@@ -1,4 +1,4 @@
-import { upperFirst, isEqual } from "lodash";
+import { isEqual } from "lodash";
 import React, { memo, useState } from "react";
 import { useQueryClient } from "react-query";
 import {
@@ -10,6 +10,7 @@ import { stringifyValue } from "../../../core/utils/helpers/general";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
+import { getReservationModalTypeTranslation } from "../helper";
 import {
   modalReservationFormId,
   ModalReservationFormTextType,
@@ -37,9 +38,11 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${upperFirst(type)}Text`
+    getReservationModalTypeTranslation(type, "screenReaderModalDescriptionText")
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${upperFirst(type)}Text`)
+  closeModalAriaLabelText: t(
+    getReservationModalTypeTranslation(type, "closeModalAriaLabelText")
+  )
 });
 
 const ModalReservationFormText = ({

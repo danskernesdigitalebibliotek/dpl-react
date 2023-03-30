@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent } from "react";
-import { upperFirst } from "lodash";
 import Dropdown from "../../Dropdown/Dropdown";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
 import ReservationForm from "./ReservationForm";
+import { getReservationModalTypeTranslation } from "../helper";
 
 export interface ModalReservationFormSelectProps {
   type: ModalReservationFormTextType;
@@ -23,9 +23,11 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${upperFirst(type)}Text`
+    getReservationModalTypeTranslation(type, "screenReaderModalDescriptionText")
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${upperFirst(type)}Text`)
+  closeModalAriaLabelText: t(
+    getReservationModalTypeTranslation(type, "closeModalAriaLabelText")
+  )
 });
 
 const ModalReservationFormSelect = ({

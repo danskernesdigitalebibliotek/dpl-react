@@ -134,7 +134,7 @@ interface MaterialEntryTextProps {
   reviewsText: string;
   saveButtonText: string;
   screenReaderModalDescriptionEmailText: string;
-  screenReaderModalDescriptionInterestperiodText: string;
+  screenReaderModalDescriptionInterestPeriodText: string;
   screenReaderModalDescriptionPickupText: string;
   screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;

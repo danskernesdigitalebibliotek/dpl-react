@@ -705,7 +705,7 @@ export default {
       defaultValue: "Change email",
       control: { type: "text" }
     },
-    screenReaderModalDescriptionInterestperiodText: {
+    screenReaderModalDescriptionInterestPeriodText: {
       name: "Screen reader modal description for interest period",
       defaultValue: "Change interest period modal",
       control: { type: "text" }
