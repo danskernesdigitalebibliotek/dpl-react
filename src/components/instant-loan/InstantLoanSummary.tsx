@@ -27,11 +27,7 @@ const InstantLoanSummary: React.FunctionComponent<InstantLoanSummaryProps> = ({
           <p className="link-tag text-small-caption">
             {t("instantLoanUnderlineDescriptionText")}
           </p>
-          <img
-            className="instant-loan-arrow"
-            src={ExpandMore}
-            alt="various-icon"
-          />
+          <img className="instant-loan-arrow" src={ExpandMore} alt="" />
         </div>
       </div>
     </div>
