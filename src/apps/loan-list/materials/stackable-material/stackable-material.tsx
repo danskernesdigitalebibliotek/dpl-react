@@ -1,11 +1,11 @@
 import React, { useCallback, FC } from "react";
-import MaterialStatus from "./material-status";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
+import MaterialStatus from "./material-status";
 
 export interface StackableMaterialProps {
   loan: LoanType;
@@ -55,7 +55,14 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
         </MaterialInfo>
       )}
-      <MaterialStatus loan={loan}>
+      <MaterialStatus
+        loan={loan}
+        openDetailsModal={openLoanDetailsModal}
+        openDueDateModal={() =>
+          openDueDateModal && dueDate && openDueDateModal(dueDate)
+        }
+        additionalMaterials={additionalMaterials}
+      >
         <AdditionalMaterialsButton
           showOn="mobile"
           openDueDateModal={() =>

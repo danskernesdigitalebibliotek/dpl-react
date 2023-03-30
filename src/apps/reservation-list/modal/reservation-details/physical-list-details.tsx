@@ -21,7 +21,7 @@ import {
 } from "../../../../core/fbs/fbs";
 import {
   getPreferredBranch,
-  hardcodedInterestPeriods
+  getInterestPeriods
 } from "../../../../components/reservation/helper";
 import { AgencyBranch } from "../../../../core/fbs/model";
 import { formatDate } from "../../../loan-list/utils/helpers";
@@ -49,7 +49,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   branches
 }) => {
   const t = useText();
-
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
   const [pickupBranchFetched, setPickupBranchFetched] = useState<string>("");
@@ -68,7 +67,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
     null
   );
-  const formatInterestPeriods = Object.entries(hardcodedInterestPeriods(t)).map(
+  const formatInterestPeriods = Object.entries(getInterestPeriods(t)).map(
     ([key, value]) => ({
       value: key,
       label: value

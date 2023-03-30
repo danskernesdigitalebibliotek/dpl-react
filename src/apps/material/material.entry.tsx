@@ -67,6 +67,9 @@ interface MaterialEntryTextProps {
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
+  instantLoanSubTitleText: string;
+  instantLoanTitleText: string;
+  instantLoanUnderlineDescriptionText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -151,10 +154,12 @@ interface MaterialEntryUrlProps {
   authUrl: string;
 }
 interface MaterialEntryConfigProps {
-  smsNotificationsForReservationsEnabledConfig: boolean;
-  blacklistedPickupBranchesConfig?: string;
   blacklistedAvailabilityBranchesConfig?: string;
+  blacklistedInstantLoanBranchesConfig: string;
+  blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  instantLoanConfig: string;
+  smsNotificationsForReservationsEnabledConfig: boolean;
 }
 
 export interface MaterialEntryProps
