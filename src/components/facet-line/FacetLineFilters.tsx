@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
-  FacetField,
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
