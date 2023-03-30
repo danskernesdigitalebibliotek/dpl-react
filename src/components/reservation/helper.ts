@@ -17,28 +17,35 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 
-export const smsNotificationsIsEnabled = (
-  configValue: string | undefined | string[]
-) => configValue === "1";
+export const isConfigValueOne = (configValue: string | undefined | string[]) =>
+  configValue === "1";
 
 export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);
   return locationItem ? locationItem.title : id;
 };
+export const getInterestPeriods = (t: UseTextFunction) => {
+  const visibleInterestPeriods: { [key: string]: string } = {};
+  const interestPeriods = [
+    ["interestPeriodOneMonthConfigText", "30", "oneMonthText"],
+    ["interestPeriodTwoMonthsConfigText", "60", "twoMonthsText"],
+    ["interestPeriodThreeMonthsConfigText", "90", "threeMonthsText"],
+    ["interestPeriodSixMonthsConfigText", "180", "sixMonthsText"],
+    ["interestPeriodOneYearConfigText", "360", "oneYearText"]
+  ];
 
-export const hardcodedInterestPeriods = (t: UseTextFunction) => {
-  return {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText")
-  };
+  interestPeriods.forEach(([config, key, text]) => {
+    if (isConfigValueOne(t(config))) {
+      visibleInterestPeriods[key] = t(text);
+    }
+  });
+
+  return visibleInterestPeriods;
 };
 
 export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
   const reservationInterestIntervals: { [key: string]: string } = {
-    ...hardcodedInterestPeriods(t),
+    ...getInterestPeriods(t),
     default: `${days} ${t("daysText")}`
   } as const;
 

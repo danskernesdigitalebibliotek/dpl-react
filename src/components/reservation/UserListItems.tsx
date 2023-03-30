@@ -16,7 +16,7 @@ import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import {
-  smsNotificationsIsEnabled,
+  isConfigValueOne,
   getPreferredBranch,
   getNoInterestAfter
 } from "./helper";
@@ -105,7 +105,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         </>
       )}
       <>
-        {smsNotificationsIsEnabled(
+        {isConfigValueOne(
           config("smsNotificationsForReservationsEnabledConfig")
         ) && (
           <>
