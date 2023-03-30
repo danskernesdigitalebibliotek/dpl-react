@@ -3,7 +3,8 @@ import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
   CreateReservation,
-  CreateReservationBatchV2
+  CreateReservationBatchV2,
+  HoldingsV3
 } from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
@@ -178,5 +179,41 @@ export const getManifestationsToReserve = (
   // reserve whichever one of the reservable manifestations will be home soonest.
   return reservableManifestations;
 };
+
+export const getInstantLoanBranchHoldings = (
+  branchHoldings: HoldingsV3[],
+  whitelist: AgencyBranch[],
+  instantLoanString: string
+) => {
+  const whitelistIds = whitelist.map(({ branchId }) => branchId);
+
+  // 1. Filter holdings by branch on whitelist
+  const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
+    whitelistIds.includes(branch.branchId)
+  );
+
+  // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
+  const filteredMaterials = filteredBranchHoldings
+    .map(({ branch, materials }) => {
+      const filtered = materials.filter(
+        ({ materialGroup, available }) =>
+          materialGroup.description?.includes(instantLoanString) && available
+      );
+
+      return { branch, materials: filtered };
+    })
+    .filter(({ materials }) => materials.length > 0);
+
+  // 4. Return filtered holdings
+  return filteredMaterials;
+};
+
+export const getInstantLoanBranchHoldingsAboveThreshold = (
+  instantLoanBranchHoldings: HoldingsV3[],
+  instantLoanThresholdConfig: string
+) =>
+  instantLoanBranchHoldings.filter(
+    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+  );
 
 export default {};

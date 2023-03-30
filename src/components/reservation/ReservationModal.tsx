@@ -11,12 +11,14 @@ type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
   work: Work;
+  dataCy?: string;
 };
 
 const ReservationModal = ({
   selectedManifestations,
   selectedPeriodical = null,
-  work
+  work,
+  dataCy
 }: ReservationModalProps) => {
   const t = useText();
   const faustIds = getAllFaustIds(selectedManifestations);
@@ -29,6 +31,7 @@ const ReservationModal = ({
         "reservationModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
+      dataCy={dataCy || "reservation-modal"}
     >
       <ReservationModalBody
         selectedManifestations={selectedManifestations}
