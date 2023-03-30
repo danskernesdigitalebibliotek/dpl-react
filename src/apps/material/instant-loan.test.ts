@@ -55,7 +55,8 @@ describe("Instant Loan", () => {
       .and("contain", "Reserve bog")
       .click();
 
-    // TODO: This should not be necessary, but it is...
+    // TODO: Find out why the next line is necessary to pass the test.
+    // It should not be necessary as we already activated lazy loading on line 51.
     cy.getBySel("material-description").scrollIntoView();
   });
 
