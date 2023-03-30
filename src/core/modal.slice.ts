@@ -29,7 +29,7 @@ const returnFocusElement = () => {
 
 const removeModalIdFromUrl = (modalId: ModalId, state: StateProps) => {
   let newModalParam = "?";
-  if (state.modalIds.toString() !== "") {
+  if (state.modalIds?.toString() !== "") {
     newModalParam = `?modal=${state.modalIds.toString()}`;
   }
   window.history.pushState("", "", newModalParam);
