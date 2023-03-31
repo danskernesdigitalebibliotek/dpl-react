@@ -211,9 +211,14 @@ export const getInstantLoanBranchHoldings = (
 export const getInstantLoanBranchHoldingsAboveThreshold = (
   instantLoanBranchHoldings: HoldingsV3[],
   instantLoanThresholdConfig: string
-) =>
-  instantLoanBranchHoldings.filter(
-    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
-  );
+) => {
+  const instantLoanBranchHoldingsAboveThreshold =
+    instantLoanBranchHoldings.filter(
+      ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+    );
+  return instantLoanBranchHoldingsAboveThreshold.length > 0
+    ? instantLoanBranchHoldingsAboveThreshold
+    : null;
+};
 
 export default {};
