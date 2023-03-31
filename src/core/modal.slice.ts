@@ -27,7 +27,7 @@ const returnFocusElement = () => {
   return element;
 };
 
-const removeModalIdFromUrl = (modalId: ModalId, state: StateProps) => {
+const removeModalIdFromUrl = (state: StateProps) => {
   let newModalParam = "?";
   if (state.modalIds?.toString() !== "") {
     newModalParam = `?modal=${state.modalIds.toString()}`;
@@ -65,16 +65,24 @@ const modalSlice = createSlice({
         storeFocusElement(activeElement);
       }
     },
-    closeModal(state: StateProps) {
+    closeModal(state: StateProps, action: PayloadProps) {
+      const modalId = state.modalIds.pop();
+      state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
+      if (modalId) {
+        removeModalIdFromUrl(state);
+        returnFocusElement();
+      }
+    },
+    closeLastModal(state: StateProps) {
       const modalId = state.modalIds.pop();
       if (modalId) {
-        removeModalIdFromUrl(modalId, state);
+        removeModalIdFromUrl(state);
         returnFocusElement();
       }
     }
   }
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
+export const { openModal, closeModal, closeLastModal } = modalSlice.actions;
 
 export default modalSlice.reducer;

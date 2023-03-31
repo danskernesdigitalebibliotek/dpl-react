@@ -70,7 +70,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
           size="small"
           variant="filled"
           onClick={() => {
-            dispatch(closeModal());
+            dispatch(closeModal({ modalId }));
           }}
         />
       </section>

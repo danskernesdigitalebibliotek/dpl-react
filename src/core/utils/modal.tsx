@@ -137,8 +137,8 @@ export const useModalButtonHandler = () => {
     open: (modalId: ModalId) => {
       return dispatch(openModal({ modalId }));
     },
-    close: () => {
-      return dispatch(closeModal());
+    close: (modalId: ModalId) => {
+      return dispatch(closeModal({ modalId }));
     },
     openGuarded: ({
       authUrl,

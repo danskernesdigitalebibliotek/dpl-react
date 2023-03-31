@@ -5,7 +5,7 @@ import { setToken } from "./token";
 import Store from "../components/store";
 import { persistor, store } from "./store";
 import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
-import { closeModal } from "./modal.slice";
+import { closeLastModal } from "./modal.slice";
 
 /**
  * We look for containers and corresponding applications.
@@ -82,7 +82,7 @@ function init() {
   // purpose.
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      store.dispatch(closeModal());
+      store.dispatch(closeLastModal());
     }
   });
 
