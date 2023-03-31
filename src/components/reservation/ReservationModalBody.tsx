@@ -69,7 +69,7 @@ export const ReservationModalBody = ({
   const t = useText();
   const config = useConfig();
   const {
-    match_string: instantLoanMatchString,
+    matchString: instantLoanMatchString,
     threshold: instantLoanThreshold,
     enabled: instantLoanEnabled
   } = config<InstantLoanConfigType>("instantLoanConfig", {
