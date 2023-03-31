@@ -33,9 +33,6 @@ const removeModalIdFromUrl = (modalId: ModalId, state: StateProps) => {
     newModalParam = `?modal=${state.modalIds.toString()}`;
   }
   window.history.pushState("", "", newModalParam);
-  const searchParams = new URLSearchParams(window.location.search);
-  const newSearchParams = searchParams.get("modal")?.replace(modalId, "");
-  searchParams.append("modal", newSearchParams || "");
 };
 
 const modalSlice = createSlice({
@@ -68,7 +65,7 @@ const modalSlice = createSlice({
         storeFocusElement(activeElement);
       }
     },
-    closeModal(state: StateProps, action: PayloadProps) {
+    closeModal(state: StateProps) {
       const modalId = state.modalIds.pop();
       if (modalId) {
         removeModalIdFromUrl(modalId, state);
