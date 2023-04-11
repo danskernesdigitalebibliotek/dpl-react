@@ -4,22 +4,10 @@ import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import FavoritesList from "./FavoritesList";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface FavoritesListConfigEntryProps {
   fbsBaseUrlConfig: string;
-}
-// TODO: Make a global interface for the urls at src/core/utils/types, to avoid redefining the same props over and over again.
-interface FavoritesListUrlEntryProps {
-  materialUrl: string;
-  searchUrl: string;
-  fbsBaseUrl: string;
-  materialOverdueUrl: string;
-  feesPageUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
 }
 interface FavoritesListTextEntryProps {
   favoritesListMaterialsText: string;
@@ -36,7 +24,7 @@ interface FavoritesListTextEntryProps {
 export interface FavoritesListEntryProps
   extends FavoritesListConfigEntryProps,
     FavoritesListTextEntryProps,
-    FavoritesListUrlEntryProps {
+    GlobalUrlEntryPropsInterface {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }

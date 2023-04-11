@@ -5,6 +5,7 @@ import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -18,12 +19,6 @@ interface PatronPageConfigProps {
 export interface PatronPageUrlProps {
   deletePatronUrl: string;
   pauseReservationInfoUrl: string;
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
   alwaysLoanableEreolenUrl: string;
 }
 
@@ -80,7 +75,8 @@ export interface PatronPageProps
   extends PatronPageConfigProps,
     BlockedPatronEntryTextProps,
     PatronPageTextProps,
-    PatronPageUrlProps {}
+    PatronPageUrlProps,
+    GlobalUrlEntryPropsInterface {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 

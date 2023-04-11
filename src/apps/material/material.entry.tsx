@@ -5,6 +5,7 @@ import { withText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface MaterialEntryTextProps {
   addToFavoritesAriaLabelText: string;
@@ -139,12 +140,7 @@ interface MaterialEntryTextProps {
   tryAginButtonText: string;
   twoMonthsText: string;
 }
-interface MaterialEntryUrlProps {
-  dplCmsBaseUrl: string;
-  materialUrl: string;
-  searchUrl: string;
-  authUrl: string;
-}
+
 interface MaterialEntryConfigProps {
   blacklistedAvailabilityBranchesConfig?: string;
   blacklistedInstantLoanBranchesConfig: string;
@@ -155,7 +151,7 @@ interface MaterialEntryConfigProps {
 }
 
 export interface MaterialEntryProps
-  extends MaterialEntryUrlProps,
+  extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
     MaterialEntryConfigProps {
   wid: WorkId;
