@@ -1,4 +1,4 @@
-import { compact, groupBy, uniqBy, uniq } from "lodash";
+import { compact, groupBy, uniqBy, uniq, head } from "lodash";
 import {
   constructModalId,
   getMaterialTypes,
@@ -115,19 +115,23 @@ export const getManifestationLanguages = (manifestation: Manifestation) => {
 };
 
 export const getManifestationLanguageIsoCode = (
-  manifestation: Manifestation[]
+  manifestations: Pick<Manifestation, "languages">[]
 ) => {
-  const uniqueLanguages = uniqBy(
-    manifestation.map((m) => m.languages),
-    "main[0].isoCode"
-  );
-  if (
-    uniqueLanguages.length === 1 &&
-    uniqueLanguages[0]?.main?.[0]?.isoCode &&
-    uniqueLanguages[0].main[0].isoCode !== "dan"
-  ) {
-    return uniqueLanguages[0].main[0].isoCode;
+  const mainLanguages = manifestations
+    .map(({ languages }) => languages)
+    .flatMap((language) => language?.main);
+
+  const uniqueLanguagesWithIsoCode = uniqBy(mainLanguages, "isoCode");
+
+  // We only want to set the lang attribute if there is only one isoCode
+  const uniqIsoCode =
+    uniqueLanguagesWithIsoCode.length === 1 &&
+    head(uniqueLanguagesWithIsoCode)?.isoCode;
+
+  if (uniqIsoCode) {
+    return uniqIsoCode;
   }
+  // if there is no isoCode it return undefined so that the lang attribute is not set
   return undefined;
 };
 
