@@ -14,6 +14,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   pid
   genreAndForm
   source
+  ...WithLanguages
   titles {
     main
     original
@@ -30,12 +31,6 @@ fragment ManifestationsSimpleFields on Manifestation {
     __typename
   }
   publisher
-  languages {
-    main {
-      display
-      isoCode
-    }
-  }
   identifiers {
     value
   }
@@ -229,6 +224,19 @@ fragment WorkMedium on Work {
           main
         }
       }
+    }
+  }
+}
+
+# Fragments used to ensure consistency for properties between different queries.
+# Generated types from these fragments should not be used directly but instead
+# inferred by Pick'ing fields from other types.
+
+fragment WithLanguages on Manifestation {
+  languages {
+    main {
+      display
+      isoCode
     }
   }
 }

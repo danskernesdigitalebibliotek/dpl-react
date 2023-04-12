@@ -786,3 +786,8 @@ export const InstantLoan = Template.bind({});
 InstantLoan.args = {
   wid: "work-of:870970-basis:134015012"
 };
+
+export const Dinosaurierfedern = Template.bind({});
+Dinosaurierfedern.args = {
+  wid: "work-of:870970-basis:44805421"
+};
