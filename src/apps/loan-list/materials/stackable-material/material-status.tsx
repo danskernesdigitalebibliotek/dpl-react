@@ -1,20 +1,52 @@
-import React, { FC, ReactNode } from "react";
-import { formatDate, isDigital } from "../../utils/helpers";
+import React, { FC, ReactNode, useCallback } from "react";
+import {
+  formatDate,
+  isDigital,
+  materialsAreStacked
+} from "../../utils/helpers";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
-import Arrow from "../../../../components/atoms/icons/arrow/arrow";
+import ArrowButton from "../../../../components/Buttons/ArrowButton";
 
 interface MaterialStatusProps {
   loan: LoanType;
   children: ReactNode;
+  additionalMaterials: number;
+  openDetailsModal: (modalId: string) => void;
+  openDueDateModal?: (dueDate: string) => void;
 }
 
-const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
+const MaterialStatus: FC<MaterialStatusProps> = ({
+  loan,
+  children,
+  additionalMaterials,
+  openDetailsModal,
+  openDueDateModal
+}) => {
   const t = useText();
-  const { dueDate, loanDate } = loan;
+  const { dueDate, loanDate, faust, identifier } = loan;
+  const isStacked = materialsAreStacked(additionalMaterials);
 
+  const notificationClickEventHandler = useCallback(() => {
+    if (isStacked && openDueDateModal && dueDate) {
+      openDueDateModal(dueDate);
+    }
+    if (!isStacked && faust) {
+      openDetailsModal(faust);
+    }
+    if (!isStacked && identifier) {
+      openDetailsModal(identifier);
+    }
+  }, [
+    isStacked,
+    openDueDateModal,
+    dueDate,
+    openDetailsModal,
+    faust,
+    identifier
+  ]);
   if (!dueDate || !loanDate) return <div />;
 
   return (
@@ -41,7 +73,10 @@ const MaterialStatus: FC<MaterialStatusProps> = ({ loan, children }) => {
           {children}
         </div>
       </div>
-      <Arrow />
+      <ArrowButton
+        cursorPointer
+        clickEventHandler={notificationClickEventHandler}
+      />
     </div>
   );
 };

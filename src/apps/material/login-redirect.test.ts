@@ -19,7 +19,7 @@ describe("Material", () => {
         cy.createFakeAuthenticatedSession();
       });
 
-    cy.getBySel("modal").should("be.visible");
+    cy.getBySel("reservation-modal-parallel").should("be.visible");
   });
 
   it("Shouldn't redirect logged in users", () => {
@@ -37,7 +37,7 @@ describe("Material", () => {
       .click()
       .url()
       .should("not.include", "modal=reservation-modal");
-    cy.getBySel("modal").should("be.visible");
+    cy.getBySel("reservation-modal-parallel").should("be.visible");
   });
 
   beforeEach(() => {

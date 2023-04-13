@@ -61,10 +61,16 @@ export interface ReservationListTextProps {
   threeMonthsText: string;
   sixMonthsText: string;
   oneYearText: string;
+  interestPeriodOneMonthConfigText: string;
+  interestPeriodTwoMonthsConfigText: string;
+  interestPeriodThreeMonthsConfigText: string;
+  interestPeriodSixMonthsConfigText: string;
+  interestPeriodOneYearConfigText: string;
   listDetailsNothingSelectedLabelText: string;
   reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveDigitalReservationText: string;
+  reservationDetailAllowRemoveReadyReservationsConfig: boolean;
   deleteReservationModalHeaderText: string;
   deleteReservationModalDeleteQuestionText: string;
   deleteReservationModalNotRegrettableText: string;

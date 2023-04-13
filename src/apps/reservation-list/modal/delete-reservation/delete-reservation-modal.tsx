@@ -26,12 +26,11 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
   const { close } = useModalButtonHandler();
-
   const physicalDeletion = useCallback(() => {
-    if (!isDigital(reservation) && reservation.faust) {
+    if (!isDigital(reservation) && reservation.reservationId) {
       deletePhysicalReservation(
         {
-          params: { reservationid: [Number(reservation.faust)] }
+          params: { reservationid: [Number(reservation.reservationId)] }
         },
         {
           onSuccess: () => {

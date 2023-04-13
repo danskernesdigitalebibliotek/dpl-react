@@ -198,6 +198,10 @@ export default {
       defaultValue: "Remove your reservation",
       control: { type: "text" }
     },
+    reservationDetailAllowRemoveReadyReservationsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
     reservationDetailsDigitalReservationGoToEreolenText: {
       defaultValue: "Go to eReolen",
       control: { type: "text" }
@@ -317,6 +321,26 @@ export default {
     },
     oneYearText: {
       defaultValue: "1 year",
+      control: { type: "text" }
+    },
+    interestPeriodOneMonthConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfigText: {
+      defaultValue: "1",
       control: { type: "text" }
     },
     listDetailsNothingSelectedLabelText: {

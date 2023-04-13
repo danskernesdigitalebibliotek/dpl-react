@@ -15,7 +15,14 @@ import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialType from "../../core/utils/types/material-type";
-import { WorkType } from "../../core/dbc-gateway/generated/graphql";
+import {
+  AccessTypeCode,
+  WorkType
+} from "../../core/dbc-gateway/generated/graphql";
+import {
+  hasCorrectAccessType,
+  isArticle
+} from "../../components/material/material-buttons/helper";
 
 export const getWorkManifestation = (
   work: Work,
@@ -369,3 +376,8 @@ export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
     ...subjects.dbcVerified.map((item) => item.display),
     ...subjects.all.map((item) => item.display)
   ]);
+
+export const isParallelReservation = (manifestations: Manifestation[]) =>
+  manifestations.length > 1 &&
+  hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+  !isArticle(manifestations);
