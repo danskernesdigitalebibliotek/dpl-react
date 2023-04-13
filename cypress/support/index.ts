@@ -6,7 +6,6 @@ import { hasOperationName } from "../utils/graphql-test-utils";
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
-const TOKEN_LIBRARY_KEY = "library";
 
 Cypress.Commands.add("createFakeLibrarySession", () => {
   // Since the user token is shared in storybook by setting it in sessionStorage
