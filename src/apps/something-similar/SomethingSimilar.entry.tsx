@@ -21,8 +21,8 @@ export interface SomethingSimilarProps {
   faust: FaustId;
 }
 
-const SomethingSimilarEntry: FC<SomethingSimilarProps> = ({ faust }) => (
-  <SomethingSimilar faust={faust} />
-);
+const SomethingSimilarEntry: FC<SomethingSimilarProps> = ({ faust }) => {
+  return <SomethingSimilar faust={faust} />
+};
 
 export default withUrls(withConfig(withText(SomethingSimilarEntry)));
