@@ -36,8 +36,9 @@ const withIsPatronBlockedHoc =
     ]);
 
     const [blockedStatus, setBlockedStatus] = useState<string>();
-    const [blockedFromViewingContent, setBlockedFromViewingContent] =
-      useState<boolean>(true);
+    const [blockedFromViewingContent, setBlockedFromViewingContent] = useState<
+      boolean | null
+    >(null);
     const { data: patronData } = useGetPatronInformationByPatronIdV2();
 
     // Used to check whether the modal has been opened by another component,
