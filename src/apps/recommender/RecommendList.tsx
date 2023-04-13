@@ -11,6 +11,7 @@ import RecommendMaterial from "./RecommendMaterial";
 import { Work } from "../../core/utils/types/entities";
 import fetchDigitalMaterial from "../loan-list/materials/utils/digital-material-fetch-hoc";
 import { FaustId } from "../../core/utils/types/ids";
+import { getRecommenderMaterialLimits } from "../../core/utils/helpers/general";
 
 export interface RecommendListProps {
   loanOrReservationFaust: FaustId;
@@ -23,10 +24,10 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
   titleKey
 }) => {
   const t = useText();
-
+  const { recommender: recommenderLimit } = getRecommenderMaterialLimits();
   const { data } = useRecommendFromFaustQuery({
     faust: loanOrReservationFaust,
-    limit: 4
+    limit: recommenderLimit as number
   });
 
   const [recommendedMaterials, setRecommendedMaterials] =

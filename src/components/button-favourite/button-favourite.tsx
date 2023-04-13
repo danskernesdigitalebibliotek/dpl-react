@@ -10,14 +10,14 @@ import { Pid, WorkId } from "../../core/utils/types/ids";
 export type ButtonFavouriteId = WorkId | Pid;
 export interface ButtonFavouriteProps {
   id: ButtonFavouriteId;
-  bright?: boolean;
+  darkBackground?: boolean;
   addToListRequest: (id: ButtonFavouriteId) => void;
 }
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   id,
   addToListRequest,
-  bright
+  darkBackground
 }) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
@@ -70,7 +70,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       onClick={handleClick}
       className="button-favourite"
     >
-      <IconFavourite bright={bright} fill={fillState} />
+      <IconFavourite darkBackground={darkBackground} fill={fillState} />
     </button>
   );
 };
