@@ -274,6 +274,14 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     }
   }, [deleteReservation, reservationDetails]);
 
+  useEffect(() => {
+    if (getScrollClass(modalIds)) {
+      document.body.classList.add("scroll-lock-background");
+    } else {
+      document.body.classList.remove("scroll-lock-background");
+    }
+  }, [modalIds]);
+
   return (
     <>
       <div className={`reservation-list-page ${getScrollClass(modalIds)}`}>
