@@ -172,7 +172,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
-      <SearchResultList resultItems={resultItems} />
+      <SearchResultList
+        resultItems={resultItems}
+        page={page}
+        pageSize={pageSize}
+      />
       <PagerComponent isLoading={isLoading} />
       {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
