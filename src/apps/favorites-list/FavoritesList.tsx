@@ -4,7 +4,6 @@ import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
-import SearchResultListItemAdapter from "./materials/SearchResultListItemAdapter";
 import CardList from "../../components/card-list/card-list";
 
 export interface FavoritesListProps {
