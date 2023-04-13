@@ -3,7 +3,7 @@ import SomethingSimilar from "./SomethingSimilar";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
-import { FaustId, WorkId } from "../../core/utils/types/ids";
+import { FaustId } from "../../core/utils/types/ids";
 
 export interface SomethingSimilarProps {
   fbsBaseUrl: string;
@@ -22,7 +22,8 @@ export interface SomethingSimilarProps {
 }
 
 const SomethingSimilarEntry: FC<SomethingSimilarProps> = ({ faust }) => {
-  return <SomethingSimilar faust={faust} />
+  console.log("test2");
+  return <SomethingSimilar faust={faust} />;
 };
 
 export default withUrls(withConfig(withText(SomethingSimilarEntry)));
