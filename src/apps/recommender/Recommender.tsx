@@ -77,7 +77,7 @@ const Recommender: FC = () => {
   const stillLoading = fbsReservationsLoading || fbsLoansLoading;
 
   return (
-    <div className="recommender">
+    <div className="recommender recommender--padding-desktop recommender--triple-desktop">
       {loanForRecommender && loanForRecommender.faust && (
         <RecommendList
           titleKey="recommenderTitleLoansText"
