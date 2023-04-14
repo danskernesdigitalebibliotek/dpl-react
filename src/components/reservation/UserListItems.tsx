@@ -16,13 +16,12 @@ import SmsModal from "./forms/SmsModal";
 import { stringifyValue } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import {
-  smsNotificationsIsEnabled,
+  isConfigValueOne,
   getPreferredBranch,
   getNoInterestAfter
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
-import { excludeBlacklistedBranches } from "../../core/utils/branches";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -31,6 +30,7 @@ export interface UserListItemsProps {
   selectBranchHandler: (value: string) => void;
   selectedInterest: number | null;
   setSelectedInterest: (value: number) => void;
+  whitelistBranches: AgencyBranch[];
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
@@ -45,18 +45,11 @@ const UserListItems: FC<UserListItemsProps> = ({
   selectedBranch,
   selectBranchHandler,
   selectedInterest,
-  setSelectedInterest
+  setSelectedInterest,
+  whitelistBranches
 }) => {
   const t = useText();
   const config = useConfig();
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
-  const whitelistBranches = excludeBlacklistedBranches(
-    branches,
-    blacklistBranches
-  );
 
   const { open } = useModalButtonHandler();
   const openModal = (type: ModalReservationFormTextType) => () => {
@@ -105,7 +98,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         </>
       )}
       <>
-        {smsNotificationsIsEnabled(
+        {isConfigValueOne(
           config("smsNotificationsForReservationsEnabledConfig")
         ) && (
           <>

@@ -38,7 +38,9 @@ import {
   getPreferredBranch,
   constructReservationData,
   getAuthorLine,
-  getManifestationsToReserve
+  getManifestationsToReserve,
+  getInstantLoanBranchHoldings,
+  getInstantLoanBranchHoldingsAboveThreshold
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -49,6 +51,9 @@ import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityT
 import { statistics } from "../../core/statistics/statistics";
 import useAlternativeAvailableManifestation from "./useAlternativeAvailableManifestation";
 import PromoBar from "../promo-bar/PromoBar";
+import InstantLoan from "../instant-loan/InstantLoan";
+import { excludeBlacklistedBranches } from "../../core/utils/branches";
+import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -63,9 +68,25 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const {
+    matchString: instantLoanMatchString,
+    threshold: instantLoanThreshold,
+    enabled: instantLoanEnabled
+  } = config<InstantLoanConfigType>("instantLoanConfig", {
+    transformer: "jsonParse"
+  });
+
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
+  const blacklistBranches = config("blacklistedInstantLoanBranchesConfig", {
+    transformer: "stringToArray"
+  });
+  const whitelistBranches = excludeBlacklistedBranches(
+    branches,
+    blacklistBranches
+  );
+
   const mainManifestationType = getManifestationType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
@@ -151,6 +172,18 @@ export const ReservationModalBody = ({
       ? manifestation.edition?.summary
       : t("firstAvailableEditionText");
 
+  const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
+    holdingsData[0].holdings,
+    whitelistBranches,
+    instantLoanMatchString
+  );
+
+  const instantLoanBranchHoldingsAboveThreshold =
+    getInstantLoanBranchHoldingsAboveThreshold(
+      instantLoanBranchHoldings,
+      instantLoanThreshold
+    );
+
   return (
     <>
       {!reservationResult && (
@@ -212,6 +245,7 @@ export const ReservationModalBody = ({
               )}
               {patron && (
                 <UserListItems
+                  whitelistBranches={whitelistBranches}
                   patron={patron}
                   branches={branches}
                   selectedBranch={selectedBranch}
@@ -220,6 +254,16 @@ export const ReservationModalBody = ({
                   setSelectedInterest={setSelectedInterest}
                 />
               )}
+
+              {instantLoanEnabled &&
+                instantLoanBranchHoldingsAboveThreshold && (
+                  <InstantLoan
+                    manifestation={manifestation}
+                    instantLoanBranchHoldings={
+                      instantLoanBranchHoldingsAboveThreshold
+                    }
+                  />
+                )}
             </div>
           </div>
         </section>

@@ -25,6 +25,7 @@ import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
+import DisclosureSummary from "../Disclosures/DisclosureSummary";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());
@@ -203,13 +204,16 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
-                  title={libraryBranch[0].holding.branch.title}
-                  isAvailable={isAnyManifestationAvailableOnBranch(
-                    libraryBranch
-                  )}
-                  fullWidth
                   open={finalData.length === 1}
-                  headingLevel="h3"
+                  className="disclosure--full-width"
+                  summary={
+                    <DisclosureSummary
+                      title={libraryBranch[0].holding.branch.title}
+                      isAvailable={isAnyManifestationAvailableOnBranch(
+                        libraryBranch
+                      )}
+                    />
+                  }
                 >
                   <FindOnShelfManifestationList
                     libraryBranchHoldings={libraryBranch}

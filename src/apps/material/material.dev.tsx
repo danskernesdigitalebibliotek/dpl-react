@@ -38,6 +38,11 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
+    blacklistedInstantLoanBranchesConfig: {
+      name: "Blacklisted Instant Loan branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
     branchesConfig: {
       name: "Branches",
       defaultValue:
@@ -704,6 +709,27 @@ export default {
       name: "Change email text",
       defaultValue: "Change email",
       control: { type: "text" }
+    },
+    instantLoanTitleText: {
+      name: "Instant loan title",
+      control: { type: "text" },
+      defaultValue: "Hent bogen nu"
+    },
+    instantLoanSubTitleText: {
+      name: "Instant loan subtitle",
+      control: { type: "text" },
+      defaultValue: "Spring køen over og hent bogen nu på"
+    },
+    instantLoanUnderlineDescriptionText: {
+      name: "Instant loan underline description",
+      control: { type: "text" },
+      defaultValue: "Bogen er tilgængelig på disse biblioteker nær dig"
+    },
+    instantLoanConfig: {
+      name: "Instant loan config",
+      control: { type: "text" },
+      defaultValue:
+        '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -754,4 +780,9 @@ EBogBlaTitle.args = {
 export const LangePeter = Template.bind({});
 LangePeter.args = {
   wid: "work-of:870970-basis:01196669"
+};
+
+export const InstantLoan = Template.bind({});
+InstantLoan.args = {
+  wid: "work-of:870970-basis:134015012"
 };

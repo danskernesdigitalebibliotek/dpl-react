@@ -90,10 +90,6 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    patronPageTextFeeText: {
-      defaultValue: "This might cost you money",
-      control: { type: "text" }
-    },
     patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }
@@ -120,7 +116,7 @@ export default {
     },
     patronPageContactPhoneCheckboxText: {
       defaultValue:
-        "Receive text messages about your loans, reservations, and so forth",
+        "Receive text messages about your loans, reservations, and so forth. This may cost money.",
       control: { type: "text" }
     },
     patronPageContactEmailLabelText: {

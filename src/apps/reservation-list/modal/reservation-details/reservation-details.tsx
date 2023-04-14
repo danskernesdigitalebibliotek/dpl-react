@@ -11,6 +11,8 @@ import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
 import { useGetBranches } from "../../../../core/utils/branches";
+import { useConfig } from "../../../../core/utils/config";
+import { isConfigValueOne } from "../../../../components/reservation/helper";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -23,11 +25,20 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   openReservationDeleteModal
 }) => {
   const t = useText();
+  const config = useConfig();
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
+  const allowRemoveReadyReservation = config(
+    "reservationDetailAllowRemoveReadyReservationsConfig"
+  );
   const isDigital = !!reservation.identifier;
+  const readyForPickupState = "readyForPickup";
+  const allowUserRemoveReadyReservations =
+    (state === readyForPickupState &&
+      isConfigValueOne(allowRemoveReadyReservation)) ||
+    state !== readyForPickupState;
 
   return (
     <div className="modal-details__container">
@@ -43,13 +54,13 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             materialType={materialType}
             series={material.series}
           >
-            {state === "readyForPickup" && (
+            {state === readyForPickupState && (
               <div className="status-label status-label--info">
                 {t("reservationDetailsReadyForLoanText")}
               </div>
             )}
           </ModalDetailsHeader>
-          {reservation.reservationId && (
+          {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton
               classNames="modal-details__buttons--hide-on-mobile"
               openReservationDeleteModal={openReservationDeleteModal}
@@ -75,7 +86,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               />
             )}
           </div>
-          {reservation.reservationId && (
+          {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton
               buttonClassNames="modal-details__buttons__full-width"
               openReservationDeleteModal={openReservationDeleteModal}
