@@ -50,17 +50,18 @@ const IntermedateList: FC = () => {
     [fbsFees, open]
   );
 
-  useEffect(() => {
-    const modalUrlParam = getUrlQueryParam("modal");
-    // If there is a query param with the due date, a modal should be opened
-    if (modalUrlParam) {
-      const faustId = faustIdModalQueryParam(modalUrlParam);
-      if (faustId) {
-        setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
-        openDetailsModalClickEvent(faustId);
-      }
-    }
-  }, [openDetailsModalClickEvent]);
+  // Todo fix this
+  // useEffect(() => {
+  //   const modalUrlParam = getUrlQueryParam("modal");
+  //   // If there is a query param with the due date, a modal should be opened
+  //   if (modalUrlParam) {
+  //     const faustId = faustIdModalQueryParam(modalUrlParam);
+  //     if (faustId) {
+  //       setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
+  //       openDetailsModalClickEvent(faustId);
+  //     }
+  //   }
+  // }, [openDetailsModalClickEvent]);
 
   useEffect(() => {
     if (fbsFees) {
