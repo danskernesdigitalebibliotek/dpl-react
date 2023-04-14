@@ -18,11 +18,12 @@ export interface SomethingSimilarProps {
   materialAndAuthorText: string;
   somethingSimilarByTheSameAuthorText: string;
   somethingSimilarSomethingSimilarAuthorText: string;
+  addToFavoritesAriaLabelText: string;
+  removeFromFavoritesAriaLabelText: string;
   faust: FaustId;
 }
 
 const SomethingSimilarEntry: FC<SomethingSimilarProps> = ({ faust }) => {
-  console.log("test2");
   return <SomethingSimilar faust={faust} />;
 };
 
