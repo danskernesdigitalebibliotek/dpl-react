@@ -7,7 +7,6 @@ export interface SomethingSimilarProps {
 }
 
 const SomethingSimilar: FC<SomethingSimilarProps> = ({ faust }) => {
-  console.log("test");
   return (
     <div className="recommender recommender--bright">
       {faust && <SomethingSimilarList faust={faust} id={faust} />}
