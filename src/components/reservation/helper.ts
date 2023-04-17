@@ -9,7 +9,6 @@ import {
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getLatestManifestation,
   getManifestationPublicationYear,
@@ -140,11 +139,7 @@ export const getAuthorLine = (
 ) => {
   const { creators } = manifestation;
   const publicationYear = getManifestationPublicationYear(manifestation);
-  const author =
-    creatorsToString(
-      flattenCreators(filterCreators(creators, ["Person"])),
-      t
-    ) || null;
+  const author = creatorsToString(flattenCreators(creators), t) || null;
 
   let year = "";
   if (publicationYear) {

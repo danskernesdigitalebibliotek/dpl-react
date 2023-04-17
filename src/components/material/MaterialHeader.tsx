@@ -6,7 +6,6 @@ import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getMaterialTypes,
   getManifestationPid
@@ -68,10 +67,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const isPeriodical = hasCorrectMaterialType(
     MaterialType.magazine,
     selectedManifestations

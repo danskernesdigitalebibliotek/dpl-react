@@ -5,7 +5,6 @@ import { Cover } from "../cover/cover";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -41,10 +40,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
+
   const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
   const detailsListData: ListData = [
@@ -125,7 +122,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           {titles?.main[0]}
         </h3>
         <p className="text-small-caption">
-          {t("materialHeaderAuthorByText")} {creatorsText}
+          {t("materialHeaderAuthorByText")} {author}
           {edition?.publicationYear?.display &&
             ` (${edition.publicationYear.display})`}
         </p>

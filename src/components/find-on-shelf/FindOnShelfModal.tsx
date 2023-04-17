@@ -10,7 +10,6 @@ import {
   constructModalId,
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getAllFaustIds,
   getManifestationsPids
@@ -59,10 +58,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     recordid: faustIdArray,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
-  const author = creatorsToString(
-    flattenCreators(filterCreators(authors, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(authors), t);
   const title = workTitles.join(", ");
   // If this modal is for all manifestations per material type, use all manifestations'
   // faust ids to create the modal id.
