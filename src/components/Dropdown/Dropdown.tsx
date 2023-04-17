@@ -52,7 +52,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   const optionsList = placeholder ? [placeholder, ...options] : options;
 
   return (
-    <>
+    <div className={classes.root}>
       {label && <label htmlFor={id}>{label}</label>}
       <div className={classes.root}>
         <select
@@ -79,7 +79,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
           <DropdownIcon arrowIcon={arrowIcon} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
