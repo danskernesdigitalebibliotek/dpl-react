@@ -10,7 +10,7 @@ describe("Favorite button", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Add to favorites"
+      "Add element to favorites list"
     );
   });
 
@@ -25,7 +25,7 @@ describe("Favorite button", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Remove from favorites"
+      "Remove element from favorites list"
     );
   });
 
@@ -46,13 +46,13 @@ describe("Favorite button", () => {
       "/iframe.html?args=&id=components-button-favourite--favourite&viewMode=story"
     );
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Add to favorites")
+      .should("have.attr", "aria-label", "Add element to favorites list")
       .click();
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Remove from favorites")
+      .should("have.attr", "aria-label", "Remove element from favorites list")
       .click();
     cy.get(".button-favourite")
-      .should("have.attr", "aria-label", "Add to favorites")
+      .should("have.attr", "aria-label", "Add element to favorites list")
       .click();
   });
 });

@@ -1,0 +1,9 @@
+query recommendFromFaust($faust: String!, $limit: Int!) {
+  recommend(faust: $faust, limit: $limit) {
+    result {
+      work {
+      ...WorkSmall
+      }
+    }
+  }
+}

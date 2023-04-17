@@ -1,12 +1,10 @@
 import { mapValues } from "lodash";
-import { FilterItemTerm } from "../../apps/search-result/types";
-import { Filter } from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-
 import useGetCleanBranches from "../../core/utils/branches";
+import { Filter, FilterItemTerm } from "../../core/filter.slice";
 
 export const allFacetFields = [
   FacetField.MainLanguages,

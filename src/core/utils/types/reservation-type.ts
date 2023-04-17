@@ -12,7 +12,6 @@ interface Reservation extends ListType {
   pickupNumber: string;
   pickupBranch: string;
   title: string;
-  reservationId: number;
   periodical: string;
 }
 

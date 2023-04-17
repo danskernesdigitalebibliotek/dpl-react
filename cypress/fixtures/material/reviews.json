@@ -1,0 +1,92 @@
+{
+  "data": {
+    "manifestations": [
+      {
+        "pid": "150005-anmeld:81092",
+        "creators": [{ "display": "Lene Jensen" }],
+        "access": [
+          {
+            "__typename": "AccessUrl",
+            "url": "http://litteratursiden.dk/anmeldelser/syv-sostre-af-lucinda-riley",
+            "origin": "litteratursiden.dk"
+          }
+        ],
+        "edition": { "publicationYear": { "display": "2016" } },
+        "hostPublication": null,
+        "physicalDescriptions": [],
+        "dateFirstEdition": null,
+        "workYear": null,
+        "review": null
+      },
+      {
+        "pid": "870976-anmeld:129471824",
+        "creators": [{ "display": "Dorthe Marlene Jørgensen" }],
+        "access": [{ "__typename": "InterLibraryLoan" }],
+        "edition": { "publicationYear": { "display": "2016" } },
+        "hostPublication": null,
+        "physicalDescriptions": [],
+        "dateFirstEdition": null,
+        "workYear": null,
+        "review": {
+          "rating": null,
+          "reviewByLibrarians": [
+            {
+              "content": "Første bind i en stor serie, om kærlighed og tab, inspireret af stjernebilledet De Syv Søstre. For dem, der holder af kærlighedshistorier, primært kvinder",
+              "heading": "Kort om bogen",
+              "type": "ABSTRACT",
+              "manifestations": []
+            },
+            {
+              "content": "Året er 2007 og Maia og hendes fem søstre er blevet kaldt hjem til deres barndomshjem, da deres elskede far, Pa Salt, er død. De er alle blevet adopteret, og deres far har efterladt en ledetråd til dem hver, der kan lede dem tilbage til deres ophav. Denne første bog i serien, handler om den ældste søster Maia, hvis ledetråd fører hende til Brasilien",
+              "heading": "Beskrivelse",
+              "type": "DESCRIPTION",
+              "manifestations": []
+            },
+            {
+              "content": "En rigtig flot roman, der er helt på niveau med forfatterens tidligere udgivelser. Der er tale om en stor serie på syv planlagte bøger. Sproget er let og historien fanger fra start",
+              "heading": "Vurdering",
+              "type": "EVALUATION",
+              "manifestations": []
+            },
+            {
+              "content": "Lucinda Riley har senest udgivet Midnatsrosen. Skrivestilen ligner Rileys tidligere udgivelser",
+              "heading": "Andre bøger om samme emne",
+              "type": "SIMILAR_MATERIALS",
+              "manifestations": [
+                {
+                  "pid": "870970-basis:51817214",
+                  "titles": { "main": ["Midnatsrosen"] }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pid": "870971-anmeld:37104132",
+        "creators": [{ "display": "Lene Jensen" }],
+        "access": [
+          {
+            "__typename": "AccessUrl",
+            "url": "http://www.litteratursiden.dk/anmeldelser/syv-soestre-af-lucinda-riley",
+            "origin": "www.litteratursiden.dk"
+          },
+          {
+            "__typename": "AccessUrl",
+            "url": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=37104132&attachment_type=f56_a&bibliotek=870971&source_id=870970&key=121e0145d5ce983ee104",
+            "origin": "DBC Webarkiv"
+          }
+        ],
+        "edition": { "publicationYear": { "display": "2016" } },
+        "hostPublication": {
+          "title": "Litteratursiden.dk [online]",
+          "issue": "2016-09-12"
+        },
+        "physicalDescriptions": [],
+        "dateFirstEdition": null,
+        "workYear": null,
+        "review": { "rating": null, "reviewByLibrarians": [] }
+      }
+    ]
+  }
+}

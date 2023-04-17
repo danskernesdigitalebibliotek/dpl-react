@@ -8,6 +8,7 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
+import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -44,6 +45,12 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
             creators as WorkSmallFragment["creators"]
           );
 
+          const manifestationLanguageIsoCode =
+            item.work?.manifestations.bestRepresentation &&
+            getManifestationLanguageIsoCode([
+              item.work.manifestations.bestRepresentation
+            ]);
+
           return (
             <li
               className={`autosuggest__material ${
@@ -67,7 +74,10 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 )}
 
                 <div className="autosuggest__info">
-                  <div className="text-body-medium-medium autosuggest__title">
+                  <div
+                    lang={manifestationLanguageIsoCode}
+                    className="text-body-medium-medium autosuggest__title"
+                  >
                     {item.work?.titles.main[0]}
                   </div>
                   <div className="text-body-small-regular autosuggest__author">

@@ -13,7 +13,9 @@ import textReducer from "./text.slice";
 import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
+import filterReducer from "./filter.slice";
 import configReducer from "./config.slice";
+import blockModalReducer from "./blockedModal.slice";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
 // in the guardedRequest thunk.
@@ -21,12 +23,10 @@ import configReducer from "./config.slice";
 import guardedRequestsReducer from "./guardedRequests.slice";
 import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUrls";
 
-// TODO: We have planned to get rid of redux-persist.
-// When the step has been made to remove it all the persist setup should go as well.
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text", "url", "modal", "config"]
+  blacklist: ["text", "url", "modal", "config", "blockedModal"]
 };
 
 export const store = configureStore({
@@ -42,7 +42,9 @@ export const store = configureStore({
       modal: modalReducer,
       url: urlReducer,
       config: configReducer,
-      guardedRequests: guardedRequestsReducer
+      guardedRequests: guardedRequestsReducer,
+      blockedModal: blockModalReducer,
+      filter: filterReducer
     })
   ),
   devTools: process.env.NODE_ENV === "development"

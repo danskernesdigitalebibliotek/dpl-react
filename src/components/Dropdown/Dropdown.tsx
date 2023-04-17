@@ -10,9 +10,10 @@ export type Option = {
 
 type DropdownProps = {
   options: Option[];
-  ariaLabel?: string;
   label?: string;
   id?: string;
+  ariaLabel: string;
+  labelledBy?: string;
   arrowIcon: "triangles" | "chevron";
   classNames?: string;
   innerClassNames?: { select?: string; option?: string; arrowWrapper?: string };
@@ -32,8 +33,9 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   placeholder,
   cyData,
   label,
-  defaultValue,
-  id
+  id,
+  labelledBy,
+  defaultValue
 }) => {
   const classes = {
     root: clsx("dropdown", classNames),
@@ -57,6 +59,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
           id={id}
           data-cy={cyData}
           className={classes.select}
+          aria-labelledby={labelledBy}
           aria-label={ariaLabel}
           onChange={checkHandleOnChange}
         >

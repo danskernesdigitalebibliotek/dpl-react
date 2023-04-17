@@ -21,20 +21,22 @@ export const loansAreEmpty = (list: LoanType[] | null) =>
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
-
+export const materialsAreStacked = (materialsInStack: number) => {
+  return materialsInStack > 0;
+};
 export const getFromListByKey = (
   list: ListType[],
-  key: "faust" | "identifier",
+  key: "identifier" | "reservationId" | "faust",
   value: string
 ) => {
-  return list.filter((loan) => loan[key] === value);
+  return list.filter((loan) => String(loan[key]) === value);
 };
 
 export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":
       return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
-    case "deniedOtherReason":
+    case "deniedReserved":
       return t("groupModalRenewLoanDeniedReservedText");
     default:
       return "";
@@ -51,26 +53,6 @@ export const removeLoansWithIds = (list: LoanType[], ids: string[]) => {
     }
     return false;
   });
-};
-
-// Create a string of authors with commas and a conjunction
-export const getAuthorNames = (
-  creators: {
-    display: string;
-  }[],
-  by: string,
-  and: string
-) => {
-  const names = creators.map(({ display }) => display);
-  let returnContentString = "";
-  if (names.length === 1) {
-    returnContentString = `${by} ${names.join(", ")}`;
-  } else {
-    returnContentString = `${by} ${names
-      .slice(0, -1)
-      .join(", ")} ${and} ${names.slice(-1)}`;
-  }
-  return returnContentString;
 };
 
 // Simple faust match for modals

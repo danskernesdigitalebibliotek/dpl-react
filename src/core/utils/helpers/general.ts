@@ -13,12 +13,14 @@ import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
+import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationDetailsV2 } from "../../fbs/model";
 import {
   dashboardReadyForPickupApiValueText,
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
+import { ReservationType } from "../types/reservation-type";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -89,6 +91,11 @@ export const getFirstPublishedManifestation = (
   return ordered[0];
 };
 
+export const getLatestManifestation = (manifestations: Manifestation[]) => {
+  const ordered = orderManifestationsByYear(manifestations, "desc");
+  return ordered[0];
+};
+
 export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   return String(
     getManifestationPublicationYear(
@@ -114,6 +121,10 @@ export const getCoverTint = (index: number) => {
 
 export const getColors = () => {
   return getConf("colors", configuration);
+};
+
+export const getRecommenderMaterialLimits = () => {
+  return getConf("recommenderMaterialLimits", configuration);
 };
 
 export const getModalIds = () => {
@@ -185,6 +196,24 @@ export const sortByDueDate = (list: LoanType[]) => {
   );
 };
 
+export const sortByLoanDate = (list: LoanType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (a, b) =>
+      new Date(a.loanDate || new Date()).getTime() -
+      new Date(b.loanDate || new Date()).getTime()
+  );
+};
+
+export const sortByReservationDate = (list: ReservationType[]) => {
+  return list.sort(
+    (objA, objB) =>
+      new Date(objA.dateOfReservation || new Date()).getTime() -
+      new Date(objB.dateOfReservation || new Date()).getTime()
+  );
+};
+
 export const getDueDatesLoan = (list: LoanType[]) => {
   return Array.from(
     new Set(
@@ -252,8 +281,10 @@ export const groupObjectArrayByProperty = <
 export const getManifestationsPids = (manifestations: Manifestation[]) => {
   return manifestations.map((manifestation) => manifestation.pid);
 };
+
 export const stringifyValue = (value: string | null | undefined) =>
   value ? String(value) : "";
+
 export const materialIsFiction = ({
   fictionNonfiction
 }: Work | Manifestation) => fictionNonfiction?.code === "FICTION";
@@ -414,5 +445,78 @@ export const isCprValid = (cpr: string, minAge: number) => {
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
   `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+
+// Create a string of authors with commas and a conjunction
+export const getAuthorNames = (
+  creators: {
+    display: string;
+  }[],
+  by?: string,
+  and?: string
+) => {
+  const names = creators.map(({ display }) => display);
+  let returnContentString = "";
+  if (names.length === 1) {
+    returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
+  } else {
+    returnContentString = `${by ? `${by} ` : ""} ${names
+      .slice(0, -1)
+      .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
+  }
+  return returnContentString;
+};
+
+export const getReviewRelease = (
+  dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
+  workYear: ManifestationReviewFieldsFragment["workYear"],
+  edition: ManifestationReviewFieldsFragment["edition"]
+) => {
+  return (
+    dateFirstEdition?.display ||
+    workYear?.display ||
+    edition?.publicationYear?.display ||
+    null
+  );
+};
+
+// The rendered release year for search results is picked based on
+// whether the work is fiction or not. Non-fictional works contain
+// factual information that can be updated between editions - thus it
+// is important to show the latest edition the library has.
+export const getReleaseYearSearchResult = (work: Work) => {
+  const { latest, bestRepresentation } = work.manifestations;
+  const manifestation = bestRepresentation || latest;
+  if (materialIsFiction(work)) {
+    return work.workYear?.year;
+  }
+  if (materialIsFiction(manifestation)) {
+    return (
+      work.workYear?.year ||
+      manifestation.workYear?.year ||
+      manifestation.dateFirstEdition?.year ||
+      manifestation.edition?.publicationYear?.display
+    );
+  }
+  return getManifestationPublicationYear(latest) || "";
+};
+
+// Creates a "by author, author and author"-string
+export const getContributors = (
+  creators: string[],
+  by: string,
+  and: string
+) => {
+  let returnContentString = "";
+  if (creators && creators.length > 0) {
+    if (creators.length === 1) {
+      returnContentString = `${by} ${creators.join(", ")}`;
+    } else {
+      returnContentString = `${by} ${creators
+        .slice(0, -1)
+        .join(", ")} ${and} ${creators.slice(-1)}`;
+    }
+  }
+  return returnContentString;
+};
 
 export default {};

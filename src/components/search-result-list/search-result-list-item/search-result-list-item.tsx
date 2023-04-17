@@ -8,12 +8,13 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../atoms/link";
+import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
   filterCreators,
   flattenCreators,
-  getManifestationPid
+  getManifestationPid,
+  getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
 import SearchResultListItemCover from "./search-result-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -29,28 +30,41 @@ import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
-import { getNumberedSeries } from "../../../apps/material/helper";
+import {
+  getManifestationLanguageIsoCode,
+  getNumberedSeries
+} from "../../../apps/material/helper";
+import useFilterHandler from "../../../apps/search-result/useFilterHandler";
+import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 
 export interface SearchResultListItemProps {
   item: Work;
   coverTint: CoverProps["tint"];
   resultNumber: number;
+  dataCy?: string;
 }
 
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
+  item,
   item: {
     titles: { full: fullTitle },
     series,
     creators,
     manifestations: { all: manifestations },
-    workId,
-    workYear
+    workId
   },
   coverTint,
-  resultNumber
+  resultNumber,
+  dataCy = "search-result-list-item"
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
+  const { filters } = useFilterHandler();
+  const materialTypeFromFilters = getFirstMaterialTypeFromFilters(
+    filters,
+    manifestations
+  );
+
   const dispatch = useDispatch<TypedDispatch>();
   const author = creatorsToString(
     flattenCreators(filterCreators(creators, ["Person"])),
@@ -58,7 +72,13 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   );
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
-  const materialFullUrl = constructMaterialUrl(materialUrl, workId as WorkId);
+  const materialFullUrl = constructMaterialUrl(
+    materialUrl,
+    workId as WorkId,
+    materialTypeFromFilters
+  );
+  const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
+
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -100,6 +120,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       ref={itemRef}
+      data-cy={dataCy}
       className="search-result-item arrow arrow__hover--right-small"
       onClick={handleClick}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
@@ -138,14 +159,17 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         <h2
           className="search-result-item__title text-header-h4 mb-4"
           data-cy="search-result-item-title"
+          lang={languageIsoCode}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
-        {author && (
+        {author && item && (
           <p className="text-small-caption" data-cy="search-result-item-author">
             {`${t("byAuthorText")} ${author}`}
-            {workYear && ` (${workYear.year})`}
+            {getReleaseYearSearchResult(item)
+              ? ` (${getReleaseYearSearchResult(item)})`
+              : ""}
           </p>
         )}
       </div>

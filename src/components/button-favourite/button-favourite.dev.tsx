@@ -8,8 +8,9 @@ import ButtonFavourite, {
 } from "./button-favourite";
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import { withText } from "../../core/utils/text";
 
-const WrappedButtonFavourite = withUrls(ButtonFavourite);
+const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
 export default {
   title: "Components  / Button Favourite",
@@ -20,6 +21,18 @@ export default {
     id: {
       control: "text",
       defaultValue: "work-of:870970-basis:45234401"
+    },
+    addToFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Add element to favorites list"
+    },
+    removeFromFavoritesAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Remove element from favorites list"
     }
   }
 } as ComponentMeta<typeof WrappedButtonFavourite>;

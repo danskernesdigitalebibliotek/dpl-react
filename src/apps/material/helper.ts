@@ -1,4 +1,4 @@
-import { compact, groupBy } from "lodash";
+import { compact, groupBy, uniqBy, uniq, head } from "lodash";
 import {
   constructModalId,
   getMaterialTypes,
@@ -15,6 +15,14 @@ import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import MaterialType from "../../core/utils/types/material-type";
+import {
+  AccessTypeCode,
+  WorkType
+} from "../../core/dbc-gateway/generated/graphql";
+import {
+  hasCorrectAccessType,
+  isArticle
+} from "../../components/material/material-buttons/helper";
 
 export const getWorkManifestation = (
   work: Work,
@@ -104,6 +112,27 @@ export const getManifestationLanguages = (manifestation: Manifestation) => {
       ?.map((language) => language.display)
       .join(", ") ?? ""
   );
+};
+
+export const getManifestationLanguageIsoCode = (
+  manifestations: Pick<Manifestation, "languages">[]
+) => {
+  const mainLanguages = manifestations
+    .map(({ languages }) => languages)
+    .flatMap((language) => language?.main);
+
+  const uniqueLanguagesWithIsoCode = uniqBy(mainLanguages, "isoCode");
+
+  // We only want to set the lang attribute if there is only one isoCode
+  const uniqIsoCode =
+    uniqueLanguagesWithIsoCode.length === 1 &&
+    head(uniqueLanguagesWithIsoCode)?.isoCode;
+
+  if (uniqIsoCode) {
+    return uniqIsoCode;
+  }
+  // if there is no isoCode it return undefined so that the lang attribute is not set
+  return undefined;
 };
 
 export const getManifestationFirstEditionYear = (
@@ -353,3 +382,23 @@ export const reservationModalId = (faustIds: FaustId[]) => {
 
 export const getNumberedSeries = (series: Work["series"]) =>
   series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);
+
+export const getUniqueMovies = (relations: Work["relations"]) => {
+  const movies = relations.hasAdaptation.filter((item) =>
+    item.ownerWork.workTypes.includes(WorkType.Movie)
+  );
+
+  return uniqBy(movies, (item) => item.ownerWork.workId);
+};
+
+export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
+  uniq([
+    // dbcVerified needs to be first, because it is the most accurate
+    ...subjects.dbcVerified.map((item) => item.display),
+    ...subjects.all.map((item) => item.display)
+  ]);
+
+export const isParallelReservation = (manifestations: Manifestation[]) =>
+  manifestations.length > 1 &&
+  hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+  !isArticle(manifestations);

@@ -3,41 +3,50 @@ import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
   CreateReservation,
-  CreateReservationBatchV2
+  CreateReservationBatchV2,
+  HoldingsV3
 } from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
   creatorsToString,
   filterCreators,
   flattenCreators,
+  getLatestManifestation,
   getManifestationPublicationYear,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 
-export const smsNotificationsIsEnabled = (
-  configValue: string | undefined | string[]
-) => configValue === "1";
+export const isConfigValueOne = (configValue: string | undefined | string[]) =>
+  configValue === "1";
 
 export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);
   return locationItem ? locationItem.title : id;
 };
+export const getInterestPeriods = (t: UseTextFunction) => {
+  const visibleInterestPeriods: { [key: string]: string } = {};
+  const interestPeriods = [
+    ["interestPeriodOneMonthConfigText", "30", "oneMonthText"],
+    ["interestPeriodTwoMonthsConfigText", "60", "twoMonthsText"],
+    ["interestPeriodThreeMonthsConfigText", "90", "threeMonthsText"],
+    ["interestPeriodSixMonthsConfigText", "180", "sixMonthsText"],
+    ["interestPeriodOneYearConfigText", "360", "oneYearText"]
+  ];
 
-export const hardcodedInterestPeriods = (t: UseTextFunction) => {
-  return {
-    "30": t("oneMonthText"),
-    "60": t("twoMonthsText"),
-    "90": t("threeMonthsText"),
-    "180": t("sixMonthsText"),
-    "360": t("oneYearText")
-  };
+  interestPeriods.forEach(([config, key, text]) => {
+    if (isConfigValueOne(t(config))) {
+      visibleInterestPeriods[key] = t(text);
+    }
+  });
+
+  return visibleInterestPeriods;
 };
 
 export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
   const reservationInterestIntervals: { [key: string]: string } = {
-    ...hardcodedInterestPeriods(t),
+    ...getInterestPeriods(t),
     default: `${days} ${t("daysText")}`
   } as const;
 
@@ -148,5 +157,63 @@ export const getAuthorLine = (
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
 };
+
+export const getManifestationsToReserve = (
+  reservableManifestations: Manifestation[],
+  isPeriodical?: boolean
+) => {
+  if (isPeriodical) {
+    // Specific issues of periodical works usually don't have multiple
+    // manifestations - eg. there only is one version of Vogue January 2023.
+    return reservableManifestations;
+  }
+  if (!reservableManifestations || reservableManifestations.length < 1) {
+    return [];
+  }
+  // Newer nonfiction-work's editions have updated more accurate content, so we
+  // want to always reserve the latest edition.
+  if (!materialIsFiction(reservableManifestations[0])) {
+    return [getLatestManifestation(reservableManifestations)];
+  }
+  // Fictional work editions don't change content, only appearance, and so we can
+  // reserve whichever one of the reservable manifestations will be home soonest.
+  return reservableManifestations;
+};
+
+export const getInstantLoanBranchHoldings = (
+  branchHoldings: HoldingsV3[],
+  whitelist: AgencyBranch[],
+  instantLoanString: string
+) => {
+  const whitelistIds = whitelist.map(({ branchId }) => branchId);
+
+  // 1. Filter holdings by branch on whitelist
+  const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
+    whitelistIds.includes(branch.branchId)
+  );
+
+  // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
+  const filteredMaterials = filteredBranchHoldings
+    .map(({ branch, materials }) => {
+      const filtered = materials.filter(
+        ({ materialGroup, available }) =>
+          materialGroup.description?.includes(instantLoanString) && available
+      );
+
+      return { branch, materials: filtered };
+    })
+    .filter(({ materials }) => materials.length > 0);
+
+  // 4. Return filtered holdings
+  return filteredMaterials;
+};
+
+export const getInstantLoanBranchHoldingsAboveThreshold = (
+  instantLoanBranchHoldings: HoldingsV3[],
+  instantLoanThresholdConfig: string
+) =>
+  instantLoanBranchHoldings.filter(
+    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+  );
 
 export default {};

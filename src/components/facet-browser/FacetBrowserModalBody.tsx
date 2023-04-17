@@ -1,10 +1,6 @@
 import React from "react";
 import { isEmpty, upperFirst } from "lodash";
 import { useDeepCompareEffect } from "react-use";
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
 import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -14,16 +10,18 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
+import DisclosureSummary from "../Disclosures/DisclosureSummary";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
-  filterHandler: TermOnClickHandler;
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
 }
 
 const FacetBrowserModalBody: React.FunctionComponent<
   FacetBrowserModalBodyProps
-> = ({ facets, filterHandler, filters }) => {
+> = ({ facets }) => {
+  const { filters, addToFilter, removeFromFilter } = useFilterHandler();
+
   const t = useText();
   const { close } = useModalButtonHandler();
   const { track } = useStatistics();
@@ -44,16 +42,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
   return (
     <section className="facet-browser">
       <header className="facet-browser__header">
-        <h3 className="text-header-h3">{t("filterListText")}</h3>
-        {/* TODO: It will be used in the future to remove all selected facets */}
-        {false && (
-          <button
-            type="button"
-            className="link-tag cursor-pointer facet-browser__clear-btn"
-          >
-            {t("clearAllText")}
-          </button>
-        )}
+        <h2 className="text-header-h3">{t("filterListText")}</h2>
       </header>
       {facets.map((facet) => {
         const { name, values } = facet;
@@ -67,10 +56,14 @@ const FacetBrowserModalBody: React.FunctionComponent<
             key={name}
             cyData={`facet-browser-${name}`}
             id={name}
-            fullWidth
-            removeHeadlinePadding
-            title={t(`facet${upperFirst(name)}Text`)}
             showContent={hasSelectedTerms}
+            className="disclosure--full-width"
+            summary={
+              <DisclosureSummary
+                title={t(`facet${upperFirst(name)}Text`)}
+                className="disclosure__headline--no-padding"
+              />
+            }
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {
@@ -84,20 +77,17 @@ const FacetBrowserModalBody: React.FunctionComponent<
                   return null;
                 }
 
+                const handleAddOrRemoveFilter = (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  return selected
+                    ? removeFromFilter({ facet: name, term: termItem })
+                    : addToFilter({ facet: name, term: termItem });
+                };
+
                 return (
                   <ButtonTag
                     key={term}
-                    onClick={(e) => {
-                      // This to prevent the disclosure from closing when clicking on a tag because event bobbling
-                      e.stopPropagation();
-                      filterHandler({
-                        filterItem: {
-                          facet: name,
-                          term: termItem
-                        },
-                        action: selected ? "remove" : "add"
-                      });
-                    }}
+                    onClick={handleAddOrRemoveFilter}
                     selected={selected}
                     dataCy={`facet-browser-${name}-${term}`}
                   >
@@ -106,16 +96,6 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 );
               })}
             </div>
-
-            {/* TODO: It will be used in the future to check if there is more tags to show */}
-            {false && (
-              <button
-                type="button"
-                className="link-tag cursor-pointer facet-browser__more-btn"
-              >
-                {t("showMoreText")}
-              </button>
-            )}
           </DisclosureControllable>
         );
       })}

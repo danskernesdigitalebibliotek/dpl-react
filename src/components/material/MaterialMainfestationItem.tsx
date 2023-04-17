@@ -10,7 +10,6 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
-import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -21,6 +20,7 @@ import {
   getManifestationEdition,
   getManifestationGenreAndForm,
   getManifestationIsbn,
+  getManifestationLanguageIsoCode,
   getManifestationLanguages,
   getManifestationMaterialTypes,
   getManifestationNumberOfPages,
@@ -45,6 +45,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
+  const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
   const detailsListData: ListData = [
     {
@@ -100,13 +101,13 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   ];
 
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+  const detailsId = `material-details-${pid}`;
 
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           manifestText={materialTypes[0]?.specific}
-          url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
           faustIds={[faustId]}
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
@@ -116,9 +117,12 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__title text-header-h4">
+        <h3
+          lang={languageIsoCode}
+          className="material-manifestation-item__title text-header-h4"
+        >
           {titles?.main[0]}
-        </h2>
+        </h3>
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {creatorsText}
           {edition?.publicationYear?.display &&
@@ -137,6 +141,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           }}
           role="button"
           tabIndex={0}
+          aria-controls={detailsId}
+          aria-expanded={isOpen}
         >
           <p className="link-tag text-small-caption">
             {t("detailsOfTheMaterialText")}
@@ -144,7 +150,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={detailsListData} />
+          <MaterialDetailsList
+            id={detailsId}
+            className="mt-24"
+            data={detailsListData}
+          />
         )}
       </div>
       <div className="material-manifestation-item__buttons">

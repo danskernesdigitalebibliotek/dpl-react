@@ -1,10 +1,6 @@
 import { upperFirst } from "lodash";
 import React, { memo } from "react";
-
-import {
-  FilterItemTerm,
-  TermOnClickHandler
-} from "../../apps/search-result/types";
+import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
   FacetResult,
   FacetValue
@@ -17,17 +13,14 @@ import { FacetBrowserModalId } from "../facet-browser/helper";
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
-  filters: { [key: string]: { [key: string]: FilterItemTerm } };
-  filterHandler: TermOnClickHandler;
 };
 
 const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
-  facets = [],
-  filters,
-  filterHandler
+  facets = []
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const { filters, addToFilter } = useFilterHandler();
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
     return values.map((value) => {
@@ -44,14 +37,13 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   ) => {
     const term = facets
       .find((item) => item.name === facet)
-      ?.values.find((item) => item.key === e.target.value) as FilterItemTerm;
+      ?.values.find((item) => item.key === e.target.value);
 
-    filterHandler({
-      filterItem: {
-        facet,
-        term
-      },
-      action: "add"
+    if (!term) return;
+
+    addToFilter({
+      facet,
+      term
     });
   };
 
@@ -86,15 +78,11 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             {values.map((termObj) => {
               const { term, score } = termObj;
 
-              const onClickHandler = () => {
-                filterHandler({
-                  filterItem: {
-                    facet: name,
-                    term: termObj as FilterItemTerm
-                  },
-                  action: "add"
+              const onClickHandler = () =>
+                addToFilter({
+                  facet: name,
+                  term: termObj
                 });
-              };
 
               // Removes the selected term from the filter line because it is now displayed in the selected line
               if (filters?.[name]?.[term]) return null;

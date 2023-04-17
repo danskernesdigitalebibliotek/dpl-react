@@ -1,0 +1,9 @@
+{
+  "data": {
+    "elba": {
+      "placeCopyRequest": {
+        "status": "ERROR_INVALID_PICKUP_BRANCH"
+      }
+    }
+  }
+}

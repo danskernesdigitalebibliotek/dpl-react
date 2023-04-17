@@ -11,6 +11,12 @@ describe("Pause reservation modal test", () => {
 
     // Sets time to a specific date
     cy.clock(clockDate);
+
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
   });
 
   it("It shows pause modal", () => {
@@ -131,10 +137,6 @@ describe("Pause reservation modal test", () => {
     cy.get(".modal.modal-cta .modal-pause__button button")
       .should("exist")
       .click();
-
-    cy.get("@update-user").should((response) => {
-      expect(response).to.have.property("response");
-    });
 
     // ID 12 4.b. closes modal, updates reservation overview with badge
     cy.get(".modal.modal-cta").should("not.exist");

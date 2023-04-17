@@ -3,6 +3,7 @@ import { Nullable } from "./nullable";
 
 interface BasicDetails {
   authors: string;
+  firstAuthor: string;
   pid: Pid;
   externalProductId: string;
   materialType: string;

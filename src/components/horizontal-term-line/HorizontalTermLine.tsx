@@ -1,5 +1,8 @@
-import React from "react";
-import { Link } from "../atoms/link";
+import React, { useState } from "react";
+import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import clsx from "clsx";
+import Link from "../atoms/links/Link";
+import { useText } from "../../core/utils/text";
 
 export interface HorizontalTermLineProps {
   title: string;
@@ -17,16 +20,24 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   linkList,
   dataCy = "horizontal-term-line"
 }) => {
+  const t = useText();
+  const numberOfItemsToShow = 3;
+  const [showMore, setShowMore] = useState(false);
+  const itemsToShow = showMore
+    ? linkList
+    : linkList.slice(0, numberOfItemsToShow);
+  const showMoreButton = linkList.length > numberOfItemsToShow;
+
   return (
     <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
-      <p className="text-label-bold">
+      <h3 className="text-label-bold">
         {title || ""}{" "}
         {subTitle && (
           <span className="text-small-caption">{` ${subTitle}`}</span>
         )}
-      </p>
+      </h3>
 
-      {linkList.map((item) => {
+      {itemsToShow.map((item) => {
         const { term, url } = item;
         return (
           <span key={term}>
@@ -36,6 +47,22 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
           </span>
         );
       })}
+
+      {showMoreButton && (
+        <button
+          type="button"
+          onClick={() => setShowMore(!showMore)}
+          aria-label={t("expandMoreText")}
+        >
+          <img
+            className={clsx("horizontal-term-line__expand", {
+              "horizontal-term-line__expand--expanded": showMore
+            })}
+            src={ExpandMoreIcon}
+            alt=""
+          />
+        </button>
+      )}
     </div>
   );
 };

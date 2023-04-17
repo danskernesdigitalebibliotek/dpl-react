@@ -7,10 +7,17 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 
 interface MaterialEntryTextProps {
+  addToFavoritesAriaLabelText: string;
+  alertErrorCloseText: string;
+  alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
   cantReserveText: string;
   cantViewReviewText: string;
+  changeEmailText: string;
+  changeInterestPeriodText: string;
+  changePickupLocationText: string;
+  changeSmsNumberText: string;
   chooseOneText: string;
   closeText: string;
   daysText: string;
@@ -33,10 +40,13 @@ interface MaterialEntryTextProps {
   editionsText: string;
   editionText: string;
   etAlText: string;
+  expandMoreText: string;
   fictionNonfictionText: string;
+  filmAdaptationsText: string;
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
+  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -44,6 +54,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
   haveNoInterestAfterText: string;
@@ -52,6 +63,9 @@ interface MaterialEntryTextProps {
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
+  instantLoanSubTitleText: string;
+  instantLoanTitleText: string;
+  instantLoanUnderlineDescriptionText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -86,14 +100,16 @@ interface MaterialEntryTextProps {
   orderDigitalCopyButtonText: string;
   orderDigitalCopyDescriptionText: string;
   orderDigitalCopyEmailLabelText: string;
-  orderDigitalCopyErrorButtonText: string;
-  orderDigitalCopyErrorDescriptionText: string;
-  orderDigitalCopyErrorTitleText: string;
+  orderDigitalCopyFeedbackButtonText: string;
+  orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: string;
+  orderDigitalCopyFeedbackErrorInvalidPickupBranchText: string;
+  orderDigitalCopyFeedbackErrorMissingClientConfigurationText: string;
+  orderDigitalCopyFeedbackErrorPidNotReservableText: string;
+  orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
+  orderDigitalCopyFeedbackOkText: string;
+  orderDigitalCopyFeedbackTitleText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
-  orderDigitalCopySuccessButtonText: string;
-  orderDigitalCopySuccessDescriptionText: string;
-  orderDigitalCopySuccessTitleText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
@@ -104,6 +120,7 @@ interface MaterialEntryTextProps {
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
+  removeFromFavoritesAriaLabelText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
@@ -129,10 +146,12 @@ interface MaterialEntryUrlProps {
   authUrl: string;
 }
 interface MaterialEntryConfigProps {
-  smsNotificationsForReservationsEnabledConfig: boolean;
-  blacklistedPickupBranchesConfig?: string;
   blacklistedAvailabilityBranchesConfig?: string;
+  blacklistedInstantLoanBranchesConfig: string;
+  blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  instantLoanConfig: string;
+  smsNotificationsForReservationsEnabledConfig: boolean;
 }
 
 export interface MaterialEntryProps

@@ -11,6 +11,16 @@ export default {
   component: SearchHeaderEntry,
   argTypes: {
     ...serviceUrlArgs,
+    alertErrorCloseText: {
+      name: "Alert error close text",
+      defaultValue: "close",
+      control: { type: "text" }
+    },
+    alertErrorMessageText: {
+      name: "Alert error message text",
+      defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
     searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",
@@ -91,7 +101,7 @@ export default {
       defaultValue: "in",
       control: { type: "text" }
     },
-    LoadingText: {
+    loadingText: {
       name: "Loading",
       defaultValue: "Loading",
       control: { type: "text" }

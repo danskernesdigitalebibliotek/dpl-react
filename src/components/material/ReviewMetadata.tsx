@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
 import React from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 
 export interface ReviewMetadataProps {
   author?: string | null;
-  date?: Date | null;
+  date?: string | null;
   url?: URL;
 }
 
@@ -21,10 +21,10 @@ const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
 }) => {
   const metaDataText = (
     returnAuthor: string | null | undefined,
-    returnDate: Date | null | undefined
+    returnDate: string | null | undefined
   ) => {
     return `${returnAuthor || ""}${returnAuthor && returnDate ? ", " : ""}${
-      returnDate ? dayjs(returnDate).format("DD.MM.YYYY") : ""
+      returnDate || ""
     }`;
   };
 

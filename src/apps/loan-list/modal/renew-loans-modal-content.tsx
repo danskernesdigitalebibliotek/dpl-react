@@ -32,7 +32,10 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
   const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
-  const { itemsShown, PagerComponent } = usePager(loansModal.length, pageSize);
+  const { itemsShown, PagerComponent } = usePager({
+    hitcount: loansModal.length,
+    pageSize
+  });
   const intersectionRef = React.useRef(null);
   const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
     threshold: 0
@@ -134,7 +137,7 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               />
             );
           })}
-          {PagerComponent}
+          <PagerComponent />
         </ul>
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">

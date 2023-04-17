@@ -181,6 +181,7 @@ describe("Reservation details modal test", () => {
     // ID 17 2.c. the link "Remove your reservation"
     cy.get(".modal")
       .find("button.link-tag")
+      .eq(0)
       .should("have.text", "Remove your reservation")
       .click();
 
@@ -189,6 +190,7 @@ describe("Reservation details modal test", () => {
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
       .find("[data-cy='go-to-ereolen-button']")
+      .eq(0)
       .should("have.text", "Go to eReolen")
       .should("have.attr", "href")
       // ID 17 2.d.i. link to "ereolen.dk/user/me"

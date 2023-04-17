@@ -71,7 +71,6 @@ describe("Campaign", () => {
     isImageLoaded(cy);
     cy.getBySel("campaign-image").should("have.attr", "alt");
     cy.getBySel("campaign-body").should("be.visible").contains("Harry Potter");
-    cy.getBySel("link-no-style").should("have.attr", "role", "button");
   });
 
   it("Shows a text-only campaign without an image", () => {

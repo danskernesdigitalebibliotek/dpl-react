@@ -8,6 +8,7 @@ import ReservationMaterial from "../reservation-material/reservation-material";
 interface ListProps {
   reservations: ReservationType[];
   header: string;
+  emptyListDataCy: string;
   emptyListLabel: string;
   pageSize: number;
   openReservationDetailsModal: (reservation: ReservationType) => void;
@@ -16,6 +17,7 @@ const List: FC<ListProps> = ({
   reservations,
   header,
   pageSize,
+  emptyListDataCy,
   emptyListLabel,
   openReservationDetailsModal
 }) => {
@@ -23,10 +25,10 @@ const List: FC<ListProps> = ({
   const [displayedReservations, setDisplayedReservations] = useState<
     ReservationType[]
   >([]);
-  const { itemsShown, PagerComponent } = usePager(
-    reservations.length,
+  const { itemsShown, PagerComponent } = usePager({
+    hitcount: reservations.length,
     pageSize
-  );
+  });
 
   useEffect(() => {
     if (reservations) {
@@ -68,7 +70,7 @@ const List: FC<ListProps> = ({
                 />
               ))}
             </ul>
-            {PagerComponent}
+            <PagerComponent />
           </div>
         </>
       ) : (
@@ -82,7 +84,10 @@ const List: FC<ListProps> = ({
             </h2>
           </div>
           <div className="list-reservation-container m-32">
-            <EmptyList emptyListText={emptyListLabel} />
+            <EmptyList
+              dataCy={emptyListDataCy}
+              emptyListText={emptyListLabel}
+            />
           </div>
         </div>
       )}

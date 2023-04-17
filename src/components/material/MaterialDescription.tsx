@@ -1,26 +1,31 @@
 import React from "react";
-import { getNumberedSeries } from "../../apps/material/helper";
-import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import {
+  getNumberedSeries,
+  getUniqueMovies,
+  getDbcVerifiedSubjectsFirst
+} from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   constructMaterialUrl,
   constructSearchUrl
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
-  work: WorkMediumFragment;
+  work: Work;
 }
 
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const { searchUrl, materialUrl } = useUrls();
-  const { fictionNonfiction, series, subjects, seriesMembers } = work;
+  const { fictionNonfiction, series, subjects, seriesMembers, relations } =
+    work;
 
   const seriesList = getNumberedSeries(series);
 
@@ -31,10 +36,15 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     };
   });
 
-  const subjectsList = subjects.all.map((item) => {
+  const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
+    url: constructSearchUrl(searchUrl, item),
+    term: item
+  }));
+
+  const filmAdaptationsList = getUniqueMovies(relations).map((item) => {
     return {
-      url: constructSearchUrl(searchUrl, item.display),
-      term: item.display
+      url: constructMaterialUrl(materialUrl, item.ownerWork.workId as WorkId),
+      term: item.ownerWork.titles.main[0]
     };
   });
 
@@ -97,6 +107,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                   }
                 ]}
                 dataCy="material-description-fiction-nonfiction"
+              />
+            )}
+            {filmAdaptationsList.length > 0 && (
+              <HorizontalTermLine
+                title={t("filmAdaptationsText")}
+                linkList={filmAdaptationsList}
               />
             )}
           </div>

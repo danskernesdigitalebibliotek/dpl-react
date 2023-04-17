@@ -1123,21 +1123,19 @@ export type GetPatronInformationByPatronIdV2QueryError = ErrorType<void>;
 export const useGetPatronInformationByPatronIdV2 = <
   TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
   TError = ErrorType<void>
->(options?: {
-  query?: UseQueryOptions<
+>(
+  queryOptions?: UseQueryOptions<
     Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
     TError,
     TData
-  >;
-}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const { query: queryOptions } = options ?? {};
-
+  >
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
   const queryKey =
     queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV2QueryKey();
 
   const queryFn: QueryFunction<
     Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
-  > = ({ signal }) => getPatronInformationByPatronIdV2(signal);
+  > = ({ signal }) => getPatronInformationByPatronIdV2();
 
   const query = useQuery<
     Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,

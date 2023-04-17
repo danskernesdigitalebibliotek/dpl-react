@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
@@ -13,8 +13,6 @@ import {
   createFilters,
   useGetFacets
 } from "../../components/facet-browser/helper";
-import useFilterHandler from "./useFilterHandler";
-import { TermOnClickHandler } from "./types";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
@@ -28,6 +26,7 @@ import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
 import { dataIsNotEmpty } from "../../core/utils/helpers/general";
+import useFilterHandler from "./useFilterHandler";
 
 interface SearchResultProps {
   q: string;
@@ -35,21 +34,18 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const { filters, addToFilter, clearFilter } = useFilterHandler();
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
-  const { filters, filterHandler } = useFilterHandler();
+  const { PagerComponent, page } = usePager({
+    hitcount,
+    pageSize
+  });
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
-  );
-  const filteringHandler = useCallback<TermOnClickHandler>(
-    (filterInfo) => {
-      filterHandler(filterInfo);
-    },
-    [filterHandler]
   );
 
   const { facets: campaignFacets } = useGetFacets(q, filters);
@@ -80,9 +76,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         {
           onSuccess: (campaign) => {
             setCampaignData(campaign);
-          },
-          onError: () => {
-            // TODO: when we handle errors - handle this error
           }
         }
       );
@@ -95,19 +88,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   useEffect(() => {
     const materialTypeUrlFilter = getUrlQueryParam("materialType");
     if (materialTypeUrlFilter) {
-      filterHandler({
-        filterItem: {
-          facet: FacetField.MaterialTypes,
-          term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
-        },
-        action: "add"
+      addToFilter({
+        facet: FacetField.MaterialTypes,
+        term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
       });
     }
     // We only want to do this once, so we need the dependency array empty
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = useSearchWithPaginationQuery({
+  const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
     limit: pageSize,
@@ -168,22 +158,23 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [campaignData]);
 
+  // This is a hack to clear filters when the user navigates
+  // to the search page from links where there should be no filters.
+  useEffect(() => {
+    const filtersUrlParam = getUrlQueryParam("filters");
+    if (filtersUrlParam !== "usePersistedFilters") clearFilter();
+  }, [clearFilter]);
+
   return (
     <div className="search-result-page">
       <SearchResultHeader hitcount={hitcount} q={q} />
-      <FacetLine q={q} filters={filters} filterHandler={filteringHandler} />
+      <FacetLine q={q} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
       <SearchResultList resultItems={resultItems} />
-      {PagerComponent}
-      {dataIsNotEmpty(resultItems) && (
-        <FacetBrowserModal
-          q={q}
-          filters={filters}
-          filterHandler={filteringHandler}
-        />
-      )}
+      <PagerComponent isLoading={isLoading} />
+      {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );
 };
