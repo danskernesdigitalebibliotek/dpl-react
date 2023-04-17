@@ -67,7 +67,12 @@ const modalSlice = createSlice({
     },
     closeModal(state: StateProps, action: PayloadProps) {
       const modalId = state.modalIds.pop();
-      state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
+      if (state.modalIds.indexOf(action.payload.modalId) > -1) {
+        state.modalIds.splice(
+          state.modalIds.indexOf(action.payload.modalId),
+          1
+        );
+      }
       if (modalId) {
         removeModalIdFromUrl(state);
         returnFocusElement();
