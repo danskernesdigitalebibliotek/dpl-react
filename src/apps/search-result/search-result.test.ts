@@ -18,33 +18,33 @@ describe("Search Result", () => {
   });
 
   it("Renders the images", () => {
-    cy.get(".search-result-page__list .search-result-item img")
+    cy.get(".search-result-page__list .card-list-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
     cy.get(
-      ".search-result-page__list .search-result-item .button-favourite"
+      ".search-result-page__list .card-list-item .button-favourite"
     ).should("have.attr", "aria-label", "Add element to favorites list");
   });
 
   it("Renders the titles", () => {
-    cy.getBySel("search-result-item-title")
+    cy.getBySel("card-list-item-title")
       .first()
       .should("be.visible")
       .and("contain", "Harry : samtaler med prinsen");
   });
 
   it("Renders the authors", () => {
-    cy.getBySel("search-result-item-author")
+    cy.getBySel("card-list-item-author")
       .first()
       .should("be.visible")
       .and("contain.text", "By Angela Levin");
   });
 
   it("Renders one availability labels per material type", () => {
-    cy.getBySel("search-result-item-availability")
+    cy.getBySel("card-list-item-availability")
       .eq(1)
       .find("a")
       .should("be.visible")

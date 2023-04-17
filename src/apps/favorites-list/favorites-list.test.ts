@@ -57,9 +57,9 @@ describe("Favorites list", () => {
 
     // 2.e. accessibility on material type
     cy.get(".search-result-page")
-      .find(".search-result-item")
+      .find(".card-list-item")
       .eq(0)
-      .find(".search-result-item__availability")
+      .find(".card-list-item__availability")
       .should(
         "have.text",
         "billedbogunavailablelydbog (net)unavailablelydbog (cd)unavailablebilledbogunavailablebilledbog (net)unavailable"
@@ -67,7 +67,7 @@ describe("Favorites list", () => {
 
     // 2.f. Link on material to work page
     cy.get(".search-result-page")
-      .find(".search-result-item")
+      .find(".card-list-item")
       .eq(0)
       .find("a")
       .should("have.attr", "href")
@@ -75,7 +75,7 @@ describe("Favorites list", () => {
 
     // 2.g. Filled heart icon
     cy.get(".search-result-page")
-      .find(".search-result-item")
+      .find(".card-list-item")
       .eq(0)
       .find("svg")
       .should("have.attr", "fill")
@@ -87,7 +87,7 @@ describe("Favorites list", () => {
       "/iframe.html?id=apps-favorite-list--favorites-list&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
     cy.get(".search-result-page")
-      .find(".search-result-item")
+      .find(".card-list-item")
       .should("have.length", 2);
   });
 });

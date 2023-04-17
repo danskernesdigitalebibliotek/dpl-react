@@ -122,11 +122,11 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     <article
       ref={itemRef}
       data-cy={dataCy}
-      className="search-result-item arrow arrow__hover--right-small"
+      className="card-list-item arrow arrow__hover--right-small"
       onClick={handleClick}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
-      <div className="search-result-item__cover">
+      <div className="card-list-item__cover">
         {showItem && (
           <SearchResultListItemCover
             id={manifestationPid}
@@ -136,8 +136,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           />
         )}
       </div>
-      <div className="search-result-item__text">
-        <div className="search-result-item__meta">
+      <div className="card-list-item__text">
+        <div className="card-list-item__meta">
           {showItem && (
             <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
           )}
@@ -158,15 +158,15 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2
-          className="search-result-item__title text-header-h4 mb-4"
-          data-cy="search-result-item-title"
+          className="card-list-item__title text-header-h4 mb-4"
+          data-cy="card-list-item-title"
           lang={languageIsoCode}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
         {author && item && (
-          <p className="text-small-caption" data-cy="search-result-item-author">
+          <p className="text-small-caption" data-cy="card-list-item-author">
             {`${t("byAuthorText")} ${author}`}
             {getReleaseYearSearchResult(item)
               ? ` (${getReleaseYearSearchResult(item)})`
@@ -175,8 +175,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         )}
       </div>
       <div
-        className="search-result-item__availability"
-        data-cy="search-result-item-availability"
+        className="card-list-item__availability"
+        data-cy="card-list-item-availability"
       >
         {showItem && (
           <AvailabilityLabels
