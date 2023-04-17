@@ -17,6 +17,8 @@ import {
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
+import { ModalReservationFormTextType } from "./forms/helper";
+import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -180,14 +182,8 @@ export const getManifestationsToReserve = (
   return reservableManifestations;
 };
 
-const handleReservationModalTypeTranslationError = (name: string): never => {
-  throw new Error(
-    `No translation for "${name}" in getReservationModalTypeTranslation`
-  );
-};
-
 export const getReservationModalTypeTranslation = (
-  name: string,
+  name: ModalReservationFormTextType,
   type: "closeModalAriaLabelText" | "screenReaderModalDescriptionText"
 ) => {
   const isCloseModal = type === "closeModalAriaLabelText";
@@ -209,7 +205,7 @@ export const getReservationModalTypeTranslation = (
         ? "closeModalAriaLabelPickupText"
         : "screenReaderModalDescriptionPickupText";
     default:
-      return handleReservationModalTypeTranslationError(name);
+      return invalidSwitchCase<string>(name);
   }
 };
 

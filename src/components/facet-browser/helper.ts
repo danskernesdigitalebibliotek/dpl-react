@@ -5,6 +5,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Filter, FilterItemTerm } from "../../core/filter.slice";
+import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -100,11 +101,7 @@ export function getAllFilterPathsAsString(filterObject: {
   return allFilterPathsAsString;
 }
 
-const handleFacetFieldTranslationError = (name: string): never => {
-  throw new Error(`Didn't expect "${name}" in getFacetFieldTranslation`);
-};
-
-export const getFacetFieldTranslation = (name: string): string => {
+export const getFacetFieldTranslation = (name: FacetField) => {
   switch (name) {
     case FacetField.AccessTypes:
       return "facetAccessTypesText";
@@ -133,7 +130,7 @@ export const getFacetFieldTranslation = (name: string): string => {
     case FacetField.WorkTypes:
       return "facetWorkTypesText";
     default:
-      return handleFacetFieldTranslationError(name);
+      return invalidSwitchCase<string>(name);
   }
 };
 

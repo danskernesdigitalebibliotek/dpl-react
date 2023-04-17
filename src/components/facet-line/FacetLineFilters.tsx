@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
+  FacetField,
   FacetResult,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
@@ -53,7 +54,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     <ul className="facet-line mt-48">
       {facets.map(({ name, values }) => {
         if (values.length > 1) {
-          const translatedName = getFacetFieldTranslation(name);
+          const translatedName = getFacetFieldTranslation(name as FacetField);
           return (
             <li className="facet-line__item">
               <Dropdown
