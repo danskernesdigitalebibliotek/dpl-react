@@ -69,6 +69,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           id="pincode-input"
           type="password"
           pattern="[0-9]*"
+          required={required}
           inputmode="numeric"
           onChange={(newPin) => setPincode(newPin)}
           value={pincode}
@@ -79,6 +80,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           className="patron__input patron__input--desktop"
           id="pincode-confirm-input"
           pattern="[0-9]*"
+          required={required}
           inputmode="numeric"
           type="password"
           onChange={(newPin) => setConfirmPincode(newPin)}
