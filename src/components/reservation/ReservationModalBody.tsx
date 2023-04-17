@@ -256,7 +256,7 @@ export const ReservationModalBody = ({
               )}
 
               {instantLoanEnabled &&
-                instantLoanBranchHoldingsAboveThreshold && (
+                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
                   <InstantLoan
                     manifestation={manifestation}
                     instantLoanBranchHoldings={

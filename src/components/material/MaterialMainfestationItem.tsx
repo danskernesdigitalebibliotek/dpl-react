@@ -20,6 +20,7 @@ import {
   getManifestationEdition,
   getManifestationGenreAndForm,
   getManifestationIsbn,
+  getManifestationLanguageIsoCode,
   getManifestationLanguages,
   getManifestationMaterialTypes,
   getManifestationNumberOfPages,
@@ -44,6 +45,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     flattenCreators(filterCreators(creators, ["Person"])),
     t
   );
+  const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
   const detailsListData: ListData = [
     {
@@ -115,7 +117,10 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h3 className="material-manifestation-item__title text-header-h4">
+        <h3
+          lang={languageIsoCode}
+          className="material-manifestation-item__title text-header-h4"
+        >
           {titles?.main[0]}
         </h3>
         <p className="text-small-caption">

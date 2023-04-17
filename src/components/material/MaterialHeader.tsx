@@ -29,6 +29,7 @@ import { statistics } from "../../core/statistics/statistics";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import MaterialType from "../../core/utils/types/material-type";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
+import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -86,6 +87,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
 
+  const languageIsoCode = getManifestationLanguageIsoCode(
+    selectedManifestations
+  );
+
   useDeepCompareEffect(() => {
     track("click", {
       id: statistics.materialType.id,
@@ -114,7 +119,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         className="material-header__content"
       >
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
-        <MaterialHeaderText title={String(title)} author={author} />
+        <MaterialHeaderText
+          title={String(title)}
+          author={author}
+          languageIsoCode={languageIsoCode}
+        />
         <div ref={itemRef} className="material-header__availability-label">
           {showItem && (
             <AvailabilityLabels
