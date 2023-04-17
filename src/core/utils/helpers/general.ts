@@ -42,14 +42,6 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const filterCreators = (
-  creators: Work["creators"],
-  filterBy: ["Person" | "Corporation"]
-) =>
-  creators.filter((creator: Work["creators"][0]) => {
-    return creator.__typename && filterBy.includes(creator.__typename);
-  });
-
 export const flattenCreators = (creators: Work["creators"]) =>
   creators.map((creator: Work["creators"][0]) => {
     return creator.display;
