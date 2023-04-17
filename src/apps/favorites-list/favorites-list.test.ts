@@ -10,7 +10,7 @@ describe("Favorites list", () => {
       statusCode: 200,
       body: {
         id: "default",
-        materials: [
+        collections: [
           "870970-basis:53063403",
           "870970-basis:51363035",
           "870970-basis:29630364"
