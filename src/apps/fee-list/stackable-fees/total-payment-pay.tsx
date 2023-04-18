@@ -53,7 +53,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
         {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
       </div>
       <div className="fee-list-bottom__actions">
-        <p>
+        <p className="text-body-small-medium">
           {t("totalText")} {total},-
         </p>
         <CheckBox
