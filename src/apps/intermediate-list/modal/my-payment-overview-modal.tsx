@@ -21,15 +21,13 @@ const MyPaymentOverviewModal: FC = () => {
       classNames="modal-cta"
     >
       <div className="modal-cta__container">
-        <h2 className="text-header-h2">
-          {t("intermediatePaymentModalHeaderText")}
-        </h2>
+        <h2 className="text-header-h2">{t("feePaymentModalHeaderText")}</h2>
         <div className="mt-48 color-secondary-gray">
           <p className="text-body-medium-regular">
-            {t("intermediatePaymentModalBodyText")}
+            {t("feePaymentModalBodyText")}
           </p>
           <p className="text-body-medium-regular mt-24">
-            {t("intermediatePaymentModalNoticeText")}
+            {t("feePaymentModalNoticeText")}
           </p>
         </div>
         <div className="modal-cta__buttons mt-48">
@@ -38,7 +36,7 @@ const MyPaymentOverviewModal: FC = () => {
             href={paymentOverviewUrl}
             isNewTab
           >
-            {t("intermediatePaymentModalGotoText")}{" "}
+            {t("feePaymentModalGotoText")}{" "}
             <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
           </Link>
           <div className="modal-cta__link">
@@ -47,7 +45,7 @@ const MyPaymentOverviewModal: FC = () => {
               type="button"
               onClick={handleClick}
             >
-              {t("intermediatePaymentModalCancelText")}
+              {t("feePaymentModalCancelText")}
             </button>
           </div>
         </div>

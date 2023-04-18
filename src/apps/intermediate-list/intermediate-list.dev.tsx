@@ -12,11 +12,11 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...blockedArgs,
-    intermediateListHeadlineText: {
+    feeListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }
     },
-    intermediateListBodyText: {
+    feeListBodyText: {
       defaultValue:
         "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page.",
       control: { type: "text" }
@@ -47,7 +47,7 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    intermediateListDaysText: {
+    feeListDaysText: {
       defaultValue: "Days",
       control: { type: "text" }
     },
@@ -88,23 +88,23 @@ export default {
         "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked.",
       control: { type: "text" }
     },
-    intermediatePaymentModalHeaderText: {
+    feePaymentModalHeaderText: {
       defaultValue: "Unpaid fees post 27/10 2020",
       control: { type: "text" }
     },
-    intermediatePaymentModalBodyText: {
+    feePaymentModalBodyText: {
       defaultValue: "You will be redirected to Mit Betalingsoverblik.",
       control: { type: "text" }
     },
-    intermediatePaymentModalNoticeText: {
+    feePaymentModalNoticeText: {
       defaultValue: "Paid fees can take up to 24 hours to registrer.",
       control: { type: "text" }
     },
-    intermediatePaymentModalGotoText: {
+    feePaymentModalGotoText: {
       defaultValue: "Go to Mit Betalingsoverblik",
       control: { type: "text" }
     },
-    intermediatePaymentModalCancelText: {
+    feePaymentModalCancelText: {
       defaultValue: "Cancel",
       control: { type: "text" }
     },
@@ -112,7 +112,7 @@ export default {
       defaultValue: "A modal containing details about a fee",
       control: { type: "text" }
     },
-    emptyIntermediateListText: {
+    emptyFeeListText: {
       defaultValue: "You have 0 unpaid fees or replacement costs",
       control: { type: "text" }
     },

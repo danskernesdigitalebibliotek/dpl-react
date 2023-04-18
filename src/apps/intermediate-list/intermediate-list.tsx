@@ -118,11 +118,9 @@ const IntermedateList: FC = () => {
         style={modalIds.length > 0 ? { display: "none" } : {}}
         className="intermediate-list-page"
       >
-        <h1 className="text-header-h1 my-32">
-          {t("intermediateListHeadlineText")}
-        </h1>
+        <h1 className="text-header-h1 my-32">{t("feeListHeadlineText")}</h1>
         <span className="intermediate-list-body">
-          {t("intermediateListBodyText")}{" "}
+          {t("feeListBodyText")}{" "}
           <Link className="link-tag" href={viewFeesAndCompensationRatesUrl}>
             {t("viewFeesAndCompensationRatesText")}
           </Link>

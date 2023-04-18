@@ -27,7 +27,7 @@ const FeeList: FC<FeeListProps> = ({
       {!itemsPrePaymentChange && !itemsPostPaymentChange && (
         <>
           <ListHeader header={<>{t("unpaidFeesText")}</>} amount={0} />
-          <div className="dpl-list-empty">{t("emptyIntermediateListText")}</div>
+          <div className="dpl-list-empty">{t("emptyFeeListText")}</div>
         </>
       )}
       {itemsPrePaymentChange && (

@@ -23,7 +23,7 @@ export interface MenuProps {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   thresholdConfig: string;
-  intermediateListDaysText: string;
+  feeListDaysText: string;
   menuLoginText: string;
   menuLoginUrl: string;
   menuSignUpText: string;
