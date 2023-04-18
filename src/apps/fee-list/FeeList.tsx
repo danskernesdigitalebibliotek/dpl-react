@@ -114,10 +114,12 @@ const FeeList: FC = () => {
     <>
       <div
         style={modalIds.length > 0 ? { display: "none" } : {}}
-        className="intermediate-list-page"
+        className="fee-list-page"
       >
-        <h1 className="text-header-h1 my-32">{t("feeListHeadlineText")}</h1>
-        <span className="intermediate-list-body">
+        <h1 data-cy="fee-list-headline" className="text-header-h1 my-32">
+          {t("feeListHeadlineText")}
+        </h1>
+        <span data-cy="fee-list-body">
           {t("feeListBodyText")}{" "}
           <Link className="link-tag" href={viewFeesAndCompensationRatesUrl}>
             {t("viewFeesAndCompensationRatesText")}

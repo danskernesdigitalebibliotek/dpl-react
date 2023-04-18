@@ -40,8 +40,8 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   const postPaymentChangeChecked = !prePaymentTypeChange && check;
 
   return (
-    <div className="intermediate-list-bottom">
-      <div className="intermediate-list-bottom__paymenttypes text-body-medium-regular">
+    <div className="fee-list-bottom">
+      <div className="fee-list-bottom__paymenttypes text-body-medium-regular">
         {prePaymentTypeChange && availablePaymentTypesUrl.href !== "" && (
           <img
             width="300"
@@ -52,7 +52,7 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
         )}
         {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
       </div>
-      <div className="intermediate-list-bottom__actions">
+      <div className="fee-list-bottom__actions">
         <p>
           {t("totalText")} {total},-
         </p>
