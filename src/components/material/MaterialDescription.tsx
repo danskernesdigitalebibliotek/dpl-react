@@ -87,7 +87,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 dataCy="material-description-series-members"
               />
             )}
-            {subjectsList && (
+            {subjectsList.length > 0 && (
               <HorizontalTermLine
                 title={t("identifierText")}
                 linkList={subjectsList}
