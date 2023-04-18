@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import clsx from "clsx";
 import Link from "../atoms/links/Link";
 import { useText } from "../../core/utils/text";
+import ButtonExpand from "../button-expand/ButtonExpand";
 
 export interface HorizontalTermLineProps {
   title: string;
@@ -53,19 +52,7 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
       })}
 
       {showMoreButton && (
-        <button
-          type="button"
-          onClick={() => setShowMore(!showMore)}
-          aria-label={t("expandMoreText")}
-        >
-          <img
-            className={clsx("horizontal-term-line__expand", {
-              "horizontal-term-line__expand--expanded": showMore
-            })}
-            src={ExpandMoreIcon}
-            alt=""
-          />
-        </button>
+        <ButtonExpand showMore={showMore} setShowMore={setShowMore} />
       )}
     </div>
   );
