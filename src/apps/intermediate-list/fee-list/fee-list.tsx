@@ -35,7 +35,7 @@ const FeeList: FC<FeeListProps> = ({
           <ListHeader
             header={
               <>
-                {t("unpaidFeesText")} -{" "}
+                {t("unpaidFeesText")} -<span>&nbsp;</span>
                 <b>{t("prePaymentTypeChangeDateText")}</b>
               </>
             }
@@ -61,7 +61,7 @@ const FeeList: FC<FeeListProps> = ({
           <ListHeader
             header={
               <>
-                {t("unpaidFeesText")} -{" "}
+                {t("unpaidFeesText")} -<span>&nbsp;</span>
                 <b>{t("postPaymentTypeChangeDateText")}</b>
               </>
             }

@@ -118,7 +118,7 @@ const IntermedateList: FC = () => {
         style={modalIds.length > 0 ? { display: "none" } : {}}
         className="intermediate-list-page"
       >
-        <h1 className="intermediate-list-headline">
+        <h1 className="text-header-h1 my-32">
           {t("intermediateListHeadlineText")}
         </h1>
         <span className="intermediate-list-body">

@@ -43,6 +43,7 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
           </p>
           <p className="text-small-caption color-secondary-gray">{series}</p>
         </div>
+        <div />
         {children}
       </div>
     </div>
