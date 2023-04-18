@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Link from "../../../components/atoms/links/Link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -33,15 +32,17 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
     { "btn-outline": !showPaymentButton, "btn-filled": showPaymentButton }
   );
   const { availablePaymentTypesUrl } = useUrls();
+
   const checkboxTermsId = `checkbox_terms__${
     (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
   }`;
   const postPaymentChangeNotChecked = !prePaymentTypeChange && !check;
   const postPaymentChangeChecked = !prePaymentTypeChange && check;
+
   return (
     <div className="intermediate-list-bottom">
-      <div className="intermediate-list-bottom__paymenttypes">
-        {prePaymentTypeChange && (
+      <div className="intermediate-list-bottom__paymenttypes text-body-medium-regular">
+        {prePaymentTypeChange && availablePaymentTypesUrl.href !== "" && (
           <img
             width="300"
             height="35"
