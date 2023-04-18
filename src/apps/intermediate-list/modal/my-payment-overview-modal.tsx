@@ -28,7 +28,7 @@ const MyPaymentOverviewModal: FC = () => {
           <p className="text-body-medium-regular">
             {t("intermediatePaymentModalBodyText")}
           </p>
-          <p className="text-links mt-24">
+          <p className="text-body-medium-regular mt-24">
             {t("intermediatePaymentModalNoticeText")}
           </p>
         </div>
