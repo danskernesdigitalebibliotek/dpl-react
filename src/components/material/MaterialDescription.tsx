@@ -14,6 +14,7 @@ import { Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
+import { materialIsFiction } from "../../core/utils/helpers/general";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -24,9 +25,16 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const { searchUrl, materialUrl } = useUrls();
-  const { fictionNonfiction, series, subjects, seriesMembers, relations } =
-    work;
+  const {
+    fictionNonfiction,
+    series,
+    subjects,
+    seriesMembers,
+    relations,
+    dk5MainEntry
+  } = work;
 
+  const isFiction = materialIsFiction(work);
   const seriesList = getNumberedSeries(series);
 
   const seriesMembersList = seriesMembers.map((item) => {
@@ -65,6 +73,17 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
             </p>
           )}
           <div className="material-description__links mt-32">
+            {!isFiction && dk5MainEntry && (
+              <HorizontalTermLine
+                title="Emnetal"
+                linkList={[
+                  {
+                    url: constructSearchUrl(searchUrl, dk5MainEntry.display),
+                    term: dk5MainEntry.display
+                  }
+                ]}
+              />
+            )}
             {seriesList.map((item, i) => (
               <HorizontalTermLine
                 title={`${t("numberDescriptionText")} ${
