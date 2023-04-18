@@ -3,9 +3,9 @@ import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import IntermedateList from "./intermediate-list";
+import FeeList from "./FeeList";
 
-export interface IntermedateListEntryConfigProps {
+export interface FeeListEntryConfigProps {
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
@@ -15,7 +15,7 @@ export interface IntermedateListEntryConfigProps {
   thresholdConfig: string;
 }
 
-export interface IntermedateListProps {
+export interface FeeListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
@@ -49,10 +49,8 @@ export interface IntermedateListProps {
   paymentOverviewUrl: string;
 }
 
-const IntermedateListEntry: FC<
-  IntermedateListProps &
-    BlockedPatronEntryTextProps &
-    IntermedateListEntryConfigProps
-> = () => <IntermedateList />;
+const FeeListEntry: FC<
+  FeeListProps & BlockedPatronEntryTextProps & FeeListEntryConfigProps
+> = () => <FeeList />;
 
-export default withUrls(withText(withIsPatronBlockedHoc(IntermedateListEntry)));
+export default withUrls(withText(withIsPatronBlockedHoc(FeeListEntry)));

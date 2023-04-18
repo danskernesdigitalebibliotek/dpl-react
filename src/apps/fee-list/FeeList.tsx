@@ -3,12 +3,10 @@ import { useSelector } from "react-redux";
 import Link from "../../components/atoms/links/Link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
-import { faustIdModalQueryParam } from "../../core/utils/helpers/modal-helpers";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import { ModalIdsProps, useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
-import FeeList from "./fee-list/fee-list";
+import List from "./list";
 import FeeDetailsModal from "./modal/fee-details-modal";
 import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
@@ -18,7 +16,7 @@ import {
   getFeesInRelationToPaymentChangeDate
 } from "./utils/helper";
 
-const IntermedateList: FC = () => {
+const FeeList: FC = () => {
   const t = useText();
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
@@ -125,7 +123,7 @@ const IntermedateList: FC = () => {
             {t("viewFeesAndCompensationRatesText")}
           </Link>
         </span>
-        <FeeList
+        <List
           openDetailsModalClickEvent={openDetailsModalClickEvent}
           itemsPrePaymentChange={itemsPrePaymentChange}
           itemsPostPaymentChange={itemsPostPaymentChange}
@@ -145,4 +143,4 @@ const IntermedateList: FC = () => {
   );
 };
 
-export default IntermedateList;
+export default FeeList;

@@ -1,19 +1,19 @@
 import * as React from "react";
 import { FC } from "react";
-import ListHeader from "../../../components/list-header/list-header";
-import { FeeV2 } from "../../../core/fbs/model";
-import { useText } from "../../../core/utils/text";
-import FeeListItem from "../fee-list-item/fee-list.item";
-import TotalPaymentPay from "../stackable-fees/total-payment-pay";
+import ListHeader from "../../components/list-header/list-header";
+import { FeeV2 } from "../../core/fbs/model";
+import { useText } from "../../core/utils/text";
+import FeeListItem from "./fee-list-item/fee-list.item";
+import TotalPaymentPay from "./stackable-fees/total-payment-pay";
 
-interface FeeListProps {
+interface ListProps {
   openDetailsModalClickEvent: (faustId: string) => void;
   itemsPrePaymentChange: FeeV2[] | null;
   itemsPostPaymentChange: FeeV2[] | null;
   totalFeePrePaymentChange: number;
   totalFeePostPaymentChange: number;
 }
-const FeeList: FC<FeeListProps> = ({
+const List: FC<ListProps> = ({
   openDetailsModalClickEvent,
   itemsPrePaymentChange,
   itemsPostPaymentChange,
@@ -87,4 +87,4 @@ const FeeList: FC<FeeListProps> = ({
   );
 };
 
-export default FeeList;
+export default List;

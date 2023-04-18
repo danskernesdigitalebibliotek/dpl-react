@@ -1,14 +1,14 @@
+import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
 import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { getModalIds } from "../../core/utils/helpers/general";
-import IntermedateList from "./intermediate-list.entry";
+import FeeList from "./FeeList.entry";
 
 export default {
-  title: "Apps / Intermediate-list",
-  component: IntermedateList,
+  title: "Apps / Fee list",
+  component: FeeList,
   argTypes: {
     ...serviceUrlArgs,
     ...blockedArgs,
@@ -159,19 +159,19 @@ export default {
     }
   },
   decorators: [withQuery]
-} as ComponentMeta<typeof IntermedateList>;
+} as ComponentMeta<typeof FeeList>;
 
-const Template: ComponentStory<typeof IntermedateList> = (props) => (
-  <IntermedateList {...props} />
+const Template: ComponentStory<typeof FeeList> = (props) => (
+  <FeeList {...props} />
 );
 
-export const IntermediateListEntry = Template.bind({});
+export const FeeListEntry = Template.bind({});
 
-IntermediateListEntry.args = {};
+FeeListEntry.args = {};
 const { feeDetails } = getModalIds();
 
-export const IntermediateListfeeDetailsModal = Template.bind({});
-IntermediateListfeeDetailsModal.parameters = {
+export const FeeListFeeDetailsModal = Template.bind({});
+FeeListFeeDetailsModal.parameters = {
   query: {
     modal: `${feeDetails}48724566`
   }
