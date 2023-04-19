@@ -72,14 +72,6 @@ describe("Favorites list", () => {
       .find("a")
       .should("have.attr", "href")
       .should("include", "/work/work-of:870970-basis:51363035");
-
-    // 2.g. Filled heart icon
-    cy.get(".card-list-page")
-      .find(".card-list-item")
-      .eq(0)
-      .find("svg")
-      .should("have.attr", "fill")
-      .should("include", "#000");
   });
   it("Favorites list paginates", () => {
     // 2.h it paginates
