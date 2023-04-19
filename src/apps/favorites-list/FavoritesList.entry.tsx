@@ -7,6 +7,7 @@ import FavoritesList from "./FavoritesList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface FavoritesListConfigEntryProps {
+  blacklistedAvailabilityBranchesConfig: string;
   fbsBaseUrlConfig: string;
 }
 interface FavoritesListTextEntryProps {
