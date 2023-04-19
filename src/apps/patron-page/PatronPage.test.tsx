@@ -108,7 +108,7 @@ describe("Patron page", () => {
 
   // TODO: Add fixture to make the test pass. Since ErrorBoundary handling was added,
   // the test fails because it is now visible that the service is failing.
-  it.skip("Patron page", () => {
+  it("Patron page", () => {
     // ID 36 2. The system shows
     // ID 36 2.a. Header
     cy.get(".dpl-patron-page")
