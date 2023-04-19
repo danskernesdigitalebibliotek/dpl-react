@@ -62,7 +62,7 @@ describe("Favorites list", () => {
       .find(".card-list-item__availability")
       .should(
         "have.text",
-        "billedbogunavailablelydbog (net)unavailablelydbog (cd)unavailablebilledbogunavailablebilledbog (net)unavailable"
+        "billedbogavailablelydbog (net)unavailablelydbog (cd)availablebilledbog (net)unavailableebogunavailable"
       );
 
     // 2.f. Link on material to work page
