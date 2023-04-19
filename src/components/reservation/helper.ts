@@ -17,6 +17,8 @@ import {
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
+import { ModalReservationFormTextType } from "./forms/helper";
+import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -178,6 +180,33 @@ export const getManifestationsToReserve = (
   // Fictional work editions don't change content, only appearance, and so we can
   // reserve whichever one of the reservable manifestations will be home soonest.
   return reservableManifestations;
+};
+
+export const getReservationModalTypeTranslation = (
+  name: ModalReservationFormTextType,
+  type: "closeModalAriaLabelText" | "screenReaderModalDescriptionText"
+) => {
+  const isCloseModal = type === "closeModalAriaLabelText";
+  switch (name) {
+    case "sms":
+      return isCloseModal
+        ? "closeModalAriaLabelSmsText"
+        : "screenReaderModalDescriptionSmsText";
+    case "email":
+      return isCloseModal
+        ? "closeModalAriaLabelEmailText"
+        : "screenReaderModalDescriptionEmailText";
+    case "interestPeriod":
+      return isCloseModal
+        ? "closeModalAriaLabelInterestPeriodText"
+        : "screenReaderModalDescriptionInterestPeriodText";
+    case "pickup":
+      return isCloseModal
+        ? "closeModalAriaLabelPickupText"
+        : "screenReaderModalDescriptionPickupText";
+    default:
+      return invalidSwitchCase<string>(name);
+  }
 };
 
 export const getInstantLoanBranchHoldings = (
