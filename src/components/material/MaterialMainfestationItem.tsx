@@ -1,5 +1,4 @@
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { useId, FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
@@ -38,6 +37,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation,
   workId
 }) => {
+  const mainfestationTitleId = useId();
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid);
@@ -119,6 +119,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       <div className="material-manifestation-item__text">
         <h3
           lang={languageIsoCode}
+          id={mainfestationTitleId}
           className="material-manifestation-item__title text-header-h4"
         >
           {titles?.main[0]}
@@ -162,6 +163,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestations={[manifestation]}
           size="small"
           workId={workId}
+          materialTitleId={mainfestationTitleId}
         />
       </div>
     </div>

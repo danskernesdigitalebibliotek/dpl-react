@@ -20,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {/* The downshift combobox uses prop spreading by design & associated control is desctructured too */}
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading */}
       <label className="hide-visually" {...getLabelProps()}>
-        {t("searchHeaderInputLabel")}
+        {t("searchHeaderInputLabelText")}
       </label>
       {/* eslint-disable react/jsx-props-no-spreading */}
       <input

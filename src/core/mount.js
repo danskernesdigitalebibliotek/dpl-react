@@ -23,6 +23,9 @@ function mount(context) {
     // Ensure that the application exists.
     const isValidMount = app;
     if (isValidMount) {
+      // Todo: This should be updated because render() is deprecated.
+      // After the update, ensure that prefixes (identifierPrefix) are specified for all apps.
+      // This will guarantee unique IDs everywhere useID() is utilized.
       render(
         createElement(
           Store,

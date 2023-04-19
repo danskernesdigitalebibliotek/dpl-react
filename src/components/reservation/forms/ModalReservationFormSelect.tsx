@@ -4,6 +4,7 @@ import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
 import ReservationForm from "./ReservationForm";
+import { getReservationModalTypeTranslation } from "../helper";
 
 export interface ModalReservationFormSelectProps {
   type: ModalReservationFormTextType;
@@ -22,9 +23,11 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${type.toUpperCase()}Text`
+    getReservationModalTypeTranslation(type, "screenReaderModalDescriptionText")
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${type.toUpperCase()}Text`)
+  closeModalAriaLabelText: t(
+    getReservationModalTypeTranslation(type, "closeModalAriaLabelText")
+  )
 });
 
 const ModalReservationFormSelect = ({

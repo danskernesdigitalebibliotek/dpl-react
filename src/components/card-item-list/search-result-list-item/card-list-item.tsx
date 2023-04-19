@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useId } from "react";
 import { useDispatch } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
@@ -56,6 +56,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   resultNumber,
   dataCy = "card-list-item"
 }) => {
+  const searchTitleId = useId();
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const { filters } = useFilterHandler();
@@ -128,9 +129,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         {showItem && (
           <SearchResultListItemCover
             id={manifestationPid}
-            description={String(fullTitle)}
             url={materialFullUrl}
             tint={coverTint}
+            linkAriaLabelledBy={searchTitleId}
           />
         )}
       </div>
@@ -159,6 +160,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
           className="card-list-item__title text-header-h4 mb-4"
           data-cy="card-list-item-title"
           lang={languageIsoCode}
+          id={searchTitleId}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>

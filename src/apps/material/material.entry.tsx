@@ -20,6 +20,10 @@ interface MaterialEntryTextProps {
   changePickupLocationText: string;
   changeSmsNumberText: string;
   chooseOneText: string;
+  closeModalAriaLabelEmailText: string;
+  closeModalAriaLabelInterestPeriodText: string;
+  closeModalAriaLabelPickupText: string;
+  closeModalAriaLabelSmsText: string;
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
@@ -47,7 +51,6 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
-  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -55,6 +58,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfTableDescriptionText: string;
   firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
@@ -133,6 +137,10 @@ interface MaterialEntryTextProps {
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;
+  screenReaderModalDescriptionEmailText: string;
+  screenReaderModalDescriptionInterestPeriodText: string;
+  screenReaderModalDescriptionPickupText: string;
+  screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;

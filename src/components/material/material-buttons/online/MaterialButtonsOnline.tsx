@@ -18,13 +18,15 @@ export interface MaterialButtonsOnlineProps {
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
+  ariaLabelledBy: string;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   manifestations,
   size,
   workId,
-  dataCy = "material-buttons-online"
+  dataCy = "material-buttons-online",
+  ariaLabelledBy
 }) => {
   const { track } = useStatistics();
   const trackOnlineView = () => {
@@ -64,6 +66,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         trackOnlineView={trackOnlineView}
         manifestations={manifestations}
         dataCy={`${dataCy}-external`}
+        ariaLabelledBy={ariaLabelledBy}
       />
     );
   }

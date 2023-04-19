@@ -8,6 +8,7 @@ export interface LinkNoStyleProps {
   className?: string;
   trackClick?: () => Promise<unknown>;
   dataCy?: string;
+  ariaLabelledBy?: string;
 }
 
 const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
@@ -16,7 +17,8 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   isNewTab = false,
   className,
   trackClick,
-  dataCy = "link-no-style"
+  dataCy = "link-no-style",
+  ariaLabelledBy
 }) => {
   return (
     <Link
@@ -25,6 +27,7 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
       className={`hide-linkstyle ${className || ""}`}
       trackClick={trackClick}
       dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
     >
       {children}
     </Link>

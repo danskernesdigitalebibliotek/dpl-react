@@ -8,7 +8,7 @@ export interface SearchHeaderTextProps {
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   searchHeaderIconAltText?: string;
-  searchHeaderInputLabel?: string;
+  searchHeaderInputLabelText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;
