@@ -14,19 +14,21 @@ describe("Search Result", () => {
   });
 
   it("Renders all the search results", () => {
-    cy.get(".search-result-page__list").find("li").should("have.length", 2);
+    cy.get(".card-list-page__list").find("li").should("have.length", 2);
   });
 
   it("Renders the images", () => {
-    cy.get(".search-result-page__list .card-list-item img")
+    cy.get(".card-list-page__list .card-list-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
-    cy.get(
-      ".search-result-page__list .card-list-item .button-favourite"
-    ).should("have.attr", "aria-label", "Add element to favorites list");
+    cy.get(".card-list-page__list .card-list-item .button-favourite").should(
+      "have.attr",
+      "aria-label",
+      "Add element to favorites list"
+    );
   });
 
   it("Renders the titles", () => {
@@ -64,7 +66,7 @@ describe("Search Result", () => {
 
   it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-    cy.get(".search-result-page__list").find("li").should("have.length", 4);
+    cy.get(".card-list-page__list").find("li").should("have.length", 4);
   });
 
   it("Updates the pager info after clicking show more results", () => {
@@ -75,11 +77,11 @@ describe("Search Result", () => {
   });
 
   it("Renders the correct release year for fictional works", () => {
-    cy.getBySel("search-result-list-item").eq(1).should("contain", "1997");
+    cy.getBySel("card-list-item").eq(1).should("contain", "1997");
   });
 
   it("Renders the correct release year for non-fictional works", () => {
-    cy.getBySel("search-result-list-item").first().should("contain", "2018");
+    cy.getBySel("card-list-item").first().should("contain", "2018");
   });
 
   beforeEach(() => {

@@ -52,7 +52,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   },
   coverTint,
   resultNumber,
-  dataCy = "search-result-list-item"
+  dataCy = "card-list-item"
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();

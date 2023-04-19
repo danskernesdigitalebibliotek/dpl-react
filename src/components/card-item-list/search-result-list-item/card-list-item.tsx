@@ -16,7 +16,7 @@ import {
   getManifestationPid,
   getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
-import SearchResultListItemCover from "./search-result-list-item-cover";
+import SearchResultListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
@@ -43,8 +43,6 @@ export interface SearchResultListItemProps {
   resultNumber: number;
   dataCy?: string;
 }
-// TODO: Generalize/rename this component in order to adhere to both the search list and the favorites list, as they both display results in the same manner.
-
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   item,
   item: {
@@ -56,7 +54,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   },
   coverTint,
   resultNumber,
-  dataCy = "search-result-list-item"
+  dataCy = "card-list-item"
 }) => {
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();

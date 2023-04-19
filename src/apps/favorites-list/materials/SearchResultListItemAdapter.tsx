@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import SearchResultListItem from "../../../components/search-result-list/search-result-list-item/search-result-list-item";
+import SearchResultListItem from "../../../components/card-item-list/search-result-list-item/card-list-item";
 import { Pid } from "../../../core/utils/types/ids";
 import { useGetFavoriteMaterialManifestationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../../core/utils/types/entities";

@@ -33,7 +33,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   }, [collections, data]);
 
   return (
-    <div className="search-result-page">
+    <div className="card-list-page">
       <h1 className="text-header-h2 mb-16 search-result-title">
         {t("favoritesListHeaderText")}
       </h1>
@@ -45,7 +45,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
         </p>
       )}
       {displayedMaterials.length > 0 && (
-        <ul className="search-result-page__list my-32">
+        <ul className="card-list-page__list my-32">
           {displayedMaterials.map((pid) => (
             <li key={pid}>
               <CardList key={pid} pid={pid} />
