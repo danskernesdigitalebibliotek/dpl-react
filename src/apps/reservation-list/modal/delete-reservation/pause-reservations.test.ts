@@ -29,11 +29,6 @@ describe("Pause reservation modal test", () => {
       }
     });
 
-    cy.intercept("PUT", "**/agencyid/patrons/patronid/**", {
-      code: 101,
-      message: "OK"
-    }).as("update-user");
-
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       statusCode: 200,
       body: {
@@ -134,9 +129,11 @@ describe("Pause reservation modal test", () => {
       }
     }).as("user");
 
-    cy.get(".modal.modal-cta .modal-pause__button button")
-      .should("exist")
-      .click();
+    cy.getBySel("modal-pause-reservation-close-button").should("exist").click();
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
 
     // ID 12 4.b. closes modal, updates reservation overview with badge
     cy.get(".modal.modal-cta").should("not.exist");

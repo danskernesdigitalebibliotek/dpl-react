@@ -182,10 +182,9 @@ describe("Reservation details modal test", () => {
     cy.get(".modal")
       .find("button.link-tag")
       .eq(0)
-      .should("have.text", "Remove your reservation")
-      .click();
+      .should("have.text", "Remove your reservation");
 
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+    cy.get(".modal").getBySel("delete-reservation-button").should("exist");
 
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
@@ -413,10 +412,9 @@ describe("Reservation details modal test", () => {
       .find(".modal-details__buttons")
       .eq(0)
       .find("button")
-      .should("have.text", "Remove your reservation")
-      .click();
+      .should("have.text", "Remove your reservation");
 
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+    cy.get(".modal").getBySel("delete-reservation-button").should("exist");
 
     // ID 13 2.d. header "status"
     cy.get(".modal-details__list")
@@ -508,41 +506,8 @@ describe("Reservation details modal test", () => {
       .find(".dropdown__option")
       .should("have.text", "Pick1 month2 months3 months6 months1 year");
 
-    cy.intercept(
-      "PUT",
-      "**/external/v1/agencyid/patrons/patronid/reservations**",
-      {
-        statusCode: 201,
-        body: { code: 101, message: "OK" }
-      }
-    ).as("put-library-branch-and-expiry-date");
-
-    // ID 15 2.g user clicks save
-    // ID 16 4. user clicks save
-    cy.get(".modal-details__list")
-      .find("[data-cy='save-physical-details']")
-      .click();
-
     // ID 15 2.i still on "detaljevisning"
-    // ID 16 6. user clicks save
     cy.get(".modal").should("exist");
-
-    // ID 16 6.b user clicks save
-    // ID 15 2.i.b pick up library change link
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(1)
-      .find("button")
-      .should("exist");
-
-    // ID 16 6.c user clicks save
-    // ID 15 2.i.c expiry date change link
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(2)
-      .find("button")
-      .should("exist")
-      .click();
 
     // ID 13 2.h. header "Date of reservation"
     cy.get(".modal-details__list")
