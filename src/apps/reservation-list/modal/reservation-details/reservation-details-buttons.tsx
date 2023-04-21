@@ -31,6 +31,7 @@ const ReservationDetailsButton: FC<
         </div>
       )}
       <Button
+        dataCy="delete-reservation"
         label={t("reservationDetailsButtonRemoveText")}
         onClick={() => openReservationDeleteModal(reservation)}
         classNames={buttonClassNames}

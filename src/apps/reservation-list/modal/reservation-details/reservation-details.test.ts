@@ -184,7 +184,7 @@ describe("Reservation details modal test", () => {
       .eq(0)
       .should("have.text", "Remove your reservation");
 
-    cy.get(".modal").getBySel("delete-reservation-button").should("exist");
+    cy.get(".modal").getBySel("delete-reservation").should("exist");
 
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
@@ -414,7 +414,7 @@ describe("Reservation details modal test", () => {
       .find("button")
       .should("have.text", "Remove your reservation");
 
-    cy.get(".modal").getBySel("delete-reservation-button").should("exist");
+    cy.get(".modal").getBySel("delete-reservation").should("exist");
 
     // ID 13 2.d. header "status"
     cy.get(".modal-details__list")
