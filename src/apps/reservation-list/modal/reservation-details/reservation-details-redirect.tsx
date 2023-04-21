@@ -29,7 +29,6 @@ const ReservationDetailsRedirect: FC<
     <div className={`modal-details__buttons ${className}`}>
       <button
         type="button"
-        data-cy="delete-reservation-button"
         onClick={() => openReservationDeleteModal(reservation)}
         className={`link-tag ${linkClassNames}`}
       >
