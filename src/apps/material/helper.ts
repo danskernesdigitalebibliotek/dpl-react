@@ -135,12 +135,8 @@ export const getManifestationLanguageIsoCode = (
   return undefined;
 };
 
-export const getManifestationFirstEditionYear = (
-  manifestation: Manifestation
-) => {
-  return manifestation.workYear?.year
-    ? String(manifestation.workYear.year)
-    : "";
+export const getWorkFirstEditionYear = (work: Work) => {
+  return work.workYear?.year ? String(work.workYear.year) : "";
 };
 
 export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
@@ -164,6 +160,7 @@ export const getDetailsListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
+  const workFirstEditionYear = getWorkFirstEditionYear(work);
   const fallBackManifestation = getWorkManifestation(
     work,
     "bestRepresentation"
@@ -209,10 +206,7 @@ export const getDetailsListData = ({
     },
     {
       label: t("detailsListFirstEditionYearText"),
-      value:
-        getManifestationFirstEditionYear(
-          manifestation ?? fallBackManifestation
-        ) ?? t("detailsListFirstEditionYearUnknownText"),
+      value: workFirstEditionYear,
       type: "standard"
     },
     {
