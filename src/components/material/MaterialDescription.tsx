@@ -48,6 +48,15 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     };
   });
 
+  const fictionNonfictionList = fictionNonfiction
+    ? [
+        {
+          url: constructSearchUrl(searchUrl, fictionNonfiction.display),
+          term: fictionNonfiction.display
+        }
+      ]
+    : [];
+
   return (
     <section
       ref={itemRef}
@@ -80,41 +89,26 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 dataCy={`material-description-series-${i}`}
               />
             ))}
-            {seriesMembersList.length > 0 && (
-              <HorizontalTermLine
-                title={t("inSameSeriesText")}
-                linkList={seriesMembersList}
-                dataCy="material-description-series-members"
-              />
-            )}
-            {subjectsList.length > 0 && (
-              <HorizontalTermLine
-                title={t("identifierText")}
-                linkList={subjectsList}
-                dataCy="material-description-identifier"
-              />
-            )}
-            {fictionNonfiction && (
-              <HorizontalTermLine
-                title={t("fictionNonfictionText")}
-                linkList={[
-                  {
-                    url: constructSearchUrl(
-                      searchUrl,
-                      fictionNonfiction.display
-                    ),
-                    term: fictionNonfiction.display
-                  }
-                ]}
-                dataCy="material-description-fiction-nonfiction"
-              />
-            )}
-            {filmAdaptationsList.length > 0 && (
-              <HorizontalTermLine
-                title={t("filmAdaptationsText")}
-                linkList={filmAdaptationsList}
-              />
-            )}
+            <HorizontalTermLine
+              title={t("inSameSeriesText")}
+              linkList={seriesMembersList}
+              dataCy="material-description-series-members"
+            />
+            <HorizontalTermLine
+              title={t("identifierText")}
+              linkList={subjectsList}
+              dataCy="material-description-identifier"
+            />
+            <HorizontalTermLine
+              title={t("fictionNonfictionText")}
+              linkList={fictionNonfictionList}
+              dataCy="material-description-fiction-nonfiction"
+            />
+            <HorizontalTermLine
+              title={t("filmAdaptationsText")}
+              linkList={filmAdaptationsList}
+              dataCy="material-description-film-adaptations"
+            />
           </div>
         </>
       )}
