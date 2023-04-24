@@ -145,6 +145,7 @@ interface MaterialEntryTextProps {
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;
+  subjectNumberText: string;
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
