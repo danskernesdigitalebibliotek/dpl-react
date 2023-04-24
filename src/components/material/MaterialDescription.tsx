@@ -75,7 +75,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
           <div className="material-description__links mt-32">
             {!isFiction && dk5MainEntry && (
               <HorizontalTermLine
-                title="Emnetal"
+                title={t("subjectNumberText")}
                 linkList={[
                   {
                     url: constructSearchUrl(searchUrl, dk5MainEntry.display),

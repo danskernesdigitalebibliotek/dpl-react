@@ -104,6 +104,11 @@ export default {
       defaultValue: "Nr.",
       control: { type: "text" }
     },
+    subjectNumberText: {
+      name: "Subject number (Emnetal)",
+      defaultValue: "Emnetal",
+      control: { type: "text" }
+    },
     inSeriesText: {
       name: "In series",
       defaultValue: "in series",

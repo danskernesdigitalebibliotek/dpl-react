@@ -46,7 +46,6 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
-  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -54,6 +53,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfTableDescriptionText: string;
   firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
@@ -135,6 +135,7 @@ interface MaterialEntryTextProps {
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;
+  subjectNumberText: string;
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
