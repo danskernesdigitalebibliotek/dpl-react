@@ -84,11 +84,10 @@ describe("Search Result", () => {
 
   it("Renders the 0-result page correctly", () => {
     // Overwrite graphql search query fixture.
-    cy.fixture("search-result/fbi-api-no-results.json")
-      .then((result) => {
-        cy.intercept("POST", "**/opac/graphql**", result);
-      })
-      .as("Graphql search query");
+    cy.interceptGraphql({
+      operationName: "searchWithPagination",
+      fixtureFilePath: "search-result/fbi-api-no-results.json"
+    });
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
