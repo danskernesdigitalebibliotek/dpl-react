@@ -88,8 +88,10 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailInputFieldLabelText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;
   modalReservationFormNoInterestAfterHeaderTitleText: string;
+  modalReservationFormNoInterestAfterLabelText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
   modalReservationFormPickupHeaderTitleText: string;
+  modalReservationFormPickupLabelText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
