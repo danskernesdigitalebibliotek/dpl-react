@@ -27,6 +27,7 @@ interface MaterialEntryTextProps {
   daysText: string;
   descriptionHeadlineText: string;
   detailsListAudienceText: string;
+  detailsListAuthorsText: string;
   detailsListContributorsText: string;
   detailsListEditionText: string;
   detailsListFirstEditionYearText: string;

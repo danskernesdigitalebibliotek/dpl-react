@@ -3,7 +3,8 @@ import {
   constructModalId,
   getMaterialTypes,
   getManifestationType,
-  orderManifestationsByYear
+  orderManifestationsByYear,
+  flattenCreators
 } from "../../core/utils/helpers/general";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
@@ -153,6 +154,10 @@ export const getManifestationContributors = (manifestation: Manifestation) => {
       .map((contributor) => contributor.display)
       .join(" / ") ?? ""
   );
+};
+
+export const getManifestationAuthors = (manifestation: Manifestation) => {
+  return flattenCreators(manifestation.creators).join(", ") ?? "";
 };
 
 export const getDetailsListData = ({

@@ -15,6 +15,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
   getManifestationAudience,
+  getManifestationAuthors,
   getManifestationContributors,
   getManifestationEdition,
   getManifestationGenreAndForm,
@@ -96,6 +97,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     {
       label: t("detailsListAudienceText"),
       value: getManifestationAudience(manifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListAuthorsText"),
+      value: getManifestationAuthors(manifestation),
       type: "standard"
     }
   ];
