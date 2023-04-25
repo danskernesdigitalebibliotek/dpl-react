@@ -43,8 +43,9 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
             <li
               key={item.workId}
               ref={isFirstNewItem ? lastItemRef : null}
-              // Because we're using a ref to focus the first item in the new page when pagination occurs.
-              // we need to remove focus ( set tabIndex -1), so that it can be set programmatically.
+              // We use a ref to focus the first item in the new page programmatically when pagination occurs.
+              // Set tabIndex -1 to support this without allowing keyboard focus. We have just as appropriate
+              // elements within the item suitable for keyboard focus.
               tabIndex={-1}
             >
               <SearchResultListItem
