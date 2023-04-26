@@ -14,7 +14,7 @@ import {
   turnUrlStringsIntoObjects
 } from "./utils/helpers/url";
 import { GuardedAppId } from "./utils/types/ids";
-import { userIsAnonymous } from "./utils/helpers/user";
+import { isAnonymous } from "./utils/helpers/user";
 
 export const AUTH_PARAM = "didAuthenticate";
 
@@ -93,7 +93,7 @@ export const guardedRequest = createAsyncThunk(
     }
 
     // User is anonymous and the requests is known.
-    if (userIsAnonymous()) {
+    if (isAnonymous()) {
       // So we'll store the request for later execution.
       dispatch(addRequest(requestItem));
 

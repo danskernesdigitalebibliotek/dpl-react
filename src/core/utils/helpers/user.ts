@@ -2,7 +2,7 @@ import { isEmpty } from "lodash";
 import { AuthenticatedPatronV6 } from "../../fbs/model";
 import { hasToken } from "../../token";
 
-export const userIsAnonymous = () => {
+export const isAnonymous = () => {
   return !hasToken("user");
 };
 

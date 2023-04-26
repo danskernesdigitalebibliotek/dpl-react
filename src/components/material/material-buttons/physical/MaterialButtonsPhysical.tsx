@@ -6,7 +6,7 @@ import {
 import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
 import {
   userIsAllowed,
-  userIsAnonymous,
+  isAnonymous,
   userIsBlocked
 } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -33,7 +33,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     manifestations
   });
   const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !userIsAnonymous()
+    enabled: !isAnonymous()
   });
 
   if (isLoading) {
