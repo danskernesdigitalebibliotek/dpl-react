@@ -35,6 +35,9 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
     enabled: !isAnonymous()
   });
+  const patron = userData?.patron;
+  const userCanReserve = patron && canReserve(patron);
+  const userIsBlocked = patron && isBlocked(patron);
 
   if (isLoading) {
     return <MaterialButtonLoading />;
@@ -44,14 +47,15 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonCantReserve size={size} />;
   }
 
-  if (isBlocked(userData)) {
+  if (userIsBlocked) {
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
   // We show the reservation button if the user isn't logged in or isn't blocked.
   // In the former case there there's no way to see if they're blocked, so we
   // redirect anonymous user to the login page.
-  if (!userData || canReserve(userData)) {
+
+  if (!userData || userCanReserve) {
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
