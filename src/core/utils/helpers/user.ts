@@ -6,7 +6,7 @@ export const isAnonymous = () => {
   return !hasToken("user");
 };
 
-export const userIsBlocked = (
+export const isBlocked = (
   userData: AuthenticatedPatronV6 | null | undefined
 ) => {
   if (!userData) return false;

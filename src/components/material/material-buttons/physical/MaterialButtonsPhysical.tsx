@@ -7,7 +7,7 @@ import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
 import {
   userIsAllowed,
   isAnonymous,
-  userIsBlocked
+  isBlocked
 } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -44,7 +44,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonCantReserve size={size} />;
   }
 
-  if (userIsBlocked(userData)) {
+  if (isBlocked(userData)) {
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
