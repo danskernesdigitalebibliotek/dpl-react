@@ -56,7 +56,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
 
   const { data: userData } = useGetPatronInformationByPatronIdV2();
-  const isUserAllowed = canReserve(userData);
+  const patron = userData?.patron;
+  const userCanReserve = patron && canReserve(patron);
 
   const { track } = useStatistics();
   useDeepCompareEffect(() => {
@@ -158,7 +159,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
       >
-        {isUserAllowed &&
+        {userCanReserve &&
           manifestations.map((manifestation) => (
             <>
               <ReservationModal
@@ -188,7 +189,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         )}
         {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {isUserAllowed && isParallelReservation(selectedManifestations) && (
+        {userCanReserve && isParallelReservation(selectedManifestations) && (
           <>
             <ReservationModal
               selectedManifestations={selectedManifestations}
