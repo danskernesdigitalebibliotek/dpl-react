@@ -13,7 +13,7 @@ export const isBlocked = (
   return !isEmpty(userData.patron?.blockStatus);
 };
 
-export const userIsAllowed = (
+export const canReserve = (
   userData: AuthenticatedPatronV6 | null | undefined
 ) => {
   if (!userData) return false;

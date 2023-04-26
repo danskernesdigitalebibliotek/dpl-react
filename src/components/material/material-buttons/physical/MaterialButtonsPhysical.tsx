@@ -5,7 +5,7 @@ import {
 } from "../../../../core/utils/helpers/general";
 import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
 import {
-  userIsAllowed,
+  canReserve,
   isAnonymous,
   isBlocked
 } from "../../../../core/utils/helpers/user";
@@ -51,7 +51,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   // We show the reservation button if the user isn't logged in or isn't blocked.
   // In the former case there there's no way to see if they're blocked, so we
   // redirect anonymous user to the login page.
-  if (!userData || userIsAllowed(userData)) {
+  if (!userData || canReserve(userData)) {
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}

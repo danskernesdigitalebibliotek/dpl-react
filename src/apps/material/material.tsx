@@ -38,7 +38,7 @@ import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
 import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
-import { userIsAllowed } from "../../core/utils/helpers/user";
+import { canReserve } from "../../core/utils/helpers/user";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -56,7 +56,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
 
   const { data: userData } = useGetPatronInformationByPatronIdV2();
-  const isUserAllowed = userIsAllowed(userData);
+  const isUserAllowed = canReserve(userData);
 
   const { track } = useStatistics();
   useDeepCompareEffect(() => {
