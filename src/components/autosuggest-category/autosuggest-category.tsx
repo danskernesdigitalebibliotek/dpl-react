@@ -35,11 +35,12 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
         const index = incorrectIndex + textAndMaterialDataLength;
         return (
           <li
-            className={`autosuggest__text-item text-body-medium-regular px-24 ${clsx(
+            className={clsx(
+              "autosuggest__text-item text-body-medium-regular px-24",
               {
                 "autosuggest__text-item--highlight": highlightedIndex === index
               }
-            )}`}
+            )}
             key={item}
             {...getItemProps({ item, index })}
             data-cy={dataCy}
