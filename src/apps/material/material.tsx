@@ -3,13 +3,9 @@ import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import { useDeepCompareEffect } from "react-use";
-import {
-  AccessTypeCode,
-  useGetMaterialQuery
-} from "../../core/dbc-gateway/generated/graphql";
+import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import Disclosure from "../../components/Disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
 import { useText } from "../../core/utils/text";
@@ -23,7 +19,8 @@ import {
   getInfomediaIds,
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
-  getManifestationsOrderByTypeAndYear
+  getManifestationsOrderByTypeAndYear,
+  isParallelReservation
 } from "./helper";
 import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -35,13 +32,11 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
-import {
-  hasCorrectAccess,
-  hasCorrectAccessType,
-  isArticle
-} from "../../components/material/material-buttons/helper";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
 import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
+import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
+import MaterialDisclosure from "./MaterialDisclosure";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -188,35 +183,30 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
         )}
 
-        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials.
+        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {selectedManifestations &&
-          hasCorrectAccessType(
-            AccessTypeCode.Physical,
-            selectedManifestations
-          ) &&
-          !isArticle(selectedManifestations) && (
-            <>
-              <ReservationModal
-                selectedManifestations={selectedManifestations}
-                selectedPeriodical={selectedPeriodical}
-                work={work}
-              />
-              <FindOnShelfModal
-                manifestations={selectedManifestations}
-                authors={work.creators}
-                workTitles={work.titles.full}
-                selectedPeriodical={selectedPeriodical}
-                setSelectedPeriodical={setSelectedPeriodical}
-              />
-            </>
-          )}
+        {isParallelReservation(selectedManifestations) && (
+          <>
+            <ReservationModal
+              selectedManifestations={selectedManifestations}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+              dataCy="reservation-modal-parallel"
+            />
+            <FindOnShelfModal
+              manifestations={selectedManifestations}
+              authors={work.creators}
+              workTitles={work.titles.full}
+              selectedPeriodical={selectedPeriodical}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          </>
+        )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
-      <Disclosure
-        mainIconPath={VariousIcon}
+      <MaterialDisclosure
         title={`${t("editionsText")} (${manifestations.length})`}
-        disclosureIconExpandAltText=""
+        icon={VariousIcon}
         dataCy="material-editions-disclosure"
       >
         <>
@@ -232,22 +222,29 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             }
           )}
         </>
-      </Disclosure>
-      <Disclosure
-        mainIconPath={Receipt}
-        title={t("detailsText")}
-        disclosureIconExpandAltText=""
+      </MaterialDisclosure>
+      <MaterialDisclosure
         dataCy="material-details-disclosure"
+        title={t("detailsText")}
+        icon={Receipt}
       >
-        <MaterialDetailsList className="pl-80 pb-48" data={detailsListData} />
-      </Disclosure>
+        <MaterialDetailsList
+          id={`material-details-${wid}`}
+          className="pl-80 pb-48"
+          data={detailsListData}
+        />
+      </MaterialDisclosure>
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
           id="reviews"
-          title={t("reviewsText")}
-          mainIconPath={CreateIcon}
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"
+          summary={
+            <DisclosureSummary
+              title={t("reviewsText")}
+              mainIconPath={CreateIcon}
+            />
+          }
         >
           <MaterialReviews pids={hasReview.map((review) => review.pid)} />
         </DisclosureControllable>

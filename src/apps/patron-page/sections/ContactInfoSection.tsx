@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import clsx from "clsx";
 import { PatronV5 } from "../../../core/fbs/model";
 import TextInput from "../../../components/atoms/input/TextInput";
 import CheckBox from "../../../components/checkbox/Checkbox";
@@ -39,24 +40,21 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         label={t("patronPageContactPhoneLabelText")}
       />
       {textNotificationsEnabled && (
-        <>
-          <CheckBox
-            className="mt-32 mb-16"
-            onChecked={(newReceiveSms: boolean) =>
-              changePatron(newReceiveSms, "receiveSms")
-            }
-            id="phone-messages"
-            selected={patron?.receiveSms}
-            disabled={false}
-            label={t("patronPageContactPhoneCheckboxText")}
-          />
-          <div className="text-body-small-regular mt-16 mb-32">
-            {t("patronPageTextFeeText")}
-          </div>
-        </>
+        <CheckBox
+          className="mt-32 mb-16"
+          onChecked={(newReceiveSms: boolean) =>
+            changePatron(newReceiveSms, "receiveSms")
+          }
+          id="phone-messages"
+          selected={patron?.receiveSms}
+          disabled={false}
+          label={t("patronPageContactPhoneCheckboxText")}
+        />
       )}
       <TextInput
-        className="patron__input patron__input--desktop"
+        className={clsx("patron__input patron__input--desktop", {
+          "mt-32": !textNotificationsEnabled
+        })}
         id="email-address-input"
         type="email"
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}

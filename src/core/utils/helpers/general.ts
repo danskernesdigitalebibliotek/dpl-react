@@ -42,14 +42,6 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const filterCreators = (
-  creators: Work["creators"],
-  filterBy: ["Person" | "Corporation"]
-) =>
-  creators.filter((creator: Work["creators"][0]) => {
-    return creator.__typename && filterBy.includes(creator.__typename);
-  });
-
 export const flattenCreators = (creators: Work["creators"]) =>
   creators.map((creator: Work["creators"][0]) => {
     return creator.display;
@@ -121,6 +113,10 @@ export const getCoverTint = (index: number) => {
 
 export const getColors = () => {
   return getConf("colors", configuration);
+};
+
+export const getRecommenderMaterialLimits = () => {
+  return getConf("recommenderMaterialLimits", configuration);
 };
 
 export const getModalIds = () => {
@@ -413,6 +409,9 @@ export const getAuthorNames = (
 ) => {
   const names = creators.map(({ display }) => display);
   let returnContentString = "";
+  if (names.length === 0) {
+    return returnContentString;
+  }
   if (names.length === 1) {
     returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
   } else {
@@ -421,6 +420,14 @@ export const getAuthorNames = (
       .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
   }
   return returnContentString;
+};
+export const getPublicationName = (
+  hostPublication: { title: string } | null | undefined
+) => {
+  if (!hostPublication) {
+    return "";
+  }
+  return hostPublication.title;
 };
 
 export const getReviewRelease = (

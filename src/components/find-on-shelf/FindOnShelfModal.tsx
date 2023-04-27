@@ -10,7 +10,6 @@ import {
   constructModalId,
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getAllFaustIds,
   getManifestationsPids
@@ -25,6 +24,7 @@ import FindOnShelfManifestationList from "./FindOnShelfManifestationList";
 import FindOnShelfPeriodicalDropdowns from "./FindOnShelfPeriodicalDropdowns";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
+import DisclosureSummary from "../Disclosures/DisclosureSummary";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());
@@ -58,10 +58,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     recordid: faustIdArray,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   });
-  const author = creatorsToString(
-    flattenCreators(filterCreators(authors, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(authors), t);
   const title = workTitles.join(", ");
   // If this modal is for all manifestations per material type, use all manifestations'
   // faust ids to create the modal id.
@@ -203,12 +200,16 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
               return (
                 <Disclosure
                   key={libraryBranch[0].holding.branch.branchId}
-                  title={libraryBranch[0].holding.branch.title}
-                  isAvailable={isAnyManifestationAvailableOnBranch(
-                    libraryBranch
-                  )}
-                  fullWidth
                   open={finalData.length === 1}
+                  className="disclosure--full-width"
+                  summary={
+                    <DisclosureSummary
+                      title={libraryBranch[0].holding.branch.title}
+                      isAvailable={isAnyManifestationAvailableOnBranch(
+                        libraryBranch
+                      )}
+                    />
+                  }
                 >
                   <FindOnShelfManifestationList
                     libraryBranchHoldings={libraryBranch}

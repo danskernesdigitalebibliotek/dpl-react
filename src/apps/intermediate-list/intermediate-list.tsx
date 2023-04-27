@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "../../components/atoms/link";
+import Link from "../../components/atoms/links/Link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
 import { faustIdModalQueryParam } from "../../core/utils/helpers/modal-helpers";

@@ -8,7 +8,7 @@ import {
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
-import { Link } from "../../components/atoms/link";
+import Link from "../../components/atoms/links/Link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
 import ContactInfoSection from "./sections/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";

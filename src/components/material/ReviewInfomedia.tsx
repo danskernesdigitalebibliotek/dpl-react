@@ -6,6 +6,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAuthorNames,
+  getPublicationName,
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import {
@@ -27,11 +28,20 @@ export interface ReviewInfomediaProps {
 }
 
 const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
-  review: { workYear, dateFirstEdition, access, creators, review, edition },
+  review: {
+    workYear,
+    dateFirstEdition,
+    access,
+    creators,
+    review,
+    edition,
+    hostPublication
+  },
   dataCy = "review-infomedia"
 }) => {
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
+  const publication = getPublicationName(hostPublication);
   const infomediaAccess = access.filter(
     (accessItem) => accessItem.__typename === "InfomediaService"
   ) as Pick<InfomediaService, "id">[];
@@ -62,7 +72,13 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   if (infomedia.error) {
     return (
       <li className="review text-small-caption" data-cy={dataCy}>
-        {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+        {(authors || date || publication) && (
+          <ReviewMetadata
+            author={authors}
+            date={date}
+            publication={publication}
+          />
+        )}
         {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
         <div className="review__headline mb-8">
           {infomedia.error === "BORROWER_NOT_LOGGED_IN" ? (
@@ -91,12 +107,16 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
 
   return (
     <li className="review text-small-caption" id={infomediaId}>
-      {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+      {(authors || date || publication) && (
+        <ReviewMetadata
+          author={authors}
+          date={date}
+          publication={publication}
+        />
+      )}
       {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {infomedia.article?.headLine && (
-        <div className="review__headline mb-8">
-          {infomedia.article.headLine}
-        </div>
+        <h3 className="review__headline mb-8">{infomedia.article.headLine}</h3>
       )}
       {/* We consider infomedia to be a trustworthy source & decided not to
       sanitize the text data that we render as HTML. */}

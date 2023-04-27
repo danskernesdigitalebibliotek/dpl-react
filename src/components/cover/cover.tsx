@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
 
 export type CoverProps = {
@@ -15,6 +15,7 @@ export type CoverProps = {
   url?: URL;
   idType?: GetCoverCollectionType;
   shadow?: boolean;
+  linkAriaLabelledBy?: string;
 };
 
 export const Cover = ({
@@ -25,10 +26,13 @@ export const Cover = ({
   tint,
   id,
   idType,
-  shadow
+  shadow,
+  linkAriaLabelledBy
 }: CoverProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
-  const handleSetImageLoaded = () => setImageLoaded(true);
+  const handleSetImageLoaded = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   let dataSize: CoverProps["size"] = size;
   if (dataSize === "xsmall") {
@@ -66,16 +70,18 @@ export const Cover = ({
     )
   };
 
-  if (url && description) {
-    // Images inside links must have an non-empty alt text to meet accessibility requirements.
-    // Only render the cover as a link if we have both an url and a description.
+  if (url) {
     return (
-      <LinkNoStyle className={classes.wrapper} url={url}>
+      <LinkNoStyle
+        className={classes.wrapper}
+        url={url}
+        ariaLabelledBy={linkAriaLabelledBy}
+      >
         {coverSrc && (
           <CoverImage
             setImageLoaded={handleSetImageLoaded}
             src={coverSrc}
-            description={description}
+            altText={description}
             animate={animate}
             shadow={shadow}
           />
@@ -90,7 +96,7 @@ export const Cover = ({
         <CoverImage
           setImageLoaded={handleSetImageLoaded}
           src={coverSrc}
-          description={description}
+          altText={description}
           animate={animate}
           shadow={shadow}
         />

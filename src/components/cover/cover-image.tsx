@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 type CoverImageType = {
   src: string;
-  description?: string;
+  altText?: string;
   animate: boolean;
   setImageLoaded: () => void;
   shadow?: boolean;
@@ -11,7 +11,7 @@ type CoverImageType = {
 
 const CoverImage: FC<CoverImageType> = ({
   src,
-  description,
+  altText,
   animate,
   setImageLoaded,
   shadow
@@ -26,7 +26,7 @@ const CoverImage: FC<CoverImageType> = ({
       { "cover__img--shadow": shadow }
     )}
     src={src}
-    alt={description || ""}
+    alt={altText || ""}
   />
 );
 

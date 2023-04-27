@@ -4,6 +4,8 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
+import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
+import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 
 export interface ReservationListUrlProps {
   fbsBaseUrl: string;
@@ -59,10 +61,16 @@ export interface ReservationListTextProps {
   threeMonthsText: string;
   sixMonthsText: string;
   oneYearText: string;
+  interestPeriodOneMonthConfigText: string;
+  interestPeriodTwoMonthsConfigText: string;
+  interestPeriodThreeMonthsConfigText: string;
+  interestPeriodSixMonthsConfigText: string;
+  interestPeriodOneYearConfigText: string;
   listDetailsNothingSelectedLabelText: string;
   reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsRemoveDigitalReservationText: string;
+  reservationDetailAllowRemoveReadyReservationsConfig: boolean;
   deleteReservationModalHeaderText: string;
   deleteReservationModalDeleteQuestionText: string;
   deleteReservationModalNotRegrettableText: string;
@@ -92,6 +100,7 @@ export interface ReservationListTextProps {
 
 export interface ReservationListEntryWithPageSizeProps
   extends ReservationListTextProps,
+    BlockedPatronEntryTextProps,
     ReservationListConfigProps,
     ReservationListUrlProps {
   pageSizeDesktop?: number;
@@ -112,4 +121,6 @@ const ReservationListEntry: FC<ReservationListEntryWithPageSizeProps> = ({
   return <ReservationList pageSize={pageSize} />;
 };
 
-export default withConfig(withUrls(withText(ReservationListEntry)));
+export default withConfig(
+  withUrls(withText(withIsPatronBlockedHoc(ReservationListEntry)))
+);

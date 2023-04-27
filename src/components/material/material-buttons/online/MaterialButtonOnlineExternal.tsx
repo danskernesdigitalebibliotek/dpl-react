@@ -9,17 +9,17 @@ import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialTypes from "../../../../core/utils/types/material-type";
-import { LinkNoStyle } from "../../../atoms/link-no-style";
-import { Button } from "../../../Buttons/Button";
+import LinkButton from "../../../Buttons/LinkButton";
 
 export interface MaterialButtonOnlineExternalProps {
   loginRequired: boolean;
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
-  trackOnlineView: () => void;
+  trackOnlineView: () => Promise<unknown>;
   manifestations: Manifestation[];
   dataCy?: string;
+  ariaLabelledBy: string;
 }
 
 export const getOnlineMaterialType = (
@@ -49,7 +49,8 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   size,
   trackOnlineView,
   manifestations,
-  dataCy = "material-button-online-external"
+  dataCy = "material-button-online-external",
+  ariaLabelledBy
 }) => {
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
@@ -94,19 +95,18 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   };
   return (
-    <LinkNoStyle url={translatedUrl} dataCy={dataCy}>
-      <Button
-        label={label(origin, getMaterialTypes(manifestations))}
-        buttonType="external-link"
-        variant="filled"
-        disabled={false}
-        collapsible={false}
-        size={size || "large"}
-        iconClassNames="invert"
-        onClick={trackOnlineView}
-        dataCy={dataCy}
-      />
-    </LinkNoStyle>
+    <LinkButton
+      url={translatedUrl}
+      buttonType="external-link"
+      variant="filled"
+      size={size || "large"}
+      iconClassNames="invert"
+      trackClick={trackOnlineView}
+      dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
+    >
+      {label(origin, getMaterialTypes(manifestations))}
+    </LinkButton>
   );
 };
 

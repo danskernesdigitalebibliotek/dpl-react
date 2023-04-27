@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import * as React from "react";
 import { FC, useState } from "react";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";

@@ -3,6 +3,8 @@ import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
+import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
+import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -36,7 +38,6 @@ interface PatronPageTextProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
-  patronPageTextFeeText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
@@ -77,9 +78,12 @@ interface PatronPageTextProps {
 
 export interface PatronPageProps
   extends PatronPageConfigProps,
+    BlockedPatronEntryTextProps,
     PatronPageTextProps,
     PatronPageUrlProps {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 
-export default withConfig(withUrls(withText(PatronPageEntry)));
+export default withConfig(
+  withUrls(withText(withIsPatronBlockedHoc(PatronPageEntry)))
+);

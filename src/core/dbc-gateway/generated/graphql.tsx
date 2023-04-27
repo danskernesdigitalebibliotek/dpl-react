@@ -1,4 +1,9 @@
-import { useQuery, UseQueryOptions } from "react-query";
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions
+} from "react-query";
 import { fetcher } from "../graphql-fetcher";
 
 export type Maybe<T> = T | null;
@@ -19,6 +24,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  DateTime: unknown;
   /** An integer in the range from 1 to 100 */
   PaginationLimit: unknown;
 };
@@ -532,6 +539,30 @@ export enum LibrariansReviewSectionCode {
   Use = "USE"
 }
 
+export type LinkCheckResponse = {
+  __typename?: "LinkCheckResponse";
+  brokenSince?: Maybe<Scalars["DateTime"]>;
+  lastCheckedAt?: Maybe<Scalars["DateTime"]>;
+  status: LinkCheckStatus;
+  url: Scalars["String"];
+};
+
+export type LinkCheckService = {
+  __typename?: "LinkCheckService";
+  checks: Array<LinkCheckResponse>;
+};
+
+export type LinkCheckServiceChecksArgs = {
+  urls?: InputMaybe<Array<Scalars["String"]>>;
+};
+
+export enum LinkCheckStatus {
+  Broken = "BROKEN",
+  Gone = "GONE",
+  Invalid = "INVALID",
+  Ok = "OK"
+}
+
 export type Manifestation = {
   __typename?: "Manifestation";
   /** Abstract of the entity */
@@ -837,6 +868,7 @@ export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
   infomedia: InfomediaResponse;
+  linkCheck: LinkCheckService;
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
@@ -1473,10 +1505,6 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1530,6 +1558,14 @@ export type GetMaterialQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       }>;
       latest: {
@@ -1553,10 +1589,6 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1610,6 +1642,14 @@ export type GetMaterialQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
       bestRepresentation: {
@@ -1633,10 +1673,6 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1690,6 +1726,14 @@ export type GetMaterialQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
     };
@@ -1849,10 +1893,6 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string }
               | { __typename: "Person"; display: string }
             >;
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
-            } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
               | { __typename?: "Corporation"; display: string }
@@ -1909,6 +1949,14 @@ export type RecommendFromFaustQuery = {
             workYear?: {
               __typename?: "PublicationYear";
               year?: number | null;
+            } | null;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
           }>;
           latest: {
@@ -1935,10 +1983,6 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string }
               | { __typename: "Person"; display: string }
             >;
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
-            } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
               | { __typename?: "Corporation"; display: string }
@@ -1995,6 +2039,14 @@ export type RecommendFromFaustQuery = {
             workYear?: {
               __typename?: "PublicationYear";
               year?: number | null;
+            } | null;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
           };
           bestRepresentation: {
@@ -2021,10 +2073,6 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string }
               | { __typename: "Person"; display: string }
             >;
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{ __typename?: "Language"; display: string }> | null;
-            } | null;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
               | { __typename?: "Corporation"; display: string }
@@ -2081,6 +2129,14 @@ export type RecommendFromFaustQuery = {
             workYear?: {
               __typename?: "PublicationYear";
               year?: number | null;
+            } | null;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
           };
         };
@@ -2167,10 +2223,6 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
-          } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
             | { __typename?: "Corporation"; display: string }
@@ -2227,6 +2279,14 @@ export type SearchWithPaginationQuery = {
           workYear?: {
             __typename?: "PublicationYear";
             year?: number | null;
+          } | null;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
         }>;
         latest: {
@@ -2253,10 +2313,6 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
-          } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
             | { __typename?: "Corporation"; display: string }
@@ -2313,6 +2369,14 @@ export type SearchWithPaginationQuery = {
           workYear?: {
             __typename?: "PublicationYear";
             year?: number | null;
+          } | null;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
         };
         bestRepresentation: {
@@ -2339,10 +2403,6 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string }
             | { __typename: "Person"; display: string }
           >;
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{ __typename?: "Language"; display: string }> | null;
-          } | null;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
             | { __typename?: "Corporation"; display: string }
@@ -2399,6 +2459,14 @@ export type SearchWithPaginationQuery = {
           workYear?: {
             __typename?: "PublicationYear";
             year?: number | null;
+          } | null;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
         };
       };
@@ -2428,7 +2496,18 @@ export type SuggestionsFromQueryStringQuery = {
         >;
         manifestations: {
           __typename?: "Manifestations";
-          bestRepresentation: { __typename?: "Manifestation"; pid: string };
+          bestRepresentation: {
+            __typename?: "Manifestation";
+            pid: string;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
+            } | null;
+          };
         };
       } | null;
     }>;
@@ -2483,6 +2562,21 @@ export type IntelligentFacetsQuery = {
   };
 };
 
+export type PlaceCopyMutationVariables = Exact<{
+  input: CopyRequestInput;
+}>;
+
+export type PlaceCopyMutation = {
+  __typename?: "Mutation";
+  elba: {
+    __typename?: "ElbaServices";
+    placeCopyRequest: {
+      __typename?: "CopyRequestResponse";
+      status: CopyRequestStatus;
+    };
+  };
+};
+
 export type ManifestationsSimpleFragment = {
   __typename?: "Manifestations";
   all: Array<{
@@ -2506,10 +2600,6 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
-    } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
       | { __typename?: "Corporation"; display: string }
@@ -2561,6 +2651,14 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -2583,10 +2681,6 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
-    } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
       | { __typename?: "Corporation"; display: string }
@@ -2638,6 +2732,14 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   };
   bestRepresentation: {
     __typename?: "Manifestation";
@@ -2660,10 +2762,6 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
     >;
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{ __typename?: "Language"; display: string }> | null;
-    } | null;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
       | { __typename?: "Corporation"; display: string }
@@ -2715,6 +2813,14 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   };
 };
 
@@ -2739,10 +2845,6 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
   >;
-  languages?: {
-    __typename?: "Languages";
-    main?: Array<{ __typename?: "Language"; display: string }> | null;
-  } | null;
   identifiers: Array<{ __typename?: "Identifier"; value: string }>;
   contributors: Array<
     | { __typename?: "Corporation"; display: string }
@@ -2791,6 +2893,14 @@ export type ManifestationsSimpleFieldsFragment = {
     shelfmark: string;
   } | null;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+  languages?: {
+    __typename?: "Languages";
+    main?: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }> | null;
+  } | null;
 };
 
 export type ManifestationReviewFieldsFragment = {
@@ -2915,10 +3025,6 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -2972,6 +3078,14 @@ export type WorkSmallFragment = {
       workYear?: {
         __typename?: "PublicationYear";
         year?: number | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
     }>;
     latest: {
@@ -2995,10 +3109,6 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -3052,6 +3162,14 @@ export type WorkSmallFragment = {
       workYear?: {
         __typename?: "PublicationYear";
         year?: number | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
     };
     bestRepresentation: {
@@ -3075,10 +3193,6 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -3132,6 +3246,14 @@ export type WorkSmallFragment = {
       workYear?: {
         __typename?: "PublicationYear";
         year?: number | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
     };
   };
@@ -3237,10 +3359,6 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -3294,6 +3412,14 @@ export type WorkMediumFragment = {
       workYear?: {
         __typename?: "PublicationYear";
         year?: number | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
     }>;
     latest: {
@@ -3317,10 +3443,6 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -3374,6 +3496,14 @@ export type WorkMediumFragment = {
       workYear?: {
         __typename?: "PublicationYear";
         year?: number | null;
+      } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
     };
     bestRepresentation: {
@@ -3397,10 +3527,6 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
       >;
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{ __typename?: "Language"; display: string }> | null;
-      } | null;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
         | { __typename?: "Corporation"; display: string }
@@ -3455,8 +3581,28 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      languages?: {
+        __typename?: "Languages";
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
+      } | null;
     };
   };
+};
+
+export type WithLanguagesFragment = {
+  __typename?: "Manifestation";
+  languages?: {
+    __typename?: "Languages";
+    main?: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }> | null;
+  } | null;
 };
 
 export const ManifestationReviewFieldsFragmentDoc = `
@@ -3527,11 +3673,22 @@ export const SeriesSimpleFragmentDoc = `
   readThisWhenever
 }
     `;
+export const WithLanguagesFragmentDoc = `
+    fragment WithLanguages on Manifestation {
+  languages {
+    main {
+      display
+      isoCode
+    }
+  }
+}
+    `;
 export const ManifestationsSimpleFieldsFragmentDoc = `
     fragment ManifestationsSimpleFields on Manifestation {
   pid
   genreAndForm
   source
+  ...WithLanguages
   titles {
     main
     original
@@ -3548,11 +3705,6 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     __typename
   }
   publisher
-  languages {
-    main {
-      display
-    }
-  }
   identifiers {
     value
   }
@@ -3612,7 +3764,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     year
   }
 }
-    `;
+    ${WithLanguagesFragmentDoc}`;
 export const ManifestationsSimpleFragmentDoc = `
     fragment ManifestationsSimple on Manifestations {
   all {
@@ -3882,13 +4034,14 @@ export const SuggestionsFromQueryStringDocument = `
         manifestations {
           bestRepresentation {
             pid
+            ...WithLanguages
           }
         }
       }
     }
   }
 }
-    `;
+    ${WithLanguagesFragmentDoc}`;
 export const useSuggestionsFromQueryStringQuery = <
   TData = SuggestionsFromQueryStringQuery,
   TError = unknown
@@ -3957,5 +4110,31 @@ export const useIntelligentFacetsQuery = <
       IntelligentFacetsDocument,
       variables
     ),
+    options
+  );
+export const PlaceCopyDocument = `
+    mutation placeCopy($input: CopyRequestInput!) {
+  elba {
+    placeCopyRequest(input: $input) {
+      status
+    }
+  }
+}
+    `;
+export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
+  options?: UseMutationOptions<
+    PlaceCopyMutation,
+    TError,
+    PlaceCopyMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<PlaceCopyMutation, TError, PlaceCopyMutationVariables, TContext>(
+    ["placeCopy"],
+    (variables?: PlaceCopyMutationVariables) =>
+      fetcher<PlaceCopyMutation, PlaceCopyMutationVariables>(
+        PlaceCopyDocument,
+        variables
+      )(),
     options
   );

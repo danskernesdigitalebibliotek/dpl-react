@@ -20,6 +20,12 @@ describe("Reservation list", () => {
       fixtureFilePath: "reservation-list/work.json"
     });
 
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
+
     cy.interceptRest({
       aliasName: "product",
       httpMethod: "GET",

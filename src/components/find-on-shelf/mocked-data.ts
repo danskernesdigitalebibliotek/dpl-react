@@ -32,7 +32,8 @@ export const mockedManifestationData: Manifestation[] = [
     languages: {
       main: [
         {
-          display: "dansk"
+          display: "dansk",
+          isoCode: "dan"
         }
       ]
     },
@@ -100,7 +101,8 @@ export const mockedManifestationData: Manifestation[] = [
     languages: {
       main: [
         {
-          display: "dansk"
+          display: "dansk",
+          isoCode: "dan"
         }
       ]
     },
@@ -169,7 +171,8 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
     languages: {
       main: [
         {
-          display: "dansk"
+          display: "dansk",
+          isoCode: "dan"
         }
       ]
     },

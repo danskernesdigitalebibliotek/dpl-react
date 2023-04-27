@@ -15,6 +15,7 @@ import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 import filterReducer from "./filter.slice";
 import configReducer from "./config.slice";
+import blockModalReducer from "./blockedModal.slice";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
 // in the guardedRequest thunk.
@@ -25,7 +26,7 @@ import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUr
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text", "url", "modal", "config"]
+  blacklist: ["text", "url", "modal", "config", "blockedModal"]
 };
 
 export const store = configureStore({
@@ -42,6 +43,7 @@ export const store = configureStore({
       url: urlReducer,
       config: configReducer,
       guardedRequests: guardedRequestsReducer,
+      blockedModal: blockModalReducer,
       filter: filterReducer
     })
   ),

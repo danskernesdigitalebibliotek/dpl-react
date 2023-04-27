@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useId } from "react";
 import { useDispatch } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
@@ -8,10 +8,9 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../button-favourite/button-favourite";
 import { CoverProps } from "../../cover/cover";
-import { Link } from "../../atoms/link";
+import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getManifestationPid,
   getReleaseYearSearchResult
@@ -30,7 +29,10 @@ import { Work } from "../../../core/utils/types/entities";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
-import { getNumberedSeries } from "../../../apps/material/helper";
+import {
+  getManifestationLanguageIsoCode,
+  getNumberedSeries
+} from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 
@@ -54,6 +56,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   resultNumber,
   dataCy = "search-result-list-item"
 }) => {
+  const searchTitleId = useId();
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const { filters } = useFilterHandler();
@@ -63,10 +66,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   );
 
   const dispatch = useDispatch<TypedDispatch>();
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
@@ -74,6 +74,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     workId as WorkId,
     materialTypeFromFilters
   );
+  const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
+
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -124,9 +126,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         {showItem && (
           <SearchResultListItemCover
             id={manifestationPid}
-            description={String(fullTitle)}
             url={materialFullUrl}
             tint={coverTint}
+            linkAriaLabelledBy={searchTitleId}
           />
         )}
       </div>
@@ -154,6 +156,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         <h2
           className="search-result-item__title text-header-h4 mb-4"
           data-cy="search-result-item-title"
+          lang={languageIsoCode}
+          id={searchTitleId}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>

@@ -2,6 +2,7 @@ import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../../core/storybook/blockedArgs";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
 
@@ -10,6 +11,7 @@ export default {
   component: LoanList,
   argTypes: {
     ...serviceUrlArgs,
+    ...blockedArgs,
     // Config
     feesPageUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda

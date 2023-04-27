@@ -1,12 +1,10 @@
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { useId, FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -20,6 +18,7 @@ import {
   getManifestationEdition,
   getManifestationGenreAndForm,
   getManifestationIsbn,
+  getManifestationLanguageIsoCode,
   getManifestationLanguages,
   getManifestationMaterialTypes,
   getManifestationNumberOfPages,
@@ -37,13 +36,13 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation,
   workId
 }) => {
+  const mainfestationTitleId = useId();
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
+
+  const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
   const detailsListData: ListData = [
     {
@@ -99,6 +98,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   ];
 
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+  const detailsId = `material-details-${pid}`;
 
   return (
     <div className="material-manifestation-item">
@@ -114,11 +114,15 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__title text-header-h4">
+        <h3
+          lang={languageIsoCode}
+          id={mainfestationTitleId}
+          className="material-manifestation-item__title text-header-h4"
+        >
           {titles?.main[0]}
-        </h2>
+        </h3>
         <p className="text-small-caption">
-          {t("materialHeaderAuthorByText")} {creatorsText}
+          {t("materialHeaderAuthorByText")} {author}
           {edition?.publicationYear?.display &&
             ` (${edition.publicationYear.display})`}
         </p>
@@ -135,6 +139,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           }}
           role="button"
           tabIndex={0}
+          aria-controls={detailsId}
+          aria-expanded={isOpen}
         >
           <p className="link-tag text-small-caption">
             {t("detailsOfTheMaterialText")}
@@ -142,7 +148,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={detailsListData} />
+          <MaterialDetailsList
+            id={detailsId}
+            className="mt-24"
+            data={detailsListData}
+          />
         )}
       </div>
       <div className="material-manifestation-item__buttons">
@@ -150,6 +160,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestations={[manifestation]}
           size="small"
           workId={workId}
+          materialTitleId={mainfestationTitleId}
         />
       </div>
     </div>

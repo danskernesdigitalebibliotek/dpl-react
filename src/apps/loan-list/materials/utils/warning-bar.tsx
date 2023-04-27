@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import { Link } from "../../../../components/atoms/link";
+import Link from "../../../../components/atoms/links/Link";
 import { useUrls } from "../../../../core/utils/url";
 
 interface WarningBarProps {

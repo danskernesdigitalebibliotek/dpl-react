@@ -4,6 +4,7 @@ import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
 import ReservationForm from "./ReservationForm";
+import { getReservationModalTypeTranslation } from "../helper";
 
 export interface ModalReservationFormSelectProps {
   type: ModalReservationFormTextType;
@@ -14,6 +15,7 @@ export interface ModalReservationFormSelectProps {
   items: { label: string; value: string }[];
   defaultSelectedItem: string;
   selectHandler: (value: string) => void;
+  ariaLabel: string;
 }
 
 const modalProps = (
@@ -22,9 +24,11 @@ const modalProps = (
 ) => ({
   modalId: modalReservationFormId(type),
   screenReaderModalDescriptionText: t(
-    `screenReaderModalDescription${type.toUpperCase()}Text`
+    getReservationModalTypeTranslation(type, "screenReaderModalDescriptionText")
   ),
-  closeModalAriaLabelText: t(`closeModalAriaLabel${type.toUpperCase()}Text`)
+  closeModalAriaLabelText: t(
+    getReservationModalTypeTranslation(type, "closeModalAriaLabelText")
+  )
 });
 
 const ModalReservationFormSelect = ({
@@ -32,7 +36,8 @@ const ModalReservationFormSelect = ({
   header,
   items,
   defaultSelectedItem,
-  selectHandler
+  selectHandler,
+  ariaLabel
 }: ModalReservationFormSelectProps) => {
   const { close } = useModalButtonHandler();
   const t = useText();
@@ -67,7 +72,7 @@ const ModalReservationFormSelect = ({
             label,
             value
           }))}
-          ariaLabel=""
+          ariaLabel={ariaLabel}
           arrowIcon="chevron"
           handleOnChange={selectChange}
           defaultValue={selectedItem}

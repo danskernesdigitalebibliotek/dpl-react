@@ -1,6 +1,7 @@
 import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { getModalIds } from "../../core/utils/helpers/general";
 import IntermedateList from "./intermediate-list.entry";
@@ -10,6 +11,7 @@ export default {
   component: IntermedateList,
   argTypes: {
     ...serviceUrlArgs,
+    ...blockedArgs,
     intermediateListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }

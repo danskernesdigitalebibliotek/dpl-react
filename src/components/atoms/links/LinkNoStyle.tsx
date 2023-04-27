@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "./link";
+import Link from "./Link";
 
 export interface LinkNoStyleProps {
   url: URL;
@@ -8,15 +8,17 @@ export interface LinkNoStyleProps {
   className?: string;
   trackClick?: () => Promise<unknown>;
   dataCy?: string;
+  ariaLabelledBy?: string;
 }
 
-export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
+const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   url,
   children,
   isNewTab = false,
   className,
   trackClick,
-  dataCy = "link-no-style"
+  dataCy = "link-no-style",
+  ariaLabelledBy
 }) => {
   return (
     <Link
@@ -25,6 +27,7 @@ export const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
       className={`hide-linkstyle ${className || ""}`}
       trackClick={trackClick}
       dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
     >
       {children}
     </Link>

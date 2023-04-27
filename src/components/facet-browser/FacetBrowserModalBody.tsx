@@ -11,6 +11,7 @@ import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
+import DisclosureSummary from "../Disclosures/DisclosureSummary";
 
 interface FacetBrowserModalBodyProps {
   facets: FacetResult[];
@@ -41,7 +42,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
   return (
     <section className="facet-browser">
       <header className="facet-browser__header">
-        <h3 className="text-header-h3">{t("filterListText")}</h3>
+        <h2 className="text-header-h3">{t("filterListText")}</h2>
       </header>
       {facets.map((facet) => {
         const { name, values } = facet;
@@ -55,10 +56,14 @@ const FacetBrowserModalBody: React.FunctionComponent<
             key={name}
             cyData={`facet-browser-${name}`}
             id={name}
-            fullWidth
-            removeHeadlinePadding
-            title={t(`facet${upperFirst(name)}Text`)}
             showContent={hasSelectedTerms}
+            className="disclosure--full-width"
+            summary={
+              <DisclosureSummary
+                title={t(`facet${upperFirst(name)}Text`)}
+                className="disclosure__headline--no-padding"
+              />
+            }
           >
             <div className="facet-browser__facet-group">
               {values.map((termItem) => {

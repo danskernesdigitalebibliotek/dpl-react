@@ -156,6 +156,26 @@ export default {
       defaultValue: "Work types",
       control: { type: "text" }
     },
+    facetCanAlwaysBeLoanedText: {
+      name: "Can always be loaned text",
+      defaultValue: "Can always be loaned",
+      control: { type: "text" }
+    },
+    facetFictionalCharactersText: {
+      name: "Fictional characters text",
+      defaultValue: "Fictional characters",
+      control: { type: "text" }
+    },
+    facetMaterialTypesGeneralText: {
+      name: "Material types general text",
+      defaultValue: "Material types general",
+      control: { type: "text" }
+    },
+    facetMaterialTypesSpecificText: {
+      name: "Material types specific text",
+      defaultValue: "Material types specific",
+      control: { type: "text" }
+    },
     showResultsText: {
       name: "Show results text",
       defaultValue: "Show results",
