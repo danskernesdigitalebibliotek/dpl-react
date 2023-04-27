@@ -26,6 +26,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
       </label>
       {/* eslint-disable react/jsx-props-no-spreading */}
       <input
+        required
+        pattern=".*\S+.*"
+        title={t("searchNoValidCharactersErrorText")}
         name="q"
         className="header__menu-search-input text-body-medium-regular"
         data-cy={dataCy}
@@ -41,6 +44,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       />
       {/* eslint-enable react/jsx-props-no-spreading */}
       <input
+        required
         type="image"
         src={searchIcon}
         alt={t("searchHeaderIconAltText")}
