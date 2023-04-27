@@ -36,11 +36,12 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
     <>
       {textData.map((item: Suggestion, index: number) => {
         const classes = {
-          textSuggestion: `autosuggest__text-item text-body-medium-regular px-24 ${clsx(
+          textSuggestion: clsx(
+            "autosuggest__text-item text-body-medium-regular px-24",
             {
               "autosuggest__text-item--highlight": highlightedIndex === index
             }
-          )}`
+          )
         };
         return (
           <AutosuggestTextItem
