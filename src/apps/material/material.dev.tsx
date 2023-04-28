@@ -30,17 +30,20 @@ export default {
     },
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted Pickup branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
       name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedInstantLoanBranchesConfig: {
       name: "Blacklisted Instant Loan branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     branchesConfig: {

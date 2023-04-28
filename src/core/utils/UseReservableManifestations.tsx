@@ -3,6 +3,7 @@ import { filterManifestationsByType } from "../../apps/material/helper";
 import { getAvailabilityV3 } from "../fbs/fbs";
 import { convertPostIdToFaustId, getAllFaustIds } from "./helpers/general";
 import { Manifestation } from "./types/entities";
+import { useConfig } from "./config";
 
 const UseReservableManifestations = ({
   manifestations,
@@ -11,6 +12,11 @@ const UseReservableManifestations = ({
   manifestations: Manifestation[];
   type?: string;
 }) => {
+  const config = useConfig();
+  const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
+    transformer: "stringToArray"
+  });
+
   const faustIds = getAllFaustIds(manifestations);
 
   const [reservableManifestations, setReservableManifestations] = useState<
@@ -32,7 +38,8 @@ const UseReservableManifestations = ({
     const fetchAvailability = async (m: Manifestation[]) => {
       // Fetch availability data.
       const data = await getAvailabilityV3({
-        recordid: faustIds
+        recordid: faustIds,
+        ...(blacklistBranches ? { exclude: blacklistBranches } : {})
       });
       // If we for some reason do not get any data, we return empty arrays.
       if (!data) {
