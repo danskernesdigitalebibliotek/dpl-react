@@ -1,5 +1,6 @@
 import React, { memo, useEffect } from "react";
-import { dataIsNotEmpty, getCoverTint } from "../../core/utils/helpers/general";
+import { isEmpty } from "lodash";
+import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import SearchResultListItem from "./search-result-list-item/search-result-list-item";
 import SearchResultListItemSkeleton from "./search-result-list-item/search-result-list-item-skeleton";
@@ -15,7 +16,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   page,
   pageSize
 }) => {
-  const worksAreLoaded = dataIsNotEmpty(resultItems);
+  const worksAreLoaded = !isEmpty(resultItems);
   const lastItemRef = React.useRef<HTMLLIElement>(null);
 
   useEffect(() => {

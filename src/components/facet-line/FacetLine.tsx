@@ -13,10 +13,8 @@ type FacetLineProps = {
 
 const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
   const { filters } = useFilterHandler();
-
   const cleanBranches = useGetCleanBranches();
-
-  const { data } = useIntelligentFacetsQuery({
+  const { data, isLoading } = useIntelligentFacetsQuery({
     q: { all: q },
     facetsLimit: 6,
     valuesLimit: 5,
@@ -25,7 +23,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
 
   return (
     <>
-      {!data && <FacetLineFiltersSkeleton />}
+      {isLoading && <FacetLineFiltersSkeleton />}
       {data && <FacetLineFilters facets={data.search.intelligentFacets} />}
       <FacetLineSelected />
     </>

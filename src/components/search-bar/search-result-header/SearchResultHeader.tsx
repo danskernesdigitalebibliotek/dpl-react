@@ -12,15 +12,13 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   q
 }) => {
   const t = useText();
-  const hasResults = Boolean(hitcount);
-  const classes = clsx(["text-header-h2", "mb-16", "search-result-title"], {
-    "text-loading": !hasResults
-  });
+  const classes = clsx(["text-header-h2", "mb-16", "search-result-title"]);
 
   return (
-    <h1 className={classes} data-cy="search-result-title">
-      {hasResults && `${t("showingResultsForText")} “${q}” (${hitcount})`}
-      {!hasResults && `${t("showingResultsForText")} “${q}”`}
+    <h1 className={classes} data-cy="search-result-header">
+      {`${t("showingResultsForText", {
+        placeholders: { "@query": q }
+      })} (${hitcount})`}
     </h1>
   );
 };
