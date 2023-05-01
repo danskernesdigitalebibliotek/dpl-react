@@ -5,6 +5,7 @@ import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
@@ -40,13 +41,6 @@ interface SearchResultEntryTextProps {
   showResultsText: string;
 }
 
-interface SearchResultEntryUrlProps {
-  searchUrl: string;
-  materialUrl: string;
-  authUrl: string;
-  fbiBaseUrl: string;
-}
-
 interface SearchResultEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
@@ -55,7 +49,7 @@ interface SearchResultEntryConfigProps {
 }
 
 export interface SearchResultEntryProps
-  extends SearchResultEntryUrlProps,
+  extends GlobalUrlEntryPropsInterface,
     SearchResultEntryConfigProps,
     SearchResultEntryTextProps {
   q?: string;

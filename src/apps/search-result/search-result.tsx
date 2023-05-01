@@ -3,7 +3,7 @@ import { useDeepCompareEffect } from "react-use";
 import { isEmpty } from "lodash";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
-import SearchResultList from "../../components/search-result-list/SearchResultList";
+import SearchResultList from "../../components/card-item-list/SearchResultList";
 import {
   FacetField,
   SearchWithPaginationQuery,
@@ -175,7 +175,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   }
 
   return (
-    <div className="search-result-page">
+    <div className="card-list-page">
       <SearchResultHeader hitcount={hitcount} q={q} />
       <FacetLine q={q} />
       {campaignData && campaignData.data && (

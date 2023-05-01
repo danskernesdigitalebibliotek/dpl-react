@@ -1,8 +1,8 @@
 import * as React from "react";
 import { FC } from "react";
 import FacetLineFiltersSkeleton from "../../components/facet-line/FacetLineFiltersSkeleton";
-import SearchResultListItemSkeleton from "../../components/search-result-list/search-result-list-item/search-result-list-item-skeleton";
 import { useText } from "../../core/utils/text";
+import CardListItemSkeleton from "../../components/card-item-list/card-list-item/card-list-item-skeleton";
 
 export interface SearchResultSkeletonProps {
   q: string;
@@ -25,7 +25,7 @@ const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
           We'll show 5 items which should cover most screens. */}
         {[...Array(5)].map(() => (
           <li>
-            <SearchResultListItemSkeleton />
+            <CardListItemSkeleton />
           </li>
         ))}
       </ul>

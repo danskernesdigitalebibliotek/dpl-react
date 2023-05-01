@@ -23,7 +23,7 @@ The skeleton screens are rendered with help from the
 
 In this example we are showing a search result item as a skeleton screen.
 The skeleton screen consists of a cover, a headline and two lines of text.
-In this case we wanted to maintain the styling of the .search-result-item
+In this case we wanted to maintain the styling of the .card-list-item
 wrapper. And show the skeleton screen elements by using ssc classes.
 
 ```tsx
@@ -31,7 +31,7 @@ import React from "react";
 
 const SearchResultListItemSkeleton: React.FC = () => {
   return (
-    <article className="search-result-item ssc">
+    <article className="card-list-item ssc">
       <div className="ssc-square">&nbsp;</div>
       <div className="ssc-wrapper w-80">
         <div className="ssc-head-line w-60 mb" />
