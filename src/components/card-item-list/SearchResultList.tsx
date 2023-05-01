@@ -2,8 +2,8 @@ import React, { memo, useEffect } from "react";
 import { isEmpty } from "lodash";
 import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
-import SearchResultListItem from "./search-result-list-item/card-list-item";
-import SearchResultListItemSkeleton from "./search-result-list-item/card-list-item-skeleton";
+import SearchResultListItem from "./card-list-item/card-list-item";
+import SearchResultListItemSkeleton from "./card-list-item/card-list-item-skeleton";
 
 export interface SearchResultListProps {
   resultItems: Work[];

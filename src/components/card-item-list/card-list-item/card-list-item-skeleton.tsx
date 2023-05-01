@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-const SearchResultListItemSkeleton: React.FC = () => {
+const CardListItemSkeleton: React.FC = () => {
   return (
     <article className="card-list-item ssc">
       <div className="ssc-square cover--size-small">&nbsp;</div>
@@ -13,4 +13,4 @@ const SearchResultListItemSkeleton: React.FC = () => {
   );
 };
 
-export default memo(SearchResultListItemSkeleton);
+export default memo(CardListItemSkeleton);
