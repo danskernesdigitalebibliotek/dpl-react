@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "../atoms/links/Link";
-import { useText } from "../../core/utils/text";
 import ButtonExpand from "../button-expand/ButtonExpand";
 
 export interface HorizontalTermLineProps {
@@ -19,7 +18,6 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   linkList,
   dataCy = "horizontal-term-line"
 }) => {
-  const t = useText();
   const numberOfItemsToShow = 3;
   const [showMore, setShowMore] = useState(false);
   const itemsToShow = showMore
