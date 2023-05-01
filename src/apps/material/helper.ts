@@ -10,7 +10,6 @@ import {
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import {
-  AvailabilityV3,
   HoldingsForBibliographicalRecordV3,
   HoldingsV3
 } from "../../core/fbs/model";
@@ -27,7 +26,12 @@ import {
   isArticle
 } from "../../components/material/material-buttons/helper";
 import { UseConfigFunction } from "../../core/utils/config";
-import { getAvailabilityV3, useGetAvailabilityV3 } from "../../core/fbs/fbs";
+import {
+  getAvailabilityV3,
+  getHoldingsV3,
+  useGetAvailabilityV3,
+  useGetHoldingsV3
+} from "../../core/fbs/fbs";
 
 export const getWorkManifestation = (
   work: Work,
@@ -459,3 +463,21 @@ export const getAvailability = async ({
       "blacklistedAvailabilityBranchesConfig"
     )
   );
+
+export const useGetHoldings = ({
+  faustIds,
+  config,
+  options
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+  options?: {
+    query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
+  };
+}) => {
+  const { data, isLoading, isError } = useGetHoldingsV3(
+    getBlacklistedArgs(faustIds, config, "blacklistedPickupBranchesConfig"),
+    options
+  );
+  return { data, isLoading, isError };
+};
