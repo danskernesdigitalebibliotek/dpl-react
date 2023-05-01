@@ -29,6 +29,7 @@ import { hasCorrectMaterialType } from "./material-buttons/helper";
 import MaterialType from "../../core/utils/types/material-type";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
+import { userIsAnonymous } from "../../core/utils/helpers/user";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -153,9 +154,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     materialTitleId={materialTitleId}
                   />
                 </div>
-                <MaterialAvailabilityText
-                  manifestations={selectedManifestations}
-                />
+                {!userIsAnonymous() && (
+                  <MaterialAvailabilityText
+                    manifestations={selectedManifestations}
+                  />
+                )}
               </>
             )}
             {children}
