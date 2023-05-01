@@ -28,6 +28,10 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
     : linkList.slice(0, numberOfItemsToShow);
   const showMoreButton = linkList.length > numberOfItemsToShow;
 
+  if (linkList.length === 0) {
+    return null;
+  }
+
   return (
     <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
       <h3 className="text-label-bold">

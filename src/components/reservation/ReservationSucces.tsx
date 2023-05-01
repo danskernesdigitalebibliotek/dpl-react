@@ -27,7 +27,11 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   const t = useText();
 
   return (
-    <FocusTrap>
+    <FocusTrap
+      focusTrapOptions={{
+        allowOutsideClick: true
+      }}
+    >
       <section className="reservation-modal reservation-modal--confirm">
         <h2
           data-cy="reservation-success-title-text"

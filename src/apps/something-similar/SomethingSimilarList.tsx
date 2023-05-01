@@ -58,7 +58,7 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
 
   return (
     <>
-      <h2 className="recommender__title text-header-h1 recommender__title--left">
+      <h2 className="recommender__left-title text-header-h1">
         {t("somethingSimilarTitleText")}
       </h2>
       <div className="recommender__buttons">

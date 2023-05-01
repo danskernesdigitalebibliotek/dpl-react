@@ -36,6 +36,7 @@ interface SearchResultEntryTextProps {
   removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
+  noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
 }

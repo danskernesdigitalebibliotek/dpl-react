@@ -4,6 +4,7 @@ import ReviewMetadata from "./ReviewMetadata";
 import ReviewHearts from "./ReviewHearts";
 import {
   getAuthorNames,
+  getPublicationName,
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import { ReviewManifestation } from "../../core/utils/types/entities";
@@ -15,11 +16,20 @@ export interface ReviewExternalProps {
 }
 
 const ReviewExternal: React.FC<ReviewExternalProps> = ({
-  review: { workYear, dateFirstEdition, creators, review, access, edition },
+  review: {
+    workYear,
+    dateFirstEdition,
+    creators,
+    review,
+    access,
+    edition,
+    hostPublication
+  },
   dataCy = "review-external"
 }) => {
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
+  const publication = getPublicationName(hostPublication);
   // This value needs to be casted, because TS for some reason doesn't accept that we filter the access
   const accessUrls = access.filter(
     (accessItem) => accessItem.__typename === "AccessUrl"
@@ -27,7 +37,13 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
 
   return (
     <li className="review text-small-caption" data-cy={dataCy}>
-      {(authors || date) && <ReviewMetadata author={authors} date={date} />}
+      {(authors || date || publication) && (
+        <ReviewMetadata
+          author={authors}
+          date={date}
+          publication={publication}
+        />
+      )}
       {review?.rating && <ReviewHearts amountOfHearts={review.rating} />}
       {accessUrls &&
         accessUrls.map(({ url, origin }, index) => {
