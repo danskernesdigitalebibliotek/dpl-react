@@ -9,7 +9,7 @@ The main purpose of the functionality is to be able to access strings defined
 at app level inside of sub components
 without passing them all the way down via props.
 You can read more about the decision
-and considerations [here](../docs/architecture/adr-002-ui-text-handling.md).
+and considerations [here](./architecture/adr-002-ui-text-handling.md).
 
 ## How to use it
 

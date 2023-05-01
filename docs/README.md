@@ -1,44 +1,8 @@
-<!-- markdownlint-disable-next-line first-line-h1 -->
-![https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png)
-
-[![codecov](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react/branch/master/graph/badge.svg)](https://codecov.io/gh/danskernesdigitalebibliotek/dpl-react)
+# DPL React
 
 A set of React components and applications providing self-service features for
 Danish public libraries.
 
-<!-- markdownlint-disable -->
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Development](#development)
-  - [Requirements](#requirements)
-  - [Development - alternative (no docker)](#development---alternative-no-docker)
-    - [Howto](#howto)
-    - [Step Debugging in Visual Studio Code (no docker)](#step-debugging-in-visual-studio-code-no-docker)
-    - [Access tokens](#access-tokens)
-    - [Library token](#library-token)
-  - [Installation](#installation)
-  - [Standard and style](#standard-and-style)
-    - [JavaScript + JSX](#javascript--jsx)
-      - [Named functions Vs. Anonymous arrow functions](#named-functions-vs-anonymous-arrow-functions)
-  - [Create a new application](#create-a-new-application)
-    - [Application state-machine](#application-state-machine)
-  - [Style your application](#style-your-application)
-  - [Style using the DPL design system](#style-using-the-dpl-design-system)
-    - [Using unreleased design](#using-unreleased-design)
-  - [Cross application components](#cross-application-components)
-    - [Creating an atom](#creating-an-atom)
-    - [Creating a component](#creating-a-component)
-  - [Editor example configuration](#editor-example-configuration)
-- [Usage](#usage)
-  - [Naive app mount](#naive-app-mount)
-    - [Data attributes and props](#data-attributes-and-props)
-- [Extending the project](#extending-the-project)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<!-- markdownlint-enable -->
-
-<!-- markdownlint-disable-next-line first-heading-h1 -->
 ## Development
 
 ### Requirements
