@@ -11,7 +11,6 @@ import { CoverProps } from "../cover/cover";
 import Link from "../atoms/links/Link";
 import {
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getManifestationPid,
   getReleaseYearSearchResult
@@ -63,10 +62,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   );
 
   const dispatch = useDispatch<TypedDispatch>();
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
