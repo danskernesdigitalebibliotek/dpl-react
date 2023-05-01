@@ -1,4 +1,5 @@
 import { compact, groupBy, uniqBy, uniq, head } from "lodash";
+import { UseQueryOptions } from "react-query";
 import {
   constructModalId,
   getMaterialTypes,
@@ -9,6 +10,7 @@ import {
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import {
+  AvailabilityV3,
   HoldingsForBibliographicalRecordV3,
   HoldingsV3
 } from "../../core/fbs/model";
@@ -24,6 +26,8 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
+import { UseConfigFunction } from "../../core/utils/config";
+import { getAvailabilityV3, useGetAvailabilityV3 } from "../../core/fbs/fbs";
 
 export const getWorkManifestation = (
   work: Work,
@@ -401,3 +405,57 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
+
+// Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
+const getBlacklistedArgs = (
+  faustIds: FaustId[],
+  config: UseConfigFunction,
+  blacklist:
+    | "blacklistedAvailabilityBranchesConfig"
+    | "blacklistedPickupBranchesConfig"
+) => {
+  const blacklistBranches = config(blacklist, {
+    transformer: "stringToArray"
+  });
+  return {
+    recordid: faustIds,
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+  };
+};
+
+export const useGetAvailability = ({
+  faustIds,
+  config,
+  options
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+  options?: {
+    query?: UseQueryOptions<Awaited<ReturnType<typeof getAvailabilityV3>>>;
+  };
+}) => {
+  const { data, isLoading, isError } = useGetAvailabilityV3(
+    getBlacklistedArgs(
+      faustIds,
+      config,
+      "blacklistedAvailabilityBranchesConfig"
+    ),
+    options
+  );
+  return { data, isLoading, isError };
+};
+
+export const getAvailability = async ({
+  faustIds,
+  config
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+}) =>
+  getAvailabilityV3(
+    getBlacklistedArgs(
+      faustIds,
+      config,
+      "blacklistedAvailabilityBranchesConfig"
+    )
+  );
