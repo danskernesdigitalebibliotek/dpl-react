@@ -1,9 +1,10 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { useGetV1ProductsIdentifier } from "../../core/publizon/publizon";
 import { useConfig } from "../../core/utils/config";
 import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
+import { useGetAvailability } from "../../apps/material/helper";
+import { FaustId } from "../../core/utils/types/ids";
 
 export const useAvailabilityData = ({
   accessTypes,
@@ -11,22 +12,17 @@ export const useAvailabilityData = ({
   isbn
 }: {
   accessTypes: AccessTypeCode[];
-  faustIds: string[] | null;
+  faustIds: FaustId[] | null;
   isbn: string | null;
 }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const config = useConfig();
-  const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
-    transformer: "stringToArray"
-  });
   const isOnline = accessTypes?.includes(AccessTypeCode.Online) ?? false;
 
-  useGetAvailabilityV3(
-    {
-      recordid: faustIds ?? [],
-      ...(blacklistBranches ? { exclude: blacklistBranches } : {})
-    },
-    {
+  useGetAvailability({
+    faustIds: faustIds ?? [],
+    config,
+    options: {
       query: {
         // FBS / useGetAvailabilityV3 is responsible for handling availability
         // for physical items. This will be the majority of all materials so we
@@ -39,7 +35,7 @@ export const useAvailabilityData = ({
         }
       }
     }
-  );
+  });
 
   useGetV1ProductsIdentifier(isbn ?? "", {
     query: {

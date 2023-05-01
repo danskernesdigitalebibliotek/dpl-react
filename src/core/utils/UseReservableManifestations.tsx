@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { filterManifestationsByType } from "../../apps/material/helper";
-import { getAvailabilityV3 } from "../fbs/fbs";
+import {
+  getAvailability,
+  filterManifestationsByType
+} from "../../apps/material/helper";
 import { convertPostIdToFaustId, getAllFaustIds } from "./helpers/general";
 import { Manifestation } from "./types/entities";
 import { useConfig } from "./config";
@@ -13,10 +15,6 @@ const UseReservableManifestations = ({
   type?: string;
 }) => {
   const config = useConfig();
-  const blacklistBranches = config("blacklistedAvailabilityBranchesConfig", {
-    transformer: "stringToArray"
-  });
-
   const faustIds = getAllFaustIds(manifestations);
 
   const [reservableManifestations, setReservableManifestations] = useState<
@@ -37,10 +35,8 @@ const UseReservableManifestations = ({
 
     const fetchAvailability = async (m: Manifestation[]) => {
       // Fetch availability data.
-      const data = await getAvailabilityV3({
-        recordid: faustIds,
-        ...(blacklistBranches ? { exclude: blacklistBranches } : {})
-      });
+      const data = await getAvailability({ faustIds, config });
+
       // If we for some reason do not get any data, we return empty arrays.
       if (!data) {
         return { reservable: [], unReservable: [] };
@@ -79,7 +75,8 @@ const UseReservableManifestations = ({
     faustIds,
     type,
     reservableManifestations,
-    unReservableManifestations
+    unReservableManifestations,
+    config
   ]);
 
   return {

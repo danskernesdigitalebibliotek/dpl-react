@@ -7,13 +7,14 @@ import { statistics } from "../../core/statistics/statistics";
 import { getParentAvailabilityLabelClass, useAvailabilityData } from "./helper";
 import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 import AvailabilityLabelInside from "./availability-label-inside";
+import { FaustId } from "../../core/utils/types/ids";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
   accessTypes: AccessTypeCode[];
   selected?: boolean;
   url?: URL;
-  faustIds: string[];
+  faustIds: FaustId[];
   handleSelectManifestation?: () => void | undefined;
   cursorPointer?: boolean;
   dataCy?: string;
