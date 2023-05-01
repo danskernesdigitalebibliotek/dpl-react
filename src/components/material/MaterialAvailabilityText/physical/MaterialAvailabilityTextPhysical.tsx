@@ -1,13 +1,14 @@
 import * as React from "react";
 import {
   getTotalHoldings,
-  getTotalReservations
+  getTotalReservations,
+  useGetHoldings
 } from "../../../../apps/material/helper";
-import { useGetHoldingsV3 } from "../../../../core/fbs/fbs";
 import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general";
 import { Pid } from "../../../../core/utils/types/ids";
 import StockAndReservationInfo from "../../StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
+import { useConfig } from "../../../../core/utils/config";
 
 interface MaterialAvailabilityTextPhysicalProps {
   pids: Pid[];
@@ -16,9 +17,11 @@ interface MaterialAvailabilityTextPhysicalProps {
 const MaterialAvailabilityTextPhysical: React.FC<
   MaterialAvailabilityTextPhysicalProps
 > = ({ pids }) => {
+  const config = useConfig();
   const faustIds = convertPostIdsToFaustIds(pids);
-  const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: faustIds
+  const { data, isLoading, isError } = useGetHoldings({
+    faustIds,
+    config
   });
 
   if (isLoading || isError || !data) return null;

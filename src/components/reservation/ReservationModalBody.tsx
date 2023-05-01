@@ -24,12 +24,12 @@ import ReservationError from "./ReservationError";
 import {
   getTotalHoldings,
   getTotalReservations,
-  reservationModalId
+  reservationModalId,
+  useGetHoldings
 } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
-  useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -101,9 +101,7 @@ export const ReservationModalBody = ({
   const faustIds = convertPostIdsToFaustIds(allPids);
   const { mutate } = useAddReservationsV2();
   const userResponse = useGetPatronInformationByPatronIdV2();
-  const holdingsResponse = useGetHoldingsV3({
-    recordid: faustIds
-  });
+  const holdingsResponse = useGetHoldings({ faustIds, config });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
