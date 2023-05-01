@@ -160,7 +160,7 @@ export const ReservationModalBody = ({
   };
 
   const reservationSuccess = reservationResponse?.success || false;
-  const reservationResult = reservationResponse?.reservationResults[0]?.result;
+  const reservationResults = reservationResponse?.reservationResults;
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
   const manifestation =
@@ -184,7 +184,7 @@ export const ReservationModalBody = ({
 
   return (
     <>
-      {!reservationResult && (
+      {!reservationResults && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
             <Cover id={manifestation.pid} size="medium" animate />
@@ -279,9 +279,9 @@ export const ReservationModalBody = ({
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}
-      {!reservationSuccess && reservationResult && (
+      {!reservationSuccess && reservationResults && (
         <ReservationError
-          reservationResult={reservationResult}
+          reservationResults={reservationResults}
           setReservationResponse={setReservationResponse}
         />
       )}
