@@ -38,7 +38,7 @@ const MaterialAvailabilityTextOnline: React.FC<
     totalEbookLoans &&
     maxConcurrentEbookLoansPerBorrower
   ) {
-    availabilityText = t("onlineLimitMonthInfoText", {
+    availabilityText = t("onlineLimitMonthEbookInfoText", {
       placeholders: {
         "@count": totalEbookLoans,
         "@limit": maxConcurrentEbookLoansPerBorrower
@@ -51,7 +51,7 @@ const MaterialAvailabilityTextOnline: React.FC<
     totalAudioLoans &&
     maxConcurrentAudioLoansPerBorrower
   ) {
-    availabilityText = t("onlineLimitMonthInfoText", {
+    availabilityText = t("onlineLimitMonthAudiobookInfoText", {
       placeholders: {
         "@count": totalAudioLoans,
         "@limit": maxConcurrentAudioLoansPerBorrower
