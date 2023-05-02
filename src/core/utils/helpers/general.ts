@@ -420,15 +420,7 @@ function getDateFromCpr(cprInput: string) {
     const yearWithPrefix = Number(`${prefix}${year}`);
 
     return new Date(
-      Date.UTC(
-        Number(yearWithPrefix),
-        Number(month) - 1,
-        Number(day),
-        0,
-        0,
-        0,
-        0
-      )
+      Date.UTC(yearWithPrefix, Number(month) - 1, Number(day), 0, 0, 0, 0)
     );
   }
 
