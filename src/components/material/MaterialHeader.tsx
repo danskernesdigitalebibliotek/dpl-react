@@ -26,7 +26,7 @@ import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
-import MaterialType from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { userIsAnonymous } from "../../core/utils/helpers/user";
@@ -70,7 +70,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   };
   const author = creatorsToString(flattenCreators(creators), t);
   const isPeriodical = hasCorrectMaterialType(
-    MaterialType.magazine,
+    ManifestationMaterialType.magazine,
     selectedManifestations
   );
   const containsDanish = mainLanguages.some((language) =>
