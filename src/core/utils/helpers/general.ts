@@ -435,7 +435,7 @@ function getDateFromCpr(cprInput: string) {
   return null;
 }
 
-export const isCprValid = (cpr: string, minAge: number) => {
+export const patronAgeValid = (cpr: string, minAge: number) => {
   const cprDate = getDateFromCpr(cpr);
   if (cprDate === null) return false;
 

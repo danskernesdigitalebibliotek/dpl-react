@@ -6,7 +6,7 @@ import { PatronSettingsV3 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
 import { useCreateV4 } from "../../core/fbs/fbs";
-import { isCprValid } from "../../core/utils/helpers/general";
+import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import { redirectTo } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
@@ -22,7 +22,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const { redirectOnUserCreatedUrl } = useUrls();
   const [pin, setPin] = useState<string | null>(null);
   const minAge = parseInt(config("minAgeConfig"), 10);
-  const [validCpr] = useState<boolean>(isCprValid(cpr, minAge));
+  const [validCpr] = useState<boolean>(patronAgeValid(cpr, minAge));
   const { mutate } = useCreateV4();
   const [patron, setPatron] = useState<PatronSettingsV3>({
     preferredPickupBranch: "",
