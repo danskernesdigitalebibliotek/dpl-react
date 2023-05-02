@@ -8,7 +8,7 @@ import { getMaterialTypes } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
-import MaterialTypes from "../../../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import LinkButton from "../../../Buttons/LinkButton";
 
 export interface MaterialButtonOnlineExternalProps {
@@ -34,7 +34,7 @@ export const getOnlineMaterialType = (
   }
   if (
     materialTypes.find((element) =>
-      element.toLowerCase().includes(MaterialTypes.audioBookGeneric)
+      element.toLowerCase().includes(ManifestationMaterialType.audioBookGeneric)
     )
   ) {
     return "audiobook";
