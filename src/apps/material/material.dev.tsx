@@ -288,10 +288,16 @@ export default {
         '{"type":"plural","text":["1 copy has been reserved.","@count copies have been reserved."]}',
       control: { type: "text" }
     },
-    onlineLimitMonthInfoText: {
+    onlineLimitMonthEbookInfoText: {
       name: "Online limit info text",
       defaultValue:
         "You have borrowed @count out of @limit possible e-books this month",
+      control: { type: "text" }
+    },
+    onlineLimitMonthAudiobookInfoText: {
+      name: "Online limit info text",
+      defaultValue:
+        "You have borrowed @count out of @limit possible audio-books this month",
       control: { type: "text" }
     },
     approveReservationText: {
