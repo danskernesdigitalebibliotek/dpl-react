@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import clsx from "clsx";
 import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
 import TextInput from "../atoms/input/TextInput";
 import CheckBox from "../checkbox/Checkbox";
@@ -22,11 +23,12 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   showCheckboxes
 }) => {
   const t = useText();
+  const inputsClass = clsx("dpl-input", { input__desktop: inLine });
 
   const phoneNode = (
     <>
       <TextInput
-        className={clsx(dpl-input, {"input__desktop":  inLine} )}
+        className={inputsClass}
         id="phone-input"
         required
         type="number"
@@ -53,7 +55,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const emailNode = (
     <>
       <TextInput
-        className={`${inLine ? "dpl-input" : "dpl-input input__desktop"}`}
+        className={inputsClass}
         id="email-address-input"
         type="email"
         required

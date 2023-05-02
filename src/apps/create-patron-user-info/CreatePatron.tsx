@@ -1,5 +1,6 @@
 import React, { useState, FC } from "react";
 import UserInfo from "./UserInfo";
+import { useConfig } from "../../core/utils/config";
 
 interface CreatePatronProps {
   userToken: string;
@@ -7,8 +8,10 @@ interface CreatePatronProps {
 
 const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
   const [cpr, setCpr] = useState<string | null>(null);
+  const config = useConfig();
+  const loginUrlConfig = config("loginUrlConfig");
 
-  fetch(`https://login.bib.dk/userinfo`, {
+  fetch(loginUrlConfig, {
     method: "get",
     headers: { Authorization: `Bearer ${userToken}` }
   })
