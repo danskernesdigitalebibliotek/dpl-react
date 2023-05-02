@@ -26,7 +26,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const phoneNode = (
     <>
       <TextInput
-        className={`${inLine ? "dpl-input" : "dpl-input input__desktop"}`}
+        className={clsx(dpl-input, {"input__desktop":  inLine} )}
         id="phone-input"
         required
         type="number"
