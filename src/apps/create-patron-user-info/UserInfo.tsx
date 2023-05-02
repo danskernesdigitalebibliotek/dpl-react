@@ -53,9 +53,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
         {
           onSuccess: () => {
             redirectTo(redirectOnUserCreatedUrl);
-          },
-          // todo error handling, missing in figma
-          onError: () => {}
+          }
         }
       );
     }
