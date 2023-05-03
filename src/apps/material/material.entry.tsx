@@ -14,6 +14,8 @@ interface MaterialEntryTextProps {
   alreadyReservedText: string;
   approveReservationText: string;
   cantReserveText: string;
+  cantViewText: string;
+  notLivingInMunicipalityText: string;
   cantViewReviewText: string;
   changeEmailText: string;
   changeInterestPeriodText: string;
