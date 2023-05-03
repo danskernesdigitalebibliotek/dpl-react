@@ -4,11 +4,11 @@ import { Work } from "../../core/utils/types/entities";
 import CardListItem from "./card-list-item";
 import { Pid } from "../../core/utils/types/ids";
 
-export interface CardListProps {
+export interface CardListItemAdapterProps {
   pid: Pid;
 }
 
-const CardList: FC<CardListProps> = ({ pid }) => {
+const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ pid }) => {
   const { data } = useGetFavoriteMaterialManifestationQuery({
     id: pid
   });
@@ -26,4 +26,4 @@ const CardList: FC<CardListProps> = ({ pid }) => {
   );
 };
 
-export default CardList;
+export default CardListItemAdapter;
