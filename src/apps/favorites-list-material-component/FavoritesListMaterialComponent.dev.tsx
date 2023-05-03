@@ -38,6 +38,12 @@ export default {
       },
       defaultValue: "Go to My list"
     },
+    favoritesListMaterialComponentGoToListUrl: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8" // open source image of a red panda
+    },
     addToFavoritesAriaLabelText: {
       control: {
         type: "text"

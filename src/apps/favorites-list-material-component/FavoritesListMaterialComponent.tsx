@@ -3,11 +3,13 @@ import { useText } from "../../core/utils/text";
 import { useGetList } from "../../core/material-list-api/material-list";
 import { Pid } from "../../core/utils/types/ids";
 import SimpleMaterialAdapter from "../../components/simple-material/SimpleMaterialAdapter";
+import Link from "../../components/atoms/links/Link";
+import { useUrls } from "../../core/utils/url";
 
 const FavoritesListMaterialComponent: FC = () => {
   const t = useText();
   const [materials, setMaterials] = useState<Pid[]>([]);
-
+  const { favoritesListMaterialComponentGoToListUrl } = useUrls();
   const { data } = useGetList("default");
   const { collections } = (data as { collections: Pid[] }) || [];
 
@@ -25,12 +27,12 @@ const FavoritesListMaterialComponent: FC = () => {
         {t("favoritesListMaterialComponentTitleText")}
       </h2>
       <div className="recommender__buttons">
-        <button
-          type="button"
+        <Link
+          href={favoritesListMaterialComponentGoToListUrl}
           className="button-link button-link--bright button-link--selected"
         >
           {t("favoritesListMaterialComponentGoToListText")}
-        </button>
+        </Link>
       </div>
       <ul className="recommender__grid">
         {materials.map((pid) => (
