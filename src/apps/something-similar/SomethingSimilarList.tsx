@@ -9,7 +9,7 @@ import { Work } from "../../core/utils/types/entities";
 import fetchMaterial, {
   MaterialProps
 } from "../loan-list/materials/utils/material-fetch-hoc";
-import RecommendMaterial from "../recommender/RecommendMaterial";
+import SimpleMaterial from "../../components/simple-material/SimpleMaterial";
 
 export interface SomethingSimilarListProps {
   id: string;
@@ -85,12 +85,12 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
         {recommendView &&
           somethingSimilar &&
           somethingSimilar.map((work) => (
-            <RecommendMaterial bright work={work} />
+            <SimpleMaterial appTag="something-similar" bright work={work} />
           ))}
         {!recommendView &&
           authorMaterials &&
           authorMaterials.map((work) => (
-            <RecommendMaterial bright work={work} />
+            <SimpleMaterial appTag="something-similar" bright work={work} />
           ))}
       </ul>
     </>

@@ -7,7 +7,7 @@ import fetchMaterial, {
   MaterialProps
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import { useText } from "../../core/utils/text";
-import RecommendMaterial from "./RecommendMaterial";
+import RecommendMaterial from "../../components/simple-material/SimpleMaterial";
 import { Work } from "../../core/utils/types/entities";
 import fetchDigitalMaterial from "../loan-list/materials/utils/digital-material-fetch-hoc";
 import { FaustId } from "../../core/utils/types/ids";
@@ -51,7 +51,7 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
       <ul className="recommender__triple-grid">
         {recommendedMaterials &&
           recommendedMaterials.recommend.result.map(({ work }) => (
-            <RecommendMaterial work={work as Work} />
+            <RecommendMaterial work={work as Work} appTag="recommender" />
           ))}
       </ul>
     </>
