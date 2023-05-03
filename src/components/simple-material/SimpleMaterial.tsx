@@ -3,8 +3,8 @@ import { FC } from "react";
 import { useDispatch } from "react-redux";
 import ButtonFavourite, {
   ButtonFavouriteId
-} from "../../components/button-favourite/button-favourite";
-import { Cover } from "../../components/cover/cover";
+} from "../button-favourite/button-favourite";
+import { Cover } from "../cover/cover";
 import { Work } from "../../core/utils/types/entities";
 import {
   getContributors,
@@ -13,23 +13,26 @@ import {
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
-import Link from "../../components/atoms/links/Link";
+import Link from "../atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
+import { GuardedAppId } from "../../core/utils/types/ids";
 
-export interface RecommendMaterialProps {
+export interface SimpleMaterialProps {
   work: Work;
   bright?: boolean;
+  appTag: GuardedAppId;
 }
 
-const RecommendMaterial: FC<RecommendMaterialProps> = ({
+const SimpleMaterial: FC<SimpleMaterialProps> = ({
   bright,
   work: {
     titles: { full: title },
     creators,
     workId,
     manifestations: { all: manifestations }
-  }
+  },
+  appTag
 }) => {
   const dispatch = useDispatch<TypedDispatch>();
   const { materialUrl } = useUrls();
@@ -56,35 +59,33 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
       guardedRequest({
         type: "addFavorite",
         args: { id },
-        app: "recommender"
+        app: appTag
       })
     );
   };
 
   return (
     <li
-      className={`recommender-material ${
-        bright ? " recommender-material--bright" : ""
-      }`}
+      className={`simple-material ${bright ? " simple-material--bright" : ""}`}
     >
-      <div className="recommender-material__cover-container">
+      <div className="simple-material__cover-container">
         <Cover animate size="medium" id={manifestationPid} />
       </div>
-      <div className="recommender-material__favourite">
+      <div className="simple-material__favourite">
         <ButtonFavourite
           darkBackground={!bright}
           id={workId}
           addToListRequest={addToListRequest}
         />
       </div>
-      <div className="recommender-material__meta">
-        <Link href={materialFullUrl} className="recommender-material__title">
+      <div className="simple-material__meta">
+        <Link href={materialFullUrl} className="simple-material__title">
           {String(title)}
         </Link>
-        <div className="recommender-material__author">{authors}</div>
+        <div className="simple-material__author">{authors}</div>
       </div>
     </li>
   );
 };
 
-export default RecommendMaterial;
+export default SimpleMaterial;
