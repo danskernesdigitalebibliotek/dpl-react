@@ -9,10 +9,11 @@ import { userIsAnonymous } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
-import MaterialButtonCantReserve from "../generic/MaterialButtonCantReserve";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
+import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
+import { useText } from "../../../../core/utils/text";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -25,6 +26,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size,
   dataCy = "material-buttons-physical"
 }) => {
+  const t = useText();
   const faustIds = getAllFaustIds(manifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
@@ -38,7 +40,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   }
 
   if (!reservableManifestations || reservableManifestations.length < 1) {
-    return <MaterialButtonCantReserve size={size} />;
+    return <MaterialButtonDisabled size={size} label={t("cantReserveText")} />;
   }
 
   if (!isEmpty(userData?.patron?.blockStatus)) {
