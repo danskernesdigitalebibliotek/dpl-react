@@ -229,6 +229,17 @@ describe("Patron page", () => {
         "include",
         "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80"
       );
+
+    // ID 37 3. The user clicks save
+    cy.get("[data-cy='save-user-patron']").click();
+    cy.wait("@PUT-patron").then(({ request }) => {
+      assert.equal(request?.body.patron.emailAddress, "itkdev@mkb.aarhus.dkdd");
+      assert.equal(request?.body.patron.phoneNumber, "123456789021");
+      assert.equal(request?.body.patron.receiveEmail, false);
+      assert.equal(request?.body.patron.receiveSms, true);
+      assert.equal(request?.body.pincodeChange.pincode, "1234");
+      assert.equal(request?.body.pincodeChange.libraryCardNumber, "10101010");
+    });
   });
 });
 
