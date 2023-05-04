@@ -1,10 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import clsx from "clsx";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
 import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
-import CoverImage from "./cover-image";
 
 export type CoverProps = {
   animate: boolean;
@@ -14,8 +13,6 @@ export type CoverProps = {
   description?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
-  shadow?: boolean;
-  linkAriaLabelledBy?: string;
 };
 
 export const Cover = ({
@@ -25,15 +22,8 @@ export const Cover = ({
   animate,
   tint,
   id,
-  idType,
-  shadow,
-  linkAriaLabelledBy
+  idType
 }: CoverProps) => {
-  const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
-  const handleSetImageLoaded = useCallback(() => {
-    setImageLoaded(true);
-  }, []);
-
   let dataSize: CoverProps["size"] = size;
   if (dataSize === "xsmall") {
     dataSize = "small";
@@ -46,8 +36,6 @@ export const Cover = ({
     identifiers: [id],
     sizes: [dataSize]
   });
-
-  const coverSrc = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
 
   type TintClassesType = {
     [key: string]: string;
@@ -62,44 +50,26 @@ export const Cover = ({
   };
 
   const classes = {
-    wrapper: clsx(
-      "cover",
-      `cover--size-${size}`,
-      `cover--aspect-${size}`,
-      imageLoaded || tintClasses[tint || "default"]
-    )
+    wrapper: clsx(`cover cover--${size}`, tintClasses[tint || "default"], {
+      cover__animate: animate
+    })
   };
 
-  if (url) {
-    return (
-      <LinkNoStyle
-        className={classes.wrapper}
-        url={url}
-        ariaLabelledBy={linkAriaLabelledBy}
-      >
-        {coverSrc && (
-          <CoverImage
-            setImageLoaded={handleSetImageLoaded}
-            src={coverSrc}
-            altText={description}
-            animate={animate}
-            shadow={shadow}
-          />
-        )}
-      </LinkNoStyle>
-    );
-  }
+  const coverUrl = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
+  const image = coverUrl && <img src={coverUrl} alt={description || ""} />;
 
   return (
-    <div className={classes.wrapper}>
-      {coverSrc && (
-        <CoverImage
-          setImageLoaded={handleSetImageLoaded}
-          src={coverSrc}
-          altText={description}
-          animate={animate}
-          shadow={shadow}
-        />
+    <div className="cover-container">
+      {/**
+       * Images inside links must have an non-empty alt text to meet accessibility requirements.
+       * Only render the cover as a link if we have both an url and a description.
+       */}
+      {url && description ? (
+        <LinkNoStyle url={url} className={classes.wrapper}>
+          {image}
+        </LinkNoStyle>
+      ) : (
+        <span className={classes.wrapper}>{image}</span>
       )}
     </div>
   );

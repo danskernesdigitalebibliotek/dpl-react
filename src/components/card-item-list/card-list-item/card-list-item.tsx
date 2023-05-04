@@ -127,7 +127,6 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
             id={manifestationPid}
             url={materialFullUrl}
             tint={coverTint}
-            linkAriaLabelledBy={searchTitleId}
           />
         )}
       </div>
