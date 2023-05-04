@@ -17,10 +17,10 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
   const { materialType, title, authors, year } = material || {};
   return (
     <li>
-      <div className="list-materials ">
+      <div className="list-materials">
         <div className="list-materials__content">
           <div className="list-materials__content-status">
-            <div className="status-label status-label--outline ">
+            <div className="status-label status-label--outline">
               {materialType}
             </div>
             <div className="status-label status-label--danger list-materials__content-status-label">
@@ -36,7 +36,7 @@ const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div className="list-materials__status">
-          <div className="status-label status-label--danger ">
+          <div className="status-label status-label--danger">
             {t("turnedInText", {
               placeholders: { "@date": creationDateFormatted }
             })}
