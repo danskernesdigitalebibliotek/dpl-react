@@ -6,6 +6,11 @@ describe("Patron page", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
+    cy.intercept({
+      method: "PUT",
+      url: "**/external/agencyid/patrons/patronid/v5"
+    }).as("PUT-patron");
+
     cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
       patron: {
         blockStatus: null
