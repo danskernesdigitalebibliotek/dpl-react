@@ -262,6 +262,11 @@ export default {
         "You don't live in the municipality where this library is located.",
       control: { type: "text" }
     },
+    blockedButtonText: {
+      name: "Blocked button text",
+      defaultValue: "User blocked",
+      control: { type: "text" }
+    },
     cantViewText: {
       name: "Can't be viewed",
       defaultValue: "Can't be viewed",

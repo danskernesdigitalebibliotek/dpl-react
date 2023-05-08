@@ -13,9 +13,9 @@ interface MaterialEntryTextProps {
   alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
+  blockedButtonText: string;
   cantReserveText: string;
   cantViewText: string;
-  notLivingInMunicipalityText: string;
   cantViewReviewText: string;
   changeEmailText: string;
   changeInterestPeriodText: string;
@@ -99,6 +99,7 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
+  notLivingInMunicipalityText: string;
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
