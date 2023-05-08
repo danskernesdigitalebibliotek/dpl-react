@@ -7,7 +7,7 @@ import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
 import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
-import { userIsAnonymous } from "../../../../core/utils/helpers/user";
+import { isAnonymous } from "../../../../core/utils/helpers/user";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 
@@ -29,7 +29,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const t = useText();
   const [isResident, setIsResident] = useState<null | boolean>(null);
   const { isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !userIsAnonymous(),
+    enabled: !isAnonymous(),
     onSuccess: (data) => {
       if (data?.patron?.resident !== undefined) {
         setIsResident(data.patron.resident);

@@ -7,7 +7,7 @@ import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
 import InfomediaSkeleton from "./InfomediaSkeleton";
-import { userIsAnonymous } from "../../../core/utils/helpers/user";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
@@ -27,7 +27,7 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
     string | null | undefined
   > | null>(null);
   const { data: patronData, isLoading: isLoadingPatron } =
-    useGetPatronInformationByPatronIdV2({ enabled: !userIsAnonymous() });
+    useGetPatronInformationByPatronIdV2({ enabled: !isAnonymous() });
 
   useEffect(() => {
     if (patronData?.patron?.resident !== undefined) {

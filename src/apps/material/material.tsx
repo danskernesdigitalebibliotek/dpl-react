@@ -37,7 +37,8 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
-import { userIsAnonymous } from "../../core/utils/helpers/user";
+import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
+import { canReserve, isAnonymous } from "../../core/utils/helpers/user";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -53,8 +54,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
-
+  const { data: userData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
+  const patron = userData?.patron;
+  const canUserReserve = patron && canReserve(patron);
   const { track } = useStatistics();
+
   useDeepCompareEffect(() => {
     if (data?.work?.genreAndForm) {
       track("click", {
@@ -156,7 +162,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation) => (
           <>
-            {!userIsAnonymous() && (
+            {canUserReserve && (
               <ReservationModal
                 key={`reservation-modal-${manifestation.pid}`}
                 selectedManifestations={[manifestation]}
@@ -175,22 +181,20 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           </>
         ))}
 
-        {infomediaIds.length > 0 && !userIsAnonymous() && (
+        {infomediaIds.length > 0 && !isAnonymous() && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
             infoMediaId={infomediaIds[0]}
           />
         )}
-
         {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
           <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
         )}
-
         {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {isParallelReservation(selectedManifestations) && (
+        {canUserReserve && isParallelReservation(selectedManifestations) && (
           <>
-            {!userIsAnonymous() && (
+            {!isAnonymous() && (
               <ReservationModal
                 selectedManifestations={selectedManifestations}
                 selectedPeriodical={selectedPeriodical}
