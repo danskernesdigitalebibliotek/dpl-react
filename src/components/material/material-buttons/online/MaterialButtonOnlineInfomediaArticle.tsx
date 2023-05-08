@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useState, FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -27,18 +27,17 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
+  const [isResident, setIsResident] = useState<null | boolean>(null);
+  const { isLoading } = useGetPatronInformationByPatronIdV2({
+    enabled: !userIsAnonymous(),
+    onSuccess: (data) => {
+      if (data?.patron?.resident !== undefined) {
+        setIsResident(data.patron.resident);
+      }
+    }
+  });
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
-  const [isResident, setIsResident] = useState<null | boolean>(null);
-  const { data: patronData, isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !userIsAnonymous()
-  });
-
-  useEffect(() => {
-    if (patronData?.patron?.resident !== undefined) {
-      setIsResident(patronData.patron.resident);
-    }
-  }, [patronData]);
 
   if (manifestations.length < 1) {
     return null;

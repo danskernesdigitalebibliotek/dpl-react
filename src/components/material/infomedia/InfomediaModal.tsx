@@ -7,6 +7,7 @@ import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
 import InfomediaSkeleton from "./InfomediaSkeleton";
+import { userIsAnonymous } from "../../../core/utils/helpers/user";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
@@ -21,8 +22,12 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 }) => {
   const t = useText();
   const [shouldFetchData, setShouldFetchData] = useState(false);
+  const [infomediaData, setInfomediaData] = useState<Record<
+    string,
+    string | null | undefined
+  > | null>(null);
   const { data: patronData, isLoading: isLoadingPatron } =
-    useGetPatronInformationByPatronIdV2();
+    useGetPatronInformationByPatronIdV2({ enabled: !userIsAnonymous() });
 
   useEffect(() => {
     if (patronData?.patron?.resident !== undefined) {
@@ -38,15 +43,21 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
     {
       id: infoMediaId
     },
-    { enabled: shouldFetchData }
+    {
+      enabled: shouldFetchData,
+      onSuccess: (response) => {
+        const infomedia: Record<string, string | null | undefined> = {
+          headline: response?.infomedia?.article?.headLine,
+          text: response?.infomedia?.article?.text
+        };
+        setInfomediaData(infomedia);
+      }
+    }
   );
 
   if (!data || error) {
     return null;
   }
-
-  const headline = data?.infomedia?.article?.headLine;
-  const text = data?.infomedia?.article?.text;
 
   return (
     <Modal
@@ -58,8 +69,11 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
       dataCy="infomedia-modal"
     >
       {isLoadingPatron || (isLoadingInfomedia && <InfomediaSkeleton />)}
-      {headline && text && (
-        <InfomediaModalBody headline={headline} text={text} />
+      {infomediaData?.headline && infomediaData?.text && (
+        <InfomediaModalBody
+          headline={infomediaData.headline}
+          text={infomediaData.text}
+        />
       )}
     </Modal>
   );
