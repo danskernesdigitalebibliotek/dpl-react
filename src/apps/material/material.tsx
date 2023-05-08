@@ -37,6 +37,7 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
+import { userIsAnonymous } from "../../core/utils/helpers/user";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -155,12 +156,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation) => (
           <>
-            <ReservationModal
-              key={`reservation-modal-${manifestation.pid}`}
-              selectedManifestations={[manifestation]}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-            />
+            {!userIsAnonymous() && (
+              <ReservationModal
+                key={`reservation-modal-${manifestation.pid}`}
+                selectedManifestations={[manifestation]}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+              />
+            )}
             <FindOnShelfModal
               key={`find-on-shelf-modal-${manifestation.pid}`}
               manifestations={[manifestation]}
@@ -172,7 +175,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           </>
         ))}
 
-        {infomediaIds.length > 0 && (
+        {infomediaIds.length > 0 && !userIsAnonymous() && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
             infoMediaId={infomediaIds[0]}
@@ -187,12 +190,14 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         Online materials lead to external links, or to same modals as are created for singular editions. */}
         {isParallelReservation(selectedManifestations) && (
           <>
-            <ReservationModal
-              selectedManifestations={selectedManifestations}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-              dataCy="reservation-modal-parallel"
-            />
+            {!userIsAnonymous() && (
+              <ReservationModal
+                selectedManifestations={selectedManifestations}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+                dataCy="reservation-modal-parallel"
+              />
+            )}
             <FindOnShelfModal
               manifestations={selectedManifestations}
               authors={work.creators}
