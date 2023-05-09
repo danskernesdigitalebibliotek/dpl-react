@@ -74,7 +74,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <AuthorYear author={authors} year={year} />
           </p>
         </div>
-        <div className="list-materials__status">
+        <div className="list-materials__status pl-4">
           <StatusMessage
             className="list-materials__status__note-desktop"
             loan={loan}
