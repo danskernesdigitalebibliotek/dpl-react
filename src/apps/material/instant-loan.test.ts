@@ -47,14 +47,12 @@ describe("Instant Loan", () => {
     cy.visit(
       "/iframe.html?&id=apps-material--instant-loan&viewMode=story&type=bog"
     ).scrollTo("bottom");
-
+    cy.createFakeAuthenticatedSession();
     cy.getBySel("material-description").scrollIntoView();
-
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
-
     // TODO: Find out why the next line is necessary to pass the test.
     // It should not be necessary as we already activated lazy loading on line 51.
     cy.getBySel("material-description").scrollIntoView();
