@@ -36,6 +36,7 @@ import ReservationDetails from "../modal/reservation-details/reservation-details
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
 import { getFromListByKey } from "../../loan-list/utils/helpers";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -50,7 +51,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const [reservation, setReservation] = useState<ReservationType | null>(null);
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
-  const { data: userData } = useGetPatronInformationByPatronIdV2();
+  const { data: userData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [modalDeleteId, setModalDeleteId] = useState<string | null>(null);
   // Data fetch

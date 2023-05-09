@@ -54,6 +54,7 @@ import PromoBar from "../promo-bar/PromoBar";
 import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
+import { isAnonymous } from "../../core/utils/helpers/user";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -100,7 +101,9 @@ export const ReservationModalBody = ({
   const allPids = getAllPids(selectedManifestations);
   const faustIds = convertPostIdsToFaustIds(allPids);
   const { mutate } = useAddReservationsV2();
-  const userResponse = useGetPatronInformationByPatronIdV2();
+  const userResponse = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
   const holdingsResponse = useGetHoldingsV3({
     recordid: faustIds
   });

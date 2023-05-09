@@ -38,7 +38,7 @@ import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
 import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
-import { canReserve } from "../../core/utils/helpers/user";
+import { canReserve, isAnonymous } from "../../core/utils/helpers/user";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -55,7 +55,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     wid
   });
 
-  const { data: userData } = useGetPatronInformationByPatronIdV2();
+  const { data: userData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
   const patron = userData?.patron;
   const userCanReserve = patron && canReserve(patron);
 

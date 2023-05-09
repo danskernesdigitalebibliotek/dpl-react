@@ -9,6 +9,7 @@ import { setHasBeenVisible } from "../blockedModal.slice";
 import { RootState, useSelector } from "../store";
 import BlockedTypes from "./types/BlockedTypes";
 import { redirectTo } from "./helpers/url";
+import { isAnonymous } from "./helpers/user";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
@@ -39,7 +40,9 @@ const withIsPatronBlockedHoc =
     const [blockedFromViewingContent, setBlockedFromViewingContent] = useState<
       boolean | null
     >(null);
-    const { data: patronData } = useGetPatronInformationByPatronIdV2();
+    const { data: patronData } = useGetPatronInformationByPatronIdV2({
+      enabled: !isAnonymous()
+    });
 
     // Used to check whether the modal has been opened by another component,
     // the modal should really only be showed once.

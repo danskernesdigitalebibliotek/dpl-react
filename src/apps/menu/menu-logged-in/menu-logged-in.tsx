@@ -28,6 +28,7 @@ import {
 import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 export interface MenuLoggedInProps {
   closePatronMenu: () => void;
@@ -39,7 +40,9 @@ interface MenuNavigationDataType {
 }
 
 const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
-  const { data: patronData } = useGetPatronInformationByPatronIdV2();
+  const { data: patronData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { data: fbsData } = useGetLoansV2();

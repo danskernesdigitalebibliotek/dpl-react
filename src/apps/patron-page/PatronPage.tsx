@@ -17,6 +17,7 @@ import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
+import { isAnonymous } from "../../core/utils/helpers/user";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -24,7 +25,9 @@ const PatronPage: FC = () => {
   const { mutate } = useUpdateV5();
   const { pauseReservation } = getModalIds();
 
-  const { data: patronData } = useGetPatronInformationByPatronIdV2();
+  const { data: patronData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
 
   const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);
