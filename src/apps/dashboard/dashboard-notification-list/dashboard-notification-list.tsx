@@ -108,7 +108,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         {fbsData && !physicalLoansCount && (
           <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
-        {fbsData && physicalLoansCount && (
+        {fbsData && !!physicalLoansCount && (
           <>
             {physicalLoansOverdue && physicalLoansOverdue && (
               <DashboardNotification
@@ -162,7 +162,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           !reservationsStillInQueueFor && (
             <div className="dpl-list-empty">{t("noReservationsText")}</div>
           )}
-        {patronReservations && reservationsReadyForPickup && (
+        {!!reservationsReadyForPickup && (
           <DashboardNotification
             notificationNumber={reservationsReadyForPickup}
             notificationText={t("reservationsReadyText")}
@@ -172,7 +172,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationClickEventParam="ready-to-loan-modal"
           />
         )}
-        {patronReservations && reservationsStillInQueueFor && (
+        {!!reservationsStillInQueueFor && (
           <DashboardNotification
             notificationNumber={reservationsStillInQueueFor}
             notificationText={t("reservationsStillInQueueForText")}
