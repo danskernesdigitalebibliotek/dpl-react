@@ -44,10 +44,10 @@ describe("Instant Loan", () => {
       fixtureFilePath: "material/instant-loan/fbi-api.json"
     });
 
+    cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?&id=apps-material--instant-loan&viewMode=story&type=bog"
     ).scrollTo("bottom");
-    cy.createFakeAuthenticatedSession();
     cy.getBySel("material-description").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")

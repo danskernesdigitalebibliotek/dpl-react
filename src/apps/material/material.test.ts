@@ -145,8 +145,8 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.createFakeAuthenticatedSession();
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
     cy.getBySel("material-description").scrollIntoView();
 
@@ -176,10 +176,10 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+    cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
     ).scrollTo("bottom");
-    cy.createFakeAuthenticatedSession();
 
     cy.getBySel("material-description").scrollIntoView();
 
