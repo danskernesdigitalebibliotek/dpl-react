@@ -4,7 +4,7 @@ import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import clsx from "clsx";
 import FocusTrap from "focus-trap-react";
 import { closeModal, openModal } from "../modal.slice";
-import { userIsAnonymous } from "./helpers/user";
+import { isAnonymous } from "./helpers/user";
 import {
   currentLocationWithParametersUrl,
   redirectToLoginAndBack
@@ -147,7 +147,7 @@ export const useModalButtonHandler = () => {
     }: GuardedOpenModalProps) => {
       // Redirect anonymous users to the login platform, including a return link
       // to this page with an open modal.
-      if (userIsAnonymous()) {
+      if (isAnonymous()) {
         const returnUrl = currentLocationWithParametersUrl({
           modal: modalId
         });

@@ -11,6 +11,12 @@ describe("Patron page", () => {
       url: "**/external/agencyid/patrons/patronid/v5"
     }).as("PUT-patron");
 
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
+
     cy.intercept("GET", "**/v1/library/profile", {
       id: 816,
       name: "Aarhus Bibliotek",
@@ -127,7 +133,7 @@ describe("Patron page", () => {
     // ID 36 2.c. basic information
     // ID 36 2.c.i. Name
     cy.get(".dpl-patron-page .dpl-patron-info")
-      .find(".dpl-patron-info__label")
+      .find("h4.dpl-patron-info__label")
       .eq(0)
       .should("have.text", "Name");
     cy.get(".dpl-patron-page .dpl-patron-info")
@@ -136,7 +142,7 @@ describe("Patron page", () => {
       .should("have.text", "Testkort ITK CMS Merkur");
     // ID 36 2.c.ii. Address
     cy.get(".dpl-patron-page .dpl-patron-info")
-      .find(".dpl-patron-info__label")
+      .find("h4.dpl-patron-info__label")
       .eq(1)
       .should("have.text", "Address");
     cy.get(".dpl-patron-page .dpl-patron-info")

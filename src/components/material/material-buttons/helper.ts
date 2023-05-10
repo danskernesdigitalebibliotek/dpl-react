@@ -47,10 +47,6 @@ export const isArticle = (manifestations: Manifestation[]) => {
   );
 };
 
-export const areAnyReservable = (availability: AvailabilityV3[]) => {
-  return availability.some((item) => item.reservable);
-};
-
 export const areAnyAvailable = (availability: AvailabilityV3[]) => {
   return availability.some((item) => item.available);
 };

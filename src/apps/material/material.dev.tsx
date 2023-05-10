@@ -38,6 +38,11 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
+    blacklistedInstantLoanBranchesConfig: {
+      name: "Blacklisted Instant Loan branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
     branchesConfig: {
       name: "Branches",
       defaultValue:
@@ -97,6 +102,11 @@ export default {
     numberDescriptionText: {
       name: "Number",
       defaultValue: "Nr.",
+      control: { type: "text" }
+    },
+    subjectNumberText: {
+      name: "Subject number (Emnetal)",
+      defaultValue: "Emnetal",
       control: { type: "text" }
     },
     inSeriesText: {
@@ -411,6 +421,11 @@ export default {
       defaultValue: "Close reservation modal",
       control: { type: "text" }
     },
+    findOnShelfTableDescriptionText: {
+      name: "Find on shelf table description",
+      defaultValue: "Find @work on shelf in the @branch branch",
+      control: { type: "text" }
+    },
     findOnShelfModalListMaterialText: {
       name: "Material",
       defaultValue: "Material",
@@ -514,6 +529,11 @@ export default {
         "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
+    modalReservationFormPickupLabelText: {
+      name: "Modal reservation form pickup branch input label",
+      defaultValue: "Change pickup location for your reservation.",
+      control: { type: "text" }
+    },
     chooseOneText: {
       name: "Choose one text",
       defaultValue: "Choose one",
@@ -528,6 +548,12 @@ export default {
       name: "Modal reservation form no interest after header description",
       defaultValue:
         "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterLabelText: {
+      name: "Modal reservation form no interest after input label",
+      defaultValue:
+        "Change the amount of time after which you're no longer interested in this material.",
       control: { type: "text" }
     },
     infomediaModalScreenReaderModalDescriptionText: {
@@ -576,35 +602,49 @@ export default {
       defaultValue: "Ordering digital copy",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessTitleText: {
-      name: "Order digital copy success title text",
-      defaultValue: "Digital copy ordered",
+    orderDigitalCopyFeedbackTitleText: {
+      name: "Order digital copy feedback title",
+      defaultValue: "Digital copy receipt",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessDescriptionText: {
+    orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: {
+      name: "Order digital copy agency not subscribed",
+      defaultValue:
+        "The agency is not subscribed to the service. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorInvalidPickupBranchText: {
+      name: "Order digital copy invalid pickup branch",
+      defaultValue:
+        "The pickup branch is not valid. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorMissingClientConfigurationText: {
+      name: "Order digital copy missing client configuration",
+      defaultValue:
+        "The client configuration is missing. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorPidNotReservableText: {
+      name: "Order digital copy pid not reservable",
+      defaultValue:
+        "The material is not reservable. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorUnauthenticatedUserText: {
+      name: "Order digital copy unauthenticated user",
+      defaultValue:
+        "You are not logged in. You can order the digital copy by contacting the agency.",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackOkText: {
       name: "Order digital copy success description text",
       defaultValue:
         "The digital copy has been ordered. You will receive an email when the digital copy is ready.",
       control: { type: "text" }
     },
-    orderDigitalCopySuccessButtonText: {
+    orderDigitalCopyFeedbackButtonText: {
       name: "Order digital copy success button text",
-      defaultValue: "Close",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorTitleText: {
-      name: "Order digital copy error title text",
-      defaultValue: "Error ordering digital copy",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorDescriptionText: {
-      name: "Order digital copy error description text",
-      defaultValue:
-        "An error occurred while ordering the digital copy. Please try again later.",
-      control: { type: "text" }
-    },
-    orderDigitalCopyErrorButtonText: {
-      name: "Order digital copy error button text",
       defaultValue: "Close",
       control: { type: "text" }
     },
@@ -665,6 +705,107 @@ export default {
       name: "Expand more text",
       defaultValue: "Expand more",
       control: { type: "text" }
+    },
+    changeInterestPeriodText: {
+      name: "Change interest period text",
+      defaultValue: "Change interest period",
+      control: { type: "text" }
+    },
+    changePickupLocationText: {
+      name: "Change pickup location text",
+      defaultValue: "Change pickup location",
+      control: { type: "text" }
+    },
+    changeSmsNumberText: {
+      name: "Change sms number text",
+      defaultValue: "Change sms number",
+      control: { type: "text" }
+    },
+    changeEmailText: {
+      name: "Change email text",
+      defaultValue: "Change email",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionInterestPeriodText: {
+      name: "Screen reader modal description for interest period",
+      defaultValue: "Change interest period modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelInterestPeriodText: {
+      name: "Close modal aria-label interest period ",
+      defaultValue: "Close interest period modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionPickupText: {
+      name: "Screen reader modal description for pickup",
+      defaultValue: "Change pickup location modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelPickupText: {
+      name: "Close modal aria-label pickup",
+      defaultValue: "Close pickup location modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionSmsText: {
+      name: "Screen reader modal description for sms",
+      defaultValue: "Change mobile number modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelSmsText: {
+      name: "Close modal aria-label sms",
+      defaultValue: "Close change mobile number modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionEmailText: {
+      name: "Screen reader modal description for email",
+      defaultValue: "Change email modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelEmailText: {
+      name: "Close modal aria-label email",
+      defaultValue: "Close change email modal",
+      control: { type: "text" }
+    },
+    instantLoanTitleText: {
+      name: "Instant loan title",
+      control: { type: "text" },
+      defaultValue: "Hent bogen nu"
+    },
+    instantLoanSubTitleText: {
+      name: "Instant loan subtitle",
+      control: { type: "text" },
+      defaultValue: "Spring køen over og hent bogen nu på"
+    },
+    instantLoanUnderlineDescriptionText: {
+      name: "Instant loan underline description",
+      control: { type: "text" },
+      defaultValue: "Bogen er tilgængelig på disse biblioteker nær dig"
+    },
+    instantLoanConfig: {
+      name: "Instant loan config",
+      control: { type: "text" },
+      defaultValue:
+        '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
+    },
+    interestPeriodOneMonthConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -706,7 +847,23 @@ EBogPrinsenHarry.args = {
   wid: "work-of:870970-basis:54129807"
 };
 
+// Blue titles have don't have a reservation quota.
+export const EBogBlaTitle = Template.bind({});
+EBogBlaTitle.args = {
+  wid: "work-of:870970-basis:52880831"
+};
+
 export const LangePeter = Template.bind({});
 LangePeter.args = {
   wid: "work-of:870970-basis:01196669"
+};
+
+export const InstantLoan = Template.bind({});
+InstantLoan.args = {
+  wid: "work-of:870970-basis:134015012"
+};
+
+export const Dinosaurierfedern = Template.bind({});
+Dinosaurierfedern.args = {
+  wid: "work-of:870970-basis:44805421"
 };

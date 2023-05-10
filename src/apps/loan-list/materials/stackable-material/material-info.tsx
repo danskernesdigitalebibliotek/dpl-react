@@ -47,16 +47,27 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           >
             {title}
           </button>
-          <p className="text-small-caption color-secondary-gray">
+          <p
+            data-cy="reservation-about-author"
+            className="text-small-caption color-secondary-gray"
+          >
             <AuthorYear author={authors || ""} year={year || ""} />
           </p>
           {periodical && (
-            <p className="text-small-caption color-secondary-gray">
+            <p
+              data-cy="reservation-about-periodical"
+              className="text-small-caption color-secondary-gray"
+            >
               {periodical}
             </p>
           )}
           {series && (
-            <p className="text-small-caption color-secondary-gray">{series}</p>
+            <p
+              data-cy="reservation-about-series"
+              className="text-small-caption color-secondary-gray"
+            >
+              {series}
+            </p>
           )}
         </div>
         <div>{children}</div>

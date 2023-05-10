@@ -2,12 +2,14 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../core/storybook/blockedArgs";
 
 export default {
   title: "Apps / Patron page",
   component: PatronPage,
   argTypes: {
     ...serviceUrlArgs,
+    ...blockedArgs,
     // Config
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",
@@ -88,10 +90,6 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    patronPageTextFeeText: {
-      defaultValue: "This might cost you money",
-      control: { type: "text" }
-    },
     patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }
@@ -118,7 +116,7 @@ export default {
     },
     patronPageContactPhoneCheckboxText: {
       defaultValue:
-        "Receive text messages about your loans, reservations, and so forth",
+        "Receive text messages about your loans, reservations, and so forth. This may cost money.",
       control: { type: "text" }
     },
     patronPageContactEmailLabelText: {

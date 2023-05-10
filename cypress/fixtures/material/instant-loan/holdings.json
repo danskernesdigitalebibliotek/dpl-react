@@ -1,0 +1,174 @@
+[
+    {
+      "recordId": "134015012",
+      "reservable": true,
+      "reservations": 58,
+      "holdings": [
+        {
+          "branch": {
+            "branchId": "DK-775146",
+            "title": "Harlev"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": null,
+          "materials": [
+            {
+              "itemNumber": "5387025687",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "standard",
+                "description": "31 dages lånetid til alm lånere"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775170",
+            "title": "Trige"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "krimi",
+            "title": "Krimi"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385202980",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385202867",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        },
+        {
+          "branch": {
+            "branchId": "DK-775100",
+            "title": "Hovedbiblioteket"
+          },
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "location": {
+            "locationId": "bestsell",
+            "title": "Bestsellers"
+          },
+          "sublocation": {
+            "sublocationId": "14 dage",
+            "title": "14 dags lån"
+          },
+          "materials": [
+            {
+              "itemNumber": "5385203057",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203065",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203073",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203081",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203103",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203111",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203138",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203146",
+              "available": true,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            },
+            {
+              "itemNumber": "5385203162",
+              "available": false,
+              "periodical": null,
+              "materialGroup": {
+                "name": "14dag-",
+                "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]

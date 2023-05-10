@@ -38,7 +38,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   if (isLoading && !textData) {
     return (
       <ul className="autosuggest pb-16" data-cy={dataCy}>
-        <li className="ml-24">{t("LoadingText")}</li>
+        <li className="ml-24">{t("loadingText")}</li>
       </ul>
     );
   }
@@ -60,9 +60,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
         />
-        {textData.length > 0 && materialData.length > 0 && (
-          <li className="autosuggest__divider" />
-        )}
         {materialData.length > 0 && (
           <AutosuggestMaterial
             materialData={materialData}
@@ -72,16 +69,13 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
           />
         )}
         {categoryData && categoryData.length > 0 && (
-          <>
-            <li className="autosuggest__divider" />
-            <AutosuggestCategory
-              categoryData={categoryData}
-              getItemProps={getItemProps}
-              highlightedIndex={highlightedIndex}
-              textAndMaterialDataLength={textData.length + materialData.length}
-              autosuggestCategoryList={autosuggestCategoryList}
-            />
-          </>
+          <AutosuggestCategory
+            categoryData={categoryData}
+            getItemProps={getItemProps}
+            highlightedIndex={highlightedIndex}
+            textAndMaterialDataLength={textData.length + materialData.length}
+            autosuggestCategoryList={autosuggestCategoryList}
+          />
         )}
       </ul>
     </>

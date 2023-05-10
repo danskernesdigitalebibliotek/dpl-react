@@ -15,13 +15,15 @@ export interface MaterialButtonsProps {
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
+  materialTitleId: string;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
   manifestations,
   size,
   workId,
-  dataCy = "material-buttons"
+  dataCy = "material-buttons",
+  materialTitleId
 }) => {
   const faustIds = getAllFaustIds(manifestations);
   // We don't want to show physical buttons/find on shelf for articles because
@@ -51,6 +53,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           size={size}
           workId={workId}
           dataCy={`${dataCy}-online`}
+          ariaLabelledBy={materialTitleId}
         />
       )}
     </>

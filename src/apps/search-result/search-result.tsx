@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
+import { isEmpty } from "lodash";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
-import SearchResultList from "../../components/search-result-list/SearchResultList";
+import SearchResultList from "../../components/card-item-list/SearchResultList";
 import {
   FacetField,
   SearchWithPaginationQuery,
@@ -25,8 +26,9 @@ import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
-import { dataIsNotEmpty } from "../../core/utils/helpers/general";
 import useFilterHandler from "./useFilterHandler";
+import SearchResultSkeleton from "./search-result-skeleton";
+import SearchResultZeroHits from "./search-result-zero-hits";
 
 interface SearchResultProps {
   q: string;
@@ -39,12 +41,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
-  const { PagerComponent, page } = usePager(hitcount, pageSize);
+  const { PagerComponent, page } = usePager({
+    hitcount,
+    pageSize
+  });
   const { mutate } = useCampaignMatchPOST();
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-
   const { facets: campaignFacets } = useGetFacets(q, filters);
 
   // If q changes (eg. in Storybook context)
@@ -73,9 +77,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         {
           onSuccess: (campaign) => {
             setCampaignData(campaign);
-          },
-          onError: () => {
-            // TODO: when we handle errors - handle this error
           }
         }
       );
@@ -97,7 +98,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { data } = useSearchWithPaginationQuery({
+  const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
     offset: page * pageSize,
     limit: pageSize,
@@ -165,16 +166,28 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
+  if (isLoading) {
+    return <SearchResultSkeleton q={q} />;
+  }
+
+  if (hitcount === 0) {
+    return <SearchResultZeroHits />;
+  }
+
   return (
-    <div className="search-result-page">
+    <div className="card-list-page">
       <SearchResultHeader hitcount={hitcount} q={q} />
       <FacetLine q={q} />
       {campaignData && campaignData.data && (
         <Campaign campaignData={campaignData.data} />
       )}
-      <SearchResultList resultItems={resultItems} />
-      {PagerComponent}
-      {dataIsNotEmpty(resultItems) && <FacetBrowserModal q={q} />}
+      <SearchResultList
+        resultItems={resultItems}
+        page={page}
+        pageSize={pageSize}
+      />
+      <PagerComponent isLoading={isLoading} />
+      {!isEmpty(resultItems) && <FacetBrowserModal q={q} />}
     </div>
   );
 };

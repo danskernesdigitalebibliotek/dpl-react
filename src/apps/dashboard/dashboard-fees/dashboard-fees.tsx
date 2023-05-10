@@ -3,7 +3,7 @@ import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import { useDeepCompareEffect } from "react-use";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
 import { Button } from "../../../components/Buttons/Button";

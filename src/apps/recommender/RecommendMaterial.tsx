@@ -13,15 +13,17 @@ import {
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
-import { Link } from "../../components/atoms/link";
+import Link from "../../components/atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
 
 export interface RecommendMaterialProps {
   work: Work;
+  bright?: boolean;
 }
 
 const RecommendMaterial: FC<RecommendMaterialProps> = ({
+  bright,
   work: {
     titles: { full: title },
     creators,
@@ -49,36 +51,37 @@ const RecommendMaterial: FC<RecommendMaterialProps> = ({
   // For retrieving cover
   const manifestationPid = getManifestationPid(manifestations);
 
-  const addToListRequest = (materialId: ButtonFavouriteId) => {
+  const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { materialId },
+        args: { id },
         app: "recommender"
       })
     );
   };
 
   return (
-    <li className="recommender-material">
+    <li
+      className={`recommender-material ${
+        bright ? " recommender-material--bright" : ""
+      }`}
+    >
       <div className="recommender-material__cover-container">
         <Cover animate size="medium" id={manifestationPid} />
       </div>
       <div className="recommender-material__favourite">
         <ButtonFavourite
-          bright
+          darkBackground={!bright}
           id={workId}
           addToListRequest={addToListRequest}
         />
       </div>
       <div className="recommender-material__meta">
-        <Link
-          href={materialFullUrl}
-          className="recommender-material__meta__title"
-        >
+        <Link href={materialFullUrl} className="recommender-material__title">
           {String(title)}
         </Link>
-        <div className="recommender-material__meta__author">{authors}</div>
+        <div className="recommender-material__author">{authors}</div>
       </div>
     </li>
   );

@@ -2,7 +2,7 @@ import * as React from "react";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import { FC, useEffect, useState } from "react";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import MenuNavigationList from "../menu-navigation-list/menu-navigation-list";
 import MenuNotification from "../menu-notification/menu-notification";
 import ArrowIcon from "../../../components/atoms/icons/arrow/arrow-white";

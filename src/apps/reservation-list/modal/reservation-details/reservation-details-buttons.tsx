@@ -1,24 +1,25 @@
 import React, { FC } from "react";
 import { Button } from "../../../../components/Buttons/Button";
 import { useText } from "../../../../core/utils/text";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 
 export interface ReservationDetailsButtonProps {
-  reservationId: number;
+  reservation: ReservationType;
   numberInQueue?: number | null;
   classNames?: string;
   buttonClassNames?: string;
-  openReservationDeleteModal: (deleteId: string) => void;
+  openReservationDeleteModal: (deleteReservation: ReservationType) => void;
 }
 
 const ReservationDetailsButton: FC<
   ReservationDetailsButtonProps & MaterialProps
 > = ({
-  reservationId,
   numberInQueue,
   openReservationDeleteModal,
   classNames,
-  buttonClassNames
+  buttonClassNames,
+  reservation
 }) => {
   const t = useText();
 
@@ -31,7 +32,7 @@ const ReservationDetailsButton: FC<
       )}
       <Button
         label={t("reservationDetailsButtonRemoveText")}
-        onClick={() => openReservationDeleteModal(reservationId.toString())}
+        onClick={() => openReservationDeleteModal(reservation)}
         classNames={buttonClassNames}
         buttonType="none"
         disabled={false}

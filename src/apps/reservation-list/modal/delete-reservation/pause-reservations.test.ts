@@ -11,6 +11,12 @@ describe("Pause reservation modal test", () => {
 
     // Sets time to a specific date
     cy.clock(clockDate);
+
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+      patron: {
+        blockStatus: null
+      }
+    });
   });
 
   it("It shows pause modal", () => {

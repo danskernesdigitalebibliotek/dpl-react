@@ -8,50 +8,51 @@ describe("Search Result", () => {
   });
 
   it("Renders search title", () => {
-    cy.getBySel("search-result-title")
+    cy.getBySel("search-result-header")
       .should("be.visible")
       .and("contain", "Showing results for “harry” (722)");
   });
 
   it("Renders all the search results", () => {
-    cy.get(".search-result-page__list").find("li").should("have.length", 2);
+    cy.get(".card-list-page__list").find("li").should("have.length", 2);
   });
 
   it("Renders the images", () => {
-    cy.get(".search-result-page__list .search-result-item img")
+    cy.get(".card-list-page__list .card-list-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
-    cy.get(
-      ".search-result-page__list .search-result-item .button-favourite"
-    ).should("have.attr", "aria-label", "Add element to favorites list");
+    cy.get(".card-list-page__list .card-list-item .button-favourite").should(
+      "have.attr",
+      "aria-label",
+      "Add element to favorites list"
+    );
   });
 
   it("Renders the titles", () => {
-    cy.getBySel("search-result-item-title")
+    cy.getBySel("card-list-item-title")
       .first()
       .should("be.visible")
       .and("contain", "Harry : samtaler med prinsen");
   });
 
   it("Renders the authors", () => {
-    cy.getBySel("search-result-item-author")
+    cy.getBySel("card-list-item-author")
       .first()
       .should("be.visible")
       .and("contain.text", "By Angela Levin");
   });
 
   it("Renders one availability labels per material type", () => {
-    cy.getBySel("search-result-item-availability")
+    cy.getBySel("card-list-item-availability")
       .eq(1)
       .find("a")
       .should("be.visible")
       .and("have.length", 6);
   });
 
-  // TODO: When the pager bug has been solved, this test can be re-enabled.
   it("Renders the pager", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
@@ -60,12 +61,12 @@ describe("Search Result", () => {
   });
 
   it("Renders show more button", () => {
-    cy.get(".result-pager button").should("contain.text", "SHOW MORE");
+    cy.get(".result-pager button").should("contain.text", "show more");
   });
 
   it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-    cy.get(".search-result-page__list").find("li").should("have.length", 4);
+    cy.getBySel("search-result-list").find("li").should("have.length", 4);
   });
 
   it("Updates the pager info after clicking show more results", () => {
@@ -73,6 +74,26 @@ describe("Search Result", () => {
       "contain.text",
       "Showing 4 out of 722 results"
     );
+  });
+
+  it("Renders the correct release year for fictional works", () => {
+    cy.getBySel("card-list-item").eq(1).should("contain", "1997");
+  });
+
+  it("Renders the correct release year for non-fictional works", () => {
+    cy.getBySel("card-list-item").first().should("contain", "2018");
+  });
+
+  it("Renders the 0-result page correctly", () => {
+    // Overwrite graphql search query fixture.
+    cy.interceptGraphql({
+      operationName: "searchWithPagination",
+      fixtureFilePath: "search-result/fbi-api-no-results.json"
+    });
+    cy.visit(
+      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
+    );
+    cy.getBySel("search-result-zero-hits").should("be.visible");
   });
 
   beforeEach(() => {

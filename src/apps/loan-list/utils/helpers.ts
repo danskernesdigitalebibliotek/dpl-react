@@ -21,20 +21,22 @@ export const loansAreEmpty = (list: LoanType[] | null) =>
 export const getRenewedIds = (list: RenewedLoanV2[]) => {
   return list.map(({ loanDetails }) => loanDetails.recordId);
 };
-
+export const materialsAreStacked = (materialsInStack: number) => {
+  return materialsInStack > 0;
+};
 export const getFromListByKey = (
   list: ListType[],
-  key: "faust" | "identifier",
+  key: "identifier" | "reservationId" | "faust",
   value: string
 ) => {
-  return list.filter((loan) => loan[key] === value);
+  return list.filter((loan) => String(loan[key]) === value);
 };
 
 export const getStatusText = (status: string, t: UseTextFunction) => {
   switch (status) {
     case "deniedMaxRenewalsReached":
       return t("groupModalRenewLoanDeniedMaxRenewalsReachedText");
-    case "deniedOtherReason":
+    case "deniedReserved":
       return t("groupModalRenewLoanDeniedReservedText");
     default:
       return "";

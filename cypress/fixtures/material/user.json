@@ -10,7 +10,7 @@
     },
     "allowBookings": false,
     "birthday": "1991-02-23",
-    "blockStatus": null,
+    "blockStatus": [],
     "defaultInterestPeriod": 180,
     "emailAddress": "test@test.com",
     "name": "test user name",

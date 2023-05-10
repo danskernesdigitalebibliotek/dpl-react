@@ -6,13 +6,15 @@ interface ReservationFormListItemProps {
   title: string;
   text: string;
   changeHandler?: () => void;
+  buttonAriaLabel?: string;
 }
 
 const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
   icon,
   title,
   text,
-  changeHandler
+  changeHandler,
+  buttonAriaLabel
 }) => {
   const t = useText();
   return (
@@ -32,6 +34,7 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
           onClick={changeHandler}
           type="button"
           className="link-tag text-small-caption cursor-pointer"
+          aria-label={buttonAriaLabel}
         >
           {t("shiftText")}
         </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useDeepCompareEffect } from "react-use";
 import { guardedRequest } from "../../core/guardedRequests.slice";
@@ -6,7 +6,6 @@ import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getMaterialTypes,
   getManifestationPid
@@ -29,6 +28,7 @@ import { statistics } from "../../core/statistics/statistics";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import MaterialType from "../../core/utils/types/material-type";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
+import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -54,6 +54,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectPeriodicalHandler,
   children
 }) => {
+  const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -66,10 +67,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const isPeriodical = hasCorrectMaterialType(
     MaterialType.magazine,
     selectedManifestations
@@ -85,6 +83,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const { track } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
+
+  const languageIsoCode = getManifestationLanguageIsoCode(
+    selectedManifestations
+  );
 
   useDeepCompareEffect(() => {
     track("click", {
@@ -114,7 +116,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         className="material-header__content"
       >
         <ButtonFavourite id={wid} addToListRequest={addToListRequest} />
-        <MaterialHeaderText title={String(title)} author={author} />
+        <MaterialHeaderText
+          title={String(title)}
+          author={author}
+          languageIsoCode={languageIsoCode}
+          materialTitleId={materialTitleId}
+        />
         <div ref={itemRef} className="material-header__availability-label">
           {showItem && (
             <AvailabilityLabels
@@ -143,6 +150,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     manifestations={selectedManifestations}
                     workId={wid}
                     dataCy="material-header-buttons"
+                    materialTitleId={materialTitleId}
                   />
                 </div>
                 <MaterialAvailabilityText

@@ -1,4 +1,3 @@
-
 query suggestionsFromQueryString($q: String!) {
   suggest(q: $q) {
     result {
@@ -15,6 +14,7 @@ query suggestionsFromQueryString($q: String!) {
         manifestations {
           bestRepresentation {
             pid
+            ...WithLanguages
           }
         }
       }

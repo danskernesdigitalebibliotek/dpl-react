@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ResultPager from "./result-pager";
 
-const usePager = (
-  hitcount: number,
-  pageSize: number,
-  overrideItemsShown?: () => number
-) => {
+type PagerProps = {
+  hitcount: number;
+  pageSize: number;
+  overrideItemsShown?: () => number;
+};
+
+type PagerComponentProps = {
+  isLoading?: boolean;
+};
+
+const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
   const [itemsShown, setItemsShown] = useState(
     pageSize >= hitcount ? hitcount : pageSize
   );
@@ -26,13 +32,15 @@ const usePager = (
     setPage(currentPage);
   };
 
-  const PagerComponent = hitcount ? (
-    <ResultPager
-      itemsShown={overrideItemsShown ? overrideItemsShown() : itemsShown}
-      hitcount={hitcount}
-      setPageHandler={pagehandler}
-    />
-  ) : null;
+  const PagerComponent: React.FC<PagerComponentProps> = ({ isLoading }) =>
+    hitcount ? (
+      <ResultPager
+        itemsShown={overrideItemsShown ? overrideItemsShown() : itemsShown}
+        hitcount={hitcount}
+        setPageHandler={pagehandler}
+        isLoading={isLoading}
+      />
+    ) : null;
 
   return { itemsShown, PagerComponent, page };
 };

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { CampaignMatchPOST200Data } from "../../core/dpl-cms/model";
 import { statistics } from "../../core/statistics/statistics";
 import { useStatistics } from "../../core/statistics/useStatistics";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CampaignBody from "./CampaignBody";
 
 export interface CampaignProps {

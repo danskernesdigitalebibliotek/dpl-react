@@ -72,7 +72,12 @@ export default {
     },
     showingResultsForText: {
       name: "Showing results for",
-      defaultValue: "Showing results for",
+      defaultValue: "Showing results for “@query”",
+      control: { type: "text" }
+    },
+    noSearchResultText: {
+      name: "0-hit search result",
+      defaultValue: "Your search has 0 results",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
@@ -151,6 +156,26 @@ export default {
       defaultValue: "Work types",
       control: { type: "text" }
     },
+    facetCanAlwaysBeLoanedText: {
+      name: "Can always be loaned text",
+      defaultValue: "Can always be loaned",
+      control: { type: "text" }
+    },
+    facetFictionalCharactersText: {
+      name: "Fictional characters text",
+      defaultValue: "Fictional characters",
+      control: { type: "text" }
+    },
+    facetMaterialTypesGeneralText: {
+      name: "Material types general text",
+      defaultValue: "Material types general",
+      control: { type: "text" }
+    },
+    facetMaterialTypesSpecificText: {
+      name: "Material types specific text",
+      defaultValue: "Material types specific",
+      control: { type: "text" }
+    },
     showResultsText: {
       name: "Show results text",
       defaultValue: "Show results",
@@ -159,11 +184,6 @@ export default {
     filterListText: {
       name: "Filter list text",
       defaultValue: "Filter list",
-      control: { type: "text" }
-    },
-    clearAllText: {
-      name: "Clear all text",
-      defaultValue: "Clear all",
       control: { type: "text" }
     },
     addMoreFiltersText: {
@@ -191,6 +211,11 @@ export default {
     alertErrorMessageText: {
       name: "Alert error message text",
       defaultValue: "An error occurred",
+      control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading",
       control: { type: "text" }
     }
   }

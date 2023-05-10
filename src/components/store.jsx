@@ -7,13 +7,15 @@ import { store, persistor } from "../core/store";
 import FetcherHttpError from "../core/fetchers/FetcherHttpError";
 import FetcherError from "../core/fetchers/FetcherError";
 import FetcherCriticalHttpError from "../core/fetchers/FetcherCriticalHttpError";
+import InvalidUrlError from "../core/errors/InvalidUrlError";
 
 const queryErrorHandler = (error) => {
   // If we get an error that controls the error boundary make sure it does just that.
   if (
     error instanceof FetcherHttpError ||
     error instanceof FetcherCriticalHttpError ||
-    error instanceof FetcherError
+    error instanceof FetcherError ||
+    error instanceof InvalidUrlError
   ) {
     return error.useErrorBoundary;
   }

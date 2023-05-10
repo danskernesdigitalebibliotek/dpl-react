@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import * as React from "react";
 import { FC, useState } from "react";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";

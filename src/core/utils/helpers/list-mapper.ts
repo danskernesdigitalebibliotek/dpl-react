@@ -148,9 +148,10 @@ export const mapManifestationToBasicDetailsType = (
       texts.materialAndAuthorText
     );
   }
-
+  const firstAuthor = creators && creators.length ? creators[0].display : "";
   return {
     authors: contributors || "",
+    firstAuthor,
     pid,
     title: mainText,
     year,

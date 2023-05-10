@@ -42,14 +42,6 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const filterCreators = (
-  creators: Work["creators"],
-  filterBy: ["Person" | "Corporation"]
-) =>
-  creators.filter((creator: Work["creators"][0]) => {
-    return creator.__typename && filterBy.includes(creator.__typename);
-  });
-
 export const flattenCreators = (creators: Work["creators"]) =>
   creators.map((creator: Work["creators"][0]) => {
     return creator.display;
@@ -121,6 +113,10 @@ export const getCoverTint = (index: number) => {
 
 export const getColors = () => {
   return getConf("colors", configuration);
+};
+
+export const getRecommenderMaterialLimits = () => {
+  return getConf("recommenderMaterialLimits", configuration);
 };
 
 export const getModalIds = () => {
@@ -391,7 +387,6 @@ export const getAllFaustIds = (manifestations: Manifestation[]) => {
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
-export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 // Loans with more than warning-threshold days until due
 export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
@@ -414,6 +409,9 @@ export const getAuthorNames = (
 ) => {
   const names = creators.map(({ display }) => display);
   let returnContentString = "";
+  if (names.length === 0) {
+    return returnContentString;
+  }
   if (names.length === 1) {
     returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
   } else {
@@ -422,6 +420,14 @@ export const getAuthorNames = (
       .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
   }
   return returnContentString;
+};
+export const getPublicationName = (
+  hostPublication: { title: string } | null | undefined
+) => {
+  if (!hostPublication) {
+    return "";
+  }
+  return hostPublication.title;
 };
 
 export const getReviewRelease = (
@@ -438,23 +444,24 @@ export const getReviewRelease = (
 };
 
 // The rendered release year for search results is picked based on
-// whether the work is fiction or not.
+// whether the work is fiction or not. Non-fictional works contain
+// factual information that can be updated between editions - thus it
+// is important to show the latest edition the library has.
 export const getReleaseYearSearchResult = (work: Work) => {
   const { latest, bestRepresentation } = work.manifestations;
   const manifestation = bestRepresentation || latest;
-  // If the work tells us that it is fiction.
   if (materialIsFiction(work)) {
     return work.workYear?.year;
   }
-  // If the manifestation tells us that it is fiction.
   if (materialIsFiction(manifestation)) {
     return (
+      work.workYear?.year ||
+      manifestation.workYear?.year ||
       manifestation.dateFirstEdition?.year ||
       manifestation.edition?.publicationYear?.display
     );
   }
-  // If it isn't fiction we get release year from latest manifestation.
-  return getManifestationPublicationYear(latest) || latest.workYear?.year;
+  return getManifestationPublicationYear(latest) || "";
 };
 
 // Creates a "by author, author and author"-string

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "../../../components/atoms/link";
+import Link from "../../../components/atoms/links/Link";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
 
 interface MenuNotificationProps {
