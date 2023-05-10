@@ -22,10 +22,8 @@ import {
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
-import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { getManifestationPid } from "../../core/utils/helpers/general";
-import ReservationModal from "../../components/reservation/ReservationModal";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
@@ -38,7 +36,8 @@ import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
 import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
-import { canReserve, isAnonymous } from "../../core/utils/helpers/user";
+import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
+import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -57,8 +56,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data: userData } = useGetPatronInformationByPatronIdV2({
     enabled: !isAnonymous()
   });
-  const patron = userData?.patron;
-  const canUserReserve = patron && canReserve(patron);
+  const isUserBlocked = !!(userData?.patron && isBlocked(userData.patron));
   const { track } = useStatistics();
 
   useDeepCompareEffect(() => {
@@ -161,55 +159,52 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         selectPeriodicalHandler={setSelectedPeriodical}
       >
         {manifestations.map((manifestation) => (
-          <>
-            {canUserReserve && (
-              <ReservationModal
-                key={`reservation-modal-${manifestation.pid}`}
-                selectedManifestations={[manifestation]}
-                selectedPeriodical={selectedPeriodical}
-                work={work}
-              />
-            )}
-            <FindOnShelfModal
-              key={`find-on-shelf-modal-${manifestation.pid}`}
-              manifestations={[manifestation]}
-              workTitles={manifestation.titles.main}
-              authors={manifestation.creators}
-              selectedPeriodical={selectedPeriodical}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
-          </>
+          <ReservationFindOnShelfModals
+            isUserBlocked
+            reservationModalProps={{
+              selectedManifestations: [manifestation],
+              selectedPeriodical,
+              work
+            }}
+            findOnShelfModalProps={{
+              manifestations: [manifestation],
+              workTitles: manifestation.titles.main,
+              authors: manifestation.creators,
+              selectedPeriodical,
+              setSelectedPeriodical
+            }}
+          />
         ))}
 
-        {infomediaIds.length > 0 && !isAnonymous() && (
+        {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
             infoMediaId={infomediaIds[0]}
           />
         )}
-        {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
-          <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
-        )}
+        {hasCorrectAccess("DigitalArticleService", selectedManifestations) &&
+          !isAnonymous() &&
+          !isUserBlocked && (
+            <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+          )}
         {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {canUserReserve && isParallelReservation(selectedManifestations) && (
-          <>
-            {!isAnonymous() && (
-              <ReservationModal
-                selectedManifestations={selectedManifestations}
-                selectedPeriodical={selectedPeriodical}
-                work={work}
-                dataCy="reservation-modal-parallel"
-              />
-            )}
-            <FindOnShelfModal
-              manifestations={selectedManifestations}
-              authors={work.creators}
-              workTitles={work.titles.full}
-              selectedPeriodical={selectedPeriodical}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
-          </>
+        {isParallelReservation(selectedManifestations) && (
+          <ReservationFindOnShelfModals
+            isUserBlocked
+            reservationModalProps={{
+              selectedManifestations,
+              selectedPeriodical,
+              work
+            }}
+            findOnShelfModalProps={{
+              manifestations: selectedManifestations,
+              workTitles: work.titles.full,
+              authors: work.creators,
+              selectedPeriodical,
+              setSelectedPeriodical
+            }}
+          />
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />

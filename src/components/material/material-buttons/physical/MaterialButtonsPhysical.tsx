@@ -4,11 +4,7 @@ import {
   getManifestationType
 } from "../../../../core/utils/helpers/general";
 import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
-import {
-  canReserve,
-  isAnonymous,
-  isBlocked
-} from "../../../../core/utils/helpers/user";
+import { isAnonymous, isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
@@ -37,9 +33,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
     enabled: !isAnonymous()
   });
-  const patron = userData?.patron;
-  const userCanReserve = patron && canReserve(patron);
-  const userIsBlocked = patron && isBlocked(patron);
+  const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
   if (isLoading) {
     return <MaterialButtonLoading />;
@@ -49,7 +43,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonDisabled size={size} label={t("cantReserveText")} />;
   }
 
-  if (userIsBlocked) {
+  if (isUserBlocked) {
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
@@ -57,7 +51,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   // In the former case there there's no way to see if they're blocked, so we
   // redirect anonymous user to the login page.
 
-  if (!userData || userCanReserve) {
+  if (!userData || !isUserBlocked) {
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
