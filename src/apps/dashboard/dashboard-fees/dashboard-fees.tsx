@@ -61,7 +61,7 @@ const DashboardFees: FC = () => {
                   disabled={false}
                   collapsible={false}
                   size="small"
-                  variant="outline"
+                  variant="filled"
                 />
               </div>
             </div>
