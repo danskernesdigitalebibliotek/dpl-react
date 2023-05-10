@@ -1,12 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-
 import DashBoard from "./dashboard.entry";
 
 export default {
-  title: "Apps / DashBoard",
+  title: "Apps / Dashboard",
   argTypes: {
     ...serviceUrlArgs,
     yourProfileText: {
@@ -219,6 +217,16 @@ export default {
     },
     warningIconAltText: {
       defaultValue: " warningIconAltText",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
+    materialByAuthorText: {
+      defaultValue: "By",
       control: { type: "text" }
     },
     // Config

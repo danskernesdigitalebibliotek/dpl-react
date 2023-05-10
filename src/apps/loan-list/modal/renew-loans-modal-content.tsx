@@ -134,8 +134,8 @@ const RenewLoansModalContent: FC<RenewLoansModalContentProps> = ({
               />
             );
           })}
-          {PagerComponent}
         </ul>
+        {PagerComponent}
         {!isVisible && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox

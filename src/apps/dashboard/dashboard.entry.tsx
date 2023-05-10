@@ -41,6 +41,8 @@ export interface DashBoardProps {
   groupModalGoToMaterialText: string;
   resultPagerStatusText: string;
   loanListMaterialDaysText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
   groupModalDueDateWarningLoanOverdueText: string;
   groupModalDueDateLinkToPageWithFeesText: string;
   feesPageUrl: string;
