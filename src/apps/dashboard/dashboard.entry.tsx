@@ -45,7 +45,6 @@ export interface DashBoardProps {
   materialByAuthorText: string;
   groupModalDueDateWarningLoanOverdueText: string;
   groupModalDueDateLinkToPageWithFeesText: string;
-  feesPageUrl: string;
   groupModalRenewLoanDeniedReservedText: string;
   groupModalRenewLoanDeniedInterLibraryLoanText: string;
   thresholdConfig: string;
@@ -54,6 +53,7 @@ export interface DashBoardProps {
   warningIconAltText: string;
   physicalText: string;
   digitalText: string;
+  feesPageUrl: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({

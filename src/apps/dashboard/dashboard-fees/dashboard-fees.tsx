@@ -6,20 +6,21 @@ import { tallyUpFees } from "../../../core/utils/helpers/general";
 import Link from "../../../components/atoms/links/Link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
-import { Button } from "../../../components/Buttons/Button";
 
 const DashboardFees: FC = () => {
   const t = useText();
-  const { intermediateUrl, payOwedUrl } = useUrls();
+  const { intermediateUrl, payOwedUrl, feesPageUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
   const [totalFeeAmount, setTotalFeeAmount] = useState<number>();
+
   useDeepCompareEffect(() => {
     if (fbsFees && !feeCount && !totalFeeAmount) {
       setFeeCount(fbsFees.length);
       setTotalFeeAmount(tallyUpFees(fbsFees));
     }
   }, [fbsFees, feeCount, totalFeeAmount]);
+
   return (
     <div className="fee-container">
       {fbsFees && !!feeCount && (
@@ -55,14 +56,12 @@ const DashboardFees: FC = () => {
                 <p className="text-body-medium-medium warning-bar__owes">
                   {totalFeeAmount},-
                 </p>
-                <Button
-                  label={t("payOwedText")}
-                  buttonType="default"
-                  disabled={false}
-                  collapsible={false}
-                  size="small"
-                  variant="filled"
-                />
+                <Link
+                  href={feesPageUrl}
+                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
+                >
+                  {t("payOwedText")}
+                </Link>
               </div>
             </div>
           </div>
