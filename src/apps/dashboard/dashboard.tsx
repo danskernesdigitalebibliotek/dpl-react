@@ -135,8 +135,8 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   }, [isSuccess, data, warning]);
 
   return (
-    <>
-      <h1>{t("yourProfileText")}</h1>
+    <div className="dashboard-page">
+      <h1 className="text-header-h1 my-32">{t("yourProfileText")}</h1>
       <DashboardFees />
       <DashboardNotificationList
         openModalHandler={openModalHandler}
@@ -161,7 +161,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
           customHeader={modalHeader}
         />
       )}
-    </>
+    </div>
   );
 };
 

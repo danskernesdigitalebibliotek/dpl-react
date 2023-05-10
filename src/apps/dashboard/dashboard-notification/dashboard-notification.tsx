@@ -29,11 +29,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
     [notificationClickEvent, notificationClickEventParam]
   );
   return (
-    <button
-      type="button"
-      className="m-24"
-      onClick={(e) => notificationClickEventHandler(e)}
-    >
+    <button type="button" onClick={(e) => notificationClickEventHandler(e)}>
       {!notificationClickEvent && (
         <Link
           href={notificationLink}

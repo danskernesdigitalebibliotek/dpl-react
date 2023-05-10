@@ -93,7 +93,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   // Merge digital and physical loans, for easier filtration down the line.
   return (
     <div className="status-userprofile">
-      <div className="status-userprofile__column">
+      <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link
@@ -143,7 +143,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           </>
         )}
       </div>
-      <div className="status-userprofile__column">
+      <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link

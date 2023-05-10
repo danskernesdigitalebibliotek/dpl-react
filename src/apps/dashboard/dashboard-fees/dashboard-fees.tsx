@@ -24,7 +24,7 @@ const DashboardFees: FC = () => {
     <div className="fee-container">
       {fbsFees && feeCount && (
         <div>
-          <div className="status-userprofile__column mb-16">
+          <div className="status-userprofile__column my-16">
             <div className="link-filters">
               <div className="link-filters__tag-wrapper">
                 <Link
