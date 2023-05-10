@@ -56,8 +56,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data: userData } = useGetPatronInformationByPatronIdV2({
     enabled: !isAnonymous()
   });
-  const isUserBlocked = !!(userData?.patron && isBlocked(userData.patron));
+  const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
+
+  useEffect(() => {
+    setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
+  }, [userData]);
 
   useDeepCompareEffect(() => {
     if (data?.work?.genreAndForm) {
@@ -160,7 +164,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
-            isUserBlocked
+            patron={userData?.patron}
             reservationModalProps={{
               selectedManifestations: [manifestation],
               selectedPeriodical,
@@ -191,7 +195,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         Online materials lead to external links, or to same modals as are created for singular editions. */}
         {isParallelReservation(selectedManifestations) && (
           <ReservationFindOnShelfModals
-            isUserBlocked
+            patron={userData?.patron}
             reservationModalProps={{
               selectedManifestations,
               selectedPeriodical,

@@ -5,10 +5,11 @@ import ReservationModal, {
 import FindOnShelfModal, {
   FindOnShelfModalProps
 } from "../../components/find-on-shelf/FindOnShelfModal";
-import { isAnonymous } from "../../core/utils/helpers/user";
+import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
+import { PatronV5 } from "../../core/fbs/model";
 
 export interface ReservationFindOnShelfModalsProps {
-  isUserBlocked: boolean;
+  patron: PatronV5 | undefined;
   reservationModalProps: ReservationModalProps;
   findOnShelfModalProps: FindOnShelfModalProps;
 }
@@ -16,7 +17,7 @@ export interface ReservationFindOnShelfModalsProps {
 const ReservationFindOnShelfModals: React.FC<
   ReservationFindOnShelfModalsProps
 > = ({
-  isUserBlocked,
+  patron,
   reservationModalProps: { selectedManifestations, selectedPeriodical, work },
   findOnShelfModalProps: {
     manifestations,
@@ -26,6 +27,8 @@ const ReservationFindOnShelfModals: React.FC<
     setSelectedPeriodical
   }
 }) => {
+  const isUserBlocked = !!(patron && isBlocked(patron));
+
   return (
     <>
       {!isAnonymous() && !isUserBlocked && (
