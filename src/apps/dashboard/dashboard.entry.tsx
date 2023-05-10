@@ -52,6 +52,8 @@ export interface DashBoardProps {
   pickUpLatestText: string;
   dashboardNumberInLineText: string;
   warningIconAltText: string;
+  physicalText: string;
+  digitalText: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({
