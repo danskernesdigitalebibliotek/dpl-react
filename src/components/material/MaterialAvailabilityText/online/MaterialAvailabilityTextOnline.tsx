@@ -7,10 +7,11 @@ import {
 import { useText } from "../../../../core/utils/text";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
+import { AvailabilityTextMap, getAvailabilityText } from "./helper";
 
 interface MaterialAvailabilityTextOnlineProps {
   isbns: string[];
-  materialType: string;
+  materialType: ManifestationMaterialType;
 }
 
 const MaterialAvailabilityTextOnline: React.FC<
@@ -31,37 +32,31 @@ const MaterialAvailabilityTextOnline: React.FC<
     maxConcurrentAudioLoansPerBorrower
   } = libraryProfileData;
 
-  let availabilityText = "";
+  const availabilityTextMap: AvailabilityTextMap = {
+    [ManifestationMaterialType.ebook]: {
+      text: "onlineLimitMonthEbookInfoText",
+      count: totalEbookLoans,
+      limit: maxConcurrentEbookLoansPerBorrower
+    },
+    [ManifestationMaterialType.audioBook]: {
+      text: "onlineLimitMonthAudiobookInfoText",
+      count: totalAudioLoans,
+      limit: maxConcurrentAudioLoansPerBorrower
+    },
+    materialIsIncluded: {
+      text: "materialIsIncludedText"
+    }
+  };
 
-  if (
-    materialType === ManifestationMaterialType.ebook &&
-    totalEbookLoans &&
-    maxConcurrentEbookLoansPerBorrower
-  ) {
-    availabilityText = t("onlineLimitMonthEbookInfoText", {
-      placeholders: {
-        "@count": totalEbookLoans,
-        "@limit": maxConcurrentEbookLoansPerBorrower
-      }
-    });
-  }
+  const availabilityTextType = productsData.product?.costFree
+    ? "materialIsIncluded"
+    : materialType;
 
-  if (
-    materialType === ManifestationMaterialType.audioBook &&
-    totalAudioLoans &&
-    maxConcurrentAudioLoansPerBorrower
-  ) {
-    availabilityText = t("onlineLimitMonthAudiobookInfoText", {
-      placeholders: {
-        "@count": totalAudioLoans,
-        "@limit": maxConcurrentAudioLoansPerBorrower
-      }
-    });
-  }
-
-  if (productsData.product?.costFree) {
-    availabilityText = t("materialIsIncludedText");
-  }
+  const availabilityText = getAvailabilityText({
+    type: availabilityTextType,
+    map: availabilityTextMap,
+    t
+  });
 
   return (
     <MaterialAvailabilityTextParagraph>

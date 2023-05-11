@@ -28,10 +28,9 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
     getAllIdentifiers(manifestations).length > 0 &&
     materialType
   ) {
-    const isbns = getAllIdentifiers(manifestations);
     return (
       <MaterialAvailabilityTextOnline
-        isbns={isbns}
+        isbns={getAllIdentifiers(manifestations)}
         materialType={materialType}
       />
     );
