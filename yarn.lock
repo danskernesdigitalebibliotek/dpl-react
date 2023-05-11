@@ -1749,10 +1749,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@npm:@reload/dpl-design-system@DDFSOEG-522-fix-material-skeleton":
-  version "0.0.0-fb3f4d7845392b35436af7c21fdb4b46c5f54ac9"
-  resolved "https://npm.pkg.github.com/download/@reload/dpl-design-system/0.0.0-fb3f4d7845392b35436af7c21fdb4b46c5f54ac9/398ff5d83ad446eff5d1862eebbba3ddb68763d3#398ff5d83ad446eff5d1862eebbba3ddb68763d3"
-  integrity sha512-sGTqdbOleTW4ir3Qiz93eL/4CNLmdTHCk3XIoCSksy6KCxosPoOHS/3BDqDyOKjhg3w06x09FuwscOdgv+ipnQ==
+"@danskernesdigitalebibliotek/dpl-design-system@0.0.0-88ccc034569437b4098a9938f529361265787da6":
+  version "0.0.0-88ccc034569437b4098a9938f529361265787da6"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-88ccc034569437b4098a9938f529361265787da6/4afe1443b746a4a869429acfe3e628e0a130771d#4afe1443b746a4a869429acfe3e628e0a130771d"
+  integrity sha512-rG1f9eWNyNCPaQdkXnXZZulQprk8t1+VDK20eMcqZeSRbvjBBu3hd1BVnN3zWohTxc+bIHLBWwXWFcbM2Hukjw==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
