@@ -1,53 +1,55 @@
 import React from "react";
-import ReservationModal, {
-  ReservationModalProps
-} from "../../components/reservation/ReservationModal";
-import FindOnShelfModal, {
-  FindOnShelfModalProps
-} from "../../components/find-on-shelf/FindOnShelfModal";
+import ReservationModal from "../../components/reservation/ReservationModal";
+import FindOnShelfModal from "../../components/find-on-shelf/FindOnShelfModal";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import { PatronV5 } from "../../core/fbs/model";
+import { Manifestation, Work } from "../../core/utils/types/entities";
+import { PeriodicalEdition } from "../../components/material/periodical/helper";
 
 export interface ReservationFindOnShelfModalsProps {
   patron: PatronV5 | undefined;
-  reservationModalProps: ReservationModalProps;
-  findOnShelfModalProps: FindOnShelfModalProps;
+  manifestations: Manifestation[];
+  selectedPeriodical: PeriodicalEdition | null;
+  setSelectedPeriodical: React.Dispatch<
+    React.SetStateAction<PeriodicalEdition | null>
+  >;
+  work: Work;
 }
 
 const ReservationFindOnShelfModals: React.FC<
   ReservationFindOnShelfModalsProps
 > = ({
   patron,
-  reservationModalProps: { selectedManifestations, selectedPeriodical, work },
-  findOnShelfModalProps: {
-    manifestations,
-    workTitles,
-    authors,
-    selectedPeriodical: periodicalFindOnShelf,
-    setSelectedPeriodical
-  }
+  manifestations,
+  selectedPeriodical,
+  setSelectedPeriodical,
+  work
 }) => {
   const isUserBlocked = !!(patron && isBlocked(patron));
+  const titles =
+    manifestations.length > 1
+      ? work.titles.full
+      : manifestations[0].titles.main;
+  const authors =
+    manifestations.length > 1 ? work.creators : manifestations[0].creators;
 
   return (
     <>
       {!isAnonymous() && !isUserBlocked && (
         <ReservationModal
-          selectedManifestations={selectedManifestations}
+          selectedManifestations={manifestations}
           selectedPeriodical={selectedPeriodical}
           work={work}
           dataCy={
-            selectedManifestations.length > 1
-              ? "reservation-modal-parallel"
-              : undefined
+            manifestations.length > 1 ? "reservation-modal-parallel" : undefined
           }
         />
       )}
       <FindOnShelfModal
         manifestations={manifestations}
-        workTitles={workTitles}
+        workTitles={titles}
         authors={authors}
-        selectedPeriodical={periodicalFindOnShelf}
+        selectedPeriodical={selectedPeriodical}
         setSelectedPeriodical={setSelectedPeriodical}
       />
     </>

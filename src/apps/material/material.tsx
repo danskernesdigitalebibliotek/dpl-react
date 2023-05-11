@@ -165,18 +165,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
             patron={userData?.patron}
-            reservationModalProps={{
-              selectedManifestations: [manifestation],
-              selectedPeriodical,
-              work
-            }}
-            findOnShelfModalProps={{
-              manifestations: [manifestation],
-              workTitles: manifestation.titles.main,
-              authors: manifestation.creators,
-              selectedPeriodical,
-              setSelectedPeriodical
-            }}
+            manifestations={[manifestation]}
+            selectedPeriodical={selectedPeriodical}
+            work={work}
+            setSelectedPeriodical={setSelectedPeriodical}
           />
         ))}
 
@@ -196,18 +188,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         {isParallelReservation(selectedManifestations) && (
           <ReservationFindOnShelfModals
             patron={userData?.patron}
-            reservationModalProps={{
-              selectedManifestations,
-              selectedPeriodical,
-              work
-            }}
-            findOnShelfModalProps={{
-              manifestations: selectedManifestations,
-              workTitles: work.titles.full,
-              authors: work.creators,
-              selectedPeriodical,
-              setSelectedPeriodical
-            }}
+            manifestations={selectedManifestations}
+            selectedPeriodical={selectedPeriodical}
+            work={work}
+            setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
       </MaterialHeader>
