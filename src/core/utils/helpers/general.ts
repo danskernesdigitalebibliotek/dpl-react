@@ -21,6 +21,7 @@ import {
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
+import { ManifestationMaterialType } from "../types/material-type";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -368,7 +369,7 @@ export const getMaterialTypes = (manifestations: Manifestation[]) => {
   const allMaterialTypes = manifestations
     .map((manifest) => manifest.materialTypes.map((type) => type.specific))
     .flat();
-  return uniq(allMaterialTypes);
+  return uniq(allMaterialTypes) as ManifestationMaterialType[];
 };
 
 export const getManifestationType = (manifestations: Manifestation[]) => {
