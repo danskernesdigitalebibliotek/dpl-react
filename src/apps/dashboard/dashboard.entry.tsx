@@ -27,8 +27,16 @@ export interface DashBoardProps {
   reservationsUrl: string;
   reservationsStillInQueueForText: string;
   readyForLoanText: string;
-  pageSizeDesktop: number;
-  pageSizeMobile: number;
+  pageSizeDesktop: string;
+  readyToLoanCloseModalAriaLabelText: string;
+  stillInQueueCloseModalAriaLabelText: string;
+  removeAllReservationsText: string;
+  readyForLoanCounterLabelText: string;
+  readyForLoanModalAriaDescriptionText: string;
+  stillInQueueModalAriaDescriptionText: string;
+  groupModalDueDateAriaDescriptionText: string;
+  groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
+  pageSizeMobile: string;
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
