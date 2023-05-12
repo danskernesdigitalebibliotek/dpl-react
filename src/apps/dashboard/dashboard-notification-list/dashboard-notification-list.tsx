@@ -130,7 +130,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationClickEventParam={soon}
               />
             )}
-            {physicalLoansNotOverdue && physicalLoansNotOverdue && (
+            {physicalLoansNotOverdue && !!physicalLoansNotOverdue && (
               <DashboardNotification
                 notificationNumber={physicalLoansNotOverdue}
                 notificationText={t("loansNotOverdueText")}
