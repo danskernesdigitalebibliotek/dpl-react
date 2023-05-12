@@ -34,7 +34,6 @@ const DashboardFees: FC = () => {
                 >
                   {t("intermediateText")}
                 </Link>
-
                 <span className="link-filters__counter">{feeCount}</span>
               </div>
             </div>
