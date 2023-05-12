@@ -27,7 +27,7 @@ export interface DashBoardProps {
   reservationsUrl: string;
   reservationsStillInQueueForText: string;
   readyForLoanText: string;
-  pageSizeDesktop: string;
+  pageSizeDesktop: number;
   readyToLoanCloseModalAriaLabelText: string;
   stillInQueueCloseModalAriaLabelText: string;
   removeAllReservationsText: string;
@@ -36,7 +36,7 @@ export interface DashBoardProps {
   stillInQueueModalAriaDescriptionText: string;
   groupModalDueDateAriaDescriptionText: string;
   groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
-  pageSizeMobile: string;
+  pageSizeMobile: number;
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;

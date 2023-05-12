@@ -25,7 +25,7 @@ import { useConfig } from "../../core/utils/config";
 import { yesterday, soon, longer } from "./util/helpers";
 
 interface DashboardProps {
-  pageSize: string;
+  pageSize: number;
 }
 
 const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
