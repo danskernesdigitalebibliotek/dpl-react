@@ -215,10 +215,6 @@ export default {
       defaultValue: "Pick up before",
       control: { type: "text" }
     },
-    warningIconAltText: {
-      defaultValue: " warningIconAltText",
-      control: { type: "text" }
-    },
     materialAndAuthorText: {
       control: {
         type: "text"

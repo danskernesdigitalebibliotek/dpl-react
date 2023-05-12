@@ -11,6 +11,7 @@ import {
   materialIsOverdue
 } from "../../../core/utils/helpers/general";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { useUrls } from "../../../core/utils/url";
 
 interface DueDateLoansModalProps {
   dueDate?: string | null;
@@ -30,6 +31,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
   customHeader
 }) => {
   const t = useText();
+  const { feesPageUrl } = useUrls();
   const aMonthAgo = dayjs().subtract(1, "month").format("YYYY-MM-DD");
   const { dueDateModal } = getModalIds();
   return (
@@ -75,6 +77,7 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
             {materialIsOverdue(dueDate) && (
               <div className="modal-details__warning">
                 <WarningBar
+                  leftLink={feesPageUrl}
                   linkText={t("groupModalDueDateLinkToPageWithFeesText")}
                   overdueText={t("groupModalDueDateWarningLoanOverdueText")}
                 />

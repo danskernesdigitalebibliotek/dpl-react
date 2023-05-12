@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
-import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import { useDeepCompareEffect } from "react-use";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import Link from "../../../components/atoms/links/Link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
+import WarningBar from "../../loan-list/materials/utils/warning-bar";
 
 const DashboardFees: FC = () => {
   const t = useText();
@@ -37,32 +37,13 @@ const DashboardFees: FC = () => {
                 <span className="link-filters__counter">{feeCount}</span>
               </div>
             </div>
-            <div className="warning-bar bg-global-secondary">
-              <div className="warning-bar__left">
-                <div className="warning-bar__icon">
-                  <img src={WarningIcon} alt={t("warningIconAltText")} />
-                </div>
-                <div>
-                  <Link
-                    href={payOwedUrl}
-                    className="text-body-medium-regular color-primary-black"
-                  >
-                    {t("totalOwedText")}
-                  </Link>
-                </div>
-              </div>
-              <div className="warning-bar__right">
-                <p className="text-body-medium-medium warning-bar__owes">
-                  {totalFeeAmount},-
-                </p>
-                <Link
-                  href={feesPageUrl}
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
-                >
-                  {t("payOwedText")}
-                </Link>
-              </div>
-            </div>
+            <WarningBar
+              linkText={t("totalOwedText")}
+              rightText={`${totalFeeAmount},-`}
+              rightButtonText={t("payOwedText")}
+              leftLink={payOwedUrl}
+              rightLink={feesPageUrl}
+            />
           </div>
         </div>
       )}

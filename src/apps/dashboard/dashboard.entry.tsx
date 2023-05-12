@@ -50,7 +50,6 @@ export interface DashBoardProps {
   thresholdConfig: string;
   pickUpLatestText: string;
   dashboardNumberInLineText: string;
-  warningIconAltText: string;
   physicalText: string;
   digitalText: string;
   feesPageUrl: string;
