@@ -29,7 +29,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
 
   return (
     <section data-cy="pickup-reservations-section">
-      <h2 className="text-body-small-regular mt-32 mb-16">
+      <h2 className="text-header-h4 mt-32 mb-16">
         {t("patronPageChangePickupHeaderText")}
       </h2>
       <p className="text-body-small-regular mb-8">
