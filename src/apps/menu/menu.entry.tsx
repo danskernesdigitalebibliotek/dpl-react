@@ -23,6 +23,11 @@ export interface MenuProps {
   menuLoginUrl: string;
   menuSignUpText: string;
   menuSignUpUrl: string;
+  menuUserIconAriaLabelText: string;
+  menuNotAuthenticatedCloseButtonText: string;
+  menuAuthenticatedCloseButtonText: string;
+  menuAuthenticatedModalDescriptionText: string;
+  menuNotAuthenticatedModalDescriptionText: string;
 }
 
 const MenuEntry: FC<MenuProps & GlobalUrlEntryPropsInterface> = () => <Menu />;
