@@ -2,7 +2,7 @@ import { UseQueryOptions } from "react-query";
 import { getAvailabilityV3, useGetAvailabilityV3 } from "../fbs/fbs";
 import { UseConfigFunction } from "./config";
 import { FaustId } from "./types/ids";
-import { getBlacklistedArgs } from "../../apps/material/helper";
+import { getBlacklistedQueryArgs } from "../../apps/material/helper";
 
 const useGetAvailability = ({
   faustIds,
@@ -16,11 +16,7 @@ const useGetAvailability = ({
   };
 }) => {
   const { data, isLoading, isError } = useGetAvailabilityV3(
-    getBlacklistedArgs(
-      faustIds,
-      config,
-      "blacklistedAvailabilityBranchesConfig"
-    ),
+    getBlacklistedQueryArgs(faustIds, config, "availability"),
     options
   );
   return { data, isLoading, isError };
