@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import MenuNotLoggedInContent from "./menu-not-logged-in/menu-not-logged-in";
-import { userIsAnonymous } from "../../core/utils/helpers/user";
+import { isAnonymous } from "../../core/utils/helpers/user";
 import MenuLoggedIn from "./menu-logged-in/menu-logged-in";
 
 const Menu: FC = () => {
@@ -41,10 +41,8 @@ const Menu: FC = () => {
       </button>
       {showMenu && (
         <div className="modal-backdrop">
-          {!userIsAnonymous() && (
-            <MenuLoggedIn closePatronMenu={closePatronMenu} />
-          )}
-          {userIsAnonymous() && (
+          {!isAnonymous() && <MenuLoggedIn closePatronMenu={closePatronMenu} />}
+          {isAnonymous() && (
             <MenuNotLoggedInContent closePatronMenu={closePatronMenu} />
           )}
         </div>

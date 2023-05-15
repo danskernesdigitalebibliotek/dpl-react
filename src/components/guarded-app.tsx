@@ -12,7 +12,7 @@ import {
   getUrlQueryParam,
   removeQueryParametersFromUrl
 } from "../core/utils/helpers/url";
-import { userIsAnonymous } from "../core/utils/helpers/user";
+import { isAnonymous } from "../core/utils/helpers/user";
 import { GuardedAppId } from "../core/utils/types/ids";
 
 export interface GuardedAppProps {
@@ -27,7 +27,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
   const { request: persistedRequest } = useSelector(
     (state: RootState) => state.guardedRequests
   );
-  const isApplicationBlocked = persistedRequest && !userIsAnonymous();
+  const isApplicationBlocked = persistedRequest && !isAnonymous();
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
 
   // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.

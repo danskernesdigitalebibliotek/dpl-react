@@ -17,10 +17,10 @@ const DeleteReservationContent: FC<
 
   return (
     <>
-      <h1 className="text-header-h3">
+      <h2 className="text-header-h3">
         {/* todo make plural when modal works with plural */}
         {t("deleteReservationModalHeaderText")}
-      </h1>
+      </h2>
       <div className="mt-48 color-secondary-gray">
         <p className="text-body-medium-regular">
           {/* todo make plural when modal works with plural */}
@@ -30,7 +30,6 @@ const DeleteReservationContent: FC<
           {t("deleteReservationModalNotRegrettableText")}
         </p>
       </div>
-
       <div className="modal-pause__button mt-48">
         <button
           type="button"

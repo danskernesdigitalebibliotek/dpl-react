@@ -8,18 +8,24 @@ interface MaterialHeaderTextProps {
   title: string;
   author: string;
   languageIsoCode?: string;
+  materialTitleId?: string;
 }
 
 const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
   title,
   author,
-  languageIsoCode
+  languageIsoCode,
+  materialTitleId
 }) => {
   const t = useText();
   const { searchUrl } = useUrls();
   return (
     <>
-      <h1 lang={languageIsoCode} className="text-header-h1 mb-16">
+      <h1
+        id={materialTitleId}
+        lang={languageIsoCode}
+        className="text-header-h1 mb-16"
+      >
         {title}
       </h1>
       {author && (

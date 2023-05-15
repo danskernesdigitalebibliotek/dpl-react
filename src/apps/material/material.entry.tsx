@@ -5,6 +5,7 @@ import { withText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface MaterialEntryTextProps {
   addToFavoritesAriaLabelText: string;
@@ -19,10 +20,15 @@ interface MaterialEntryTextProps {
   changePickupLocationText: string;
   changeSmsNumberText: string;
   chooseOneText: string;
+  closeModalAriaLabelEmailText: string;
+  closeModalAriaLabelInterestPeriodText: string;
+  closeModalAriaLabelPickupText: string;
+  closeModalAriaLabelSmsText: string;
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
   detailsListAudienceText: string;
+  detailsListAuthorsText: string;
   detailsListContributorsText: string;
   detailsListEditionText: string;
   detailsListFirstEditionYearText: string;
@@ -46,7 +52,6 @@ interface MaterialEntryTextProps {
   findOnBookshelfText: string;
   findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
-  findOnShelfTableDescriptionText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
   findOnShelfModalListMaterialText: string;
@@ -54,6 +59,7 @@ interface MaterialEntryTextProps {
   findOnShelfModalPeriodicalEditionDropdownText: string;
   findOnShelfModalPeriodicalYearDropdownText: string;
   findOnShelfModalScreenReaderModalDescriptionText: string;
+  findOnShelfTableDescriptionText: string;
   firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
@@ -66,6 +72,11 @@ interface MaterialEntryTextProps {
   instantLoanSubTitleText: string;
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
+  interestPeriodOneMonthConfigText: string;
+  interestPeriodOneYearConfigText: string;
+  interestPeriodSixMonthsConfigText: string;
+  interestPeriodThreeMonthsConfigText: string;
+  interestPeriodTwoMonthsConfigText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -84,8 +95,10 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailInputFieldLabelText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;
   modalReservationFormNoInterestAfterHeaderTitleText: string;
+  modalReservationFormNoInterestAfterLabelText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
   modalReservationFormPickupHeaderTitleText: string;
+  modalReservationFormPickupLabelText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
@@ -132,19 +145,19 @@ interface MaterialEntryTextProps {
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;
+  screenReaderModalDescriptionEmailText: string;
+  screenReaderModalDescriptionInterestPeriodText: string;
+  screenReaderModalDescriptionPickupText: string;
+  screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
   sixMonthsText: string;
+  subjectNumberText: string;
   threeMonthsText: string;
   tryAginButtonText: string;
   twoMonthsText: string;
 }
-interface MaterialEntryUrlProps {
-  dplCmsBaseUrl: string;
-  materialUrl: string;
-  searchUrl: string;
-  authUrl: string;
-}
+
 interface MaterialEntryConfigProps {
   blacklistedAvailabilityBranchesConfig?: string;
   blacklistedInstantLoanBranchesConfig: string;
@@ -155,7 +168,7 @@ interface MaterialEntryConfigProps {
 }
 
 export interface MaterialEntryProps
-  extends MaterialEntryUrlProps,
+  extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
     MaterialEntryConfigProps {
   wid: WorkId;

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useId } from "react";
 import { useDispatch } from "react-redux";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
@@ -11,12 +11,11 @@ import { CoverProps } from "../../cover/cover";
 import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getManifestationPid,
   getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
-import SearchResultListItemCover from "./search-result-list-item-cover";
+import SearchResultListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
@@ -43,7 +42,6 @@ export interface SearchResultListItemProps {
   resultNumber: number;
   dataCy?: string;
 }
-
 const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   item,
   item: {
@@ -55,8 +53,9 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   },
   coverTint,
   resultNumber,
-  dataCy = "search-result-list-item"
+  dataCy = "card-list-item"
 }) => {
+  const searchTitleId = useId();
   const t = useText();
   const { materialUrl, searchUrl } = useUrls();
   const { filters } = useFilterHandler();
@@ -66,10 +65,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   );
 
   const dispatch = useDispatch<TypedDispatch>();
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
@@ -121,22 +117,22 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     <article
       ref={itemRef}
       data-cy={dataCy}
-      className="search-result-item arrow arrow__hover--right-small"
+      className="card-list-item arrow arrow__hover--right-small"
       onClick={handleClick}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
-      <div className="search-result-item__cover">
+      <div className="card-list-item__cover">
         {showItem && (
           <SearchResultListItemCover
             id={manifestationPid}
-            description={String(fullTitle)}
             url={materialFullUrl}
             tint={coverTint}
+            linkAriaLabelledBy={searchTitleId}
           />
         )}
       </div>
-      <div className="search-result-item__text">
-        <div className="search-result-item__meta">
+      <div className="card-list-item__text">
+        <div className="card-list-item__meta">
           {showItem && (
             <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
           )}
@@ -157,15 +153,16 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         </div>
 
         <h2
-          className="search-result-item__title text-header-h4 mb-4"
-          data-cy="search-result-item-title"
+          className="card-list-item__title text-header-h4 mb-4"
+          data-cy="card-list-item-title"
           lang={languageIsoCode}
+          id={searchTitleId}
         >
           <Link href={materialFullUrl}>{fullTitle}</Link>
         </h2>
 
         {author && item && (
-          <p className="text-small-caption" data-cy="search-result-item-author">
+          <p className="text-small-caption" data-cy="card-list-item-author">
             {`${t("byAuthorText")} ${author}`}
             {getReleaseYearSearchResult(item)
               ? ` (${getReleaseYearSearchResult(item)})`
@@ -174,8 +171,8 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
         )}
       </div>
       <div
-        className="search-result-item__availability"
-        data-cy="search-result-item-availability"
+        className="card-list-item__availability"
+        data-cy="card-list-item-availability"
       >
         {showItem && (
           <AvailabilityLabels

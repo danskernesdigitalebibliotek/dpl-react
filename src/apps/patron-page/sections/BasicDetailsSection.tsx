@@ -21,17 +21,17 @@ const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {
 
   return (
     <section>
-      <h2 className="text-body-small-regular mt-32 mb-16">
+      <h2 className="text-header-h4 mt-32 mb-16">
         {t("patronPageBasicDetailsHeaderText")}
       </h2>
       <div className="dpl-patron-info">
-        <h4 className="dpl-patron-info__label text-header-h4">
+        <h3 className="dpl-patron-info__label text-header-h4">
           {t("patronPageBasicDetailsNameLabelText")}
-        </h4>
+        </h3>
         <div className="dpl-patron-info__text">{name}</div>
-        <h4 className="dpl-patron-info__label text-header-h4">
+        <h3 className="dpl-patron-info__label text-header-h4">
           {t("patronPageBasicDetailsAddressLabelText")}
-        </h4>
+        </h3>
         <div className="dpl-patron-info__text">
           <div>{coName}</div>
           <div>{street}</div>

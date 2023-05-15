@@ -19,6 +19,7 @@ export interface LinkButtonProps {
   trackClick?: () => Promise<unknown>;
   url: URL;
   variant: ButtonVariant;
+  ariaLabelledBy?: string;
 }
 
 const LinkButton: React.FC<LinkButtonProps> = ({
@@ -31,7 +32,8 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   size = "medium",
   trackClick,
   url,
-  variant = "filled"
+  variant = "filled",
+  ariaLabelledBy
 }) => {
   return (
     <Link
@@ -47,6 +49,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       )}
       trackClick={trackClick}
       dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
     >
       {children}
       <ButtonIcon buttonType={buttonType} iconClassNames={iconClassNames} />

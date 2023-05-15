@@ -7,12 +7,14 @@ export interface SearchBarProps {
   getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
   getLabelProps: UseComboboxPropGetters<unknown>["getLabelProps"];
   dataCy?: string;
+  setQWithoutQuery: (value: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   getInputProps,
   getLabelProps,
-  dataCy = "search-header-input"
+  dataCy = "search-header-input",
+  setQWithoutQuery
 }) => {
   const t = useText();
   return (
@@ -20,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {/* The downshift combobox uses prop spreading by design & associated control is desctructured too */}
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading */}
       <label className="hide-visually" {...getLabelProps()}>
-        {t("searchHeaderInputLabel")}
+        {t("searchHeaderInputLabelText")}
       </label>
       {/* eslint-disable react/jsx-props-no-spreading */}
       <input
@@ -31,7 +33,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
         autoComplete="off"
         placeholder={t("inputPlaceholderText")}
         aria-label={t("inputPlaceholderText")}
-        {...getInputProps()}
+        {...getInputProps({
+          onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+            setQWithoutQuery(e.target.value);
+          }
+        })}
       />
       {/* eslint-enable react/jsx-props-no-spreading */}
       <input

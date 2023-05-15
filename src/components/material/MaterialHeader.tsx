@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useDeepCompareEffect } from "react-use";
 import { guardedRequest } from "../../core/guardedRequests.slice";
@@ -6,7 +6,6 @@ import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getMaterialTypes,
   getManifestationPid
@@ -55,6 +54,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectPeriodicalHandler,
   children
 }) => {
+  const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
@@ -67,10 +67,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const author = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
   const isPeriodical = hasCorrectMaterialType(
     MaterialType.magazine,
     selectedManifestations
@@ -123,6 +120,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           title={String(title)}
           author={author}
           languageIsoCode={languageIsoCode}
+          materialTitleId={materialTitleId}
         />
         <div ref={itemRef} className="material-header__availability-label">
           {showItem && (
@@ -152,6 +150,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     manifestations={selectedManifestations}
                     workId={wid}
                     dataCy="material-header-buttons"
+                    materialTitleId={materialTitleId}
                   />
                 </div>
                 <MaterialAvailabilityText
