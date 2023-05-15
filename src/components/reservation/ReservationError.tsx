@@ -1,43 +1,45 @@
 import FocusTrap from "focus-trap-react";
 import React from "react";
-import { ReservationResponseV2 } from "../../core/fbs/model";
+import {
+  ReservationResponseV2,
+  ReservationResultV2
+} from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 
 type ReservationErrorProps = {
-  reservationResult: string;
+  reservationResults: ReservationResultV2[];
   setReservationResponse: (
     reservationResponse: ReservationResponseV2 | null
   ) => void;
 };
 
 const ReservationError: React.FC<ReservationErrorProps> = ({
-  reservationResult,
+  reservationResults,
   setReservationResponse
 }) => {
   const t = useText();
 
-  const handleErrorText: {
-    [key: string]: {
-      title: string;
-      description: string;
-      buttonText: string;
-    };
-  } = {
-    already_reserved: {
-      title: t("alreadyReservedText"),
-      description: "",
-      buttonText: t("closeText")
-    },
-    default: {
+  const handleErrorText = (reservationResultArray: ReservationResultV2[]) => {
+    const hasAlreadyReserved = reservationResultArray.some(
+      ({ result }) => result === "already_reserved"
+    );
+
+    if (hasAlreadyReserved) {
+      return {
+        title: t("alreadyReservedText"),
+        description: "",
+        buttonText: t("closeText")
+      };
+    }
+    return {
       title: t("reservationErrorsTitleText"),
       description: t("reservationErrorsDescriptionText"),
       buttonText: t("tryAginButtonText")
-    }
-  } as const;
+    };
+  };
 
-  const reservationErrorInfo =
-    handleErrorText[reservationResult] || handleErrorText.default;
+  const reservationErrorInfo = handleErrorText(reservationResults);
 
   return (
     <FocusTrap

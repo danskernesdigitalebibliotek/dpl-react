@@ -30,17 +30,20 @@ export default {
     },
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted Pickup branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
       name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedInstantLoanBranchesConfig: {
       name: "Blacklisted Instant Loan branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     branchesConfig: {
@@ -219,6 +222,11 @@ export default {
     detailsListEditionText: {
       name: "Edition",
       defaultValue: "Edition",
+      control: { type: "text" }
+    },
+    detailsListAuthorsText: {
+      name: "Authors",
+      defaultValue: "Authors",
       control: { type: "text" }
     },
     editionText: {
@@ -802,6 +810,26 @@ export default {
       control: { type: "text" },
       defaultValue:
         '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
+    },
+    interestPeriodOneMonthConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

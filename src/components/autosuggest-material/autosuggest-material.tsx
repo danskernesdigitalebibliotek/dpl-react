@@ -1,5 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
+import clsx from "clsx";
 import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
@@ -52,12 +53,12 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
 
         return (
           <li
-            className={`autosuggest__material-item
-              ${
+            className={clsx("autosuggest__material-item", {
+              "autosuggest__material-item--two": materialData.length === 2,
+              "autosuggest__material-item--one": materialData.length === 1,
+              "autosuggest__material-item--highlight":
                 highlightedIndex === index
-                  ? "autosuggest__material-item--highlight"
-                  : ""
-              }`}
+            })}
             key={item.work?.workId}
             {...getItemProps({ item, index })}
             data-cy={dataCy}

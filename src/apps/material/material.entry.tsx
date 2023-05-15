@@ -30,6 +30,7 @@ interface MaterialEntryTextProps {
   daysText: string;
   descriptionHeadlineText: string;
   detailsListAudienceText: string;
+  detailsListAuthorsText: string;
   detailsListContributorsText: string;
   detailsListEditionText: string;
   detailsListFirstEditionYearText: string;
@@ -73,6 +74,11 @@ interface MaterialEntryTextProps {
   instantLoanSubTitleText: string;
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
+  interestPeriodOneMonthConfigText: string;
+  interestPeriodOneYearConfigText: string;
+  interestPeriodSixMonthsConfigText: string;
+  interestPeriodThreeMonthsConfigText: string;
+  interestPeriodTwoMonthsConfigText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;

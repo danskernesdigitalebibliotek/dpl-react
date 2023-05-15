@@ -10,6 +10,8 @@ export type Option = {
 
 type DropdownProps = {
   options: Option[];
+  label?: string;
+  id?: string;
   ariaLabel: string;
   labelledBy?: string;
   arrowIcon: "triangles" | "chevron";
@@ -30,6 +32,8 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   handleOnChange,
   placeholder,
   cyData,
+  label,
+  id,
   labelledBy,
   defaultValue
 }) => {
@@ -49,27 +53,31 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
 
   return (
     <div className={classes.root}>
-      <select
-        aria-labelledby={labelledBy}
-        data-cy={cyData}
-        className={classes.select}
-        aria-label={ariaLabel}
-        onChange={checkHandleOnChange}
-      >
-        {optionsList.map(({ label, value, disabled }) => (
-          <option
-            key={label}
-            value={value}
-            className={classes.option}
-            disabled={disabled}
-            selected={value === defaultValue}
-          >
-            {label}
-          </option>
-        ))}
-      </select>
-      <div className={classes.arrowWrapper}>
-        <DropdownIcon arrowIcon={arrowIcon} />
+      {label && <label htmlFor={id}>{label}</label>}
+      <div className={classes.root}>
+        <select
+          id={id}
+          data-cy={cyData}
+          className={classes.select}
+          aria-labelledby={labelledBy}
+          aria-label={ariaLabel}
+          onChange={checkHandleOnChange}
+        >
+          {optionsList.map(({ label: optionsLabel, value, disabled }) => (
+            <option
+              key={optionsLabel}
+              value={value}
+              className={classes.option}
+              disabled={disabled}
+              selected={value === defaultValue}
+            >
+              {optionsLabel}
+            </option>
+          ))}
+        </select>
+        <div className={classes.arrowWrapper}>
+          <DropdownIcon arrowIcon={arrowIcon} />
+        </div>
       </div>
     </div>
   );

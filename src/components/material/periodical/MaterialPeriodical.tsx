@@ -1,11 +1,11 @@
 import { isEmpty } from "lodash";
 import React, { FC } from "react";
-import { useGetHoldingsV3 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
 import { groupObjectArrayByProperty } from "../../../core/utils/helpers/general";
 import { FaustId } from "../../../core/utils/types/ids";
 import { GroupList, PeriodicalEdition } from "./helper";
 import MaterialPeriodicalSelect from "./MaterialPeriodicalSelect";
+import { useGetHoldings } from "../../../apps/material/helper";
 
 export interface MaterialPeriodicalProps {
   faustId: FaustId;
@@ -19,12 +19,10 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   selectPeriodicalHandler
 }) => {
   const config = useConfig();
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
-  const { data, isLoading, isError } = useGetHoldingsV3({
-    recordid: [String(faustId)],
-    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+
+  const { data, isLoading, isError } = useGetHoldings({
+    faustIds: [faustId],
+    config
   });
 
   if (isLoading || isError || !data) return null;
