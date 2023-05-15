@@ -8,7 +8,7 @@ import { AvailabilityV3 } from "../../core/fbs/model";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { Pid } from "../../core/utils/types/ids";
 import { useConfig } from "../../core/utils/config";
-import { useGetAvailability } from "../../apps/material/helper";
+import useGetAvailability from "../../core/utils/useGetAvailability";
 
 type ManifestationWithAvailability = Manifestation & AvailabilityV3;
 

@@ -412,7 +412,7 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   !isArticle(manifestations);
 
 // Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
-const getBlacklistedArgs = (
+export const getBlacklistedArgs = (
   faustIds: FaustId[],
   config: UseConfigFunction,
   blacklist:
@@ -426,28 +426,6 @@ const getBlacklistedArgs = (
     recordid: faustIds,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
   };
-};
-
-export const useGetAvailability = ({
-  faustIds,
-  config,
-  options
-}: {
-  faustIds: FaustId[];
-  config: UseConfigFunction;
-  options?: {
-    query?: UseQueryOptions<Awaited<ReturnType<typeof getAvailabilityV3>>>;
-  };
-}) => {
-  const { data, isLoading, isError } = useGetAvailabilityV3(
-    getBlacklistedArgs(
-      faustIds,
-      config,
-      "blacklistedAvailabilityBranchesConfig"
-    ),
-    options
-  );
-  return { data, isLoading, isError };
 };
 
 export const getAvailability = async ({
