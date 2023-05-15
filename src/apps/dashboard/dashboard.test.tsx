@@ -552,6 +552,7 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
+      .find(".list-dashboard")
       .eq(0)
       .click();
 
