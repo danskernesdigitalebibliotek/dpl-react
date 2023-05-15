@@ -28,7 +28,6 @@ import { UseConfigFunction } from "../../core/utils/config";
 import {
   getAvailabilityV3,
   getHoldingsV3,
-  useGetAvailabilityV3,
   useGetHoldingsV3
 } from "../../core/fbs/fbs";
 
@@ -412,14 +411,16 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   !isArticle(manifestations);
 
 // Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
-export const getBlacklistedArgs = (
+export const getBlacklistedQueryArgs = (
   faustIds: FaustId[],
   config: UseConfigFunction,
-  blacklist:
-    | "blacklistedAvailabilityBranchesConfig"
-    | "blacklistedPickupBranchesConfig"
+  blacklist: "availability" | "pickup"
 ) => {
-  const blacklistBranches = config(blacklist, {
+  const configKey =
+    blacklist === "availability"
+      ? "blacklistedAvailabilityBranchesConfig"
+      : "blacklistedPickupBranchesConfig";
+  const blacklistBranches = config(configKey, {
     transformer: "stringToArray"
   });
   return {
@@ -435,13 +436,7 @@ export const getAvailability = async ({
   faustIds: FaustId[];
   config: UseConfigFunction;
 }) =>
-  getAvailabilityV3(
-    getBlacklistedArgs(
-      faustIds,
-      config,
-      "blacklistedAvailabilityBranchesConfig"
-    )
-  );
+  getAvailabilityV3(getBlacklistedQueryArgs(faustIds, config, "availability"));
 
 export const useGetHoldings = ({
   faustIds,
@@ -455,7 +450,7 @@ export const useGetHoldings = ({
   };
 }) => {
   const { data, isLoading, isError } = useGetHoldingsV3(
-    getBlacklistedArgs(faustIds, config, "blacklistedPickupBranchesConfig"),
+    getBlacklistedQueryArgs(faustIds, config, "pickup"),
     options
   );
   return { data, isLoading, isError };
