@@ -3,9 +3,9 @@ import { FC } from "react";
 import { partition } from "lodash";
 import {
   isAnyManifestationAvailableOnBranch,
-  totalBranchesHaveMaterial
+  totalBranchesHaveMaterial,
+  useGetHoldings
 } from "../../apps/material/helper";
-import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   constructModalId,
   convertPostIdToFaustId,
@@ -46,17 +46,14 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   setSelectedPeriodical
 }) => {
   const config = useConfig();
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
     convertPostIdToFaustId(manifestationPid)
   );
-  const { data, isLoading } = useGetHoldingsV3({
-    recordid: faustIdArray,
-    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+  const { data, isLoading } = useGetHoldings({
+    faustIds: faustIdArray,
+    config
   });
   const author = creatorsToString(flattenCreators(authors), t);
   const title = workTitles.join(", ");

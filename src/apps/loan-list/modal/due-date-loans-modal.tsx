@@ -58,16 +58,16 @@ const DueDateLoansModal: FC<DueDateLoansModalProps> = ({
               )}
               <div>
                 {customHeader && (
-                  <h1 className="modal-loan__title text-header-h2">
+                  <h2 className="modal-loan__title text-header-h2">
                     {customHeader}
-                  </h1>
+                  </h2>
                 )}
                 {!customHeader && (
-                  <h1 className="modal-loan__title text-header-h2">
+                  <h2 className="modal-loan__title text-header-h2">
                     {t("groupModalDueDateHeaderText", {
                       placeholders: { "@date": formatDate(dueDate) }
                     })}
-                  </h1>
+                  </h2>
                 )}
                 <div className="text-body-large">
                   {t("groupModalReturnLibraryText")}

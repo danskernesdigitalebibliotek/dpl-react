@@ -51,7 +51,7 @@ const ReadyToLoanItem: FC<ReadyToLoanItemProps & MaterialProps> = ({
         </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
-            <div className="status-label status-label--outline ">
+            <div className="status-label status-label--outline">
               {materialType}
             </div>
           </div>
