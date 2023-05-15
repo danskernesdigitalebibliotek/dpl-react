@@ -78,6 +78,7 @@ const SearchHeader: React.FC = () => {
       setSuggestItems(arrayOfResults);
     }
   }, [data]);
+
   const originalData = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
@@ -92,8 +93,9 @@ const SearchHeader: React.FC = () => {
 
     originalData.forEach((item: Suggestion) => {
       if (
-        item.type === SuggestionType.Composit ||
-        item.type === SuggestionType.Title
+        (item.type === SuggestionType.Composit ||
+          item.type === SuggestionType.Title) &&
+        item.work
       ) {
         if (materialData.length < 3) {
           materialData.push(item);
