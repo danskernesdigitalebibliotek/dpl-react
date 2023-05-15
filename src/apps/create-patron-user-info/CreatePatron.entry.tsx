@@ -9,9 +9,9 @@ interface CreatePatronConfigProps {
   pincodeLengthMaxConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
-  loginUrlConfig: string;
 }
 interface CreatePatronUrlProps {
+  loginUrl: string;
   redirectOnUserCreatedUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
