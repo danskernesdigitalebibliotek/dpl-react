@@ -8,9 +8,9 @@ interface CreatePatronProps {
 
 const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
   const [cpr, setCpr] = useState<string | null>(null);
-  const { loginUrlConfig } = useUrls();
+  const { loginUrl } = useUrls();
 
-  fetch(String(loginUrlConfig), {
+  fetch(String(loginUrl), {
     method: "get",
     headers: { Authorization: `Bearer ${userToken}` }
   })
