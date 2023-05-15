@@ -86,9 +86,9 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
       )}
     >
       <div className="modal-pause__container">
-        <h1 className="text-header-h3">
+        <h2 className="text-header-h3">
           {t("pauseReservationModalHeaderText")}
-        </h1>
+        </h2>
         <div className="mt-48 color-secondary-gray">
           <p className="text-body-medium-regular mb-32">
             {t("pauseReservationModalBodyText")}

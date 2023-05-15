@@ -4,6 +4,7 @@ import {
   Relations,
   WorkMediumFragment
 } from "../../dbc-gateway/generated/graphql";
+import { PatronV5 } from "../../fbs/model";
 import { Pid, WorkId } from "./ids";
 
 export type Manifestation = Omit<ManifestationsSimpleFieldsFragment, "pid"> & {
@@ -39,3 +40,5 @@ export type Work = Omit<
     hasAdaptation: Relations["hasAdaptation"];
   };
 };
+
+export type Patron = PatronV5;

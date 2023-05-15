@@ -42,19 +42,21 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         data-cy={dataCy}
         lang={isoLang}
       >
-        {/* eslint-enable react/jsx-props-no-spreading */}
-        {item.type === SuggestionType.Creator
-          ? `${item.term} (${t("stringSuggestionAuthorText")})`
-          : null}
-        {item.type === SuggestionType.Subject
-          ? `${item.term} (${t("stringSuggestionTopicText")})`
-          : null}
-        {item.type === SuggestionType.Composit
-          ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
-          : null}
-        {item.type === SuggestionType.Title
-          ? `${item.term} (${t("stringSuggestionWorkText")})`
-          : null}
+        <p className="autosuggest__text text-body-medium-regular">
+          {/* eslint-enable react/jsx-props-no-spreading */}
+          {item.type === SuggestionType.Creator
+            ? `${item.term} (${t("stringSuggestionAuthorText")})`
+            : null}
+          {item.type === SuggestionType.Subject
+            ? `${item.term} (${t("stringSuggestionTopicText")})`
+            : null}
+          {item.type === SuggestionType.Composit
+            ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
+            : null}
+          {item.type === SuggestionType.Title
+            ? `${item.term} (${t("stringSuggestionWorkText")})`
+            : null}
+        </p>
       </li>
     </>
   );

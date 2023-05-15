@@ -2,12 +2,13 @@ import * as React from "react";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 export interface SearchHeaderTextProps {
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   searchHeaderIconAltText?: string;
-  searchHeaderInputLabel?: string;
+  searchHeaderInputLabelText?: string;
   inputPlaceholderText?: string;
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;
@@ -24,14 +25,9 @@ export interface SearchHeaderTextProps {
   loadingText: string;
 }
 
-export interface SearchHeaderUrlProps {
-  searchUrl?: string;
-  materialUrl?: string;
-}
-
 export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
-    SearchHeaderUrlProps {}
+    GlobalUrlEntryPropsInterface {}
 
 const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
   return <SearchHeader />;

@@ -4,14 +4,9 @@ import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import IntermedateList from "./intermediate-list";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 export interface IntermedateListEntryConfigProps {
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
   thresholdConfig: string;
 }
 
@@ -52,7 +47,8 @@ export interface IntermedateListProps {
 const IntermedateListEntry: FC<
   IntermedateListProps &
     BlockedPatronEntryTextProps &
-    IntermedateListEntryConfigProps
+    IntermedateListEntryConfigProps &
+    GlobalUrlEntryPropsInterface
 > = () => <IntermedateList />;
 
 export default withUrls(withText(withIsPatronBlockedHoc(IntermedateListEntry)));

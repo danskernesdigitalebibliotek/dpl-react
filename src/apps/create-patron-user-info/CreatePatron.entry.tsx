@@ -11,6 +11,7 @@ interface CreatePatronConfigProps {
   branchesConfig: string;
 }
 interface CreatePatronUrlProps {
+  loginUrl: string;
   redirectOnUserCreatedUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;

@@ -15,6 +15,7 @@ export type CoverProps = {
   url?: URL;
   idType?: GetCoverCollectionType;
   shadow?: boolean;
+  linkAriaLabelledBy?: string;
 };
 
 export const Cover = ({
@@ -25,7 +26,8 @@ export const Cover = ({
   tint,
   id,
   idType,
-  shadow
+  shadow,
+  linkAriaLabelledBy
 }: CoverProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
   const handleSetImageLoaded = useCallback(() => {
@@ -68,16 +70,18 @@ export const Cover = ({
     )
   };
 
-  if (url && description) {
-    // Images inside links must have an non-empty alt text to meet accessibility requirements.
-    // Only render the cover as a link if we have both an url and a description.
+  if (url) {
     return (
-      <LinkNoStyle className={classes.wrapper} url={url}>
+      <LinkNoStyle
+        className={classes.wrapper}
+        url={url}
+        ariaLabelledBy={linkAriaLabelledBy}
+      >
         {coverSrc && (
           <CoverImage
             setImageLoaded={handleSetImageLoaded}
             src={coverSrc}
-            description={description}
+            altText={description}
             animate={animate}
             shadow={shadow}
           />
@@ -92,7 +96,7 @@ export const Cover = ({
         <CoverImage
           setImageLoaded={handleSetImageLoaded}
           src={coverSrc}
-          description={description}
+          altText={description}
           animate={animate}
           shadow={shadow}
         />
