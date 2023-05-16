@@ -17,6 +17,7 @@ interface Props {
 
 const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   const materialType = head(getMaterialTypes(manifestations));
+  const isbns = getAllIdentifiers(manifestations);
 
   if (hasCorrectAccessType(AccessTypeCode.Physical, manifestations)) {
     const pids = getAllPids(manifestations);
@@ -25,12 +26,12 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
 
   if (
     hasCorrectAccessType(AccessTypeCode.Online, manifestations) &&
-    getAllIdentifiers(manifestations).length > 0 &&
+    isbns.length > 0 &&
     materialType
   ) {
     return (
       <MaterialAvailabilityTextOnline
-        isbns={getAllIdentifiers(manifestations)}
+        isbns={isbns}
         materialType={materialType}
       />
     );
