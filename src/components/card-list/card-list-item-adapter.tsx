@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useGetFavoriteMaterialManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { useGetSmallWorkQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import CardListItem from "./card-list-item";
 import { Pid } from "../../core/utils/types/ids";
@@ -9,7 +9,7 @@ export interface CardListItemAdapterProps {
 }
 
 const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ pid }) => {
-  const { data } = useGetFavoriteMaterialManifestationQuery({
+  const { data } = useGetSmallWorkQuery({
     id: pid
   });
   return (

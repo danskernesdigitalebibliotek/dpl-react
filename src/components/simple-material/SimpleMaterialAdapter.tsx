@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useGetFavoriteMaterialManifestationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { useGetSmallWorkQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import { Pid, GuardedAppId } from "../../core/utils/types/ids";
 import SimpleMaterial from "./SimpleMaterial";
@@ -15,7 +15,7 @@ const SimpleMaterialAdapter: FC<SimpleMaterialAdapterProps> = ({
   app,
   bright
 }) => {
-  const { data } = useGetFavoriteMaterialManifestationQuery({
+  const { data } = useGetSmallWorkQuery({
     id: pid
   });
   return (

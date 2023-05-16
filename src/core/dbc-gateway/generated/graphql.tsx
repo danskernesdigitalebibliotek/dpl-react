@@ -750,13 +750,15 @@ export enum NoteType {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
+  Frequency = "FREQUENCY",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
   OccasionForPublication = "OCCASION_FOR_PUBLICATION",
   OriginalTitle = "ORIGINAL_TITLE",
   OriginalVersion = "ORIGINAL_VERSION",
   References = "REFERENCES",
-  RestrictionsOnUse = "RESTRICTIONS_ON_USE"
+  RestrictionsOnUse = "RESTRICTIONS_ON_USE",
+  TypeOfScore = "TYPE_OF_SCORE"
 }
 
 export type NumberInSeries = {
@@ -1365,11 +1367,11 @@ export type LocalSuggestResponse = {
   result: Array<Suggestion>;
 };
 
-export type GetFavoriteMaterialManifestationQueryVariables = Exact<{
+export type GetSmallWorkQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
 
-export type GetFavoriteMaterialManifestationQuery = {
+export type GetSmallWorkQuery = {
   __typename?: "Query";
   work?: {
     __typename?: "Work";
@@ -1431,10 +1433,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1488,6 +1486,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       }>;
       latest: {
@@ -1511,10 +1517,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1568,6 +1570,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
       bestRepresentation: {
@@ -1591,10 +1601,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1648,6 +1654,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
     };
@@ -4141,30 +4155,26 @@ export const WorkMediumFragmentDoc = `
   }
 }
     ${WorkSmallFragmentDoc}`;
-export const GetFavoriteMaterialManifestationDocument = `
-    query getFavoriteMaterialManifestation($id: String!) {
+export const GetSmallWorkDocument = `
+    query getSmallWork($id: String!) {
   work(id: $id) {
     ...WorkSmall
   }
 }
     ${WorkSmallFragmentDoc}`;
-export const useGetFavoriteMaterialManifestationQuery = <
-  TData = GetFavoriteMaterialManifestationQuery,
+export const useGetSmallWorkQuery = <
+  TData = GetSmallWorkQuery,
   TError = unknown
 >(
-  variables: GetFavoriteMaterialManifestationQueryVariables,
-  options?: UseQueryOptions<
-    GetFavoriteMaterialManifestationQuery,
-    TError,
-    TData
-  >
+  variables: GetSmallWorkQueryVariables,
+  options?: UseQueryOptions<GetSmallWorkQuery, TError, TData>
 ) =>
-  useQuery<GetFavoriteMaterialManifestationQuery, TError, TData>(
-    ["getFavoriteMaterialManifestation", variables],
-    fetcher<
-      GetFavoriteMaterialManifestationQuery,
-      GetFavoriteMaterialManifestationQueryVariables
-    >(GetFavoriteMaterialManifestationDocument, variables),
+  useQuery<GetSmallWorkQuery, TError, TData>(
+    ["getSmallWork", variables],
+    fetcher<GetSmallWorkQuery, GetSmallWorkQueryVariables>(
+      GetSmallWorkDocument,
+      variables
+    ),
     options
   );
 export const GetManifestationViaMaterialByFaustDocument = `
