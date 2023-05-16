@@ -9,12 +9,12 @@ import { getModalIds } from "../../../core/utils/helpers/general";
 const MenuNotLoggedInContent: FC = () => {
   const t = useText();
   const { menuLoginUrl, menuSignUpUrl } = useUrls();
-  const { userMenuAnonymous } = getModalIds();
+  const { userMenuAnonymous: userMenuAnonymousModalId } = getModalIds();
 
   return (
     <Modal
       classNames="modal-right modal--no-padding"
-      modalId={`${userMenuAnonymous}`}
+      modalId={userMenuAnonymousModalId as string}
       closeModalAriaLabelText={t("menuNotAuthenticatedCloseButtonText")}
       screenReaderModalDescriptionText={t(
         "menuNotAuthenticatedModalDescriptionText"

@@ -10,14 +10,18 @@ import { getModalIds } from "../../core/utils/helpers/general";
 const Menu: FC = () => {
   const { open } = useModalButtonHandler();
   const t = useText();
-  const { userMenuAuthenticated, userMenuAnonymous } = getModalIds();
+  const {
+    userMenuAuthenticated: userMenuAuthenticatedModalId,
+    userMenuAnonymous: userMenuAnonymousModalId
+  } = getModalIds();
 
   const openMenu = () => {
     if (isAnonymous()) {
-      open(`${userMenuAnonymous}`);
-    } else {
-      open(`${userMenuAuthenticated}`);
+      open(userMenuAnonymousModalId as string);
+      return;
     }
+
+    open(userMenuAuthenticatedModalId as string);
   };
 
   /*

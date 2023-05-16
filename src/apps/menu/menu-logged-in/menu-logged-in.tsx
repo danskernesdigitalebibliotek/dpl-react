@@ -39,7 +39,7 @@ interface MenuNavigationDataType {
 }
 
 const MenuLoggedIn: FC = () => {
-  const { userMenuAuthenticated } = getModalIds();
+  const { userMenuAuthenticated: userMenuAuthenticatedModalId } = getModalIds();
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
@@ -129,7 +129,7 @@ const MenuLoggedIn: FC = () => {
   }, [fbsFees]);
   return (
     <Modal
-      modalId={`${userMenuAuthenticated}`}
+      modalId={userMenuAuthenticatedModalId as string}
       classNames="modal-right modal--no-padding"
       closeModalAriaLabelText={t("menuAuthenticatedCloseButtonText")}
       screenReaderModalDescriptionText={t(
