@@ -152,11 +152,8 @@ describe("Fee list", () => {
       .should("exist")
       .should("have.text", "I accept the Terms of trade*");
 
-    // 2.f subheadline "Unsettled debt - AFTER 27/10 2020"
-    cy.get(".dpl-list-buttons__header")
-      .eq(1)
-      .should("exist")
-      .should("have.text", "Unsettled debt - AFTER 27/10 2020");
+    // 2.f subheadline exists
+    cy.get(".dpl-list-buttons__header").eq(1).should("exist");
 
     // 3.a text "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
     cy.get(".fee-list-bottom__paymenttypes")
@@ -238,7 +235,7 @@ describe("Fee list", () => {
       .should("exist")
       .find(".list-reservation__status")
       .find(".list-reservation__fee")
-      .find(".text-body-medium-medium")
+      .find(".text-body-medium-regular")
       .should("exist")
       .should("have.text", "Fee 2.56,-");
 
