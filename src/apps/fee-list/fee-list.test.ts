@@ -116,7 +116,7 @@ describe("Fee list", () => {
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
     cy.get(".fee-list-page")
-      .find("[data-cy='fee-list-headline]")
+      .getBySel("fee-list-headline")
       .should("exist")
       .should("have.text", "Fees & Replacement costs");
 
