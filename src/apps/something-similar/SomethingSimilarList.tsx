@@ -85,12 +85,12 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
         {recommendView &&
           somethingSimilar &&
           somethingSimilar.map((work) => (
-            <SimpleMaterial appTag="something-similar" bright work={work} />
+            <SimpleMaterial app="something-similar" bright work={work} />
           ))}
         {!recommendView &&
           authorMaterials &&
           authorMaterials.map((work) => (
-            <SimpleMaterial appTag="something-similar" bright work={work} />
+            <SimpleMaterial app="something-similar" bright work={work} />
           ))}
       </ul>
     </>

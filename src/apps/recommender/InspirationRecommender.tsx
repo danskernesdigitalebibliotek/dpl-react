@@ -42,7 +42,7 @@ const InspirationRecommender: FC = () => {
         {recommendedMaterials &&
           recommendedMaterials.search.works.map((work) => (
             <RecommendMaterial
-              appTag="inspiration-recommender"
+              app="inspiration-recommender"
               work={work as Work}
             />
           ))}

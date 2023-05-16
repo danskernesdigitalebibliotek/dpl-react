@@ -6,13 +6,13 @@ import SimpleMaterial from "./SimpleMaterial";
 
 export interface SimpleMaterialAdapterProps {
   pid: Pid;
-  appTag: GuardedAppId;
+  app: GuardedAppId;
   bright?: boolean;
 }
 
 const SimpleMaterialAdapter: FC<SimpleMaterialAdapterProps> = ({
   pid,
-  appTag,
+  app,
   bright
 }) => {
   const { data } = useGetFavoriteMaterialManifestationQuery({
@@ -24,7 +24,7 @@ const SimpleMaterialAdapter: FC<SimpleMaterialAdapterProps> = ({
         <SimpleMaterial
           key={data.work?.workId}
           work={data.work as Work}
-          appTag={appTag}
+          app={app}
           bright={bright}
         />
       )}

@@ -51,7 +51,7 @@ const RecommendList: FC<RecommendListProps & MaterialProps> = ({
       <ul className="recommender__triple-grid">
         {recommendedMaterials &&
           recommendedMaterials.recommend.result.map(({ work }) => (
-            <RecommendMaterial work={work as Work} appTag="recommender" />
+            <RecommendMaterial work={work as Work} app="recommender" />
           ))}
       </ul>
     </>

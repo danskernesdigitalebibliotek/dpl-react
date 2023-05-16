@@ -21,7 +21,7 @@ import { GuardedAppId } from "../../core/utils/types/ids";
 export interface SimpleMaterialProps {
   work: Work;
   bright?: boolean;
-  appTag: GuardedAppId;
+  app: GuardedAppId;
 }
 
 const SimpleMaterial: FC<SimpleMaterialProps> = ({
@@ -32,7 +32,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
     workId,
     manifestations: { all: manifestations }
   },
-  appTag
+  app
 }) => {
   const dispatch = useDispatch<TypedDispatch>();
   const { materialUrl } = useUrls();
@@ -59,7 +59,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       guardedRequest({
         type: "addFavorite",
         args: { id },
-        app: appTag
+        app
       })
     );
   };
