@@ -25,6 +25,10 @@ export default {
       defaultValue: "loans expired",
       control: { type: "text" }
     },
+    menuUserIconAriaLabelText: {
+      defaultValue: "Open user menu",
+      control: { type: "text" }
+    },
     menuNotificationLoansExpiredUrl: {
       defaultValue: "/LoansExpired",
       control: { type: "text" }
@@ -39,6 +43,22 @@ export default {
     },
     menuNotificationReadyForPickupText: {
       defaultValue: "reservations ready for pickup",
+      control: { type: "text" }
+    },
+    menuNotAuthenticatedCloseButtonText: {
+      defaultValue: "Close user menu",
+      control: { type: "text" }
+    },
+    menuAuthenticatedCloseButtonText: {
+      defaultValue: "Close user menu",
+      control: { type: "text" }
+    },
+    menuAuthenticatedModalDescriptionText: {
+      defaultValue: "The user modal",
+      control: { type: "text" }
+    },
+    menuNotAuthenticatedModalDescriptionText: {
+      defaultValue: "The user modal, log in or create a user",
       control: { type: "text" }
     },
     menuNotificationReadyForPickupUrl: {
