@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC, FormEvent } from "react";
 import { set } from "lodash";
 import { useQueryClient } from "react-query";
 import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
@@ -94,9 +94,14 @@ const PatronPage: FC = () => {
     }
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    save();
+  };
+
   return (
     <>
-      <form className="dpl-patron-page">
+      <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
         <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
         {patron && <BasicDetailsSection patron={patron} />}
         <div className="patron-page-info">
@@ -115,7 +120,7 @@ const PatronPage: FC = () => {
               patron={patron}
             />
           )}
-          {patron && <PincodeSection changePincode={setPin} required />}
+          {patron && <PincodeSection changePincode={setPin} required={false} />}
           {successPinMessage && (
             <p className="text-body-small-regular mb-8 mt-8">
               {successPinMessage}
@@ -125,8 +130,7 @@ const PatronPage: FC = () => {
           <button
             data-cy="save-user-patron"
             className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-            type="button"
-            onClick={save}
+            type="submit"
           >
             {t("patronPageSaveButtonText")}
           </button>
