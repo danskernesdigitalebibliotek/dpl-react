@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import Link from "../../components/atoms/links/Link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
+import { faustIdModalQueryParam } from "../../core/utils/helpers/modal-helpers";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import { ModalIdsProps, useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
@@ -47,6 +49,18 @@ const IntermedateList: FC = () => {
     },
     [fbsFees, open]
   );
+
+  useEffect(() => {
+    const modalUrlParam = getUrlQueryParam("modal");
+    // If there is a query param with the due date, a modal should be opened
+    if (modalUrlParam) {
+      const faustId = faustIdModalQueryParam(modalUrlParam);
+      if (faustId) {
+        setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
+        openDetailsModalClickEvent(faustId);
+      }
+    }
+  }, [openDetailsModalClickEvent]);
 
   useEffect(() => {
     if (fbsFees) {
