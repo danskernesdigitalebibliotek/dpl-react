@@ -23,6 +23,7 @@ describe("Material", () => {
     cy.getBySel("reservation-modal-parallel").should("be.visible");
   });
 
+  // Todo readd tests
   it.skip("Shouldn't redirect logged in users", () => {
     cy.interceptRest({
       aliasName: "holdings",
