@@ -4,16 +4,10 @@ import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
 import GuardedApp from "../../components/guarded-app";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 export interface RecommenderProps {
   emptyRecommenderSearchConfig: string;
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
-  materialUrl: string;
   recommenderTitleLoansText: string;
   recommenderTitleReservationsText: string;
   materialByAuthorText: string;
@@ -23,7 +17,15 @@ export interface RecommenderProps {
   removeFromFavoritesAriaLabelText: string;
 }
 
-const RecommenderEntry: FC<RecommenderProps> = () => (
+export interface ReccommenderPropsInterface
+  extends GlobalUrlEntryPropsInterface,
+    RecommenderProps {
+  q?: string;
+  pageSizeDesktop?: number;
+  pageSizeMobile?: number;
+}
+
+const RecommenderEntry: FC<ReccommenderPropsInterface> = () => (
   <GuardedApp app="recommender">
     <Recommender />
   </GuardedApp>

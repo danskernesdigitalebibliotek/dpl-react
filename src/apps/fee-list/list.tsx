@@ -51,6 +51,7 @@ const List: FC<ListProps> = ({
           ))}
 
           <TotalPaymentPay
+            hideCheckbox={false}
             prePaymentTypeChange
             total={totalFeePrePaymentChange}
           />
@@ -79,6 +80,7 @@ const List: FC<ListProps> = ({
           })}
           <TotalPaymentPay
             prePaymentTypeChange={false}
+            hideCheckbox
             total={totalFeePostPaymentChange}
           />
         </div>

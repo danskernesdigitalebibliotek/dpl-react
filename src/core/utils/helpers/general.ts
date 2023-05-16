@@ -42,14 +42,6 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const filterCreators = (
-  creators: Work["creators"],
-  filterBy: ["Person" | "Corporation"]
-) =>
-  creators.filter((creator: Work["creators"][0]) => {
-    return creator.__typename && filterBy.includes(creator.__typename);
-  });
-
 export const flattenCreators = (creators: Work["creators"]) =>
   creators.map((creator: Work["creators"][0]) => {
     return creator.display;
@@ -395,7 +387,6 @@ export const getAllFaustIds = (manifestations: Manifestation[]) => {
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
 };
-export const dataIsNotEmpty = (data: unknown[]) => Boolean(data.length);
 // Loans with more than warning-threshold days until due
 export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
@@ -403,6 +394,36 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
     const daysUntilExpiration = daysBetweenTodayAndDate(due);
     return daysUntilExpiration - warning > 0;
   });
+};
+
+function getDateFromCpr(cprInput: string) {
+  const cpr = cprInput.replace(/[^\d]/g, "");
+  const dateSegments = cpr.substring(0, 6).match(/.{1,2}/g);
+
+  if (dateSegments) {
+    const [day, month, year] = dateSegments;
+    let prefix = "";
+    if (Number(year) < 21) {
+      prefix = "20";
+    } else {
+      prefix = "19";
+    }
+    const yearWithPrefix = Number(`${prefix}${year}`);
+
+    return new Date(
+      Date.UTC(yearWithPrefix, Number(month) - 1, Number(day), 0, 0, 0, 0)
+    );
+  }
+
+  return null;
+}
+
+export const patronAgeValid = (cpr: string, minAge: number) => {
+  const cprDate = getDateFromCpr(cpr);
+  if (cprDate === null) return false;
+
+  const age = dayjs().diff(dayjs(cprDate), "year");
+  return age > minAge;
 };
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
@@ -418,6 +439,9 @@ export const getAuthorNames = (
 ) => {
   const names = creators.map(({ display }) => display);
   let returnContentString = "";
+  if (names.length === 0) {
+    return returnContentString;
+  }
   if (names.length === 1) {
     returnContentString = `${by ? `${by} ` : ""}${names.join(", ")}`;
   } else {
@@ -426,6 +450,14 @@ export const getAuthorNames = (
       .join(", ")} ${and ? `${and} ` : ""}${names.slice(-1)}`;
   }
   return returnContentString;
+};
+export const getPublicationName = (
+  hostPublication: { title: string } | null | undefined
+) => {
+  if (!hostPublication) {
+    return "";
+  }
+  return hostPublication.title;
 };
 
 export const getReviewRelease = (

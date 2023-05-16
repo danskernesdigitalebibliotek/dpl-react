@@ -3,6 +3,7 @@ import Menu from "./menu";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 export interface MenuProps {
   menuViewYourProfileText: string;
@@ -16,12 +17,6 @@ export interface MenuProps {
   menuNotificationReadyForPickupUrl: string;
   menuLogOutText: string;
   menuLogOutUrl: string;
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
   thresholdConfig: string;
   feeListDaysText: string;
   menuLoginText: string;
@@ -30,6 +25,6 @@ export interface MenuProps {
   menuSignUpUrl: string;
 }
 
-const MenuEntry: FC<MenuProps> = () => <Menu />;
+const MenuEntry: FC<MenuProps & GlobalUrlEntryPropsInterface> = () => <Menu />;
 
 export default withUrls(withConfig(withText(MenuEntry)));

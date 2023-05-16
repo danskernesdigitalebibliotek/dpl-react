@@ -5,6 +5,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Filter, FilterItemTerm } from "../../core/filter.slice";
+import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const allFacetFields = [
   FacetField.MainLanguages,
@@ -99,5 +100,38 @@ export function getAllFilterPathsAsString(filterObject: {
   });
   return allFilterPathsAsString;
 }
+
+export const getFacetFieldTranslation = (name: FacetField) => {
+  switch (name) {
+    case FacetField.AccessTypes:
+      return "facetAccessTypesText";
+    case FacetField.CanAlwaysBeLoaned:
+      return "facetCanAlwaysBeLoanedText";
+    case FacetField.ChildrenOrAdults:
+      return "facetChildrenOrAdultsText";
+    case FacetField.Creators:
+      return "facetCreatorsText";
+    case FacetField.FictionNonfiction:
+      return "facetFictionNonfictionText";
+    case FacetField.FictionalCharacters:
+      return "facetFictionalCharactersText";
+    case FacetField.GenreAndForm:
+      return "facetGenreAndFormText";
+    case FacetField.MainLanguages:
+      return "facetMainLanguagesText";
+    case FacetField.MaterialTypes:
+      return "facetMaterialTypesText";
+    case FacetField.MaterialTypesGeneral:
+      return "facetMaterialTypesGeneralText";
+    case FacetField.MaterialTypesSpecific:
+      return "facetMaterialTypesSpecificText";
+    case FacetField.Subjects:
+      return "facetSubjectsText";
+    case FacetField.WorkTypes:
+      return "facetWorkTypesText";
+    default:
+      return invalidSwitchCase<string>(name);
+  }
+};
 
 export default {};

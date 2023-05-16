@@ -10,28 +10,36 @@ import { getIntermediatePaymentModalId } from "../modal/my-payment-overview-moda
 export interface TotalPaymentPayProps {
   prePaymentTypeChange: boolean;
   total: number;
+  hideCheckbox: boolean;
 }
 
 const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   prePaymentTypeChange,
-  total
+  total,
+  hideCheckbox
 }) => {
-  const [check, setCheck] = useState(false);
+  const { availablePaymentTypesUrl, termsOfTradeUrl } = useUrls();
   const t = useText();
-  const { termsOfTradeUrl } = useUrls();
   const { open } = useModalButtonHandler();
+
+  const [check, setCheck] = useState(hideCheckbox);
+  const [showPaymentButton, setShowPaymentButton] = useState(
+    !prePaymentTypeChange && check
+  );
+
   const openIntermediatePaymentModal = () => {
     open(getIntermediatePaymentModalId || "");
   };
+
   const handleAcceptedTerms = () => {
     setCheck(!check);
+    setShowPaymentButton(!prePaymentTypeChange && !check);
   };
-  const showPaymentButton = !prePaymentTypeChange && check;
+
   const paymentButtonClass = clsx(
     ["btn-primary", "btn-small", "arrow__hover--right-small", "mt-16"],
     { "btn-outline": !showPaymentButton, "btn-filled": showPaymentButton }
   );
-  const { availablePaymentTypesUrl } = useUrls();
 
   const checkboxTermsId = `checkbox_terms__${
     (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
@@ -60,19 +68,21 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
         <p className="text-body-small-medium">
           {t("totalText")} {total},-
         </p>
-        <CheckBox
-          id={checkboxTermsId}
-          onChecked={() => handleAcceptedTerms()}
-          label={
-            <>
-              {t("iAcceptText")}{" "}
-              <Link href={termsOfTradeUrl}>
-                {t("termsOfTradeText")}
-                <sup>*</sup>
-              </Link>
-            </>
-          }
-        />
+        {!hideCheckbox && (
+          <CheckBox
+            id={checkboxTermsId}
+            onChecked={() => handleAcceptedTerms()}
+            label={
+              <>
+                {t("iAcceptText")}{" "}
+                <Link href={termsOfTradeUrl}>
+                  {t("termsOfTradeText")}
+                  <sup>*</sup>
+                </Link>
+              </>
+            }
+          />
+        )}
         {(postPaymentChangeNotChecked || prePaymentTypeChange) && (
           <button
             type="button"

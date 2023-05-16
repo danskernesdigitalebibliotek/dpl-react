@@ -30,9 +30,9 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
           <>
             <div className="modal-loan__header">
               <div>
-                <h1 className="modal-loan__title text-header-h2">
+                <h2 className="modal-loan__title text-header-h2">
                   {t("groupModalHeaderText")}
-                </h1>
+                </h2>
               </div>
             </div>
             <RenewLoansModalContent

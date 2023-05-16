@@ -4,14 +4,9 @@ import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import FeeList from "./FeeList";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
-export interface FeeListEntryConfigProps {
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
+export interface IntermedateListEntryConfigProps {
   thresholdConfig: string;
 }
 
@@ -50,7 +45,10 @@ export interface FeeListProps {
 }
 
 const FeeListEntry: FC<
-  FeeListProps & BlockedPatronEntryTextProps & FeeListEntryConfigProps
+  FeeListProps &
+    BlockedPatronEntryTextProps &
+    IntermedateListEntryConfigProps &
+    GlobalUrlEntryPropsInterface
 > = () => <FeeList />;
 
 export default withUrls(withText(withIsPatronBlockedHoc(FeeListEntry)));

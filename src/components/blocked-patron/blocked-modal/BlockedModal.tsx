@@ -25,9 +25,9 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
       )}
     >
       <div className="modal-text__container">
-        <h1 className="text-header-h3">
+        <h2 className="text-header-h3">
           {t(`blockedPatron${blockedStatus}TitleText`)}
-        </h1>
+        </h2>
         <p className="mt-48 mb-48 text-body-large">
           {t(`blockedPatron${blockedStatus}BodyText`)}
         </p>

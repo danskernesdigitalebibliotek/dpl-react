@@ -3,14 +3,13 @@ import { FC } from "react";
 import { partition } from "lodash";
 import {
   isAnyManifestationAvailableOnBranch,
-  totalBranchesHaveMaterial
+  totalBranchesHaveMaterial,
+  useGetHoldings
 } from "../../apps/material/helper";
-import { useGetHoldingsV3 } from "../../core/fbs/fbs";
 import {
   constructModalId,
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators,
   getAllFaustIds,
   getManifestationsPids
@@ -47,22 +46,16 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   setSelectedPeriodical
 }) => {
   const config = useConfig();
-  const blacklistBranches = config("blacklistedPickupBranchesConfig", {
-    transformer: "stringToArray"
-  });
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
     convertPostIdToFaustId(manifestationPid)
   );
-  const { data, isLoading } = useGetHoldingsV3({
-    recordid: faustIdArray,
-    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+  const { data, isLoading } = useGetHoldings({
+    faustIds: faustIdArray,
+    config
   });
-  const author = creatorsToString(
-    flattenCreators(filterCreators(authors, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(authors), t);
   const title = workTitles.join(", ");
   // If this modal is for all manifestations per material type, use all manifestations'
   // faust ids to create the modal id.

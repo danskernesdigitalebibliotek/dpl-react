@@ -5,7 +5,7 @@ const MaterialSkeleton: React.FC = () => {
     <section className="material-page ssc">
       <header className="material-header">
         <div className="material-header__cover">
-          <div className="ssc-square cover--size-xlarge" />
+          <div className="ssc-square cover cover--size-xlarge cover--aspect-xlarge" />
         </div>
         <div className="material-header__content">
           <div>

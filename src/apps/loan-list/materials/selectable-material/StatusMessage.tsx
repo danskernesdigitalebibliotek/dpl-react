@@ -5,9 +5,10 @@ import { LoanType } from "../../../../core/utils/types/loan-type";
 
 interface StatusMessageProps {
   loan: LoanType;
+  className: string;
 }
 
-const StatusMessage: FC<StatusMessageProps> = ({ loan }) => {
+const StatusMessage: FC<StatusMessageProps> = ({ loan, className }) => {
   const t = useText();
   const { loanType, renewalStatusList } = loan;
 
@@ -15,10 +16,10 @@ const StatusMessage: FC<StatusMessageProps> = ({ loan }) => {
     <>
       {renewalStatusList &&
         renewalStatusList.map((text) => (
-          <span className="text-small-caption">{getStatusText(text, t)}</span>
+          <span className={className}>{getStatusText(text, t)}</span>
         ))}
       {loanType === "interLibraryLoan" && (
-        <span className="text-small-caption">
+        <span className={className}>
           {t("groupModalRenewLoanDeniedInterLibraryLoanText")}
         </span>
       )}

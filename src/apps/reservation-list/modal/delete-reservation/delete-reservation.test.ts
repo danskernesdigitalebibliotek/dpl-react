@@ -106,7 +106,7 @@ describe("Delete reservation modal test", () => {
 
     // ID 14 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
-      .find("h1")
+      .find("h2")
       .should("have.text", "Cancel reservations");
 
     // ID 14 1.b. text "Do you want to cancel your reservation?"
@@ -199,7 +199,7 @@ describe("Delete reservation modal test", () => {
 
     // ID 18 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
-      .find("h1")
+      .find("h2")
       .should("have.text", "Cancel reservations");
 
     // ID 18 1.b. text "Do you want to cancel your reservation?"

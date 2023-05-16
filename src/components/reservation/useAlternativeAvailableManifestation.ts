@@ -4,10 +4,11 @@ import {
   getAllFaustIds,
   convertPostIdToFaustId
 } from "../../core/utils/helpers/general";
-import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
 import { AvailabilityV3 } from "../../core/fbs/model";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { Pid } from "../../core/utils/types/ids";
+import { useConfig } from "../../core/utils/config";
+import useGetAvailability from "../../core/utils/useGetAvailability";
 
 type ManifestationWithAvailability = Manifestation & AvailabilityV3;
 
@@ -15,15 +16,16 @@ const useAlternativeAvailableManifestation = (
   work: Work,
   currentManifestationPids: Pid[]
 ) => {
+  const config = useConfig();
   const [isOtherManifestationPreferred, setIsOtherManifestationPreferred] =
     useState(false);
   const [otherManifestationPreferred, setOtherManifestationPreferred] =
     useState<ManifestationWithAvailability | null>(null);
 
   const faustIds = getAllFaustIds(work.manifestations.all);
-
-  const { data: availabilityData } = useGetAvailabilityV3({
-    recordid: faustIds
+  const { data: availabilityData } = useGetAvailability({
+    faustIds,
+    config
   });
 
   useDeepCompareEffect(() => {
