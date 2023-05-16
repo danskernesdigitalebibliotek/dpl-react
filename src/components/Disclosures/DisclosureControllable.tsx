@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { FC, ReactNode, useCallback, useState } from "react";
 
 export interface DisclosureControllableProps {
@@ -42,7 +43,7 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   const disclosureId = `disclosure-${id}`;
 
   return (
-    <div className={`disclosure text-body-large ${className}`}>
+    <div className={clsx("disclosure text-body-large", className)}>
       <div
         data-cy={cyData}
         onClick={handleClick}

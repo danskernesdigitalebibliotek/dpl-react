@@ -1,4 +1,5 @@
 import React, { FC, ReactElement, ReactNode } from "react";
+import clsx from "clsx";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { DisclosureSummaryProps } from "./DisclosureSummary";
 
@@ -25,7 +26,7 @@ const Disclosure: FC<DisclosureProps> = ({
 
   return (
     <details
-      className={`disclosure text-body-large ${className}`}
+      className={clsx("disclosure text-body-large", className)}
       open={open}
       data-cy={dataCy}
     >
