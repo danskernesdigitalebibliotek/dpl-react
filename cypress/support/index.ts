@@ -23,6 +23,14 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
 });
 
+Cypress.Commands.add("createFakeLibrarySession", () => {
+  // Since the user token is shared in storybook by setting it in sessionStorage
+  // we can use that and fake that we have a inlogged user session
+  // by using the same principle.
+  // See userToken handling in .storybbok/preview.js.
+  window.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
+});
+
 /**
  * interceptGraphql is used to make a graphQLrequest that returns fixture data
  *
@@ -113,6 +121,7 @@ declare global {
        * Pretend that a user is logged in.
        * @example cy.createFakeAuthenticatedSession()
        */
+      createFakeLibrarySession(): void;
       createFakeAuthenticatedSession(): void;
       createFakeLibrarySession(): void;
       interceptGraphql(prams: InterceptGraphqlParams): void;

@@ -1,9 +1,11 @@
-import { compact, groupBy, uniqBy, uniq } from "lodash";
+import { compact, groupBy, uniqBy, uniq, head } from "lodash";
+import { UseQueryOptions } from "react-query";
 import {
   constructModalId,
   getMaterialTypes,
   getManifestationType,
-  orderManifestationsByYear
+  orderManifestationsByYear,
+  flattenCreators
 } from "../../core/utils/helpers/general";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
@@ -23,6 +25,12 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
+import { UseConfigFunction } from "../../core/utils/config";
+import {
+  getAvailabilityV3,
+  getHoldingsV3,
+  useGetHoldingsV3
+} from "../../core/fbs/fbs";
 
 export const getWorkManifestation = (
   work: Work,
@@ -114,12 +122,29 @@ export const getManifestationLanguages = (manifestation: Manifestation) => {
   );
 };
 
-export const getManifestationFirstEditionYear = (
-  manifestation: Manifestation
+export const getManifestationLanguageIsoCode = (
+  manifestations: Pick<Manifestation, "languages">[]
 ) => {
-  return manifestation.workYear?.year
-    ? String(manifestation.workYear.year)
-    : "";
+  const mainLanguages = manifestations
+    .map(({ languages }) => languages)
+    .flatMap((language) => language?.main);
+
+  const uniqueLanguagesWithIsoCode = uniqBy(mainLanguages, "isoCode");
+
+  // We only want to set the lang attribute if there is only one isoCode
+  const uniqIsoCode =
+    uniqueLanguagesWithIsoCode.length === 1 &&
+    head(uniqueLanguagesWithIsoCode)?.isoCode;
+
+  if (uniqIsoCode) {
+    return uniqIsoCode;
+  }
+  // if there is no isoCode it return undefined so that the lang attribute is not set
+  return undefined;
+};
+
+export const getWorkFirstEditionYear = (work: Work) => {
+  return work.workYear?.year ? String(work.workYear.year) : "";
 };
 
 export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
@@ -134,6 +159,10 @@ export const getManifestationContributors = (manifestation: Manifestation) => {
   );
 };
 
+export const getManifestationAuthors = (manifestation: Manifestation) => {
+  return flattenCreators(manifestation.creators).join(", ") ?? "";
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
@@ -143,6 +172,7 @@ export const getDetailsListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
+  const workFirstEditionYear = getWorkFirstEditionYear(work);
   const fallBackManifestation = getWorkManifestation(
     work,
     "bestRepresentation"
@@ -188,10 +218,7 @@ export const getDetailsListData = ({
     },
     {
       label: t("detailsListFirstEditionYearText"),
-      value:
-        getManifestationFirstEditionYear(
-          manifestation ?? fallBackManifestation
-        ) ?? t("detailsListFirstEditionYearUnknownText"),
+      value: workFirstEditionYear,
       type: "standard"
     },
     {
@@ -381,3 +408,49 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
+
+// Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
+export const getBlacklistedQueryArgs = (
+  faustIds: FaustId[],
+  config: UseConfigFunction,
+  blacklist: "availability" | "pickup"
+) => {
+  const configKey =
+    blacklist === "availability"
+      ? "blacklistedAvailabilityBranchesConfig"
+      : "blacklistedPickupBranchesConfig";
+  const blacklistBranches = config(configKey, {
+    transformer: "stringToArray"
+  });
+  return {
+    recordid: faustIds,
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+  };
+};
+
+export const getAvailability = async ({
+  faustIds,
+  config
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+}) =>
+  getAvailabilityV3(getBlacklistedQueryArgs(faustIds, config, "availability"));
+
+export const useGetHoldings = ({
+  faustIds,
+  config,
+  options
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+  options?: {
+    query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
+  };
+}) => {
+  const { data, isLoading, isError } = useGetHoldingsV3(
+    getBlacklistedQueryArgs(faustIds, config, "pickup"),
+    options
+  );
+  return { data, isLoading, isError };
+};

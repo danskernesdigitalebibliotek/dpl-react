@@ -29,12 +29,14 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
         {branches && (
           <>
             <select
+              required
               id="branches-dropdown"
               onChange={({ target }) => onChange(target.value)}
               className="dropdown__select"
             >
               {selected === "" && (
                 <option
+                  value=""
                   className="dropdown__option"
                   selected={selected === ""}
                   disabled
@@ -44,9 +46,9 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
               )}
               {branches.map(({ branchId, title }) => (
                 <option
+                  value={branchId}
                   selected={selected === branchId}
                   className="dropdown__option"
-                  value={branchId}
                 >
                   {title}
                 </option>

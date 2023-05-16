@@ -26,7 +26,7 @@ export default {
       defaultValue: "search icon",
       control: { type: "text" }
     },
-    searchHeaderInputLabel: {
+    searchHeaderInputLabelText: {
       name: "Search header input label",
       defaultValue: "The main search field.",
       control: { type: "text" }

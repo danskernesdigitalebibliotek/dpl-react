@@ -9,6 +9,7 @@ export interface LinkProps {
   id?: string;
   trackClick?: () => Promise<unknown>;
   dataCy?: string;
+  ariaLabelledBy?: string;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -18,7 +19,8 @@ const Link: React.FC<LinkProps> = ({
   className,
   id,
   trackClick,
-  dataCy
+  dataCy,
+  ariaLabelledBy
 }) => {
   const redirect = (redirectToNewTab: boolean) => {
     if (redirectToNewTab) {
@@ -55,6 +57,7 @@ const Link: React.FC<LinkProps> = ({
       className={className}
       onClick={handleClick}
       onKeyUp={handleKeyUp}
+      aria-labelledby={ariaLabelledBy}
     >
       {children}
     </a>

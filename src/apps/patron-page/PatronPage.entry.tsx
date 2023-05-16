@@ -5,6 +5,7 @@ import { withUrls } from "../../core/utils/url";
 import PatronPage from "./PatronPage";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -13,17 +14,12 @@ interface PatronPageConfigProps {
   pincodeLengthMaxConfig: string;
   pauseReservationStartDateConfig: string;
   textNotificationsEnabledConfig: string;
+  minAgeConfig: string;
 }
 
 export interface PatronPageUrlProps {
   deletePatronUrl: string;
   pauseReservationInfoUrl: string;
-  fbsBaseUrl: string;
-  publizonBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
   alwaysLoanableEreolenUrl: string;
 }
 
@@ -41,12 +37,12 @@ interface PatronPageTextProps {
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
-  patronPageContactInfoHeaderText: string;
-  patronPageContactInfoBodyText: string;
-  patronPageContactPhoneLabelText: string;
-  patronPageContactPhoneCheckboxText: string;
-  patronPageContactEmailLabelText: string;
-  patronPageContactEmailCheckboxText: string;
+  patronContactInfoHeaderText: string;
+  patronContactInfoBodyText: string;
+  patronContactPhoneLabelText: string;
+  patronContactPhoneCheckboxText: string;
+  patronContactEmailLabelText: string;
+  patronContactEmailCheckboxText: string;
   patronPageStatusSectionHeaderText: string;
   patronPageStatusSectionBodyText: string;
   patronPageStatusSectionLinkText: string;
@@ -80,7 +76,8 @@ export interface PatronPageProps
   extends PatronPageConfigProps,
     BlockedPatronEntryTextProps,
     PatronPageTextProps,
-    PatronPageUrlProps {}
+    PatronPageUrlProps,
+    GlobalUrlEntryPropsInterface {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;
 

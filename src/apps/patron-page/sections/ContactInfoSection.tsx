@@ -23,7 +23,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
 
   return (
     <section data-cy="patron-page-contact-info">
-      <h2 className="text-body-small-regular mt-32 mb-16">
+      <h2 className="text-header-h4  mt-32 mb-16">
         {t("patronPageContactInfoHeaderText")}
       </h2>
       <p className="text-body-small-regular mb-32">

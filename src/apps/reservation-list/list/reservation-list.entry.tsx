@@ -6,15 +6,10 @@ import { withConfig } from "../../../core/utils/config";
 import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
+import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-props";
 
 export interface ReservationListUrlProps {
-  fbsBaseUrl: string;
-  dplCmsBaseUrl: string;
-  coverBaseUrl: string;
-  materialBaseUrl: string;
-  fbiBaseUrl: string;
   thresholdConfig: string;
-  publizonBaseUrl: string;
   ereolenMyPageUrl: string;
   pauseReservationInfoUrl: string;
 }
@@ -102,7 +97,8 @@ export interface ReservationListEntryWithPageSizeProps
   extends ReservationListTextProps,
     BlockedPatronEntryTextProps,
     ReservationListConfigProps,
-    ReservationListUrlProps {
+    ReservationListUrlProps,
+    GlobalUrlEntryPropsInterface {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }

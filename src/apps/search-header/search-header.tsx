@@ -302,6 +302,7 @@ const SearchHeader: React.FC = () => {
         <SearchBar
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
+          setQWithoutQuery={setQWithoutQuery}
         />
         <Autosuggest
           textData={textData}

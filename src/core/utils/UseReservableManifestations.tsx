@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { filterManifestationsByType } from "../../apps/material/helper";
-import { getAvailabilityV3 } from "../fbs/fbs";
+import {
+  getAvailability,
+  filterManifestationsByType
+} from "../../apps/material/helper";
 import { convertPostIdToFaustId, getAllFaustIds } from "./helpers/general";
 import { Manifestation } from "./types/entities";
+import { useConfig } from "./config";
 
 const UseReservableManifestations = ({
   manifestations,
@@ -11,6 +14,7 @@ const UseReservableManifestations = ({
   manifestations: Manifestation[];
   type?: string;
 }) => {
+  const config = useConfig();
   const faustIds = getAllFaustIds(manifestations);
 
   const [reservableManifestations, setReservableManifestations] = useState<
@@ -31,9 +35,8 @@ const UseReservableManifestations = ({
 
     const fetchAvailability = async (m: Manifestation[]) => {
       // Fetch availability data.
-      const data = await getAvailabilityV3({
-        recordid: faustIds
-      });
+      const data = await getAvailability({ faustIds, config });
+
       // If we for some reason do not get any data, we return empty arrays.
       if (!data) {
         return { reservable: [], unReservable: [] };
@@ -72,7 +75,8 @@ const UseReservableManifestations = ({
     faustIds,
     type,
     reservableManifestations,
-    unReservableManifestations
+    unReservableManifestations,
+    config
   ]);
 
   return {

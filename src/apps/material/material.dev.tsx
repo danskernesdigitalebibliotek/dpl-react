@@ -30,17 +30,20 @@ export default {
     },
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted Pickup branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
       name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     blacklistedInstantLoanBranchesConfig: {
       name: "Blacklisted Instant Loan branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      defaultValue:
+        "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
       control: { type: "text" }
     },
     branchesConfig: {
@@ -102,6 +105,11 @@ export default {
     numberDescriptionText: {
       name: "Number",
       defaultValue: "Nr.",
+      control: { type: "text" }
+    },
+    subjectNumberText: {
+      name: "Subject number (Emnetal)",
+      defaultValue: "Emnetal",
       control: { type: "text" }
     },
     inSeriesText: {
@@ -214,6 +222,11 @@ export default {
     detailsListEditionText: {
       name: "Edition",
       defaultValue: "Edition",
+      control: { type: "text" }
+    },
+    detailsListAuthorsText: {
+      name: "Authors",
+      defaultValue: "Authors",
       control: { type: "text" }
     },
     editionText: {
@@ -524,6 +537,11 @@ export default {
         "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
+    modalReservationFormPickupLabelText: {
+      name: "Modal reservation form pickup branch input label",
+      defaultValue: "Change pickup location for your reservation.",
+      control: { type: "text" }
+    },
     chooseOneText: {
       name: "Choose one text",
       defaultValue: "Choose one",
@@ -538,6 +556,12 @@ export default {
       name: "Modal reservation form no interest after header description",
       defaultValue:
         "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+      control: { type: "text" }
+    },
+    modalReservationFormNoInterestAfterLabelText: {
+      name: "Modal reservation form no interest after input label",
+      defaultValue:
+        "Change the amount of time after which you're no longer interested in this material.",
       control: { type: "text" }
     },
     infomediaModalScreenReaderModalDescriptionText: {
@@ -710,6 +734,46 @@ export default {
       defaultValue: "Change email",
       control: { type: "text" }
     },
+    screenReaderModalDescriptionInterestPeriodText: {
+      name: "Screen reader modal description for interest period",
+      defaultValue: "Change interest period modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelInterestPeriodText: {
+      name: "Close modal aria-label interest period ",
+      defaultValue: "Close interest period modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionPickupText: {
+      name: "Screen reader modal description for pickup",
+      defaultValue: "Change pickup location modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelPickupText: {
+      name: "Close modal aria-label pickup",
+      defaultValue: "Close pickup location modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionSmsText: {
+      name: "Screen reader modal description for sms",
+      defaultValue: "Change mobile number modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelSmsText: {
+      name: "Close modal aria-label sms",
+      defaultValue: "Close change mobile number modal",
+      control: { type: "text" }
+    },
+    screenReaderModalDescriptionEmailText: {
+      name: "Screen reader modal description for email",
+      defaultValue: "Change email modal",
+      control: { type: "text" }
+    },
+    closeModalAriaLabelEmailText: {
+      name: "Close modal aria-label email",
+      defaultValue: "Close change email modal",
+      control: { type: "text" }
+    },
     instantLoanTitleText: {
       name: "Instant loan title",
       control: { type: "text" },
@@ -730,6 +794,26 @@ export default {
       control: { type: "text" },
       defaultValue:
         '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
+    },
+    interestPeriodOneMonthConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -785,4 +869,9 @@ LangePeter.args = {
 export const InstantLoan = Template.bind({});
 InstantLoan.args = {
   wid: "work-of:870970-basis:134015012"
+};
+
+export const Dinosaurierfedern = Template.bind({});
+Dinosaurierfedern.args = {
+  wid: "work-of:870970-basis:44805421"
 };

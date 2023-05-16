@@ -5,9 +5,11 @@ import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
+import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
+  addToFavoritesAriaLabelText: string;
   alertErrorCloseText: string;
   alertErrorMessageText: string;
   byAuthorText: string;
@@ -15,11 +17,15 @@ interface SearchResultEntryTextProps {
   facetAccessTypesText: string;
   facetBrowserModalCloseModalAriaLabelText: string;
   facetBrowserModalScreenReaderModalDescriptionText: string;
+  facetCanAlwaysBeLoanedText: string;
   facetChildrenOrAdultsText: string;
   facetCreatorsText: string;
+  facetFictionalCharactersText: string;
   facetFictionNonfictionText: string;
   facetGenreAndFormText: string;
   facetMainLanguagesText: string;
+  facetMaterialTypesGeneralText: string;
+  facetMaterialTypesSpecificText: string;
   facetMaterialTypesText: string;
   facetSubjectsText: string;
   facetWorkTypesText: string;
@@ -27,19 +33,12 @@ interface SearchResultEntryTextProps {
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
+  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
+  noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
-}
-
-interface SearchResultEntryUrlProps {
-  searchUrl: string;
-  materialUrl: string;
-  authUrl: string;
-  fbiBaseUrl: string;
 }
 
 interface SearchResultEntryConfigProps {
@@ -50,7 +49,7 @@ interface SearchResultEntryConfigProps {
 }
 
 export interface SearchResultEntryProps
-  extends SearchResultEntryUrlProps,
+  extends GlobalUrlEntryPropsInterface,
     SearchResultEntryConfigProps,
     SearchResultEntryTextProps {
   q?: string;

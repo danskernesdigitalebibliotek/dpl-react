@@ -1,12 +1,10 @@
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { useId, FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -16,10 +14,12 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
   getManifestationAudience,
+  getManifestationAuthors,
   getManifestationContributors,
   getManifestationEdition,
   getManifestationGenreAndForm,
   getManifestationIsbn,
+  getManifestationLanguageIsoCode,
   getManifestationLanguages,
   getManifestationMaterialTypes,
   getManifestationNumberOfPages,
@@ -37,13 +37,13 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation,
   workId
 }) => {
+  const mainfestationTitleId = useId();
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
   const faustId = convertPostIdToFaustId(pid);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const author = creatorsToString(flattenCreators(creators), t);
+
+  const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
   const detailsListData: ListData = [
     {
@@ -95,6 +95,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       label: t("detailsListAudienceText"),
       value: getManifestationAudience(manifestation),
       type: "standard"
+    },
+    {
+      label: t("detailsListAuthorsText"),
+      value: getManifestationAuthors(manifestation),
+      type: "standard"
     }
   ];
 
@@ -115,11 +120,15 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         <Cover id={pid} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h3 className="material-manifestation-item__title text-header-h4">
+        <h3
+          lang={languageIsoCode}
+          id={mainfestationTitleId}
+          className="material-manifestation-item__title text-header-h4"
+        >
           {titles?.main[0]}
         </h3>
         <p className="text-small-caption">
-          {t("materialHeaderAuthorByText")} {creatorsText}
+          {t("materialHeaderAuthorByText")} {author}
           {edition?.publicationYear?.display &&
             ` (${edition.publicationYear.display})`}
         </p>
@@ -157,6 +166,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           manifestations={[manifestation]}
           size="small"
           workId={workId}
+          materialTitleId={mainfestationTitleId}
         />
       </div>
     </div>

@@ -24,12 +24,12 @@ import ReservationError from "./ReservationError";
 import {
   getTotalHoldings,
   getTotalReservations,
-  reservationModalId
+  reservationModalId,
+  useGetHoldings
 } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
   useAddReservationsV2,
-  useGetHoldingsV3,
   useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -101,9 +101,7 @@ export const ReservationModalBody = ({
   const faustIds = convertPostIdsToFaustIds(allPids);
   const { mutate } = useAddReservationsV2();
   const userResponse = useGetPatronInformationByPatronIdV2();
-  const holdingsResponse = useGetHoldingsV3({
-    recordid: faustIds
-  });
+  const holdingsResponse = useGetHoldings({ faustIds, config });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
@@ -162,7 +160,7 @@ export const ReservationModalBody = ({
   };
 
   const reservationSuccess = reservationResponse?.success || false;
-  const reservationResult = reservationResponse?.reservationResults[0]?.result;
+  const reservationResults = reservationResponse?.reservationResults;
   const reservationDetails =
     reservationResponse?.reservationResults[0]?.reservationDetails;
   const manifestation =
@@ -186,7 +184,7 @@ export const ReservationModalBody = ({
 
   return (
     <>
-      {!reservationResult && (
+      {!reservationResults && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
             <Cover id={manifestation.pid} size="medium" animate />
@@ -256,7 +254,7 @@ export const ReservationModalBody = ({
               )}
 
               {instantLoanEnabled &&
-                instantLoanBranchHoldingsAboveThreshold && (
+                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
                   <InstantLoan
                     manifestation={manifestation}
                     instantLoanBranchHoldings={
@@ -281,9 +279,9 @@ export const ReservationModalBody = ({
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}
-      {!reservationSuccess && reservationResult && (
+      {!reservationSuccess && reservationResults && (
         <ReservationError
-          reservationResult={reservationResult}
+          reservationResults={reservationResults}
           setReservationResponse={setReservationResponse}
         />
       )}

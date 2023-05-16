@@ -23,8 +23,21 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
 
   const toggleOpen = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  }, []);
+
+  const handleClick = useCallback(() => {
+    toggleOpen();
+  }, [toggleOpen]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        toggleOpen();
+      }
+    },
+    [toggleOpen]
+  );
 
   const disclosureId = `disclosure-${id}`;
 
@@ -32,8 +45,8 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
     <div className={`disclosure text-body-large ${className}`}>
       <div
         data-cy={cyData}
-        onClick={toggleOpen}
-        onKeyDown={toggleOpen}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
         role="button"
         tabIndex={0}
         aria-controls={disclosureId}
