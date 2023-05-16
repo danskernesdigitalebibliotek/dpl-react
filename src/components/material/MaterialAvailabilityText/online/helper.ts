@@ -23,11 +23,11 @@ export const getAvailabilityText = ({
 
   const { text, count, limit } = map[type];
 
-  if (type === "materialIsIncluded") {
+  if (count === undefined && limit === undefined && text) {
     return t(text);
   }
 
-  if (count !== undefined && limit !== undefined) {
+  if (count !== undefined && limit !== undefined && text !== undefined) {
     return t(text, {
       placeholders: {
         "@count": count,
