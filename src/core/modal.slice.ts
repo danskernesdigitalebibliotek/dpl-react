@@ -27,10 +27,12 @@ const returnFocusElement = () => {
   return element;
 };
 
-const removeModalIdFromUrl = (modalId: ModalId) => {
-  const searchParams = new URLSearchParams(window.location.search);
-  const newSearchParams = searchParams.get("modal")?.replace(modalId, "");
-  searchParams.set("modal", newSearchParams || "");
+const removeModalIdFromUrl = (state: StateProps) => {
+  let newModalParam = "?";
+  if (state.modalIds?.toString() !== "") {
+    newModalParam = `?modal=${state.modalIds.toString()}`;
+  }
+  window.history.pushState("", "", newModalParam);
 };
 
 const modalSlice = createSlice({
@@ -47,10 +49,13 @@ const modalSlice = createSlice({
         state.modalIds.push(action.payload.modalId);
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
-        if (alreadyOpenModals) {
-          searchParams.set(
-            "modal",
-            `${alreadyOpenModals}${action.payload.modalId}`
+        if (alreadyOpenModals !== action.payload.modalId) {
+          window.history.pushState(
+            "",
+            "",
+            `?modal=${alreadyOpenModals === null ? "" : alreadyOpenModals}${
+              action.payload.modalId
+            }`
           );
         }
       }
@@ -61,14 +66,22 @@ const modalSlice = createSlice({
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {
-      state.modalIds.splice(state.modalIds.indexOf(action.payload.modalId), 1);
-      removeModalIdFromUrl(action.payload.modalId);
-      returnFocusElement();
+      const modalId = state.modalIds.pop();
+      if (state.modalIds.indexOf(action.payload.modalId) > -1) {
+        state.modalIds.splice(
+          state.modalIds.indexOf(action.payload.modalId),
+          1
+        );
+      }
+      if (modalId) {
+        removeModalIdFromUrl(state);
+        returnFocusElement();
+      }
     },
     closeLastModal(state: StateProps) {
       const modalId = state.modalIds.pop();
       if (modalId) {
-        removeModalIdFromUrl(modalId);
+        removeModalIdFromUrl(state);
         returnFocusElement();
       }
     }
