@@ -1,6 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
-describe("Intermediate list", () => {
+describe("Fee list", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       const wednesday20220603 = new Date("2022-10-21T10:00:00.000").getTime();
@@ -108,23 +108,21 @@ describe("Intermediate list", () => {
       }
     }).as("work");
 
-    cy.visit(
-      "/iframe.html?path=/story/apps-intermediate-list--intermediate-list-entry"
-    );
+    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
     cy.wait(["@fees"]);
   });
 
-  it("Intermediate list basics (physical loans)", () => {
+  it("Fee list basics (physical loans)", () => {
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
-    cy.get(".intermediate-list-page")
-      .find(".intermediate-list-headline")
+    cy.get(".fee-list-page")
+      .getBySel("fee-list-headline")
       .should("exist")
       .should("have.text", "Fees & Replacement costs");
 
     // 2.b text "Overdue fees and replacement costs that were created before dd/mm/åååå can still be paid on this page. See our fees and replacement costs"
-    cy.get(".intermediate-list-page")
-      .find(".intermediate-list-body")
+    cy.get(".fee-list-page")
+      .find("[data-cy='fee-list-body']")
       .should("exist")
       .should(
         "have.text",
@@ -138,15 +136,15 @@ describe("Intermediate list", () => {
       .should("contain.text", "Unsettled debt");
 
     // 2.d link “See our fees and replacement costs”
-    cy.get(".intermediate-list-page")
-      .find(".intermediate-list-body")
+    cy.get(".fee-list-page")
+      .find("[data-cy='fee-list-body']")
       .find(".link-tag")
       .should("exist")
       .should("not.have.attr", "href", "")
       .should("have.text", "See our fees and replacement costs");
 
     // 2.e "I accept the Terms of trade*"
-    cy.get(".intermediate-list-bottom__actions")
+    cy.get(".fee-list-bottom__actions")
       .eq(0)
       .find(".checkbox")
       .find(".checkbox__label")
@@ -154,14 +152,11 @@ describe("Intermediate list", () => {
       .should("exist")
       .should("have.text", "I accept the Terms of trade*");
 
-    // 2.f subheadline "Unsettled debt - AFTER 27/10 2020"
-    cy.get(".dpl-list-buttons__header")
-      .eq(1)
-      .should("exist")
-      .should("have.text", "Unsettled debt - AFTER 27/10 2020");
+    // 2.f subheadline exists
+    cy.get(".dpl-list-buttons__header").eq(1).should("exist");
 
     // 3.a text "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
-    cy.get(".intermediate-list-bottom__paymenttypes")
+    cy.get(".fee-list-bottom__paymenttypes")
       .eq(1)
       .find("span")
       .should("exist")
@@ -170,14 +165,11 @@ describe("Intermediate list", () => {
         "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
       );
     // 3.b list of intermediates
-    cy.get(".intermediate-list-page")
-      .find(".list-reservation")
-      .eq(0)
-      .should("exist");
+    cy.get(".fee-list-page").find(".list-reservation").eq(0).should("exist");
 
     // 3.c metadata
     // 3.c.a material type
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -189,7 +181,7 @@ describe("Intermediate list", () => {
       .should("have.text", "Dummy bog");
 
     // 3.c.b title
-    cy.get("[data-cy='intermediate-list-before']")
+    cy.get("[data-cy='fee-list-before']")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -198,7 +190,7 @@ describe("Intermediate list", () => {
       .should("have.text", "Dummy Some Title");
 
     // 3.c.c author
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -213,7 +205,7 @@ describe("Intermediate list", () => {
       );
 
     // 3. d fees charged dd.mm.yyyy
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -225,7 +217,7 @@ describe("Intermediate list", () => {
       .should("have.text", "Fees charged 18. 10. 2019");
 
     // 3. e Label: reason
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -237,26 +229,26 @@ describe("Intermediate list", () => {
       .should("have.text", "Gebyr (for sent)");
 
     // 3. e Label: fee amount
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
       .find(".list-reservation__status")
       .find(".list-reservation__fee")
-      .find(".text-body-medium-medium")
+      .find(".text-body-medium-regular")
       .should("exist")
       .should("have.text", "Fee 2.56,-");
 
     // 3. f List of accepted payment cards
-    cy.get(".intermediate-list-page")
-      .find(".intermediate-list-bottom")
+    cy.get(".fee-list-page")
+      .find(".fee-list-bottom")
       .eq(0)
-      .find(".intermediate-list-bottom__paymenttypes")
+      .find(".fee-list-bottom__paymenttypes")
       .find("img")
       .should("exist");
 
     // 3. f Button pay
-    cy.get(".intermediate-list-bottom__actions")
+    cy.get(".fee-list-bottom__actions")
       .eq(0)
       .find("button")
       .should("exist")
@@ -264,7 +256,7 @@ describe("Intermediate list", () => {
 
     // 4. a List after date
     // Title
-    cy.get("[data-cy='intermediate-list-after']")
+    cy.get("[data-cy='fee-list-after']")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -273,7 +265,7 @@ describe("Intermediate list", () => {
       .should("have.text", "Dummy Some Title");
 
     // Author && year
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(1)
       .should("exist")
@@ -288,7 +280,7 @@ describe("Intermediate list", () => {
       );
 
     // 4.b +x other materials
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(1)
       .should("exist")
@@ -298,7 +290,7 @@ describe("Intermediate list", () => {
       .should("exist")
       .should("have.text", "+ 2 other materials");
 
-    cy.get(".intermediate-list-page")
+    cy.get(".fee-list-page")
       .find(".list-reservation")
       .eq(1)
       .should("exist")

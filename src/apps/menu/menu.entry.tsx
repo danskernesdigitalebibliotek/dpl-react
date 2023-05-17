@@ -18,7 +18,7 @@ export interface MenuProps {
   menuLogOutText: string;
   menuLogOutUrl: string;
   thresholdConfig: string;
-  intermediateListDaysText: string;
+  feeListDaysText: string;
   menuLoginText: string;
   menuLoginUrl: string;
   menuSignUpText: string;

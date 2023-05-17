@@ -97,6 +97,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
             <ul className="modal-loan__list-materials">
               {materials.map(({ recordId }) => (
                 <StackableFeesList
+                  key={recordId}
                   faust={`${recordId}` as FaustId}
                   creationDateFormatted={creationDateFormatted}
                 />
