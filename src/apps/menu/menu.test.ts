@@ -295,48 +295,55 @@ describe("Menu (authenticated))", () => {
     // 2.d. Menupunkterne
     // 2.d.i. “Lån” viser det samlede antal lån, og linker til Udlånsoversigten. Engelsk tekst: "Loans"
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:first-of-type")
+      .find(".link-filters__tag-wrapper")
       .find(".link-filters__tag")
+      .eq(0)
       .should("exist")
       .and("have.text", "Loans");
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:first-of-type")
+      .find(".link-filters__tag-wrapper")
+      .eq(0)
       .find(".link-filters__counter")
       .should("exist")
       .and("have.text", "4");
     // 2.d.ii. “Reserveringer” linker til Reserveringsoversigten, og viser det samlede antal reserveringer. Engelsk: "Reservations"
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:nth-of-type(2)")
+      .find(".link-filters__tag-wrapper")
+      .eq(1)
       .find(".link-filters__tag")
       .should("exist")
       .and("have.text", "Reservations");
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:nth-of-type(2)")
+      .find(".link-filters__tag-wrapper")
+      .eq(1)
       .find(".link-filters__counter")
       .should("exist")
       .and("have.text", "2");
     // 2.d.iii. “Huskeliste” linker til Huskelisten, og viser det samlede antal materialer på huskelisten. Engelsk tekst: "My list"
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:nth-of-type(3)")
+      .find(".link-filters__tag-wrapper")
+      .eq(2)
       .find(".link-filters__tag")
       .should("exist")
       .and("have.text", "My list");
     // 2.d.iv. “Gebyrer & Erstatninger” linker til Gebyrer og erstatninger, og viser det samlede antal af gebyrer og erstatninger. Engelsk: "Fees & Replacement costs"
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:nth-of-type(4)")
+      .find(".link-filters__tag-wrapper")
+      .eq(3)
       .find(".link-filters__tag")
       .should("exist")
       .and("have.text", "Fees & Replacement costs");
     cy.get(".modal-profile__links")
-      .find(".link-filters__tag-wrapper:nth-of-type(4)")
+      .find(".link-filters__tag-wrapper")
+      .eq(3)
       .find(".link-filters__counter")
       .should("exist")
       .and("have.text", "2");
     // 2.e. “Log ud” knappen. Engelsk tekst: "Log out"
     cy.get(".modal-profile__btn-logout")
-      .find("button")
+      .find("a")
       .should("exist")
-      .and("have.text", "Log Out");
+      .and("have.text", "Log out");
   });
 });
 
