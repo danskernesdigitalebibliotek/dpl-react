@@ -1,11 +1,8 @@
-import * as React from "react";
-import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
+import React, { FC, useEffect, useState } from "react";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
-import { FC, useEffect, useState } from "react";
 import Link from "../../../components/atoms/links/Link";
 import MenuNavigationList from "../menu-navigation-list/menu-navigation-list";
 import MenuNotification from "../menu-notification/menu-notification";
-import ArrowIcon from "../../../components/atoms/icons/arrow/arrow-white";
 import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
 import {
@@ -23,11 +20,14 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
+  getModalIds,
   getReadyForPickup
 } from "../../../core/utils/helpers/general";
 import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
+import Modal from "../../../core/utils/modal";
+import { Button } from "../../../components/Buttons/Button";
 
 export interface MenuLoggedInProps {
   closePatronMenu: () => void;
@@ -38,7 +38,8 @@ interface MenuNavigationDataType {
   dataId: string;
 }
 
-const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
+const MenuLoggedIn: FC = () => {
+  const { userMenuAuthenticated: userMenuAuthenticatedModalId } = getModalIds();
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
@@ -51,6 +52,7 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
+
   // Get menu navigation data from config.
   const menuNavigationData = config<MenuNavigationDataType[]>(
     "menuNavigationDataConfig",
@@ -126,88 +128,89 @@ const MenuLoggedIn: FC<MenuLoggedInProps> = ({ closePatronMenu }) => {
     }
   }, [fbsFees]);
   return (
-    <div className="modal modal-show modal-profile modal-right">
-      <div className="modal__screen-reader-description" id="describemodal" />
-      <button
-        type="button"
-        aria-describedby="describemodal"
-        className="btn-ui modal-btn-close"
-        aria-label="close modal"
-        onClick={closePatronMenu}
-      >
-        <img src={CloseIcon} alt="close modal button" />
-      </button>
-      <div className="modal-header">
-        <div className="modal-header__avatar">
-          <div className="avatar bg-global-secondary">
-            <img src={profileIcon} alt="" />
-          </div>
-        </div>
-        <div
-          className="modal-header__name text-header-h4"
-          data-cy="menu-patron-name"
-        >
-          {userData?.patron?.name}
-        </div>
-        <Link
-          href={menuViewYourProfileTextUrl}
-          className="link-tag modal-header__link color-secondary-gray"
-        >
-          {t("menuViewYourProfileText")}
-        </Link>
-      </div>
-      <div className="modal-profile__notifications">
-        {!!loansOverdue && (
-          <MenuNotification
-            notificationNumber={loansOverdue}
-            notificationText={t("menuNotificationLoansExpiredText")}
-            notificationColor="danger"
-            notificationLink={menuNotificationLoansExpiredUrl}
-          />
-        )}
-        {!!loansSoonOverdue && (
-          <MenuNotification
-            notificationNumber={loansSoonOverdue}
-            notificationText={t("menuNotificationLoansExpiringSoonText")}
-            notificationColor="warning"
-            notificationLink={menuNotificationLoansExpiringSoonUrl}
-          />
-        )}
-        {!!reservationsReadyForPickup && (
-          <MenuNotification
-            notificationNumber={reservationsReadyForPickup}
-            notificationText={t("menuNotificationReadyForPickupText")}
-            notificationColor="info"
-            notificationLink={menuNotificationReadyForPickupUrl}
-          />
-        )}
-      </div>
-      <div className="modal-profile__container">
-        <div className="modal-profile__links">
-          <div className="link-filters">
-            <MenuNavigationList
-              menuNavigationData={menuNavigationData}
-              loansCount={loansCount}
-              reservationCount={reservationCount}
-              feeCount={feeCount}
-            />
-          </div>
-        </div>
-        <div className="modal-profile__btn-logout">
-          <Link href={menuLogOutUrl}>
-            <button
-              type="button"
-              className="btn-primary btn-filled btn-medium arrow__hover--right-small undefined"
-            >
-              {t("menuLogOutText")}
-              <div className="ml-16">
-                <ArrowIcon />
+    <Modal
+      modalId={userMenuAuthenticatedModalId as string}
+      classNames="modal-right modal--no-padding"
+      closeModalAriaLabelText={t("menuAuthenticatedCloseButtonText")}
+      screenReaderModalDescriptionText={t(
+        "menuAuthenticatedModalDescriptionText"
+      )}
+      isSlider
+    >
+      <div className="modal-login modal-login--authenticated">
+        <div className="modal-login__container">
+          <div className="modal-header">
+            <div className="modal-header__avatar">
+              <div className="avatar bg-global-secondary">
+                <img src={profileIcon} alt="" />
               </div>
-            </button>
-          </Link>
+            </div>
+            <div
+              className="modal-header__name text-header-h4"
+              data-cy="menu-patron-name"
+            >
+              {userData?.patron?.name}
+            </div>
+            <Link
+              href={menuViewYourProfileTextUrl}
+              className="link-tag modal-header__link color-secondary-gray"
+            >
+              {t("menuViewYourProfileText")}
+            </Link>
+          </div>
+          <div className="modal-profile__notifications">
+            {loansOverdue !== 0 && (
+              <MenuNotification
+                notificationNumber={loansOverdue}
+                notificationText={t("menuNotificationLoansExpiredText")}
+                notificationColor="danger"
+                notificationLink={menuNotificationLoansExpiredUrl}
+              />
+            )}
+            {loansSoonOverdue !== 0 && (
+              <MenuNotification
+                notificationNumber={loansSoonOverdue}
+                notificationText={t("menuNotificationLoansExpiringSoonText")}
+                notificationColor="warning"
+                notificationLink={menuNotificationLoansExpiringSoonUrl}
+              />
+            )}
+            {reservationsReadyForPickup !== 0 && (
+              <MenuNotification
+                notificationNumber={reservationsReadyForPickup}
+                notificationText={t("menuNotificationReadyForPickupText")}
+                notificationColor="info"
+                notificationLink={menuNotificationReadyForPickupUrl}
+              />
+            )}
+          </div>
+          <div className="modal-profile__container">
+            <div className="modal-profile__links">
+              <div className="link-filters">
+                <MenuNavigationList
+                  menuNavigationData={menuNavigationData}
+                  loansCount={loansCount}
+                  reservationCount={reservationCount}
+                  feeCount={feeCount}
+                />
+              </div>
+            </div>
+            <div className="modal-profile__btn-logout">
+              <Link href={menuLogOutUrl}>
+                <Button
+                  label={t("menuLogOutText")}
+                  buttonType="none"
+                  disabled={false}
+                  collapsible={false}
+                  size="medium"
+                  variant="filled"
+                />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 

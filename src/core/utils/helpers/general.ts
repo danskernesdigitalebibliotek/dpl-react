@@ -21,6 +21,7 @@ import {
   dashboardReservedApiValueText
 } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
+import { ManifestationMaterialType } from "../types/material-type";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -368,7 +369,7 @@ export const getMaterialTypes = (manifestations: Manifestation[]) => {
   const allMaterialTypes = manifestations
     .map((manifest) => manifest.materialTypes.map((type) => type.specific))
     .flat();
-  return uniq(allMaterialTypes);
+  return uniq(allMaterialTypes) as ManifestationMaterialType[];
 };
 
 export const getManifestationType = (manifestations: Manifestation[]) => {
@@ -394,6 +395,36 @@ export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
     const daysUntilExpiration = daysBetweenTodayAndDate(due);
     return daysUntilExpiration - warning > 0;
   });
+};
+
+function getDateFromCpr(cprInput: string) {
+  const cpr = cprInput.replace(/[^\d]/g, "");
+  const dateSegments = cpr.substring(0, 6).match(/.{1,2}/g);
+
+  if (dateSegments) {
+    const [day, month, year] = dateSegments;
+    let prefix = "";
+    if (Number(year) < 21) {
+      prefix = "20";
+    } else {
+      prefix = "19";
+    }
+    const yearWithPrefix = Number(`${prefix}${year}`);
+
+    return new Date(
+      Date.UTC(yearWithPrefix, Number(month) - 1, Number(day), 0, 0, 0, 0)
+    );
+  }
+
+  return null;
+}
+
+export const patronAgeValid = (cpr: string, minAge: number) => {
+  const cprDate = getDateFromCpr(cpr);
+  if (cprDate === null) return false;
+
+  const age = dayjs().diff(dayjs(cprDate), "year");
+  return age > minAge;
 };
 
 export const constructModalId = (prefix: string, fragments: string[]) =>

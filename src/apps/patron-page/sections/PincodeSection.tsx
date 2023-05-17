@@ -5,9 +5,13 @@ import { useText } from "../../../core/utils/text";
 
 interface PincodeSectionProps {
   changePincode: (newPin: string | null) => void;
+  required: boolean;
 }
 
-const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
+const PincodeSection: FC<PincodeSectionProps> = ({
+  changePincode,
+  required
+}) => {
   const t = useText();
   const config = useConfig();
 
@@ -65,6 +69,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
           id="pincode-input"
           type="password"
           pattern="[0-9]*"
+          required={required}
           inputmode="numeric"
           onChange={(newPin) => setPincode(newPin)}
           value={pincode}
@@ -75,6 +80,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({ changePincode }) => {
           className="patron__input patron__input--desktop"
           id="pincode-confirm-input"
           pattern="[0-9]*"
+          required={required}
           inputmode="numeric"
           type="password"
           onChange={(newPin) => setConfirmPincode(newPin)}

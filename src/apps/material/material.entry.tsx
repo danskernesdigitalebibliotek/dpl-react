@@ -108,7 +108,8 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   oneMonthText: string;
   oneYearText: string;
-  onlineLimitMonthInfoText: string;
+  onlineLimitMonthAudiobookInfoText: string;
+  onlineLimitMonthEbookInfoText: string;
   orderDigitalCopyButtonLoadingText: string;
   orderDigitalCopyButtonText: string;
   orderDigitalCopyDescriptionText: string;

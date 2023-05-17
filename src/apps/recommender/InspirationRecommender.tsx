@@ -7,7 +7,7 @@ import { useConfig } from "../../core/utils/config";
 import { getRecommenderMaterialLimits } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
-import RecommendMaterial from "./RecommendMaterial";
+import RecommendMaterial from "../../components/simple-material/SimpleMaterial";
 
 const InspirationRecommender: FC = () => {
   const t = useText();
@@ -41,7 +41,10 @@ const InspirationRecommender: FC = () => {
       <ul className="recommender__grid">
         {recommendedMaterials &&
           recommendedMaterials.search.works.map((work) => (
-            <RecommendMaterial work={work as Work} />
+            <RecommendMaterial
+              app="inspiration-recommender"
+              work={work as Work}
+            />
           ))}
       </ul>
     </>
