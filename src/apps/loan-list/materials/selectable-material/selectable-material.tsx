@@ -46,7 +46,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           disabled ? "list-materials--disabled" : ""
         }`}
       >
-        <div className="mr-32">
+        <div className="list-materials__checkbox mr-32">
           {faust && onChecked && loanId && title && (
             <CheckBox
               onChecked={() => onChecked(loanId)}
@@ -74,8 +74,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <AuthorYear author={authors} year={year} />
           </p>
         </div>
-        <div className="list-materials__status">
-          <StatusMessage loan={loan} />
+        <div className="list-materials__status pl-4">
+          <StatusMessage
+            className="list-materials__status__note-desktop"
+            loan={loan}
+          />
           <div>
             {dueDate && (
               <StatusBadge
@@ -85,6 +88,10 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 })}
               />
             )}
+            <StatusMessage
+              className="list-materials__status__note-mobile"
+              loan={loan}
+            />
             <button
               type="button"
               className="list-reservation__note"

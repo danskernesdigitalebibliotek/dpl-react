@@ -1,19 +1,19 @@
 import * as React from "react";
 import { FC } from "react";
-import ListHeader from "../../../components/list-header/list-header";
-import { FeeV2 } from "../../../core/fbs/model";
-import { useText } from "../../../core/utils/text";
-import FeeListItem from "../fee-list-item/fee-list.item";
-import TotalPaymentPay from "../stackable-fees/total-payment-pay";
+import ListHeader from "../../components/list-header/list-header";
+import { FeeV2 } from "../../core/fbs/model";
+import { useText } from "../../core/utils/text";
+import FeeListItem from "./fee-list-item/fee-list.item";
+import TotalPaymentPay from "./stackable-fees/total-payment-pay";
 
-interface FeeListProps {
+interface ListProps {
   openDetailsModalClickEvent: (faustId: string) => void;
   itemsPrePaymentChange: FeeV2[] | null;
   itemsPostPaymentChange: FeeV2[] | null;
   totalFeePrePaymentChange: number;
   totalFeePostPaymentChange: number;
 }
-const FeeList: FC<FeeListProps> = ({
+const List: FC<ListProps> = ({
   openDetailsModalClickEvent,
   itemsPrePaymentChange,
   itemsPostPaymentChange,
@@ -27,15 +27,15 @@ const FeeList: FC<FeeListProps> = ({
       {!itemsPrePaymentChange && !itemsPostPaymentChange && (
         <>
           <ListHeader header={<>{t("unpaidFeesText")}</>} amount={0} />
-          <div className="dpl-list-empty">{t("emptyIntermediateListText")}</div>
+          <div className="dpl-list-empty">{t("emptyFeeListText")}</div>
         </>
       )}
       {itemsPrePaymentChange && (
-        <div data-cy="intermediate-list-before">
+        <div data-cy="fee-list-before">
           <ListHeader
             header={
               <>
-                {t("unpaidFeesText")} -{" "}
+                {t("unpaidFeesText")} -<span>&nbsp;</span>
                 <b>{t("prePaymentTypeChangeDateText")}</b>
               </>
             }
@@ -51,17 +51,18 @@ const FeeList: FC<FeeListProps> = ({
           ))}
 
           <TotalPaymentPay
+            hideCheckbox={false}
             prePaymentTypeChange
             total={totalFeePrePaymentChange}
           />
         </div>
       )}
       {itemsPostPaymentChange && (
-        <div data-cy="intermediate-list-after">
+        <div data-cy="fee-list-after">
           <ListHeader
             header={
               <>
-                {t("unpaidFeesText")} -{" "}
+                {t("unpaidFeesText")} -<span>&nbsp;</span>
                 <b>{t("postPaymentTypeChangeDateText")}</b>
               </>
             }
@@ -79,6 +80,7 @@ const FeeList: FC<FeeListProps> = ({
           })}
           <TotalPaymentPay
             prePaymentTypeChange={false}
+            hideCheckbox
             total={totalFeePostPaymentChange}
           />
         </div>
@@ -87,4 +89,4 @@ const FeeList: FC<FeeListProps> = ({
   );
 };
 
-export default FeeList;
+export default List;

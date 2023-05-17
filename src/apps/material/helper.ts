@@ -1,9 +1,11 @@
 import { compact, groupBy, uniqBy, uniq, head } from "lodash";
+import { UseQueryOptions } from "react-query";
 import {
   constructModalId,
   getMaterialTypes,
   getManifestationType,
-  orderManifestationsByYear
+  orderManifestationsByYear,
+  flattenCreators
 } from "../../core/utils/helpers/general";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
@@ -14,7 +16,7 @@ import {
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
-import MaterialType from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import {
   AccessTypeCode,
   WorkType
@@ -23,6 +25,12 @@ import {
   hasCorrectAccessType,
   isArticle
 } from "../../components/material/material-buttons/helper";
+import { UseConfigFunction } from "../../core/utils/config";
+import {
+  getAvailabilityV3,
+  getHoldingsV3,
+  useGetHoldingsV3
+} from "../../core/fbs/fbs";
 
 export const getWorkManifestation = (
   work: Work,
@@ -135,12 +143,8 @@ export const getManifestationLanguageIsoCode = (
   return undefined;
 };
 
-export const getManifestationFirstEditionYear = (
-  manifestation: Manifestation
-) => {
-  return manifestation.workYear?.year
-    ? String(manifestation.workYear.year)
-    : "";
+export const getWorkFirstEditionYear = (work: Work) => {
+  return work.workYear?.year ? String(work.workYear.year) : "";
 };
 
 export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
@@ -155,6 +159,10 @@ export const getManifestationContributors = (manifestation: Manifestation) => {
   );
 };
 
+export const getManifestationAuthors = (manifestation: Manifestation) => {
+  return flattenCreators(manifestation.creators).join(", ") ?? "";
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
@@ -164,6 +172,7 @@ export const getDetailsListData = ({
   work: Work;
   t: UseTextFunction;
 }): ListData => {
+  const workFirstEditionYear = getWorkFirstEditionYear(work);
   const fallBackManifestation = getWorkManifestation(
     work,
     "bestRepresentation"
@@ -209,10 +218,7 @@ export const getDetailsListData = ({
     },
     {
       label: t("detailsListFirstEditionYearText"),
-      value:
-        getManifestationFirstEditionYear(
-          manifestation ?? fallBackManifestation
-        ) ?? t("detailsListFirstEditionYearUnknownText"),
+      value: workFirstEditionYear,
       type: "standard"
     },
     {
@@ -343,7 +349,7 @@ export const isABook = (manifestations: Manifestation[]) => {
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
       (materialType) =>
-        materialType.specific.toLowerCase() === MaterialType.book
+        materialType.specific.toLowerCase() === ManifestationMaterialType.book
     );
   });
 };
@@ -352,7 +358,7 @@ export const getBestMaterialTypeForManifestation = (
   manifestation: Manifestation
 ) => {
   if (isABook([manifestation])) {
-    return MaterialType.book;
+    return ManifestationMaterialType.book;
   }
   return manifestation.materialTypes[0].specific;
 };
@@ -370,7 +376,7 @@ export const getBestMaterialTypeForWork = (work: Work) => {
     return getBestMaterialTypeForManifestation(work.manifestations.first);
   }
   if (isABook(work.manifestations.all)) {
-    return MaterialType.book;
+    return ManifestationMaterialType.book;
   }
   return getManifestationsWithMaterialType(work.manifestations.all)[0]
     .materialTypes[0].specific;
@@ -402,3 +408,49 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
+
+// Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
+export const getBlacklistedQueryArgs = (
+  faustIds: FaustId[],
+  config: UseConfigFunction,
+  blacklist: "availability" | "pickup"
+) => {
+  const configKey =
+    blacklist === "availability"
+      ? "blacklistedAvailabilityBranchesConfig"
+      : "blacklistedPickupBranchesConfig";
+  const blacklistBranches = config(configKey, {
+    transformer: "stringToArray"
+  });
+  return {
+    recordid: faustIds,
+    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+  };
+};
+
+export const getAvailability = async ({
+  faustIds,
+  config
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+}) =>
+  getAvailabilityV3(getBlacklistedQueryArgs(faustIds, config, "availability"));
+
+export const useGetHoldings = ({
+  faustIds,
+  config,
+  options
+}: {
+  faustIds: FaustId[];
+  config: UseConfigFunction;
+  options?: {
+    query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
+  };
+}) => {
+  const { data, isLoading, isError } = useGetHoldingsV3(
+    getBlacklistedQueryArgs(faustIds, config, "pickup"),
+    options
+  );
+  return { data, isLoading, isError };
+};

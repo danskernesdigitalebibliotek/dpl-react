@@ -6,5 +6,7 @@
   "reservationDetails": "reservation-details-",
   "dueDateModal": "due-date-",
   "feeDetails": "fee-details-",
+  "userMenuAuthenticated": "user-modal-authenticated",
+  "userMenuAnonymous": "user-modal-anonymous",
   "blockedModal": "blocked-modal"
 }

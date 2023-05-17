@@ -17,7 +17,7 @@ import {
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
-import Category from "../../core/utils/types/material-type";
+import { FacetMaterialType } from "../../core/utils/types/material-type";
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
@@ -50,18 +50,24 @@ const SearchHeader: React.FC = () => {
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList = [
-    { render: t("autosuggestBookCategoryText"), type: Category.book },
-    { render: t("autosuggestEbookCategoryText"), type: Category.ebook },
-    { render: t("autosuggestFilmCategoryText"), type: Category.movie },
+    { render: t("autosuggestBookCategoryText"), type: FacetMaterialType.book },
+    {
+      render: t("autosuggestEbookCategoryText"),
+      type: FacetMaterialType.ebook
+    },
+    { render: t("autosuggestFilmCategoryText"), type: FacetMaterialType.movie },
     {
       render: t("autosuggestAudioBookCategoryText"),
-      type: Category.audioBook
+      type: FacetMaterialType.audioBook
     },
-    { render: t("autosuggestMusicCategoryText"), type: Category.music },
-    { render: t("autosuggestGameCategoryText"), type: Category.game },
+    {
+      render: t("autosuggestMusicCategoryText"),
+      type: FacetMaterialType.music
+    },
+    { render: t("autosuggestGameCategoryText"), type: FacetMaterialType.game },
     {
       render: t("autosuggestAnimatedSeriesCategoryText"),
-      type: Category.animatedSeries
+      type: FacetMaterialType.animatedSeries
     }
   ];
   // Once we register the item select event the original highlighted index is
@@ -302,6 +308,7 @@ const SearchHeader: React.FC = () => {
         <SearchBar
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
+          setQWithoutQuery={setQWithoutQuery}
         />
         <Autosuggest
           textData={textData}

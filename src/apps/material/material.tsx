@@ -37,6 +37,8 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
+import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
+import { canReserve } from "../../core/utils/helpers/user";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -52,6 +54,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
+
+  const { data: userData } = useGetPatronInformationByPatronIdV2();
+  const patron = userData?.patron;
+  const userCanReserve = patron && canReserve(patron);
 
   const { track } = useStatistics();
   useDeepCompareEffect(() => {
@@ -153,39 +159,37 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
       >
-        {manifestations.map((manifestation) => (
-          <>
-            <ReservationModal
-              key={`reservation-modal-${manifestation.pid}`}
-              selectedManifestations={[manifestation]}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-            />
-            <FindOnShelfModal
-              key={`find-on-shelf-modal-${manifestation.pid}`}
-              manifestations={[manifestation]}
-              workTitles={manifestation.titles.main}
-              authors={manifestation.creators}
-              selectedPeriodical={selectedPeriodical}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
-          </>
-        ))}
-
+        {userCanReserve &&
+          manifestations.map((manifestation) => (
+            <>
+              <ReservationModal
+                key={`reservation-modal-${manifestation.pid}`}
+                selectedManifestations={[manifestation]}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+              />
+              <FindOnShelfModal
+                key={`find-on-shelf-modal-${manifestation.pid}`}
+                manifestations={[manifestation]}
+                workTitles={manifestation.titles.main}
+                authors={manifestation.creators}
+                selectedPeriodical={selectedPeriodical}
+                setSelectedPeriodical={setSelectedPeriodical}
+              />
+            </>
+          ))}
         {infomediaIds.length > 0 && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
             infoMediaId={infomediaIds[0]}
           />
         )}
-
         {hasCorrectAccess("DigitalArticleService", selectedManifestations) && (
           <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
         )}
-
         {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
         Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {isParallelReservation(selectedManifestations) && (
+        {userCanReserve && isParallelReservation(selectedManifestations) && (
           <>
             <ReservationModal
               selectedManifestations={selectedManifestations}

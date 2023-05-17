@@ -1,21 +1,28 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import MenuNotLoggedInContent from "./menu-not-logged-in/menu-not-logged-in";
-import { userIsAnonymous } from "../../core/utils/helpers/user";
+import { isAnonymous } from "../../core/utils/helpers/user";
 import MenuLoggedIn from "./menu-logged-in/menu-logged-in";
+import { useText } from "../../core/utils/text";
+import { useModalButtonHandler } from "../../core/utils/modal";
+import { getModalIds } from "../../core/utils/helpers/general";
 
 const Menu: FC = () => {
-  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const { open } = useModalButtonHandler();
+  const t = useText();
+  const {
+    userMenuAuthenticated: userMenuAuthenticatedModalId,
+    userMenuAnonymous: userMenuAnonymousModalId
+  } = getModalIds();
 
-  const closePatronMenu = () => {
-    setShowMenu(false);
+  const openMenu = () => {
+    if (isAnonymous()) {
+      open(userMenuAnonymousModalId as string);
+      return;
+    }
+
+    open(userMenuAuthenticatedModalId as string);
   };
-
-  /*
-  TODO: Find a proper way to handle tabindex when this menu is active.
-  All content behind the overlay cannot be targetable
-  while the menu is open.
-  */
 
   /*
   TODO: Add data-cy to all elements regarding cypress tests in this file,
@@ -25,30 +32,18 @@ const Menu: FC = () => {
   /*
   TODO: Find a way generally to handle loading state in app.
   */
-
-  /*
-  TODO: Add check if user is authenticated, else show login prompt or directly redirect. TBD.
-  */
-
   return (
     <>
       <button
         className="header__menu-profile header__button"
         type="button"
-        onClick={() => setShowMenu(true)}
+        aria-label={t("menuUserIconAriaLabelText")}
+        onClick={() => openMenu()}
       >
-        <img src={profileIcon} alt="Profile" />
+        <img src={profileIcon} alt="" />
       </button>
-      {showMenu && (
-        <div className="modal-backdrop">
-          {!userIsAnonymous() && (
-            <MenuLoggedIn closePatronMenu={closePatronMenu} />
-          )}
-          {userIsAnonymous() && (
-            <MenuNotLoggedInContent closePatronMenu={closePatronMenu} />
-          )}
-        </div>
-      )}
+      <MenuLoggedIn />
+      <MenuNotLoggedInContent />
     </>
   );
 };

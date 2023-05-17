@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC, FormEvent } from "react";
 import { set } from "lodash";
 import { useQueryClient } from "react-query";
 import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
@@ -10,7 +10,7 @@ import {
 import { useText } from "../../core/utils/text";
 import Link from "../../components/atoms/links/Link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
-import ContactInfoSection from "./sections/ContactInfoSection";
+import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
@@ -94,14 +94,24 @@ const PatronPage: FC = () => {
     }
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    save();
+  };
+
   return (
     <>
-      <form className="dpl-patron-page">
+      <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
         <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
         {patron && <BasicDetailsSection patron={patron} />}
         <div className="patron-page-info">
           {patron && (
-            <ContactInfoSection changePatron={changePatron} patron={patron} />
+            <ContactInfoSection
+              changePatron={changePatron}
+              patron={patron}
+              inLine={false}
+              showCheckboxes
+            />
           )}
           <StatusSection />
           {patron && (
@@ -110,7 +120,7 @@ const PatronPage: FC = () => {
               patron={patron}
             />
           )}
-          {patron && <PincodeSection changePincode={setPin} />}
+          {patron && <PincodeSection changePincode={setPin} required={false} />}
           {successPinMessage && (
             <p className="text-body-small-regular mb-8 mt-8">
               {successPinMessage}
@@ -120,8 +130,7 @@ const PatronPage: FC = () => {
           <button
             data-cy="save-user-patron"
             className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-            type="button"
-            onClick={save}
+            type="submit"
           >
             {t("patronPageSaveButtonText")}
           </button>

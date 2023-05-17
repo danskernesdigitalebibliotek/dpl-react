@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Link from "../../../components/atoms/links/Link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -11,37 +10,47 @@ import { getIntermediatePaymentModalId } from "../modal/my-payment-overview-moda
 export interface TotalPaymentPayProps {
   prePaymentTypeChange: boolean;
   total: number;
+  hideCheckbox: boolean;
 }
 
 const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   prePaymentTypeChange,
-  total
+  total,
+  hideCheckbox
 }) => {
-  const [check, setCheck] = useState(false);
+  const { availablePaymentTypesUrl, termsOfTradeUrl } = useUrls();
   const t = useText();
-  const { termsOfTradeUrl } = useUrls();
   const { open } = useModalButtonHandler();
+
+  const [check, setCheck] = useState(hideCheckbox);
+  const [showPaymentButton, setShowPaymentButton] = useState(
+    !prePaymentTypeChange && check
+  );
+
   const openIntermediatePaymentModal = () => {
     open(getIntermediatePaymentModalId || "");
   };
+
   const handleAcceptedTerms = () => {
     setCheck(!check);
+    setShowPaymentButton(!prePaymentTypeChange && !check);
   };
-  const showPaymentButton = !prePaymentTypeChange && check;
+
   const paymentButtonClass = clsx(
     ["btn-primary", "btn-small", "arrow__hover--right-small", "mt-16"],
     { "btn-outline": !showPaymentButton, "btn-filled": showPaymentButton }
   );
-  const { availablePaymentTypesUrl } = useUrls();
+
   const checkboxTermsId = `checkbox_terms__${
     (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
   }`;
   const postPaymentChangeNotChecked = !prePaymentTypeChange && !check;
   const postPaymentChangeChecked = !prePaymentTypeChange && check;
+
   return (
-    <div className="intermediate-list-bottom">
-      <div className="intermediate-list-bottom__paymenttypes">
-        {prePaymentTypeChange && (
+    <div className="fee-list-bottom">
+      <div className="fee-list-bottom__paymenttypes">
+        {prePaymentTypeChange && availablePaymentTypesUrl.href !== "" && (
           <img
             width="300"
             height="35"
@@ -49,25 +58,31 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
             src={`${availablePaymentTypesUrl}`}
           />
         )}
-        {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
+        {!prePaymentTypeChange && (
+          <span className="text-small-caption color-secondary-gray">
+            {t("alreadyPaidText")}
+          </span>
+        )}
       </div>
-      <div className="intermediate-list-bottom__actions">
-        <p>
+      <div className="fee-list-bottom__actions">
+        <p className="text-body-small-medium">
           {t("totalText")} {total},-
         </p>
-        <CheckBox
-          id={checkboxTermsId}
-          onChecked={() => handleAcceptedTerms()}
-          label={
-            <>
-              {t("iAcceptText")}{" "}
-              <Link href={termsOfTradeUrl}>
-                {t("termsOfTradeText")}
-                <sup>*</sup>
-              </Link>
-            </>
-          }
-        />
+        {!hideCheckbox && (
+          <CheckBox
+            id={checkboxTermsId}
+            onChecked={() => handleAcceptedTerms()}
+            label={
+              <>
+                {t("iAcceptText")}{" "}
+                <Link href={termsOfTradeUrl}>
+                  {t("termsOfTradeText")}
+                  <sup>*</sup>
+                </Link>
+              </>
+            }
+          />
+        )}
         {(postPaymentChangeNotChecked || prePaymentTypeChange) && (
           <button
             type="button"

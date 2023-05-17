@@ -3,25 +3,25 @@ import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import IntermedateList from "./intermediate-list";
+import FeeList from "./FeeList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 
 export interface IntermedateListEntryConfigProps {
   thresholdConfig: string;
 }
 
-export interface IntermedateListProps {
+export interface FeeListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
-  intermediateListDaysText: string;
+  feeListDaysText: string;
   payText: string;
   totalText: string;
   iAcceptText: string;
   termsOfTradeText: string;
   termsOfTradeUrl: string;
-  intermediateListHeadlineText: string;
-  intermediateListBodyText: string;
+  feeListHeadlineText: string;
+  feeListBodyText: string;
   viewFeesAndCompensationRatesText: string;
   materialAndAuthorText: string;
   viewFeesAndCompensationRatesUrl: string;
@@ -29,13 +29,13 @@ export interface IntermedateListProps {
   prePaymentTypeChangeDateText: string;
   postPaymentTypeChangeDateText: string;
   alreadyPaidText: string;
-  intermediatePaymentModalHeaderText: string;
-  intermediatePaymentModalBodyText: string;
-  intermediatePaymentModalNoticeText: string;
-  intermediatePaymentModalGotoText: string;
-  intermediatePaymentModalCancelText: string;
+  feePaymentModalHeaderText: string;
+  feePaymentModalBodyText: string;
+  feePaymentModalNoticeText: string;
+  feePaymentModalGotoText: string;
+  feePaymentModalCancelText: string;
   feeDetailsModalScreenReaderText: string;
-  emptyIntermediateListText: string;
+  emptyFeeListText: string;
   turnedInText: string;
   plusXOtherMaterialsText: string;
   itemFeeAmountText: string;
@@ -44,11 +44,11 @@ export interface IntermedateListProps {
   paymentOverviewUrl: string;
 }
 
-const IntermedateListEntry: FC<
-  IntermedateListProps &
+const FeeListEntry: FC<
+  FeeListProps &
     BlockedPatronEntryTextProps &
     IntermedateListEntryConfigProps &
     GlobalUrlEntryPropsInterface
-> = () => <IntermedateList />;
+> = () => <FeeList />;
 
-export default withUrls(withText(withIsPatronBlockedHoc(IntermedateListEntry)));
+export default withUrls(withText(withIsPatronBlockedHoc(FeeListEntry)));
