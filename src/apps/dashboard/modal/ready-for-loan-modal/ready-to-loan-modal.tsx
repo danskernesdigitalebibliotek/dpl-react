@@ -73,9 +73,9 @@ const ReadyToLoanModal: FC<ReadyToLoanModalProps> = ({ modalId = "" }) => {
     <Modal
       modalId={modalId}
       classNames="modal-details"
-      closeModalAriaLabelText={t("materialDetailsCloseModalAriaLabelText")}
+      closeModalAriaLabelText={t("readyToLoanCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t(
-        "materialDetailsModalAriaDescriptionText"
+        "readyForLoanModalAriaDescriptionText"
       )}
     >
       <ReadyToLoanModalContent

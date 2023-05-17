@@ -42,7 +42,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const { data: fbsData } = useGetLoansV2();
   const { data: patronReservations } = useGetReservationsV2();
   const [patronReservationCount, setPatronReservationCount] =
-    useState<number>();
+    useState<number>(0);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
   const [physicalLoansCount, setPhysicalLoansCount] = useState<number>();
   const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<number>();
@@ -53,7 +53,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [reservationsReadyForPickup, setReservationsReadyForPickup] =
     useState<number>();
   const [reservationsStillInQueueFor, setReservationsStillInQueueFor] =
-    useState<number>();
+    useState<number>(0);
   useEffect(() => {
     if (fbsData) {
       setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
@@ -93,7 +93,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   // Merge digital and physical loans, for easier filtration down the line.
   return (
     <div className="status-userprofile">
-      <div className="status-userprofile__column">
+      <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link
@@ -108,7 +108,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         {fbsData && !physicalLoansCount && (
           <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
-        {fbsData && physicalLoansCount && (
+        {fbsData && !!physicalLoansCount && (
           <>
             {physicalLoansOverdue && physicalLoansOverdue && (
               <DashboardNotification
@@ -130,7 +130,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationClickEventParam={soon}
               />
             )}
-            {physicalLoansNotOverdue && physicalLoansNotOverdue && (
+            {physicalLoansNotOverdue && !!physicalLoansNotOverdue && (
               <DashboardNotification
                 notificationNumber={physicalLoansNotOverdue}
                 notificationText={t("loansNotOverdueText")}
@@ -143,7 +143,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           </>
         )}
       </div>
-      <div className="status-userprofile__column">
+      <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
             <Link
@@ -157,12 +157,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             </span>
           </div>
         </div>
-        {patronReservations &&
-          !patronReservationCount &&
-          !reservationsStillInQueueFor && (
-            <div className="dpl-list-empty">{t("noReservationsText")}</div>
-          )}
-        {patronReservations && reservationsReadyForPickup && (
+        {patronReservationCount === 0 && reservationsStillInQueueFor === 0 && (
+          <div className="dpl-list-empty">{t("noReservationsText")}</div>
+        )}
+        {!!reservationsReadyForPickup && (
           <DashboardNotification
             notificationNumber={reservationsReadyForPickup}
             notificationText={t("reservationsReadyText")}
@@ -172,7 +170,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationClickEventParam="ready-to-loan-modal"
           />
         )}
-        {patronReservations && reservationsStillInQueueFor && (
+        {!!reservationsStillInQueueFor && (
           <DashboardNotification
             notificationNumber={reservationsStillInQueueFor}
             notificationText={t("reservationsStillInQueueForText")}

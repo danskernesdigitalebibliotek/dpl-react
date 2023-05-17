@@ -46,7 +46,6 @@ const QueuedReservationsList: FC<QueuedReservationsListProps> = ({
             />
           )
       )}
-    )
   </ul>
 );
 

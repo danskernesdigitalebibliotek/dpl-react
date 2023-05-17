@@ -28,6 +28,14 @@ export interface DashBoardProps {
   reservationsStillInQueueForText: string;
   readyForLoanText: string;
   pageSizeDesktop: number;
+  readyToLoanCloseModalAriaLabelText: string;
+  stillInQueueCloseModalAriaLabelText: string;
+  removeAllReservationsText: string;
+  readyForLoanCounterLabelText: string;
+  readyForLoanModalAriaDescriptionText: string;
+  stillInQueueModalAriaDescriptionText: string;
+  groupModalDueDateAriaDescriptionText: string;
+  groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
   pageSizeMobile: number;
   publizonAudioBookText: string;
   publizonEbookText: string;
@@ -41,15 +49,18 @@ export interface DashBoardProps {
   groupModalGoToMaterialText: string;
   resultPagerStatusText: string;
   loanListMaterialDaysText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
   groupModalDueDateWarningLoanOverdueText: string;
   groupModalDueDateLinkToPageWithFeesText: string;
-  feesPageUrl: string;
   groupModalRenewLoanDeniedReservedText: string;
   groupModalRenewLoanDeniedInterLibraryLoanText: string;
   thresholdConfig: string;
   pickUpLatestText: string;
   dashboardNumberInLineText: string;
-  warningIconAltText: string;
+  physicalText: string;
+  digitalText: string;
+  feesPageUrl: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({

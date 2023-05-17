@@ -1,12 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-
 import DashBoard from "./dashboard.entry";
 
 export default {
-  title: "Apps / DashBoard",
+  title: "Apps / Dashboard",
   argTypes: {
     ...serviceUrlArgs,
     yourProfileText: {
@@ -113,6 +111,47 @@ export default {
       defaultValue: "Ready for loan",
       control: { type: "text" }
     },
+    readyForLoanCounterLabelText: {
+      defaultValue: "Ready",
+      control: { type: "text" }
+    },
+    groupModalDueDateAriaDescriptionText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "This modal groups loans after due date and makes it possible to renew said loans"
+    },
+    groupModalDueDateRenewLoanCloseModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Close renew loans modal"
+    },
+    stillInQueueModalAriaDescriptionText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "This modal shows materials that are still in queue"
+    },
+    readyForLoanModalAriaDescriptionText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "This modal shows materials that are ready for loan"
+    },
+    readyToLoanCloseModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Close ready to loan details modal"
+    },
+    stillInQueueCloseModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Close still in queue details modal"
+    },
     publizonAudioBookText: {
       control: {
         type: "text"
@@ -217,8 +256,14 @@ export default {
       defaultValue: "Pick up before",
       control: { type: "text" }
     },
-    warningIconAltText: {
-      defaultValue: " warningIconAltText",
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
+    materialByAuthorText: {
+      defaultValue: "By",
       control: { type: "text" }
     },
     // Config

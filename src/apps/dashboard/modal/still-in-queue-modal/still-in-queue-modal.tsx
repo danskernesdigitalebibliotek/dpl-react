@@ -72,9 +72,9 @@ const StillInQueueModal: FC<StillInQueueModalProps> = ({ modalId = "" }) => {
     <Modal
       modalId={modalId}
       classNames="modal-details"
-      closeModalAriaLabelText={t("materialDetailsCloseModalAriaLabelText")}
+      closeModalAriaLabelText={t("stillInQueueCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t(
-        "materialDetailsModalAriaDescriptionText"
+        "stillInQueueModalAriaDescriptionText"
       )}
     >
       <StillInQueueModalContent
