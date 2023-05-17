@@ -56,7 +56,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
       <div className="list-reservation__status">
         <FeeStatus dueDate={creationDate} reasonMessage={reasonMessage} />
         <div className="list-reservation__fee">
-          <p className="text-body-medium-medium">
+          <p className="text-body-medium-regular">
             {t("itemFeeAmountText", {
               placeholders: { "@fee": amount }
             })}

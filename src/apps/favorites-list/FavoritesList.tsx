@@ -4,7 +4,7 @@ import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
-import CardList from "../../components/card-list/card-list";
+import CardListItemAdapter from "../../components/card-list/card-list-item-adapter";
 
 export interface FavoritesListProps {
   pageSize: number;
@@ -48,7 +48,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
         <ul className="card-list-page__list my-32">
           {displayedMaterials.map((pid) => (
             <li key={pid}>
-              <CardList key={pid} pid={pid} />
+              <CardListItemAdapter key={pid} pid={pid} />
             </li>
           ))}
         </ul>

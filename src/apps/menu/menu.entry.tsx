@@ -18,11 +18,16 @@ export interface MenuProps {
   menuLogOutText: string;
   menuLogOutUrl: string;
   thresholdConfig: string;
-  intermediateListDaysText: string;
+  feeListDaysText: string;
   menuLoginText: string;
   menuLoginUrl: string;
   menuSignUpText: string;
   menuSignUpUrl: string;
+  menuUserIconAriaLabelText: string;
+  menuNotAuthenticatedCloseButtonText: string;
+  menuAuthenticatedCloseButtonText: string;
+  menuAuthenticatedModalDescriptionText: string;
+  menuNotAuthenticatedModalDescriptionText: string;
 }
 
 const MenuEntry: FC<MenuProps & GlobalUrlEntryPropsInterface> = () => <Menu />;

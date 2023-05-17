@@ -16,7 +16,7 @@ import {
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
-import MaterialType from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import {
   AccessTypeCode,
   WorkType
@@ -349,7 +349,7 @@ export const isABook = (manifestations: Manifestation[]) => {
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
       (materialType) =>
-        materialType.specific.toLowerCase() === MaterialType.book
+        materialType.specific.toLowerCase() === ManifestationMaterialType.book
     );
   });
 };
@@ -358,7 +358,7 @@ export const getBestMaterialTypeForManifestation = (
   manifestation: Manifestation
 ) => {
   if (isABook([manifestation])) {
-    return MaterialType.book;
+    return ManifestationMaterialType.book;
   }
   return manifestation.materialTypes[0].specific;
 };
@@ -376,7 +376,7 @@ export const getBestMaterialTypeForWork = (work: Work) => {
     return getBestMaterialTypeForManifestation(work.manifestations.first);
   }
   if (isABook(work.manifestations.all)) {
-    return MaterialType.book;
+    return ManifestationMaterialType.book;
   }
   return getManifestationsWithMaterialType(work.manifestations.all)[0]
     .materialTypes[0].specific;

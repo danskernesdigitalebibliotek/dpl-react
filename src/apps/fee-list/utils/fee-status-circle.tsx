@@ -23,7 +23,7 @@ const FeeStatusCircle: FC<FeeStatusCircleProps> = ({
   return (
     <StatusCircleIcon percent={100} color={colors.danger as string}>
       <span className="counter__value">{daysBetweenDueAndDelivered}</span>
-      <span className="counter__label">{t("intermediateListDaysText")}</span>
+      <span className="counter__label">{t("feeListDaysText")}</span>
     </StatusCircleIcon>
   );
 };

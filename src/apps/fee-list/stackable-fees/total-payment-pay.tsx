@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Link from "../../../components/atoms/links/Link";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -49,9 +48,9 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   const postPaymentChangeChecked = !prePaymentTypeChange && check;
 
   return (
-    <div className="intermediate-list-bottom">
-      <div className="intermediate-list-bottom__paymenttypes">
-        {prePaymentTypeChange && (
+    <div className="fee-list-bottom">
+      <div className="fee-list-bottom__paymenttypes">
+        {prePaymentTypeChange && availablePaymentTypesUrl.href !== "" && (
           <img
             width="300"
             height="35"
@@ -59,10 +58,14 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
             src={`${availablePaymentTypesUrl}`}
           />
         )}
-        {!prePaymentTypeChange && <span>{t("alreadyPaidText")}</span>}
+        {!prePaymentTypeChange && (
+          <span className="text-small-caption color-secondary-gray">
+            {t("alreadyPaidText")}
+          </span>
+        )}
       </div>
-      <div className="intermediate-list-bottom__actions">
-        <p>
+      <div className="fee-list-bottom__actions">
+        <p className="text-body-small-medium">
           {t("totalText")} {total},-
         </p>
         {!hideCheckbox && (
