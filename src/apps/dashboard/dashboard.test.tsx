@@ -343,7 +343,6 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .find(".warning-bar")
       .find(".warning-bar__left")
-      .find(".warning-bar__icon")
       .find("img")
       .should("exist");
 
@@ -382,9 +381,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(0)
       .find(".list-dashboard")
+      .eq(0)
       .find(".number")
       .should("exist")
       .should("have.text", "1");
@@ -393,9 +391,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(0)
       .find(".list-dashboard")
+      .eq(0)
       .find(".list-dashboard__title")
       .should("exist")
       .should("have.text", "Returned too late");
@@ -405,9 +402,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(1)
       .find(".list-dashboard")
+      .eq(1)
       .find(".number")
       .should("exist")
       .should("have.text", "1");
@@ -416,9 +412,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(1)
       .find(".list-dashboard")
+      .eq(1)
       .find(".list-dashboard__title")
       .should("exist")
       .should("have.text", "To be returned soon");
@@ -428,9 +423,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(2)
       .find(".list-dashboard")
+      .eq(2)
       .find(".number")
       .should("exist")
       .should("have.text", "1");
@@ -439,9 +433,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
-      .eq(2)
       .find(".list-dashboard")
+      .eq(2)
       .find(".list-dashboard__title")
       .should("exist")
       .should("have.text", "Longer return time");
@@ -481,9 +474,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
-      .eq(0)
       .find(".list-dashboard")
+      .eq(0)
       .find(".number")
       .should("exist")
       .should("have.text", "1");
@@ -493,9 +485,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
-      .eq(0)
       .find(".list-dashboard")
+      .eq(0)
       .find(".list-dashboard__title")
       .should("exist")
       .should("have.text", "Ready for you");
@@ -506,9 +497,8 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
-      .eq(1)
       .find(".list-dashboard")
+      .eq(1)
       .find(".number")
       .should("exist")
       .should("have.text", "1");
@@ -518,23 +508,20 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
-      .eq(1)
       .find(".list-dashboard")
+      .eq(1)
       .find(".list-dashboard__title")
       .should("exist")
       .should("have.text", "Still in queue");
   });
 
-  it("Intermediate notification", () => {
+  it("Fee notification", () => {
     cy.get("#root")
       .find(".fee-container")
       .find("div")
       .find(".status-userprofile__column")
       .find(".warning-bar")
       .find(".warning-bar__left")
-      .find("div")
-      .eq(1)
       .find("a")
       .should("exist")
       .should("have.text", "You owe in total");
@@ -555,7 +542,7 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .find(".warning-bar")
       .find(".warning-bar__right")
-      .find("button")
+      .find("a")
       .should("exist")
       .should("have.text", "Read more");
   });
@@ -565,7 +552,7 @@ describe("Dashboard", () => {
       .find(".status-userprofile")
       .find(".status-userprofile__column")
       .should("exist")
-      .find(".m-24")
+      .find(".list-dashboard")
       .eq(0)
       .click();
 
@@ -649,7 +636,7 @@ describe("Dashboard", () => {
       .should("exist")
       .should(
         "have.text",
-        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
   });
 
@@ -657,9 +644,8 @@ describe("Dashboard", () => {
     cy.get("#root")
       .find(".status-userprofile")
       .find(".status-userprofile__column")
+      .eq(0)
       .should("exist")
-      .find(".m-24")
-      .eq(1)
       .click();
 
     cy.get("#root")
@@ -723,7 +709,7 @@ describe("Dashboard", () => {
       .should("exist")
       .should(
         "have.text",
-        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
   });
 
@@ -731,8 +717,9 @@ describe("Dashboard", () => {
     cy.get("#root")
       .find(".status-userprofile")
       .find(".status-userprofile__column")
+      .eq(0)
       .should("exist")
-      .find(".m-24")
+      .find(".list-dashboard")
       .eq(2)
       .click();
 
@@ -796,7 +783,7 @@ describe("Dashboard", () => {
       .should("exist")
       .should(
         "have.text",
-        "undefined Dummy Jens Jensen undefined Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
   });
 
@@ -806,7 +793,7 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
+      .find(".list-dashboard")
       .eq(0)
       .click();
 
@@ -874,7 +861,7 @@ describe("Dashboard", () => {
       .find(".status-userprofile__column")
       .eq(1)
       .should("exist")
-      .find(".m-24")
+      .find(".list-dashboard")
       .eq(1)
       .click();
 

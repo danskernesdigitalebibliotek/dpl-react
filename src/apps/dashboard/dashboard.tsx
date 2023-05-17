@@ -27,6 +27,7 @@ import { yesterday, soon, longer } from "./util/helpers";
 interface DashboardProps {
   pageSize: number;
 }
+
 const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const t = useText();
   const config = useConfig();
@@ -135,8 +136,8 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   }, [isSuccess, data, warning]);
 
   return (
-    <>
-      <h1>{t("yourProfileText")}</h1>
+    <div className="dashboard-page">
+      <h1 className="text-header-h1 my-32">{t("yourProfileText")}</h1>
       <DashboardFees />
       <DashboardNotificationList
         openModalHandler={openModalHandler}
@@ -161,7 +162,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
           customHeader={modalHeader}
         />
       )}
-    </>
+    </div>
   );
 };
 

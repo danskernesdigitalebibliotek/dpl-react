@@ -133,8 +133,10 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
       <div className="modal-loan__header">
         <div className="mr-32">
           <StatusCircleIcon percent={100} color={colors.success as string}>
-            <img className="counter__icon" src={check} alt="check icon" />
-            <span className="counter__label">Ready</span>
+            <img className="counter__icon" src={check} alt="" />
+            <span className="counter__label">
+              {t("readyForLoanCounterLabelText")}
+            </span>
           </StatusCircleIcon>
         </div>
         <div>

@@ -1,0 +1,5 @@
+query getSmallWork($id: String!) {
+  work(id: $id) {
+    ...WorkSmall
+  }
+}
