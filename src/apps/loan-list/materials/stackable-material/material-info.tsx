@@ -43,7 +43,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           <button
             onClick={openDetailsModal}
             type="button"
-            lang={lang}
+            lang={lang || ""}
             className="list-reservation__header color-secondary-gray"
           >
             {title}

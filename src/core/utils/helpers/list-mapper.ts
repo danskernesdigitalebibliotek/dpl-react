@@ -140,7 +140,7 @@ export const mapManifestationToBasicDetailsType = (
   const {
     text: { data: texts }
   } = store.getState();
-  const isoCode = languages.main?.[0]?.isoCode ?? "";
+  const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {
     main: [mainText]

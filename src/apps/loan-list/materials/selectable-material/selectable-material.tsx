@@ -75,7 +75,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8" lang={lang}>
+          <p className="text-header-h5 mt-8" lang={lang || ""}>
             {title}
           </p>
           <p className="text-small-caption">
