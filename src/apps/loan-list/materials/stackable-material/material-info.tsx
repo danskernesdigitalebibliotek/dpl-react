@@ -18,7 +18,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   openDetailsModal,
   children
 }) => {
-  const { authors, materialType, year, title, description, pid, series } =
+  const { authors, materialType, year, title, description, pid, series, lang } =
     material || {};
   const coverId = pid || isbnForCover;
 
@@ -43,6 +43,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           <button
             onClick={openDetailsModal}
             type="button"
+            lang={lang}
             className="list-reservation__header color-secondary-gray"
           >
             {title}

@@ -750,13 +750,15 @@ export enum NoteType {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
+  Frequency = "FREQUENCY",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
   OccasionForPublication = "OCCASION_FOR_PUBLICATION",
   OriginalTitle = "ORIGINAL_TITLE",
   OriginalVersion = "ORIGINAL_VERSION",
   References = "REFERENCES",
-  RestrictionsOnUse = "RESTRICTIONS_ON_USE"
+  RestrictionsOnUse = "RESTRICTIONS_ON_USE",
+  TypeOfScore = "TYPE_OF_SCORE"
 }
 
 export type NumberInSeries = {
@@ -1431,10 +1433,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1488,6 +1486,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       }>;
       latest: {
@@ -1511,10 +1517,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1568,6 +1570,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
       bestRepresentation: {
@@ -1591,10 +1601,6 @@ export type GetFavoriteMaterialManifestationQuery = {
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
         >;
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{ __typename?: "Language"; display: string }> | null;
-        } | null;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
           | { __typename?: "Corporation"; display: string }
@@ -1648,6 +1654,14 @@ export type GetFavoriteMaterialManifestationQuery = {
         workYear?: {
           __typename?: "PublicationYear";
           year?: number | null;
+        } | null;
+        languages?: {
+          __typename?: "Languages";
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
       };
     };
@@ -1685,6 +1699,14 @@ export type GetManifestationViaMaterialByFaustQuery = {
         number?: Array<number> | null;
       } | null;
     }>;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   } | null;
 };
 
@@ -4170,6 +4192,7 @@ export const useGetFavoriteMaterialManifestationQuery = <
 export const GetManifestationViaMaterialByFaustDocument = `
     query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
+    ...WithLanguages
     pid
     titles {
       main
@@ -4194,7 +4217,7 @@ export const GetManifestationViaMaterialByFaustDocument = `
     }
   }
 }
-    `;
+    ${WithLanguagesFragmentDoc}`;
 export const useGetManifestationViaMaterialByFaustQuery = <
   TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
