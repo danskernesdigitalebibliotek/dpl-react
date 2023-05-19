@@ -19,7 +19,7 @@ describe("Material", () => {
         // We simulate that the user has sucessfully logged in
         cy.createFakeAuthenticatedSession();
       });
-
+    cy.reload();
     cy.getBySel("reservation-modal-parallel").should("be.visible");
   });
 

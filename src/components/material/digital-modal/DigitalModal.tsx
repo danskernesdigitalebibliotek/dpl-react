@@ -9,6 +9,7 @@ import { Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId, getResponseMessage } from "./helper";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 type DigitalModalProps = {
   pid: Pid;
@@ -54,7 +55,9 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   };
 
   // Pre fill the email field with the patron's email or set it to an empty string
-  const { data: patronData } = useGetPatronInformationByPatronIdV2();
+  const { data: patronData } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
   useEffect(() => {
     if (!patronData) return;
     if (patronData.patron?.emailAddress) {
