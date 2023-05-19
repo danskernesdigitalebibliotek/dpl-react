@@ -58,6 +58,7 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   const { data: patronData } = useGetPatronInformationByPatronIdV2({
     enabled: !isAnonymous()
   });
+
   useEffect(() => {
     if (!patronData) return;
     if (patronData.patron?.emailAddress) {
@@ -66,6 +67,10 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
     }
     setUserEmail("");
   }, [patronData]);
+
+  if (isAnonymous()) {
+    return null;
+  }
 
   return (
     <Modal
