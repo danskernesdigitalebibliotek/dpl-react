@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { useGetSmallWorkQuery } from "../../core/dbc-gateway/generated/graphql";
-import { Work } from "../../core/utils/types/entities";
+import { useGetSmallWorkQuery } from "../../../core/dbc-gateway/generated/graphql";
+import { Work } from "../../../core/utils/types/entities";
 import CardListItem from "./card-list-item";
-import { Pid } from "../../core/utils/types/ids";
+import { Pid } from "../../../core/utils/types/ids";
 
 export interface CardListItemAdapterProps {
   pid: Pid;
