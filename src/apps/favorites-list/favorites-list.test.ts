@@ -56,10 +56,8 @@ describe("Favorites list", () => {
       .should("have.text", "3 materials");
 
     // 2.e. accessibility on material type
-    cy.get(".card-list-page")
-      .find(".card-list-item")
+    cy.getBySel("card-list-item-availability")
       .eq(0)
-      .find(".card-list-item__availability")
       .should(
         "have.text",
         "billedbogavailablelydbog (net)availablelydbog (cd)availablebilledbog (net)availableebogavailable"
