@@ -50,6 +50,12 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
           })
           .flat();
 
+        const access = manifestationsOfMaterialType
+          .map((manifest) => {
+            return manifest.access.map((acc) => acc.__typename);
+          })
+          .flat();
+
         return (
           <AvailabilityLabel
             key={faustIds.join("-")}
@@ -58,6 +64,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             faustIds={faustIds}
             manifestText={materialType}
             accessTypes={accessTypesCodes}
+            access={access}
             selected={
               selectedManifestations &&
               materialType === getMaterialTypes(selectedManifestations)[0]
