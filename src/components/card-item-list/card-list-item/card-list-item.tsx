@@ -15,7 +15,7 @@ import {
   getManifestationPid,
   getReleaseYearSearchResult
 } from "../../../core/utils/helpers/general";
-import SearchResultListItemCover from "./card-list-item-cover";
+import CardListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
@@ -36,13 +36,13 @@ import {
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 
-export interface SearchResultListItemProps {
+export interface CardListItemProps {
   item: Work;
   coverTint: CoverProps["tint"];
   resultNumber: number;
   dataCy?: string;
 }
-const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
+const CardListItem: React.FC<CardListItemProps> = ({
   item,
   item: {
     titles: { full: fullTitle },
@@ -123,7 +123,7 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
     >
       <div className="card-list-item__cover">
         {showItem && (
-          <SearchResultListItemCover
+          <CardListItemCover
             id={manifestationPid}
             url={materialFullUrl}
             tint={coverTint}
@@ -187,4 +187,4 @@ const SearchResultListItem: React.FC<SearchResultListItemProps> = ({
   );
 };
 
-export default SearchResultListItem;
+export default CardListItem;
