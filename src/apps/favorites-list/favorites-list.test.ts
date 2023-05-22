@@ -43,7 +43,6 @@ describe("Favorites list", () => {
     });
 
     cy.visit("/iframe.html?path=/story/apps-favorite-list--favorites-list");
-    cy.wait(["@favorites"]);
   });
 
   it("Favorites list basics", () => {
