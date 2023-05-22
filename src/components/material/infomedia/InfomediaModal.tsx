@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useGetInfomediaQuery } from "../../../core/dbc-gateway/generated/graphql";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { Pid } from "../../../core/utils/types/ids";
 import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
+import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
+import InfomediaSkeleton from "./InfomediaSkeleton";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
@@ -18,17 +21,43 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
   infoMediaId
 }) => {
   const t = useText();
+  const [shouldFetchData, setShouldFetchData] = useState(false);
+  const [infomediaData, setInfomediaData] = useState<Record<
+    string,
+    string | null | undefined
+  > | null>(null);
+  const { data: patronData, isLoading: isLoadingPatron } =
+    useGetPatronInformationByPatronIdV2({ enabled: !isAnonymous() });
 
-  const { data, error } = useGetInfomediaQuery({
-    id: infoMediaId
-  });
+  useEffect(() => {
+    if (patronData?.patron?.resident !== undefined) {
+      setShouldFetchData(patronData.patron.resident);
+    }
+  }, [patronData]);
+
+  const {
+    data,
+    error,
+    isLoading: isLoadingInfomedia
+  } = useGetInfomediaQuery(
+    {
+      id: infoMediaId
+    },
+    {
+      enabled: shouldFetchData,
+      onSuccess: (response) => {
+        const infomedia: Record<string, string | null | undefined> = {
+          headline: response?.infomedia?.article?.headLine,
+          text: response?.infomedia?.article?.text
+        };
+        setInfomediaData(infomedia);
+      }
+    }
+  );
 
   if (!data || error) {
     return null;
   }
-
-  const headline = data?.infomedia?.article?.headLine;
-  const text = data?.infomedia?.article?.text;
 
   return (
     <Modal
@@ -39,8 +68,12 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
       closeModalAriaLabelText={t("infomediaModalCloseModalAriaLabelText")}
       dataCy="infomedia-modal"
     >
-      {headline && text && (
-        <InfomediaModalBody headline={headline} text={text} />
+      {isLoadingPatron || (isLoadingInfomedia && <InfomediaSkeleton />)}
+      {infomediaData?.headline && infomediaData?.text && (
+        <InfomediaModalBody
+          headline={infomediaData.headline}
+          text={infomediaData.text}
+        />
       )}
     </Modal>
   );

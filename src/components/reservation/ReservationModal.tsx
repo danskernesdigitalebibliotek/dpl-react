@@ -7,7 +7,7 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ReservationModalBody } from "./ReservationModalBody";
 
-type ReservationModalProps = {
+export type ReservationModalProps = {
   selectedManifestations: Manifestation[];
   selectedPeriodical?: PeriodicalEdition | null;
   work: Work;

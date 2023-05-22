@@ -1,5 +1,4 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { useState, FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -7,6 +6,10 @@ import { Manifestation } from "../../../../core/utils/types/entities";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
+import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
+import { isAnonymous } from "../../../../core/utils/helpers/user";
+import MaterialButtonLoading from "../generic/MaterialButtonLoading";
+import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
@@ -24,6 +27,15 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
+  const [isResident, setIsResident] = useState<null | boolean>(null);
+  const { isLoading } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous(),
+    onSuccess: (data) => {
+      if (data?.patron?.resident !== undefined) {
+        setIsResident(data.patron.resident);
+      }
+    }
+  });
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
 
@@ -41,6 +53,20 @@ const MaterialButtonOnlineInfomediaArticle: FC<
       trackOnlineView
     });
   };
+
+  if (isLoading) {
+    return <MaterialButtonLoading />;
+  }
+
+  if (isResident === false) {
+    return (
+      <MaterialButtonDisabled
+        size={size}
+        label={t("cantViewText")}
+        reason={t("notLivingInMunicipalityText")}
+      />
+    );
+  }
 
   return (
     <Button

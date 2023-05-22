@@ -10,8 +10,4 @@ export const isBlocked = (patron: Patron) => {
   return !isEmpty(patron.blockStatus);
 };
 
-export const canReserve = (patron: Patron) => {
-  return isEmpty(patron.blockStatus);
-};
-
 export default {};
