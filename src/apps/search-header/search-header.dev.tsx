@@ -105,6 +105,11 @@ export default {
       name: "Loading",
       defaultValue: "Loading",
       control: { type: "text" }
+    },
+    searchNoValidCharactersErrorText: {
+      name: "Search non-whitespace character error",
+      defaultValue: "Input must contain at least one non-whitespace character.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;

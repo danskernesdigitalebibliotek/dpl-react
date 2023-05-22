@@ -1,5 +1,6 @@
 import React from "react";
 import ExpandMoreIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import clsx from "clsx";
 import Heading, { HeadingLevelType } from "../Heading/Heading";
 import Pagefold from "../pagefold/Pagefold";
 import { useText } from "../../core/utils/text";
@@ -25,7 +26,7 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
   return (
     <summary
       ref={itemRef}
-      className={`disclosure__headline text-body-large ${className}`}
+      className={clsx("disclosure__headline text-body-large ", className)}
     >
       {mainIconPath && (
         <div className="disclosure__icon bg-identity-tint-120">

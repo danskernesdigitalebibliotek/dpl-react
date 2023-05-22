@@ -23,6 +23,7 @@ export interface SearchHeaderTextProps {
   autosuggestAnimatedSeriesCategoryText: string;
   inText: string;
   loadingText: string;
+  searchNoValidCharactersErrorText: string;
 }
 
 export interface SearchHeaderEntryProps
