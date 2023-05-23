@@ -6,16 +6,20 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   filterLoansNotOverdue,
-  getReadyForPickup,
   getPhysicalReservations
 } from "../../../core/utils/helpers/general";
-import { mapFBSLoanToLoanType } from "../../../core/utils/helpers/list-mapper";
+import {
+  mapFBSLoanToLoanType,
+  mapPublizonReservationToReservationType,
+  mapFBSReservationToReservationType
+} from "../../../core/utils/helpers/list-mapper";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
 import { yesterday, soon, longer } from "../util/helpers";
+import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 
 export interface DashboardNotificationListProps {
   openModalHandler: (modalId: string) => void;
@@ -82,7 +86,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   useEffect(() => {
     if (patronReservations) {
-      const materialsReadyForPickup = getReadyForPickup(patronReservations);
+      const materialsReadyForPickup = getReadyForPickup(
+        mapFBSReservationToReservationType(patronReservations)
+      );
       const materialsStillInQueue = getPhysicalReservations(patronReservations);
       setReservationsReadyForPickup(materialsReadyForPickup.length);
       setReservationsStillInQueueFor(materialsStillInQueue.length);
@@ -96,13 +102,17 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
-            <Link
-              href={physicalLoansUrl}
-              className="link-tag link-tag link-filters__tag"
-            >
-              {t("physicalLoansText")}
-            </Link>
-            <span className="link-filters__counter">{physicalLoansCount}</span>
+            <h2>
+              <Link
+                href={physicalLoansUrl}
+                className="link-tag link-tag link-filters__tag"
+              >
+                {t("physicalLoansText")}
+              </Link>
+              <span className="link-filters__counter">
+                {physicalLoansCount}
+              </span>{" "}
+            </h2>
           </div>
         </div>
         {fbsData && !physicalLoansCount && (

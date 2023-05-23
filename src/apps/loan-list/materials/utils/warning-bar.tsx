@@ -3,7 +3,7 @@ import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import Link from "../../../../components/atoms/links/Link";
 
 interface WarningBarProps {
-  linkText: string;
+  linkText?: string;
   overdueText?: string;
   rightButtonText?: string;
   rightText?: string;

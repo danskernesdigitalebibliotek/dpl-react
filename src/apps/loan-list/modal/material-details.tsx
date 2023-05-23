@@ -61,7 +61,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       >
         {dueDate && (
           <StatusBadge
-            dueDate={dueDate}
+            badgeDate={dueDate}
             dangerText={t("materialDetailsOverdueText")}
           />
         )}

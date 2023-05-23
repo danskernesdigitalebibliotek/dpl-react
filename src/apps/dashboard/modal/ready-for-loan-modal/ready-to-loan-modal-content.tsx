@@ -14,10 +14,10 @@ import {
   Reservation,
   ReservationListResult
 } from "../../../../core/publizon/model";
-import QueuedReservationsList from "./ready-to-loan-list";
+import ReadyToLoanList from "./ready-to-loan-list";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import StatusCircleIcon from "../../../loan-list/materials/utils/status-circle-icon";
-import ArrowWhite from "../../../../components/atoms/icons/arrow/arrow-white";
+import { Button } from "../../../../components/Buttons/Button";
 
 interface ReadyToLoanModalContentProps {
   removeSelectedReservations: (
@@ -31,7 +31,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
 }) => {
   const t = useText();
 
-  const colors = getColors();
+  const { success } = getColors();
   const today = dayjs();
   const [physicalReservationsReadyToLoan, setPhysicalReservationsReadyToLoan] =
     useState<ReservationDetailsV2[]>();
@@ -41,15 +41,11 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
   const { data: digitalReservations } =
     useGetV1UserReservations<ReservationListResult>();
   const [allSelectableReservations, setAllSelectableReservations] = useState<
-    {
-      [key: string]: string;
-    }[]
-  >();
-  const [selectedReservations, setSelectedReservations] = useState<
-    {
-      [key: string]: string;
-    }[]
+    string[]
   >([]);
+  const [selectedReservations, setSelectedReservations] = useState<string[]>(
+    []
+  );
 
   useEffect(() => {
     if (physicalReservations && !physicalReservationsReadyToLoan) {
@@ -88,12 +84,8 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
         return { ...acc, [dr.identifier as string]: dr.identifier };
       }, {});
       const selectableReservations = { ...fausts, ...identsObj };
-      if (Object.keys(selectableReservations).length > 0) {
-        setAllSelectableReservations(
-          selectableReservations as {
-            [key: string]: string;
-          }[]
-        );
+      if (selectableReservations.length > 0) {
+        setAllSelectableReservations(selectableReservations);
       }
     }
   }, [
@@ -103,7 +95,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
   ]);
 
   const selectAllQueuedResevationsHandler = () => {
-    if (Object.keys(selectedReservations).length > 0) {
+    if (selectedReservations.length > 0) {
       setSelectedReservations([]);
     } else if (allSelectableReservations) {
       setSelectedReservations(allSelectableReservations);
@@ -111,7 +103,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
   };
   const setCustomSelection = useCallback(
     (elementId: string, reservationId: string) => {
-      if (Object.keys(selectedReservations).includes(elementId as string)) {
+      if (selectedReservations.includes(elementId as string)) {
         const newSelection = { ...selectedReservations };
         delete newSelection[elementId as never];
         setSelectedReservations(newSelection);
@@ -132,7 +124,7 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
     <div className="modal-loan__container">
       <div className="modal-loan__header">
         <div className="mr-32">
-          <StatusCircleIcon percent={100} color={colors.success as string}>
+          <StatusCircleIcon percent={100} color={success as string}>
             <img className="counter__icon" src={check} alt="" />
             <span className="counter__label">
               {t("readyForLoanCounterLabelText")}
@@ -154,30 +146,32 @@ const ReadyToLoanModalContent: FC<ReadyToLoanModalContentProps> = ({
             onChecked={selectAllQueuedResevationsHandler}
           />
         </div>
-        <button
-          type="button"
-          className="btn-primary btn-filled btn-small arrow__hover--right-small"
+        <Button
+          label={t("removeAllReservationsText", {
+            placeholders: {
+              "@amount": selectedReservations.length
+            }
+          })}
+          buttonType="none"
+          disabled={false}
+          collapsible={false}
+          size="small"
+          variant="filled"
           onClick={() => removeSelectedReservations(selectedReservations)}
-        >
-          {t("removeAllReservationsText")} (
-          {selectedReservations && Object.keys(selectedReservations).length})
-          <div className="ml-16">
-            <ArrowWhite />
-          </div>
-        </button>
+        />
       </div>
       <ul className="modal-loan__list-container">
         <li className="modal-loan__list">
           <ul className="modal-loan__list-materials">
             {physicalReservationsReadyToLoan && (
-              <QueuedReservationsList
+              <ReadyToLoanList
                 physicalReservations={physicalReservationsReadyToLoan}
                 selectedReservations={selectedReservations}
                 setCustomSelection={setCustomSelection}
               />
             )}
             {digitalReservationsReadyToLoan && (
-              <QueuedReservationsList
+              <ReadyToLoanList
                 digitalReservations={digitalReservationsReadyToLoan}
                 selectedReservations={selectedReservations}
                 setCustomSelection={setCustomSelection}

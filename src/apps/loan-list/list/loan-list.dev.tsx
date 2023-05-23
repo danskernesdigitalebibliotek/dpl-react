@@ -46,19 +46,6 @@ export default {
       },
       defaultValue: "Read more about fees"
     },
-    groupModalDueDateRenewLoanCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close renew loans modal"
-    },
-    groupModalDueDateAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This modal groups loans after due date and makes it possible to renew said loans"
-    },
     groupModalCheckboxText: {
       control: {
         type: "text"

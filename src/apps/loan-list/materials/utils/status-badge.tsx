@@ -4,20 +4,23 @@ import { useConfig } from "../../../../core/utils/config";
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
 
 interface StatusBadgeProps {
-  dueDate?: string | null;
+  badgeDate?: string | null;
   warningText?: string;
   dangerText?: string;
   neutralText?: string;
+  infoText?: string;
 }
 
 const StatusBadge: FC<StatusBadgeProps> = ({
-  dueDate,
+  badgeDate,
   warningText,
   dangerText,
+  infoText,
   neutralText
 }) => {
   const config = useConfig();
-  if (!dueDate) return null;
+
+  if (!badgeDate) return null;
 
   const {
     colorThresholds: { danger, warning }
@@ -25,7 +28,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
     transformer: "jsonParse"
   });
 
-  const daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
+  const daysBetweenTodayAndDue = daysBetweenTodayAndDate(badgeDate);
   if (daysBetweenTodayAndDue < danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
@@ -42,6 +45,10 @@ const StatusBadge: FC<StatusBadgeProps> = ({
     return (
       <div className="status-label status-label--neutral">{neutralText}</div>
     );
+  }
+
+  if (infoText) {
+    return <div className="status-label status-label--info">{infoText}</div>;
   }
 
   return null;

@@ -1,17 +1,16 @@
 import React, { FC } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import RenewLoansModalContent from "./renew-loans-modal-content";
 import modalIdsConf from "../../../core/configuration/modal-ids.json";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
-interface RenewLoansModalProps {
+interface ReservationGroupModalProps {
   loansModal: LoanType[] | null;
   pageSize: number;
   openLoanDetailsModal: (modalId: string) => void;
 }
 
-const RenewLoansModal: FC<RenewLoansModalProps> = ({
+const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   loansModal,
   pageSize,
   openLoanDetailsModal
@@ -35,7 +34,7 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
                 </h2>
               </div>
             </div>
-            <RenewLoansModalContent
+            <ReservationGroupModalContent
               pageSize={pageSize}
               loansModal={loansModal}
               openLoanDetailsModal={openLoanDetailsModal}
@@ -47,4 +46,4 @@ const RenewLoansModal: FC<RenewLoansModalProps> = ({
   );
 };
 
-export default RenewLoansModal;
+export default ReservationGroupModal;

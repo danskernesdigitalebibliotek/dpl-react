@@ -32,30 +32,14 @@ const ReadyToLoanModal: FC<ReadyToLoanModalProps> = ({ modalId = "" }) => {
         const reservationType = getReservationType(reservation);
         switch (reservationType) {
           case "physical":
-            deletePhysicalReservation(
-              {
-                params: { reservationid: [Number(reservationToDelete)] }
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
+            deletePhysicalReservation({
+              params: { reservationid: [Number(reservationToDelete)] }
+            });
             break;
           case "digital":
-            deleteDigitalReservation(
-              {
-                identifier: String(selectedReservationsValues)
-              },
-              {
-                // todo error handling, missing in figma
-                onError: () => {
-                  close(modalId);
-                }
-              }
-            );
+            deleteDigitalReservation({
+              identifier: String(selectedReservationsValues)
+            });
             break;
           default:
             return false;

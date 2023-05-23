@@ -4,13 +4,14 @@ import { ReservationDetailsV2 } from "../../../../core/fbs/model";
 import { Reservation } from "../../../../core/publizon/model";
 import { FaustId } from "../../../../core/utils/types/ids";
 import ReadyToLoanItem from "./ready-to-loan-item";
+import SelectableMaterial from "../../../loan-list/materials/selectable-material/selectable-material";
+import { useText } from "../../../../core/utils/text";
+import { formatDate } from "../../../loan-list/utils/helpers";
 
 export interface ReadyToLoanListProps {
   physicalReservations?: ReservationDetailsV2[];
   digitalReservations?: Reservation[];
-  selectedReservations: {
-    [key: string]: string;
-  }[];
+  selectedReservations: string[];
   setCustomSelection: (elementId: string, reservationId: string) => void;
 }
 
@@ -20,25 +21,23 @@ const ReadyToLoanList: FC<ReadyToLoanListProps> = ({
   selectedReservations,
   setCustomSelection
 }) => {
+  const t = useText();
   return (
     <>
       {physicalReservations &&
-        physicalReservations.map((physicalReservation) => {
-          const {
-            recordId,
-            expiryDate,
-            reservationId = ""
-          } = physicalReservation;
-          return (
-            <ReadyToLoanItem
+        physicalReservations.map(
+          ({ recordId, expiryDate, reservationId = "" }) => (
+            <SelectableMaterial
+              badgeText={t("pickUpLatestText", {
+                placeholders: { "@date": formatDate(expiryDate) }
+              })}
+              id={reservationId}
               faust={recordId as FaustId}
-              pickUpByDate={expiryDate}
-              selectedReservations={selectedReservations}
-              setCustomSelection={setCustomSelection}
-              reservationId={reservationId as string}
+              selectedMaterials={selectedReservations}
+              openDetailsModal={setCustomSelection}
             />
-          );
-        })}
+          )
+        )}
       {digitalReservations &&
         digitalReservations.map((digitalReservation) => {
           const { identifier, expireDateUtc = "" } = digitalReservation;

@@ -16,15 +16,16 @@ export interface DashBoardProps {
   loansSoonOverdueText: string;
   loansNotOverdueText: string;
   reservationsReadyText: string;
+  totalAmountFeeText: string;
   noPhysicalLoansText: string;
   noReservationsText: string;
   intermediateUrl: string;
-  payOwedUrl: string;
   physicalLoansUrl: string;
   loansOverdueUrl: string;
   loansSoonOverdueUrl: string;
   loansNotOverdueUrl: string;
   reservationsUrl: string;
+  groupModalHiddenLabelCheckboxOnMaterialText: string;
   reservationsStillInQueueForText: string;
   readyForLoanText: string;
   pageSizeDesktop: number;
@@ -34,8 +35,6 @@ export interface DashBoardProps {
   readyForLoanCounterLabelText: string;
   readyForLoanModalAriaDescriptionText: string;
   stillInQueueModalAriaDescriptionText: string;
-  groupModalDueDateAriaDescriptionText: string;
-  groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
   pageSizeMobile: number;
   publizonAudioBookText: string;
   publizonEbookText: string;

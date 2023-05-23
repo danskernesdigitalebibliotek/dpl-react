@@ -9,10 +9,10 @@ import WarningBar from "../../loan-list/materials/utils/warning-bar";
 
 const DashboardFees: FC = () => {
   const t = useText();
-  const { intermediateUrl, payOwedUrl, feesPageUrl } = useUrls();
+  const { intermediateUrl, feesPageUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
-  const [totalFeeAmount, setTotalFeeAmount] = useState<number>();
+  const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
 
   useDeepCompareEffect(() => {
     if (fbsFees && !feeCount && !totalFeeAmount) {
@@ -28,20 +28,23 @@ const DashboardFees: FC = () => {
           <div className="status-userprofile__column my-16">
             <div className="link-filters">
               <div className="link-filters__tag-wrapper">
-                <Link
-                  href={intermediateUrl}
-                  className="link-tag link-tag link-filters__tag"
-                >
-                  {t("intermediateText")}
-                </Link>
-                <span className="link-filters__counter">{feeCount}</span>
+                <h2>
+                  <Link
+                    href={intermediateUrl}
+                    className="link-tag link-tag link-filters__tag"
+                  >
+                    {t("intermediateText")}
+                  </Link>
+                  <span className="link-filters__counter">{feeCount}</span>
+                </h2>
               </div>
             </div>
             <WarningBar
-              linkText={t("totalOwedText")}
-              rightText={`${totalFeeAmount},-`}
+              rightText={t("totalAmountFeeText", {
+                placeholders: { "@total": totalFeeAmount }
+              })}
+              overdueText={t("totalOwedText")}
               rightButtonText={t("payOwedText")}
-              leftLink={payOwedUrl}
               rightLink={feesPageUrl}
             />
           </div>

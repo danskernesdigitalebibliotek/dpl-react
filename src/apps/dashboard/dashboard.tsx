@@ -5,7 +5,7 @@ import { useText } from "../../core/utils/text";
 import StillInQueueModal from "./modal/still-in-queue-modal/still-in-queue-modal";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
-import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
+import GroupModal from "../../components/GroupModal/GroupModal";
 import {
   filterLoansNotOverdue,
   filterLoansOverdue,
@@ -23,6 +23,7 @@ import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
 import { yesterday, soon, longer } from "./util/helpers";
+import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
 
 interface DashboardProps {
   pageSize: number;
@@ -116,7 +117,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   }, [modalDetailsId, physicalLoans]);
 
   useEffect(() => {
-    if (isSuccess && data && warning) {
+    if (isSuccess && data) {
       const mapToLoanType = mapFBSLoanToLoanType(data);
 
       // Loans are sorted by loan date
@@ -143,8 +144,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         openModalHandler={openModalHandler}
         openDueDateModal={openDueDateModal}
       />
-      <StillInQueueModal modalId="still-in-queue-modal" />
-      <ReadyToLoanModal modalId="ready-to-loan-modal" />
+
       <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
         <MaterialDetails
           faust={modalLoan?.faust}
@@ -152,16 +152,18 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
           loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
-      {dueDate && physicalLoans && loansToDisplay && modalHeader && (
-        <DueDateLoansModal
+      {dueDate && physicalLoans && loansToDisplay && (
+        <GroupModal
           pageSize={pageSize}
           openLoanDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={loansToDisplay}
-          hideStatusCircle
-          customHeader={modalHeader}
-        />
+          modalClosed={() => setDueDate(null)}
+        >
+          <SimpleModalHeader header={modalHeader} />
+        </GroupModal>
       )}
+      <ReservationsGroupModal />
     </div>
   );
 };

@@ -24,11 +24,11 @@ export default {
       control: { type: "text" }
     },
     payOwedText: {
-      defaultValue: "Read more",
+      defaultValue: "Pay",
       control: { type: "text" }
     },
-    payOwedUrl: {
-      defaultValue: "https://unsplash.com/photos/KRztl5I6xac", // open source image of a dank fox
+    totalAmountFeeText: {
+      defaultValue: "@total,-",
       control: { type: "text" }
     },
     physicalLoansText: {
@@ -54,6 +54,12 @@ export default {
     loansOverdueText: {
       defaultValue: "Returned too late",
       control: { type: "text" }
+    },
+    groupModalHiddenLabelCheckboxOnMaterialText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Select @label for renewal"
     },
     loansOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
@@ -88,7 +94,7 @@ export default {
       control: { type: "text" }
     },
     removeAllReservationsText: {
-      defaultValue: "Remove reservations",
+      defaultValue: "Remove reservations (@amount)",
       control: { type: "text" }
     },
     reservationsReadyText: {
@@ -114,19 +120,6 @@ export default {
     readyForLoanCounterLabelText: {
       defaultValue: "Ready",
       control: { type: "text" }
-    },
-    groupModalDueDateAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This modal groups loans after due date and makes it possible to renew said loans"
-    },
-    groupModalDueDateRenewLoanCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close renew loans modal"
     },
     stillInQueueModalAriaDescriptionText: {
       control: {
@@ -177,7 +170,7 @@ export default {
       defaultValue: "Due date @date"
     },
     groupModalReturnLibraryText: {
-      defaultValue: "",
+      defaultValue: "Can be returned to all branches of Samsøs libraries",
       control: { type: "text" }
     },
     groupModalCheckboxText: {
@@ -253,7 +246,7 @@ export default {
       control: { type: "text" }
     },
     pickUpLatestText: {
-      defaultValue: "Pick up before",
+      defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
     materialAndAuthorText: {

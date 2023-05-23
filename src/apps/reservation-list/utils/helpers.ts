@@ -31,4 +31,10 @@ export const getReservedPhysical = (list: ReservationType[]) => {
     );
 };
 
+export const getReadyForPickup = (list: ReservationType[]) => {
+  return list.filter(({ state }) => {
+    return state === "readyForPickup";
+  });
+};
+
 export default {};

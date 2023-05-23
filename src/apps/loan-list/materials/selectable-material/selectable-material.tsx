@@ -1,9 +1,7 @@
 import React, { FC, useCallback } from "react";
-import { formatDate, isDigital } from "../../utils/helpers";
 import { useText } from "../../../../core/utils/text";
 import StatusBadge from "../utils/status-badge";
-import { LoanType } from "../../../../core/utils/types/loan-type";
-import { LoanId } from "../../../../core/utils/types/ids";
+import { FaustId, LoanId } from "../../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
@@ -11,33 +9,44 @@ import StatusMessage from "./StatusMessage";
 import AuthorYear from "../../../../components/author-year/authorYear";
 
 interface SelectableMaterialProps {
-  loan: LoanType;
   disabled?: boolean;
-  materialsToRenew: LoanId[];
-  onChecked?: (loanId: LoanId) => void;
-  openLoanDetailsModal: (modalId: string) => void;
+  badgeDate?: string | null;
+  selectedMaterials: LoanId[] | string[];
+  id?: LoanId | string | null;
+  onMaterialChecked?: (loanId: LoanId) => void;
+  openDetailsModal: (modalId: string) => void;
+  faust?: FaustId | null;
+  identifier?: string | null;
+  loanType?: string | null;
+  renewalStatusList: string[];
+  badgeText?: string;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
-  loan,
   material,
   disabled,
-  onChecked,
-  materialsToRenew,
-  openLoanDetailsModal
+  onMaterialChecked,
+  selectedMaterials,
+  openDetailsModal,
+  id,
+  faust,
+  identifier,
+  badgeDate,
+  loanType,
+  renewalStatusList,
+  badgeText
 }) => {
   const t = useText();
-  const { dueDate, faust, identifier, loanId } = loan;
   const { authors = "", materialType, year = "", title = "" } = material || {};
 
-  const openLoanDetailsModalHandler = useCallback(() => {
+  const openDetailsModalHandler = useCallback(() => {
     if (faust) {
-      openLoanDetailsModal(faust);
+      openDetailsModal(faust);
     }
     if (identifier) {
-      openLoanDetailsModal(identifier);
+      openDetailsModal(identifier);
     }
-  }, [faust, identifier, openLoanDetailsModal]);
+  }, [faust, identifier, openDetailsModal]);
 
   return (
     <li>
@@ -47,11 +56,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="list-materials__checkbox mr-32">
-          {faust && onChecked && loanId && title && (
+          {faust && onMaterialChecked && id && title && (
             <CheckBox
-              onChecked={() => onChecked(loanId)}
+              onChecked={() => onMaterialChecked(id)}
               id={faust}
-              selected={Boolean(materialsToRenew?.indexOf(loanId) > -1)}
+              selected={Boolean(selectedMaterials?.indexOf(id) > -1)}
               disabled={disabled}
               label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
                 placeholders: { "@label": title }
@@ -59,7 +68,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               hideLabel
             />
           )}
-          {isDigital(loan) && identifier && (
+          {Boolean(identifier) && identifier && (
             <CheckBox selected={false} id={identifier} disabled />
           )}
         </div>
@@ -77,25 +86,26 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         <div className="list-materials__status pl-4">
           <StatusMessage
             className="list-materials__status__note-desktop"
-            loan={loan}
+            loanType={loanType}
+            renewalStatusList={renewalStatusList}
           />
           <div>
-            {dueDate && (
+            {badgeDate && (
               <StatusBadge
-                dueDate={dueDate}
-                neutralText={t("groupModalDueDateMaterialText", {
-                  placeholders: { "@date": formatDate(dueDate) }
-                })}
+                badgeDate={badgeDate}
+                neutralText={badgeText}
+                infoText={badgeText}
               />
             )}
             <StatusMessage
               className="list-materials__status__note-mobile"
-              loan={loan}
+              loanType={loanType}
+              renewalStatusList={renewalStatusList}
             />
             <button
               type="button"
               className="list-reservation__note"
-              onClick={openLoanDetailsModalHandler}
+              onClick={openDetailsModalHandler}
               aria-label={
                 title
                   ? t("groupModalGoToMaterialAriaLabelText", {

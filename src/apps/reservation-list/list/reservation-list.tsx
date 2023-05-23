@@ -5,11 +5,11 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   sortByOldestPickupDeadline,
   getReservedDigital,
-  getReservedPhysical
+  getReservedPhysical,
+  getReadyForPickup
 } from "../utils/helpers";
 import {
   getModalIds,
-  getReadyForPickup,
   getScrollClass
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
@@ -92,9 +92,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       const reservationType = mapPublizonReservationToReservationType(
         publizonData.reservations
       );
-      const readyForPickup = getReadyForPickup(
-        reservationType as ReservationDetailsV2[]
-      );
+      const readyForPickup = getReadyForPickup(reservationType);
       setReadyForPickupReservationsPublizon(readyForPickup);
       setReservedReservationsPublizon(
         getReservedDigital(
@@ -124,9 +122,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   useEffect(() => {
     if (isSuccessFBS && data) {
       const fbsToReservationType = mapFBSReservationToReservationType(data);
-      const readyForPickup = getReadyForPickup(
-        fbsToReservationType as ReservationDetailsV2[]
-      );
+      const readyForPickup = getReadyForPickup(fbsToReservationType);
       const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
       setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(

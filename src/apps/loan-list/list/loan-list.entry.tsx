@@ -19,8 +19,6 @@ export interface LoanListEntryUrlProps {
 
 interface LoanListEntryTextProps {
   groupModalDueDateLinkToPageWithFeesText: string;
-  groupModalDueDateRenewLoanCloseModalAriaLabelText: string;
-  groupModalDueDateAriaDescriptionText: string;
   groupModalDueDateHeaderText: string;
   groupModalDueDateWarningLoanOverdueText: string;
   loanListAriaLabelListButtonText: string;
