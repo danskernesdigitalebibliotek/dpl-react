@@ -340,6 +340,7 @@ paths:
     get:
       tags:
         - LoanStatus
+      operationId: "getV1LoanstatusIdentifier"
       summary: Get loan status of a specific product.
       parameters:
         - name: clientId
