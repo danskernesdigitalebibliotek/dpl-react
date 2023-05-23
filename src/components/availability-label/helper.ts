@@ -24,7 +24,7 @@ export const useAvailabilityData = ({
   faustIds: FaustId[] | null;
   isbn: string | null;
 }) => {
-  const [isAvailable, setIsAvailable] = useState(false);
+  const [isAvailable, setIsAvailable] = useState<null | boolean>(null);
   const config = useConfig();
   const isOnline = accessTypes?.includes(AccessTypeCode.Online) ?? false;
   const [isCostFree, setIsCostFree] = useState<null | boolean>(null);
@@ -32,7 +32,7 @@ export const useAvailabilityData = ({
 
   useEffect(() => {
     // An online material is by default always available.
-    if (isOnline && isCostFree !== false) {
+    if (isOnline && isCostFree) {
       setIsAvailable(true);
     }
   }, [isOnline, isCostFree]);
@@ -49,7 +49,9 @@ export const useAvailabilityData = ({
           // to reserve it (via useGetV1LoanstatusIdentifier below in the code)
           if (res?.product?.costFree === false) {
             setIsCostFree(false);
+            return;
           }
+          setIsCostFree(true);
         }
       }
     }
@@ -58,19 +60,21 @@ export const useAvailabilityData = ({
   const { isLoading: isLoadingProductInfo } = useGetV1LoanstatusIdentifier(
     isbn || "",
     {
-      query: {
-        // Publizon / useGetV1LoanstatusIdentifier shows loan status per material.
-        // This status is only available for products found on Ereol. Other online
-        // materials are always supposed to be shown as "available"
-        enabled: isOnline && !!isbn && access.some((acc) => acc === "Ereol"),
-        onSuccess: (res) => {
-          if (res && res.loanStatus) {
-            setIsAvailable(publizonProductStatuses[res.loanStatus].isAvailable);
-            return;
-          }
-          // In case the load status data doesn't exist we assume it isn't available
-          setIsAvailable(false);
+      // Publizon / useGetV1LoanstatusIdentifier shows loan status per material.
+      // This status is only available for products found on Ereol. Other online
+      // materials are always supposed to be shown as "available"
+      enabled:
+        isOnline &&
+        !!isbn &&
+        isCostFree === false &&
+        access.some((acc) => acc === "Ereol"),
+      onSuccess: (res) => {
+        if (res && res.loanStatus) {
+          setIsAvailable(publizonProductStatuses[res.loanStatus].isAvailable);
+          return;
         }
+        // In case the load status data doesn't exist we assume it isn't available
+        setIsAvailable(false);
       }
     }
   );
@@ -95,9 +99,15 @@ export const useAvailabilityData = ({
 
   useEffect(() => {
     setIsLoading(
-      isLoadingAvailability || isLoadingIdentifier || isLoadingProductInfo
+      (isLoadingAvailability || isLoadingIdentifier || isLoadingProductInfo) &&
+        isAvailable === null
     );
-  }, [isLoadingAvailability, isLoadingIdentifier, isLoadingProductInfo]);
+  }, [
+    isLoadingAvailability,
+    isLoadingIdentifier,
+    isLoadingProductInfo,
+    isAvailable
+  ]);
 
   return { isLoading, isAvailable };
 };

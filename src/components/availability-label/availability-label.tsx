@@ -69,7 +69,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     <AvailabilityLabelInside
       selected={selected}
       isLoading={!!isLoading}
-      isAvailable={isAvailable}
+      isAvailable={!!isAvailable}
       manifestText={manifestText}
       availabilityText={availabilityText}
     />
