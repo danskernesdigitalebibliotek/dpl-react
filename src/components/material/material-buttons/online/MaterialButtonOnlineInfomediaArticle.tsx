@@ -1,4 +1,5 @@
 import React, { useState, FC } from "react";
+import { useDeepCompareEffect } from "react-use";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -6,10 +7,10 @@ import { Manifestation } from "../../../../core/utils/types/entities";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
-import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
-import { isAnonymous } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/user";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
+import { usePatronData } from "../../helper";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
@@ -27,17 +28,17 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
-  const [isResident, setIsResident] = useState<null | boolean>(null);
-  const { isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous(),
-    onSuccess: (data) => {
-      if (data?.patron?.resident !== undefined) {
-        setIsResident(data.patron.resident);
-      }
-    }
-  });
+  const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
+  const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
+
+  useDeepCompareEffect(() => {
+    if (!userData || !userData.patron) {
+      return;
+    }
+    setIsUserResident(isResident(userData?.patron));
+  }, [userData]);
 
   if (manifestations.length < 1) {
     return null;
@@ -58,7 +59,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
     return <MaterialButtonLoading />;
   }
 
-  if (isResident === false) {
+  if (isUserResident === false) {
     return (
       <MaterialButtonDisabled
         size={size}

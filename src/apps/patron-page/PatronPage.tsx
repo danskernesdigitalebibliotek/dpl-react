@@ -3,7 +3,6 @@ import { set } from "lodash";
 import { useQueryClient } from "react-query";
 import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
 import {
-  useGetPatronInformationByPatronIdV2,
   useUpdateV5,
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../core/fbs/fbs";
@@ -17,6 +16,7 @@ import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
+import { usePatronData } from "../../components/material/helper";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -24,7 +24,7 @@ const PatronPage: FC = () => {
   const { mutate } = useUpdateV5();
   const { pauseReservation } = getModalIds();
 
-  const { data: patronData } = useGetPatronInformationByPatronIdV2();
+  const { data: patronData } = usePatronData();
 
   const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);

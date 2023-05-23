@@ -1,4 +1,5 @@
 import React, { useState, FC } from "react";
+import { useDeepCompareEffect } from "react-use";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -6,10 +7,10 @@ import { Pid } from "../../../../core/utils/types/ids";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
-import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
-import { isAnonymous } from "../../../../core/utils/helpers/user";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
+import { usePatronData } from "../../helper";
+import { isResident } from "../../../../core/utils/helpers/user";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   pid: Pid;
@@ -20,18 +21,18 @@ export interface MaterialButtonOnlineDigitalArticleProps {
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
 > = ({ pid, size, dataCy = "material-button-online-digital-article" }) => {
-  const [isResident, setIsResident] = useState<null | boolean>(null);
-  const { isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous(),
-    onSuccess: (data) => {
-      if (data?.patron?.resident !== undefined) {
-        setIsResident(data.patron.resident);
-      }
-    }
-  });
+  const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
+  const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
   const t = useText();
   const { authUrl } = useUrls();
+
+  useDeepCompareEffect(() => {
+    if (!userData || !userData.patron) {
+      return;
+    }
+    setIsUserResident(isResident(userData?.patron));
+  }, [userData]);
 
   const onClick = () => {
     openGuarded({
@@ -44,7 +45,7 @@ const MaterialButtonOnlineDigitalArticle: FC<
     return <MaterialButtonLoading />;
   }
 
-  if (isResident === false) {
+  if (isUserResident === false) {
     return (
       <MaterialButtonDisabled
         label={t("cantViewText")}
