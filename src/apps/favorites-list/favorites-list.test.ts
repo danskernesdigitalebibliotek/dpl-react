@@ -59,7 +59,7 @@ describe("Favorites list", () => {
       .eq(0)
       .should(
         "have.text",
-        "billedbogavailablelydbog (net)availablelydbog (cd)availablebilledbog (net)availableebogavailable"
+        "billedbogavailablelydbog (net)unavailablelydbog (cd)availablebilledbog (net)unavailableebogunavailable"
       );
 
     // 2.f. Link on material to work page
