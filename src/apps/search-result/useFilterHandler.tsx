@@ -45,9 +45,10 @@ const useFilterHandler = () => {
   const addFilterFromUrlParamListener = (facet: FacetField) => {
     const urlFilter = getUrlQueryParam(facet);
     if (urlFilter) {
+      // We only use term from the url, therefore key is not important here.
       addToFilter({
         facet,
-        term: { key: urlFilter, term: urlFilter }
+        term: { key: "key", term: urlFilter }
       });
     }
   };
