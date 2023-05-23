@@ -95,7 +95,7 @@ export const useAvailabilityData = ({
 
   useEffect(() => {
     setIsLoading(
-      !!(isLoadingAvailability || isLoadingIdentifier || isLoadingProductInfo)
+      isLoadingAvailability || isLoadingIdentifier || isLoadingProductInfo
     );
   }, [isLoadingAvailability, isLoadingIdentifier, isLoadingProductInfo]);
 
