@@ -3,8 +3,7 @@ import {
   getAllFaustIds,
   getManifestationType
 } from "../../../../core/utils/helpers/general";
-import { useGetPatronInformationByPatronIdV2 } from "../../../../core/fbs/fbs";
-import { isAnonymous, isBlocked } from "../../../../core/utils/helpers/user";
+import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
@@ -13,6 +12,7 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
+import { useGetPatronInformationByPatronId } from "../../../../apps/material/helper";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -30,9 +30,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
   });
-  const { data: userData, isLoading } = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous()
-  });
+  const { data: userData, isLoading } = useGetPatronInformationByPatronId();
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
   if (isLoading) {

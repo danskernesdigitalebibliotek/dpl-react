@@ -20,7 +20,8 @@ import {
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
   getManifestationsOrderByTypeAndYear,
-  isParallelReservation
+  isParallelReservation,
+  useGetPatronInformationByPatronId
 } from "./helper";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { getManifestationPid } from "../../core/utils/helpers/general";
@@ -35,7 +36,6 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
-import { useGetPatronInformationByPatronIdV2 } from "../../core/fbs/fbs";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 
@@ -53,9 +53,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
-  const { data: userData } = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous()
-  });
+  const { data: userData } = useGetPatronInformationByPatronId();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
 

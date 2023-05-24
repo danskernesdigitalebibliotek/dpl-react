@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { usePlaceCopyMutation } from "../../../core/dbc-gateway/generated/graphql";
-import { useGetPatronInformationByPatronIdV2 } from "../../../core/fbs/fbs";
 import { statistics } from "../../../core/statistics/statistics";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import Modal from "../../../core/utils/modal";
@@ -9,7 +8,7 @@ import { Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId, getResponseMessage } from "./helper";
-import { isAnonymous } from "../../../core/utils/helpers/user";
+import { useGetPatronInformationByPatronId } from "../../../apps/material/helper";
 
 type DigitalModalProps = {
   pid: Pid;
@@ -55,9 +54,7 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   };
 
   // Pre fill the email field with the patron's email or set it to an empty string
-  const { data: patronData } = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous()
-  });
+  const { data: patronData } = useGetPatronInformationByPatronId();
   useEffect(() => {
     if (!patronData) return;
     if (patronData.patron?.emailAddress) {

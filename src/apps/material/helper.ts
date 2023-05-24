@@ -29,8 +29,10 @@ import { UseConfigFunction } from "../../core/utils/config";
 import {
   getAvailabilityV3,
   getHoldingsV3,
-  useGetHoldingsV3
+  useGetHoldingsV3,
+  useGetPatronInformationByPatronIdV2
 } from "../../core/fbs/fbs";
+import { isAnonymous } from "../../core/utils/helpers/user";
 
 export const getWorkManifestation = (
   work: Work,
@@ -453,4 +455,12 @@ export const useGetHoldings = ({
     options
   );
   return { data, isLoading, isError };
+};
+
+export const useGetPatronInformationByPatronId = () => {
+  const { data, isLoading } = useGetPatronInformationByPatronIdV2({
+    enabled: !isAnonymous()
+  });
+
+  return { data, isLoading };
 };
