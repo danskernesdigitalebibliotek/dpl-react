@@ -235,7 +235,7 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
 export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanId }) => loanId) as number[];
+    .map(({ loanId }) => String(loanId)) as string[];
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {
@@ -337,7 +337,7 @@ export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
     return false;
   });
 };
-export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
+export const getPhysicalQueuedReservations = (list: ReservationDetailsV2[]) => {
   return [...list].filter(
     ({ state }) => state === dashboardReservedApiValueText
   );

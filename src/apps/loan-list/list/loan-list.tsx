@@ -29,7 +29,8 @@ import ListHeader from "./ListHeader";
 import {
   loansAreEmpty,
   removeLoansWithDuplicateDueDate,
-  getFromListByKey
+  getFromListByKey,
+  formatDate
 } from "../utils/helpers";
 import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
@@ -40,8 +41,8 @@ import {
 } from "../../../core/utils/helpers/modal-helpers";
 import GroupModal from "../../../components/GroupModal/GroupModal";
 import { ListType } from "../../../core/utils/types/list-type";
-import StatusCircleModalHeader from "../modal/StatusCircleModalHeader";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
+import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 
 interface LoanListProps {
   pageSize: number;
@@ -127,12 +128,9 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   );
 
   const openRenewLoansModal = useCallback(() => {
+    setDueDate(null);
     open(allLoansId as string);
   }, [allLoansId, open]);
-
-  const modalClosed = useCallback(() => {
-    setDueDate(null);
-  }, []);
 
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
@@ -229,9 +227,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       </MaterialDetailsModal>
       {physicalLoans && (
         <GroupModal
-          modalClosed={modalClosed}
           pageSize={pageSize}
-          openLoanDetailsModal={openLoanDetailsModal}
+          openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={
             dueDate
@@ -239,7 +236,15 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               : physicalLoans
           }
         >
-          {dueDate && <StatusCircleModalHeader dueDate={dueDate} />}
+          {dueDate && (
+            <StatusCircleModalHeader
+              header={t("groupModalDueDateHeaderText", {
+                placeholders: { "@date": formatDate(dueDate) }
+              })}
+              dueDate={dueDate}
+              subHeader={t("groupModalReturnLibraryText")}
+            />
+          )}
           {!dueDate && <SimpleModalHeader header={t("groupModalHeaderText")} />}
         </GroupModal>
       )}

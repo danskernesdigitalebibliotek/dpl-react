@@ -6,11 +6,12 @@ import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
   filterLoansNotOverdue,
-  getPhysicalReservations
+  getPhysicalQueuedReservations,
+  getModalIds,
+  getColors
 } from "../../../core/utils/helpers/general";
 import {
   mapFBSLoanToLoanType,
-  mapPublizonReservationToReservationType,
   mapFBSReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import { useText } from "../../../core/utils/text";
@@ -31,6 +32,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
+
+  const { reservationsReady, reservationsQueued } = getModalIds();
   const {
     colorThresholds: { warning }
   } = config<ThresholdType>("thresholdConfig", {
@@ -89,7 +92,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       const materialsReadyForPickup = getReadyForPickup(
         mapFBSReservationToReservationType(patronReservations)
       );
-      const materialsStillInQueue = getPhysicalReservations(patronReservations);
+      const materialsStillInQueue =
+        getPhysicalQueuedReservations(patronReservations);
       setReservationsReadyForPickup(materialsReadyForPickup.length);
       setReservationsStillInQueueFor(materialsStillInQueue.length);
       setPatronReservationCount(patronReservations.length);
@@ -111,7 +115,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               </Link>
               <span className="link-filters__counter">
                 {physicalLoansCount}
-              </span>{" "}
+              </span>
             </h2>
           </div>
         </div>
@@ -126,8 +130,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansOverdueText")}
                 notificationColor="danger"
                 notificationLink={loansOverdueUrl}
-                notificationClickEvent={openDueDateModal}
-                notificationClickEventParam={yesterday}
+                notificationClickEvent={() => openDueDateModal(yesterday)}
               />
             )}
             {physicalLoansSoonOverdue && physicalLoansSoonOverdue && (
@@ -136,8 +139,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansSoonOverdueText")}
                 notificationColor="warning"
                 notificationLink={loansSoonOverdueUrl}
-                notificationClickEvent={openDueDateModal}
-                notificationClickEventParam={soon}
+                notificationClickEvent={() => openDueDateModal(soon)}
               />
             )}
             {physicalLoansNotOverdue && !!physicalLoansNotOverdue && (
@@ -146,8 +148,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
                 notificationText={t("loansNotOverdueText")}
                 notificationColor="neutral"
                 notificationLink={loansNotOverdueUrl}
-                notificationClickEvent={openDueDateModal}
-                notificationClickEventParam={longer}
+                notificationClickEvent={() => openDueDateModal(longer)}
               />
             )}
           </>
@@ -176,8 +177,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsReadyText")}
             notificationColor="info"
             notificationLink={reservationsUrl}
-            notificationClickEvent={openModalHandler}
-            notificationClickEventParam="ready-to-loan-modal"
+            notificationClickEvent={() =>
+              openModalHandler(reservationsReady as string)
+            }
           />
         )}
         {!!reservationsStillInQueueFor && (
@@ -186,8 +188,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             notificationText={t("reservationsStillInQueueForText")}
             notificationColor="neutral"
             notificationLink={reservationsUrl}
-            notificationClickEvent={openModalHandler}
-            notificationClickEventParam="still-in-queue-modal"
+            notificationClickEvent={() =>
+              openModalHandler(reservationsQueued as string)
+            }
           />
         )}
       </div>

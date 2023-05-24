@@ -2,9 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
-import StillInQueueModal from "./modal/still-in-queue-modal/still-in-queue-modal";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
 import GroupModal from "../../components/GroupModal/GroupModal";
 import {
   filterLoansNotOverdue,
@@ -24,6 +22,7 @@ import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
 import { yesterday, soon, longer } from "./util/helpers";
 import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
+import ReservationGroupModal from "./modal/ReservationsGroupModal";
 
 interface DashboardProps {
   pageSize: number;
@@ -42,6 +41,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   const { loanDetails, dueDateModal } = getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalLoan, setModalLoan] = useState<ListType | null>(null);
+  const [reservationModalId, setReservationModalId] = useState<string>("");
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
@@ -57,9 +57,8 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
 
   const openModalHandler = useCallback(
     (modalId: string) => {
-      if (modalId) {
-        open(modalId);
-      }
+      setReservationModalId(modalId);
+      open(modalId);
     },
     [open]
   );
@@ -155,15 +154,14 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       {dueDate && physicalLoans && loansToDisplay && (
         <GroupModal
           pageSize={pageSize}
-          openLoanDetailsModal={openLoanDetailsModal}
+          openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={loansToDisplay}
-          modalClosed={() => setDueDate(null)}
         >
           <SimpleModalHeader header={modalHeader} />
         </GroupModal>
       )}
-      <ReservationsGroupModal />
+      <ReservationGroupModal modalId={reservationModalId} pageSize={pageSize} />
     </div>
   );
 };

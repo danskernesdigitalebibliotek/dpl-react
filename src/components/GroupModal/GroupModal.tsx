@@ -11,74 +11,55 @@ import {
 import { LoanType } from "../../core/utils/types/loan-type";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
 import { Button } from "../Buttons/Button";
+import GroupModalLoansList from "./GroupModalLoansList";
 
 interface GroupModalProps {
   dueDate?: string | null;
   loansModal: LoanType[];
   pageSize: number;
-  openLoanDetailsModal: (modalId: string) => void;
-  modalClosed: () => void;
+  openDetailsModal: (modalId: string) => void;
   children: ReactNode;
 }
 
 const GroupModal: FC<GroupModalProps> = ({
   dueDate,
   loansModal,
-  openLoanDetailsModal,
+  openDetailsModal,
   pageSize,
-  modalClosed,
   children
 }) => {
   const t = useText();
   const { mutate } = useRenewLoansV2();
+  const { close } = useModalButtonHandler();
   const { dueDateModal, allLoansId } = getModalIds();
   const queryClient = useQueryClient();
-
   const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
-
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
-  const [materialsToRenew, setMaterialsToRenew] = useState<number[]>([]);
-  const { close } = useModalButtonHandler();
+  const [materialsToRenew, setMaterialsToRenew] = useState<string[]>([]);
 
   const renewSelected = useCallback(() => {
+    const ids = materialsToRenew.map((id) => Number(id));
     mutate(
       {
-        data: materialsToRenew
+        data: ids
       },
       {
         onSuccess: (result) => {
           if (result) {
             queryClient.invalidateQueries(getGetLoansV2QueryKey());
             close(modalIdUsed as string);
-            modalClosed();
           }
         }
       }
     );
-  }, [close, materialsToRenew, modalClosed, modalIdUsed, mutate, queryClient]);
+  }, [close, materialsToRenew, modalIdUsed, mutate, queryClient]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
   }, [loansModal]);
 
-  const selectAll = () => {
-    if (materialsToRenew.length > 0) {
-      setMaterialsToRenew([]);
-    } else {
-      setMaterialsToRenew(getRenewableMaterials(loansModal));
-    }
-  };
-
-  const onMaterialChecked = (id: number) => {
-    const materialsToRenewCopy = [...materialsToRenew];
-
-    const indexOfItemToRemove = materialsToRenew.indexOf(id);
-    if (indexOfItemToRemove > -1) {
-      materialsToRenewCopy.splice(indexOfItemToRemove, 1);
-    } else {
-      materialsToRenewCopy.push(id);
-    }
-    setMaterialsToRenew(materialsToRenewCopy);
+  const selectMaterials = (materialIds: string[]) => {
+    setMaterialsToRenew(materialIds);
   };
 
   return (
@@ -91,26 +72,32 @@ const GroupModal: FC<GroupModalProps> = ({
       <div className="modal-loan">
         {children}
         <GroupModalContent
-          openLoanDetailsModal={openLoanDetailsModal}
-          pageSize={pageSize}
-          loansModal={loansModal}
-          onMaterialChecked={onMaterialChecked}
+          selectMaterials={selectMaterials}
+          selectedMaterials={materialsToRenew}
           amountOfSelectableMaterials={renewableMaterials}
-          selectableMaterials={materialsToRenew}
-          selectAll={selectAll}
+          selectableMaterials={getRenewableMaterials(loansModal)}
+          buttonComponent={
+            <Button
+              label={t("groupModalButtonText", {
+                count: materialsToRenew.length,
+                placeholders: { "@count": materialsToRenew.length }
+              })}
+              buttonType="none"
+              id="renew-several"
+              variant="filled"
+              disabled={renewableMaterials === 0}
+              collapsible={false}
+              onClick={renewSelected}
+              size="small"
+            />
+          }
         >
-          <Button
-            label={t("groupModalButtonText", {
-              count: materialsToRenew.length,
-              placeholders: { "@count": materialsToRenew.length }
-            })}
-            buttonType="none"
-            id="renew-several"
-            variant="filled"
-            disabled={renewableMaterials === 0}
-            collapsible={false}
-            onClick={renewSelected}
-            size="small"
+          <GroupModalLoansList
+            materials={loansModal}
+            selectedMaterials={materialsToRenew}
+            openDetailsModal={openDetailsModal}
+            selectMaterials={selectMaterials}
+            pageSize={pageSize}
           />
         </GroupModalContent>
       </div>

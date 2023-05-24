@@ -1,22 +1,24 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import StatusCircle from "../materials/utils/status-circle";
-import { useText } from "../../../core/utils/text";
-import WarningBar from "../materials/utils/warning-bar";
-import { formatDate } from "../utils/helpers";
-import { materialIsOverdue } from "../../../core/utils/helpers/general";
-import { useUrls } from "../../../core/utils/url";
+import WarningBar from "../../apps/loan-list/materials/utils/warning-bar";
+import { materialIsOverdue } from "../../core/utils/helpers/general";
+import { useUrls } from "../../core/utils/url";
+import StatusCircle from "../../apps/loan-list/materials/utils/status-circle";
+import { useText } from "../../core/utils/text";
 
 export interface StatusCircleModalHeaderProps {
   dueDate?: string | null;
+  header: string;
+  subHeader?: string;
 }
 
 const StatusCircleModalHeader: FC<StatusCircleModalHeaderProps> = ({
-  dueDate
+  dueDate,
+  header,
+  subHeader
 }) => {
   const t = useText();
   const { feesPageUrl } = useUrls();
-  if (!dueDate) return null;
 
   return (
     <>
@@ -30,17 +32,11 @@ const StatusCircleModalHeader: FC<StatusCircleModalHeaderProps> = ({
           />
         </div>
         <div>
-          <h2 className="modal-loan__title text-header-h2">
-            {t("groupModalDueDateHeaderText", {
-              placeholders: { "@date": formatDate(dueDate) }
-            })}
-          </h2>
-          <div className="text-body-large">
-            {t("groupModalReturnLibraryText")}
-          </div>
+          <h2 className="modal-loan__title text-header-h2">{header}</h2>
+          {subHeader && <div className="text-body-large">{subHeader}</div>}
         </div>
       </div>
-      {materialIsOverdue(dueDate) && (
+      {dueDate && materialIsOverdue(dueDate) && (
         <div className="modal-details__warning">
           <WarningBar
             leftLink={feesPageUrl}

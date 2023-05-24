@@ -85,6 +85,14 @@ export default {
       defaultValue: "Reservations",
       control: { type: "text" }
     },
+    reservationsReadyForPickupText: {
+      defaultValue: "Reservations ready for pickup",
+      control: { type: "text" }
+    },
+    queuedReservationsText: {
+      defaultValue: "Queued reservations",
+      control: { type: "text" }
+    },
     reservationsUrl: {
       defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
       control: { type: "text" }
@@ -177,7 +185,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Choose all renewable"
+      defaultValue: "Choose all"
     },
     groupModalButtonText: {
       control: {
@@ -208,7 +216,7 @@ export default {
       control: { type: "text" }
     },
     resultPagerStatusText: {
-      defaultValue: "Showing @itemsShown out of @hitcount loans",
+      defaultValue: "Showing @itemsShown out of @hitcount elements",
       control: { type: "text" }
     },
     loanListMaterialDaysText: {
@@ -249,6 +257,22 @@ export default {
       defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
+    physicalReservationsModalHeaderText: {
+      defaultValue: "Physical reservations",
+      control: { type: "text" }
+    },
+    digitalReservationsModalHeaderText: {
+      defaultValue: "Digital reservations",
+      control: { type: "text" }
+    },
+    pageSizeDesktop: {
+      defaultValue: 10,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      defaultValue: 5,
+      control: { type: "number" }
+    },
     materialAndAuthorText: {
       control: {
         type: "text"
@@ -273,6 +297,6 @@ const Template: ComponentStory<typeof DashBoard> = (props) => (
   <DashBoard {...props} />
 );
 
-export const DashBoardEntry = Template.bind({});
+export const DashboardEntry = Template.bind({});
 
-DashBoardEntry.args = {};
+DashboardEntry.args = {};

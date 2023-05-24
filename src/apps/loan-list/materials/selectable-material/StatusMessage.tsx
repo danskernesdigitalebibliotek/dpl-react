@@ -4,7 +4,7 @@ import { useText } from "../../../../core/utils/text";
 
 interface StatusMessageProps {
   className: string;
-  loanType: string;
+  loanType: string | null;
   renewalStatusList: string[];
 }
 

@@ -1,52 +1,38 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, ReactNode } from "react";
 import { useText } from "../../../../core/utils/text";
-import StatusBadge from "../utils/status-badge";
-import { FaustId, LoanId } from "../../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
-import StatusMessage from "./StatusMessage";
 import AuthorYear from "../../../../components/author-year/authorYear";
 
 interface SelectableMaterialProps {
   disabled?: boolean;
-  badgeDate?: string | null;
-  selectedMaterials: LoanId[] | string[];
-  id?: LoanId | string | null;
-  onMaterialChecked?: (loanId: LoanId) => void;
+  id: string;
+  onMaterialChecked: (id: string) => void;
   openDetailsModal: (modalId: string) => void;
-  faust?: FaustId | null;
-  identifier?: string | null;
-  loanType?: string | null;
-  renewalStatusList: string[];
-  badgeText?: string;
+  selected?: boolean;
+  statusMessageComponentMobile: ReactNode;
+  statusMessageComponentDesktop: ReactNode;
+  statusBadgeComponent: ReactNode;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   material,
   disabled,
   onMaterialChecked,
-  selectedMaterials,
+  selected,
   openDetailsModal,
   id,
-  faust,
-  identifier,
-  badgeDate,
-  loanType,
-  renewalStatusList,
-  badgeText
+  statusMessageComponentMobile,
+  statusMessageComponentDesktop,
+  statusBadgeComponent
 }) => {
   const t = useText();
   const { authors = "", materialType, year = "", title = "" } = material || {};
 
   const openDetailsModalHandler = useCallback(() => {
-    if (faust) {
-      openDetailsModal(faust);
-    }
-    if (identifier) {
-      openDetailsModal(identifier);
-    }
-  }, [faust, identifier, openDetailsModal]);
+    openDetailsModal(id);
+  }, [id, openDetailsModal]);
 
   return (
     <li>
@@ -56,11 +42,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="list-materials__checkbox mr-32">
-          {faust && onMaterialChecked && id && title && (
+          {!disabled && title && (
             <CheckBox
               onChecked={() => onMaterialChecked(id)}
-              id={faust}
-              selected={Boolean(selectedMaterials?.indexOf(id) > -1)}
+              id={id}
+              selected={selected}
               disabled={disabled}
               label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
                 placeholders: { "@label": title }
@@ -68,9 +54,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               hideLabel
             />
           )}
-          {Boolean(identifier) && identifier && (
-            <CheckBox selected={false} id={identifier} disabled />
-          )}
+          {disabled && <CheckBox id={id} disabled={disabled} />}
         </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
@@ -84,24 +68,10 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div className="list-materials__status pl-4">
-          <StatusMessage
-            className="list-materials__status__note-desktop"
-            loanType={loanType}
-            renewalStatusList={renewalStatusList}
-          />
+          {statusMessageComponentDesktop}
           <div>
-            {badgeDate && (
-              <StatusBadge
-                badgeDate={badgeDate}
-                neutralText={badgeText}
-                infoText={badgeText}
-              />
-            )}
-            <StatusMessage
-              className="list-materials__status__note-mobile"
-              loanType={loanType}
-              renewalStatusList={renewalStatusList}
-            />
+            {statusBadgeComponent}
+            {statusMessageComponentMobile}
             <button
               type="button"
               className="list-reservation__note"

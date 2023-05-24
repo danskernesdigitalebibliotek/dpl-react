@@ -1,4 +1,4 @@
-import React, { FC, useCallback, MouseEvent } from "react";
+import React, { FC } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
 import Link from "../../../components/atoms/links/Link";
 
@@ -7,7 +7,7 @@ interface DashboardNotificationProps {
   notificationText: string;
   notificationColor: string;
   notificationLink: URL;
-  notificationClickEvent?: (modalId: string) => void | null;
+  notificationClickEvent?: () => void;
   notificationClickEventParam?: string;
 }
 
@@ -16,20 +16,10 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationText,
   notificationColor,
   notificationLink,
-  notificationClickEvent,
-  notificationClickEventParam
+  notificationClickEvent
 }) => {
-  const notificationClickEventHandler = useCallback(
-    (e: MouseEvent) => {
-      e.stopPropagation();
-      if (notificationClickEvent && notificationClickEventParam) {
-        notificationClickEvent(notificationClickEventParam);
-      }
-    },
-    [notificationClickEvent, notificationClickEventParam]
-  );
   return (
-    <button type="button" onClick={(e) => notificationClickEventHandler(e)}>
+    <button type="button" onClick={notificationClickEvent}>
       {!notificationClickEvent && (
         <Link
           href={notificationLink}

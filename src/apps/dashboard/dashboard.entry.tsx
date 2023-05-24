@@ -19,6 +19,7 @@ export interface DashBoardProps {
   totalAmountFeeText: string;
   noPhysicalLoansText: string;
   noReservationsText: string;
+  reservationsReadyForPickupText: string;
   intermediateUrl: string;
   physicalLoansUrl: string;
   loansOverdueUrl: string;

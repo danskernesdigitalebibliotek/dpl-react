@@ -8,5 +8,7 @@
   "feeDetails": "fee-details-",
   "userMenuAuthenticated": "user-modal-authenticated",
   "userMenuAnonymous": "user-modal-anonymous",
-  "blockedModal": "blocked-modal"
+  "blockedModal": "blocked-modal",
+  "reservationsReady": "reservations-ready",
+  "reservationsQueued": "reservations-queued"
 }
