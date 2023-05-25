@@ -15,12 +15,12 @@ const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
 }) => {
   const t = useText();
   return (
-    <div className="search-result-page" data-cy={dataCy}>
+    <div className="card-list-page" data-cy={dataCy}>
       <h1 className="text-header-h2 mb-16 search-result-title text-loading">
         {t("showingResultsForText", { placeholders: { "@query": q } })}
       </h1>
       <FacetLineFiltersSkeleton />
-      <ul className="search-result-page__list my-32">
+      <ul className="card-list-page__list my-32">
         {/* Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens. */}
         {[...Array(5)].map(() => (
