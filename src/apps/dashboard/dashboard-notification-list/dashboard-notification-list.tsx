@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from "react";
-import Link from "../../../components/atoms/links/Link";
 import {
   getModalIds,
   getPhysicalQueuedReservations
@@ -7,7 +6,6 @@ import {
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { useUrls } from "../../../core/utils/url";
-import DashboardNotification from "../dashboard-notification/dashboard-notification";
 import {
   yesterday,
   soon,
@@ -16,6 +14,7 @@ import {
 } from "../util/helpers";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
+import NotificationColumn from "./NotificationColumn";
 
 export interface DashboardNotificationListProps {
   openModalHandler: (modalId: string) => void;
@@ -56,36 +55,36 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   const dashboardNotificationsLoan = [
     {
-      list: physicalLoansOverdue,
+      listLength: physicalLoansOverdue.length,
       badge: t("materialDetailsOverdueText"),
       header: t("loansOverdueText"),
       color: "danger",
-      url: loansOverdueUrl,
+      notificationLink: loansOverdueUrl,
       showNotificationDot: true,
-      clickEvent: () =>
+      notificationClickEvent: () =>
         physicalLoansOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansOverdue[0].loanId))
           : openDueDateModal(yesterday)
     },
     {
-      list: physicalLoansSoonOverdue,
+      listLength: physicalLoansSoonOverdue.length,
       badge: t("statusBadgeWarningText"),
       header: t("loansSoonOverdueText"),
       color: "warning",
-      url: loansSoonOverdueUrl,
+      notificationLink: loansSoonOverdueUrl,
       showNotificationDot: true,
-      clickEvent: () =>
+      notificationClickEvent: () =>
         physicalLoansSoonOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansSoonOverdue[0].loanId))
           : openDueDateModal(soon)
     },
     {
-      list: physicalLoansFarFromOverdue,
+      listLength: physicalLoansFarFromOverdue.length,
       header: t("loansNotOverdueText"),
       color: "neutral",
-      url: loansNotOverdueUrl,
+      notificationLink: loansNotOverdueUrl,
       showNotificationDot: false,
-      clickEvent: () =>
+      notificationClickEvent: () =>
         physicalLoansFarFromOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansFarFromOverdue[0].loanId))
           : openDueDateModal(longer)
@@ -96,13 +95,13 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   const dashboardNotificationsReservations = [
     {
-      list: readyToLoanReservations,
+      listLength: readyToLoanReservations.length,
       header: t("reservationsReadyText"),
       badge: t("readyForLoanText"),
       showNotificationDot: true,
       color: "info",
-      url: reservationsUrl,
-      clickEvent: () =>
+      notificationLink: reservationsUrl,
+      notificationClickEvent: () =>
         readyToLoanReservations.length === 1
           ? openReservationDetailsModal(
               String(readyToLoanReservations[0].faust)
@@ -110,12 +109,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           : openModalHandler(reservationsReady as string)
     },
     {
-      list: queuedReservations,
+      listLength: queuedReservations.length,
       header: t("reservationsStillInQueueForText"),
       color: "neutral",
       showNotificationDot: false,
-      url: reservationsUrl,
-      clickEvent: () =>
+      notificationLink: reservationsUrl,
+      notificationClickEvent: () =>
         readyToLoanReservations.length === 1
           ? openReservationDetailsModal(
               String(
@@ -144,90 +143,20 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   // Merge digital and physical loans, for easier filtration down the line.
   return (
     <div className="status-userprofile">
-      <div className="status-userprofile__column my-32">
-        <div className="link-filters">
-          <div className="link-filters__tag-wrapper">
-            <h2>
-              <Link
-                href={physicalLoansUrl}
-                className="link-tag link-tag link-filters__tag"
-              >
-                {t("physicalLoansText")}
-              </Link>
-              <span className="link-filters__counter">
-                {physicalLoansCount}
-              </span>
-            </h2>
-          </div>
-        </div>
-        {physicalLoansCount === 0 && (
-          <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
-        )}
-        {physicalLoansCount !== 0 &&
-          dashboardNotificationsLoan.map(
-            ({
-              list,
-              header,
-              color,
-              url,
-              clickEvent,
-              showNotificationDot,
-              badge
-            }) => (
-              <DashboardNotification
-                badge={badge}
-                showNotificationDot={showNotificationDot}
-                notificationNumber={list.length}
-                notificationText={header}
-                key={header}
-                notificationColor={color}
-                notificationLink={url}
-                notificationClickEvent={clickEvent}
-              />
-            )
-          )}
-      </div>
-      <div className="status-userprofile__column my-32">
-        <div className="link-filters">
-          <div className="link-filters__tag-wrapper">
-            <h2>
-              <Link
-                href={reservationsUrl}
-                className="link-tag link-tag link-filters__tag"
-              >
-                {t("reservationsText")}
-              </Link>
-              <span className="link-filters__counter">{reservationsCount}</span>
-            </h2>
-          </div>
-        </div>
-        {reservationsCount === 0 && (
-          <div className="dpl-list-empty">{t("noReservationsText")}</div>
-        )}
-        {reservationsCount !== 0 &&
-          dashboardNotificationsReservations.map(
-            ({
-              list,
-              header,
-              color,
-              url,
-              clickEvent,
-              showNotificationDot,
-              badge
-            }) => (
-              <DashboardNotification
-                notificationNumber={list.length}
-                notificationText={header}
-                showNotificationDot={showNotificationDot}
-                badge={badge}
-                key={header}
-                notificationColor={color}
-                notificationLink={url}
-                notificationClickEvent={clickEvent}
-              />
-            )
-          )}
-      </div>
+      <NotificationColumn
+        materials={dashboardNotificationsLoan}
+        materialsCount={physicalLoansCount}
+        headerUrl={physicalLoansUrl}
+        header={t("physicalLoansText")}
+        emptyListText={t("noPhysicalLoansText")}
+      />
+      <NotificationColumn
+        materials={dashboardNotificationsReservations}
+        materialsCount={reservationsCount}
+        headerUrl={reservationsUrl}
+        header={t("reservationsText")}
+        emptyListText={t("noReservationsText")}
+      />
     </div>
   );
 };
