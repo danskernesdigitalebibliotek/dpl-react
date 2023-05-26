@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Link from "../../../components/atoms/links/Link";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
+import EmptyList from "../../../components/empty-list/empty-list";
 
 interface NotificationMaterialsList {
   listLength: number;
@@ -42,9 +43,7 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
           </h2>
         </div>
       </div>
-      {materialsCount === 0 && (
-        <div className="dpl-list-empty">{emptyListText}</div>
-      )}
+      {materialsCount === 0 && <EmptyList emptyListText={emptyListText} />}
       {materialsCount !== 0 &&
         materials.map(
           ({
