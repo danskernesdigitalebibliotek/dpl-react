@@ -20,15 +20,17 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 }) => {
   const config = useConfig();
 
-  if (!badgeDate) return null;
-
   const {
     colorThresholds: { danger, warning }
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
 
-  const daysBetweenTodayAndDue = daysBetweenTodayAndDate(badgeDate);
+  let daysBetweenTodayAndDue = 0;
+  if (badgeDate) {
+    daysBetweenTodayAndDue = daysBetweenTodayAndDate(badgeDate);
+  }
+
   if (daysBetweenTodayAndDue < danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
@@ -49,6 +51,12 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 
   if (infoText) {
     return <div className="status-label status-label--info">{infoText}</div>;
+  }
+
+  if (dangerText) {
+    return (
+      <div className="status-label status-label--danger">{dangerText}</div>
+    );
   }
 
   return null;

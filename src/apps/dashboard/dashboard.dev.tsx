@@ -149,8 +149,14 @@ export default {
       defaultValue: "At the moment, you have 0 reservations",
       control: { type: "text" }
     },
+    statusBadgeWarningText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expires soon"
+    },
     readyForLoanText: {
-      defaultValue: "Ready for loan",
+      defaultValue: "Ready for pickup",
       control: { type: "text" }
     },
     readyForLoanCounterLabelText: {

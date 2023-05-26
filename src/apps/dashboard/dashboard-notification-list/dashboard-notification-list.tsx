@@ -57,6 +57,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const dashboardNotificationsLoan = [
     {
       list: physicalLoansOverdue,
+      badge: t("materialDetailsOverdueText"),
       header: t("loansOverdueText"),
       color: "danger",
       url: loansOverdueUrl,
@@ -68,6 +69,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     },
     {
       list: physicalLoansSoonOverdue,
+      badge: t("statusBadgeWarningText"),
       header: t("loansSoonOverdueText"),
       color: "warning",
       url: loansSoonOverdueUrl,
@@ -96,6 +98,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     {
       list: readyToLoanReservations,
       header: t("reservationsReadyText"),
+      badge: t("readyForLoanText"),
       showNotificationDot: true,
       color: "info",
       url: reservationsUrl,
@@ -162,8 +165,17 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         )}
         {physicalLoansCount !== 0 &&
           dashboardNotificationsLoan.map(
-            ({ list, header, color, url, clickEvent, showNotificationDot }) => (
+            ({
+              list,
+              header,
+              color,
+              url,
+              clickEvent,
+              showNotificationDot,
+              badge
+            }) => (
               <DashboardNotification
+                badge={badge}
                 showNotificationDot={showNotificationDot}
                 notificationNumber={list.length}
                 notificationText={header}
@@ -194,11 +206,20 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         )}
         {reservationsCount !== 0 &&
           dashboardNotificationsReservations.map(
-            ({ list, header, color, url, clickEvent, showNotificationDot }) => (
+            ({
+              list,
+              header,
+              color,
+              url,
+              clickEvent,
+              showNotificationDot,
+              badge
+            }) => (
               <DashboardNotification
                 notificationNumber={list.length}
                 notificationText={header}
                 showNotificationDot={showNotificationDot}
+                badge={badge}
                 key={header}
                 notificationColor={color}
                 notificationLink={url}
