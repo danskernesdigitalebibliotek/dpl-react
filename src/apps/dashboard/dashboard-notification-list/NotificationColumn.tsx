@@ -8,6 +8,7 @@ interface NotificationMaterialsList {
   badge?: string;
   header: string;
   color: string;
+  dataCy: string;
   showNotificationDot: boolean;
   notificationClickEvent: () => void;
 }
