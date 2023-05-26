@@ -60,6 +60,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       header: t("loansOverdueText"),
       color: "danger",
       url: loansOverdueUrl,
+      showNotificationDot: true,
       clickEvent: () =>
         physicalLoansOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansOverdue[0].loanId))
@@ -70,6 +71,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       header: t("loansSoonOverdueText"),
       color: "warning",
       url: loansSoonOverdueUrl,
+      showNotificationDot: true,
       clickEvent: () =>
         physicalLoansSoonOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansSoonOverdue[0].loanId))
@@ -80,6 +82,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       header: t("loansNotOverdueText"),
       color: "neutral",
       url: loansNotOverdueUrl,
+      showNotificationDot: false,
       clickEvent: () =>
         physicalLoansFarFromOverdue.length === 1
           ? openLoanDetailsModal(String(physicalLoansFarFromOverdue[0].loanId))
@@ -93,6 +96,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     {
       list: readyToLoanReservations,
       header: t("reservationsReadyText"),
+      showNotificationDot: true,
       color: "info",
       url: reservationsUrl,
       clickEvent: () =>
@@ -106,6 +110,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       list: queuedReservations,
       header: t("reservationsStillInQueueForText"),
       color: "neutral",
+      showNotificationDot: false,
       url: reservationsUrl,
       clickEvent: () =>
         readyToLoanReservations.length === 1
@@ -157,8 +162,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         )}
         {physicalLoansCount !== 0 &&
           dashboardNotificationsLoan.map(
-            ({ list, header, color, url, clickEvent }) => (
+            ({ list, header, color, url, clickEvent, showNotificationDot }) => (
               <DashboardNotification
+                showNotificationDot={showNotificationDot}
                 notificationNumber={list.length}
                 notificationText={header}
                 key={header}
@@ -172,13 +178,15 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       <div className="status-userprofile__column my-32">
         <div className="link-filters">
           <div className="link-filters__tag-wrapper">
-            <Link
-              href={reservationsUrl}
-              className="link-tag link-tag link-filters__tag"
-            >
-              {t("reservationsText")}
-            </Link>
-            <span className="link-filters__counter">{reservationsCount}</span>
+            <h2>
+              <Link
+                href={reservationsUrl}
+                className="link-tag link-tag link-filters__tag"
+              >
+                {t("reservationsText")}
+              </Link>
+              <span className="link-filters__counter">{reservationsCount}</span>
+            </h2>
           </div>
         </div>
         {reservationsCount === 0 && (
@@ -186,10 +194,11 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         )}
         {reservationsCount !== 0 &&
           dashboardNotificationsReservations.map(
-            ({ list, header, color, url, clickEvent }) => (
+            ({ list, header, color, url, clickEvent, showNotificationDot }) => (
               <DashboardNotification
                 notificationNumber={list.length}
                 notificationText={header}
+                showNotificationDot={showNotificationDot}
                 key={header}
                 notificationColor={color}
                 notificationLink={url}

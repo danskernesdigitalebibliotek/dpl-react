@@ -4,6 +4,7 @@ import Link from "../../../components/atoms/links/Link";
 
 interface DashboardNotificationProps {
   notificationNumber: number;
+  showNotificationDot: boolean;
   notificationText: string;
   notificationColor: string;
   notificationLink: URL;
@@ -16,7 +17,8 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationText,
   notificationColor,
   notificationLink,
-  notificationClickEvent
+  notificationClickEvent,
+  showNotificationDot
 }) => {
   if (notificationNumber === 0) return null;
 
@@ -47,7 +49,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
           <span className="list-dashboard__title text-header-h4">
             {notificationText}
           </span>
-          <div className="list-dashboard__dot" />
+          {showNotificationDot && <div className="list-dashboard__dot" />}
           <div className="list-dashboard__arrow">
             <Arrow />
           </div>
