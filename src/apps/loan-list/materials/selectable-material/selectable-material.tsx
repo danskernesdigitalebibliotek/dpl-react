@@ -1,4 +1,4 @@
-import React, { FC, useCallback, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { useText } from "../../../../core/utils/text";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
@@ -7,9 +7,9 @@ import AuthorYear from "../../../../components/author-year/authorYear";
 
 interface SelectableMaterialProps {
   disabled?: boolean;
-  id: string;
+  id?: string | null;
   onMaterialChecked: (id: string) => void;
-  openDetailsModal: (modalId: string) => void;
+  openDetailsModal?: (modalId: string) => void;
   selected?: boolean;
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
@@ -28,11 +28,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusBadgeComponent
 }) => {
   const t = useText();
-  const { authors = "", materialType, year = "", title = "" } = material || {};
 
-  const openDetailsModalHandler = useCallback(() => {
-    openDetailsModal(id);
-  }, [id, openDetailsModal]);
+  if (!id) return null;
+  const { authors = "", materialType, year = "", title = "" } = material || {};
 
   return (
     <li>
@@ -42,6 +40,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="list-materials__checkbox mr-32">
+          {/* // todo remove */}
+          {id}
           {!disabled && title && (
             <CheckBox
               onChecked={() => onMaterialChecked(id)}
@@ -72,20 +72,22 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           <div>
             {statusBadgeComponent}
             {statusMessageComponentMobile}
-            <button
-              type="button"
-              className="list-reservation__note"
-              onClick={openDetailsModalHandler}
-              aria-label={
-                title
-                  ? t("groupModalGoToMaterialAriaLabelText", {
-                      placeholders: { "@label": title }
-                    })
-                  : ""
-              }
-            >
-              {t("groupModalGoToMaterialText")}
-            </button>
+            {openDetailsModal && (
+              <button
+                type="button"
+                className="list-reservation__note"
+                onClick={() => openDetailsModal(id)}
+                aria-label={
+                  title
+                    ? t("groupModalGoToMaterialAriaLabelText", {
+                        placeholders: { "@label": title }
+                      })
+                    : ""
+                }
+              >
+                {t("groupModalGoToMaterialText")}
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
-import { formatDate, isDigital } from "../../apps/loan-list/utils/helpers";
+import { formatDate } from "../../apps/loan-list/utils/helpers";
 import { useText } from "../../core/utils/text";
 import { LoanType } from "../../core/utils/types/loan-type";
 import usePager from "../result-pager/use-pager";

@@ -14,7 +14,8 @@ import {
 import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import {
   mapPublizonLoanToLoanType,
-  mapFBSLoanToLoanType
+  mapFBSLoanToLoanType,
+  mapFBSReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import {
@@ -110,7 +111,9 @@ const MenuLoggedIn: FC = () => {
   useEffect(() => {
     if (patronReservations) {
       setReservationsReadyForPickup(
-        getReadyForPickup(patronReservations).length
+        getReadyForPickup(
+          mapFBSReservationToReservationType(patronReservations)
+        ).length
       );
       setReservationCount(patronReservations.length);
     }

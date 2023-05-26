@@ -1,44 +1,51 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Link from "../../../components/atoms/links/Link";
-import { useGetLoansV2, useGetReservationsV2 } from "../../../core/fbs/fbs";
-import { useConfig } from "../../../core/utils/config";
 import {
-  filterLoansOverdue,
-  filterLoansSoonOverdue,
-  filterLoansNotOverdue,
-  getPhysicalQueuedReservations,
   getModalIds,
-  getColors
+  getPhysicalQueuedReservations
 } from "../../../core/utils/helpers/general";
-import {
-  mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
-} from "../../../core/utils/helpers/list-mapper";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
-import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useUrls } from "../../../core/utils/url";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
-import { yesterday, soon, longer } from "../util/helpers";
+import {
+  yesterday,
+  soon,
+  longer,
+  getReservedReservations
+} from "../util/helpers";
+import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 
 export interface DashboardNotificationListProps {
   openModalHandler: (modalId: string) => void;
   openDueDateModal: (dueDate: string) => void;
+  openLoanDetailsModal: (modalId: string) => void;
+  openReservationDetailsModal: (modalId: string) => void;
+  physicalReservations: ReservationType[];
+  digitalReservations: ReservationType[];
+  physicalLoansFarFromOverdue: LoanType[];
+  physicalLoansOverdue: LoanType[];
+  physicalLoansSoonOverdue: LoanType[];
 }
+
 const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   openModalHandler,
-  openDueDateModal
+  openDueDateModal,
+  openLoanDetailsModal,
+  openReservationDetailsModal,
+  physicalReservations,
+  digitalReservations,
+  physicalLoansOverdue,
+  physicalLoansSoonOverdue,
+  physicalLoansFarFromOverdue
 }) => {
   const t = useText();
-  const config = useConfig();
 
   const { reservationsReady, reservationsQueued } = getModalIds();
-  const {
-    colorThresholds: { warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
+  const [queuedReservations, setQueuedReservations] = useState<
+    ReservationType[]
+  >([]);
   const {
     physicalLoansUrl,
     loansOverdueUrl,
@@ -46,59 +53,85 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     loansNotOverdueUrl,
     reservationsUrl
   } = useUrls();
-  const { data: fbsData } = useGetLoansV2();
-  const { data: patronReservations } = useGetReservationsV2();
-  const [patronReservationCount, setPatronReservationCount] =
-    useState<number>(0);
-  const [physicalLoans, setPhysicalLoans] = useState<LoanType[]>([]);
-  const [physicalLoansCount, setPhysicalLoansCount] = useState<number>();
-  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<number>();
-  const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] =
-    useState<number>();
-  const [physicalLoansNotOverdue, setPhysicalLoansNotOverdue] =
-    useState<number>();
-  const [reservationsReadyForPickup, setReservationsReadyForPickup] =
-    useState<number>();
-  const [reservationsStillInQueueFor, setReservationsStillInQueueFor] =
-    useState<number>(0);
-  useEffect(() => {
-    if (fbsData) {
-      setPhysicalLoans(mapFBSLoanToLoanType(fbsData));
+
+  const dashboardNotificationsLoan = [
+    {
+      list: physicalLoansOverdue,
+      header: t("loansOverdueText"),
+      color: "danger",
+      url: loansOverdueUrl,
+      clickEvent: () =>
+        physicalLoansOverdue.length === 1
+          ? openLoanDetailsModal(String(physicalLoansOverdue[0].loanId))
+          : openDueDateModal(yesterday)
+    },
+    {
+      list: physicalLoansSoonOverdue,
+      header: t("loansSoonOverdueText"),
+      color: "warning",
+      url: loansSoonOverdueUrl,
+      clickEvent: () =>
+        physicalLoansSoonOverdue.length === 1
+          ? openLoanDetailsModal(String(physicalLoansSoonOverdue[0].loanId))
+          : openDueDateModal(soon)
+    },
+    {
+      list: physicalLoansFarFromOverdue,
+      header: t("loansNotOverdueText"),
+      color: "neutral",
+      url: loansNotOverdueUrl,
+      clickEvent: () =>
+        physicalLoansFarFromOverdue.length === 1
+          ? openLoanDetailsModal(String(physicalLoansFarFromOverdue[0].loanId))
+          : openDueDateModal(longer)
     }
-  }, [fbsData]);
+  ];
+
+  const readyToLoanReservations = getReadyForPickup(physicalReservations);
+
+  const dashboardNotificationsReservations = [
+    {
+      list: readyToLoanReservations,
+      header: t("reservationsReadyText"),
+      color: "info",
+      url: reservationsUrl,
+      clickEvent: () =>
+        readyToLoanReservations.length === 1
+          ? openReservationDetailsModal(
+              String(readyToLoanReservations[0].faust)
+            )
+          : openModalHandler(reservationsReady as string)
+    },
+    {
+      list: queuedReservations,
+      header: t("reservationsStillInQueueForText"),
+      color: "neutral",
+      url: reservationsUrl,
+      clickEvent: () =>
+        readyToLoanReservations.length === 1
+          ? openReservationDetailsModal(
+              String(
+                queuedReservations[0].identifier || queuedReservations[0].faust
+              )
+            )
+          : openModalHandler(reservationsQueued as string)
+    }
+  ];
 
   useEffect(() => {
-    if (physicalLoans && warning) {
-      // Set count of physical loans
-      setPhysicalLoansCount(physicalLoans.length);
+    setQueuedReservations([
+      ...getReservedReservations(digitalReservations),
+      ...getPhysicalQueuedReservations(physicalReservations)
+    ]);
+  }, [digitalReservations, physicalReservations]);
 
-      // Set count of physical loans overdue
-      setPhysicalLoansOverdue(filterLoansOverdue(physicalLoans).length);
+  const physicalLoansCount =
+    physicalLoansFarFromOverdue.length +
+    physicalLoansOverdue.length +
+    physicalLoansSoonOverdue.length;
 
-      // Set count of physical loans soon to be overdue
-      setPhysicalLoansSoonOverdue(
-        filterLoansSoonOverdue(physicalLoans, warning).length
-      );
-
-      // Set count of physical loans not overdue
-      setPhysicalLoansNotOverdue(
-        filterLoansNotOverdue(physicalLoans, warning).length
-      );
-    }
-  }, [physicalLoans, warning]);
-
-  useEffect(() => {
-    if (patronReservations) {
-      const materialsReadyForPickup = getReadyForPickup(
-        mapFBSReservationToReservationType(patronReservations)
-      );
-      const materialsStillInQueue =
-        getPhysicalQueuedReservations(patronReservations);
-      setReservationsReadyForPickup(materialsReadyForPickup.length);
-      setReservationsStillInQueueFor(materialsStillInQueue.length);
-      setPatronReservationCount(patronReservations.length);
-    }
-  }, [patronReservations]);
+  const reservationsCount =
+    readyToLoanReservations.length + queuedReservations.length;
 
   // Merge digital and physical loans, for easier filtration down the line.
   return (
@@ -119,40 +152,22 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             </h2>
           </div>
         </div>
-        {fbsData && !physicalLoansCount && (
+        {physicalLoansCount === 0 && (
           <div className="dpl-list-empty">{t("noPhysicalLoansText")}</div>
         )}
-        {fbsData && !!physicalLoansCount && (
-          <>
-            {physicalLoansOverdue && physicalLoansOverdue && (
+        {physicalLoansCount !== 0 &&
+          dashboardNotificationsLoan.map(
+            ({ list, header, color, url, clickEvent }) => (
               <DashboardNotification
-                notificationNumber={physicalLoansOverdue}
-                notificationText={t("loansOverdueText")}
-                notificationColor="danger"
-                notificationLink={loansOverdueUrl}
-                notificationClickEvent={() => openDueDateModal(yesterday)}
+                notificationNumber={list.length}
+                notificationText={header}
+                key={header}
+                notificationColor={color}
+                notificationLink={url}
+                notificationClickEvent={clickEvent}
               />
-            )}
-            {physicalLoansSoonOverdue && physicalLoansSoonOverdue && (
-              <DashboardNotification
-                notificationNumber={physicalLoansSoonOverdue}
-                notificationText={t("loansSoonOverdueText")}
-                notificationColor="warning"
-                notificationLink={loansSoonOverdueUrl}
-                notificationClickEvent={() => openDueDateModal(soon)}
-              />
-            )}
-            {physicalLoansNotOverdue && !!physicalLoansNotOverdue && (
-              <DashboardNotification
-                notificationNumber={physicalLoansNotOverdue}
-                notificationText={t("loansNotOverdueText")}
-                notificationColor="neutral"
-                notificationLink={loansNotOverdueUrl}
-                notificationClickEvent={() => openDueDateModal(longer)}
-              />
-            )}
-          </>
-        )}
+            )
+          )}
       </div>
       <div className="status-userprofile__column my-32">
         <div className="link-filters">
@@ -163,36 +178,25 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             >
               {t("reservationsText")}
             </Link>
-            <span className="link-filters__counter">
-              {patronReservationCount}
-            </span>
+            <span className="link-filters__counter">{reservationsCount}</span>
           </div>
         </div>
-        {patronReservationCount === 0 && reservationsStillInQueueFor === 0 && (
+        {reservationsCount === 0 && (
           <div className="dpl-list-empty">{t("noReservationsText")}</div>
         )}
-        {!!reservationsReadyForPickup && (
-          <DashboardNotification
-            notificationNumber={reservationsReadyForPickup}
-            notificationText={t("reservationsReadyText")}
-            notificationColor="info"
-            notificationLink={reservationsUrl}
-            notificationClickEvent={() =>
-              openModalHandler(reservationsReady as string)
-            }
-          />
-        )}
-        {!!reservationsStillInQueueFor && (
-          <DashboardNotification
-            notificationNumber={reservationsStillInQueueFor}
-            notificationText={t("reservationsStillInQueueForText")}
-            notificationColor="neutral"
-            notificationLink={reservationsUrl}
-            notificationClickEvent={() =>
-              openModalHandler(reservationsQueued as string)
-            }
-          />
-        )}
+        {reservationsCount !== 0 &&
+          dashboardNotificationsReservations.map(
+            ({ list, header, color, url, clickEvent }) => (
+              <DashboardNotification
+                notificationNumber={list.length}
+                notificationText={header}
+                key={header}
+                notificationColor={color}
+                notificationLink={url}
+                notificationClickEvent={clickEvent}
+              />
+            )
+          )}
       </div>
     </div>
   );

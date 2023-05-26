@@ -1,129 +1,122 @@
 import React, { FC, useEffect, useState } from "react";
-import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
-import Modal from "../../../core/utils/modal";
+import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 import { Button } from "../../../components/Buttons/Button";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
+import { useDeleteReservations } from "../../../core/fbs/fbs";
 import {
-  useDeleteReservations,
-  useGetReservationsV2
-} from "../../../core/fbs/fbs";
-import {
-  getColors,
   getModalIds,
   getPhysicalQueuedReservations,
   getReadyForPickup
 } from "../../../core/utils/helpers/general";
-import {
-  useDeleteV1UserReservationsIdentifier,
-  useGetV1UserReservations
-} from "../../../core/publizon/publizon";
-import { ReservationListResult } from "../../../core/publizon/model";
+import { useDeleteV1UserReservationsIdentifier } from "../../../core/publizon/publizon";
 import GroupModalReservationsList from "../../../components/GroupModal/GroupModalReservationsList";
-import { mapFBSReservationToReservationType } from "../../../core/utils/helpers/list-mapper";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
-import ReservationCircleModalHeader from "../../../components/GroupModal/ReservationCircleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
+import { getReservedReservations, isFaust } from "../util/helpers";
 
 interface ReservationGroupModalProps {
   pageSize: number;
   modalId: string;
-  openDetailsModal?: (modalId: string) => void;
+  physicalReservations: ReservationType[];
+  digitalReservations: ReservationType[];
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   pageSize,
-  openDetailsModal,
-  modalId
+  modalId,
+  digitalReservations,
+  physicalReservations
 }) => {
   const t = useText();
+  const { close } = useModalButtonHandler();
   const { reservationsReady, reservationsQueued } = getModalIds();
-  const { success } = getColors();
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
 
-  const [selectedReservations, setSelectedReservations] = useState<string[]>(
-    []
-  );
   const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
-
-  const { data: physicalReservations } = useGetReservationsV2();
-  const [physicalReservation, setPhysicalReservations] = useState<
-    ReservationType[]
-  >([]);
+  const [displayedPhysicalReservations, setDisplayedPhysicalReservations] =
+    useState<ReservationType[]>([]);
+  const [displayedDigitalReservations, setDisplayedDigitalReservations] =
+    useState<ReservationType[]>(digitalReservations);
   const [selectableReservations, setSelectableReservations] = useState<
     string[]
   >([]);
-  const [digitalReservations, setDigitalReservations] = useState<
-    ReservationType[]
-  >([]);
-  const { data: digitalReservationsPublizon } =
-    useGetV1UserReservations<ReservationListResult>();
+
+  useEffect(() => {
+    setMaterialsToDelete([]);
+  }, [modalId]);
+
+  useEffect(() => {
+    if (digitalReservations) {
+      setDisplayedDigitalReservations(
+        getReservedReservations(digitalReservations)
+      );
+    }
+  }, [digitalReservations]);
 
   useEffect(() => {
     if (physicalReservations && modalId === reservationsReady) {
       const readyToLoan = getReadyForPickup(physicalReservations);
       if (readyToLoan) {
-        setPhysicalReservations(
-          mapFBSReservationToReservationType(readyToLoan)
-        );
+        setDisplayedPhysicalReservations(readyToLoan);
       }
     }
 
     if (physicalReservations && modalId === reservationsQueued) {
       const reservations = getPhysicalQueuedReservations(physicalReservations);
       if (reservations) {
-        setPhysicalReservations(
-          mapFBSReservationToReservationType(reservations)
-        );
+        setDisplayedPhysicalReservations(reservations);
       }
     }
   }, [modalId, physicalReservations, reservationsQueued, reservationsReady]);
 
   useEffect(() => {
-    if (digitalReservationsPublizon) {
-      const { reservations } = digitalReservationsPublizon;
-      if (reservations) {
-        setDigitalReservations(reservations);
-        setSelectableReservations(
-          reservations
-            .map(({ identifier }) => identifier || "")
-            .filter((id) => id !== "")
-        );
-      }
+    if (modalId === reservationsQueued) {
+      setSelectableReservations([
+        ...displayedPhysicalReservations
+          .map(({ identifier, faust }) => identifier || faust || "")
+          .filter((id) => id !== ""),
+        ...displayedDigitalReservations
+          .map(({ identifier, faust }) => identifier || faust || "")
+          .filter((id) => id !== "")
+      ]);
+    } else {
+      setSelectableReservations([
+        ...displayedPhysicalReservations
+          .map(({ identifier, faust }) => identifier || faust || "")
+          .filter((id) => id !== "")
+      ]);
     }
-  }, [digitalReservationsPublizon]);
+  }, [
+    displayedDigitalReservations,
+    displayedPhysicalReservations,
+    modalId,
+    reservationsQueued
+  ]);
 
-  // const removeSelectedReservations = () => {
-  //   const selectedReservationsKeys = Object.keys(selectedReservations);
-  //   const selectedReservationsValues = Object.values(selectedReservations);
-  //   if (selectedReservationsKeys.length > 0) {
-  //     selectedReservationsKeys.map((reservation) => {
-  //       const index = selectedReservationsKeys.indexOf(reservation);
-  //       const reservationToDelete = selectedReservationsValues[index];
-  //       const reservationType = getReservationType(reservation);
-  //       switch (reservationType) {
-  //         case "physical":
-  //           deletePhysicalReservation({
-  //             params: { reservationid: [Number(reservationToDelete)] }
-  //           });
-  //           break;
-  //         case "digital":
-  //           deleteDigitalReservation({
-  //             identifier: String(selectedReservationsValues)
-  //           });
-  //           break;
-  //         default:
-  //           return false;
-  //       }
-  //       close(modalId);
-  //       return false;
-  //     });
-  //   }
-  // };
+  const removeSelectedReservations = () => {
+    if (materialsToDelete.length > 0) {
+      const physicalReservationsToDelete = materialsToDelete
+        .map((id) => Number(isFaust(id)))
+        .filter((id) => id !== 0);
+      const digitalMaterialsToDelete = materialsToDelete
+        .map((id) => isFaust(id))
+        .filter((id) => id !== null);
+
+      deletePhysicalReservation({
+        params: { reservationid: physicalReservationsToDelete }
+      });
+      digitalMaterialsToDelete.forEach((id) =>
+        deleteDigitalReservation({
+          identifier: String(id)
+        })
+      );
+      close(modalId as string);
+    }
+  };
 
   const selectMaterials = (materialIds: string[]) => {
     setMaterialsToDelete(materialIds);
@@ -151,7 +144,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
               <Button
                 label={t("removeAllReservationsText", {
                   placeholders: {
-                    "@amount": selectedReservations.length
+                    "@amount": materialsToDelete.length
                   }
                 })}
                 buttonType="none"
@@ -159,14 +152,12 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                 collapsible={false}
                 size="small"
                 variant="filled"
-                // onClick={() =>
-                //   removeSelectedReservations(selectedReservations)
-                // }
+                onClick={() => removeSelectedReservations()}
               />
             }
-            amountOfSelectableMaterials={0}
+            amountOfSelectableMaterials={selectableReservations.length}
             selectableMaterials={selectableReservations}
-            selectedMaterials={selectedReservations}
+            selectedMaterials={materialsToDelete}
             selectMaterials={selectMaterials}
           >
             <GroupModalReservationsList
@@ -175,20 +166,18 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                   ? t("physicalReservationsModalHeaderText")
                   : ""
               }
-              materials={physicalReservation}
+              materials={displayedPhysicalReservations}
               pageSize={pageSize}
-              selectedMaterials={[]}
+              selectedMaterials={materialsToDelete}
               selectMaterials={selectMaterials}
-              openDetailsModal={() => openDetailsModal}
             />
             {modalId === reservationsQueued && (
               <GroupModalReservationsList
                 listHeader={t("digitalReservationsModalHeaderText")}
-                materials={digitalReservations}
+                materials={displayedDigitalReservations}
                 pageSize={pageSize}
-                selectedMaterials={[]}
+                selectedMaterials={materialsToDelete}
                 selectMaterials={selectMaterials}
-                openDetailsModal={() => openDetailsModal}
               />
             )}
           </GroupModalContent>

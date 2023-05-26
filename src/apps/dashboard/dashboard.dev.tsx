@@ -11,6 +11,34 @@ export default {
       defaultValue: "Your profile",
       control: { type: "text" }
     },
+    deleteReservationModalAriaDescriptionText: {
+      defaultValue:
+        "This button opens a modal that covers the entire page and contains the possibility to delete a selected reservation, or multiple selected reservations",
+      control: { type: "text" }
+    },
+    deleteReservationModalCloseModalText: {
+      defaultValue: "Close delete reservation modal",
+      control: { type: "text" }
+    },
+    deleteReservationModalDeleteQuestionText: {
+      defaultValue:
+        '{"type":"plural","text":["Do you want to cancel your reservation?","Do you want to cancel your reservations?"]}',
+      control: { type: "text" }
+    },
+    deleteReservationModalNotRegrettableText: {
+      defaultValue: "You cannot regret this action",
+      control: { type: "text" }
+    },
+    deleteReservationModalDeleteButtonText: {
+      defaultValue:
+        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
+      control: { type: "text" }
+    },
+    deleteReservationModalHeaderText: {
+      defaultValue:
+        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
+      control: { type: "text" }
+    },
     intermediateText: {
       defaultValue: "Intermediates",
       control: { type: "text" }
@@ -129,6 +157,62 @@ export default {
       defaultValue: "Ready",
       control: { type: "text" }
     },
+    materialDetailsCloseModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Close material details modal"
+    },
+    materialDetailsLinkToPageWithFeesText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Read more about fees"
+    },
+    materialDetailsModalAriaDescriptionText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "This modal shows material details, and makes it possible to renew a material, of that material is renewable"
+    },
+    materialDetailsOverdueText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expired"
+    },
+    materialDetailsMaterialNumberLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Material Item Number"
+    },
+    materialDetailsLoanDateLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Loan date"
+    },
+    materialDetailsPhysicalDueDateLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Afleveres"
+    },
+    groupModalDueDateLinkToPageWithFeesText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Read more about fees"
+    },
+    materialDetailsWarningLoanOverdueText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
+    },
     stillInQueueModalAriaDescriptionText: {
       control: {
         type: "text"
@@ -187,11 +271,85 @@ export default {
       },
       defaultValue: "Choose all"
     },
+    groupModalAriaDescriptionText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "This modal makes it possible to renew materials"
+    },
     groupModalButtonText: {
       control: {
         type: "text"
       },
       defaultValue: "Renewable (@count)"
+    },
+    interestPeriodOneMonthConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodTwoMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodThreeMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    oneMonthText: {
+      defaultValue: "1 month",
+      control: { type: "text" }
+    },
+    twoMonthsText: {
+      defaultValue: "2 months",
+      control: { type: "text" }
+    },
+    reservationDetailsRemoveDigitalReservationText: {
+      defaultValue: "Remove your reservation",
+      control: { type: "text" }
+    },
+    threeMonthsText: {
+      defaultValue: "3 months",
+      control: { type: "text" }
+    },
+    sixMonthsText: {
+      defaultValue: "6 months",
+      control: { type: "text" }
+    },
+    oneYearText: {
+      defaultValue: "1 year",
+      control: { type: "text" }
+    },
+    interestPeriodSixMonthsConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    interestPeriodOneYearConfigText: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    reservationDetailsDateOfReservationTitleText: {
+      defaultValue: "Date of reservation",
+      control: { type: "text" }
+    },
+    listDetailsNothingSelectedLabelText: {
+      defaultValue: "Pick",
+      control: { type: "text" }
+    },
+    reservationDetailsNoInterestAfterTitleText: {
+      defaultValue: "Not interested after",
+      control: { type: "text" }
+    },
+    reservationDetailsChangeText: {
+      defaultValue: "Apply changes",
+      control: { type: "text" }
+    },
+    reservationDetailsPickUpAtTitleText: {
+      defaultValue: "Pickup branch",
+      control: { type: "text" }
+    },
+    reservationDetailsButtonRemoveText: {
+      defaultValue: "Remove your reservation",
+      control: { type: "text" }
     },
     dashboardNumberInLineText: {
       control: {
@@ -215,8 +373,20 @@ export default {
       defaultValue: "Go to material details",
       control: { type: "text" }
     },
+    reservationDetailsStatusTitleText: {
+      defaultValue: "Status",
+      control: { type: "text" }
+    },
+    reservationDetailsBorrowBeforeText: {
+      defaultValue: "Borrow before @date",
+      control: { type: "text" }
+    },
     resultPagerStatusText: {
       defaultValue: "Showing @itemsShown out of @hitcount elements",
+      control: { type: "text" }
+    },
+    reservationDetailsDigitalReservationGoToEreolenText: {
+      defaultValue: "Go to eReolen",
       control: { type: "text" }
     },
     loanListMaterialDaysText: {
@@ -232,11 +402,32 @@ export default {
       defaultValue:
         "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
     },
-    groupModalDueDateLinkToPageWithFeesText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Read more about fees"
+    reservationDetailsReadyForLoanText: {
+      defaultValue: "Ready for pickup",
+      control: { type: "text" }
+    },
+    reservationDetailAllowRemoveReadyReservationsConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
+    reservationDetailsPickupDeadlineTitleText: {
+      defaultValue: "Pickup deadline",
+      control: { type: "text" }
+    },
+    ereolenMyPageUrl: {
+      defaultValue: "https://ereolen.dk/user/me/",
+      control: { type: "text" }
+    },
+    blacklistedPickupBranchesConfig: {
+      name: "Blacklisted branches",
+      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      control: { type: "text" }
+    },
+    branchesConfig: {
+      name: "Branches",
+      defaultValue:
+        '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+      control: { type: "text" }
     },
     feesPageUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda

@@ -29,6 +29,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { loanListEreolenUrl, feesPageUrl } = useUrls();
+
   if (!loan) {
     return null;
   }

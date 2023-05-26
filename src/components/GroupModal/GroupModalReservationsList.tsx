@@ -12,13 +12,11 @@ export interface GroupModalReservationsListProps {
   listHeader: string;
   selectedMaterials: string[];
   selectMaterials: (materialIds: string[]) => void;
-  openDetailsModal: (modalId: string) => void;
 }
 
 const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   materials,
   selectedMaterials,
-  openDetailsModal,
   selectMaterials,
   pageSize,
   listHeader
@@ -48,6 +46,8 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
     selectMaterials(selectedMaterialsCopy);
   };
 
+  if (displayedMaterials.length === 0) return null;
+
   return (
     <>
       <h3 className="text-body-medium-regular">{listHeader}</h3>
@@ -58,31 +58,32 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
               {(identifier || faust) && (
                 <SelectableMaterial
                   statusBadgeComponent={
-                    <StatusBadge
-                      badgeDate={expiryDate}
-                      neutralText={
-                        numberInQueue
-                          ? t("dashboardNumberInLineText", {
-                              count: numberInQueue,
-                              placeholders: { "@count": numberInQueue }
-                            })
-                          : ""
-                      }
-                      infoText={
-                        expiryDate
-                          ? t("pickUpLatestText", {
-                              placeholders: {
-                                "@date": formatDate(expiryDate)
-                              }
-                            })
-                          : ""
-                      }
-                    />
+                    faust ? (
+                      <StatusBadge
+                        badgeDate={expiryDate}
+                        neutralText={
+                          numberInQueue
+                            ? t("dashboardNumberInLineText", {
+                                count: numberInQueue,
+                                placeholders: { "@count": numberInQueue }
+                              })
+                            : ""
+                        }
+                        infoText={
+                          expiryDate
+                            ? t("pickUpLatestText", {
+                                placeholders: {
+                                  "@date": formatDate(expiryDate)
+                                }
+                              })
+                            : ""
+                        }
+                      />
+                    ) : null
                   }
-                  openDetailsModal={openDetailsModal}
                   key={faust || identifier}
                   selected={Boolean(
-                    selectedMaterials?.indexOf(identifier || "") > -1
+                    selectedMaterials?.indexOf(identifier || faust || "") > -1
                   )}
                   onMaterialChecked={onMaterialChecked}
                   disabled={false}

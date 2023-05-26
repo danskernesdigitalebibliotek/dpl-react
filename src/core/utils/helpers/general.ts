@@ -15,7 +15,6 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import { ReservationDetailsV2 } from "../../fbs/model";
 import {
   dashboardReadyForPickupApiValueText,
   dashboardReservedApiValueText
@@ -325,7 +324,7 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
+export const getReadyForPickup = (list: ReservationType[]) => {
   const yesterday = dayjs().subtract(1, "day");
   return [...list].filter(({ state, pickupDeadline }) => {
     const deadline = dayjs(pickupDeadline);
@@ -337,7 +336,7 @@ export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
     return false;
   });
 };
-export const getPhysicalQueuedReservations = (list: ReservationDetailsV2[]) => {
+export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
     ({ state }) => state === dashboardReservedApiValueText
   );

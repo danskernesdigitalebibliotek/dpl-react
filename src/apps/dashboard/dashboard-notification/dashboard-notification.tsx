@@ -18,6 +18,8 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationLink,
   notificationClickEvent
 }) => {
+  if (notificationNumber === 0) return null;
+
   return (
     <button type="button" onClick={notificationClickEvent}>
       {!notificationClickEvent && (
