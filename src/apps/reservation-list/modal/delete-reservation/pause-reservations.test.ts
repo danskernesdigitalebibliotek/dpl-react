@@ -1,10 +1,7 @@
-import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
-
 describe("Pause reservation modal test", () => {
   beforeEach(() => {
-    cy.window().then((win) => {
-      win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
-    });
+    cy.createFakeAuthenticatedSession();
+    cy.createFakeLibrarySession();
     const clockDate = new Date(
       "Sat Oct 08 2022 20:10:25 GMT+0200 (Central European Summer Time)"
     );
