@@ -39,7 +39,7 @@ import {
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
-import GroupModal from "../../../components/GroupModal/GroupModal";
+import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import { ListType } from "../../../core/utils/types/list-type";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
@@ -226,7 +226,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         />
       </MaterialDetailsModal>
       {physicalLoans && (
-        <GroupModal
+        <LoansGroupModal
           pageSize={pageSize}
           openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
@@ -246,7 +246,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
             />
           )}
           {!dueDate && <SimpleModalHeader header={t("groupModalHeaderText")} />}
-        </GroupModal>
+        </LoansGroupModal>
       )}
     </>
   );

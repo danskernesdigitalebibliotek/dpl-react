@@ -3,7 +3,7 @@ import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import GroupModal from "../../components/GroupModal/GroupModal";
+import GroupModal from "../../components/GroupModal/LoansGroupModal";
 import {
   filterLoansNotOverdue,
   filterLoansOverdue,

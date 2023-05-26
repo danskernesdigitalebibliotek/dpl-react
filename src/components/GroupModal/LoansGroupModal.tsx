@@ -13,7 +13,7 @@ import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
 import { Button } from "../Buttons/Button";
 import GroupModalLoansList from "./GroupModalLoansList";
 
-interface GroupModalProps {
+interface LoansGroupModalProps {
   dueDate?: string | null;
   loansModal: LoanType[];
   pageSize: number;
@@ -21,7 +21,7 @@ interface GroupModalProps {
   children: ReactNode;
 }
 
-const GroupModal: FC<GroupModalProps> = ({
+const LoansGroupModal: FC<LoansGroupModalProps> = ({
   dueDate,
   loansModal,
   openDetailsModal,
@@ -105,4 +105,4 @@ const GroupModal: FC<GroupModalProps> = ({
   );
 };
 
-export default GroupModal;
+export default LoansGroupModal;
