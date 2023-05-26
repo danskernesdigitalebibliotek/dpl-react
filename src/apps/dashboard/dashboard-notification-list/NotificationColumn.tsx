@@ -8,7 +8,6 @@ interface NotificationMaterialsList {
   badge?: string;
   header: string;
   color: string;
-  notificationLink: URL;
   showNotificationDot: boolean;
   notificationClickEvent: () => void;
 }
@@ -50,7 +49,6 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
             listLength,
             header: headerNotification,
             color,
-            notificationLink,
             notificationClickEvent,
             showNotificationDot,
             badge
@@ -62,7 +60,6 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
               badge={badge}
               key={headerNotification}
               notificationColor={color}
-              notificationLink={notificationLink}
               notificationClickEvent={notificationClickEvent}
             />
           )

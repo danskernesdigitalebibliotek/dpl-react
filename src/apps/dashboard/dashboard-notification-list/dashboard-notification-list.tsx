@@ -59,7 +59,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       badge: t("materialDetailsOverdueText"),
       header: t("loansOverdueText"),
       color: "danger",
-      notificationLink: loansOverdueUrl,
       showNotificationDot: true,
       notificationClickEvent: () =>
         physicalLoansOverdue.length === 1
@@ -71,7 +70,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       badge: t("statusBadgeWarningText"),
       header: t("loansSoonOverdueText"),
       color: "warning",
-      notificationLink: loansSoonOverdueUrl,
       showNotificationDot: true,
       notificationClickEvent: () =>
         physicalLoansSoonOverdue.length === 1
@@ -82,7 +80,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       listLength: physicalLoansFarFromOverdue.length,
       header: t("loansNotOverdueText"),
       color: "neutral",
-      notificationLink: loansNotOverdueUrl,
       showNotificationDot: false,
       notificationClickEvent: () =>
         physicalLoansFarFromOverdue.length === 1
@@ -100,7 +97,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       badge: t("readyForLoanText"),
       showNotificationDot: true,
       color: "info",
-      notificationLink: reservationsUrl,
       notificationClickEvent: () =>
         readyToLoanReservations.length === 1
           ? openReservationDetailsModal(
@@ -113,7 +109,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       header: t("reservationsStillInQueueForText"),
       color: "neutral",
       showNotificationDot: false,
-      notificationLink: reservationsUrl,
       notificationClickEvent: () =>
         readyToLoanReservations.length === 1
           ? openReservationDetailsModal(
