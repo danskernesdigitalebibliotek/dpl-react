@@ -3,7 +3,7 @@ import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import GroupModal from "../../components/GroupModal/LoansGroupModal";
+import LoansGroupModal from "../../components/GroupModal/LoansGroupModal";
 import {
   filterLoansNotOverdue,
   filterLoansOverdue,
@@ -236,14 +236,14 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         />
       </MaterialDetailsModal>
       {dueDate && physicalLoans && loansToDisplay && (
-        <GroupModal
+        <LoansGroupModal
           pageSize={pageSize}
           openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={loansToDisplay}
         >
           <SimpleModalHeader header={modalHeader} />
-        </GroupModal>
+        </LoansGroupModal>
       )}
       <ReservationGroupModal
         modalId={reservationModalId}
