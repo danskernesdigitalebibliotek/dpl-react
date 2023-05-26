@@ -31,7 +31,7 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
     <div className="status-userprofile__column my-32">
       <div className="link-filters">
         <div className="link-filters__tag-wrapper">
-          <h2>
+          <h2 data-cy={`dashboard-${header.toLowerCase()}-header`}>
             <Link
               href={headerUrl}
               className="link-tag link-tag link-filters__tag"
@@ -51,13 +51,15 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
             color,
             notificationClickEvent,
             showNotificationDot,
-            badge
+            badge,
+            dataCy
           }) => (
             <DashboardNotification
               notificationNumber={listLength}
-              notificationText={header}
+              notificationText={headerNotification}
               showNotificationDot={showNotificationDot}
               badge={badge}
+              dataCy={dataCy}
               key={headerNotification}
               notificationColor={color}
               notificationClickEvent={notificationClickEvent}

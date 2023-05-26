@@ -8,8 +8,6 @@ import DashBoard from "./dashboard";
 export interface DashBoardProps {
   // Url
   feesPageUrl: string;
-  loansNotOverdueUrl: string;
-  loansSoonOverdueUrl: string;
   loansOverdueUrl: string;
   physicalLoansUrl: string;
   feesUrl: string;
@@ -25,6 +23,7 @@ export interface DashBoardProps {
   thresholdConfig: string;
   // Texts
   yourProfileText: string;
+  groupModalCloseModalAriaLabelText: string;
   deleteReservationModalAriaDescriptionText: string;
   deleteReservationModalCloseModalText: string;
   deleteReservationModalDeleteQuestionText: string;

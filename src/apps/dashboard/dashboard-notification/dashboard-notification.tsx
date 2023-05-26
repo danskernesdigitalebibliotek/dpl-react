@@ -6,6 +6,7 @@ interface DashboardNotificationProps {
   notificationNumber: number;
   showNotificationDot: boolean;
   notificationText: string;
+  dataCy: string;
   notificationColor: string;
   badge?: string;
   notificationClickEvent: () => void;
@@ -15,6 +16,7 @@ interface DashboardNotificationProps {
 const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationNumber,
   notificationText,
+  dataCy,
   notificationColor,
   notificationClickEvent,
   showNotificationDot,
@@ -23,7 +25,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   if (notificationNumber === 0) return null;
 
   return (
-    <button type="button" onClick={notificationClickEvent}>
+    <button type="button" data-cy={dataCy} onClick={notificationClickEvent}>
       <div className="list-dashboard shadow-medium-hover arrow__hover--right-small">
         <div className={`number number--${notificationColor}`}>
           {notificationNumber}

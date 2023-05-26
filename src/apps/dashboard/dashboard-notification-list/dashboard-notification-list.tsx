@@ -45,13 +45,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [queuedReservations, setQueuedReservations] = useState<
     ReservationType[]
   >([]);
-  const {
-    physicalLoansUrl,
-    loansOverdueUrl,
-    loansSoonOverdueUrl,
-    loansNotOverdueUrl,
-    reservationsUrl
-  } = useUrls();
+  const { physicalLoansUrl, reservationsUrl } = useUrls();
 
   const dashboardNotificationsLoan = [
     {
@@ -59,6 +53,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       badge: t("materialDetailsOverdueText"),
       header: t("loansOverdueText"),
       color: "danger",
+      dataCy: "physical-loans-overdue",
       showNotificationDot: true,
       notificationClickEvent: () =>
         physicalLoansOverdue.length === 1
@@ -70,6 +65,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       badge: t("statusBadgeWarningText"),
       header: t("loansSoonOverdueText"),
       color: "warning",
+      dataCy: "physical-loans-soon-overdue",
       showNotificationDot: true,
       notificationClickEvent: () =>
         physicalLoansSoonOverdue.length === 1
@@ -79,6 +75,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     {
       listLength: physicalLoansFarFromOverdue.length,
       header: t("loansNotOverdueText"),
+      dataCy: "loans-not-overdue",
       color: "neutral",
       showNotificationDot: false,
       notificationClickEvent: () =>
@@ -95,6 +92,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       listLength: readyToLoanReservations.length,
       header: t("reservationsReadyText"),
       badge: t("readyForLoanText"),
+      dataCy: "reservations-ready",
       showNotificationDot: true,
       color: "info",
       notificationClickEvent: () =>
@@ -107,6 +105,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     {
       listLength: queuedReservations.length,
       header: t("reservationsStillInQueueForText"),
+      dataCy: "reservations-queued",
       color: "neutral",
       showNotificationDot: false,
       notificationClickEvent: () =>

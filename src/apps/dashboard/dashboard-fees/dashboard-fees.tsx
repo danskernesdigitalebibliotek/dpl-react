@@ -28,7 +28,7 @@ const DashboardFees: FC = () => {
           <div className="status-userprofile__column my-16">
             <div className="link-filters">
               <div className="link-filters__tag-wrapper">
-                <h2>
+                <h2 data-cy="dashboard-fees-header">
                   <Link
                     href={feesUrl}
                     className="link-tag link-tag link-filters__tag"

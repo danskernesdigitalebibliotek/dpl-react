@@ -20,11 +20,14 @@ const WarningBar: FC<WarningBarProps> = ({
   rightLink
 }) => {
   return (
-    <div className="warning-bar bg-global-secondary">
+    <div className="warning-bar bg-global-secondary" data-cy="warning-bar">
       <div className="warning-bar__left">
         <img className="warning-bar__icon" src={IconWarning} alt="" />
         <div>
-          <p className="text-body-medium-regular color-primary-black">
+          <p
+            className="text-body-medium-regular color-primary-black"
+            data-cy="warning-bar-text"
+          >
             {overdueText}
             {leftLink && (
               <Link
@@ -39,11 +42,15 @@ const WarningBar: FC<WarningBarProps> = ({
       </div>
       {rightText && (
         <div className="warning-bar__right">
-          <p className="text-body-medium-medium warning-bar__owes">
+          <p
+            className="text-body-medium-medium warning-bar__owes"
+            data-cy="warning-bar-right-text"
+          >
             {rightText}
           </p>
           {rightLink && (
             <Link
+              dataCy="warning-bar-right-link"
               href={rightLink}
               className="btn-primary btn-filled btn-small arrow__hover--right-small"
             >

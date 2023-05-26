@@ -12,14 +12,6 @@ export default {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
     },
-    loansNotOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
-    loansSoonOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
     loansOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
       control: { type: "text" }
@@ -73,7 +65,7 @@ export default {
       control: { type: "text" }
     },
     feesText: {
-      defaultValue: "Intermediates",
+      defaultValue: "Fees",
       control: { type: "text" }
     },
     totalOwedText: {
@@ -89,8 +81,14 @@ export default {
       control: { type: "text" }
     },
     physicalLoansText: {
-      defaultValue: "Physical loans",
+      defaultValue: "Loans",
       control: { type: "text" }
+    },
+    groupModalCloseModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Close modal with grouped loans"
     },
     loansOverdueText: {
       defaultValue: "Returned too late",

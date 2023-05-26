@@ -214,7 +214,9 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
 
   return (
     <div className="dashboard-page">
-      <h1 className="text-header-h1 my-32">{t("yourProfileText")}</h1>
+      <h1 className="text-header-h1 my-32" data-cy="dashboard-header">
+        {t("yourProfileText")}
+      </h1>
       <DashboardFees />
       <DashboardNotificationList
         physicalLoansFarFromOverdue={physicalLoansFarFromOverdue}
