@@ -9,7 +9,7 @@ import WarningBar from "../../loan-list/materials/utils/warning-bar";
 
 const DashboardFees: FC = () => {
   const t = useText();
-  const { intermediateUrl, feesPageUrl } = useUrls();
+  const { feesUrl, feesPageUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
   const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
@@ -30,10 +30,10 @@ const DashboardFees: FC = () => {
               <div className="link-filters__tag-wrapper">
                 <h2>
                   <Link
-                    href={intermediateUrl}
+                    href={feesUrl}
                     className="link-tag link-tag link-filters__tag"
                   >
-                    {t("intermediateText")}
+                    {t("feesText")}
                   </Link>
                   <span className="link-filters__counter">{feeCount}</span>
                 </h2>
