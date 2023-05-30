@@ -1,5 +1,4 @@
-import React, { useState, FC } from "react";
-import { useDeepCompareEffect } from "react-use";
+import React, { FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -28,17 +27,11 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
-  const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
   const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
-
-  useDeepCompareEffect(() => {
-    if (!userData || !userData.patron) {
-      return;
-    }
-    setIsUserResident(isResident(userData?.patron));
-  }, [userData]);
+  const isUserResident =
+    userData && userData?.patron ? isResident(userData.patron) : null;
 
   if (manifestations.length < 1) {
     return null;
