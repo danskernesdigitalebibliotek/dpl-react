@@ -343,7 +343,9 @@ export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
 };
 
 export const tallyUpFees = (fees: FeeV2[]) => {
-  return fees.reduce((total, { amount }) => total + amount, 0);
+  return fees
+    .reduce((total, { amount }) => total + amount, 0)
+    .toLocaleString("da-DA");
 };
 
 // Loans overdue
