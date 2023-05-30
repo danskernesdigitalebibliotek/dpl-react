@@ -92,12 +92,12 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   const changeExpiryDate = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      const newEpiryDate = interstPeriods.filter(
+      const expiryDateLocal = interstPeriods.filter(
         ({ value }) => value === e.target.value
       );
 
-      if (newEpiryDate.length > 0) {
-        setNewExpiryDate(newEpiryDate[0]);
+      if (expiryDateLocal.length > 0) {
+        setNewExpiryDate(expiryDateLocal[0]);
       }
     },
     [interstPeriods, setNewExpiryDate]
