@@ -1,7 +1,7 @@
 describe("Dashboard", () => {
-  cy.createFakeAuthenticatedSession();
-  cy.createFakeLibrarySession();
   beforeEach(() => {
+    cy.createFakeAuthenticatedSession();
+    cy.createFakeLibrarySession();
     cy.window().then(() => {
       const wednesday20220603 = new Date("2023-01-09T10:00:00.000").getTime();
       // Sets time to a specific date
