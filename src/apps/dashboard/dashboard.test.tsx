@@ -326,7 +326,7 @@ describe("Dashboard", () => {
     cy.getBySel("warning-bar-text").should("have.text", "You owe in total");
 
     // The amount the patron ows
-    cy.getBySel("warning-bar-right-text").should("have.text", "265.06,-");
+    cy.getBySel("warning-bar-right-text").should("have.text", "265,06,-");
 
     // A pay button that links to fees page
     cy.getBySel("warning-bar-right-link")
