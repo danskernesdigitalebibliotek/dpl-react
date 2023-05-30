@@ -19,10 +19,7 @@ import {
   useUpdateReservations,
   getGetReservationsV2QueryKey
 } from "../../../../core/fbs/fbs";
-import {
-  getPreferredBranch,
-  getInterestPeriods
-} from "../../../../components/reservation/helper";
+import { getPreferredBranch } from "../../../../components/reservation/helper";
 import { AgencyBranch } from "../../../../core/fbs/model";
 import { formatDate } from "../../../loan-list/utils/helpers";
 import ListDetails from "../../../../components/list-details/list-details";
@@ -30,6 +27,7 @@ import { Button } from "../../../../components/Buttons/Button";
 import ListDetailsDropdown, {
   OptionsProps
 } from "../../../../components/list-details-dropdown/list-details-dropdown";
+import { useConfig } from "../../../../core/utils/config";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -48,6 +46,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   },
   branches
 }) => {
+  const config = useConfig();
   const t = useText();
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
@@ -67,12 +66,10 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [branchesOptions, setBranchesOptions] = useState<OptionsProps[] | null>(
     null
   );
-  const formatInterestPeriods = Object.entries(getInterestPeriods(t)).map(
-    ([key, value]) => ({
-      value: key,
-      label: value
-    })
-  );
+
+  const interstPeriods = config<OptionsProps[]>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
 
   useEffect(() => {
     if (branches && newPickupBranch) {
@@ -95,7 +92,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   const changeExpiryDate = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      const newEpiryDate = formatInterestPeriods.filter(
+      const newEpiryDate = interstPeriods.filter(
         ({ value }) => value === e.target.value
       );
 
@@ -103,7 +100,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
         setNewExpiryDate(newEpiryDate[0]);
       }
     },
-    [formatInterestPeriods, setNewExpiryDate]
+    [interstPeriods, setNewExpiryDate]
   );
 
   const changeNewBranch = useCallback(
@@ -234,7 +231,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
               <ListDetailsDropdown
                 labelledBy="interestafter"
                 onDropdownChange={changeExpiryDate}
-                options={formatInterestPeriods}
+                options={interstPeriods}
                 selected={expiryDate}
               />
             </div>
