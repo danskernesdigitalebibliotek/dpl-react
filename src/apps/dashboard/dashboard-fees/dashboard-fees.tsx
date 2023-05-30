@@ -12,7 +12,7 @@ const DashboardFees: FC = () => {
   const { feesUrl, feesPageUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
-  const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
+  const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");
 
   useDeepCompareEffect(() => {
     if (fbsFees && !feeCount && !totalFeeAmount) {
