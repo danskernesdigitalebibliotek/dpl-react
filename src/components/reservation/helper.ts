@@ -26,24 +26,6 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   const locationItem = array.find((item) => item.branchId === id);
   return locationItem ? locationItem.title : id;
 };
-export const getInterestPeriods = (t: UseTextFunction) => {
-  const visibleInterestPeriods: { [key: string]: string } = {};
-  const interestPeriods = [
-    ["interestPeriodOneMonthConfigText", "30", "oneMonthText"],
-    ["interestPeriodTwoMonthsConfigText", "60", "twoMonthsText"],
-    ["interestPeriodThreeMonthsConfigText", "90", "threeMonthsText"],
-    ["interestPeriodSixMonthsConfigText", "180", "sixMonthsText"],
-    ["interestPeriodOneYearConfigText", "360", "oneYearText"]
-  ];
-
-  interestPeriods.forEach(([config, key, text]) => {
-    if (isConfigValueOne(t(config))) {
-      visibleInterestPeriods[key] = t(text);
-    }
-  });
-
-  return visibleInterestPeriods;
-};
 
 export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
   const reservationInterestIntervals: { [key: string]: string } = {
