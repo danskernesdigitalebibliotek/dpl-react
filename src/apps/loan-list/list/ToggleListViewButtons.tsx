@@ -26,6 +26,7 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
 
   const setViewHandler = useCallback(
     (inputView: ListView) => {
+      window.history.pushState("", "", `?listview=${inputView}`);
       setView(inputView);
     },
     [setView]
