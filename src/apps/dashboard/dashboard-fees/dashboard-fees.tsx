@@ -1,5 +1,4 @@
-import React, { FC, useState } from "react";
-import { useDeepCompareEffect } from "react-use";
+import React, { FC, useState, useEffect } from "react";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import Link from "../../../components/atoms/links/Link";
@@ -14,8 +13,8 @@ const DashboardFees: FC = () => {
   const [feeCount, setFeeCount] = useState<number>();
   const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");
 
-  useDeepCompareEffect(() => {
-    if (fbsFees && !feeCount && !totalFeeAmount) {
+  useEffect(() => {
+    if (fbsFees) {
       setFeeCount(fbsFees.length);
       setTotalFeeAmount(tallyUpFees(fbsFees));
     }
