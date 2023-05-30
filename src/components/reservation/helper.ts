@@ -18,6 +18,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
+import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -27,24 +28,25 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
   return locationItem ? locationItem.title : id;
 };
 
-export const getNoInterestAfter = (days: number, t: UseTextFunction) => {
-  const reservationInterestIntervals: { [key: string]: string } = {
-    ...getInterestPeriods(t),
-    default: `${days} ${t("daysText")}`
-  } as const;
-
-  const lookupKey = String(days);
-  return (
-    reservationInterestIntervals[lookupKey] ??
-    reservationInterestIntervals.default
+export const getNoInterestAfter = (
+  days: number,
+  interestPeriod: OptionsProps[],
+  t: UseTextFunction
+) => {
+  const interestPeriodFound = interestPeriod.find(
+    ({ value }) => value === String(days)
   );
+
+  if (interestPeriodFound) {
+    return interestPeriodFound.label;
+  }
+  return `${days} ${t("daysText")}`;
 };
 
 export const getFutureDateString = (num: number) => {
   const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
   return futureDate;
 };
-
 type Periodical = Pick<PeriodicalEdition, "volumeNumber" | "volumeYear">;
 
 const constructReservation = ({
