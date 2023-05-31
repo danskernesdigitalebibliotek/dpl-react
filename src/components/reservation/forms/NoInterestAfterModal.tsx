@@ -1,7 +1,8 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
-import { getInterestPeriods } from "../helper";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
+import { useConfig } from "../../../core/utils/config";
+import { OptionsProps } from "../../list-details-dropdown/list-details-dropdown";
 
 export interface PickupModalProps {
   selectedInterest: number;
@@ -13,13 +14,10 @@ const NoInterestAfterModal = ({
   setSelectedInterest
 }: PickupModalProps) => {
   const t = useText();
-
-  const formatInterestPeriods = Object.entries(getInterestPeriods(t)).map(
-    ([key, value]) => ({
-      value: key,
-      label: value
-    })
-  );
+  const config = useConfig();
+  const interstPeriods = config<OptionsProps[]>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
 
   return (
     <ModalReservationFormSelect
@@ -30,7 +28,7 @@ const NoInterestAfterModal = ({
           t("modalReservationFormNoInterestAfterHeaderDescriptionText")
         ]
       }}
-      items={formatInterestPeriods}
+      items={interstPeriods}
       defaultSelectedItem={String(selectedInterest)}
       selectHandler={(value: string) => setSelectedInterest(Number(value))}
       ariaLabel={t("modalReservationFormNoInterestAfterLabelText")}
