@@ -73,6 +73,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       </div>
       <div className="simple-material__favourite">
         <ButtonFavourite
+          title={title[0]}
           darkBackground={!bright}
           id={workId}
           addToListRequest={addToListRequest}
