@@ -57,12 +57,12 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
           {displayedMaterials.map((pid, i) => {
             const isFirstNewItem = i === page * pageSize;
             return (
-              // We use a ref to focus the first item in the new page programmatically when pagination occurs.
-              // Set tabIndex -1 to support this without allowing keyboard focus. We have just as appropriate
-              // elements within the item suitable for keyboard focus.
               <li
                 key={pid}
                 tabIndex={-1}
+                // We use a ref to focus the first item in the new page programmatically when pagination occurs.
+                // Set tabIndex -1 to support this without allowing keyboard focus. We have just as appropriate
+                // elements within the item suitable for keyboard focus.
                 ref={isFirstNewItem ? lastItemRef : null}
               >
                 <CardListItemAdapter key={pid} pid={pid} />
