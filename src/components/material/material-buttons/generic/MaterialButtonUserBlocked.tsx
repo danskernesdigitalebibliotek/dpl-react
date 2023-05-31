@@ -17,7 +17,7 @@ const MaterialButtonUserBlocked: FC<MaterialButtonUserBlockedProps> = ({
 
   return (
     <Button
-      label={t("reserveText")}
+      label={t("blockedButtonText")}
       buttonType="none"
       variant="filled"
       disabled

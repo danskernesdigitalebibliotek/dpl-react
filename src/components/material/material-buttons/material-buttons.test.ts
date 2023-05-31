@@ -146,7 +146,7 @@ describe("Material buttons", () => {
 
     cy.getBySel("material-header-buttons-physical-user-blocked")
       .should("be.visible")
-      .and("contain", "Reserve")
+      .and("contain", "User blocked")
       .and("be.disabled");
   });
 

@@ -23,6 +23,8 @@ export interface MenuProps {
   menuLoginUrl: string;
   menuSignUpText: string;
   menuSignUpUrl: string;
+  menuNotificationsMenuAriaLabelText: string;
+  menuProfileLinksAriaLabelText: string;
   menuUserIconAriaLabelText: string;
   menuNotAuthenticatedCloseButtonText: string;
   menuAuthenticatedCloseButtonText: string;

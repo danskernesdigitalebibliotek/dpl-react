@@ -1,23 +1,23 @@
 import React, { FC } from "react";
 
-interface MenuNavigationData {
+export interface MenuNavigationDataType {
   name: string;
   link: string;
   dataId: string;
 }
 
-interface MenuNavigationListProps {
-  menuNavigationData: MenuNavigationData[];
+interface MenuNavigationItemProps {
   loansCount: number;
   reservationCount: number;
   feeCount: number;
+  menuNavigationItem: MenuNavigationDataType;
 }
 
-const MenuNavigationList: FC<MenuNavigationListProps> = ({
-  menuNavigationData,
+const MenuNavigationItem: FC<MenuNavigationItemProps> = ({
   loansCount,
   reservationCount,
-  feeCount
+  feeCount,
+  menuNavigationItem
 }) => {
   /*
   TODO: elaborate mapping of menu content and data-sources.
@@ -31,19 +31,20 @@ const MenuNavigationList: FC<MenuNavigationListProps> = ({
     // TODO: Get count of "My List".
     "4": feeCount // Fees & Replacement costs.
   };
+
+  const { link, name, dataId } = menuNavigationItem;
+
   return (
-    <>
-      {menuNavigationData.map(({ name, link, dataId }: MenuNavigationData) => (
-        <div className="link-filters__tag-wrapper">
-          <a href={link} className="link-tag link-tag link-filters__tag">
-            {name}
-          </a>
-          {!!dataMap[dataId] && (
-            <span className="link-filters__counter">{dataMap[dataId]}</span>
-          )}
-        </div>
-      ))}
-    </>
+    <li className="link-filters mb-16">
+      <div className="link-filters__tag-wrapper">
+        <a href={link} className="link-tag link-tag link-filters__tag">
+          {name}
+        </a>
+        {dataMap[dataId] !== 0 && (
+          <span className="link-filters__counter">{dataMap[dataId]}</span>
+        )}
+      </div>
+    </li>
   );
 };
-export default MenuNavigationList;
+export default MenuNavigationItem;

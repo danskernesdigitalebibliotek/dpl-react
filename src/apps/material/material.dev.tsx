@@ -264,6 +264,22 @@ export default {
       defaultValue: "Can't be reserved",
       control: { type: "text" }
     },
+    notLivingInMunicipalityText: {
+      name: "Not living in municipality",
+      defaultValue:
+        "You don't live in the municipality where this library is located.",
+      control: { type: "text" }
+    },
+    blockedButtonText: {
+      name: "Blocked button text",
+      defaultValue: "User blocked",
+      control: { type: "text" }
+    },
+    cantViewText: {
+      name: "Can't be viewed",
+      defaultValue: "Can't be viewed",
+      control: { type: "text" }
+    },
     goToText: {
       name: "Go to",
       defaultValue: "Go to @source",
@@ -336,31 +352,6 @@ export default {
     haveNoInterestAfterText: {
       name: "Have no interest after",
       defaultValue: "Have no interest after",
-      control: { type: "text" }
-    },
-    oneMonthText: {
-      name: "One month",
-      defaultValue: "1 month",
-      control: { type: "text" }
-    },
-    twoMonthsText: {
-      name: "Two months",
-      defaultValue: "2 months",
-      control: { type: "text" }
-    },
-    threeMonthsText: {
-      name: "Three months",
-      defaultValue: "3 months",
-      control: { type: "text" }
-    },
-    sixMonthsText: {
-      name: "Six months",
-      defaultValue: "6 months",
-      control: { type: "text" }
-    },
-    oneYearText: {
-      name: "Twelve months",
-      defaultValue: "12 months",
       control: { type: "text" }
     },
     daysText: {
@@ -801,24 +792,9 @@ export default {
       defaultValue:
         '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
     },
-    interestPeriodOneMonthConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodTwoMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodThreeMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodSixMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodOneYearConfigText: {
-      defaultValue: "1",
+    interestPeriodsConfig: {
+      defaultValue:
+        '[\n   {\n      "value":"30",\n      "label":"1 month"\n   },\n   {\n      "value":"60",\n      "label":"2 months"\n   },\n   {\n      "value":"90",\n      "label":"3 months"\n   },\n   {\n      "value":"180",\n      "label":"6 months"\n   },\n   {\n      "value":"360",\n      "label":"1 year"\n   }\n]',
       control: { type: "text" }
     }
   }

@@ -13,7 +13,9 @@ interface MaterialEntryTextProps {
   alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
+  blockedButtonText: string;
   cantReserveText: string;
+  cantViewText: string;
   cantViewReviewText: string;
   changeEmailText: string;
   changeInterestPeriodText: string;
@@ -69,14 +71,10 @@ interface MaterialEntryTextProps {
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
+  interestPeriodsConfig: string;
   instantLoanSubTitleText: string;
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
-  interestPeriodOneMonthConfigText: string;
-  interestPeriodOneYearConfigText: string;
-  interestPeriodSixMonthsConfigText: string;
-  interestPeriodThreeMonthsConfigText: string;
-  interestPeriodTwoMonthsConfigText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -103,11 +101,10 @@ interface MaterialEntryTextProps {
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
   modalReservationFormSmsInputFieldLabelText: string;
+  notLivingInMunicipalityText: string;
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
-  oneMonthText: string;
-  oneYearText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
   orderDigitalCopyButtonLoadingText: string;
@@ -152,11 +149,8 @@ interface MaterialEntryTextProps {
   screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
-  sixMonthsText: string;
   subjectNumberText: string;
-  threeMonthsText: string;
   tryAginButtonText: string;
-  twoMonthsText: string;
 }
 
 interface MaterialEntryConfigProps {

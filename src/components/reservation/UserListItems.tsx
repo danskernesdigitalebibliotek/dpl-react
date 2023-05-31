@@ -22,6 +22,7 @@ import {
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
+import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -50,6 +51,9 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
+  const interstPeriods = config<OptionsProps[]>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
 
   const { open } = useModalButtonHandler();
   const openModal = (type: ModalReservationFormTextType) => () => {
@@ -57,8 +61,8 @@ const UserListItems: FC<UserListItemsProps> = ({
   };
 
   const interestPeriod = selectedInterest
-    ? getNoInterestAfter(selectedInterest, t)
-    : getNoInterestAfter(defaultInterestPeriod, t);
+    ? getNoInterestAfter(selectedInterest, interstPeriods, t)
+    : getNoInterestAfter(defaultInterestPeriod, interstPeriods, t);
 
   const pickupBranch = selectedBranch
     ? getPreferredBranch(selectedBranch, branches)

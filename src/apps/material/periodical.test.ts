@@ -43,11 +43,10 @@ describe("Material - Periodical", () => {
       fixtureFilePath: "material/periodical-fbi-api.json"
     });
 
+    cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
     );
-
-    cy.createFakeAuthenticatedSession();
   });
 
   it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
