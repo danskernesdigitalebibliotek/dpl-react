@@ -66,7 +66,15 @@ export default {
       control: { type: "text" }
     },
     menuLogOutText: {
-      defaultValue: "Log Out",
+      defaultValue: "Log out",
+      control: { type: "text" }
+    },
+    menuNotificationsMenuAriaLabelText: {
+      defaultValue: "Notifications menu",
+      control: { type: "text" }
+    },
+    menuProfileLinksAriaLabelText: {
+      defaultValue: "Profile links",
       control: { type: "text" }
     },
     menuLogOutUrl: {

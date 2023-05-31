@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import Link from "../../../components/atoms/links/Link";
-import MenuNavigationList from "../menu-navigation-list/menu-navigation-list";
+import MenuNavigationItem, {
+  MenuNavigationDataType
+} from "../menu-navigation-list/MenuNavigationItem";
 import MenuNotification from "../menu-notification/menu-notification";
 import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
@@ -26,17 +28,7 @@ import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
 import Modal from "../../../core/utils/modal";
-import { Button } from "../../../components/Buttons/Button";
 import { usePatronData } from "../../../components/material/helper";
-
-export interface MenuLoggedInProps {
-  closePatronMenu: () => void;
-}
-interface MenuNavigationDataType {
-  name: string;
-  link: string;
-  dataId: string;
-}
 
 const MenuLoggedIn: FC = () => {
   const { userMenuAuthenticated: userMenuAuthenticatedModalId } = getModalIds();
@@ -127,6 +119,12 @@ const MenuLoggedIn: FC = () => {
       setFeeCount(fbsFees.length);
     }
   }, [fbsFees]);
+
+  const showNotifications =
+    loansOverdue !== 0 &&
+    loansSoonOverdue !== 0 &&
+    reservationsReadyForPickup !== 0;
+
   return (
     <Modal
       modalId={userMenuAuthenticatedModalId as string}
@@ -158,55 +156,63 @@ const MenuLoggedIn: FC = () => {
               {t("menuViewYourProfileText")}
             </Link>
           </div>
-          <div className="modal-profile__notifications">
-            {loansOverdue !== 0 && (
-              <MenuNotification
-                notificationNumber={loansOverdue}
-                notificationText={t("menuNotificationLoansExpiredText")}
-                notificationColor="danger"
-                notificationLink={menuNotificationLoansExpiredUrl}
-              />
-            )}
-            {loansSoonOverdue !== 0 && (
-              <MenuNotification
-                notificationNumber={loansSoonOverdue}
-                notificationText={t("menuNotificationLoansExpiringSoonText")}
-                notificationColor="warning"
-                notificationLink={menuNotificationLoansExpiringSoonUrl}
-              />
-            )}
-            {reservationsReadyForPickup !== 0 && (
-              <MenuNotification
-                notificationNumber={reservationsReadyForPickup}
-                notificationText={t("menuNotificationReadyForPickupText")}
-                notificationColor="info"
-                notificationLink={menuNotificationReadyForPickupUrl}
-              />
-            )}
-          </div>
-          <div className="modal-profile__container">
-            <div className="modal-profile__links">
-              <div className="link-filters">
-                <MenuNavigationList
-                  menuNavigationData={menuNavigationData}
+          {showNotifications && (
+            <nav
+              className="modal-profile__notifications mx-32 mt-32"
+              aria-label={t("menuNotificationsMenuAriaLabelText")}
+            >
+              <ul>
+                {loansOverdue !== 0 && (
+                  <MenuNotification
+                    notificationNumber={loansOverdue}
+                    notificationText={t("menuNotificationLoansExpiredText")}
+                    notificationColor="danger"
+                    notificationLink={menuNotificationLoansExpiredUrl}
+                  />
+                )}
+                {loansSoonOverdue !== 0 && (
+                  <MenuNotification
+                    notificationNumber={loansSoonOverdue}
+                    notificationText={t(
+                      "menuNotificationLoansExpiringSoonText"
+                    )}
+                    notificationColor="warning"
+                    notificationLink={menuNotificationLoansExpiringSoonUrl}
+                  />
+                )}
+                {reservationsReadyForPickup !== 0 && (
+                  <MenuNotification
+                    notificationNumber={reservationsReadyForPickup}
+                    notificationText={t("menuNotificationReadyForPickupText")}
+                    notificationColor="info"
+                    notificationLink={menuNotificationReadyForPickupUrl}
+                  />
+                )}
+              </ul>
+            </nav>
+          )}
+          <nav
+            className="modal-profile__container"
+            aria-label={t("menuProfileLinksAriaLabelText")}
+          >
+            <ul className="modal-profile__links">
+              {menuNavigationData.map((menuNavigationItem) => (
+                <MenuNavigationItem
+                  menuNavigationItem={menuNavigationItem}
                   loansCount={loansCount}
                   reservationCount={reservationCount}
                   feeCount={feeCount}
                 />
-              </div>
-            </div>
-            <div className="modal-profile__btn-logout">
-              <Link href={menuLogOutUrl}>
-                <Button
-                  label={t("menuLogOutText")}
-                  buttonType="none"
-                  disabled={false}
-                  collapsible={false}
-                  size="medium"
-                  variant="filled"
-                />
-              </Link>
-            </div>
+              ))}
+            </ul>
+          </nav>
+          <div className="modal-profile__btn-logout mx-32">
+            <Link
+              className="btn-primary btn-filled btn-large arrow__hover--right-small"
+              href={menuLogOutUrl}
+            >
+              {t("menuLogOutText")}
+            </Link>
           </div>
         </div>
       </div>

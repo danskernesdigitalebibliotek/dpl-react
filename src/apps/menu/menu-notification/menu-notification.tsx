@@ -16,7 +16,7 @@ const MenuNotification: FC<MenuNotificationProps> = ({
   notificationLink
 }) => {
   return (
-    <div className="modal-profile__notification-item">
+    <li className="modal-profile__notification-item">
       <Link
         href={new URL(notificationLink)}
         className="list-dashboard shadow-medium-hover arrow__hover--right-small"
@@ -30,7 +30,7 @@ const MenuNotification: FC<MenuNotificationProps> = ({
         <div className="list-dashboard__dot" />
         <Arrow />
       </Link>
-    </div>
+    </li>
   );
 };
 export default MenuNotification;

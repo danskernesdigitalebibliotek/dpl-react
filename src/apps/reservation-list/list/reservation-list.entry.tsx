@@ -44,6 +44,7 @@ export interface ReservationListTextProps {
   reservationDetailsButtonRemoveText: string;
   reservationDetailsChangeText: string;
   reservationDetailsExpiresTitleText: string;
+  interestPeriodsConfig: string;
   reservationDetailsOthersInQueueText: string;
   reservationDetailsNumberInQueueLabelText: string;
   reservationDetailsStatusTitleText: string;
@@ -51,16 +52,6 @@ export interface ReservationListTextProps {
   reservationDetailsNoInterestAfterTitleText: string;
   reservationDetailsPickupDeadlineTitleText: string;
   reservationDetailsDigitalReservationGoToEreolenText: string;
-  oneMonthText: string;
-  twoMonthsText: string;
-  threeMonthsText: string;
-  sixMonthsText: string;
-  oneYearText: string;
-  interestPeriodOneMonthConfigText: string;
-  interestPeriodTwoMonthsConfigText: string;
-  interestPeriodThreeMonthsConfigText: string;
-  interestPeriodSixMonthsConfigText: string;
-  interestPeriodOneYearConfigText: string;
   listDetailsNothingSelectedLabelText: string;
   reservationDetailsDateOfReservationTitleText: string;
   reservationDetailsReadyForLoanText: string;

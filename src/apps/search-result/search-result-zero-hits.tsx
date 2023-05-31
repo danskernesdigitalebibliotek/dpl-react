@@ -12,7 +12,7 @@ const SearchResultZeroHits: FC<SearchResultZeroHitsProps> = ({
   const t = useText();
 
   return (
-    <div className="search-result-page" data-cy={dataCy}>
+    <div className="card-list-page" data-cy={dataCy}>
       <h1
         className="text-header-h2 search-result-title my-112"
         data-cy="search-result-zero-hits"

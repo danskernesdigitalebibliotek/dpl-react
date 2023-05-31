@@ -2,8 +2,8 @@ import React, { memo, useEffect } from "react";
 import { isEmpty } from "lodash";
 import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
-import SearchResultListItem from "./card-list-item/card-list-item";
-import SearchResultListItemSkeleton from "./card-list-item/card-list-item-skeleton";
+import CardListItem from "./card-list-item/card-list-item";
+import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
 
 export interface SearchResultListProps {
   resultItems: Work[];
@@ -34,7 +34,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
       {!worksAreLoaded &&
         [...Array(5)].map(() => (
           <li>
-            <SearchResultListItemSkeleton />
+            <CardListItemSkeleton />
           </li>
         ))}
       {worksAreLoaded &&
@@ -49,7 +49,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
               // elements within the item suitable for keyboard focus.
               tabIndex={-1}
             >
-              <SearchResultListItem
+              <CardListItem
                 item={item}
                 coverTint={getCoverTint(i)}
                 resultNumber={i + 1}
