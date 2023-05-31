@@ -25,7 +25,7 @@ const List: FC<ListProps> = ({
   const [displayedReservations, setDisplayedReservations] = useState<
     ReservationType[]
   >([]);
-  const { itemsShown, PagerComponent } = usePager({
+  const { itemsShown, PagerComponent, firstInNewPage } = usePager({
     hitcount: reservations.length,
     pageSize
   });
@@ -60,8 +60,9 @@ const List: FC<ListProps> = ({
           </div>
           <div data-cy="list-reservation-container">
             <ul className="list-reservation-container m-32">
-              {displayedReservations.map((reservation) => (
+              {displayedReservations.map((reservation, i) => (
                 <ReservationMaterial
+                  focused={firstInNewPage === i}
                   openReservationDetailsModal={openReservationDetailsModal}
                   key={reservation.identifier || reservation.faust}
                   identifier={reservation.identifier}
