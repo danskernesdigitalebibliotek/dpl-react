@@ -9,7 +9,6 @@ import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
   pageSize: number;
-  listHeader: string;
   selectedMaterials: string[];
   selectMaterials: (materialIds: string[]) => void;
 }
@@ -18,8 +17,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   materials,
   selectedMaterials,
   selectMaterials,
-  pageSize,
-  listHeader
+  pageSize
 }) => {
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<
@@ -50,7 +48,6 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
 
   return (
     <>
-      <h3 className="text-body-medium-regular">{listHeader}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map(
           ({ expiryDate, faust, identifier, numberInQueue }) => (

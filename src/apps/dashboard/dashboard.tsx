@@ -19,15 +19,13 @@ import { LoanType } from "../../core/utils/types/loan-type";
 import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
 import {
   mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType,
-  mapPublizonReservationToReservationType
+  mapFBSReservationToReservationType
 } from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
 import { yesterday, soon, longer } from "./util/helpers";
 import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
 import ReservationGroupModal from "./modal/ReservationsGroupModal";
-import { useGetV1UserReservations } from "../../core/publizon/publizon";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import ReservationDetails from "../reservation-list/modal/reservation-details/reservation-details";
 import DeleteReservationModal from "../reservation-list/modal/delete-reservation/delete-reservation-modal";
@@ -45,13 +43,10 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
     transformer: "jsonParse"
   });
   const { data: physicalReservationsFbs } = useGetReservationsV2();
-  const { data: digitalReservationsPublizon } = useGetV1UserReservations();
   const [physicalReservations, setPhysicalReservations] = useState<
     ReservationType[]
   >([]);
-  const [digitalReservations, setDigitalReservations] = useState<
-    ReservationType[]
-  >([]);
+
   const { open } = useModalButtonHandler();
   const { isSuccess, data } = useGetLoansV2();
   const { loanDetails, dueDateModal, reservationDetails, deleteReservation } =
@@ -95,19 +90,6 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       );
     }
   }, [physicalReservationsFbs]);
-
-  useEffect(() => {
-    if (
-      digitalReservationsPublizon &&
-      digitalReservationsPublizon.reservations
-    ) {
-      setDigitalReservations(
-        mapPublizonReservationToReservationType(
-          digitalReservationsPublizon.reservations
-        )
-      );
-    }
-  }, [digitalReservationsPublizon]);
 
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
@@ -171,16 +153,14 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   }, [modalLoanDetailsId, physicalLoans]);
 
   useEffect(() => {
-    const reservation = [...physicalReservations, ...digitalReservations]?.find(
-      ({ faust, identifier }) =>
-        String(faust) === modalReservationDetailsId ||
-        String(identifier) === modalReservationDetailsId
+    const reservation = physicalReservations.find(
+      ({ faust }) => String(faust) === modalReservationDetailsId
     );
 
     if (reservation) {
       setReservationForModal(reservation);
     }
-  }, [digitalReservations, modalReservationDetailsId, physicalReservations]);
+  }, [modalReservationDetailsId, physicalReservations]);
 
   const openReservationDeleteModal = useCallback(() => {
     if (reservationForModal) {
@@ -222,7 +202,6 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
         physicalLoansFarFromOverdue={physicalLoansFarFromOverdue}
         physicalLoansOverdue={physicalLoansOverdue}
         physicalLoansSoonOverdue={physicalLoansSoonOverdue}
-        digitalReservations={digitalReservations}
         physicalReservations={physicalReservations}
         openModalHandler={openModalHandler}
         openLoanDetailsModal={openLoanDetailsModal}
@@ -249,7 +228,6 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       )}
       <ReservationGroupModal
         modalId={reservationModalId}
-        digitalReservations={digitalReservations}
         physicalReservations={physicalReservations}
         pageSize={pageSize}
       />

@@ -324,18 +324,6 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationType[]) => {
-  const yesterday = dayjs().subtract(1, "day");
-  return [...list].filter(({ state, pickupDeadline }) => {
-    const deadline = dayjs(pickupDeadline);
-    if (deadline) {
-      return (
-        state === dashboardReadyForPickupApiValueText && deadline < yesterday
-      );
-    }
-    return false;
-  });
-};
 export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
     ({ state }) => state === dashboardReservedApiValueText

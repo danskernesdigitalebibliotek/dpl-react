@@ -13,9 +13,7 @@ import {
   useGetReservationsV2,
   useGetFeesV2
 } from "../../../core/fbs/fbs";
-import { useGetV1UserLoans } from "../../../core/publizon/publizon";
 import {
-  mapPublizonLoanToLoanType,
   mapFBSLoanToLoanType,
   mapFBSReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
@@ -23,19 +21,18 @@ import { LoanType } from "../../../core/utils/types/loan-type";
 import {
   filterLoansOverdue,
   filterLoansSoonOverdue,
-  getModalIds,
-  getReadyForPickup
+  getModalIds
 } from "../../../core/utils/helpers/general";
 import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
 import Modal from "../../../core/utils/modal";
+import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 
 const MenuLoggedIn: FC = () => {
   const { userMenuAuthenticated: userMenuAuthenticatedModalId } = getModalIds();
   const { data: patronData } = useGetPatronInformationByPatronIdV2();
   const { data: patronReservations } = useGetReservationsV2();
-  const { data: publizonData } = useGetV1UserLoans();
   const { data: fbsData } = useGetLoansV2();
   const { data: fbsFees } = useGetFeesV2();
   const t = useText();
@@ -80,12 +77,10 @@ const MenuLoggedIn: FC = () => {
 
   // Merge digital and physical loans, for easier filtration down the line.
   useEffect(() => {
-    if (publizonData?.loans && fbsData) {
-      const digitalLoans = mapPublizonLoanToLoanType(publizonData.loans);
-      const physicalLoans = mapFBSLoanToLoanType(fbsData);
-      setLoans([...digitalLoans, ...physicalLoans]);
+    if (fbsData) {
+      setLoans(mapFBSLoanToLoanType(fbsData));
     }
-  }, [publizonData, fbsData]);
+  }, [fbsData]);
 
   // Set count of loans overdue.
   useEffect(() => {
@@ -94,7 +89,7 @@ const MenuLoggedIn: FC = () => {
 
   // Set count of loans soon to be overdue.
   useEffect(() => {
-    if (warning) {
+    if (loans) {
       setLoansSoonOverdue(filterLoansSoonOverdue(loans, warning).length);
     }
   }, [loans, warning]);
@@ -111,6 +106,9 @@ const MenuLoggedIn: FC = () => {
     }
   }, [patronReservations]);
 
+  useEffect(() => {
+    console.log(reservationsReadyForPickup);
+  }, [reservationsReadyForPickup]);
   // Set count of loans.
   useEffect(() => {
     setLoansCount(loans.length);
@@ -124,8 +122,8 @@ const MenuLoggedIn: FC = () => {
   }, [fbsFees]);
 
   const showNotifications =
-    loansOverdue !== 0 &&
-    loansSoonOverdue !== 0 &&
+    loansOverdue !== 0 ||
+    loansSoonOverdue !== 0 ||
     reservationsReadyForPickup !== 0;
 
   return (
@@ -161,7 +159,7 @@ const MenuLoggedIn: FC = () => {
           </div>
           {showNotifications && (
             <nav
-              className="modal-profile__notifications mx-32 mt-32"
+              className="modal-profile__notifications"
               aria-label={t("menuNotificationsMenuAriaLabelText")}
             >
               <ul>
