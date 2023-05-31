@@ -27,7 +27,7 @@ describe("Search Result", () => {
     cy.get(".card-list-page__list .card-list-item .button-favourite").should(
       "have.attr",
       "aria-label",
-      "Add element to favorites list"
+      "Add Harry : samtaler med prinsen to favorites list"
     );
   });
 

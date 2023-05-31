@@ -33,6 +33,12 @@ export default {
         type: "text"
       },
       defaultValue: "Remove @title from favorites list"
+    },
+    title: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "title"
     }
   }
 } as ComponentMeta<typeof WrappedButtonFavourite>;
