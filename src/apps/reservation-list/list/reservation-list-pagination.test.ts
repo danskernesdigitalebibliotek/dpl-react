@@ -1,10 +1,7 @@
-import { TOKEN_LIBRARY_KEY } from "../../../core/token";
-
 describe("Reservation list pagination", () => {
   before(() => {
-    cy.window().then((win) => {
-      win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
-    });
+    cy.createFakeAuthenticatedSession();
+    cy.createFakeLibrarySession();
 
     const wednesday20220603 = new Date("2023-02-03T12:30:00.000Z").getTime();
 

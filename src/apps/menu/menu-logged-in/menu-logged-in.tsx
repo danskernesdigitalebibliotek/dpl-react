@@ -8,7 +8,6 @@ import MenuNotification from "../menu-notification/menu-notification";
 import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
 import {
-  useGetPatronInformationByPatronIdV2,
   useGetLoansV2,
   useGetReservationsV2,
   useGetFeesV2
@@ -29,10 +28,11 @@ import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
 import Modal from "../../../core/utils/modal";
+import { usePatronData } from "../../../components/material/helper";
 
 const MenuLoggedIn: FC = () => {
   const { userMenuAuthenticated: userMenuAuthenticatedModalId } = getModalIds();
-  const { data: patronData } = useGetPatronInformationByPatronIdV2();
+  const { data: patronData } = usePatronData();
   const { data: patronReservations } = useGetReservationsV2();
   const { data: publizonData } = useGetV1UserLoans();
   const { data: fbsData } = useGetLoansV2();

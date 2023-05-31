@@ -1,6 +1,5 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
 import { useDispatch } from "react-redux";
-import { useGetPatronInformationByPatronIdV2 } from "../fbs/fbs";
 import BlockedModal from "../../components/blocked-patron/blocked-modal/BlockedModal";
 import { AuthenticatedPatronV6 } from "../fbs/model";
 import { useModalButtonHandler } from "./modal";
@@ -9,6 +8,7 @@ import { setHasBeenVisible } from "../blockedModal.slice";
 import { RootState, useSelector } from "../store";
 import BlockedTypes from "./types/BlockedTypes";
 import { redirectTo } from "./helpers/url";
+import { usePatronData } from "../../components/material/helper";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
@@ -39,7 +39,7 @@ const withIsPatronBlockedHoc =
     const [blockedFromViewingContent, setBlockedFromViewingContent] = useState<
       boolean | null
     >(null);
-    const { data: patronData } = useGetPatronInformationByPatronIdV2();
+    const { data: patronData } = usePatronData();
 
     // Used to check whether the modal has been opened by another component,
     // the modal should really only be showed once.
