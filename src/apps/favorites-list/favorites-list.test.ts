@@ -43,7 +43,6 @@ describe("Favorites list", () => {
     });
 
     cy.visit("/iframe.html?path=/story/apps-favorite-list--favorites-list");
-    cy.wait(["@favorites"]);
   });
 
   it("Favorites list basics", () => {
@@ -56,10 +55,8 @@ describe("Favorites list", () => {
       .should("have.text", "3 materials");
 
     // 2.e. accessibility on material type
-    cy.get(".card-list-page")
-      .find(".card-list-item")
+    cy.getBySel("card-list-item-availability")
       .eq(0)
-      .find(".card-list-item__availability")
       .should(
         "have.text",
         "billedbogavailablelydbog (net)unavailablelydbog (cd)availablebilledbog (net)unavailableebogunavailable"
