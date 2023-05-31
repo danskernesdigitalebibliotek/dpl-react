@@ -10,4 +10,8 @@ export const isBlocked = (patron: Patron) => {
   return !isEmpty(patron.blockStatus);
 };
 
+export const isResident = (patron: Patron) => {
+  return patron.resident;
+};
+
 export default {};

@@ -1,8 +1,7 @@
 describe("Patron page", () => {
   before(() => {
-    cy.window().then(() => {
-      cy.createFakeLibrarySession();
-    });
+    cy.createFakeAuthenticatedSession();
+    cy.createFakeLibrarySession();
   });
 
   it("Patron not blocked", () => {

@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import React from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
+import AvailabilitySkeleton from "./AvailabilitySkeleton";
 
 type Props = {
   selected?: boolean;
+  isLoading: boolean;
   isAvailable?: boolean;
   manifestText: string;
   availabilityText?: string;
@@ -12,6 +14,7 @@ type Props = {
 
 const AvailabilityLabelInside: React.FunctionComponent<Props> = ({
   selected,
+  isLoading,
   isAvailable,
   manifestText,
   availabilityText,
@@ -51,7 +54,7 @@ const AvailabilityLabelInside: React.FunctionComponent<Props> = ({
         } mr-8`}
         data-cy="availability-label-status"
       >
-        {availabilityText}
+        {isLoading ? <AvailabilitySkeleton /> : availabilityText}
       </p>
       {quantity && (
         <>
