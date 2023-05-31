@@ -25,7 +25,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   const [displayedMaterials, setDisplayedMaterials] = useState<
     ReservationType[]
   >([]);
-  const { itemsShown, PagerComponent } = usePager({
+  const { itemsShown, PagerComponent, firstInNewPage } = usePager({
     hitcount: materials.length,
     pageSize
   });
@@ -53,10 +53,11 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
       <h3 className="text-body-medium-regular">{listHeader}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map(
-          ({ expiryDate, faust, identifier, numberInQueue }) => (
+          ({ expiryDate, faust, identifier, numberInQueue }, i) => (
             <>
               {(identifier || faust) && (
                 <SelectableMaterial
+                  focused={i === firstInNewPage}
                   statusBadgeComponent={
                     faust ? (
                       <StatusBadge

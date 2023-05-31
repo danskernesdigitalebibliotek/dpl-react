@@ -14,6 +14,7 @@ interface SelectableMaterialProps {
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
+  focused: boolean;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -25,11 +26,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   id,
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
-  statusBadgeComponent
+  statusBadgeComponent,
+  focused
 }) => {
   const t = useText();
 
   if (!id) return null;
+
   const { authors = "", materialType, year = "", title = "" } = material || {};
 
   return (
@@ -46,6 +49,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               id={id}
               selected={selected}
               disabled={disabled}
+              focused={focused}
               label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
                 placeholders: { "@label": title }
               })}
@@ -73,6 +77,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {openDetailsModal && (
               <button
                 type="button"
+                autoFocus={disabled && focused}
                 className="list-reservation__note"
                 onClick={() => openDetailsModal(id)}
                 aria-label={
