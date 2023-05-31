@@ -45,6 +45,8 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           <button
             onClick={openDetailsModal}
             type="button"
+            // This is to handle focus when more items are loaded via pagination
+            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={focused}
             className="list-reservation__header color-secondary-gray"
           >

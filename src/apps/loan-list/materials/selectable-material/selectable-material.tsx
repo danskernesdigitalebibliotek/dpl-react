@@ -77,6 +77,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {openDetailsModal && (
               <button
                 type="button"
+                // This is to handle focus when more items are loaded via pagination
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus={disabled && focused}
                 className="list-reservation__note"
                 onClick={() => openDetailsModal(id)}
