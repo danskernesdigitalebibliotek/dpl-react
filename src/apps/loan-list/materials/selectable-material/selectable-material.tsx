@@ -40,8 +40,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="list-materials__checkbox mr-32">
-          {/* // todo remove */}
-          {id}
           {!disabled && title && (
             <CheckBox
               onChecked={() => onMaterialChecked(id)}
