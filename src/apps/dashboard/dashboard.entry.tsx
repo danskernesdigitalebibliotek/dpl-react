@@ -21,6 +21,7 @@ export interface DashBoardProps {
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
   thresholdConfig: string;
+  interestPeriodsConfig: string;
   // Texts
   yourProfileText: string;
   groupModalCloseModalAriaLabelText: string;
@@ -67,17 +68,7 @@ export interface DashBoardProps {
   groupModalCheckboxText: string;
   groupModalAriaDescriptionText: string;
   groupModalButtonText: string;
-  interestPeriodOneMonthConfigText: string;
-  interestPeriodTwoMonthsConfigText: string;
-  interestPeriodThreeMonthsConfigText: string;
-  oneMonthText: string;
-  twoMonthsText: string;
   reservationDetailsRemoveDigitalReservationText: string;
-  threeMonthsText: string;
-  sixMonthsText: string;
-  oneYearText: string;
-  interestPeriodSixMonthsConfigText: string;
-  interestPeriodOneYearConfigText: string;
   reservationDetailsDateOfReservationTitleText: string;
   listDetailsNothingSelectedLabelText: string;
   reservationDetailsNoInterestAfterTitleText: string;

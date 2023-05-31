@@ -76,6 +76,11 @@ export default {
       defaultValue: "Pay",
       control: { type: "text" }
     },
+    interestPeriodsConfig: {
+      defaultValue:
+        '[\n   {\n      "value":"30",\n      "label":"1 month"\n   },\n   {\n      "value":"60",\n      "label":"2 months"\n   },\n   {\n      "value":"90",\n      "label":"3 months"\n   },\n   {\n      "value":"180",\n      "label":"6 months"\n   },\n   {\n      "value":"360",\n      "label":"1 year"\n   }\n]',
+      control: { type: "text" }
+    },
     totalAmountFeeText: {
       defaultValue: "@total,-",
       control: { type: "text" }
@@ -256,48 +261,8 @@ export default {
       },
       defaultValue: "Renewable (@count)"
     },
-    interestPeriodOneMonthConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodTwoMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodThreeMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    oneMonthText: {
-      defaultValue: "1 month",
-      control: { type: "text" }
-    },
-    twoMonthsText: {
-      defaultValue: "2 months",
-      control: { type: "text" }
-    },
     reservationDetailsRemoveDigitalReservationText: {
       defaultValue: "Remove your reservation",
-      control: { type: "text" }
-    },
-    threeMonthsText: {
-      defaultValue: "3 months",
-      control: { type: "text" }
-    },
-    sixMonthsText: {
-      defaultValue: "6 months",
-      control: { type: "text" }
-    },
-    oneYearText: {
-      defaultValue: "1 year",
-      control: { type: "text" }
-    },
-    interestPeriodSixMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodOneYearConfigText: {
-      defaultValue: "1",
       control: { type: "text" }
     },
     reservationDetailsDateOfReservationTitleText: {
