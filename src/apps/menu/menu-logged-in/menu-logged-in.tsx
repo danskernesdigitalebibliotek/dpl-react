@@ -106,9 +106,6 @@ const MenuLoggedIn: FC = () => {
     }
   }, [patronReservations]);
 
-  useEffect(() => {
-    console.log(reservationsReadyForPickup);
-  }, [reservationsReadyForPickup]);
   // Set count of loans.
   useEffect(() => {
     setLoansCount(loans.length);

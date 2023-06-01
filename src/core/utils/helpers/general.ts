@@ -15,10 +15,7 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import {
-  dashboardReadyForPickupApiValueText,
-  dashboardReservedApiValueText
-} from "../../configuration/api-strings.json";
+import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 
