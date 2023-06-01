@@ -51,4 +51,19 @@ export const areAnyAvailable = (availability: AvailabilityV3[]) => {
   return availability.some((item) => item.available);
 };
 
+// TODO: SpecialManifestationProps & SpecialManifestation type will need to be
+// deleted when the Manifestation type includes the danMARC2 property.
+type SpecialManifestationProps = {
+  danMARC2: string;
+};
+export type SpecialManifestation = Manifestation & SpecialManifestationProps;
+
+export const isFluidOrderWork = (manifestations: SpecialManifestation[]) => {
+  // Delete the return true; line after API has .danMARC2 property
+  return true;
+  // return !!manifestations.find((manifestation) => {
+  //   return manifestation.danMARC2.startsWith("OVE");
+  // });
+};
+
 export default {};
