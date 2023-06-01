@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   getAllFaustIds,
   getManifestationType
@@ -13,9 +13,12 @@ import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
 import { usePatronData } from "../../helper";
+import { SpecialManifestation, isFluidOrderWork } from "../helper";
+import useGetAvailability from "../../../../core/utils/useGetAvailability";
+import { useConfig } from "../../../../core/utils/config";
 
 export interface MaterialButtonsPhysicalProps {
-  manifestations: Manifestation[];
+  manifestations: SpecialManifestation[];
   size?: ButtonSize;
   dataCy?: string;
 }
@@ -32,8 +35,24 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   });
   const { data: userData, isLoading } = usePatronData();
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
+  const isFluidOrder = isFluidOrderWork(manifestations);
+  const [isReservable, setIsReservable] = useState<boolean>(false);
+  const config = useConfig();
+  const { isLoading: isLoadingAvailability } = useGetAvailability({
+    faustIds,
+    config,
+    options: {
+      query: {
+        onSuccess: (data) => {
+          if (data?.some((item) => item.reservable)) {
+            setIsReservable(true);
+          }
+        }
+      }
+    }
+  });
 
-  if (isLoading) {
+  if (isLoading || isLoadingAvailability) {
     return <MaterialButtonLoading />;
   }
 
@@ -48,14 +67,19 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   // We show the reservation button if the user isn't logged in or isn't blocked.
   // In the former case there there's no way to see if they're blocked, so we
   // redirect anonymous user to the login page.
-
   if (!userData || !isUserBlocked) {
+    // If the material is a fluid-order material (can be ordered from a different
+    // library and picked up locally) and is NOT reservable locally, we show the
+    // "order from different library" button
+    const isFluid = isFluidOrder && !isReservable;
+
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
         manifestationMaterialType={getManifestationType(manifestations)}
         faustIds={faustIds}
         size={size}
+        isFluid={isFluid}
       />
     );
   }

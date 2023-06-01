@@ -12,33 +12,51 @@ export interface MaterialButtonPhysicalProps {
   size?: ButtonSize;
   faustIds: FaustId[];
   dataCy?: string;
+  isFluid: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
   faustIds,
   size,
-  dataCy = "material-button-physical"
+  dataCy = "material-button-physical",
+  isFluid
 }) => {
   const t = useText();
   const { openGuarded } = useModalButtonHandler();
   const { authUrl } = useUrls();
-
   const onClick = () => {
     openGuarded({
       authUrl,
       modalId: reservationModalId(faustIds)
     });
   };
+  const getLabel = () => {
+    if (size === "small" && !isFluid) {
+      return t("reserveText");
+    }
+    if (size === "small" && isFluid) {
+      return t("reserveFromAnotherLibraryText", {
+        placeholders: {
+          "@materialType": ""
+        }
+      });
+    }
+    if (isFluid) {
+      return t("reserveFromAnotherLibraryText", {
+        placeholders: {
+          "@materialType": manifestationMaterialType
+        }
+      });
+    }
+    return `${t("reserveText")} ${manifestationMaterialType}`;
+  };
+  const label = getLabel();
 
   return (
     <Button
       dataCy={dataCy}
-      label={
-        size === "small"
-          ? t("reserveText")
-          : `${t("reserveText")} ${manifestationMaterialType}`
-      }
+      label={label}
       buttonType="none"
       variant="filled"
       disabled={false}

@@ -4,7 +4,12 @@ import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import { getAllFaustIds } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
-import { hasCorrectAccess, hasCorrectAccessType, isArticle } from "./helper";
+import {
+  SpecialManifestation,
+  hasCorrectAccess,
+  hasCorrectAccessType,
+  isArticle
+} from "./helper";
 import { WorkId } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
@@ -35,7 +40,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
         !isArticle(manifestations) && (
           <>
             <MaterialButtonsPhysical
-              manifestations={manifestations}
+              manifestations={manifestations as SpecialManifestation[]}
               size={size}
               dataCy={`${dataCy}-physical`}
             />
