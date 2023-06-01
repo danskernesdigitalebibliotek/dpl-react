@@ -141,6 +141,7 @@ interface MaterialEntryTextProps {
   reservationSuccesTitleText: string;
   reserveBookText: string;
   reserveFromAnotherLibraryText: string;
+  reserveFromAnotherLibraryWithoutMaterialTypeText: string;
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;

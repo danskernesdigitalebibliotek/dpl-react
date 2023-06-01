@@ -36,11 +36,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
       return t("reserveText");
     }
     if (size === "small" && isFluid) {
-      return t("reserveFromAnotherLibraryText", {
-        placeholders: {
-          "@materialType": ""
-        }
-      });
+      return t("reserveFromAnotherLibraryWithoutMaterialTypeText");
     }
     if (isFluid) {
       return t("reserveFromAnotherLibraryText", {
