@@ -82,6 +82,11 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reserveFromAnotherLibraryText: {
+      name: "Reserve from another library",
+      defaultValue: "Reserve @materialType elsewhere",
+      control: { type: "text" }
+    },
     findOnBookshelfText: {
       name: "Find on bookshelf",
       defaultValue: "Find on shelf",
