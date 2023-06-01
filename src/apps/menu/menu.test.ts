@@ -128,45 +128,28 @@ describe("Menu (authenticated))", () => {
               description: "7 dages lån (DVD) - må fjernlånes"
             }
           }
+        },
+        {
+          isRenewable: true,
+          renewalStatusList: [],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250682,
+            materialItemNumber: "5169457737",
+            recordId: "53667546",
+            periodical: null,
+            loanDate: "2022-10-09 09:54:26+0000",
+            dueDate: "2022-11-10",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "7dvd",
+              description: "7 dages lån (DVD) - må fjernlånes"
+            }
+          }
         }
       ]
     }).as("physical_loans");
-
-    cy.intercept("GET", "**/v1/user/loans**", {
-      statusCode: 200,
-      body: {
-        loans: [
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-09-01T06:32:30Z",
-            loanExpireDateUtc: "2022-09-10T06:32:30Z",
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076951",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          },
-          {
-            orderId: "082bb01a-8979-424b-93a6-7cc7081f8a45",
-            orderNumber: "0c5a287f-be96-4a68-a85a-453864b330cd",
-            orderDateUtc: "2022-09-01T06:32:30Z",
-            loanExpireDateUtc: null,
-            isSubscriptionLoan: false,
-            libraryBook: {
-              identifier: "9788771076950",
-              identifierType: 15,
-              title: "Tættere end man tror",
-              publishersName: "Jentas"
-            },
-            fileExtensionType: 3
-          }
-        ]
-      }
-    }).as("digital_loans");
 
     cy.intercept("GET", "**/external/agencyid/patron/patronid/fees/v2**", {
       statusCode: 200,
@@ -248,7 +231,7 @@ describe("Menu (authenticated))", () => {
 
   it("Menu", () => {
     cy.get(".header__menu-profile").should("exist").click();
-    cy.wait(["@reservations", "@physical_loans", "@digital_loans", "@fees"]);
+    cy.wait(["@reservations", "@physical_loans", "@fees"]);
     // 2. Systemet viser Lånerstatusmenuen med
     // 2.a. Brugerens navn
     cy.get(".modal-header__name")
@@ -305,7 +288,7 @@ describe("Menu (authenticated))", () => {
       .eq(0)
       .find(".link-filters__counter")
       .should("exist")
-      .and("have.text", "4");
+      .and("have.text", "3");
     // 2.d.ii. “Reserveringer” linker til Reserveringsoversigten, og viser det samlede antal reserveringer. Engelsk: "Reservations"
     cy.get(".modal-profile__links")
       .find(".link-filters__tag-wrapper")
