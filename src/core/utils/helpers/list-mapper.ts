@@ -82,9 +82,9 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     description,
     productType,
     contributors,
-    externalProductId
+    externalProductId,
+    languageCode
   } = material;
-
   // Todo this is sortof a hack, but using t: UseTextFunction as argument
   // makes the components re-render.
   const {
@@ -99,6 +99,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 
   return {
     title,
+    lang: languageCode,
     periodical: null,
     year: publicationDate ? getYearFromDataString(publicationDate) : "",
     description,
@@ -123,15 +124,23 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 export const mapManifestationToBasicDetailsType = (
   material: GetManifestationViaMaterialByFaustQuery
 ) => {
-  const { edition, abstract, titles, pid, materialTypes, creators, series } =
-    material?.manifestation || {};
+  const {
+    edition,
+    abstract,
+    titles,
+    pid,
+    materialTypes,
+    creators,
+    series,
+    languages
+  } = material?.manifestation || {};
 
   // Todo this is sortof a hack, but using t: UseTextFunction as argument
   // makes the components re-render.
   const {
     text: { data: texts }
   } = store.getState();
-
+  const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {
     main: [mainText]
@@ -150,6 +159,7 @@ export const mapManifestationToBasicDetailsType = (
   }
   const firstAuthor = creators && creators.length ? creators[0].display : "";
   return {
+    lang: isoCode,
     authors: contributors || "",
     firstAuthor,
     pid,

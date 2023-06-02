@@ -29,7 +29,7 @@ describe("Material", () => {
     cy.get(".button-favourite").should(
       "have.attr",
       "aria-label",
-      "Add element to favorites list"
+      "Add De syv søstre : Maias historie to favorites list"
     );
   });
 

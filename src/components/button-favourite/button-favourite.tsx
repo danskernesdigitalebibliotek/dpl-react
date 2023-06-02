@@ -12,12 +12,14 @@ export interface ButtonFavouriteProps {
   id: ButtonFavouriteId;
   darkBackground?: boolean;
   addToListRequest: (id: ButtonFavouriteId) => void;
+  title: string;
 }
 
 const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   id,
   addToListRequest,
-  darkBackground
+  darkBackground,
+  title
 }) => {
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
@@ -64,8 +66,12 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       type="button"
       aria-label={
         fillState
-          ? t("removeFromFavoritesAriaLabelText")
-          : t("addToFavoritesAriaLabelText")
+          ? t("removeFromFavoritesAriaLabelText", {
+              placeholders: { "@title": title }
+            })
+          : t("addToFavoritesAriaLabelText", {
+              placeholders: { "@title": title }
+            })
       }
       onClick={handleClick}
       className="button-favourite"

@@ -195,13 +195,13 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Add element to favorites list"
+      defaultValue: "Add @title to favorites list"
     },
     removeFromFavoritesAriaLabelText: {
       control: {
         type: "text"
       },
-      defaultValue: "Remove element from favorites list"
+      defaultValue: "Remove @title from favorites list"
     },
     alertErrorCloseText: {
       name: "Alert error close text",
