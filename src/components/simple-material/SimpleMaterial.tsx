@@ -27,7 +27,7 @@ export interface SimpleMaterialProps {
 const SimpleMaterial: FC<SimpleMaterialProps> = ({
   bright,
   work: {
-    titles: { full: title },
+    titles: { full: fullTitle },
     creators,
     workId,
     manifestations: { all: manifestations }
@@ -64,6 +64,8 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
     );
   };
 
+  const title = fullTitle[0];
+
   return (
     <li
       className={`simple-material ${bright ? " simple-material--bright" : ""}`}
@@ -73,7 +75,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       </div>
       <div className="simple-material__favourite">
         <ButtonFavourite
-          title={title[0]}
+          title={title}
           darkBackground={!bright}
           id={workId}
           addToListRequest={addToListRequest}
@@ -81,7 +83,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       </div>
       <div className="simple-material__meta">
         <Link href={materialFullUrl} className="simple-material__title">
-          {String(title)}
+          {title}
         </Link>
         <div className="simple-material__author">{authors}</div>
       </div>
