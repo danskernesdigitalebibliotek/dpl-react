@@ -24,9 +24,9 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
   const t = useText();
 
   const intersectionRef = useRef(null);
-  const { isIntersecting: isVisible } = useIntersection(intersectionRef, {
+  const intersection = useIntersection(intersectionRef, {
     threshold: 0
-  }) || { isIntersecting: false };
+  });
 
   const selectAllPossible = () => {
     if (selectedMaterials.length === amountOfSelectableMaterials) {
@@ -53,7 +53,7 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
       </div>
       <div className="modal-loan__list">
         {children}
-        {!isVisible && (
+        {!intersection?.isIntersecting && (
           <div className="modal-loan__buttons modal-loan__buttons--bottom">
             <CheckBox
               selected={
