@@ -10,7 +10,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("bog").first().click();
     cy.getBySel("material-header-buttons-find-on-shelf")
       .should("exist")
@@ -21,11 +20,8 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("ebog").first().click();
-
     cy.getBySel("material-description").scrollIntoView();
-
     cy.getBySel("material-header-buttons-find-on-shelf").should("not.exist");
   });
 
@@ -33,7 +29,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("bog").first().click();
     cy.getBySel("material-header-buttons-physical")
       .should("exist")
@@ -47,6 +42,26 @@ describe("Material buttons", () => {
       .and("contain", "lydbog (cd-mp3)");
   });
 
+  it("Renders a 'fluid-order' reservation button for non-reservable physical materials that can be ordered from another library", () => {
+    cy.interceptRest({
+      aliasName: "Availability",
+      url: "**/availability/v3?recordid=**",
+      fixtureFilePath: "material/unavailability.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
+      .getBySel("material-description")
+      .scrollIntoView();
+    cy.getBySel("availability-label")
+      .contains("lydbog (cd-mp3)")
+      .first()
+      .click();
+    cy.getBySel("material-header-buttons-physical")
+      .should("exist")
+      .and("contain", "lydbog (cd-mp3)")
+      .and("contain", "elsewhere");
+  });
+
   it("Renders reservation button disabled if a material isn't reservable", () => {
     cy.interceptRest({
       aliasName: "Availability",
@@ -56,7 +71,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("bog").first().click();
     cy.getBySel("material-header-buttons-cant-reserve")
       .should("be.disabled")
@@ -67,7 +81,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("ebog").first().click();
     cy.getBySel("material-buttons-online-external").contains("Go to ereolen");
   });
@@ -76,7 +89,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("film").first().click();
     cy.getBySel("material-buttons-online-external").contains(
       "Go to filmstriben"
@@ -87,7 +99,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("lydbog (net)").first().click();
     cy.getBySel("material-buttons-online-external").contains("Listen online");
   });
@@ -96,7 +107,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("availability-label").contains("musik").first().click();
     cy.getBySel("material-buttons-online-external").contains("See online");
   });
@@ -112,7 +122,6 @@ describe("Material buttons", () => {
     )
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("material-header-buttons-online-digital-article").contains(
       "Order digital copy"
     );
@@ -127,7 +136,6 @@ describe("Material buttons", () => {
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story")
       .getBySel("material-description")
       .scrollIntoView();
-
     cy.getBySel("material-header-buttons-online-infomedia-article")
       .should("exist")
       .and("contain", "Read article");
