@@ -1,5 +1,6 @@
 query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
+    ...WithLanguages
     pid
     titles {
       main
