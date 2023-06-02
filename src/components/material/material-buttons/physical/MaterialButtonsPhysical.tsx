@@ -56,7 +56,10 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonLoading />;
   }
 
-  if (!reservableManifestations || reservableManifestations.length < 1) {
+  if (
+    (!reservableManifestations || reservableManifestations.length < 1) &&
+    !isFluidOrder
+  ) {
     return <MaterialButtonDisabled size={size} label={t("cantReserveText")} />;
   }
 
