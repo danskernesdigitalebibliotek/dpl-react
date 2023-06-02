@@ -15,6 +15,7 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import { isFaust } from "../util/helpers";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
+import StatusCircle from "../../loan-list/materials/utils/status-circle";
 
 interface ReservationGroupModalProps {
   pageSize: number;
@@ -117,6 +118,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
           {modalId === reservationsReady && (
             <StatusCircleModalHeader
               header={t("reservationsReadyForPickupText")}
+              statusCircleComponent={<StatusCircle loanDate="" />}
             />
           )}
           <GroupModalContent

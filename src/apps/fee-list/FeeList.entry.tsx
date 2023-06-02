@@ -5,6 +5,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import FeeList from "./FeeList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { withConfig } from "../../core/utils/config";
 
 export interface IntermedateListEntryConfigProps {
   thresholdConfig: string;
@@ -51,4 +52,6 @@ const FeeListEntry: FC<
     GlobalUrlEntryPropsInterface
 > = () => <FeeList />;
 
-export default withUrls(withText(withIsPatronBlockedHoc(FeeListEntry)));
+export default withUrls(
+  withText(withIsPatronBlockedHoc(withConfig(FeeListEntry)))
+);
