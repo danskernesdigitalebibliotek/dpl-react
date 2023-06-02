@@ -134,7 +134,11 @@ const CardListItem: React.FC<CardListItemProps> = ({
       <div className="card-list-item__text">
         <div className="card-list-item__meta">
           {showItem && (
-            <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
+            <ButtonFavourite
+              title={fullTitle[0]}
+              id={workId}
+              addToListRequest={addToListRequest}
+            />
           )}
           {firstItemInSeries && (
             <HorizontalTermLine
