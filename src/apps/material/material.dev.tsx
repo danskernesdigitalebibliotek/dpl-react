@@ -82,8 +82,13 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reserveMaterialTypeText: {
+      name: "Reserve material type",
+      defaultValue: "Reserve @materialType",
+      control: { type: "text" }
+    },
     reserveFromAnotherLibraryText: {
-      name: "Reserve from another library",
+      name: "Reserve material type from another library",
       defaultValue: "Reserve @materialType elsewhere",
       control: { type: "text" }
     },
