@@ -5,7 +5,6 @@ import {
 } from "../../../../core/utils/helpers/general";
 import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
 import MaterialButtonUserBlocked from "../generic/MaterialButtonUserBlocked";
 import MaterialButtonReservePhysical from "./MaterialButtonPhysical";

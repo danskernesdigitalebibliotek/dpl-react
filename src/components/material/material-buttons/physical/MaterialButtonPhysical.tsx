@@ -6,6 +6,7 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId } from "../../../../core/utils/types/ids";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
+import { getReserveButtonLabel } from "../helper";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
@@ -31,28 +32,16 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
       modalId: reservationModalId(faustIds)
     });
   };
-  const getLabel = () => {
-    if (size === "small" && !isFluid) {
-      return t("reserveText");
-    }
-    if (size === "small" && isFluid) {
-      return t("reserveFromAnotherLibraryWithoutMaterialTypeText");
-    }
-    if (isFluid) {
-      return t("reserveFromAnotherLibraryText", {
-        placeholders: {
-          "@materialType": manifestationMaterialType
-        }
-      });
-    }
-    return `${t("reserveText")} ${manifestationMaterialType}`;
-  };
-  const label = getLabel();
 
   return (
     <Button
       dataCy={dataCy}
-      label={label}
+      label={getReserveButtonLabel({
+        isFluid,
+        size,
+        materialType: manifestationMaterialType,
+        t
+      })}
       buttonType="none"
       variant="filled"
       disabled={false}
