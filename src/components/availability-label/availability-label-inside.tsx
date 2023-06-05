@@ -26,7 +26,7 @@ const AvailabilityLabelInside: React.FunctionComponent<Props> = ({
     triangle: clsx(
       { "pagefold-triangle--none": selected },
       {
-        [`pagefold-triangle--xsmall pagefold-triangle--xsmall--${availableTriangleCss}`]:
+        [`pagefold-triangle--xsmall pagefold-triangle--${availableTriangleCss}`]:
           !selected
       }
     ),
