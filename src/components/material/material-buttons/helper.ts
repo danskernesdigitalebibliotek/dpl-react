@@ -4,6 +4,8 @@ import {
   AccessTypeCode
 } from "../../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../../core/utils/types/entities";
+import { UseTextFunction } from "../../../core/utils/text";
+import { ButtonSize } from "../../../core/utils/types/button";
 
 export const hasCorrectAccess = (
   desiredAccess: NonNullable<Access["__typename"]>,
@@ -64,6 +66,42 @@ export const isFluidOrderWork = (manifestations: SpecialManifestation[]) => {
   // return !!manifestations.find((manifestation) => {
   //   return manifestation.danMARC2.startsWith("OVE");
   // });
+};
+
+export const getReserveButtonLabel = ({
+  t,
+  isFluid,
+  size,
+  materialType
+}: {
+  t: UseTextFunction;
+  isFluid: boolean;
+  size?: ButtonSize;
+  materialType: string;
+}) => {
+  // If the material is fluid we have special button texts.
+  if (isFluid) {
+    if (size === "small") {
+      return t("reserveFromAnotherLibraryWithoutMaterialTypeText");
+    }
+    return t("reserveFromAnotherLibraryText", {
+      placeholders: {
+        "@materialType": materialType
+      }
+    });
+  }
+
+  // If the button is small we show a simple reserve text.
+  if (size === "small") {
+    return t("reserveText");
+  }
+
+  // If the button is "full" we show the material type in the button text.
+  return t("reserveMaterialTypeText", {
+    placeholders: {
+      "@materialType": materialType
+    }
+  });
 };
 
 export default {};
