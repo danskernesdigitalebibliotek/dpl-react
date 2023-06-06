@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import ListHeader from "../../components/list-header/list-header";
 import { FeeV2 } from "../../core/fbs/model";
-import { useText } from "../../core/utils/text";
 import TotalPaymentPay from "./stackable-fees/total-payment-pay";
 import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";

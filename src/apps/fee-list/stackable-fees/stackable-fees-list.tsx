@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import AuthorYear from "../../../components/author-year/authorYear";
 import { useText } from "../../../core/utils/text";
 import fetchMaterial, {
   MaterialProps
