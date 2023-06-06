@@ -1,16 +1,19 @@
 import React, { FC } from "react";
 import { getStatusText } from "../../utils/helpers";
 import { useText } from "../../../../core/utils/text";
-import { LoanType } from "../../../../core/utils/types/loan-type";
 
 interface StatusMessageProps {
-  loan: LoanType;
   className: string;
+  loanType: string | null;
+  renewalStatusList: string[];
 }
 
-const StatusMessage: FC<StatusMessageProps> = ({ loan, className }) => {
+const StatusMessage: FC<StatusMessageProps> = ({
+  className,
+  loanType,
+  renewalStatusList
+}) => {
   const t = useText();
-  const { loanType, renewalStatusList } = loan;
 
   return (
     <>

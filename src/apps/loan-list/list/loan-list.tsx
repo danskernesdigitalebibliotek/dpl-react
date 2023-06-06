@@ -29,9 +29,9 @@ import ListHeader from "./ListHeader";
 import {
   loansAreEmpty,
   removeLoansWithDuplicateDueDate,
-  getFromListByKey
+  getFromListByKey,
+  formatDate
 } from "../utils/helpers";
-import RenewLoansModal from "../modal/renew-loans-modal";
 import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
@@ -39,8 +39,10 @@ import {
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
-import DueDateLoansModal from "../modal/due-date-loans-modal";
+import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import { ListType } from "../../../core/utils/types/list-type";
+import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
+import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 
 interface LoanListProps {
   pageSize: number;
@@ -125,6 +127,11 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     [dueDateModal, open]
   );
 
+  const openRenewLoansModal = useCallback(() => {
+    setDueDate(null);
+    open(allLoansId as string);
+  }, [allLoansId, open]);
+
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
     // if there is a loan details query param, loan details modal should be opened
@@ -139,23 +146,17 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       }
     }
 
-    // modal query param: modal loans all
-    if (modalUrlParam === allLoansId) {
-      open(allLoansId);
-    }
-
     // If there is a query param with the due date, a modal should be opened
     if (modalUrlParam && containsDueDateModalQueryParam(modalUrlParam)) {
       const dateFromQueryParam = dateFromDueDateModalQueryParam(modalUrlParam);
-      if (dateFromQueryParam) {
-        openDueDateModal(dateFromQueryParam);
-      }
+      setDueDate(dateFromQueryParam);
     }
-  }, [allLoansId, loanDetails, open, openDueDateModal]);
+  }, [allLoansId, loanDetails, openDueDateModal]);
 
   const listContainsLoans =
     (Array.isArray(physicalLoans) && physicalLoans.length > 0) ||
     (Array.isArray(digitalLoans) && digitalLoans.length > 0);
+
   return (
     <>
       <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
@@ -184,6 +185,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
                     setView={setView}
                     loans={physicalLoans}
                     pageSize={pageSize}
+                    openRenewLoansModal={openRenewLoansModal}
                   />
                 </ListHeader>
               </List>
@@ -216,11 +218,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       within the components, it is not possible to hide the loan list when a modal is present
       which is necessary to comply with WCAG (so the screen readers cannot "catch" focusable html
       elements below the modal) */}
-      <RenewLoansModal
-        openLoanDetailsModal={openLoanDetailsModal}
-        pageSize={pageSize}
-        loansModal={physicalLoans}
-      />
       <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
         <MaterialDetails
           faust={modalLoan?.faust}
@@ -228,13 +225,28 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
-      {dueDate && physicalLoans && (
-        <DueDateLoansModal
+      {physicalLoans && (
+        <LoansGroupModal
           pageSize={pageSize}
-          openLoanDetailsModal={openLoanDetailsModal}
+          openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
-          loansModal={removeLoansWithDuplicateDueDate(dueDate, physicalLoans)}
-        />
+          loansModal={
+            dueDate
+              ? removeLoansWithDuplicateDueDate(dueDate, physicalLoans)
+              : physicalLoans
+          }
+        >
+          {dueDate && (
+            <StatusCircleModalHeader
+              header={t("groupModalDueDateHeaderText", {
+                placeholders: { "@date": formatDate(dueDate) }
+              })}
+              dueDate={dueDate}
+              subHeader={t("groupModalReturnLibraryText")}
+            />
+          )}
+          {!dueDate && <SimpleModalHeader header={t("groupModalHeaderText")} />}
+        </LoansGroupModal>
       )}
     </>
   );

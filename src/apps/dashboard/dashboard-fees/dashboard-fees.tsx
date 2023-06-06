@@ -1,5 +1,4 @@
-import React, { FC, useState } from "react";
-import { useDeepCompareEffect } from "react-use";
+import React, { FC, useState, useEffect } from "react";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { tallyUpFees } from "../../../core/utils/helpers/general";
 import Link from "../../../components/atoms/links/Link";
@@ -9,13 +8,13 @@ import WarningBar from "../../loan-list/materials/utils/warning-bar";
 
 const DashboardFees: FC = () => {
   const t = useText();
-  const { intermediateUrl, payOwedUrl, feesPageUrl } = useUrls();
+  const { feesUrl, feesPageUrl } = useUrls();
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
-  const [totalFeeAmount, setTotalFeeAmount] = useState<number>();
+  const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");
 
-  useDeepCompareEffect(() => {
-    if (fbsFees && !feeCount && !totalFeeAmount) {
+  useEffect(() => {
+    if (fbsFees) {
       setFeeCount(fbsFees.length);
       setTotalFeeAmount(tallyUpFees(fbsFees));
     }
@@ -28,20 +27,23 @@ const DashboardFees: FC = () => {
           <div className="status-userprofile__column my-16">
             <div className="link-filters">
               <div className="link-filters__tag-wrapper">
-                <Link
-                  href={intermediateUrl}
-                  className="link-tag link-tag link-filters__tag"
-                >
-                  {t("intermediateText")}
-                </Link>
-                <span className="link-filters__counter">{feeCount}</span>
+                <h2 data-cy="dashboard-fees-header">
+                  <Link
+                    href={feesUrl}
+                    className="link-tag link-tag link-filters__tag"
+                  >
+                    {t("feesText")}
+                  </Link>
+                  <span className="link-filters__counter">{feeCount}</span>
+                </h2>
               </div>
             </div>
             <WarningBar
-              linkText={t("totalOwedText")}
-              rightText={`${totalFeeAmount},-`}
+              rightText={t("totalAmountFeeText", {
+                placeholders: { "@total": totalFeeAmount }
+              })}
+              overdueText={t("totalOwedText")}
               rightButtonText={t("payOwedText")}
-              leftLink={payOwedUrl}
               rightLink={feesPageUrl}
             />
           </div>

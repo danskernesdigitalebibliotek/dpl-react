@@ -305,625 +305,358 @@ describe("Dashboard", () => {
       }
     }).as("work");
 
-    cy.visit("/iframe.html?id=apps-dashboard--dash-board-entry&viewMode=story");
+    cy.visit("/iframe.html?id=apps-dashboard--dashboard-entry&viewMode=story");
     cy.wait(["@fees", "@loans", "@reservations"]);
   });
 
   it("Dashboard general", () => {
-    cy.get("#root")
-      .find("h1")
-      .eq(0)
-      .should("exist")
-      .should("have.text", "Your profile");
+    // System shows header "your profile"
+    cy.getBySel("dashboard-header").should("have.text", "Your profile");
 
-    // Fees
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
+    // Header "Fees" with a link to fees list
+    cy.getBySel("dashboard-fees-header")
+      .should("have.text", "Fees6")
       .find("a")
-      .should("exist")
-      .should("have.text", "Intermediates");
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
 
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
-      .find(".link-filters__counter")
-      .should("exist")
-      .should("have.text", "6");
+    // Text "You owe in total"
+    cy.getBySel("warning-bar-text").should("have.text", "You owe in total");
 
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".status-userprofile__column")
-      .find(".warning-bar")
-      .find(".warning-bar__left")
-      .find("img")
+    // The amount the patron ows
+    cy.getBySel("warning-bar-right-text").should("have.text", "265,06,-");
+
+    // A pay button that links to fees page
+    cy.getBySel("warning-bar-right-link")
+      .should("have.text", "Pay")
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
+
+    // Header "Loans" with link to loans page
+    cy.getBySel("dashboard-loans-header")
+      .should("have.text", "Loans3")
+      .find("a")
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
+
+    // Notification - handed in too later
+    // Red icon
+    cy.getBySel("physical-loans-overdue")
+      .should("have.text", "1Returned too lateExpired")
+      .find(".list-dashboard__dot")
       .should("exist");
 
-    // Physical loans
-    // header
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(0)
+    // Notification - hand in soon.
+    // Red icon
+    cy.getBySel("physical-loans-soon-overdue")
+      .should("have.text", "1To be returned soonExpires soon")
+      .find(".list-dashboard__dot")
       .should("exist");
 
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(0)
-      .should("exist")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
+    // Notification - hand in in a long time.
+    cy.getBySel("loans-not-overdue")
+      .should("have.text", "1Longer return time")
+      .find(".list-dashboard__dot")
+      .should("not.exist");
+
+    // Header "Reservations" with link to loans page
+    cy.getBySel("dashboard-reservations-header")
+      .should("have.text", "Reservations2")
       .find("a")
-      .should("exist")
-      .should("have.text", "Physical loans");
+      .should("have.attr", "href")
+      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
 
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(0)
-      .should("exist")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
-      .find("span")
-      .should("exist")
-      .should("have.text", "3");
-
-    // Returned too late
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
-      .find(".number")
-      .should("exist")
-      .should("have.text", "1");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
-      .find(".list-dashboard__title")
-      .should("exist")
-      .should("have.text", "Returned too late");
-
-    // To be returned soon
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(1)
-      .find(".number")
-      .should("exist")
-      .should("have.text", "1");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(1)
-      .find(".list-dashboard__title")
-      .should("exist")
-      .should("have.text", "To be returned soon");
-
-    // Some time until has to be returned
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(2)
-      .find(".number")
-      .should("exist")
-      .should("have.text", "1");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(2)
-      .find(".list-dashboard__title")
-      .should("exist")
-      .should("have.text", "Longer return time");
-
-    // Reservations loans
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
+    // Notification - reservations ready
+    // Red icon
+    cy.getBySel("reservations-ready")
+      .should("have.text", "1Ready for youReady for pickup")
+      .find(".list-dashboard__dot")
       .should("exist");
 
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
-      .find("a")
-      .should("exist")
-      .should("have.text", "Reservations");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".link-filters")
-      .find(".link-filters__tag-wrapper")
-      .find("span")
-      .should("exist")
-      .should("have.text", "2");
-
-    // Returned too late
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
-      .find(".number")
-      .should("exist")
-      .should("have.text", "1");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
-      .find(".list-dashboard__title")
-      .should("exist")
-      .should("have.text", "Ready for you");
-
-    // To be returned soon
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(1)
-      .find(".number")
-      .should("exist")
-      .should("have.text", "1");
-
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(1)
-      .find(".list-dashboard__title")
-      .should("exist")
-      .should("have.text", "Still in queue");
+    // Notification - reservations queued
+    // Red icon
+    cy.getBySel("reservations-queued")
+      .should("have.text", "1Still in queue")
+      .find(".list-dashboard__dot")
+      .should("not.exist");
   });
 
-  it("Fee notification", () => {
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".status-userprofile__column")
-      .find(".warning-bar")
-      .find(".warning-bar__left")
-      .find("a")
-      .should("exist")
-      .should("have.text", "You owe in total");
-
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".status-userprofile__column")
-      .find(".warning-bar")
-      .find(".warning-bar__right")
-      .find(".warning-bar__owes")
-      .should("exist")
-      .should("have.text", "265.06,-");
-
-    cy.get("#root")
-      .find(".fee-container")
-      .find("div")
-      .find(".status-userprofile__column")
-      .find(".warning-bar")
-      .find(".warning-bar__right")
-      .find("a")
-      .should("exist")
-      .should("have.text", "Read more");
-  });
-
-  it("returned-too-late-modal", () => {
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
-      .click();
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__header")
-      .find(".modal-loan__title")
-      .should("exist")
-      .should("have.text", "Returned too late");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-details__warning")
-      .find(".warning-bar__icon")
-      .should("exist")
-      .should("have.attr", "src")
-      .should("not.be.empty");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-details__warning")
-      .find(".warning-bar")
-      .find(".text-body-medium-regular")
-      .should("exist")
-      .should(
-        "have.text",
-        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returnedRead more about fees"
-      );
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons");
-
-    cy.getBySel("checkbox-text")
-      .should("exist")
-      .should("have.text", "Choose all renewable");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons")
-      .find("[data-cy='button']")
-      .should("exist")
-      .should("have.text", "Renewable (0)");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".status-label")
-      .should("exist")
-      .should("have.text", "Dummy bog");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-header-h5")
-      .should("exist")
-      .should("have.text", "Dummy Some Title");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-small-caption")
-      .should("exist")
-      .should(
-        "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
-      );
-  });
-
-  it("to-be-returned-soon-modal", () => {
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(0)
+  it("Dashboard modals (details)", () => {
+    // One element: details modal
+    cy.getBySel("physical-loans-overdue").click();
+    cy.getBySel("modal-loan-details-956250902-close-button")
       .should("exist")
       .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__header")
-      .find(".modal-loan__title")
-      .should("exist")
-      .should("have.text", "To be returned soon");
+    cy.getBySel("modal-loan-details-956250902-close-button").should(
+      "not.exist"
+    );
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons");
-
-    cy.getBySel("checkbox-text")
-      .eq(0)
+    cy.getBySel("physical-loans-soon-overdue").click();
+    cy.getBySel("modal-loan-details-956250955-close-button")
       .should("exist")
-      .should("have.text", "Choose all renewable");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons")
-      .find("[data-cy='button']")
-      .should("exist")
-      .should("have.text", "Renewable (0)");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".status-label")
-      .should("exist")
-      .should("have.text", "Dummy bog");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-header-h5")
-      .should("exist")
-      .should("have.text", "Dummy Some Title");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-small-caption")
-      .should("exist")
-      .should(
-        "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
-      );
-  });
-
-  it("longer-return-time-modal", () => {
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(0)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(2)
       .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__header")
-      .find(".modal-loan__title")
-      .should("exist")
-      .should("have.text", "Longer return time");
+    cy.getBySel("modal-loan-details-956250955-close-button").should(
+      "not.exist"
+    );
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons");
-
-    cy.getBySel("checkbox-text")
+    cy.getBySel("loans-not-overdue").click();
+    cy.getBySel("modal-loan-details-956251161-close-button")
       .should("exist")
-      .should("have.text", "Choose all renewable");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons")
-      .find("[data-cy='button']")
-      .should("exist")
-      .should("have.text", "Renewable (0)");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".status-label")
-      .should("exist")
-      .should("have.text", "Dummy bog");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-header-h5")
-      .should("exist")
-      .should("have.text", "Dummy Some Title");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-small-caption")
-      .should("exist")
-      .should(
-        "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
-      );
-  });
-
-  it("ready-for-you-modal", () => {
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(0)
       .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__header")
-      .find(".modal-loan__title")
+    cy.getBySel("modal-loan-details-956251161-close-button").should(
+      "not.exist"
+    );
+
+    cy.getBySel("reservations-ready").click();
+    cy.getBySel("modal-reservation-details-48991963-close-button")
       .should("exist")
-      .should("have.text", "Ready for loan");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons");
-
-    cy.getBySel("checkbox-text")
-      .should("exist")
-      .should("have.text", "Select all");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons")
-      .find("button")
-      .should("exist")
-      .should("have.text", "Remove reservations (0)");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".status-label")
-      .should("exist");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-header-h5")
-      .should("exist");
-
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-small-caption")
-      .should("exist");
-  });
-
-  it("still-in-queue-modal", () => {
-    cy.get("#root")
-      .find(".status-userprofile")
-      .find(".status-userprofile__column")
-      .eq(1)
-      .should("exist")
-      .find(".list-dashboard")
-      .eq(1)
       .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__header")
-      .find(".modal-loan__title")
+    cy.getBySel("modal-reservation-details-48991963-close-button").should(
+      "not.exist"
+    );
+    cy.getBySel("reservations-queued").click();
+    cy.getBySel("modal-reservation-details-46985591-close-button")
       .should("exist")
-      .should("have.text", "Still in queue");
+      .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons");
+    cy.getBySel("modal-reservation-details-46985591-close-button").should(
+      "not.exist"
+    );
+  });
 
-    cy.getBySel("checkbox-text")
+  it("Dashboard modals (group)", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956251161,
+            materialItemNumber: "5122407464",
+            recordId: "53387152",
+            periodical: null,
+            loanDate: "2023-01-09 08:15:11+0000",
+            dueDate: "2023-01-16",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "standard",
+              description: "31 dages lånetid til alm lånere"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedMaxRenewalsReached"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250902,
+            materialItemNumber: "5355351922",
+            recordId: "61343164",
+            periodical: null,
+            loanDate: "2022-12-07 08:15:11+0000",
+            dueDate: "2023-01-02",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "14dag-",
+              description: "14 dages lån - bogligt (kan ikke reserveres)"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250955,
+            materialItemNumber: "3842702665",
+            recordId: "27002889",
+            periodical: null,
+            loanDate: "2023-01-02 08:15:11+0000",
+            dueDate: "2023-01-09",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "standard",
+              description: "31 dages lånetid til alm lånere"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956251161,
+            materialItemNumber: "5122407464",
+            recordId: "53387152",
+            periodical: null,
+            loanDate: "2023-01-09 08:15:11+0000",
+            dueDate: "2023-01-16",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "standard",
+              description: "31 dages lånetid til alm lånere"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedMaxRenewalsReached"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250902,
+            materialItemNumber: "5355351922",
+            recordId: "61343164",
+            periodical: null,
+            loanDate: "2022-12-07 08:15:11+0000",
+            dueDate: "2023-01-02",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "14dag-",
+              description: "14 dages lån - bogligt (kan ikke reserveres)"
+            }
+          }
+        },
+        {
+          isRenewable: false,
+          renewalStatusList: ["deniedOtherReason"],
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250955,
+            materialItemNumber: "3842702665",
+            recordId: "27002889",
+            periodical: null,
+            loanDate: "2023-01-02 08:15:11+0000",
+            dueDate: "2023-01-09",
+            loanType: "loan",
+            ilBibliographicRecord: null,
+            materialGroup: {
+              name: "standard",
+              description: "31 dages lånetid til alm lånere"
+            }
+          }
+        }
+      ]
+    }).as("loans");
+
+    cy.intercept(
+      "GET",
+      "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
+      {
+        statusCode: 200,
+        body: [
+          {
+            reservationId: 67804976,
+            recordId: "46985591",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-09-21",
+            dateOfReservation: "2022-06-14T09:00:50.059",
+            numberInQueue: 1,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67789642,
+            recordId: "48991963",
+            state: "readyForPickup",
+            pickupBranch: "DK-775100",
+            pickupDeadline: "2022-06-21",
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-13T17:08:58.505",
+            numberInQueue: null,
+            periodical: null,
+            pickupNumber: "Reserveringshylde 74",
+            ilBibliographicRecord: null,
+            transactionId: "480fc2fe-5b19-49bc-a206-6e306c2a2a56",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67804976,
+            recordId: "46985591",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-09-21",
+            dateOfReservation: "2022-06-14T09:00:50.059",
+            numberInQueue: 1,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+            reservationType: "normal"
+          },
+          {
+            reservationId: 67789642,
+            recordId: "48991963",
+            state: "readyForPickup",
+            pickupBranch: "DK-775100",
+            pickupDeadline: "2022-06-21",
+            expiryDate: "2022-12-12",
+            dateOfReservation: "2022-06-13T17:08:58.505",
+            numberInQueue: null,
+            periodical: null,
+            pickupNumber: "Reserveringshylde 74",
+            ilBibliographicRecord: null,
+            transactionId: "480fc2fe-5b19-49bc-a206-6e306c2a2a56",
+            reservationType: "normal"
+          }
+        ]
+      }
+    ).as("reservations");
+
+    cy.visit("/iframe.html?id=apps-dashboard--dashboard-entry&viewMode=story");
+    cy.wait(["@loans", "@reservations"]);
+
+    // More than one element: group modal
+    cy.getBySel("physical-loans-overdue").click();
+    cy.getBySel("modal-due-date--2023-01-08-close-button")
       .should("exist")
-      .should("have.text", "Select all");
+      .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__buttons")
-      .find("button")
+    cy.getBySel("modal-due-date--2023-01-08-close-button").should("not.exist");
+
+    cy.getBySel("physical-loans-soon-overdue").click();
+    cy.getBySel("modal-due-date--2023-01-16-close-button")
       .should("exist")
-      .should("have.text", "Remove reservations (0) ");
+      .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".status-label")
-      .should("exist");
+    cy.getBySel("modal-due-date--2023-01-16-close-button").should("not.exist");
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-header-h5")
-      .should("exist");
+    cy.getBySel("loans-not-overdue").click();
+    cy.getBySel("modal-due-date--2024-01-09-close-button")
+      .should("exist")
+      .click();
 
-    cy.get("#root")
-      .find(".modal")
-      .find(".modal-loan__container")
-      .find(".modal-loan__list")
-      .find(".modal-loan__list-materials")
-      .find(".list-materials")
-      .eq(0)
-      .find(".list-materials__content")
-      .find(".text-small-caption")
-      .should("exist");
+    cy.getBySel("modal-due-date--2024-01-09-close-button").should("not.exist");
+
+    cy.getBySel("reservations-ready").click();
+    cy.getBySel("modal-reservations-ready-close-button")
+      .should("exist")
+      .click();
+
+    cy.getBySel("modal-reservations-ready-close-button").should("not.exist");
+    cy.getBySel("reservations-queued").click();
+
+    cy.getBySel("modal-reservations-queued-close-button")
+      .should("exist")
+      .click();
+
+    cy.getBySel("modal-reservations-queued-close-button").should("not.exist");
   });
 });
 

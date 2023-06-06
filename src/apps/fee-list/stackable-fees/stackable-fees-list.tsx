@@ -5,11 +5,11 @@ import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
 
-interface SelectableMaterialProps {
+interface StackableFeeListProps {
   creationDateFormatted: string;
 }
 
-const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
+const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
   material,
   creationDateFormatted
 }) => {

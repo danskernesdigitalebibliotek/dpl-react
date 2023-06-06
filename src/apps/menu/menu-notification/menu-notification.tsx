@@ -21,10 +21,12 @@ const MenuNotification: FC<MenuNotificationProps> = ({
         href={new URL(notificationLink)}
         className="list-dashboard shadow-medium-hover arrow__hover--right-small"
       >
-        <div className={`number number--${notificationColor}`}>
+        <div
+          className={`color-secondary-gray number number--${notificationColor}`}
+        >
           {notificationNumber}
         </div>
-        <span className="list-dashboard__title text-header-h4">
+        <span className="list-dashboard__title text-header-h4 color-secondary-gray">
           {notificationText}
         </span>
         <div className="list-dashboard__dot" />

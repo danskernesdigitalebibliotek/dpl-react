@@ -18,3 +18,21 @@ export const getReservationType = (reservationId: string) => {
   }
   return "invalid input";
 };
+
+const determineId = (string: string, regex: RegExp) => {
+  const idFound = string ? string.toString().match(regex) : null;
+  const returnValue = idFound && idFound.length > 0 ? idFound[0] : null;
+  return returnValue;
+};
+
+export const isFaust = (input: string) => {
+  // regex for determining whether a string is a faust
+  const regex = /^\d{8}$/;
+  return determineId(input, regex);
+};
+
+export const isIdentifier = (input: string) => {
+  // regex for determining whether a string is an identifier
+  const regex = /^\d{13}$/;
+  return determineId(input, regex);
+};

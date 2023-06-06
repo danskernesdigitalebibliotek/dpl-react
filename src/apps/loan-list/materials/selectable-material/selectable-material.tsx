@@ -1,33 +1,35 @@
-import React, { FC, useCallback } from "react";
-import { formatDate, isDigital } from "../../utils/helpers";
+import React, { FC, ReactNode } from "react";
 import { useText } from "../../../../core/utils/text";
-import StatusBadge from "../utils/status-badge";
-import { LoanType } from "../../../../core/utils/types/loan-type";
-import { LoanId } from "../../../../core/utils/types/ids";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
-import StatusMessage from "./StatusMessage";
 import AuthorYear from "../../../../components/author-year/authorYear";
 
 interface SelectableMaterialProps {
-  loan: LoanType;
   disabled?: boolean;
-  materialsToRenew: LoanId[];
-  onChecked?: (loanId: LoanId) => void;
-  openLoanDetailsModal: (modalId: string) => void;
+  id?: string | null;
+  onMaterialChecked: (id: string) => void;
+  openDetailsModal?: (modalId: string) => void;
+  selected?: boolean;
+  statusMessageComponentMobile: ReactNode;
+  statusMessageComponentDesktop: ReactNode;
+  statusBadgeComponent: ReactNode;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
-  loan,
   material,
   disabled,
-  onChecked,
-  materialsToRenew,
-  openLoanDetailsModal
+  onMaterialChecked,
+  selected,
+  openDetailsModal,
+  id,
+  statusMessageComponentMobile,
+  statusMessageComponentDesktop,
+  statusBadgeComponent
 }) => {
   const t = useText();
-  const { dueDate, faust, identifier, loanId } = loan;
+
+  if (!id) return null;
   const {
     authors = "",
     materialType,
@@ -35,15 +37,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
     title = "",
     lang
   } = material || {};
-
-  const openLoanDetailsModalHandler = useCallback(() => {
-    if (faust) {
-      openLoanDetailsModal(faust);
-    }
-    if (identifier) {
-      openLoanDetailsModal(identifier);
-    }
-  }, [faust, identifier, openLoanDetailsModal]);
 
   return (
     <li>
@@ -53,11 +46,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         }`}
       >
         <div className="list-materials__checkbox mr-32">
-          {faust && onChecked && loanId && title && (
+          {!disabled && title && (
             <CheckBox
-              onChecked={() => onChecked(loanId)}
-              id={faust}
-              selected={Boolean(materialsToRenew?.indexOf(loanId) > -1)}
+              onChecked={() => onMaterialChecked(id)}
+              id={id}
+              selected={selected}
               disabled={disabled}
               label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
                 placeholders: { "@label": title }
@@ -65,9 +58,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               hideLabel
             />
           )}
-          {isDigital(loan) && identifier && (
-            <CheckBox selected={false} id={identifier} disabled />
-          )}
+          {disabled && <CheckBox id={id} disabled={disabled} />}
         </div>
         <div className="list-materials__content">
           <div className="list-materials__content-status">
@@ -83,37 +74,26 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div className="list-materials__status pl-4">
-          <StatusMessage
-            className="list-materials__status__note-desktop"
-            loan={loan}
-          />
+          {statusMessageComponentDesktop}
           <div>
-            {dueDate && (
-              <StatusBadge
-                dueDate={dueDate}
-                neutralText={t("groupModalDueDateMaterialText", {
-                  placeholders: { "@date": formatDate(dueDate) }
-                })}
-              />
+            {statusBadgeComponent}
+            {statusMessageComponentMobile}
+            {openDetailsModal && (
+              <button
+                type="button"
+                className="list-reservation__note"
+                onClick={() => openDetailsModal(id)}
+                aria-label={
+                  title
+                    ? t("groupModalGoToMaterialAriaLabelText", {
+                        placeholders: { "@label": title }
+                      })
+                    : ""
+                }
+              >
+                {t("groupModalGoToMaterialText")}
+              </button>
             )}
-            <StatusMessage
-              className="list-materials__status__note-mobile"
-              loan={loan}
-            />
-            <button
-              type="button"
-              className="list-reservation__note"
-              onClick={openLoanDetailsModalHandler}
-              aria-label={
-                title
-                  ? t("groupModalGoToMaterialAriaLabelText", {
-                      placeholders: { "@label": title }
-                    })
-                  : ""
-              }
-            >
-              {t("groupModalGoToMaterialText")}
-            </button>
           </div>
         </div>
       </div>

@@ -2,10 +2,8 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
-import StillInQueueModal from "./modal/still-in-queue-modal/still-in-queue-modal";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
-import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
+import LoansGroupModal from "../../components/GroupModal/LoansGroupModal";
 import {
   filterLoansNotOverdue,
   filterLoansOverdue,
@@ -18,11 +16,19 @@ import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
 import MaterialDetails from "../loan-list/modal/material-details";
 import { ListType } from "../../core/utils/types/list-type";
 import { LoanType } from "../../core/utils/types/loan-type";
-import { useGetLoansV2 } from "../../core/fbs/fbs";
-import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
+import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
+import {
+  mapFBSLoanToLoanType,
+  mapFBSReservationToReservationType
+} from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
 import { yesterday, soon, longer } from "./util/helpers";
+import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
+import ReservationGroupModal from "./modal/ReservationsGroupModal";
+import { ReservationType } from "../../core/utils/types/reservation-type";
+import ReservationDetails from "../reservation-list/modal/reservation-details/reservation-details";
+import DeleteReservationModal from "../reservation-list/modal/delete-reservation/delete-reservation-modal";
 
 interface DashboardProps {
   pageSize: number;
@@ -36,32 +42,54 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
+  const { data: physicalReservationsFbs } = useGetReservationsV2();
+  const [physicalReservations, setPhysicalReservations] = useState<
+    ReservationType[]
+  >([]);
+
   const { open } = useModalButtonHandler();
   const { isSuccess, data } = useGetLoansV2();
-  const { loanDetails, dueDateModal } = getModalIds();
+  const { loanDetails, dueDateModal, reservationDetails, deleteReservation } =
+    getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalLoan, setModalLoan] = useState<ListType | null>(null);
-  const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
+  const [reservationForModal, setReservationForModal] =
+    useState<ListType | null>(null);
+  const [reservationModalId, setReservationModalId] = useState<string>("");
+  const [modalLoanDetailsId, setModalLoanDetailsId] = useState<string | null>(
+    null
+  );
+  useState<ReservationType | null>(null);
+  const [modalReservationDetailsId, setModalReservationDetailsId] = useState<
+    string | null
+  >(null);
   const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
   const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
-    useState<LoanType[] | null>(null);
+    useState<LoanType[]>([]);
   const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
-    LoanType[] | null
-  >(null);
-  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<
-    LoanType[] | null
-  >(null);
+    LoanType[]
+  >([]);
+  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<LoanType[]>(
+    []
+  );
   const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
   const [modalHeader, setModalHealer] = useState("");
 
   const openModalHandler = useCallback(
     (modalId: string) => {
-      if (modalId) {
-        open(modalId);
-      }
+      setReservationModalId(modalId);
+      open(modalId);
     },
     [open]
   );
+
+  useEffect(() => {
+    if (physicalReservationsFbs) {
+      setPhysicalReservations(
+        mapFBSReservationToReservationType(physicalReservationsFbs)
+      );
+    }
+  }, [physicalReservationsFbs]);
 
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
@@ -100,23 +128,52 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
 
   const openLoanDetailsModal = useCallback(
     (modalId: string) => {
-      setModalDetailsId(modalId);
+      setModalLoanDetailsId(modalId);
       open(`${loanDetails}${modalId}`);
     },
     [loanDetails, open]
   );
 
+  const openReservationDetailsModal = useCallback(
+    (modalId: string) => {
+      setModalReservationDetailsId(modalId);
+      open(`${reservationDetails}${modalId}`);
+    },
+    [open, reservationDetails]
+  );
+
   useEffect(() => {
     const loanForModal = physicalLoans?.find(
-      (loan) => loan.faust === modalDetailsId
+      ({ loanId }) => String(loanId) === modalLoanDetailsId
     );
+
     if (loanForModal) {
       setModalLoan(loanForModal);
     }
-  }, [modalDetailsId, physicalLoans]);
+  }, [modalLoanDetailsId, physicalLoans]);
 
   useEffect(() => {
-    if (isSuccess && data && warning) {
+    const reservation = physicalReservations.find(
+      ({ faust }) => String(faust) === modalReservationDetailsId
+    );
+
+    if (reservation) {
+      setReservationForModal(reservation);
+    }
+  }, [modalReservationDetailsId, physicalReservations]);
+
+  const openReservationDeleteModal = useCallback(() => {
+    if (reservationForModal) {
+      open(
+        `${deleteReservation}${
+          reservationForModal.reservationId || reservationForModal.identifier
+        }`
+      );
+    }
+  }, [deleteReservation, open, reservationForModal]);
+
+  useEffect(() => {
+    if (isSuccess && data) {
       const mapToLoanType = mapFBSLoanToLoanType(data);
 
       // Loans are sorted by loan date
@@ -137,30 +194,64 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
 
   return (
     <div className="dashboard-page">
-      <h1 className="text-header-h1 my-32">{t("yourProfileText")}</h1>
+      <h1 className="text-header-h1 my-32" data-cy="dashboard-header">
+        {t("yourProfileText")}
+      </h1>
       <DashboardFees />
       <DashboardNotificationList
+        physicalLoansFarFromOverdue={physicalLoansFarFromOverdue}
+        physicalLoansOverdue={physicalLoansOverdue}
+        physicalLoansSoonOverdue={physicalLoansSoonOverdue}
+        physicalReservations={physicalReservations}
         openModalHandler={openModalHandler}
+        openLoanDetailsModal={openLoanDetailsModal}
+        openReservationDetailsModal={openReservationDetailsModal}
         openDueDateModal={openDueDateModal}
       />
-      <StillInQueueModal modalId="still-in-queue-modal" />
-      <ReadyToLoanModal modalId="ready-to-loan-modal" />
-      <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
+
+      <MaterialDetailsModal modalId={`${loanDetails}${modalLoanDetailsId}`}>
         <MaterialDetails
           faust={modalLoan?.faust}
           identifier={modalLoan?.identifier}
           loan={modalLoan as LoanType}
         />
       </MaterialDetailsModal>
-      {dueDate && physicalLoans && loansToDisplay && modalHeader && (
-        <DueDateLoansModal
+      {dueDate && physicalLoans && loansToDisplay && (
+        <LoansGroupModal
           pageSize={pageSize}
-          openLoanDetailsModal={openLoanDetailsModal}
+          openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
           loansModal={loansToDisplay}
-          hideStatusCircle
-          customHeader={modalHeader}
+        >
+          <SimpleModalHeader header={modalHeader} />
+        </LoansGroupModal>
+      )}
+      <ReservationGroupModal
+        modalId={reservationModalId}
+        physicalReservations={physicalReservations}
+        pageSize={pageSize}
+      />
+      {reservationForModal && (
+        <DeleteReservationModal
+          modalId={`${deleteReservation}${
+            reservationForModal.reservationId || reservationForModal.identifier
+          }`}
+          reservation={reservationForModal}
         />
+      )}
+      {reservationForModal && (
+        <MaterialDetailsModal
+          modalId={`${reservationDetails}${
+            reservationForModal.faust || reservationForModal.identifier
+          }`}
+        >
+          <ReservationDetails
+            openReservationDeleteModal={openReservationDeleteModal}
+            faust={reservationForModal.faust}
+            identifier={reservationForModal.identifier}
+            reservation={reservationForModal}
+          />
+        </MaterialDetailsModal>
       )}
     </div>
   );

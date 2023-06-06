@@ -29,6 +29,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const { loanListEreolenUrl, feesPageUrl } = useUrls();
+
   if (!loan) {
     return null;
   }
@@ -61,7 +62,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       >
         {dueDate && (
           <StatusBadge
-            dueDate={dueDate}
+            badgeDate={dueDate}
             dangerText={t("materialDetailsOverdueText")}
           />
         )}
