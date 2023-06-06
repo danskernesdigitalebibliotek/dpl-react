@@ -95,6 +95,13 @@ export default defineConfig({
         },
         query: {
           useQuery: true
+        },
+        operations: {
+          // The reason why we add this here is to be able to use "enabled" option in the
+          // useGetV1LoanstatusIdentifier query. This lets us call it conditionally.
+          getV1LoanstatusIdentifier: {
+            requestOptions: false
+          }
         }
       },
       prettier: true

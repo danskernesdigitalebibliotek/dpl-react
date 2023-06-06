@@ -118,7 +118,10 @@ const CardListItem: React.FC<CardListItemProps> = ({
       ref={itemRef}
       data-cy={dataCy}
       className="card-list-item arrow arrow__hover--right-small"
-      onClick={handleClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
     >
       <div className="card-list-item__cover">
@@ -134,7 +137,11 @@ const CardListItem: React.FC<CardListItemProps> = ({
       <div className="card-list-item__text">
         <div className="card-list-item__meta">
           {showItem && (
-            <ButtonFavourite id={workId} addToListRequest={addToListRequest} />
+            <ButtonFavourite
+              title={fullTitle[0]}
+              id={workId}
+              addToListRequest={addToListRequest}
+            />
           )}
           {firstItemInSeries && (
             <HorizontalTermLine

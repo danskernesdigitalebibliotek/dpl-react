@@ -1,44 +1,50 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material", () => {
-  // Todo readd tests
-  it.skip("Redirects to login & opens reservation modal on subsequent land-in", () => {
+  it("Redirects to login & opens reservation modal on subsequent land-in", () => {
     window.sessionStorage.removeItem("user");
 
-    cy.visit("/iframe.html?id=apps-material--default&type=bog&")
-      .getBySel("material-description")
+    cy.visit("/iframe.html?id=apps-material--default&type=bog&");
+
+    cy.wait("@getMaterial GraphQL operation");
+
+    // Activate lazy loading
+    cy.scrollTo("bottom");
+    cy.getBySel("material-description").scrollIntoView();
+
+    cy.getBySel("material-header-buttons-physical")
       .scrollIntoView()
-      .getBySel("material-header-buttons-physical")
+      .should("be.visible")
+      .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description")
-      .scrollIntoView()
-      .url()
-      .should("include", "modal=reservation-modal-46615743")
-      .then(() => {
-        // We simulate that the user has sucessfully logged in
-        cy.createFakeAuthenticatedSession();
-      });
-    cy.reload();
-    cy.getBySel("reservation-modal-parallel").should("be.visible");
+    // The only thing we can test is that the current-path are appended to the url.
+    // This will only happen if the user is not logged in.
+    cy.url().should("include", "&current-path=");
   });
 
-  // Todo readd tests
-  it.skip("Shouldn't redirect logged in users", () => {
+  it("Shouldn't redirect logged in users", () => {
+    cy.createFakeAuthenticatedSession();
+
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdings/**",
       fixtureFilePath: "material/holdings.json"
     });
-    cy.createFakeAuthenticatedSession();
 
-    cy.visit("/iframe.html?id=apps-material--default&type=bog")
-      .getBySel("material-description")
+    cy.visit("/iframe.html?id=apps-material--default&type=bog");
+    cy.wait("@getMaterial GraphQL operation");
+
+    // Activate lazy loading
+    cy.scrollTo("bottom");
+    cy.getBySel("material-description").scrollIntoView();
+
+    cy.getBySel("material-header-buttons-physical")
+      .should("be.visible")
       .scrollIntoView()
-      .getBySel("material-header-buttons-physical")
-      .click()
-      .url()
-      .should("not.include", "modal=reservation-modal");
+      .and("contain", "Reserve bog")
+      .click();
+
     cy.getBySel("reservation-modal-parallel").should("be.visible");
   });
 

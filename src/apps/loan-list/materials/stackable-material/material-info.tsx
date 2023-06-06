@@ -20,7 +20,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   focused,
   children
 }) => {
-  const { authors, materialType, year, title, description, pid, series } =
+  const { authors, materialType, year, title, description, pid, series, lang } =
     material || {};
   const coverId = pid || isbnForCover;
 
@@ -48,6 +48,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             // This is to handle focus when more items are loaded via pagination
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={focused}
+            lang={lang || ""}
             className="list-reservation__header color-secondary-gray"
           >
             {title}

@@ -1,15 +1,13 @@
-import { TOKEN_LIBRARY_KEY } from "../../core/token";
-
 describe("Dashboard", () => {
   beforeEach(() => {
-    cy.window().then((win) => {
+    cy.createFakeAuthenticatedSession();
+    cy.createFakeLibrarySession();
+    cy.window().then(() => {
       const wednesday20220603 = new Date("2023-01-09T10:00:00.000").getTime();
-
       // Sets time to a specific date
       // https://github.com/cypress-io/cypress/issues/7577
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
-      win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
     cy.intercept("GET", "**/external/agencyid/patron/patronid/fees/v2**", {

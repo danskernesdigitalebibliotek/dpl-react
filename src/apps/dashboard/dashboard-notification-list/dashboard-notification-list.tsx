@@ -6,12 +6,7 @@ import {
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { useUrls } from "../../../core/utils/url";
-import {
-  yesterday,
-  soon,
-  longer,
-  getReservedReservations
-} from "../util/helpers";
+import { yesterday, soon, longer } from "../util/helpers";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 import NotificationColumn from "./NotificationColumn";
@@ -22,7 +17,6 @@ export interface DashboardNotificationListProps {
   openLoanDetailsModal: (modalId: string) => void;
   openReservationDetailsModal: (modalId: string) => void;
   physicalReservations: ReservationType[];
-  digitalReservations: ReservationType[];
   physicalLoansFarFromOverdue: LoanType[];
   physicalLoansOverdue: LoanType[];
   physicalLoansSoonOverdue: LoanType[];
@@ -34,7 +28,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   openLoanDetailsModal,
   openReservationDetailsModal,
   physicalReservations,
-  digitalReservations,
   physicalLoansOverdue,
   physicalLoansSoonOverdue,
   physicalLoansFarFromOverdue
@@ -120,11 +113,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   ];
 
   useEffect(() => {
-    setQueuedReservations([
-      ...getReservedReservations(digitalReservations),
-      ...getPhysicalQueuedReservations(physicalReservations)
-    ]);
-  }, [digitalReservations, physicalReservations]);
+    setQueuedReservations(getPhysicalQueuedReservations(physicalReservations));
+  }, [physicalReservations]);
 
   const physicalLoansCount =
     physicalLoansFarFromOverdue.length +
@@ -134,7 +124,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const reservationsCount =
     readyToLoanReservations.length + queuedReservations.length;
 
-  // Merge digital and physical loans, for easier filtration down the line.
   return (
     <div className="status-userprofile">
       <NotificationColumn

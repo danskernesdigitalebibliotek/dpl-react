@@ -32,8 +32,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const t = useText();
 
   if (!id) return null;
-
-  const { authors = "", materialType, year = "", title = "" } = material || {};
+  const {
+    authors = "",
+    materialType,
+    year = "",
+    title = "",
+    lang
+  } = material || {};
 
   return (
     <li>
@@ -64,7 +69,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{title}</p>
+          <p className="text-header-h5 mt-8" lang={lang || ""}>
+            {title}
+          </p>
           <p className="text-small-caption">
             <AuthorYear author={authors} year={year} />
           </p>

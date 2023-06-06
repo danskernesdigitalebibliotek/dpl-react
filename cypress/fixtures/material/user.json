@@ -23,7 +23,7 @@
     "receiveEmail": true,
     "receivePostalMail": false,
     "receiveSms": false,
-    "resident": false,
+    "resident": true,
     "secondaryAddress": null
   }
 }

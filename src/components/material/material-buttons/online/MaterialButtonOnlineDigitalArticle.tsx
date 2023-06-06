@@ -1,5 +1,5 @@
-import * as React from "react";
-import { FC } from "react";
+import React, { useState, FC } from "react";
+import { useDeepCompareEffect } from "react-use";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -7,6 +7,10 @@ import { Pid } from "../../../../core/utils/types/ids";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
+import MaterialButtonLoading from "../generic/MaterialButtonLoading";
+import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
+import { usePatronData } from "../../helper";
+import { isResident } from "../../../../core/utils/helpers/user";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   pid: Pid;
@@ -17,9 +21,18 @@ export interface MaterialButtonOnlineDigitalArticleProps {
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
 > = ({ pid, size, dataCy = "material-button-online-digital-article" }) => {
+  const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
+  const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
   const t = useText();
   const { authUrl } = useUrls();
+
+  useDeepCompareEffect(() => {
+    if (!userData || !userData.patron) {
+      return;
+    }
+    setIsUserResident(isResident(userData?.patron));
+  }, [userData]);
 
   const onClick = () => {
     openGuarded({
@@ -27,6 +40,20 @@ const MaterialButtonOnlineDigitalArticle: FC<
       modalId: createDigitalModalId(pid)
     });
   };
+
+  if (isLoading) {
+    return <MaterialButtonLoading />;
+  }
+
+  if (isUserResident === false) {
+    return (
+      <MaterialButtonDisabled
+        label={t("cantViewText")}
+        reason={t("notLivingInMunicipalityText")}
+        size={size}
+      />
+    );
+  }
 
   return (
     <Button

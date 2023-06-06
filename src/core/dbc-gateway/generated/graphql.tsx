@@ -1699,6 +1699,14 @@ export type GetManifestationViaMaterialByFaustQuery = {
         number?: Array<number> | null;
       } | null;
     }>;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   } | null;
 };
 
@@ -4180,6 +4188,7 @@ export const useGetSmallWorkQuery = <
 export const GetManifestationViaMaterialByFaustDocument = `
     query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
+    ...WithLanguages
     pid
     titles {
       main
@@ -4204,7 +4213,7 @@ export const GetManifestationViaMaterialByFaustDocument = `
     }
   }
 }
-    `;
+    ${WithLanguagesFragmentDoc}`;
 export const useGetManifestationViaMaterialByFaustQuery = <
   TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown

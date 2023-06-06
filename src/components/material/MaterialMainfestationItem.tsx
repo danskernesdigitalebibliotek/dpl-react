@@ -104,6 +104,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   ];
 
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+  const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
 
   return (
@@ -114,6 +115,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           faustIds={[faustId]}
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
+          access={access}
         />
       </div>
       <div className="material-manifestation-item__cover">
