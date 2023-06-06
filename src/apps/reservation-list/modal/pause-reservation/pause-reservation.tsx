@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState, useEffect } from "react";
+import React, { FC, useCallback, useState, useEffect, FormEvent } from "react";
 import { useQueryClient } from "react-query";
 import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
@@ -31,41 +31,45 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   );
   const [endDate, setEndDate] = useState<string>("");
 
-  const save = useCallback(() => {
-    if (user) {
-      // TODO: consolidate with the other save patron function
-      // be aware the defaults are not necessarily the same in the different save patron functions
-      const saveData = {
-        preferredPickupBranch: user.preferredPickupBranch,
-        receiveEmail: user.receiveEmail,
-        receivePostalMail: user.receivePostalMail,
-        receiveSms: user.receiveSms
-      } as Patron;
+  const save = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (user) {
+        // TODO: consolidate with the other save patron function
+        // be aware the defaults are not necessarily the same in the different save patron functions
+        const saveData = {
+          preferredPickupBranch: user.preferredPickupBranch,
+          receiveEmail: user.receiveEmail,
+          receivePostalMail: user.receivePostalMail,
+          receiveSms: user.receiveSms
+        } as Patron;
 
-      if (startDate || endDate) {
-        saveData.onHold = {
-          from: startDate === "" ? undefined : startDate,
-          to: endDate === "" ? undefined : endDate
-        };
-      }
-
-      mutate(
-        {
-          data: { patron: saveData }
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(
-              getGetPatronInformationByPatronIdV2QueryKey()
-            );
-            close(pauseReservation as string);
-          },
-          // todo error handling, missing in figma
-          onError: () => {}
+        if (startDate || endDate) {
+          saveData.onHold = {
+            from: startDate === "" ? undefined : startDate,
+            to: endDate === "" ? undefined : endDate
+          };
         }
-      );
-    }
-  }, [close, endDate, mutate, pauseReservation, queryClient, startDate, user]);
+
+        mutate(
+          {
+            data: { patron: saveData }
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(
+                getGetPatronInformationByPatronIdV2QueryKey()
+              );
+              close(pauseReservation as string);
+            },
+            // todo error handling, missing in figma
+            onError: () => {}
+          }
+        );
+      }
+    },
+    [close, endDate, mutate, pauseReservation, queryClient, startDate, user]
+  );
 
   useEffect(() => {
     if (user?.onHold?.from) {
@@ -85,7 +89,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         "pauseReservationModalAriaDescriptionText"
       )}
     >
-      <div className="modal-pause__container">
+      <form onSubmit={(e) => save(e)} className="modal-pause__container">
         <h2 className="text-header-h3">
           {t("pauseReservationModalHeaderText")}
         </h2>
@@ -114,14 +118,13 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         </div>
         <div className="modal-pause__button mt-48">
           <button
-            type="button"
-            onClick={save}
+            type="submit"
             className="btn-primary btn-filled btn-small arrow__hover--right-small"
           >
             {t("pauseReservationModalSaveButtonLabelText")}
           </button>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };
