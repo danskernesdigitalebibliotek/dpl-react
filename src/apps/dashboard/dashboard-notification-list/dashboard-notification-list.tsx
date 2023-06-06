@@ -1,7 +1,11 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useCallback } from "react";
 import {
+  getPhysicalQueuedReservations,
+  filterLoansNotOverdue,
+  filterLoansOverdue,
+  filterLoansSoonOverdue,
   getModalIds,
-  getPhysicalQueuedReservations
+  constructModalId
 } from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -10,35 +14,171 @@ import { yesterday, soon, longer } from "../util/helpers";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 import NotificationColumn from "./NotificationColumn";
+import { useConfig } from "../../../core/utils/config";
+import { ThresholdType } from "../../../core/utils/types/threshold-type";
+import { useModalButtonHandler } from "../../../core/utils/modal";
+import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
+import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
+import MaterialDetails from "../../loan-list/modal/material-details";
+import { ListType } from "../../../core/utils/types/list-type";
+import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
+import ReservationGroupModal from "../modal/ReservationsGroupModal";
+import ReservationDetails from "../../reservation-list/modal/reservation-details/reservation-details";
+import DeleteReservationModal from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
+import Notifications from "./Notifications";
 
 export interface DashboardNotificationListProps {
-  openModalHandler: (modalId: string) => void;
-  openDueDateModal: (dueDate: string) => void;
-  openLoanDetailsModal: (modalId: string) => void;
-  openReservationDetailsModal: (modalId: string) => void;
-  physicalReservations: ReservationType[];
-  physicalLoansFarFromOverdue: LoanType[];
-  physicalLoansOverdue: LoanType[];
-  physicalLoansSoonOverdue: LoanType[];
+  reservations: ReservationType[] | null;
+  loans: LoanType[] | null;
+  pageSize: number;
+  columns: boolean;
 }
 
 const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
-  openModalHandler,
-  openDueDateModal,
-  openLoanDetailsModal,
-  openReservationDetailsModal,
-  physicalReservations,
-  physicalLoansOverdue,
-  physicalLoansSoonOverdue,
-  physicalLoansFarFromOverdue
+  reservations,
+  loans,
+  pageSize,
+  columns
 }) => {
   const t = useText();
+
+  const config = useConfig();
+  const {
+    colorThresholds: { warning }
+  } = config<ThresholdType>("thresholdConfig", {
+    transformer: "jsonParse"
+  });
+  const [modalReservationDetailsId, setModalReservationDetailsId] = useState<
+    string | null
+  >(null);
+  const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
+    useState<LoanType[]>([]);
+  const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
+    LoanType[]
+  >([]);
+  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<LoanType[]>(
+    []
+  );
+  const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
+  const [modalHeader, setModalHealer] = useState("");
+
+  const { open } = useModalButtonHandler();
+  const { loanDetails, dueDateModal, reservationDetails, deleteReservation } =
+    getModalIds();
+  const [dueDate, setDueDate] = useState<string | null>(null);
+
+  const [modalLoan, setModalLoan] = useState<ListType | null>(null);
+  const [reservationForModal, setReservationForModal] =
+    useState<ListType | null>(null);
+  const [reservationModalId, setReservationModalId] = useState<string>("");
+  const [modalLoanDetailsId, setModalLoanDetailsId] = useState<string | null>(
+    null
+  );
+
+  const openModalHandler = useCallback(
+    (modalId: string) => {
+      setReservationModalId(modalId);
+      open(modalId);
+    },
+    [open]
+  );
+
+  useEffect(() => {
+    if (loans) {
+      console.log(filterLoansOverdue(loans), "1");
+      console.log(filterLoansSoonOverdue(loans, warning), "2");
+      console.log(filterLoansNotOverdue(loans, warning), "3");
+      setPhysicalLoansOverdue(filterLoansOverdue(loans));
+      setPhysicalLoansSoonOverdue(filterLoansSoonOverdue(loans, warning));
+      setPhysicalLoansFarFromOverdue(filterLoansNotOverdue(loans, warning));
+    }
+  }, [loans, warning]);
 
   const { reservationsReady, reservationsQueued } = getModalIds();
   const [queuedReservations, setQueuedReservations] = useState<
     ReservationType[]
   >([]);
   const { physicalLoansUrl, reservationsUrl } = useUrls();
+  const openLoanDetailsModal = useCallback(
+    (modalId: string) => {
+      setModalLoanDetailsId(modalId);
+      open(`${loanDetails}${modalId}`);
+    },
+    [loanDetails, open]
+  );
+
+  const openReservationDetailsModal = useCallback(
+    (modalId: string) => {
+      setModalReservationDetailsId(modalId);
+      open(`${reservationDetails}${modalId}`);
+    },
+    [open, reservationDetails]
+  );
+
+  useEffect(() => {
+    const loanForModal = loans?.find(
+      ({ loanId }) => String(loanId) === modalLoanDetailsId
+    );
+
+    if (loanForModal) {
+      setModalLoan(loanForModal);
+    }
+  }, [modalLoanDetailsId, loans]);
+
+  useEffect(() => {
+    const reservation = reservations?.find(
+      ({ faust }) => String(faust) === modalReservationDetailsId
+    );
+
+    if (reservation) {
+      setReservationForModal(reservation);
+    }
+  }, [modalReservationDetailsId, reservations]);
+
+  const openReservationDeleteModal = useCallback(() => {
+    if (reservationForModal) {
+      open(
+        `${deleteReservation}${
+          reservationForModal.reservationId || reservationForModal.identifier
+        }`
+      );
+    }
+  }, [deleteReservation, open, reservationForModal]);
+
+  const openDueDateModal = useCallback(
+    (dueDateInput: string) => {
+      setDueDate(dueDateInput);
+
+      switch (dueDateInput) {
+        case yesterday:
+          setLoansToDisplay(physicalLoansOverdue);
+          setModalHealer(t("loansOverdueText"));
+          break;
+
+        case soon:
+          setLoansToDisplay(physicalLoansSoonOverdue);
+          setModalHealer(t("loansSoonOverdueText"));
+          break;
+
+        case longer:
+          setLoansToDisplay(physicalLoansFarFromOverdue);
+          setModalHealer(t("loansNotOverdueText"));
+          break;
+
+        default:
+          throw new Error("Invalid due date input");
+      }
+      open(constructModalId(dueDateModal as string, [dueDateInput]));
+    },
+    [
+      dueDateModal,
+      open,
+      physicalLoansFarFromOverdue,
+      physicalLoansOverdue,
+      physicalLoansSoonOverdue,
+      t
+    ]
+  );
 
   const dashboardNotificationsLoan = [
     {
@@ -78,7 +218,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     }
   ];
 
-  const readyToLoanReservations = getReadyForPickup(physicalReservations);
+  const readyToLoanReservations = reservations
+    ? getReadyForPickup(reservations)
+    : [];
 
   const dashboardNotificationsReservations = [
     {
@@ -113,8 +255,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   ];
 
   useEffect(() => {
-    setQueuedReservations(getPhysicalQueuedReservations(physicalReservations));
-  }, [physicalReservations]);
+    if (reservations) {
+      setQueuedReservations(getPhysicalQueuedReservations(reservations));
+    }
+  }, [reservations]);
 
   const physicalLoansCount =
     physicalLoansFarFromOverdue.length +
@@ -125,22 +269,84 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     readyToLoanReservations.length + queuedReservations.length;
 
   return (
-    <div className="status-userprofile">
-      <NotificationColumn
-        materials={dashboardNotificationsLoan}
-        materialsCount={physicalLoansCount}
-        headerUrl={physicalLoansUrl}
-        header={t("physicalLoansText")}
-        emptyListText={t("noPhysicalLoansText")}
-      />
-      <NotificationColumn
-        materials={dashboardNotificationsReservations}
-        materialsCount={reservationsCount}
-        headerUrl={reservationsUrl}
-        header={t("reservationsText")}
-        emptyListText={t("noReservationsText")}
-      />
-    </div>
+    <>
+      <div className="status-userprofile">
+        {columns && (
+          <>
+            <NotificationColumn
+              materials={dashboardNotificationsLoan}
+              materialsCount={physicalLoansCount}
+              headerUrl={physicalLoansUrl}
+              header={t("physicalLoansText")}
+              emptyListText={t("noPhysicalLoansText")}
+            />
+            <NotificationColumn
+              materials={dashboardNotificationsReservations}
+              materialsCount={reservationsCount}
+              headerUrl={reservationsUrl}
+              header={t("reservationsText")}
+              emptyListText={t("noReservationsText")}
+            />
+          </>
+        )}
+      </div>
+      {!columns && (
+        <Notifications
+          showOnlyNotifications
+          materials={[
+            ...dashboardNotificationsLoan,
+            ...dashboardNotificationsReservations
+          ]}
+        />
+      )}
+
+      <MaterialDetailsModal modalId={`${loanDetails}${modalLoanDetailsId}`}>
+        <MaterialDetails
+          faust={modalLoan?.faust}
+          identifier={modalLoan?.identifier}
+          loan={modalLoan as LoanType}
+        />
+      </MaterialDetailsModal>
+      {dueDate && loans && loansToDisplay && (
+        <LoansGroupModal
+          pageSize={pageSize}
+          openDetailsModal={openLoanDetailsModal}
+          dueDate={dueDate}
+          loansModal={loansToDisplay}
+        >
+          <SimpleModalHeader header={modalHeader} />
+        </LoansGroupModal>
+      )}
+      {reservations && (
+        <ReservationGroupModal
+          modalId={reservationModalId}
+          reservations={reservations}
+          pageSize={pageSize}
+        />
+      )}
+      {reservationForModal && (
+        <DeleteReservationModal
+          modalId={`${deleteReservation}${
+            reservationForModal.reservationId || reservationForModal.identifier
+          }`}
+          reservation={reservationForModal}
+        />
+      )}
+      {reservationForModal && (
+        <MaterialDetailsModal
+          modalId={`${reservationDetails}${
+            reservationForModal.faust || reservationForModal.identifier
+          }`}
+        >
+          <ReservationDetails
+            openReservationDeleteModal={openReservationDeleteModal}
+            faust={reservationForModal.faust}
+            identifier={reservationForModal.identifier}
+            reservation={reservationForModal}
+          />
+        </MaterialDetailsModal>
+      )}
+    </>
   );
 };
 export default DashboardNotificationList;

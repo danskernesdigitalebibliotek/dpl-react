@@ -5,22 +5,20 @@ import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
+import groupModalArgs from "../../../core/storybook/groupModalArgs";
+import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
+import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
     ...serviceUrlArgs,
+    ...groupModalArgs,
+    ...loanGroupModalArgs,
+    ...materialDetailsModalArgs,
     ...blockedArgs,
     // Config
-    feesPageUrl: {
-      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
-    loanListEreolenUrl: {
-      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
     materialOverdueUrl: {
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
       control: { type: "text" }
@@ -40,31 +38,6 @@ export default {
       control: { type: "text" }
     },
     // Texts
-    groupModalDueDateLinkToPageWithFeesText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Read more about fees"
-    },
-    groupModalCheckboxText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Choose all renewable"
-    },
-    groupModalDueDateHeaderText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Due date @date"
-    },
-    groupModalDueDateWarningLoanOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
-    },
     loanListAriaLabelListButtonText: {
       control: {
         type: "text"
@@ -77,25 +50,6 @@ export default {
       },
       defaultValue:
         "This button filters the list, so only one the materials that have the same due date is shown"
-    },
-    groupModalRenewLoanDeniedInterLibraryLoanText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library"
-    },
-    groupModalRenewLoanDeniedMaxRenewalsReachedText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "The item cannot be renewed further "
-    },
-    groupModalRenewLoanDeniedReservedText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "The item is reserved by another patron"
     },
     loanListDigitalLoansEmptyListText: {
       control: {
@@ -121,12 +75,6 @@ export default {
       },
       defaultValue:
         "This button opens a modal that covers the entire page and contains loans with the same due date as the loan currently in focus"
-    },
-    groupModalHiddenLabelCheckboxOnMaterialText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Select @label for renewal"
     },
     loanListMaterialLateFeeText: {
       control: {
@@ -209,12 +157,6 @@ export default {
       },
       defaultValue: "Due date @date"
     },
-    groupModalDueDateMaterialText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Afleveres @date"
-    },
     loanListToBeDeliveredText: {
       control: {
         type: "text"
@@ -232,68 +174,6 @@ export default {
         type: "text"
       },
       defaultValue: "By"
-    },
-    materialDetailsCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close material details modal"
-    },
-    materialDetailsPhysicalDueDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Afleveres"
-    },
-    materialDetailsDigitalDueDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expires"
-    },
-    materialDetailsLinkToPageWithFeesText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Read more about fees"
-    },
-    materialDetailsLoanDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Loan date"
-    },
-    materialDetailsMaterialNumberLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Material Item Number"
-    },
-    materialDetailsModalAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This modal shows material details, and makes it possible to renew a material, of that material is renewable"
-    },
-    materialDetailsOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expired"
-    },
-    materialDetailsRenewLoanButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renew your loans"
-    },
-    materialDetailsWarningLoanOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
     },
     publizonAudioBookText: {
       control: {
@@ -313,24 +193,6 @@ export default {
       },
       defaultValue: "Podcast"
     },
-    groupModalAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "This modal makes it possible to renew materials"
-    },
-    groupModalButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renewable (@count)"
-    },
-    groupModalCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close modal with grouped loans"
-    },
     groupModalHeaderText: {
       control: {
         type: "text"
@@ -341,24 +203,8 @@ export default {
       defaultValue: "Showing @itemsShown out of @hitcount loans",
       control: { type: "text" }
     },
-    showMoreText: {
-      defaultValue: "show more",
-      control: { type: "text" }
-    },
-    groupModalGoToMaterialText: {
-      defaultValue: "Go to material details",
-      control: { type: "text" }
-    },
     groupModalGoToMaterialAriaLabelText: {
       defaultValue: "Go to @label material details",
-      control: { type: "text" }
-    },
-    groupModalReturnLibraryText: {
-      defaultValue: "Can be returned to all branches of Samsøs libraries",
-      control: { type: "text" }
-    },
-    materialDetailsGoToEreolenText: {
-      defaultValue: "Go to eReolen",
       control: { type: "text" }
     }
   },

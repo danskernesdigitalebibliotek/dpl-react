@@ -4,102 +4,63 @@ import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import DashBoard from "./dashboard";
+import { GroupModalProps } from "../../core/storybook/groupModalArgs";
+import { GroupModalLoansProps } from "../../core/storybook/loanGroupModalArgs";
+import { ReservationMaterialDetailsProps } from "../../core/storybook/reservationMaterialDetailsArgs";
+import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
+import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
+import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 
 export interface DashBoardProps {
   // Url
-  feesPageUrl: string;
   loansOverdueUrl: string;
   physicalLoansUrl: string;
   feesUrl: string;
   reservationsUrl: string;
-  ereolenMyPageUrl: string;
-  // Page size
-  pageSizeDesktop: number;
-  pageSizeMobile: number;
   // Config
-  reservationDetailAllowRemoveReadyReservationsConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
   thresholdConfig: string;
-  interestPeriodsConfig: string;
   // Texts
   yourProfileText: string;
-  groupModalCloseModalAriaLabelText: string;
-  deleteReservationModalAriaDescriptionText: string;
-  deleteReservationModalCloseModalText: string;
-  deleteReservationModalDeleteQuestionText: string;
-  deleteReservationModalNotRegrettableText: string;
-  deleteReservationModalDeleteButtonText: string;
-  deleteReservationModalHeaderText: string;
   feesText: string;
   totalOwedText: string;
   payOwedText: string;
   totalAmountFeeText: string;
   physicalLoansText: string;
   loansOverdueText: string;
-  groupModalHiddenLabelCheckboxOnMaterialText: string;
   loansSoonOverdueText: string;
   loansNotOverdueText: string;
   reservationsText: string;
-  reservationsReadyForPickupText: string;
   queuedReservationsText: string;
-  removeAllReservationsText: string;
   reservationsReadyText: string;
   reservationsStillInQueueForText: string;
   noPhysicalLoansText: string;
   noReservationsText: string;
   statusBadgeWarningText: string;
   readyForLoanText: string;
-  readyForLoanCounterLabelText: string;
-  materialDetailsCloseModalAriaLabelText: string;
-  materialDetailsLinkToPageWithFeesText: string;
-  materialDetailsModalAriaDescriptionText: string;
-  materialDetailsOverdueText: string;
-  materialDetailsMaterialNumberLabelText: string;
-  materialDetailsLoanDateLabelText: string;
-  materialDetailsPhysicalDueDateLabelText: string;
-  groupModalDueDateLinkToPageWithFeesText: string;
-  materialDetailsWarningLoanOverdueText: string;
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
-  groupModalDueDateHeaderText: string;
-  groupModalReturnLibraryText: string;
-  groupModalCheckboxText: string;
-  groupModalAriaDescriptionText: string;
-  groupModalButtonText: string;
-  reservationDetailsRemoveDigitalReservationText: string;
-  reservationDetailsDateOfReservationTitleText: string;
   listDetailsNothingSelectedLabelText: string;
-  reservationDetailsNoInterestAfterTitleText: string;
-  reservationDetailsChangeText: string;
-  reservationDetailsPickUpAtTitleText: string;
-  reservationDetailsButtonRemoveText: string;
   dashboardNumberInLineText: string;
-  groupModalRenewLoanDeniedMaxRenewalsReachedText: string;
-  groupModalDueDateMaterialText: string;
-  groupModalGoToMaterialText: string;
-  reservationDetailsStatusTitleText: string;
-  reservationDetailsBorrowBeforeText: string;
   resultPagerStatusText: string;
-  reservationDetailsDigitalReservationGoToEreolenText: string;
   loanListMaterialDaysText: string;
-  groupModalDueDateWarningLoanOverdueText: string;
-  reservationDetailsReadyForLoanText: string;
-  reservationDetailsPickupDeadlineTitleText: string;
-  groupModalRenewLoanDeniedReservedText: string;
-  groupModalRenewLoanDeniedInterLibraryLoanText: string;
-  pickUpLatestText: string;
   physicalReservationsModalHeaderText: string;
   digitalReservationsModalHeaderText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
 }
 
-const DashboardEntry: FC<DashBoardProps> = ({
-  pageSizeDesktop,
-  pageSizeMobile
-}) => {
+const DashboardEntry: FC<
+  DashBoardProps &
+    GroupModalProps &
+    GroupModalLoansProps &
+    DeleteReservationModalArgs &
+    GroupModalReservationsProps &
+    ReservationMaterialDetailsProps &
+    MaterialDetailsModalProps
+> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
