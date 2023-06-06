@@ -73,11 +73,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           inputmode="numeric"
           onChange={(newPin) => setPincode(newPin)}
           value={pincode}
-          label={
-            required
-              ? `${t("patronPagePincodeLabelText")}*`
-              : t("patronPagePincodeLabelText")
-          }
+          label={t("patronPagePincodeLabelText")}
           validation={pincodeValidation}
         />
         <TextInput
@@ -89,11 +85,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           type="password"
           onChange={(newPin) => setConfirmPincode(newPin)}
           value={confirmPincode}
-          label={
-            required
-              ? `${t("patronPageConfirmPincodeLabelText")}*`
-              : t("patronPageConfirmPincodeLabelText")
-          }
+          label={t("patronPageConfirmPincodeLabelText")}
         />
       </div>
     </section>

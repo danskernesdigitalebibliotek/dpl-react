@@ -36,7 +36,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           changePatron(newPhoneNumber, "phoneNumber")
         }
         value={patron?.phoneNumber}
-        label={`${t("patronContactPhoneLabelText")}*`}
+        label={t("patronContactPhoneLabelText")}
       />
       {showCheckboxes && (
         <CheckBox
@@ -61,7 +61,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         required
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}
         value={patron?.emailAddress}
-        label={`${t("patronContactEmailLabelText")}*`}
+        label={t("patronContactEmailLabelText")}
       />
       {showCheckboxes && (
         <CheckBox
