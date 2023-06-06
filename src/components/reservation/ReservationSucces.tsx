@@ -13,6 +13,7 @@ type ReservationSuccesProps = {
   numberInQueue?: number;
   reservationCount: number;
   holdings: number;
+  isFluidOrder?: boolean;
 };
 
 const ReservationSucces: React.FC<ReservationSuccesProps> = ({
@@ -21,7 +22,8 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   preferredPickupBranch,
   numberInQueue,
   reservationCount,
-  holdings
+  holdings,
+  isFluidOrder = false
 }) => {
   const dispatch = useDispatch();
   const t = useText();
@@ -39,31 +41,44 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         >
           {t("reservationSuccesTitleText")}
         </h2>
-        <p
-          data-cy="reservation-success-is-reserved-for-you-text"
-          className="text-body-medium-regular pb-24"
-        >
-          {title} {t("reservationSuccesIsReservedForYouText")}
-        </p>
-        <p
-          data-cy="number-in-queue-text"
-          className="text-body-medium-regular pb-24"
-        >
-          <StockAndReservationInfo
-            stockCount={holdings}
-            reservationCount={reservationCount}
-            numberInQueue={numberInQueue}
-          />
-        </p>
-        <p
-          data-cy="reservation-success-preferred-pickup-branch-text"
-          className="text-body-medium-regular pb-48"
-        >
-          {t("reservationSuccessPreferredPickupBranchText", {
-            placeholders: { "@branch": preferredPickupBranch }
-          })}
-          .
-        </p>
+
+        {isFluidOrder ? (
+          <p
+            data-cy="reservation-success-fluid-order-text"
+            className="text-body-medium-regular pb-24"
+          >
+            {t("reservationSuccessFluidOrderText")}
+          </p>
+        ) : (
+          <>
+            <p
+              data-cy="reservation-success-is-reserved-for-you-text"
+              className="text-body-medium-regular pb-24"
+            >
+              {title} {t("reservationSuccesIsReservedForYouText")}
+            </p>
+            <p
+              data-cy="number-in-queue-text"
+              className="text-body-medium-regular pb-24"
+            >
+              <StockAndReservationInfo
+                stockCount={holdings}
+                reservationCount={reservationCount}
+                numberInQueue={numberInQueue}
+              />
+            </p>
+            <p
+              data-cy="reservation-success-preferred-pickup-branch-text"
+              className="text-body-medium-regular pb-48"
+            >
+              {t("reservationSuccessPreferredPickupBranchText", {
+                placeholders: { "@branch": preferredPickupBranch }
+              })}
+              .
+            </p>
+          </>
+        )}
+
         <Button
           dataCy="reservation-success-close-button"
           classNames="reservation-modal__confirm-button"

@@ -43,6 +43,7 @@ describe("Material buttons", () => {
   });
 
   it("Renders a 'fluid-order' reservation button for non-reservable physical materials that can be ordered from another library", () => {
+    cy.createFakeAuthenticatedSession();
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
@@ -59,7 +60,20 @@ describe("Material buttons", () => {
     cy.getBySel("material-header-buttons-physical")
       .should("exist")
       .and("contain", "lydbog (cd-mp3)")
-      .and("contain", "elsewhere");
+      .and("contain", "elsewhere")
+      .click();
+
+    cy.getBySel("reservation-modal-submit-button", true)
+      .should("be.visible")
+      .and("contain", "Approve reservation");
+    // We need to wait here because no other fixes work.
+    // eslint-disable-next-line
+    cy.wait(500);
+    cy.getBySel("reservation-modal-submit-button").click();
+
+    cy.getBySel("reservation-success-fluid-order-text")
+      .should("be.visible")
+      .and("contain", "The material has now been ordered from another library");
   });
 
   it("Renders reservation button disabled if a material isn't reservable", () => {

@@ -811,6 +811,12 @@ export default {
       defaultValue:
         '[\n   {\n      "value":"30",\n      "label":"1 month"\n   },\n   {\n      "value":"60",\n      "label":"2 months"\n   },\n   {\n      "value":"90",\n      "label":"3 months"\n   },\n   {\n      "value":"180",\n      "label":"6 months"\n   },\n   {\n      "value":"360",\n      "label":"1 year"\n   }\n]',
       control: { type: "text" }
+    },
+    reservationSuccessFluidOrderText: {
+      name: "Reservation success fluid order text",
+      defaultValue:
+        "The material has now been ordered from another library. You will be notified when you can collect the material from your library. As the order is from another library, it cannot be seen immediately under your borrower status. The order expires if the material cannot be obtained within 3 months.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;

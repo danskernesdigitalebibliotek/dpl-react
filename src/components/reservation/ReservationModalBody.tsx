@@ -54,6 +54,10 @@ import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 import { usePatronData } from "../material/helper";
+import {
+  SpecialManifestation,
+  isFluidOrderWork
+} from "../material/material-buttons/helper";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -128,10 +132,71 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
+  const isFluidOrder = isFluidOrderWork(
+    selectedManifestations as SpecialManifestation[]
+  );
+
+  const OpenOrderFakeMutate = (payload?: any) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (!payload) {
+          return reject(new Error());
+        }
+
+        return resolve({
+          success: true,
+          reservationResults: [
+            {
+              periodical: null,
+              recordId: "45843289",
+              reservationDetails: {
+                reservationId: 78525371,
+                recordId: "45843289",
+                state: "reserved",
+                pickupBranch: "DK-775100",
+                pickupDeadline: null,
+                expiryDate: "2023-12-03",
+                dateOfReservation: "2023-06-06T11:24:22.118",
+                numberInQueue: 1,
+                periodical: null,
+                pickupNumber: null,
+                ilBibliographicRecord: null,
+                transactionId: "8a2eb9ac-6ead-42ac-bc97-d60bb5becb98",
+                reservationType: "normal"
+              },
+              result: "success"
+            }
+          ]
+        });
+      }, 1000);
+    });
+  };
+
   const saveReservation = () => {
+    if (isFluidOrder) {
+      OpenOrderFakeMutate({
+        reservations: [
+          {
+            recordId: "45843289"
+          }
+        ]
+      })
+        .then((data) => {
+          // This state is used to show the success or error modal.
+          setReservationResponse(data as ReservationResponseV2);
+          // Because after a successful reservation the holdings (reservations) are updated.
+          queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      return;
+    }
+
     if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
+
     // Save reservation to FBS.
     mutate(
       {
@@ -277,6 +342,7 @@ export const ReservationModalBody = ({
           holdings={holdings}
           reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
+          isFluidOrder={isFluidOrder}
         />
       )}
       {!reservationSuccess && reservationResults && (
@@ -290,3 +356,7 @@ export const ReservationModalBody = ({
 };
 
 export default ReservationModalBody;
+
+// is it fluid // same as in buttons
+// use openOrderFakeMutate mutation (fake) specialMutaion
+// make response / error messages
