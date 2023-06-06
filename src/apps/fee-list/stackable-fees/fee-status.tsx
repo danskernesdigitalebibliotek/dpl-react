@@ -15,7 +15,7 @@ const FeeStatus: FC<FeeStatusProps> = ({ dueDate, reasonMessage }) => {
     <div>
       <div className="list-reservation__deadline">
         <div className="status-label status-label--danger">{reasonMessage}</div>
-        <p className="text-small-caption" id="due-date">
+        <p className="text-small-caption">
           {t("feeCreatedText", {
             placeholders: { "@date": dueDateFormatted }
           })}

@@ -36,7 +36,8 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const { filters, addToFilter, clearFilter } = useFilterHandler();
+  const { filters, clearFilter, addFilterFromUrlParamListener } =
+    useFilterHandler();
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
@@ -87,13 +88,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffect(() => {
-    const materialTypeUrlFilter = getUrlQueryParam("materialType");
-    if (materialTypeUrlFilter) {
-      addToFilter({
-        facet: FacetField.MaterialTypes,
-        term: { key: materialTypeUrlFilter, term: materialTypeUrlFilter }
-      });
-    }
+    addFilterFromUrlParamListener(FacetField.MaterialTypes);
+    addFilterFromUrlParamListener(FacetField.WorkTypes);
     // We only want to do this once, so we need the dependency array empty
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
