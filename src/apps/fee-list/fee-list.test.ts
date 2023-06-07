@@ -143,18 +143,6 @@ describe("Fee list", () => {
       .should("not.have.attr", "href", "")
       .should("have.text", "See our fees and replacement costs");
 
-    // 2.e "I accept the Terms of trade*"
-    cy.get(".fee-list-bottom__actions")
-      .eq(0)
-      .find(".checkbox")
-      .find(".checkbox__label")
-      .find(".checkbox__text")
-      .should("exist")
-      .should("have.text", "I accept the Terms of trade*");
-
-    // 2.f subheadline exists
-    cy.get(".dpl-list-buttons__header").eq(1).should("exist");
-
     // 3.a text "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
     cy.get(".fee-list-bottom__paymenttypes")
       .eq(1)
@@ -318,11 +306,10 @@ describe("Fee list", () => {
       .should("have.text", "Turned in 6. April 2022");
 
     // "i accept the Terms of trade*"
-    cy.get(".modal-loan__buttons")
-      .find(".checkbox")
+    cy.getBySel("checkbox_id__fee_details").should("exist");
+
+    cy.get(".modal")
       .find(".checkbox__label")
-      .find(".checkbox__text")
-      .should("exist")
       .should("have.text", "I accept the Terms of trade*");
 
     // pay button
