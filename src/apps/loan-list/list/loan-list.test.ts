@@ -317,7 +317,7 @@ describe("Loan list", () => {
       .find(".list-reservation__about p")
       .should(
         "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen, Dummy Some Corporation (2006)"
       );
 
     // Todo serial title
@@ -470,7 +470,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__about p")
-      .should("have.text", "By Agatha Christie and Jutta Larsen (2014)");
+      .should("have.text", "By Agatha Christie, Jutta Larsen (2014)");
 
     // Todo serial title
     // Todo serial number

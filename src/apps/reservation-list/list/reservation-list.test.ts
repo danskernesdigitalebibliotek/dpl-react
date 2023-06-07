@@ -383,7 +383,7 @@ describe("Reservation list", () => {
       .eq(0)
       .should(
         "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen, Dummy Some Corporation (2006)"
       );
 
     // ID 42 2.d. & 42 2.d. number and year

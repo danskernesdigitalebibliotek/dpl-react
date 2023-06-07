@@ -201,7 +201,7 @@ describe("Fee list", () => {
       .should("exist")
       .should(
         "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen, Dummy Some Corporation (2006)"
       );
 
     // 3. d fees charged dd.mm.yyyy
@@ -276,7 +276,7 @@ describe("Fee list", () => {
       .should("exist")
       .should(
         "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen, Dummy Some Corporation (2006)"
       );
 
     // 4.b +x other materials
