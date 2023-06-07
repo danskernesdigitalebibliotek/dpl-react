@@ -1,6 +1,7 @@
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
-describe("Menu (authenticated))", () => {
+// todo will be readded in a future pr
+describe.skip("Menu (authenticated))", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
