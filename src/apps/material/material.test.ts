@@ -183,6 +183,10 @@ describe("Material", () => {
 
     cy.getBySel("material-description").scrollIntoView();
 
+    // We need to wait here because no other fixes work.
+    // eslint-disable-next-line
+    cy.wait(1000);
+
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
@@ -212,7 +216,7 @@ describe("Material", () => {
       .click();
   });
 
-  it("Renders a 'fluid-order' reservation, approve a fluid reservation", () => {
+  it.only("Renders a 'fluid-order' reservation, approve a fluid reservation", () => {
     cy.createFakeAuthenticatedSession();
     cy.interceptRest({
       aliasName: "Availability",

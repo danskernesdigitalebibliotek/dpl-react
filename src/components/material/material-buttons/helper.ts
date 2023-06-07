@@ -63,8 +63,16 @@ export type SpecialManifestation = Manifestation & SpecialManifestationProps;
 // TODO: Fix type when API has .danMARC2 property
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const isFluidOrderWork = (manifestations: SpecialManifestation[]) => {
+  if (manifestations.length !== 1) {
+    return false;
+  }
+
+  const manifestation = manifestations[0];
+
+  return manifestation.danMARC2 === "OVE";
+
   // Delete the return true; line after API has .danMARC2 property
-  return true;
+  // return true;
   // return !!manifestations.find((manifestation) => {
   //   return manifestation.danMARC2.startsWith("OVE");
   // });

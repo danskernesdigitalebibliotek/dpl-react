@@ -136,7 +136,7 @@ export const ReservationModalBody = ({
     selectedManifestations as SpecialManifestation[]
   );
 
-  const OpenOrderFakeMutate = (payload?: any) => {
+  const OpenOrderFakeMutate = (payload?: unknown) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (!payload) {
