@@ -85,9 +85,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   useEffect(() => {
     if (loans) {
-      console.log(filterLoansOverdue(loans), "1");
-      console.log(filterLoansSoonOverdue(loans, warning), "2");
-      console.log(filterLoansNotOverdue(loans, warning), "3");
       setPhysicalLoansOverdue(filterLoansOverdue(loans));
       setPhysicalLoansSoonOverdue(filterLoansSoonOverdue(loans, warning));
       setPhysicalLoansFarFromOverdue(filterLoansNotOverdue(loans, warning));
