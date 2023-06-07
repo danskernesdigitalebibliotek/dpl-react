@@ -212,6 +212,45 @@ describe("Material", () => {
       .click();
   });
 
+  it("Renders a 'fluid-order' reservation, approve a fluid reservation", () => {
+    cy.createFakeAuthenticatedSession();
+    cy.interceptRest({
+      aliasName: "Availability",
+      url: "**/availability/v3?recordid=**",
+      fixtureFilePath: "material/unavailability.json"
+    });
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material-buttons/material-buttons-fbi-api.json"
+    });
+
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=lydbog+%28cd-mp3%29"
+    );
+
+    cy.getBySel("material-description").scrollIntoView();
+
+    cy.getBySel("material-header-buttons-physical")
+      .should("exist")
+      .and("contain", "lydbog (cd-mp3)")
+      .and("contain", "elsewhere")
+      .click();
+
+    cy.getBySel("reservation-modal-submit-button", true)
+      .should("be.visible")
+      .and("contain", "Approve reservation");
+
+    // We need to wait here because no other fixes work.
+    // eslint-disable-next-line
+    cy.wait(500);
+
+    cy.getBySel("reservation-modal-submit-button").click();
+
+    cy.getBySel("reservation-success-fluid-order-text")
+      .should("be.visible")
+      .and("contain", "The material has now been ordered from another library");
+  });
+
   it("Renders reviews", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
