@@ -46,7 +46,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             lang={lang || ""}
             className="list-reservation__header color-secondary-gray"
           >
-            {title}
+            <span className="list-reservation__header__text">{title}</span>
           </button>
           <p
             data-cy="reservation-about-author"

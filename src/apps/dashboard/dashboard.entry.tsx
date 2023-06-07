@@ -92,7 +92,7 @@ export interface DashBoardProps {
   pickUpLatestText: string;
   physicalReservationsModalHeaderText: string;
   digitalReservationsModalHeaderText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   materialByAuthorText: string;
 }
 

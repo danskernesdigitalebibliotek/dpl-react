@@ -111,7 +111,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
             ({ firstName, lastName }) => `${firstName} ${lastName}`
           ),
           texts.materialByAuthorText,
-          texts.materialAndAuthorText
+          texts.etAlText
         )
       : ""
   } as BasicDetailsType;
@@ -154,7 +154,7 @@ export const mapManifestationToBasicDetailsType = (
     contributors = getContributors(
       inputContributorsArray,
       texts.materialByAuthorText,
-      texts.materialAndAuthorText
+      texts.etAlText
     );
   }
   const firstAuthor = creators && creators.length ? creators[0].display : "";

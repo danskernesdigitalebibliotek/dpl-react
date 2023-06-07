@@ -46,7 +46,7 @@ interface LoanListEntryTextProps {
   loanListToBeDeliveredDigitalMaterialText: string;
   groupModalDueDateMaterialText: string;
   loanListToBeDeliveredText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   materialByAuthorText: string;
   materialDetailsCloseModalAriaLabelText: string;
   materialDetailsPhysicalDueDateLabelText: string;

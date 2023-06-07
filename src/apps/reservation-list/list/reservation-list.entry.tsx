@@ -28,7 +28,7 @@ export interface ReservationListTextProps {
   reservationListReadyText: string;
   materialByAuthorText: string;
   reservationDetailsExpiresText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   reservationListNumberInQueueText: string;
   reservationListFirstInQueueText: string;
   expiresSoonText: string;

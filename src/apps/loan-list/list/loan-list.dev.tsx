@@ -221,11 +221,11 @@ export default {
       },
       defaultValue: "Due date @date"
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     materialByAuthorText: {
       control: {

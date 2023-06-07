@@ -25,11 +25,11 @@ export default {
       defaultValue: "See our fees and replacement costs",
       control: { type: "text" }
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     viewFeesAndCompensationRatesUrl: {
       defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe

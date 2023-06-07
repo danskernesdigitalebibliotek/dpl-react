@@ -15,7 +15,7 @@ export interface FavoritesListMaterialComponentProps {
   materialUrl: string;
   favoritesListMaterialComponentTitleText: string;
   materialByAuthorText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   favoritesListMaterialComponentGoToListText: string;
   favoritesListMaterialComponentGoToListUrl: string;
   addToFavoritesAriaLabelText: string;

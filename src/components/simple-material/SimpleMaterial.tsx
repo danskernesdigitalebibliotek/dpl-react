@@ -47,7 +47,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
     authors = getContributors(
       inputContributorsArray,
       t("materialByAuthorText"),
-      t("materialAndAuthorText")
+      t("etAlText")
     );
   }
 

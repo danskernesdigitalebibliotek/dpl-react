@@ -29,7 +29,7 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
               })}
             </div>
           </div>
-          <p className="text-header-h5 mt-8">{title}</p>
+          <p className="list-materials__content__header mt-8">{title}</p>
           <p className="text-small-caption">
             {/* TODO: Globalize "authors and year if available" */}
             <AuthorYear author={authors || ""} year={year || ""} />

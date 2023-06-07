@@ -485,16 +485,15 @@ export const getReleaseYearSearchResult = (work: Work) => {
 export const getContributors = (
   creators: string[],
   by: string,
-  and: string
+  etAlText: string
 ) => {
   let returnContentString = "";
   if (creators && creators.length > 0) {
     if (creators.length === 1) {
       returnContentString = `${by} ${creators.join(", ")}`;
-    } else {
-      returnContentString = `${by} ${creators
-        .slice(0, -1)
-        .join(", ")} ${and} ${creators.slice(-1)}`;
+    } else if (creators.length > 1) {
+      const firstTwo = creators.slice(0, 2);
+      returnContentString = `${by} ${firstTwo.join(", ")} ${etAlText}`;
     }
   }
   return returnContentString;

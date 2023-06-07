@@ -103,8 +103,8 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    materialAndAuthorText: {
-      defaultValue: "and",
+    etAlText: {
+      defaultValue: "et al.",
       control: { type: "text" }
     },
     reservationListNumberInQueueText: {

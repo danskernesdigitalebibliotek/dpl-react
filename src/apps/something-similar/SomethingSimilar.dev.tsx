@@ -26,11 +26,11 @@ export default {
       },
       defaultValue: "By"
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     somethingSimilarByTheSameAuthorText: {
       control: {
