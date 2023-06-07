@@ -42,7 +42,10 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
       {feeData && (
         <FeeInfo materialItemNumber={materialItemNumber} material={material}>
           {stackSize > 0 && (
-            <p className="text-small-caption color-secondary-gray">
+            <p
+              className="text-small-caption color-secondary-gray"
+              data-cy="stack-size"
+            >
               {t("plusXOtherMaterialsText", {
                 placeholders: { "@amount": stackSize }
               })}

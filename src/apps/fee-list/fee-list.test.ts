@@ -284,9 +284,7 @@ describe("Fee list", () => {
       .find(".list-reservation")
       .eq(1)
       .should("exist")
-      .find(".list-reservation__material")
-      .find(".list-reservation__information")
-      .find(".stack-size-text")
+      .getBySel("stack-size")
       .should("exist")
       .should("have.text", "+ 2 other materials");
 
