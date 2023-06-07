@@ -42,8 +42,9 @@ const Menu: FC = () => {
       >
         <img src={profileIcon} alt="" />
       </button>
-      <MenuLoggedIn />
-      <MenuNotLoggedInContent />
+      {/* todo will be fixed */}
+      {/* <MenuLoggedIn />
+      <MenuNotLoggedInContent /> */}
     </>
   );
 };
