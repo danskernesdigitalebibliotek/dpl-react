@@ -33,7 +33,9 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
           </h2>
         </div>
       </div>
-      {materialsCount === 0 && <EmptyList emptyListText={emptyListText} />}
+      {materialsCount === 0 && (
+        <EmptyList classNames="" emptyListText={emptyListText} />
+      )}
       {materialsCount !== 0 && (
         <Notifications showOnlyNotifications={false} materials={materials} />
       )}
