@@ -5,6 +5,7 @@ interface DateInputProps {
   minDateInput?: string;
   id: string;
   value: string;
+  required: boolean;
   onChange: (date: string) => void;
 }
 
@@ -13,10 +14,12 @@ const DateInput: FC<DateInputProps> = ({
   id,
   value,
   onChange,
-  minDateInput
+  minDateInput,
+  required
 }) => {
   // cannot set from/to to yesterday or yesteryear
-  const minDate = minDateInput || new Date().toISOString().split("T")[0];
+  const minDate =
+    value || minDateInput || new Date().toISOString().split("T")[0];
 
   return (
     <div className="datepicker">
@@ -24,6 +27,7 @@ const DateInput: FC<DateInputProps> = ({
         {label}
       </label>
       <input
+        required={required}
         data-cy={id}
         type="date"
         onChange={({ target }) => onChange(target.value)}
