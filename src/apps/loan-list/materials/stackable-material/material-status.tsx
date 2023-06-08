@@ -59,6 +59,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
         <div className="list-reservation__deadline">
           {dueDate && (
             <StatusBadge
+              showBadgeWithoutDueDate={false}
               badgeDate={dueDate}
               dangerText={t("loanListStatusBadgeDangerText")}
               warningText={t("loanListStatusBadgeWarningText")}
