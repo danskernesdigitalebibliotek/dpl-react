@@ -9,12 +9,14 @@ import ReservationInfo from "./reservation-info";
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
+  focused: boolean;
   openReservationDetailsModal: (reservation: ReservationType) => void;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   material,
   reservation,
+  focused,
   openReservationDetailsModal
 }) => {
   const openDetailsModal = useCallback(() => {
@@ -26,6 +28,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
       <div className="list-reservation my-32">
         {material && (
           <MaterialInfo
+            focused={focused}
             openDetailsModal={openDetailsModal}
             periodical={reservation.periodical}
             material={material}
