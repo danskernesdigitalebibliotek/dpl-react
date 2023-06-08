@@ -4,6 +4,7 @@ import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import CardListItem from "./card-list-item/card-list-item";
 import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
+import MaterialListItem from "./MaterialListItem";
 
 export interface SearchResultListProps {
   resultItems: Work[];
@@ -41,20 +42,16 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
         resultItems.map((item, i) => {
           const isFirstNewItem = i === page * pageSize;
           return (
-            <li
+            <MaterialListItem
               key={item.workId}
               ref={isFirstNewItem ? lastItemRef : null}
-              // We use a ref to focus the first item in the new page programmatically when pagination occurs.
-              // Set tabIndex -1 to support this without allowing keyboard focus. We have just as appropriate
-              // elements within the item suitable for keyboard focus.
-              tabIndex={-1}
             >
               <CardListItem
                 item={item}
                 coverTint={getCoverTint(i)}
                 resultNumber={i + 1}
               />
-            </li>
+            </MaterialListItem>
           );
         })}
     </ul>

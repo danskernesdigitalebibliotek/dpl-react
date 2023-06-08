@@ -12,6 +12,7 @@ export interface StackableMaterialProps {
   additionalMaterials: number;
   openLoanDetailsModal: (modalId: string) => void;
   openDueDateModal?: (dueDate: string) => void;
+  focused: boolean;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
@@ -19,7 +20,8 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   material,
   loan,
   openDueDateModal,
-  openLoanDetailsModal
+  openLoanDetailsModal,
+  focused
 }) => {
   const { dueDate, faust, identifier, periodical } = loan;
 
@@ -43,6 +45,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
           openDetailsModal={openLoanDetailsModalHandler}
           periodical={periodical}
           material={material}
+          focused={focused}
           isbnForCover={identifier || ""}
         >
           <AdditionalMaterialsButton
