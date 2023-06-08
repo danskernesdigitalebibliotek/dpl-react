@@ -77,7 +77,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
             {showPaymentButton && (
               <Link
                 className="btn-primary btn-filled btn-small arrow__hover--right-small disabled"
-                href={new URL(paymentOverviewUrl)}
+                href={paymentOverviewUrl}
               >
                 {t("payText")}
               </Link>
