@@ -23,6 +23,7 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
     <ul className="modal-loan__list-materials">
       {materials.map(({ recordId, materialItemNumber }) => (
         <SelectableMaterial
+          focused={false}
           disabled
           statusBadgeComponent={
             <StatusBadge
