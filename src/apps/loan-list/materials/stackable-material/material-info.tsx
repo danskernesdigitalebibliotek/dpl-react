@@ -18,8 +18,16 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   openDetailsModal,
   children
 }) => {
-  const { authors, materialType, year, title, description, pid, series, lang } =
-    material || {};
+  const {
+    authorsShort,
+    materialType,
+    year,
+    title,
+    description,
+    pid,
+    series,
+    lang
+  } = material || {};
   const coverId = pid || isbnForCover;
 
   return (
@@ -52,7 +60,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             data-cy="reservation-about-author"
             className="text-small-caption color-secondary-gray"
           >
-            <AuthorYear author={authors || ""} year={year || ""} />
+            <AuthorYear author={authorsShort || ""} year={year || ""} />
           </p>
           {periodical && (
             <p

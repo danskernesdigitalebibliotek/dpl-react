@@ -94,6 +94,7 @@ export interface DashBoardProps {
   digitalReservationsModalHeaderText: string;
   etAlText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
 }
 
 const DashboardEntry: FC<DashBoardProps> = ({

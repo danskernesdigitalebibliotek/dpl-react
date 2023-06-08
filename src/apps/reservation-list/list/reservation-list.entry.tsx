@@ -27,6 +27,7 @@ export interface ReservationListTextProps {
   physicalLoansTitleText: string;
   reservationListReadyText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
   reservationDetailsExpiresText: string;
   etAlText: string;
   reservationListNumberInQueueText: string;

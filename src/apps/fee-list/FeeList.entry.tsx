@@ -14,6 +14,7 @@ export interface FeeListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
   feeListDaysText: string;
   payText: string;
   totalText: string;

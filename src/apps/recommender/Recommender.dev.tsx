@@ -30,6 +30,12 @@ export default {
       },
       defaultValue: "By"
     },
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
     etAlText: {
       control: {
         type: "text"

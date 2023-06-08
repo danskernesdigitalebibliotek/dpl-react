@@ -47,6 +47,10 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
+    materialAndAuthorText: {
+      defaultValue: "and",
+      control: { type: "text" }
+    },
     feeListDaysText: {
       defaultValue: "Days",
       control: { type: "text" }

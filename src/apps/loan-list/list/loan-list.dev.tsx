@@ -233,6 +233,12 @@ export default {
       },
       defaultValue: "By"
     },
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
     materialDetailsCloseModalAriaLabelText: {
       control: {
         type: "text"

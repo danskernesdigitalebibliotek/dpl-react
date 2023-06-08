@@ -103,6 +103,10 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
+    materialAndAuthorText: {
+      defaultValue: "and",
+      control: { type: "text" }
+    },
     etAlText: {
       defaultValue: "et al.",
       control: { type: "text" }

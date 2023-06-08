@@ -31,7 +31,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 
   if (!id) return null;
   const {
-    authors = "",
+    authorsShort = "",
     materialType,
     year = "",
     title = "",
@@ -70,7 +70,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {title}
           </p>
           <p className="text-small-caption">
-            <AuthorYear author={authors} year={year} />
+            <AuthorYear author={authorsShort} year={year} />
           </p>
         </div>
         <div className="list-materials__status pl-4">
