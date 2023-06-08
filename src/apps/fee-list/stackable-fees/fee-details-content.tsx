@@ -53,8 +53,6 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
       </div>
       <GroupModalContent
         amountOfSelectableMaterials={0}
-        selectableMaterials={[]}
-        selectedMaterials={[]}
         buttonComponent={
           <>
             <AcceptTermsCheckbox handleAcceptedTerms={handleAcceptedTerms} />

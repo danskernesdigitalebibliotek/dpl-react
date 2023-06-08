@@ -6,8 +6,8 @@ import { getRenewableMaterials } from "../../core/utils/helpers/general";
 
 interface GroupModalContentProps {
   amountOfSelectableMaterials: number;
-  selectableMaterials: string[];
-  selectedMaterials: string[];
+  selectableMaterials?: string[];
+  selectedMaterials?: string[];
   buttonComponent: ReactNode;
   selectMaterials?: (materialIds: string[]) => void;
   children: ReactNode;
@@ -15,8 +15,8 @@ interface GroupModalContentProps {
 
 const GroupModalContent: FC<GroupModalContentProps> = ({
   amountOfSelectableMaterials,
-  selectableMaterials,
-  selectedMaterials,
+  selectableMaterials = [],
+  selectedMaterials = [],
   selectMaterials,
   buttonComponent,
   children
