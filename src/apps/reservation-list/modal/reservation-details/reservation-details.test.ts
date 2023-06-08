@@ -171,7 +171,7 @@ describe("Reservation details modal test", () => {
     // ID 43 2.d. authors
     cy.get(".modal")
       .find("[data-cy='modal-authors']")
-      .should("have.text", "By Agatha Christie, Jutta Larsen (2014)");
+      .should("have.text", "By Agatha Christie and Jutta Larsen (2014)");
 
     // ID 43 2.b. Material types including accessibility of material
     cy.get(".modal").find(".status-label").eq(0).should("have.text", "E-book");
@@ -392,7 +392,7 @@ describe("Reservation details modal test", () => {
       .find("[data-cy='modal-authors']")
       .should(
         "have.text",
-        "By Dummy Jens Jensen, Dummy Some Corporation (2006)"
+        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
       );
 
     // ID 43 2.b. Material types including accessibility of material
