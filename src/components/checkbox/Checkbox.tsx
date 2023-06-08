@@ -10,6 +10,7 @@ interface CheckBoxProps {
   className?: string;
   onChecked?: (value: boolean) => void;
   ariaLabel?: string;
+  focused?: boolean;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -20,7 +21,8 @@ const CheckBox: FC<CheckBoxProps> = ({
   selected,
   onChecked,
   disabled,
-  ariaLabel
+  ariaLabel,
+  focused
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -31,6 +33,9 @@ const CheckBox: FC<CheckBoxProps> = ({
   return (
     <div className={`checkbox ${className || ""}`}>
       <input
+        // This is to handle focus when more items are loaded via pagination
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={focused}
         id={id}
         data-cy={id}
         className="checkbox__input"

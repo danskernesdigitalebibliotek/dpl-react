@@ -38,7 +38,7 @@ const List: FC<ListProps> = ({
     return displayedLoans.length;
   };
 
-  const { itemsShown, PagerComponent } = usePager({
+  const { itemsShown, PagerComponent, firstInNewPage } = usePager({
     hitcount: loans.length,
     pageSize,
     overrideItemsShown: view === "list" ? undefined : overrideItemsShown
@@ -59,6 +59,7 @@ const List: FC<ListProps> = ({
       {loans.length > 0 && (
         <>
           <LoanListItems
+            indexOfFocus={firstInNewPage}
             openLoanDetailsModal={openLoanDetailsModal}
             openDueDateModal={openDueDateModal}
             dueDates={dueDates}

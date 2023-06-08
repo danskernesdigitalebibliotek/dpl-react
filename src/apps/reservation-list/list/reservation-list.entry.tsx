@@ -7,6 +7,8 @@ import { pageSizeGlobal } from "../../../core/utils/helpers/general";
 import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
 import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
 import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-props";
+import { ReservationMaterialDetailsProps } from "../../../core/storybook/reservationMaterialDetailsArgs";
+import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReservationModalArgs";
 
 export interface ReservationListUrlProps {
   thresholdConfig: string;
@@ -22,7 +24,6 @@ export interface ReservationListConfigProps {
 }
 
 export interface ReservationListTextProps {
-  reservationDetailsBorrowBeforeText: string;
   reservationListHeaderText: string;
   physicalLoansTitleText: string;
   reservationListReadyText: string;
@@ -41,28 +42,10 @@ export interface ReservationListTextProps {
   reservationListDaysText: string;
   reservationListDayText: string;
   reservationListAvailableInText: string;
-  reservationDetailsButtonRemoveText: string;
-  reservationDetailsChangeText: string;
   reservationDetailsExpiresTitleText: string;
-  interestPeriodsConfig: string;
   reservationDetailsOthersInQueueText: string;
   reservationDetailsNumberInQueueLabelText: string;
-  reservationDetailsStatusTitleText: string;
-  reservationDetailsPickUpAtTitleText: string;
-  reservationDetailsNoInterestAfterTitleText: string;
-  reservationDetailsPickupDeadlineTitleText: string;
-  reservationDetailsDigitalReservationGoToEreolenText: string;
   listDetailsNothingSelectedLabelText: string;
-  reservationDetailsDateOfReservationTitleText: string;
-  reservationDetailsReadyForLoanText: string;
-  reservationDetailsRemoveDigitalReservationText: string;
-  reservationDetailAllowRemoveReadyReservationsConfig: boolean;
-  deleteReservationModalHeaderText: string;
-  deleteReservationModalDeleteQuestionText: string;
-  deleteReservationModalNotRegrettableText: string;
-  deleteReservationModalDeleteButtonText: string;
-  deleteReservationModalCloseModalText: string;
-  deleteReservationModalAriaDescriptionText: string;
   reservationListPauseReservationText: string;
   reservationListOnHoldAriaText: string;
   reservationListPauseReservationAriaModalText: string;
@@ -89,6 +72,8 @@ export interface ReservationListEntryWithPageSizeProps
     BlockedPatronEntryTextProps,
     ReservationListConfigProps,
     ReservationListUrlProps,
+    DeleteReservationModalArgs,
+    ReservationMaterialDetailsProps,
     GlobalUrlEntryPropsInterface {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
