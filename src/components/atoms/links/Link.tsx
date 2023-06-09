@@ -30,6 +30,7 @@ const Link: React.FC<LinkProps> = ({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
     if (trackClick) {
       e.preventDefault();
       trackClick().then(() => {
@@ -39,6 +40,7 @@ const Link: React.FC<LinkProps> = ({
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
     if (trackClick && e.key === "Enter") {
       e.preventDefault();
       trackClick().then(() => {
