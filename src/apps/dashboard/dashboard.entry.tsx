@@ -45,6 +45,7 @@ export interface DashBoardProps {
   listDetailsNothingSelectedLabelText: string;
   dashboardNumberInLineText: string;
   resultPagerStatusText: string;
+  reservationDetailsOthersInQueueText: string;
   loanListMaterialDaysText: string;
   physicalReservationsModalHeaderText: string;
   digitalReservationsModalHeaderText: string;
