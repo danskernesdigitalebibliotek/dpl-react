@@ -5,6 +5,8 @@ import ReservationList from "./reservation-list.entry";
 import { getModalIds } from "../../../core/utils/helpers/general";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
+import reservationMaterialDetailsProps from "../../../core/storybook/reservationMaterialDetailsArgs";
+import deleteReservationModalArgs from "../../../core/storybook/deleteReservationModalArgs";
 
 export default {
   title: "Apps / Reservation list",
@@ -12,6 +14,8 @@ export default {
   argTypes: {
     // Config
     ...serviceUrlArgs,
+    ...deleteReservationModalArgs,
+    ...reservationMaterialDetailsProps,
     ...blockedArgs,
     blacklistedSearchBranchesConfig: {
       name: "Blacklisted branches",
@@ -146,10 +150,6 @@ export default {
       defaultValue: "day",
       control: { type: "text" }
     },
-    reservationDetailsButtonRemoveText: {
-      defaultValue: "Remove your reservation",
-      control: { type: "text" }
-    },
     reservationDetailsOthersInQueueText: {
       defaultValue: "Others are queueing for this material",
       control: { type: "text" }
@@ -158,56 +158,12 @@ export default {
       defaultValue: "@count queued",
       control: { type: "text" }
     },
-    reservationDetailsStatusTitleText: {
-      defaultValue: "Status",
-      control: { type: "text" }
-    },
     reservationDetailsExpiresTitleText: {
       defaultValue: "Pickup deadline",
       control: { type: "text" }
     },
     reservationDetailsDigitalMaterialExpiresTitleText: {
       defaultValue: "Borrow before",
-      control: { type: "text" }
-    },
-    reservationDetailsPickUpAtTitleText: {
-      defaultValue: "Pickup branch",
-      control: { type: "text" }
-    },
-    reservationDetailsChangeText: {
-      defaultValue: "Apply changes",
-      control: { type: "text" }
-    },
-    reservationDetailsPickupDeadlineTitleText: {
-      defaultValue: "Pickup deadline",
-      control: { type: "text" }
-    },
-    reservationDetailsDateOfReservationTitleText: {
-      defaultValue: "Date of reservation",
-      control: { type: "text" }
-    },
-    reservationDetailsNoInterestAfterTitleText: {
-      defaultValue: "Not interested after",
-      control: { type: "text" }
-    },
-    reservationDetailsReadyForLoanText: {
-      defaultValue: "Ready for pickup",
-      control: { type: "text" }
-    },
-    reservationDetailsRemoveDigitalReservationText: {
-      defaultValue: "Remove your reservation",
-      control: { type: "text" }
-    },
-    reservationDetailAllowRemoveReadyReservationsConfig: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    reservationDetailsDigitalReservationGoToEreolenText: {
-      defaultValue: "Go to eReolen",
-      control: { type: "text" }
-    },
-    reservationDetailsBorrowBeforeText: {
-      defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
     reservationDetailsExpiresText: {
@@ -220,34 +176,6 @@ export default {
     },
     reservationDetailsCancelText: {
       defaultValue: "Cancel",
-      control: { type: "text" }
-    },
-    deleteReservationModalHeaderText: {
-      defaultValue:
-        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
-      control: { type: "text" }
-    },
-    deleteReservationModalDeleteQuestionText: {
-      defaultValue:
-        '{"type":"plural","text":["Do you want to cancel your reservation?","Do you want to cancel your reservations?"]}',
-      control: { type: "text" }
-    },
-    deleteReservationModalNotRegrettableText: {
-      defaultValue: "You cannot regret this action",
-      control: { type: "text" }
-    },
-    deleteReservationModalDeleteButtonText: {
-      defaultValue:
-        '{"type":"plural","text":["Cancel reservation","Cancel reservations"]}',
-      control: { type: "text" }
-    },
-    deleteReservationModalCloseModalText: {
-      defaultValue: "Close delete reservation modal",
-      control: { type: "text" }
-    },
-    deleteReservationModalAriaDescriptionText: {
-      defaultValue:
-        "This button opens a modal that covers the entire page and contains the possibility to delete a selected reservation, or multiple selected reservations",
       control: { type: "text" }
     },
     reservationListPauseReservationText: {
@@ -301,46 +229,6 @@ export default {
     },
     pauseReservationModalSaveButtonLabelText: {
       defaultValue: "Save",
-      control: { type: "text" }
-    },
-    oneMonthText: {
-      defaultValue: "1 month",
-      control: { type: "text" }
-    },
-    twoMonthsText: {
-      defaultValue: "2 months",
-      control: { type: "text" }
-    },
-    threeMonthsText: {
-      defaultValue: "3 months",
-      control: { type: "text" }
-    },
-    sixMonthsText: {
-      defaultValue: "6 months",
-      control: { type: "text" }
-    },
-    oneYearText: {
-      defaultValue: "1 year",
-      control: { type: "text" }
-    },
-    interestPeriodOneMonthConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodTwoMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodThreeMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodSixMonthsConfigText: {
-      defaultValue: "1",
-      control: { type: "text" }
-    },
-    interestPeriodOneYearConfigText: {
-      defaultValue: "1",
       control: { type: "text" }
     },
     listDetailsNothingSelectedLabelText: {

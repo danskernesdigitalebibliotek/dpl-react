@@ -71,14 +71,10 @@ interface MaterialEntryTextProps {
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
+  interestPeriodsConfig: string;
   instantLoanSubTitleText: string;
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
-  interestPeriodOneMonthConfigText: string;
-  interestPeriodOneYearConfigText: string;
-  interestPeriodSixMonthsConfigText: string;
-  interestPeriodThreeMonthsConfigText: string;
-  interestPeriodTwoMonthsConfigText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -109,8 +105,6 @@ interface MaterialEntryTextProps {
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
-  oneMonthText: string;
-  oneYearText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
   orderDigitalCopyButtonLoadingText: string;
@@ -155,11 +149,8 @@ interface MaterialEntryTextProps {
   screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
-  sixMonthsText: string;
   subjectNumberText: string;
-  threeMonthsText: string;
   tryAginButtonText: string;
-  twoMonthsText: string;
 }
 
 interface MaterialEntryConfigProps {

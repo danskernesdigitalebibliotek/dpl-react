@@ -37,6 +37,7 @@ const AvailabilityLabelVisual: React.FunctionComponent<
         manifestText={manifestText}
         availabilityText={getAvailabilityText}
         quantity={quantity}
+        isLoading={false}
       />
     </div>
   );

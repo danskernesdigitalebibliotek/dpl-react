@@ -1,28 +1,17 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import DashboardFees from "./dashboard-fees/dashboard-fees";
 import DashboardNotificationList from "./dashboard-notification-list/dashboard-notification-list";
 import { useText } from "../../core/utils/text";
-import StillInQueueModal from "./modal/still-in-queue-modal/still-in-queue-modal";
-import { useModalButtonHandler } from "../../core/utils/modal";
-import ReadyToLoanModal from "./modal/ready-for-loan-modal/ready-to-loan-modal";
-import DueDateLoansModal from "../loan-list/modal/due-date-loans-modal";
-import {
-  filterLoansNotOverdue,
-  filterLoansOverdue,
-  filterLoansSoonOverdue,
-  getModalIds,
-  sortByDueDate,
-  constructModalId
-} from "../../core/utils/helpers/general";
-import MaterialDetailsModal from "../loan-list/modal/material-details-modal";
-import MaterialDetails from "../loan-list/modal/material-details";
-import { ListType } from "../../core/utils/types/list-type";
+import { sortByDueDate } from "../../core/utils/helpers/general";
 import { LoanType } from "../../core/utils/types/loan-type";
-import { useGetLoansV2 } from "../../core/fbs/fbs";
-import { mapFBSLoanToLoanType } from "../../core/utils/helpers/list-mapper";
+import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
+import {
+  mapFBSLoanToLoanType,
+  mapFBSReservationToReservationType
+} from "../../core/utils/helpers/list-mapper";
 import { ThresholdType } from "../../core/utils/types/threshold-type";
 import { useConfig } from "../../core/utils/config";
-import { yesterday, soon, longer } from "./util/helpers";
+import { ReservationType } from "../../core/utils/types/reservation-type";
 
 interface DashboardProps {
   pageSize: number;
@@ -36,132 +25,44 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
-  const { open } = useModalButtonHandler();
+  const { data: reservationsFbs } = useGetReservationsV2();
+  const [reservations, setReservations] = useState<ReservationType[]>([]);
+
   const { isSuccess, data } = useGetLoansV2();
-  const { loanDetails, dueDateModal } = getModalIds();
-  const [dueDate, setDueDate] = useState<string | null>(null);
-  const [modalLoan, setModalLoan] = useState<ListType | null>(null);
-  const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
-  const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
-  const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
-    useState<LoanType[] | null>(null);
-  const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
-    LoanType[] | null
-  >(null);
-  const [physicalLoansOverdue, setPhysicalLoansOverdue] = useState<
-    LoanType[] | null
-  >(null);
-  const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
-  const [modalHeader, setModalHealer] = useState("");
-
-  const openModalHandler = useCallback(
-    (modalId: string) => {
-      if (modalId) {
-        open(modalId);
-      }
-    },
-    [open]
-  );
-
-  const openDueDateModal = useCallback(
-    (dueDateInput: string) => {
-      setDueDate(dueDateInput);
-
-      switch (dueDateInput) {
-        case yesterday:
-          setLoansToDisplay(physicalLoansOverdue);
-          setModalHealer(t("loansOverdueText"));
-          break;
-
-        case soon:
-          setLoansToDisplay(physicalLoansSoonOverdue);
-          setModalHealer(t("loansSoonOverdueText"));
-          break;
-
-        case longer:
-          setLoansToDisplay(physicalLoansFarFromOverdue);
-          setModalHealer(t("loansNotOverdueText"));
-          break;
-
-        default:
-          throw new Error("Invalid due date input");
-      }
-      open(constructModalId(dueDateModal as string, [dueDateInput]));
-    },
-    [
-      dueDateModal,
-      open,
-      physicalLoansFarFromOverdue,
-      physicalLoansOverdue,
-      physicalLoansSoonOverdue,
-      t
-    ]
-  );
-
-  const openLoanDetailsModal = useCallback(
-    (modalId: string) => {
-      setModalDetailsId(modalId);
-      open(`${loanDetails}${modalId}`);
-    },
-    [loanDetails, open]
-  );
+  const [loans, setLoans] = useState<LoanType[] | null>(null);
 
   useEffect(() => {
-    const loanForModal = physicalLoans?.find(
-      (loan) => loan.faust === modalDetailsId
-    );
-    if (loanForModal) {
-      setModalLoan(loanForModal);
+    if (reservationsFbs) {
+      setReservations(mapFBSReservationToReservationType(reservationsFbs));
     }
-  }, [modalDetailsId, physicalLoans]);
+  }, [reservationsFbs]);
 
   useEffect(() => {
-    if (isSuccess && data && warning) {
+    if (isSuccess && data) {
       const mapToLoanType = mapFBSLoanToLoanType(data);
+      setLoans(mapToLoanType);
 
       // Loans are sorted by loan date
       const sortedByLoanDate = sortByDueDate(mapToLoanType);
 
-      setPhysicalLoansOverdue(filterLoansOverdue(mapToLoanType));
-      setPhysicalLoansSoonOverdue(
-        filterLoansSoonOverdue(mapToLoanType, warning)
-      );
-      setPhysicalLoansFarFromOverdue(
-        filterLoansNotOverdue(mapToLoanType, warning)
-      );
-      setPhysicalLoans(sortedByLoanDate);
+      setLoans(sortedByLoanDate);
     } else {
-      setPhysicalLoans([]);
+      setLoans([]);
     }
   }, [isSuccess, data, warning]);
 
   return (
     <div className="dashboard-page">
-      <h1 className="text-header-h1 my-32">{t("yourProfileText")}</h1>
+      <h1 className="text-header-h1 my-32" data-cy="dashboard-header">
+        {t("yourProfileText")}
+      </h1>
       <DashboardFees />
       <DashboardNotificationList
-        openModalHandler={openModalHandler}
-        openDueDateModal={openDueDateModal}
+        columns
+        pageSize={pageSize}
+        reservations={reservations}
+        loans={loans}
       />
-      <StillInQueueModal modalId="still-in-queue-modal" />
-      <ReadyToLoanModal modalId="ready-to-loan-modal" />
-      <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
-        <MaterialDetails
-          faust={modalLoan?.faust}
-          identifier={modalLoan?.identifier}
-          loan={modalLoan as LoanType}
-        />
-      </MaterialDetailsModal>
-      {dueDate && physicalLoans && loansToDisplay && modalHeader && (
-        <DueDateLoansModal
-          pageSize={pageSize}
-          openLoanDetailsModal={openLoanDetailsModal}
-          dueDate={dueDate}
-          loansModal={loansToDisplay}
-          hideStatusCircle
-          customHeader={modalHeader}
-        />
-      )}
     </div>
   );
 };

@@ -3,8 +3,6 @@ import { useText } from "../../../core/utils/text";
 import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { ListView } from "../../../core/utils/types/list-view";
-import { getModalIds } from "../../../core/utils/helpers/general";
-import { useModalButtonHandler } from "../../../core/utils/modal";
 import { LoanType } from "../../../core/utils/types/loan-type";
 
 export interface ToggleListViewButtonsProps {
@@ -13,16 +11,16 @@ export interface ToggleListViewButtonsProps {
   disableRenewLoansButton: boolean;
   pageSize: number;
   loans: LoanType[];
+  openRenewLoansModal: () => void;
 }
 
 const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
   setView,
   view,
-  disableRenewLoansButton
+  disableRenewLoansButton,
+  openRenewLoansModal
 }) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
-  const { allLoansId } = getModalIds();
 
   const setViewHandler = useCallback(
     (inputView: ListView) => {
@@ -31,10 +29,6 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
     },
     [setView]
   );
-
-  const openRenewLoansModal = useCallback(() => {
-    open(allLoansId as string);
-  }, [allLoansId, open]);
 
   return (
     <div className="dpl-list-buttons__buttons">

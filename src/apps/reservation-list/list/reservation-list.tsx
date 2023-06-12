@@ -5,11 +5,11 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   sortByOldestPickupDeadline,
   getReservedDigital,
-  getReservedPhysical
+  getReservedPhysical,
+  getReadyForPickup
 } from "../utils/helpers";
 import {
   getModalIds,
-  getReadyForPickup,
   getScrollClass
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
@@ -18,10 +18,7 @@ import {
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import ReservationPauseToggler from "./reservation-pause-toggler";
-import {
-  useGetPatronInformationByPatronIdV2,
-  useGetReservationsV2
-} from "../../../core/fbs/fbs";
+import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { PatronV5, ReservationDetailsV2 } from "../../../core/fbs/model";
 import EmptyReservations from "./EmptyReservations";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
@@ -36,6 +33,7 @@ import ReservationDetails from "../modal/reservation-details/reservation-details
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
 import { getFromListByKey } from "../../loan-list/utils/helpers";
+import { usePatronData } from "../../../components/material/helper";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -50,7 +48,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const [reservation, setReservation] = useState<ReservationType | null>(null);
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
-  const { data: userData } = useGetPatronInformationByPatronIdV2();
+  const { data: userData } = usePatronData();
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const [modalDeleteId, setModalDeleteId] = useState<string | null>(null);
   // Data fetch
@@ -92,9 +90,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       const reservationType = mapPublizonReservationToReservationType(
         publizonData.reservations
       );
-      const readyForPickup = getReadyForPickup(
-        reservationType as ReservationDetailsV2[]
-      );
+      const readyForPickup = getReadyForPickup(reservationType);
       setReadyForPickupReservationsPublizon(readyForPickup);
       setReservedReservationsPublizon(
         getReservedDigital(
@@ -124,9 +120,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   useEffect(() => {
     if (isSuccessFBS && data) {
       const fbsToReservationType = mapFBSReservationToReservationType(data);
-      const readyForPickup = getReadyForPickup(
-        fbsToReservationType as ReservationDetailsV2[]
-      );
+      const readyForPickup = getReadyForPickup(fbsToReservationType);
       const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
       setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(

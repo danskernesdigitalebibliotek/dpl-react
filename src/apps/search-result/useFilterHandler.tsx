@@ -13,6 +13,7 @@ import {
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import { FacetField } from "../../core/dbc-gateway/generated/graphql";
 
 const useFilterHandler = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,24 @@ const useFilterHandler = () => {
     [dispatch]
   );
 
-  return { filters, addToFilter, removeFromFilter, clearFilter };
+  const addFilterFromUrlParamListener = (facet: FacetField) => {
+    const urlFilter = getUrlQueryParam(facet);
+    if (urlFilter) {
+      // We only use term from the url, therefore key is not important here.
+      addToFilter({
+        facet,
+        term: { key: "key", term: urlFilter }
+      });
+    }
+  };
+
+  return {
+    filters,
+    addToFilter,
+    removeFromFilter,
+    clearFilter,
+    addFilterFromUrlParamListener
+  };
 };
 
 export default useFilterHandler;

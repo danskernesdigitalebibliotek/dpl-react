@@ -15,11 +15,7 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import { ReservationDetailsV2 } from "../../fbs/model";
-import {
-  dashboardReadyForPickupApiValueText,
-  dashboardReservedApiValueText
-} from "../../configuration/api-strings.json";
+import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 
@@ -235,7 +231,7 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
 export const getRenewableMaterials = (list: LoanType[]) => {
   return list
     .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanId }) => loanId) as number[];
+    .map(({ loanId }) => String(loanId)) as string[];
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {
@@ -325,26 +321,16 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getReadyForPickup = (list: ReservationDetailsV2[]) => {
-  const yesterday = dayjs().subtract(1, "day");
-  return [...list].filter(({ state, pickupDeadline }) => {
-    const deadline = dayjs(pickupDeadline);
-    if (deadline) {
-      return (
-        state === dashboardReadyForPickupApiValueText && deadline < yesterday
-      );
-    }
-    return false;
-  });
-};
-export const getPhysicalReservations = (list: ReservationDetailsV2[]) => {
+export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
     ({ state }) => state === dashboardReservedApiValueText
   );
 };
 
 export const tallyUpFees = (fees: FeeV2[]) => {
-  return fees.reduce((total, { amount }) => total + amount, 0);
+  return fees
+    .reduce((total, { amount }) => total + amount, 0)
+    .toLocaleString("da-DA");
 };
 
 // Loans overdue

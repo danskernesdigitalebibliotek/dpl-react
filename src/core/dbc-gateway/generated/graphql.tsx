@@ -192,6 +192,8 @@ export type Corporation = Creator &
     attributeToName?: Maybe<Scalars["String"]>;
     /** The full corporation or conference name */
     display: Scalars["String"];
+    language?: Maybe<Language>;
+    local?: Maybe<Scalars["Boolean"]>;
     /** Location or jurisdiction of the corporation or conference, like Københavns Kommune, Statistisk Kontor */
     location?: Maybe<Scalars["String"]>;
     /** Main corporation or conference */
@@ -706,6 +708,8 @@ export type ManifestationTitles = {
   titlePlusLanguage?: Maybe<Scalars["String"]>;
   /** Danish translation of the main title */
   translated?: Maybe<Array<Scalars["String"]>>;
+  /** detailed title for tv series  */
+  tvSeries?: Maybe<TvSeries>;
 };
 
 export type Manifestations = {
@@ -750,6 +754,7 @@ export enum NoteType {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
+  Edition = "EDITION",
   Frequency = "FREQUENCY",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
@@ -809,8 +814,10 @@ export type Person = Creator &
     display: Scalars["String"];
     /** First name of the person */
     firstName?: Maybe<Scalars["String"]>;
+    language?: Maybe<Language>;
     /** Last name of the person */
     lastName?: Maybe<Scalars["String"]>;
+    local?: Maybe<Scalars["Boolean"]>;
     /** The person's full name inverted */
     nameSort: Scalars["String"];
     /** A list of which kinds of contributions this person made to this creation */
@@ -982,6 +989,8 @@ export type RecommendationResponse = {
 
 export type RelatedPublication = {
   __typename?: "RelatedPublication";
+  /** Faust of the related publication */
+  faust?: Maybe<Scalars["String"]>;
   /** Notes describing the relation of the related periodical/journal/publication */
   heading: Scalars["String"];
   /** ISBN of the related publication */
@@ -1170,12 +1179,26 @@ export type SearchResponseWorksArgs = {
   offset: Scalars["Int"];
 };
 
+export type SerieWork = {
+  __typename?: "SerieWork";
+  /** The number of work in the series as a number (as text) */
+  numberInSeries?: Maybe<Scalars["String"]>;
+  /** Information about whether this work in the series should be read first */
+  readThisFirst?: Maybe<Scalars["Boolean"]>;
+  /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
+  readThisWhenever?: Maybe<Scalars["Boolean"]>;
+  /** Work of a serieWork */
+  work: Work;
+};
+
 export type Series = {
   __typename?: "Series";
   /** A alternative title to the main 'title' of the series */
   alternativeTitles: Array<Scalars["String"]>;
   /** Whether this is a popular series or general series */
   isPopular?: Maybe<Scalars["Boolean"]>;
+  /** Members of this serie.  */
+  members: Array<SerieWork>;
   /** The number in the series as text qoutation and a number */
   numberInSeries?: Maybe<NumberInSeries>;
   /** A parallel title to the main 'title' of the series, in a different language */
@@ -1184,6 +1207,8 @@ export type Series = {
   readThisFirst?: Maybe<Scalars["Boolean"]>;
   /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
   readThisWhenever?: Maybe<Scalars["Boolean"]>;
+  /** Description of the series */
+  seriesDescription?: Maybe<Scalars["String"]>;
   /** The title of the series */
   title: Scalars["String"];
 };
@@ -1198,6 +1223,9 @@ export type Shelfmark = {
 
 export type Subject = {
   display: Scalars["String"];
+  /** Language of the subject - contains display and isoCode  */
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
   /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
   type: SubjectType;
 };
@@ -1214,6 +1242,7 @@ export type SubjectText = Subject & {
   __typename?: "SubjectText";
   display: Scalars["String"];
   language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
   type: SubjectType;
 };
 
@@ -1268,6 +1297,8 @@ export type TableOfContent = {
 export type TimePeriod = Subject & {
   __typename?: "TimePeriod";
   display: Scalars["String"];
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
   period: Range;
   type: SubjectType;
 };
@@ -1280,8 +1311,34 @@ export type Translation = {
   singular: Scalars["String"];
 };
 
+export type TvSeries = {
+  __typename?: "TvSeries";
+  /** Dansih translated title of the tv serie */
+  danishLaunchTitle?: Maybe<Scalars["String"]>;
+  /** Detailed information about the disc */
+  disc?: Maybe<TvSeriesDetails>;
+  /** Detailed information about the episode */
+  episode?: Maybe<TvSeriesDetails>;
+  /** Episode titles */
+  episodeTitles?: Maybe<Array<Scalars["String"]>>;
+  /** Detailed information about the season */
+  season?: Maybe<TvSeriesDetails>;
+  /** Title of the tv serie */
+  title?: Maybe<Scalars["String"]>;
+  /** Detailed information about the volume */
+  volume?: Maybe<TvSeriesDetails>;
+};
+
+export type TvSeriesDetails = {
+  __typename?: "TvSeriesDetails";
+  display?: Maybe<Scalars["String"]>;
+  numbers?: Maybe<Array<Scalars["Int"]>>;
+};
+
 export type Universe = {
   __typename?: "Universe";
+  /** A alternative title to the main 'title' of the universe */
+  alternativeTitles: Array<Scalars["String"]>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"];
 };
@@ -1343,6 +1400,8 @@ export type WorkTitles = {
   titlePlusLanguage?: Maybe<Scalars["String"]>;
   /** Danish translation of the main title */
   translated?: Maybe<Array<Scalars["String"]>>;
+  /** detailed title for tv series  */
+  tvSeries?: Maybe<TvSeries>;
 };
 
 export enum WorkType {
@@ -1699,6 +1758,14 @@ export type GetManifestationViaMaterialByFaustQuery = {
         number?: Array<number> | null;
       } | null;
     }>;
+    languages?: {
+      __typename?: "Languages";
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
+    } | null;
   } | null;
 };
 
@@ -4180,6 +4247,7 @@ export const useGetSmallWorkQuery = <
 export const GetManifestationViaMaterialByFaustDocument = `
     query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
+    ...WithLanguages
     pid
     titles {
       main
@@ -4204,7 +4272,7 @@ export const GetManifestationViaMaterialByFaustDocument = `
     }
   }
 }
-    `;
+    ${WithLanguagesFragmentDoc}`;
 export const useGetManifestationViaMaterialByFaustQuery = <
   TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown

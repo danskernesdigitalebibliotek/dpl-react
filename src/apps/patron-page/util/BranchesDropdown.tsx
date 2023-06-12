@@ -25,7 +25,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
       >
         {t("pickupBranchesDropdownLabelText")}
       </label>
-      <div className={`dropdown mb-32 ${classNames || ""}`}>
+      <div className={`dropdown mb-32 mt-4 ${classNames || ""}`}>
         {branches && (
           <>
             <select

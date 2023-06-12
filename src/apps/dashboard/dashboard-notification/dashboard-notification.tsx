@@ -1,66 +1,53 @@
-import React, { FC, useCallback, MouseEvent } from "react";
+import React, { FC } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
-import Link from "../../../components/atoms/links/Link";
+import StatusBadge from "../../loan-list/materials/utils/status-badge";
 
 interface DashboardNotificationProps {
   notificationNumber: number;
+  showNotificationDot: boolean;
   notificationText: string;
+  dataCy: string;
   notificationColor: string;
-  notificationLink: URL;
-  notificationClickEvent?: (modalId: string) => void | null;
+  badge?: string;
+  notificationClickEvent: () => void;
   notificationClickEventParam?: string;
 }
 
 const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationNumber,
   notificationText,
+  dataCy,
   notificationColor,
-  notificationLink,
   notificationClickEvent,
-  notificationClickEventParam
+  showNotificationDot,
+  badge
 }) => {
-  const notificationClickEventHandler = useCallback(
-    (e: MouseEvent) => {
-      e.stopPropagation();
-      if (notificationClickEvent && notificationClickEventParam) {
-        notificationClickEvent(notificationClickEventParam);
-      }
-    },
-    [notificationClickEvent, notificationClickEventParam]
-  );
+  if (notificationNumber === 0) return null;
+
   return (
-    <button type="button" onClick={(e) => notificationClickEventHandler(e)}>
-      {!notificationClickEvent && (
-        <Link
-          href={notificationLink}
-          className="list-dashboard shadow-medium-hover arrow__hover--right-small"
+    <button
+      type="button"
+      data-cy={dataCy}
+      onClick={notificationClickEvent}
+      className="mb-16"
+    >
+      <div className="list-dashboard shadow-medium-hover arrow__hover--right-small">
+        <div
+          className={`color-secondary-gray number number--${notificationColor}`}
         >
-          <div className={`number number--${notificationColor}`}>
-            {notificationNumber}
-          </div>
-          <span className="list-dashboard__title text-header-h4">
-            {notificationText}
-          </span>
-          <div className="list-dashboard__dot" />
-          <div className="list-dashboard__arrow">
-            <Arrow />
-          </div>
-        </Link>
-      )}
-      {notificationClickEvent && (
-        <div className="list-dashboard shadow-medium-hover arrow__hover--right-small">
-          <div className={`number number--${notificationColor}`}>
-            {notificationNumber}
-          </div>
-          <span className="list-dashboard__title text-header-h4">
-            {notificationText}
-          </span>
-          <div className="list-dashboard__dot" />
-          <div className="list-dashboard__arrow">
-            <Arrow />
-          </div>
+          {notificationNumber}
         </div>
-      )}
+        <span className="list-dashboard__title text-header-h4 color-secondary-gray">
+          {notificationText}
+        </span>
+        {notificationColor === "danger" && <StatusBadge dangerText={badge} />}
+        {notificationColor === "warning" && <StatusBadge warningText={badge} />}
+        {notificationColor === "info" && <StatusBadge infoText={badge} />}
+        {showNotificationDot && <div className="list-dashboard__dot" />}
+        <div className="list-dashboard__arrow">
+          <Arrow />
+        </div>
+      </div>
     </button>
   );
 };

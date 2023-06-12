@@ -6,6 +6,7 @@ import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
+import { AutosuggestCategoryList } from "../../core/utils/types/material-type";
 
 export interface AutosuggestProps {
   textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
@@ -16,7 +17,7 @@ export interface AutosuggestProps {
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
-  autosuggestCategoryList: { render: string; type: string }[];
+  autosuggestCategoryList: AutosuggestCategoryList[];
   isLoading: boolean;
   dataCy?: string;
 }

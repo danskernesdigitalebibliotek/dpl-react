@@ -61,7 +61,7 @@ const StatusSection: FC = () => {
     <section className="dpl-status-loans">
       {libraryProfile && (
         <>
-          <h2 className="text-header-h4  mt-32 mb-16">
+          <h2 className="text-header-h4 mt-32 mb-16">
             {t("patronPageStatusSectionHeaderText")}
           </h2>
           <div className="text-body-small-regular mb-8">
@@ -89,11 +89,17 @@ const StatusSection: FC = () => {
               </h3>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label text-body-medium-medium">
+                  <label
+                    className="text-label text-body-medium-medium"
+                    htmlFor="patron-page-status-section-out-of-text"
+                  >
                     {t("patronPageStatusSectionLoansEbooksText")}
-                  </div>
+                  </label>
                   {maxConcurrentEbookLoansPerBorrower && (
-                    <div className="text-label">
+                    <div
+                      className="text-label"
+                      id="patron-page-status-section-out-of-text"
+                    >
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronEbookLoans,
@@ -124,11 +130,17 @@ const StatusSection: FC = () => {
               </div>
               <div className="dpl-progress-bar text-small-caption color-secondary-gray">
                 <div className="dpl-progress-bar__header">
-                  <div className="text-label">
+                  <label
+                    className="text-label"
+                    htmlFor="max-concurrent-audio-loans-per-borrower"
+                  >
                     {t("patronPageStatusSectionLoansAudioBooksText")}
-                  </div>
+                  </label>
                   {maxConcurrentAudioLoansPerBorrower && (
-                    <div className="text-label">
+                    <div
+                      className="text-label"
+                      id="max-concurrent-audio-loans-per-borrower"
+                    >
                       {t("patronPageStatusSectionOutOfText", {
                         placeholders: {
                           "@this": patronAudioBookLoans,

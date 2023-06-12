@@ -17,7 +17,10 @@ import {
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
-import { FacetMaterialType } from "../../core/utils/types/material-type";
+import {
+  AutosuggestCategoryList,
+  AutosuggestCategory
+} from "../../core/utils/types/material-type";
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
@@ -49,25 +52,41 @@ const SearchHeader: React.FC = () => {
 
   const { searchUrl, materialUrl } = useUrls();
   const t = useText();
-  const autosuggestCategoryList = [
-    { render: t("autosuggestBookCategoryText"), type: FacetMaterialType.book },
+  const autosuggestCategoryList: AutosuggestCategoryList[] = [
+    {
+      render: t("autosuggestBookCategoryText"),
+      term: AutosuggestCategory.book,
+      facet: "materialTypes"
+    },
     {
       render: t("autosuggestEbookCategoryText"),
-      type: FacetMaterialType.ebook
+      term: AutosuggestCategory.ebook,
+      facet: "materialTypes"
     },
-    { render: t("autosuggestFilmCategoryText"), type: FacetMaterialType.movie },
+    {
+      render: t("autosuggestFilmCategoryText"),
+      term: AutosuggestCategory.movie,
+      facet: "workTypes"
+    },
     {
       render: t("autosuggestAudioBookCategoryText"),
-      type: FacetMaterialType.audioBook
+      term: AutosuggestCategory.audioBook,
+      facet: "materialTypes"
     },
     {
       render: t("autosuggestMusicCategoryText"),
-      type: FacetMaterialType.music
+      term: AutosuggestCategory.music,
+      facet: "workTypes"
     },
-    { render: t("autosuggestGameCategoryText"), type: FacetMaterialType.game },
+    {
+      render: t("autosuggestGameCategoryText"),
+      term: AutosuggestCategory.game,
+      facet: "workTypes"
+    },
     {
       render: t("autosuggestAnimatedSeriesCategoryText"),
-      type: FacetMaterialType.animatedSeries
+      term: AutosuggestCategory.animatedSeries,
+      facet: "materialTypes"
     }
   ];
   // Once we register the item select event the original highlighted index is
@@ -161,18 +180,22 @@ const SearchHeader: React.FC = () => {
   ) {
     const { type } = changes;
     let { highlightedIndex } = changes;
-    // Don't do aything for mouse hover events.
-    if (
-      type === useCombobox.stateChangeTypes.ItemMouseMove ||
-      type === useCombobox.stateChangeTypes.MenuMouseLeave
-    ) {
+    // Don't do anything for mouse leave events + exit function.
+    if (type === useCombobox.stateChangeTypes.MenuMouseLeave) {
       return;
     }
-    // If this is a click/enter press we need to save the highlighted index
-    // before Downshift sets it to -1.
+    // Set highlighted index when hovering over with mouse + exit function.
+    if (type === useCombobox.stateChangeTypes.ItemMouseMove) {
+      if (highlightedIndex !== undefined && highlightedIndex > -1) {
+        setHighlightedIndexAfterClick(highlightedIndex);
+      }
+      return;
+    }
+    // Set highlighted index for keyboard events, but continue on in function.
     if (
-      type !== useCombobox.stateChangeTypes.ItemClick &&
-      type !== useCombobox.stateChangeTypes.InputKeyDownEnter
+      type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
+      type === useCombobox.stateChangeTypes.InputKeyDownArrowUp ||
+      type === useCombobox.stateChangeTypes.InputKeyDownEnter
     ) {
       if (highlightedIndex !== undefined && highlightedIndex > -1) {
         setHighlightedIndexAfterClick(highlightedIndex);
@@ -191,6 +214,7 @@ const SearchHeader: React.FC = () => {
     const currentItemValue = determineSuggestionTerm(
       currentlyHighlightedObject
     );
+    // Change text in the search field without new API request.
     if (
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
@@ -198,6 +222,7 @@ const SearchHeader: React.FC = () => {
       setQWithoutQuery(currentItemValue);
       return;
     }
+    // Make a new API suggestion request.
     setQ(currentItemValue);
   }
 
@@ -255,14 +280,14 @@ const SearchHeader: React.FC = () => {
         name: statistics.autosuggestClick.name,
         trackedData: selectedItemString
       }).then(() => {
+        const { term, facet } =
+          autosuggestCategoryList[highlightedCategoryIndex];
+
         redirectTo(
           constructSearchUrlWithFilter({
             searchUrl,
             selectedItemString,
-            filter: {
-              materialType:
-                autosuggestCategoryList[highlightedCategoryIndex].type
-            }
+            filter: { [facet]: term }
           })
         );
       });

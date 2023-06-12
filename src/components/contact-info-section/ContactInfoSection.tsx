@@ -4,6 +4,7 @@ import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
 import TextInput from "../atoms/input/TextInput";
 import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
+import { useConfig } from "../../core/utils/config";
 
 export interface ChangePatronProps {
   (newValue: string | boolean, key: string): void;
@@ -24,6 +25,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
 }) => {
   const t = useText();
   const inputsClass = clsx("dpl-input", { input__desktop: inLine });
+  const config = useConfig();
+  const textNotificationsEnabled =
+    config("textNotificationsEnabledConfig") === "true";
 
   const phoneNode = (
     <>
@@ -40,7 +44,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       />
       {showCheckboxes && (
         <CheckBox
-          className="mt-32 mb-16"
+          className="mt-8 mb-16"
           onChecked={(newReceiveSms: boolean) =>
             changePatron(newReceiveSms, "receiveSms")
           }
@@ -55,7 +59,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const emailNode = (
     <>
       <TextInput
-        className={inputsClass}
+        className={clsx(inputsClass, { "mt-32": !textNotificationsEnabled })}
         id="email-address-input"
         type="email"
         required
@@ -63,9 +67,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.emailAddress}
         label={t("patronContactEmailLabelText")}
       />
-      {showCheckboxes && (
+      {showCheckboxes && textNotificationsEnabled && (
         <CheckBox
-          className="mt-32 mb-16"
+          className="mt-8 mb-16"
           onChecked={(newReceiveEmail: boolean) =>
             changePatron(newReceiveEmail, "receiveEmail")
           }
@@ -83,11 +87,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
       className={`${inLine ? "contact-info-flex" : ""}`}
       data-cy="patron-page-contact-info"
     >
-      {t("patronContactInfoHeaderText") && (
-        <h2 className="text-body-small-regular mt-32 mb-16">
-          {t("patronContactInfoHeaderText")}
-        </h2>
-      )}
+      <h2 className="text-header-h4 mt-32 mb-16">
+        {t("patronContactInfoHeaderText")}
+      </h2>
       {t("patronContactInfoBodyText") && (
         <p className="text-body-small-regular mb-32">
           {t("patronContactInfoBodyText")}

@@ -12,7 +12,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     pageSizeDesktop: {
-      name: "Number of search result items on desktop",
+      name: "Number of favorite items on desktop",
       defaultValue: 50,
       control: { type: "number" }
     },
@@ -27,7 +27,7 @@ export default {
       control: { type: "text" }
     },
     pageSizeMobile: {
-      name: "Number of search result items on mobile",
+      name: "Number of favorite items on mobile",
       defaultValue: 20,
       control: { type: "number" }
     },

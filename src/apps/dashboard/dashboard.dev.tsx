@@ -2,21 +2,46 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import DashBoard from "./dashboard.entry";
+import groupModalArgs from "../../core/storybook/groupModalArgs";
+import loanGroupModalArgs from "../../core/storybook/loanGroupModalArgs";
+import reservationGroupModalArgs from "../../core/storybook/reservationGroupModalArgs";
+import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
+import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
+import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 
 export default {
   title: "Apps / Dashboard",
   argTypes: {
     ...serviceUrlArgs,
+    ...groupModalArgs,
+    ...loanGroupModalArgs,
+    ...reservationGroupModalArgs,
+    ...reservationMaterialDetailsProps,
+    ...materialDetailsModalArgs,
+    ...deleteReservationModalArgs,
+    // Urls
+    loansOverdueUrl: {
+      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
+    physicalLoansUrl: {
+      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
+    feesUrl: {
+      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
+    reservationsUrl: {
+      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      control: { type: "text" }
+    },
     yourProfileText: {
       defaultValue: "Your profile",
       control: { type: "text" }
     },
-    intermediateText: {
-      defaultValue: "Intermediates",
-      control: { type: "text" }
-    },
-    intermediateUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+    feesText: {
+      defaultValue: "Fees",
       control: { type: "text" }
     },
     totalOwedText: {
@@ -24,71 +49,35 @@ export default {
       control: { type: "text" }
     },
     payOwedText: {
-      defaultValue: "Read more",
+      defaultValue: "Pay",
       control: { type: "text" }
     },
-    payOwedUrl: {
-      defaultValue: "https://unsplash.com/photos/KRztl5I6xac", // open source image of a dank fox
+    totalAmountFeeText: {
+      defaultValue: "@total,-",
       control: { type: "text" }
     },
     physicalLoansText: {
-      defaultValue: "Physical loans",
-      control: { type: "text" }
-    },
-    physicalLoansUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
-    physicalText: {
-      defaultValue: "Physical",
-      control: { type: "text" }
-    },
-    digitalText: {
-      defaultValue: "Digital",
-      control: { type: "text" }
-    },
-    digitalLoansUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "Loans",
       control: { type: "text" }
     },
     loansOverdueText: {
       defaultValue: "Returned too late",
       control: { type: "text" }
     },
-    loansOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
     loansSoonOverdueText: {
       defaultValue: "To be returned soon",
-      control: { type: "text" }
-    },
-    loansSoonOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
       control: { type: "text" }
     },
     loansNotOverdueText: {
       defaultValue: "Longer return time",
       control: { type: "text" }
     },
-    loansNotOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
     reservationsText: {
       defaultValue: "Reservations",
       control: { type: "text" }
     },
-    reservationsUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
-    chooseAllText: {
-      defaultValue: "Select all",
-      control: { type: "text" }
-    },
-    removeAllReservationsText: {
-      defaultValue: "Remove reservations",
+    queuedReservationsText: {
+      defaultValue: "Queued reservations",
       control: { type: "text" }
     },
     reservationsReadyText: {
@@ -107,50 +96,15 @@ export default {
       defaultValue: "At the moment, you have 0 reservations",
       control: { type: "text" }
     },
+    statusBadgeWarningText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expires soon"
+    },
     readyForLoanText: {
-      defaultValue: "Ready for loan",
+      defaultValue: "Ready for pickup",
       control: { type: "text" }
-    },
-    readyForLoanCounterLabelText: {
-      defaultValue: "Ready",
-      control: { type: "text" }
-    },
-    groupModalDueDateAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This modal groups loans after due date and makes it possible to renew said loans"
-    },
-    groupModalDueDateRenewLoanCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close renew loans modal"
-    },
-    stillInQueueModalAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "This modal shows materials that are still in queue"
-    },
-    readyForLoanModalAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "This modal shows materials that are ready for loan"
-    },
-    readyToLoanCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close ready to loan details modal"
-    },
-    stillInQueueCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close still in queue details modal"
     },
     publizonAudioBookText: {
       control: {
@@ -170,27 +124,9 @@ export default {
       },
       defaultValue: "Podcast"
     },
-    groupModalDueDateHeaderText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Due date @date"
-    },
-    groupModalReturnLibraryText: {
-      defaultValue: "",
+    listDetailsNothingSelectedLabelText: {
+      defaultValue: "Pick",
       control: { type: "text" }
-    },
-    groupModalCheckboxText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Choose all renewable"
-    },
-    groupModalButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renewable (@count)"
     },
     dashboardNumberInLineText: {
       control: {
@@ -198,62 +134,18 @@ export default {
       },
       defaultValue: "Number @count in line"
     },
-    groupModalRenewLoanDeniedMaxRenewalsReachedText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "The item cannot be renewed further "
-    },
-    groupModalDueDateMaterialText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "To be returned @date"
-    },
-    groupModalGoToMaterialText: {
-      defaultValue: "Go to material details",
-      control: { type: "text" }
-    },
-    resultPagerStatusText: {
-      defaultValue: "Showing @itemsShown out of @hitcount loans",
-      control: { type: "text" }
-    },
     loanListMaterialDaysText: {
       control: {
         type: "text"
       },
       defaultValue: "days"
     },
-    groupModalDueDateWarningLoanOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
-    },
-    groupModalDueDateLinkToPageWithFeesText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Read more about fees"
-    },
-    feesPageUrl: {
-      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+    physicalReservationsModalHeaderText: {
+      defaultValue: "Physical reservations",
       control: { type: "text" }
     },
-    groupModalRenewLoanDeniedReservedText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "The item is reserved by another patron"
-    },
-    groupModalRenewLoanDeniedInterLibraryLoanText: {
-      defaultValue:
-        "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library",
-      control: { type: "text" }
-    },
-    pickUpLatestText: {
-      defaultValue: "Pick up before",
+    digitalReservationsModalHeaderText: {
+      defaultValue: "Digital reservations",
       control: { type: "text" }
     },
     materialAndAuthorText: {
@@ -280,6 +172,6 @@ const Template: ComponentStory<typeof DashBoard> = (props) => (
   <DashBoard {...props} />
 );
 
-export const DashBoardEntry = Template.bind({});
+export const DashboardEntry = Template.bind({});
 
-DashBoardEntry.args = {};
+DashboardEntry.args = {};

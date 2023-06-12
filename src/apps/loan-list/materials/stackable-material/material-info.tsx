@@ -9,6 +9,7 @@ interface MaterialInfoProps {
   periodical?: string | null;
   children?: ReactNode;
   openDetailsModal: () => void;
+  focused: boolean;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
@@ -16,9 +17,10 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   isbnForCover,
   periodical,
   openDetailsModal,
+  focused,
   children
 }) => {
-  const { authors, materialType, year, title, description, pid, series } =
+  const { authors, materialType, year, title, description, pid, series, lang } =
     material || {};
   const coverId = pid || isbnForCover;
 
@@ -43,6 +45,10 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           <button
             onClick={openDetailsModal}
             type="button"
+            // This is to handle focus when more items are loaded via pagination
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={focused}
+            lang={lang || ""}
             className="list-reservation__header color-secondary-gray"
           >
             {title}

@@ -474,22 +474,18 @@ export const useGetV1LoanstatusIdentifier = <
   TError = ErrorType<unknown>
 >(
   identifier: string,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getV1LoanstatusIdentifier>>,
-      TError,
-      TData
-    >;
-  }
+  queryOptions?: UseQueryOptions<
+    Awaited<ReturnType<typeof getV1LoanstatusIdentifier>>,
+    TError,
+    TData
+  >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const { query: queryOptions } = options ?? {};
-
   const queryKey =
     queryOptions?.queryKey ?? getGetV1LoanstatusIdentifierQueryKey(identifier);
 
   const queryFn: QueryFunction<
     Awaited<ReturnType<typeof getV1LoanstatusIdentifier>>
-  > = ({ signal }) => getV1LoanstatusIdentifier(identifier, signal);
+  > = ({ signal }) => getV1LoanstatusIdentifier(identifier);
 
   const query = useQuery<
     Awaited<ReturnType<typeof getV1LoanstatusIdentifier>>,

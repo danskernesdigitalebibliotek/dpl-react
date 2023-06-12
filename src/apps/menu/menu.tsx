@@ -7,7 +7,11 @@ import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { getModalIds } from "../../core/utils/helpers/general";
 
-const Menu: FC = () => {
+interface MenuProps {
+  pageSize: number;
+}
+
+const Menu: FC<MenuProps> = ({ pageSize }) => {
   const { open } = useModalButtonHandler();
   const t = useText();
   const {
@@ -42,7 +46,7 @@ const Menu: FC = () => {
       >
         <img src={profileIcon} alt="" />
       </button>
-      <MenuLoggedIn />
+      <MenuLoggedIn pageSize={pageSize} />
       <MenuNotLoggedInContent />
     </>
   );

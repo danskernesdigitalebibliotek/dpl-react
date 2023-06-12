@@ -47,7 +47,8 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
     faust,
     identifier
   ]);
-  if (!dueDate || !loanDate) return <div />;
+
+  if (!dueDate || !loanDate) return null;
 
   return (
     <div className="list-reservation__status">
@@ -56,11 +57,14 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
       </div>
       <div>
         <div className="list-reservation__deadline">
-          <StatusBadge
-            dueDate={dueDate}
-            dangerText={t("loanListStatusBadgeDangerText")}
-            warningText={t("loanListStatusBadgeWarningText")}
-          />
+          {dueDate && (
+            <StatusBadge
+              showBadgeWithDueDate
+              badgeDate={dueDate}
+              dangerText={t("loanListStatusBadgeDangerText")}
+              warningText={t("loanListStatusBadgeWarningText")}
+            />
+          )}
           <p className="text-small-caption color-secondary-gray">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {

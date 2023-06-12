@@ -29,8 +29,7 @@ import {
 } from "../../apps/material/helper";
 import {
   getGetHoldingsV3QueryKey,
-  useAddReservationsV2,
-  useGetPatronInformationByPatronIdV2
+  useAddReservationsV2
 } from "../../core/fbs/fbs";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
@@ -54,7 +53,7 @@ import PromoBar from "../promo-bar/PromoBar";
 import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
-import { isAnonymous } from "../../core/utils/helpers/user";
+import { usePatronData } from "../material/helper";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -101,9 +100,7 @@ export const ReservationModalBody = ({
   const allPids = getAllPids(selectedManifestations);
   const faustIds = convertPostIdsToFaustIds(allPids);
   const { mutate } = useAddReservationsV2();
-  const userResponse = useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous()
-  });
+  const userResponse = usePatronData();
   const holdingsResponse = useGetHoldings({ faustIds, config });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(

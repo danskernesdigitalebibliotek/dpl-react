@@ -28,7 +28,8 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material
 }) => {
   const t = useText();
-  const { loanListEreolenUrl, feesPageUrl } = useUrls();
+  const { ereolenMyPageUrl, feesPageUrl } = useUrls();
+
   if (!loan) {
     return null;
   }
@@ -61,7 +62,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       >
         {dueDate && (
           <StatusBadge
-            dueDate={dueDate}
+            badgeDate={dueDate}
             dangerText={t("materialDetailsOverdueText")}
           />
         )}
@@ -77,7 +78,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       {isDigital(loan) && (
         <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
           <Link
-            href={loanListEreolenUrl}
+            href={ereolenMyPageUrl}
             className="btn-primary btn-filled btn-small arrow__hover--right-small"
           >
             {t("materialDetailsGoToEreolenText")}
@@ -135,7 +136,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
       {isDigital(loan) && (
         <div className="modal-details__buttons">
           <Link
-            href={loanListEreolenUrl}
+            href={ereolenMyPageUrl}
             className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
           >
             {t("materialDetailsGoToEreolenText")}

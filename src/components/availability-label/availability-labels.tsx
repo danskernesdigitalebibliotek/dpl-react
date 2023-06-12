@@ -45,8 +45,14 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
         const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = manifestationsOfMaterialType
+          .map((manifest) =>
+            manifest.accessTypes.map((accessType) => accessType.code)
+          )
+          .flat();
+
+        const access = manifestationsOfMaterialType
           .map((manifest) => {
-            return manifest.accessTypes.map((accessType) => accessType.code);
+            return manifest.access.map((acc) => acc.__typename);
           })
           .flat();
 
@@ -58,6 +64,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             faustIds={faustIds}
             manifestText={materialType}
             accessTypes={accessTypesCodes}
+            access={access}
             selected={
               selectedManifestations &&
               materialType === getMaterialTypes(selectedManifestations)[0]

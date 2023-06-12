@@ -1,49 +1,53 @@
 import React, { FC } from "react";
-import AuthorYear from "../../../components/author-year/authorYear";
 import { useText } from "../../../core/utils/text";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
+import { FeeMaterialV2 } from "../../../core/fbs/model";
+import SelectableMaterial from "../../loan-list/materials/selectable-material/selectable-material";
+import StatusBadge from "../../loan-list/materials/utils/status-badge";
+import { FaustId } from "../../../core/utils/types/ids";
 
-interface SelectableMaterialProps {
+interface StackableFeeListProps {
   creationDateFormatted: string;
+  materials: FeeMaterialV2[];
 }
 
-const StackableFeeList: FC<SelectableMaterialProps & MaterialProps> = ({
-  material,
+const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
+  materials,
   creationDateFormatted
 }) => {
   const t = useText();
-  const { materialType, title, authors, year } = material || {};
+
   return (
-    <li>
-      <div className="list-materials">
-        <div className="list-materials__content">
-          <div className="list-materials__content-status">
-            <div className="status-label status-label--outline">
-              {materialType}
-            </div>
-            <div className="status-label status-label--danger list-materials__content-status-label">
-              {t("turnedInText", {
+    <ul className="modal-loan__list-materials">
+      {materials.map(({ recordId, materialItemNumber }) => (
+        <SelectableMaterial
+          focused={false}
+          disabled
+          statusBadgeComponent={
+            <StatusBadge
+              dangerText={t("turnedInText", {
                 placeholders: { "@date": creationDateFormatted }
               })}
+            />
+          }
+          id={recordId}
+          faust={recordId as FaustId}
+          key={recordId}
+          statusMessageComponentMobile={
+            <div className="list-materials__status__note-mobile">
+              {materialItemNumber}
             </div>
-          </div>
-          <p className="text-header-h5 mt-8">{title}</p>
-          <p className="text-small-caption">
-            {/* TODO: Globalize "authors and year if available" */}
-            <AuthorYear author={authors || ""} year={year || ""} />
-          </p>
-        </div>
-        <div className="list-materials__status">
-          <div className="status-label status-label--danger">
-            {t("turnedInText", {
-              placeholders: { "@date": creationDateFormatted }
-            })}
-          </div>
-        </div>
-      </div>
-    </li>
+          }
+          statusMessageComponentDesktop={
+            <div className="list-materials__status__note-desktop">
+              {materialItemNumber}
+            </div>
+          }
+        />
+      ))}
+    </ul>
   );
 };
 
