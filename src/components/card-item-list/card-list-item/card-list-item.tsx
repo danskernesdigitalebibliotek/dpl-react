@@ -165,7 +165,9 @@ const CardListItem: React.FC<CardListItemProps> = ({
           lang={languageIsoCode}
           id={searchTitleId}
         >
-          <Link href={materialFullUrl}>{fullTitle}</Link>
+          <Link href={materialFullUrl} stopPropagation>
+            {fullTitle}
+          </Link>
         </h2>
 
         {author && item && (

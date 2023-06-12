@@ -10,6 +10,7 @@ export interface LinkProps {
   trackClick?: () => Promise<unknown>;
   dataCy?: string;
   ariaLabelledBy?: string;
+  stopPropagation?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -20,7 +21,8 @@ const Link: React.FC<LinkProps> = ({
   id,
   trackClick,
   dataCy,
-  ariaLabelledBy
+  ariaLabelledBy,
+  stopPropagation = false
 }) => {
   const redirect = (redirectToNewTab: boolean) => {
     if (redirectToNewTab) {
@@ -30,7 +32,9 @@ const Link: React.FC<LinkProps> = ({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.stopPropagation();
+    if (stopPropagation) {
+      e.stopPropagation();
+    }
     if (trackClick) {
       e.preventDefault();
       trackClick().then(() => {
@@ -40,7 +44,9 @@ const Link: React.FC<LinkProps> = ({
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-    e.stopPropagation();
+    if (stopPropagation) {
+      e.stopPropagation();
+    }
     if (trackClick && e.key === "Enter") {
       e.preventDefault();
       trackClick().then(() => {
