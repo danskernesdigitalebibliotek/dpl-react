@@ -26,15 +26,10 @@ export default {
   reservationsReadyForPickupText: {
     defaultValue: "Reservations ready for pickup",
     control: { type: "text" }
-  },
-  reservationDetailsNumberInQueueLabelText: {
-    defaultValue: "@count queued",
-    control: { type: "text" }
   }
 };
 
 export interface GroupModalReservationsProps {
-  reservationDetailsNumberInQueueLabelText: string;
   groupModalReservationsCloseModalAriaLabelText: string;
   groupModalReservationsLoansAriaDescriptionText: string;
   readyForLoanCounterLabelText: string;
