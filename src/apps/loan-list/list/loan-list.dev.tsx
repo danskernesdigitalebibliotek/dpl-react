@@ -181,68 +181,6 @@ export default {
       },
       defaultValue: "and"
     },
-    materialDetailsCloseModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Close material details modal"
-    },
-    materialDetailsPhysicalDueDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Afleveres"
-    },
-    materialDetailsDigitalDueDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expires"
-    },
-    materialDetailsLinkToPageWithFeesText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Read more about fees"
-    },
-    materialDetailsLoanDateLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Loan date"
-    },
-    materialDetailsMaterialNumberLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Material Item Number"
-    },
-    materialDetailsModalAriaDescriptionText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This modal shows material details, and makes it possible to renew a material, of that material is renewable"
-    },
-    materialDetailsOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expired"
-    },
-    materialDetailsRenewLoanButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renew your loans"
-    },
-    materialDetailsWarningLoanOverdueText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "The due date of return is exceeded, therefore you will be charged a fee, when the item is returned"
-    },
     publizonAudioBookText: {
       control: {
         type: "text"
