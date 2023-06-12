@@ -15,7 +15,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
   children
 }) => {
   const {
-    authors = "",
+    authorsShort = "",
     materialType = "",
     year = "",
     title = "",
@@ -44,7 +44,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
         <div className="list-reservation__about">
           <h3 className="text-header-h4">{title}</h3>
           <p className="text-small-caption color-secondary-gray">
-            <AuthorYear author={authors || ""} year={year || ""} />
+            <AuthorYear author={authorsShort} year={year || ""} />
           </p>
           <p className="text-small-caption color-secondary-gray">{series}</p>
         </div>

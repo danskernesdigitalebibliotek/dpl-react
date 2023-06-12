@@ -16,6 +16,7 @@ export interface SomethingSimilarProps {
   somethingSimilarTitleText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
+  etAlText: string;
   somethingSimilarByTheSameAuthorText: string;
   somethingSimilarSomethingSimilarAuthorText: string;
   addToFavoritesAriaLabelText: string;

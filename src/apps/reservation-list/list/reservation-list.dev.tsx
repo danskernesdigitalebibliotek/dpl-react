@@ -106,6 +106,10 @@ export default {
       defaultValue: "and",
       control: { type: "text" }
     },
+    etAlText: {
+      defaultValue: "et al.",
+      control: { type: "text" }
+    },
     reservationListNumberInQueueText: {
       defaultValue: "There are @count people in the queue before you",
       control: { type: "text" }

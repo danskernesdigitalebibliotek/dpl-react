@@ -148,14 +148,18 @@ export default {
       defaultValue: "Digital reservations",
       control: { type: "text" }
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     materialByAuthorText: {
       defaultValue: "By",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      defaultValue: "and",
       control: { type: "text" }
     },
     // Config

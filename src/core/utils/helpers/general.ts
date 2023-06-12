@@ -18,6 +18,7 @@ import { FeeV2 } from "../../fbs/model/feeV2";
 import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
+import { store } from "../../store";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -481,23 +482,54 @@ export const getReleaseYearSearchResult = (work: Work) => {
   return getManifestationPublicationYear(latest) || "";
 };
 
-// Creates a "by author, author and author"-string
-export const getContributors = (
+export const createEtAlAuthors = (
   creators: string[],
-  by: string,
-  and: string
+  byText: string,
+  etAlText: string
 ) => {
-  let returnContentString = "";
+  const firstTwo = creators.slice(0, 2);
+  return `${byText} ${firstTwo.join(", ")} ${etAlText}`;
+};
+export const createAndAuthors = (
+  creators: string[],
+  byText: string,
+  andText: string
+) => {
+  return `${byText} ${creators
+    .slice(0, -1)
+    .join(", ")} ${andText} ${creators.slice(-1)}`;
+};
+
+// Creates a "by author, author and author"-string, or by author, author et al.
+export const getContributors = (short: boolean, creators: string[]) => {
+  // Todo this is sortof a hack, but using t: UseTextFunction as argument
+  // makes the components re-render.
+  const {
+    text: { data: texts }
+  } = store.getState();
+
   if (creators && creators.length > 0) {
-    if (creators.length === 1) {
-      returnContentString = `${by} ${creators.join(", ")}`;
-    } else {
-      returnContentString = `${by} ${creators
-        .slice(0, -1)
-        .join(", ")} ${and} ${creators.slice(-1)}`;
+    if (creators.length === 2) {
+      return `${texts.materialByAuthorText} ${creators.join(
+        ` ${texts.materialAndAuthorText} `
+      )}`;
+    }
+    if (creators.length > 2) {
+      if (short) {
+        return createEtAlAuthors(
+          creators,
+          texts.materialByAuthorText,
+          texts.etAlText
+        );
+      }
+      return createAndAuthors(
+        creators,
+        texts.materialByAuthorText,
+        texts.materialAndAuthorText
+      );
     }
   }
-  return returnContentString;
+  return creators[0];
 };
 
 export default {};

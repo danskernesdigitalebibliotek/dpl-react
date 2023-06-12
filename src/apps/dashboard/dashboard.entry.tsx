@@ -48,8 +48,9 @@ export interface DashBoardProps {
   loanListMaterialDaysText: string;
   physicalReservationsModalHeaderText: string;
   digitalReservationsModalHeaderText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
 }
 
 const DashboardEntry: FC<
