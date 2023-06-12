@@ -624,25 +624,25 @@ describe("Dashboard", () => {
 
     // More than one element: group modal
     cy.getBySel("physical-loans-overdue").click();
-    cy.getBySel("modal-due-date--2023-01-08-close-button")
+    cy.getBySel("modal-due-date-2023-01-08-close-button")
       .should("exist")
       .click();
 
-    cy.getBySel("modal-due-date--2023-01-08-close-button").should("not.exist");
+    cy.getBySel("modal-due-date-2023-01-08-close-button").should("not.exist");
 
     cy.getBySel("physical-loans-soon-overdue").click();
-    cy.getBySel("modal-due-date--2023-01-16-close-button")
+    cy.getBySel("modal-due-date-2023-01-16-close-button")
       .should("exist")
       .click();
 
-    cy.getBySel("modal-due-date--2023-01-16-close-button").should("not.exist");
+    cy.getBySel("modal-due-date-2023-01-16-close-button").should("not.exist");
 
     cy.getBySel("loans-not-overdue").click();
-    cy.getBySel("modal-due-date--2024-01-09-close-button")
+    cy.getBySel("modal-due-date-2024-01-09-close-button")
       .should("exist")
       .click();
 
-    cy.getBySel("modal-due-date--2024-01-09-close-button").should("not.exist");
+    cy.getBySel("modal-due-date-2024-01-09-close-button").should("not.exist");
 
     cy.getBySel("reservations-ready").click();
     cy.getBySel("modal-reservations-ready-close-button")
