@@ -65,8 +65,8 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
         <button
           type="button"
           onClick={() => setRecommendView(true)}
-          className={`button-link button-link--bright ${
-            recommendView ? "button-link--selected" : ""
+          className={`text-body-medium-regular color-primary-black cursor-pointer button-link--bright ${
+            recommendView ? "button-link" : ""
           }`}
         >
           {t("somethingSimilarSomethingSimilarAuthorText")}
@@ -74,8 +74,8 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
         <button
           onClick={() => setRecommendView(false)}
           type="button"
-          className={`button-link button-link--bright ${
-            !recommendView ? "button-link--selected" : ""
+          className={`text-body-medium-regular color-primary-black cursor-pointer button-link--bright ${
+            !recommendView ? "button-link" : ""
           }`}
         >
           {t("somethingSimilarByTheSameAuthorText")}
