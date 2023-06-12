@@ -132,7 +132,14 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     );
   }
 
-  return <div />;
+  return (
+    <ReservationStatus
+      openReservationDetailsModal={openReservationDetailsModal}
+      percent={0}
+      label=""
+      empty
+    />
+  );
 };
 
 export default ReservationInfo;
