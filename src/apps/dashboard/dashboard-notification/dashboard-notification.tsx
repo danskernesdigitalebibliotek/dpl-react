@@ -25,7 +25,12 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   if (notificationNumber === 0) return null;
 
   return (
-    <button type="button" data-cy={dataCy} onClick={notificationClickEvent}>
+    <button
+      type="button"
+      data-cy={dataCy}
+      onClick={notificationClickEvent}
+      className="mb-16"
+    >
       <div className="list-dashboard shadow-medium-hover arrow__hover--right-small">
         <div
           className={`color-secondary-gray number number--${notificationColor}`}

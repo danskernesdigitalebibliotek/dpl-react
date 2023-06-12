@@ -2,12 +2,34 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Menu from "./menu.entry";
+import groupModalArgs from "../../core/storybook/groupModalArgs";
+import loanGroupModalArgs from "../../core/storybook/loanGroupModalArgs";
+import reservationGroupModalArgs from "../../core/storybook/reservationGroupModalArgs";
+import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
+import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
+import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 
 export default {
   title: "Apps / Menu",
   component: Menu,
   argTypes: {
     ...serviceUrlArgs,
+    ...groupModalArgs,
+    ...loanGroupModalArgs,
+    ...reservationMaterialDetailsProps,
+    ...reservationGroupModalArgs,
+    ...deleteReservationModalArgs,
+    ...materialDetailsModalArgs,
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
+    materialByAuthorText: {
+      defaultValue: "By",
+      control: { type: "text" }
+    },
     menuViewYourProfileText: {
       defaultValue: "My Account",
       control: { type: "text" }
@@ -69,8 +91,26 @@ export default {
       defaultValue: "Log out",
       control: { type: "text" }
     },
-    menuNotificationsMenuAriaLabelText: {
-      defaultValue: "Notifications menu",
+    reservationsReadyText: {
+      defaultValue: "Ready for you",
+      control: { type: "text" }
+    },
+    readyForLoanText: {
+      defaultValue: "Ready for pickup",
+      control: { type: "text" }
+    },
+    loansSoonOverdueText: {
+      defaultValue: "To be returned soon",
+      control: { type: "text" }
+    },
+    statusBadgeWarningText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expires soon"
+    },
+    loansOverdueText: {
+      defaultValue: "Returned too late",
       control: { type: "text" }
     },
     menuProfileLinksAriaLabelText: {

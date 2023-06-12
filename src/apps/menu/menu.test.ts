@@ -247,34 +247,34 @@ describe.skip("Menu (authenticated))", () => {
       .and("include", "/");
 
     // 2.c.i. “x lån overskredet -- x loans expired"”
-    cy.get(".modal-profile__notification-item:first-of-type")
+    cy.getBySel("physical-loans-overdue")
       .find(".number")
       .should("exist")
       .and("have.text", "1");
-    cy.get(".modal-profile__notification-item:first-of-type")
+    cy.getBySel("physical-loans-overdue")
       .find(".list-dashboard__title")
       .should("exist")
-      .and("have.text", "loans expired");
+      .and("have.text", "Returned too late");
 
     // 2.c.ii. “x lån udløber snart -- x loans expiring soon”
-    cy.get(".modal-profile__notification-item:nth-of-type(2)")
+    cy.getBySel("physical-loans-soon-overdue")
       .find(".number")
       .should("exist")
       .and("have.text", "2");
-    cy.get(".modal-profile__notification-item:nth-of-type(2)")
+    cy.getBySel("physical-loans-soon-overdue")
       .find(".list-dashboard__title")
       .should("exist")
-      .and("have.text", "loans expiring soon");
+      .and("have.text", "To be returned soon");
 
     // 2.c.iii. “x reservering klar” eller “x reserveringer klar”. Engelsk: "x reservation ready for pickup" eller "x reservations ready for pickup"
-    cy.get(".modal-profile__notification-item:nth-of-type(3)")
+    cy.getBySel("reservations-ready")
       .find(".number")
       .should("exist")
       .and("have.text", "1");
-    cy.get(".modal-profile__notification-item:nth-of-type(3)")
+    cy.getBySel("reservations-ready")
       .find(".list-dashboard__title")
       .should("exist")
-      .and("have.text", "reservations ready for pickup");
+      .and("have.text", "Ready for you");
 
     // 2.d. Menupunkterne
     // 2.d.i. “Lån” viser det samlede antal lån, og linker til Udlånsoversigten. Engelsk tekst: "Loans"

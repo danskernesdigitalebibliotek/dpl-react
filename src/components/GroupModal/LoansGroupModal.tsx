@@ -66,8 +66,8 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     <Modal
       modalId={modalIdUsed as string}
       classNames="modal-loan"
-      closeModalAriaLabelText={t("groupModalCloseModalAriaLabelText")}
-      screenReaderModalDescriptionText={t("groupModalAriaDescriptionText")}
+      closeModalAriaLabelText={t("groupModalLoansCloseModalAriaLabelText")}
+      screenReaderModalDescriptionText={t("groupModalLoansAriaDescriptionText")}
     >
       <div className="modal-loan">
         {children}

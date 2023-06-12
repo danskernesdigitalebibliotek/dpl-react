@@ -50,7 +50,7 @@ const ReservationDetailsSection: FC<ReservationDetailsSectionProps> = ({
         {t("patronPagePauseReservationsBodyText")}
       </p>
       <CheckBox
-        className="mt-32 mb-16"
+        className="my-16"
         id="show-reservation-pause-section"
         onChecked={openPauseReservationModal}
         ariaLabel={t("patronPageOpenPauseReservationsSectionAriaText")}
