@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import * as React from "react";
 import { FC, useState } from "react";
 import Link from "../../../components/atoms/links/Link";
-import CheckBox from "../../../components/checkbox/Checkbox";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import { FaustId } from "../../../core/utils/types/ids";
@@ -11,6 +10,8 @@ import FeeStatusCircle from "../utils/fee-status-circle";
 import { isDateBeforePaymentChangeDate } from "../utils/helper";
 import { dateFormatCustom } from "../../../core/configuration/date-format.json";
 import StackableFeesList from "./stackable-fees-list";
+import AcceptTermsCheckbox from "./AcceptTermsCheckbox";
+import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 
 export interface FeeDetailsContentProps {
   feeDetailsData: FeeV2;
@@ -19,7 +20,7 @@ export interface FeeDetailsContentProps {
 const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
   const [check, setCheck] = useState(false);
-  const { termsOfTradeUrl, paymentOverviewUrl } = useUrls();
+  const { paymentOverviewUrl } = useUrls();
   const handleAcceptedTerms = () => {
     setCheck(!check);
   };
@@ -34,78 +35,64 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const showPaymentButton = !prePaymentTypeChange && check;
 
   return (
-    <div className="modal modal-show modal-loan">
-      <div className="modal__screen-reader-description" id="describemodal">
-        {t("feeDetailsModalScreenReaderText")}
-      </div>
-      <div className="modal-loan__container">
-        <div className="modal-loan__header">
-          <div className="mr-32">
-            <FeeStatusCircle
-              dueDate={dueDate || ""}
-              feeCreationDate={creationDate}
-            />
-          </div>
-          <div>
-            <h2 className="modal-loan__title text-header-h2">
-              {t("turnedInText", {
-                placeholders: { "@date": creationDateFormatted }
-              })}
-            </h2>
-          </div>
-        </div>
-        <div className="modal-loan__buttons">
-          {/* TODO: Create a subcomponent of "terms and conditions checkbox", to reduce duplicate code */}
-          <CheckBox
-            id="checkbox_id__fee_details"
-            onChecked={() => handleAcceptedTerms()}
-            label={
-              <>
-                {t("iAcceptText")}{" "}
-                <Link href={termsOfTradeUrl}>
-                  {t("termsOfTradeText")}
-                  <sup>*</sup>
-                </Link>
-              </>
-            }
+    <div className="modal-loan__container">
+      <div className="modal-loan__header">
+        <div className="mr-32">
+          <FeeStatusCircle
+            dueDate={dueDate || ""}
+            feeCreationDate={creationDate}
           />
-          <div>
-            <p>{amount},-</p>
-          </div>
-          {!showPaymentButton && (
-            <button
-              type="button"
-              className="btn-primary btn-outline btn-small arrow__hover--right-small"
-              disabled={!showPaymentButton}
-            >
-              {t("payText")}
-            </button>
-          )}
-          {showPaymentButton && (
-            <Link
-              className="btn-primary btn-filled btn-small arrow__hover--right-small disabled"
-              href={new URL(paymentOverviewUrl)}
-            >
-              {t("payText")}
-            </Link>
-          )}
-
-          {/* )} */}
         </div>
-        <ul className="modal-loan__list-container">
-          <li className="modal-loan__list">
-            <ul className="modal-loan__list-materials">
-              {materials.map(({ recordId }) => (
-                <StackableFeesList
-                  key={recordId}
-                  faust={`${recordId}` as FaustId}
-                  creationDateFormatted={creationDateFormatted}
-                />
-              ))}
-            </ul>
-          </li>
-        </ul>
+        <div>
+          <h2 className="modal-loan__title text-header-h2">
+            {t("turnedInText", {
+              placeholders: { "@date": creationDateFormatted }
+            })}
+          </h2>
+        </div>
       </div>
+      <GroupModalContent
+        amountOfSelectableMaterials={0}
+        buttonComponent={
+          <>
+            <AcceptTermsCheckbox handleAcceptedTerms={handleAcceptedTerms} />
+            <div>
+              <p>
+                {t("amountText", {
+                  placeholders: { "@amount": amount }
+                })}
+              </p>
+            </div>
+            {!showPaymentButton && (
+              <button
+                type="button"
+                className="btn-primary btn-outline btn-small arrow__hover--right-small"
+                disabled={!showPaymentButton}
+              >
+                {t("payText")}
+              </button>
+            )}
+            {showPaymentButton && (
+              <Link
+                className="btn-primary btn-filled btn-small arrow__hover--right-small disabled"
+                href={paymentOverviewUrl}
+              >
+                {t("payText")}
+              </Link>
+            )}
+          </>
+        }
+      >
+        <div />
+      </GroupModalContent>
+      {materials.map(({ recordId }) => (
+        <StackableFeesList
+          materials={materials}
+          key={recordId}
+          faust={`${recordId}` as FaustId}
+          creationDateFormatted={creationDateFormatted}
+        />
+      ))}
     </div>
   );
 };

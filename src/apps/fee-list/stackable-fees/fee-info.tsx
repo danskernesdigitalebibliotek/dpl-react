@@ -2,29 +2,34 @@ import React, { FC, ReactNode } from "react";
 import AuthorYear from "../../../components/author-year/authorYear";
 import { Cover } from "../../../components/cover/cover";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
+import { Pid } from "../../../core/utils/types/ids";
 
 interface FeeInfoProps {
   material: BasicDetailsType;
-  isbnForCover: string;
+  materialItemNumber: string;
   children: ReactNode;
 }
-const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
+const FeeInfo: FC<FeeInfoProps> = ({
+  material,
+  materialItemNumber,
+  children
+}) => {
   const {
     authorsShort = "",
     materialType = "",
     year = "",
     title = "",
     description = "",
-    pid = "",
+    pid,
     series = ""
   } = material;
-  const coverId = pid || isbnForCover;
+
   return (
     <div className="list-reservation__material">
       <div>
         <Cover
-          id={coverId}
-          idType={pid ? "pid" : "isbn"}
+          id={pid as Pid}
+          idType="pid"
           size="small"
           animate={false}
           description={description || ""}
@@ -44,6 +49,9 @@ const FeeInfo: FC<FeeInfoProps> = ({ material, isbnForCover, children }) => {
           <p className="text-small-caption color-secondary-gray">{series}</p>
         </div>
         <div />
+        <p className="text-small-caption color-secondary-gray">
+          {materialItemNumber}
+        </p>
         {children}
       </div>
     </div>
