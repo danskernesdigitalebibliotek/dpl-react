@@ -9,13 +9,13 @@ interface StatusBadgeProps {
   dangerText?: string;
   neutralText?: string;
   infoText?: string;
-  showBadgeWithoutDueDate?: boolean;
+  showBadgeWithDueDate?: boolean;
 }
 
 const StatusBadge: FC<StatusBadgeProps> = ({
   badgeDate,
   warningText,
-  showBadgeWithoutDueDate = true,
+  showBadgeWithDueDate = false,
   dangerText,
   infoText,
   neutralText
@@ -45,17 +45,17 @@ const StatusBadge: FC<StatusBadgeProps> = ({
     );
   }
 
-  if (neutralText && showBadgeWithoutDueDate) {
+  if (neutralText && !showBadgeWithDueDate) {
     return (
       <div className="status-label status-label--neutral">{neutralText}</div>
     );
   }
 
-  if (infoText && showBadgeWithoutDueDate) {
+  if (infoText && !showBadgeWithDueDate) {
     return <div className="status-label status-label--info">{infoText}</div>;
   }
 
-  if (dangerText && showBadgeWithoutDueDate) {
+  if (dangerText && !showBadgeWithDueDate) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
