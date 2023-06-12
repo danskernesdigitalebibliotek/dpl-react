@@ -7,7 +7,7 @@ interface ReservationStatusProps {
   reservationInfo?: ReservationType;
   openReservationDetailsModal: (reservation: ReservationType) => void;
   color?: string;
-  empty: boolean;
+  empty?: boolean;
   percent: number;
   infoLabel?: string;
   label: string | string[];
@@ -19,7 +19,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   openReservationDetailsModal,
   color,
   percent,
-  empty,
+  empty = false,
   infoLabel,
   label,
   children
