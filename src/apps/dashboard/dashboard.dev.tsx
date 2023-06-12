@@ -134,6 +134,10 @@ export default {
       },
       defaultValue: "Number @count in line"
     },
+    reservationDetailsOthersInQueueText: {
+      defaultValue: "Others are queueing for this material",
+      control: { type: "text" }
+    },
     loanListMaterialDaysText: {
       control: {
         type: "text"

@@ -241,7 +241,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       color: "neutral",
       showNotificationDot: false,
       notificationClickEvent: () =>
-        readyToLoanReservations.length === 1
+        queuedReservations.length === 1
           ? openReservationDetailsModal(
               String(
                 queuedReservations[0].identifier || queuedReservations[0].faust

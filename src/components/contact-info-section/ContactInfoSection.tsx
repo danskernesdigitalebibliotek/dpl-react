@@ -42,7 +42,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.phoneNumber}
         label={t("patronContactPhoneLabelText")}
       />
-      {showCheckboxes && (
+      {showCheckboxes && textNotificationsEnabled && (
         <CheckBox
           className="mt-8 mb-16"
           onChecked={(newReceiveSms: boolean) =>
@@ -67,7 +67,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         value={patron?.emailAddress}
         label={t("patronContactEmailLabelText")}
       />
-      {showCheckboxes && textNotificationsEnabled && (
+      {showCheckboxes && (
         <CheckBox
           className="mt-8 mb-16"
           onChecked={(newReceiveEmail: boolean) =>

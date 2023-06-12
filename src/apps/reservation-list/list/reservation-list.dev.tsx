@@ -158,10 +158,6 @@ export default {
       defaultValue: "Others are queueing for this material",
       control: { type: "text" }
     },
-    reservationDetailsNumberInQueueLabelText: {
-      defaultValue: "@count queued",
-      control: { type: "text" }
-    },
     reservationDetailsExpiresTitleText: {
       defaultValue: "Pickup deadline",
       control: { type: "text" }
