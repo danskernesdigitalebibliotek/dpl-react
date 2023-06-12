@@ -18,11 +18,14 @@ export interface MenuProps {
   menuNavigationDataConfig: string;
   menuNotificationLoansExpiredText: string;
   menuNotificationLoansExpiredUrl: string;
+  readyForLoanText: string;
   menuNotificationLoansExpiringSoonText: string;
   menuNotificationLoansExpiringSoonUrl: string;
   menuNotificationReadyForPickupText: string;
   menuNotificationReadyForPickupUrl: string;
   menuLogOutText: string;
+  loansSoonOverdueText: string;
+  loansOverdueText: string;
   menuLogOutUrl: string;
   thresholdConfig: string;
   feeListDaysText: string;
