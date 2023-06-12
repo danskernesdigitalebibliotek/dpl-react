@@ -11,6 +11,7 @@ interface LoanListItemProps {
   dueDates?: string[];
   openLoanDetailsModal: (modalId: string) => void;
   openDueDateModal: (dueDate: string) => void;
+  indexOfFocus: number | null;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
@@ -18,7 +19,8 @@ const LoanListItems: FC<LoanListItemProps> = ({
   view,
   dueDates,
   openDueDateModal,
-  openLoanDetailsModal
+  openLoanDetailsModal,
+  indexOfFocus
 }) => {
   const t = useText();
 
@@ -34,7 +36,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
       </div>
       {view === "stack" &&
         dueDates &&
-        dueDates.map((uniqueDueDate: string) => {
+        dueDates.map((uniqueDueDate: string, i) => {
           // Stack items:
           // if multiple items have the same due date, they are a "stack"
           // which means styling making it look like there are multiple materials,
@@ -48,6 +50,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <div>
               {loan && (
                 <StackableMaterial
+                  focused={i === indexOfFocus}
                   openDueDateModal={openDueDateModal}
                   openLoanDetailsModal={openLoanDetailsModal}
                   loan={loan}
@@ -62,9 +65,10 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
         })}
       {view === "list" &&
-        loans.map((loan) => {
+        loans.map((loan, i) => {
           return (
             <StackableMaterial
+              focused={i === indexOfFocus}
               openLoanDetailsModal={openLoanDetailsModal}
               identifier={loan.identifier}
               faust={loan.faust}

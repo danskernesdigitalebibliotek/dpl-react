@@ -16,6 +16,7 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
     pageSize >= hitcount ? hitcount : pageSize
   );
   const [page, setPage] = useState<number>(0);
+  const [firstInNewPage, setFirstInNewPage] = useState<number | null>(null);
 
   useEffect(() => {
     const onLastPage = pageSize > hitcount;
@@ -26,6 +27,7 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
     const currentPage = page + 1;
     const itemsOnPage = (currentPage + 1) * pageSize;
     const onLastPage = itemsOnPage > hitcount;
+    setFirstInNewPage(itemsOnPage - pageSize);
     // the "itemsOnPage > hitcount"-check is to
     // To avoid the "showing 10 out of 8"-situation
     setItemsShown(onLastPage ? hitcount : itemsOnPage);
@@ -42,7 +44,7 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
       />
     ) : null;
 
-  return { itemsShown, PagerComponent, page };
+  return { itemsShown, PagerComponent, page, firstInNewPage };
 };
 
 export default usePager;

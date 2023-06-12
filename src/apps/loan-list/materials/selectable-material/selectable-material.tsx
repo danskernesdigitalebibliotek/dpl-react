@@ -14,6 +14,7 @@ interface SelectableMaterialProps {
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
+  focused: boolean;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -25,7 +26,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   id,
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
-  statusBadgeComponent
+  statusBadgeComponent,
+  focused
 }) => {
   const t = useText();
 
@@ -52,6 +54,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               id={id}
               selected={selected}
               disabled={disabled}
+              focused={focused}
               label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
                 placeholders: { "@label": title }
               })}
@@ -81,6 +84,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {openDetailsModal && (
               <button
                 type="button"
+                // This is to handle focus when more items are loaded via pagination
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus={disabled && focused}
                 className="list-reservation__note"
                 onClick={() => openDetailsModal(id)}
                 aria-label={

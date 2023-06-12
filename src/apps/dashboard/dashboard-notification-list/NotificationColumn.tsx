@@ -1,17 +1,7 @@
 import React, { FC } from "react";
 import Link from "../../../components/atoms/links/Link";
-import DashboardNotification from "../dashboard-notification/dashboard-notification";
 import EmptyList from "../../../components/empty-list/empty-list";
-
-interface NotificationMaterialsList {
-  listLength: number;
-  badge?: string;
-  header: string;
-  color: string;
-  dataCy: string;
-  showNotificationDot: boolean;
-  notificationClickEvent: () => void;
-}
+import Notifications, { NotificationMaterialsList } from "./Notifications";
 
 export interface NotificationColumnProps {
   materials: NotificationMaterialsList[];
@@ -44,29 +34,9 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
         </div>
       </div>
       {materialsCount === 0 && <EmptyList emptyListText={emptyListText} />}
-      {materialsCount !== 0 &&
-        materials.map(
-          ({
-            listLength,
-            header: headerNotification,
-            color,
-            notificationClickEvent,
-            showNotificationDot,
-            badge,
-            dataCy
-          }) => (
-            <DashboardNotification
-              notificationNumber={listLength}
-              notificationText={headerNotification}
-              showNotificationDot={showNotificationDot}
-              badge={badge}
-              dataCy={dataCy}
-              key={headerNotification}
-              notificationColor={color}
-              notificationClickEvent={notificationClickEvent}
-            />
-          )
-        )}
+      {materialsCount !== 0 && (
+        <Notifications showOnlyNotifications={false} materials={materials} />
+      )}
     </div>
   );
 };

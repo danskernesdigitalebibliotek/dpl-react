@@ -19,13 +19,13 @@ import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 interface ReservationGroupModalProps {
   pageSize: number;
   modalId: string;
-  physicalReservations: ReservationType[];
+  reservations: ReservationType[];
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   pageSize,
   modalId,
-  physicalReservations
+  reservations
 }) => {
   const t = useText();
   const { close } = useModalButtonHandler();
@@ -35,8 +35,9 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     useDeleteV1UserReservationsIdentifier();
 
   const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
-  const [displayedPhysicalReservations, setDisplayedPhysicalReservations] =
-    useState<ReservationType[]>([]);
+  const [displayedreservations, setDisplayedReservations] = useState<
+    ReservationType[]
+  >([]);
   const [selectableReservations, setSelectableReservations] = useState<
     string[]
   >([]);
@@ -46,40 +47,40 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   }, [modalId]);
 
   useEffect(() => {
-    if (physicalReservations && modalId === reservationsReady) {
-      const readyToLoan = getReadyForPickup(physicalReservations);
+    if (reservations && modalId === reservationsReady) {
+      const readyToLoan = getReadyForPickup(reservations);
       if (readyToLoan) {
-        setDisplayedPhysicalReservations(readyToLoan);
+        setDisplayedReservations(readyToLoan);
       }
     }
 
-    if (physicalReservations && modalId === reservationsQueued) {
-      const reservations = getPhysicalQueuedReservations(physicalReservations);
-      if (reservations) {
-        setDisplayedPhysicalReservations(reservations);
+    if (reservations && modalId === reservationsQueued) {
+      const queuedReservations = getPhysicalQueuedReservations(reservations);
+      if (queuedReservations) {
+        setDisplayedReservations(queuedReservations);
       }
     }
-  }, [modalId, physicalReservations, reservationsQueued, reservationsReady]);
+  }, [modalId, reservations, reservationsQueued, reservationsReady]);
 
   useEffect(() => {
     if (modalId === reservationsQueued) {
       setSelectableReservations([
-        ...displayedPhysicalReservations
+        ...displayedreservations
           .map(({ identifier, faust }) => identifier || faust || "")
           .filter((id) => id !== "")
       ]);
     } else {
       setSelectableReservations([
-        ...displayedPhysicalReservations
+        ...displayedreservations
           .map(({ identifier, faust }) => identifier || faust || "")
           .filter((id) => id !== "")
       ]);
     }
-  }, [displayedPhysicalReservations, modalId, reservationsQueued]);
+  }, [displayedreservations, modalId, reservationsQueued]);
 
   const removeSelectedReservations = () => {
     if (materialsToDelete.length > 0) {
-      const physicalReservationsToDelete = materialsToDelete
+      const reservationsToDelete = materialsToDelete
         .map((id) => Number(isFaust(id)))
         .filter((id) => id !== 0);
       const digitalMaterialsToDelete = materialsToDelete
@@ -87,7 +88,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
         .filter((id) => id !== null);
 
       deletePhysicalReservation({
-        params: { reservationid: physicalReservationsToDelete }
+        params: { reservationid: reservationsToDelete }
       });
       digitalMaterialsToDelete.forEach((id) =>
         deleteDigitalReservation({
@@ -106,8 +107,12 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     <Modal
       modalId={modalId}
       classNames="modal-loan"
-      closeModalAriaLabelText={t("groupModalCloseModalAriaLabelText")}
-      screenReaderModalDescriptionText={t("groupModalAriaDescriptionText")}
+      closeModalAriaLabelText={t(
+        "groupModalReservationsCloseModalAriaLabelText"
+      )}
+      screenReaderModalDescriptionText={t(
+        "groupModalReservationsLoansAriaDescriptionText"
+      )}
     >
       <div className="modal-loan">
         <div className="modal-loan__container">
@@ -141,7 +146,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             selectMaterials={selectMaterials}
           >
             <GroupModalReservationsList
-              materials={displayedPhysicalReservations}
+              materials={displayedreservations}
               pageSize={pageSize}
               selectedMaterials={materialsToDelete}
               selectMaterials={selectMaterials}

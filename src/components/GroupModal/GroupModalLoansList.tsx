@@ -24,7 +24,7 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
 }) => {
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<LoanType[]>([]);
-  const { itemsShown, PagerComponent } = usePager({
+  const { itemsShown, PagerComponent, firstInNewPage } = usePager({
     hitcount: materials.length,
     pageSize
   });
@@ -48,8 +48,9 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
   return (
     <>
       <ul className="modal-loan__list-materials">
-        {displayedMaterials.map((loanType) => (
+        {displayedMaterials.map((loanType, i) => (
           <SelectableMaterial
+            focused={firstInNewPage === i}
             statusBadgeComponent={
               <StatusBadge
                 badgeDate={loanType.dueDate}

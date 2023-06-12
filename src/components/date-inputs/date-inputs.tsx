@@ -22,12 +22,14 @@ const DateInputs: FC<DateInputsProps> = ({
     <div className="datepickers">
       <DateInput
         value={startDate}
+        required
         id="start-date"
         onChange={setStartDate}
         label={t("dateInputsStartDateLabelText")}
       />
       <DateInput
         onChange={setEndDate}
+        required
         minDateInput={(dateHasPassed(startDate) ? null : startDate) || ""}
         value={endDate}
         id="end-date"
