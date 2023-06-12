@@ -8,7 +8,10 @@ const EmptyReservations: FC = () => {
 
   return (
     <div className="list-reservation-container m-32">
-      <EmptyList emptyListText={t("reservationListAllEmptyText")} />
+      <EmptyList
+        classNames="mt-24"
+        emptyListText={t("reservationListAllEmptyText")}
+      />
     </div>
   );
 };
