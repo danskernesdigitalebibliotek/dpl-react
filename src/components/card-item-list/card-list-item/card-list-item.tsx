@@ -118,8 +118,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
       ref={itemRef}
       data-cy={dataCy}
       className="card-list-item arrow arrow__hover--right-small"
-      onClick={(e) => {
-        e.stopPropagation();
+      onClick={() => {
         handleClick();
       }}
       onKeyUp={(e) => e.key === "Enter" && handleClick}
