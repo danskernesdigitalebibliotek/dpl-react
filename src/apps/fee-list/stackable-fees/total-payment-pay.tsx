@@ -1,24 +1,23 @@
 import clsx from "clsx";
 import React, { FC, useState } from "react";
-import Link from "../../../components/atoms/links/Link";
-import CheckBox from "../../../components/checkbox/Checkbox";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
 import { getIntermediatePaymentModalId } from "../modal/my-payment-overview-modal";
+import AcceptTermsCheckbox from "./AcceptTermsCheckbox";
 
 export interface TotalPaymentPayProps {
   prePaymentTypeChange: boolean;
-  total: number;
+  totalText: string;
   hideCheckbox: boolean;
 }
 
 const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   prePaymentTypeChange,
-  total,
+  totalText,
   hideCheckbox
 }) => {
-  const { availablePaymentTypesUrl, termsOfTradeUrl } = useUrls();
+  const { availablePaymentTypesUrl } = useUrls();
   const t = useText();
   const { open } = useModalButtonHandler();
 
@@ -41,9 +40,6 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
     { "btn-outline": !showPaymentButton, "btn-filled": showPaymentButton }
   );
 
-  const checkboxTermsId = `checkbox_terms__${
-    (prePaymentTypeChange && "prepaymentchange") || "postpaymentchange"
-  }`;
   const postPaymentChangeNotChecked = !prePaymentTypeChange && !check;
   const postPaymentChangeChecked = !prePaymentTypeChange && check;
 
@@ -65,23 +61,9 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
         )}
       </div>
       <div className="fee-list-bottom__actions">
-        <p className="text-body-small-medium">
-          {t("totalText")} {total},-
-        </p>
+        <p className="text-body-small-medium">{totalText}</p>
         {!hideCheckbox && (
-          <CheckBox
-            id={checkboxTermsId}
-            onChecked={() => handleAcceptedTerms()}
-            label={
-              <>
-                {t("iAcceptText")}{" "}
-                <Link href={termsOfTradeUrl}>
-                  {t("termsOfTradeText")}
-                  <sup>*</sup>
-                </Link>
-              </>
-            }
-          />
+          <AcceptTermsCheckbox handleAcceptedTerms={handleAcceptedTerms} />
         )}
         {(postPaymentChangeNotChecked || prePaymentTypeChange) && (
           <button

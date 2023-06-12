@@ -56,7 +56,16 @@ export default {
       control: { type: "text" }
     },
     totalText: {
-      defaultValue: "Total",
+      defaultValue: "Total @total,-",
+      control: { type: "text" }
+    },
+    amountText: {
+      defaultValue: "@amount,-",
+      control: { type: "text" }
+    },
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
       control: { type: "text" }
     },
     iAcceptText: {
