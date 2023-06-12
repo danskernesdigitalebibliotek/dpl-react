@@ -414,7 +414,7 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
 };
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
-  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+  `${prefix ? `${prefix}` : ""}${fragments.join("-")}`;
 
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (
