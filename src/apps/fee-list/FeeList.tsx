@@ -118,7 +118,10 @@ const FeeList: FC = () => {
         {!itemsPrePaymentChange && !itemsPostPaymentChange && (
           <>
             <ListHeader header={<>{t("unpaidFeesText")}</>} amount={0} />
-            <EmptyList emptyListText={t("emptyFeeListText")} />
+            <EmptyList
+              classNames="mt-24"
+              emptyListText={t("emptyFeeListText")}
+            />
           </>
         )}
         <List

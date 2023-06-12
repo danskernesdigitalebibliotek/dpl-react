@@ -9,7 +9,7 @@ interface EmptyListProps {
 const EmptyList: FC<EmptyListProps> = ({
   emptyListText,
   dataCy = "empty-list",
-  classNames = "mt-24"
+  classNames = ""
 }) => {
   return (
     <div data-cy={dataCy} className={`dpl-list-empty ${classNames}`}>

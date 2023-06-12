@@ -212,6 +212,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
         {loansAreEmpty(physicalLoans) && loansAreEmpty(digitalLoans) && (
           <EmptyList
+            classNames="mt-24"
             emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
           />
         )}
