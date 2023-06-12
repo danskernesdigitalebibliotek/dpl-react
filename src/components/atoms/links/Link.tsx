@@ -1,5 +1,5 @@
 import React from "react";
-import { redirectTo } from "../../../core/utils/helpers/url";
+import { getLinkHandler } from "./helpers";
 
 export interface LinkProps {
   href: URL;
@@ -24,36 +24,21 @@ const Link: React.FC<LinkProps> = ({
   ariaLabelledBy,
   stopPropagation = false
 }) => {
-  const redirect = (redirectToNewTab: boolean) => {
-    if (redirectToNewTab) {
-      window.open(href.href, "_blank");
-    }
-    redirectTo(href);
-  };
+  const handleClick = getLinkHandler({
+    type: "click",
+    isNewTab,
+    stopPropagation,
+    url: href,
+    trackClick
+  });
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (stopPropagation) {
-      e.stopPropagation();
-    }
-    if (trackClick) {
-      e.preventDefault();
-      trackClick().then(() => {
-        redirect(isNewTab);
-      });
-    }
-  };
-
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-    if (stopPropagation) {
-      e.stopPropagation();
-    }
-    if (trackClick && e.key === "Enter") {
-      e.preventDefault();
-      trackClick().then(() => {
-        redirect(isNewTab);
-      });
-    }
-  };
+  const handleKeyUp = getLinkHandler({
+    type: "keyup",
+    isNewTab,
+    stopPropagation,
+    url: href,
+    trackClick
+  });
 
   return (
     <a
