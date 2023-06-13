@@ -1,30 +1,4 @@
-import { redirectTo } from "../../../core/utils/helpers/url";
-
-const redirect = ({ toNewTab, url }: { toNewTab: boolean; url: URL }) => {
-  if (toNewTab) {
-    window.open(url.href, "_blank");
-  }
-  redirectTo(url);
-};
-
-const handleTracking = ({
-  e,
-  trackClick,
-  isNewTab,
-  url
-}: {
-  e:
-    | React.MouseEvent<HTMLAnchorElement>
-    | React.KeyboardEvent<HTMLAnchorElement>;
-  trackClick: () => Promise<unknown>;
-  isNewTab: boolean;
-  url: URL;
-}) => {
-  e.preventDefault();
-  trackClick().then(() => {
-    redirect({ toNewTab: isNewTab, url });
-  });
-};
+import { handleTracking } from "./handleTracking";
 
 export const getLinkHandler = ({
   type,

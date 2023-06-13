@@ -1,5 +1,5 @@
 import React from "react";
-import { getLinkHandler } from "./helpers";
+import { getLinkHandler } from "./getLinkHandler";
 
 export interface LinkProps {
   href: URL;
