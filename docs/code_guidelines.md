@@ -307,6 +307,21 @@ They have to be placed in `src/tests/unit`.
 Or they can also be placed next to the code at the end of a file as described
 [here](https://vitest.dev/guide/in-source.html#setup).
 
+```typescript
+export const sum = (...numbers: number[]) =>
+  numbers.reduce((total, number) => total + number, 0);
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  describe("sum", () => {
+    it("should sum numbers", () => {
+      expect(sum(1, 2, 3)).toBe(6);
+    });
+  });
+}
+```
+
 In that way it helps us to test and mock unexported functions.
 
 ### Testing hooks
