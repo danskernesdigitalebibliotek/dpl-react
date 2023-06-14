@@ -32,10 +32,10 @@ export const useAvailabilityData = ({
 
   useEffect(() => {
     // An online material is by default always available.
-    if (isOnline && isCostFree) {
+    if (isOnline) {
       setIsAvailable(true);
     }
-  }, [isOnline, isCostFree]);
+  }, [isOnline]);
 
   const { isLoading: isLoadingIdentifier } = useGetV1ProductsIdentifier(
     isbn ?? "",
