@@ -48,7 +48,17 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
     identifier
   ]);
 
-  if (!dueDate || !loanDate) return null;
+  if (!dueDate || !loanDate)
+    return (
+      <div className="list-reservation__status">
+        <div className="list-reservation__counter" />
+        <div className="list-reservation__deadline" />
+        <ArrowButton
+          cursorPointer
+          clickEventHandler={notificationClickEventHandler}
+        />
+      </div>
+    );
 
   return (
     <div className="list-reservation__status">

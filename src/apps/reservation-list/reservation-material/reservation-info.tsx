@@ -134,6 +134,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
 
   return (
     <ReservationStatus
+      reservationInfo={reservationInfo}
       openReservationDetailsModal={openReservationDetailsModal}
       percent={0}
       label=""
