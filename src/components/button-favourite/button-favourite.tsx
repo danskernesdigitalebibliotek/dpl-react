@@ -62,7 +62,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       // this wont interfere with their click handler.
       e.stopPropagation();
     },
-    [addToListRequest, fillState, id]
+    [addToListRequest, fillState, id, queryClient]
   );
 
   return (
