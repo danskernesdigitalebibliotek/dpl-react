@@ -26,7 +26,7 @@ export const materialsAreStacked = (materialsInStack: number) => {
 };
 export const getFromListByKey = (
   list: ListType[],
-  key: "identifier" | "reservationId" | "faust",
+  key: "identifier" | "reservationId" | "faust" | "loanId",
   value: string
 ) => {
   return list.filter((loan) => String(loan[key]) === value);
