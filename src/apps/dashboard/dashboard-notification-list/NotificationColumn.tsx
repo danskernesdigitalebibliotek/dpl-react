@@ -21,7 +21,7 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
   return (
     <div className="status-userprofile__column my-32">
       <div className="link-filters">
-        <div className="link-filters__tag-wrapper">
+        <div className="link-filters__tag-wrapper mb-16">
           <h2 data-cy={`dashboard-${header.toLowerCase()}-header`}>
             <Link
               href={headerUrl}

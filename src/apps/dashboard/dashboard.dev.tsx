@@ -134,6 +134,10 @@ export default {
       },
       defaultValue: "Number @count in line"
     },
+    reservationDetailsOthersInQueueText: {
+      defaultValue: "Others are queueing for this material",
+      control: { type: "text" }
+    },
     loanListMaterialDaysText: {
       control: {
         type: "text"
@@ -148,14 +152,18 @@ export default {
       defaultValue: "Digital reservations",
       control: { type: "text" }
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     materialByAuthorText: {
       defaultValue: "By",
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      defaultValue: "and",
       control: { type: "text" }
     },
     // Config

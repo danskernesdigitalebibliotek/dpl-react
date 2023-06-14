@@ -45,11 +45,13 @@ export interface DashBoardProps {
   listDetailsNothingSelectedLabelText: string;
   dashboardNumberInLineText: string;
   resultPagerStatusText: string;
+  reservationDetailsOthersInQueueText: string;
   loanListMaterialDaysText: string;
   physicalReservationsModalHeaderText: string;
   digitalReservationsModalHeaderText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
 }
 
 const DashboardEntry: FC<

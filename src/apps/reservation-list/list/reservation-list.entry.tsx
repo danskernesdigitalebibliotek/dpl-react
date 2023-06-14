@@ -28,8 +28,9 @@ export interface ReservationListTextProps {
   physicalLoansTitleText: string;
   reservationListReadyText: string;
   materialByAuthorText: string;
-  reservationDetailsExpiresText: string;
   materialAndAuthorText: string;
+  reservationDetailsExpiresText: string;
+  etAlText: string;
   reservationListNumberInQueueText: string;
   reservationListFirstInQueueText: string;
   expiresSoonText: string;
@@ -44,7 +45,6 @@ export interface ReservationListTextProps {
   reservationListAvailableInText: string;
   reservationDetailsExpiresTitleText: string;
   reservationDetailsOthersInQueueText: string;
-  reservationDetailsNumberInQueueLabelText: string;
   listDetailsNothingSelectedLabelText: string;
   reservationListPauseReservationText: string;
   reservationListOnHoldAriaText: string;

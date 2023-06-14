@@ -69,7 +69,9 @@ const List: FC<ListProps> = ({
           <PagerComponent />
         </>
       )}
-      {loans.length === 0 && <EmptyList emptyListText={emptyListLabel} />}
+      {loans.length === 0 && (
+        <EmptyList classNames="mt-24" emptyListText={emptyListLabel} />
+      )}
     </>
   );
 };

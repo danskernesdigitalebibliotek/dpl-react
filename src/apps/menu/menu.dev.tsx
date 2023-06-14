@@ -99,6 +99,10 @@ export default {
       defaultValue: "Ready for pickup",
       control: { type: "text" }
     },
+    reservationDetailsOthersInQueueText: {
+      defaultValue: "Others are queueing for this material",
+      control: { type: "text" }
+    },
     loansSoonOverdueText: {
       defaultValue: "To be returned soon",
       control: { type: "text" }

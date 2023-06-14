@@ -15,7 +15,6 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import Link from "../atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
-import { useText } from "../../core/utils/text";
 import { GuardedAppId } from "../../core/utils/types/ids";
 
 export interface SimpleMaterialProps {
@@ -38,17 +37,11 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   const { materialUrl } = useUrls();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId);
 
-  const t = useText();
-
   // Create authors string
   let authors = null;
   const inputContributorsArray = creators?.map(({ display }) => display);
   if (inputContributorsArray) {
-    authors = getContributors(
-      inputContributorsArray,
-      t("materialByAuthorText"),
-      t("materialAndAuthorText")
-    );
+    authors = getContributors(true, inputContributorsArray);
   }
 
   // For retrieving cover

@@ -4,13 +4,14 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 
 interface ReservationStatusProps {
-  reservationInfo: ReservationType;
+  reservationInfo?: ReservationType;
   openReservationDetailsModal: (reservation: ReservationType) => void;
   color?: string;
+  empty?: boolean;
   percent: number;
   infoLabel?: string;
   label: string | string[];
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
@@ -18,6 +19,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   openReservationDetailsModal,
   color,
   percent,
+  empty = false,
   infoLabel,
   label,
   children
@@ -30,9 +32,11 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   return (
     <div className="list-reservation__status">
       <div className="list-reservation__counter color-secondary-gray">
-        <StatusCircleIcon color={color} percent={percent}>
-          {children}
-        </StatusCircleIcon>
+        {!empty && (
+          <StatusCircleIcon color={color} percent={percent}>
+            {children}
+          </StatusCircleIcon>
+        )}
       </div>
       <div>
         <div className="list-reservation__deadline">

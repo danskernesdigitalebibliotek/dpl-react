@@ -69,7 +69,10 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
         </ul>
       )}
       {displayedMaterials.length === 0 && (
-        <EmptyList emptyListText={t("favoritesListEmptyText")} />
+        <EmptyList
+          classNames="mt-24"
+          emptyListText={t("favoritesListEmptyText")}
+        />
       )}
       <PagerComponent />
     </div>

@@ -33,7 +33,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 
   if (!id) return null;
   const {
-    authors = "",
+    authorsShort = "",
     materialType,
     year = "",
     title = "",
@@ -71,11 +71,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8" lang={lang || ""}>
+          <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}
           </p>
           <p className="text-small-caption">
-            <AuthorYear author={authors} year={year} />
+            <AuthorYear author={authorsShort} year={year} />
           </p>
         </div>
         <div className="list-materials__status pl-4">

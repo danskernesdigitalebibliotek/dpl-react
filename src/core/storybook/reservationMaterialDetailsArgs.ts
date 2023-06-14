@@ -62,12 +62,17 @@ export default {
   reservationDetailsPickupDeadlineTitleText: {
     defaultValue: "Pickup deadline",
     control: { type: "text" }
+  },
+  reservationDetailsNumberInQueueLabelText: {
+    defaultValue: "@count queued",
+    control: { type: "text" }
   }
 };
 
 export interface ReservationMaterialDetailsProps {
   reservationDetailsRemoveDigitalReservationText: string;
   reservationDetailsDateOfReservationTitleText: string;
+  reservationDetailsNumberInQueueLabelText: string;
   reservationDetailsNoInterestAfterTitleText: string;
   reservationDetailsChangeText: string;
   reservationDetailsPickUpAtTitleText: string;

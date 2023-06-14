@@ -15,6 +15,7 @@ export interface FeeListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
   feeListDaysText: string;
   payText: string;
   totalText: string;
@@ -24,7 +25,7 @@ export interface FeeListProps {
   feeListHeadlineText: string;
   feeListBodyText: string;
   viewFeesAndCompensationRatesText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   viewFeesAndCompensationRatesUrl: string;
   unpaidFeesText: string;
   prePaymentTypeChangeDateText: string;

@@ -116,7 +116,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
       )}
     >
       <div className="modal-loan">
-        <div className="modal-loan__container">
+        <div className="modal-loan__list">
           {modalId === reservationsQueued && (
             <SimpleModalHeader header={t("queuedReservationsText")} />
           )}
