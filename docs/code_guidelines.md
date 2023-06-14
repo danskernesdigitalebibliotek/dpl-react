@@ -304,6 +304,11 @@ By using that we can test functions (and therefore also hooks) and classes.
 
 They have to be placed in `src/tests/unit`.
 
+Or they can also be placed next to the code at the end of a file as described
+[here](https://vitest.dev/guide/in-source.html#setup).
+
+In that way it helps us to test and mock unexported functions.
+
 ### Testing hooks
 
 For testing hooks we are using the library
