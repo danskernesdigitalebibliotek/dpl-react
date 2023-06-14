@@ -97,7 +97,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
           )
         )}
       </ul>
-      <PagerComponent />
+      <PagerComponent classNames="result-pager--margin-bottom" />
     </>
   );
 };
