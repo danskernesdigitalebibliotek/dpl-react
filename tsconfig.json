@@ -4,7 +4,8 @@
     "jsx": "react",
     "types": [
       "cypress",
-      "node"
+      "node",
+      "vitest/importMeta"
     ],
   },
   "ts-node": {
