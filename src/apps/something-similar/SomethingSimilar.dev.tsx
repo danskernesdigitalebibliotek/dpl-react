@@ -32,6 +32,12 @@ export default {
       },
       defaultValue: "and"
     },
+    etAlText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "et al."
+    },
     somethingSimilarByTheSameAuthorText: {
       control: {
         type: "text"

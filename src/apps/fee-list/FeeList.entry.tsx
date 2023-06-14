@@ -5,6 +5,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import FeeList from "./FeeList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { withConfig } from "../../core/utils/config";
 
 export interface IntermedateListEntryConfigProps {
   thresholdConfig: string;
@@ -14,6 +15,7 @@ export interface FeeListProps {
   totalFeeAmountText: string;
   otherMaterialsText: string;
   materialByAuthorText: string;
+  materialAndAuthorText: string;
   feeListDaysText: string;
   payText: string;
   totalText: string;
@@ -23,7 +25,7 @@ export interface FeeListProps {
   feeListHeadlineText: string;
   feeListBodyText: string;
   viewFeesAndCompensationRatesText: string;
-  materialAndAuthorText: string;
+  etAlText: string;
   viewFeesAndCompensationRatesUrl: string;
   unpaidFeesText: string;
   prePaymentTypeChangeDateText: string;
@@ -51,4 +53,6 @@ const FeeListEntry: FC<
     GlobalUrlEntryPropsInterface
 > = () => <FeeList />;
 
-export default withUrls(withText(withIsPatronBlockedHoc(FeeListEntry)));
+export default withUrls(
+  withText(withIsPatronBlockedHoc(withConfig(FeeListEntry)))
+);

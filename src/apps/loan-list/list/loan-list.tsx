@@ -1,5 +1,6 @@
 import React, { useEffect, useState, FC, useCallback } from "react";
 import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 import { useGetLoansV2 } from "../../../core/fbs/fbs";
 import {
   getAmountOfRenewableLoans,
@@ -43,6 +44,7 @@ import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import { ListType } from "../../../core/utils/types/list-type";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
+import StatusCircle from "../materials/utils/status-circle";
 
 interface LoanListProps {
   pageSize: number;
@@ -210,6 +212,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
         {loansAreEmpty(physicalLoans) && loansAreEmpty(digitalLoans) && (
           <EmptyList
+            classNames="mt-24"
             emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
           />
         )}
@@ -237,12 +240,20 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           }
         >
           {dueDate && (
+            //  So, in the scenario where there are mixed loans, the design is challenged
+            //  Therefore it was decided that the loandate for all the materials are "a month ago"
             <StatusCircleModalHeader
               header={t("groupModalDueDateHeaderText", {
                 placeholders: { "@date": formatDate(dueDate) }
               })}
               dueDate={dueDate}
               subHeader={t("groupModalReturnLibraryText")}
+              statusCircleComponent={
+                <StatusCircle
+                  loanDate={dayjs().subtract(1, "month").format("YYYY-MM-DD")}
+                  dueDate={dueDate}
+                />
+              }
             />
           )}
           {!dueDate && <SimpleModalHeader header={t("groupModalHeaderText")} />}

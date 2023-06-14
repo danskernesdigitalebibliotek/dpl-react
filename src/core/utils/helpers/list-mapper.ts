@@ -97,6 +97,11 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     4: texts.publizonPodcastText
   };
 
+  const authors =
+    contributors?.map(
+      ({ firstName, lastName }) => `${firstName} ${lastName}`
+    ) || [];
+
   return {
     title,
     lang: languageCode,
@@ -105,15 +110,8 @@ export const mapProductToBasicDetailsType = (material: Product) => {
     description,
     materialType: productType ? digitalProductType[productType] : "",
     externalProductId: externalProductId?.id,
-    authors: contributors
-      ? getContributors(
-          contributors?.map(
-            ({ firstName, lastName }) => `${firstName} ${lastName}`
-          ),
-          texts.materialByAuthorText,
-          texts.materialAndAuthorText
-        )
-      : ""
+    authors: contributors ? getContributors(false, authors) : "",
+    authorsShort: contributors ? getContributors(true, authors) : ""
   } as BasicDetailsType;
 };
 
@@ -134,12 +132,6 @@ export const mapManifestationToBasicDetailsType = (
     series,
     languages
   } = material?.manifestation || {};
-
-  // Todo this is sortof a hack, but using t: UseTextFunction as argument
-  // makes the components re-render.
-  const {
-    text: { data: texts }
-  } = store.getState();
   const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {
@@ -148,19 +140,13 @@ export const mapManifestationToBasicDetailsType = (
   const { publicationYear } = edition || {};
   const { display: year } = publicationYear || {};
 
-  let contributors = null;
-  const inputContributorsArray = creators?.map(({ display }) => display);
-  if (inputContributorsArray) {
-    contributors = getContributors(
-      inputContributorsArray,
-      texts.materialByAuthorText,
-      texts.materialAndAuthorText
-    );
-  }
+  const inputContributorsArray = creators?.map(({ display }) => display) || [];
   const firstAuthor = creators && creators.length ? creators[0].display : "";
+
   return {
     lang: isoCode,
-    authors: contributors || "",
+    authors: getContributors(false, inputContributorsArray),
+    authorsShort: getContributors(true, inputContributorsArray),
     firstAuthor,
     pid,
     title: mainText,

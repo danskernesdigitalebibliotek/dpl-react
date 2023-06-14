@@ -15,6 +15,8 @@ import {
   getFeeObjectByFaustId,
   getFeesInRelationToPaymentChangeDate
 } from "./utils/helper";
+import ListHeader from "../../components/list-header/list-header";
+import EmptyList from "../../components/empty-list/empty-list";
 
 const FeeList: FC = () => {
   const t = useText();
@@ -113,12 +115,44 @@ const FeeList: FC = () => {
             {t("viewFeesAndCompensationRatesText")}
           </Link>
         </span>
+        {!itemsPrePaymentChange && !itemsPostPaymentChange && (
+          <>
+            <ListHeader header={<>{t("unpaidFeesText")}</>} amount={0} />
+            <EmptyList
+              classNames="mt-24"
+              emptyListText={t("emptyFeeListText")}
+            />
+          </>
+        )}
         <List
+          dataCy="fee-list-before"
+          listHeader={
+            <>
+              {t("unpaidFeesText")} -<span>&nbsp;</span>
+              <b>{t("prePaymentTypeChangeDateText")}</b>
+            </>
+          }
           openDetailsModalClickEvent={openDetailsModalClickEvent}
-          itemsPrePaymentChange={itemsPrePaymentChange}
-          itemsPostPaymentChange={itemsPostPaymentChange}
-          totalFeePrePaymentChange={totalFeePrePaymentChange}
-          totalFeePostPaymentChange={totalFeePostPaymentChange}
+          fees={itemsPrePaymentChange}
+          hideCheckbox={false}
+          totalText={t("totalText", {
+            placeholders: { "@total": totalFeePrePaymentChange }
+          })}
+        />
+        <List
+          listHeader={
+            <>
+              {t("unpaidFeesText")} -<span>&nbsp;</span>
+              <b>{t("postPaymentTypeChangeDateText")}</b>
+            </>
+          }
+          dataCy="fee-list-after"
+          openDetailsModalClickEvent={openDetailsModalClickEvent}
+          hideCheckbox
+          fees={itemsPostPaymentChange}
+          totalText={t("totalText", {
+            placeholders: { "@total": totalFeePostPaymentChange }
+          })}
         />
       </div>
       <FeeDetailsModal modalId={feeDetailsModalId} material={{}}>

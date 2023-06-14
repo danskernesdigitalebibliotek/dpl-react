@@ -25,11 +25,11 @@ export default {
       defaultValue: "See our fees and replacement costs",
       control: { type: "text" }
     },
-    materialAndAuthorText: {
+    etAlText: {
       control: {
         type: "text"
       },
-      defaultValue: "and"
+      defaultValue: "et al."
     },
     viewFeesAndCompensationRatesUrl: {
       defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe
@@ -47,6 +47,10 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
+    materialAndAuthorText: {
+      defaultValue: "and",
+      control: { type: "text" }
+    },
     feeListDaysText: {
       defaultValue: "Days",
       control: { type: "text" }
@@ -56,7 +60,16 @@ export default {
       control: { type: "text" }
     },
     totalText: {
-      defaultValue: "Total",
+      defaultValue: "Total @total,-",
+      control: { type: "text" }
+    },
+    amountText: {
+      defaultValue: "@amount,-",
+      control: { type: "text" }
+    },
+    thresholdConfig: {
+      defaultValue:
+        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
       control: { type: "text" }
     },
     iAcceptText: {

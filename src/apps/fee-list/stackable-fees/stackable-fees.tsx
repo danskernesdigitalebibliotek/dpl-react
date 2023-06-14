@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import clsx from "clsx";
 import { FeeV2 } from "../../../core/fbs/model";
 import FeeInfo from "./fee-info";
@@ -11,12 +11,12 @@ import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 import { FaustId } from "../../../core/utils/types/ids";
 
 export interface StackableFeeProps {
-  amountOfMaterialsWithDueDate?: number;
+  amountOfMaterialsWithDueDate: number;
   material?: BasicDetailsType;
   faust: FaustId;
   feeData: FeeV2;
+  materialItemNumber: string;
   openDetailsModalClickEvent: (faustId: FaustId) => void;
-  stackHeight: number;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
@@ -24,17 +24,14 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   faust,
   material = {},
   feeData,
-  openDetailsModalClickEvent,
-  stackHeight
+  materialItemNumber,
+  openDetailsModalClickEvent
 }) => {
   const t = useText();
   const { amount = 0, creationDate = "", reasonMessage = "" } = feeData;
-  const stackSize = stackHeight - 1;
-  const [additionalFees] = useState(
-    amountOfMaterialsWithDueDate ? amountOfMaterialsWithDueDate - 1 : 0
-  );
+  const stackSize = amountOfMaterialsWithDueDate - 1;
   const listReservationClass = clsx(["list-reservation", "my-32"], {
-    "list-reservation--stacked": additionalFees > 0
+    "list-reservation--stacked": stackSize > 1
   });
   return (
     <button
@@ -43,9 +40,12 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
       className={listReservationClass}
     >
       {feeData && (
-        <FeeInfo material={material} isbnForCover="">
+        <FeeInfo materialItemNumber={materialItemNumber} material={material}>
           {stackSize > 0 && (
-            <p className="text-small-caption stack-size-text color-secondary-gray">
+            <p
+              className="text-small-caption color-secondary-gray"
+              data-cy="stack-size"
+            >
               {t("plusXOtherMaterialsText", {
                 placeholders: { "@amount": stackSize }
               })}

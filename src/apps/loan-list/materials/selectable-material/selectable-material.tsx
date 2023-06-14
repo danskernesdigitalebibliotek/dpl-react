@@ -8,7 +8,7 @@ import AuthorYear from "../../../../components/author-year/authorYear";
 interface SelectableMaterialProps {
   disabled?: boolean;
   id?: string | null;
-  onMaterialChecked: (id: string) => void;
+  onMaterialChecked?: (id: string) => void;
   openDetailsModal?: (modalId: string) => void;
   selected?: boolean;
   statusMessageComponentMobile: ReactNode;
@@ -33,7 +33,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 
   if (!id) return null;
   const {
-    authors = "",
+    authorsShort = "",
     materialType,
     year = "",
     title = "",
@@ -47,33 +47,35 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           disabled ? "list-materials--disabled" : ""
         }`}
       >
-        <div className="list-materials__checkbox mr-32">
-          {!disabled && title && (
-            <CheckBox
-              onChecked={() => onMaterialChecked(id)}
-              id={id}
-              selected={selected}
-              disabled={disabled}
-              focused={focused}
-              label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
-                placeholders: { "@label": title }
-              })}
-              hideLabel
-            />
-          )}
-          {disabled && <CheckBox id={id} disabled={disabled} />}
-        </div>
+        {onMaterialChecked && (
+          <div className="list-materials__checkbox mr-32">
+            {!disabled && title && (
+              <CheckBox
+                onChecked={() => onMaterialChecked(id)}
+                id={id}
+                selected={selected}
+                disabled={disabled}
+                focused={focused}
+                label={t("groupModalHiddenLabelCheckboxOnMaterialText", {
+                  placeholders: { "@label": title }
+                })}
+                hideLabel
+              />
+            )}
+            {disabled && <CheckBox id={id} disabled={disabled} />}
+          </div>
+        )}
         <div className="list-materials__content">
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
               {materialType}
             </div>
           </div>
-          <p className="text-header-h5 mt-8" lang={lang || ""}>
+          <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}
           </p>
           <p className="text-small-caption">
-            <AuthorYear author={authors} year={year} />
+            <AuthorYear author={authorsShort} year={year} />
           </p>
         </div>
         <div className="list-materials__status pl-4">

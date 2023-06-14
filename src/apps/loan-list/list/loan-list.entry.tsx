@@ -40,6 +40,7 @@ interface LoanListEntryTextProps {
   loanListTitleText: string;
   loanListToBeDeliveredDigitalMaterialText: string;
   loanListToBeDeliveredText: string;
+  etAlText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
   publizonAudioBookText: string;

@@ -6,17 +6,17 @@ import { getRenewableMaterials } from "../../core/utils/helpers/general";
 
 interface GroupModalContentProps {
   amountOfSelectableMaterials: number;
-  selectableMaterials: string[];
-  selectedMaterials: string[];
+  selectableMaterials?: string[];
+  selectedMaterials?: string[];
   buttonComponent: ReactNode;
-  selectMaterials: (materialIds: string[]) => void;
+  selectMaterials?: (materialIds: string[]) => void;
   children: ReactNode;
 }
 
 const GroupModalContent: FC<GroupModalContentProps> = ({
   amountOfSelectableMaterials,
-  selectableMaterials,
-  selectedMaterials,
+  selectableMaterials = [],
+  selectedMaterials = [],
   selectMaterials,
   buttonComponent,
   children
@@ -29,32 +29,36 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
   });
 
   const selectAllPossible = () => {
-    if (selectedMaterials.length === amountOfSelectableMaterials) {
-      selectMaterials(getRenewableMaterials([]));
-    } else {
-      selectMaterials(selectableMaterials);
+    if (selectMaterials) {
+      if (selectedMaterials.length === amountOfSelectableMaterials) {
+        selectMaterials(getRenewableMaterials([]));
+      } else {
+        selectMaterials(selectableMaterials);
+      }
     }
   };
 
   return (
     <>
       <div className="modal-loan__buttons" ref={intersectionRef}>
-        <CheckBox
-          selected={
-            amountOfSelectableMaterials !== 0 &&
-            selectedMaterials.length === amountOfSelectableMaterials
-          }
-          disabled={amountOfSelectableMaterials === 0}
-          id="checkbox-select-all"
-          onChecked={() => selectAllPossible()}
-          label={t("groupModalCheckboxText")}
-        />
+        {selectMaterials !== undefined && (
+          <CheckBox
+            selected={
+              amountOfSelectableMaterials !== 0 &&
+              selectedMaterials.length === amountOfSelectableMaterials
+            }
+            disabled={amountOfSelectableMaterials === 0}
+            id="checkbox-select-all"
+            onChecked={() => selectAllPossible()}
+            label={t("groupModalCheckboxText")}
+          />
+        )}
         {buttonComponent}
       </div>
-      <div className="modal-loan__list">
-        {children}
-        {!intersection?.isIntersecting && (
-          <div className="modal-loan__buttons modal-loan__buttons--bottom">
+      <div className="modal-loan__list">{children}</div>
+      {!intersection?.isIntersecting && (
+        <div className="modal-loan__buttons modal-loan__buttons--bottom">
+          {selectMaterials !== undefined && (
             <CheckBox
               selected={
                 amountOfSelectableMaterials !== 0 &&
@@ -65,10 +69,10 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
               onChecked={() => selectAllPossible()}
               label={t("groupModalCheckboxText")}
             />
-            {buttonComponent}
-          </div>
-        )}
-      </div>
+          )}
+          {buttonComponent}
+        </div>
+      )}
     </>
   );
 };
