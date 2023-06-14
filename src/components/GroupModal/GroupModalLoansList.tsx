@@ -82,11 +82,11 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
             openDetailsModal={openDetailsModal}
             key={loanType.faust}
             selected={Boolean(
-              selectedMaterials?.indexOf(String(loanType.faust) || "") > -1
+              selectedMaterials?.indexOf(String(loanType.loanId) || "") > -1
             )}
             onMaterialChecked={onMaterialChecked}
             disabled={!loanType.isRenewable}
-            id={String(loanType.faust) || String(loanType.identifier)}
+            id={String(loanType.loanId)}
           />
         ))}
       </ul>

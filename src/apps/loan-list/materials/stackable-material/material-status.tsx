@@ -26,15 +26,15 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
   openDueDateModal
 }) => {
   const t = useText();
-  const { dueDate, loanDate, faust, identifier } = loan;
+  const { dueDate, loanDate, loanId, identifier } = loan;
   const isStacked = materialsAreStacked(additionalMaterials);
 
   const notificationClickEventHandler = useCallback(() => {
     if (isStacked && openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
     }
-    if (!isStacked && faust) {
-      openDetailsModal(faust);
+    if (!isStacked && loanId) {
+      openDetailsModal(String(loanId));
     }
     if (!isStacked && identifier) {
       openDetailsModal(identifier);
@@ -44,7 +44,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
     openDueDateModal,
     dueDate,
     openDetailsModal,
-    faust,
+    loanId,
     identifier
   ]);
 
