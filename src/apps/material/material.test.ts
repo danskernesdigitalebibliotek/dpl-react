@@ -165,8 +165,8 @@ describe("Material", () => {
       .and("contain", "test@test.com");
 
     cy.getBySelStartEnd(
-      "modal-reservation-modal-",
-      "-close-button",
+      "modal-reservation-modal",
+      "close-button",
       true
     ).click();
   });
