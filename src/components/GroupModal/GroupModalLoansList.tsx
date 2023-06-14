@@ -90,7 +90,7 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
           />
         ))}
       </ul>
-      <PagerComponent />
+      <PagerComponent classNames="result-pager--margin-bottom" />
     </>
   );
 };

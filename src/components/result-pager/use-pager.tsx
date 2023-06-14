@@ -8,6 +8,7 @@ type PagerProps = {
 };
 
 type PagerComponentProps = {
+  classNames?: string;
   isLoading?: boolean;
 };
 
@@ -34,11 +35,15 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
     setPage(currentPage);
   };
 
-  const PagerComponent: React.FC<PagerComponentProps> = ({ isLoading }) =>
+  const PagerComponent: React.FC<PagerComponentProps> = ({
+    isLoading,
+    classNames = ""
+  }) =>
     hitcount ? (
       <ResultPager
         itemsShown={overrideItemsShown ? overrideItemsShown() : itemsShown}
         hitcount={hitcount}
+        classNames={classNames}
         setPageHandler={pagehandler}
         isLoading={isLoading}
       />

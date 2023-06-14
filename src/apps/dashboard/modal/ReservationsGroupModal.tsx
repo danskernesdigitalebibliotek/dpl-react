@@ -107,7 +107,6 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   return (
     <Modal
       modalId={modalId}
-      classNames="modal-loan"
       closeModalAriaLabelText={t(
         "groupModalReservationsCloseModalAriaLabelText"
       )}
