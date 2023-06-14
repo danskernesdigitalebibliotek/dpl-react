@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
+  getGetListQueryKey,
   removeItem,
   useHasItem
 } from "../../core/material-list-api/material-list";
@@ -21,6 +23,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   darkBackground,
   title
 }) => {
+  const queryClient = useQueryClient();
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
   const { mutate } = useHasItem();
@@ -49,6 +52,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (fillState) {
         removeItem("default", id);
+        queryClient.invalidateQueries(getGetListQueryKey("default"));
         setFillState(false);
       } else {
         addToListRequest(id);
