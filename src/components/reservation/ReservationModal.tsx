@@ -31,7 +31,7 @@ const ReservationModal = ({
         "reservationModalScreenReaderModalDescriptionText"
       )}
       closeModalAriaLabelText={t("reservationModalCloseModalAriaLabelText")}
-      dataCy={dataCy || "-reservation-modal-"}
+      dataCy={dataCy || "reservation-modal"}
     >
       <ReservationModalBody
         selectedManifestations={selectedManifestations}
