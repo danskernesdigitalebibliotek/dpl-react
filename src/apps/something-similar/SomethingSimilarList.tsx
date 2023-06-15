@@ -11,6 +11,7 @@ import fetchMaterial, {
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import SimpleMaterial from "../../components/simple-material/SimpleMaterial";
 import { RecommenderView } from "../../core/utils/types/recommender-view";
+import { setQueryParametersInUrl } from "../../core/utils/helpers/url";
 
 export interface SomethingSimilarListProps {
   id: string;
@@ -37,7 +38,7 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
 
   const setViewHandler = useCallback(
     (inputView: RecommenderView) => {
-           setQueryParametersInUrl({
+      setQueryParametersInUrl({
         "recommender-view": inputView
       });
       setRecommendView(inputView);
