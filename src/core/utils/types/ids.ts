@@ -6,6 +6,7 @@ export type WorkId = `work-of:${number}-${string}:${FaustId}`;
 export type GuardedAppId =
   | "material"
   | "search-result"
+  | "advanced-search-result"
   | "recommender"
   | "something-similar"
   | "favorites-list-mc"
