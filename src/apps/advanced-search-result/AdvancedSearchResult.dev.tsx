@@ -12,7 +12,7 @@ export default {
     ...serviceUrlArgs,
     q: {
       name: "Search string",
-      defaultValue: "harry",
+      defaultValue: "title=snemand*",
       control: { type: "text" }
     },
     pageSizeDesktop: {
@@ -70,9 +70,9 @@ export default {
       defaultValue: "in series",
       control: { type: "text" }
     },
-    showingResultsForText: {
+    showingResultsForWithoutQueryText: {
       name: "Showing results for",
-      defaultValue: "Showing results for “@query”",
+      defaultValue: "Showing results for the following query",
       control: { type: "text" }
     },
     noSearchResultText: {

@@ -18,10 +18,10 @@ interface AdvancedSearchResultEntryTextProps {
   numberDescriptionText: string;
   removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
-  showingResultsForText: string;
   noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
+  showingResultsForWithoutQueryText: string;
 }
 
 interface AdvancedSearchResultEntryConfigProps {
