@@ -1,5 +1,4 @@
 import { ListType } from "./list-type";
-import { LoanId } from "./ids";
 
 export interface LoanType extends ListType {
   dueDate?: string | null;
@@ -9,5 +8,4 @@ export interface LoanType extends ListType {
   materialItemNumber?: string | null;
   renewalStatusList: string[];
   loanType: string | null;
-  loanId: LoanId | null;
 }

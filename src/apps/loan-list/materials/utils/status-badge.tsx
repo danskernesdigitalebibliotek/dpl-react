@@ -33,13 +33,13 @@ const StatusBadge: FC<StatusBadgeProps> = ({
     daysBetweenTodayAndDue = daysBetweenTodayAndDate(badgeDate);
   }
 
-  if (daysBetweenTodayAndDue < danger && dangerText) {
+  if (daysBetweenTodayAndDue < Number(danger) && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
   }
 
-  if (daysBetweenTodayAndDue <= warning && warningText) {
+  if (daysBetweenTodayAndDue <= Number(warning) && warningText) {
     return (
       <div className="status-label status-label--warning">{warningText}</div>
     );

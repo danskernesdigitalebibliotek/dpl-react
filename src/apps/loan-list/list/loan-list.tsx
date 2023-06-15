@@ -69,7 +69,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   useEffect(() => {
     let loanForModal = null;
     if (physicalLoans && modalDetailsId) {
-      loanForModal = getFromListByKey(physicalLoans, "faust", modalDetailsId);
+      loanForModal = getFromListByKey(physicalLoans, "loanId", modalDetailsId);
     }
     if (loanForModal?.length === 0 && digitalLoans && modalDetailsId) {
       loanForModal = getFromListByKey(
