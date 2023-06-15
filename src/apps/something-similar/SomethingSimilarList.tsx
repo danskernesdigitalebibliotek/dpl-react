@@ -37,7 +37,9 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
 
   const setViewHandler = useCallback(
     (inputView: RecommenderView) => {
-      window.history.pushState("", "", `?recommender-view=${inputView}`);
+           setQueryParametersInUrl({
+        "recommender-view": inputView
+      });
       setRecommendView(inputView);
     },
     [setRecommendView]
