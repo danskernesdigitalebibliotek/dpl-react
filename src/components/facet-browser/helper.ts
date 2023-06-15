@@ -133,3 +133,166 @@ export const getFacetFieldTranslation = (name: FacetField) => {
 };
 
 export default {};
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  const branchIdList = ["710100", "710200"];
+
+  const filters = {
+    mainLanguages: {
+      Dansk: {
+        key: "dan",
+        term: "Dansk",
+        score: 295
+      },
+      Engelsk: {
+        key: "eng",
+        term: "Engelsk",
+        score: 9
+      }
+    },
+    accessTypes: {
+      Fysisk: {
+        key: "PHYSICAL",
+        term: "Fysisk",
+        score: 356
+      }
+    }
+  };
+
+  describe("getPlaceHolderFacets", () => {
+    it("should get placeholder facets", () => {
+      expect(getPlaceHolderFacets(allFacetFields)).toMatchInlineSnapshot(`
+        [
+          {
+            "name": "mainLanguages",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "accessTypes",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "childrenOrAdults",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "creators",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "fictionNonfiction",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "fictionalCharacters",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "genreAndForm",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "materialTypes",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "subjects",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+          {
+            "name": "workTypes",
+            "values": [
+              {
+                "key": "",
+                "term": "",
+              },
+            ],
+          },
+        ]
+      `);
+    });
+  });
+
+  describe("formatFacetTerms", () => {
+    it("should format facet terms", () => {
+      expect(formatFacetTerms(filters)).toMatchInlineSnapshot(`
+        {
+          "accessTypes": [
+            "Fysisk",
+          ],
+          "mainLanguages": [
+            "Dansk",
+            "Engelsk",
+          ],
+        }
+      `);
+    });
+  });
+
+  describe("createFilters", () => {
+    it("should create filters", () => {
+      expect(createFilters(filters, branchIdList)).toMatchInlineSnapshot(`
+        {
+          "accessTypes": [
+            "Fysisk",
+          ],
+          "branchId": [
+            "710100",
+            "710200",
+          ],
+          "mainLanguages": [
+            "Dansk",
+            "Engelsk",
+          ],
+        }
+      `);
+    });
+  });
+}
