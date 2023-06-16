@@ -61,7 +61,7 @@ const AdvancedSearchModal = ({
           <textarea
             name="advanced-search-input"
             className="mt-35 p-16"
-            cols={120}
+            cols={100}
             rows={5}
             value={cqlString}
             onChange={(e) => setCqlString(e.target.value)}

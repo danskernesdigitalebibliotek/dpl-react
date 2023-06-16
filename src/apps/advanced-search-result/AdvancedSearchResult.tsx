@@ -6,14 +6,15 @@ import usePager from "../../components/result-pager/use-pager";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import {
-  useSearchWithPaginationQuery,
-  SearchWithPaginationQuery
+  useComplexSearchWithPaginationQuery,
+  ComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import AdvancedSearchResultSkeleton from "./AdvancedSearchResultSkeleton";
 import { useText } from "../../core/utils/text";
 import { Button } from "../../components/Buttons/Button";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
+import { copyTextToClipboard } from "./helper";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -32,9 +33,6 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const t = useText();
-  const copyTextToClipboard = (query: string) => {
-    navigator.clipboard.writeText(query);
-  };
   const [cql, setCql] = useState<string>(q);
 
   // On every render we take the url parameter and set it as sql search query.
@@ -64,8 +62,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cql]);
 
-  const { data, isLoading } = useSearchWithPaginationQuery({
-    q: { all: cql },
+  const { data, isLoading } = useComplexSearchWithPaginationQuery({
+    cql,
     offset: page * pageSize,
     limit: pageSize,
     filters: {
@@ -78,11 +76,11 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       return;
     }
     const {
-      search: { works: resultWorks, hitcount: resultCount }
+      complexSearch: { works: resultWorks, hitcount: resultCount }
     } = data as {
-      search: {
+      complexSearch: {
         works: Work[];
-        hitcount: SearchWithPaginationQuery["search"]["hitcount"];
+        hitcount: ComplexSearchWithPaginationQuery["complexSearch"]["hitcount"];
       };
     };
     setHitCount(resultCount);
@@ -114,7 +112,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         disabled={false}
         size="small"
         variant="outline"
-        label="Copy query to clipboard"
+        label={t("advancedSearchCopyToClipboardText")}
         onClick={() => {
           copyTextToClipboard(cql);
         }}
