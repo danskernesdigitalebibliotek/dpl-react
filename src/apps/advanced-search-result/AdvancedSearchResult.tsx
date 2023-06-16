@@ -35,6 +35,17 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   const copyTextToClipboard = (query: string) => {
     navigator.clipboard.writeText(query);
   };
+  const [cql, setCql] = useState<string>(q);
+
+  // On every render we take the url parameter and set it as sql search query.
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("q")) {
+      setCql((prev) => {
+        return searchParams.get("q") || prev;
+      });
+    }
+  }, []);
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
@@ -47,14 +58,14 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     track("click", {
       id: statistics.searchQuery.id,
       name: statistics.searchQuery.name,
-      trackedData: q
+      trackedData: cql
     });
-    // We actually just want to track if the query changes.
+    // We actually just want to track if the sql query changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q]);
+  }, [cql]);
 
   const { data, isLoading } = useSearchWithPaginationQuery({
-    q: { all: q },
+    q: { all: cql },
     offset: page * pageSize,
     limit: pageSize,
     filters: {
@@ -84,7 +95,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   }, [data, page]);
 
   if (isLoading) {
-    return <AdvancedSearchResultSkeleton q={q} />;
+    return <AdvancedSearchResultSkeleton q={cql} />;
   }
 
   if (hitcount === 0) {
@@ -96,7 +107,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       <h1 className="text-header-h2 mb-16 search-result-title">
         {`${t("showingResultsForWithoutQueryText")}:`}
       </h1>
-      <p className="text-body-large mt-16 mb-48">{q}</p>
+      <p className="text-body-large mt-16 mb-48">{cql}</p>
       <Button
         buttonType="none"
         collapsible={false}
@@ -105,7 +116,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         variant="outline"
         label="Copy query to clipboard"
         onClick={() => {
-          copyTextToClipboard(q);
+          copyTextToClipboard(cql);
         }}
       />
       <SearchResultList
