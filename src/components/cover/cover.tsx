@@ -25,7 +25,7 @@ export const Cover = ({
   animate,
   tint,
   id,
-  idType,
+  idType = "pid",
   shadow,
   linkAriaLabelledBy
 }: CoverProps) => {
@@ -42,7 +42,7 @@ export const Cover = ({
   }
 
   const { data } = useGetCoverCollection({
-    type: idType || "pid",
+    type: idType,
     identifiers: [id],
     sizes: [dataSize]
   });
