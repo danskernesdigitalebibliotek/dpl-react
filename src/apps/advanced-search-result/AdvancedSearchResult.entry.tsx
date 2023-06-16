@@ -22,6 +22,7 @@ interface AdvancedSearchResultEntryTextProps {
   showMoreText: string;
   showResultsText: string;
   showingResultsForWithoutQueryText: string;
+  advancedSearchCopyToClipboardText: string;
 }
 
 interface AdvancedSearchResultEntryConfigProps {

@@ -30,6 +30,11 @@ export default {
       defaultValue: "",
       control: { type: "text" }
     },
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
     advancedSearchUrl: {
       name: "Path to the advanced search result page",
       defaultValue: "/advanced-search",
@@ -131,6 +136,11 @@ export default {
     loadingText: {
       name: "Loading",
       defaultValue: "Loading",
+      control: { type: "text" }
+    },
+    advancedSearchCopyToClipboardText: {
+      name: "Advanced search copy to clipboard button text",
+      defaultValue: "Copy search to clipboard",
       control: { type: "text" }
     }
   }
