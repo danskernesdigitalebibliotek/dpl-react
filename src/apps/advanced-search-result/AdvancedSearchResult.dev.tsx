@@ -32,7 +32,7 @@ export default {
     },
     advancedSearchUrl: {
       name: "Path to the advanced search result page",
-      defaultValue: "/search",
+      defaultValue: "/advanced-search",
       control: { type: "text" }
     },
     materialUrl: {
