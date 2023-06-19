@@ -163,136 +163,19 @@ if (import.meta.vitest) {
 
   describe("getPlaceHolderFacets", () => {
     it("should get placeholder facets", () => {
-      expect(getPlaceHolderFacets(allFacetFields)).toMatchInlineSnapshot(`
-        [
-          {
-            "name": "mainLanguages",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "accessTypes",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "childrenOrAdults",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "creators",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "fictionNonfiction",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "fictionalCharacters",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "genreAndForm",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "materialTypes",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "subjects",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-          {
-            "name": "workTypes",
-            "values": [
-              {
-                "key": "",
-                "term": "",
-              },
-            ],
-          },
-        ]
-      `);
+      expect(getPlaceHolderFacets(allFacetFields)).toMatchSnapshot();
     });
   });
 
   describe("formatFacetTerms", () => {
     it("should format facet terms", () => {
-      expect(formatFacetTerms(filters)).toMatchInlineSnapshot(`
-        {
-          "accessTypes": [
-            "Fysisk",
-          ],
-          "mainLanguages": [
-            "Dansk",
-            "Engelsk",
-          ],
-        }
-      `);
+      expect(formatFacetTerms(filters)).toMatchSnapshot();
     });
   });
 
   describe("createFilters", () => {
     it("should create filters", () => {
-      expect(createFilters(filters, branchIdList)).toMatchInlineSnapshot(`
-        {
-          "accessTypes": [
-            "Fysisk",
-          ],
-          "branchId": [
-            "710100",
-            "710200",
-          ],
-          "mainLanguages": [
-            "Dansk",
-            "Engelsk",
-          ],
-        }
-      `);
+      expect(createFilters(filters, branchIdList)).toMatchSnapshot();
     });
   });
 }
