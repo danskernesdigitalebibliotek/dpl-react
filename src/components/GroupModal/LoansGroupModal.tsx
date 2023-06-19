@@ -33,7 +33,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const { close } = useModalButtonHandler();
   const { dueDateModal, allLoansId } = getModalIds();
   const queryClient = useQueryClient();
-  const modalIdUsed = dueDate ? `${dueDateModal}${dueDate}` : allLoansId;
+  const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const [materialsToRenew, setMaterialsToRenew] = useState<string[]>([]);
 
