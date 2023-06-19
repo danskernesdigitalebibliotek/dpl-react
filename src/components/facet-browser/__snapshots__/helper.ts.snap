@@ -1,0 +1,124 @@
+// Vitest Snapshot v1
+
+exports[`createFilters > should create filters 1`] = `
+{
+  "accessTypes": [
+    "Fysisk",
+  ],
+  "branchId": [
+    "710100",
+    "710200",
+  ],
+  "mainLanguages": [
+    "Dansk",
+    "Engelsk",
+  ],
+}
+`;
+
+exports[`formatFacetTerms > should format facet terms 1`] = `
+{
+  "accessTypes": [
+    "Fysisk",
+  ],
+  "mainLanguages": [
+    "Dansk",
+    "Engelsk",
+  ],
+}
+`;
+
+exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
+[
+  {
+    "name": "mainLanguages",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "accessTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "childrenOrAdults",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "creators",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "fictionNonfiction",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "fictionalCharacters",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "genreAndForm",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "materialTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "subjects",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "workTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+]
+`;
