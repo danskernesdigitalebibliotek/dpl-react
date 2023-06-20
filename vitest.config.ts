@@ -1,5 +1,4 @@
 import { defineConfig } from "vitest/config";
-import path from "path";
 
 export default defineConfig({
   define: {
@@ -15,9 +14,7 @@ export default defineConfig({
       provider: "istanbul",
       reporter: ["clover"],
       include: ["src/**/*.{ts,tsx}"]
-    },
-    resolveSnapshotPath: (testPath, snapExtension) =>
-      `./src/tests/unit/${path.basename(testPath)}${snapExtension}`
+    }
   }
 });
 
