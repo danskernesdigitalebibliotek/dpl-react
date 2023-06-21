@@ -31,6 +31,10 @@ export default {
       defaultValue: "",
       control: { type: "text" }
     },
+    textNotificationsEnabledConfig: {
+      defaultValue: "1",
+      control: { type: "text" }
+    },
     // Texts
     pickupBranchesDropdownLabelText: {
       defaultValue: "Choose pickup branch",
@@ -74,11 +78,11 @@ export default {
       control: { type: "text" }
     },
     patronContactInfoBodyText: {
-      defaultValue: "",
+      defaultValue: "Please enter contact information below",
       control: { type: "text" }
     },
     patronContactInfoHeaderText: {
-      defaultValue: "",
+      defaultValue: "Contact information",
       control: { type: "text" }
     },
     patronContactPhoneCheckboxText: {
