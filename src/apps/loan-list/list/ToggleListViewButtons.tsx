@@ -4,6 +4,7 @@ import IconList from "../../../components/icon-list/icon-list";
 import IconStack from "../../../components/icon-stack/icon-stack";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
+import { setQueryParametersInUrl } from "../../../core/utils/helpers/url";
 
 export interface ToggleListViewButtonsProps {
   setView: (view: ListView) => void;
@@ -24,6 +25,9 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
 
   const setViewHandler = useCallback(
     (inputView: ListView) => {
+      setQueryParametersInUrl({
+        listview: inputView
+      });
       setView(inputView);
     },
     [setView]

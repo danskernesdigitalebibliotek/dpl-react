@@ -1,4 +1,4 @@
-import React, { useEffect, FC, useState } from "react";
+import React, { useEffect, FC, useState, useCallback } from "react";
 import {
   useRecommendFromFaustQuery,
   useSearchWithPaginationQuery
@@ -10,6 +10,8 @@ import fetchMaterial, {
   MaterialProps
 } from "../loan-list/materials/utils/material-fetch-hoc";
 import SimpleMaterial from "../../components/simple-material/SimpleMaterial";
+import { RecommenderView } from "../../core/utils/types/recommender-view";
+import { setQueryParametersInUrl } from "../../core/utils/helpers/url";
 
 export interface SomethingSimilarListProps {
   id: string;
@@ -25,14 +27,24 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
     somethingSimilar: somethingSimilarLimit
   } = getRecommenderMaterialLimits();
   const [somethingSimilar, setSomethingSimilar] = useState<Work[] | null>(null);
-
   const [authorMaterials, setAuthorMaterials] = useState<Work[] | null>(null);
 
-  const [recommendView, setRecommendView] = useState<boolean>(true);
+  const [recommendView, setRecommendView] =
+    useState<RecommenderView>("similar");
   const { data: somethingSimilarData } = useRecommendFromFaustQuery({
     faust: id,
     limit: somethingSimilarLimit as number
   });
+
+  const setViewHandler = useCallback(
+    (inputView: RecommenderView) => {
+      setQueryParametersInUrl({
+        "recommender-view": inputView
+      });
+      setRecommendView(inputView);
+    },
+    [setRecommendView]
+  );
 
   const { data: byAuthorData } = useSearchWithPaginationQuery({
     limit: somethingSimilarAuthorLimit as number,
@@ -64,7 +76,7 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
       <div className="recommender__buttons">
         <button
           type="button"
-          onClick={() => setRecommendView(true)}
+          onClick={() => setRecommendView("similar")}
           className={`text-body-medium-regular color-primary-black cursor-pointer button-link--bright ${
             recommendView ? "button-link" : ""
           }`}
@@ -72,7 +84,7 @@ const SomethingSimilarList: FC<SomethingSimilarListProps & MaterialProps> = ({
           {t("somethingSimilarSomethingSimilarAuthorText")}
         </button>
         <button
-          onClick={() => setRecommendView(false)}
+          onClick={() => setViewHandler("author")}
           type="button"
           className={`text-body-medium-regular color-primary-black cursor-pointer button-link--bright ${
             !recommendView ? "button-link" : ""
