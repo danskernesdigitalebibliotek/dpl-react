@@ -38,7 +38,7 @@ export default {
       control: { type: "text" }
     },
     textNotificationsEnabledConfig: {
-      defaultValue: "true",
+      defaultValue: "1",
       control: { type: "text" }
     },
     alwaysAvailableEreolenUrl: {

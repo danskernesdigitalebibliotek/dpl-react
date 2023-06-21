@@ -27,7 +27,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const inputsClass = clsx("dpl-input", { input__desktop: inLine });
   const config = useConfig();
   const textNotificationsEnabled =
-    config("textNotificationsEnabledConfig") === "true";
+    config("textNotificationsEnabledConfig") === "1";
 
   const phoneNode = (
     <>
@@ -59,7 +59,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   const emailNode = (
     <>
       <TextInput
-        className={clsx(inputsClass, { "mt-32": !textNotificationsEnabled })}
+        className={clsx(inputsClass, {
+          "mt-32": !textNotificationsEnabled && !inLine
+        })}
         id="email-address-input"
         type="email"
         required
@@ -83,10 +85,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   );
 
   return (
-    <section
-      className={`${inLine ? "contact-info-flex" : ""}`}
-      data-cy="patron-page-contact-info"
-    >
+    <section data-cy="patron-page-contact-info">
       <h2 className="text-header-h4 mt-32 mb-16">
         {t("patronContactInfoHeaderText")}
       </h2>
@@ -96,10 +95,10 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
         </p>
       )}
       {inLine && (
-        <>
+        <div className={`${inLine ? "contact-info-flex" : ""}`}>
           <div className="patron__input--desktop mr-16">{phoneNode}</div>
           <div className="patron__input--desktop">{emailNode}</div>
-        </>
+        </div>
       )}
       {!inLine && (
         <>
