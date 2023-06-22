@@ -6,6 +6,7 @@ import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import MaterialStatus from "./material-status";
+import { LoanId } from "../../../../core/utils/types/ids";
 
 export interface StackableMaterialProps {
   loan: LoanType;
@@ -13,6 +14,7 @@ export interface StackableMaterialProps {
   openLoanDetailsModal: (modalId: string) => void;
   openDueDateModal?: (dueDate: string) => void;
   focused: boolean;
+  loanId?: LoanId | null;
 }
 
 const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
@@ -21,18 +23,19 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   loan,
   openDueDateModal,
   openLoanDetailsModal,
-  focused
+  focused,
+  loanId
 }) => {
-  const { dueDate, faust, identifier, periodical } = loan;
+  const { dueDate, identifier, periodical } = loan;
 
   const openLoanDetailsModalHandler = useCallback(() => {
-    if (faust) {
-      openLoanDetailsModal(faust);
+    if (loanId) {
+      openLoanDetailsModal(String(loanId));
     }
     if (identifier) {
       openLoanDetailsModal(identifier);
     }
-  }, [faust, identifier, openLoanDetailsModal]);
+  }, [loanId, identifier, openLoanDetailsModal]);
 
   return (
     <div

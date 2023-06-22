@@ -56,6 +56,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   loan={loan}
                   identifier={loan.identifier}
                   faust={loan.faust}
+                  loanId={loan.loanId}
                   key={loan.faust || loan.identifier}
                   // -1 because it is _additional_ to the one displayed...
                   additionalMaterials={loansUniqueDueDate.length - 1}
@@ -72,6 +73,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
               openLoanDetailsModal={openLoanDetailsModal}
               identifier={loan.identifier}
               faust={loan.faust}
+              loanId={loan.loanId}
               key={loan.faust || loan.identifier}
               loan={loan}
               // Zero, as it is not stacked
