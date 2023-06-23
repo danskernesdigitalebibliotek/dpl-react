@@ -9,6 +9,7 @@ interface CreatePatronConfigProps {
   pincodeLengthMaxConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
+  textNotificationsEnabledConfig: string;
 }
 interface CreatePatronUrlProps {
   loginUrl: string;
