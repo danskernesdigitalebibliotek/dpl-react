@@ -13,6 +13,7 @@ import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
+  filterManifestationByUniqueMaterialType,
   getAllIdentifiers
 } from "../../apps/material/helper";
 
@@ -56,6 +57,11 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
           })
           .flat();
 
+        const selectedManifestation = filterManifestationByUniqueMaterialType(
+          manifestationsOfMaterialType,
+          materialType
+        );
+
         return (
           <AvailabilityLabel
             key={faustIds.join("-")}
@@ -72,7 +78,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             handleSelectManifestation={
               setSelectedManifestations
                 ? () => {
-                    setSelectedManifestations(manifestationsOfMaterialType);
+                    setSelectedManifestations(selectedManifestation);
                     setQueryParametersInUrl({
                       type: materialType
                     });

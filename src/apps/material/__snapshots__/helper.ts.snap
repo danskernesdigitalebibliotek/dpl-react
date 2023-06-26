@@ -1,0 +1,559 @@
+// Vitest Snapshot v1
+
+exports[`filterManifestationByUniqueMaterialType > testManifestation 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "link.overdrive.com",
+        "url": "http://link.overdrive.com/?websiteID=100515&titleID=39136",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "samples.overdrive.com",
+        "url": "https://samples.overdrive.com/?crid=9AB7D235-9D58-4180-8DF3-57A4A60CD51E&.epub-sample.overdrive.com",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-100/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg100.jpg",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-200/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg200.jpg",
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "ONLINE",
+      },
+    ],
+    "audience": {
+      "generalAudience": [
+        "Text Difficulty 3 - Text Difficulty 5",
+        "UG/Upper grades (9th-12)",
+        "820. Lexile",
+        "6.1. ATOS Level",
+      ],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2004",
+      },
+      "summary": "2004",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [],
+    "identifiers": [
+      {
+        "value": "9780553900330",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "e-bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": null,
+        "playingTime": null,
+      },
+    ],
+    "pid": "150061-ebog:ODN0000039136",
+    "publisher": [],
+    "shelfmark": null,
+    "source": [
+      "eReolen Global",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
+
+exports[`filterManifestationByUniqueMaterialType > testManifestations 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "InterLibraryLoan",
+        "loanIsPossible": true,
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "PHYSICAL",
+      },
+    ],
+    "audience": {
+      "generalAudience": [],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2000",
+      },
+      "summary": "2. edition, 2000",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [
+      "noveller",
+    ],
+    "identifiers": [
+      {
+        "value": "0-19-423069-4",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": 104,
+        "playingTime": null,
+      },
+    ],
+    "pid": "870970-basis:23798255",
+    "publisher": [
+      "Oxford University Press",
+    ],
+    "shelfmark": {
+      "postfix": "Asimov",
+      "shelfmark": "83.8",
+    },
+    "source": [
+      "Bibliotekskatalog",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot (Oxford bookworms library, ved Rowena Akinyemi)",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
+
+exports[`filterManifestationByUniqueMaterialType > with manifestation 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "link.overdrive.com",
+        "url": "http://link.overdrive.com/?websiteID=100515&titleID=39136",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "samples.overdrive.com",
+        "url": "https://samples.overdrive.com/?crid=9AB7D235-9D58-4180-8DF3-57A4A60CD51E&.epub-sample.overdrive.com",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-100/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg100.jpg",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-200/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg200.jpg",
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "ONLINE",
+      },
+    ],
+    "audience": {
+      "generalAudience": [
+        "Text Difficulty 3 - Text Difficulty 5",
+        "UG/Upper grades (9th-12)",
+        "820. Lexile",
+        "6.1. ATOS Level",
+      ],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2004",
+      },
+      "summary": "2004",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [],
+    "identifiers": [
+      {
+        "value": "9780553900330",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "e-bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": null,
+        "playingTime": null,
+      },
+    ],
+    "pid": "150061-ebog:ODN0000039136",
+    "publisher": [],
+    "shelfmark": null,
+    "source": [
+      "eReolen Global",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
+
+exports[`filterManifestationByUniqueMaterialType > with manifestations 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "InterLibraryLoan",
+        "loanIsPossible": true,
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "PHYSICAL",
+      },
+    ],
+    "audience": {
+      "generalAudience": [],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2000",
+      },
+      "summary": "2. edition, 2000",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [
+      "noveller",
+    ],
+    "identifiers": [
+      {
+        "value": "0-19-423069-4",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": 104,
+        "playingTime": null,
+      },
+    ],
+    "pid": "870970-basis:23798255",
+    "publisher": [
+      "Oxford University Press",
+    ],
+    "shelfmark": {
+      "postfix": "Asimov",
+      "shelfmark": "83.8",
+    },
+    "source": [
+      "Bibliotekskatalog",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot (Oxford bookworms library, ved Rowena Akinyemi)",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
+
+exports[`filterManifestationByUniqueMaterialType > with one manifestation 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "link.overdrive.com",
+        "url": "http://link.overdrive.com/?websiteID=100515&titleID=39136",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "samples.overdrive.com",
+        "url": "https://samples.overdrive.com/?crid=9AB7D235-9D58-4180-8DF3-57A4A60CD51E&.epub-sample.overdrive.com",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-100/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg100.jpg",
+      },
+      {
+        "__typename": "AccessUrl",
+        "loginRequired": false,
+        "origin": "img1.od-cdn.com",
+        "url": "https://img1.od-cdn.com/ImageType-200/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg200.jpg",
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "ONLINE",
+      },
+    ],
+    "audience": {
+      "generalAudience": [
+        "Text Difficulty 3 - Text Difficulty 5",
+        "UG/Upper grades (9th-12)",
+        "820. Lexile",
+        "6.1. ATOS Level",
+      ],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2004",
+      },
+      "summary": "2004",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [],
+    "identifiers": [
+      {
+        "value": "9780553900330",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "e-bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": null,
+        "playingTime": null,
+      },
+    ],
+    "pid": "150061-ebog:ODN0000039136",
+    "publisher": [],
+    "shelfmark": null,
+    "source": [
+      "eReolen Global",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
+
+exports[`filterManifestationByUniqueMaterialType > with several manifestations 1`] = `
+[
+  {
+    "access": [
+      {
+        "__typename": "InterLibraryLoan",
+        "loanIsPossible": true,
+      },
+    ],
+    "accessTypes": [
+      {
+        "code": "PHYSICAL",
+      },
+    ],
+    "audience": {
+      "generalAudience": [],
+    },
+    "contributors": [],
+    "creators": [
+      {
+        "__typename": "Person",
+        "display": "Isaac Asimov",
+      },
+    ],
+    "dateFirstEdition": null,
+    "edition": {
+      "publicationYear": {
+        "display": "2000",
+      },
+      "summary": "2. edition, 2000",
+    },
+    "fictionNonfiction": {
+      "code": "FICTION",
+      "display": "skønlitteratur",
+    },
+    "genreAndForm": [
+      "noveller",
+    ],
+    "identifiers": [
+      {
+        "value": "0-19-423069-4",
+      },
+    ],
+    "languages": {
+      "main": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng",
+        },
+      ],
+    },
+    "materialTypes": [
+      {
+        "specific": "bog",
+      },
+    ],
+    "physicalDescriptions": [
+      {
+        "numberOfPages": 104,
+        "playingTime": null,
+      },
+    ],
+    "pid": "870970-basis:23798255",
+    "publisher": [
+      "Oxford University Press",
+    ],
+    "shelfmark": {
+      "postfix": "Asimov",
+      "shelfmark": "83.8",
+    },
+    "source": [
+      "Bibliotekskatalog",
+    ],
+    "titles": {
+      "main": [
+        "I, Robot (Oxford bookworms library, ved Rowena Akinyemi)",
+      ],
+      "original": [],
+    },
+    "workYear": null,
+  },
+]
+`;
