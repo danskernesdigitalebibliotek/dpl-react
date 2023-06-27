@@ -26,6 +26,14 @@ export default {
   reservationsReadyForPickupText: {
     defaultValue: "Reservations ready for pickup",
     control: { type: "text" }
+  },
+  physicalReservationsHeaderText: {
+    defaultValue: "Physical reservations",
+    control: { type: "text" }
+  },
+  digitalReservationsHeaderText: {
+    defaultValue: "Digital reservations",
+    control: { type: "text" }
   }
 };
 
@@ -36,4 +44,6 @@ export interface GroupModalReservationsProps {
   removeAllReservationsText: string;
   pickUpLatestText: string;
   reservationsReadyForPickupText: string;
+  physicalReservationsHeaderText: string;
+  digitalReservationsHeaderText: string;
 }
