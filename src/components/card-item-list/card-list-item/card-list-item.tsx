@@ -135,13 +135,13 @@ const CardListItem: React.FC<CardListItemProps> = ({
       </div>
       <div className="card-list-item__text">
         <div className="card-list-item__meta">
-          {/* {showItem && (
+          {showItem && (
             <ButtonFavourite
               title={fullTitle[0]}
               id={workId}
               addToListRequest={addToListRequest}
             />
-          )} */}
+          )}
           {firstItemInSeries && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
