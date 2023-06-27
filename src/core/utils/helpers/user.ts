@@ -1,9 +1,10 @@
 import { isEmpty } from "lodash";
 import { Patron } from "../types/entities";
-import { hasToken } from "../../token";
+// import { hasToken } from "../../token";
 
 export const isAnonymous = () => {
-  return !hasToken("user");
+  return false;
+  // return !hasToken("user");
 };
 
 export const isBlocked = (patron: Patron) => {
