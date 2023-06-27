@@ -150,7 +150,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   // Get disclosure URL parameter from the current URL to see if it should be open.
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
-  console.log("🚀 ~ file: material.tsx ~ isAnonymous:", isAnonymous);
+  console.log("🚀 ~ file: material.tsx ~ isAnonymous:", isAnonymous());
 
   return (
     <section className="material-page">
