@@ -116,11 +116,11 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         data-cy="material-header-content"
         className="material-header__content"
       >
-        <ButtonFavourite
+        {/* <ButtonFavourite
           title={String(title)}
           id={wid}
           addToListRequest={addToListRequest}
-        />
+        /> */}
         <MaterialHeaderText
           title={String(title)}
           author={author}

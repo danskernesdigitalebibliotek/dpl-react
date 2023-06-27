@@ -67,12 +67,12 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
         <Cover animate size="medium" id={manifestationPid} />
       </div>
       <div className="simple-material__favourite">
-        <ButtonFavourite
+        {/* <ButtonFavourite
           title={title}
           darkBackground={!bright}
           id={workId}
           addToListRequest={addToListRequest}
-        />
+        /> */}
       </div>
       <div className="simple-material__meta">
         <Link href={materialFullUrl} className="simple-material__title">
