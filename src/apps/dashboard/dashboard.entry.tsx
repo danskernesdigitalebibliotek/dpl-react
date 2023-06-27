@@ -47,8 +47,6 @@ export interface DashBoardProps {
   resultPagerStatusText: string;
   reservationDetailsOthersInQueueText: string;
   loanListMaterialDaysText: string;
-  physicalReservationsModalHeaderText: string;
-  digitalReservationsModalHeaderText: string;
   etAlText: string;
   materialByAuthorText: string;
   materialAndAuthorText: string;
