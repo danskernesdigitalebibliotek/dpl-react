@@ -144,14 +144,6 @@ export default {
       },
       defaultValue: "days"
     },
-    physicalReservationsModalHeaderText: {
-      defaultValue: "Physical reservations",
-      control: { type: "text" }
-    },
-    digitalReservationsModalHeaderText: {
-      defaultValue: "Digital reservations",
-      control: { type: "text" }
-    },
     etAlText: {
       control: {
         type: "text"

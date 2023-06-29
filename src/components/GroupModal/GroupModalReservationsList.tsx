@@ -10,14 +10,18 @@ export interface GroupModalReservationsListProps {
   materials: ReservationType[];
   pageSize: number;
   selectedMaterials: string[];
+  header: string;
   selectMaterials: (materialIds: string[]) => void;
+  marginBottonPager: boolean;
 }
 
 const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   materials,
   selectedMaterials,
   selectMaterials,
-  pageSize
+  pageSize,
+  header,
+  marginBottonPager
 }) => {
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<
@@ -48,6 +52,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
 
   return (
     <>
+      <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map(
           ({ expiryDate, faust, identifier, numberInQueue }, i) => (
@@ -97,7 +102,9 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
           )
         )}
       </ul>
-      <PagerComponent classNames="result-pager--margin-bottom" />
+      <PagerComponent
+        classNames={marginBottonPager ? "result-pager--margin-bottom" : ""}
+      />
     </>
   );
 };

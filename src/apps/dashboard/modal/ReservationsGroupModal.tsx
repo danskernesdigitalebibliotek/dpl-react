@@ -9,13 +9,20 @@ import {
   getModalIds,
   getPhysicalQueuedReservations
 } from "../../../core/utils/helpers/general";
-import { useDeleteV1UserReservationsIdentifier } from "../../../core/publizon/publizon";
+import {
+  useDeleteV1UserReservationsIdentifier,
+  useGetV1UserReservations
+} from "../../../core/publizon/publizon";
 import GroupModalReservationsList from "../../../components/GroupModal/GroupModalReservationsList";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import { isFaust } from "../util/helpers";
-import { getReadyForPickup } from "../../reservation-list/utils/helpers";
+import {
+  getReadyForPickup,
+  getReservedDigital
+} from "../../reservation-list/utils/helpers";
 import StatusCircle from "../../loan-list/materials/utils/status-circle";
+import { mapPublizonReservationToReservationType } from "../../../core/utils/helpers/list-mapper";
 
 interface ReservationGroupModalProps {
   pageSize: number;
@@ -43,6 +50,26 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     string[]
   >([]);
 
+  const { isSuccess: isSuccessPublizon, data: publizonData } =
+    useGetV1UserReservations();
+
+  const [displayedDigitalReservations, setDisplayedDigitalReservations] =
+    useState<ReservationType[]>([]);
+  const [digitalReservations, setDigitalReservations] = useState<
+    ReservationType[]
+  >([]);
+
+  useEffect(() => {
+    if (isSuccessPublizon && publizonData && publizonData.reservations) {
+      const reservationType = mapPublizonReservationToReservationType(
+        publizonData.reservations
+      );
+      setDigitalReservations(reservationType);
+    } else if (!isSuccessPublizon) {
+      setDigitalReservations([]);
+    }
+  }, [publizonData, isSuccessPublizon]);
+
   useEffect(() => {
     setMaterialsToDelete([]);
   }, [modalId]);
@@ -64,20 +91,34 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   }, [modalId, reservations, reservationsQueued, reservationsReady]);
 
   useEffect(() => {
+    if (modalId === reservationsReady) {
+      const readyForPickup = getReadyForPickup(digitalReservations);
+      setDisplayedDigitalReservations(readyForPickup);
+    } else {
+      setDisplayedDigitalReservations(getReservedDigital(digitalReservations));
+    }
+  }, [digitalReservations, modalId, reservationsReady]);
+
+  useEffect(() => {
     if (modalId === reservationsQueued) {
       setSelectableReservations([
-        ...displayedreservations
+        ...[...displayedreservations, ...displayedDigitalReservations]
           .map(({ identifier, faust }) => identifier || faust || "")
           .filter((id) => id !== "")
       ]);
     } else {
       setSelectableReservations([
-        ...displayedreservations
+        ...[...displayedreservations, ...displayedDigitalReservations]
           .map(({ identifier, faust }) => identifier || faust || "")
           .filter((id) => id !== "")
       ]);
     }
-  }, [displayedreservations, modalId, reservationsQueued]);
+  }, [
+    displayedDigitalReservations,
+    displayedreservations,
+    modalId,
+    reservationsQueued
+  ]);
 
   const removeSelectedReservations = () => {
     if (materialsToDelete.length > 0) {
@@ -147,7 +188,17 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             selectMaterials={selectMaterials}
           >
             <GroupModalReservationsList
+              header={t("physicalReservationsHeaderText")}
               materials={displayedreservations}
+              pageSize={pageSize}
+              selectedMaterials={materialsToDelete}
+              selectMaterials={selectMaterials}
+              marginBottonPager={displayedDigitalReservations.length === 0}
+            />
+            <GroupModalReservationsList
+              marginBottonPager
+              header={t("digitalReservationsHeaderText")}
+              materials={displayedDigitalReservations}
               pageSize={pageSize}
               selectedMaterials={materialsToDelete}
               selectMaterials={selectMaterials}

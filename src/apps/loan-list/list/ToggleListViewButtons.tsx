@@ -44,6 +44,7 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
       <div className="dpl-list-buttons__buttons__button">
         <button
           onClick={() => setViewHandler("list")}
+          aria-pressed={view === "list"}
           className={`dpl-icon-button ${
             view === "list" ? "dpl-icon-button--selected" : ""
           }`}
@@ -56,6 +57,7 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
       </div>
       <div className="dpl-list-buttons__buttons__button">
         <button
+          aria-pressed={view === "stack"}
           className={`dpl-icon-button ${
             view === "stack" ? "dpl-icon-button--selected" : ""
           }`}
