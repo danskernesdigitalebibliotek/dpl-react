@@ -222,7 +222,7 @@ export const mapFBSReservationToReservationType = (
         dateOfReservation,
         expiryDate,
         numberInQueue,
-        state,
+        state: state === "readyForPickup" ? "readyForPickup" : "reserved",
         pickupBranch,
         pickupDeadline,
         pickupNumber,
