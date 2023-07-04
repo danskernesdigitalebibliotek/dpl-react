@@ -1,22 +1,27 @@
 import React, { FC, useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 import { Button } from "../../../components/Buttons/Button";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
-import { useDeleteReservations } from "../../../core/fbs/fbs";
+import {
+  useDeleteReservations,
+  getGetReservationsV2QueryKey
+} from "../../../core/fbs/fbs";
 import {
   getModalIds,
   getPhysicalQueuedReservations
 } from "../../../core/utils/helpers/general";
 import {
   useDeleteV1UserReservationsIdentifier,
-  useGetV1UserReservations
+  useGetV1UserReservations,
+  getGetV1UserReservationsQueryKey
 } from "../../../core/publizon/publizon";
 import GroupModalReservationsList from "../../../components/GroupModal/GroupModalReservationsList";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
-import { isFaust } from "../util/helpers";
+import { isFaust, isIdentifier } from "../util/helpers";
 import {
   getReadyForPickup,
   getReservedDigital
@@ -36,6 +41,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   reservations
 }) => {
   const t = useText();
+  const queryClient = useQueryClient();
   const { close } = useModalButtonHandler();
   const { reservationsReady, reservationsQueued } = getModalIds();
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
@@ -100,19 +106,14 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   }, [digitalReservations, modalId, reservationsReady]);
 
   useEffect(() => {
-    if (modalId === reservationsQueued) {
-      setSelectableReservations([
-        ...[...displayedreservations, ...displayedDigitalReservations]
-          .map(({ identifier, faust }) => identifier || faust || "")
-          .filter((id) => id !== "")
-      ]);
-    } else {
-      setSelectableReservations([
-        ...[...displayedreservations, ...displayedDigitalReservations]
-          .map(({ identifier, faust }) => identifier || faust || "")
-          .filter((id) => id !== "")
-      ]);
-    }
+    setSelectableReservations([
+      ...[...displayedreservations, ...displayedDigitalReservations]
+        .map(
+          ({ identifier, reservationId }) =>
+            identifier || String(reservationId) || ""
+        )
+        .filter((id) => id !== "")
+    ]);
   }, [
     displayedDigitalReservations,
     displayedreservations,
@@ -126,16 +127,30 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
         .map((id) => Number(isFaust(id)))
         .filter((id) => id !== 0);
       const digitalMaterialsToDelete = materialsToDelete
-        .map((id) => isFaust(id))
+        .map((id) => isIdentifier(id))
         .filter((id) => id !== null);
+      deletePhysicalReservation(
+        {
+          params: { reservationid: reservationsToDelete }
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+          }
+        }
+      );
 
-      deletePhysicalReservation({
-        params: { reservationid: reservationsToDelete }
-      });
       digitalMaterialsToDelete.forEach((id) =>
-        deleteDigitalReservation({
-          identifier: String(id)
-        })
+        deleteDigitalReservation(
+          {
+            identifier: String(id)
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
+            }
+          }
+        )
       );
       close(modalId as string);
     }

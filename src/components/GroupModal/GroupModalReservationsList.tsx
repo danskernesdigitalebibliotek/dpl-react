@@ -55,9 +55,12 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
       <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map(
-          ({ expiryDate, faust, identifier, numberInQueue }, i) => (
+          (
+            { expiryDate, faust, identifier, numberInQueue, reservationId },
+            i
+          ) => (
             <>
-              {(identifier || faust) && (
+              {(identifier || reservationId || faust) && (
                 <SelectableMaterial
                   focused={i === firstInNewPage}
                   statusBadgeComponent={
@@ -86,11 +89,13 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   }
                   key={faust || identifier}
                   selected={Boolean(
-                    selectedMaterials?.indexOf(identifier || faust || "") > -1
+                    selectedMaterials?.indexOf(
+                      identifier || String(reservationId) || ""
+                    ) > -1
                   )}
                   onMaterialChecked={onMaterialChecked}
                   disabled={false}
-                  id={identifier || faust}
+                  id={identifier || String(reservationId)}
                   faust={faust}
                   identifier={identifier}
                   statusMessageComponentMobile={null}
