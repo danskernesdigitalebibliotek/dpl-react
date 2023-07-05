@@ -298,14 +298,6 @@ export type Ereol = {
   url: Scalars["String"];
 };
 
-export type ExternalReview = Review & {
-  __typename?: "ExternalReview";
-  author?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["String"]>;
-  rating?: Maybe<Scalars["String"]>;
-  urls: Array<AccessUrl>;
-};
-
 /** The supported facet fields */
 export enum FacetField {
   AccessTypes = "accessTypes",
@@ -316,8 +308,6 @@ export enum FacetField {
   FictionalCharacters = "fictionalCharacters",
   GenreAndForm = "genreAndForm",
   MainLanguages = "mainLanguages",
-  /** @deprecated Use 'FacetField.materialTypesSpecific' */
-  MaterialTypes = "materialTypes",
   MaterialTypesGeneral = "materialTypesGeneral",
   MaterialTypesSpecific = "materialTypesSpecific",
   Subjects = "subjects",
@@ -455,15 +445,6 @@ export type InfomediaResponse = {
   error?: Maybe<InfomediaError>;
 };
 
-export type InfomediaReview = Review & {
-  __typename?: "InfomediaReview";
-  author?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["String"]>;
-  id: Scalars["String"];
-  origin?: Maybe<Scalars["String"]>;
-  rating?: Maybe<Scalars["String"]>;
-};
-
 export type InfomediaService = {
   __typename?: "InfomediaService";
   /** Infomedia ID which can be used to fetch article through Infomedia Service */
@@ -506,40 +487,6 @@ export type Languages = {
   /** Subtitles in this manifestation */
   subtitles?: Maybe<Array<Language>>;
 };
-
-export type LibrariansReview = Review & {
-  __typename?: "LibrariansReview";
-  author?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["String"]>;
-  /**  This is a pid  */
-  id: Scalars["String"];
-  sections: Array<LibrariansReviewSection>;
-};
-
-export type LibrariansReviewSection = {
-  __typename?: "LibrariansReviewSection";
-  /** a code indicating the content type of the section */
-  code: LibrariansReviewSectionCode;
-  /** The heading of the section */
-  heading?: Maybe<Scalars["String"]>;
-  /** A piece of text, maybe mentioning a work at the end. */
-  text: Scalars["String"];
-  /** The work the text is refering to. When work is null, the text does not refer to a work. */
-  work?: Maybe<Work>;
-};
-
-export enum LibrariansReviewSectionCode {
-  About = "ABOUT",
-  All = "ALL",
-  Compare = "COMPARE",
-  Conclusion = "CONCLUSION",
-  Description = "DESCRIPTION",
-  Evaluation = "EVALUATION",
-  Library = "LIBRARY",
-  Olddescription = "OLDDESCRIPTION",
-  Other = "OTHER",
-  Use = "USE"
-}
 
 export type LinkCheckResponse = {
   __typename?: "LinkCheckResponse";
@@ -625,7 +572,7 @@ export type Manifestation = {
   relations: Relations;
   /** Some review data, if this manifestation is a review */
   review?: Maybe<ManifestationReview>;
-  /** Series for this work */
+  /** Series for this manifestation */
   series: Array<Series>;
   /** Information about on which shelf in the library this manifestation can be found */
   shelfmark?: Maybe<Shelfmark>;
@@ -637,13 +584,13 @@ export type Manifestation = {
   tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
-  /** Universe for this work */
+  /** Universe for this manifestation */
   universe?: Maybe<Universe>;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
   /** Worktypes for this manifestations work */
   workTypes: Array<WorkType>;
-  /** The year this work was originally published or produced */
+  /** The year this manifestation was originally published or produced */
   workYear?: Maybe<PublicationYear>;
 };
 
@@ -651,6 +598,8 @@ export type ManifestationPart = {
   __typename?: "ManifestationPart";
   /** Classification of this entry (music track or literary analysis) */
   classifications: Array<Classification>;
+  /** Contributors from description - additional contributor to this entry */
+  contributorsFromDescription: Array<Scalars["String"]>;
   /** The creator of the music track or literary analysis */
   creators: Array<Creator>;
   /** Additional creator or contributor to this entry (music track or literary analysis) as described on the publication. E.g. 'arr.: H. Cornell' */
@@ -690,7 +639,7 @@ export type ManifestationTitles = {
   __typename?: "ManifestationTitles";
   /** Alternative titles for this manifestation e.g. a title in a different language */
   alternative: Array<Scalars["String"]>;
-  /** The full title(s) of the work including subtitles etc */
+  /** The full title(s) of the manifestation including subtitles etc */
   full: Array<Scalars["String"]>;
   /** Information that distinguishes this manifestation from a similar manifestation with same title, e.g. 'illustrated by Ted Kirby' */
   identifyingAddition?: Maybe<Scalars["String"]>;
@@ -698,7 +647,7 @@ export type ManifestationTitles = {
   main: Array<Scalars["String"]>;
   /** The title of the work that this expression/manifestation is translated from or based on. The original title(s) of a film which has a different distribution title. */
   original?: Maybe<Array<Scalars["String"]>>;
-  /** Titles (in other languages) parallel to the main 'title' of the work */
+  /** Titles (in other languages) parallel to the main 'title' of the manifestation */
   parallel: Array<Scalars["String"]>;
   /** The sorted title of the entity */
   sort: Scalars["String"];
@@ -955,6 +904,7 @@ export type QueryWorkArgs = {
   faust?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   language?: InputMaybe<LanguageCode>;
+  oclc?: InputMaybe<Scalars["String"]>;
   pid?: InputMaybe<Scalars["String"]>;
 };
 
@@ -962,6 +912,7 @@ export type QueryWorksArgs = {
   faust?: InputMaybe<Array<Scalars["String"]>>;
   id?: InputMaybe<Array<Scalars["String"]>>;
   language?: InputMaybe<LanguageCode>;
+  oclc?: InputMaybe<Array<Scalars["String"]>>;
   pid?: InputMaybe<Array<Scalars["String"]>>;
 };
 
@@ -1053,11 +1004,6 @@ export type Relations = {
   isSoundtrackOfGame: Array<Manifestation>;
   /** This sound track for a movie is related to these movies */
   isSoundtrackOfMovie: Array<Manifestation>;
-};
-
-export type Review = {
-  author?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["String"]>;
 };
 
 export type ReviewElement = {
@@ -1195,6 +1141,8 @@ export type Series = {
   __typename?: "Series";
   /** A alternative title to the main 'title' of the series */
   alternativeTitles: Array<Scalars["String"]>;
+  /** Description of the series */
+  description?: Maybe<Scalars["String"]>;
   /** Whether this is a popular series or general series */
   isPopular?: Maybe<Scalars["Boolean"]>;
   /** Members of this serie.  */
@@ -1207,8 +1155,6 @@ export type Series = {
   readThisFirst?: Maybe<Scalars["Boolean"]>;
   /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
   readThisWhenever?: Maybe<Scalars["Boolean"]>;
-  /** Description of the series */
-  seriesDescription?: Maybe<Scalars["String"]>;
   /** The title of the series */
   title: Scalars["String"];
 };
@@ -1363,11 +1309,12 @@ export type Work = {
   materialTypes: Array<MaterialType>;
   /** Relations to other manifestations */
   relations: Relations;
-  /** @deprecated Use 'Work.relations.hasReview' */
-  reviews: Array<Review>;
   /** Series for this work */
   series: Array<Series>;
-  /** Members of a series that this work is part of */
+  /**
+   * Members of a series that this work is part of
+   * @deprecated Use 'Work.series.members' instead
+   */
   seriesMembers: Array<Work>;
   /** Subjects for this work */
   subjects: SubjectContainer;

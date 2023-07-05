@@ -10,7 +10,7 @@ export const getFirstMaterialTypeFromFilters = (
   manifestations: Manifestation[]
 ) => {
   const materialTypeFilter = head(
-    Object.keys(filters[FacetField.MaterialTypes] || {}).sort()
+    Object.keys(filters[FacetField.MaterialTypesSpecific] || {}).sort()
   ) as ManifestationMaterialType;
   const allMaterialTypes = getMaterialTypes(manifestations);
   return materialTypeFilter && allMaterialTypes.includes(materialTypeFilter)
