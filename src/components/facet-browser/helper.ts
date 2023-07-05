@@ -15,7 +15,7 @@ export const allFacetFields = [
   FacetField.FictionNonfiction,
   FacetField.FictionalCharacters,
   FacetField.GenreAndForm,
-  FacetField.MaterialTypes,
+  FacetField.MaterialTypesSpecific,
   FacetField.Subjects,
   FacetField.WorkTypes
 ];
@@ -119,8 +119,6 @@ export const getFacetFieldTranslation = (name: FacetField) => {
       return "facetGenreAndFormText";
     case FacetField.MainLanguages:
       return "facetMainLanguagesText";
-    case FacetField.MaterialTypes:
-      return "facetMaterialTypesText";
     case FacetField.MaterialTypesGeneral:
       return "facetMaterialTypesGeneralText";
     case FacetField.MaterialTypesSpecific:

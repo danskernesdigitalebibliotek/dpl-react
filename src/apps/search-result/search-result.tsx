@@ -88,7 +88,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffect(() => {
-    addFilterFromUrlParamListener(FacetField.MaterialTypes);
+    addFilterFromUrlParamListener(FacetField.MaterialTypesSpecific);
     addFilterFromUrlParamListener(FacetField.WorkTypes);
     // We only want to do this once, so we need the dependency array empty
     // eslint-disable-next-line react-hooks/exhaustive-deps
