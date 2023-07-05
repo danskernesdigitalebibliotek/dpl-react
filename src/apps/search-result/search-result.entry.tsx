@@ -26,7 +26,6 @@ interface SearchResultEntryTextProps {
   facetMainLanguagesText: string;
   facetMaterialTypesGeneralText: string;
   facetMaterialTypesSpecificText: string;
-  facetMaterialTypesText: string;
   facetSubjectsText: string;
   facetWorkTypesText: string;
   filterListText: string;
