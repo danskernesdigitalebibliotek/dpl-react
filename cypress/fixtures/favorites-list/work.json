@@ -2,22 +2,14 @@
   "data": {
     "work": {
       "workId": "work-of:870970-basis:51363035",
-      "titles": {
-        "full": ["Mimbo Jimbo og den lange vinter"],
-        "original": []
-      },
+      "titles": { "full": ["Mimbo Jimbo og den lange vinter"], "original": [] },
       "abstract": [
         "Billedbog. Den lille, blå elefant Mimbo Jimbo undrer sig over, at det er snevejr, nu hvor foråret burde komme. Sammen med sine venner undersøger han, hvorfor vejret opfører sig så mystisk. Det bliver en spændende rejse ud i snelandskabet"
       ],
-      "creators": [
-        {
-          "display": "Jakob Martin Strid",
-          "__typename": "Person"
-        }
-      ],
+      "creators": [{ "display": "Jakob Martin Strid", "__typename": "Person" }],
       "series": [],
       "seriesMembers": [],
-      "workYear": "2014",
+      "workYear": { "year": 2014 },
       "genreAndForm": ["dyrefortællinger", "sjove bøger"],
       "manifestations": {
         "all": [
@@ -25,6 +17,7 @@
             "pid": "870970-basis:51363035",
             "genreAndForm": ["dyrefortællinger", "sjove bøger"],
             "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Mimbo Jimbo og den lange vinter"],
               "original": []
@@ -33,62 +26,34 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "billedbog"
-              }
-            ],
+            "materialTypes": [{ "specific": "billedbog" }],
             "creators": [
-              {
-                "display": "Jakob Martin Strid",
-                "__typename": "Person"
-              }
+              { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788702165708"
-              }
-            ],
+            "publisher": ["Gyldendal"],
+            "identifiers": [{ "value": "9788702165708" }],
             "contributors": [],
             "edition": {
               "summary": "1. udgave, 2014",
-              "publicationYear": {
-                "display": "2014"
-              }
+              "publicationYear": { "display": "2014" }
             },
-            "audience": {
-              "generalAudience": ["for højtlæsning"]
-            },
+            "dateFirstEdition": { "display": "2014", "year": 2014 },
+            "audience": { "generalAudience": ["for højtlæsning"] },
             "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
+              { "numberOfPages": 100, "playingTime": null }
             ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
             "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
             ],
-            "shelfmark": null
+            "shelfmark": null,
+            "workYear": { "year": 2014 }
           },
           {
             "pid": "870970-basis:51374975",
             "genreAndForm": [],
             "source": ["Netlydbog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Mimbo Jimbo og den lange vinter"],
               "original": []
@@ -97,75 +62,48 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "lydbog (net)"
-              }
-            ],
+            "materialTypes": [{ "specific": "lydbog (online)" }],
             "creators": [
-              {
-                "display": "Jakob Martin Strid",
-                "__typename": "Person"
-              }
+              { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
+            "publisher": ["Gyldendal"],
             "identifiers": [
-              {
-                "value": "9788702173475"
-              },
-              {
-                "value": "9788702173475"
-              }
+              { "value": "9788702173475" },
+              { "value": "9788702173475" }
             ],
-            "contributors": [
-              {
-                "display": "Lars Junker Thiesgaard"
-              }
-            ],
+            "contributors": [{ "display": "Lars Junker Thiesgaard" }],
             "edition": {
               "summary": "2014",
-              "publicationYear": {
-                "display": "2014"
-              }
+              "publicationYear": { "display": "2014" }
             },
-            "audience": {
-              "generalAudience": []
-            },
+            "dateFirstEdition": { "display": "2014", "year": 2014 },
+            "audience": { "generalAudience": [] },
             "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
+              { "numberOfPages": null, "playingTime": "26 min." }
             ],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
-            ],
+            "accessTypes": [{ "code": "ONLINE" }],
             "access": [
               {
-                "__typename": "AccessUrl",
-                "origin": "ereolen.dk",
-                "url": "https://ereolen.dk/ting/object/870970-basis:51374975",
-                "loginRequired": false
+                "__typename": "Ereol",
+                "origin": "eReolen Go",
+                "url": "https://ereolengo.dk/ting/object/870970-basis:51374975",
+                "canAlwaysBeLoaned": false
               },
               {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": false
+                "__typename": "Ereol",
+                "origin": "eReolen",
+                "url": "https://ereolen.dk/ting/object/870970-basis:51374975",
+                "canAlwaysBeLoaned": false
               }
             ],
-            "shelfmark": null
+            "shelfmark": null,
+            "workYear": { "year": 2014 }
           },
           {
             "pid": "870970-basis:51514386",
             "genreAndForm": [],
             "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Mimbo Jimbo og den lange vinter"],
               "original": []
@@ -174,66 +112,34 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "lydbog (cd)"
-              }
-            ],
+            "materialTypes": [{ "specific": "lydbog (cd)" }],
             "creators": [
-              {
-                "display": "Jakob Martin Strid",
-                "__typename": "Person"
-              }
+              { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788702174823"
-              }
-            ],
-            "contributors": [
-              {
-                "display": "Lars Junker Thiesgaard"
-              }
-            ],
+            "publisher": ["Gyldendal  Lyd"],
+            "identifiers": [{ "value": "9788702174823" }],
+            "contributors": [{ "display": "Lars Junker Thiesgaard" }],
             "edition": {
               "summary": "2014",
-              "publicationYear": {
-                "display": "2014"
-              }
+              "publicationYear": { "display": "2014" }
             },
-            "audience": {
-              "generalAudience": []
-            },
+            "dateFirstEdition": { "display": "2014", "year": 2014 },
+            "audience": { "generalAudience": [] },
             "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
+              { "numberOfPages": null, "playingTime": "26 min." }
             ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
             "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
             ],
-            "shelfmark": null
+            "shelfmark": null,
+            "workYear": { "year": 2014 }
           },
           {
             "pid": "870970-basis:51515951",
             "genreAndForm": [],
             "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Mimbo Jimbo og den lange vinter"],
               "original": []
@@ -242,62 +148,34 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "billedbog"
-              }
-            ],
+            "materialTypes": [{ "specific": "billedbog" }],
             "creators": [
-              {
-                "display": "Jakob Martin Strid",
-                "__typename": "Person"
-              }
+              { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "9788703068077"
-              }
-            ],
+            "publisher": ["Gyldendals Bogklubber"],
+            "identifiers": [{ "value": "9788703068077" }],
             "contributors": [],
             "edition": {
               "summary": "1. bogklubudgave, 2014",
-              "publicationYear": {
-                "display": "2014"
-              }
+              "publicationYear": { "display": "2014" }
             },
-            "audience": {
-              "generalAudience": []
-            },
+            "dateFirstEdition": null,
+            "audience": { "generalAudience": [] },
             "physicalDescriptions": [
-              {
-                "numberOfPages": null
-              }
+              { "numberOfPages": 100, "playingTime": null }
             ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
             "access": [
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
             ],
-            "shelfmark": null
+            "shelfmark": null,
+            "workYear": null
           },
           {
             "pid": "870970-basis:53063403",
             "genreAndForm": ["dyrefortællinger", "sjove bøger"],
             "source": ["eReolen"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Mimbo Jimbo og den lange vinter"],
               "original": []
@@ -306,77 +184,49 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "billedbog (net)"
-              },
-              {
-                "specific": "ebog"
-              }
-            ],
+            "materialTypes": [{ "specific": "billedbog (online)" }],
             "creators": [
-              {
-                "display": "Jakob Martin Strid",
-                "__typename": "Person"
-              }
+              { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
-            "hostPublication": null,
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
+            "publisher": ["Gyldendal"],
             "identifiers": [
-              {
-                "value": "9788702165715"
-              },
-              {
-                "value": "9788702165715"
-              }
+              { "value": "9788702165715" },
+              { "value": "9788702165715" }
             ],
             "contributors": [],
             "edition": {
               "summary": "2014",
-              "publicationYear": {
-                "display": "2014"
-              }
+              "publicationYear": { "display": "2014" }
             },
-            "audience": {
-              "generalAudience": ["for højtlæsning"]
-            },
-            "physicalDescriptions": [],
-            "accessTypes": [
-              {
-                "code": "ONLINE"
-              }
+            "dateFirstEdition": null,
+            "audience": { "generalAudience": ["for højtlæsning"] },
+            "physicalDescriptions": [
+              { "numberOfPages": 100, "playingTime": null }
             ],
+            "accessTypes": [{ "code": "ONLINE" }],
             "access": [
               {
-                "__typename": "AccessUrl",
-                "origin": "ereolen.dk",
+                "__typename": "Ereol",
+                "origin": "eReolen",
                 "url": "https://ereolen.dk/ting/object/870970-basis:53063403",
-                "loginRequired": false
+                "canAlwaysBeLoaned": false
               },
               {
-                "__typename": "AccessUrl",
-                "origin": "ereolengo.dk",
+                "__typename": "Ereol",
+                "origin": "eReolen Go",
                 "url": "https://ereolengo.dk/ting/object/870970-basis:53063403",
-                "loginRequired": false
-              },
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": false
+                "canAlwaysBeLoaned": false
               }
             ],
-            "shelfmark": null
+            "shelfmark": null,
+            "workYear": null
           }
         ],
         "latest": {
-          "pid": "870970-basis:51363035",
+          "pid": "870970-basis:53063403",
           "genreAndForm": ["dyrefortællinger", "sjove bøger"],
-          "source": ["Bibliotekskatalog"],
+          "source": ["eReolen"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
           "titles": {
             "main": ["Mimbo Jimbo og den lange vinter"],
             "original": []
@@ -385,155 +235,114 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [
-            {
-              "specific": "billedbog"
-            }
-          ],
+          "materialTypes": [{ "specific": "billedbog (online)" }],
           "creators": [
-            {
-              "display": "Jakob Martin Strid",
-              "__typename": "Person"
-            }
+            { "display": "Jakob Martin Strid", "__typename": "Person" }
           ],
-          "hostPublication": null,
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
+          "publisher": ["Gyldendal"],
           "identifiers": [
-            {
-              "value": "9788702165708"
-            }
+            { "value": "9788702165715" },
+            { "value": "9788702165715" }
           ],
           "contributors": [],
           "edition": {
-            "summary": "1. udgave, 2014",
-            "publicationYear": {
-              "display": "2014"
-            }
+            "summary": "2014",
+            "publicationYear": { "display": "2014" }
           },
-          "audience": {
-            "generalAudience": ["for højtlæsning"]
-          },
+          "dateFirstEdition": null,
+          "audience": { "generalAudience": ["for højtlæsning"] },
           "physicalDescriptions": [
-            {
-              "numberOfPages": null
-            }
+            { "numberOfPages": 100, "playingTime": null }
           ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
+          "accessTypes": [{ "code": "ONLINE" }],
           "access": [
             {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
+              "__typename": "Ereol",
+              "origin": "eReolen",
+              "url": "https://ereolen.dk/ting/object/870970-basis:53063403",
+              "canAlwaysBeLoaned": false
+            },
+            {
+              "__typename": "Ereol",
+              "origin": "eReolen Go",
+              "url": "https://ereolengo.dk/ting/object/870970-basis:53063403",
+              "canAlwaysBeLoaned": false
             }
           ],
-          "shelfmark": null
+          "shelfmark": null,
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:51363035",
+          "genreAndForm": ["dyrefortællinger", "sjove bøger"],
+          "source": ["Bibliotekskatalog"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": {
+            "main": ["Mimbo Jimbo og den lange vinter"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "skønlitteratur",
+            "code": "FICTION"
+          },
+          "materialTypes": [{ "specific": "billedbog" }],
+          "creators": [
+            { "display": "Jakob Martin Strid", "__typename": "Person" }
+          ],
+          "publisher": ["Gyldendal"],
+          "identifiers": [{ "value": "9788702165708" }],
+          "contributors": [],
+          "edition": {
+            "summary": "1. udgave, 2014",
+            "publicationYear": { "display": "2014" }
+          },
+          "dateFirstEdition": { "display": "2014", "year": 2014 },
+          "audience": { "generalAudience": ["for højtlæsning"] },
+          "physicalDescriptions": [
+            { "numberOfPages": 100, "playingTime": null }
+          ],
+          "accessTypes": [{ "code": "PHYSICAL" }],
+          "access": [
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": null,
+          "workYear": { "year": 2014 }
         }
       },
       "materialTypes": [
-        {
-          "specific": "lydbog (cd)"
-        },
-        {
-          "specific": "billedbog (net)"
-        },
-        {
-          "specific": "ebog"
-        },
-        {
-          "specific": "lydbog (net)"
-        },
-        {
-          "specific": "billedbog"
-        },
-        {
-          "specific": "bog"
-        }
+        { "specific": "lydbog (cd)" },
+        { "specific": "billedbog" },
+        { "specific": "billedbog (online)" },
+        { "specific": "lydbog (online)" }
       ],
-      "mainLanguages": [
-        {
-          "display": "dansk",
-          "isoCode": "dan"
-        }
-      ],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {
         "all": [
-          {
-            "display": "venner"
-          },
-          {
-            "display": "vejret"
-          },
-          {
-            "display": "årstider"
-          },
-          {
-            "display": "dyrefortællinger"
-          },
-          {
-            "display": "sjove bøger"
-          },
-          {
-            "display": "Børnebøger"
-          }
+          { "display": "venner" },
+          { "display": "vejret" },
+          { "display": "årstider" },
+          { "display": "dyrefortællinger" },
+          { "display": "sjove bøger" },
+          { "display": "Børnebøger" }
+        ],
+        "dbcVerified": [
+          { "display": "venner" },
+          { "display": "vejret" },
+          { "display": "årstider" },
+          { "display": "dyrefortællinger" },
+          { "display": "sjove bøger" }
         ]
       },
-      "reviews": [
-        {
-          "__typename": "InfomediaReview",
-          "author": "Steffen Larsen",
-          "date": "2014-11-22",
-          "origin": "Politiken",
-          "rating": "6/6",
-          "id": "e4af7e09"
-        },
-        {
-          "__typename": "LibrariansReview",
-          "author": "Marianne Agger",
-          "date": "2014-10-15",
-          "sections": [
-            {
-              "code": "ABOUT",
-              "heading": "Kort om bogen",
-              "text": "Endnu en fantasifuld billedbog om den nuttede, blå elefant, Mimbo Jimbo og hans søde venner. Denne gang kommer han ud på en rejse og løser et mysterium. Et lille eventyr for børn fra ca. 3-6 år med spænding, humor, sødme og finurlighed"
-            },
-            {
-              "code": "DESCRIPTION",
-              "heading": "Beskrivelse",
-              "text": "Foråret burde være på vej, men i stedet begynder det at sne. Mimbo Jimbo undrer sig over vejrets opførsel. Han graver sig vej gennem sneen op til sin ven, Mumbo Jumbo, og sammen begiver de sig ud for at finde resten af vennerne. Efterhånden er alle de frysende venner samlet inde i skoven. Derinde opdager de nogle kæmpestore fodspor. Hvor kommer de fra? Der er også et underligt lys ude i horisonten. Nogle af dyrene beslutter sig for at undersøge mysterierne, og der er naturligvis en god forklaring på det hele"
-            },
-            {
-              "code": "EVALUATION",
-              "heading": "Vurdering",
-              "text": "Strid er en mester i at lave originale og charmerende billedbøger, som børn og voksne elsker lige højt. Her er spænding, uden det bliver uhyggeligt. Her er sødme, uden det bliver pussenusset. Her er opfindsomhed og detaljerigdom, så det gør noget. En let og flydende tekst og skønne tegninger skaber sammen et unikt univers i bedste Strid-stil"
-            },
-            {
-              "code": "OTHER",
-              "heading": "Andre bøger om samme emne",
-              "text": "Bogen lægger sig tæt op ad de fem forrige Mimbo Jimbo-bøger. Andre bøger for målgruppen er fx Morgenthalers "
-            },
-            {
-              "code": "OTHER",
-              "heading": "Andre bøger om samme emne",
-              "text": " i samme sjove, skøre genre"
-            }
-          ]
-        }
-      ],
-      "fictionNonfiction": {
-        "display": "skønlitteratur",
-        "code": "FICTION"
-      },
-      "dk5MainEntry": {
-        "display": "Skønlitteratur"
+      "fictionNonfiction": { "display": "skønlitteratur", "code": "FICTION" },
+      "dk5MainEntry": { "display": "Skønlitteratur" },
+      "relations": {
+        "hasReview": [
+          { "pid": "150005-anmeld:79708" },
+          { "pid": "870976-anmeld:129442158" },
+          { "pid": "870971-anmeld:36617012" },
+          { "pid": "870971-anmeld:36278676" }
+        ],
+        "hasAdaptation": []
       }
     }
   }
