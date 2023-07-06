@@ -7,12 +7,7 @@
         "original": []
       },
       "abstract": ["Om skriftlig formidling af faglig viden til ikke-fagfolk"],
-      "creators": [
-        {
-          "display": "Leif Becker Jensen",
-          "__typename": "Person"
-        }
-      ],
+      "creators": [{ "display": "Leif Becker Jensen", "__typename": "Person" }],
       "series": [
         {
           "title": "Skriftlig faglig formidling",
@@ -23,6 +18,16 @@
         }
       ],
       "seriesMembers": [
+        {
+          "workId": "work-of:870971-tsart:34310831",
+          "titles": {
+            "main": ["Skal det være så svært at lære at skrive godt?"],
+            "full": [
+              "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
+            ],
+            "original": []
+          }
+        },
         {
           "workId": "work-of:870971-tsart:34310858",
           "titles": {
@@ -50,16 +55,6 @@
             "full": ["Faglig formidling er ikke kun skriveteknik"],
             "original": []
           }
-        },
-        {
-          "workId": "work-of:870971-tsart:34310831",
-          "titles": {
-            "main": ["Skal det være så svært at lære at skrive godt?"],
-            "full": [
-              "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
-            ],
-            "original": []
-          }
         }
       ],
       "workYear": null,
@@ -70,6 +65,7 @@
             "pid": "870971-tsart:34310815",
             "genreAndForm": [],
             "source": ["Tidsskriftsartikler"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": {
               "main": ["Faglig formidling er ikke kun skriveteknik"],
               "original": []
@@ -78,67 +74,36 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "tidsskriftsartikel"
-              }
-            ],
+            "materialTypes": [{ "specific": "artikel" }],
             "creators": [
-              {
-                "display": "Leif Becker Jensen",
-                "__typename": "Person"
-              }
+              { "display": "Leif Becker Jensen", "__typename": "Person" }
             ],
             "publisher": [],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
             "identifiers": [],
             "contributors": [],
             "edition": {
               "summary": "2010",
-              "publicationYear": {
-                "display": "2010"
-              }
+              "publicationYear": { "display": "2010" }
             },
-            "audience": {
-              "generalAudience": []
-            },
+            "dateFirstEdition": null,
+            "audience": { "generalAudience": [] },
             "physicalDescriptions": [
-              {
-                "numberOfPages": 21,
-                "playingTime": null
-              }
+              { "numberOfPages": 6, "playingTime": null }
             ],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
             "access": [
-              {
-                "__typename": "DigitalArticleService",
-                "issn": "01071424"
-              },
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
+              { "__typename": "DigitalArticleService", "issn": "01071424" },
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
             ],
-            "shelfmark": {
-              "postfix": "Faglig",
-              "shelfmark": "19.1"
-            }
+            "shelfmark": { "postfix": "Faglig", "shelfmark": "19.1" },
+            "workYear": null
           }
         ],
         "latest": {
           "pid": "870971-tsart:34310815",
           "genreAndForm": [],
           "source": ["Tidsskriftsartikler"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
           "titles": {
             "main": ["Faglig formidling er ikke kun skriveteknik"],
             "original": []
@@ -147,144 +112,85 @@
             "display": "faglitteratur",
             "code": "NONFICTION"
           },
-          "materialTypes": [
-            {
-              "specific": "tidsskriftsartikel"
-            }
-          ],
+          "materialTypes": [{ "specific": "artikel" }],
           "creators": [
-            {
-              "display": "Leif Becker Jensen",
-              "__typename": "Person"
-            }
+            { "display": "Leif Becker Jensen", "__typename": "Person" }
           ],
           "publisher": [],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
           "identifiers": [],
           "contributors": [],
           "edition": {
             "summary": "2010",
-            "publicationYear": {
-              "display": "2010"
-            }
+            "publicationYear": { "display": "2010" }
           },
-          "audience": {
-            "generalAudience": []
-          },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 21,
-              "playingTime": null
-            }
-          ],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
+          "dateFirstEdition": null,
+          "audience": { "generalAudience": [] },
+          "physicalDescriptions": [{ "numberOfPages": 6, "playingTime": null }],
+          "accessTypes": [{ "code": "PHYSICAL" }],
           "access": [
-            {
-              "__typename": "DigitalArticleService",
-              "issn": "01071424"
-            },
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
+            { "__typename": "DigitalArticleService", "issn": "01071424" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
           ],
-          "shelfmark": {
-            "postfix": "Faglig",
-            "shelfmark": "19.1"
-          }
+          "shelfmark": { "postfix": "Faglig", "shelfmark": "19.1" },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870971-tsart:34310815",
+          "genreAndForm": [],
+          "source": ["Tidsskriftsartikler"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": {
+            "main": ["Faglig formidling er ikke kun skriveteknik"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [{ "specific": "artikel" }],
+          "creators": [
+            { "display": "Leif Becker Jensen", "__typename": "Person" }
+          ],
+          "publisher": [],
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2010",
+            "publicationYear": { "display": "2010" }
+          },
+          "dateFirstEdition": null,
+          "audience": { "generalAudience": [] },
+          "physicalDescriptions": [{ "numberOfPages": 6, "playingTime": null }],
+          "accessTypes": [{ "code": "PHYSICAL" }],
+          "access": [
+            { "__typename": "DigitalArticleService", "issn": "01071424" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": { "postfix": "Faglig", "shelfmark": "19.1" },
+          "workYear": null
         }
       },
-      "materialTypes": [
-        {
-          "specific": "tidsskriftsartikel"
-        }
-      ],
-      "mainLanguages": [
-        {
-          "display": "dansk",
-          "isoCode": "dan"
-        }
-      ],
+      "materialTypes": [{ "specific": "artikel" }],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {
         "all": [
-          {
-            "display": "kærlighed"
-          },
-          {
-            "display": "adoption"
-          },
-          {
-            "display": "familien"
-          },
-          {
-            "display": "slægtsromaner"
-          },
-          {
-            "display": "kærleiki"
-          },
-          {
-            "display": "ættleiðing"
-          },
-          {
-            "display": "familjan"
-          },
-          {
-            "display": "ættarsøgur"
-          }
+          { "display": "formidling" },
+          { "display": "videnskab" },
+          { "display": "retorik" },
+          { "display": "forskning" },
+          { "display": "skriftlig fremstilling" }
         ],
         "dbcVerified": [
-          {
-            "display": "kærlighed"
-          },
-          {
-            "display": "adoption"
-          },
-          {
-            "display": "familien"
-          },
-          {
-            "display": "slægtsromaner"
-          },
-          {
-            "display": "kærleiki"
-          },
-          {
-            "display": "ættleiðing"
-          },
-          {
-            "display": "familjan"
-          },
-          {
-            "display": "ættarsøgur"
-          }
+          { "display": "formidling" },
+          { "display": "videnskab" },
+          { "display": "retorik" },
+          { "display": "forskning" },
+          { "display": "skriftlig fremstilling" }
         ]
       },
-      "reviews": [],
-      "fictionNonfiction": {
-        "display": "faglitteratur",
-        "code": "NONFICTION"
-      },
-      "dk5MainEntry": {
-        "display": "19.1 Forskningsteknik i alm."
-      },
-      "relations": {
-        "hasAdaptation": [],
-        "hasReview": [
-          {
-            "pid": "150005-anmeld:81092"
-          }
-        ]
-      }
+      "fictionNonfiction": { "display": "faglitteratur", "code": "NONFICTION" },
+      "dk5MainEntry": { "display": "19.1 Forskningsteknik i alm." },
+      "relations": { "hasReview": [], "hasAdaptation": [] }
     }
   }
 }

@@ -2,274 +2,115 @@
   "data": {
     "work": {
       "workId": "work-of:870970-basis:06373674",
-      "titles": {
-        "full": [
-          "Alt for damerne"
-        ],
-        "original": []
-      },
+      "titles": { "full": ["Alt for damerne"], "original": [] },
       "abstract": [],
       "creators": [],
       "series": [],
       "seriesMembers": [],
       "workYear": null,
-      "genreAndForm": [
-        "tidsskrift",
-        "tíðarrit"
-      ],
+      "genreAndForm": ["tidsskrift", "tíðarrit"],
       "manifestations": {
         "all": [
           {
             "pid": "870970-basis:06373674",
-            "genreAndForm": [
-              "tidsskrift"
-            ],
-            "source": [
-              "Bibliotekskatalog"
-            ],
-            "titles": {
-              "main": [
-                "Alt for damerne"
-              ],
-              "original": []
-            },
+            "genreAndForm": ["tidsskrift"],
+            "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+            "titles": { "main": ["Alt for damerne"], "original": [] },
             "fictionNonfiction": {
               "display": "nonfiktion",
               "code": "NONFICTION"
             },
-            "materialTypes": [
-              {
-                "specific": "tidsskrift"
-              }
-            ],
+            "materialTypes": [{ "specific": "tidsskrift" }],
             "creators": [],
-            "publisher": [
-              "Egmont Magasiner"
-            ],
-            "languages": {
-              "main": [
-                {
-                  "display": "dansk"
-                }
-              ]
-            },
-            "identifiers": [
-              {
-                "value": "0002-6506"
-              }
-            ],
+            "publisher": ["Egmont Magasiner"],
+            "identifiers": [{ "value": "0002-6506" }],
             "contributors": [],
             "edition": {
-              "summary": "1946- ",
-              "publicationYear": {
-                "display": "1946- "
-              }
+              "summary": "1946",
+              "publicationYear": { "display": "1946" }
             },
             "dateFirstEdition": null,
-            "audience": {
-              "generalAudience": []
-            },
+            "audience": { "generalAudience": [] },
             "physicalDescriptions": [],
-            "accessTypes": [
-              {
-                "code": "PHYSICAL"
-              }
-            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
             "access": [
-              {
-                "__typename": "DigitalArticleService",
-                "issn": "00026506"
-              },
-              {
-                "__typename": "InterLibraryLoan",
-                "loanIsPossible": true
-              }
+              { "__typename": "DigitalArticleService", "issn": "00026506" },
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
             ],
-            "shelfmark": {
-              "postfix": "Alt",
-              "shelfmark": "05.6"
-            },
+            "shelfmark": { "postfix": "Alt", "shelfmark": "05.6" },
             "workYear": null
           }
         ],
         "latest": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": [
-            "tidsskrift"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
-          "titles": {
-            "main": [
-              "Alt for damerne"
-            ],
-            "original": []
-          },
+          "genreAndForm": ["tidsskrift"],
+          "source": ["Bibliotekskatalog"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": { "main": ["Alt for damerne"], "original": [] },
           "fictionNonfiction": {
             "display": "nonfiktion",
             "code": "NONFICTION"
           },
-          "materialTypes": [
-            {
-              "specific": "tidsskrift"
-            }
-          ],
+          "materialTypes": [{ "specific": "tidsskrift" }],
           "creators": [],
-          "publisher": [
-            "Egmont Magasiner"
-          ],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [
-            {
-              "value": "0002-6506"
-            }
-          ],
+          "publisher": ["Egmont Magasiner"],
+          "identifiers": [{ "value": "0002-6506" }],
           "contributors": [],
           "edition": {
-            "summary": "1946- ",
-            "publicationYear": {
-              "display": "1946- "
-            }
+            "summary": "1946",
+            "publicationYear": { "display": "1946" }
           },
           "dateFirstEdition": null,
-          "audience": {
-            "generalAudience": []
-          },
+          "audience": { "generalAudience": [] },
           "physicalDescriptions": [],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
+          "accessTypes": [{ "code": "PHYSICAL" }],
           "access": [
-            {
-              "__typename": "DigitalArticleService",
-              "issn": "00026506"
-            },
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
+            { "__typename": "DigitalArticleService", "issn": "00026506" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
           ],
-          "shelfmark": {
-            "postfix": "Alt",
-            "shelfmark": "05.6"
-          },
+          "shelfmark": { "postfix": "Alt", "shelfmark": "05.6" },
           "workYear": null
         },
         "bestRepresentation": {
           "pid": "870970-basis:06373674",
-          "genreAndForm": [
-            "tidsskrift"
-          ],
-          "source": [
-            "Bibliotekskatalog"
-          ],
-          "titles": {
-            "main": [
-              "Alt for damerne"
-            ],
-            "original": []
-          },
+          "genreAndForm": ["tidsskrift"],
+          "source": ["Bibliotekskatalog"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": { "main": ["Alt for damerne"], "original": [] },
           "fictionNonfiction": {
             "display": "nonfiktion",
             "code": "NONFICTION"
           },
-          "materialTypes": [
-            {
-              "specific": "tidsskrift"
-            }
-          ],
+          "materialTypes": [{ "specific": "tidsskrift" }],
           "creators": [],
-          "publisher": [
-            "Egmont Magasiner"
-          ],
-          "languages": {
-            "main": [
-              {
-                "display": "dansk"
-              }
-            ]
-          },
-          "identifiers": [
-            {
-              "value": "0002-6506"
-            }
-          ],
+          "publisher": ["Egmont Magasiner"],
+          "identifiers": [{ "value": "0002-6506" }],
           "contributors": [],
           "edition": {
-            "summary": "1946- ",
-            "publicationYear": {
-              "display": "1946- "
-            }
+            "summary": "1946",
+            "publicationYear": { "display": "1946" }
           },
           "dateFirstEdition": null,
-          "audience": {
-            "generalAudience": []
-          },
+          "audience": { "generalAudience": [] },
           "physicalDescriptions": [],
-          "accessTypes": [
-            {
-              "code": "PHYSICAL"
-            }
-          ],
+          "accessTypes": [{ "code": "PHYSICAL" }],
           "access": [
-            {
-              "__typename": "DigitalArticleService",
-              "issn": "00026506"
-            },
-            {
-              "__typename": "InterLibraryLoan",
-              "loanIsPossible": true
-            }
+            { "__typename": "DigitalArticleService", "issn": "00026506" },
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
           ],
-          "shelfmark": {
-            "postfix": "Alt",
-            "shelfmark": "05.6"
-          },
+          "shelfmark": { "postfix": "Alt", "shelfmark": "05.6" },
           "workYear": null
         }
       },
-      "materialTypes": [
-        {
-          "specific": "tidsskrift"
-        }
-      ],
-      "mainLanguages": [
-        {
-          "display": "dansk",
-          "isoCode": "dan"
-        }
-      ],
-      "subjects": {
-        "all": [
-          {
-            "display": "Viborg amtskommune"
-          },
-          {
-            "display": "dame- og mandeblade"
-          }
-        ],
-        "dbcVerified": []
-      },
-      "fictionNonfiction": {
-        "display": "nonfiktion",
-        "code": "NONFICTION"
-      },
+      "materialTypes": [{ "specific": "tidsskrift" }],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
+      "subjects": { "all": [], "dbcVerified": [] },
+      "fictionNonfiction": { "display": "nonfiktion", "code": "NONFICTION" },
       "dk5MainEntry": {
         "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
       },
-      "relations": {
-        "hasReview": [],
-        "hasAdaptation": []
-      }
+      "relations": { "hasReview": [], "hasAdaptation": [] }
     }
   }
 }
