@@ -61,7 +61,7 @@ describe("Material", () => {
     cy.getBySel("material-description-series-members")
       .should("be.visible")
       .find("span")
-      .should("have.length", 7);
+      .should("have.length", 8);
   });
 
   it("Renders authors", () => {
