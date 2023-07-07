@@ -22,7 +22,7 @@ describe("Material buttons", () => {
       .getBySel("material-description")
       .scrollIntoView();
 
-    cy.getBySel("availability-label").contains("ebog").first().click();
+    cy.getBySel("availability-label").contains("e-bog").first().click();
 
     cy.getBySel("material-description").scrollIntoView();
 
@@ -68,7 +68,7 @@ describe("Material buttons", () => {
       .getBySel("material-description")
       .scrollIntoView();
 
-    cy.getBySel("availability-label").contains("ebog").first().click();
+    cy.getBySel("availability-label").contains("e-bog").first().click();
     cy.getBySel("material-buttons-online-external").contains("Go to ereolen");
   });
 
@@ -88,7 +88,10 @@ describe("Material buttons", () => {
       .getBySel("material-description")
       .scrollIntoView();
 
-    cy.getBySel("availability-label").contains("lydbog (net)").first().click();
+    cy.getBySel("availability-label")
+      .contains("lydbog (online)")
+      .first()
+      .click();
     cy.getBySel("material-buttons-online-external").contains("Listen online");
   });
 
