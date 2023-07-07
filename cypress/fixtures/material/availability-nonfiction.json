@@ -1,0 +1,567 @@
+[
+  {
+    "recordId": "20636866",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "21417890",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "22223623",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "23445158",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "24922197",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "26019109",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "27173640",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "28477074",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "29798079",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "51634764",
+    "reservable": false,
+    "reservations": 0,
+    "holdings": []
+  },
+  {
+    "recordId": "53976018",
+    "reservable": true,
+    "reservations": 2,
+    "holdings": [
+      {
+        "branch": { "branchId": "DK-775168", "title": "Skødstrup" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199838",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775130", "title": "Viby" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199382",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5167199579",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775150", "title": "Tilst" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199277",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199641",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775127", "title": "Tranbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199889",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775120", "title": "Højbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199927",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775160", "title": "Risskov" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199455",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5167199749",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775167", "title": "Lystrup" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199323",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775144", "title": "Gellerup" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199951",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775100", "title": "Hovedbiblioteket" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199961",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775140", "title": "Åby" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5167199552",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "recordId": "61991484",
+    "reservable": true,
+    "reservations": 2,
+    "holdings": [
+      {
+        "branch": { "branchId": "DK-775168", "title": "Skødstrup" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5371181085",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775130", "title": "Viby" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5371181077",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775150", "title": "Tilst" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875811",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875897",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775120", "title": "Højbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875862",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775167", "title": "Lystrup" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875765",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775160", "title": "Risskov" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875749",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875757",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875773",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875781",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875854",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875889",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775126", "title": "Solbjerg" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875803",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775147", "title": "Hasle" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875846",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5371181093",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775100", "title": "Hovedbiblioteket" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875838",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875870",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5367875900",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5371181069",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5371181107",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      },
+      {
+        "branch": { "branchId": "DK-775140", "title": "Åby" },
+        "department": { "departmentId": "vo", "title": "Voksen" },
+        "location": null,
+        "sublocation": null,
+        "materials": [
+          {
+            "itemNumber": "5367875919",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          },
+          {
+            "itemNumber": "5371181115",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "standard",
+              "description": "31 dages lånetid til alm lånere"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
