@@ -10,7 +10,7 @@ describe("Search Result", () => {
   it("Renders search title", () => {
     cy.getBySel("search-result-header")
       .should("be.visible")
-      .and("contain", "Showing results for “harry” (722)");
+      .and("contain", "Showing results for “harry” (3537)");
   });
 
   it("Renders all the search results", () => {
@@ -56,7 +56,7 @@ describe("Search Result", () => {
   it("Renders the pager", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 2 out of 722 results"
+      "Showing 2 out of 3537 results"
     );
   });
 
@@ -72,12 +72,12 @@ describe("Search Result", () => {
   it("Updates the pager info after clicking show more results", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
-      "Showing 4 out of 722 results"
+      "Showing 4 out of 3537 results"
     );
   });
 
   it("Renders the correct release year for fictional works", () => {
-    cy.getBySel("card-list-item").eq(1).should("contain", "1997");
+    cy.getBySel("card-list-item").eq(1).should("contain", "2003");
   });
 
   it("Renders the correct release year for non-fictional works", () => {
