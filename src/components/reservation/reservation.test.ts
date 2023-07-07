@@ -82,7 +82,7 @@ describe("Reservation", () => {
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability-reservation.json"
+      fixtureFilePath: "material/availability-nonfiction.json"
     });
 
     // We simulate that the user is logged in so that we can open the modal.
