@@ -1,8 +1,8 @@
 export const enum ManifestationMaterialType {
   book = "bog",
-  ebook = "ebog",
+  ebook = "e-bog",
   movie = "film",
-  audioBook = "lydbog (net)",
+  audioBook = "lydbog (online)",
   audioBookGeneric = "lydbog",
   music = "node",
   game = "playstation 5",
