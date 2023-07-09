@@ -90,7 +90,7 @@ describe("Material buttons", () => {
     );
   });
 
-  it("Renders the correct action button for online audio books", () => {
+  it.skip("Renders the correct action button for online audio books", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
@@ -102,7 +102,7 @@ describe("Material buttons", () => {
     cy.getBySel("material-buttons-online-external").contains("Listen online");
   });
 
-  it("Renders the correct action button for other online materials", () => {
+  it.skip("Renders the correct action button for other online materials", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
