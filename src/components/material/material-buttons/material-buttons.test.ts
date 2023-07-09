@@ -73,11 +73,18 @@ describe("Material buttons", () => {
   });
 
   it("Renders the correct action button for movies from filmstriben", () => {
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material-buttons/material-buttons-movie-fbi-api.json"
+    });
+
+    cy.visit(
+      "/iframe.html?id=apps-material--underverden&viewMode=story&type=film (online)"
+    )
       .getBySel("material-description")
       .scrollIntoView();
 
-    cy.getBySel("availability-label").contains("film").first().click();
+    cy.getBySel("availability-label").contains("film (online)").first().click();
     cy.getBySel("material-buttons-online-external").contains(
       "Go to filmstriben"
     );
