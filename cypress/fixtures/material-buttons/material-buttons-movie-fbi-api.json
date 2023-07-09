@@ -1,0 +1,335 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:46555902",
+      "titles": { "full": ["Underverden"], "original": [] },
+      "abstract": [
+        "Zaid er læge, hjertespecialist, med et godt job. Han har en dyr lejlighed, og en gravid kæreste. Under en fest opsøges Zaid af sin desperate lillebror Yasin, som beder om penge. Zaid afviser Yasin i døren. Kort efter findes lillebror Yasin død"
+      ],
+      "creators": [
+        { "display": "Fenar Ahmad", "__typename": "Person" },
+        { "display": "Adam August", "__typename": "Person" },
+        { "display": "Kasper Tuxen", "__typename": "Person" }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": ["actionfilm"],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:46555902",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+            "titles": { "main": ["Underverden"], "original": [] },
+            "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+            "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+            "creators": [
+              { "display": "Fenar Ahmad", "__typename": "Person" },
+              { "display": "Adam August", "__typename": "Person" },
+              { "display": "Kasper Tuxen", "__typename": "Person" }
+            ],
+            "publisher": [
+              "Universal Sony Pictures Home Entertainment Nordic",
+              "Scanbox Entertainment Denmark"
+            ],
+            "identifiers": [{ "value": "1209-11 K 0" }],
+            "contributors": [
+              { "display": "Dar Salim" },
+              { "display": "Stine Fisher Christensen" },
+              { "display": "Ali Sivandi" },
+              { "display": "Dulfi Al-Jabouri" },
+              { "display": "Roland Møller" },
+              { "display": "Jacob Hauberg Lohmann" },
+              { "display": "B. Branco" }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": { "display": "2017" }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+            },
+            "physicalDescriptions": [
+              { "numberOfPages": null, "playingTime": "113 min." }
+            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ],
+            "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:52886619",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+            "titles": { "main": ["Underverden"], "original": [] },
+            "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+            "materialTypes": [{ "specific": "film (dvd)" }],
+            "creators": [
+              { "display": "Fenar Ahmad", "__typename": "Person" },
+              { "display": "Adam August", "__typename": "Person" },
+              { "display": "Kasper Tuxen", "__typename": "Person" }
+            ],
+            "publisher": ["Scanbox Entertainment Denmark"],
+            "identifiers": [{ "value": "1209-11 D 0" }],
+            "contributors": [
+              { "display": "Dar Salim" },
+              { "display": "Stine Fisher Christensen" },
+              { "display": "Ali Sivandi" },
+              { "display": "Dulfi Al-Jabouri" },
+              { "display": "Roland Møller" },
+              { "display": "Jacob Hauberg Lohmann" },
+              { "display": "B. Branco" }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": { "display": "2017" }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+            },
+            "physicalDescriptions": [
+              { "numberOfPages": null, "playingTime": "ca. 109 min." }
+            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ],
+            "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:53205747",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Bibliotekskatalog"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+            "titles": { "main": ["Underverden"], "original": [] },
+            "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+            "materialTypes": [{ "specific": "film (blu-ray)" }],
+            "creators": [
+              { "display": "Fenar Ahmad", "__typename": "Person" },
+              { "display": "Adam August", "__typename": "Person" },
+              { "display": "Kasper Tuxen", "__typename": "Person" }
+            ],
+            "publisher": ["Scanbox Entertainment Denmark"],
+            "identifiers": [{ "value": "1209-11 N 0" }],
+            "contributors": [
+              { "display": "Dar Salim" },
+              { "display": "Stine Fisher Christensen" },
+              { "display": "Ali Sivandi" },
+              { "display": "Dulfi Al-Jabouri" },
+              { "display": "Roland Møller" },
+              { "display": "Jacob Hauberg Lohmann" },
+              { "display": "B. Branco" }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": { "display": "2017" }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+            },
+            "physicalDescriptions": [
+              { "numberOfPages": null, "playingTime": "ca. 113 min." }
+            ],
+            "accessTypes": [{ "code": "PHYSICAL" }],
+            "access": [
+              { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+            ],
+            "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+            "workYear": null
+          },
+          {
+            "pid": "870970-basis:53369936",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Filmstriben"],
+            "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+            "titles": { "main": ["Underverden"], "original": [] },
+            "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+            "materialTypes": [{ "specific": "film (online)" }],
+            "creators": [
+              { "display": "Fenar Ahmad", "__typename": "Person" },
+              { "display": "Adam August", "__typename": "Person" },
+              { "display": "Kasper Tuxen", "__typename": "Person" }
+            ],
+            "publisher": ["Scanbox"],
+            "identifiers": [],
+            "contributors": [
+              { "display": "Dar Salim" },
+              { "display": "Stine Fisher Christensen" },
+              { "display": "Ali Sivandi" },
+              { "display": "Dulfi Al-Jabouri" },
+              { "display": "Roland Møller" },
+              { "display": "Jacob Hauberg Lohmann" },
+              { "display": "B. Branco" }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": { "display": "2017" }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+            },
+            "physicalDescriptions": [
+              { "numberOfPages": null, "playingTime": "Ca. 113 min." }
+            ],
+            "accessTypes": [{ "code": "ONLINE" }],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "www.filmstriben.dk",
+                "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
+                "loginRequired": false
+              }
+            ],
+            "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+            "workYear": null
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:46555902",
+          "genreAndForm": ["actionfilm"],
+          "source": ["Bibliotekskatalog"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": { "main": ["Underverden"], "original": [] },
+          "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+          "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+          "creators": [
+            { "display": "Fenar Ahmad", "__typename": "Person" },
+            { "display": "Adam August", "__typename": "Person" },
+            { "display": "Kasper Tuxen", "__typename": "Person" }
+          ],
+          "publisher": [
+            "Universal Sony Pictures Home Entertainment Nordic",
+            "Scanbox Entertainment Denmark"
+          ],
+          "identifiers": [{ "value": "1209-11 K 0" }],
+          "contributors": [
+            { "display": "Dar Salim" },
+            { "display": "Stine Fisher Christensen" },
+            { "display": "Ali Sivandi" },
+            { "display": "Dulfi Al-Jabouri" },
+            { "display": "Roland Møller" },
+            { "display": "Jacob Hauberg Lohmann" },
+            { "display": "B. Branco" }
+          ],
+          "edition": {
+            "summary": "2017",
+            "publicationYear": { "display": "2017" }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+          },
+          "physicalDescriptions": [
+            { "numberOfPages": null, "playingTime": "113 min." }
+          ],
+          "accessTypes": [{ "code": "PHYSICAL" }],
+          "access": [
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+          "workYear": null
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:46555902",
+          "genreAndForm": ["actionfilm"],
+          "source": ["Bibliotekskatalog"],
+          "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
+          "titles": { "main": ["Underverden"], "original": [] },
+          "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+          "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+          "creators": [
+            { "display": "Fenar Ahmad", "__typename": "Person" },
+            { "display": "Adam August", "__typename": "Person" },
+            { "display": "Kasper Tuxen", "__typename": "Person" }
+          ],
+          "publisher": [
+            "Universal Sony Pictures Home Entertainment Nordic",
+            "Scanbox Entertainment Denmark"
+          ],
+          "identifiers": [{ "value": "1209-11 K 0" }],
+          "contributors": [
+            { "display": "Dar Salim" },
+            { "display": "Stine Fisher Christensen" },
+            { "display": "Ali Sivandi" },
+            { "display": "Dulfi Al-Jabouri" },
+            { "display": "Roland Møller" },
+            { "display": "Jacob Hauberg Lohmann" },
+            { "display": "B. Branco" }
+          ],
+          "edition": {
+            "summary": "2017",
+            "publicationYear": { "display": "2017" }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+          },
+          "physicalDescriptions": [
+            { "numberOfPages": null, "playingTime": "113 min." }
+          ],
+          "accessTypes": [{ "code": "PHYSICAL" }],
+          "access": [
+            { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+          ],
+          "shelfmark": { "postfix": "Underverden", "shelfmark": "77.7" },
+          "workYear": null
+        }
+      },
+      "materialTypes": [
+        { "specific": "film (blu-ray 4K)" },
+        { "specific": "film (online)" },
+        { "specific": "film (dvd)" },
+        { "specific": "film (blu-ray)" }
+      ],
+      "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
+      "subjects": {
+        "all": [
+          { "display": "danske film" },
+          { "display": "selvtægt" },
+          { "display": "indvandrere" },
+          { "display": "brødre" },
+          { "display": "bander" },
+          { "display": "kriminalitet" },
+          { "display": "bandekriminalitet" },
+          { "display": "København" },
+          { "display": "actionfilm" }
+        ],
+        "dbcVerified": [
+          { "display": "selvtægt" },
+          { "display": "indvandrere" },
+          { "display": "brødre" },
+          { "display": "bander" },
+          { "display": "kriminalitet" },
+          { "display": "bandekriminalitet" },
+          { "display": "København" },
+          { "display": "actionfilm" }
+        ]
+      },
+      "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
+      "dk5MainEntry": { "display": "77.7 Spillefilm" },
+      "relations": {
+        "hasReview": [
+          { "pid": "870976-anmeld:129681799" },
+          { "pid": "870971-anmeld:37307394" },
+          { "pid": "870971-anmeld:37249955" },
+          { "pid": "870971-anmeld:37247405" },
+          { "pid": "870971-anmeld:37249998" },
+          { "pid": "870971-anmeld:37248029" },
+          { "pid": "870971-anmeld:37321664" },
+          { "pid": "870971-anmeld:37247782" }
+        ],
+        "hasAdaptation": []
+      }
+    }
+  }
+}
