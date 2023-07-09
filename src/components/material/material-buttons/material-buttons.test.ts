@@ -104,14 +104,14 @@ describe("Material buttons", () => {
     cy.getBySel("material-buttons-online-external").contains("See online");
   });
 
-  it("Renders the correct action button for online digital articles", () => {
+  it("Renders the correct action button for ordering digital articles", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath:
         "material-buttons/material-buttons-order-digital-fbi-api.json"
     });
     cy.visit(
-      "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
+      "/iframe.html?id=apps-material--digital&viewMode=story&type=artikel"
     )
       .getBySel("material-description")
       .scrollIntoView();

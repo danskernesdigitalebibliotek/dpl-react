@@ -12,6 +12,7 @@ import { hasCorrectAccess, hasCorrectMaterialType } from "../helper";
 import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArticle";
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
+import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -73,7 +74,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   if (
     hasCorrectAccess("DigitalArticleService", manifestations) &&
-    hasCorrectMaterialType("tidsskriftsartikel", manifestations)
+    hasCorrectMaterialType(ManifestationMaterialType.article, manifestations)
   ) {
     return (
       <MaterialButtonOnlineDigitalArticle
