@@ -7,7 +7,7 @@ export const enum ManifestationMaterialType {
   music = "node",
   game = "playstation 5",
   animatedSeries = "tegneserie",
-  newspaperArticle = "tidsskriftsartikel",
+  article = "artikel",
   earticle = "artikel",
   boardGame = "spil",
   cdRom = "cd",
