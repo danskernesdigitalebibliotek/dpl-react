@@ -44,9 +44,7 @@ describe("Material - Order digital copy", () => {
       statusCode: 404
     }).as("Favorite list service");
 
-    cy.visit(
-      "/iframe.html?id=apps-material--digital&viewMode=story&type=tidsskriftsartikel"
-    );
+    cy.visit("/iframe.html?id=apps-material--digital&viewMode=story");
     cy.createFakeAuthenticatedSession();
     cy.scrollTo("bottom");
   });
