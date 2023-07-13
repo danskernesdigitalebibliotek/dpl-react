@@ -416,7 +416,7 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
 };
 
 export const constructModalId = (prefix: string, fragments: string[]) =>
-  `${prefix ? `${prefix}-` : ""}${fragments.join("-")}`;
+  [prefix, ...fragments].join("-");
 
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (
@@ -534,3 +534,15 @@ export const getContributors = (short: boolean, creators: string[]) => {
 };
 
 export default {};
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  describe("constructModalId", () => {
+    it("should create a modal id with hypens", () => {
+      expect(constructModalId("some-modal-id", ["one", "two"])).toBe(
+        "some-modal-id-one-two"
+      );
+    });
+  });
+}
