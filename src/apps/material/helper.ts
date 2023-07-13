@@ -2,7 +2,6 @@ import { compact, groupBy, uniqBy, uniq, head } from "lodash";
 import { UseQueryOptions } from "react-query";
 import {
   constructModalId,
-  getMaterialTypes,
   getManifestationType,
   orderManifestationsByYear,
   flattenCreators
@@ -31,6 +30,7 @@ import {
   getHoldingsV3,
   useGetHoldingsV3
 } from "../../core/fbs/fbs";
+import vitestData from "./__vitest_data__/helper";
 
 export const getWorkManifestation = (
   work: Work,
@@ -313,10 +313,13 @@ export const divideManifestationsByMaterialType = (
   const dividedManifestationsArrays = uniqueMaterialTypes.map(
     (uniqueMaterialType) => {
       return manifestations.filter((manifest) => {
-        const manifestationMaterialTypes = manifest.materialTypes.map(
-          (materialType) => materialType.specific
+        // For some reason we sometimes have multiple material types
+        // we only want the first one.
+        // TODO: Double check with DDF that this is a viable solution.
+        return (
+          manifest.materialTypes.length &&
+          manifest.materialTypes[0].specific === uniqueMaterialType
         );
-        return manifestationMaterialTypes.includes(uniqueMaterialType);
       });
     }
   );
@@ -454,3 +457,20 @@ export const useGetHoldings = ({
   );
   return { data, isLoading, isError };
 };
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  describe("divideManifestationsByMaterialType", () => {
+    it("should divide manifestations by material type", () => {
+      const {
+        divideManifestationsByMaterialType: { manifestations }
+      } = vitestData;
+
+      const dividedManifestations =
+        divideManifestationsByMaterialType(manifestations);
+
+      expect(dividedManifestations).toMatchSnapshot();
+    });
+  });
+}
