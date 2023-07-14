@@ -308,29 +308,25 @@ export const getInfomediaIds = (manifestations: Manifestation[]) => {
 
 export const divideManifestationsByMaterialType = (
   manifestations: Manifestation[]
-) => {
-  const uniqueMaterialTypes = getMaterialTypes(manifestations);
-  const dividedManifestationsArrays = uniqueMaterialTypes.map(
-    (uniqueMaterialType) => {
-      return manifestations.filter((manifest) => {
-        // For some reason we sometimes have multiple material types
-        // we only want the first one.
-        // TODO: Double check with DDF that this is a viable solution.
-        return (
-          manifest.materialTypes.length &&
-          manifest.materialTypes[0].specific === uniqueMaterialType
-        );
-      });
-    }
-  );
-  return dividedManifestationsArrays.reduce<{ [key: string]: Manifestation[] }>(
-    (result, current, index) => {
-      const materialType = uniqueMaterialTypes[index];
-      return { ...result, [materialType]: current };
+) =>
+  manifestations.reduce<{ [key: string]: Manifestation[] }>(
+    (result, manifestation) => {
+      if (
+        !manifestation.materialTypes.length ||
+        !manifestation.materialTypes[0].specific
+      ) {
+        return result;
+      }
+
+      // For some reason we sometimes have multiple material types
+      // we only want the first one.
+      // TODO: Double check with DDF that this is a viable solution.
+      const type = manifestation.materialTypes[0].specific;
+
+      return { ...result, [type]: [...(result[type] ?? []), manifestation] };
     },
     {}
   );
-};
 
 export const getAllIdentifiers = (manifestations: Manifestation[]) => {
   return manifestations
