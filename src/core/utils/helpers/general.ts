@@ -353,11 +353,30 @@ export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   });
 };
 
-export const getMaterialTypes = (manifestations: Manifestation[]) => {
-  const allMaterialTypes = manifestations
-    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
-    .flat();
-  return uniq(allMaterialTypes) as ManifestationMaterialType[];
+export const getMaterialTypes = (
+  manifestations: Manifestation[],
+  onlyFirstType = true
+) => {
+  // If the manifestation has several types we only are interested in the first one.
+  if (onlyFirstType) {
+    return uniq(
+      manifestations
+        .map((manifest) =>
+          manifest.materialTypes.map((type, i) =>
+            i === 0 ? type.specific : null
+          )
+        )
+        .flat()
+        .filter((type) => type !== null)
+    ) as ManifestationMaterialType[];
+  }
+
+  // In this case we aggreate all types even if a manifestation has multiple types.
+  return uniq(
+    manifestations
+      .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+      .flat()
+  ) as ManifestationMaterialType[];
 };
 
 export const getManifestationType = (manifestations: Manifestation[]) => {
@@ -537,6 +556,31 @@ export default {};
 
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
+
+  describe("getMaterialTypes", () => {
+    const manifestations = [
+      {
+        materialTypes: [
+          {
+            specific: "artikel"
+          },
+          {
+            specific: "artikel (online)"
+          }
+        ]
+      }
+    ] as Manifestation[];
+
+    it("should be able to return only first entry material types from manifestations (default)", () => {
+      const types = getMaterialTypes(manifestations);
+      expect(types).toEqual(["artikel"]);
+    });
+
+    it("should be able to return all available material types from manifestations", () => {
+      const types = getMaterialTypes(manifestations, false);
+      expect(types).toEqual(["artikel", "artikel (online)"]);
+    });
+  });
 
   describe("constructModalId", () => {
     it("should create a modal id with hypens", () => {
