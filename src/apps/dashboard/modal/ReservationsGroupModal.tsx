@@ -112,6 +112,11 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     setMaterialsToDelete(materialIds);
   };
 
+  const deleteMaterialsModal = () => {
+    setReservationsToDelete(materialsToDelete);
+    setMaterialsToDelete([]);
+  };
+
   return (
     <Modal
       modalId={modalId}
@@ -146,7 +151,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                 collapsible={false}
                 size="small"
                 variant="filled"
-                onClick={() => setReservationsToDelete(materialsToDelete)}
+                onClick={() => deleteMaterialsModal()}
               />
             }
             amountOfSelectableMaterials={selectableReservations.length}
