@@ -39,7 +39,7 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
   return (
     <>
       <button
-        className="header__menu-profile header__button"
+        className="header__menu-profile header__button btn-ui"
         type="button"
         aria-label={t("menuUserIconAriaLabelText")}
         onClick={() => openMenu()}
