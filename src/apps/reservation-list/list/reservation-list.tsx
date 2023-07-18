@@ -295,7 +295,10 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           modalId={`${deleteReservation}${
             reservationToDelete.reservationId || reservationToDelete.identifier
           }`}
-          reservation={reservationToDelete}
+          reservations={[
+            reservationToDelete.identifier ||
+              String(reservationToDelete.reservationId)
+          ]}
         />
       )}
       {reservation && (
