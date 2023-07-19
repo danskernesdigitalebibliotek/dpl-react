@@ -24,17 +24,18 @@ interface ReservationGroupModalProps {
   modalId: string;
   setReservationsToDelete: (reservations: string[]) => void;
   reservations: ReservationType[];
+  openDetailsModal: (modalId: string) => void;
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   pageSize,
   modalId,
   reservations,
-  setReservationsToDelete
+  setReservationsToDelete,
+  openDetailsModal
 }) => {
   const t = useText();
   const { reservationsReady, reservationsQueued } = getModalIds();
-
   const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
   const [displayedreservations, setDisplayedReservations] = useState<
     ReservationType[]
@@ -160,6 +161,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             selectMaterials={selectMaterials}
           >
             <GroupModalReservationsList
+              openDetailsModal={openDetailsModal}
               header={t("physicalReservationsHeaderText")}
               materials={displayedreservations}
               pageSize={pageSize}
@@ -169,6 +171,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             />
             <GroupModalReservationsList
               marginBottonPager
+              openDetailsModal={openDetailsModal}
               header={t("digitalReservationsHeaderText")}
               materials={displayedDigitalReservations}
               pageSize={pageSize}

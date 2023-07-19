@@ -13,6 +13,7 @@ export interface GroupModalReservationsListProps {
   header: string;
   selectMaterials: (materialIds: string[]) => void;
   marginBottonPager: boolean;
+  openDetailsModal: (modalId: string) => void;
 }
 
 const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
@@ -21,7 +22,8 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   selectMaterials,
   pageSize,
   header,
-  marginBottonPager
+  marginBottonPager,
+  openDetailsModal
 }) => {
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<
@@ -87,6 +89,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                       />
                     ) : null
                   }
+                  openDetailsModal={openDetailsModal}
                   key={faust || identifier}
                   selected={Boolean(
                     selectedMaterials?.indexOf(

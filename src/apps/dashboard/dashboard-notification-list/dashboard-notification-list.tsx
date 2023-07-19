@@ -104,6 +104,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     ReservationType[]
   >([]);
   const { physicalLoansUrl, reservationsUrl } = useUrls();
+
   const openLoanDetailsModal = useCallback(
     (modalId: string) => {
       setModalLoanDetailsId(modalId);
@@ -132,7 +133,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   useEffect(() => {
     const reservation = reservations?.find(
-      ({ faust }) => String(faust) === modalReservationDetailsId
+      ({ faust, reservationId }) =>
+        String(modalReservationDetailsId) === String(faust) ||
+        String(reservationId)
     );
 
     if (reservation) {
@@ -329,6 +332,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {reservations && (
         <ReservationGroupModal
+          openDetailsModal={openReservationDetailsModal}
           modalId={reservationModalId}
           reservations={reservations}
           setReservationsToDelete={setReservationsToDelete}
@@ -355,9 +359,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {reservationForModal && (
         <MaterialDetailsModal
-          modalId={`${reservationDetails}${
-            reservationForModal.faust || reservationForModal.identifier
-          }`}
+          modalId={`${reservationDetails}${String(modalReservationDetailsId)}`}
         >
           <ReservationDetails
             openReservationDeleteModal={openReservationDeleteModal}
