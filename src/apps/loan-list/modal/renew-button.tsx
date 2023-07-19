@@ -48,13 +48,12 @@ const RenewButton: FC<RenewButtonProps> = ({
   );
 
   return (
-    <div className="modal-details__buttons">
+    <div className={`modal-details__buttons ${classNames}`}>
       <Button
         size="small"
         variant="filled"
         disabled={!renewable}
         onClick={() => renew(loanId)}
-        classNames={classNames}
         label={t("materialDetailsRenewLoanButtonText")}
         buttonType="none"
         collapsible={false}
