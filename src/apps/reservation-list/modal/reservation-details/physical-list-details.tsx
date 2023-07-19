@@ -121,7 +121,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     if (reservationId) {
       let selectedExpiryDate = expiryDate || "";
       if (newExpiryDate && reservationExpiryDate) {
-        selectedExpiryDate = dayjs(reservationExpiryDate)
+        selectedExpiryDate = dayjs()
           .add(parseInt(newExpiryDate.value, 10), "days")
           .format("YYYY-MM-DD");
       }
