@@ -107,13 +107,13 @@ describe("Delete reservation modal test", () => {
     // ID 14 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
       .find("h2")
-      .should("have.text", "Cancel reservations");
+      .should("have.text", "Cancel reservation");
 
     // ID 14 1.b. text "Do you want to cancel your reservation?"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(0)
-      .should("have.text", "Do you want to cancel your reservations?");
+      .should("have.text", "Do you want to cancel your reservation?");
 
     // ID 14 1.c. text "You cannot regret this action"
     cy.get(".modal.modal-cta")
@@ -125,7 +125,7 @@ describe("Delete reservation modal test", () => {
     // ID 14 2 user clicks "Cancel reservation"
     cy.get(".modal.modal-cta")
       .getBySel("delete-reservation-button")
-      .should("have.text", "Cancel reservations")
+      .should("have.text", "Cancel reservation")
       .click();
 
     // ID 14 4 system closes modal
@@ -200,13 +200,13 @@ describe("Delete reservation modal test", () => {
     // ID 18 1.a. header "cancel reservation"
     cy.get(".modal.modal-cta")
       .find("h2")
-      .should("have.text", "Cancel reservations");
+      .should("have.text", "Cancel reservation");
 
     // ID 18 1.b. text "Do you want to cancel your reservation?"
     cy.get(".modal.modal-cta")
       .find("p")
       .eq(0)
-      .should("have.text", "Do you want to cancel your reservations?");
+      .should("have.text", "Do you want to cancel your reservation?");
 
     // ID 18 1.c. text "You cannot regret this action"
     cy.get(".modal.modal-cta")
@@ -218,7 +218,7 @@ describe("Delete reservation modal test", () => {
     // ID 18 2 user clicks "Cancel reservation"
     cy.get("#root")
       .getBySel("delete-reservation-button")
-      .should("have.text", "Cancel reservations")
+      .should("have.text", "Cancel reservation")
       .click();
 
     // ID 18 4 system closes modal
