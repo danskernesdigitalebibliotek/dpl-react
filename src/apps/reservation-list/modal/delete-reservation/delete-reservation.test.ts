@@ -160,7 +160,7 @@ describe("Delete reservation modal test", () => {
         data: {
           manifestation: {
             pid: "870970-basis:27215815",
-            titles: { main: ["Dummy Some Title"] },
+            titles: { full: ["Dummy Some Title"] },
             abstract: ["Dummy Some abstract ..."],
             edition: {
               summary: "3. udgave, 1. oplag (2019)",

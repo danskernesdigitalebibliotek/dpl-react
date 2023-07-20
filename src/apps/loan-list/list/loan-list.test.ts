@@ -174,7 +174,7 @@ describe("Loan list", () => {
         data: {
           manifestation: {
             pid: "870970-basis:22629344",
-            titles: { main: ["Dummy Some Title"] },
+            titles: { full: ["Dummy Some Title"] },
             abstract: ["Dummy Some abstract ..."],
             edition: {
               summary: "3. udgave, 1. oplag (2019)",
