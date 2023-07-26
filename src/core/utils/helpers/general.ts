@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { uniq } from "lodash";
+import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -166,15 +167,16 @@ export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
 
 // Get params if they are defined as props use those
 // otherwise try to fetch them from the url.
-export const getParams = <T, K extends keyof T>(props: T) => {
-  const params = {} as T;
-
-  Object.entries(props).forEach(([property, value]) => {
-    params[property as K] = value || (getUrlQueryParam(property) as string);
-  });
-
-  return params;
-};
+export const getParams = (props: Record<string, string | undefined>) =>
+  Object.entries(props).reduce<Record<string, string>>(
+    (acc, [property, value]) => {
+      return {
+        ...acc,
+        [property]: String(value || getUrlQueryParam(property))
+      };
+    },
+    {}
+  );
 
 export const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
@@ -543,6 +545,24 @@ if (import.meta.vitest) {
       expect(constructModalId("some-modal-id", ["one", "two"])).toBe(
         "some-modal-id-one-two"
       );
+    });
+  });
+
+  describe("getParams", () => {
+    it("should fill in with url params if property value is undefined", () => {
+      // We'll fake the url param getter to return a value.
+      // So when we request the url param, we'll get the value: "some-url-param-value"
+      vi.mock("./url", () => ({
+        getUrlQueryParam: vi
+          .fn()
+          .mockImplementation(() => "some-url-param-value")
+      }));
+
+      // We'll test the undefined value will be replaced with the url param equivalent.
+      expect(getParams({ "some-url-param": undefined, foo: "bar" })).toEqual({
+        "some-url-param": "some-url-param-value",
+        foo: "bar"
+      });
     });
   });
 }
