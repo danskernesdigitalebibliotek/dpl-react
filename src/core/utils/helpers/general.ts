@@ -537,6 +537,7 @@ export const getContributors = (short: boolean, creators: string[]) => {
 
 export default {};
 
+/* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
