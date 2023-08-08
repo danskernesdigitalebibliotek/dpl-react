@@ -29,6 +29,7 @@ const PatronPage: FC = () => {
   const { deletePatronUrl } = useUrls();
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const [disableSubmitButton, setDisableSubmitButton] = useState(false);
   const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
     null
   );
@@ -49,10 +50,8 @@ const PatronPage: FC = () => {
   };
 
   const save = () => {
-    // Todo: perhaps save button should be disabled if there is no patron/patron error?
-    // The user can actually save if there is no patron, this seem to be a consistent design decision
-    // I will revisit when I get an answer to this question.
     if (patron) {
+      setDisableSubmitButton(true);
       // The save patron request is done in another section of the code, but in that section
       // it is saved differently. Here, we save the input from the user, in the other scenario,
       // the checkboxes (subscribe to texts, subscribe to emails) will be set automatically
@@ -86,9 +85,12 @@ const PatronPage: FC = () => {
             if (pin) {
               setSuccessPinMessage(t("patronPinSavedSuccessText"));
             }
+            setDisableSubmitButton(false);
           },
           // todo error handling, missing in figma
-          onError: () => {}
+          onError: () => {
+            setDisableSubmitButton(false);
+          }
         }
       );
     }
@@ -131,6 +133,7 @@ const PatronPage: FC = () => {
             data-cy="save-user-patron"
             className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
             type="submit"
+            disabled={disableSubmitButton}
           >
             {t("patronPageSaveButtonText")}
           </button>
