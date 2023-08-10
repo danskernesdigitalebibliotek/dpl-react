@@ -227,7 +227,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "16-08-2022 12:52");
+      .should("have.text", "16-08-2022 10:52");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
