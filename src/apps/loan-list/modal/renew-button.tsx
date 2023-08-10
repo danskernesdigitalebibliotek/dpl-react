@@ -11,13 +11,15 @@ interface RenewButtonProps {
   renewable: boolean;
   faust: FaustId;
   classNames?: string;
+  hideOnMobile: boolean;
 }
 
 const RenewButton: FC<RenewButtonProps> = ({
   loanId,
   faust,
   renewable,
-  classNames
+  classNames,
+  hideOnMobile
 }) => {
   const t = useText();
   const queryClient = useQueryClient();
@@ -48,7 +50,11 @@ const RenewButton: FC<RenewButtonProps> = ({
   );
 
   return (
-    <div className="modal-details__buttons">
+    <div
+      className={`${
+        hideOnMobile && `modal-details__buttons--hide-on-mobile`
+      } modal-details__buttons`}
+    >
       <Button
         size="small"
         variant="filled"
