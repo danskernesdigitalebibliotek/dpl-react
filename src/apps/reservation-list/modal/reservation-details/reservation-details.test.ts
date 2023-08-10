@@ -213,7 +213,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Your reservation expires 27-01-2023 23:37!");
+      .should("have.text", "Your reservation expires 27-01-2023 22:37!");
 
     // ID 17 2.f. header "date of reservation"
     cy.get(".modal-details__list")
@@ -328,7 +328,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Borrow before 27-01-2023 23:37");
+      .should("have.text", "Borrow before 27-01-2023 22:37");
   });
 
   it("It shows physical reservation details modal", () => {
