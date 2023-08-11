@@ -63,7 +63,7 @@ export default {
     control: {
       type: "text"
     },
-    defaultValue: "Renew your loans"
+    defaultValue: "Renew your loan"
   },
   feesPageUrl: {
     defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
