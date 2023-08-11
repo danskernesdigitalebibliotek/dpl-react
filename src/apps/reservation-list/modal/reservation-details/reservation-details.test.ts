@@ -85,8 +85,8 @@ describe("Reservation details modal test", () => {
             createdDateUtc: "2022-08-16T10:52:39.932Z",
             status: 2,
             productTitle: "Bargums synder",
-            expireDateUtc: "2023-01-27T19:37:15.63Z",
-            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+            expireDateUtc: "2023-01-27T22:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T22:37:15.63Z"
           }
         ],
         code: 101,
@@ -213,7 +213,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Your reservation expires 27-01-2023!");
+      .should("have.text", "Your reservation expires 27-01-2023 22:37!");
 
     // ID 17 2.f. header "date of reservation"
     cy.get(".modal-details__list")
@@ -227,7 +227,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "16-08-2022");
+      .should("have.text", "16-08-2022 10:52");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
@@ -258,11 +258,11 @@ describe("Reservation details modal test", () => {
           {
             productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
             identifier: "9788740047905",
-            createdDateUtc: "2022-08-16T10:52:39.932Z",
+            createdDateUtc: "2022-08-16T12:52:39.932Z",
             status: 1,
             productTitle: "Bargums synder",
-            expireDateUtc: "2023-01-27T19:37:15.63Z",
-            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+            expireDateUtc: "2023-01-27T22:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T22:37:15.63Z"
           }
         ],
         code: 101,
@@ -328,7 +328,7 @@ describe("Reservation details modal test", () => {
       .find(".list-details")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Borrow before 27-01-2023");
+      .should("have.text", "Borrow before 27-01-2023 22:37");
   });
 
   it("It shows physical reservation details modal", () => {
@@ -570,8 +570,8 @@ describe("Reservation details modal test", () => {
             createdDateUtc: "2022-08-16T10:52:39.932Z",
             status: 1,
             productTitle: "Bargums synder",
-            expireDateUtc: "2023-01-27T19:37:15.63Z",
-            expectedRedeemDateUtc: "2023-01-27T19:37:15.63Z"
+            expireDateUtc: "2023-01-27T22:37:15.63Z",
+            expectedRedeemDateUtc: "2023-01-27T22:37:15.63Z"
           }
         ],
         code: 101,
