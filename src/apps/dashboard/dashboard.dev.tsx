@@ -20,20 +20,16 @@ export default {
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
     // Urls
-    loansOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
     physicalLoansUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/loans",
       control: { type: "text" }
     },
     feesUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/fees",
       control: { type: "text" }
     },
     reservationsUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/reservations",
       control: { type: "text" }
     },
     yourProfileText: {
