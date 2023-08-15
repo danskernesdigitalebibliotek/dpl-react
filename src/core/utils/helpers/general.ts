@@ -329,6 +329,20 @@ export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
   );
 };
 
+export const loansOverdue = (loans: LoanType[]): boolean => {
+  let areAllLoansOverdue = true;
+  loans.forEach((loan: LoanType) => {
+    if (!materialIsOverdue(loan.dueDate)) {
+      areAllLoansOverdue = false;
+    }
+  });
+  return areAllLoansOverdue;
+};
+
+export const sameDueDate = (loans: string[]): boolean => {
+  return loans.every((dueDate, i, arr) => dueDate === arr[0]);
+};
+
 export const tallyUpFees = (fees: FeeV2[]) => {
   return fees
     .reduce((total, { amount }) => total + amount, 0)
