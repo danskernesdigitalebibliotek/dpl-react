@@ -26,6 +26,7 @@ import ReservationGroupModal from "../modal/ReservationsGroupModal";
 import ReservationDetails from "../../reservation-list/modal/reservation-details/reservation-details";
 import DeleteReservationModal from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
 import Notifications from "./Notifications";
+import AcceptModal from "../../../components/accept-modal/AcceptModal";
 
 export interface DashboardNotificationListProps {
   reservations: ReservationType[] | null;
@@ -41,13 +42,13 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
-
   const config = useConfig();
   const {
     colorThresholds: { warning }
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
+  const [accepted, setAccepted] = useState<boolean>(false);
   const [modalReservationDetailsId, setModalReservationDetailsId] = useState<
     string | null
   >(null);
@@ -63,10 +64,14 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [modalHeader, setModalHealer] = useState("");
 
   const { open } = useModalButtonHandler();
-  const { loanDetails, dueDateModal, reservationDetails, deleteReservation } =
-    getModalIds();
+  const {
+    loanDetails,
+    acceptModal,
+    dueDateModal,
+    reservationDetails,
+    deleteReservation
+  } = getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
-
   const [modalLoan, setModalLoan] = useState<ListType | null>(null);
   const [reservationForModal, setReservationForModal] =
     useState<ListType | null>(null);
@@ -215,6 +220,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     }
   ];
 
+  const openAcceptModal = useCallback(() => {
+    open(`${acceptModal}`);
+  }, [acceptModal, open]);
+
   const readyToLoanReservations = reservations
     ? getReadyForPickup(reservations)
     : [];
@@ -265,6 +274,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const reservationsCount =
     readyToLoanReservations.length + queuedReservations.length;
 
+  const resetAccepted = () => {
+    setAccepted(false);
+  };
+
   return (
     <>
       <div className="status-userprofile">
@@ -306,6 +319,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       </MaterialDetailsModal>
       {dueDate && loans && loansToDisplay && (
         <LoansGroupModal
+          accepted={accepted}
+          resetAccepted={() => resetAccepted()}
+          openAcceptModal={openAcceptModal}
           pageSize={pageSize}
           openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
@@ -343,6 +359,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           />
         </MaterialDetailsModal>
       )}
+      <AcceptModal accept={() => setAccepted(true)} />
     </>
   );
 };
