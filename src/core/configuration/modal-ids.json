@@ -2,6 +2,7 @@
   "allLoansId": "all-loans-id",
   "pauseReservation": "pause-reservation",
   "deleteReservation": "delete-reservation",
+  "deleteReservations": "delete-reservations",
   "loanDetails": "loan-details-",
   "acceptModal": "accept-fee",
   "reservationDetails": "reservation-details-",

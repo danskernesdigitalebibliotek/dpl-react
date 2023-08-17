@@ -4,11 +4,12 @@ import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch
 
 export interface DeleteReservationContentProps {
   deleteReservation: () => void;
+  reservationsCount: number;
 }
 
 const DeleteReservationContent: FC<
   DeleteReservationContentProps & MaterialProps
-> = ({ deleteReservation }) => {
+> = ({ deleteReservation, reservationsCount }) => {
   const t = useText();
 
   const deleteReservationCallback = useCallback(() => {
@@ -18,13 +19,15 @@ const DeleteReservationContent: FC<
   return (
     <>
       <h2 className="text-header-h3">
-        {/* todo make plural when modal works with plural */}
-        {t("deleteReservationModalHeaderText")}
+        {t("deleteReservationModalHeaderText", {
+          count: reservationsCount
+        })}
       </h2>
       <div className="mt-48 color-secondary-gray">
         <p className="text-body-medium-regular">
-          {/* todo make plural when modal works with plural */}
-          {t("deleteReservationModalDeleteQuestionText")}
+          {t("deleteReservationModalDeleteQuestionText", {
+            count: reservationsCount
+          })}
         </p>
         <p className="text-body-medium-regular">
           {t("deleteReservationModalNotRegrettableText")}
@@ -37,8 +40,9 @@ const DeleteReservationContent: FC<
           onClick={deleteReservationCallback}
           className="btn-primary btn-filled btn-large arrow__hover--right-small"
         >
-          {/* todo make plural when modal works with plural */}
-          {t("deleteReservationModalDeleteButtonText")}
+          {t("deleteReservationModalDeleteButtonText", {
+            count: reservationsCount
+          })}
         </button>
       </div>
     </>
