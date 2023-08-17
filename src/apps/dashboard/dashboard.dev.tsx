@@ -8,7 +8,7 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
-import acceptModalArgs from "../../core/storybook/acceptModalArgs";
+import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
 
 export default {
   title: "Apps / Dashboard",

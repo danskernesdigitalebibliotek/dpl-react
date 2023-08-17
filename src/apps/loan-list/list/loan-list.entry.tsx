@@ -10,7 +10,7 @@ import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-p
 import { GroupModalProps } from "../../../core/storybook/groupModalArgs";
 import { GroupModalLoansProps } from "../../../core/storybook/loanGroupModalArgs";
 import { MaterialDetailsModalProps } from "../../../core/storybook/materialDetailsModalArgs";
-import { AcceptModalEntryTextProps } from "../../../core/storybook/acceptModalArgs";
+import { AcceptFeesModalEntryTextProps } from "../../../core/storybook/acceptFeesModalArgs";
 
 export interface LoanListEntryConfigProps {
   thresholdConfig: string;
@@ -61,7 +61,7 @@ export interface LoanListEntryWithPageSizeProps
     GroupModalLoansProps,
     LoanListEntryUrlProps,
     MaterialDetailsModalProps,
-    AcceptModalEntryTextProps,
+    AcceptFeesModalEntryTextProps,
     GlobalUrlEntryPropsInterface {}
 
 const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
