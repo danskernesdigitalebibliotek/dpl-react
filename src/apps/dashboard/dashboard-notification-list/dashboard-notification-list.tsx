@@ -26,7 +26,7 @@ import ReservationGroupModal from "../modal/ReservationsGroupModal";
 import ReservationDetails from "../../reservation-list/modal/reservation-details/reservation-details";
 import DeleteReservationModal from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
 import Notifications from "./Notifications";
-import AcceptModal from "../../../components/accept-modal/AcceptModal";
+import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 
 export interface DashboardNotificationListProps {
   reservations: ReservationType[] | null;
