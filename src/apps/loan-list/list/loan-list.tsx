@@ -45,7 +45,7 @@ import { ListType } from "../../../core/utils/types/list-type";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import StatusCircle from "../materials/utils/status-circle";
-import AcceptModal from "../../../components/accept-modal/AcceptModal";
+import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 
 interface LoanListProps {
   pageSize: number;
