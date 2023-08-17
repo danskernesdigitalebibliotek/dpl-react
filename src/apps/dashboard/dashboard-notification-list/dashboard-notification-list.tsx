@@ -51,6 +51,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [modalReservationDetailsId, setModalReservationDetailsId] = useState<
     string | null
   >(null);
+  const [reservationsForDeleting, setReservationsForDeleting] = useState<
+    string[]
+  >([]);
   const [physicalLoansFarFromOverdue, setPhysicalLoansFarFromOverdue] =
     useState<LoanType[]>([]);
   const [physicalLoansSoonOverdue, setPhysicalLoansSoonOverdue] = useState<
@@ -63,8 +66,13 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [modalHeader, setModalHealer] = useState("");
 
   const { open } = useModalButtonHandler();
-  const { loanDetails, dueDateModal, reservationDetails, deleteReservation } =
-    getModalIds();
+  const {
+    loanDetails,
+    dueDateModal,
+    reservationDetails,
+    deleteReservation,
+    deleteReservations
+  } = getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
 
   const [modalLoan, setModalLoan] = useState<ListType | null>(null);
@@ -96,6 +104,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     ReservationType[]
   >([]);
   const { physicalLoansUrl, reservationsUrl } = useUrls();
+
   const openLoanDetailsModal = useCallback(
     (modalId: string) => {
       setModalLoanDetailsId(modalId);
@@ -124,7 +133,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   useEffect(() => {
     const reservation = reservations?.find(
-      ({ faust }) => String(faust) === modalReservationDetailsId
+      ({ faust, reservationId }) =>
+        String(modalReservationDetailsId) === String(faust) ||
+        String(reservationId)
     );
 
     if (reservation) {
@@ -141,6 +152,11 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       );
     }
   }, [deleteReservation, open, reservationForModal]);
+
+  const setReservationsToDelete = (resForDeleting: string[]) => {
+    setReservationsForDeleting(resForDeleting);
+    open(deleteReservations as string);
+  };
 
   const openDueDateModal = useCallback(
     (dueDateInput: string) => {
@@ -316,8 +332,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {reservations && (
         <ReservationGroupModal
+          openDetailsModal={openReservationDetailsModal}
           modalId={reservationModalId}
           reservations={reservations}
+          setReservationsToDelete={setReservationsToDelete}
           pageSize={pageSize}
         />
       )}
@@ -326,14 +344,22 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           modalId={`${deleteReservation}${
             reservationForModal.reservationId || reservationForModal.identifier
           }`}
-          reservation={reservationForModal}
+          reservations={[
+            String(reservationForModal.reservationId) ||
+              reservationForModal.identifier ||
+              ""
+          ]}
+        />
+      )}
+      {reservationsForDeleting && (
+        <DeleteReservationModal
+          modalId={`${deleteReservations}`}
+          reservations={reservationsForDeleting}
         />
       )}
       {reservationForModal && (
         <MaterialDetailsModal
-          modalId={`${reservationDetails}${
-            reservationForModal.faust || reservationForModal.identifier
-          }`}
+          modalId={`${reservationDetails}${String(modalReservationDetailsId)}`}
         >
           <ReservationDetails
             openReservationDeleteModal={openReservationDeleteModal}

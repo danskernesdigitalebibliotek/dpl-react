@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 import { useQueryClient } from "react-query";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
@@ -7,18 +7,20 @@ import {
   useDeleteReservations,
   getGetReservationsV2QueryKey
 } from "../../../../core/fbs/fbs";
-import { useDeleteV1UserReservationsIdentifier } from "../../../../core/publizon/publizon";
-import { ReservationType } from "../../../../core/utils/types/reservation-type";
-import { isDigital } from "../../../loan-list/utils/helpers";
+import {
+  getGetV1UserReservationsQueryKey,
+  useDeleteV1UserReservationsIdentifier
+} from "../../../../core/publizon/publizon";
+import { isFaust, isIdentifier } from "../../../dashboard/util/helpers";
 
 interface DeleteReservationModalProps {
   modalId: string;
-  reservation: ReservationType;
+  reservations: string[];
 }
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   modalId,
-  reservation
+  reservations
 }) => {
   const t = useText();
   const queryClient = useQueryClient();
@@ -26,46 +28,43 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
   const { close } = useModalButtonHandler();
-  const physicalDeletion = useCallback(() => {
-    if (!isDigital(reservation) && reservation.reservationId) {
+
+  const removeSelectedReservations = () => {
+    if (reservations.length > 0) {
+      const reservationsToDelete = reservations
+        .map((id) => Number(isFaust(id)))
+        .filter((id) => id !== 0);
+      const digitalMaterialsToDelete = reservations
+        .map((id) => isIdentifier(id))
+        .filter((id) => id !== null);
       deletePhysicalReservation(
         {
-          params: { reservationid: [Number(reservation.reservationId)] }
+          params: { reservationid: reservationsToDelete }
         },
         {
           onSuccess: () => {
             queryClient.invalidateQueries(getGetReservationsV2QueryKey());
-            close(modalId);
-          },
-          // todo error handling, missing in figma
-          onError: () => {
-            close(modalId);
           }
         }
       );
-    }
-  }, [close, deletePhysicalReservation, modalId, queryClient, reservation]);
 
-  const digitalDeletion = useCallback(() => {
-    if (isDigital(reservation) && reservation.identifier) {
-      deleteDigitalReservation(
-        {
-          identifier: reservation.identifier
-        },
-        {
-          onSuccess: () => {
-            close(modalId);
+      digitalMaterialsToDelete.forEach((id) =>
+        deleteDigitalReservation(
+          {
+            identifier: String(id)
           },
-          // todo error handling, missing in figma
-          onError: () => {
-            close(modalId);
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
+            }
           }
-        }
+        )
       );
+      close(modalId as string);
     }
-  }, [close, deleteDigitalReservation, modalId, reservation]);
+  };
 
-  if (!reservation) return null;
+  if (!reservations) return null;
 
   return (
     <Modal
@@ -77,9 +76,8 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       )}
     >
       <DeleteReservationContent
-        deleteReservation={
-          isDigital(reservation) ? digitalDeletion : physicalDeletion
-        }
+        deleteReservation={() => removeSelectedReservations()}
+        reservationsCount={reservations.length}
       />
     </Modal>
   );
