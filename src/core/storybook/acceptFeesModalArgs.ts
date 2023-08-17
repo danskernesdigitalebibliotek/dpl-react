@@ -30,7 +30,7 @@ export default {
   }
 };
 
-export interface AcceptModalEntryTextProps {
+export interface AcceptFeesModalEntryTextProps {
   acceptModalHeaderText: string;
   acceptModalAreYouSureText: string;
   acceptModalBodyText: string;
