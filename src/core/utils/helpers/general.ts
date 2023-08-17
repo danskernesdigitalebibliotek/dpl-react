@@ -332,13 +332,7 @@ export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
 };
 
 export const loansOverdue = (loans: LoanType[]): boolean => {
-  let areAllLoansOverdue = true;
-  loans.forEach((loan: LoanType) => {
-    if (!materialIsOverdue(loan.dueDate)) {
-      areAllLoansOverdue = false;
-    }
-  });
-  return areAllLoansOverdue;
+  return loans.every((loan) => !materialIsOverdue(loan.dueDate));
 };
 
 export const sameDueDate = (loans: string[]): boolean => {
