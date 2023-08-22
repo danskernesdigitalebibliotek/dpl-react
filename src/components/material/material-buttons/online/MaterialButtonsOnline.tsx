@@ -45,11 +45,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     hasCorrectAccess("Ereol", manifestations) ||
     hasCorrectAccess("AccessUrl", manifestations)
   ) {
-    const {
-      origin,
-      url: externalUrl,
-      loginRequired
-    } = accessElement as AccessUrl;
+    const { origin, url: externalUrl } = accessElement as AccessUrl;
 
     //  We have experienced that externalUrl is not always valid.
     if (!isUrlValid(externalUrl)) {
@@ -60,7 +56,6 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
     return (
       <MaterialButtonOnlineExternal
-        loginRequired={loginRequired}
         externalUrl={externalUrl}
         origin={origin}
         size={size}
