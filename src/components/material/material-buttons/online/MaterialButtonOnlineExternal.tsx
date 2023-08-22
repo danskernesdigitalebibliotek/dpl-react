@@ -12,7 +12,6 @@ import { ManifestationMaterialType } from "../../../../core/utils/types/material
 import LinkButton from "../../../Buttons/LinkButton";
 
 export interface MaterialButtonOnlineExternalProps {
-  loginRequired: boolean;
   externalUrl: string;
   origin: string;
   size?: ButtonSize;
@@ -43,7 +42,6 @@ export const getOnlineMaterialType = (
 };
 
 const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
-  loginRequired,
   externalUrl = "",
   origin,
   size,
@@ -62,8 +60,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
       url: externalUrl
     },
     {
-      enabled:
-        urlWasTranslated === null && loginRequired && externalUrl.length > 0
+      enabled: urlWasTranslated === null && externalUrl.length > 0
     }
   );
 
