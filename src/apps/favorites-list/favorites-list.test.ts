@@ -30,7 +30,7 @@ describe("Favorites list", () => {
     });
 
     cy.interceptRest({
-      url: "**/opac/**",
+      url: "**/next/**",
       httpMethod: "POST",
       fixtureFilePath: "favorites-list/work.json",
       aliasName: "work"

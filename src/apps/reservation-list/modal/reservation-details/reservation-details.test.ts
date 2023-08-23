@@ -355,7 +355,7 @@ describe("Reservation details modal test", () => {
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
-      url: "**/opac/**",
+      url: "**/next/**",
       fixtureFilePath: "reservation-list/work.json"
     });
 
@@ -603,7 +603,7 @@ describe("Reservation details modal test", () => {
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
-      url: "**/opac/**",
+      url: "**/next/**",
       fixtureFilePath: "reservation-list/work.json"
     });
 
