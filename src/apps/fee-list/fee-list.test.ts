@@ -84,7 +84,7 @@ describe("Fee list", () => {
       ]
     }).as("fees");
 
-    cy.intercept("POST", "**/opac/**", {
+    cy.intercept("POST", "**/next/**", {
       statusCode: 200,
       body: {
         data: {

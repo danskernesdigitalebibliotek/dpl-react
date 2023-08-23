@@ -288,7 +288,7 @@ describe("Reservation list pagination", () => {
       }
     }).as("digital_reservations");
 
-    cy.intercept("POST", "**/opac/**", {
+    cy.intercept("POST", "**/next/**", {
       statusCode: 200,
       body: {
         data: {
