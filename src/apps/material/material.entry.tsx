@@ -13,6 +13,8 @@ interface MaterialEntryTextProps {
   alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
+  availabilityAvailableText: string;
+  availabilityUnavailableText: string;
   blockedButtonText: string;
   cantReserveText: string;
   cantViewText: string;
