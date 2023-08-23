@@ -28,7 +28,7 @@ export default {
   },
   [serviceUrlKeys.fbi]: {
     name: "Base url for the FBI API",
-    defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
+    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
     control: { type: "text" }
   }
 };

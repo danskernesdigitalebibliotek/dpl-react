@@ -13,7 +13,7 @@ describe("Reservation list", () => {
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
-      url: "**/opac/**",
+      url: "**/next/**",
       fixtureFilePath: "reservation-list/work.json"
     });
 

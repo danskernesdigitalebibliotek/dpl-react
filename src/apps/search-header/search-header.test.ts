@@ -4,7 +4,7 @@ describe("Search header app", () => {
   beforeEach(() => {
     cy.fixture("search-header-data.json")
       .then((result) => {
-        cy.intercept("POST", "**/opac/graphql", {
+        cy.intercept("POST", "**/next/graphql", {
           statusCode: 200,
           body: result
         });
