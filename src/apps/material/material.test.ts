@@ -92,7 +92,7 @@ describe("Material", () => {
       .should("have.length", 1);
   });
 
-  it("Shows the book availability as unavailable", () => {
+  it("Shows the book availability as available", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -107,7 +107,7 @@ describe("Material", () => {
       .contains("bog")
       .parent()
       .find('[data-cy="availability-label-status"]')
-      .should("have.text", "unavailable");
+      .should("have.text", "Available");
   });
 
   it("Can open material details", () => {
