@@ -1,5 +1,5 @@
 export type InstantLoanConfigType = {
-  matchString: string;
+  matchStrings: string[];
   threshold: string;
   enabled: boolean;
 };
