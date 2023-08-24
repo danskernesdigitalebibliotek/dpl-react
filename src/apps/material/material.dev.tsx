@@ -790,7 +790,7 @@ export default {
       name: "Instant loan config",
       control: { type: "text" },
       defaultValue:
-        '{\n        "threshold": "1",\n        "matchString": "14 dages lån - bogligt (kan ikke reserveres)",\n        "enabled": "true"      }'
+        '{\n        "threshold": "1",\n        "matchStrings": ["31 dages lånetid til alm lånere"],\n        "enabled": "true"      }'
     },
     interestPeriodsConfig: {
       defaultValue:
