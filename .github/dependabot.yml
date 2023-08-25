@@ -15,6 +15,5 @@ updates:
     schedule:
       interval: weekly
       timezone: Europe/Copenhagen
-    target-branch: develop
     labels:
       - dependencies
