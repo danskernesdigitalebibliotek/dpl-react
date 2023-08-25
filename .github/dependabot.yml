@@ -20,7 +20,7 @@ updates:
     schedule:
       interval: weekly
       timezone: Europe/Copenhagen
-    target-branch: v5
+    target-branch: develop
     labels:
       - dependencies
     reviewers:
