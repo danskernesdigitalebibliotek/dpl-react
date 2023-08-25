@@ -9,11 +9,6 @@ updates:
     labels:
       - dependencies
       - github_actions
-    reviewers:
-      - Adammik10
-      - kasperbirch1
-      - kasperg
-      - spaceo
   - package-ecosystem: npm
     directory: /
     open-pull-requests-limit: 10
@@ -23,8 +18,3 @@ updates:
     target-branch: develop
     labels:
       - dependencies
-    reviewers:
-      - Adammik10
-      - kasperbirch1
-      - kasperg
-      - spaceo
