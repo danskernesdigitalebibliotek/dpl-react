@@ -1,264 +1,58 @@
 import { expect, test } from "vitest";
 import { getInstantLoanBranchHoldings } from "../../components/reservation/helper";
-import { HoldingsV3 } from "../../core/fbs/model";
+import vitestData from "./__vitest_data__/instant-loan";
 
 test("getInstantLoanBranchHoldings should return materials grouped by branches filtered by instantloan config matches and branch whitelist", () => {
-  const branchHoldings: HoldingsV3[] = [
-    {
-      branch: {
-        branchId: "DK-775140",
-        title: "Åby"
-      },
-      department: {
-        departmentId: "vo",
-        title: "Voksen"
-      },
-      location: {
-        locationId: "fikdu",
-        title: "Fik du læst"
-      },
-      sublocation: undefined,
-      materials: [
-        {
-          itemNumber: "5385202875",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385202883",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203030",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203057",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203138",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        }
-      ]
-    },
-    {
-      branch: {
-        branchId: "DK-775149",
-        title: "Sabro"
-      },
-      department: {
-        departmentId: "vo",
-        title: "Voksen"
-      },
-      location: {
-        locationId: "krimi",
-        title: "Krimi"
-      },
-      sublocation: undefined,
-      materials: [
-        {
-          itemNumber: "5387025822",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203448",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203340",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        }
-      ]
-    },
-    {
-      branch: {
-        branchId: "DK-775149",
-        title: "Sabro"
-      },
-      department: {
-        departmentId: "vo",
-        title: "Voksen"
-      },
-      location: {
-        locationId: "fikdu",
-        title: "Fik du læst"
-      },
-      sublocation: undefined,
-      materials: [
-        {
-          itemNumber: "5385203006",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5387007409",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        }
-      ]
-    },
-    {
-      branch: {
-        branchId: "DK-775140",
-        title: "Åby"
-      },
-      department: {
-        departmentId: "vo",
-        title: "Voksen"
-      },
-      location: {
-        locationId: "krimi",
-        title: "Krimi"
-      },
-      sublocation: undefined,
-      materials: [
-        {
-          itemNumber: "5387025733",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5387025881",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5387025865",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5387496590",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5387496531",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203456",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203308",
-          available: false,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        },
-        {
-          itemNumber: "5385203251",
-          available: true,
-          periodical: undefined,
-          materialGroup: {
-            name: "standard",
-            description: "31 dages lånetid til alm lånere"
-          }
-        }
-      ]
-    }
+  const { branchHoldings, whitelist } = vitestData;
+  const instantLoanStrings = [
+    "I am supposed to be matched",
+    "I am also supposed to be matched"
   ];
-  const whitelist = [
-    {
-      branchId: "DK-775147",
-      title: "Hasle"
-    },
-    {
-      branchId: "DK-775149",
-      title: "Sabro"
-    },
-    {
-      branchId: "DK-775162",
-      title: "Hjortshøj"
-    },
-    {
-      branchId: "DK-775140",
-      title: "Åby"
-    }
-  ];
-  const instantLoanStrings = ["31 dages lånetid til alm lånere"];
+
   const result = getInstantLoanBranchHoldings(
     branchHoldings,
     whitelist,
     instantLoanStrings
   );
 
-  expect(result).toMatchSnapshot();
+  // There is supposed to be three branches in the result.
+  expect(result).toHaveLength(3);
+
+  // Åby is matched with 1 material out of 3.
+  // The material is matched because it is available
+  // and contains the string "I am supposed to be matched".
+  expect(result[0].branch.title).toBe("Åby");
+  expect(result[0].materials).toHaveLength(1);
+  expect(result[0].materials[0].available).toBe(true);
+  expect(result[0].materials[0].materialGroup.description).toBe(
+    "I am supposed to be matched"
+  );
+
+  // Sabro is matched with 1 material out of 3.
+  // The material is matched because it is available
+  // and contains the string "I am supposed to be matched".
+  // Although there is another material that matches the same string
+  // it is not a part of the result because it is not available.
+  expect(result[1].branch.title).toBe("Sabro");
+  expect(result[1].materials).toHaveLength(1);
+  expect(result[1].materials[0].available).toBe(true);
+  expect(result[1].materials[0].materialGroup.description).toBe(
+    "I am supposed to be matched"
+  );
+
+  // Hasle is matched with 2 materials out of 3.
+  // The materials are matched because they both are available
+  // and contain the strings "I am supposed to be matched, seriously!"
+  // (which is a substring of "I am supposed to be matched")
+  // and "I am also supposed to be matched".
+  expect(result[2].branch.title).toBe("Hasle");
+  expect(result[2].materials).toHaveLength(2);
+  expect(result[2].materials[0].available).toBe(true);
+  expect(result[2].materials[0].materialGroup.description).toBe(
+    "I am supposed to be matched, seriously!"
+  );
+  expect(result[2].materials[1].available).toBe(true);
+  expect(result[2].materials[1].materialGroup.description).toBe(
+    "I am also supposed to be matched"
+  );
 });
