@@ -193,11 +193,10 @@ export const getInstantLoanBranchHoldings = (
   whitelist: AgencyBranch[],
   instantLoanStrings: string[]
 ) => {
-  const whitelistIds = whitelist.map(({ branchId }) => branchId);
-
+  const whitelistBranchIds = whitelist.map(({ branchId }) => branchId);
   // 1. Filter holdings by branch on whitelist
   const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
-    whitelistIds.includes(branch.branchId)
+    whitelistBranchIds.includes(branch.branchId)
   );
 
   // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
