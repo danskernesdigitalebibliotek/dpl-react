@@ -78,16 +78,19 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branches")
       .scrollIntoView()
       .children()
-      .should("have.length", 2);
+      .should("have.length", 27);
   });
 
   it("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
+    // Hovedbiblioteket contains 4 materials
+    // all with matching descriptions
+    // but only one is available.
     cy.getBySel("instant-loan-branch")
       .first()
       .scrollIntoView()
-      .should("contain", "Trige")
+      .should("contain", "Hovedbiblioteket")
       .and("contain", "1 stk");
   });
 });
