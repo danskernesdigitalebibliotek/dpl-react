@@ -130,6 +130,23 @@ const branchHoldings: HoldingsV3[] = [
         }
       }
     ]
+  },
+  {
+    branch: {
+      branchId: "DK-775140",
+      title: "Åby"
+    },
+    materials: [
+      {
+        itemNumber: "000",
+        available: true,
+        periodical: undefined,
+        materialGroup: {
+          name: "standard",
+          description: "I am supposed to be matched"
+        }
+      }
+    ]
   }
 ];
 const whitelist = [
