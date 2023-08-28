@@ -188,6 +188,30 @@ export const getReservationModalTypeTranslation = (
   }
 };
 
+export const consolidatedHoldings = (branchHoldings: HoldingsV3[]) => {
+  const processedBranches = new Map<
+    string,
+    Pick<HoldingsV3, "branch" | "materials">
+  >();
+
+  branchHoldings.forEach(({ branch, materials }) => {
+    const { branchId } = branch;
+
+    const storedBranch = processedBranches.get(branchId);
+    if (storedBranch) {
+      processedBranches.set(branchId, {
+        branch,
+        materials: [...materials, ...storedBranch.materials]
+      });
+      return;
+    }
+
+    processedBranches.set(branchId, { branch, materials });
+  });
+
+  return [...processedBranches.values()];
+};
+
 export const getInstantLoanBranchHoldings = (
   branchHoldings: HoldingsV3[],
   whitelist: AgencyBranch[],
@@ -198,9 +222,8 @@ export const getInstantLoanBranchHoldings = (
   const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
     whitelistBranchIds.includes(branch.branchId)
   );
-
   // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
-  const filteredMaterials = filteredBranchHoldings
+  const filteredMaterials = consolidatedHoldings(filteredBranchHoldings)
     .map(({ branch, materials }) => {
       const filtered = materials.filter(({ materialGroup, available }) => {
         // if a material group description contains any of the instant loan strings

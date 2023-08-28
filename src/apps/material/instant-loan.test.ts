@@ -78,7 +78,7 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branches")
       .scrollIntoView()
       .children()
-      .should("have.length", 27);
+      .should("have.length", 18);
   });
 
   it("should render InstantLoan branch", () => {
