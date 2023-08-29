@@ -16,15 +16,12 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { copyTextToClipboard } from "./helper";
 
-interface AdvancedSearchResultProps {
+interface AdvancedSearchProps {
   q: string;
   pageSize: number;
 }
 
-const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
-  q,
-  pageSize
-}) => {
+const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ q, pageSize }) => {
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
@@ -127,4 +124,4 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   );
 };
 
-export default AdvancedSearchResult;
+export default AdvancedSearch;

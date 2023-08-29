@@ -5,9 +5,9 @@ import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
-import AdvancedSearchResult from "./AdvancedSearchResult";
+import AdvancedSearch from "./AdvancedSearch";
 
-interface AdvancedSearchResultEntryTextProps {
+interface AdvancedSearchEntryTextProps {
   addToFavoritesAriaLabelText: string;
   alertErrorCloseText: string;
   alertErrorMessageText: string;
@@ -22,26 +22,26 @@ interface AdvancedSearchResultEntryTextProps {
   showMoreText: string;
   showResultsText: string;
   showingResultsForWithoutQueryText: string;
-  advancedSearchCopyToClipboardText: string;
+  advancedSearchClipboardText: string;
 }
 
-interface AdvancedSearchResultEntryConfigProps {
+interface AdvancedSearchEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   blacklistedSearchBranchesConfig?: string;
   branchesConfig: string;
 }
 
-export interface AdvancedSearchResultEntryProps
+export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
-    AdvancedSearchResultEntryConfigProps,
-    AdvancedSearchResultEntryTextProps {
+    AdvancedSearchEntryConfigProps,
+    AdvancedSearchEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
 
-const AdvancedSearchResultEntry: React.FC<AdvancedSearchResultEntryProps> = ({
+const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
   q,
   pageSizeDesktop,
   pageSizeMobile
@@ -60,12 +60,12 @@ const AdvancedSearchResultEntry: React.FC<AdvancedSearchResultEntryProps> = ({
   return (
     <div>
       {searchQuery && (
-        <GuardedApp app="advanced-search-result">
-          <AdvancedSearchResult q={searchQuery} pageSize={pageSize} />
+        <GuardedApp app="advanced-search">
+          <AdvancedSearch q={searchQuery} pageSize={pageSize} />
         </GuardedApp>
       )}
     </div>
   );
 };
 
-export default withConfig(withUrls(withText(AdvancedSearchResultEntry)));
+export default withConfig(withUrls(withText(AdvancedSearchEntry)));
