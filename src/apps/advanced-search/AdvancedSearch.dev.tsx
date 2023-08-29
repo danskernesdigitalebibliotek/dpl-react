@@ -1,13 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import AdvancedSearchResultEntry, {
-  AdvancedSearchResultEntryProps
-} from "./AdvancedSearchResult.entry";
+import AdvancedSearchEntry, {
+  AdvancedSearchEntryProps
+} from "./AdvancedSearch.entry";
 
 export default {
   title: "Apps / Advanced Search Result",
-  component: AdvancedSearchResultEntry,
+  component: AdvancedSearchEntry,
   argTypes: {
     ...serviceUrlArgs,
     q: {
@@ -35,7 +35,7 @@ export default {
       defaultValue: "/search",
       control: { type: "text" }
     },
-    advancedSearchUrl: {
+    advancedSearch: {
       name: "Path to the advanced search result page",
       defaultValue: "/advanced-search",
       control: { type: "text" }
@@ -138,16 +138,14 @@ export default {
       defaultValue: "Loading",
       control: { type: "text" }
     },
-    advancedSearchCopyToClipboardText: {
+    advancedSearchClipboardText: {
       name: "Advanced search copy to clipboard button text",
       defaultValue: "Copy search to clipboard",
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof AdvancedSearchResultEntry>;
+} as ComponentMeta<typeof AdvancedSearchEntry>;
 
-export const AdvancedSearchResult: ComponentStory<
-  typeof AdvancedSearchResultEntry
-> = (args: AdvancedSearchResultEntryProps) => (
-  <AdvancedSearchResultEntry {...args} />
-);
+export const AdvancedSearch: ComponentStory<typeof AdvancedSearchEntry> = (
+  args: AdvancedSearchEntryProps
+) => <AdvancedSearchEntry {...args} />;
