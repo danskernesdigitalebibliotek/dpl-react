@@ -81,9 +81,9 @@ describe("Instant Loan", () => {
   it("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
-    // Hovedbiblioteket contains 4 materials
+    // Hovedbiblioteket contains 14 materials
     // all with matching descriptions
-    // but only one is available.
+    // but only three is available.
     cy.getBySel("instant-loan-branches")
       .get("li")
       .eq(8)
