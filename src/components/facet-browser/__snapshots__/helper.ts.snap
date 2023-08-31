@@ -94,7 +94,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "materialTypes",
+    "name": "materialTypesSpecific",
     "values": [
       {
         "key": "",
