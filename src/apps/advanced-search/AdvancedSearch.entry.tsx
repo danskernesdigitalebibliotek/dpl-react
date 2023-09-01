@@ -1,7 +1,7 @@
 import React from "react";
 import GuardedApp from "../../components/guarded-app";
 import { withConfig } from "../../core/utils/config";
-import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
+import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
@@ -20,9 +20,25 @@ interface AdvancedSearchEntryTextProps {
   resultPagerStatusText: string;
   noSearchResultText: string;
   showMoreText: string;
-  showResultsText: string;
   showingResultsForWithoutQueryText: string;
-  advancedSearchClipboardText: string;
+  advancedSearchLinkToThisSearchText: string;
+  advancedSearchAllIndexesText: string;
+  advancedSearchCreatorText: string;
+  advancedSearchSubjectText: string;
+  advancedSearchGenreText: string;
+  advancedSearchLanguageText: string;
+  advancedSearchDateText: string;
+  advancedSearchMainCreatorText: string;
+  advancedSearchMainTitleText: string;
+  advancedSearchSourceText: string;
+  advancedSearchDateFirstEditionText: string;
+  advancedSearchDecimalDk5Text: string;
+  advancedSearchTypeText: string;
+  advancedSearchAudienceText: string;
+  advancedSearchPublisherText: string;
+  advancedSearchIdentifierText: string;
+  advancedSearchAcSourceText: string;
+  advancedSearchAddRowText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -36,19 +52,14 @@ export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps {
-  q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
 
 const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
-  q,
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  // If a q string has been defined as a data attribute use that
-  // otherwise use the one from the url query parameter.
-  const { q: searchQuery } = getParams({ q });
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
@@ -59,11 +70,9 @@ const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
 
   return (
     <div>
-      {searchQuery && (
-        <GuardedApp app="advanced-search">
-          <AdvancedSearch q={searchQuery} pageSize={pageSize} />
-        </GuardedApp>
-      )}
+      <GuardedApp app="advanced-search">
+        <AdvancedSearch pageSize={pageSize} />
+      </GuardedApp>
     </div>
   );
 };
