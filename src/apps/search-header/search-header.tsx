@@ -24,7 +24,6 @@ import {
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import AdvancedSearchModal from "../../components/advanced-search-modal/AdvancedSearchModal";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -326,35 +325,32 @@ const SearchHeader: React.FC = () => {
   });
 
   return (
-    <>
-      <form
-        className="header__menu-second"
-        action={String(constructSearchUrl(searchUrl, qWithoutQuery))}
-      >
-        {/* The downshift combobox uses prop spreading by design */}
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <div className="header__menu-search" {...getComboboxProps()}>
-          <SearchBar
-            getInputProps={getInputProps}
-            getLabelProps={getLabelProps}
-            setQWithoutQuery={setQWithoutQuery}
-          />
-          <Autosuggest
-            textData={textData}
-            materialData={materialData}
-            categoryData={categoryData}
-            status={status}
-            getMenuProps={getMenuProps}
-            highlightedIndex={highlightedIndex}
-            getItemProps={getItemProps}
-            isOpen={isAutosuggestOpen}
-            autosuggestCategoryList={autosuggestCategoryList}
-            isLoading={isLoading}
-          />
-        </div>
-      </form>
-      <AdvancedSearchModal />
-    </>
+    <form
+      className="header__menu-second"
+      action={String(constructSearchUrl(searchUrl, qWithoutQuery))}
+    >
+      {/* The downshift combobox uses prop spreading by design */}
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <div className="header__menu-search" {...getComboboxProps()}>
+        <SearchBar
+          getInputProps={getInputProps}
+          getLabelProps={getLabelProps}
+          setQWithoutQuery={setQWithoutQuery}
+        />
+        <Autosuggest
+          textData={textData}
+          materialData={materialData}
+          categoryData={categoryData}
+          status={status}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+          isOpen={isAutosuggestOpen}
+          autosuggestCategoryList={autosuggestCategoryList}
+          isLoading={isLoading}
+        />
+      </div>
+    </form>
   );
 };
 
