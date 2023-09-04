@@ -17,14 +17,14 @@ export type AdvancedSearchRowProps = {
   dataCy?: string;
   data: AdvancedSearchRowData[];
   rowIndex: number;
-  setRowData: (data: AdvancedSearchRowData[]) => void;
+  setRowsData: (data: AdvancedSearchRowData[]) => void;
 };
 
 const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
   dataCy = "advanced-search-row",
   data,
   rowIndex,
-  setRowData
+  setRowsData
 }) => {
   const t = useText();
 
@@ -76,7 +76,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
                 type="button"
                 className={getClauseClasses(clause, data[rowIndex].clause)}
                 onClick={() => {
-                  updateRowData("clause", clause, data, setRowData);
+                  updateRowData("clause", clause, data, setRowsData);
                 }}
               >
                 {clause}
@@ -93,7 +93,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           placeholder={t("advancedSearchInputPlaceholderText")}
           value={data[rowIndex].term}
           onChange={(e) => {
-            updateRowData("term", e.target.value, data, setRowData);
+            updateRowData("term", e.target.value, data, setRowsData);
           }}
         />
         <div className="dropdown dropdown--grey-borders input-with-dropdown__dropdown">
@@ -102,7 +102,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
             aria-label="input field dropdown"
             value={data[rowIndex].searchIndex}
             onChange={(e) => {
-              updateRowData("searchIndex", e.target.value, data, setRowData);
+              updateRowData("searchIndex", e.target.value, data, setRowsData);
             }}
           >
             {AdvancedSearchIndexes.map((index) => {
@@ -121,7 +121,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           <button
             type="button"
             onClick={() => {
-              removeRow(rowIndex, data, setRowData);
+              removeRow(rowIndex, data, setRowsData);
             }}
           >
             <img className="input-with-dropdown__icon" src={IconMinus} alt="" />
@@ -134,7 +134,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           type="button"
           className="advanced-search__clauses cursor-pointer"
           onClick={() => {
-            addRow(setRowData);
+            addRow(setRowsData);
           }}
         >
           <img className="mr-8" src={IconPlus} alt="" />
