@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
-import { Button } from "../Buttons/Button";
 import SearchResultList from "../card-item-list/SearchResultList";
-import { copyTextToClipboard } from "../../apps/advanced-search/helper";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
 import usePager from "../result-pager/use-pager";
