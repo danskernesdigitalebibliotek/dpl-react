@@ -207,6 +207,41 @@ export default {
       name: "Advanced search input placeholder",
       defaultValue: "Search term",
       control: { type: "text" }
+    },
+    advancedSearchTitleText: {
+      name: "Advanced search page title",
+      defaultValue: "Advanced search",
+      control: { type: "text" }
+    },
+    advancedSearchPreviewHeadlineText: {
+      name: "Advanced search CQL preview headline",
+      defaultValue: "Advanced search",
+      control: { type: "text" }
+    },
+    advancedSearchPreviewEmptyText: {
+      name: "Advanced search empty preview",
+      defaultValue: "-",
+      control: { type: "text" }
+    },
+    advancedSearchResetText: {
+      name: "Advanced search reset button text",
+      defaultValue: "Reset",
+      control: { type: "text" }
+    },
+    advancedSearchCopyStringText: {
+      name: "Advanced search page copy string button text",
+      defaultValue: "Copy string",
+      control: { type: "text" }
+    },
+    advancedSearchEditCqlText: {
+      name: "Advanced search page edit CQL button text",
+      defaultValue: "Edit CQL",
+      control: { type: "text" }
+    },
+    advancedSearchSearchButtonText: {
+      name: "Advanced search search button text",
+      defaultValue: "Search",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

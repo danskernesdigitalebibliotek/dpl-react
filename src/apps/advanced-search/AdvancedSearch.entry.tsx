@@ -39,6 +39,13 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchIdentifierText: string;
   advancedSearchAcSourceText: string;
   advancedSearchAddRowText: string;
+  advancedSearchTitleText: string;
+  advancedSearchPreviewHeadlineText: string;
+  advancedSearchPreviewEmptyText: string;
+  advancedSearchResetText: string;
+  advancedSearchCopyStringText: string;
+  advancedSearchEditCqlText: string;
+  advancedSearchSearchButtonText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
