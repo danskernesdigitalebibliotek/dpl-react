@@ -232,7 +232,6 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
                 labelledBy="interestafter"
                 onDropdownChange={changeExpiryDate}
                 options={interstPeriods}
-                selected={expiryDate}
               />
             </div>
           )}
