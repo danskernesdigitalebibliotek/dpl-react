@@ -28,6 +28,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
       <div className="list-reservation my-32">
         {material && (
           <MaterialInfo
+            arrowLabelledBy={`${
+              reservation.identifier || reservation.faust
+            }-title`}
             focused={focused}
             openDetailsModal={openDetailsModal}
             periodical={reservation.periodical}
