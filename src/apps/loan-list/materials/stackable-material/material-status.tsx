@@ -16,6 +16,7 @@ interface MaterialStatusProps {
   additionalMaterials: number;
   openDetailsModal: (modalId: string) => void;
   openDueDateModal?: (dueDate: string) => void;
+  arrowLabelledBy: string;
 }
 
 const MaterialStatus: FC<MaterialStatusProps> = ({
@@ -23,7 +24,8 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
   children,
   additionalMaterials,
   openDetailsModal,
-  openDueDateModal
+  openDueDateModal,
+  arrowLabelledBy
 }) => {
   const t = useText();
   const { dueDate, loanDate, loanId, identifier } = loan;
@@ -54,6 +56,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
         <div className="list-reservation__counter" />
         <div className="list-reservation__deadline" />
         <ArrowButton
+          arrowLabelledBy={arrowLabelledBy}
           cursorPointer
           clickEventHandler={notificationClickEventHandler}
         />
@@ -88,6 +91,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
         </div>
       </div>
       <ArrowButton
+        arrowLabelledBy={arrowLabelledBy}
         cursorPointer
         clickEventHandler={notificationClickEventHandler}
       />

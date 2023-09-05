@@ -45,6 +45,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
     >
       {material && (
         <MaterialInfo
+          arrowLabelledBy={`${loanId || identifier}-title`}
           openDetailsModal={openLoanDetailsModalHandler}
           periodical={periodical}
           material={material}
@@ -62,6 +63,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         </MaterialInfo>
       )}
       <MaterialStatus
+        arrowLabelledBy={`${loanId || identifier}-title`}
         loan={loan}
         openDetailsModal={openLoanDetailsModal}
         openDueDateModal={() =>

@@ -10,6 +10,7 @@ interface MaterialInfoProps {
   children?: ReactNode;
   openDetailsModal: () => void;
   focused: boolean;
+  arrowLabelledBy: string;
 }
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
@@ -18,6 +19,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
   periodical,
   openDetailsModal,
   focused,
+  arrowLabelledBy,
   children
 }) => {
   const {
@@ -59,7 +61,12 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
             lang={lang || ""}
             className="list-reservation__header color-secondary-gray"
           >
-            <span className="list-reservation__header__text">{title}</span>
+            <span
+              id={arrowLabelledBy}
+              className="list-reservation__header__text"
+            >
+              {title}
+            </span>
           </button>
           <p
             data-cy="reservation-about-author"
