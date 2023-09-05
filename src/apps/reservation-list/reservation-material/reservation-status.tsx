@@ -29,6 +29,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       openReservationDetailsModal(reservationInfo);
     }
   }, [openReservationDetailsModal, reservationInfo]);
+
   return (
     <div className="list-reservation__status">
       <div className="list-reservation__counter color-secondary-gray">
@@ -53,6 +54,9 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
         </div>
       </div>
       <ArrowButton
+        arrowLabelledBy={`${
+          reservationInfo?.identifier || reservationInfo?.faust
+        }-title`}
         cursorPointer
         clickEventHandler={notificationClickEventHandler}
       />
