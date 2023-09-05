@@ -8,7 +8,7 @@ import {
   getAmountOfRenewableLoans,
   getRenewableMaterials,
   loansOverdue,
-  sameDueDate
+  sameLoanDate
 } from "../../core/utils/helpers/general";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
@@ -65,12 +65,13 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   }, [close, materialsToRenew, modalIdUsed, mutate, queryClient]);
 
   const renewSelected = useCallback(() => {
-    const selectedLoansDueDate = loansModal
+    const selectedLoansLoanDate = loansModal
       .filter(({ loanId }) => materialsToRenew.includes(String(loanId) || ""))
-      .map(({ dueDate: localDueDate }) => localDueDate)
+      .map(({ loanDate: localLoanDate }) => localLoanDate)
       .filter((item) => item !== undefined && item !== null);
     const acceptModal =
-      loansOverdue(loansModal) && sameDueDate(selectedLoansDueDate as string[]);
+      loansOverdue(loansModal) &&
+      sameLoanDate(selectedLoansLoanDate as string[]);
 
     if (acceptModal) {
       openAcceptModal();

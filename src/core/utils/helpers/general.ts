@@ -335,8 +335,8 @@ export const loansOverdue = (loans: LoanType[]): boolean => {
   return loans.every((loan) => materialIsOverdue(loan.dueDate));
 };
 
-export const sameDueDate = (loans: string[]): boolean => {
-  return loans.every((dueDate, i, arr) => dueDate === arr[0]);
+export const sameLoanDate = (loans: string[]): boolean => {
+  return loans.every((loanDate, i, arr) => loanDate === arr[0]);
 };
 
 export const tallyUpFees = (fees: FeeV2[]) => {
