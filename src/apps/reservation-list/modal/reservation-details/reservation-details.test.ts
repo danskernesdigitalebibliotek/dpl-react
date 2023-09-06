@@ -583,7 +583,7 @@ describe("Reservation details modal test", () => {
       statusCode: 200,
       body: [
         {
-          reservationId: 46985591,
+          reservationId: 4698559133,
           recordId: "46985591",
           state: "readyForPickup",
           pickupBranch: "DK-775100",
