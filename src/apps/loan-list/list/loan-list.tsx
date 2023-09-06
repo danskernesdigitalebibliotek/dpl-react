@@ -36,6 +36,7 @@ import {
 import MaterialDetails from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
+  getDetailsModalId,
   containsDueDateModalQueryParam,
   dateFromDueDateModalQueryParam
 } from "../../../core/utils/helpers/modal-helpers";
@@ -141,6 +142,19 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
 
   useEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
+    // if there is a loan details query param, loan details modal should be opened
+    const loanDetailsString = loanDetails as string;
+    if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
+      debugger;
+      const loanDetailsModalId = getDetailsModalId(
+        modalUrlParam,
+        loanDetailsString
+      );
+      if (loanDetailsModalId) {
+        setModalDetailsId(loanDetailsModalId);
+      }
+    }
+
     // If there is a query param with the due date, a modal should be opened
     if (modalUrlParam && containsDueDateModalQueryParam(modalUrlParam)) {
       const dateFromQueryParam = dateFromDueDateModalQueryParam(modalUrlParam);
