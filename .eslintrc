@@ -12,7 +12,12 @@
   "settings": {
     "react": {
       "version": "16.11.0"
-    }
+    },
+    // Since we use vitest alongside our production code we have to instruct eslint
+    // not to throw the import/no-extraneous-dependencies error when doing so.
+    "import/core-modules": [
+      "vitest"
+    ]
   },
   "env": {
     "browser": true,

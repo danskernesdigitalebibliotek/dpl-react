@@ -47,7 +47,9 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     isbn: isbns ? isbns[0] : null
   });
 
-  const availabilityText = isAvailable ? t("available") : t("unavailable");
+  const availabilityText = isAvailable
+    ? t("availabilityAvailableText")
+    : t("availabilityUnavailableText");
 
   useDeepCompareEffect(() => {
     // Track material availability (status) if the button is active - also meaning

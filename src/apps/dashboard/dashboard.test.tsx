@@ -281,7 +281,7 @@ describe("Dashboard", () => {
       }
     ).as("reservations");
 
-    cy.intercept("POST", "**/opac/**", {
+    cy.intercept("POST", "**/next/**", {
       statusCode: 200,
       body: {
         data: {
@@ -318,7 +318,7 @@ describe("Dashboard", () => {
       .should("have.text", "Fees6")
       .find("a")
       .should("have.attr", "href")
-      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
+      .should("include", "/user/me/fees");
 
     // Text "You owe in total"
     cy.getBySel("warning-bar-text").should("have.text", "You owe in total");
@@ -337,7 +337,7 @@ describe("Dashboard", () => {
       .should("have.text", "Loans3")
       .find("a")
       .should("have.attr", "href")
-      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
+      .should("include", "/user/me/loans");
 
     // Notification - handed in too later
     // Red icon
@@ -364,7 +364,7 @@ describe("Dashboard", () => {
       .should("have.text", "Reservations2")
       .find("a")
       .should("have.attr", "href")
-      .should("include", "https://unsplash.com/photos/7LzKELgdzzI");
+      .should("include", "/user/me/reservations");
 
     // Notification - reservations ready
     // Red icon

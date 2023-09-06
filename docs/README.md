@@ -11,22 +11,31 @@ Danish public libraries.
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Dory](https://github.com/FreedomBen/dory)
 
-### Development - alternative (no docker)
+Before you can install the project you need to create the file `~/.npmrc` to
+[access the GitHub package registry as described using a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+[The token must be created with the required scopes: `repo` and `read:packages`](https://github.com/settings/tokens/new?description=npm&scopes=repo,read:packages)
 
-#### Howto
+If you have npm installed locally this can be achieved by running the following
+command and using the token when prompted for password.
 
-- Run: sudo vim /etc/hosts
-- Add as the last line in the doc: 127.0.0.1 dpl-react.docker
-- Now storybook can be started by sudo yarn start:storybook:dev
+```bash
+npm login --registry=https://npm.pkg.github.com
+```
 
-- Now you need to make sure that your node version is the right one
-  for the project whenever a terminal is opened
-- (it is specified in the package.json file)
-- if you then wish to log in through adgangsplatformen, you need to change
-  your url to: <http://ddb-react.docker/> - this avoids getting log in errors
-- (note: if you enter adgangsplatform again after signing it, you will get
-  signed out, and need to log in again. This is not a bug, as you stay logged
-  in otherwise.)
+### Howto
+
+1. Run `task dev:start`
+2. Access Storybook at <http://dpl-react.docker>
+
+#### Alternative without Docker
+
+1. Add `127.0.0.1 dpl-react.docker` to your `/etc/hosts` file
+2. Ensure that your node version matches what is specified in `package.json`.
+3. Install dependencies: `yarn install`
+4. Start storybook `sudo yarn start:storybook:dev`
+5. If you need to log in through Adgangsplatformen, you need to change
+   your url to <http://dpl-react.docker/> instead of <http://localhost>. This
+   avoids getting log in errors
 
 #### Step Debugging in Visual Studio Code (no docker)
 
@@ -52,6 +61,10 @@ This project include a client id that matches the storybook setup which can be
 used for development purposes.  You can use the `/auth` story to sign in to
 Adgangsplatformen for the storybook context.
 
+(Note: if you enter Adgangsplatformen again after signing it, you will get
+signed out, and need to log in again. This is not a bug, as you stay logged
+in otherwise.)
+
 #### Library token
 
 To test the apps that is indifferent to wether the user is authenticated or not
@@ -60,19 +73,6 @@ Workflow:
 
 - Retrieve a library token via [OpenPlatform](https://openplatform.dbc.dk/v3/)
 - Insert the library token in the Library Token story in storybook
-
-### Installation
-
-Using go-task to handle the project. Before you can install the project you need
-to create the file `~/.npmrc` to access the github package registry as described
-[here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
-using a personal access token.
-
-```bash
-task dev:start
-```
-
-When storybook is started, you can access it at: [dpl-react.docker](http://dpl-react.docker)
 
 ### Standard and style
 

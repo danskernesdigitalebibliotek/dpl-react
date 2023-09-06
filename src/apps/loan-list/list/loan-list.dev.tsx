@@ -7,6 +7,7 @@ import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
 import groupModalArgs from "../../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
+import acceptModalArgs from "../../../core/storybook/acceptFeesModalArgs";
 import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
 
 export default {
@@ -16,6 +17,7 @@ export default {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...loanGroupModalArgs,
+    ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...blockedArgs,
     // Config

@@ -68,12 +68,13 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </ModalDetailsHeader>
-      {!isDigital(loan) && faust && loanId && (
+      {!isDigital(loan) && !!faust && !!loanId && (
         <RenewButton
-          classNames="modal-details__buttons--hide-on-mobile"
+          classNames="modal-details__buttons modal-details__buttons--hide-on-mobile"
           faust={faust}
           loanId={loanId}
           renewable={isRenewable}
+          hideOnMobile
         />
       )}
       {isDigital(loan) && (
@@ -126,12 +127,13 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           />
         )}
       </div>
-      {!isDigital(loan) && faust && loanId && (
+      {!isDigital(loan) && !!faust && !!loanId && (
         <RenewButton
           classNames="modal-details__buttons__full-width"
           faust={faust}
           loanId={loanId}
           renewable={isRenewable}
+          hideOnMobile={false}
         />
       )}
       {isDigital(loan) && (

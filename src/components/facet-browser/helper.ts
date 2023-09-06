@@ -133,3 +133,49 @@ export const getFacetFieldTranslation = (name: FacetField) => {
 };
 
 export default {};
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  const branchIdList = ["710100", "710200"];
+
+  const filters = {
+    mainLanguages: {
+      Dansk: {
+        key: "dan",
+        term: "Dansk",
+        score: 295
+      },
+      Engelsk: {
+        key: "eng",
+        term: "Engelsk",
+        score: 9
+      }
+    },
+    accessTypes: {
+      Fysisk: {
+        key: "PHYSICAL",
+        term: "Fysisk",
+        score: 356
+      }
+    }
+  };
+
+  describe("getPlaceHolderFacets", () => {
+    it("should get placeholder facets", () => {
+      expect(getPlaceHolderFacets(allFacetFields)).toMatchSnapshot();
+    });
+  });
+
+  describe("formatFacetTerms", () => {
+    it("should format facet terms", () => {
+      expect(formatFacetTerms(filters)).toMatchSnapshot();
+    });
+  });
+
+  describe("createFilters", () => {
+    it("should create filters", () => {
+      expect(createFilters(filters, branchIdList)).toMatchSnapshot();
+    });
+  });
+}

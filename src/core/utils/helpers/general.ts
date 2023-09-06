@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { uniq } from "lodash";
+import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
@@ -166,15 +167,16 @@ export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
 
 // Get params if they are defined as props use those
 // otherwise try to fetch them from the url.
-export const getParams = <T, K extends keyof T>(props: T) => {
-  const params = {} as T;
-
-  Object.entries(props).forEach(([property, value]) => {
-    params[property as K] = value || (getUrlQueryParam(property) as string);
-  });
-
-  return params;
-};
+export const getParams = (props: Record<string, string | undefined>) =>
+  Object.entries(props).reduce<Record<string, string>>(
+    (acc, [property, value]) => {
+      return {
+        ...acc,
+        [property]: String(value || getUrlQueryParam(property))
+      };
+    },
+    {}
+  );
 
 export const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
@@ -329,6 +331,14 @@ export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
   );
 };
 
+export const loansOverdue = (loans: LoanType[]): boolean => {
+  return loans.every((loan) => materialIsOverdue(loan.dueDate));
+};
+
+export const sameDueDate = (loans: string[]): boolean => {
+  return loans.every((dueDate, i, arr) => dueDate === arr[0]);
+};
+
 export const tallyUpFees = (fees: FeeV2[]) => {
   return fees
     .reduce((total, { amount }) => total + amount, 0)
@@ -353,11 +363,30 @@ export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   });
 };
 
-export const getMaterialTypes = (manifestations: Manifestation[]) => {
-  const allMaterialTypes = manifestations
-    .map((manifest) => manifest.materialTypes.map((type) => type.specific))
-    .flat();
-  return uniq(allMaterialTypes) as ManifestationMaterialType[];
+export const getMaterialTypes = (
+  manifestations: Manifestation[],
+  onlyFirstType = true
+) => {
+  // If the manifestation has several types we only are interested in the first one.
+  if (onlyFirstType) {
+    return uniq(
+      manifestations
+        .map((manifest) =>
+          manifest.materialTypes.map((type, i) =>
+            i === 0 ? type.specific : null
+          )
+        )
+        .flat()
+        .filter((type) => type !== null)
+    ) as ManifestationMaterialType[];
+  }
+
+  // In this case we aggreate all types even if a manifestation has multiple types.
+  return uniq(
+    manifestations
+      .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+      .flat()
+  ) as ManifestationMaterialType[];
 };
 
 export const getManifestationType = (manifestations: Manifestation[]) => {
@@ -535,14 +564,58 @@ export const getContributors = (short: boolean, creators: string[]) => {
 
 export default {};
 
+/* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
+
+  describe("getMaterialTypes", () => {
+    const manifestations = [
+      {
+        materialTypes: [
+          {
+            specific: "artikel"
+          },
+          {
+            specific: "artikel (online)"
+          }
+        ]
+      }
+    ] as Manifestation[];
+
+    it("should be able to return only first entry material types from manifestations (default)", () => {
+      const types = getMaterialTypes(manifestations);
+      expect(types).toEqual(["artikel"]);
+    });
+
+    it("should be able to return all available material types from manifestations", () => {
+      const types = getMaterialTypes(manifestations, false);
+      expect(types).toEqual(["artikel", "artikel (online)"]);
+    });
+  });
 
   describe("constructModalId", () => {
     it("should create a modal id with hypens", () => {
       expect(constructModalId("some-modal-id", ["one", "two"])).toBe(
         "some-modal-id-one-two"
       );
+    });
+  });
+
+  describe("getParams", () => {
+    it("should fill in with url params if property value is undefined", () => {
+      // We'll fake the url param getter to return a value.
+      // So when we request the url param, we'll get the value: "some-url-param-value"
+      vi.mock("./url", () => ({
+        getUrlQueryParam: vi
+          .fn()
+          .mockImplementation(() => "some-url-param-value")
+      }));
+
+      // We'll test the undefined value will be replaced with the url param equivalent.
+      expect(getParams({ "some-url-param": undefined, foo: "bar" })).toEqual({
+        "some-url-param": "some-url-param-value",
+        foo: "bar"
+      });
     });
   });
 }

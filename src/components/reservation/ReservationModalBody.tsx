@@ -69,7 +69,7 @@ export const ReservationModalBody = ({
   const t = useText();
   const config = useConfig();
   const {
-    matchString: instantLoanMatchString,
+    matchStrings: instantLoanMatchStrings,
     threshold: instantLoanThreshold,
     enabled: instantLoanEnabled
   } = config<InstantLoanConfigType>("instantLoanConfig", {
@@ -173,7 +173,7 @@ export const ReservationModalBody = ({
   const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
     holdingsData[0].holdings,
     whitelistBranches,
-    instantLoanMatchString
+    instantLoanMatchStrings
   );
 
   const instantLoanBranchHoldingsAboveThreshold =

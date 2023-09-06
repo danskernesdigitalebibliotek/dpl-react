@@ -188,25 +188,52 @@ export const getReservationModalTypeTranslation = (
   }
 };
 
+export const consolidatedHoldings = (branchHoldings: HoldingsV3[]) => {
+  const processedBranches = new Map<
+    string,
+    Pick<HoldingsV3, "branch" | "materials">
+  >();
+
+  branchHoldings.forEach(({ branch, materials }) => {
+    const { branchId } = branch;
+
+    const storedBranch = processedBranches.get(branchId);
+    if (storedBranch) {
+      processedBranches.set(branchId, {
+        branch,
+        materials: [...materials, ...storedBranch.materials]
+      });
+      return;
+    }
+
+    processedBranches.set(branchId, { branch, materials });
+  });
+
+  return [...processedBranches.values()];
+};
+
 export const getInstantLoanBranchHoldings = (
   branchHoldings: HoldingsV3[],
   whitelist: AgencyBranch[],
-  instantLoanString: string
+  instantLoanStrings: string[]
 ) => {
-  const whitelistIds = whitelist.map(({ branchId }) => branchId);
-
+  const whitelistBranchIds = whitelist.map(({ branchId }) => branchId);
   // 1. Filter holdings by branch on whitelist
   const filteredBranchHoldings = branchHoldings.filter(({ branch }) =>
-    whitelistIds.includes(branch.branchId)
+    whitelistBranchIds.includes(branch.branchId)
   );
-
   // 2. Filter materials on holdings for instant loans / Filter holdings by empty materials (presence of instant loans)
-  const filteredMaterials = filteredBranchHoldings
+  const filteredMaterials = consolidatedHoldings(filteredBranchHoldings)
     .map(({ branch, materials }) => {
-      const filtered = materials.filter(
-        ({ materialGroup, available }) =>
-          materialGroup.description?.includes(instantLoanString) && available
-      );
+      const filtered = materials.filter(({ materialGroup, available }) => {
+        // if a material group description contains any of the instant loan strings
+        // and is available, it is an instant loan.
+        return (
+          instantLoanStrings.some((instantLoanString) => {
+            return materialGroup.description?.includes(instantLoanString);
+          }) && available
+        );
+      });
 
       return { branch, materials: filtered };
     })

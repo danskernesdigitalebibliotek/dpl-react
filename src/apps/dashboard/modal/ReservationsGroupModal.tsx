@@ -1,27 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
-import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
+import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 import { Button } from "../../../components/Buttons/Button";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import {
-  useDeleteReservations,
-  getGetReservationsV2QueryKey
-} from "../../../core/fbs/fbs";
-import {
   getModalIds,
   getPhysicalQueuedReservations
 } from "../../../core/utils/helpers/general";
-import {
-  useDeleteV1UserReservationsIdentifier,
-  useGetV1UserReservations,
-  getGetV1UserReservationsQueryKey
-} from "../../../core/publizon/publizon";
+import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import GroupModalReservationsList from "../../../components/GroupModal/GroupModalReservationsList";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
-import { isFaust, isIdentifier } from "../util/helpers";
 import {
   getReadyForPickup,
   getReservedDigital
@@ -32,22 +22,20 @@ import { mapPublizonReservationToReservationType } from "../../../core/utils/hel
 interface ReservationGroupModalProps {
   pageSize: number;
   modalId: string;
+  setReservationsToDelete: (reservations: string[]) => void;
   reservations: ReservationType[];
+  openDetailsModal: (modalId: string) => void;
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   pageSize,
   modalId,
-  reservations
+  reservations,
+  setReservationsToDelete,
+  openDetailsModal
 }) => {
   const t = useText();
-  const queryClient = useQueryClient();
-  const { close } = useModalButtonHandler();
   const { reservationsReady, reservationsQueued } = getModalIds();
-  const { mutate: deletePhysicalReservation } = useDeleteReservations();
-  const { mutate: deleteDigitalReservation } =
-    useDeleteV1UserReservationsIdentifier();
-
   const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
   const [displayedreservations, setDisplayedReservations] = useState<
     ReservationType[]
@@ -121,43 +109,13 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     reservationsQueued
   ]);
 
-  const removeSelectedReservations = () => {
-    if (materialsToDelete.length > 0) {
-      const reservationsToDelete = materialsToDelete
-        .map((id) => Number(isFaust(id)))
-        .filter((id) => id !== 0);
-      const digitalMaterialsToDelete = materialsToDelete
-        .map((id) => isIdentifier(id))
-        .filter((id) => id !== null);
-      deletePhysicalReservation(
-        {
-          params: { reservationid: reservationsToDelete }
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(getGetReservationsV2QueryKey());
-          }
-        }
-      );
-
-      digitalMaterialsToDelete.forEach((id) =>
-        deleteDigitalReservation(
-          {
-            identifier: String(id)
-          },
-          {
-            onSuccess: () => {
-              queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
-            }
-          }
-        )
-      );
-      close(modalId as string);
-    }
-  };
-
   const selectMaterials = (materialIds: string[]) => {
     setMaterialsToDelete(materialIds);
+  };
+
+  const deleteMaterialsModal = () => {
+    setReservationsToDelete(materialsToDelete);
+    setMaterialsToDelete([]);
   };
 
   return (
@@ -194,7 +152,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                 collapsible={false}
                 size="small"
                 variant="filled"
-                onClick={() => removeSelectedReservations()}
+                onClick={() => deleteMaterialsModal()}
               />
             }
             amountOfSelectableMaterials={selectableReservations.length}
@@ -203,6 +161,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             selectMaterials={selectMaterials}
           >
             <GroupModalReservationsList
+              openDetailsModal={openDetailsModal}
               header={t("physicalReservationsHeaderText")}
               materials={displayedreservations}
               pageSize={pageSize}
@@ -212,6 +171,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             />
             <GroupModalReservationsList
               marginBottonPager
+              openDetailsModal={openDetailsModal}
               header={t("digitalReservationsHeaderText")}
               materials={displayedDigitalReservations}
               pageSize={pageSize}

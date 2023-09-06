@@ -48,14 +48,11 @@ describe("Instant Loan", () => {
     cy.visit(
       "/iframe.html?&id=apps-material--instant-loan&viewMode=story&type=bog"
     ).scrollTo("bottom");
-    cy.getBySel("material-description").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
+      .scrollIntoView()
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
-    // TODO: Find out why the next line is necessary to pass the test.
-    // It should not be necessary as we already activated lazy loading on line 51.
-    cy.getBySel("material-description").scrollIntoView();
   });
 
   it("should render InstantLoan summary with title and cover", () => {
@@ -78,17 +75,21 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branches")
       .scrollIntoView()
       .children()
-      .should("have.length", 2);
+      .should("have.length", 18);
   });
 
   it("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
-    cy.getBySel("instant-loan-branch")
-      .first()
+    // Hovedbiblioteket contains 14 materials
+    // all with matching descriptions
+    // but only three is available.
+    cy.getBySel("instant-loan-branches")
+      .get("li")
+      .eq(8)
       .scrollIntoView()
-      .should("contain", "Trige")
-      .and("contain", "1 stk");
+      .should("contain", "Hovedbiblioteket")
+      .and("contain", "3 stk");
   });
 });
 

@@ -10,6 +10,7 @@ import { ReservationMaterialDetailsProps } from "../../core/storybook/reservatio
 import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
 import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
+import { AcceptFeesModalEntryTextProps } from "../../core/storybook/acceptFeesModalArgs";
 
 export interface DashBoardProps {
   // Url
@@ -57,6 +58,7 @@ const DashboardEntry: FC<
     GroupModalProps &
     GroupModalLoansProps &
     DeleteReservationModalArgs &
+    AcceptFeesModalEntryTextProps &
     GroupModalReservationsProps &
     ReservationMaterialDetailsProps &
     MaterialDetailsModalProps

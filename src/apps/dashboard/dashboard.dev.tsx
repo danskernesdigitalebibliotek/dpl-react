@@ -8,6 +8,7 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
+import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
 
 export default {
   title: "Apps / Dashboard",
@@ -17,23 +18,20 @@ export default {
     ...loanGroupModalArgs,
     ...reservationGroupModalArgs,
     ...reservationMaterialDetailsProps,
+    ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
     // Urls
-    loansOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
-      control: { type: "text" }
-    },
     physicalLoansUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/loans",
       control: { type: "text" }
     },
     feesUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/fees",
       control: { type: "text" }
     },
     reservationsUrl: {
-      defaultValue: "https://unsplash.com/photos/7LzKELgdzzI", // open source image of a fox
+      defaultValue: "/user/me/reservations",
       control: { type: "text" }
     },
     yourProfileText: {
