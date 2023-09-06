@@ -145,7 +145,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     // if there is a loan details query param, loan details modal should be opened
     const loanDetailsString = loanDetails as string;
     if (modalUrlParam && modalUrlParam.includes(loanDetails as string)) {
-      debugger;
       const loanDetailsModalId = getDetailsModalId(
         modalUrlParam,
         loanDetailsString
