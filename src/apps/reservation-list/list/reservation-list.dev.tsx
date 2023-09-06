@@ -267,7 +267,7 @@ ReservationListDigitalDetailsModal.parameters = {
 export const ReservationListPhysicalDetailsModal = Template.bind({});
 ReservationListPhysicalDetailsModal.parameters = {
   query: {
-    modal: `${reservationDetails}46985591`
+    modal: `${reservationDetails}4698559133`
   }
 };
 
