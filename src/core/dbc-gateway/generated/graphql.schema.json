@@ -431,6 +431,65 @@
       },
       {
         "kind": "OBJECT",
+        "name": "CatalogueCodes",
+        "description": null,
+        "fields": [
+          {
+            "name": "nationalBibliography",
+            "description": "CatalogueCodes from the national registers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "otherCatalogues",
+            "description": "CatalogueCodes from local bibliographies or catalogues that the manifestation belongs to",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ChildOrAdult",
         "description": null,
         "fields": [
@@ -3214,6 +3273,22 @@
               "kind": "OBJECT",
               "name": "Audience",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "catalogueCodes",
+            "description": "CatalogueCodes divided in codes from the national bibliography and other codes",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CatalogueCodes",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

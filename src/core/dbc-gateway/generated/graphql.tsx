@@ -94,6 +94,14 @@ export type Audience = {
   schoolUse: Array<SchoolUse>;
 };
 
+export type CatalogueCodes = {
+  __typename?: "CatalogueCodes";
+  /** CatalogueCodes from the national registers */
+  nationalBibliography: Array<Scalars["String"]>;
+  /** CatalogueCodes from local bibliographies or catalogues that the manifestation belongs to */
+  otherCatalogues: Array<Scalars["String"]>;
+};
+
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
   code: ChildOrAdultCode;
@@ -522,6 +530,8 @@ export type Manifestation = {
   accessTypes: Array<AccessType>;
   /** Different kinds of definitions of appropriate audience for this manifestation */
   audience?: Maybe<Audience>;
+  /** CatalogueCodes divided in codes from the national bibliography and other codes */
+  catalogueCodes: CatalogueCodes;
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
   /** Contributors to the manifestation, actors, illustrators etc */
@@ -1684,7 +1694,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
     __typename?: "Manifestation";
     pid: string;
     abstract: Array<string>;
-    titles: { __typename?: "ManifestationTitles"; main: Array<string> };
+    titles: { __typename?: "ManifestationTitles"; full: Array<string> };
     materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
@@ -4197,7 +4207,7 @@ export const GetManifestationViaMaterialByFaustDocument = `
     ...WithLanguages
     pid
     titles {
-      main
+      full
     }
     abstract
     materialTypes {

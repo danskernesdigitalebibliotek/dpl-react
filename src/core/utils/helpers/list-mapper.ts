@@ -135,8 +135,8 @@ export const mapManifestationToBasicDetailsType = (
   const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {
-    main: [mainText]
-  } = titles || { main: [] };
+    full: [fullText]
+  } = titles || { full: [] };
   const { publicationYear } = edition || {};
   const { display: year } = publicationYear || {};
 
@@ -149,7 +149,7 @@ export const mapManifestationToBasicDetailsType = (
     authorsShort: getContributors(true, inputContributorsArray),
     firstAuthor,
     pid,
-    title: mainText,
+    title: fullText,
     year,
     description,
     series: series && series.length > 0 ? getSeriesString(series) : "",

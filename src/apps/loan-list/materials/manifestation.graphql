@@ -3,7 +3,7 @@ query getManifestationViaMaterialByFaust($faust: String!) {
     ...WithLanguages
     pid
     titles {
-      main
+      full
     }
     abstract
     materialTypes {
