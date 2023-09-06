@@ -22,7 +22,7 @@ describe("Modals", () => {
           renewalStatusList: ["deniedMaxRenewalsReached"],
           isLongtermLoan: false,
           loanDetails: {
-            loanId: 956250508,
+            loanId: 9562505082,
             materialItemNumber: "3846990827",
             recordId: "28847238",
             periodical: null,
