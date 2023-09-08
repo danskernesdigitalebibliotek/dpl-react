@@ -73,6 +73,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           {AdvancedSearchClauses.map((clause) => {
             return (
               <button
+                key={clause}
                 type="button"
                 className={getClauseClasses(clause, data[rowIndex].clause)}
                 onClick={() => {
@@ -107,7 +108,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           >
             {AdvancedSearchIndexes.map((index) => {
               return (
-                <option className="dropdown__option" value={index}>
+                <option key={index} className="dropdown__option" value={index}>
                   {t(AdvancedSearchIndexTranslations[index])}
                 </option>
               );
