@@ -39,7 +39,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
         className="header__menu-search-input text-body-medium-regular"
         data-cy={dataCy}
         type="text"
-        autoComplete="off"
         placeholder={t("inputPlaceholderText")}
         aria-label={t("inputPlaceholderText")}
         {...getInputProps({

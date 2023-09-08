@@ -33,7 +33,7 @@ export const Default: ComponentStory<typeof SearchBar> = (
 
   const [q, setQ] = useState<string | undefined>("");
 
-  const { getInputProps, getComboboxProps } = useCombobox({
+  const { getInputProps } = useCombobox({
     items: ["Item 1", "Item 2"],
     inputValue: q,
     defaultIsOpen: false,
@@ -47,11 +47,7 @@ export const Default: ComponentStory<typeof SearchBar> = (
   return (
     <StoryHeader>
       <div className="header__menu-second">
-        <form
-          action={searchHeaderUrl}
-          className="header__menu-search"
-          {...getComboboxProps()}
-        >
+        <form action={searchHeaderUrl} className="header__menu-search">
           <SearchBar {...args} getInputProps={getInputProps} />
         </form>
       </div>
