@@ -1,3 +1,5 @@
+import { MultiselectOption } from "./multiselect-types";
+
 export type AdvancedSearchIndex =
   | "all"
   | "creator"
@@ -67,3 +69,20 @@ export type AdvancedSearchRowData = {
   searchIndex: AdvancedSearchIndex | "";
   clause: AdvancedSearchClause;
 };
+
+export const advancedSearchMaterialTypes: MultiselectOption[] = [
+  { item: "Book", value: "bog" },
+  { item: "E-Book", value: "ebog" },
+  { item: "Audio Book", value: "audiobog" },
+  { item: "Game", value: "spil" }
+];
+
+export const advancedSearchAccessibility: MultiselectOption[] = [
+  { item: "Physical", value: "fysisk" },
+  { item: "Online", value: "online" }
+];
+
+export const advancedSearchFiction: MultiselectOption[] = [
+  { item: "Fiction", value: "fiction" },
+  { item: "Non fiction", value: "nonfiction" }
+];
