@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import CheckBox from "../checkbox/Checkbox";
 import AdvancedSearchRow from "./AdvancedSearchRow";
-import { AdvancedSearchRowData } from "../../core/utils/types/advanced-search-types";
+import {
+  AdvancedSearchRowData,
+  advancedSearchAccessibility,
+  advancedSearchFiction,
+  advancedSearchMaterialTypes
+} from "../../core/utils/types/advanced-search-types";
 import { useText } from "../../core/utils/text";
 import PreviewSection from "./PreviewSection";
+import Multiselect from "../multiselect/Multiselect";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -81,35 +85,22 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
 
       <section className="advanced-search__filters">
         <div className="advanced-search__filter">
-          <div className="multiselect__caption">Caption for multiselect</div>
-          <div className="multiselect">
-            <div className="multiselect__selected">
-              Item 1, Item 2, Item 3, Item 4
-            </div>
-            <div className="multiselect__opener">
-              <img className="multiselect__icon" src={IconExpand} alt="" />
-            </div>
-            <ul className="multiselect__options">
-              <li className="multiselect__option multiselect__option--highlighted">
-                Item 1
-                <div className="checkbox multiselect__checkbox">
-                  <CheckBox id="23" />
-                </div>
-              </li>
-              <li className="multiselect__option">
-                Item 2
-                <div className="checkbox multiselect__checkbox">
-                  <CheckBox id="23" />
-                </div>
-              </li>
-              <li className="multiselect__option">
-                Item 3
-                <div className="checkbox multiselect__checkbox">
-                  <CheckBox id="23" />
-                </div>
-              </li>
-            </ul>
-          </div>
+          <Multiselect
+            caption="Material types"
+            options={advancedSearchMaterialTypes}
+          />
+        </div>
+        <div className="advanced-search__filter">
+          <Multiselect
+            caption="Literature form"
+            options={advancedSearchFiction}
+          />
+        </div>
+        <div className="advanced-search__filter">
+          <Multiselect
+            caption="Access type"
+            options={advancedSearchAccessibility}
+          />
         </div>
       </section>
       <PreviewSection
