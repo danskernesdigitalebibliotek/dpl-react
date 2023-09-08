@@ -25,6 +25,16 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
+    authUrl: {
+      name: "Url where user can authenticate",
+      defaultValue: "",
+      control: { type: "text" }
+    },
+    searchUrl: {
+      name: "Path to the search result page",
+      defaultValue: "/search",
+      control: { type: "text" }
+    },
     etAlText: {
       name: "Et al. Text",
       defaultValue: "et al.",
