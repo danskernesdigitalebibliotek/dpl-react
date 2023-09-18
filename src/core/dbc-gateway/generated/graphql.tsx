@@ -1523,6 +1523,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1607,6 +1612,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1691,6 +1701,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1906,6 +1921,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1990,6 +2010,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -2074,6 +2099,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -2297,6 +2327,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2387,6 +2422,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2477,6 +2517,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2627,6 +2672,11 @@ export type SearchWithPaginationQuery = {
             __typename?: "PublicationYear";
             year?: number | null;
           } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
           languages?: {
             __typename?: "Languages";
             main?: Array<{
@@ -2717,6 +2767,11 @@ export type SearchWithPaginationQuery = {
             __typename?: "PublicationYear";
             year?: number | null;
           } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
           languages?: {
             __typename?: "Languages";
             main?: Array<{
@@ -2807,6 +2862,11 @@ export type SearchWithPaginationQuery = {
             __typename?: "PublicationYear";
             year?: number | null;
           } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
           languages?: {
             __typename?: "Languages";
             main?: Array<{
@@ -2998,6 +3058,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3079,6 +3144,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3160,6 +3230,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3240,6 +3315,11 @@ export type ManifestationsSimpleFieldsFragment = {
     shelfmark: string;
   } | null;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+  catalogueCodes: {
+    __typename?: "CatalogueCodes";
+    nationalBibliography: Array<string>;
+    otherCatalogues: Array<string>;
+  };
   languages?: {
     __typename?: "Languages";
     main?: Array<{
@@ -3426,6 +3506,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3510,6 +3595,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3594,6 +3684,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3760,6 +3855,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3844,6 +3944,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3928,6 +4033,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -4109,6 +4219,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   workYear {
     year
+  }
+  catalogueCodes {
+    nationalBibliography
+    otherCatalogues
   }
 }
     ${WithLanguagesFragmentDoc}`;
