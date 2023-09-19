@@ -13,7 +13,8 @@ import {
   creatorsToString,
   flattenCreators,
   getManifestationPid,
-  getReleaseYearSearchResult
+  getReleaseYearSearchResult,
+  materialIsFiction
 } from "../../../core/utils/helpers/general";
 import CardListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -35,6 +36,7 @@ import {
 } from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
+import SubjectNumber from "../../subject-number/SubjectNumber";
 
 export interface CardListItemProps {
   item: Work;
@@ -48,7 +50,10 @@ const CardListItem: React.FC<CardListItemProps> = ({
     titles: { full: fullTitle },
     series,
     creators,
-    manifestations: { all: manifestations },
+    manifestations: {
+      all: manifestations,
+      bestRepresentation: { shelfmark }
+    },
     workId
   },
   coverTint,
@@ -157,6 +162,13 @@ const CardListItem: React.FC<CardListItemProps> = ({
             />
           )}
         </div>
+
+        {!materialIsFiction(item) && shelfmark && (
+          <SubjectNumber
+            className="text-tags color-secondary-gray mt-8"
+            shelfmark={shelfmark}
+          />
+        )}
 
         <h2
           className="card-list-item__title text-header-h4 mb-4"
