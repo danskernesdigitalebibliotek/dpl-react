@@ -1,4 +1,4 @@
-import { HoldingsV3 } from "../../../core/fbs/model";
+import { AgencyBranch, HoldingsV3 } from "../../../core/fbs/model";
 
 const branchHoldings: HoldingsV3[] = [
   {
@@ -149,7 +149,7 @@ const branchHoldings: HoldingsV3[] = [
     ]
   }
 ];
-const whitelist = [
+const whitelist: AgencyBranch[] = [
   {
     branchId: "DK-775147",
     title: "Hasle"
