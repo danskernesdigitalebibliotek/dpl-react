@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
-import { Manifestation } from "../../core/utils/types/entities";
+import { Shelfmark } from "../../core/dbc-gateway/generated/graphql";
 
 export interface SubjectNumberProps {
   className?: string;
-  shelfmark: NonNullable<Manifestation["shelfmark"]>;
+  shelfmark: Shelfmark;
 }
 
 const SubjectNumber: FC<SubjectNumberProps> = ({
