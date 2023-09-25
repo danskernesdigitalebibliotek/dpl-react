@@ -562,6 +562,9 @@ export const getContributors = (short: boolean, creators: string[]) => {
   return creators[0];
 };
 
+export const isReservableOnAnotherLibrary = (manifestation: Manifestation[]) =>
+  true;
+
 export default {};
 
 /* ********************************* Vitest Section  ********************************* */
