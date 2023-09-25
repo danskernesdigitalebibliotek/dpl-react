@@ -92,6 +92,11 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reservableOnAnotherLibraryText: {
+      name: "Reservable on another library",
+      defaultValue: "Reservable on another library",
+      control: { type: "text" }
+    },
     findOnBookshelfText: {
       name: "Find on bookshelf",
       defaultValue: "Find on shelf",

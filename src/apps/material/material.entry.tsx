@@ -17,8 +17,8 @@ interface MaterialEntryTextProps {
   availabilityUnavailableText: string;
   blockedButtonText: string;
   cantReserveText: string;
-  cantViewText: string;
   cantViewReviewText: string;
+  cantViewText: string;
   changeEmailText: string;
   changeInterestPeriodText: string;
   changePickupLocationText: string;
@@ -73,10 +73,10 @@ interface MaterialEntryTextProps {
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
   inSeriesText: string;
-  interestPeriodsConfig: string;
   instantLoanSubTitleText: string;
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
+  interestPeriodsConfig: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -134,6 +134,7 @@ interface MaterialEntryTextProps {
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   removeFromFavoritesAriaLabelText: string;
+  reservableOnAnotherLibraryText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
