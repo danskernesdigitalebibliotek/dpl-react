@@ -1,7 +1,10 @@
 name: Upload Release Asset
 
 on:
-  push
+  push:
+    branches-ignore:
+      # Dependabot does not have permissions to create releases
+      - 'dependabot/**'
 
 jobs:
   build:
