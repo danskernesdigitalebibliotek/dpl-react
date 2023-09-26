@@ -9,6 +9,7 @@ import {
   ComplexSearchWithPaginationQuery,
   useComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
+import SearchResultZeroHits from "../../apps/search-result/search-result-zero-hits";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -75,21 +76,28 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     setResultItems(resultWorks);
   }, [data, page]);
 
+  const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
+
   return (
     <>
       <div className="advanced-search__divider" />
       <h2 className="text-header-h2 advanced-search__title">
-        Viser materialer ({hitcount})
+        Viser materialer ({hitcount || "..."})
       </h2>
       <button type="button" className="link-tag mb-16">
         {t("advancedSearchLinkToThisSearchText")}
       </button>
-      <SearchResultList
-        resultItems={resultItems}
-        page={page}
-        pageSize={pageSize}
-      />
-      <PagerComponent isLoading={isLoading} />
+      {shouldShowSearchResults && (
+        <>
+          <SearchResultList
+            resultItems={resultItems}
+            page={page}
+            pageSize={pageSize}
+          />
+          <PagerComponent isLoading={isLoading} />
+        </>
+      )}
+      {!isLoading && hitcount === 0 && <SearchResultZeroHits />}
     </>
   );
 };
