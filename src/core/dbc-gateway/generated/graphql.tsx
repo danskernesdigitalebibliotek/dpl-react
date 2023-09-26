@@ -709,8 +709,14 @@ export type MaterialType = {
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
+  submitOrder?: Maybe<SubmitOrder>;
   /** @deprecated Use 'Elba.placeCopyRequest' instead */
   submitPeriodicaArticleOrder: PeriodicaArticleOrderResponse;
+};
+
+export type MutationSubmitOrderArgs = {
+  dryRun?: InputMaybe<Scalars["Boolean"]>;
+  input: SubmitOrderInput;
 };
 
 export type MutationSubmitPeriodicaArticleOrderArgs = {
@@ -751,6 +757,15 @@ export type NumberInSeries = {
   /** The number in the series as integer */
   number?: Maybe<Array<Scalars["Int"]>>;
 };
+
+export enum OrderType {
+  Estimate = "ESTIMATE",
+  Hold = "HOLD",
+  Loan = "LOAN",
+  NonReturnableCopy = "NON_RETURNABLE_COPY",
+  Normal = "NORMAL",
+  StackRetrieval = "STACK_RETRIEVAL"
+}
 
 export type PeriodicaArticleOrder = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
@@ -1240,6 +1255,84 @@ export enum SubjectType {
   Title = "TITLE",
   Topic = "TOPIC"
 }
+
+export type SubmitOrder = {
+  __typename?: "SubmitOrder";
+  deleted?: Maybe<Scalars["Boolean"]>;
+  message?: Maybe<Scalars["String"]>;
+  /** if order was submitted successfully */
+  ok?: Maybe<Scalars["Boolean"]>;
+  orderId?: Maybe<Scalars["String"]>;
+  orsId?: Maybe<Scalars["String"]>;
+  status: SubmitOrderStatus;
+};
+
+export type SubmitOrderInput = {
+  author?: InputMaybe<Scalars["String"]>;
+  authorOfComponent?: InputMaybe<Scalars["String"]>;
+  exactEdition?: InputMaybe<Scalars["Boolean"]>;
+  expires?: InputMaybe<Scalars["String"]>;
+  orderType?: InputMaybe<OrderType>;
+  pagination?: InputMaybe<Scalars["String"]>;
+  pickUpBranch: Scalars["String"];
+  pids: Array<Scalars["String"]>;
+  publicationDate?: InputMaybe<Scalars["String"]>;
+  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]>;
+  titleOfComponent?: InputMaybe<Scalars["String"]>;
+  userParameters: SubmitOrderUserParameters;
+  volume?: InputMaybe<Scalars["String"]>;
+};
+
+export enum SubmitOrderStatus {
+  /** Authentication error */
+  AuthenticationError = "AUTHENTICATION_ERROR",
+  /** Borchk: User is blocked by agency */
+  BorchkUserBlockedByAgency = "BORCHK_USER_BLOCKED_BY_AGENCY",
+  /** Borchk: User could not be verified */
+  BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
+  /** Borchk: User is no longer loaner at the provided pickupbranch */
+  BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
+  /** Order does not validate */
+  InvalidOrder = "INVALID_ORDER",
+  /** Item not available at pickupAgency, item localised for ILL */
+  NotOwnedIllLoc = "NOT_OWNED_ILL_LOC",
+  /** Item not available at pickupAgency, item not localised for ILL */
+  NotOwnedNoIllLoc = "NOT_OWNED_NO_ILL_LOC",
+  /** Item not available at pickupAgency, ILL of mediumType not accepted */
+  NotOwnedWrongIllMediumtype = "NOT_OWNED_WRONG_ILL_MEDIUMTYPE",
+  /** ServiceRequester is obligatory */
+  NoServicerequester = "NO_SERVICEREQUESTER",
+  /** Error sending order to ORS */
+  OrsError = "ORS_ERROR",
+  /** Item available at pickupAgency, order accepted */
+  OwnedAccepted = "OWNED_ACCEPTED",
+  /** Item available at pickupAgency, item may be ordered through the library's catalogue */
+  OwnedOwnCatalogue = "OWNED_OWN_CATALOGUE",
+  /** Item available at pickupAgency, order of mediumType not accepted */
+  OwnedWrongMediumtype = "OWNED_WRONG_MEDIUMTYPE",
+  /** Service unavailable */
+  ServiceUnavailable = "SERVICE_UNAVAILABLE",
+  /** Unknown error occured, status is unknown */
+  UnknownError = "UNKNOWN_ERROR",
+  /** PickupAgency not found */
+  UnknownPickupagency = "UNKNOWN_PICKUPAGENCY",
+  /** User not found */
+  UnknownUser = "UNKNOWN_USER"
+}
+
+export type SubmitOrderUserParameters = {
+  barcode?: InputMaybe<Scalars["String"]>;
+  cardno?: InputMaybe<Scalars["String"]>;
+  cpr?: InputMaybe<Scalars["String"]>;
+  customId?: InputMaybe<Scalars["String"]>;
+  userAddress?: InputMaybe<Scalars["String"]>;
+  userDateOfBirth?: InputMaybe<Scalars["String"]>;
+  userId?: InputMaybe<Scalars["String"]>;
+  userMail?: InputMaybe<Scalars["String"]>;
+  userName?: InputMaybe<Scalars["String"]>;
+  userTelephone?: InputMaybe<Scalars["String"]>;
+};
 
 export type SuggestResponse = {
   __typename?: "SuggestResponse";
@@ -2191,6 +2284,20 @@ export type GetReviewManifestationsQuery = {
       } | null> | null;
     } | null;
   } | null>;
+};
+
+export type OpenOrderMutationVariables = Exact<{
+  input: SubmitOrderInput;
+}>;
+
+export type OpenOrderMutation = {
+  __typename?: "Mutation";
+  submitOrder?: {
+    __typename?: "SubmitOrder";
+    status: SubmitOrderStatus;
+    message?: string | null;
+    orderId?: string | null;
+  } | null;
 };
 
 export type RecommendFromFaustQueryVariables = Exact<{
@@ -4448,6 +4555,32 @@ export const useGetReviewManifestationsQuery = <
       GetReviewManifestationsQuery,
       GetReviewManifestationsQueryVariables
     >(GetReviewManifestationsDocument, variables),
+    options
+  );
+export const OpenOrderDocument = `
+    mutation openOrder($input: SubmitOrderInput!) {
+  submitOrder(input: $input, dryRun: false) {
+    status
+    message
+    orderId
+  }
+}
+    `;
+export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
+  options?: UseMutationOptions<
+    OpenOrderMutation,
+    TError,
+    OpenOrderMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<OpenOrderMutation, TError, OpenOrderMutationVariables, TContext>(
+    ["openOrder"],
+    (variables?: OpenOrderMutationVariables) =>
+      fetcher<OpenOrderMutation, OpenOrderMutationVariables>(
+        OpenOrderDocument,
+        variables
+      )(),
     options
   );
 export const RecommendFromFaustDocument = `
