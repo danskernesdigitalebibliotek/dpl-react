@@ -3,15 +3,34 @@ import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import { useMultipleSelection, useSelect } from "downshift";
 import clsx from "clsx";
 import CheckBox from "../checkbox/Checkbox";
-import { MultiselectOption } from "../../core/utils/types/multiselect-types";
+import {
+  MultiselectExternalUpdate,
+  MultiselectOption
+} from "../../core/utils/types/multiselect-types";
 import useMultiselectOptions from "./useMultiselectOptions";
 
 export type MultiselectProps = {
   caption?: string;
   options: MultiselectOption[];
+  updateExternalState?: MultiselectExternalUpdate;
 };
 
-const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
+const Multiselect: React.FC<MultiselectProps> = ({
+  caption,
+  options,
+  updateExternalState
+}) => {
+  const updateState = (
+    updateKey: string | undefined,
+    value: MultiselectOption[]
+  ) => {
+    if (!updateExternalState || !updateKey) return;
+    updateExternalState.externalUpdateFunction({
+      key: updateKey,
+      value
+    });
+  };
+
   const { allOptions } = useMultiselectOptions(options, {
     item: "All",
     value: "all"
@@ -30,10 +49,12 @@ const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
       allCurrentlySelected.find((item) => item.value === "all") &&
       newSelected.value !== "all"
     ) {
-      return [
+      const newValue = [
         ...selectedItems.filter((item) => item.value !== "all"),
         newSelected
       ];
+      updateState(updateExternalState?.key, newValue);
+      return newValue;
     }
 
     // If every non-"all" item is selected, then we just select "all"
@@ -41,14 +62,21 @@ const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
       newSelected.value !== "all" &&
       [...allCurrentlySelected, newSelected].length === allPossibleOptions - 1
     ) {
-      return [{ item: "All", value: "all" }];
+      const newValue = [{ item: "All", value: "all" }];
+      updateState(updateExternalState?.key, newValue);
+      return newValue;
     }
 
     // If new selection is "all" we make sure to deselect all other options
     if (newSelected.value === "all") {
+      updateState(updateExternalState?.key, [newSelected]);
       return [newSelected];
     }
 
+    updateState(updateExternalState?.key, [
+      ...allCurrentlySelected,
+      newSelected
+    ]);
     return [...allCurrentlySelected, newSelected];
   };
 
@@ -67,6 +95,7 @@ const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
         case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
         case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
         case useSelect.stateChangeTypes.ItemClick:
+        case useSelect.stateChangeTypes.MenuKeyDownEnter:
           return {
             ...changes,
             isOpen: true // keep the menu open after selection.
@@ -81,6 +110,7 @@ const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
         case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
         case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
         case useSelect.stateChangeTypes.ItemClick:
+        case useSelect.stateChangeTypes.MenuKeyDownEnter:
           // If new selection isn't already selected, we add it
           if (
             newSelectedItem &&
@@ -95,7 +125,7 @@ const Multiselect: React.FC<MultiselectProps> = ({ caption, options }) => {
             );
             return;
           }
-          // It new selection is already selected, we deselect it
+          // If new selection is already selected, we deselect it
           if (
             newSelectedItem &&
             selectedItems.find((item) => item.value === newSelectedItem.value)
