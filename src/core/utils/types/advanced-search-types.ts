@@ -70,19 +70,33 @@ export type AdvancedSearchRowData = {
   clause: AdvancedSearchClause;
 };
 
+export type AdvancedSearchFilterData = {
+  materialTypes: MultiselectOption[];
+  fiction: MultiselectOption[];
+  accessibility: MultiselectOption[];
+};
+
 export const advancedSearchMaterialTypes: MultiselectOption[] = [
-  { item: "Book", value: "bog" },
-  { item: "E-Book", value: "ebog" },
-  { item: "Audio Book", value: "audiobog" },
-  { item: "Game", value: "spil" }
+  { item: "Bog", value: "bøger" },
+  { item: "E-bog", value: "e-bøger" },
+  { item: "Lydbog", value: "lydbøger" },
+  { item: "Artikel", value: "artikler" },
+  { item: "Film", value: "film" },
+  { item: "Musik", value: "musik" }
 ];
 
 export const advancedSearchAccessibility: MultiselectOption[] = [
-  { item: "Physical", value: "fysisk" },
+  { item: "Fysisk", value: "fysisk" },
   { item: "Online", value: "online" }
 ];
 
 export const advancedSearchFiction: MultiselectOption[] = [
-  { item: "Fiction", value: "fiction" },
-  { item: "Non fiction", value: "nonfiction" }
+  { item: "Skønlitteratur", value: "fiction" },
+  { item: "Faglitteratur", value: "nonfiction" }
 ];
+
+export const advancedSearchFilters = {
+  materialTypes: "generalmaterialtype",
+  fiction: "fictionnonfiction",
+  accessibility: "accesstype"
+};
