@@ -4,6 +4,22 @@ import {
 } from "../../core/utils/types/advanced-search-types";
 import { MultiselectOption } from "../../core/utils/types/multiselect-types";
 
+const getSpace = (currentText: string) => {
+  let space = "";
+  switch (currentText.trim()) {
+    case "":
+      space = "";
+      break;
+    default:
+      if (currentText.trim().endsWith("=")) {
+        space = "";
+        break;
+      }
+      space = " ";
+  }
+  return space;
+};
+
 export const translateRowsToCql = (
   rowsToTranslate: AdvancedSearchRowData[]
 ) => {
@@ -16,8 +32,12 @@ export const translateRowsToCql = (
       rowTranslation = rowTranslation.concat(" ", curr.searchIndex, "=");
     }
     if (curr.term !== "") {
-      const getSpace = acc.trim() === "" ? "" : " ";
-      rowTranslation = rowTranslation.concat(getSpace, "'", curr.term, "'");
+      rowTranslation = rowTranslation.concat(
+        getSpace(acc),
+        "'",
+        curr.term,
+        "'"
+      );
     }
     return acc + rowTranslation;
   }, "");
