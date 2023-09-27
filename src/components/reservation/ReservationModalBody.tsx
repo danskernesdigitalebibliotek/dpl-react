@@ -6,7 +6,8 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction
+  materialIsFiction,
+  getReservableOnAnotherLibrary
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -39,7 +40,9 @@ import {
   getAuthorLine,
   getManifestationsToReserve,
   getInstantLoanBranchHoldings,
-  getInstantLoanBranchHoldingsAboveThreshold
+  getInstantLoanBranchHoldingsAboveThreshold,
+  removePrefixFromBranchId,
+  getPatronAddress
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -54,6 +57,11 @@ import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 import { usePatronData } from "../material/helper";
+import {
+  OpenOrderMutation,
+  useOpenOrderMutation
+} from "../../core/dbc-gateway/generated/graphql";
+import OpenOrderResponse from "./OpenOrderResponse";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -95,11 +103,14 @@ export const ReservationModalBody = ({
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
+  const [openOrderResponse, setOpenOrderResponse] =
+    useState<OpenOrderMutation | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
   const allPids = getAllPids(selectedManifestations);
   const faustIds = convertPostIdsToFaustIds(allPids);
-  const { mutate } = useAddReservationsV2();
+  const { mutate: mutateAddReservations } = useAddReservationsV2();
+  const { mutate: mutateOpenOrder } = useOpenOrderMutation();
   const userResponse = usePatronData();
   const holdingsResponse = useGetHoldings({ faustIds, config });
   const { track } = useStatistics();
@@ -128,12 +139,47 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
+  const {
+    isReservable: isReservableOnAnotherLibrar,
+    pids: pidsOnAnotherLibrar
+  } = getReservableOnAnotherLibrary(manifestationsToReserve);
+
   const saveReservation = () => {
     if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
+
+    if (isReservableOnAnotherLibrar && patron) {
+      const { patronId, address, name, emailAddress } = patron;
+
+      mutateOpenOrder(
+        {
+          input: {
+            pids: [...pidsOnAnotherLibrar],
+            pickUpBranch: selectedBranch
+              ? removePrefixFromBranchId(selectedBranch)
+              : "",
+            expires: selectedInterest?.toString() || "90",
+            userParameters: {
+              userId: patronId.toString(),
+              userAddress: address ? getPatronAddress(address) : "",
+              userName: name,
+              userMail: emailAddress
+            }
+          }
+        },
+        {
+          onSuccess: (res) => {
+            setOpenOrderResponse(res);
+          }
+        }
+      );
+
+      return;
+    }
+
     // Save reservation to FBS.
-    mutate(
+    mutateAddReservations(
       {
         data: constructReservationData({
           manifestations: manifestationsToReserve,
@@ -184,7 +230,7 @@ export const ReservationModalBody = ({
 
   return (
     <>
-      {!reservationResults && (
+      {!reservationResults && !openOrderResponse && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
             <Cover id={manifestation.pid} size="medium" animate />
@@ -265,6 +311,13 @@ export const ReservationModalBody = ({
             </div>
           </div>
         </section>
+      )}
+      {openOrderResponse && (
+        <OpenOrderResponse
+          title={manifestation.titles.main[0]}
+          modalId={reservationModalId(faustIds)}
+          openOrderResponse={openOrderResponse}
+        />
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
