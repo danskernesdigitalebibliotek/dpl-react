@@ -1,4 +1,4 @@
-# Architecture Decision Record: UI Text Handling
+# UI Text Handling
 
 ## Context
 

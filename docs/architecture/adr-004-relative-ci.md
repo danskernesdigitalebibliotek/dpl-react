@@ -1,4 +1,4 @@
-# Architecture Decision Record: RelativeCI
+# RelativeCI
 
 ## Context
 
