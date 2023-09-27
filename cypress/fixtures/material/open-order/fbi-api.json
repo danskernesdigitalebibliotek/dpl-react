@@ -1,0 +1,319 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:135721719",
+      "titles": {
+        "full": [
+          "Restyle & restitch for little ones : 30 simple projects from preloved clothes"
+        ],
+        "original": []
+      },
+      "abstract": [
+        "30 sewing projects for creating stylish baby clothes, from newborns to two-year-olds, including trousers, dresses, sweaters, mittens, rompers and socks. The projects are accompanied by colourful, full-size patterns to help you make the most of your repurposed clothing."
+      ],
+      "creators": [
+        {
+          "display": "Linnea Larsson",
+          "__typename": "Person"
+        }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": ["snitmønstre", "vejledninger"],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:135721719",
+            "genreAndForm": ["snitmønstre", "vejledninger"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "engelsk",
+                  "isoCode": "eng"
+                }
+              ]
+            },
+            "titles": {
+              "main": ["Restyle & restitch for little ones"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "specific": "bog"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Linnea Larsson",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Search"],
+            "identifiers": [
+              {
+                "value": "9781800921191"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "2023",
+              "publicationYear": {
+                "display": "2023"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": []
+            },
+            "physicalDescriptions": [
+              {
+                "numberOfPages": 124,
+                "playingTime": null
+              }
+            ],
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Larsson",
+              "shelfmark": "64.62"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": [],
+              "otherCatalogues": ["OVE202314"]
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:135721719",
+          "genreAndForm": ["snitmønstre", "vejledninger"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ]
+          },
+          "titles": {
+            "main": ["Restyle & restitch for little ones"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "bog"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Linnea Larsson",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Search"],
+          "identifiers": [
+            {
+              "value": "9781800921191"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "2023",
+            "publicationYear": {
+              "display": "2023"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 124,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Larsson",
+            "shelfmark": "64.62"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["OVE202314"]
+          }
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:135721719",
+          "genreAndForm": ["snitmønstre", "vejledninger"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ]
+          },
+          "titles": {
+            "main": ["Restyle & restitch for little ones"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "specific": "bog"
+            }
+          ],
+          "creators": [
+            {
+              "display": "Linnea Larsson",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Search"],
+          "identifiers": [
+            {
+              "value": "9781800921191"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "2023",
+            "publicationYear": {
+              "display": "2023"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": []
+          },
+          "physicalDescriptions": [
+            {
+              "numberOfPages": 124,
+              "playingTime": null
+            }
+          ],
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Larsson",
+            "shelfmark": "64.62"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["OVE202314"]
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "specific": "bog"
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "syning"
+          },
+          {
+            "display": "børnetøj"
+          },
+          {
+            "display": "genbrug"
+          },
+          {
+            "display": "genbrugstøj"
+          },
+          {
+            "display": "tekstiler"
+          },
+          {
+            "display": "upcycling"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "syning"
+          },
+          {
+            "display": "børnetøj"
+          },
+          {
+            "display": "genbrug"
+          },
+          {
+            "display": "genbrugstøj"
+          },
+          {
+            "display": "tekstiler"
+          },
+          {
+            "display": "upcycling"
+          }
+        ]
+      },
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "64.62 Syning af børnetøj"
+      },
+      "relations": {
+        "hasReview": [],
+        "hasAdaptation": []
+      }
+    }
+  }
+}

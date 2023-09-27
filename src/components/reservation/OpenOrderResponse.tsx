@@ -40,7 +40,10 @@ const OpenOrderResponse: React.FC<OpenOrderResponseProps> = ({
         </p>
 
         {openOrderResponse.submitOrder?.status && (
-          <p className="text-body-medium-regular pb-24">
+          <p
+            data-cy="open-oprder-response-status-text"
+            className="text-body-medium-regular pb-24"
+          >
             {translateOpenOrderStatus(openOrderResponse.submitOrder?.status, t)}
           </p>
         )}
