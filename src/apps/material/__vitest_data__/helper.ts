@@ -87,6 +87,10 @@ export default {
         },
         workYear: {
           year: 1950
+        },
+        catalogueCodes: {
+          nationalBibliography: [],
+          otherCatalogues: []
         }
       },
       {
