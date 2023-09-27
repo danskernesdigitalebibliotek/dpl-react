@@ -1,4 +1,4 @@
-# Architecture Decision Record: Unit Tests
+# Unit Tests
 
 ## Context
 

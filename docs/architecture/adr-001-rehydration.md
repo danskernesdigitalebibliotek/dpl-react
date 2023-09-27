@@ -1,4 +1,4 @@
-# Architecture Decision Record: Rehydration
+# Rehydration
 
 ## Context
 
@@ -53,7 +53,7 @@ const initialStore = {
   }
 }
 
-const fulfillAction = store.authenticated && 
+const fulfillAction = store.authenticated &&
     (store.intent.status === 'pending' || store.intent.status === 'tried')
 const getRequirements = !store.authenticated && store.intent.status === 'pending'
 const abandonIntention = !store.authenticated && store.intent.status === 'tried'
@@ -61,7 +61,7 @@ const abandonIntention = !store.authenticated && store.intent.status === 'tried'
 function AddToChecklist ({ materialId, store }) {
   useEffect(() => {
     if (fulfillAction) {
-      // We fire the actual functionality required to add a material to the 
+      // We fire the actual functionality required to add a material to the
       // checklist and we remove the intention as a result of it being
       // fulfilled.
       addToChecklistAction(store, materialId)
