@@ -129,10 +129,23 @@ export type Classification = {
 
 /** Search Filters */
 export type ComplexSearchFilters = {
+  /** Id of agency. */
+  agencyId?: InputMaybe<Array<Scalars["String"]>>;
+  /** Name of the branch. */
+  branch?: InputMaybe<Array<Scalars["String"]>>;
+  /** BranchId.  */
   branchId?: InputMaybe<Array<Scalars["String"]>>;
+  /** Overall location in library (eg. Voksne). */
   department?: InputMaybe<Array<Scalars["String"]>>;
+  /** Id of publishing issue. */
+  issueId?: InputMaybe<Array<Scalars["String"]>>;
+  /** Local id of the item. */
+  itemId?: InputMaybe<Array<Scalars["String"]>>;
+  /** Where is the book physically located  (eg. skønlitteratur). */
   location?: InputMaybe<Array<Scalars["String"]>>;
+  /** Onloan or OnShelf. */
   status?: InputMaybe<Array<HoldingsStatus>>;
+  /** More specific location (eg. Fantasy). */
   sublocation?: InputMaybe<Array<Scalars["String"]>>;
 };
 
@@ -185,12 +198,17 @@ export type CopyRequestResponse = {
 };
 
 export enum CopyRequestStatus {
+  BorchkUserBlockedByAgency = "BORCHK_USER_BLOCKED_BY_AGENCY",
+  BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
+  BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
   ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
   ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
   ErrorMissingClientConfiguration = "ERROR_MISSING_CLIENT_CONFIGURATION",
+  ErrorMunicipalityagencyidNotFound = "ERROR_MUNICIPALITYAGENCYID_NOT_FOUND",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
-  Ok = "OK"
+  Ok = "OK",
+  UnknownUser = "UNKNOWN_USER"
 }
 
 export type Corporation = Creator &
@@ -691,6 +709,7 @@ export type MaterialType = {
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
+  /** @deprecated Use 'Elba.placeCopyRequest' instead */
   submitPeriodicaArticleOrder: PeriodicaArticleOrderResponse;
 };
 
@@ -901,6 +920,7 @@ export type QueryRisArgs = {
 export type QuerySearchArgs = {
   filters?: InputMaybe<SearchFilters>;
   q: SearchQuery;
+  search_exact?: InputMaybe<Scalars["Boolean"]>;
 };
 
 export type QuerySuggestArgs = {
