@@ -3,12 +3,13 @@ import { serviceUrlKeys } from "../utils/reduxMiddleware/extractServiceBaseUrls"
 export default {
   [serviceUrlKeys.fbs]: {
     name: "Base url for the FBS API",
-    defaultValue: "https://fbs-openplatform.dbc.dk",
+    defaultValue: process.env.FBS_BASEURL ?? "https://fbs-openplatform.dbc.dk",
     control: { type: "text" }
   },
   [serviceUrlKeys.publizon]: {
     name: "Base url for the Publizon API",
-    defaultValue: "https://pubhub-openplatform.dbc.dk",
+    defaultValue:
+      process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk",
     control: { type: "text" }
   },
   [serviceUrlKeys.dplCms]: {
