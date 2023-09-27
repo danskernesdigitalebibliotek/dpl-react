@@ -644,8 +644,48 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "agencyId",
+            "description": "Id of agency.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "branch",
+            "description": "Name of the branch.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "branchId",
-            "description": null,
+            "description": "BranchId. ",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -665,7 +705,47 @@
           },
           {
             "name": "department",
-            "description": null,
+            "description": "Overall location in library (eg. Voksne).",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "issueId",
+            "description": "Id of publishing issue.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "itemId",
+            "description": "Local id of the item.",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -685,7 +765,7 @@
           },
           {
             "name": "location",
-            "description": null,
+            "description": "Where is the book physically located  (eg. skønlitteratur).",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -705,7 +785,7 @@
           },
           {
             "name": "status",
-            "description": null,
+            "description": "Onloan or OnShelf.",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -725,7 +805,7 @@
           },
           {
             "name": "sublocation",
-            "description": null,
+            "description": "More specific location (eg. Fantasy).",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -1111,6 +1191,24 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "BORCHK_USER_BLOCKED_BY_AGENCY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BORCHK_USER_NOT_VERIFIED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ERROR_AGENCY_NOT_SUBSCRIBED",
             "description": null,
             "isDeprecated": false,
@@ -1129,6 +1227,12 @@
             "deprecationReason": null
           },
           {
+            "name": "ERROR_MUNICIPALITYAGENCYID_NOT_FOUND",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ERROR_PID_NOT_RESERVABLE",
             "description": null,
             "isDeprecated": false,
@@ -1142,6 +1246,12 @@
           },
           {
             "name": "OK",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UNKNOWN_USER",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4643,8 +4753,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Elba.placeCopyRequest' instead"
           }
         ],
         "inputFields": null,
@@ -6042,6 +6152,18 @@
                     "name": "SearchQuery",
                     "ofType": null
                   }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "search_exact",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
                 },
                 "defaultValue": null,
                 "isDeprecated": false,
