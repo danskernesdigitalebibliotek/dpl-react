@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { UseTextFunction } from "../../core/utils/text";
 import {
+  AddressV2,
   AgencyBranch,
   CreateReservation,
   CreateReservationBatchV2,
@@ -19,6 +20,7 @@ import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
+import { SubmitOrderStatus } from "../../core/dbc-gateway/generated/graphql";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -250,5 +252,57 @@ export const getInstantLoanBranchHoldingsAboveThreshold = (
   instantLoanBranchHoldings.filter(
     ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
   );
+
+export const removePrefixFromBranchId = (branchId: string) => {
+  const splitBranchId = branchId.split("-");
+  return splitBranchId[1];
+};
+
+export const getPatronAddress = (address: AddressV2) =>
+  `${address.street}, ${address.postalCode} ${address.city}`;
+
+export const translateOpenOrderStatus = (
+  status: SubmitOrderStatus,
+  t: UseTextFunction
+) => {
+  switch (status) {
+    case SubmitOrderStatus.OwnedAccepted:
+      return t("openOrderStatusOwnedAcceptedText");
+    case SubmitOrderStatus.AuthenticationError:
+      return t("openOrderAuthenticationErrorText");
+    case SubmitOrderStatus.BorchkUserBlockedByAgency:
+      return t("openOrderUserBlockedByAgencyText");
+    case SubmitOrderStatus.BorchkUserNotVerified:
+      return t("openOrderUserNotVerifiedText");
+    case SubmitOrderStatus.BorchkUserNoLongerExistOnAgency:
+      return t("openOrderUserNoLongerExistOnAgencyText");
+    case SubmitOrderStatus.InvalidOrder:
+      return t("openOrderInvalidOrderText");
+    case SubmitOrderStatus.NotOwnedIllLoc:
+      return t("openOrderNotOwnedIllLocText");
+    case SubmitOrderStatus.NotOwnedNoIllLoc:
+      return t("openOrderNotOwnedNoIllLocText");
+    case SubmitOrderStatus.NotOwnedWrongIllMediumtype:
+      return t("openOrderNotOwnedWrongIllMediumtypeText");
+    case SubmitOrderStatus.NoServicerequester:
+      return t("openOrderNoServicerequesterText");
+    case SubmitOrderStatus.OrsError:
+      return t("openOrderOrsErrorText");
+    case SubmitOrderStatus.OwnedOwnCatalogue:
+      return t("openOrderOwnedOwnCatalogueText");
+    case SubmitOrderStatus.OwnedWrongMediumtype:
+      return t("openOrderOwnedWrongMediumtypeText");
+    case SubmitOrderStatus.ServiceUnavailable:
+      return t("openOrderServiceUnavailableText");
+    case SubmitOrderStatus.UnknownError:
+      return t("openOrderUnknownErrorText");
+    case SubmitOrderStatus.UnknownPickupagency:
+      return t("openOrderUnknownPickupagencyText");
+    case SubmitOrderStatus.UnknownUser:
+      return t("openOrderUnknownUserText");
+    default:
+      return "";
+  }
+};
 
 export default {};
