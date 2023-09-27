@@ -36,7 +36,7 @@
     "test:unit": "vitest",
     "test:integration": "cypress run",
     "cypress:open": "cypress open",
-    "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=opac graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
+    "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=next graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
     "codegen:client:fbs": "orval --project fbsAdapter",
     "codegen:client:cover": "orval --project coverService",
