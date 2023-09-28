@@ -64,7 +64,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     []
   );
   const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
-  const [modalHeader, setModalHealer] = useState("");
+  const [modalHeader, setModalHeader] = useState("");
 
   const { open } = useModalButtonHandler();
   const {
@@ -166,17 +166,17 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       switch (dueDateInput) {
         case yesterday:
           setLoansToDisplay(physicalLoansOverdue);
-          setModalHealer(t("loansOverdueText"));
+          setModalHeader(t("loansOverdueText"));
           break;
 
         case soon:
           setLoansToDisplay(physicalLoansSoonOverdue);
-          setModalHealer(t("loansSoonOverdueText"));
+          setModalHeader(t("loansSoonOverdueText"));
           break;
 
         case longer:
           setLoansToDisplay(physicalLoansFarFromOverdue);
-          setModalHealer(t("loansNotOverdueText"));
+          setModalHeader(t("loansNotOverdueText"));
           break;
 
         default:
