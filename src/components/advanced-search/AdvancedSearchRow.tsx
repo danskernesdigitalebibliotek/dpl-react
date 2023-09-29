@@ -89,7 +89,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
 
       <div className="input-with-dropdown" data-cy={dataCy}>
         <input
-          className="input-with-dropdown__input focus-styling__input"
+          className="input-with-dropdown__input focus-styling__input capitalize-first"
           type="text"
           placeholder={t("advancedSearchInputPlaceholderText")}
           value={data[rowIndex].term}

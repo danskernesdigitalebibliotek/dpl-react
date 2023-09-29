@@ -24,7 +24,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
       })}
     >
       <div className="pagefold-triangle--large pagefold-inherit-parent" />
-      <h3 className="text-body-medium-medium mb-24">
+      <h3 className="text-body-medium-medium mb-24 capitalize-first">
         {t("advancedSearchPreviewHeadlineText")}
       </h3>
       <p className="text-body-medium-regular mb-32">
@@ -33,17 +33,23 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
       <section>
         <button
           type="button"
-          className="link-tag mr-16 cursor-pointer"
+          className="link-tag mr-16 cursor-pointer capitalize-first"
           onClick={() => {
             setRowsData(initialRowData);
           }}
         >
           {t("advancedSearchResetText")}
         </button>
-        <button type="button" className="link-tag mr-16 cursor-pointer">
+        <button
+          type="button"
+          className="link-tag mr-16 cursor-pointer capitalize-first"
+        >
           {t("advancedSearchCopyStringText")}
         </button>
-        <button type="button" className="link-tag link-tag cursor-pointer">
+        <button
+          type="button"
+          className="link-tag link-tag cursor-pointer capitalize-first"
+        >
           {t("advancedSearchEditCqlText")}
         </button>
       </section>

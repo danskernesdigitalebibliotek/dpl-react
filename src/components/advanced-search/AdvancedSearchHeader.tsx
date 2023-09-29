@@ -100,7 +100,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
 
   return (
     <>
-      <h1 className="text-header-h2 advanced-search__title">
+      <h1 className="text-header-h2 advanced-search__title capitalize-first">
         {t("advancedSearchTitleText")}
       </h1>
       <div className="input-and-preview">
