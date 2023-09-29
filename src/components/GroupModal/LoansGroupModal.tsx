@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useEffect, FC, useCallback } from "react";
 import { useQueryClient } from "react-query";
-import Modal, { useModalButtonHandler } from "../../core/utils/modal";
+import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import GroupModalContent from "./GroupModalContent";
 import {
@@ -12,8 +12,11 @@ import {
 } from "../../core/utils/helpers/general";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
-import { Button } from "../Buttons/Button";
 import GroupModalLoansList from "./GroupModalLoansList";
+import LoansGroupModalButton from "./LoansGroupModalButton";
+import { RequestStatus } from "../../core/utils/types/request";
+import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
+import LoansGroupModalMessage from "./LoansGroupModalMessage";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;
@@ -38,7 +41,6 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
 }) => {
   const t = useText();
   const { mutate } = useRenewLoansV2();
-  const { close } = useModalButtonHandler();
   const [acceptedButtonPressed, setAcceptedButtonPressed] =
     useState<boolean>(accepted);
   const { dueDateModal, allLoansId } = getModalIds();
@@ -46,9 +48,15 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const [materialsToRenew, setMaterialsToRenew] = useState<string[]>([]);
+  const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
+  const [renewingResponse, setRenewingResponse] = useState<
+    RenewedLoanV2[] | null
+  >(null);
 
   const renew = useCallback(() => {
     const ids = materialsToRenew.map((id) => Number(id));
+
+    setRenewingStatus("pending");
     mutate(
       {
         data: ids
@@ -57,12 +65,17 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
         onSuccess: (result) => {
           if (result) {
             queryClient.invalidateQueries(getGetLoansV2QueryKey());
-            close(modalIdUsed as string);
+            setRenewingStatus("success");
+            setRenewingResponse(result);
           }
+        },
+        onError: () => {
+          setRenewingStatus("error");
+          setRenewingResponse(null);
         }
       }
     );
-  }, [close, materialsToRenew, modalIdUsed, mutate, queryClient]);
+  }, [materialsToRenew, mutate, queryClient]);
 
   const renewSelected = useCallback(() => {
     const selectedLoansLoanDate = loansModal
@@ -102,44 +115,53 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     }
   }, [acceptedButtonPressed, renew]);
 
+  const showSuccessMessage = renewingStatus === "success";
+
   return (
     <Modal
       modalId={modalIdUsed as string}
       closeModalAriaLabelText={t("groupModalLoansCloseModalAriaLabelText")}
       screenReaderModalDescriptionText={t("groupModalLoansAriaDescriptionText")}
+      eventCallbacks={{
+        close: () => setRenewingStatus("idle")
+      }}
+      classNames={showSuccessMessage ? "modal-cta modal-padding" : ""}
     >
-      <div className="modal-loan">
-        {children}
-        <GroupModalContent
-          selectMaterials={selectMaterials}
-          selectedMaterials={materialsToRenew}
-          amountOfSelectableMaterials={renewableMaterials}
-          selectableMaterials={getRenewableMaterials(loansModal)}
-          buttonComponent={
-            <Button
-              label={t("groupModalButtonText", {
-                count: materialsToRenew.length,
-                placeholders: { "@count": materialsToRenew.length }
-              })}
-              buttonType="none"
-              id="renew-several"
-              variant="filled"
-              disabled={renewableMaterials === 0}
-              collapsible={false}
-              onClick={renewSelected}
-              size="small"
-            />
-          }
-        >
-          <GroupModalLoansList
-            materials={loansModal}
-            selectedMaterials={materialsToRenew}
-            openDetailsModal={openDetailsModal}
+      {["idle", "pending"].includes(renewingStatus) && (
+        <div className="modal-loan">
+          {children}
+          <GroupModalContent
             selectMaterials={selectMaterials}
-            pageSize={pageSize}
-          />
-        </GroupModalContent>
-      </div>
+            selectedMaterials={materialsToRenew}
+            amountOfSelectableMaterials={renewableMaterials}
+            selectableMaterials={getRenewableMaterials(loansModal)}
+            buttonComponent={
+              <LoansGroupModalButton
+                materialsToRenew={materialsToRenew}
+                renewableMaterials={renewableMaterials}
+                renewSelected={renewSelected}
+                renewingStatus={renewingStatus}
+              />
+            }
+          >
+            <GroupModalLoansList
+              materials={loansModal}
+              selectedMaterials={materialsToRenew}
+              openDetailsModal={openDetailsModal}
+              selectMaterials={selectMaterials}
+              pageSize={pageSize}
+            />
+          </GroupModalContent>
+        </div>
+      )}
+      {!["idle", "pending"].includes(renewingStatus) && (
+        <LoansGroupModalMessage
+          messageType={renewingStatus === "success" ? "success" : "error"}
+          renewingResponse={renewingResponse}
+          modalId={modalIdUsed as string}
+          setRenewingStatus={setRenewingStatus}
+        />
+      )}
     </Modal>
   );
 };
