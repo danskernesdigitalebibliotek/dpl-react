@@ -1,6 +1,8 @@
 import { mapValues } from "lodash";
 import {
   FacetField,
+  FacetResult,
+  FacetValue,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
@@ -132,8 +134,29 @@ export const getFacetFieldTranslation = (name: FacetField) => {
   }
 };
 
+export const createFacetsMap = (
+  facets: FacetResult[]
+): { [key: string]: FacetValue[] } => {
+  return facets.reduce(
+    (acc: { [key: string]: FacetValue[] }, facet: FacetResult) => {
+      const newAcc = { ...acc };
+
+      facet.values.forEach((value) => {
+        const combinedKey = `${facet.name}:${value.key}`;
+        newAcc[combinedKey] = newAcc[combinedKey]
+          ? [...newAcc[combinedKey], value]
+          : [value];
+      });
+
+      return newAcc;
+    },
+    {}
+  );
+};
+
 export default {};
 
+/* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
@@ -161,6 +184,179 @@ if (import.meta.vitest) {
     }
   };
 
+  const facetsTestData: FacetResult[] = [
+    {
+      name: "materialTypesGeneral",
+      values: [
+        {
+          key: "computerspil",
+          term: "computerspil",
+          score: 26
+        }
+      ]
+    },
+    {
+      name: "materialTypesGeneral",
+      values: [
+        {
+          key: "abekat",
+          term: "abekat",
+          score: 0
+        }
+      ]
+    },
+    {
+      name: "subjects",
+      values: [
+        {
+          key: "legetøj",
+          term: "legetøj",
+          score: 165
+        },
+        {
+          key: "legetøjsindustri",
+          term: "legetøjsindustri",
+          score: 126
+        },
+        {
+          key: "lego",
+          term: "lego",
+          score: 101
+        },
+        {
+          key: "legoklodser",
+          term: "legoklodser",
+          score: 98
+        },
+        {
+          key: "virksomhedsledelse",
+          term: "virksomhedsledelse",
+          score: 65
+        }
+      ]
+    },
+    {
+      name: "mainLanguages",
+      values: [
+        {
+          key: "dan",
+          term: "Dansk",
+          score: 427
+        },
+        {
+          key: "eng",
+          term: "Engelsk",
+          score: 82
+        },
+        {
+          key: "fre",
+          term: "Fransk",
+          score: 9
+        },
+        {
+          key: "ger",
+          term: "Tysk",
+          score: 9
+        },
+        {
+          key: "ita",
+          term: "Italiensk",
+          score: 9
+        }
+      ]
+    },
+    {
+      name: "materialTypesGeneral",
+      values: [
+        {
+          key: "artikler",
+          term: "artikler",
+          score: 346
+        },
+        {
+          key: "bøger",
+          term: "bøger",
+          score: 74
+        },
+        {
+          key: "e-bøger",
+          term: "e-bøger",
+          score: 38
+        },
+        {
+          key: "computerspil",
+          term: "computerspil",
+          score: 26
+        },
+        {
+          key: "film",
+          term: "film",
+          score: 9
+        }
+      ]
+    },
+    {
+      name: "year",
+      values: [
+        {
+          key: "2017",
+          term: "2017",
+          score: 35
+        },
+        {
+          key: "2015",
+          term: "2015",
+          score: 33
+        },
+        {
+          key: "2014",
+          term: "2014",
+          score: 31
+        },
+        {
+          key: "2018",
+          term: "2018",
+          score: 29
+        },
+        {
+          key: "2013",
+          term: "2013",
+          score: 27
+        }
+      ]
+    },
+    {
+      name: "fictionalCharacters",
+      values: [
+        {
+          key: "Batman",
+          term: "Batman",
+          score: 4
+        },
+        {
+          key: "Justice League",
+          term: "Justice League",
+          score: 4
+        },
+        {
+          key: "Harry Potter",
+          term: "Harry Potter",
+          score: 3
+        },
+        {
+          key: "Hermione Granger",
+          term: "Hermione Granger",
+          score: 3
+        },
+        {
+          key: "Ron Weasley",
+          term: "Ron Weasley",
+          score: 3
+        }
+      ]
+    }
+  ];
+
   describe("getPlaceHolderFacets", () => {
     it("should get placeholder facets", () => {
       expect(getPlaceHolderFacets(allFacetFields)).toMatchSnapshot();
@@ -177,5 +373,9 @@ if (import.meta.vitest) {
     it("should create filters", () => {
       expect(createFilters(filters, branchIdList)).toMatchSnapshot();
     });
+  });
+
+  it("createFacetsMap", () => {
+    expect(createFacetsMap(facetsTestData)).toMatchSnapshot();
   });
 }

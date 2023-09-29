@@ -46,6 +46,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
 
   const checkHandleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (handleOnChange && e.target.value) handleOnChange(e);
+    console.log("No handleOnChange function passed to Dropdown");
     return undefined;
   };
 
