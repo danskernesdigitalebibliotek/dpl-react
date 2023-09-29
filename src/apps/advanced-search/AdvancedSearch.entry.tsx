@@ -46,6 +46,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchCopyStringText: string;
   advancedSearchEditCqlText: string;
   advancedSearchSearchButtonText: string;
+  loadingResultsText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

@@ -77,14 +77,19 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   }, [data, page]);
 
   const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
+  const shouldShowResultHeadline = hitcount && !isLoading;
 
   return (
     <>
       <div className="advanced-search__divider" />
-      <h2 className="text-header-h2 advanced-search__title">
-        Viser materialer ({hitcount || "..."})
+      <h2 className="text-header-h2 advanced-search__title capitalize-first">
+        {isLoading && t("loadingResultsText")}
+        {shouldShowResultHeadline &&
+          t("showingMaterialsText", {
+            placeholders: { "@hitcount": hitcount }
+          })}
       </h2>
-      <button type="button" className="link-tag mb-16">
+      <button type="button" className="link-tag mb-16 capitalize-first">
         {t("advancedSearchLinkToThisSearchText")}
       </button>
       {shouldShowSearchResults && (

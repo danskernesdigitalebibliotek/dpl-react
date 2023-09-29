@@ -67,7 +67,7 @@ export default {
     },
     showingMaterialsText: {
       name: "Showing materials",
-      defaultValue: "Showing materials",
+      defaultValue: "Showing materials (@hitcount)",
       control: { type: "text" }
     },
     noSearchResultText: {
@@ -251,6 +251,11 @@ export default {
     advancedSearchSearchButtonText: {
       name: "Advanced search search button text",
       defaultValue: "Search",
+      control: { type: "text" }
+    },
+    loadingResultsText: {
+      name: "Advanced search loading results text",
+      defaultValue: "Loading results...",
       control: { type: "text" }
     }
   }
