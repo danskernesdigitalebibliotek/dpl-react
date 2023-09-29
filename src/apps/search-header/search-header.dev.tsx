@@ -61,6 +61,11 @@ export default {
       defaultValue: "/advanced-search",
       control: { type: "text" }
     },
+    headerDropdownItemAdvancedSearchText: {
+      name: "Advanced search menu text",
+      defaultValue: "Advanced search",
+      control: { type: "text" }
+    },
     advancedSearchSubmitButtonText: {
       name: "Advanced search submit button text",
       defaultValue: "Submit CQL search query",

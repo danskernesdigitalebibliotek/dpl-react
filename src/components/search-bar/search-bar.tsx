@@ -1,26 +1,29 @@
 import * as React from "react";
 import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
+import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { UseComboboxPropGetters } from "downshift";
 import { useText } from "../../core/utils/text";
-import { useModalButtonHandler } from "../../core/utils/modal";
 
 export interface SearchBarProps {
   getInputProps: UseComboboxPropGetters<unknown>["getInputProps"];
   getLabelProps: UseComboboxPropGetters<unknown>["getLabelProps"];
   dataCy?: string;
   setQWithoutQuery: (value: string) => void;
+  setIsHeaderDropdownOpen: (
+    value: boolean | ((prevState: boolean) => boolean)
+  ) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   getInputProps,
   getLabelProps,
   dataCy = "search-header-input",
-  setQWithoutQuery
+  setQWithoutQuery,
+  setIsHeaderDropdownOpen
 }) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
-  const advancedSearchClick = () => {
-    open("advanced-search-modal");
+  const handleDropdownMenu = () => {
+    setIsHeaderDropdownOpen((prev: boolean) => !prev);
   };
 
   return (
@@ -55,16 +58,22 @@ const SearchBar: React.FC<SearchBarProps> = ({
         alt={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
       />
-      <span
-        className="mr-64 ml-24"
-        onClick={advancedSearchClick}
-        role="button"
-        onKeyUp={(e) => e.key === "Enter" && advancedSearchClick}
+      <input
+        required
+        type="image"
+        src={expandIcon}
+        alt={t("searchHeaderAdvancedSearchIconText")}
+        className="header__menu-dropdown-icon"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleDropdownMenu();
+        }}
+        onKeyUp={(e) =>
+          (e.key === "Enter" || e.key === "ArrowDown") && handleDropdownMenu()
+        }
         tabIndex={0}
         aria-label={t("searchHeaderAdvancedSearchIconText")}
-      >
-        A.S.
-      </span>
+      />
     </>
   );
 };

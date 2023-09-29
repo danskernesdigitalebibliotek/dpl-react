@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
 import {
   SuggestionsFromQueryStringQuery,
@@ -49,8 +49,9 @@ const SearchHeader: React.FC = () => {
     { q },
     { enabled: q.length >= minimalQueryLength }
   );
-
-  const { searchUrl, materialUrl } = useUrls();
+  const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
+    useState<boolean>(false);
+  const { searchUrl, materialUrl, advancedSearchUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList: AutosuggestCategoryList[] = [
     {
@@ -335,6 +336,7 @@ const SearchHeader: React.FC = () => {
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
           setQWithoutQuery={setQWithoutQuery}
+          setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
         />
         <Autosuggest
           textData={textData}
@@ -348,6 +350,24 @@ const SearchHeader: React.FC = () => {
           autosuggestCategoryList={autosuggestCategoryList}
           isLoading={isLoading}
         />
+        {isHeaderDropdownOpen && (
+          <div className="header__menu-dropdown">
+            <ul>
+              <li className="header__menu-dropdown-item">
+                <button
+                  className="cursor-pointer"
+                  type="button"
+                  onClick={() => redirectTo(advancedSearchUrl)}
+                  onKeyUp={(e) =>
+                    e.key === "Enter" && redirectTo(advancedSearchUrl)
+                  }
+                >
+                  {t("headerDropdownItemAdvancedSearchText")}
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </form>
   );

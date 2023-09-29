@@ -31,6 +31,7 @@ export interface SearchHeaderTextProps {
   advancedSearchModalHeaderText: string;
   advancedSearchModalScreenReaderModalDescriptionText: string;
   advancedSearchModalCloseModalAriaLabelText: string;
+  headerDropdownItemAdvancedSearchText: string;
 }
 
 export interface SearchHeaderEntryProps
