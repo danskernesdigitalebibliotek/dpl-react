@@ -48,6 +48,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchSearchButtonText: string;
   loadingResultsText: string;
   toAdvancedSearchButtonText: string;
+  copiedToClipboardText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

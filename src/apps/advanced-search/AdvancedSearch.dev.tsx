@@ -267,6 +267,11 @@ export default {
       name: "CQL search title text",
       defaultValue: "CQL search",
       control: { type: "text" }
+    },
+    copiedToClipboardText: {
+      name: "Text that appears after copying to clipboard",
+      defaultValue: "Copied",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

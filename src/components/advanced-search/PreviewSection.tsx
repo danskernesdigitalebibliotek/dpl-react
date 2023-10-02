@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import { useCopyToClipboard } from "react-use";
+import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import { AdvancedSearchRowData } from "../../core/utils/types/advanced-search-types";
 import { useText } from "../../core/utils/text";
 
@@ -19,6 +21,20 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
   setIsAdvancedSearchHeader
 }) => {
   const t = useText();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [value, copy] = useCopyToClipboard();
+  const [copiedToClipboard, setCopiedToClipboard] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (copiedToClipboard) {
+      const timeout = setTimeout(() => {
+        setCopiedToClipboard(false);
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
+    return () => {};
+  }, [copiedToClipboard]);
+
   return (
     <div
       className={clsx("pagefold-parent--large input-and-preview__preview", {
@@ -42,12 +58,32 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
         >
           {t("advancedSearchResetText")}
         </button>
-        <button
-          type="button"
-          className="link-tag mr-16 cursor-pointer capitalize-first"
-        >
-          {t("advancedSearchCopyStringText")}
-        </button>
+        {translatedCql && (
+          <button
+            type="button"
+            className={clsx("link-tag mr-16 capitalize-first", {
+              "cursor-pointer": !copiedToClipboard
+            })}
+            onClick={() => {
+              copy(translatedCql);
+              setCopiedToClipboard(true);
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                copy(translatedCql);
+                setCopiedToClipboard(true);
+              }
+            }}
+          >
+            {copiedToClipboard && (
+              <>
+                {t("copiedToClipboardText")}
+                <img className="inline-icon" src={CheckIcon} alt="" />
+              </>
+            )}
+            {!copiedToClipboard && t("advancedSearchCopyStringText")}
+          </button>
+        )}
         <button
           type="button"
           className="link-tag link-tag cursor-pointer capitalize-first"
