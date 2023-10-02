@@ -30,6 +30,10 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   });
   const [cql, setCql] = useState<string>(q);
 
+  useEffect(() => {
+    setCql(q);
+  }, [q]);
+
   // On every render we take the url parameter and set it as sql search query.
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
