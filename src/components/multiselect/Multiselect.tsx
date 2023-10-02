@@ -92,10 +92,9 @@ const Multiselect: React.FC<MultiselectProps> = ({
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
       switch (type) {
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
+        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
+        case useSelect.stateChangeTypes.ItemClick:
           return {
             ...changes,
             isOpen: true // keep the menu open after selection.
@@ -107,8 +106,7 @@ const Multiselect: React.FC<MultiselectProps> = ({
     },
     onStateChange: ({ type, selectedItem: newSelectedItem }) => {
       switch (type) {
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
-        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
+        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
         case useSelect.stateChangeTypes.ItemClick:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
           // If new selection isn't already selected, we add it
