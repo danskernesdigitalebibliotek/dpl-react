@@ -16,6 +16,7 @@ import {
   MultiselectOption
 } from "../../core/utils/types/multiselect-types";
 import { translateFilterToCql, translateRowsToCql } from "./helper";
+import CqlSearchHeader from "./CqlSearchHeader";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -27,6 +28,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   setSearchQuery
 }) => {
   const t = useText();
+  const [isAdvancedSearchheader, setIsAdvancedSearchHeader] =
+    useState<boolean>(true);
   const initialRowData: AdvancedSearchRowData[] = [
     { term: "", searchIndex: "all", clause: "AND" },
     { term: "", searchIndex: "all", clause: "AND" }
@@ -43,6 +46,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     useState<AdvancedSearchFilterData>(initialFilterData);
   const [filtersTranslatedToCql, setFiltersTranslatedToCql] =
     useState<string>("");
+  const [rawCql, setRawCql] = useState<string>("");
 
   const updateFiltersData = (filtersUpdate: {
     key: keyof AdvancedSearchFilterData;
@@ -85,8 +89,21 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   };
 
   const handleSearchButtonClick = () => {
-    if (rowsTranslatedToCql.trim() !== "") {
+    if (rawCql.trim() !== "" && !isAdvancedSearchheader) {
+      setSearchQuery(rawCql);
+      return;
+    }
+    if (rowsTranslatedToCql.trim() !== "" && isAdvancedSearchheader) {
       setSearchQuery(rowsTranslatedToCql + filtersTranslatedToCql);
+    }
+  };
+
+  const isSearchButtonDisabled = () => {
+    switch (isAdvancedSearchheader) {
+      case true:
+        return rowsTranslatedToCql.trim() === "";
+      default:
+        return rawCql.trim() === "";
     }
   };
 
@@ -100,78 +117,105 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
 
   return (
     <>
-      <h1 className="text-header-h2 advanced-search__title capitalize-first">
-        {t("advancedSearchTitleText")}
-      </h1>
-      <div className="input-and-preview">
-        <div className="input-and-preview__input">
-          {rowsData.map((row, index) => {
-            return (
-              <AdvancedSearchRow
-                data={rowsData}
-                rowIndex={index}
-                setRowsData={setRowsData}
-                dataCy={`${dataCy}-row`}
-              />
-            );
-          })}
-        </div>
-        <PreviewSection
-          initialRowData={initialRowData}
-          translatedCql={rowsTranslatedToCql + (filtersTranslatedToCql || "")}
-          setRowsData={setRowsData}
-        />
-      </div>
+      {isAdvancedSearchheader && (
+        <>
+          <h1 className="text-header-h2 advanced-search__title capitalize-first">
+            {t("advancedSearchTitleText")}
+          </h1>
+          <div className="input-and-preview">
+            <div className="input-and-preview__input">
+              {rowsData.map((row, index) => {
+                return (
+                  <AdvancedSearchRow
+                    data={rowsData}
+                    rowIndex={index}
+                    setRowsData={setRowsData}
+                    dataCy={`${dataCy}-row`}
+                  />
+                );
+              })}
+            </div>
+            <PreviewSection
+              initialRowData={initialRowData}
+              translatedCql={
+                rowsTranslatedToCql + (filtersTranslatedToCql || "")
+              }
+              setRowsData={setRowsData}
+              setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
+            />
+          </div>
 
-      <section className="advanced-search__filters">
-        <div className="advanced-search__filter">
-          <Multiselect
-            caption="Material types"
-            options={advancedSearchMaterialTypes}
-            updateExternalState={{
-              key: "materialTypes",
-              externalUpdateFunction:
-                updateFiltersData as MultiselectExternalUpdateFunction
-            }}
+          <section className="advanced-search__filters">
+            <div className="advanced-search__filter">
+              <Multiselect
+                caption="Material types"
+                options={advancedSearchMaterialTypes}
+                updateExternalState={{
+                  key: "materialTypes",
+                  externalUpdateFunction:
+                    updateFiltersData as MultiselectExternalUpdateFunction
+                }}
+              />
+            </div>
+            <div className="advanced-search__filter">
+              <Multiselect
+                caption="Literature form"
+                options={advancedSearchFiction}
+                updateExternalState={{
+                  key: "fiction",
+                  externalUpdateFunction:
+                    updateFiltersData as MultiselectExternalUpdateFunction
+                }}
+              />
+            </div>
+            <div className="advanced-search__filter">
+              <Multiselect
+                caption="Access type"
+                options={advancedSearchAccessibility}
+                updateExternalState={{
+                  key: "accessibility",
+                  externalUpdateFunction:
+                    updateFiltersData as MultiselectExternalUpdateFunction
+                }}
+              />
+            </div>
+          </section>
+          <PreviewSection
+            translatedCql={rowsTranslatedToCql + (filtersTranslatedToCql || "")}
+            initialRowData={initialRowData}
+            setRowsData={setRowsData}
+            isMobile
+            setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
           />
-        </div>
-        <div className="advanced-search__filter">
-          <Multiselect
-            caption="Literature form"
-            options={advancedSearchFiction}
-            updateExternalState={{
-              key: "fiction",
-              externalUpdateFunction:
-                updateFiltersData as MultiselectExternalUpdateFunction
-            }}
-          />
-        </div>
-        <div className="advanced-search__filter">
-          <Multiselect
-            caption="Access type"
-            options={advancedSearchAccessibility}
-            updateExternalState={{
-              key: "accessibility",
-              externalUpdateFunction:
-                updateFiltersData as MultiselectExternalUpdateFunction
-            }}
-          />
-        </div>
-      </section>
-      <PreviewSection
-        translatedCql={rowsTranslatedToCql + (filtersTranslatedToCql || "")}
-        initialRowData={initialRowData}
-        setRowsData={setRowsData}
-        isMobile
-      />
+        </>
+      )}
+      {!isAdvancedSearchheader && (
+        <CqlSearchHeader
+          initialCql={rowsTranslatedToCql + filtersTranslatedToCql}
+          setCql={setRawCql}
+        />
+      )}
+
       <section className="advanced-search__footer">
+        {!isAdvancedSearchheader && (
+          <button
+            type="button"
+            className="link-tag advanced-search__back-button cursor-pointer"
+            onClick={() => setIsAdvancedSearchHeader(true)}
+            onKeyUp={(e) =>
+              e.key === "Enter" ?? setIsAdvancedSearchHeader(!true)
+            }
+          >
+            {t("toAdvancedSearchButtonText")}
+          </button>
+        )}
         <button
           type="button"
           className="btn-primary btn-filled btn-xlarge arrow__hover--right-small advanced-search__search-button"
           onClick={() => {
             handleSearchButtonClick();
           }}
-          disabled={rowsTranslatedToCql === ""}
+          disabled={isSearchButtonDisabled()}
         >
           {t("advancedSearchSearchButtonText")}
         </button>

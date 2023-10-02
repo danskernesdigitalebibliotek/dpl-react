@@ -257,6 +257,11 @@ export default {
       name: "Advanced search loading results text",
       defaultValue: "Loading results...",
       control: { type: "text" }
+    },
+    toAdvancedSearchButtonText: {
+      name: "To advanced search button text",
+      defaultValue: "Back to advanced search",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

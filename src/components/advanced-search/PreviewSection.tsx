@@ -8,13 +8,15 @@ export type PreviewSectionProps = {
   setRowsData: (rowData: AdvancedSearchRowData[]) => void;
   initialRowData: AdvancedSearchRowData[];
   isMobile?: boolean;
+  setIsAdvancedSearchHeader: (newState: boolean) => void;
 };
 
 const PreviewSection: React.FC<PreviewSectionProps> = ({
   translatedCql,
   setRowsData,
   initialRowData,
-  isMobile
+  isMobile,
+  setIsAdvancedSearchHeader
 }) => {
   const t = useText();
   return (
@@ -49,6 +51,8 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
         <button
           type="button"
           className="link-tag link-tag cursor-pointer capitalize-first"
+          onClick={() => setIsAdvancedSearchHeader(false)}
+          onKeyUp={(e) => e.key === "Enter" ?? setIsAdvancedSearchHeader(false)}
         >
           {t("advancedSearchEditCqlText")}
         </button>
