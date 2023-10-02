@@ -1,7 +1,5 @@
 import * as React from "react";
 import { FC } from "react";
-import { useModalButtonHandler } from "../../../core/utils/modal";
-import { Button } from "../../Buttons/Button";
 
 export interface MessageProps {
   children?: React.ReactNode;

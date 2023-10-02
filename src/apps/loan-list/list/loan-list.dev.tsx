@@ -9,6 +9,7 @@ import groupModalArgs from "../../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
 import acceptModalArgs from "../../../core/storybook/acceptFeesModalArgs";
 import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
+import renewalArgs from "../../../core/storybook/renewalArgs";
 
 export default {
   title: "Apps / Loan list",
@@ -17,6 +18,7 @@ export default {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...loanGroupModalArgs,
+    ...renewalArgs,
     ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...blockedArgs,

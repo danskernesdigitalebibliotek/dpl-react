@@ -11,6 +11,7 @@ import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsM
 import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { AcceptFeesModalEntryTextProps } from "../../core/storybook/acceptFeesModalArgs";
+import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface DashBoardProps {
   // Url
@@ -60,6 +61,7 @@ const DashboardEntry: FC<
     DeleteReservationModalArgs &
     AcceptFeesModalEntryTextProps &
     GroupModalReservationsProps &
+    RenewalArgs &
     ReservationMaterialDetailsProps &
     MaterialDetailsModalProps
 > = ({ pageSizeDesktop, pageSizeMobile }) => {

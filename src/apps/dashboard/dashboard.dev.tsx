@@ -4,6 +4,7 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import DashBoard from "./dashboard.entry";
 import groupModalArgs from "../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../core/storybook/loanGroupModalArgs";
+import renewalArgs from "../../core/storybook/renewalArgs";
 import reservationGroupModalArgs from "../../core/storybook/reservationGroupModalArgs";
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
@@ -16,6 +17,7 @@ export default {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...loanGroupModalArgs,
+    ...renewalArgs,
     ...reservationGroupModalArgs,
     ...reservationMaterialDetailsProps,
     ...acceptModalArgs,

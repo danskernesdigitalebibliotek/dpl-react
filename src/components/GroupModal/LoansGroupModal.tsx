@@ -16,7 +16,8 @@ import GroupModalLoansList from "./GroupModalLoansList";
 import LoansGroupModalButton from "./LoansGroupModalButton";
 import { RequestStatus } from "../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
-import LoansGroupModalMessage from "./LoansGroupModalMessage";
+import RenewalModalMessage from "../renewal/RenewalModalMessage";
+import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;
@@ -116,6 +117,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   }, [acceptedButtonPressed, renew]);
 
   const showSuccessMessage = renewingStatus === "success";
+  const countRenewed = succeededRenewalCount(renewingResponse);
 
   return (
     <Modal
@@ -155,11 +157,27 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
         </div>
       )}
       {!["idle", "pending"].includes(renewingStatus) && (
-        <LoansGroupModalMessage
+        <RenewalModalMessage
           messageType={renewingStatus === "success" ? "success" : "error"}
           renewingResponse={renewingResponse}
           modalId={modalIdUsed as string}
           setRenewingStatus={setRenewingStatus}
+          texts={{
+            successTitleText: t("renewGroupModalLoansSuccessTitleText"),
+            successStatusText: t("renewGroupModalLoansSuccessStatusText", {
+              count: countRenewed
+            }),
+            successButtonText: t("renewGroupModalLoansSuccessButtonText"),
+            noRenewalsPossibleErrorTitleText: t(
+              "renewGroupModalLoansNoRenewalsPossibleErrorTitleText"
+            ),
+            noRenewalsPossibleErrorStatusText: t(
+              "renewGroupModalLoansNoRenewalsPossibleErrorStatusText"
+            ),
+            errorTitleText: t("renewGroupModalLoansErrorTitleText"),
+            errorStatusText: t("renewGroupModalLoansErrorStatusText"),
+            errorButtonText: t("renewGroupModalLoansErrorButtonText")
+          }}
         />
       )}
     </Modal>
