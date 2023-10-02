@@ -12,12 +12,12 @@ export default {
     ...serviceUrlArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
-      defaultValue: 10,
+      defaultValue: 50,
       control: { type: "number" }
     },
     pageSizeMobile: {
       name: "Number of search result items on mobile",
-      defaultValue: 7,
+      defaultValue: 20,
       control: { type: "number" }
     },
     materialUrl: {
@@ -261,6 +261,11 @@ export default {
     toAdvancedSearchButtonText: {
       name: "To advanced search button text",
       defaultValue: "Back to advanced search",
+      control: { type: "text" }
+    },
+    cqlSearchTitleText: {
+      name: "CQL search title text",
+      defaultValue: "CQL search",
       control: { type: "text" }
     }
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useText } from "../../core/utils/text";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -11,19 +12,26 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   initialCql,
   setCql
 }) => {
+  const t = useText();
+
+  if (initialCql.trim() !== "") {
+    setCql(initialCql);
+  }
+
   return (
     <>
       <h1
         className="text-header-h2 advanced-search__title capitalize-first"
         data-cy={dataCy}
       >
-        CQL søgning
+        {t("cqlSearchTitleText")}
       </h1>
       <textarea
         className="advanced-search__cql-input focus-styling__input"
         cols={100}
         rows={5}
         placeholder="e.g. title=snemand*"
+        data-cy={`${dataCy}-input`}
         onChange={(e) => setCql(e.target.value)}
       >
         {initialCql || ""}
