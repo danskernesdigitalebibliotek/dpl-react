@@ -2735,6 +2735,11 @@
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
 
+"@reload/dpl-design-system@0.0.0-8d696308aa89165052db7c2a466210602b0286c8":
+  version "0.0.0-8d696308aa89165052db7c2a466210602b0286c8"
+  resolved "https://npm.pkg.github.com/download/@reload/dpl-design-system/0.0.0-8d696308aa89165052db7c2a466210602b0286c8/f62032e1617f37d723f940d8fc6360b909dde387#f62032e1617f37d723f940d8fc6360b909dde387"
+  integrity sha512-23vNdhRCQo/6fpnWMW29rQ7tsT8DVwAegpYzaf7kW3QXoXik5nUtwIuv27a6B2UmyHGioBbkYYS2J5CIJwQXoQ==
+
 "@rollup/plugin-commonjs@^20.0.0":
   version "20.0.0"
   resolved "https://registry.npmjs.org/@rollup/plugin-commonjs/-/plugin-commonjs-20.0.0.tgz"
