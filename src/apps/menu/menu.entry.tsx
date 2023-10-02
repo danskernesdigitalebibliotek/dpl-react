@@ -11,6 +11,7 @@ import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
 import { ReservationMaterialDetailsProps } from "../../core/storybook/reservationMaterialDetailsArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
+import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface MenuProps {
   menuViewYourProfileText: string;
@@ -48,6 +49,7 @@ const MenuEntry: FC<
     GlobalUrlEntryPropsInterface &
     GroupModalProps &
     GroupModalLoansProps &
+    RenewalArgs &
     DeleteReservationModalArgs &
     GroupModalReservationsProps &
     MaterialDetailsModalProps &

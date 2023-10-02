@@ -9,6 +9,7 @@ import { withConfig } from "../../../core/utils/config";
 import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-props";
 import { GroupModalProps } from "../../../core/storybook/groupModalArgs";
 import { GroupModalLoansProps } from "../../../core/storybook/loanGroupModalArgs";
+import { RenewalArgs } from "../../../core/storybook/renewalArgs";
 import { MaterialDetailsModalProps } from "../../../core/storybook/materialDetailsModalArgs";
 import { AcceptFeesModalEntryTextProps } from "../../../core/storybook/acceptFeesModalArgs";
 
@@ -59,6 +60,7 @@ export interface LoanListEntryWithPageSizeProps
     LoanListEntryConfigProps,
     GroupModalProps,
     GroupModalLoansProps,
+    RenewalArgs,
     LoanListEntryUrlProps,
     MaterialDetailsModalProps,
     AcceptFeesModalEntryTextProps,

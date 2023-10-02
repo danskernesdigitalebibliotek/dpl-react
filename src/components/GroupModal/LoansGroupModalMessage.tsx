@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { RenewedLoanV2 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
-import { filterRenewResponseData } from "./helper";
+import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import ModalMessage from "../message/modal-message/ModalMessage";
 import { RequestStatus } from "../../core/utils/types/request";
 
@@ -20,25 +20,22 @@ const LoansGroupModalMessage: FC<LoansGroupModalMessageProps> = ({
 }) => {
   const t = useText();
 
-  const succeededRenewalCount = renewingResponse
-    ? filterRenewResponseData(renewingResponse).length
-    : 0;
-  const showSuccessMessage =
-    messageType === "success" && succeededRenewalCount > 0;
+  const countRenewed = succeededRenewalCount(renewingResponse);
+  const showSuccessMessage = messageType === "success" && countRenewed > 0;
   const showNoRenewalsPossibleErrorMessage =
-    messageType === "success" && succeededRenewalCount === 0;
+    messageType === "success" && countRenewed === 0;
   const showErrorMessage = messageType === "error";
 
   return (
     <>
       {showSuccessMessage && (
         <ModalMessage
-          title={t("groupModalLoansSuccessTitleText")}
-          subTitle={t("groupModalLoansSuccessStatusText", {
-            count: succeededRenewalCount
+          title={t("renewGroupModalLoansSuccessTitleText")}
+          subTitle={t("renewGroupModalLoansSuccessStatusText", {
+            count: countRenewed
           })}
           ctaButton={{
-            text: t("groupModalLoansSuccessButtonText"),
+            text: t("renewGroupModalLoansSuccessButtonText"),
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}
@@ -46,10 +43,10 @@ const LoansGroupModalMessage: FC<LoansGroupModalMessageProps> = ({
       )}
       {showNoRenewalsPossibleErrorMessage && (
         <ModalMessage
-          title={t("groupModalLoansNoRenewalsPossibleErrorTitleText")}
-          subTitle={t("groupModalLoansNoRenewalsPossibleErrorStatusText")}
+          title={t("renewGroupModalLoansNoRenewalsPossibleErrorTitleText")}
+          subTitle={t("renewGroupModalLoansNoRenewalsPossibleErrorStatusText")}
           ctaButton={{
-            text: t("groupModalLoansErrorButtonText"),
+            text: t("renewGroupModalLoansErrorButtonText"),
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}
@@ -57,10 +54,10 @@ const LoansGroupModalMessage: FC<LoansGroupModalMessageProps> = ({
       )}
       {showErrorMessage && (
         <ModalMessage
-          title={t("groupModalLoansErrorTitleText")}
-          subTitle={t("groupModalLoansErrorStatusText")}
+          title={t("renewGroupModalLoansErrorTitleText")}
+          subTitle={t("renewGroupModalLoansErrorStatusText")}
           ctaButton={{
-            text: t("groupModalLoansErrorButtonText"),
+            text: t("renewGroupModalLoansErrorButtonText"),
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}

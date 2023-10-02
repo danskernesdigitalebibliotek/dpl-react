@@ -33,7 +33,9 @@ import {
   getFromListByKey,
   formatDate
 } from "../utils/helpers";
-import MaterialDetails from "../modal/material-details";
+import MaterialDetails, {
+  constructMaterialDetailsModalId
+} from "../modal/material-details";
 import MaterialDetailsModal from "../modal/material-details-modal";
 import {
   getDetailsModalId,
@@ -231,11 +233,14 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       within the components, it is not possible to hide the loan list when a modal is present
       which is necessary to comply with WCAG (so the screen readers cannot "catch" focusable html
       elements below the modal) */}
-      <MaterialDetailsModal modalId={`${loanDetails}${modalDetailsId}`}>
+      <MaterialDetailsModal
+        modalId={constructMaterialDetailsModalId(loanDetails, modalDetailsId)}
+      >
         <MaterialDetails
           faust={modalLoan?.faust}
           identifier={modalLoan?.identifier}
           loan={modalLoan as LoanType}
+          modalId={constructMaterialDetailsModalId(loanDetails, modalDetailsId)}
         />
       </MaterialDetailsModal>
       {physicalLoans && (

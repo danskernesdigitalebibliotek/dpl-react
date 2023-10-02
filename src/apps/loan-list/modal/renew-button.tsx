@@ -2,32 +2,37 @@ import React, { useCallback, FC } from "react";
 import { useQueryClient } from "react-query";
 import { useText } from "../../../core/utils/text";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../../core/fbs/fbs";
-import { FaustId, LoanId } from "../../../core/utils/types/ids";
-import { useModalButtonHandler } from "../../../core/utils/modal";
+import { LoanId } from "../../../core/utils/types/ids";
 import { Button } from "../../../components/Buttons/Button";
+import { RequestStatus } from "../../../core/utils/types/request";
+import { RenewedLoanV2 } from "../../../core/fbs/model";
 
 interface RenewButtonProps {
   loanId: LoanId;
   renewable: boolean;
-  faust: FaustId;
   classNames?: string;
   hideOnMobile: boolean;
+  setRenewingStatus: (status: RequestStatus) => void;
+  renewingStatus: RequestStatus;
+  setRenewingResponse: (response: RenewedLoanV2[] | null) => void;
 }
 
 const RenewButton: FC<RenewButtonProps> = ({
   loanId,
-  faust,
   renewable,
   classNames,
-  hideOnMobile
+  hideOnMobile,
+  setRenewingStatus,
+  renewingStatus,
+  setRenewingResponse
 }) => {
   const t = useText();
   const queryClient = useQueryClient();
-  const { close } = useModalButtonHandler();
   const { mutate } = useRenewLoansV2();
 
   const renew = useCallback(
     (renewId: number) => {
+      setRenewingStatus("pending");
       mutate(
         {
           data: [renewId]
@@ -36,17 +41,18 @@ const RenewButton: FC<RenewButtonProps> = ({
           onSuccess: (result) => {
             if (result) {
               queryClient.invalidateQueries(getGetLoansV2QueryKey());
-              close(faust);
+              setRenewingResponse(result);
+              setRenewingStatus("success");
             }
           },
           // todo error handling, missing in figma
           onError: () => {
-            close(faust);
+            setRenewingStatus("error");
           }
         }
       );
     },
-    [close, faust, mutate, queryClient]
+    [mutate, queryClient, setRenewingResponse, setRenewingStatus]
   );
 
   return (
@@ -58,10 +64,14 @@ const RenewButton: FC<RenewButtonProps> = ({
       <Button
         size="small"
         variant="filled"
-        disabled={!renewable}
+        disabled={!renewable || renewingStatus === "pending"}
         onClick={() => renew(loanId)}
         classNames={classNames}
-        label={t("materialDetailsRenewLoanButtonText")}
+        label={
+          renewingStatus === "pending"
+            ? t("renewProcessingText")
+            : t("renewButtonText")
+        }
         buttonType="none"
         collapsible={false}
       />

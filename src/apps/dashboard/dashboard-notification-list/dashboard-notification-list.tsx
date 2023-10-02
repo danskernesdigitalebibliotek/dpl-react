@@ -19,7 +19,9 @@ import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
-import MaterialDetails from "../../loan-list/modal/material-details";
+import MaterialDetails, {
+  constructMaterialDetailsModalId
+} from "../../loan-list/modal/material-details";
 import { ListType } from "../../../core/utils/types/list-type";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import ReservationGroupModal from "../modal/ReservationsGroupModal";
@@ -322,11 +324,20 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         />
       )}
 
-      <MaterialDetailsModal modalId={`${loanDetails}${modalLoanDetailsId}`}>
+      <MaterialDetailsModal
+        modalId={constructMaterialDetailsModalId(
+          loanDetails,
+          modalLoanDetailsId
+        )}
+      >
         <MaterialDetails
           faust={modalLoan?.faust}
           identifier={modalLoan?.identifier}
           loan={modalLoan as LoanType}
+          modalId={constructMaterialDetailsModalId(
+            loanDetails,
+            modalLoanDetailsId
+          )}
         />
       </MaterialDetailsModal>
       {dueDate && loans && loansToDisplay && (
