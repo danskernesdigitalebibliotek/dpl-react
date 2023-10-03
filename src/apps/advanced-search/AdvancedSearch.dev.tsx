@@ -240,7 +240,7 @@ export default {
     },
     advancedSearchCopyStringText: {
       name: "Advanced search page copy string button text",
-      defaultValue: "Copy string",
+      defaultValue: "Copy CQL",
       control: { type: "text" }
     },
     advancedSearchEditCqlText: {
@@ -271,6 +271,11 @@ export default {
     copiedToClipboardText: {
       name: "Text that appears after copying to clipboard",
       defaultValue: "Copied",
+      control: { type: "text" }
+    },
+    copiedLinkToThisSearchText: {
+      name: "Text that appears after getting link to a search copied to clipboard",
+      defaultValue: "Link copied to clipboard",
       control: { type: "text" }
     }
   }

@@ -24,10 +24,9 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
 
   useEffect(() => {
     if (copiedToClipboard) {
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         setCopiedToClipboard(false);
       }, 2000);
-      return () => clearTimeout(timeout);
     }
     return () => {};
   }, [copiedToClipboard]);

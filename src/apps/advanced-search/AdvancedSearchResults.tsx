@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDeepCompareEffect } from "react-use";
+import { useCopyToClipboard } from "react-use";
+import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
+import clsx from "clsx";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
@@ -10,6 +12,7 @@ import {
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
+import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -21,6 +24,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   pageSize
 }) => {
   const t = useText();
+  const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
@@ -29,6 +33,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [value, copy] = useCopyToClipboard();
 
   useEffect(() => {
     setCql(q);
@@ -46,7 +52,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     setResultItems([]);
   }, [q, pageSize]);
 
@@ -83,6 +89,14 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
   const shouldShowResultHeadline = hitcount && !isLoading;
 
+  useEffect(() => {
+    if (copiedLinkToSearch) {
+      setTimeout(() => {
+        setCopiedLinkToSearch(false);
+      }, 2000);
+    }
+  }, [copiedLinkToSearch]);
+
   return (
     <>
       <div className="advanced-search__divider" />
@@ -93,8 +107,23 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
             placeholders: { "@hitcount": hitcount }
           })}
       </h2>
-      <button type="button" className="link-tag mb-16 capitalize-first">
-        {t("advancedSearchLinkToThisSearchText")}
+      <button
+        type="button"
+        className={clsx("link-tag mb-16 capitalize-first", {
+          "cursor-pointer": !copiedLinkToSearch
+        })}
+        onClick={() => {
+          copy(currentLocationWithParametersUrl({ linked: "true" }).href);
+          setCopiedLinkToSearch(true);
+        }}
+      >
+        {!copiedLinkToSearch && t("advancedSearchLinkToThisSearchText")}
+        {copiedLinkToSearch && (
+          <>
+            {t("copiedLinkToThisSearchText")}
+            <img className="inline-icon" src={CheckIcon} alt="" />{" "}
+          </>
+        )}
       </button>
       {shouldShowSearchResults && (
         <>
