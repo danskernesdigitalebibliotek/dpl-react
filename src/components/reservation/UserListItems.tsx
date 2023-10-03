@@ -18,11 +18,11 @@ import { useConfig } from "../../core/utils/config";
 import {
   isConfigValueOne,
   getPreferredBranch,
-  getNoInterestAfter
+  getNoInterestAfter,
+  OptionsProps
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
-import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
 
 export interface UserListItemsProps {
   patron: PatronV5;

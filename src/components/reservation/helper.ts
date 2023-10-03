@@ -18,8 +18,12 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
-import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
 import { SubmitOrderStatus } from "../../core/dbc-gateway/generated/graphql";
+
+export interface OptionsProps {
+  value: string;
+  label: string;
+}
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
