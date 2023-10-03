@@ -17,11 +17,13 @@ import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 interface AdvancedSearchResultProps {
   q: string;
   pageSize: number;
+  showContentOnly: boolean;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   q,
-  pageSize
+  pageSize,
+  showContentOnly
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -107,24 +109,26 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
             placeholders: { "@hitcount": hitcount }
           })}
       </h2>
-      <button
-        type="button"
-        className={clsx("link-tag mb-16 capitalize-first", {
-          "cursor-pointer": !copiedLinkToSearch
-        })}
-        onClick={() => {
-          copy(currentLocationWithParametersUrl({ linked: "true" }).href);
-          setCopiedLinkToSearch(true);
-        }}
-      >
-        {!copiedLinkToSearch && t("advancedSearchLinkToThisSearchText")}
-        {copiedLinkToSearch && (
-          <>
-            {t("copiedLinkToThisSearchText")}
-            <img className="inline-icon" src={CheckIcon} alt="" />{" "}
-          </>
-        )}
-      </button>
+      {!showContentOnly && (
+        <button
+          type="button"
+          className={clsx("link-tag mb-16 capitalize-first", {
+            "cursor-pointer": !copiedLinkToSearch
+          })}
+          onClick={() => {
+            copy(currentLocationWithParametersUrl({ linked: "true" }).href);
+            setCopiedLinkToSearch(true);
+          }}
+        >
+          {!copiedLinkToSearch && t("advancedSearchLinkToThisSearchText")}
+          {copiedLinkToSearch && (
+            <>
+              {t("copiedLinkToThisSearchText")}
+              <img className="inline-icon" src={CheckIcon} alt="" />{" "}
+            </>
+          )}
+        </button>
+      )}
       {shouldShowSearchResults && (
         <>
           <SearchResultList
