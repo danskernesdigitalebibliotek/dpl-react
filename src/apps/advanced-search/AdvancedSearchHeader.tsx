@@ -102,7 +102,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               })}
             </div>
             <PreviewSection
-              translatedCql={previewCql || ""}
+              translatedCql={previewCql}
               reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
               setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
             />
@@ -144,7 +144,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
           </section>
           <PreviewSection
-            translatedCql={previewCql}
+            translatedCql={previewCql || ""}
             reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
             isMobile
             setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}

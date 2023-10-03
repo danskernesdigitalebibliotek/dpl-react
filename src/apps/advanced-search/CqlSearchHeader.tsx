@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useText } from "../../core/utils/text";
 
 export type CqlSearchHeaderProps = {
@@ -14,9 +14,11 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
 }) => {
   const t = useText();
 
-  if (initialCql.trim() !== "") {
-    setCql(initialCql);
-  }
+  useEffect(() => {
+    if (initialCql.trim() !== "") {
+      setCql(initialCql);
+    }
+  });
 
   return (
     <>
@@ -33,9 +35,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         placeholder="e.g. title=snemand*"
         data-cy={`${dataCy}-input`}
         onChange={(e) => setCql(e.target.value)}
-      >
-        {initialCql || ""}
-      </textarea>
+        defaultValue={initialCql}
+      />
     </>
   );
 };

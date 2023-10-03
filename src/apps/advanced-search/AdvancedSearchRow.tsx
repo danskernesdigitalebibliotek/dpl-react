@@ -75,7 +75,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           {AdvancedSearchClauses.map((clause) => {
             return (
               <button
-                key={clause}
+                key={`${rowIndex}-${clause}`}
                 type="button"
                 className={getClauseClasses(clause, data.rows[rowIndex].clause)}
                 onClick={() => {
