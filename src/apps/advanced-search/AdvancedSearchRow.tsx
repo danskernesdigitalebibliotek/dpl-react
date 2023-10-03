@@ -1,7 +1,7 @@
 import React from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import IconMinus from "@reload/dpl-design-system/build/icons/collection/MinusButton.svg";
-import IconPlus from "@reload/dpl-design-system/build/icons/collection/PlusButton.svg";
+import IconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/MinusButton.svg";
+import IconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import clsx from "clsx";
 import {
   AdvancedSearchClause,
