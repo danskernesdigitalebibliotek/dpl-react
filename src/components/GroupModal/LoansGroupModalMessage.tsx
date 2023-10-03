@@ -46,7 +46,7 @@ const LoansGroupModalMessage: FC<LoansGroupModalMessageProps> = ({
           title={t("renewGroupModalLoansNoRenewalsPossibleErrorTitleText")}
           subTitle={t("renewGroupModalLoansNoRenewalsPossibleErrorStatusText")}
           ctaButton={{
-            text: t("renewGroupModalLoansErrorButtonText"),
+            text: t("renewGroupModalLoansButtonText"),
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}
@@ -57,7 +57,7 @@ const LoansGroupModalMessage: FC<LoansGroupModalMessageProps> = ({
           title={t("renewGroupModalLoansErrorTitleText")}
           subTitle={t("renewGroupModalLoansErrorStatusText")}
           ctaButton={{
-            text: t("renewGroupModalLoansErrorButtonText"),
+            text: t("renewGroupModalLoansButtonText"),
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}

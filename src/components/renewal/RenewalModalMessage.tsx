@@ -12,12 +12,11 @@ interface RenewalModalMessageProps {
   texts: {
     successTitleText: string;
     successStatusText: string;
-    successButtonText: string;
     noRenewalsPossibleErrorTitleText: string;
     noRenewalsPossibleErrorStatusText: string;
     errorTitleText: string;
     errorStatusText: string;
-    errorButtonText: string;
+    buttonText: string;
   };
 }
 
@@ -29,12 +28,11 @@ const RenewalModalMessage: FC<RenewalModalMessageProps> = ({
   texts: {
     successTitleText,
     successStatusText,
-    successButtonText,
     noRenewalsPossibleErrorTitleText,
     noRenewalsPossibleErrorStatusText,
     errorTitleText,
     errorStatusText,
-    errorButtonText
+    buttonText
   }
 }) => {
   const succeededRenewalCount = renewingResponse
@@ -53,7 +51,7 @@ const RenewalModalMessage: FC<RenewalModalMessageProps> = ({
           title={successTitleText}
           subTitle={successStatusText}
           ctaButton={{
-            text: successButtonText,
+            text: buttonText,
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}
@@ -64,7 +62,7 @@ const RenewalModalMessage: FC<RenewalModalMessageProps> = ({
           title={noRenewalsPossibleErrorTitleText}
           subTitle={noRenewalsPossibleErrorStatusText}
           ctaButton={{
-            text: errorButtonText,
+            text: buttonText,
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}
@@ -75,7 +73,7 @@ const RenewalModalMessage: FC<RenewalModalMessageProps> = ({
           title={errorTitleText}
           subTitle={errorStatusText}
           ctaButton={{
-            text: errorButtonText,
+            text: buttonText,
             modalId: modalId as string,
             callback: () => setRenewingStatus("idle")
           }}

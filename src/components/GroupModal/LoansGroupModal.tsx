@@ -167,7 +167,6 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
             successStatusText: t("renewGroupModalLoansSuccessStatusText", {
               count: countRenewed
             }),
-            successButtonText: t("renewGroupModalLoansSuccessButtonText"),
             noRenewalsPossibleErrorTitleText: t(
               "renewGroupModalLoansNoRenewalsPossibleErrorTitleText"
             ),
@@ -176,7 +175,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
             ),
             errorTitleText: t("renewGroupModalLoansErrorTitleText"),
             errorStatusText: t("renewGroupModalLoansErrorStatusText"),
-            errorButtonText: t("renewGroupModalLoansErrorButtonText")
+            buttonText: t("renewGroupModalLoansButtonText")
           }}
         />
       )}

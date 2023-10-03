@@ -21,12 +21,6 @@ export default {
     control: { type: "text" },
     defaultValue: "1 loan was renewed."
   },
-  renewMaterialLoanSuccessButtonText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Ok"
-  },
   renewMaterialLoanNoRenewalsPossibleErrorTitleText: {
     control: {
       type: "text"
@@ -51,7 +45,7 @@ export default {
     },
     defaultValue: "Something went wrong renewing your loan. Please try again."
   },
-  renewMaterialLoanErrorButtonText: {
+  renewMaterialLoanButtonText: {
     control: {
       type: "text"
     },
@@ -68,12 +62,6 @@ export default {
     defaultValue:
       '{"type":"plural","text":["1 loan has been renewed.","@count loans have been renewed."]}'
   },
-  renewGroupModalLoansSuccessButtonText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Ok"
-  },
   renewGroupModalLoansErrorTitleText: {
     control: {
       type: "text"
@@ -86,7 +74,7 @@ export default {
     },
     defaultValue: "Something went wrong renewing your loans. Please try again."
   },
-  renewGroupModalLoansErrorButtonText: {
+  renewGroupModalLoansButtonText: {
     control: {
       type: "text"
     },
@@ -113,21 +101,19 @@ export default {
 };
 
 export interface RenewalArgs {
-  renewProcessingText: string;
-  renewMaterialLoanSuccessTitleText: string;
-  renewMaterialLoanSuccessStatusText: string;
-  renewMaterialLoanSuccessButtonText: string;
-  renewMaterialLoanNoRenewalsPossibleErrorTitleText: string;
-  renewMaterialLoanNoRenewalsPossibleErrorStatusText: string;
-  renewMaterialLoanErrorTitleText: string;
-  renewMaterialLoanErrorStatusText: string;
-  renewMaterialLoanErrorButtonText: string;
-  renewGroupModalLoansSuccessTitleText: string;
-  renewGroupModalLoansSuccessStatusText: string;
-  renewGroupModalLoansSuccessButtonText: string;
-  renewGroupModalLoansErrorTitleText: string;
+  renewGroupModalLoansButtonText: string;
   renewGroupModalLoansErrorStatusText: string;
-  renewGroupModalLoansErrorButtonText: string;
-  renewGroupModalLoansNoRenewalsPossibleErrorTitleText: string;
+  renewGroupModalLoansErrorTitleText: string;
   renewGroupModalLoansNoRenewalsPossibleErrorStatusText: string;
+  renewGroupModalLoansNoRenewalsPossibleErrorTitleText: string;
+  renewGroupModalLoansSuccessStatusText: string;
+  renewGroupModalLoansSuccessTitleText: string;
+  renewMaterialLoanButtonText: string;
+  renewMaterialLoanErrorStatusText: string;
+  renewMaterialLoanErrorTitleText: string;
+  renewMaterialLoanNoRenewalsPossibleErrorStatusText: string;
+  renewMaterialLoanNoRenewalsPossibleErrorTitleText: string;
+  renewMaterialLoanSuccessStatusText: string;
+  renewMaterialLoanSuccessTitleText: string;
+  renewProcessingText: string;
 }
