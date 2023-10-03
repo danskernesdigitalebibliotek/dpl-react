@@ -73,7 +73,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           texts={{
             successTitleText: t("renewMaterialLoanSuccessTitleText"),
             successStatusText: t("renewMaterialLoanSuccessStatusText"),
-            successButtonText: t("renewMaterialLoanSuccessButtonText"),
             noRenewalsPossibleErrorTitleText: t(
               "renewMaterialLoanNoRenewalsPossibleErrorTitleText"
             ),
@@ -82,7 +81,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             ),
             errorTitleText: t("renewMaterialLoanErrorTitleText"),
             errorStatusText: t("renewMaterialLoanErrorStatusText"),
-            errorButtonText: t("renewMaterialLoanErrorButtonText")
+            buttonText: t("renewMaterialLoanButtonText")
           }}
         />
       )}
