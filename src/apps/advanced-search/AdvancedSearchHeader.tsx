@@ -45,8 +45,15 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   // the search button.
   const [internalSearchObject, setInternalSearchObject] =
     useState<AdvancedSearchQuery>(searchObject || initialAdvancedSearchQuery);
-  const [previewCql, setPreviewCql] = useState<string>("");
+  const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
+
+  // If a new search object is passed in, override the internal state to reflect
+  // the updated values in the state.
+  useEffect(() => {
+    if (searchObject === null) return;
+    setInternalSearchObject(searchObject);
+  }, [searchObject]);
 
   useEffect(() => {
     const cql = translateSearchObjectToCql(internalSearchObject);
@@ -111,7 +118,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               })}
             </div>
             <PreviewSection
-              translatedCql={previewCql}
+              translatedCql={previewCql || searchQuery || ""}
               reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
               setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
             />
@@ -153,7 +160,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
           </section>
           <PreviewSection
-            translatedCql={previewCql || ""}
+            translatedCql={previewCql || searchQuery || ""}
             reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
             isMobile
             setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
@@ -161,7 +168,10 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
         </>
       )}
       {!isAdvancedSearchheader && (
-        <CqlSearchHeader initialCql={searchQuery || ""} setCql={setRawCql} />
+        <CqlSearchHeader
+          initialCql={previewCql || searchQuery || ""}
+          setCql={setRawCql}
+        />
       )}
 
       <section className="advanced-search__footer">

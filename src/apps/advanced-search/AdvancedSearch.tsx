@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useEffectOnce } from "react-use";
 import AdvancedSearchHeader from "./AdvancedSearchHeader";
 import AdvancedSearchResult from "./AdvancedSearchResults";
 import { translateSearchObjectToCql } from "./helpers";
 import { AdvancedSearchQuery } from "./types";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import {
+  getUrlQueryParam,
+  removeQueryParametersFromUrl,
+  setQueryParametersInUrl
+} from "../../core/utils/helpers/url";
 
 interface AdvancedSearchProps {
   pageSize: number;
@@ -15,14 +20,51 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     null
   );
   const [showResultOnly, setShowResultOnly] = useState<boolean>(false);
+  // This is the CQL query that is actually executed.
+  const [executedQuery, setExecutedQuery] = useState<string | null>(null);
+
+  // Only react on url parameters on the initial render.
+  useEffectOnce(() => {
+    const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery");
+    if (advancedSearchQuery) {
+      // TODO: Add runtime validation
+      // If the value does not match the type because of url tampering, type
+      // mismatch etc. errors will occur. However they should be handled
+      // somewhat gracefully by our error boundary..
+      const queryObject = JSON.parse(advancedSearchQuery);
+      setSearchObject(queryObject);
+    }
+
+    const advancedSearchCql = getUrlQueryParam("advancedSearchCql");
+    if (advancedSearchCql) {
+      setSearchQuery(advancedSearchCql);
+    }
+  });
 
   useEffect(() => {
     if (searchObject === null) return;
     const cql = translateSearchObjectToCql(searchObject);
     if (cql.trim() === "") return;
 
-    setSearchQuery(cql);
+    // Replace any existing CQL query with the advanced search query to avoid
+    // mixing the two.
+    setQueryParametersInUrl({
+      advancedSearchQuery: JSON.stringify(searchObject)
+    });
+    removeQueryParametersFromUrl("advancedSearchCql");
+
+    setExecutedQuery(cql);
   }, [searchObject]);
+
+  useEffect(() => {
+    if (searchQuery == null) return;
+    // Replace any existing advanced search query with the CQL query to avoid
+    // mixing the two.
+    setQueryParametersInUrl({ advancedSearchCql: searchQuery });
+    removeQueryParametersFromUrl("advancedSearchQuery");
+
+    setExecutedQuery(searchQuery);
+  }, [searchQuery]);
 
   useEffect(() => {
     if (getUrlQueryParam("linked") === "true") {
@@ -40,9 +82,9 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setSearchQuery={setSearchQuery}
         />
       )}
-      {searchQuery && (
+      {executedQuery && (
         <AdvancedSearchResult
-          q={searchQuery}
+          q={executedQuery}
           pageSize={pageSize}
           showContentOnly={showResultOnly}
         />
