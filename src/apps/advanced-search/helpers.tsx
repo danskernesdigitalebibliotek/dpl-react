@@ -1,6 +1,8 @@
 import {
   AdvancedSearchRowData,
-  advancedSearchFilters
+  advancedSearchFilters,
+  AdvancedSearchQuery,
+  AdvancedSearchFilterData
 } from "../../core/utils/types/advanced-search-types";
 import { MultiselectOption } from "../../core/utils/types/multiselect-types";
 
@@ -20,9 +22,7 @@ const getSpace = (currentText: string) => {
   return space;
 };
 
-export const translateRowsToCql = (
-  rowsToTranslate: AdvancedSearchRowData[]
-) => {
+const translateRowsToCql = (rowsToTranslate: AdvancedSearchRowData[]) => {
   return rowsToTranslate.reduce((acc: string, curr: AdvancedSearchRowData) => {
     let rowTranslation = "";
     if (acc !== "" && curr.term.trim() !== "") {
@@ -43,7 +43,7 @@ export const translateRowsToCql = (
   }, "");
 };
 
-export const translateFilterToCql = (
+const translateFilterToCql = (
   filterToTranslate: MultiselectOption[],
   cqlKey: keyof typeof advancedSearchFilters
 ) => {
@@ -60,6 +60,38 @@ export const translateFilterToCql = (
     );
     return acc + filterTranslation;
   }, "");
+};
+
+const translateFiltersToCql = (
+  filtersToTranslate: AdvancedSearchFilterData
+) => {
+  const filtersAsArray: MultiselectOption[][] = Object.keys(
+    filtersToTranslate
+  ).map((key) => filtersToTranslate[key as keyof AdvancedSearchFilterData]);
+
+  const translatedFilters = filtersAsArray.reduce(
+    (acc: string, curr: MultiselectOption[], index) => {
+      return (
+        acc +
+        translateFilterToCql(
+          curr,
+          Object.keys(filtersToTranslate)[
+            index
+          ] as keyof typeof advancedSearchFilters
+        )
+      );
+    },
+    ""
+  );
+  return translatedFilters;
+};
+
+export const translateSearchObjectToCql = (
+  searchObject: AdvancedSearchQuery
+) => {
+  const rowsAsCql = translateRowsToCql(searchObject.rows);
+  const filtersAsCql = translateFiltersToCql(searchObject.filters);
+  return rowsAsCql + filtersAsCql;
 };
 
 export default {};

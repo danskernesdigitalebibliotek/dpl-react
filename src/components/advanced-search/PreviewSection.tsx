@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useCopyToClipboard } from "react-use";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
-import { AdvancedSearchRowData } from "../../core/utils/types/advanced-search-types";
 import { useText } from "../../core/utils/text";
 
 export type PreviewSectionProps = {
   translatedCql: string;
-  setRowsData: (rowData: AdvancedSearchRowData[]) => void;
-  initialRowData: AdvancedSearchRowData[];
+  reset: () => void;
   isMobile?: boolean;
   setIsAdvancedSearchHeader: (newState: boolean) => void;
 };
 
 const PreviewSection: React.FC<PreviewSectionProps> = ({
   translatedCql,
-  setRowsData,
-  initialRowData,
+  reset,
   isMobile,
   setIsAdvancedSearchHeader
 }) => {
@@ -52,9 +49,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
         <button
           type="button"
           className="link-tag mr-16 cursor-pointer capitalize-first"
-          onClick={() => {
-            setRowsData(initialRowData);
-          }}
+          onClick={() => reset()}
         >
           {t("advancedSearchResetText")}
         </button>
