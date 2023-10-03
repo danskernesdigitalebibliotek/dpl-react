@@ -124,10 +124,6 @@ export default {
       },
       defaultValue: "Podcast"
     },
-    listDetailsNothingSelectedLabelText: {
-      defaultValue: "Pick",
-      control: { type: "text" }
-    },
     dashboardNumberInLineText: {
       control: {
         type: "text"

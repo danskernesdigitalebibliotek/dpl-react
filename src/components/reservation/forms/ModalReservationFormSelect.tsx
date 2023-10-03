@@ -77,6 +77,7 @@ const ModalReservationFormSelect = ({
           handleOnChange={selectChange}
           defaultValue={selectedItem}
           placeholder={{ label: t("chooseOneText"), disabled: true, value: "" }}
+          cyData="modal-reservation-form-select"
         />
       </ReservationForm>
     </Modal>
