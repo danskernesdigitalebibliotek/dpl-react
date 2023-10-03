@@ -74,7 +74,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         <>
           <ReservationFormListItem
             icon={LoanHistory}
-            title={t("haveNoInterestAfterText")}
+            title={t("reservationDetailsNoInterestAfterTitleText")}
             text={interestPeriod}
             changeHandler={openModal("interestPeriod")}
             buttonAriaLabel={t("changeInterestPeriodText")}
@@ -89,7 +89,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         <>
           <ReservationFormListItem
             icon={Location}
-            title={t("pickupLocationText")}
+            title={t("reservationDetailsPickUpAtTitleText")}
             text={pickupBranch}
             changeHandler={openModal("pickup")}
             buttonAriaLabel={t("changePickupLocationText")}
