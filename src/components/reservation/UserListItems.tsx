@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import Location from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
-import Subtitles from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
-import Message from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
-import LoanHistory from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
+import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
+import SubtitlesIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
+import MessageIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
+import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import { useText } from "../../core/utils/text";
 import ReservationFormListItem from "./ReservationFormListItem";
 import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
@@ -73,7 +73,7 @@ const UserListItems: FC<UserListItemsProps> = ({
       {defaultInterestPeriod && (
         <>
           <ReservationFormListItem
-            icon={LoanHistory}
+            icon={LoanHistoryIcon}
             title={t("reservationDetailsNoInterestAfterTitleText")}
             text={interestPeriod}
             changeHandler={openModal("interestPeriod")}
@@ -88,7 +88,7 @@ const UserListItems: FC<UserListItemsProps> = ({
       {preferredPickupBranch && whitelistBranches && (
         <>
           <ReservationFormListItem
-            icon={Location}
+            icon={LocationIcon}
             title={t("reservationDetailsPickUpAtTitleText")}
             text={pickupBranch}
             changeHandler={openModal("pickup")}
@@ -107,7 +107,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         ) && (
           <>
             <ReservationFormListItem
-              icon={Subtitles}
+              icon={SubtitlesIcon}
               title={t("receiveSmsWhenMaterialReadyText")}
               text={stringifyValue(phoneNumber)}
               changeHandler={openModal("sms")}
@@ -117,7 +117,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           </>
         )}
         <ReservationFormListItem
-          icon={Message}
+          icon={MessageIcon}
           title={t("receiveEmailWhenMaterialReadyText")}
           text={stringifyValue(emailAddress)}
           changeHandler={openModal("email")}
