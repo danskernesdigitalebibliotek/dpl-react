@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { useMultipleSelection, useSelect } from "downshift";
 import clsx from "clsx";
+import { useClickAway } from "react-use";
 import CheckBox from "../checkbox/Checkbox";
 import {
   MultiselectExternalUpdate,
@@ -20,6 +21,8 @@ const Multiselect: React.FC<MultiselectProps> = ({
   options,
   updateExternalState
 }) => {
+  const ref = useRef(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const updateState = (
     updateKey: string | undefined,
     value: MultiselectOption[]
@@ -80,82 +83,90 @@ const Multiselect: React.FC<MultiselectProps> = ({
     return [...allCurrentlySelected, newSelected];
   };
 
-  const {
-    isOpen,
-    getToggleButtonProps,
-    getMenuProps,
-    highlightedIndex,
-    getItemProps
-  } = useSelect({
-    selectedItem: null,
-    items: allOptions,
-    stateReducer: (state, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            isOpen: true // keep the menu open after selection.
-          };
-        default:
-          break;
-      }
-      return changes;
-    },
-    onStateChange: ({ type, selectedItem: newSelectedItem }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-        case useSelect.stateChangeTypes.ItemClick:
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-          // If new selection isn't already selected, we add it
-          if (
-            newSelectedItem &&
-            !selectedItems.find((item) => item.value === newSelectedItem.value)
-          ) {
-            setSelectedItems(
-              addNewSelectedItem(
-                selectedItems,
-                newSelectedItem,
-                allOptions.length
+  useClickAway(ref, () => {
+    setIsDropdownOpen(false);
+  });
+
+  const { getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } =
+    useSelect({
+      isOpen: isDropdownOpen,
+      selectedItem: null,
+      items: allOptions,
+      stateReducer: (state, actionAndChanges) => {
+        const { changes, type } = actionAndChanges;
+        switch (type) {
+          case useSelect.stateChangeTypes.MenuKeyDownEnter:
+          case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
+          case useSelect.stateChangeTypes.ItemClick:
+            return {
+              ...changes,
+              isOpen: true // keep the menu open after selection.
+            };
+          default:
+            break;
+        }
+        return changes;
+      },
+      onStateChange: ({ type, selectedItem: newSelectedItem }) => {
+        switch (type) {
+          case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
+          case useSelect.stateChangeTypes.ItemClick:
+          case useSelect.stateChangeTypes.MenuKeyDownEnter:
+            // If new selection isn't already selected, we add it
+            if (
+              newSelectedItem &&
+              !selectedItems.find(
+                (item) => item.value === newSelectedItem.value
               )
-            );
-            return;
-          }
-          // If new selection is already selected, we deselect it
-          if (
-            newSelectedItem &&
-            selectedItems.find((item) => item.value === newSelectedItem.value)
-          ) {
-            // Unless it's the only selected item
-            if (selectedItems.length === 1) {
+            ) {
+              setSelectedItems(
+                addNewSelectedItem(
+                  selectedItems,
+                  newSelectedItem,
+                  allOptions.length
+                )
+              );
               return;
             }
-            const newSelectedItems = selectedItems.filter((item) => {
-              return item.value !== newSelectedItem.value;
-            });
-            setSelectedItems(newSelectedItems);
-          }
-          break;
-        default:
-          break;
+            // If new selection is already selected, we deselect it
+            if (
+              newSelectedItem &&
+              selectedItems.find((item) => item.value === newSelectedItem.value)
+            ) {
+              // Unless it's the only selected item
+              if (selectedItems.length === 1) {
+                return;
+              }
+              const newSelectedItems = selectedItems.filter((item) => {
+                return item.value !== newSelectedItem.value;
+              });
+              setSelectedItems(newSelectedItems);
+            }
+            break;
+          default:
+            break;
+        }
       }
-    }
-  });
+    });
 
   return (
     <>
       {caption && <div className="multiselect__caption">{caption}</div>}
-      <div className="multiselect">
+      <div className="multiselect" ref={ref}>
         {/* eslint-disable react/jsx-props-no-spreading */}
         {/* The downshift combobox works this way by design */}
         <button
           type="button"
           className="multiselect focus-styling"
           {...getToggleButtonProps(
-            getDropdownProps({ preventKeyAction: isOpen })
+            getDropdownProps({ preventKeyAction: isDropdownOpen })
           )}
+          onClick={() => {
+            setIsDropdownOpen(!isDropdownOpen);
+          }}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") setIsDropdownOpen(!isDropdownOpen);
+          }}
         >
           <div className="multiselect__selected">
             {selectedItems.map((singularitem, index) => {
@@ -167,43 +178,43 @@ const Multiselect: React.FC<MultiselectProps> = ({
           <div className="multiselect__opener">
             <img
               className={clsx("multiselect__icon", {
-                "dropdown__arrow--bottom": isOpen
+                "dropdown__arrow--bottom": isDropdownOpen
               })}
               src={IconExpand}
               alt=""
             />
           </div>
         </button>
-
-        {isOpen && (
-          <ul className="multiselect__options" {...getMenuProps()}>
-            {allOptions.map((item, index) => {
-              return (
-                <li
-                  className={clsx("multiselect__option", {
-                    "multiselect__option--highlighted":
-                      highlightedIndex === index
-                  })}
-                  key={`${item.value}${item.item}`}
-                  {...getItemProps({ item, index })}
-                >
-                  {/* eslint-enable react/jsx-props-no-spreading */}
-                  {item.item}
-                  <div className="checkbox multiselect__checkbox">
-                    <CheckBox
-                      id={index.toString()}
-                      selected={
-                        !!selectedItems.find(
-                          (selected) => selected.value === item.value
-                        )
-                      }
-                    />
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <ul
+          className="multiselect__options"
+          {...getMenuProps()}
+          style={!isDropdownOpen ? { display: "none" } : {}}
+        >
+          {allOptions.map((item, index) => {
+            return (
+              <li
+                className={clsx("multiselect__option", {
+                  "multiselect__option--highlighted": highlightedIndex === index
+                })}
+                key={`${item.value}${item.item}`}
+                {...getItemProps({ item, index })}
+              >
+                {/* eslint-enable react/jsx-props-no-spreading */}
+                {item.item}
+                <div className="checkbox multiselect__checkbox">
+                  <CheckBox
+                    id={index.toString()}
+                    selected={
+                      !!selectedItems.find(
+                        (selected) => selected.value === item.value
+                      )
+                    }
+                  />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );
