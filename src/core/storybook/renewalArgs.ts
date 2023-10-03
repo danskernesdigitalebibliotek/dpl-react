@@ -103,6 +103,12 @@ export default {
       type: "text"
     },
     defaultValue: "For some reason, no one of your loans could be renewed."
+  },
+  renewCannotBeRenewedText: {
+    control: {
+      type: "text"
+    },
+    defaultValue: "Cannot be renewed"
   }
 };
 

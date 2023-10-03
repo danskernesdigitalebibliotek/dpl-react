@@ -6,6 +6,7 @@ import { LoanId } from "../../../core/utils/types/ids";
 import { Button } from "../../../components/Buttons/Button";
 import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
+import { getRenewButtonLabel } from "../../../core/utils/helpers/renewal";
 
 interface RenewButtonProps {
   loanId: LoanId;
@@ -29,6 +30,11 @@ const RenewButton: FC<RenewButtonProps> = ({
   const t = useText();
   const queryClient = useQueryClient();
   const { mutate } = useRenewLoansV2();
+  const label = getRenewButtonLabel({
+    isRenewable: renewable,
+    renewingStatus,
+    t
+  });
 
   const renew = useCallback(
     (renewId: number) => {
@@ -67,11 +73,7 @@ const RenewButton: FC<RenewButtonProps> = ({
         disabled={!renewable || renewingStatus === "pending"}
         onClick={() => renew(loanId)}
         classNames={classNames}
-        label={
-          renewingStatus === "pending"
-            ? t("renewProcessingText")
-            : t("renewButtonText")
-        }
+        label={label}
         buttonType="none"
         collapsible={false}
       />
