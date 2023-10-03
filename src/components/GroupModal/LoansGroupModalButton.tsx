@@ -2,8 +2,8 @@ import * as React from "react";
 import { FC } from "react";
 import { Button } from "../Buttons/Button";
 import { useText } from "../../core/utils/text";
-import { getLoansGroupModalButtonLabel } from "./helper";
 import { RequestStatus } from "../../core/utils/types/request";
+import { getRenewButtonLabel } from "../../core/utils/helpers/renewal";
 
 export interface LoansGroupModalButtonProps {
   materialsToRenew: string[];
@@ -19,11 +19,17 @@ const LoansGroupModalButton: FC<LoansGroupModalButtonProps> = ({
   renewingStatus
 }) => {
   const t = useText();
-  const label = getLoansGroupModalButtonLabel({
-    status: renewingStatus,
-    materialsCount: materialsToRenew.length,
-    t
+  const materialsCount = materialsToRenew.length;
+  const label = getRenewButtonLabel({
+    isRenewable: renewableMaterials > 0,
+    renewingStatus,
+    t,
+    defaultText: t("groupModalButtonText", {
+      count: materialsCount,
+      placeholders: { "@count": materialsCount }
+    })
   });
+
   return (
     <Button
       label={label}
