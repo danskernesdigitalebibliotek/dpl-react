@@ -66,6 +66,38 @@ export default {
   reservationDetailsNumberInQueueLabelText: {
     defaultValue: "@count queued",
     control: { type: "text" }
+  },
+  shiftText: {
+    name: "Change",
+    defaultValue: "Change",
+    control: { type: "text" }
+  },
+  modalReservationFormPickupHeaderTitleText: {
+    name: "Modal reservation form pickup header title",
+    defaultValue: "Change pick-up location",
+    control: { type: "text" }
+  },
+  modalReservationFormPickupHeaderDescriptionText: {
+    name: "Modal reservation form pickup header description",
+    defaultValue:
+      "If you wish to change the pick-up location for your reservation, you can do it here.",
+    control: { type: "text" }
+  },
+  modalReservationFormNoInterestAfterHeaderTitleText: {
+    name: "Modal reservation form no interest after header title",
+    defaultValue: "Change date of interest",
+    control: { type: "text" }
+  },
+  modalReservationFormNoInterestAfterHeaderDescriptionText: {
+    name: "Modal reservation form no interest after header description",
+    defaultValue:
+      "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+    control: { type: "text" }
+  },
+  saveButtonText: {
+    name: "Save button text",
+    defaultValue: "Save",
+    control: { type: "text" }
   }
 };
 
@@ -86,4 +118,10 @@ export interface ReservationMaterialDetailsProps {
   reservationDetailAllowRemoveReadyReservationsConfig: string;
   branchesConfig: string;
   blacklistedPickupBranchesConfig: string;
+  shiftText: string;
+  modalReservationFormPickupHeaderTitleText: string;
+  modalReservationFormPickupHeaderDescriptionText: string;
+  saveButtonText: string;
+  modalReservationFormNoInterestAfterHeaderTitleText: string;
+  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
 }
