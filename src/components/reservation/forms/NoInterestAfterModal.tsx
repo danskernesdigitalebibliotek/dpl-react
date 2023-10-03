@@ -2,7 +2,7 @@ import React from "react";
 import { useText } from "../../../core/utils/text";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 import { useConfig } from "../../../core/utils/config";
-import { OptionsProps } from "../../list-details-dropdown/list-details-dropdown";
+import { OptionsProps } from "../helper";
 
 export interface PickupModalProps {
   selectedInterest: number;
