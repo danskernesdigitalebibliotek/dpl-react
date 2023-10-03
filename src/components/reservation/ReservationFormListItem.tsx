@@ -20,7 +20,10 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
 }) => {
   const t = useText();
   return (
-    <div className="reservation-modal-list-item">
+    <div
+      className="reservation-modal-list-item"
+      data-cy="reservation-form-list-item"
+    >
       <img src={icon} alt="" />
       <div
         data-cy="reservation-modal-list-item-text"

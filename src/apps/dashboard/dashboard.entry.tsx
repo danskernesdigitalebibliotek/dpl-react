@@ -44,7 +44,6 @@ export interface DashBoardProps {
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
-  listDetailsNothingSelectedLabelText: string;
   dashboardNumberInLineText: string;
   resultPagerStatusText: string;
   reservationDetailsOthersInQueueText: string;

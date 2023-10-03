@@ -23,7 +23,7 @@ const ListDetails: FC<ListDetailsProps> = ({
 }) => {
   const t = useText();
   return (
-    <div className="list-details">
+    <div className="list-details" data-cy="reservation-form-list-item">
       <div className="list-details__icon">
         <img src={icon} alt="" />
       </div>

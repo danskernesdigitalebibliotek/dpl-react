@@ -98,6 +98,11 @@ export default {
     name: "Save button text",
     defaultValue: "Save",
     control: { type: "text" }
+  },
+  chooseOneText: {
+    name: "Choose one text",
+    defaultValue: "Choose one",
+    control: { type: "text" }
   }
 };
 
@@ -124,4 +129,5 @@ export interface ReservationMaterialDetailsProps {
   saveButtonText: string;
   modalReservationFormNoInterestAfterHeaderTitleText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;
+  chooseOneText: string;
 }
