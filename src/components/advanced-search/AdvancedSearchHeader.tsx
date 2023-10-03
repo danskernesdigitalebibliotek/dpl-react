@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import AdvancedSearchRow from "./AdvancedSearchRow";
 import {
   AdvancedSearchFilterData,
-  AdvancedSearchRowData,
   advancedSearchAccessibility,
   advancedSearchFiction,
-  advancedSearchFilters,
-  advancedSearchMaterialTypes
+  advancedSearchMaterialTypes,
+  AdvancedSearchQuery,
+  initialAdvancedSearchQuery
 } from "../../core/utils/types/advanced-search-types";
 import { useText } from "../../core/utils/text";
 import PreviewSection from "./PreviewSection";
@@ -15,77 +15,53 @@ import {
   MultiselectExternalUpdateFunction,
   MultiselectOption
 } from "../../core/utils/types/multiselect-types";
-import { translateFilterToCql, translateRowsToCql } from "./helper";
 import CqlSearchHeader from "./CqlSearchHeader";
+import { translateSearchObjectToCql } from "../../apps/advanced-search/helpers";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
+  searchQuery: string | null;
   setSearchQuery: (searchQuery: string | null) => void;
+  searchObject: AdvancedSearchQuery | null;
+  setSearchObject: (searchObject: AdvancedSearchQuery | null) => void;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   dataCy = "advanced-search-header",
-  setSearchQuery
+  searchQuery,
+  setSearchQuery,
+  searchObject,
+  setSearchObject
 }) => {
   const t = useText();
   const [isAdvancedSearchheader, setIsAdvancedSearchHeader] =
     useState<boolean>(true);
-  const initialRowData: AdvancedSearchRowData[] = [
-    { term: "", searchIndex: "all", clause: "AND" },
-    { term: "", searchIndex: "all", clause: "AND" }
-  ];
-  const initialFilterData: AdvancedSearchFilterData = {
-    materialTypes: [{ item: "All", value: "all" }],
-    fiction: [{ item: "All", value: "all" }],
-    accessibility: [{ item: "All", value: "all" }]
-  };
-  const [rowsData, setRowsData] =
-    useState<AdvancedSearchRowData[]>(initialRowData);
-  const [rowsTranslatedToCql, setRowsTranslatedToCql] = useState<string>("");
-  const [filtersData, setFiltersData] =
-    useState<AdvancedSearchFilterData>(initialFilterData);
-  const [filtersTranslatedToCql, setFiltersTranslatedToCql] =
-    useState<string>("");
+  // Keep an internal copy of the search object in a separate state. We only
+  // want to update the outer state and perform a search when the user clicks
+  // the search button.
+  const [internalSearchObject, setInternalSearchObject] =
+    useState<AdvancedSearchQuery>(searchObject || initialAdvancedSearchQuery);
+  const [previewCql, setPreviewCql] = useState<string>("");
   const [rawCql, setRawCql] = useState<string>("");
+
+  useEffect(() => {
+    const cql = translateSearchObjectToCql(internalSearchObject);
+    setPreviewCql(cql);
+  }, [internalSearchObject]);
 
   const updateFiltersData = (filtersUpdate: {
     key: keyof AdvancedSearchFilterData;
     value: MultiselectOption[];
   }) => {
-    if (!filtersData[filtersUpdate.key].length) {
+    if (!internalSearchObject?.filters[filtersUpdate.key].length) {
       return;
     }
-    const newFiltersData = {
-      ...filtersData,
+    const newSearchObject = { ...internalSearchObject };
+    newSearchObject.filters = {
+      ...newSearchObject.filters,
       [filtersUpdate.key]: filtersUpdate.value
     };
-    setFiltersData((prev) => {
-      return { ...prev, ...newFiltersData };
-    });
-  };
-
-  const translateFiltersToCql = (
-    filtersToTranslate: AdvancedSearchFilterData
-  ) => {
-    const filtersAsArray: MultiselectOption[][] = Object.keys(
-      filtersToTranslate
-    ).map((key) => filtersToTranslate[key as keyof AdvancedSearchFilterData]);
-
-    const translatedFilters = filtersAsArray.reduce(
-      (acc: string, curr: MultiselectOption[], index) => {
-        return (
-          acc +
-          translateFilterToCql(
-            curr,
-            Object.keys(filtersToTranslate)[
-              index
-            ] as keyof typeof advancedSearchFilters
-          )
-        );
-      },
-      ""
-    );
-    return translatedFilters;
+    setInternalSearchObject(newSearchObject);
   };
 
   const handleSearchButtonClick = () => {
@@ -93,27 +69,17 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       setSearchQuery(rawCql);
       return;
     }
-    if (rowsTranslatedToCql.trim() !== "" && isAdvancedSearchheader) {
-      setSearchQuery(rowsTranslatedToCql + filtersTranslatedToCql);
-    }
+    setSearchObject(internalSearchObject);
   };
 
   const isSearchButtonDisabled = () => {
     switch (isAdvancedSearchheader) {
       case true:
-        return rowsTranslatedToCql.trim() === "";
+        return searchQuery?.trim() === "";
       default:
         return rawCql.trim() === "";
     }
   };
-
-  useEffect(() => {
-    setRowsTranslatedToCql(translateRowsToCql(rowsData));
-  }, [rowsData]);
-
-  useEffect(() => {
-    setFiltersTranslatedToCql(translateFiltersToCql(filtersData));
-  }, [filtersData]);
 
   return (
     <>
@@ -124,23 +90,20 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           </h1>
           <div className="input-and-preview">
             <div className="input-and-preview__input">
-              {rowsData.map((row, index) => {
+              {internalSearchObject.rows.map((row, index) => {
                 return (
                   <AdvancedSearchRow
-                    data={rowsData}
+                    data={internalSearchObject}
                     rowIndex={index}
-                    setRowsData={setRowsData}
+                    setSearchObject={setInternalSearchObject}
                     dataCy={`${dataCy}-row`}
                   />
                 );
               })}
             </div>
             <PreviewSection
-              initialRowData={initialRowData}
-              translatedCql={
-                rowsTranslatedToCql + (filtersTranslatedToCql || "")
-              }
-              setRowsData={setRowsData}
+              translatedCql={previewCql || ""}
+              reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
               setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
             />
           </div>
@@ -181,19 +144,15 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
           </section>
           <PreviewSection
-            translatedCql={rowsTranslatedToCql + (filtersTranslatedToCql || "")}
-            initialRowData={initialRowData}
-            setRowsData={setRowsData}
+            translatedCql={previewCql}
+            reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
             isMobile
             setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
           />
         </>
       )}
       {!isAdvancedSearchheader && (
-        <CqlSearchHeader
-          initialCql={rowsTranslatedToCql + filtersTranslatedToCql}
-          setCql={setRawCql}
-        />
+        <CqlSearchHeader initialCql={searchQuery || ""} setCql={setRawCql} />
       )}
 
       <section className="advanced-search__footer">

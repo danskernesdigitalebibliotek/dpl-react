@@ -76,6 +76,23 @@ export type AdvancedSearchFilterData = {
   accessibility: MultiselectOption[];
 };
 
+export type AdvancedSearchQuery = {
+  rows: AdvancedSearchRowData[];
+  filters: AdvancedSearchFilterData;
+};
+
+export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
+  rows: [
+    { term: "", searchIndex: "all", clause: "AND" },
+    { term: "", searchIndex: "all", clause: "AND" }
+  ],
+  filters: {
+    materialTypes: [{ item: "All", value: "all" }],
+    fiction: [{ item: "All", value: "all" }],
+    accessibility: [{ item: "All", value: "all" }]
+  }
+};
+
 export const advancedSearchMaterialTypes: MultiselectOption[] = [
   { item: "Bog", value: "bøger" },
   { item: "E-bog", value: "e-bøger" },
