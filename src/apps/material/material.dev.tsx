@@ -349,7 +349,7 @@ export default {
       defaultValue: "Change",
       control: { type: "text" }
     },
-    pickupLocationText: {
+    reservationDetailsPickUpAtTitleText: {
       name: "Pick up at",
       defaultValue: "Pick up at",
       control: { type: "text" }
@@ -364,7 +364,7 @@ export default {
       defaultValue: "You will receive an email when the material is ready",
       control: { type: "text" }
     },
-    haveNoInterestAfterText: {
+    reservationDetailsNoInterestAfterTitleText: {
       name: "Have no interest after",
       defaultValue: "Have no interest after",
       control: { type: "text" }

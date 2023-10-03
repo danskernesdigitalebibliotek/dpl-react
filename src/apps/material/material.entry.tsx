@@ -67,7 +67,7 @@ interface MaterialEntryTextProps {
   firstAvailableEditionText: string;
   getOnlineText: string;
   goToText: string;
-  haveNoInterestAfterText: string;
+  reservationDetailsNoInterestAfterTitleText: string;
   identifierText: string;
   infomediaModalCloseModalAriaLabelText: string;
   infomediaModalScreenReaderModalDescriptionText: string;
@@ -146,7 +146,7 @@ interface MaterialEntryTextProps {
   outOfText: string;
   periodicalSelectEditionText: string;
   periodicalSelectYearText: string;
-  pickupLocationText: string;
+  reservationDetailsPickUpAtTitleText: string;
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
