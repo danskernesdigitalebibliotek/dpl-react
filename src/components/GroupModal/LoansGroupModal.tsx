@@ -64,8 +64,9 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
       },
       {
         onSuccess: (result) => {
+          // Make sure the loans list is updated after renewal.
+          queryClient.invalidateQueries(getGetLoansV2QueryKey());
           if (result) {
-            queryClient.invalidateQueries(getGetLoansV2QueryKey());
             setRenewingStatus("success");
             setRenewingResponse(result);
           }
