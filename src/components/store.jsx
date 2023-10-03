@@ -29,8 +29,8 @@ const queryClient = new QueryClient({
     queries: {
       // We need to have some sort of client caching strategy.
       // This is for temporarily testing.
-      // In this case cache needs be updated after 30 seconds:
-      staleTime: 1000 * 30,
+      // In this case cache needs be updated after 2 minutes:
+      staleTime: 1000 * 120,
       useErrorBoundary: queryErrorHandler
     },
     mutations: {
