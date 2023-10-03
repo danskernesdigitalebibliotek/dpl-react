@@ -7,16 +7,16 @@ import {
   advancedSearchMaterialTypes,
   AdvancedSearchQuery,
   initialAdvancedSearchQuery
-} from "../../core/utils/types/advanced-search-types";
+} from "./types";
 import { useText } from "../../core/utils/text";
 import PreviewSection from "./PreviewSection";
-import Multiselect from "../multiselect/Multiselect";
+import Multiselect from "../../components/multiselect/Multiselect";
 import {
   MultiselectExternalUpdateFunction,
   MultiselectOption
 } from "../../core/utils/types/multiselect-types";
 import CqlSearchHeader from "./CqlSearchHeader";
-import { translateSearchObjectToCql } from "../../apps/advanced-search/helpers";
+import { translateSearchObjectToCql } from "./helpers";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;

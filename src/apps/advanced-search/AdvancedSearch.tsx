@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AdvancedSearchHeader from "../../components/advanced-search/AdvancedSearchHeader";
-import AdvancedSearchResult from "../../components/advanced-search/AdvancedSearchResults";
-import { AdvancedSearchQuery } from "../../core/utils/types/advanced-search-types";
+import AdvancedSearchHeader from "./AdvancedSearchHeader";
+import AdvancedSearchResult from "./AdvancedSearchResults";
 import { translateSearchObjectToCql } from "./helpers";
+import { AdvancedSearchQuery } from "./types";
 
 interface AdvancedSearchProps {
   pageSize: number;

@@ -1,4 +1,4 @@
-import { MultiselectOption } from "./multiselect-types";
+import { MultiselectOption } from "../../core/utils/types/multiselect-types";
 
 export type AdvancedSearchIndex =
   | "all"

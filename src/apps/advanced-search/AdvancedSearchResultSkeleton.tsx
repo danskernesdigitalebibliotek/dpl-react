@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../core/utils/text";
-import CardListItemSkeleton from "../card-item-list/card-list-item/card-list-item-skeleton";
+import CardListItemSkeleton from "../../components/card-item-list/card-list-item/card-list-item-skeleton";
 
 export interface AdvancedSearchResultSkeletonProps {
   q: string;

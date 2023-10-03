@@ -12,7 +12,7 @@ import {
   AdvancedSearchQuery,
   initialAdvancedSearchQuery,
   AdvancedSearchRowData
-} from "../../core/utils/types/advanced-search-types";
+} from "./types";
 import { useText } from "../../core/utils/text";
 
 export type AdvancedSearchRowProps = {

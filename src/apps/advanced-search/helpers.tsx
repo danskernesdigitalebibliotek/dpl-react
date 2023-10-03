@@ -1,10 +1,10 @@
-import {
-  AdvancedSearchRowData,
-  advancedSearchFilters,
-  AdvancedSearchQuery,
-  AdvancedSearchFilterData
-} from "../../core/utils/types/advanced-search-types";
 import { MultiselectOption } from "../../core/utils/types/multiselect-types";
+import {
+  AdvancedSearchFilterData,
+  AdvancedSearchQuery,
+  AdvancedSearchRowData,
+  advancedSearchFilters
+} from "./types";
 
 const getSpace = (currentText: string) => {
   let space = "";

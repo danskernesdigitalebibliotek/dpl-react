@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
-import SearchResultList from "../card-item-list/SearchResultList";
 import useGetCleanBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
-import usePager from "../result-pager/use-pager";
 import {
   ComplexSearchWithPaginationQuery,
   useComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import SearchResultZeroHits from "../../apps/search-result/search-result-zero-hits";
+import usePager from "../../components/result-pager/use-pager";
+import SearchResultList from "../../components/card-item-list/SearchResultList";
+import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 
 interface AdvancedSearchResultProps {
   q: string;
