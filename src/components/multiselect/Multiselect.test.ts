@@ -67,6 +67,30 @@ describe("Multiselect", () => {
       .should("be.checked");
   });
 
+  it("Supports single default value preselected", () => {
+    cy.visit("/iframe.html?args=&id=components-multiselect--single-selected");
+    cy.contains("First item");
+    cy.get("button:visible").click();
+    cy.get("[role=option]")
+      .contains("First item")
+      .find("[type=checkbox]")
+      .should("be.checked");
+  });
+
+  it("Supports multiple default values preselected", () => {
+    cy.visit("/iframe.html?args=&id=components-multiselect--multiple-selected");
+    cy.contains("First item");
+    cy.contains("2. item");
+    cy.get("button:visible").click();
+    cy.get("[role=option]")
+      .contains("First item")
+      .find("[type=checkbox]")
+      .should("be.checked");
+    cy.get("[role=option]")
+      .contains("2. item")
+      .find("[type=checkbox]")
+      .should("be.checked");
+  });
 });
 
 export {};
