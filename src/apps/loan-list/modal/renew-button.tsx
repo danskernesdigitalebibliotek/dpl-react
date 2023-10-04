@@ -68,6 +68,7 @@ const RenewButton: FC<RenewButtonProps> = ({
       } modal-details__buttons`}
     >
       <Button
+        dataCy="material-renew-button"
         size="small"
         variant="filled"
         disabled={!renewable || renewingStatus === "pending"}
