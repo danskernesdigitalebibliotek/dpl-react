@@ -12,6 +12,7 @@ interface LoanListItemProps {
   openLoanDetailsModal: (modalId: string) => void;
   openDueDateModal: (dueDate: string) => void;
   indexOfFocus: number | null;
+  dataCy?: string;
 }
 
 const LoanListItems: FC<LoanListItemProps> = ({
@@ -20,14 +21,15 @@ const LoanListItems: FC<LoanListItemProps> = ({
   dueDates,
   openDueDateModal,
   openLoanDetailsModal,
-  indexOfFocus
+  indexOfFocus,
+  dataCy = "loan-list-items"
 }) => {
   const t = useText();
 
   return (
     // explanation for screen readers used in additional-materials-button
     // It is located here to avoid duplicate ids in the dom
-    <div className="list-reservation-container my-32">
+    <div data-cy={dataCy} className="list-reservation-container my-32">
       <div
         className="list-reservation__hidden-explanation"
         id="materials-modal-text"
