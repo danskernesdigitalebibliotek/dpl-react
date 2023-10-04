@@ -32,6 +32,7 @@ const LoansGroupModalButton: FC<LoansGroupModalButtonProps> = ({
 
   return (
     <Button
+      dataCy="loans-group-modal-button"
       label={label}
       buttonType="none"
       id="renew-several"
