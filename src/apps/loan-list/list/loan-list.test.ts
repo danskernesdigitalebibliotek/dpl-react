@@ -674,6 +674,9 @@ describe("Loan list", () => {
     cy.getBySel("modal-loan-details-956442399-close-button").should(
       "not.exist"
     );
+    // Because the loans cache is invalidated we should get precisely 2 requests
+    // to the loans service: The initial and the one after renewal.
+    cy.get("@physical_loans.all").should("have.length", 2);
   });
 });
 
