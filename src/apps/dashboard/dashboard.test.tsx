@@ -1376,12 +1376,15 @@ describe("Dashboard", () => {
       .should("not.exist");
   });
 
-  it("Can go trough renewal flow of soon overdue loans", () => {
+  it.only("Can go trough renewal flow of soon overdue loans", () => {
     cy.getBySel("physical-loans-soon-overdue").click();
     cy.getBySel("modal-due-date-2023-10-11-close-button").should("exist");
     cy.getBySel("loans-group-modal-button").first().click();
     cy.getBySel("modal-cta-button").click();
     cy.getBySel("modal-due-date-2023-10-11-close-button").should("not.exist");
+    // Because the loans cache is invalidated we should get precisely 2 requests
+    // to the loans service: The initial and the one after renewal.
+    cy.get("@loans.all").should("have.length", 2);
   });
 });
 
