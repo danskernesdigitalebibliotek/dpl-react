@@ -103,6 +103,36 @@ export default {
     name: "Choose one text",
     defaultValue: "Choose one",
     control: { type: "text" }
+  },
+  loadingText: {
+    name: "Loading",
+    defaultValue: "Loading...",
+    control: { type: "text" }
+  },
+  reservationSuccessTitleText: {
+    name: "Reservation success title",
+    defaultValue: "Your reservation has been changed",
+    control: { type: "text" }
+  },
+  reservationSuccessSubTitleText: {
+    name: "Reservation success sub title",
+    defaultValue: "Click the button below to close this window",
+    control: { type: "text" }
+  },
+  reservationerrorTitleText: {
+    name: "Reservation error title",
+    defaultValue: "Something went wrong",
+    control: { type: "text" }
+  },
+  reservationerrorSubTitleText: {
+    name: "Reservation error sub title",
+    defaultValue: "Click the button below to close this window and try again",
+    control: { type: "text" }
+  },
+  reservationStatusButtonText: {
+    name: "Reservation success button text",
+    defaultValue: "Close",
+    control: { type: "text" }
   }
 };
 
@@ -130,4 +160,10 @@ export interface ReservationMaterialDetailsProps {
   modalReservationFormNoInterestAfterHeaderTitleText: string;
   modalReservationFormNoInterestAfterHeaderDescriptionText: string;
   chooseOneText: string;
+  loadingText: string;
+  reservationSuccessTitleText: string;
+  reservationSuccessSubTitleText: string;
+  reservationerrorTitleText: string;
+  reservationerrorSubTitleText: string;
+  reservationStatusButtonText: string;
 }

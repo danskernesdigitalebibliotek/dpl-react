@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
@@ -29,6 +29,7 @@ import {
 import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
 import ReservationFormListItem from "../../../../components/reservation/ReservationFormListItem";
 import NoInterestAfterModal from "../../../../components/reservation/forms/NoInterestAfterModal";
+import { RequestStatus } from "../../../../core/utils/types/request";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -55,6 +56,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const [selectedBranch, setSelectedBranch] = useState<
     string | undefined | null
   >(pickupBranch);
+  const [reservationStatus, setReservationStatus] =
+    useState<RequestStatus>("idle");
 
   const openModal = (type: ModalReservationFormTextType) => () => {
     open(modalReservationFormId(type));
@@ -73,10 +76,11 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     blacklistBranches
   );
 
-  // This wil automatically save the changes in the reservation.
-  useEffect(() => {
+  const saveChanges = () => {
+    setReservationStatus("pending");
     if (!reservationId || !selectedBranch) {
       console.error("Missing reservationId or selectedBranch"); // eslint-disable-line no-console
+      setReservationStatus("error");
       return;
     }
 
@@ -100,21 +104,15 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       },
       {
         onSuccess: () => {
+          setReservationStatus("success");
           queryClient.invalidateQueries(getGetReservationsV2QueryKey());
         },
-        onError: (error) => {
-          console.error("Mutation error:", error); // eslint-disable-line no-console
+        onError: () => {
+          setReservationStatus("error");
         }
       }
     );
-  }, [
-    mutate,
-    queryClient,
-    expiryDate,
-    reservationId,
-    selectedBranch,
-    selectedInterest
-  ]);
+  };
 
   return (
     <>
@@ -146,6 +144,9 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             branches={whitelistBranches}
             defaultBranch={pickupBranch}
             selectBranchHandler={setSelectedBranch}
+            saveCallback={saveChanges}
+            reservationStatus={reservationStatus}
+            setReservationStatus={setReservationStatus}
           />
         </>
       )}
@@ -165,6 +166,9 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           <NoInterestAfterModal
             selectedInterest={selectedInterest ?? 90}
             setSelectedInterest={setSelectedInterest}
+            saveCallback={saveChanges}
+            reservationStatus={reservationStatus}
+            setReservationStatus={setReservationStatus}
           />
         </>
       )}

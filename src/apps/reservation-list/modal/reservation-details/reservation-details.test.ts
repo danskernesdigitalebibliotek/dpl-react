@@ -473,6 +473,10 @@ describe("Reservation details modal test", () => {
     // ID 13 2.f.ii. the link "apply changes"
     cy.getBySel("reservation-form-button").should("exist").click();
 
+    cy.getBySel("reservation-success-close-button")
+      .should("be.be.visible")
+      .click();
+
     // ID 15 2.a&b&c&d&e Dropdown with interest periods
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -496,6 +500,10 @@ describe("Reservation details modal test", () => {
     // ID 15 2.g user clicks save
     // ID 16 4. user clicks save
     cy.getBySel("reservation-form-button").should("exist").click();
+
+    cy.getBySel("reservation-success-close-button")
+      .should("be.be.visible")
+      .click();
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
