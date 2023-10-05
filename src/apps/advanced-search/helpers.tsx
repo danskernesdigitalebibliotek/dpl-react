@@ -94,4 +94,17 @@ export const translateSearchObjectToCql = (
   return rowsAsCql + filtersAsCql;
 };
 
+export const shouldAdvancedSearchButtonBeDisabled = (
+  isAdvancedSearch: boolean,
+  object: AdvancedSearchQuery,
+  cql: string
+) => {
+  switch (isAdvancedSearch) {
+    case true:
+      return !(object && !!object.rows.find((row) => row.term !== ""));
+    default:
+      return cql.trim() === "";
+  }
+};
+
 export default {};

@@ -16,7 +16,11 @@ import {
   MultiselectOption
 } from "../../core/utils/types/multiselect-types";
 import CqlSearchHeader from "./CqlSearchHeader";
-import { translateSearchObjectToCql } from "./helpers";
+import {
+  shouldAdvancedSearchButtonBeDisabled,
+  translateSearchObjectToCql
+} from "./helpers";
+import { Button } from "../../components/Buttons/Button";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -72,14 +76,19 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     setSearchObject(internalSearchObject);
   };
 
-  const isSearchButtonDisabled = () => {
-    switch (isAdvancedSearchheader) {
-      case true:
-        return searchQuery?.trim() === "";
-      default:
-        return rawCql.trim() === "";
-    }
-  };
+  const [isSearchButtonDisabled, setIsSearchButtonDisabled] =
+    useState<boolean>(true);
+
+  useEffect(() => {
+    setIsSearchButtonDisabled(
+      shouldAdvancedSearchButtonBeDisabled(
+        isAdvancedSearchheader,
+        internalSearchObject,
+        rawCql
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [internalSearchObject, rawCql, isAdvancedSearchheader]);
 
   return (
     <>
@@ -168,16 +177,17 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             {t("toAdvancedSearchButtonText")}
           </button>
         )}
-        <button
-          type="button"
-          className="btn-primary btn-filled btn-xlarge arrow__hover--right-small advanced-search__search-button"
-          onClick={() => {
-            handleSearchButtonClick();
-          }}
-          disabled={isSearchButtonDisabled()}
-        >
-          {t("advancedSearchSearchButtonText")}
-        </button>
+        <Button
+          dataCy="search-button"
+          buttonType="none"
+          disabled={isSearchButtonDisabled}
+          size="xlarge"
+          variant="filled"
+          classNames="advanced-search__search-button"
+          collapsible
+          label={t("advancedSearchSearchButtonText")}
+          onClick={handleSearchButtonClick}
+        />
       </section>
     </>
   );
