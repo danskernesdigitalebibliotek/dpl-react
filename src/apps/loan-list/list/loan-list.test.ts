@@ -242,6 +242,50 @@ describe("Loan list", () => {
       message: "OK"
     }).as("product");
 
+    cy.intercept(
+      "POST",
+      "**/external/agencyid/patrons/patronid/loans/renew/v2",
+      {
+        statusCode: 200,
+        body: [
+          {
+            renewalStatus: ["deniedMaterialIsNotLoanable"],
+            loanDetails: {
+              loanId: 956250508,
+              materialItemNumber: "3846990827",
+              recordId: "28847238",
+              periodical: null,
+              loanDate: "2022-06-13T16:43:25.325",
+              dueDate: "2023-10-12",
+              loanType: "loan",
+              ilBibliographicRecord: null,
+              materialGroup: {
+                name: "fon2",
+                description: "Flere CD-plader"
+              }
+            }
+          },
+          {
+            renewalStatus: ["deniedReserved"],
+            loanDetails: {
+              loanId: 956250508,
+              materialItemNumber: "3846990827",
+              recordId: "53667546",
+              periodical: null,
+              loanDate: "2022-06-13T16:43:25.325",
+              dueDate: "2023-10-12",
+              loanType: "loan",
+              ilBibliographicRecord: null,
+              materialGroup: {
+                name: "fon2",
+                description: "Flere CD-plader"
+              }
+            }
+          }
+        ]
+      }
+    ).as("renew");
+
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"], {
       timeout: 10000
