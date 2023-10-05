@@ -2,9 +2,6 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
   it("Should show two query-index inputs on load", () => {
-    cy.visit(
-      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
-    );
     cy.getBySel("advanced-search-header-row").should("have.length", 2);
   });
 
@@ -23,6 +20,8 @@ describe("Search Result", () => {
   });
 
   it("Should reflect operator changes in the translated CQL", () => {
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
     cy.getBySel("advanced-search-header-row")
       .eq(1)
       .getBySel("clauses")
@@ -34,20 +33,20 @@ describe("Search Result", () => {
   });
 
   it("Should translate filters into CQL", () => {
-    cy.getBySel("multiselect")
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
+    cy.getBySel("advanced-search-material-types")
       .first()
       .click()
       .find("li")
       .eq(1)
       .should("contain", "Bog")
       .click();
-    cy.getBySel("multiselect").first().click();
-    cy.getBySel("preview-section")
-      .first()
-      .should(
-        "contain",
-        "'Harry' NOT 'Prince' AND generalmaterialtype='bøger'"
-      );
+    cy.getBySel("advanced-search-material-types").first().click();
+    cy.getBySel("preview-section", true).should(
+      "contain",
+      "'Harry' AND 'Prince' AND generalmaterialtype='bøger'"
+    );
   });
 
   it("Should reset the form upon reset button click", () => {
@@ -55,10 +54,6 @@ describe("Search Result", () => {
   });
 
   it("Should disable the search button if all inputs are empty", () => {
-    // TODO: remove this visit when above test is implemented.
-    cy.visit(
-      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
-    );
     cy.getBySel("advanced-search-header-row").each(($row) => {
       cy.wrap($row).should("have.value", "");
     });
@@ -71,6 +66,10 @@ describe("Search Result", () => {
   });
 
   beforeEach(() => {
+    cy.visit(
+      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
+    );
+
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
       .then((result) => {
