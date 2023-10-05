@@ -44,7 +44,11 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
       </Heading>
       {isAvailable !== undefined && (
         <Pagefold
-          text={isAvailable ? t("available") : t("unavailable")}
+          text={
+            isAvailable
+              ? t("availabilityAvailableText")
+              : t("availabilityUnavailableText")
+          }
           state={isAvailable ? "success" : "alert"}
         />
       )}
