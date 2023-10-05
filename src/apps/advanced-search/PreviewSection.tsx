@@ -86,6 +86,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
           className="link-tag link-tag cursor-pointer capitalize-first"
           onClick={() => setIsAdvancedSearchHeader(false)}
           onKeyUp={(e) => e.key === "Enter" ?? setIsAdvancedSearchHeader(false)}
+          data-cy="advanced-search-edit-cql"
         >
           {t("advancedSearchEditCqlText")}
         </button>

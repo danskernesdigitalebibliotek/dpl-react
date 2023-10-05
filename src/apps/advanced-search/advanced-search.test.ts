@@ -132,6 +132,29 @@ describe("Search Result", () => {
       .should("contain", "Fysisk");
   });
 
+  it("Should persist CQL query in url", () => {
+    // Setup the search query.
+    // We have two preview elements in the form where visibility is controlled
+    // through media queries. Click on the one that is visible.
+    cy.getBySel("advanced-search-edit-cql", true).click();
+    cy.getBySel("cql-search-header-input").type("Harry");
+
+    // Perform the search to persist the CQL in the url.
+    cy.getBySel("search-button").click();
+
+    // Do a hard reload of the page to simulate a new visit without risking
+    // local storage.
+    cy.reload(true);
+
+    // Wait for the search operation to finish after the reload. Once this is
+    // done we know that the CQL query has been transferred back from the
+    // url to the component and we can make our assertions.
+    cy.wait("@complexSearch GraphQL operation");
+
+    // Verify that the CQL query have been transferred.
+    cy.getBySel("cql-search-header-input").should("have.value", "Harry");
+  });
+
   beforeEach(() => {
     cy.visit(
       "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
