@@ -71,11 +71,10 @@ describe("Search Result", () => {
     );
 
     // Intercept graphql search query.
-    cy.fixture("search-result/fbi-api.json")
-      .then((result) => {
-        cy.intercept("POST", "**/next/graphql**", result);
-      })
-      .as("Graphql search query");
+    cy.interceptGraphql({
+      operationName: "complexSearch",
+      fixtureFilePath: "search-result/fbi-api.json"
+    });
 
     // Intercept all images from Cloudinary.
     cy.intercept(
