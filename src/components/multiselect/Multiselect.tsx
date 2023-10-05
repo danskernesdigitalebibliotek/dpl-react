@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { useMultipleSelection, useSelect } from "downshift";
 import clsx from "clsx";
-import { useClickAway } from "react-use";
+import { useClickAway, useDeepCompareEffect } from "react-use";
 import CheckBox from "../checkbox/Checkbox";
 import {
   MultiselectExternalUpdate,
@@ -14,13 +14,15 @@ export type MultiselectProps = {
   dataCy?: string;
   caption?: string;
   options: MultiselectOption[];
+  defaultValue?: MultiselectOption[];
   updateExternalState?: MultiselectExternalUpdate;
 };
 
-const Multiselect: React.FC<MultiselectProps> = ({
+const Multiselect: FC<MultiselectProps> = ({
   dataCy = "multiselect",
   caption,
   options,
+  defaultValue = [],
   updateExternalState
 }) => {
   const ref = useRef(null);
@@ -40,9 +42,11 @@ const Multiselect: React.FC<MultiselectProps> = ({
     item: "All",
     value: "all"
   });
+  const initialSelectedOptions =
+    defaultValue.length > 0 ? defaultValue : allOptions.slice(0, 1);
 
   const { getDropdownProps, setSelectedItems, selectedItems } =
-    useMultipleSelection({ initialSelectedItems: [allOptions[0]] });
+    useMultipleSelection({ initialSelectedItems: initialSelectedOptions });
 
   const addNewSelectedItem = (
     allCurrentlySelected: MultiselectOption[],
@@ -88,6 +92,10 @@ const Multiselect: React.FC<MultiselectProps> = ({
   useClickAway(ref, () => {
     setIsDropdownOpen(false);
   });
+
+  useDeepCompareEffect(() => {
+    setSelectedItems(initialSelectedOptions);
+  }, [setSelectedItems, initialSelectedOptions]);
 
   const { getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } =
     useSelect({
