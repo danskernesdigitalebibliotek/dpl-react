@@ -153,7 +153,7 @@ interface MaterialEntryTextProps {
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   removeFromFavoritesAriaLabelText: string;
-  reservableOnAnotherLibraryText: string;
+  reservableFromAnotherLibraryText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;

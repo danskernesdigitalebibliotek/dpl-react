@@ -92,7 +92,7 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
-    reservableOnAnotherLibraryText: {
+    reservableFromAnotherLibraryText: {
       name: "Reservable on another library",
       defaultValue: "Reservable on another library",
       control: { type: "text" }

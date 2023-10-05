@@ -7,15 +7,15 @@ import { FaustId } from "../../../../core/utils/types/ids";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 
-export interface MaterialButtonReservableOnAnotherLibraryProps {
+export interface MaterialButtonReservableFromAnotherLibraryProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
   faustIds: FaustId[];
   dataCy?: string;
 }
 
-const MaterialButtonReservableOnAnotherLibrary: FC<
-  MaterialButtonReservableOnAnotherLibraryProps
+const MaterialButtonReservableFromAnotherLibrary: FC<
+  MaterialButtonReservableFromAnotherLibraryProps
 > = ({
   manifestationMaterialType,
   faustIds,
@@ -38,9 +38,9 @@ const MaterialButtonReservableOnAnotherLibrary: FC<
       dataCy={dataCy}
       label={
         size === "small"
-          ? t("reservableOnAnotherLibraryText")
+          ? t("reservableFromAnotherLibraryText")
           : `${t(
-              "reservableOnAnotherLibraryText"
+              "reservableFromAnotherLibraryText"
             )} ${manifestationMaterialType}`
       }
       buttonType="none"
@@ -53,4 +53,4 @@ const MaterialButtonReservableOnAnotherLibrary: FC<
   );
 };
 
-export default MaterialButtonReservableOnAnotherLibrary;
+export default MaterialButtonReservableFromAnotherLibrary;
