@@ -706,6 +706,11 @@ describe("Loan list", () => {
   });
 
   it.only("Can go trough renewal flow of a single loan from the loan list", () => {
+    // Spy on the loan request.
+    cy.intercept(
+      "**/external/agencyid/patrons/patronid/loans/v2**",
+      cy.spy().as("loan-spy")
+    );
     cy.getBySel("loan-list-items")
       .find(".list-reservation")
       .eq(1)
@@ -718,9 +723,9 @@ describe("Loan list", () => {
     cy.getBySel("modal-loan-details-956442399-close-button").should(
       "not.exist"
     );
-    // Because the loans cache is invalidated we should get precisely 2 requests
-    // to the loans service: The initial and the one after renewal.
-    cy.get("@physical_loans.all").should("have.length", 2);
+    // Because the loans cache is invalidated we should get precisely 1 request
+    // to the loans service (after the intial request on page load).
+    cy.get("@loan-spy").its("callCount").should("equal", 1);
   });
 });
 
