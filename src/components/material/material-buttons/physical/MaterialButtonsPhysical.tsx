@@ -14,7 +14,7 @@ import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
 import { usePatronData } from "../../helper";
-import MaterialButtonReservableOnAnotherLibrary from "./MaterialButtonReservableOnAnotherLibrary";
+import MaterialButtonReservableFromAnotherLibrary from "./MaterialButtonReservableFromAnotherLibrary";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -51,7 +51,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
 
   if (isReservableOnAnotherLibrar) {
     return (
-      <MaterialButtonReservableOnAnotherLibrary
+      <MaterialButtonReservableFromAnotherLibrary
         size={size}
         manifestationMaterialType={getManifestationType(manifestations)}
         faustIds={faustIds}
