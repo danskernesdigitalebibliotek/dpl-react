@@ -225,7 +225,7 @@ export default {
     },
     advancedSearchPreviewHeadlineText: {
       name: "Advanced search CQL preview headline",
-      defaultValue: "Advanced search",
+      defaultValue: "CQL search string",
       control: { type: "text" }
     },
     advancedSearchPreviewEmptyText: {

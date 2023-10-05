@@ -11,12 +11,14 @@ import {
 import useMultiselectOptions from "./useMultiselectOptions";
 
 export type MultiselectProps = {
+  dataCy?: string;
   caption?: string;
   options: MultiselectOption[];
   updateExternalState?: MultiselectExternalUpdate;
 };
 
 const Multiselect: React.FC<MultiselectProps> = ({
+  dataCy = "multiselect",
   caption,
   options,
   updateExternalState
@@ -152,7 +154,7 @@ const Multiselect: React.FC<MultiselectProps> = ({
   return (
     <>
       {caption && <div className="multiselect__caption">{caption}</div>}
-      <div className="multiselect" ref={ref}>
+      <div className="multiselect" ref={ref} data-cy={dataCy}>
         {/* eslint-disable react/jsx-props-no-spreading */}
         {/* The downshift combobox works this way by design */}
         <button

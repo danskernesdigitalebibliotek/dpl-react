@@ -5,6 +5,7 @@ import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { useText } from "../../core/utils/text";
 
 export type PreviewSectionProps = {
+  dataCy?: string;
   translatedCql: string;
   reset: () => void;
   isMobile?: boolean;
@@ -12,6 +13,7 @@ export type PreviewSectionProps = {
 };
 
 const PreviewSection: React.FC<PreviewSectionProps> = ({
+  dataCy = "preview-section",
   translatedCql,
   reset,
   isMobile,
@@ -33,6 +35,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
 
   return (
     <div
+      data-cy={dataCy}
       className={clsx("pagefold-parent--large input-and-preview__preview", {
         "input-and-preview__preview--mobile": isMobile
       })}
