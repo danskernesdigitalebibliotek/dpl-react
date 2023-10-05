@@ -40,7 +40,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     e: React.ChangeEvent<HTMLSelectElement>,
     facet: string
   ) => {
-    const term = facetMap[`${facet}:${e.target.value}`][0];
+    const term = facetMap[`${facet}:${e.target.value}`];
 
     if (!term) return;
 

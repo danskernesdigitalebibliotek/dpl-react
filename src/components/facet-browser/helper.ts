@@ -134,18 +134,20 @@ export const getFacetFieldTranslation = (name: FacetField) => {
   }
 };
 
+// createFacetsMap generates a map for quick lookup and enhanced search
+// capabilities by combining facet name and term into a single string key.
+// Structure: { [facetName:termKey]: FacetValue }
+// Example Key: 'fictionalCharacters:Batman'
 export const createFacetsMap = (
   facets: FacetResult[]
-): { [key: string]: FacetValue[] } => {
+): { [key: string]: FacetValue } => {
   return facets.reduce(
-    (acc: { [key: string]: FacetValue[] }, facet: FacetResult) => {
+    (acc: { [key: string]: FacetValue }, facet: FacetResult) => {
       const newAcc = { ...acc };
 
       facet.values.forEach((value) => {
         const combinedKey = `${facet.name}:${value.key}`;
-        newAcc[combinedKey] = newAcc[combinedKey]
-          ? [...newAcc[combinedKey], value]
-          : [value];
+        newAcc[combinedKey] = value;
       });
 
       return newAcc;

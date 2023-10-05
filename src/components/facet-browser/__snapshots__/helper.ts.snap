@@ -2,193 +2,136 @@
 
 exports[`createFacetsMap 1`] = `
 {
-  "fictionalCharacters:Batman": [
-    {
-      "key": "Batman",
-      "score": 4,
-      "term": "Batman",
-    },
-  ],
-  "fictionalCharacters:Harry Potter": [
-    {
-      "key": "Harry Potter",
-      "score": 3,
-      "term": "Harry Potter",
-    },
-  ],
-  "fictionalCharacters:Hermione Granger": [
-    {
-      "key": "Hermione Granger",
-      "score": 3,
-      "term": "Hermione Granger",
-    },
-  ],
-  "fictionalCharacters:Justice League": [
-    {
-      "key": "Justice League",
-      "score": 4,
-      "term": "Justice League",
-    },
-  ],
-  "fictionalCharacters:Ron Weasley": [
-    {
-      "key": "Ron Weasley",
-      "score": 3,
-      "term": "Ron Weasley",
-    },
-  ],
-  "mainLanguages:dan": [
-    {
-      "key": "dan",
-      "score": 427,
-      "term": "Dansk",
-    },
-  ],
-  "mainLanguages:eng": [
-    {
-      "key": "eng",
-      "score": 82,
-      "term": "Engelsk",
-    },
-  ],
-  "mainLanguages:fre": [
-    {
-      "key": "fre",
-      "score": 9,
-      "term": "Fransk",
-    },
-  ],
-  "mainLanguages:ger": [
-    {
-      "key": "ger",
-      "score": 9,
-      "term": "Tysk",
-    },
-  ],
-  "mainLanguages:ita": [
-    {
-      "key": "ita",
-      "score": 9,
-      "term": "Italiensk",
-    },
-  ],
-  "materialTypesGeneral:abekat": [
-    {
-      "key": "abekat",
-      "score": 0,
-      "term": "abekat",
-    },
-  ],
-  "materialTypesGeneral:artikler": [
-    {
-      "key": "artikler",
-      "score": 346,
-      "term": "artikler",
-    },
-  ],
-  "materialTypesGeneral:bøger": [
-    {
-      "key": "bøger",
-      "score": 74,
-      "term": "bøger",
-    },
-  ],
-  "materialTypesGeneral:computerspil": [
-    {
-      "key": "computerspil",
-      "score": 26,
-      "term": "computerspil",
-    },
-    {
-      "key": "computerspil",
-      "score": 26,
-      "term": "computerspil",
-    },
-  ],
-  "materialTypesGeneral:e-bøger": [
-    {
-      "key": "e-bøger",
-      "score": 38,
-      "term": "e-bøger",
-    },
-  ],
-  "materialTypesGeneral:film": [
-    {
-      "key": "film",
-      "score": 9,
-      "term": "film",
-    },
-  ],
-  "subjects:legetøj": [
-    {
-      "key": "legetøj",
-      "score": 165,
-      "term": "legetøj",
-    },
-  ],
-  "subjects:legetøjsindustri": [
-    {
-      "key": "legetøjsindustri",
-      "score": 126,
-      "term": "legetøjsindustri",
-    },
-  ],
-  "subjects:lego": [
-    {
-      "key": "lego",
-      "score": 101,
-      "term": "lego",
-    },
-  ],
-  "subjects:legoklodser": [
-    {
-      "key": "legoklodser",
-      "score": 98,
-      "term": "legoklodser",
-    },
-  ],
-  "subjects:virksomhedsledelse": [
-    {
-      "key": "virksomhedsledelse",
-      "score": 65,
-      "term": "virksomhedsledelse",
-    },
-  ],
-  "year:2013": [
-    {
-      "key": "2013",
-      "score": 27,
-      "term": "2013",
-    },
-  ],
-  "year:2014": [
-    {
-      "key": "2014",
-      "score": 31,
-      "term": "2014",
-    },
-  ],
-  "year:2015": [
-    {
-      "key": "2015",
-      "score": 33,
-      "term": "2015",
-    },
-  ],
-  "year:2017": [
-    {
-      "key": "2017",
-      "score": 35,
-      "term": "2017",
-    },
-  ],
-  "year:2018": [
-    {
-      "key": "2018",
-      "score": 29,
-      "term": "2018",
-    },
-  ],
+  "fictionalCharacters:Batman": {
+    "key": "Batman",
+    "score": 4,
+    "term": "Batman",
+  },
+  "fictionalCharacters:Harry Potter": {
+    "key": "Harry Potter",
+    "score": 3,
+    "term": "Harry Potter",
+  },
+  "fictionalCharacters:Hermione Granger": {
+    "key": "Hermione Granger",
+    "score": 3,
+    "term": "Hermione Granger",
+  },
+  "fictionalCharacters:Justice League": {
+    "key": "Justice League",
+    "score": 4,
+    "term": "Justice League",
+  },
+  "fictionalCharacters:Ron Weasley": {
+    "key": "Ron Weasley",
+    "score": 3,
+    "term": "Ron Weasley",
+  },
+  "mainLanguages:dan": {
+    "key": "dan",
+    "score": 427,
+    "term": "Dansk",
+  },
+  "mainLanguages:eng": {
+    "key": "eng",
+    "score": 82,
+    "term": "Engelsk",
+  },
+  "mainLanguages:fre": {
+    "key": "fre",
+    "score": 9,
+    "term": "Fransk",
+  },
+  "mainLanguages:ger": {
+    "key": "ger",
+    "score": 9,
+    "term": "Tysk",
+  },
+  "mainLanguages:ita": {
+    "key": "ita",
+    "score": 9,
+    "term": "Italiensk",
+  },
+  "materialTypesGeneral:abekat": {
+    "key": "abekat",
+    "score": 0,
+    "term": "abekat",
+  },
+  "materialTypesGeneral:artikler": {
+    "key": "artikler",
+    "score": 346,
+    "term": "artikler",
+  },
+  "materialTypesGeneral:bøger": {
+    "key": "bøger",
+    "score": 74,
+    "term": "bøger",
+  },
+  "materialTypesGeneral:computerspil": {
+    "key": "computerspil",
+    "score": 26,
+    "term": "computerspil",
+  },
+  "materialTypesGeneral:e-bøger": {
+    "key": "e-bøger",
+    "score": 38,
+    "term": "e-bøger",
+  },
+  "materialTypesGeneral:film": {
+    "key": "film",
+    "score": 9,
+    "term": "film",
+  },
+  "subjects:legetøj": {
+    "key": "legetøj",
+    "score": 165,
+    "term": "legetøj",
+  },
+  "subjects:legetøjsindustri": {
+    "key": "legetøjsindustri",
+    "score": 126,
+    "term": "legetøjsindustri",
+  },
+  "subjects:lego": {
+    "key": "lego",
+    "score": 101,
+    "term": "lego",
+  },
+  "subjects:legoklodser": {
+    "key": "legoklodser",
+    "score": 98,
+    "term": "legoklodser",
+  },
+  "subjects:virksomhedsledelse": {
+    "key": "virksomhedsledelse",
+    "score": 65,
+    "term": "virksomhedsledelse",
+  },
+  "year:2013": {
+    "key": "2013",
+    "score": 27,
+    "term": "2013",
+  },
+  "year:2014": {
+    "key": "2014",
+    "score": 31,
+    "term": "2014",
+  },
+  "year:2015": {
+    "key": "2015",
+    "score": 33,
+    "term": "2015",
+  },
+  "year:2017": {
+    "key": "2017",
+    "score": 35,
+    "term": "2017",
+  },
+  "year:2018": {
+    "key": "2018",
+    "score": 29,
+    "term": "2018",
+  },
 }
 `;
 
