@@ -75,6 +75,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     setInternalSearchObject(newSearchObject);
   };
 
+  useEffect(() => {
+    if (searchQuery && !searchObject) {
+      setIsAdvancedSearchHeader(false);
+    }
+  }, [searchObject, searchQuery]);
+
   const handleSearchButtonClick = () => {
     if (rawCql.trim() !== "" && !isAdvancedSearchheader) {
       setSearchQuery(rawCql);
