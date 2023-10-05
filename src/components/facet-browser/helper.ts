@@ -203,46 +203,6 @@ if (import.meta.vitest) {
       ]
     },
     {
-      name: "materialTypesGeneral",
-      values: [
-        {
-          key: "abekat",
-          term: "abekat",
-          score: 0
-        }
-      ]
-    },
-    {
-      name: "subjects",
-      values: [
-        {
-          key: "legetøj",
-          term: "legetøj",
-          score: 165
-        },
-        {
-          key: "legetøjsindustri",
-          term: "legetøjsindustri",
-          score: 126
-        },
-        {
-          key: "lego",
-          term: "lego",
-          score: 101
-        },
-        {
-          key: "legoklodser",
-          term: "legoklodser",
-          score: 98
-        },
-        {
-          key: "virksomhedsledelse",
-          term: "virksomhedsledelse",
-          score: 65
-        }
-      ]
-    },
-    {
       name: "mainLanguages",
       values: [
         {
@@ -254,21 +214,6 @@ if (import.meta.vitest) {
           key: "eng",
           term: "Engelsk",
           score: 82
-        },
-        {
-          key: "fre",
-          term: "Fransk",
-          score: 9
-        },
-        {
-          key: "ger",
-          term: "Tysk",
-          score: 9
-        },
-        {
-          key: "ita",
-          term: "Italiensk",
-          score: 9
         }
       ]
     },
@@ -299,66 +244,6 @@ if (import.meta.vitest) {
           key: "film",
           term: "film",
           score: 9
-        }
-      ]
-    },
-    {
-      name: "year",
-      values: [
-        {
-          key: "2017",
-          term: "2017",
-          score: 35
-        },
-        {
-          key: "2015",
-          term: "2015",
-          score: 33
-        },
-        {
-          key: "2014",
-          term: "2014",
-          score: 31
-        },
-        {
-          key: "2018",
-          term: "2018",
-          score: 29
-        },
-        {
-          key: "2013",
-          term: "2013",
-          score: 27
-        }
-      ]
-    },
-    {
-      name: "fictionalCharacters",
-      values: [
-        {
-          key: "Batman",
-          term: "Batman",
-          score: 4
-        },
-        {
-          key: "Justice League",
-          term: "Justice League",
-          score: 4
-        },
-        {
-          key: "Harry Potter",
-          term: "Harry Potter",
-          score: 3
-        },
-        {
-          key: "Hermione Granger",
-          term: "Hermione Granger",
-          score: 3
-        },
-        {
-          key: "Ron Weasley",
-          term: "Ron Weasley",
-          score: 3
         }
       ]
     }
