@@ -12,6 +12,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import {
   FacetBrowserModalId,
   createFacetsMap,
+  findTermInFacetMap,
   getFacetFieldTranslation
 } from "../facet-browser/helper";
 
@@ -40,7 +41,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     e: React.ChangeEvent<HTMLSelectElement>,
     facet: string
   ) => {
-    const term = facetMap[`${facet}:${e.target.value}`];
+    const term = findTermInFacetMap(facet, e.target.value, facetMap);
 
     if (!term) return;
 

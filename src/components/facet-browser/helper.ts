@@ -134,26 +134,31 @@ export const getFacetFieldTranslation = (name: FacetField) => {
   }
 };
 
+type FacetMap = { [key: string]: FacetValue };
 // createFacetsMap generates a map for quick lookup and enhanced search
 // capabilities by combining facet name and term into a single string key.
 // Structure: { [facetName:termKey]: FacetValue }
 // Example Key: 'fictionalCharacters:Batman'
-export const createFacetsMap = (
-  facets: FacetResult[]
-): { [key: string]: FacetValue } => {
-  return facets.reduce(
-    (acc: { [key: string]: FacetValue }, facet: FacetResult) => {
-      const newAcc = { ...acc };
+export const createFacetsMap = (facets: FacetResult[]): FacetMap => {
+  return facets.reduce((acc: FacetMap, facet: FacetResult) => {
+    const newAcc = { ...acc };
 
-      facet.values.forEach((value) => {
-        const combinedKey = `${facet.name}:${value.key}`;
-        newAcc[combinedKey] = value;
-      });
+    facet.values.forEach((value) => {
+      const combinedKey = `${facet.name}:${value.key}`;
+      newAcc[combinedKey] = value;
+    });
 
-      return newAcc;
-    },
-    {}
-  );
+    return newAcc;
+  }, {});
+};
+
+export const findTermInFacetMap = (
+  facetName: string,
+  termName: string,
+  facetMap: FacetMap
+): FacetValue => {
+  const key = `${facetName}:${termName}`;
+  return facetMap[key];
 };
 
 export default {};
