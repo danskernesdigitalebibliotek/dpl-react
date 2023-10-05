@@ -49,8 +49,11 @@ describe("Search Result", () => {
     );
   });
 
-  it("Should reset the form upon reset button click", () => {
-    // TODO
+  it.only("Should reset the form upon reset button click", () => {
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("preview-section").eq(1).should("contain", "'Harry'");
+    cy.getBySel("preview-section").eq(1).contains("Reset").click();
+    // TODO: finish when the functionality is implemented.
   });
 
   it("Should disable the search button if all inputs are empty", () => {
@@ -102,7 +105,7 @@ describe("Search Result", () => {
     // Wait for the search operation to finish after the reload. Once this is
     // done we know that the search query has been transferred back from the
     // url to the component and we can make our assertions.
-    cy.wait("@complexSearch GraphQL operation");
+    cy.wait("@complexSearchWithPagination GraphQL operation");
 
     // Verify that all parts of the search query have been transferred.
     cy.getBySel("advanced-search-header-row").should("have.length", 2);
@@ -149,10 +152,19 @@ describe("Search Result", () => {
     // Wait for the search operation to finish after the reload. Once this is
     // done we know that the CQL query has been transferred back from the
     // url to the component and we can make our assertions.
-    cy.wait("@complexSearch GraphQL operation");
+    cy.wait("@complexSearchWithPagination GraphQL operation");
 
     // Verify that the CQL query have been transferred.
     cy.getBySel("cql-search-header-input").should("have.value", "Harry");
+  });
+
+  it("Should show search results upon submitting the form", () => {
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("search-button").click();
+    cy.wait("@complexSearchWithPagination GraphQL operation");
+    cy.getBySel("search-result-list").should("exist");
+    cy.scrollTo("bottom");
+    cy.getBySel("card-list-item").should("have.length", 2);
   });
 
   beforeEach(() => {
@@ -162,8 +174,8 @@ describe("Search Result", () => {
 
     // Intercept graphql search query.
     cy.interceptGraphql({
-      operationName: "complexSearch",
-      fixtureFilePath: "search-result/fbi-api.json"
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath: "advanced-search/fbi-api.json"
     });
 
     // Intercept all images from Cloudinary.
