@@ -129,6 +129,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               <Multiselect
                 caption="Material types"
                 options={advancedSearchMaterialTypes}
+                defaultValue={internalSearchObject.filters.materialTypes}
                 updateExternalState={{
                   key: "materialTypes",
                   externalUpdateFunction:
@@ -140,6 +141,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               <Multiselect
                 caption="Literature form"
                 options={advancedSearchFiction}
+                defaultValue={internalSearchObject.filters.fiction}
                 updateExternalState={{
                   key: "fiction",
                   externalUpdateFunction:
@@ -151,6 +153,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               <Multiselect
                 caption="Access type"
                 options={advancedSearchAccessibility}
+                defaultValue={internalSearchObject.filters.accessibility}
                 updateExternalState={{
                   key: "accessibility",
                   externalUpdateFunction:
