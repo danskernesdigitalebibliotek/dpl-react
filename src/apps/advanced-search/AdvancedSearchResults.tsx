@@ -101,7 +101,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
 
   return (
     <>
-      <div className="advanced-search__divider" />
+      {!showContentOnly && <div className="advanced-search__divider" />}
       <h2 className="text-header-h2 advanced-search__title capitalize-first">
         {isLoading && t("loadingResultsText")}
         {shouldShowResultHeadline &&
