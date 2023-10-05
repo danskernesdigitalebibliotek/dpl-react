@@ -141,6 +141,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
                   externalUpdateFunction:
                     updateFiltersData as MultiselectExternalUpdateFunction
                 }}
+                dataCy="advanced-search-material-types"
               />
             </div>
             <div className="advanced-search__filter">
@@ -153,6 +154,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
                   externalUpdateFunction:
                     updateFiltersData as MultiselectExternalUpdateFunction
                 }}
+                dataCy="advanced-search-fiction"
               />
             </div>
             <div className="advanced-search__filter">
@@ -165,6 +167,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
                   externalUpdateFunction:
                     updateFiltersData as MultiselectExternalUpdateFunction
                 }}
+                dataCy="advanced-search-accessibility"
               />
             </div>
           </section>

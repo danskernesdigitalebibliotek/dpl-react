@@ -2,9 +2,6 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
   it("Should show two query-index inputs on load", () => {
-    cy.visit(
-      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
-    );
     cy.getBySel("advanced-search-header-row").should("have.length", 2);
   });
 
@@ -23,6 +20,8 @@ describe("Search Result", () => {
   });
 
   it("Should reflect operator changes in the translated CQL", () => {
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
     cy.getBySel("advanced-search-header-row")
       .eq(1)
       .getBySel("clauses")
@@ -34,20 +33,20 @@ describe("Search Result", () => {
   });
 
   it("Should translate filters into CQL", () => {
-    cy.getBySel("multiselect")
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
+    cy.getBySel("advanced-search-material-types")
       .first()
       .click()
       .find("li")
       .eq(1)
       .should("contain", "Bog")
       .click();
-    cy.getBySel("multiselect").first().click();
-    cy.getBySel("preview-section")
-      .first()
-      .should(
-        "contain",
-        "'Harry' NOT 'Prince' AND generalmaterialtype='bøger'"
-      );
+    cy.getBySel("advanced-search-material-types").first().click();
+    cy.getBySel("preview-section", true).should(
+      "contain",
+      "'Harry' AND 'Prince' AND generalmaterialtype='bøger'"
+    );
   });
 
   it("Should reset the form upon reset button click", () => {
@@ -55,10 +54,6 @@ describe("Search Result", () => {
   });
 
   it("Should disable the search button if all inputs are empty", () => {
-    // TODO: remove this visit when above test is implemented.
-    cy.visit(
-      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
-    );
     cy.getBySel("advanced-search-header-row").each(($row) => {
       cy.wrap($row).should("have.value", "");
     });
@@ -70,13 +65,106 @@ describe("Search Result", () => {
     cy.getBySel("search-button").should("be.enabled");
   });
 
+  it("Should persist advanced search query in url", () => {
+    // Setup the search query.
+    cy.getBySel("advanced-search-header-row").eq(0).click().type("Harry");
+    cy.getBySel("advanced-search-header-row")
+      .eq(1)
+      .click()
+      .within(() => {
+        cy.get("input").type("Rowling");
+        cy.get("select").select(1);
+      });
+    cy.getBySel("advanced-search-material-types")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+        cy.get("[role=option]").eq(2).click();
+      });
+    cy.getBySel("advanced-search-fiction")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+    cy.getBySel("advanced-search-accessibility")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+
+    // Perform the search to persist it in the url.
+    cy.getBySel("search-button").click();
+
+    // Do a hard reload of the page to simulate a new visit without risking
+    // local storage.
+    cy.reload(true);
+
+    // Wait for the search operation to finish after the reload. Once this is
+    // done we know that the search query has been transferred back from the
+    // url to the component and we can make our assertions.
+    cy.wait("@complexSearch GraphQL operation");
+
+    // Verify that all parts of the search query have been transferred.
+    cy.getBySel("advanced-search-header-row").should("have.length", 2);
+    cy.getBySel("advanced-search-header-row")
+      .eq(0)
+      .within(() => {
+        cy.get("input").should("have.value", "Harry");
+        cy.get("select").should("have.value", "all");
+      });
+    cy.getBySel("advanced-search-header-row")
+      .eq(1)
+      .within(() => {
+        cy.get("input").should("have.value", "Rowling");
+        cy.get("select").should("have.value", "creator");
+      });
+    // We currently have no good way to identify selected options in the
+    // multiselect so checking the text of the button is the best we can do.
+    cy.getBySel("advanced-search-material-types")
+      .find("button")
+      .should("contain", "Bog")
+      .should("contain", "E-bog");
+    cy.getBySel("advanced-search-fiction")
+      .find("button")
+      .should("contain", "Skønlitteratur");
+    cy.getBySel("advanced-search-accessibility")
+      .find("button")
+      .should("contain", "Fysisk");
+  });
+
+  it("Should persist CQL query in url", () => {
+    // Setup the search query.
+    // We have two preview elements in the form where visibility is controlled
+    // through media queries. Click on the one that is visible.
+    cy.getBySel("advanced-search-edit-cql", true).click();
+    cy.getBySel("cql-search-header-input").type("Harry");
+
+    // Perform the search to persist the CQL in the url.
+    cy.getBySel("search-button").click();
+
+    // Do a hard reload of the page to simulate a new visit without risking
+    // local storage.
+    cy.reload(true);
+
+    // Wait for the search operation to finish after the reload. Once this is
+    // done we know that the CQL query has been transferred back from the
+    // url to the component and we can make our assertions.
+    cy.wait("@complexSearch GraphQL operation");
+
+    // Verify that the CQL query have been transferred.
+    cy.getBySel("cql-search-header-input").should("have.value", "Harry");
+  });
+
   beforeEach(() => {
+    cy.visit(
+      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
+    );
+
     // Intercept graphql search query.
-    cy.fixture("search-result/fbi-api.json")
-      .then((result) => {
-        cy.intercept("POST", "**/next/graphql**", result);
-      })
-      .as("Graphql search query");
+    cy.interceptGraphql({
+      operationName: "complexSearch",
+      fixtureFilePath: "search-result/fbi-api.json"
+    });
 
     // Intercept all images from Cloudinary.
     cy.intercept(
