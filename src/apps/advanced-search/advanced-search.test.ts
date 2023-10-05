@@ -65,6 +65,73 @@ describe("Search Result", () => {
     cy.getBySel("search-button").should("be.enabled");
   });
 
+  it("Should persist advanced search query in url", () => {
+    // Setup the search query.
+    cy.getBySel("advanced-search-header-row").eq(0).click().type("Harry");
+    cy.getBySel("advanced-search-header-row")
+      .eq(1)
+      .click()
+      .within(() => {
+        cy.get("input").type("Rowling");
+        cy.get("select").select(1);
+      });
+    cy.getBySel("advanced-search-material-types")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+        cy.get("[role=option]").eq(2).click();
+      });
+    cy.getBySel("advanced-search-fiction")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+    cy.getBySel("advanced-search-accessibility")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+
+    // Perform the search to persist it in the url.
+    cy.getBySel("search-button").click();
+
+    // Do a hard reload of the page to simulate a new visit without risking
+    // local storage.
+    cy.reload(true);
+
+    // Wait for the search operation to finish after the reload. Once this is
+    // done we know that the search query has been transferred back from the
+    // url to the component and we can make our assertions.
+    cy.wait("@complexSearch GraphQL operation");
+
+    // Verify that all parts of the search query have been transferred.
+    cy.getBySel("advanced-search-header-row").should("have.length", 2);
+    cy.getBySel("advanced-search-header-row")
+      .eq(0)
+      .within(() => {
+        cy.get("input").should("have.value", "Harry");
+        cy.get("select").should("have.value", "all");
+      });
+    cy.getBySel("advanced-search-header-row")
+      .eq(1)
+      .within(() => {
+        cy.get("input").should("have.value", "Rowling");
+        cy.get("select").should("have.value", "creator");
+      });
+    // We currently have no good way to identify selected options in the
+    // multiselect so checking the text of the button is the best we can do.
+    cy.getBySel("advanced-search-material-types")
+      .find("button")
+      .should("contain", "Bog")
+      .should("contain", "E-bog");
+    cy.getBySel("advanced-search-fiction")
+      .find("button")
+      .should("contain", "Skønlitteratur");
+    cy.getBySel("advanced-search-accessibility")
+      .find("button")
+      .should("contain", "Fysisk");
+  });
+
   beforeEach(() => {
     cy.visit(
       "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
