@@ -1421,14 +1421,19 @@ describe("Dashboard", () => {
   });
 
   it.only("Can go trough renewal flow of soon overdue loans", () => {
+    // Spy on the loan request.
+    cy.intercept(
+      "**/external/agencyid/patrons/patronid/loans/v2**",
+      cy.spy().as("loan-spy")
+    );
     cy.getBySel("physical-loans-soon-overdue").click();
     cy.getBySel("modal-due-date-2023-10-11-close-button").should("exist");
     cy.getBySel("loans-group-modal-button").first().click();
     cy.getBySel("modal-cta-button").click();
     cy.getBySel("modal-due-date-2023-10-11-close-button").should("not.exist");
-    // Because the loans cache is invalidated we should get precisely 2 requests
-    // to the loans service: The initial and the one after renewal.
-    cy.get("@loans.all").should("have.length", 2);
+    // Because the loans cache is invalidated we should get precisely 1 request
+    // to the loans service (after the intial request on page load).
+    cy.get("@loan-spy").its("callCount").should("equal", 1);
   });
 });
 
