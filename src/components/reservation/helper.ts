@@ -258,9 +258,6 @@ export const removePrefixFromBranchId = (branchId: string) => {
   return splitBranchId[1];
 };
 
-export const getPatronAddress = (address: AddressV2) =>
-  `${address.street}, ${address.postalCode} ${address.city}`;
-
 export const translateOpenOrderStatus = (
   status: SubmitOrderStatus,
   t: UseTextFunction
