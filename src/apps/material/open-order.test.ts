@@ -22,9 +22,16 @@ const navigateToMaterial = () => {
   // We need to wait here because no other fixes work.
   // eslint-disable-next-line
   cy.wait(500);
-  cy.getBySel("reservation-success-title-text")
+  cy.getBySel("message-title")
     .should("be.visible")
     .and("contain", "Order from another library");
+};
+
+const closeModal = () => {
+  cy.getBySel("reservation-success-close-button")
+    .should("be.visible")
+    .and("contain", "Ok")
+    .click();
 };
 
 describe("Open Order Functionality", () => {
@@ -40,10 +47,7 @@ describe("Open Order Functionality", () => {
       .should("be.visible")
       .and("contain", "Your order is accepted");
 
-    cy.getBySel("reservation-success-close-button")
-      .should("be.visible")
-      .and("contain", "Ok")
-      .click();
+    closeModal();
   });
 
   it("displays an error when user verification fails", () => {
@@ -58,10 +62,7 @@ describe("Open Order Functionality", () => {
       .should("be.visible")
       .and("contain", "User not found");
 
-    cy.getBySel("reservation-success-close-button")
-      .should("be.visible")
-      .and("contain", "Ok")
-      .click();
+    closeModal();
   });
 
   it("displays an error when the service is unavailable", () => {
@@ -76,10 +77,7 @@ describe("Open Order Functionality", () => {
       .should("be.visible")
       .and("contain", "Service is currently unavailable");
 
-    cy.getBySel("reservation-success-close-button")
-      .should("be.visible")
-      .and("contain", "Ok")
-      .click();
+    closeModal();
   });
 
   beforeEach(() => {
