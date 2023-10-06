@@ -330,7 +330,7 @@ export const ReservationModalBody = ({
             modalId: reservationModalId(faustIds)
           }}
         >
-          {openOrderResponse.submitOrder?.status && (
+          {openOrderResponse.submitOrder.status && (
             <p
               data-cy="open-oprder-response-status-text"
               className="text-body-medium-regular pt-24"
