@@ -7,7 +7,8 @@ import {
   getMaterialTypes,
   getManifestationType,
   materialIsFiction,
-  getReservableOnAnotherLibrary
+  getReservableOnAnotherLibrary,
+  getPatronAddress
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -41,8 +42,7 @@ import {
   getManifestationsToReserve,
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
-  removePrefixFromBranchId,
-  getPatronAddress
+  removePrefixFromBranchId
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
