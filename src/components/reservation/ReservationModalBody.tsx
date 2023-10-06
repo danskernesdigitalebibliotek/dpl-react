@@ -42,7 +42,8 @@ import {
   getManifestationsToReserve,
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
-  removePrefixFromBranchId
+  removePrefixFromBranchId,
+  translateOpenOrderStatus
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -61,7 +62,7 @@ import {
   OpenOrderMutation,
   useOpenOrderMutation
 } from "../../core/dbc-gateway/generated/graphql";
-import OpenOrderResponse from "./OpenOrderResponse";
+import ModalMessage from "../message/modal-message/ModalMessage";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -312,12 +313,29 @@ export const ReservationModalBody = ({
           </div>
         </section>
       )}
-      {openOrderResponse && (
-        <OpenOrderResponse
-          title={manifestation.titles.main[0]}
-          modalId={reservationModalId(faustIds)}
-          openOrderResponse={openOrderResponse}
-        />
+      {openOrderResponse?.submitOrder?.status && (
+        <ModalMessage
+          title={t("openOrderResponseTitleText")}
+          subTitle={`${manifestation.titles.main[0]} ${t(
+            "openOrderResponseIsReservedForYouText"
+          )}`}
+          ctaButton={{
+            text: t("okButtonText"),
+            modalId: reservationModalId(faustIds)
+          }}
+        >
+          {openOrderResponse.submitOrder?.status && (
+            <p
+              data-cy="open-oprder-response-status-text"
+              className="text-body-medium-regular pt-24"
+            >
+              {translateOpenOrderStatus(
+                openOrderResponse.submitOrder?.status,
+                t
+              )}
+            </p>
+          )}
+        </ModalMessage>
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
