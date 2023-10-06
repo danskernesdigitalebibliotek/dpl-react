@@ -47,10 +47,21 @@ export interface CreatePatronProps
   extends CreatePatronConfigProps,
     CreatePatronUrlProps,
     CreatePatronTextProps {
-  userToken: string;
+  userToken?: string;
 }
 
 const CreatePatronEntry: FC<CreatePatronProps> = ({ userToken }) => {
+  if (!userToken) {
+    return (
+      <>
+        <h2>Please Log ind..</h2>
+        <p>
+          When the flash message/info bar has been implemented, we will use it
+          here to tell the user to log in.
+        </p>
+      </>
+    );
+  }
   return <CreatePatron userToken={userToken} />;
 };
 
