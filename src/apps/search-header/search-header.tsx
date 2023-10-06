@@ -351,11 +351,13 @@ const SearchHeader: React.FC = () => {
           isLoading={isLoading}
         />
         {isHeaderDropdownOpen && (
-          <div className="header__menu-dropdown">
+          <div
+            className="header__menu-dropdown"
+            data-cy="search-header-dropdown"
+          >
             <ul>
               <li className="header__menu-dropdown-item">
                 <button
-                  data-cy="search-header-dropdown"
                   className="cursor-pointer"
                   type="button"
                   onClick={() => redirectTo(advancedSearchUrl)}
