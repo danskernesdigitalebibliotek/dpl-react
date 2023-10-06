@@ -355,6 +355,7 @@ const SearchHeader: React.FC = () => {
             <ul>
               <li className="header__menu-dropdown-item">
                 <button
+                  data-cy="search-header-dropdown"
                   className="cursor-pointer"
                   type="button"
                   onClick={() => redirectTo(advancedSearchUrl)}
