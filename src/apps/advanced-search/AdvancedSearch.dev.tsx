@@ -307,6 +307,56 @@ export default {
       name: "Advanced search filter - access",
       defaultValue: "Accessibility",
       control: { type: "text" }
+    },
+    advancedSearchFilterBookText: {
+      name: "Advanced search filter - book",
+      defaultValue: "Book",
+      control: { type: "text" }
+    },
+    advancedSearchFilterEbookText: {
+      name: "Advanced search filter - ebook",
+      defaultValue: "Ebook",
+      control: { type: "text" }
+    },
+    advancedSearchFilterAudioBookText: {
+      name: "Advanced search filter - audiobook",
+      defaultValue: "Audiobook",
+      control: { type: "text" }
+    },
+    advancedSearchFilterArticleText: {
+      name: "Advanced search filter - article",
+      defaultValue: "Article",
+      control: { type: "text" }
+    },
+    advancedSearchFilterMovieText: {
+      name: "Advanced search filter - movie",
+      defaultValue: "Movie",
+      control: { type: "text" }
+    },
+    advancedSearchFilterMusicText: {
+      name: "Advanced search filter - music",
+      defaultValue: "Music",
+      control: { type: "text" }
+    },
+    advancedSearchFilterPhysicalText: {
+      name: "Advanced search filter - physical access",
+      defaultValue: "Physical",
+      control: { type: "text" }
+    },
+    advancedSearchFilterOnlineText: {
+      name: "Advanced search filter - online access",
+      defaultValue: "Online",
+      control: { type: "text" }
+    },
+    advancedSearchFilterFictionText: {
+      name: "Advanced search filter - fiction",
+      defaultValue: "Fiction",
+      control: { type: "text" }
+    },
+    advancedSearchFilterNonFictionText: {
+      name: "Advanced search filter - non-fiction",
+      defaultValue: "Non-fiction",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

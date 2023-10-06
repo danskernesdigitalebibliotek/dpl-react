@@ -97,22 +97,22 @@ export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
 };
 
 export const advancedSearchMaterialTypes: MultiselectOption[] = [
-  { item: "Bog", value: "bøger" },
-  { item: "E-bog", value: "e-bøger" },
-  { item: "Lydbog", value: "lydbøger" },
-  { item: "Artikel", value: "artikler" },
-  { item: "Film", value: "film" },
-  { item: "Musik", value: "musik" }
+  { item: "advancedSearchFilterBookText", value: "bøger" },
+  { item: "advancedSearchFilterEbookText", value: "e-bøger" },
+  { item: "advancedSearchFilterAudioBookText", value: "lydbøger" },
+  { item: "advancedSearchFilterArticleText", value: "artikler" },
+  { item: "advancedSearchFilterMovieText", value: "film" },
+  { item: "advancedSearchFilterMusicText", value: "musik" }
 ];
 
 export const advancedSearchAccessibility: MultiselectOption[] = [
-  { item: "Fysisk", value: "fysisk" },
-  { item: "Online", value: "online" }
+  { item: "advancedSearchFilterPhysicalText", value: "fysisk" },
+  { item: "advancedSearchFilterOnlineText", value: "online" }
 ];
 
 export const advancedSearchFiction: MultiselectOption[] = [
-  { item: "Skønlitteratur", value: "fiction" },
-  { item: "Faglitteratur", value: "nonfiction" }
+  { item: "advancedSearchFilterFictionText", value: "fiction" },
+  { item: "advancedSearchFilterNonFictionText", value: "nonfiction" }
 ];
 
 export const advancedSearchFilters = {

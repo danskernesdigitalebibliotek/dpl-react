@@ -9,6 +9,7 @@ import {
   MultiselectOption
 } from "../../core/utils/types/multiselect-types";
 import useMultiselectOptions from "./useMultiselectOptions";
+import { useText } from "../../core/utils/text";
 
 export type MultiselectProps = {
   dataCy?: string;
@@ -25,6 +26,7 @@ const Multiselect: FC<MultiselectProps> = ({
   defaultValue = [],
   updateExternalState
 }) => {
+  const t = useText();
   const ref = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const updateState = (
@@ -210,7 +212,7 @@ const Multiselect: FC<MultiselectProps> = ({
                 {...getItemProps({ item, index })}
               >
                 {/* eslint-enable react/jsx-props-no-spreading */}
-                {item.item}
+                {t(item.item)}
                 <div className="checkbox multiselect__checkbox">
                   <CheckBox
                     id={index.toString()}

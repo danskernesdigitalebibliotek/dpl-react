@@ -56,6 +56,16 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterMaterialTypeText: string;
   advancedSearchFilterLiteratureFormText: string;
   advancedSearchFilterAccessText: string;
+  advancedSearchFilterBookText: string;
+  advancedSearchFilterEbookText: string;
+  advancedSearchFilterAudioBookText: string;
+  advancedSearchFilterArticleText: string;
+  advancedSearchFilterMovieText: string;
+  advancedSearchFilterMusicText: string;
+  advancedSearchFilterPhysicalText: string;
+  advancedSearchFilterOnlineText: string;
+  advancedSearchFilterFictionText: string;
+  advancedSearchFilterNonFictionText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
