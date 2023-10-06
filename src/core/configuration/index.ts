@@ -6,6 +6,7 @@ import recommenderMaterialLimits from "./recommender-material-limits.json";
 import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
 import modalIds from "./modal-ids.json";
+import reservation from "./reservation.json";
 
 export type ConfScope =
   | "pageSize"
@@ -14,7 +15,8 @@ export type ConfScope =
   | "pageSizeReservationList"
   | "recommenderMaterialLimits"
   | "colors"
-  | "modalIds";
+  | "modalIds"
+  | "reservation";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -51,5 +53,6 @@ export default {
   pageSizeReservationList,
   colors,
   recommenderMaterialLimits,
-  modalIds
+  modalIds,
+  reservation
 } as Configuration;

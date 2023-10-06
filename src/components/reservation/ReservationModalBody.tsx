@@ -63,6 +63,7 @@ import {
   useOpenOrderMutation
 } from "../../core/dbc-gateway/generated/graphql";
 import ModalMessage from "../message/modal-message/ModalMessage";
+import configuration, { getConf } from "../../core/configuration";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -77,6 +78,10 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { defaultInterestDaysForOpenOrder } = getConf(
+    "reservation",
+    configuration
+  );
   const {
     matchStrings: instantLoanMatchStrings,
     threshold: instantLoanThreshold,
@@ -159,7 +164,9 @@ export const ReservationModalBody = ({
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : "",
-            expires: selectedInterest?.toString() || "90",
+            expires:
+              selectedInterest?.toString() ||
+              defaultInterestDaysForOpenOrder.toString(),
             userParameters: {
               userId: patronId.toString(),
               userAddress: address ? getPatronAddress(address) : "",
