@@ -563,17 +563,14 @@ export const getContributors = (short: boolean, creators: string[]) => {
   return creators[0];
 };
 
-export const getReservableOnAnotherLibrary = (
+export const getReservablePidsFromAnotherLibrary = (
   manifestations: Manifestation[]
 ) => {
   const matchingManifestations = manifestations.filter(({ catalogueCodes }) =>
     catalogueCodes?.otherCatalogues.some((code) => code.startsWith("OVE"))
   );
 
-  return {
-    isReservable: matchingManifestations.length > 0,
-    pids: matchingManifestations.map(({ pid }) => pid)
-  };
+  return matchingManifestations.map(({ pid }) => pid);
 };
 
 export const getPatronAddress = (address: AddressV2) =>
@@ -585,9 +582,9 @@ export default {};
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
-  describe("getReservableOnAnotherLibrary", () => {
+  describe("getReservablePidsFromAnotherLibrary", () => {
     it("should return true for isReservable and correct pids if manifestations are reservable on another library (catalogueCodes starts with 'OVE')", () => {
-      const result = getReservableOnAnotherLibrary([
+      const result = getReservablePidsFromAnotherLibrary([
         {
           pid: "870970-basis:135721719",
           catalogueCodes: {
@@ -604,15 +601,15 @@ if (import.meta.vitest) {
         }
       ] as unknown as Manifestation[]);
 
-      expect(result.isReservable).toBe(true);
-      expect(result.pids).toEqual([
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual([
         "870970-basis:135721719",
         "870970-basis:135721719"
       ]);
     });
 
     it("should return false for isReservable and empty pids array if no manifestations are reservable on another library", () => {
-      const result = getReservableOnAnotherLibrary([
+      const result = getReservablePidsFromAnotherLibrary([
         {
           pid: "pid1",
           catalogueCodes: {
@@ -622,12 +619,12 @@ if (import.meta.vitest) {
         }
       ] as unknown as Manifestation[]);
 
-      expect(result.isReservable).toBe(false);
-      expect(result.pids).toEqual([]);
+      expect(result.length > 0).toBe(false);
+      expect(result).toEqual([]);
     });
 
     it("should filter out non-reservable manifestations and return only reservable pids", () => {
-      const result = getReservableOnAnotherLibrary([
+      const result = getReservablePidsFromAnotherLibrary([
         {
           pid: "870970-basis:135721719",
           catalogueCodes: {
@@ -644,8 +641,8 @@ if (import.meta.vitest) {
         }
       ] as unknown as Manifestation[]);
 
-      expect(result.isReservable).toBe(true);
-      expect(result.pids).toEqual(["870970-basis:135721719"]);
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual(["870970-basis:135721719"]);
     });
   });
 
