@@ -140,8 +140,8 @@ export const ReservationModalBody = ({
     : null;
 
   const {
-    isReservable: isReservableOnAnotherLibrar,
-    pids: pidsOnAnotherLibrar
+    isReservable: isReservableFromAnotherLibrary,
+    pids: pidsOnAnotherLibrary
   } = getReservableOnAnotherLibrary(manifestationsToReserve);
 
   const saveReservation = () => {
@@ -149,13 +149,13 @@ export const ReservationModalBody = ({
       return;
     }
 
-    if (isReservableOnAnotherLibrar && patron) {
+    if (isReservableFromAnotherLibrary && patron) {
       const { patronId, address, name, emailAddress } = patron;
 
       mutateOpenOrder(
         {
           input: {
-            pids: [...pidsOnAnotherLibrar],
+            pids: [...pidsOnAnotherLibrary],
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : "",

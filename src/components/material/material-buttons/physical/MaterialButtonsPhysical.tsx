@@ -27,7 +27,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const { isReservable: isReservableOnAnotherLibrar } =
+  const { isReservable: isReservableFromAnotherLibrary } =
     getReservableOnAnotherLibrary(manifestations);
   const t = useText();
   const faustIds = getAllFaustIds(manifestations);
@@ -49,7 +49,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
-  if (isReservableOnAnotherLibrar) {
+  if (isReservableFromAnotherLibrary) {
     return (
       <MaterialButtonReservableFromAnotherLibrary
         size={size}
