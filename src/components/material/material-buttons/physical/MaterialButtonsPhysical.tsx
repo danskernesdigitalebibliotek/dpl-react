@@ -2,7 +2,7 @@ import React from "react";
 import {
   getAllFaustIds,
   getManifestationType,
-  getReservableOnAnotherLibrary
+  getReservablePidsFromAnotherLibrary
 } from "../../../../core/utils/helpers/general";
 import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -27,8 +27,8 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size,
   dataCy = "material-buttons-physical"
 }) => {
-  const { isReservable: isReservableFromAnotherLibrary } =
-    getReservableOnAnotherLibrary(manifestations);
+  const isReservableFromAnotherLibrary =
+    getReservablePidsFromAnotherLibrary(manifestations);
   const t = useText();
   const faustIds = getAllFaustIds(manifestations);
   const { reservableManifestations } = UseReservableManifestations({
@@ -49,7 +49,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
   }
 
-  if (isReservableFromAnotherLibrary) {
+  if (isReservableFromAnotherLibrary.length > 0) {
     return (
       <MaterialButtonReservableFromAnotherLibrary
         size={size}

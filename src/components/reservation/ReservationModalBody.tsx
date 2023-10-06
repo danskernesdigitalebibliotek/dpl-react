@@ -7,7 +7,7 @@ import {
   getMaterialTypes,
   getManifestationType,
   materialIsFiction,
-  getReservableOnAnotherLibrary,
+  getReservablePidsFromAnotherLibrary,
   getPatronAddress
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -140,23 +140,22 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
-  const {
-    isReservable: isReservableFromAnotherLibrary,
-    pids: pidsOnAnotherLibrary
-  } = getReservableOnAnotherLibrary(manifestationsToReserve);
+  const pidsFromAnotherLibrary = getReservablePidsFromAnotherLibrary(
+    manifestationsToReserve
+  );
 
   const saveReservation = () => {
     if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
 
-    if (isReservableFromAnotherLibrary && patron) {
+    if (pidsFromAnotherLibrary.length > 0 && patron) {
       const { patronId, address, name, emailAddress } = patron;
 
       mutateOpenOrder(
         {
           input: {
-            pids: [...pidsOnAnotherLibrary],
+            pids: [...pidsFromAnotherLibrary],
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : "",
