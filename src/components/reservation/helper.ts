@@ -262,44 +262,31 @@ export const translateOpenOrderStatus = (
   status: SubmitOrderStatus,
   t: UseTextFunction
 ) => {
-  switch (status) {
-    case SubmitOrderStatus.OwnedAccepted:
-      return t("openOrderStatusOwnedAcceptedText");
-    case SubmitOrderStatus.AuthenticationError:
-      return t("openOrderAuthenticationErrorText");
-    case SubmitOrderStatus.BorchkUserBlockedByAgency:
-      return t("openOrderUserBlockedByAgencyText");
-    case SubmitOrderStatus.BorchkUserNotVerified:
-      return t("openOrderUserNotVerifiedText");
-    case SubmitOrderStatus.BorchkUserNoLongerExistOnAgency:
-      return t("openOrderUserNoLongerExistOnAgencyText");
-    case SubmitOrderStatus.InvalidOrder:
-      return t("openOrderInvalidOrderText");
-    case SubmitOrderStatus.NotOwnedIllLoc:
-      return t("openOrderNotOwnedIllLocText");
-    case SubmitOrderStatus.NotOwnedNoIllLoc:
-      return t("openOrderNotOwnedNoIllLocText");
-    case SubmitOrderStatus.NotOwnedWrongIllMediumtype:
-      return t("openOrderNotOwnedWrongIllMediumtypeText");
-    case SubmitOrderStatus.NoServicerequester:
-      return t("openOrderNoServicerequesterText");
-    case SubmitOrderStatus.OrsError:
-      return t("openOrderOrsErrorText");
-    case SubmitOrderStatus.OwnedOwnCatalogue:
-      return t("openOrderOwnedOwnCatalogueText");
-    case SubmitOrderStatus.OwnedWrongMediumtype:
-      return t("openOrderOwnedWrongMediumtypeText");
-    case SubmitOrderStatus.ServiceUnavailable:
-      return t("openOrderServiceUnavailableText");
-    case SubmitOrderStatus.UnknownError:
-      return t("openOrderUnknownErrorText");
-    case SubmitOrderStatus.UnknownPickupagency:
-      return t("openOrderUnknownPickupagencyText");
-    case SubmitOrderStatus.UnknownUser:
-      return t("openOrderUnknownUserText");
-    default:
-      return "";
-  }
+  const statusTextMap = {
+    [SubmitOrderStatus.OwnedAccepted]: "openOrderStatusOwnedAcceptedText",
+    [SubmitOrderStatus.AuthenticationError]: "openOrderAuthenticationErrorText",
+    [SubmitOrderStatus.BorchkUserBlockedByAgency]:
+      "openOrderUserBlockedByAgencyText",
+    [SubmitOrderStatus.BorchkUserNotVerified]: "openOrderUserNotVerifiedText",
+    [SubmitOrderStatus.BorchkUserNoLongerExistOnAgency]:
+      "openOrderUserNoLongerExistOnAgencyText",
+    [SubmitOrderStatus.InvalidOrder]: "openOrderInvalidOrderText",
+    [SubmitOrderStatus.NotOwnedIllLoc]: "openOrderNotOwnedIllLocText",
+    [SubmitOrderStatus.NotOwnedNoIllLoc]: "openOrderNotOwnedNoIllLocText",
+    [SubmitOrderStatus.NotOwnedWrongIllMediumtype]:
+      "openOrderNotOwnedWrongIllMediumtypeText",
+    [SubmitOrderStatus.NoServicerequester]: "openOrderNoServicerequesterText",
+    [SubmitOrderStatus.OrsError]: "openOrderOrsErrorText",
+    [SubmitOrderStatus.OwnedOwnCatalogue]: "openOrderOwnedOwnCatalogueText",
+    [SubmitOrderStatus.OwnedWrongMediumtype]:
+      "openOrderOwnedWrongMediumtypeText",
+    [SubmitOrderStatus.ServiceUnavailable]: "openOrderServiceUnavailableText",
+    [SubmitOrderStatus.UnknownError]: "openOrderUnknownErrorText",
+    [SubmitOrderStatus.UnknownPickupagency]: "openOrderUnknownPickupagencyText",
+    [SubmitOrderStatus.UnknownUser]: "openOrderUnknownUserText"
+  };
+
+  return statusTextMap[status] ? t(statusTextMap[status]) : "";
 };
 
 export default {};
