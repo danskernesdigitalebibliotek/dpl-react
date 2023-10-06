@@ -50,6 +50,12 @@ interface AdvancedSearchEntryTextProps {
   toAdvancedSearchButtonText: string;
   copiedToClipboardText: string;
   copiedLinkToThisSearchText: string;
+  clauseAndText: string;
+  clauseOrText: string;
+  clauseNotText: string;
+  advancedSearchFilterMaterialTypeText: string;
+  advancedSearchFilterLiteratureFormText: string;
+  advancedSearchFilterAccessText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

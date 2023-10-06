@@ -277,6 +277,36 @@ export default {
       name: "Text that appears after getting link to a search copied to clipboard",
       defaultValue: "Link copied to clipboard",
       control: { type: "text" }
+    },
+    clauseAndText: {
+      name: "Advanced search clause - AND",
+      defaultValue: "AND",
+      control: { type: "text" }
+    },
+    clauseOrText: {
+      name: "Advanced search clause - OR",
+      defaultValue: "OR",
+      control: { type: "text" }
+    },
+    clauseNotText: {
+      name: "Advanced search clause - NOT",
+      defaultValue: "NOT",
+      control: { type: "text" }
+    },
+    advancedSearchFilterMaterialTypeText: {
+      name: "Advanced search filter - material type",
+      defaultValue: "Material Type",
+      control: { type: "text" }
+    },
+    advancedSearchFilterLiteratureFormText: {
+      name: "Advanced search filter - literature form",
+      defaultValue: "Literature form",
+      control: { type: "text" }
+    },
+    advancedSearchFilterAccessText: {
+      name: "Advanced search filter - access",
+      defaultValue: "Accessibility",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

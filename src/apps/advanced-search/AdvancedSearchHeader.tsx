@@ -133,7 +133,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           <section className="advanced-search__filters">
             <div className="advanced-search__filter">
               <Multiselect
-                caption="Material types"
+                caption={t("advancedSearchFilterMaterialTypeText")}
                 options={advancedSearchMaterialTypes}
                 defaultValue={internalSearchObject.filters.materialTypes}
                 updateExternalState={{
@@ -146,7 +146,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
             <div className="advanced-search__filter">
               <Multiselect
-                caption="Literature form"
+                caption={t("advancedSearchFilterLiteratureFormText")}
                 options={advancedSearchFiction}
                 defaultValue={internalSearchObject.filters.fiction}
                 updateExternalState={{
@@ -159,7 +159,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
             <div className="advanced-search__filter">
               <Multiselect
-                caption="Access type"
+                caption={t("advancedSearchFilterAccessText")}
                 options={advancedSearchAccessibility}
                 defaultValue={internalSearchObject.filters.accessibility}
                 updateExternalState={{

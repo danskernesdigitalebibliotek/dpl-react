@@ -43,8 +43,8 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
   };
 
   const getClauseClasses = (
-    clickedClause: AdvancedSearchClause,
-    currentClause: AdvancedSearchClause
+    clickedClause: AdvancedSearchClause["value"],
+    currentClause: AdvancedSearchClause["value"]
   ) => {
     return clsx("advanced-search__clause focus-styling cursor-pointer", {
       "advanced-search__clause--grey": currentClause !== clickedClause
@@ -75,15 +75,18 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           {AdvancedSearchClauses.map((clause) => {
             return (
               <button
-                key={`${rowIndex}-${clause}`}
-                data-cy={`clause-${clause}`}
+                key={`${rowIndex}-${clause.value}`}
+                data-cy={`clause-${clause.value}`}
                 type="button"
-                className={getClauseClasses(clause, data.rows[rowIndex].clause)}
+                className={getClauseClasses(
+                  clause.value,
+                  data.rows[rowIndex].clause.value
+                )}
                 onClick={() => {
                   updateRowData("clause", clause, setSearchObject);
                 }}
               >
-                {clause}
+                {t(clause.translation)}
               </button>
             );
           })}

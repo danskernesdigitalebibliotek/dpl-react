@@ -26,7 +26,7 @@ const translateRowsToCql = (rowsToTranslate: AdvancedSearchRowData[]) => {
   return rowsToTranslate.reduce((acc: string, curr: AdvancedSearchRowData) => {
     let rowTranslation = "";
     if (acc !== "" && curr.term.trim() !== "") {
-      rowTranslation = rowTranslation.concat(" ", curr.clause);
+      rowTranslation = rowTranslation.concat(" ", curr.clause.value);
     }
     if (curr.searchIndex !== "all" && curr.term.trim() !== "") {
       rowTranslation = rowTranslation.concat(" ", curr.searchIndex, "=");

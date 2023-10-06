@@ -56,12 +56,15 @@ export const AdvancedSearchIndexTranslations = {
   acSource: "advancedSearchAcSourceText"
 };
 
-export type AdvancedSearchClause = "AND" | "OR" | "NOT";
+export type AdvancedSearchClause = {
+  value: "AND" | "OR" | "NOT";
+  translation: string;
+};
 
 export const AdvancedSearchClauses: AdvancedSearchClause[] = [
-  "AND",
-  "OR",
-  "NOT"
+  { value: "AND", translation: "clauseAndText" },
+  { value: "OR", translation: "clauseOrText" },
+  { value: "NOT", translation: "clauseNotText" }
 ];
 
 export type AdvancedSearchRowData = {
@@ -83,8 +86,8 @@ export type AdvancedSearchQuery = {
 
 export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
   rows: [
-    { term: "", searchIndex: "all", clause: "AND" },
-    { term: "", searchIndex: "all", clause: "AND" }
+    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0] },
+    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0] }
   ],
   filters: {
     materialTypes: [{ item: "All", value: "all" }],
