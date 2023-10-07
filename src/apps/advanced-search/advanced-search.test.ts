@@ -59,6 +59,14 @@ describe("Search Result", () => {
         cy.get("input").type("Rowling");
         cy.get("select").select(1);
       });
+    cy.getBySel("advanced-search-add-row").click();
+    cy.getBySel("advanced-search-header-row")
+      .eq(2)
+      .click()
+      .within(() => {
+        cy.get("input").type("Magi");
+        cy.get("select").select(2);
+      });
     cy.getBySel("advanced-search-material-types")
       .click()
       .within(() => {
@@ -80,6 +88,7 @@ describe("Search Result", () => {
 
     // Verify that all parts of the search query have been reset.
     cy.getBySel("advanced-search-header-row").should("have.length", 2);
+    cy.getBySel("advanced-search-add-row").click();
     cy.getBySel("advanced-search-header-row").each(() => {
       cy.get("input").should("have.value", "");
       cy.get("select").should("have.value", "all");

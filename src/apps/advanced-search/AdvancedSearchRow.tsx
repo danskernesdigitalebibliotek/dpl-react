@@ -54,7 +54,9 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
   const addRow = (updateData: (data: AdvancedSearchQuery) => void) => {
     const newData = { ...data };
     newData.rows.push(
-      initialAdvancedSearchQuery.rows.at(0) as AdvancedSearchRowData
+      structuredClone(
+        initialAdvancedSearchQuery.rows.at(0)
+      ) as AdvancedSearchRowData
     );
     updateData(newData);
   };
@@ -140,6 +142,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           onClick={() => {
             addRow(setSearchObject);
           }}
+          data-cy="advanced-search-add-row"
         >
           <img className="mr-8" src={IconPlus} alt="" />
           {t("advancedSearchAddRowText")}
