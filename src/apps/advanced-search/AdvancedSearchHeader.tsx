@@ -44,7 +44,9 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   // want to update the outer state and perform a search when the user clicks
   // the search button.
   const [internalSearchObject, setInternalSearchObject] =
-    useState<AdvancedSearchQuery>(searchObject || initialAdvancedSearchQuery);
+    useState<AdvancedSearchQuery>(
+      searchObject || structuredClone(initialAdvancedSearchQuery)
+    );
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
 
@@ -73,6 +75,10 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       [filtersUpdate.key]: filtersUpdate.value
     };
     setInternalSearchObject(newSearchObject);
+  };
+
+  const reset = () => {
+    setSearchObject(structuredClone(initialAdvancedSearchQuery));
   };
 
   useEffect(() => {
@@ -125,7 +131,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
             <PreviewSection
               translatedCql={previewCql || searchQuery || ""}
-              reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
+              reset={reset}
               setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
             />
           </div>
@@ -173,7 +179,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           </section>
           <PreviewSection
             translatedCql={previewCql || searchQuery || ""}
-            reset={() => setInternalSearchObject(initialAdvancedSearchQuery)}
+            reset={reset}
             isMobile
             setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
           />

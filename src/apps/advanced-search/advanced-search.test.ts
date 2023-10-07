@@ -49,11 +49,53 @@ describe("Search Result", () => {
     );
   });
 
-  it.only("Should reset the form upon reset button click", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
-    cy.getBySel("preview-section").eq(1).should("contain", "'Harry'");
-    cy.getBySel("preview-section").eq(1).contains("Reset").click();
-    // TODO: finish when the functionality is implemented.
+  it("Should reset the form upon reset button click", () => {
+    // Setup the search query.
+    cy.getBySel("advanced-search-header-row").eq(0).click().type("Harry");
+    cy.getBySel("advanced-search-header-row")
+      .eq(1)
+      .click()
+      .within(() => {
+        cy.get("input").type("Rowling");
+        cy.get("select").select(1);
+      });
+    cy.getBySel("advanced-search-material-types")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+        cy.get("[role=option]").eq(2).click();
+      });
+    cy.getBySel("advanced-search-fiction")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+    cy.getBySel("advanced-search-accessibility")
+      .click()
+      .within(() => {
+        cy.get("[role=option]").eq(1).click();
+      });
+
+    cy.getBySel("advanced-search-reset", true).click();
+
+    // Verify that all parts of the search query have been reset.
+    cy.getBySel("advanced-search-header-row").should("have.length", 2);
+    cy.getBySel("advanced-search-header-row").each(() => {
+      cy.get("input").should("have.value", "");
+      cy.get("select").should("have.value", "all");
+    });
+
+    // We currently have no good way to identify selected options in the
+    // multiselect so checking the text of the button is the best we can do.
+    const multiSelects = ["material-types", "fiction", "accessibility"];
+    multiSelects.forEach((multiSelect) => {
+      cy.getBySel(`advanced-search-${multiSelect}`)
+        .find("button")
+        .should("contain", "All");
+    });
+
+    // The preview should be reset as well
+    cy.getBySel("preview-section-preview", true).should("contain", "-");
   });
 
   it("Should disable the search button if all inputs are empty", () => {
