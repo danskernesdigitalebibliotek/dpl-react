@@ -40,7 +40,7 @@ describe("Search Result", () => {
       .click()
       .find("li")
       .eq(1)
-      .should("contain", "Bog")
+      .should("contain", "Book")
       .click();
     cy.getBySel("advanced-search-material-types").first().click();
     cy.getBySel("preview-section", true).should(
@@ -175,15 +175,10 @@ describe("Search Result", () => {
     // We currently have no good way to identify selected options in the
     // multiselect so checking the text of the button is the best we can do.
     cy.getBySel("advanced-search-material-types")
-      .find("button")
-      .should("contain", "Bog")
-      .should("contain", "E-bog");
-    cy.getBySel("advanced-search-fiction")
-      .find("button")
-      .should("contain", "Skønlitteratur");
-    cy.getBySel("advanced-search-accessibility")
-      .find("button")
-      .should("contain", "Fysisk");
+      .should("contain", "Book")
+      .should("contain", "Ebook");
+    cy.getBySel("advanced-search-fiction").should("contain", "Fiction");
+    cy.getBySel("advanced-search-accessibility").should("contain", "Physical");
   });
 
   it("Should persist CQL query in url", () => {
