@@ -3,6 +3,7 @@ import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
+import getToken, { hasToken } from "../../core/token";
 
 interface CreatePatronConfigProps {
   pincodeLengthMinConfig: string;
@@ -46,11 +47,11 @@ interface CreatePatronTextProps {
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
     CreatePatronUrlProps,
-    CreatePatronTextProps {
-  userToken?: string;
-}
+    CreatePatronTextProps {}
 
-const CreatePatronEntry: FC<CreatePatronProps> = ({ userToken }) => {
+const CreatePatronEntry: FC<CreatePatronProps> = () => {
+  const userToken = hasToken("user") ? getToken("user") : null;
+
   if (!userToken) {
     return (
       <>
