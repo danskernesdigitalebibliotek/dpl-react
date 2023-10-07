@@ -71,6 +71,7 @@ export type AdvancedSearchRowData = {
   term: string;
   searchIndex: AdvancedSearchIndex | "";
   clause: AdvancedSearchClause;
+  id: number;
 };
 
 export type AdvancedSearchFilterData = {
@@ -86,8 +87,8 @@ export type AdvancedSearchQuery = {
 
 export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
   rows: [
-    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0] },
-    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0] }
+    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0], id: 0 },
+    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0], id: 1 }
   ],
   filters: {
     materialTypes: [{ item: "All", value: "all" }],

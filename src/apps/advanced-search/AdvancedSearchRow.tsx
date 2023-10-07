@@ -58,6 +58,8 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
         initialAdvancedSearchQuery.rows.at(0)
       ) as AdvancedSearchRowData
     );
+    newData.rows[newData.rows.length - 1].id =
+      newData.rows[newData.rows.length - 2].id + 1;
     updateData(newData);
   };
 

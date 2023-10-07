@@ -121,6 +121,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               {internalSearchObject.rows.map((row, index) => {
                 return (
                   <AdvancedSearchRow
+                    key={row.id}
                     data={internalSearchObject}
                     rowIndex={index}
                     setSearchObject={setInternalSearchObject}
