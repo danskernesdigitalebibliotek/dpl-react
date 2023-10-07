@@ -357,6 +357,11 @@ export default {
       name: "Advanced search filter - non-fiction",
       defaultValue: "Non-fiction",
       control: { type: "text" }
+    },
+    advancedSearchFilterAllText: {
+      name: "Advanced search filter - all",
+      defaultValue: "All",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

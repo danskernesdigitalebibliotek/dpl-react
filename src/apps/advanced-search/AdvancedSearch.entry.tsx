@@ -67,6 +67,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterOnlineText: string;
   advancedSearchFilterFictionText: string;
   advancedSearchFilterNonFictionText: string;
+  advancedSearchFilterAllText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

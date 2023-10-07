@@ -41,7 +41,7 @@ const Multiselect: FC<MultiselectProps> = ({
   };
 
   const { allOptions } = useMultiselectOptions(options, {
-    item: "All",
+    item: "advancedSearchFilterAllText",
     value: "all"
   });
   const initialSelectedOptions =
@@ -183,7 +183,7 @@ const Multiselect: FC<MultiselectProps> = ({
           <div className="multiselect__selected">
             {selectedItems.map((singularitem, index) => {
               const getSpace = index > 0 ? ", " : "";
-              return getSpace + singularitem.item;
+              return getSpace + t(singularitem.item);
             })}
           </div>
 
