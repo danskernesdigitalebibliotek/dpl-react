@@ -319,8 +319,8 @@ export default {
       control: { type: "text" }
     },
     advancedSearchFilterAudioBookText: {
-      name: "Advanced search filter - audiobook",
-      defaultValue: "Audiobook",
+      name: "Advanced search filter - audio book",
+      defaultValue: "Audio book",
       control: { type: "text" }
     },
     advancedSearchFilterArticleText: {

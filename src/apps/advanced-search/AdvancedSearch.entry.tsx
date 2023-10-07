@@ -48,6 +48,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchSearchButtonText: string;
   loadingResultsText: string;
   toAdvancedSearchButtonText: string;
+  cqlSearchTitleText: string;
   copiedToClipboardText: string;
   copiedLinkToThisSearchText: string;
   clauseAndText: string;
