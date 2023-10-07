@@ -61,27 +61,6 @@ export default {
       defaultValue: "/advanced-search",
       control: { type: "text" }
     },
-    headerDropdownItemAdvancedSearchText: {
-      name: "Advanced search menu text",
-      defaultValue: "Advanced search",
-      control: { type: "text" }
-    },
-    advancedSearchSubmitButtonText: {
-      name: "Advanced search submit button text",
-      defaultValue: "Submit CQL search query",
-      control: { type: "text" }
-    },
-    advancedSearchMinimalLengthErrorText: {
-      name: "Advanced search minimal query length error",
-      defaultValue: "The search query needs to be at least 3 characters long.",
-      control: { type: "text" }
-    },
-    advancedSearchExplanationText: {
-      name: "Advanced search explanation text",
-      defaultValue:
-        "I am some text explaining advanced search. It is not a normal search, so watch out folks.",
-      control: { type: "text" }
-    },
     searchHeaderAdvancedSearchIconText: {
       name: "Search header advanced search icon label",
       defaultValue: "Advanced search",
@@ -142,20 +121,9 @@ export default {
       defaultValue: "Input must contain at least one non-whitespace character.",
       control: { type: "text" }
     },
-    advancedSearchModalHeaderText: {
-      name: "Advanced search modal header",
+    headerDropdownItemAdvancedSearchText: {
+      name: "Advanced search menu text",
       defaultValue: "Advanced search",
-      control: { type: "text" }
-    },
-    advancedSearchModalScreenReaderModalDescriptionText: {
-      name: "Advanced search modal screen reader description",
-      defaultValue:
-        "Advanced search lets you use CQL language to query our database",
-      control: { type: "text" }
-    },
-    advancedSearchModalCloseModalAriaLabelText: {
-      name: "Advanced search modal - close modal",
-      defaultValue: "Close the advanced search",
       control: { type: "text" }
     }
   }
