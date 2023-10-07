@@ -65,6 +65,7 @@ const Multiselect: FC<MultiselectProps> = ({
         newSelected
       ];
       updateState(updateExternalState?.key, newValue);
+      setSelectedItems(newValue);
       return newValue;
     }
 
@@ -73,14 +74,16 @@ const Multiselect: FC<MultiselectProps> = ({
       newSelected.value !== "all" &&
       [...allCurrentlySelected, newSelected].length === allPossibleOptions - 1
     ) {
-      const newValue = [{ item: "All", value: "all" }];
+      const newValue = [{ item: "advancedSearchFilterAllText", value: "all" }];
       updateState(updateExternalState?.key, newValue);
+      setSelectedItems(newValue);
       return newValue;
     }
 
     // If new selection is "all" we make sure to deselect all other options
     if (newSelected.value === "all") {
       updateState(updateExternalState?.key, [newSelected]);
+      setSelectedItems([newSelected]);
       return [newSelected];
     }
 
@@ -88,6 +91,7 @@ const Multiselect: FC<MultiselectProps> = ({
       ...allCurrentlySelected,
       newSelected
     ]);
+    setSelectedItems([...allCurrentlySelected, newSelected]);
     return [...allCurrentlySelected, newSelected];
   };
 
@@ -213,6 +217,12 @@ const Multiselect: FC<MultiselectProps> = ({
                 })}
                 key={`${item.value}${item.item}`}
                 {...getItemProps({ item, index })}
+                role="option"
+                aria-selected={
+                  !!selectedItems.find(
+                    (selected) => selected.value === item.value
+                  )
+                }
               >
                 {/* eslint-enable react/jsx-props-no-spreading */}
                 <span id={`multiselect-label-${downshiftProps.id}`}>
