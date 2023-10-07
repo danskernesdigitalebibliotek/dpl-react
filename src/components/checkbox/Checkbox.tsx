@@ -11,6 +11,8 @@ interface CheckBoxProps {
   onChecked?: (value: boolean) => void;
   ariaLabel?: string;
   focused?: boolean;
+  isVisualOnly?: boolean;
+  labelledBy?: string;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -22,7 +24,9 @@ const CheckBox: FC<CheckBoxProps> = ({
   onChecked,
   disabled,
   ariaLabel,
-  focused
+  focused,
+  isVisualOnly,
+  labelledBy
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -45,10 +49,11 @@ const CheckBox: FC<CheckBoxProps> = ({
         checked={selected}
         type="checkbox"
         aria-label={ariaLabel}
+        aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
       />
       <label className="checkbox__label" htmlFor={id}>
-        <span className="checkbox__icon">
+        <span className="checkbox__icon" aria-labelledby={labelledBy}>
           <IconCheckbox />
         </span>
         {label && (

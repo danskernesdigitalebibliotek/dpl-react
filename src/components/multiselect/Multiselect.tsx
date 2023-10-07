@@ -203,6 +203,9 @@ const Multiselect: FC<MultiselectProps> = ({
           style={!isDropdownOpen ? { display: "none" } : {}}
         >
           {allOptions.map((item, index) => {
+            const downshiftProps = {
+              ...getItemProps({ item, index })
+            };
             return (
               <li
                 className={clsx("multiselect__option", {
@@ -212,7 +215,9 @@ const Multiselect: FC<MultiselectProps> = ({
                 {...getItemProps({ item, index })}
               >
                 {/* eslint-enable react/jsx-props-no-spreading */}
-                {t(item.item)}
+                <span id={`multiselect-label-${downshiftProps.id}`}>
+                  {t(item.item)}
+                </span>
                 <div className="checkbox multiselect__checkbox">
                   <CheckBox
                     id={index.toString()}
@@ -221,6 +226,8 @@ const Multiselect: FC<MultiselectProps> = ({
                         (selected) => selected.value === item.value
                       )
                     }
+                    isVisualOnly
+                    labelledBy={`multiselect-label-${downshiftProps.id}`}
                   />
                 </div>
               </li>
