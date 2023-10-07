@@ -44,7 +44,10 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
       <h3 className="text-body-medium-medium mb-24 capitalize-first">
         {t("advancedSearchPreviewHeadlineText")}
       </h3>
-      <p className="text-body-medium-regular mb-32">
+      <p
+        data-cy={`${dataCy}-preview`}
+        className="text-body-medium-regular mb-32"
+      >
         {translatedCql || t("advancedSearchPreviewEmptyText")}
       </p>
       <section>
@@ -52,6 +55,7 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
           type="button"
           className="link-tag mr-16 cursor-pointer capitalize-first"
           onClick={() => reset()}
+          data-cy="advanced-search-reset"
         >
           {t("advancedSearchResetText")}
         </button>
