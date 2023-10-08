@@ -43,6 +43,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           changePatron={changePatron}
           patron={patron}
           showCheckboxes={showCheckboxes && textNotificationsEnabledConfig}
+          isRequired
         />
         <ContactInfoEmail
           className={clsx(inputsClass, {

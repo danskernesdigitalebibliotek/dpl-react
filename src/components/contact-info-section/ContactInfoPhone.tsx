@@ -11,13 +11,15 @@ export interface ContactInfoPhoneProps {
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
   className?: string;
+  isRequired?: boolean;
 }
 
 const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
   patron,
   changePatron,
   showCheckboxes,
-  className = ""
+  className = "",
+  isRequired = false
 }) => {
   const t = useText();
   return (
@@ -25,7 +27,7 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
       <TextInput
         className={className}
         id="phone-input"
-        required
+        required={isRequired}
         type="number"
         onChange={(newPhoneNumber) =>
           changePatron(newPhoneNumber, "phoneNumber")
