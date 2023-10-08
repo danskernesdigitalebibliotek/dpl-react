@@ -3,7 +3,7 @@ import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
-import getToken, { hasToken } from "../../core/token";
+import { getToken, hasToken } from "../../core/token";
 
 interface CreatePatronConfigProps {
   pincodeLengthMinConfig: string;
