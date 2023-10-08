@@ -76,17 +76,17 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             changePatron={changePatron}
             patron={patron}
           />
+          <PincodeSection required changePincode={setPin} />
           {t("createPatronChangePickupHeaderText") && (
-            <h2 className="text-body-small-regular mt-32 mb-16">
+            <h2 className="text-subtitle mt-32 mb-16">
               {t("createPatronChangePickupHeaderText")}
             </h2>
           )}
           {t("createPatronChangePickupBodyText") && (
-            <p className="text-subtitle my-32">
+            <p className="text-body-small-regular my-32">
               {t("createPatronChangePickupBodyText")}
             </p>
           )}
-          <PincodeSection required changePincode={setPin} />
           <div className="mt-32">
             <BranchesDropdown
               classNames="dropdow dropdown__desktop"
