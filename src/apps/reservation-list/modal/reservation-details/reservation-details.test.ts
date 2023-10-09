@@ -52,6 +52,11 @@ describe("Reservation details modal test", () => {
         }
       }
     }).as("user");
+
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
+      fixtureFilePath: "reservation-details/fbi-api.json"
+    });
   });
 
   it("It shows digital reservation details modal", () => {
