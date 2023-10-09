@@ -61,9 +61,9 @@ export default {
       defaultValue: "/advanced-search",
       control: { type: "text" }
     },
-    searchHeaderAdvancedSearchIconText: {
+    searchHeaderDropdownText: {
       name: "Search header advanced search icon label",
-      defaultValue: "Advanced search",
+      defaultValue: "Dropdown with additional search functions",
       control: { type: "text" }
     },
     materialUrl: {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
+import { useClickAway } from "react-use";
 import {
   SuggestionsFromQueryStringQuery,
   SuggestionType,
@@ -10,6 +11,7 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
+  constructAdvancedSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
@@ -324,19 +326,48 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
+  const headerDropdownRef = React.useRef<HTMLButtonElement>(null);
+
+  useClickAway(headerDropdownRef, () => {
+    // We use a timeout so that when the user clicks on the dropdown arrow as
+    // the dropdown is open, the state first needs to change through the
+    // dropdown arrow button (icon in the search bar component)
+    setTimeout(() => {
+      setIsHeaderDropdownOpen(false);
+    }, 100);
+  });
+
+  const [redirectUrl, setRedirectUrl] = useState<URL>(
+    constructSearchUrl(searchUrl, q)
+  );
+
+  useEffect(() => {
+    if (
+      q.trim().charAt(0) === '"' &&
+      q.trim().charAt(q.length - 1) === '"' &&
+      q.trim() !== '""' &&
+      q.trim() !== '"'
+    ) {
+      setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
+    } else {
+      setRedirectUrl(constructSearchUrl(searchUrl, q));
+    }
+  }, [q, advancedSearchUrl, searchUrl]);
+
   return (
-    <form
-      className="header__menu-second"
-      action={String(constructSearchUrl(searchUrl, qWithoutQuery))}
-    >
+    <div className="header__menu-second">
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search">
         <SearchBar
+          q={q}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
+          qWithoutQuery={qWithoutQuery}
           setQWithoutQuery={setQWithoutQuery}
+          isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+          redirectUrl={redirectUrl}
         />
         <Autosuggest
           textData={textData}
@@ -356,14 +387,27 @@ const SearchHeader: React.FC = () => {
             data-cy="search-header-dropdown"
           >
             <ul>
-              <li className="header__menu-dropdown-item">
+              <li>
                 <button
-                  className="cursor-pointer"
+                  ref={headerDropdownRef}
                   type="button"
+                  role="menuitem"
+                  className="header__menu-dropdown-item cursor-pointer"
                   onClick={() => redirectTo(advancedSearchUrl)}
-                  onKeyUp={(e) =>
-                    e.key === "Enter" && redirectTo(advancedSearchUrl)
-                  }
+                  onKeyUp={(e) => {
+                    if (e.key === "Enter") {
+                      return redirectTo(advancedSearchUrl);
+                    }
+                    if (
+                      e.key === "ArrowDown" ||
+                      e.key === "ArrowUp" ||
+                      e.key === "Escape"
+                    ) {
+                      return setIsHeaderDropdownOpen(false);
+                    }
+                    return null;
+                  }}
+                  onBlur={() => setIsHeaderDropdownOpen(false)}
                 >
                   {t("headerDropdownItemAdvancedSearchText")}
                 </button>
@@ -372,7 +416,7 @@ const SearchHeader: React.FC = () => {
           </div>
         )}
       </div>
-    </form>
+    </div>
   );
 };
 
