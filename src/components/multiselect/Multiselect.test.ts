@@ -20,51 +20,53 @@ describe("Multiselect", () => {
   });
 
   it("Has the all option selected by default", () => {
-    cy.get("button:visible").should("contain", "All").click();
+    cy.get("button:visible")
+      .should("contain", "advancedSearchFilterAllText")
+      .click();
     cy.get("[role=option]")
-      .contains("All")
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .eq(0)
+      .should("contain", "advancedSearchFilterAllText")
+      .and("have.attr", "aria-selected", "true");
   });
 
   it("Allows selection of single value", () => {
     cy.get("button:visible").click();
+    cy.get("[role=option]").contains("First item").click();
     cy.get("[role=option]")
-      .contains("First item")
-      .click()
-      .find("input[type=checkbox]")
-      .should("be.checked");
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
-      .contains("All")
-      .find("[type=checkbox]")
-      .should("not.be.checked");
+      .eq(0)
+      .should("contain", "advancedSearchFilterAllText")
+      .and("have.attr", "aria-selected", "false");
   });
 
   it("Allows selection of multiple values", () => {
     cy.get("button:visible").click();
     cy.get("[role=option]")
-      .contains("First item")
+      .eq(1)
       .click()
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
-      .contains("2. item")
+      .eq(2)
       .click()
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .should("contain", "2. item")
+      .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
-      .contains("All")
-      .find("[type=checkbox]")
-      .should("not.be.checked");
+      .eq(0)
+      .should("contain", "advancedSearchFilterAllText")
+      .and("have.attr", "aria-selected", "false");
   });
 
   it("Selects the all option if all values are selected", () => {
     cy.get("button:visible").click();
     cy.get("[role=option]").click({ multiple: true });
     cy.get("[role=option]")
-      .contains("All")
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .eq(0)
+      .should("contain", "advancedSearchFilterAllText")
+      .and("have.attr", "aria-selected", "true");
   });
 
   it("Supports single default value preselected", () => {
@@ -72,9 +74,10 @@ describe("Multiselect", () => {
     cy.contains("First item");
     cy.get("button:visible").click();
     cy.get("[role=option]")
-      .contains("First item")
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .eq(1)
+      .click()
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
   });
 
   it("Supports multiple default values preselected", () => {
@@ -83,13 +86,13 @@ describe("Multiselect", () => {
     cy.contains("2. item");
     cy.get("button:visible").click();
     cy.get("[role=option]")
-      .contains("First item")
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
-      .contains("2. item")
-      .find("[type=checkbox]")
-      .should("be.checked");
+      .eq(2)
+      .should("contain", "2. item")
+      .and("have.attr", "aria-selected", "true");
   });
 });
 
