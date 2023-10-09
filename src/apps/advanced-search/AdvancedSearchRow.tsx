@@ -46,9 +46,12 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     clickedClause: AdvancedSearchClause["value"],
     currentClause: AdvancedSearchClause["value"]
   ) => {
-    return clsx("advanced-search__clause focus-styling cursor-pointer", {
-      "advanced-search__clause--grey": currentClause !== clickedClause
-    });
+    return clsx(
+      "advanced-search__clause focus-styling cursor-pointer capitalize-all",
+      {
+        "advanced-search__clause--grey": currentClause !== clickedClause
+      }
+    );
   };
 
   const addRow = (updateData: (data: AdvancedSearchQuery) => void) => {
