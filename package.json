@@ -107,7 +107,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-webpack-plugin": "^3.1.1",
     "glob": "^8.0.1",
-    "happy-dom": "^7.6.7",
+    "happy-dom": "^12.9.0",
     "istanbul-lib-coverage": "^3.2.0",
     "markdownlint-cli2": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
