@@ -109,7 +109,7 @@
     "glob": "^8.0.1",
     "happy-dom": "^12.9.0",
     "istanbul-lib-coverage": "^3.2.0",
-    "markdownlint-cli2": "^0.4.0",
+    "markdownlint-cli2": "^0.10.0",
     "mutationobserver-shim": "^0.3.7",
     "node-sass": "^7.0.1",
     "nyc": "^15.1.0",
