@@ -57,7 +57,11 @@ const TextInput: FC<TextInputProps> = ({
         </div>
       )}
       {validation && (
-        <div id={`validation-${id}`} className="dpl-input__validation">
+        <div
+          id={`validation-${id}`}
+          className="dpl-input__validation"
+          role="alert"
+        >
           {validation}
         </div>
       )}
