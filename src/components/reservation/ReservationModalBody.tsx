@@ -327,7 +327,8 @@ export const ReservationModalBody = ({
           )}`}
           ctaButton={{
             text: t("okButtonText"),
-            modalId: reservationModalId(faustIds)
+            modalId: reservationModalId(faustIds),
+            dataCy: "reservation-success-close-button"
           }}
         >
           {openOrderResponse.submitOrder.status && (
