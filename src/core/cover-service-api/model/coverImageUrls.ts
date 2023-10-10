@@ -13,7 +13,11 @@ import type { ImageUrl } from "./imageUrl";
 export type CoverImageUrls = {
   default?: ImageUrl;
   original?: ImageUrl;
+  "xx-small"?: ImageUrl;
+  "x-small"?: ImageUrl;
   small?: ImageUrl;
+  "small-medium"?: ImageUrl;
   medium?: ImageUrl;
+  "medium-large"?: ImageUrl;
   large?: ImageUrl;
 };

@@ -16,7 +16,11 @@ export type GetCoverCollectionSizesItem =
 export const GetCoverCollectionSizesItem = {
   default: "default",
   original: "original",
+  "xx-small": "xx-small",
+  "x-small": "x-small",
   small: "small",
+  "small-medium": "small-medium",
   medium: "medium",
+  "medium-large": "medium-large",
   large: "large"
 } as const;

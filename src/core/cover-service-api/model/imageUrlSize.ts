@@ -15,7 +15,11 @@ export type ImageUrlSize = typeof ImageUrlSize[keyof typeof ImageUrlSize];
 export const ImageUrlSize = {
   default: "default",
   original: "original",
+  "xx-small": "xx-small",
+  "x-small": "x-small",
   small: "small",
+  "small-medium": "small-medium",
   medium: "medium",
+  "medium-large": "medium-large",
   large: "large"
 } as const;
