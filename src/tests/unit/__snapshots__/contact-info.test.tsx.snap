@@ -2,7 +2,7 @@
 
 exports[`ContactInfoInputs > Should NOT wrap the input fields if it is NOT inline 1`] = `
 <div
-  data-cy="contact-info-input-inline"
+  data-cy="contact-info-input"
 >
   <p>
     One input component
@@ -16,7 +16,7 @@ exports[`ContactInfoInputs > Should NOT wrap the input fields if it is NOT inlin
 exports[`ContactInfoInputs > Should wrap the input fields if it is inline 1`] = `
 <div
   class="contact-info-flex"
-  data-cy="contact-info-input"
+  data-cy="contact-info-input-inline"
 >
   <div
     class="patron__input--desktop mr-16"

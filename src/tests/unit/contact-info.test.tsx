@@ -11,25 +11,25 @@ configure({
 describe("ContactInfoInputs", () => {
   it("Should wrap the input fields if it is inline", async () => {
     const { getByTestId } = render(
-      <ContactInfoInputs isInline>
-        <p>One input component</p>
-        <p>Another input component</p>
-      </ContactInfoInputs>
-    );
-
-    const contactInfoInputs = getByTestId("contact-info-input");
-
-    expect(contactInfoInputs).toMatchSnapshot();
-  });
-  it("Should NOT wrap the input fields if it is NOT inline", async () => {
-    const { getByTestId } = render(
-      <ContactInfoInputs dataCy="contact-info-input-inline" isInline={false}>
+      <ContactInfoInputs dataCy="contact-info-input-inline" isInline>
         <p>One input component</p>
         <p>Another input component</p>
       </ContactInfoInputs>
     );
 
     const contactInfoInputs = getByTestId("contact-info-input-inline");
+
+    expect(contactInfoInputs).toMatchSnapshot();
+  });
+  it("Should NOT wrap the input fields if it is NOT inline", async () => {
+    const { getByTestId } = render(
+      <ContactInfoInputs isInline={false}>
+        <p>One input component</p>
+        <p>Another input component</p>
+      </ContactInfoInputs>
+    );
+
+    const contactInfoInputs = getByTestId("contact-info-input");
 
     expect(contactInfoInputs).toMatchSnapshot();
   });
