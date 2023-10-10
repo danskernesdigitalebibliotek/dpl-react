@@ -52,17 +52,12 @@ export interface CreatePatronProps
 const CreatePatronEntry: FC<CreatePatronProps> = () => {
   const userToken = hasToken("user") ? getToken("user") : null;
 
+  // The application using this app should handle the case where the user is not logged in.
+  // Eg by returning 403 Forbidden or redirecting to the login page.
   if (!userToken) {
-    return (
-      <>
-        <h2>Please Log ind..</h2>
-        <p>
-          When the flash message/info bar has been implemented, we will use it
-          here to tell the user to log in.
-        </p>
-      </>
-    );
+    return null;
   }
+
   return <CreatePatron userToken={userToken} />;
 };
 
