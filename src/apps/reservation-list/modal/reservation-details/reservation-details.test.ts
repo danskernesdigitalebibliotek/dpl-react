@@ -364,6 +364,15 @@ describe("Reservation details modal test", () => {
       message: "OK"
     });
 
+    cy.intercept(
+      "PUT",
+      "**/external/v1/agencyid/patrons/patronid/reservations",
+      {
+        statusCode: 201,
+        body: { code: 101, message: "OK" }
+      }
+    ).as("put-library-branch-and-expiry-date");
+
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
@@ -490,15 +499,6 @@ describe("Reservation details modal test", () => {
     cy.getBySel("modal-reservation-form-select")
       .find(".dropdown__option")
       .should("have.text", "Choose one1 month2 months3 months6 months1 year");
-
-    cy.intercept(
-      "PUT",
-      "**/external/v1/agencyid/patrons/patronid/reservations**",
-      {
-        statusCode: 201,
-        body: { code: 101, message: "OK" }
-      }
-    ).as("put-library-branch-and-expiry-date");
 
     // ID 15 2.g user clicks save
     // ID 16 4. user clicks save
