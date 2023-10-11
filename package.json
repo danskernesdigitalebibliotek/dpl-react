@@ -142,7 +142,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-59ac58f85a1cc470aebcd1ac4e4db6b76adc4614",
+    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-d36f6086c494e61db93e2dae0fdb2fa8dc7081a3",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.8.1",
