@@ -1,15 +1,18 @@
 import * as React from "react";
 import menuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-menu.svg";
+import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-heart.svg";
 import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
+import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 
 export interface StoryHeaderProps {
-  children: React.ReactNode;
+  search?: React.ReactNode;
+  userProfile?: React.ReactNode;
 }
 
-const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
+const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
   // the component below is copied from the Design system repository:
   // https://github.com/danskernesdigitalebibliotek/dpl-design-system
   // located at -> /src/stories/header
@@ -94,18 +97,39 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <div className="header__menu-profile header__button">
-              <a href="/" className="hide-linkstyle">
+            {userProfile || (
+              <div className="header__menu-profile header__button">
                 <img src={profileIcon} alt="Profile" />
-              </a>
-            </div>
+              </div>
+            )}
             <div className="header__menu-bookmarked header__button">
               <a href="/">
                 <img src={heartIcon} alt="List of bookmarks" />
               </a>
             </div>
           </nav>
-          {children}
+          {search || (
+            <div className="header__menu-search">
+              <input
+                name="q"
+                className="header__menu-search-input text-body-medium-regular"
+                type="text"
+                autoComplete="off"
+                placeholder="Cannot search in this story"
+              />
+              <input
+                type="image"
+                src={searchIcon}
+                className="header__menu-search-icon"
+                alt="search icon"
+              />
+              <img
+                className="header__menu-dropdown-icon"
+                src={expandIcon}
+                alt="expand dropdown icon"
+              />
+            </div>
+          )}
         </div>
         <div className="header__clock">
           <div className="pagefold-parent--medium">

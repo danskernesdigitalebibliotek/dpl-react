@@ -7,7 +7,7 @@ import SearchHeaderEntry, {
 } from "./search-header.entry";
 
 export default {
-  title: "Apps / Search Header",
+  title: "Apps / Header",
   component: SearchHeaderEntry,
   argTypes: {
     ...serviceUrlArgs,
@@ -114,13 +114,11 @@ export default {
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;
 
-export const Default: ComponentStory<typeof SearchHeaderEntry> = (
+export const Search: ComponentStory<typeof SearchHeaderEntry> = (
   args: SearchHeaderEntryProps
 ) => (
   // We use the Header component as context to the search bar.
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
-  <StoryHeader>
-    <SearchHeaderEntry {...args} />
-  </StoryHeader>
+  <StoryHeader search={<SearchHeaderEntry {...args} />} />
 );
