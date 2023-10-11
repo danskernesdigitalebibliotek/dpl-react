@@ -6,6 +6,8 @@ import MenuLoggedIn from "./menu-logged-in/menu-logged-in";
 import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { getModalIds } from "../../core/utils/helpers/general";
+import { usePatronData } from "../../components/material/helper";
+import TextLineSkeleton from "../../components/skeletons/TextLineSkeleton";
 
 interface MenuProps {
   pageSize: number;
@@ -18,13 +20,13 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     userMenuAuthenticated: userMenuAuthenticatedModalId,
     userMenuAnonymous: userMenuAnonymousModalId
   } = getModalIds();
+  const { isLoading, data: userData } = usePatronData();
 
   const openMenu = () => {
     if (isAnonymous()) {
       open(userMenuAnonymousModalId as string);
       return;
     }
-
     open(userMenuAuthenticatedModalId as string);
   };
 
@@ -43,8 +45,18 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
         type="button"
         aria-label={t("menuUserIconAriaLabelText")}
         onClick={() => openMenu()}
+        onKeyDown={(e) => e.key === "Enter" && openMenu()}
+        tabIndex={0}
       >
         <img src={profileIcon} alt="" />
+        {isLoading && (
+          <span className="text-small-caption">
+            <TextLineSkeleton width={50} />
+          </span>
+        )}
+        {userData?.patron?.name && (
+          <span className="text-small-caption">{userData.patron.name}</span>
+        )}
       </button>
       <MenuLoggedIn pageSize={pageSize} />
       <MenuNotLoggedInContent />
