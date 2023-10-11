@@ -70,6 +70,7 @@ interface PatronPageTextProps {
   patronPageStatusSectionOutOfText: string;
   patronPageStatusSectionOutOfAriaLabelAudioBooksText: string;
   patronPageStatusSectionOutOfAriaLabelEbooksText: string;
+  phoneInputMessageText: string;
 }
 
 export interface PatronPageProps

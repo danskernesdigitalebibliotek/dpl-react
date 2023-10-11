@@ -239,6 +239,11 @@ export default {
     patronPageStatusSectionOutOfAriaLabelEbooksText: {
       defaultValue: "You used @this ebooks out of you quota of @that ebooks",
       control: { type: "text" }
+    },
+    phoneInputMessageText: {
+      defaultValue:
+        "The phone number should be from Denmark (+45), Germany (+49), or Greenland (+299)",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof PatronPage>;
