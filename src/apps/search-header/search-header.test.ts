@@ -26,7 +26,7 @@ describe("Search header app", () => {
       })
       .as("Cover service");
 
-    cy.visit("/iframe.html?args=viewMode=story&id=apps-search-header--default");
+    cy.visit("/iframe.html?args=viewMode=story&id=apps-header--search");
   });
 
   it("Allows user to write into the search field", () => {
