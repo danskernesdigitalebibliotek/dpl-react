@@ -44,17 +44,18 @@ export interface MenuProps {
   menuNotAuthenticatedModalDescriptionText: string;
 }
 
-const MenuEntry: FC<
-  MenuProps &
-    GlobalUrlEntryPropsInterface &
-    GroupModalProps &
-    GroupModalLoansProps &
-    RenewalArgs &
-    DeleteReservationModalArgs &
-    GroupModalReservationsProps &
-    MaterialDetailsModalProps &
-    ReservationMaterialDetailsProps
-> = ({ pageSizeDesktop, pageSizeMobile }) => {
+export interface MenuEntryProps
+  extends MenuProps,
+    GlobalUrlEntryPropsInterface,
+    GroupModalProps,
+    GroupModalLoansProps,
+    RenewalArgs,
+    DeleteReservationModalArgs,
+    GroupModalReservationsProps,
+    MaterialDetailsModalProps,
+    ReservationMaterialDetailsProps {}
+
+const MenuEntry: FC<MenuEntryProps> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,
