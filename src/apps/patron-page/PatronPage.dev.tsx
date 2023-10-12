@@ -241,8 +241,9 @@ export default {
       control: { type: "text" }
     },
     phoneInputMessageText: {
+      name: "Phone input validation message",
       defaultValue:
-        "The phone number should be from Denmark (+45), Germany (+49), or Greenland (+299)",
+        "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
     }
   }

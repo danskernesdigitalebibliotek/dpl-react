@@ -29,7 +29,7 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
         id="phone-input"
         required={isRequired}
         type="tel"
-        pattern="(\+45|0045)[0-9]{8}|(\+49|0049)[0-9]{7,11}|(\+299|00299)[0-9]{6}"
+        pattern="\+?[0-9]{6,15}"
         title={t("phoneInputMessageText")}
         onChange={(newPhoneNumber) =>
           changePatron(newPhoneNumber, "phoneNumber")
