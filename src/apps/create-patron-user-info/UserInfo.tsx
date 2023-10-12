@@ -75,6 +75,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             inLine
             changePatron={changePatron}
             patron={patron}
+            requiredFields={["email"]}
           />
           <PincodeSection required changePincode={setPin} />
           {t("createPatronChangePickupHeaderText") && (
