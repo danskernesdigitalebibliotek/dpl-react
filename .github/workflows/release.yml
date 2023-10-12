@@ -35,7 +35,7 @@ jobs:
           zip -r -j dist.zip dist/
       - name: Install GHR
         run: |
-          curl --fail --silent --location --output ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz
+          curl --fail --silent --location --output ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.16.1/ghr_v0.16.1_linux_amd64.tar.gz
           tar -zxf ghr.tar.gz
           echo "./ghr_v0.13.0_linux_amd64" >> $GITHUB_PATH
       - name: Create release with asset
