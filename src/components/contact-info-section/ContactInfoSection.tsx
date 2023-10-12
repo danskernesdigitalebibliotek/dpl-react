@@ -51,7 +51,6 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           changePatron={changePatron}
           patron={patron}
           showCheckboxes={showCheckboxes}
-          isRequired
         />
       </ContactInfoInputs>
     </section>
