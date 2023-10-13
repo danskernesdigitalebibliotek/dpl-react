@@ -17,6 +17,7 @@ export interface UserInfoProps {
 
 const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const t = useText();
+  const { logoutUrl } = useUrls();
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
   const { redirectOnUserCreatedUrl } = useUrls();
@@ -103,8 +104,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             <button
               type="button"
               className="link-tag mx-16"
-              // todo, click cancel, what then?
-              onClick={() => {}}
+              onClick={() => {
+                redirectTo(logoutUrl);
+              }}
             >
               {t("createPatronCancelButtonText")}
             </button>
