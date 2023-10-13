@@ -64,7 +64,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   const [loansSoonOverdue, setLoansSoonOverdue] = useState<number>(0);
   const [reservationsReadyForPickup, setReservationsReadyForPickup] =
     useState<number>(0);
-  const { menuViewYourProfileTextUrl, menuLogOutUrl } = useUrls();
+  const { menuViewYourProfileTextUrl, logoutUrl } = useUrls();
 
   // Set user data
   useEffect(() => {
@@ -171,7 +171,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
         <div className="modal-profile__btn-logout mx-32">
           <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            href={menuLogOutUrl}
+            href={logoutUrl}
           >
             {t("menuLogOutText")}
           </Link>
