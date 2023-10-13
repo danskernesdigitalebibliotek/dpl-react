@@ -71,6 +71,8 @@ interface PatronPageTextProps {
   patronPageStatusSectionOutOfAriaLabelAudioBooksText: string;
   patronPageStatusSectionOutOfAriaLabelEbooksText: string;
   phoneInputMessageText: string;
+  handleResponseInformationText: string;
+  loadingText: string;
 }
 
 export interface PatronPageProps
