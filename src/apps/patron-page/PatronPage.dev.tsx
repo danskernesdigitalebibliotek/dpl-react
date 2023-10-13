@@ -245,6 +245,15 @@ export default {
       defaultValue:
         "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
+    },
+    handleResponseInformationText: {
+      defaultValue: "Dine ændringer er gemt.",
+      control: { type: "text" }
+    },
+    loadingText: {
+      name: "Loading",
+      defaultValue: "Loading..",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof PatronPage>;
