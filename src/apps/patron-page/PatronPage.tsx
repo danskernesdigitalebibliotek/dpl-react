@@ -146,7 +146,9 @@ const PatronPage: FC = () => {
             type="submit"
             disabled={disableSubmitButton}
           >
-            {t("patronPageSaveButtonText")}
+            {disableSubmitButton
+              ? t("loadingText")
+              : t("patronPageSaveButtonText")}
           </button>
 
           <div className="text-body-small-regular mt-32">
