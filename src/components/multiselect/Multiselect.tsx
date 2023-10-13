@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { useMultipleSelection, useSelect } from "downshift";
+import { useMultipleSelection } from "downshift";
 import clsx from "clsx";
 import { useClickAway, useDeepCompareEffect } from "react-use";
 import CheckBox from "../checkbox/Checkbox";
@@ -10,6 +10,12 @@ import {
 } from "../../core/utils/types/multiselect-types";
 import useMultiselectOptions from "./useMultiselectOptions";
 import { useText } from "../../core/utils/text";
+import {
+  deselectMultiselectAllOption,
+  selectMultiselectAllOption,
+  selectMultiselectOption,
+  useGetMultiselectDownshiftProps
+} from "./helper";
 
 export type MultiselectProps = {
   dataCy?: string;
@@ -39,9 +45,9 @@ const Multiselect: FC<MultiselectProps> = ({
       value
     });
   };
-
+  const allValue = "all";
   const { allOptions } = useMultiselectOptions(options, {
-    item: "advancedSearchFilterAllText",
+    item: "multiselectAllOptionText",
     value: "all"
   });
   const initialSelectedOptions =
@@ -57,42 +63,41 @@ const Multiselect: FC<MultiselectProps> = ({
   ) => {
     // If new selection is not "all" we make sure "all" is deselected
     if (
-      allCurrentlySelected.find((item) => item.value === "all") &&
-      newSelected.value !== "all"
+      allCurrentlySelected.find((item) => item.value === allValue) &&
+      newSelected.value !== allValue
     ) {
-      const newValue = [
-        ...selectedItems.filter((item) => item.value !== "all"),
-        newSelected
-      ];
-      updateState(updateExternalState?.key, newValue);
-      setSelectedItems(newValue);
-      return newValue;
+      return deselectMultiselectAllOption(
+        allCurrentlySelected,
+        newSelected,
+        updateState,
+        updateExternalState,
+        setSelectedItems
+      );
     }
-
     // If every non-"all" item is selected, then we just select "all"
     if (
-      newSelected.value !== "all" &&
+      newSelected.value !== allValue &&
       [...allCurrentlySelected, newSelected].length === allPossibleOptions - 1
     ) {
-      const newValue = [{ item: "advancedSearchFilterAllText", value: "all" }];
-      updateState(updateExternalState?.key, newValue);
-      setSelectedItems(newValue);
-      return newValue;
+      return selectMultiselectAllOption(
+        updateState,
+        updateExternalState,
+        setSelectedItems
+      );
     }
-
     // If new selection is "all" we make sure to deselect all other options
-    if (newSelected.value === "all") {
+    if (newSelected.value === allValue) {
       updateState(updateExternalState?.key, [newSelected]);
       setSelectedItems([newSelected]);
       return [newSelected];
     }
-
-    updateState(updateExternalState?.key, [
-      ...allCurrentlySelected,
-      newSelected
-    ]);
-    setSelectedItems([...allCurrentlySelected, newSelected]);
-    return [...allCurrentlySelected, newSelected];
+    return selectMultiselectOption(
+      selectedItems,
+      newSelected,
+      updateState,
+      updateExternalState,
+      setSelectedItems
+    );
   };
 
   useClickAway(ref, () => {
@@ -104,66 +109,13 @@ const Multiselect: FC<MultiselectProps> = ({
   }, [setSelectedItems, initialSelectedOptions]);
 
   const { getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } =
-    useSelect({
-      isOpen: isDropdownOpen,
-      selectedItem: null,
-      items: allOptions,
-      stateReducer: (state, actionAndChanges) => {
-        const { changes, type } = actionAndChanges;
-        switch (type) {
-          case useSelect.stateChangeTypes.MenuKeyDownEnter:
-          case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-          case useSelect.stateChangeTypes.ItemClick:
-            return {
-              ...changes,
-              isOpen: true // keep the menu open after selection.
-            };
-          default:
-            break;
-        }
-        return changes;
-      },
-      onStateChange: ({ type, selectedItem: newSelectedItem }) => {
-        switch (type) {
-          case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-          case useSelect.stateChangeTypes.ItemClick:
-          case useSelect.stateChangeTypes.MenuKeyDownEnter:
-            // If new selection isn't already selected, we add it
-            if (
-              newSelectedItem &&
-              !selectedItems.find(
-                (item) => item.value === newSelectedItem.value
-              )
-            ) {
-              setSelectedItems(
-                addNewSelectedItem(
-                  selectedItems,
-                  newSelectedItem,
-                  allOptions.length
-                )
-              );
-              return;
-            }
-            // If new selection is already selected, we deselect it
-            if (
-              newSelectedItem &&
-              selectedItems.find((item) => item.value === newSelectedItem.value)
-            ) {
-              // Unless it's the only selected item
-              if (selectedItems.length === 1) {
-                return;
-              }
-              const newSelectedItems = selectedItems.filter((item) => {
-                return item.value !== newSelectedItem.value;
-              });
-              setSelectedItems(newSelectedItems);
-            }
-            break;
-          default:
-            break;
-        }
-      }
-    });
+    useGetMultiselectDownshiftProps(
+      isDropdownOpen,
+      allOptions,
+      selectedItems,
+      setSelectedItems,
+      addNewSelectedItem
+    );
 
   return (
     <>

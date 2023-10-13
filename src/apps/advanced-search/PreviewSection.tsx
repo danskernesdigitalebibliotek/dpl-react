@@ -9,7 +9,7 @@ export type PreviewSectionProps = {
   translatedCql: string;
   reset: () => void;
   isMobile?: boolean;
-  setIsAdvancedSearchHeader: (newState: boolean) => void;
+  setIsFormMode: (newState: boolean) => void;
 };
 
 const PreviewSection: React.FC<PreviewSectionProps> = ({
@@ -17,9 +17,10 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
   translatedCql,
   reset,
   isMobile,
-  setIsAdvancedSearchHeader
+  setIsFormMode
 }) => {
   const t = useText();
+  // The "value" isn't used, but needs to be destructured from the hook.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [value, copy] = useCopyToClipboard();
   const [copiedToClipboard, setCopiedToClipboard] = useState<boolean>(false);
@@ -88,8 +89,8 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
         <button
           type="button"
           className="link-tag link-tag cursor-pointer capitalize-first"
-          onClick={() => setIsAdvancedSearchHeader(false)}
-          onKeyUp={(e) => e.key === "Enter" ?? setIsAdvancedSearchHeader(false)}
+          onClick={() => setIsFormMode(false)}
+          onKeyUp={(e) => e.key === "Enter" ?? setIsFormMode(false)}
           data-cy="advanced-search-edit-cql"
         >
           {t("advancedSearchEditCqlText")}

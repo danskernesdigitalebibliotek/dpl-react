@@ -26,6 +26,7 @@ import {
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -342,6 +343,9 @@ const SearchHeader: React.FC = () => {
   );
 
   useEffect(() => {
+    // We redirect to Advanced search results instead of regular search results if:
+    // - the query is wrapped in double quotes
+    // - the query is not just empty double quotes
     if (
       q.trim().charAt(0) === '"' &&
       q.trim().charAt(q.length - 1) === '"' &&
@@ -382,38 +386,12 @@ const SearchHeader: React.FC = () => {
           isLoading={isLoading}
         />
         {isHeaderDropdownOpen && (
-          <div
-            className="header__menu-dropdown"
-            data-cy="search-header-dropdown"
-          >
-            <ul>
-              <li>
-                <button
-                  ref={headerDropdownRef}
-                  type="button"
-                  role="menuitem"
-                  className="header__menu-dropdown-item cursor-pointer"
-                  onClick={() => redirectTo(advancedSearchUrl)}
-                  onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                      return redirectTo(advancedSearchUrl);
-                    }
-                    if (
-                      e.key === "ArrowDown" ||
-                      e.key === "ArrowUp" ||
-                      e.key === "Escape"
-                    ) {
-                      return setIsHeaderDropdownOpen(false);
-                    }
-                    return null;
-                  }}
-                  onBlur={() => setIsHeaderDropdownOpen(false)}
-                >
-                  {t("headerDropdownItemAdvancedSearchText")}
-                </button>
-              </li>
-            </ul>
-          </div>
+          <HeaderDropdown
+            redirectTo={redirectTo}
+            setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+            headerDropdownRef={headerDropdownRef}
+            advancedSearchUrl={advancedSearchUrl}
+          />
         )}
       </div>
     </div>

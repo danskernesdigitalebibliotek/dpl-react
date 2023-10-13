@@ -7,19 +7,23 @@ import CardListItemSkeleton from "../../components/card-item-list/card-list-item
 export interface SearchResultSkeletonProps {
   q: string;
   dataCy?: string;
+  isAdvancedSearch?: boolean;
 }
 
 const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
   q,
-  dataCy = "search-header-skeleton"
+  dataCy = "search-header-skeleton",
+  isAdvancedSearch = false
 }) => {
   const t = useText();
   return (
     <div className="card-list-page" data-cy={dataCy}>
       <h1 className="text-header-h2 mb-16 search-result-title text-loading">
-        {t("showingResultsForText", { placeholders: { "@query": q } })}
+        {!isAdvancedSearch &&
+          t("showingResultsForText", { placeholders: { "@query": q } })}
+        {isAdvancedSearch && t("showingResultsForWithoutQueryText")}
       </h1>
-      <FacetLineFiltersSkeleton />
+      {!isAdvancedSearch && <FacetLineFiltersSkeleton />}
       <ul className="card-list-page__list my-32">
         {/* Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens. */}

@@ -1,24 +1,6 @@
 import { MultiselectOption } from "../../core/utils/types/multiselect-types";
 
-export type AdvancedSearchIndex =
-  | "all"
-  | "creator"
-  | "subject"
-  | "genre"
-  | "language"
-  | "date"
-  | "mainCreator"
-  | "mainTitle"
-  | "source"
-  | "dateFirstEdition"
-  | "decimaldk5"
-  | "type"
-  | "audience"
-  | "publisher"
-  | "identifier"
-  | "acSource";
-
-export const AdvancedSearchIndexes: AdvancedSearchIndex[] = [
+export const advancedSearchIndexes = [
   "all",
   "creator",
   "subject",
@@ -35,9 +17,9 @@ export const AdvancedSearchIndexes: AdvancedSearchIndex[] = [
   "publisher",
   "identifier",
   "acSource"
-];
+] as const;
 
-export const AdvancedSearchIndexTranslations = {
+export const advancedSearchIndexTranslations = {
   all: "advancedSearchAllIndexesText",
   creator: "advancedSearchCreatorText",
   subject: "advancedSearchSubjectText",
@@ -54,14 +36,16 @@ export const AdvancedSearchIndexTranslations = {
   publisher: "advancedSearchPublisherText",
   identifier: "advancedSearchIdentifierText",
   acSource: "advancedSearchAcSourceText"
-};
+} as const;
+
+export type AdvancedSearchIndex = typeof advancedSearchIndexes[number];
 
 export type AdvancedSearchClause = {
   value: "AND" | "OR" | "NOT";
   translation: string;
 };
 
-export const AdvancedSearchClauses: AdvancedSearchClause[] = [
+export const advancedSearchClauses: AdvancedSearchClause[] = [
   { value: "AND", translation: "clauseAndText" },
   { value: "OR", translation: "clauseOrText" },
   { value: "NOT", translation: "clauseNotText" }
@@ -73,6 +57,11 @@ export type AdvancedSearchRowData = {
   clause: AdvancedSearchClause;
   id: number;
 };
+
+export type AdvancedSearchRowUpdateRowAspect =
+  | "term"
+  | "searchIndex"
+  | "clause";
 
 export type AdvancedSearchFilterData = {
   materialTypes: MultiselectOption[];
@@ -87,8 +76,8 @@ export type AdvancedSearchQuery = {
 
 export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
   rows: [
-    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0], id: 0 },
-    { term: "", searchIndex: "all", clause: AdvancedSearchClauses[0], id: 1 }
+    { term: "", searchIndex: "all", clause: advancedSearchClauses[0], id: 0 },
+    { term: "", searchIndex: "all", clause: advancedSearchClauses[0], id: 1 }
   ],
   filters: {
     materialTypes: [{ item: "All", value: "all" }],

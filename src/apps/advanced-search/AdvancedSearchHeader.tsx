@@ -38,8 +38,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   setSearchObject
 }) => {
   const t = useText();
-  const [isAdvancedSearchheader, setIsAdvancedSearchHeader] =
-    useState<boolean>(true);
+  const [isFormMode, setIsFormMode] = useState<boolean>(true);
   // Keep an internal copy of the search object in a separate state. We only
   // want to update the outer state and perform a search when the user clicks
   // the search button.
@@ -83,12 +82,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
 
   useEffect(() => {
     if (searchQuery && !searchObject) {
-      setIsAdvancedSearchHeader(false);
+      setIsFormMode(false);
     }
   }, [searchObject, searchQuery]);
 
   const handleSearchButtonClick = () => {
-    if (rawCql.trim() !== "" && !isAdvancedSearchheader) {
+    if (rawCql.trim() !== "" && !isFormMode) {
       setSearchQuery(rawCql);
       return;
     }
@@ -98,20 +97,21 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] =
     useState<boolean>(true);
 
+  const translatedCql = previewCql || searchQuery || "";
+
   useEffect(() => {
     setIsSearchButtonDisabled(
       shouldAdvancedSearchButtonBeDisabled(
-        isAdvancedSearchheader,
+        isFormMode,
         internalSearchObject,
         rawCql
       )
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [internalSearchObject, rawCql, isAdvancedSearchheader]);
+  }, [internalSearchObject, rawCql, isFormMode]);
 
   return (
     <>
-      {isAdvancedSearchheader && (
+      {isFormMode && (
         <>
           <h1 className="text-header-h2 advanced-search__title capitalize-first">
             {t("advancedSearchTitleText")}
@@ -131,9 +131,9 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               })}
             </div>
             <PreviewSection
-              translatedCql={previewCql || searchQuery || ""}
+              translatedCql={translatedCql}
               reset={reset}
-              setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
+              setIsFormMode={setIsFormMode}
             />
           </div>
 
@@ -179,29 +179,24 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             </div>
           </section>
           <PreviewSection
-            translatedCql={previewCql || searchQuery || ""}
+            translatedCql={translatedCql}
             reset={reset}
             isMobile
-            setIsAdvancedSearchHeader={setIsAdvancedSearchHeader}
+            setIsFormMode={setIsFormMode}
           />
         </>
       )}
-      {!isAdvancedSearchheader && (
-        <CqlSearchHeader
-          initialCql={previewCql || searchQuery || ""}
-          setCql={setRawCql}
-        />
+      {!isFormMode && (
+        <CqlSearchHeader initialCql={translatedCql} setCql={setRawCql} />
       )}
 
       <section className="advanced-search__footer">
-        {!isAdvancedSearchheader && (
+        {!isFormMode && (
           <button
             type="button"
             className="link-tag advanced-search__back-button cursor-pointer"
-            onClick={() => setIsAdvancedSearchHeader(true)}
-            onKeyUp={(e) =>
-              e.key === "Enter" ?? setIsAdvancedSearchHeader(!true)
-            }
+            onClick={() => setIsFormMode(true)}
+            onKeyUp={(e) => e.key === "Enter" ?? setIsFormMode(!true)}
           >
             {t("toAdvancedSearchButtonText")}
           </button>

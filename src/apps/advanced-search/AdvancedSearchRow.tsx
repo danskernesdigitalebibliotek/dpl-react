@@ -5,13 +5,14 @@ import IconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons
 import clsx from "clsx";
 import {
   AdvancedSearchClause,
-  AdvancedSearchClauses,
+  advancedSearchClauses,
   AdvancedSearchIndex,
-  AdvancedSearchIndexTranslations,
-  AdvancedSearchIndexes,
+  advancedSearchIndexTranslations,
+  advancedSearchIndexes,
   AdvancedSearchQuery,
   initialAdvancedSearchQuery,
-  AdvancedSearchRowData
+  AdvancedSearchRowData,
+  AdvancedSearchRowUpdateRowAspect
 } from "./types";
 import { useText } from "../../core/utils/text";
 
@@ -31,13 +32,14 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
   const t = useText();
 
   const updateRowData = (
-    rowAspect: "term" | "clause" | "searchIndex",
+    rowAspect: AdvancedSearchRowUpdateRowAspect,
     update: string | AdvancedSearchClause | AdvancedSearchIndex,
     updateData: (data: AdvancedSearchQuery) => void
   ) => {
     const newData = { ...data };
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore-next-line
+    // @ts-ignore-next-line I wasn't able to match the update type with the rowAspect type
+    // but the values match and it all works.
     newData.rows[rowIndex][rowAspect] = update;
     updateData(newData);
   };
@@ -79,7 +81,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     <>
       {rowIndex > 0 && (
         <div className="advanced-search__clauses" data-cy="clauses">
-          {AdvancedSearchClauses.map((clause) => {
+          {advancedSearchClauses.map((clause) => {
             return (
               <button
                 key={`${rowIndex}-${clause.value}`}
@@ -119,10 +121,14 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
               updateRowData("searchIndex", e.target.value, setSearchObject);
             }}
           >
-            {AdvancedSearchIndexes.map((index) => {
+            {advancedSearchIndexes.map((index) => {
               return (
                 <option key={index} className="dropdown__option" value={index}>
-                  {t(AdvancedSearchIndexTranslations[index])}
+                  {t(
+                    advancedSearchIndexTranslations[
+                      index as keyof typeof advancedSearchIndexTranslations
+                    ]
+                  )}
                 </option>
               );
             })}

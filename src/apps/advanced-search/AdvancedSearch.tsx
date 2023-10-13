@@ -15,10 +15,15 @@ interface AdvancedSearchProps {
 }
 
 const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
+  // searchQuery is the CQL string used to query the FBI API.
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
+  // searchObject is the object representation of the searchQuery that we work with
+  // in the code. It is translated to CQL upon hitting the search button.
   const [searchObject, setSearchObject] = useState<AdvancedSearchQuery | null>(
     null
   );
+  // Users can link to searches that only show the results without the search form,
+  // using the "link to this search" button inside the AdvancedSearchResult comp.
   const [showResultOnly, setShowResultOnly] = useState<boolean>(false);
   // This is the CQL query that is actually executed.
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
@@ -39,10 +44,14 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     if (advancedSearchCql) {
       setSearchQuery(advancedSearchCql);
     }
+
+    if (getUrlQueryParam("linked") === "true") {
+      setShowResultOnly(true);
+    }
   });
 
   useEffect(() => {
-    if (searchObject === null) return;
+    if (!searchObject) return;
     const cql = translateSearchObjectToCql(searchObject);
     if (cql.trim() === "") return;
 
@@ -52,25 +61,17 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
       advancedSearchQuery: JSON.stringify(searchObject)
     });
     removeQueryParametersFromUrl("advancedSearchCql");
-
     setExecutedQuery(cql);
   }, [searchObject]);
 
   useEffect(() => {
-    if (searchQuery == null) return;
+    if (!searchQuery) return;
     // Replace any existing advanced search query with the CQL query to avoid
     // mixing the two.
     setQueryParametersInUrl({ advancedSearchCql: searchQuery });
     removeQueryParametersFromUrl("advancedSearchQuery");
-
     setExecutedQuery(searchQuery);
   }, [searchQuery]);
-
-  useEffect(() => {
-    if (getUrlQueryParam("linked") === "true") {
-      setShowResultOnly(true);
-    }
-  }, []);
 
   return (
     <div className="advanced-search">

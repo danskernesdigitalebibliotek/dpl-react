@@ -358,8 +358,8 @@ export default {
       defaultValue: "Non-fiction",
       control: { type: "text" }
     },
-    advancedSearchFilterAllText: {
-      name: "Advanced search filter - all",
+    multiselectAllOptionText: {
+      name: "Multiselect - all option",
       defaultValue: "All",
       control: { type: "text" }
     }
