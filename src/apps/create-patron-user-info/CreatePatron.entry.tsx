@@ -21,27 +21,28 @@ interface CreatePatronUrlProps {
 
 interface CreatePatronTextProps {
   pickupBranchesDropdownLabelText: string;
-  patronPageChangePincodeHeaderText: string;
-  pickupBranchesDropdownNothingSelectedText: string;
-  patronPageChangePincodeBodyText: string;
-  patronPagePincodeLabelText: string;
-  patronPageConfirmPincodeLabelText: string;
-  patronPagePincodeTooShortValidationText: string;
-  patronPagePincodesNotTheSameText: string;
-  patronContactPhoneLabelText: string;
-  patronContactNameLabelText: string;
+  createPatronCancelButtonText: string;
+  createPatronChangePickupBodyText: string;
+  createPatronChangePickupHeaderText: string;
+  createPatronConfirmButtonText: string;
+  createPatronHeaderText: string;
+  createPatronInvalidSSNBodyText: string;
+  createPatronInvalidSSNHeaderText: string;
+  patronContactEmailCheckboxText: string;
+  patronContactEmailLabelText: string;
   patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
+  patronContactNameLabelText: string;
   patronContactPhoneCheckboxText: string;
-  createPatronConfirmButtonText: string;
-  createPatronCancelButtonText: string;
-  patronContactEmailLabelText: string;
-  patronContactEmailCheckboxText: string;
-  createPatronChangePickupHeaderText: string;
-  createPatronChangePickupBodyText: string;
-  createPatronHeaderText: string;
-  createPatronInvalidSSNHeaderText: string;
-  createPatronInvalidSSNBodyText: string;
+  patronContactPhoneLabelText: string;
+  patronPageChangePincodeBodyText: string;
+  patronPageChangePincodeHeaderText: string;
+  patronPageConfirmPincodeLabelText: string;
+  patronPagePincodeLabelText: string;
+  patronPagePincodesNotTheSameText: string;
+  patronPagePincodeTooShortValidationText: string;
+  phoneInputMessageText: string;
+  pickupBranchesDropdownNothingSelectedText: string;
 }
 
 export interface CreatePatronProps
