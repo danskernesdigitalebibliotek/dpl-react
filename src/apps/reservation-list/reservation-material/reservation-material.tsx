@@ -25,7 +25,17 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
 
   return (
     <li>
-      <div className="list-reservation my-32">
+      <div
+        className="list-reservation my-32 cursor-pointer"
+        role="button"
+        onClick={() => openDetailsModal()}
+        onKeyUp={(e) => {
+          if (e.key === "Enter" || e.key === "Space") {
+            openDetailsModal();
+          }
+        }}
+        tabIndex={0}
+      >
         {material && (
           <MaterialInfo
             arrowLabelledBy={`${

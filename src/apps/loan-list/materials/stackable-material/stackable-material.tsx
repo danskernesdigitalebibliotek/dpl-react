@@ -1,4 +1,5 @@
 import React, { useCallback, FC } from "react";
+import clsx from "clsx";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
 import MaterialInfo from "./material-info";
@@ -39,9 +40,17 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 
   return (
     <div
-      className={`list-reservation my-32 ${
-        additionalMaterials > 0 ? "list-reservation--stacked" : ""
-      }`}
+      className={clsx("list-reservation my-32 cursor-pointer", {
+        "list-reservation--stacked": additionalMaterials > 0
+      })}
+      role="button"
+      onClick={() => openLoanDetailsModalHandler()}
+      onKeyUp={(e) => {
+        if (e.key === "Enter" || e.key === "Space") {
+          openLoanDetailsModalHandler();
+        }
+      }}
+      tabIndex={0}
     >
       {material && (
         <MaterialInfo
