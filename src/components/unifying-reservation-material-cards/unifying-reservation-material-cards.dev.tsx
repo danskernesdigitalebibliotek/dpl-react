@@ -137,19 +137,12 @@ const Template = () => {
             <StatusBadge badgeDate={loanType.dueDate} neutralText="" />
           }
           statusMessageComponentDesktop={
-            <div className="mikkel-status">
-              <StatusMessage
-                className="list-materials__status__note-desktop"
-                loanType={loanType.loanType}
-                renewalStatusList={loanType.renewalStatusList}
-              />
-              <ReservationInfo
-                reservationInfo={reservationMaterialProps.reservation}
-                openReservationDetailsModal={
-                  reservationMaterialProps.openReservationDetailsModal
-                }
-              />
-            </div>
+            <ReservationInfo
+              reservationInfo={reservationMaterialProps.reservation}
+              showArrow={false}
+              showStatusCircleIcon={false}
+              reservationStatusClassNameOverride=""
+            />
           }
           statusMessageComponentMobile={
             <StatusMessage
