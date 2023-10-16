@@ -5,13 +5,15 @@ import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon
 
 interface ReservationStatusProps {
   reservationInfo?: ReservationType;
-  openReservationDetailsModal: (reservation: ReservationType) => void;
+  openReservationDetailsModal?: (reservation: ReservationType) => void;
   color?: string;
   empty?: boolean;
   percent: number;
   infoLabel?: string;
   label: string | string[];
   children?: ReactNode;
+  showArrow?: boolean;
+  classNameOverride?: string;
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
@@ -22,7 +24,9 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   empty = false,
   infoLabel,
   label,
-  children
+  children,
+  showArrow = true,
+  classNameOverride
 }) => {
   const notificationClickEventHandler = useCallback(() => {
     if (openReservationDetailsModal && reservationInfo) {
@@ -30,8 +34,12 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
     }
   }, [openReservationDetailsModal, reservationInfo]);
 
+  const className =
+    classNameOverride !== undefined
+      ? classNameOverride
+      : "list-reservation__status";
   return (
-    <div className="list-reservation__status">
+    <div className={className}>
       <div className="list-reservation__counter color-secondary-gray">
         {!empty && (
           <StatusCircleIcon color={color} percent={percent}>
@@ -53,13 +61,15 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
-      <ArrowButton
-        arrowLabelledBy={`${
-          reservationInfo?.identifier || reservationInfo?.faust
-        }-title`}
-        cursorPointer
-        clickEventHandler={notificationClickEventHandler}
-      />
+      {showArrow && (
+        <ArrowButton
+          arrowLabelledBy={`${
+            reservationInfo?.identifier || reservationInfo?.faust
+          }-title`}
+          cursorPointer
+          clickEventHandler={notificationClickEventHandler}
+        />
+      )}
     </div>
   );
 };

@@ -14,11 +14,17 @@ import { useGetBranches } from "../../../core/utils/branches";
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
   openReservationDetailsModal: (reservation: ReservationType) => void;
+  showStatusCircleIcon?: boolean;
+  showArrow?: boolean;
+  reservationStatusClassNameOverride?: string;
 }
 
 const ReservationInfo: FC<ReservationInfoProps> = ({
   reservationInfo,
-  openReservationDetailsModal
+  openReservationDetailsModal,
+  showStatusCircleIcon = true,
+  showArrow = true,
+  reservationStatusClassNameOverride
 }) => {
   const t = useText();
 
@@ -61,6 +67,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         label={[pickupLibrary, pickupNumber || ""]}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        classNameOverride={reservationStatusClassNameOverride}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -88,6 +97,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         label={numberInLineLabel}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        classNameOverride={reservationStatusClassNameOverride}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -113,6 +125,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         })}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        classNameOverride={reservationStatusClassNameOverride}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}
@@ -139,6 +154,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       percent={0}
       label=""
       empty
+      classNameOverride={reservationStatusClassNameOverride}
     />
   );
 };
