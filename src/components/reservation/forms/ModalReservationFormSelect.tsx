@@ -73,6 +73,11 @@ const ModalReservationFormSelect = ({
       modalId={modalId}
       screenReaderModalDescriptionText={screenReaderModalDescriptionText}
       closeModalAriaLabelText={closeModalAriaLabelText}
+      eventCallbacks={{
+        close: () => {
+          if (setReservationStatus) setReservationStatus("idle");
+        }
+      }}
     >
       {reservationStatus === "success" && (
         <ModalMessage
